@@ -1,3 +1,10 @@
+---
+title: "SD-e1-rollout-consistency-training: e1.transition.action_conditioning + rollout_consistency"
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 13
+---
+
 # SD-e1-rollout-consistency-training: e1.transition.action_conditioning + rollout_consistency
 
 **Claim ID:** SD-e1-rollout-consistency-training

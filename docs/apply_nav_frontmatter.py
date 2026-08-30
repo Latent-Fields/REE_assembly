@@ -109,6 +109,7 @@ ASSIGN = {
     "sd_004_sd_005_encoder_codesign.md": "engines", "sd_015_z_resource_encoder.md": "engines",
     "sd_030_e2_self_forward_model.md": "engines", "sd_031_e2_world_forward_model.md": "engines",
     "sd_056_e2_action_conditional_divergence.md": "engines",
+    "sd_e1_rollout_consistency_training.md": "engines",
     "contextmemory_write_address_selection.md": "engines", "sd_e3_scorer_completion.md": "engines",
 
     # --- Foundations & Rationale ---

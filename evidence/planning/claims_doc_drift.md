@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-08-29T03:02:44Z
+Generated: 2026-08-30T01:17:31Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (135)
+## Unresolved with a hand status line -- INFO (136)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -122,6 +122,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `sd_085_e3_reality_cost_weight.md` -- "PENDING"
 - `sd_actor_critic_action_learning.md` -- "SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **"
 - `sd_cross_stream_binding_substrate.md` -- "IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic)"
+- `sd_e1_rollout_consistency_training.md` -- "ITEM 1 IMPLEMENTED (2026-08-29) / ITEM 2 PENDING"
 - `sd_e3_scorer_completion.md` -- "IMPLEMENTED"
 - `sd_hazard_aware_policy_decomposition.md` -- "IMPLEMENTED 2026-08-01"
 - `sd_mech267_cem_selection_fix.md` -- "IMPLEMENTED"
