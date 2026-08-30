@@ -5004,6 +5004,95 @@
         "distance_phrase": "1 of 2 legs eliminated on one well-instrumented run (6 seeds, proven instrument control, criteria reproducing from recorded cells). Leg (ii) needs one better-posed instrument, not more power.",
         "observation_bottleneck": "The decisiveness stratifier. A per-seed median split on a right-skewed raw_score_range distribution cannot isolate a confident regime, and divergence rate is only weakly stratum-dependent in the recorded data."
       }
+    },
+    {
+      "qid": "sd_e1_residual_crush_locus",
+      "title": "After SD-e1 ITEM 1's action-conditioned transition landed, which locus explains E1's RESIDUAL per-action crush -- the evaluator statistic still sitting 25-37x short of its 0.1 bar?",
+      "short_title": "E1 residual crush locus (post-ITEM-1)",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "registered_utc": "2026-08-30T16:19:45Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-965_2026-08-30.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "hypotheses": [
+        {
+          "hid": "H-interface-action-channel",
+          "label": "the action-free transition INTERFACE is the binding locus",
+          "desc": "E1's transition took no action, so the whole action signal was squeezed through one world_dim-wide prior_generator projection with the z_self LSTM slot zeroed. Supplying a dedicated action channel (ITEM 1) is therefore sufficient to restore evaluator-grade per-action discriminability.",
+          "axis": "intrinsic-architecture",
+          "basis": "V3-EXQ-954 confirmed action-blindness as the dominant cause of the 108b evaluator collapse; the design doc makes the interface fix ITEM 1.",
+          "pre_registered_utc": "2026-08-29T21:18:48Z",
+          "pre_registration_source": "docs/architecture/sd_e1_rollout_consistency_training.md @ REE_assembly 1f8870d290",
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-965"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "action_conditioning_converts_both_arms",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-30T14:59:08Z",
+            "basis": "ITEM 1 landed and demonstrably works -- the direct actions= channel produces real per-action divergence at the E1 output on a trained model (ON arms 1.46e-03..2.19e-03 mean pairwise L2 against an A_off arm at EXACTLY 0.0), lifting cr_ratio(h=1) 6455x-9775x from 4.14e-07/4.05e-07 to 2.67e-03..3.96e-03. But the residual crush REMAINS: cr_ratio(h=1) is still 25-37x short of the 0.1 bar and e1coe_score_var 5-7 orders below 0.002, against a healthy horizon-matched denominator (CR_real 0.17-0.26, n=40 at h=1). So the interface was necessary and is NOT sufficient -- it does not explain the residual. Control: A_off reproduces V3-EXQ-954's own cr_ratio(h=1) 4.76e-07/5.39e-07 to within ~15-25%. Adjudicated by confirmed autopsy failure_autopsy_V3-EXQ-965_2026-08-30, whose verdict rests on the run's recorded pairwise/cr_ratio data and NOT on its own unsound C1 criterion."
+          }
+        },
+        {
+          "hid": "H-outputproj-parameterisation",
+          "label": "the ABSOLUTE output parameterisation is the binding locus",
+          "desc": "E1's output_proj predicts the absolute next state, where E2 uses a residual z + delta(z, a) form. The residual per-action crush is a parameterisation artifact: an absolute-state head must reproduce the whole state, so a small action-dependent delta is swamped at the output.",
+          "axis": "representation",
+          "basis": "Recorded in the design doc as an open suspect surfaced while building ITEM 1, explicitly conditional on the observation V3-EXQ-965 has now made: 'If the item-1 ON arm still shows crushed per-action divergence at the E1 output, that parameterisation is the next thing to test.' Source-verified: output_proj is absolute in e1_deep.py; E2 is residual in e2_fast.py.",
+          "pre_registered_utc": "2026-08-29T21:18:48Z",
+          "pre_registration_source": "docs/architecture/sd_e1_rollout_consistency_training.md @ REE_assembly 1f8870d290",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "Live and now activated by V3-EXQ-965: the doc's stated precondition for testing it is met. Declared null: a residual parameterisation leaves cr_ratio(h=1) within noise of 2.67e-03..3.96e-03. Gate on cr_ratio(h=1) against 0.1 and raw per-action divergence against E2's 2.8e-2 reference -- NEVER an ON/OFF ratio against an analytically-zero control (the V3-EXQ-965 C1 defect)."
+          }
+        },
+        {
+          "hid": "H-training-objective",
+          "label": "the single-step MSE training OBJECTIVE is the binding locus",
+          "desc": "The crush is in what the LSTM learned, not in how the output is parameterised: a single-step MSE objective never penalises multi-step per-action divergence collapse, so only a multi-step rollout-consistency objective (SD-e1 ITEM 2) moves cr_ratio(h).",
+          "axis": "learning-signal",
+          "basis": "The design doc's ITEM 2, with five lit-grounded candidates ranked in the commissioned literature synthesis; V3-EXQ-954's red-team localised the dominant ~675x crush at the LSTM+output_proj stage, which an interface change alone was not expected to reach.",
+          "pre_registered_utc": "2026-08-29T21:18:48Z",
+          "pre_registration_source": "docs/architecture/sd_e1_rollout_consistency_training.md @ REE_assembly 1f8870d290",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Which locus should SD-e1 ITEM 2 actually target -- the absolute-vs-residual output parameterisation, or the multi-step training objective -- given that ITEM 1's interface fix lifted per-action signal by 6455x-9775x yet left the evaluator statistic 25-37x short of its bar?",
+        "live_gate": "Two live legs on different axes (representation vs learning-signal), neither yet probed. Not decidable until at least one is run; the design doc's own pre-registered branch makes the output_proj probe the cheaper first cut.",
+        "decidable": false,
+        "observation_bottleneck": null,
+        "decision_log_ref": null,
+        "distance_phrase": "1 of 3 legs resolved (interface eliminated as SUFFICIENT by V3-EXQ-965); 2 alive, both cheap relative to a full ITEM 2 objective build."
+      },
+      "registration_note": "Registered by failure_autopsy_V3-EXQ-965_2026-08-30 (user-confirmed at the Step 8 gate). Deliberately a NEW question rather than growth on inv088_evaluator_degeneracy_cause: that question asks about the CAUSE of evaluator degeneracy, is fully resolved (5 legs, 0 alive, decidable), and V3-EXQ-965 bears on the REMEDY -- attaching here would conflate two questions and would be growth on an already-adjudicated one. As a new question, no growth_restriction applies and invariant 3 is not engaged. All three legs share one git witness (commit 1f8870d290, 2026-08-29T21:18:48Z), which enumerates the interface item, the five ranked objective candidates, and the output_proj suspect, and pre-dates the run (2026-08-30T14:59:08Z) by ~17.7 hours."
     }
   ]
 }

@@ -1,0 +1,142 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-30T16:19:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_utc": "2026-08-30T16:19:45Z",
+  "confirmed_by": "interactive Step 8 gate, session autopsy-exq965-20260830",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3",
+      "queue_id": "V3-EXQ-965",
+      "claim_ids": [],
+      "self_route_label": "action_conditioning_converts_both_arms",
+      "failed_criterion": "none -- diagnostic PASS under adjudication (label accurate; the criterion producing it is unsound)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: [] by deliberate and correct design; tagging MECH-135/INV-088 here would be the speculative tagging the claim_ids accuracy rule forbids",
+        "biological_reference": "clear -- action-conditioned forward models (efference copy); ITEM 1 brings E1 to the interface standard SD-056 already set for E2",
+        "prerequisites": "present -- SD-070 warmup, 954-identical phases; substrate provenance verified by git ancestry (26557a3758 is an ancestor of run commit 072d9b0b33b5, dirty:false)",
+        "implementation": "complete -- the actions= channel exists at the run commit, is exercised, and carries real per-action signal; vacuity traps reachable and genuinely closed",
+        "environment": "adequate -- CR_real 0.17-0.26 at every horizon, n=40 at h=1",
+        "measurement": "MIXED -- recording complete (validate_recording 0 gaps) and cells correct, but the GATING criterion C1 denominates on an analytically-zero control and its stored statement carries a provenance claim that does not trace to the cited design doc",
+        "integration": "coupled -- real REEAgent pipeline, fresh training per the 954 recipe",
+        "scale": "adequate for the qualitative wiring verdict; inadequate for the magnitude claim C1's statement asserts"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "n/a -- diagnostic PASS; no observation here is described as evidence REE itself failed. The residual evaluator degeneracy is already SD-e1-rollout-consistency-training ITEM 2's subject. Recorded per the V3-EXQ-954 precedent rather than forced into a bucket."
+      },
+      "biological_reference": {
+        "closest_mechanism": "action-conditioned forward models (efference-copy-informed cerebellar/cortical prediction)",
+        "dependencies": ["action-conditioned transition input (ITEM 1, now validated)", "multi-step rollout-consistency training objective (ITEM 2, pending)"],
+        "is_formal_import": false,
+        "divergence": "closing -- ITEM 1 supplies the dedicated action channel; the residual ~675x LSTM+output_proj crush and the absolute-vs-residual output parameterisation remain divergent from E2's residual z + delta(z,a) form",
+        "lit_status": "present"
+      },
+      "adjudication_verdict": "GENUINE FINDING, UNSOUND CRITERION. The self-route label is accurate and the substantive conclusion is established -- but by the recorded pairwise distances and the NON-GATING cr_ratio(h) sweep, not by C1. ITEM 1's direct actions= channel produces real per-action divergence at the E1 output on a trained model (ON arms 1.46e-03 to 2.19e-03 mean pairwise L2, both seeds, both ON arms, with genuine per-pair structure), and cr_ratio(h=1) moves 4.14e-07/4.05e-07 -> 2.67e-03..3.96e-03 (6455x-9775x) while remaining 25-37x short of the 0.1 bar; e1coe_score_var stays 5-7 orders below 0.002. C1 itself is unsound: A_off's ten pairwise distances are EXACTLY 0.0 in both seeds (the OFF branch of predict_long_horizon never reads actions, and Phase 4c holds total_curr bitwise fixed with a hidden-state reset per call), so the control's DV is analytically pinned to zero; C1 divides instead by contrast_ratio = 1.03e-08/2.69e-08, which is pure float32 rounding residue in the mean-and-subtract (reproduced independently: five bitwise-identical float32 vectors of the observed norm give cr ~1.8e-08). Consequences verified by execution: (i) the headline measured 57809.12 vs threshold 6.101 is ON divided by rounding residue and is not an effect size; (ii) LIFT_FACTOR = max(3.0, 2.0 x (1.4966e-07/4.906e-08)) = 6.101 derives the run's proudest defence against inherited constants from the ratio of two rounding errors; (iii) had the mean rounded exactly, off_ratio == 0 -> rel_lift = NaN -> rel_ok = False -> all four cells fail -> status FAIL on a substrate that works, so the PASS/FAIL boundary is decided by float32 jitter in both directions. The 936a both-tails guard did not close this because abs_lift is itself denominated on OFF (2x residue); only ABS_ACTION_CR_FLOOR = 1e-7 is truly absolute, and it sits ~10x above the residue rather than at any level tied to E2's 2.8e-2 reference. All three tails collapse to 'is the ON contrast ratio above 1e-7?' -- a wiring check. That question was genuinely at risk (954's red-team localised a ~675x LSTM+output_proj crush that could have swallowed the direct channel), so C1 is NOT unfailable-by-construction; what it cannot do is measure the 'material lift toward E2's trained per-action reference' its statement claims, since no tail references that reference.",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic; no epistemic suppression asserted. 'standard' per the eight-value enum -- deliberately NOT substrate_ceiling/substrate_conditional: ITEM 1 validated as delivering signal and the remaining work routes to a named build plus a two-leg discrimination.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-965 (2026-08-30) adjudicated by confirmed autopsy: genuine diagnostic PASS validating SD-e1-rollout-consistency-training ITEM 1. The direct actions= channel produces real per-action divergence at the E1 output on a trained model; cr_ratio(h=1) rises 6455x-9775x (4.14e-07/4.05e-07 -> 2.67e-03..3.96e-03) but remains 25-37x short of the 0.1 evaluator bar and e1coe_score_var stays 5-7 orders below 0.002, so ITEM 2 remains required and the MECH-135/INV-088 retest is NOT yet unblocked. Recorded caveat: the run's gating criterion C1 is unsound (its control arm is analytically pinned to zero and it divides by float32 rounding residue; its 57809x 'lift' is uninterpretable and its verdict would have flipped to FAIL had the residue rounded exactly). The finding above rests on the run's recorded pairwise distances and non-gating cr_ratio(h) sweep, not on C1.",
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "Deliberately empty: claim_ids is [] and the driver's decision not to tag MECH-135/INV-088 was correct. Both already carry pending_retest_after_substrate: true and diagnostic_evidence_adjudicated: true from the V3-EXQ-954 cycle, and neither should move on this run. See read_across_not_adjudicated for two verified claim/substrate-plane defects this autopsy surfaces but does not adjudicate.",
+      "read_across_not_adjudicated": [
+        {
+          "finding": "The V3-EXQ-954 substrate handoff was only PARTLY applied. substrate_queue.json's SD-e1-rollout-consistency-training entry carries severity: null, substrate_paths: null, and a failure_record containing only the 108b run -- 954's recommended severity 'corrupting', its two substrate_paths, and its failure_record_entry were all dropped. The implementation_hint re-scope and the 'complicated (buildable)' reclassification DID land.",
+          "practical_cost": "/queue-experiment Step 2.5c reads exactly severity + substrate_paths to gate unrelated experiments against a corrupting substrate, so that gate is currently INERT on an entry an autopsy classified corrupting.",
+          "why_invisible": "GOV-APPLY-1 reads per_claim_recommendation only; there is no standing scan on the recommended_substrate_queue_entry side.",
+          "disposition": "Repaired in this autopsy's own amend (user-confirmed at the Step 8 gate)."
+        },
+        {
+          "finding": "An already-true 'change' tail cleared a GOV-APPLY-1 row whose disposition was partly dropped. V3-EXQ-954 recommended epistemic_category 'standard' for both MECH-135 and INV-088. MECH-135 carries it; INV-088 still carries none -- yet INV-088's row self-cleared because its change string ends '-> diagnostic_evidence_adjudicated', which did land.",
+          "practical_cost": "A live instance in this corpus of the already-true-change-tail hazard the failure-autopsy skill documents: the audit reports applied while part of the recommendation was never written.",
+          "disposition": "Reported for /governance. NOT adjudicated here -- INV-088 is outside this claim-free target's scope."
+        },
+        {
+          "finding": "The action_cond_unzero_self_slot sub-flag ablation returns a NULL, and the flag defaults True in E1Config. Un-zeroing contributes nothing measurable at h=1: C_both <= B_action on 3 of 4 comparisons (seed123 5.35e-04 vs 7.69e-04). With n=2 seeds this is a null, not a refutation.",
+          "practical_cost": "Enabling action_conditioned_transition in production silently selects the C_both arm, for which this run provides no evidence of benefit.",
+          "disposition": "Recorded in the substrate amend so ITEM 2 does not re-ablate it and so the default is revisited deliberately."
+        }
+      ],
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-e1-rollout-consistency-training",
+        "implementation_hint": "ITEM 1 VALIDATED by V3-EXQ-965 (2026-08-30, confirmed autopsy failure_autopsy_V3-EXQ-965_2026-08-30): the dedicated actions= channel produces real per-action divergence at the E1 output on a trained model (ON arms 1.46e-03..2.19e-03 mean pairwise L2 vs an A_off arm at EXACTLY 0.0), and cr_ratio(h=1) rises 6455x-9775x to 2.67e-03..3.96e-03. SCOPE CAVEAT: that validation rests on the run's recorded pairwise/cr_ratio data, NOT on its own C1 criterion, which divides by an analytically-zero control and is uninterpretable -- do not cite the 57809x figure. ITEM 2 REMAINS REQUIRED AND IS NOW QUANTIFIED: post-ITEM-1 cr_ratio(h=1) is still 25-37x short of the 0.1 bar and e1coe_score_var 5-7 orders below 0.002, so MECH-135/INV-088 are NOT yet retestable. FIRE THE DOC'S OWN PRE-REGISTERED BRANCH: the doc states 'if the item-1 ON arm still shows crushed per-action divergence at the E1 output, that [output_proj absolute-vs-residual] parameterisation is the next thing to test' -- the ON arm IS still crushed relative to the evaluator bar, so that branch is live; take it as a cheap discrimination (see fanout_recommendation) before committing to a large ITEM 2 objective build, per the 954 lineage's own recorded lesson that a 49-second probe re-scoped ITEM 1. ALSO: action_cond_unzero_self_slot returns a null (C_both <= B_action on 3 of 4 h=1 comparisons) yet defaults True in E1Config -- revisit that default deliberately; ITEM 2 need not re-ablate it. REPAIR OF DROPPED 954 HANDOFF: restore severity 'corrupting' and substrate_paths, which V3-EXQ-954's confirmed autopsy recommended and which were never applied.",
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/predictors/e1_deep.py::forward",
+          "ree_core/predictors/e1_deep.py::predict_long_horizon"
+        ],
+        "severity_and_paths_note": "These restore V3-EXQ-954's recommended values, verified as never applied (entry currently carries severity: null, substrate_paths: null). Severity stays 'corrupting': ITEM 1 removes the total action-blindness but the evaluator statistic remains degenerate, so anything reading E1 rollout discriminability can still produce plausible-looking vacuous verdicts -- the 108/108a failure mode. Restoring both re-arms the /queue-experiment Step 2.5c gate, currently inert on this entry.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3",
+          "experiment_type": "v3_exq_965_sd_e1_item1_action_conditioning_validation",
+          "metric": "post-ITEM-1 cr_ratio(h=1) = 2.67e-03..3.96e-03 (up 6455x-9775x from A_off 4.14e-07/4.05e-07) but still 25-37x short of the 0.1 bar; e1coe_score_var(h=1) = 6.9e-09..1.5e-07 vs the 0.002 bar (5-7 orders short)",
+          "target": "cr_ratio(h=1) >= 0.1 and e1coe_score_var >= 0.002 under an action-conditioned E1 with an ITEM 2 rollout-consistency objective",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [],
+        "resolves_prior_failure_record_note": "DELIBERATELY EMPTY. The 954 failure record's stated target is 'cr_ratio(h=1) >= 0.1 with per-action divergence detectable above the 1e-4 real floor, under an action-conditioned E1 transition'. V3-EXQ-965 satisfies the per-action-divergence half and moves cr_ratio 6455x-9775x, but leaves it 25-37x short of 0.1 -- so the record's own target is UNMET and it stays open. Marking it resolved because ITEM 1 landed would be the tempting and wrong call. NOTE: that 954 record is not currently in the entry at all (see read_across_not_adjudicated[0]) -- the amend should append it alongside the 965 record, and normalise the 108b record which carries no 'resolved' key.",
+        "priority_suggested": 1
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "Not applicable: claim-free target, so there is no claim to count ceiling hits against under R1-R3; and this validates a substrate that did not exist before ree-v3 26557a3758 (2026-08-29)."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-outputproj-parameterisation: E1's output_proj predicts the ABSOLUTE next state where E2 uses a residual z + delta(z, a) form; the residual per-action crush is a parameterisation artifact rather than a training-signal deficit",
+          "H-training-objective: the crush is in what the LSTM learned under a single-step MSE objective; the output parameterisation is incidental and only a multi-step rollout-consistency objective moves cr_ratio(h)"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-outputproj-parameterisation",
+            "axis": "representation",
+            "sketch": "Swap output_proj to a residual parameterisation (predict delta, add to state_i) behind a flag; re-run the 965 Phase-4c probe plus the cr_ratio(h) sweep. Declared null: residual parameterisation leaves cr_ratio(h=1) within noise of 2.67e-03..3.96e-03 -- i.e. no movement toward 0.1.",
+            "gate_on": "cr_ratio(h=1) against the 0.1 bar and raw per-action divergence against E2's 2.8e-2 reference -- NEVER an ON/OFF ratio against an analytically-zero control (the V3-EXQ-965 C1 defect)."
+          },
+          {
+            "hypothesis": "H-training-objective",
+            "axis": "learning-signal",
+            "sketch": "Scheduled multi-step unrolling (DaD -- cheapest of the doc's five ranked candidates, no architecture change); measure whether cr_ratio(h) moves toward 0.1. Declared null: DaD alone leaves cr_ratio(h) flat, which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency).",
+            "gate_on": "same absolute bars as above."
+          }
+        ],
+        "note": "GOV-FANOUT-1. Emitted rather than routing to one build because the design doc records the output_proj suspect as an OPEN alternative locus, explicitly conditional on the observation V3-EXQ-965 just made, and the two loci sit on different axes. The 954 lineage's own recorded lesson (a 49-second probe re-scoped ITEM 1 before any build effort) is the precedent for probing before committing to a large ITEM 2 objective build. Both probes are cheap relative to ITEM 2."
+      },
+      "hypothesis_space_action_note": "Step 9b (user-confirmed at the Step 8 gate): the manifest stamps qid inv088_evaluator_degeneracy_cause, but that question is FULLY RESOLVED (5 legs, 0 alive, decidable: true) and asks about the CAUSE of evaluator degeneracy -- V3-EXQ-965 bears on the REMEDY, which is a different question. Attaching here would conflate the two and would be growth on an already-adjudicated question. Instead register a NEW question (sd_e1_residual_crush_locus) whose three legs are the loci the design doc itself enumerates, with the ITEM 1 leg resolved by this run and the other two pre-registered alive. New question => no growth_restriction applies and invariant 3 is not engaged; git witness for the leg set is the design doc (REE_assembly, 2026-08-29), which pre-dates the run.",
+      "learning_extracted": [
+        "A control arm pinned analytically to zero is excellent probe hygiene and a useless ratio denominator. The same design property that proves the isolation is clean (bitwise-identical inputs -> bitwise-identical outputs) destroys the denominator of any ratio criterion built on it. When a control is zero by construction, gate on an absolute reference, never on ON/OFF.",
+        "'Derived from this run's own measured baseline' is only a defence when the baseline measures something. The idiom is a genuine guard against inherited constants and was applied here in good faith -- but applied to float32 residue it launders noise into a threshold. Check the derived-from quantity has a physical interpretation before crediting the derivation.",
+        "A criterion whose verdict flips on rounding is unsound even when it happens to give the right answer: V3-EXQ-965 would have reported FAIL had the residue rounded to zero. Sound-in-substance is not sound-in-mechanism, and only the second survives a different machine or dtype.",
+        "Attribution launders authorship. The driver cited its acceptance criterion and its Phase-4c protocol to a design doc containing neither (the quoted text traces to the V3-EXQ-954 driver docstring and to substrate_queue.json's implementation_hint), which made a self-authored bar read as pre-registered and stopped it being audited. Quote-check provenance claims against the cited artifact.",
+        "A partially-applied autopsy handoff is invisible to the standing scans: GOV-APPLY-1 covers the claim side only, nothing audits whether recommended_substrate_queue_entry was applied, and an already-true 'change' tail can clear a claim row whose other recommendations were dropped. Both failure modes are instantiated on this one lineage."
+      ],
+      "routing": "implement-substrate",
+      "routing_note": "Amend SD-e1-rollout-consistency-training per recommended_substrate_queue_entry: record ITEM 1 validated (with the C1 scope caveat), append the 965 failure record as ITEM 2's quantified baseline, restore the dropped 954 severity/substrate_paths/failure_record, note the sub-flag null and its True default, and fire the doc's own pre-registered output_proj branch as the two-leg discrimination in fanout_recommendation. The 954 record stays open (its 0.1 target is unmet). Do NOT unblock the MECH-135/INV-088 retest yet. Nothing spawned by this session per the 2026-07-30 rule -- /governance Step 2b ratifies before any chip."
+    }
+  ],
+  "cluster_pattern": null,
+  "pre_routing_checks": {
+    "tool": "autopsy_pre_routing_checks.py",
+    "fire_count": 0,
+    "note": "0 fires, but C1/C2/C3 structurally inapplicable (claim-free target) and C5 inapplicable (no sibling .md at draft time); only C6-narrow could look, and it was silent. A quiet report here is NOT an all-clear -- Step 7c carried the load, as the skill requires when the mechanical checks are blind."
+  },
+  "red_team": {
+    "model": "fable (cross-model -- deliberately NOT the drafting model)",
+    "verdict": "CONFIRMED",
+    "verdict_summary": "Recomputed the 25-37x shortfall, all four relative_lift values and the LIFT_FACTOR derivation bit-for-bit from the manifest's own cells; independently reached the NaN-FAIL instability the draft had UNDERSTATED; source-verified the fan-out premises (output_proj absolute in e1_deep.py, residual in e2_fast.py); verified substrate ancestry; swept all five preconditions and found four genuinely discriminating with C1 the sole construction-level defect. Added three findings adopted after independent verification here: the dropped 954 failure_record/severity/substrate_paths (F6), the action_cond_unzero_self_slot null (H3), and a lift-range correction (6455x, not 6476x).",
+    "gate_disposition": "User confirmed all three gate questions as recommended: genuine-finding/unsound-criterion; register a new remedy question; repair the dropped 954 handoff in this amend."
+  }
+}
