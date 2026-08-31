@@ -19,6 +19,20 @@ body {
   color: var(--lf-ink);
 }
 
+/* Keep the bespoke home page and document routes on one visual token set. */
+body:has(.ree-home) {
+  --ree-paper: var(--lf-paper);
+  --ree-surface: var(--lf-surface);
+  --ree-surface-soft: var(--lf-surface-muted);
+  --ree-ink: var(--lf-ink);
+  --ree-muted: var(--lf-muted);
+  --ree-line: var(--lf-line);
+  --ree-teal: var(--lf-teal);
+  --ree-rust: var(--lf-rust);
+  --ree-blue: var(--lf-blue);
+  --ree-shadow: var(--lf-shadow);
+}
+
 .side-bar {
   background: #fbfcfa;
   border-right: 1px solid var(--lf-line);
@@ -330,7 +344,7 @@ body:has(.ree-home) .ree-public-header {
 
 @media (max-width: 700px) {
   :root {
-    --lf-gutter: 1rem;
+    --lf-gutter: 1.25rem;
   }
 
   .ree-public-header {
