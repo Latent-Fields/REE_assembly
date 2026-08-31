@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-30T08:57:42Z",
+  "generated_at": "2026-08-31T12:40:54Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -8420,6 +8420,29 @@
         "lane": "ops",
         "priority": 35,
         "claim_ids": []
+      }
+    },
+    {
+      "event_id": "rel-20260831T124053Z-829f5783-spawned_task",
+      "stable_hash": "829f578353c7",
+      "igw_id_at_assign": "IGW-20260829-240",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-31T12:40:53Z",
+      "released_at": "2026-08-31T12:40:53Z",
+      "released_by": "reconcile",
+      "released_reason": "work_landed_or_item_gone",
+      "released_event_for": "asn-20260829T153413Z-829f5783-spawned_task",
+      "note": "routed to chip chip-20260829-igw-240 by metaworker-dispatch cycle 3852",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-489 (lit 0.83, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-489"
+        ]
       }
     }
   ]

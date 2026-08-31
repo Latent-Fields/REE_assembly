@@ -50869,7 +50869,29 @@
     blocked-action discriminative experiment PASSes. NOTE: the action-outcome
     comparator is only discriminative once the encoder + action-conditional
     world_forward (SD-056) are trained -- the validation experiment trains both
-    in P0. Doc: docs/architecture/mech_353_blocked_agency_zblock.md;
+    in P0. Calibration amendment IMPLEMENTED 2026-08-30 in ree-v3 commit
+    d49db86f3e64670eb59d05eaccdfcda091ede52e after V3-EXQ-642a exposed an
+    unsatisfiable peak-separation criterion: the fixed 0.1 mismatch floor sat
+    below the measured free-step mismatch baseline (~0.38-0.50), so both arms
+    saturated at z_block_cap. The new opt-in baseline_relative mode calibrates
+    the floor from a free-step mismatch exponential moving average (default
+    alpha 0.02, ratio 1.5, minimum 0.02); the legacy absolute mode remains the
+    bit-identical default. Initialization was corrected and V3-EXQ-642b queued
+    2026-08-31 in ree-v3 commit
+    4942add1db7722a0efc0fd9509a19a5c8b06374c after adversarial review found
+    that the initial no-history sense tick fed a synthetic mismatch of 0.0 into
+    the baseline. Baseline-relative mode now skips that synthetic update; the
+    first real action-outcome observation bootstraps without classifying itself,
+    and later free ticks alone update the baseline. Absolute mode retains its
+    legacy path. Contracts C10-C15 cover backward compatibility,
+    discrimination, the 642a saturation reproduction and removal, config
+    wiring, validation, and the no-history bootstrap boundary. The focused
+    contract and queue-preflight run passed 19 tests. The implementation session reported 5308 passed,
+    27 skipped, 1 xfailed, and 215 subtests passed, with two unrelated
+    pre-existing failures. v3_pending remains TRUE until the post-build
+    blocked-action discriminative validation, V3-EXQ-642b, passes; its wrapper
+    is claimless and forces evidence_direction=non_contributory. Doc:
+    docs/architecture/mech_353_blocked_agency_zblock.md;
     ree-v3 entry: ree-v3/CLAUDE.md (MECH-353 section).
   location: evidence/literature/targeted_review_blocked_agency_anger_stream/VERDICT.md
 
