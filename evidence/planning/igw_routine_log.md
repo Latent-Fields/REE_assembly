@@ -2290,3 +2290,4 @@ One line per hourly tick. ASCII only.
 2026-08-31T08:50:10Z STAGE IGW-20260831-220 skill=/implement-substrate prio=25 worktree=igw-220-substrate-ready-sd-probe-warmup (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-08-31T09:51:58Z STAGE IGW-20260831-222 skill=/implement-substrate prio=25 worktree=igw-222-substrate-ready-sd-e1-rollout-co (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-08-31T10:53:41Z STAGE IGW-20260831-224 skill=/implement-substrate prio=25 worktree=igw-224-substrate-ready-sd-blocked-agenc (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-08-31T11:55:19Z STAGE IGW-20260831-225 skill=/implement-substrate prio=25 worktree=igw-225-substrate-ready-sd-epistemic-def (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
