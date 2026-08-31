@@ -374,3 +374,10 @@ body:has(.ree-home) .ree-public-header {
     font-size: 1.05rem;
   }
 }
+
+@media (max-width: 640px) {
+  :root {
+    /* Match the home page's 14px mobile shell inset exactly. */
+    --lf-gutter: 0.875rem;
+  }
+}
