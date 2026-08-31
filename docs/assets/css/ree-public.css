@@ -9,6 +9,9 @@
   --lf-rust: #a94732;
   --lf-blue: #355f9a;
   --lf-shadow: 0 18px 48px rgba(24, 33, 31, 0.08);
+  --lf-shell: 70rem;
+  --lf-gutter: clamp(1.25rem, 3vw, 2.5rem);
+  --lf-radius: 8px;
 }
 
 body {
@@ -34,8 +37,12 @@ body {
   background: var(--lf-surface);
 }
 
+/* Canonical public-document grid: one centred shell with fluid gutters. */
 .main-content {
-  max-width: 72rem;
+  width: min(100%, calc(var(--lf-shell) + (2 * var(--lf-gutter))));
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: var(--lf-gutter);
   color: var(--lf-ink);
 }
 
@@ -88,6 +95,9 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.45rem;
+  width: min(100%, calc(var(--lf-shell) + (2 * var(--lf-gutter))));
+  margin-inline: auto;
+  padding-inline: var(--lf-gutter);
   min-height: 2.75rem;
   color: var(--lf-muted);
   font-size: 0.78rem;
@@ -118,10 +128,12 @@ body {
   font-weight: 600;
 }
 
+/* Shared top-of-page treatment for curated public routes. */
 .ree-doc-intro {
   margin: 0 0 2.4rem;
   padding: 1.5rem 1.7rem;
   border-left: 4px solid var(--lf-teal);
+  border-radius: 0 var(--lf-radius) var(--lf-radius) 0;
   background: var(--lf-surface-muted);
 }
 
@@ -152,7 +164,7 @@ body {
 .ree-architecture-figure {
   margin: 2rem 0 2.5rem;
   border: 1px solid var(--lf-line);
-  border-radius: 6px;
+  border-radius: var(--lf-radius);
   overflow: hidden;
   background: #f3f6f3;
 }
@@ -188,7 +200,7 @@ body {
 .ree-visual-card {
   overflow: hidden;
   border: 1px solid var(--lf-line);
-  border-radius: 6px;
+  border-radius: var(--lf-radius);
   background: var(--lf-surface);
   box-shadow: 0 8px 24px rgba(24, 33, 31, 0.05);
 }
@@ -226,8 +238,8 @@ body {
   max-width: 51rem;
   margin: 1.3rem 0 1.7rem;
   padding-left: 0.85rem;
-  border-left: 3px solid var(--ree-rust);
-  color: var(--ree-ink);
+  border-left: 3px solid var(--lf-rust);
+  color: var(--lf-ink);
   font-size: 0.95rem;
   line-height: 1.55;
 }
@@ -243,7 +255,7 @@ body {
   min-height: 17rem;
   padding: 1.35rem;
   border: 1px solid var(--lf-line);
-  border-radius: 6px;
+  border-radius: var(--lf-radius);
   background: var(--lf-surface);
   box-shadow: 0 8px 24px rgba(24, 33, 31, 0.05);
 }
@@ -308,10 +320,23 @@ body:has(.ree-home) .ree-public-header {
   display: none;
 }
 
+@media (min-width: 66.5rem) {
+  /* Keep the content edge stable as the Just-the-Docs viewport widens. */
+  .main-content {
+    padding-left: var(--lf-gutter);
+    padding-right: var(--lf-gutter);
+  }
+}
+
 @media (max-width: 700px) {
+  :root {
+    --lf-gutter: 1rem;
+  }
+
   .ree-public-header {
     align-items: flex-start;
-    padding: 0.55rem 0;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
   }
 
   .ree-public-status-link {
