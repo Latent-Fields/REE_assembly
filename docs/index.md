@@ -142,6 +142,11 @@ nav_order: 1
           <strong>Lab Window</strong>
           <p>A read-only public view of reviewed claims, mechanisms, and experiments.</p>
         </a>
+        <a class="ree-route-card" href="{{ '/ree_for_my_parents.html' | relative_url }}">
+          <span>Gentlest introduction</span>
+          <strong>REE for My Parents</strong>
+          <p>A plain-language account of what REE is, what has actually been built, and why the project matters.</p>
+        </a>
         <a class="ree-route-card" href="{{ '/ree_for_psychiatrists.html' | relative_url }}">
           <span>Clinical route</span>
           <strong>REE for Psychiatrists</strong>
