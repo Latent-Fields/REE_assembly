@@ -29082,7 +29082,7 @@
   depends_on:
     - MECH-205
     - MECH-092
-    - SD-003
+    - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-remaining-20260901): SD-003 superseded 2026-04-18; this claim's CA1 comparator (CA3 prediction vs entorhinal actual) is structurally the single-pass residual comparator MECH-256 generalises (no counterfactual a_cf branch was ever asserted in this claim's own notes), so the repoint is like-for-like, matching sibling MECH-205's own SD-003 -> MECH-256 repoint (sd003-groupAC-20260901).
   location: docs/architecture/sleep/offline_phases.md#mech-206
   source:
     - evidence/literature/targeted_review_mech_205/entries/2026-04-07_mech_205_ca1_mismatch_detector_duncan2011/record.json
@@ -38227,7 +38227,7 @@
     - SD-020           # harm_surprise_PE (the substrate MECH-258 is the control claim over)
     - SD-032b          # dACC-analog (consumer of the PE)
     - ARC-033          # E2_harm_s forward model (parallel architecture; E2_harm_a is the affective analog)
-    - SD-003           # counterfactual attribution (uses the same forward-model substrate)
+    - MECH-256         # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-remaining-20260901): SD-003 superseded 2026-04-18; this claim's own functional_restatement already names "the per-stream forward-model family (MECH-256/257)". PE = z_harm_a_observed - E2_harm_a(z_harm_a_prev, a_taken) is Mode 1 (retrospective, uses the actually-taken action, not candidate actions) -- MECH-256, not MECH-257. Like-for-like output-consumer repoint.
   functional_restatement: >
     Mechanism claim underlying SD-032b: the dACC-analog reads z_harm_a
     as a precision-weighted prediction error against E2_harm_a, not as
@@ -64485,8 +64485,8 @@
   depends_on:
     - ARC-065    # parent diversity-generation pathway -- MECH-341 is the Layer-B child
     - ARC-033    # E2_harm_s forward model -- the input to E3 scoring
-    - SD-003     # counterfactual evaluation -- consumes the preserved diversity at Layer B
-    - INV-076    # diversity as counterfactual prerequisite -- companion invariant
+    - MECH-257   # SD-003 -> MECH-257 2026-09-01 (sd003-groupB-remaining-20260901): SD-003's two-pass counterfactual E2(z,a_cf) was self-attribution machinery, retired 2026-04-18. The per-candidate counterfactual evaluation MECH-341's diversity preservation feeds is MECH-257's Mode 2 (prospective rollout-scoring over the CEM candidate pool) -- same target already established for companion claim INV-076 (sd003-groupB-20260901) and already documented in this claim's own design doc (docs/architecture/mech_341_e3_score_diversity_preservation.md "Depends on" line: "SD-003 (superseded; counterfactual evaluation retained via MECH-256 + SD-029 + MECH-257)"). NOT MECH-256 (Mode 1, retrospective self-attribution -- wrong function here).
+    - INV-076    # diversity as counterfactual prerequisite -- companion invariant, itself already repointed to MECH-257 (sd003-groupB-20260901)
   notes: >
     Registered 2026-05-25 to close a claim-side gap exposed during the
     behavioural-diversity isolation analysis: ARC-065's distributed pathway
@@ -73085,7 +73085,7 @@
   registered_utc: 2026-06-10
   depends_on:
     - ARC-015    # causal-attribution substrate
-    - SD-003     # counterfactual / causal-ownership substrate
+    - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-remaining-20260901): SD-003 superseded 2026-04-18; the typed ontology's self-caused category is built on the self-attribution OUTPUT (causal_sig), which MECH-256's successor comparator still produces -- like-for-like repoint (retrospective attribution, not evaluation, so MECH-256 not MECH-257).
     - ARC-056    # ethics/coherence substrate -- possible overlap, see notes
     - ARC-083    # represented-other pillar (OTHER/SHARED ownership classes need it)
   location: evidence/planning/ethics_as_coherence_v5_plan.md
@@ -89094,7 +89094,7 @@
     - MECH-031  # AGENCY / OTHER_SELFLIKE tags -- existing detector; this claim adds a NEW downstream (epistemic, not empathy) consumer
     - MECH-274  # V4 sleep aggregation of other-agent attributions into a stable other-model -- sibling but distinct: aggregation stabilises WHO the other agent is, this claim discounts WHAT the resulting observation is evidence for
     - ARC-037   # causal attribution routing circuit -- currently binary self/env; this claim requires the routing circuit be extended to a third (other) and fourth (joint) class
-    - SD-003    # counterfactual self-attribution -- supplies the self-caused half of the C_self/C_other split this claim's routing depends on
+    - MECH-256  # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-remaining-20260901): SD-003 superseded 2026-04-18; MECH-256's single-pass comparator still supplies the self-caused half of the C_self/C_other split this claim's routing depends on (retrospective attribution to an observation, not evaluation, so MECH-256 not MECH-257) -- like-for-like repoint.
     - MECH-095  # TPJ self/world comparator -- substrate the C_other detection would route through; this claim assumes its output, does not re-test its own MAE-3-blocked discrimination task
     - MECH-223  # animated agency attribution overweighting -- adjacent PATHOLOGICAL miscalibration bias; explicitly distinguished (this claim states the correct SDT calibration target, MECH-223 is a failure mode of that calibration)
     - EXT-009   # similarity-gated care collapse -- parallel SDT liberal-criterion framing, but for the ETHICAL/care gate, not this claim's EPISTEMIC/causal-inference gate; explicitly non-identical thresholds per the thought's own "Relationship to ethics" section
