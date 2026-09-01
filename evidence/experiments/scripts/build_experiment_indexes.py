@@ -6383,7 +6383,32 @@ def _write_planning_outputs(
                     }
                 )
             else:
-                continue
+                # GFLAG-0054 fix (2026-09-01): a registered claim of any OTHER
+                # claim_type (mechanism_hypothesis, architectural_commitment, ...)
+                # with zero evidence entries used to hit this bare `continue` and
+                # never enter the backlog at all -- invisible to /lit-pull's
+                # worklist from the moment it was registered. See
+                # governance_flags.v1.json GFLAG-0054 (MECH-464: registered
+                # 2026-07-20 with a written falsifier, never routed).
+                # Route it through the same missing-evidence reason vocabulary
+                # used below for a claim_meta that DOES exist but is short on
+                # one or both source types (exp_count==0 / lit_count==0), so the
+                # reason tokens stay honest about what is actually missing
+                # rather than reusing the open_question-only token above.
+                if diagnostic_evidence_adjudicated:
+                    _add_reason("diagnostic_evidence_adjudicated")
+                else:
+                    _add_reason("missing_experimental_evidence")
+                    evidence_needed.add("experimental")
+                _add_reason("missing_literature_evidence")
+                evidence_needed.add("literature")
+                signals.update(
+                    {
+                        "overall_confidence": 0.0,
+                        "source_counts": {"experimental": 0, "literature": 0},
+                        "conflict_ratio": 0.0,
+                    }
+                )
         else:
             overall_conf = float(claim_meta.get("overall_confidence", 0.0))
             source_counts = claim_meta.get("source_counts", {})
