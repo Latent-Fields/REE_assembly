@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-08-29T18:16:36Z",
+  "last_updated_utc": "2026-09-01T06:09:55Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -849,6 +849,38 @@
         }
       ],
       "candidate_stale_note": "The two entries above are the ONLY experimental scoring entries for these claims (MECH-135: 16 scoring entries, 15 of them literature; INV-088: 7 scoring, 6 literature). No MARK and no REVALIDATE, so nothing here needed the governance approval Step 8.5(4) requires for de-weighting, and no index rebuild was needed to propagate a relabel. Separately: both claims already carry pending_retest_after_substrate: true (left unchanged by the V3-EXQ-954 disposition), so their retest is already owed and tracked -- that flag is what this landing makes ACTIONABLE, and the retest itself is /queue-experiment work for a later session."
+    },
+    {
+      "substrate": "SD-e1-rollout-consistency-training ABSOLUTE-VS-RESIDUAL BRANCH",
+      "code_landed_commit": "ree-v3 (this landing)",
+      "code_landed_utc": "2026-09-01T06:09:55Z",
+      "landed_utc": "2026-09-01T06:09:55Z",
+      "dependent_claims": [
+        "MECH-135",
+        "INV-088"
+      ],
+      "description": "E1Config.output_proj_residual (default False): each rollout step in predict_long_horizon becomes `state_i + output_proj(lstm_out)` instead of `output_proj(lstm_out)`, in BOTH rollout branches (the ITEM 1 action-conditioned one and the legacy one), so forward() and predict_long_horizon() -- this entry's two substrate_paths -- are both covered. The form is copied from e2_fast.py's self_forward / world_forward (`z + delta(z, a)`) rather than invented; no scaling, gate, or extra module. The knob is INDEPENDENT of action_conditioned_transition on purpose: it parameterises the state recurrence, not the action channel, and the discrimination it exists to enable is an A/B ON the ITEM 1 ON arm. This is the design doc's own PRE-REGISTERED branch, fired because V3-EXQ-965 showed the ITEM 1 ON arm still crushed relative to the evaluator bar (cr_ratio(h=1) 25-37x short of 0.1). This landing is SUBSTRATE ONLY -- the A/B experiment is owed and no result is claimed. ITEM 2 (the multi-step / rollout-consistency objective) remains pending_implementation and is untouched here.",
+      "mechanism_changing": true,
+      "mechanism_changing_note": "TRUE when enabled -- it changes what E1's rollout read-out IS (a delta off the current state rather than an absolute next state), which sits inside the mechanism MECH-135 and INV-088 measure. But the flag defaults False and no existing experiment sets it, so no prior run's substrate differs: unlike action_encoder the change adds NO module and NO parameter in either setting, so construction-time RNG consumption is identical both ways. Confirmed by loading the pre-change e1_deep.py alongside the new one from the same seed: identical parameters and bit-identical rollouts (max abs diff 0.0) across three shapes -- legacy branch, ITEM 1 ON with a held action, and ITEM 1 ON with action_cond_unzero_self_slot=False. V3-EXQ-965 driver --dry-run re-run after the change: PASS, missing_action_calls=0. Blast radius on landed evidence is therefore nil until an experiment opts in.",
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3",
+          "claim_id": "MECH-135",
+          "entry_ts": "2026-03-29",
+          "recommendation": "KEEP",
+          "rationale": "Same two grounds the ITEM 1 landing recorded for this run: (1) default-OFF landing, so this run's substrate is byte-for-byte what it was, verified here against the pre-change module rather than asserted; (2) it is an E2 training-horizon ablation and does not exercise E1's rollout read-out at all.",
+          "disposition": "KEPT -- no de-weighting applied; KEEP needs no governance approval."
+        },
+        {
+          "run_id": "v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712",
+          "claim_id": "INV-088",
+          "entry_ts": "2026-07-12",
+          "recommendation": "KEEP",
+          "rationale": "Same two grounds: default-OFF landing, and this run measures world-goal evaluator dV coupling rather than E1's rollout read-out.",
+          "disposition": "KEPT -- no de-weighting applied."
+        }
+      ],
+      "candidate_stale_note": "Identical disposition to the ITEM 1 landing above, and for the identical reason: these two are the ONLY experimental scoring entries for MECH-135 / INV-088, and a default-off parameterisation knob cannot have changed what either run executed. No MARK and no REVALIDATE, so nothing here needed the governance approval Step 8.5(4) requires for de-weighting, and no index rebuild was needed. Both claims keep pending_retest_after_substrate: true -- and note this landing does NOT make that retest actionable: post-ITEM-1 cr_ratio(h=1) is still 25-37x short of the 0.1 bar and e1coe_score_var 5-7 orders below 0.002, so a MECH-135 / INV-088 retest must NOT be queued off the back of this build."
     }
   ]
 }

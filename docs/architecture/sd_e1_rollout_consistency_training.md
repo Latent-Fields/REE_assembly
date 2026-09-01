@@ -9,7 +9,7 @@ nav_order: 13
 
 **Claim ID:** SD-e1-rollout-consistency-training
 **Subject:** `predictors.e1_deep.E1DeepPredictor.transition`
-**Status:** ITEM 1 IMPLEMENTED (2026-08-29) / ITEM 2 PENDING
+**Status:** ITEM 1 IMPLEMENTED (2026-08-29, VALIDATED by V3-EXQ-965 2026-08-30) / ABSOLUTE-VS-RESIDUAL BRANCH SUBSTRATE IMPLEMENTED (2026-09-01, experiment owed) / ITEM 2 PENDING
 **Registered:** 2026-08-03 (substrate_queue.json)
 **Depends on:** none unresolved (probe-gating discharged by V3-EXQ-954, 2026-08-29)
 **Blocks:** INV-088, MECH-135 (both carry `pending_retest_after_substrate: true`)
@@ -155,6 +155,61 @@ building item 1 and is recorded here rather than acted on: `output_proj` predict
 **absolute** next state, where E2 uses a residual `z + delta(z, a)` parameterisation. If the
 item-1 ON arm still shows crushed per-action divergence at the E1 output, that
 parameterisation is the next thing to test.
+
+### The absolute-vs-residual branch -- FIRED (substrate landed 2026-09-01)
+
+That branch condition is **met**. V3-EXQ-965 (confirmed autopsy, 2026-08-30) validated
+ITEM 1 -- the dedicated `actions=` channel produces real per-action divergence at the E1
+output on a trained model (ON arms 1.46e-03..2.19e-03 mean pairwise L2 against an A_off arm
+at exactly 0.0) and `cr_ratio(h=1)` rises 6455x-9775x to 2.67e-03..3.96e-03 -- and the ON arm
+is nonetheless still **25-37x short** of the 0.1 evaluator bar, with `e1coe_score_var` 5-7
+orders below 0.002. So the ON arm does still show crushed divergence relative to what the
+evaluator consumes, which is exactly the condition this branch was pre-registered against.
+
+(Scope caveat, carried from the autopsy: that reading rests on the run's recorded
+pairwise/`cr_ratio` data, **not** on its own C1 criterion, which divides by an analytically
+zero control and is uninterpretable. Do not cite the 57809x figure. And note this does
+**not** make MECH-135 / INV-088 retestable -- the bars are still missed by wide margins.)
+
+**Substrate, landed 2026-09-01.** `E1Config.output_proj_residual` (default `False`) switches
+each rollout step in `predict_long_horizon` from
+
+```python
+predicted = self.output_proj(output.squeeze(1))            # absolute next state
+```
+
+to
+
+```python
+predicted = state_i + self.output_proj(output.squeeze(1))  # E2's z + delta(z, a) form
+```
+
+in **both** rollout branches -- the ITEM 1 action-conditioned one and the legacy one -- so
+`forward()` and `predict_long_horizon()` (the two `substrate_paths` on this entry) are both
+covered by the one change. The form is copied from `e2_fast.py`'s `self_forward` /
+`world_forward` rather than invented; no scaling, gate, or extra module is introduced.
+
+The knob is **independent of `action_conditioned_transition`** on purpose: it parameterises
+the state recurrence, not the action channel, and the discrimination is an A/B *on* the
+ITEM 1 ON arm, so both knobs must be separately settable.
+
+No module and no parameter is added in either setting, so unlike `action_encoder` there is
+no construction-time RNG asymmetry to defend against -- verified by loading the pre-change
+`e1_deep.py` alongside the new one and confirming, from the same seed, identical parameters
+and bit-identical rollouts across three configuration shapes (legacy; ITEM 1 ON with a held
+action; ITEM 1 ON with `action_cond_unzero_self_slot=False`).
+
+Contract: `ree-v3/tests/contracts/test_e1_output_proj_residual.py`. It pins OFF against a
+hand-rolled replication of the legacy loop (not a frozen constant), parameter identity across
+the flag, the h=1 algebraic identity `ON == seed + OFF` (which catches a knob wired to the
+wrong residual base, where a looser "the numbers moved" check would not), non-vacuity in both
+branches, gradient still reaching `output_proj`, and `from_dims` reachability. It deliberately
+does **not** assert that residual beats absolute -- that is the experiment.
+
+**Still owed:** the A/B itself. A cheap `/queue-experiment` diagnostic on the ITEM 1 ON arm,
+absolute vs residual `output_proj`, reading per-action divergence at the E1 output and
+`cr_ratio(h=1)`; take it before committing to a large ITEM 2 objective build, per this
+lineage's own recorded lesson that a 49-second probe re-scoped ITEM 1.
 
 ## Architecture Context
 
