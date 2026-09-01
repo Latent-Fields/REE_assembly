@@ -233,6 +233,29 @@ sharing one EMA constant, "one timescale wearing three labels" is the outcome to
 per-layer autocorrelation half-life check (z_delta > z_theta > z_beta) is cheap and owed before
 anything leans on the temporal spread.
 
+## MECH-531 -- the P0 grain operator, minimal and v3-testable {#mech-531}
+
+Split off ARC-134 2026-09-01 (GOV-V4CUT-1 F1, GFLAG-0101). ARC-134's own preconditions name a
+**P0 gap**: no merge or split of `EntityObservation` tokens exists anywhere in
+`ree_core/entities/object_file_buffer.py`, and matching is strict 1:1 greedy. MECH-531 asserts
+only that a **corrigible** merge/split operator exists at **fixed capacity** -- no dynamic
+per-population regulation, no settling competition -- responding to MECH-126's overmerge/
+oversplit consequence-divergence evidence against a yoked random-regrain control. ARC-134's
+richer demand-sensitivity claim (grain rescales with circumstance, the full L1-L3 ladder) and
+MECH-521/522's settling-competition dynamics are unaffected and stay v4.
+
+## MECH-532 -- pairing a compression site with a trained decompression stage {#mech-532}
+
+Split off MECH-507 2026-09-01 (GOV-V4CUT-1 F2, GFLAG-0102). MECH-507's full E1/ContextMemory
+reciprocal-bridge reframing stays v4 -- but the underlying pattern (a compression site paired
+with a trained decompression/readout stage before ceiling-nulls measured there are
+interpretable) is already partially built and separately registered as v3 work: SD-056 (E2's
+trained world-forward decompression head, coded and default-off) pairs with SD-070's anti-
+collapse encoder recipe at the z_world site, and the independent P4 training-debt cluster at
+`E2.action_object_head`/O (SD-080, MECH-518, MECH-517) names the same repair owed at a second
+site. MECH-532 states the general pairing requirement, satisfied by confirming it at either
+site.
+
 ---
 
 ## Sequencing (nothing here authorises V3 work except MECH-518)

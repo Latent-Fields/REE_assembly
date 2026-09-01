@@ -89748,6 +89748,13 @@
     a V3 experiment -- no explicit decompression head exists in ree_core; ContextMemory read/write
     today is a fixed-slot lookup with no generative decompression stage.
 
+    SPLIT 2026-09-01 (GOV-V4CUT-1 F2, GFLAG-0102): the v3-testable core -- at least one
+    compression site paired with a trained decompression/readout stage -- is pulled forward
+    as MECH-532. This claim narrows to the FULL reciprocal-bridge reframing at E1/ContextMemory
+    specifically; the "DO NOT build in V3" caution above continues to apply to that scope
+    exactly as registered. No change to this claim's `title`, `claim_type`, `status`, or
+    `depends_on`.
+
 - id: MECH-508
   title: >
     An REE attractor is best formalised as a compressed, history-conditioned GENERATIVE
@@ -90473,6 +90480,12 @@
     function nor a unidimensional abstraction gradient, so there may be NO single ordered axis along
     which to regulate; a scalar-dial formulation of ARC-134 is the version that objection kills, and
     a per-population formulation (see MECH-521) is the version that survives it. DO NOT build in V3.
+
+    UPDATE 2026-09-01 (GOV-V4CUT-1 F1, GFLAG-0101): P0 (the endogenous grain operator's mere
+    existence + corrigibility) split forward as MECH-531 -- a minimal, v3-testable claim that
+    the operator exists at FIXED capacity and is corrigible by consequence evidence, with no
+    dynamic per-population regulation. This claim's own richer demand-sensitivity assertion
+    (P1-P3, the full L1/L2/L3 falsifier ladder) is unaffected by the split and stays v4.
   digestion_note: >
     2026-08-26 (thought-digestion wave 2, user-gated). CORRECTION TO THIS CLAIM'S OWN NOTES: the
     line "MECH-288 already runs two segmentation scales with nothing arbitrating which is operative"
@@ -91839,7 +91852,8 @@
     - MECH-507   # action-relevant equivalence (compression/decompression) -- MECH-529 is the learning-pressure LOOP that revises those equivalence classes
     - MECH-508   # attractor-as-generative-disposition -- assumed REVISABLE by this loop
     - MECH-512   # compression depth -- minimal variable grain is what split/merge demonstrates
-    - ARC-134    # endogenous perceptual grain P0 -- grain must be CORRIGIBLE for this loop to have a substrate
+    - ARC-134    # richer demand-sensitive online regranularisation (P1-P3); the P0 operator itself is split off as MECH-531 below
+    - MECH-531   # ARC-134 P0 merge/split operator's existence + corrigibility (split per GOV-V4CUT-1 F1/GFLAG-0101) -- grain must be CORRIGIBLE for this loop to have a substrate
     - MECH-521   # occupancy/capacity settling competition (the grain operator's dynamics)
     - ARC-007    # hippocampal sparse episodic traces + segmentation pressure (the replay source)
     - MECH-147   # pattern separation / completion gates (the functional mapping targets)
@@ -92207,3 +92221,130 @@
     skill HAS absorbed stays visible with its landing site named. Sits in deliberate tension
     with GOV-HELDOUT-1: this rule surfaces candidate skill edits, and GOV-HELDOUT-1 is the
     discipline that must be run BEFORE any such edit ships as a general rule.
+
+- id: MECH-531
+  title: "A merge/split operator over the existing EntityObservation boundary must exist and be corrigible by consequence evidence, at FIXED capacity -- no dynamic per-population regulation, no settling competition. This is the minimal P0 substrate floor ARC-134 and MECH-529 both name as currently absent: `ree_core/entities/object_file_buffer.py` has no merge or split of tokens anywhere, and matching is strict 1:1 greedy over a caller-built List[EntityObservation]. Distinguished from MECH-521/MECH-522: this claim asserts only that a corrigible operator exists and responds to consequence-divergence evidence (MECH-126's overmerge/oversplit taxonomy), not that occupancy is an emergent order parameter of a settling competition, and not that capacity itself is dynamically regulated -- those remain MECH-521/522's richer, explicitly v4/v5-deferred claims."
+  claim_type: mechanism_hypothesis
+  subject: entities.corrigible_grain_operator_p0
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: true
+  version_relevance: v3_v4
+  registered_utc: '2026-09-01'
+  depends_on:
+    - ARC-134   # parent claim this splits the P0 substrate floor off of
+    - MECH-126  # overmerge/oversplit failure taxonomy -- supplies the DV
+    - MECH-045  # ObjectFileBuffer -- the only V3 site capacity and occupancy coexist at today
+    - ARC-006   # binding substrate
+    - ARC-080   # object-identity definition the operator's tokens must respect
+    - ARC-070   # policy-axis precedent -- the analogous operator, already built 2026-07-24
+  location: docs/architecture/selection_relevant_representation.md#mech-531
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the operator must be BUILT (merge + split over
+    EntityObservation tokens, replacing the current strict 1:1 greedy match) and exercised
+    at fixed capacity -- no capacity change, no per-population coupling/settling dynamics
+    (those are MECH-521/522's scope, explicitly excluded here). A consequence-evidence
+    signal must be wired: MECH-126's overmerge/oversplit taxonomy, or an equivalent
+    prediction/consequence-divergence signal, available to drive correction.
+    CONFIRMING: the operator's merge/split decisions track genuine consequence-divergence
+    evidence (MECH-126 DV pair: overmerge_rate, oversplit_rate) with a net error reduction
+    versus a YOKED, RATE-MATCHED RANDOM-REGRAIN control -- same number of merge/split
+    events at the same ticks, targets chosen at random among eligible tokens (mirrors
+    ARC-134's own L3 falsifier design, which exists precisely to distinguish "regrains" from
+    "regrains informatively"). Capacity must remain fixed throughout (a manipulation check
+    that no dynamic regulation crept in).
+    FALSIFYING (any one): the operator's corrections are statistically indistinguishable
+    from the yoked random control on both MECH-126 DVs (informationless regrain); the
+    operator cannot be built/exercised without introducing per-population dynamics or
+    dynamic capacity (collapses into MECH-521's scope, meaning this claim has no distinct
+    minimal form); or building it requires a demand-manipulation environment ARC-134's own
+    P2 precondition says does not yet exist (would mean the operator cannot even be
+    exercised, not merely that it fails -- a substrate-not-ready result, not a falsification).
+    EXPLICITLY NOT ASSERTING (MECH-521/522's scope, deferred v4/v5, unchanged by this
+    claim): occupancy as an emergent order parameter of a coupling-vs-lateral-inhibition
+    settling competition; dynamic/derived capacity; ephaptic coupling-constant
+    specialisation. MECH-521's own notes ("DO NOT build in V3. DO NOT queue an
+    experiment.") continue to apply to that scope exactly as registered.
+  notes: >
+    Registered from GOV-V4CUT-1 cut-audit finding F1
+    (evidence/planning/v4_prerequisite_cut_20260901.md, Section 3), tracked as GFLAG-0101.
+    SPLIT off ARC-134: ARC-134 itself (the full "grain rescales with circumstance,
+    demand-sensitive" claim) and MECH-521/522 (settling-competition dynamics) are
+    UNCHANGED -- both remain implementation_phase: v4, version_relevance: v4_v5. This claim
+    is additive, asserting only the P0 substrate floor's existence and corrigibility.
+    Rationale for a MECH id rather than an ARC id: this is a mechanism-level operator claim
+    (parallel in kind to MECH-521, MECH-507), not itself an architectural commitment (ARC-134
+    is the commitment this operator is a precondition for testing). Staged for review at
+    evidence/planning/v4cut_f1_arc134_p0_operator_staged_20260901.md, which provisionally
+    used MECH-530 -- taken in the interim by GOV-V4CUT-1 F3/GFLAG-0103, so MECH-531 was
+    allocated instead at registration time per the live max. User approval: RECOMMENDATION_LOG.jsonl
+    2026-09-01, "Staged claims" decision lane, both F1 and F2 options selected.
+
+- id: MECH-532
+  title: "At least one of REE's designated compression sites (MECH-523) must be paired with an explicit TRAINED decompression/readout stage before representational-ceiling nulls measured there are interpretable as capacity findings -- this is the v3-testable core of MECH-507's reciprocal compression/decompression bridge, independent of the full E1 reframing MECH-507 itself remains scoped to. Two site-specific halves of this pattern already exist as registered but unvalidated/unbuilt v3 work: SD-056 (E2.world_forward trained via a contrastive divergence-preservation loss, coded 2026-05-29 in ree_core/predictors/e2_fast.py, default OFF, never re-queued for validation) supplies the decompression half at the z_world site, paired with SD-070's anti-collapse encoder-training recipe for the compression half at the same site. Separately, the P4 training-debt cluster at E2.action_object_head/O -- SD-080's zero-gradient finding, MECH-518's dual-role variance contention, MECH-517's interface-collapse ordering -- names the same repair owed at a second, independent compression site. This claim asserts the general requirement and is satisfied by confirming it at either site."
+  claim_type: mechanism_hypothesis
+  subject: representation.compression_site_decompression_pairing
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  v3_pending: true
+  version_relevance: v3_v4
+  registered_utc: '2026-09-01'
+  depends_on:
+    - MECH-507  # the full v4/v5 reciprocal-bridge reframing this claim pulls the v3-testable core forward from (SPLIT per GOV-V4CUT-1 F2 / GFLAG-0102)
+    - MECH-523  # names the untrained compression sites this claim's "at least one" quantifies over
+    - SD-056    # E2.world_forward trained decompression/prediction head -- coded, default OFF, unvalidated; the existence-proof instance at the z_world site
+    - SD-070    # z_world anti-collapse encoder-training recipe -- pairs with SD-056 as the compression-side half at the same site
+    - SD-080    # E2.action_object_head/O zero-gradient finding -- names the second site this claim's "at least one" could instead be satisfied at
+    - MECH-518  # O's dual-role variance contention -- the P4-cluster reason a trained decompression stage is owed at O specifically
+    - MECH-517  # interface-before-representation ordering -- the P4-cluster's methodological companion
+  location: docs/architecture/selection_relevant_representation.md#mech-532
+  what_would_answer: >
+    CONFIRMING (either path suffices -- this claim is about the PAIRING pattern, not about
+    which site instantiates it): (1) SD-056 is re-queued and lands with a validated run
+    showing E2.world_forward's contrastive loss preserves action-conditional divergence
+    (cand_world_pairwise_dist non-degenerate, above the 0.0000 collapse measured pre-fix) AND
+    SD-070's anti-collapse encoder recipe is landed/exercised at the z_world site, jointly
+    demonstrating a trained compression+decompression pairing in production; OR (2) an
+    explicit trained decompression/readout stage is built at O (E2.action_object_head) and
+    resolves or measurably improves the SD-080 zero-gradient finding / MECH-518's dual-role
+    variance reallocation (ao_M5_r2_explained_by_action_alone moving back toward its
+    pre-817a ~0.995 without M6's sign instability), and a representational-ceiling null
+    previously measured at O (a V3-EXQ-817a-shaped rerun) becomes reproducibly different
+    under the trained-decompression arm versus the frozen baseline.
+    FALSIFYING: SD-056/SD-070 land and validate with no measurable effect on any downstream
+    ceiling-null's interpretability, AND a trained decompression stage built at O produces
+    no measurable change in O's gradient informativeness or in ceiling-null behaviour
+    relative to the untrained baseline -- i.e. pairing a compression site with a trained
+    decompression stage does not matter, and whatever explains the untrained-site
+    pathologies MECH-523 describes is something else entirely.
+  notes: >
+    Registered from GOV-V4CUT-1 cut-audit finding F2
+    (evidence/planning/v4_prerequisite_cut_20260901.md, Section 3), tracked as GFLAG-0102.
+    SPLIT off MECH-507: MECH-507 itself is NARROWED to the full reciprocal-bridge reframing
+    at E1/ContextMemory specifically -- which its own registration notes confirm does not
+    exist in V3 ("ContextMemory read/write today is a fixed-slot lookup with no generative
+    decompression stage") -- and remains implementation_phase v4, version_relevance v4_v5.
+    Distinct from SD-056, SD-070 and MECH-523 individually: none of the three states the
+    general requirement that a compression site be PAIRED with a trained decompression stage
+    before ceiling-nulls measured there are interpretable, and none connects the z_world-site
+    existence proof to the separately-owed O-site repair (SD-080/MECH-518/MECH-517). The
+    audit's own grounding text reads as though the P4/O cluster IS this claim's minimal form;
+    on inspection SD-080/MECH-518/MECH-517 do not themselves prescribe "train a decompression
+    head at O" -- this claim is the connective, testable statement that was missing, not a
+    restatement of an existing one. Staged for review at
+    evidence/planning/v4cut_f2_mech507_decompression_staged_20260901.md, which used MECH-531
+    as a working placeholder -- taken at registration time by this same pass's F1 claim, so
+    MECH-532 was allocated instead per the live max. User approval: RECOMMENDATION_LOG.jsonl
+    2026-09-01, "Staged claims" decision lane, both F1 and F2 options selected.
