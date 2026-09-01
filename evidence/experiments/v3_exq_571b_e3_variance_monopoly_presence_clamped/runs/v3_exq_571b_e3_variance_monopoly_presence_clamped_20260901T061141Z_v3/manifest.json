@@ -1,0 +1,104 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_571b_e3_variance_monopoly_presence_clamped",
+  "run_id": "v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-01T06:11:41Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "f_monopoly_present_clamped_occupant_shifted",
+    "preconditions": [
+      {
+        "name": "decomp_samples_sufficient",
+        "description": "genuine fresh E3 selections per cell (latch-gated, never per-env-step) -- the true denominator behind every variance share",
+        "kind": "readiness",
+        "measured": 187.0,
+        "threshold": 60.0,
+        "direction": "lower",
+        "control": "worst cell across the VERDICT-BEARING arms (A0, A1)",
+        "offending_cell": "A0_baseline_clamp_off/seed456",
+        "met": true
+      },
+      {
+        "name": "committed_total_variance_nondegenerate",
+        "description": "sum of per-component variances at the committed candidate -- literally the denominator the load-bearing share criterion divides by",
+        "kind": "readiness",
+        "measured": 1.5475239396929018e-05,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "control": "worst cell across the VERDICT-BEARING arms (A0, A1)",
+        "offending_cell": "A1_baseline_clamp_on/seed123",
+        "met": true
+      },
+      {
+        "name": "clamp_config_landed_every_cell",
+        "description": "the clamp flag actually reached agent.e2.config in every cell and matches the arm's request (REEConfig.from_dims swallows unknown kwargs silently, so this is the only proof the manipulation exists)",
+        "kind": "readiness",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "all cells; 1.0 = every cell's live clamp equals its arm spec",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_monopoly_present_clamped_baseline": true,
+      "C2_monopoly_occupant_is_f": true,
+      "C3_clamp_flips_monopoly_occupant": true
+    },
+    "combination_rule": "C1 alone routes the verdict (load-bearing). C2 refines WHICH channel holds a monopoly C1 found; C3 is descriptive attribution of any change to the clamp. C2 and C3 never override C1."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "fb695aefd288c815e34647d1207a5424cff2c8ab29fd4d0743737785ecd9a2c7",
+  "substrate_commit": {
+    "commit": "8205ef2b16fbe60d0e08563fc25d2b8d770e75cb",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 16,
+    "goal_state_present": false
+  }
+}
