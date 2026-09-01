@@ -31,6 +31,29 @@ HANDOFF_MD_PATH = "evidence/handoffs/active_governance_handoff.md"
 HEARTBEAT_STALE_HOURS = 4.0
 
 
+def _coordinator_rows():
+    """Live /shadow/status rows keyed by machine, or None when unavailable.
+
+    Coordinator-primary telemetry (2026-09-01): the git materialization of
+    runner_heartbeats/ is being retired (files freeze in place), so in-flight
+    liveness is judged from the coordinator when it answers and from the git
+    files only when it does not. Never raises; any failure returns None so
+    callers fall back to today's behavior.
+    """
+    try:
+        _here = str(Path(__file__).resolve().parent)
+        if _here not in sys.path:
+            sys.path.insert(0, _here)
+        import fleet_status_client
+    except Exception:
+        return None
+    try:
+        rows = fleet_status_client.machine_rows()
+    except Exception:
+        return None
+    return rows or None
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Generate REE_assembly governance handoff (JSON + Markdown)."
@@ -139,6 +162,43 @@ def load_workset_summary(repo_root):
 
 def load_in_flight_experiments(repo_root):
     heartbeats_dir = repo_root / "evidence/experiments/runner_heartbeats"
+
+    # Coordinator-primary: prefer live /shadow/status rows for in-flight
+    # detection. The git heartbeat file (when present) only enriches the
+    # title/claim fields, which the coordinator rows do not carry. Output
+    # shape is identical to the git path below.
+    coord_rows = _coordinator_rows()
+    if coord_rows:
+        in_flight = []
+        for machine in sorted(coord_rows):
+            row = coord_rows[machine]
+            last_seen = str(row.get("last_seen") or "")
+            tick = parse_iso_timestamp(last_seen)
+            if tick:
+                age_h = (now_utc() - tick).total_seconds() / 3600
+                if age_h > HEARTBEAT_STALE_HOURS:
+                    continue
+            if row.get("state") == "running" and row.get("current_exq"):
+                prog = row.get("progress") or {}
+                hb_git = {}
+                hb_file = heartbeats_dir / (machine + ".json")
+                if hb_file.exists():
+                    try:
+                        hb_git = json.loads(hb_file.read_text(encoding="utf-8"))
+                    except Exception:
+                        hb_git = {}
+                in_flight.append({
+                    "machine": machine,
+                    "exq": row.get("current_exq"),
+                    "title": hb_git.get("current_title", ""),
+                    "claim_id": hb_git.get("current_claim_id", ""),
+                    "progress_pct": (prog.get("overall_pct")
+                                     if isinstance(prog, dict) else None),
+                    "last_tick_utc": last_seen or None,
+                })
+        return in_flight
+
+    # Git fallback -- unchanged legacy read of the frozen heartbeat mirror.
     if not heartbeats_dir.exists():
         return []
 

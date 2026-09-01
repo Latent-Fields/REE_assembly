@@ -26,6 +26,30 @@ REPORT_RELATIVE_PATH = "evidence/verification/governance_verification_latest.jso
 HEARTBEAT_STALE_HOURS = 4.0
 
 
+def _coordinator_rows():
+    """Live /shadow/status rows keyed by machine, or None when unavailable.
+
+    Coordinator-primary telemetry (2026-09-01): the git materialization of
+    runner_heartbeats/ and runner_status/ is being retired (files freeze in
+    place), so machine liveness/freshness is judged from the coordinator when
+    it answers, and only from the git files when it does not. Never raises;
+    any failure (missing client module, missing config, unreachable hub,
+    parse error) returns None so callers fall back to today's behavior.
+    """
+    try:
+        _here = str(Path(__file__).resolve().parent)
+        if _here not in sys.path:
+            sys.path.insert(0, _here)
+        import fleet_status_client
+    except Exception:
+        return None
+    try:
+        rows = fleet_status_client.machine_rows()
+    except Exception:
+        return None
+    return rows or None
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description=(
@@ -225,6 +249,14 @@ def check_central_runner_status(repo_root, findings, stale_hours):
     central_path = repo_root / "evidence/experiments/runner_status.json"
     per_machine_dir = repo_root / "evidence/experiments/runner_status"
 
+    # Coordinator-primary: when the live coordinator answers, the git
+    # runner_status materialization is a retired/frozen mirror, so its
+    # absence or age is expected and not evidence of a wedged merge.
+    # Only judge freshness from the git files when the coordinator is
+    # unavailable (rows None/empty -> fall through to today's behavior).
+    if _coordinator_rows():
+        return
+
     per_machine_files = []
     if per_machine_dir.exists():
         per_machine_files = [
@@ -283,18 +315,46 @@ def check_heartbeat_status_divergence(repo_root, findings):
     heartbeats_dir = repo_root / "evidence/experiments/runner_heartbeats"
     per_machine_dir = repo_root / "evidence/experiments/runner_status"
 
-    if not heartbeats_dir.exists():
-        return
+    # Coordinator-primary: prefer live /shadow/status rows for machine
+    # liveness (state / current_exq / last_seen). The git heartbeat file is
+    # still consulted per-machine for current_exq_started_utc, which the
+    # coordinator rows do not carry. When the coordinator is unavailable
+    # (records None) the git glob below runs exactly as before.
+    coord_rows = _coordinator_rows()
+    records = None
+    if coord_rows:
+        records = []
+        for machine in sorted(coord_rows):
+            row = coord_rows[machine]
+            hb_git = {}
+            hb_file = heartbeats_dir / (machine + ".json")
+            if hb_file.exists():
+                try:
+                    hb_git = json.loads(hb_file.read_text(encoding="utf-8"))
+                except Exception:
+                    hb_git = {}
+            records.append((machine, {
+                "state": row.get("state", "") or "",
+                "current_exq": row.get("current_exq"),
+                "last_tick_utc": str(row.get("last_seen") or ""),
+                "current_exq_started_utc":
+                    hb_git.get("current_exq_started_utc", ""),
+            }, hb_file))
 
-    for hb_file in sorted(heartbeats_dir.glob("*.json")):
-        if hb_file.name == "README.md":
-            continue
-        machine = hb_file.stem
-        try:
-            hb = json.loads(hb_file.read_text(encoding="utf-8"))
-        except Exception:
-            continue
+    if records is None:
+        if not heartbeats_dir.exists():
+            return
+        records = []
+        for hb_file in sorted(heartbeats_dir.glob("*.json")):
+            if hb_file.name == "README.md":
+                continue
+            try:
+                hb = json.loads(hb_file.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            records.append((hb_file.stem, hb, hb_file))
 
+    for machine, hb, hb_file in records:
         hb_state = hb.get("state", "")
         hb_exq = hb.get("current_exq")
         hb_tick_str = hb.get("last_tick_utc", "")

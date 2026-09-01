@@ -256,6 +256,60 @@ print(json.dumps(out))
 '''
 
 
+# Hours after which the git runner_status split is considered frozen. The
+# per-run outcome lists it carries have NO coordinator /shadow/status
+# equivalent, so the git read stays -- but its git materialization is retired
+# (2026-09-01), so a fully-stale directory means the corroboration counts may
+# be incomplete and the report says so (non-fatal either way; the DB is the
+# authority for the rate itself).
+RUNNER_STATUS_STALE_HOURS = 48.0
+
+
+def runner_status_split_is_stale():
+    """True when EVERY runner_status file is >48h old by mtime AND embedded ts.
+
+    A file is fresh if either its mtime or its embedded last_updated is within
+    the window (unparseable embedded timestamp -> mtime alone decides). An
+    absent directory or no files returns False -- that case already reads as
+    "0 file(s) read" in the report. Never raises.
+    """
+    from datetime import datetime, timezone
+    status_dir = (pathlib.Path(__file__).resolve().parent.parent
+                  / "evidence" / "experiments" / "runner_status")
+    try:
+        if not status_dir.is_dir():
+            return False
+        files = sorted(status_dir.glob("*.json"))
+        if not files:
+            return False
+        now = datetime.now(timezone.utc)
+        cutoff_s = RUNNER_STATUS_STALE_HOURS * 3600.0
+        for f in files:
+            try:
+                mtime_age = now.timestamp() - f.stat().st_mtime
+            except OSError:
+                continue
+            if mtime_age <= cutoff_s:
+                return False
+            emb = ""
+            try:
+                emb = str(json.loads(f.read_text()).get("last_updated") or "")
+            except Exception:
+                emb = ""
+            if emb:
+                try:
+                    ts = datetime.fromisoformat(emb.replace("Z", "+00:00"))
+                    if ts.tzinfo is None:
+                        ts = ts.replace(tzinfo=timezone.utc)
+                    if (now - ts).total_seconds() <= cutoff_s:
+                        return False
+                except Exception:
+                    pass
+        return True
+    except Exception:
+        return False
+
+
 def scan_per_machine_errors(cutoff):
     """Corroborating ERROR record from the LIVE per-machine runner_status split.
 
@@ -412,6 +466,7 @@ def main():
     n_cancelled = len(cancelled)
     n_gaps = len(gaps)
     rs_errs, rs_last, rs_files = scan_per_machine_errors(cutoff)
+    rs_stale = runner_status_split_is_stale()
     # Upper bound treats every phantom as a crash; the truth is between the two.
     upper = ((n_error + n_phantom) / (classified + n_phantom) * 100.0
              if (classified + n_phantom) else None)
@@ -438,6 +493,7 @@ def main():
             "runner_status_error_detail": rs_errs,
             "fleet_last_error_recorded": rs_last,
             "runner_status_files_read": rs_files,
+            "runner_status_split_stale": rs_stale,
             "results_without_manifest": data["results_without_manifest"],
             "uncommitted_results": data["uncommitted_results"],
             "per_machine": data["per_machine"],
@@ -516,6 +572,12 @@ def main():
           % (rs_last[:19] if rs_last else "(none on record)"))
     print("  (numerator cross-check only -- this split dedupes `completed` by")
     print("   queue_id, so it CANNOT supply the denominator.)")
+    if rs_stale:
+        print("  WARNING: the git runner_status telemetry mirror is")
+        print("    retired/frozen -- every file is older than %dh (mtime and"
+              % int(RUNNER_STATUS_STALE_HOURS))
+        print("    embedded timestamps). The corroboration counts above may be")
+        print("    incomplete; the coordinator DB remains the authority.")
     print()
     if data["results_without_manifest"]:
         print("  WARN: %d results row(s) have an outcome but no manifest bytes."

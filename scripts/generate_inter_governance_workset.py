@@ -810,8 +810,31 @@ def _load_queue_detailed() -> dict:
 
 
 def _running_exqs() -> dict[str, str]:
-    """queue_id -> machine from fresh runner heartbeats/status (best effort)."""
+    """queue_id -> machine, coordinator-primary with git-heartbeat fallback.
+
+    Coordinator-primary (2026-09-01): the git materialization of
+    runner_heartbeats/*.json is being retired (files freeze in place), so a
+    frozen file could report a long-dead current_exq forever. Prefer the live
+    /shadow/status rows; fall back to the git files only when the coordinator
+    client returns nothing (never raises).
+    """
     out: dict[str, str] = {}
+    rows = None
+    try:
+        _here = str(Path(__file__).resolve().parent)
+        if _here not in sys.path:
+            sys.path.insert(0, _here)
+        import fleet_status_client
+        rows = fleet_status_client.machine_rows()
+    except Exception:
+        rows = None
+    if rows:
+        for machine, row in sorted(rows.items()):
+            exq = row.get("current_exq")
+            if exq:
+                out[str(exq)] = str(row.get("machine") or machine)
+        return out
+    # Git fallback -- unchanged legacy read of the frozen heartbeat mirror.
     for d in (EVIDENCE / "runner_heartbeats").glob("*.json") if (EVIDENCE / "runner_heartbeats").is_dir() else []:
         try:
             hb = json.loads(d.read_text(encoding="utf-8"))

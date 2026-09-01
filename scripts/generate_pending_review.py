@@ -480,6 +480,59 @@ def _derive_dir_name(output_file: str, queue_id: str) -> str:
     return basename or queue_id
 
 
+# Hours after which the git runner_status mirror is considered frozen.
+# The per-run outcome lists inside runner_status/*.json have NO coordinator
+# /shadow/status equivalent, so this reader keeps the git files -- but the
+# git materialization of that telemetry is retired (2026-09-01), so once
+# every file is older than this (by mtime AND embedded last_updated) the
+# counts derived from them may be incomplete and we say so.
+RUNNER_STATUS_STALE_HOURS = 48.0
+
+
+def _runner_status_mirror_is_stale() -> bool:
+    """True when EVERY runner_status file is >48h old by mtime AND embedded ts.
+
+    A file counts as fresh if either its mtime or its embedded last_updated
+    timestamp is within the window (an unparseable embedded timestamp falls
+    back to mtime alone). No files at all -> not stale (the absent-dir case
+    already degrades to the legacy monolithic file / empty result).
+    Never raises.
+    """
+    try:
+        files = (sorted(RUNNER_STATUS_DIR.glob("*.json"))
+                 if RUNNER_STATUS_DIR.is_dir() else [])
+        if not files and RUNNER_STATUS.exists():
+            files = [RUNNER_STATUS]
+        if not files:
+            return False
+        now = datetime.now(timezone.utc)
+        cutoff_s = RUNNER_STATUS_STALE_HOURS * 3600.0
+        for f in files:
+            try:
+                mtime_age = (now.timestamp() - f.stat().st_mtime)
+            except OSError:
+                continue
+            if mtime_age <= cutoff_s:
+                return False
+            emb = ""
+            try:
+                emb = str(json.loads(f.read_text()).get("last_updated") or "")
+            except Exception:
+                emb = ""
+            if emb:
+                try:
+                    ts = datetime.fromisoformat(emb.replace("Z", "+00:00"))
+                    if ts.tzinfo is None:
+                        ts = ts.replace(tzinfo=timezone.utc)
+                    if (now - ts).total_seconds() <= cutoff_s:
+                        return False
+                except Exception:
+                    pass
+        return True
+    except Exception:
+        return False
+
+
 def load_runner_status_undiscussed(reviewed: set, discussed: set,
                                    indexed_run_ids: set) -> list[dict]:
     """Load runner_status completed entries that need discussion but are not in sections 1/2.
@@ -495,6 +548,17 @@ def load_runner_status_undiscussed(reviewed: set, discussed: set,
     - Entries whose run_id is in reviewed_run_ids
     - Entries whose run_id IS in indexed_run_ids (already covered by sections 1/2)
     """
+    # The git telemetry mirror is retired (2026-09-01); warn when frozen so
+    # nobody reads a quiet section as "no undiscussed runs".
+    if _runner_status_mirror_is_stale():
+        print(
+            "[warn] WARNING: the git runner_status telemetry mirror "
+            "(evidence/experiments/runner_status/) is retired/frozen -- every "
+            "file is older than %dh. Runner-status-derived counts below may "
+            "be incomplete; the coordinator DB is the live authority."
+            % int(RUNNER_STATUS_STALE_HOURS),
+            file=sys.stderr)
+
     # Read completed entries from per-machine files (preferred) or legacy monolithic
     all_completed: list[dict] = []
     if RUNNER_STATUS_DIR.is_dir():
