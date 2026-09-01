@@ -1,0 +1,122 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_967_mech144_shuffle_inertness_confirmer",
+  "run_id": "v3_exq_967_mech144_shuffle_inertness_confirmer_20260901T062344Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-01T06:23:44Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "behaviour_diverges_contacts_coincide",
+    "preconditions": [
+      {
+        "name": "p0_warmup_actually_trained",
+        "description": "optimiser steps taken during the P0 representational warmup. 966 trains e1+latent_stack here; a driver that merely ROLLS the warmup episodes measures an untrained-encoder agent, which is not the agent whose behaviour is under explanation -- and would let an untrained encoder's indifference be read as H_insensitive_policy",
+        "kind": "readiness",
+        "measured": 1440.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "worst arm; 966's P0 block, replicated (Adam @ P0_LR)",
+        "met": true
+      },
+      {
+        "name": "contact_bump_reaches_agent_energy",
+        "description": "largest contact benefit reconstructible from the OBSERVABLE energy channel alone at an unclamped contact step. This is the positive control for the very statistic D3 routes on: if a contact cannot move agent_energy here, D3 is False by construction and the H_inert label would be an instrument artifact rather than a finding about the energy route",
+        "kind": "readiness",
+        "measured": 0.30000000000000004,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "control": "worst arm; the env applies agent_energy += contact_benefit*0.5 at causal_grid_world.py:2176, so a real contact must show a positive reconstructed bump at an unclamped step. USED ONLY AS A LIVENESS FLOOR: the reconstruction subtracts the per-step decay (:2691) but NOT any action/movement energy cost (:2707), so its VALUE is not a calibrated contact_benefit and must not be read as one -- only its being above zero is asserted here. Read the per-step energy_delta series (contact vs non-contact steps) if the magnitude itself matters",
+        "offending_cell": "ARM_FIXED_VALUE",
+        "met": true
+      },
+      {
+        "name": "logged_contacts_sufficient",
+        "description": "resource contacts inside the logged (arm-differing) blocks -- nothing about the consumption route is measurable without them",
+        "kind": "readiness",
+        "measured": 22.0,
+        "threshold": 4.0,
+        "direction": "lower",
+        "control": "worst arm",
+        "met": true
+      },
+      {
+        "name": "energy_spends_time_unclamped",
+        "description": "fraction of logged steps with agent_energy strictly below the 1.0 ceiling. This is the autopsy's OWN contested premise made measurable: if energy is pinned at the clamp, the amplitude bump is absorbed and D3 cannot speak to the energy route at all",
+        "kind": "readiness",
+        "measured": 0.99,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "worst arm; autopsy asserts energy sits between the clamps for most of a 120-step episode",
+        "offending_cell": "ARM_FIXED_VALUE",
+        "met": true
+      },
+      {
+        "name": "wanting_weight_landed",
+        "description": "config.hippocampal.wanting_weight equals the requested value at runtime -- guards the alleged from_dims drop site without depending on how that separate chip resolves",
+        "kind": "readiness",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "both arms; 1.0 = landed in every cell",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_energy_route_open": true,
+      "C2_policy_responds": true,
+      "C3_phenomenon_reproduced": true
+    },
+    "combination_rule": "A FIXED CHAIN, not a conjunction: the first discriminator in the order D1->D2->D3->D4->D5 that reads False determines the route, and later discriminators are not consulted once the chain stops. C1 is load-bearing because D3 is the autopsy's contested premise."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3d0bf88ddc6e26cbf1dbcad1abc65e933042e71743b81ec39b229dcd4f867849",
+  "substrate_commit": {
+    "commit": "dfc9880252d42374f76339501a1fa1670f09e03c",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 12480,
+    "ticks_active": 12076,
+    "writer_calls": 12480,
+    "active_frac": 0.9676282051282051,
+    "writer_defect": false,
+    "n_agents": 2,
+    "goal_state_present": true
+  }
+}
