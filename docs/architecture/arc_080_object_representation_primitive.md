@@ -3,8 +3,8 @@ title: ARC-080 -- Object Identity as a Cross-Cutting Representational Primitive
 parent: "Attention, Binding & Objects"
 grandparent: Architecture
 nav_order: 1
-status: candidate/v3_pending
-status_asof: 2026-07-10
+status: candidate
+status_asof: 2026-09-01
 status_claim: ARC-080
 ---
 
@@ -12,7 +12,7 @@ status_claim: ARC-080
 
 **Claim Type:** architectural_commitment (thin umbrella / coherence map)
 **Scope:** Object identity as one representational primitive underlying permanence, self-as-object, tools/affordances, and others-as-object
-**Status:** candidate (`v3_pending: true`, `implementation_phase: v4`)
+**Status:** candidate (`v3_pending: false`, `implementation_phase: v4`) -- v3_pending cleared 2026-09-01 (GOV-V4CUT-1 F4, GFLAG-0104); see the claims.yaml UPDATE note
 **Claim ID:** ARC-080
 <a id="arc-080"></a>
 **Depends On:** ARC-006 (object-file / binding substrate), MECH-278 (object definition), ARC-059 (developmental ordering), SD-015 / SD-049 / SD-057 (live identity latent)

@@ -63353,15 +63353,15 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-09-01
     needs_review: false
     evidence:
       from: "decision:ARC-080@2026-06-06T07:53:48.739107Z"
       as_of: 2026-06-06
       verdict: held_v4_by_architectural_commitment/applied
   implementation_phase: v4
-  v3_pending: true
+  v3_pending: false
   claim_level: architectural
   registered_utc: 2026-06-04
   epistemic_category: substrate_coherence
@@ -63519,6 +63519,30 @@
     and OBJ-4/Pillar-3 ("blocked") rows (both dated 2026-06-10) look stale against
     this and against SD-055 (Pillar 3 grounding); left for the next regen of that
     derived doc, not touched here.
+
+    UPDATE 2026-09-01 (GOV-V4CUT-1 F4, GFLAG-0104): v3_pending flipped to false
+    (implementation_phase stays v4, unchanged). v3_pending had no effect on
+    promotion here (already promote/demote-suppressed by epistemic_category
+    substrate_coherence, per SCOPE/GUARD above) but pulled ARC-080/081/082/083
+    into the assembly_state "gated_v3" display bucket alongside genuine
+    V3-closure-blocking work -- the double-ownership/contradictory-placement
+    defect GFLAG-0104 named. Cleared so all four now read as v4/deferred_future,
+    matching their own "must NOT enter V3 closure" text. Every other "v3_pending"
+    phrase in this claim's prose is HISTORICAL (describes the pre-2026-09-01
+    state) and is left as-is. Separately evaluated and REJECTED: the proposal to
+    also pull forward a NEW minimal-v3 child claim ("token-bound identity ...
+    building on the MECH-344/345 per-object binding stack"). MECH-344/345 key on
+    the SD-049 per-TYPE tag (their own text: "a learned affordance/identity
+    embedding is the upgrade path") -- they are TYPE-bound, not TOKEN-bound, so
+    describing them as a token-bound-identity substrate would misstate their
+    scope and collapse the TYPE/TOKEN distinction this claim's own OBJ-1
+    resolution insists on keeping open. The actual TOKEN-level substrate
+    (ARC-006/MECH-045 object_file_buffer) is default-off
+    (use_object_file_buffer=False), MECH-045 is provisional/not promoted, and
+    backed by exactly one supporting run (V3-EXQ-658) that does not coregister
+    with SD-057/SD-039 -- not yet a genuine V3 prerequisite to register a claim
+    against. No new claim minted; "No EXP-#### should be minted against ARC-080
+    directly" and Pillar 1's future-child-not-registered status both stand.
   biology_grounding_note: >
     ARC-006/MECH-044/MECH-045 had NO biology lit-pull at registration of this
     umbrella (sources were internal 2026-02 thoughts + DANIEL_README), which the
@@ -63550,15 +63574,15 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-09-01
     needs_review: false
     evidence:
       from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
       as_of: 2026-06-06
       verdict: held_v4_by_architectural_commitment/applied
   implementation_phase: v4
-  v3_pending: true
+  v3_pending: false
   claim_level: architectural
   registered_utc: 2026-06-04
   implementation_note: >
@@ -63665,6 +63689,13 @@
     cutover gated by the self-model integration audit. PROMOTES NOTHING -- ARC-081
     stays candidate / architectural_commitment (substrate_coherence) /
     implementation_phase v4 / v3_pending.
+
+    UPDATE 2026-09-01 (GOV-V4CUT-1 F4, GFLAG-0104): v3_pending flipped to false
+    (implementation_phase stays v4, unchanged) -- same correction and rationale as
+    ARC-080's UPDATE 2026-09-01 note; see there for the full reasoning, including
+    why the accompanying minimal-v3-claim proposal was rejected. Historical
+    "v3_pending" mentions elsewhere in this claim's prose (including immediately
+    above) describe the pre-2026-09-01 state and are left as-is.
   location: docs/architecture/arc_080_object_representation_primitive.md
 
 - id: ARC-082
@@ -63674,15 +63705,15 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-09-01
     needs_review: false
     evidence:
       from: "decision:ARC-082@2026-06-06T07:53:48.739107Z"
       as_of: 2026-06-06
       verdict: held_v4_by_architectural_commitment/applied
   implementation_phase: v4
-  v3_pending: true
+  v3_pending: false
   claim_level: architectural
   registered_utc: 2026-06-04
   depends_on:
@@ -63720,6 +63751,13 @@
     does not pull SD-016 grounding or any object-file work into V3 closure. The
     EXP-0155 / SD-055 grounding track is owned separately and is untouched by this
     registration.
+
+    UPDATE 2026-09-01 (GOV-V4CUT-1 F4, GFLAG-0104): v3_pending flipped to false
+    (implementation_phase stays v4, unchanged) -- same correction and rationale as
+    ARC-080's UPDATE 2026-09-01 note; see there for the full reasoning, including
+    why the accompanying minimal-v3-claim proposal was rejected. The "v3_pending"
+    mention immediately above describes the pre-2026-09-01 state and is left
+    as-is.
   location: docs/architecture/arc_080_object_representation_primitive.md
 
 - id: ARC-083
@@ -63729,15 +63767,15 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-09-01
     needs_review: false
     evidence:
       from: "decision:ARC-083@2026-06-06T07:53:48.739107Z"
       as_of: 2026-06-06
       verdict: held_v4_by_architectural_commitment/applied
   implementation_phase: v4
-  v3_pending: true
+  v3_pending: false
   claim_level: architectural
   registered_utc: 2026-06-04
   depends_on:
@@ -63771,6 +63809,16 @@
     (architectural_commitment) -- promote/demote suppressed. v3_pending +
     implementation_phase v4: this child introduces NO code and NO experiments. All
     other-object substrate is V4 and must NOT enter V3 closure.
+
+    UPDATE 2026-09-01 (GOV-V4CUT-1 F4, GFLAG-0104): v3_pending flipped to false
+    (implementation_phase stays v4, unchanged) -- same correction and rationale as
+    ARC-080's UPDATE 2026-09-01 note; see there for the full reasoning, including
+    why the accompanying minimal-v3-claim proposal was rejected. ARC-083's own
+    placement (v4, gated on MECH-163 + presupposing V4-1) is UNCHANGED by this
+    edit -- this is a display-bucket bookkeeping fix only, so GFLAG-0109's
+    analysis (ARC-083 as MECH-479's untestable-in-V3 precondition) is unaffected.
+    The "v3_pending" mention immediately above describes the pre-2026-09-01 state
+    and is left as-is.
   location: docs/architecture/arc_080_object_representation_primitive.md
 
 - id: MECH-340
