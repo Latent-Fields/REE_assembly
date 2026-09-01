@@ -1238,9 +1238,9 @@
       "summary": "merge proposal: fold MECH-092's CONSOLIDATION-BENEFIT HALF ONLY into MECH-121 (partial absorption -- do NOT supersede MECH-092). MECH-121 (NREM consolidation pipeline) already owns the 'E1 world model improves across a sleep cycle vs matched waking control' test, and MECH-209's own what_would_answer states verbatim that MECH-092's benefit half is the leg it defers to. Three claims currently point at one untested test. RESIDUAL THAT MUST SURVIVE IN MECH-092: the trigger-selectivity content (quiescent-cycle gating, e3_quiescent), which V3-EXQ-761 CONFIRMED and MECH-121 does not cover. Reverse-deps needing repointing: MECH-205 (depends_on MECH-092), MECH-209 (what_would_answer text), MECH-289, MECH-291, and closure node sleep_substrate:GAP-2.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:51:48Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T19:32:47Z",
+      "resolution_note": "APPLIED REE_assembly da501b6c23 (sub-decision D2-a). MERGE DECLINED, user-approved 2026-09-01. The premise is accepted -- three claims really do converge on one untested test -- but a merge is the wrong instrument: it relocates an untested obligation without making it runnable, and would destroy the residue this flag itself says must survive (MECH-092's trigger-selectivity content, V3-EXQ-761 CONFIRMED, not covered by MECH-121). What actually blocks all three is one missing consumer, now registered as mech092-replay-consumer-missing. REPLACED BY: one experiment carrying claim_ids [MECH-092, MECH-121, MECH-209] once the consumer is built -- the same convergence this flag identified, without collapsing three assertions and without the reverse-dep repointing across MECH-205/209/289/291 and closure node sleep_substrate:GAP-2 that the merge required. Decision recorded on MECH-121; also note this flag's reverse-dep list of 4 was measured at 25."
     },
     {
       "flag_id": "GFLAG-0087",
