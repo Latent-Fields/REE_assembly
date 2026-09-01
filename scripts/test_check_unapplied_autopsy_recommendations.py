@@ -452,6 +452,238 @@ class NamedFieldAndCitationTests(Base):
 
 
 # =========================================================================
+# THE 2026-09-01 REPAIR -- coincidental arrows, compound dispositions
+#
+# Shape A: a coincidental "->" (real prose, not the disposition marker) or a
+# trailing clause after the real one hides the true target. Shape B: a
+# disposition names TWO field changes and the free prose only carries an
+# arrow for one of them. See the module docstring's "THE 2026-09-01 REPAIR"
+# section for the real-corpus rows (ARC-045/SD-017/SD-078/SD-082/MECH-439,
+# MECH-135/INV-088, MECH-482) each shape below reproduces.
+# =========================================================================
+class ClauseAndSetFieldTests(Base):
+
+    def test_clause_narrowing_fires_when_the_real_target_is_unapplied(self):
+        """ARC-045 shape: 'Withdraw weakens -> non_contributory. Nothing
+        storable moves -- apply the corrected note' -- the old tail-extraction
+        ran to the end of the sentence; narrowing to the immediate clause
+        recovers 'non_contributory' as the real target."""
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "Withdraw weakens -> non_contributory. Nothing "
+                          "storable moves -- apply the corrected note",
+                "recommended_evidence_direction": "non_contributory"}})])
+        self.fx.pack(direction="weakens")
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_clause_narrowing_does_not_fire_once_applied(self):
+        """NEGATIVE CONTROL, the load-bearing half."""
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "Withdraw weakens -> non_contributory. Nothing "
+                          "storable moves -- apply the corrected note",
+                "recommended_evidence_direction": "non_contributory"}})])
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_set_field_pattern_fires_when_unapplied(self):
+        """SD-078/SD-082 shape: '-> set pending_retest_after_substrate
+        false', a 'set ' prefix the bare-field-name match does not strip."""
+        self.fx.write_claims([{"id": CLAIM, "pending_retest_after_substrate": True}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "the retest has now run -> set "
+                          "pending_retest_after_substrate false"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_set_field_pattern_does_not_fire_once_applied(self):
+        """NEGATIVE CONTROL, the load-bearing half."""
+        self.fx.write_claims([{"id": CLAIM, "pending_retest_after_substrate": False}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "the retest has now run -> set "
+                          "pending_retest_after_substrate false"}})])
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_coincidental_arrow_does_not_get_misread_as_the_disposition(self):
+        """SD-017 shape: a scientific-notation arrow ('slot_cosine_sim ->
+        1.0') appears LATER in the sentence than the real verdict and is
+        the one `_target_state` would naively pick up. The prose-parse
+        route must fail to produce anything checkable here -- this is
+        pinning the NEGATIVE half (garbled tail stays unmatched by the
+        prose route); the structured-fallback tests below cover recovery."""
+        self.fx.write_claims([{"id": CLAIM, "epistemic_category": "substrate_ceiling",
+                               "pending_retest_after_substrate": True}])
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "own stated prediction (undifferentiated, ratio -> "
+                          "1.0) is CONFIRMED by X = 0.9993; the manifest's "
+                          "weakens is withdrawn. Category already substrate_"
+                          "ceiling and status already stable, nothing "
+                          "storable moves -- apply the corrected note",
+                "recommended_evidence_direction": "non_contributory"}})])
+        self.fx.pack(direction="weakens")
+        # Not applied on the manifest -- must still be ACTIONABLE, not
+        # silently miscertified via the coincidental arrow's garbage tail.
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_structured_fallback_certifies_a_coincidental_arrow_once_all_fields_agree(self):
+        """THE FIX for the case above: once the manifest AND the structured
+        `recommended_epistemic_category` / `pending_retest_after_substrate`
+        fields on `rec` all agree with current state, the last-resort
+        structured check certifies -- even though the prose route alone
+        never parses a checkable value out of this text."""
+        self.fx.write_claims([{"id": CLAIM, "epistemic_category": "substrate_ceiling",
+                               "pending_retest_after_substrate": True}])
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "own stated prediction (undifferentiated, ratio -> "
+                          "1.0) is CONFIRMED by X = 0.9993; the manifest's "
+                          "weakens is withdrawn. Category already substrate_"
+                          "ceiling and status already stable, nothing "
+                          "storable moves -- apply the corrected note",
+                "recommended_evidence_direction": "non_contributory",
+                "recommended_epistemic_category": "substrate_ceiling",
+                "pending_retest_after_substrate": True}})])
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_structured_fallback_stays_actionable_if_any_present_field_disagrees(self):
+        """NEGATIVE CONTROL: the fallback requires ALL present structured
+        fields to agree, not just the direction."""
+        self.fx.write_claims([{"id": CLAIM, "epistemic_category": "standard",
+                               "pending_retest_after_substrate": True}])
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "own stated prediction (undifferentiated, ratio -> "
+                          "1.0) is CONFIRMED by X = 0.9993; the manifest's "
+                          "weakens is withdrawn. Category already substrate_"
+                          "ceiling and status already stable, nothing "
+                          "storable moves -- apply the corrected note",
+                "recommended_evidence_direction": "non_contributory",
+                "recommended_epistemic_category": "substrate_ceiling",
+                "pending_retest_after_substrate": True}})])
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_structured_fallback_does_not_layer_onto_an_already_successful_prose_match(self):
+        """NEGATIVE CONTROL replicating the ORIGINAL V3-EXQ-604c/MECH-314b
+        case this audit was built from: the prose ALREADY certifies via a
+        clean direction match, and `recommended_epistemic_category` on the
+        SAME rec disagrees with current state (legitimately superseded by
+        independent, later governance work outside the autopsy pipeline).
+        Requiring agreement here regressed 22 real corpus rows when tried."""
+        self.fx.write_claims([{"id": CLAIM, "epistemic_category": "standard"}])
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "mixed -> non_contributory",
+                "recommended_evidence_direction": "non_contributory",
+                "recommended_epistemic_category": "substrate_ceiling",
+                "pending_retest_after_substrate": True}})])
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_self_referential_stamp_fires_when_unapplied(self):
+        """MECH-439/571b shape: 'must clear via the provenance stamp
+        (live_status.evidence.from -> this artifact) rather than by a field
+        match' -- names no literal slug because it means the recommending
+        autopsy itself."""
+        self.fx.write_claims([{
+            "id": CLAIM,
+            "live_status": {"evidence": {"from": "failure_autopsy_OLDER_2026-08-01"}},
+        }])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "must clear via the provenance stamp "
+                          "(live_status.evidence.from -> this artifact) "
+                          "rather than by a field match"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_self_referential_stamp_does_not_fire_once_applied(self):
+        """NEGATIVE CONTROL, the load-bearing half: live_status.evidence.from
+        already cites the RECOMMENDING autopsy's own slug."""
+        self.fx.write_claims([{
+            "id": CLAIM,
+            "live_status": {"evidence": {"from": SLUG}},
+        }])
+        self.fx.autopsy(slug=SLUG, targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "must clear via the provenance stamp "
+                          "(live_status.evidence.from -> this artifact) "
+                          "rather than by a field match"}})])
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_missing_epistemic_category_fires_even_when_the_prose_matches_a_different_field(self):
+        """MECH-135/INV-088 shape (failure_autopsy_V3-EXQ-954_2026-08-29):
+        `change` ends in a bare boolean field the claim already carries, but
+        `recommended_epistemic_category` on the SAME rec names a field the
+        claim has never carried at all -- ACTIONABLE regardless of the
+        boolean match."""
+        self.fx.write_claims([{"id": CLAIM, "diagnostic_evidence_adjudicated": True}])
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "set the flag the claim does not yet carry -> "
+                          "diagnostic_evidence_adjudicated",
+                "recommended_evidence_direction": "non_contributory",
+                "recommended_epistemic_category": "standard"}})])
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_missing_epistemic_category_does_not_fire_once_backfilled(self):
+        """NEGATIVE CONTROL, the load-bearing half: the exact real-corpus
+        fix (REE_assembly 80f9a4bc5f backfilled INV-088's epistemic_category
+        a day after this shape first shipped undetected)."""
+        self.fx.write_claims([{"id": CLAIM, "diagnostic_evidence_adjudicated": True,
+                               "epistemic_category": "standard"}])
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "set the flag the claim does not yet carry -> "
+                          "diagnostic_evidence_adjudicated",
+                "recommended_evidence_direction": "non_contributory",
+                "recommended_epistemic_category": "standard"}})])
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_present_but_different_epistemic_category_is_not_gated_as_missing(self):
+        """NEGATIVE CONTROL, the OTHER load-bearing half: a claim that
+        ALREADY carries epistemic_category, even holding a value DIFFERENT
+        from `recommended_epistemic_category`, must not be gated the same
+        way an ABSENT field is -- that is the disagreement-vs-absence
+        distinction the module docstring measures at 22 false positives."""
+        self.fx.write_claims([{"id": CLAIM, "diagnostic_evidence_adjudicated": True,
+                               "epistemic_category": "substrate_ceiling"}])
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "set the flag the claim does not yet carry -> "
+                          "diagnostic_evidence_adjudicated",
+                "recommended_evidence_direction": "non_contributory",
+                "recommended_epistemic_category": "standard"}})])
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_missing_pending_retest_after_substrate_is_not_gated(self):
+        """NEGATIVE CONTROL: `pending_retest_after_substrate` is deliberately
+        EXCLUDED from the absent-field gate (measured corpus-wide: 12 of 13
+        false positives from gating it were this field, on claims that had
+        simply never carried the key at all)."""
+        self.fx.write_claims([{"id": CLAIM, "diagnostic_evidence_adjudicated": True,
+                               "epistemic_category": "standard"}])
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": "set the flag the claim does not yet carry -> "
+                          "diagnostic_evidence_adjudicated",
+                "recommended_evidence_direction": "non_contributory",
+                "recommended_epistemic_category": "standard",
+                "pending_retest_after_substrate": True}})])
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+
+# =========================================================================
 # CROSS-RUN SUPERSESSION -- GOV-APPLY-1's own blind spot (2026-08-22)
 #
 # R2 (load_confirmed's `latest`) only dedups a re-adjudication of the SAME

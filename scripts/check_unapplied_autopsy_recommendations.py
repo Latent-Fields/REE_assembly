@@ -316,6 +316,160 @@ value -- so this ADDS a route to certifying a genuine match without
 narrowing any existing one; an unrecognised bare word still falls through to
 "not reflected" exactly as before.
 
+THE 2026-09-01 REPAIR -- a coincidental "->" hides the real target, and a
+compound disposition only ever gets ONE field checked
+--------------------------------------------------------------------------
+governance-cycle-20260830-pm and gov-cycle-20260901 (GFLAG-0107) measured two
+more shapes of the same defect class, this time BOTH already-applied and
+NOT yet-applied dispositions, on the SAME real corpus rows -- ARC-045 and
+SD-017 (`failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30`), SD-078
+and SD-082 (same artifact), and MECH-439
+(`failure_autopsy_V3-EXQ-571b_2026-09-01`, `..._936a_2026-08-30`) all sat
+ACTIONABLE despite being genuinely applied -- true for every row here except
+MECH-439's 571b entry specifically, which the second shape below (Shape B)
+keeps correctly ACTIONABLE, just now for an accurate reason. A side effect
+of the FIRST shape
+also explains the earlier-reported supersession-bucket asymmetry: MECH-166's
+436e disposition correctly moved to `superseded_disposition` while ARC-045's
+and SD-017's identical-text 436e dispositions stayed ACTIONABLE -- the
+cross-run cascade (2026-08-22 repair) only demotes an older disagreeing
+disposition when the LATEST one for that claim certifies applied, and
+ARC-045/SD-017's latest (966-cluster) entries were exactly the rows this
+repair fixes; MECH-166's own 966-cluster entry happened to have no arrow at
+all and already routed through the (unaffected) recommended-direction
+fallback.
+
+Shape A -- a coincidental "->" earlier in the SAME sentence, unrelated to
+the disposition. `_target_state` takes the tail after the LAST "->" in the
+whole string, which is usually right, but real prose contains its own
+non-disposition arrows: SD-017's 966-cluster `change` reads "...slot_
+cosine_sim -> 1.0) is CONFIRMED by WAKING_ONLY = 0.9993; ... nothing
+storable moves..." -- a numeric-notation arrow describing the PREDICTION,
+not the verdict, and it happens to be the last one, so the real verdict
+(the manifest already correctly reads `non_contributory`, per `rec`'s own
+`recommended_evidence_direction`) was never reached. ARC-045's 966-cluster
+`change` has the RIGHT arrow ("Withdraw weakens -> non_contributory.") but
+the OLD tail-extraction ran to the end of the whole remaining sentence
+("non_contributory. Nothing storable moves -- apply the corrected note"),
+never just the value.
+
+Two additions to `_target_state`, both narrow generalisations of machinery
+already there:
+
+  * `_SET_FIELD_RE` recognises "set <field> <true|false>" (SD-078/SD-082:
+    "-> set pending_retest_after_substrate false") -- the same implied-
+    boolean idea as the bare-field-name repair above, just with a literal
+    "set " prefix the bare-name match does not strip.
+  * `_clause()` narrows the arrow tail to its own immediate clause (up to
+    the first `.`/`;` that is followed by whitespace or end-of-string --
+    NOT a bare `.`, so a decimal point like "0.9993" is never mistaken for
+    a sentence boundary) before giving up. Only used to retry the SAME
+    checks (bare boolean, set-field, or a clean single alnum/underscore
+    token fed back into the existing direction-vocab / blind-generic-field
+    routes) -- it recognises "the target is `non_contributory`, followed by
+    more sentence", not any new value shape.
+
+A self-referential citation stamp is the third addition: MECH-439's 571b
+row explicitly says a field match is NOT the criterion --
+"...must clear via the provenance stamp (live_status.evidence.from -> this
+artifact) rather than by a field match" -- and names no literal slug because
+it means ITSELF. `_STAMP_RE` requires a literal `failure_autopsy_...` token
+and cannot match this. `_SELF_STAMP_RE` recognises "stamp ... this
+(cluster )?artifact" with no slug following and resolves it to the
+recommending autopsy's OWN slug (`_target_state`'s new `own_slug` parameter,
+threaded from `_reflects`'s existing `slug`) -- exactly the same citation
+check the literal-slug branch already runs, just against a self-reference
+instead of a name. Confirmed correct once wired: the citation half of this
+exact row now certifies (`live_status.evidence.from` already reads
+`failure_autopsy_V3-EXQ-571b_2026-09-01`) -- but the row still, correctly,
+reports ACTIONABLE overall, because `_missing_structured_field` (Shape B,
+below) independently finds MECH-439 has never carried `diagnostic_evidence_
+adjudicated` at all, which this SAME 571b recommendation also names. The
+self-stamp fix is still real and load-bearing for the general shape (any
+future self-referential "stamp this artifact" row with no other open gap
+will fully certify on it) even though it does not, on its own, clear this
+particular row. MECH-439's OLDER `failure_autopsy_V3-EXQ-936a_2026-08-30`
+disposition -- a DIFFERENT text, naming no `diagnostic_evidence_adjudicated`
+field at all -- resolves independently via the last-resort structured
+fallback below (Shape A), not via any cascade off 571b.
+
+Shape B -- a disposition genuinely asks for TWO field changes, and the free
+prose only carries an arrow for one of them. `failure_autopsy_V3-EXQ-954_
+2026-08-29`'s `change` for both MECH-135 and INV-088 ends "-> diagnostic_
+evidence_adjudicated" (a bare boolean field, per the 2026-08-29 repair
+above) but ALSO asserts, in un-arrowed prose, "(stays candidate, standard,
+...)" -- i.e. epistemic_category should read `standard` too. MECH-135 got
+both; INV-088's epistemic_category sat unset for a full day (backfilled by
+hand in REE_assembly 80f9a4bc5f) with GOV-APPLY-1 silent throughout, because
+the bare-boolean branch matched on `diagnostic_evidence_adjudicated` alone
+and returned before anything else was consulted. The identical shape was
+independently confirmed on SD-078/SD-082's OLDER `failure_autopsy_V3-EXQ-
+822c_2026-08-29` disposition (asks for `diagnostic_evidence_adjudicated`,
+which neither claim has ever carried -- moot now, since their LATEST
+disposition applies cleanly and this older one is correctly superseded, not
+owed); on MECH-439's `failure_autopsy_V3-EXQ-571b_2026-09-01` row (see
+Shape A above -- the citation half certifies, the flag half does not); and,
+newly, on MECH-482 (`failure_autopsy_V3-EXQ-964_2026-08-30`, same missing
+flag). The 822c and MECH-482 instances surfaced only from the corpus-wide
+A/B measurement below, not from either originally-reported incident.
+
+`per_claim_recommendation[claim]` carries `recommended_epistemic_category`
+and (on 7 of 82 real entries) `recommended_diagnostic_evidence_adjudicated`
+as STRUCTURED, always-present-when-relevant fields alongside the free-prose
+`change` -- entirely independent of what `change`'s own arrow happens to
+point at. `_missing_structured_field()` gates on them, but ONLY on ABSENCE:
+if `rec` names one of these two fields and the claim does not carry the
+corresponding key AT ALL, the disposition is not reflected, full stop,
+regardless of what the prose-parsed branch would otherwise certify. Gating
+on DISAGREEMENT instead of absence was tried first and rejected on
+measurement: `recommended_epistemic_category` is a per-autopsy snapshot that
+later, independent governance work can legitimately supersede outside the
+autopsy pipeline entirely, and requiring it to always agree manufactured 22
+new false positives corpus-wide, including the ORIGINAL V3-EXQ-604c/
+MECH-314b case this audit was built from (604c's `recommended_epistemic_
+category: substrate_ceiling` is a stale 2026-07-20 reading; claims.yaml has
+long since moved to `standard` by a different route, and the row's direction
+change is correctly applied and must keep certifying on that alone).
+`pending_retest_after_substrate` is deliberately EXCLUDED from this same
+absence gate for the mirror-image reason: of 13 corpus rows an absence gate
+flagged, 12 were this field, spanning six unrelated autopsies, none of which
+had ever carried the key -- it is commonly write-once-if-relevant rather
+than universally populated, so its absence is not evidence of anything.
+
+A second, narrower structured-field consultation covers Shape A's residue:
+when NOTHING in the prose parses to a checkable value at all (the final
+"return False" every branch above already falls through to), `rec`'s
+`recommended_evidence_direction` / `recommended_epistemic_category` /
+`pending_retest_after_substrate` / `recommended_diagnostic_evidence_
+adjudicated` are checked as a LAST RESORT, requiring every one PRESENT on
+`rec` to match. This is deliberately a fallback, not an unconditional
+addition to the branches above: layering it onto an ALREADY-successful
+prose match reintroduces the same V3-EXQ-604c/MECH-314b regression the
+absence-only gate exists to avoid (a currently-correct row can carry a
+stale sibling field). Because it only ever fires where every earlier branch
+already returns False, it can only ever ADD a True verdict, never remove
+one -- confirmed by the same corpus-wide A/B run producing zero regressions
+against the pre-2026-09-01 script.
+
+Validation (GOV-HELDOUT-1): both repairs were run against every per-claim
+recommendation in the live corpus (82 entries, ~40 confirmed autopsies) via
+a standalone old-vs-new bucket-membership diff, not just the incidents that
+motivated them -- this is what caught the 22-row regression above before it
+shipped, and it is what found MECH-482 and SD-078/SD-082's stale 822c
+citation, neither of which any report named going in. Final result: of the
+eight originally-reported false positives, six resolve (four directly, two
+-- ARC-045 and SD-017's stale 436e dispositions -- via the supersession
+cascade, closing the reported asymmetry against MECH-166's identical shape);
+zero regressions against the prior script's ~82-row verdict set; and TWO
+previously-silent genuine gaps newly surface: MECH-482 (a wholly new find)
+and MECH-439's `failure_autopsy_V3-EXQ-571b_2026-09-01` row, which stays
+ACTIONABLE but now for an accurate, specific reason (`diagnostic_evidence_
+adjudicated` was never set, despite the row's citation stamp resolving
+correctly via the new self-reference match) instead of the old blanket
+"could not parse" -- a strictly more useful report of the SAME row, not an
+unresolved case. This audit edits nothing; all of the above are reports to
+apply or re-read in a /governance run.
+
 Tests: scripts/test_check_unapplied_autopsy_recommendations.py
 """
 
@@ -695,7 +849,21 @@ _BOOLEAN_CLAIM_FIELDS = (
 )
 
 
-def _target_state(change, recommended_direction):
+_SET_FIELD_RE = re.compile(r"^set\s+([a-z][a-z0-9_]*)\s+(true|false)$", re.I)
+_SELF_STAMP_RE = re.compile(r"\bstamp\b.*?\bthis (?:cluster )?artifact\b", re.I | re.S)
+_CLAUSE_BREAK_RE = re.compile(r"[.;](?:\s|$)")
+
+
+def _clause(text):
+    """`text` narrowed to its own immediate clause -- see "THE 2026-09-01
+    REPAIR" (Shape A) in the module docstring. The break is `.`/`;` followed
+    by whitespace-or-end, never a bare `.`, so a decimal point (e.g.
+    "0.9993") is never mistaken for a sentence boundary."""
+    m = _CLAUSE_BREAK_RE.search(text)
+    return text[:m.start()] if m else text
+
+
+def _target_state(change, recommended_direction, own_slug=None):
     """The right-hand side of a disposition, as (field_hint, value).
 
     field_hint is:
@@ -704,18 +872,27 @@ def _target_state(change, recommended_direction):
                        (e.g. "mixed -> non_contributory" or "unset -> standard"
                        or "pending_retest_after_substrate true -> false").
       * "citation" -- value is an autopsy slug that `live_status.evidence.from`
-                       must cite verbatim (a "stamp <slug>" recommendation).
+                       must cite verbatim (a "stamp <slug>" recommendation, or
+                       a self-reference -- "stamp ... this artifact" -- to
+                       `own_slug`, the recommending autopsy itself).
       * <name>     -- value belongs to EXACTLY claims.yaml field <name>,
                        stated explicitly as "<name>: <value>" in the prose
                        (e.g. "-> diagnostic_evidence_adjudicated: true"), OR
-                       the tail is EXACTLY a bare boolean field name with no
-                       value at all (e.g. "-> diagnostic_evidence_adjudicated"),
-                       which is an implied "true" -- see _BOOLEAN_CLAIM_FIELDS.
+                       "set <name> <true|false>" (e.g. "-> set pending_retest_
+                       after_substrate false"), OR the tail is EXACTLY a bare
+                       boolean field name with no value at all (e.g.
+                       "-> diagnostic_evidence_adjudicated"), an implied
+                       "true" -- see _BOOLEAN_CLAIM_FIELDS.
+
+    See "THE 2026-09-01 REPAIR" (Shape A) in the module docstring for the
+    self-stamp, set-field, and clause-narrowing additions.
     """
+    stamp = _STAMP_RE.search(change) if isinstance(change, str) else None
+    if stamp:
+        return "citation", stamp.group(1).rstrip(".")
+    if own_slug and isinstance(change, str) and _SELF_STAMP_RE.search(change):
+        return "citation", own_slug
     if isinstance(change, str) and "->" in change:
-        stamp = _STAMP_RE.search(change)
-        if stamp:
-            return "citation", stamp.group(1).rstrip(".")
         tail = change.rsplit("->", 1)[-1].strip()
         field_match = _FIELD_VALUE_RE.match(tail)
         if field_match:
@@ -723,6 +900,22 @@ def _target_state(change, recommended_direction):
         bare = tail.rstrip(".").strip().lower()
         if bare in _BOOLEAN_CLAIM_FIELDS:
             return bare, "true"
+        set_match = _SET_FIELD_RE.match(bare)
+        if set_match and set_match.group(1).lower() in _BOOLEAN_CLAIM_FIELDS:
+            return set_match.group(1).lower(), set_match.group(2).lower()
+        # The tail can run past the real value into further sentence content
+        # ("Withdraw weakens -> non_contributory. Nothing storable moves...");
+        # narrow to the immediate clause and retry the same shapes once
+        # before giving up on the full (usually unmatchable) tail.
+        candidate = _clause(tail).rstrip(".").strip().lower()
+        if candidate and candidate != bare:
+            if candidate in _BOOLEAN_CLAIM_FIELDS:
+                return candidate, "true"
+            set_match2 = _SET_FIELD_RE.match(candidate)
+            if set_match2 and set_match2.group(1).lower() in _BOOLEAN_CLAIM_FIELDS:
+                return set_match2.group(1).lower(), set_match2.group(2).lower()
+            if re.match(r"^[a-z0-9_]+$", candidate):
+                return None, candidate
         return None, tail
     if isinstance(recommended_direction, str):
         return None, recommended_direction.strip()
@@ -744,8 +937,91 @@ def _field_value_matches(actual, target_state) -> bool:
     return str(actual or "").strip() == target_state.strip()
 
 
+def _direction_matches(claim, value, claim_id, run_id, resolver) -> bool:
+    if resolver is None or not run_id:
+        return False  # cannot verify -> do not certify
+    effective = resolver.effective_direction(run_id, claim_id)
+    if effective is None:
+        return False  # no manifest -> cannot certify
+    return effective == _normalize_direction(value)
+
+
+# rec-level structured key -> the claims.yaml field it names, for the two
+# fields with no safe implicit value when absent -- see `_missing_structured_
+# field` and "THE 2026-09-01 REPAIR" (Shape B) in the module docstring.
+_STRUCTURED_CLAIM_FIELD = {
+    "recommended_epistemic_category": "epistemic_category",
+    "recommended_diagnostic_evidence_adjudicated": "diagnostic_evidence_adjudicated",
+}
+# `pending_retest_after_substrate` is deliberately NOT in this gate: measured
+# corpus-wide, gating on its absence manufactured 12 of 13 new false
+# positives across six unrelated autopsies, none of which had ever carried
+# the key -- it is commonly write-once-if-relevant, not universally
+# populated, unlike `epistemic_category` (a claim's core classification) and
+# `diagnostic_evidence_adjudicated` (a rare, deliberate flag).
+
+
+def _missing_structured_field(claim, rec) -> bool:
+    """True when `rec` names a category/boolean field the claim does not
+    carry AT ALL (the key is absent, not merely holding a different value).
+
+    See "THE 2026-09-01 REPAIR" (Shape B) in the module docstring: a
+    disposition's free-prose `change` can only ever point an arrow at ONE
+    field, so a recommendation genuinely asking for two field changes can
+    certify on whichever one the prose happens to mention while the other
+    sits untouched. ABSENT, never "differs from the recommendation" -- a
+    field the claim already carries, even with a DIFFERENT value than `rec`
+    recommends, is not gated here (that value may reflect legitimate later
+    governance work outside the autopsy pipeline; see the module docstring
+    for the 22-false-positive measurement that rejected gating on
+    disagreement).
+    """
+    if not isinstance(rec, dict) or not isinstance(claim, dict):
+        return False
+    for rec_key, claim_field in _STRUCTURED_CLAIM_FIELD.items():
+        if rec_key in rec and claim_field not in claim:
+            return True
+    return False
+
+
+# rec-level structured field -> comparator, consulted only as the LAST
+# RESORT inside `_reflects` (see "THE 2026-09-01 REPAIR", Shape A, in the
+# module docstring) once nothing in `change`'s free prose parses to anything
+# checkable. Requires every field PRESENT on `rec` to match.
+_STRUCTURED_REC_CHECKS = (
+    ("recommended_evidence_direction",
+     lambda claim, value, claim_id, run_id, resolver:
+         _direction_matches(claim, value, claim_id, run_id, resolver)),
+    ("recommended_epistemic_category",
+     lambda claim, value, claim_id, run_id, resolver:
+         "epistemic_category" in claim
+         and _field_value_matches(claim.get("epistemic_category"), str(value))),
+    ("pending_retest_after_substrate",
+     lambda claim, value, claim_id, run_id, resolver:
+         "pending_retest_after_substrate" in claim
+         and _field_value_matches(claim.get("pending_retest_after_substrate"), str(bool(value)))),
+    ("recommended_diagnostic_evidence_adjudicated",
+     lambda claim, value, claim_id, run_id, resolver:
+         "diagnostic_evidence_adjudicated" in claim
+         and _field_value_matches(claim.get("diagnostic_evidence_adjudicated"), str(bool(value)))),
+)
+
+
+def _structured_fields_reflect(claim, rec, claim_id, run_id, resolver) -> bool:
+    """Do the structured `rec` fields already hold, wherever each is
+    checkable? Vacuously True when `rec` carries none of them."""
+    if not isinstance(rec, dict) or not isinstance(claim, dict):
+        return True
+    for key, check in _STRUCTURED_REC_CHECKS:
+        if key not in rec:
+            continue
+        if not check(claim, rec[key], claim_id, run_id, resolver):
+            return False
+    return True
+
+
 def _reflects(claim, change, recommended_direction, slug,
-              claim_id=None, run_id=None, resolver=None) -> bool:
+              claim_id=None, run_id=None, resolver=None, rec=None) -> bool:
     """Is this per-claim disposition already applied WHERE IT IS SCORED?
 
     Deliberately BIASED TOWARD FALSE POSITIVES (reporting an applied item costs
@@ -792,18 +1068,19 @@ def _reflects(claim, change, recommended_direction, slug,
       * anything else -> blindly compared against `_GENERIC_CLAIM_FIELDS`
         (epistemic_category, status, diagnostic_evidence_adjudicated,
         pending_retest_after_substrate, v3_pending) and `live_status.reading`.
+      * as an ABSENCE GATE checked FIRST, and as a LAST RESORT when nothing
+        above matches -- `rec`'s own structured fields (added 2026-09-01,
+        see "THE 2026-09-01 REPAIR" in the module docstring).
     """
-    field_hint, target_state = _target_state(change, recommended_direction)
+    if _missing_structured_field(claim, rec):
+        return False
+
+    field_hint, target_state = _target_state(change, recommended_direction, own_slug=slug)
     if not target_state:
         return False
 
     if field_hint is None and target_state.strip().lower() in _DIRECTION_VOCAB:
-        if resolver is None or not run_id:
-            return False  # cannot verify -> do not certify
-        effective = resolver.effective_direction(run_id, claim_id)
-        if effective is None:
-            return False  # no manifest -> cannot certify
-        return effective == _normalize_direction(target_state)
+        return _direction_matches(claim, target_state, claim_id, run_id, resolver)
 
     if not isinstance(claim, dict) or not claim:
         return False
@@ -826,6 +1103,17 @@ def _reflects(claim, change, recommended_direction, slug,
     live = claim.get("live_status")
     if isinstance(live, dict) and str(live.get("reading") or "").strip() == target_state:
         return True
+
+    # Nothing in the prose parsed to a checkable value at all -- the OLD
+    # behaviour ends here, always False. THE 2026-09-01 REPAIR extends this
+    # ONE last-resort step with `rec`'s own structured fields, deliberately
+    # NOT layered onto the branches above (see the module docstring for the
+    # V3-EXQ-604c/MECH-314b regression that rejected doing so). Because every
+    # branch above already returns on its own successful match, this step
+    # can only ever ADD a True verdict a previous branch did not already
+    # reach, never remove one.
+    if isinstance(rec, dict) and any(k in rec for k, _ in _STRUCTURED_REC_CHECKS):
+        return _structured_fields_reflect(claim, rec, claim_id, run_id, resolver)
     return False
 
 
@@ -930,7 +1218,8 @@ def scan(root: Path) -> dict:
         for entry in entries_sorted:
             claim = claims.get(cid)
             if _reflects(claim, entry["change"], entry["rec"].get("recommended_evidence_direction"),
-                         entry["slug"], claim_id=cid, run_id=entry["run_id"], resolver=resolver):
+                         entry["slug"], claim_id=cid, run_id=entry["run_id"], resolver=resolver,
+                         rec=entry["rec"]):
                 continue
             is_earlier = entry is not latest_entry and entry["gen"] < latest_entry["gen"]
             if is_earlier and entry["change"] != latest_entry["change"]:
@@ -939,7 +1228,7 @@ def scan(root: Path) -> dict:
                         claim, latest_entry["change"],
                         latest_entry["rec"].get("recommended_evidence_direction"),
                         latest_entry["slug"], claim_id=cid, run_id=latest_entry["run_id"],
-                        resolver=resolver)
+                        resolver=resolver, rec=latest_entry["rec"])
                 if latest_reflects:
                     superseded_disposition.append({
                         "claim_id": cid,
