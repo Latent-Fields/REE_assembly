@@ -21499,7 +21499,7 @@
     - MECH-025
     - ARC-016
     - INV-012
-    - SD-003
+    - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): SD-003 superseded 2026-04-18; this claim consumes the self-attribution OUTPUT (was this action self-caused) to combine with precision, which MECH-256's successor comparator still produces -- like-for-like repoint, same pattern as sd003-groupAC-20260901's five (ARC-037/ARC-081/MECH-205/MECH-273/MECH-276).
   notes: >
     Decomposed from MECH-025 (2026-04-02). The original MECH-025 combined precision
     modulation (supported by Friston 2013 active inference, Wen & Haggard 2020 agency
@@ -21508,8 +21508,9 @@
     linkage -- where high precision IMPLIES ethical accountability -- is a philosophical
     bridge, not a neuroscience finding. Friston's framework is domain-general; it does
     not distinguish "precise because risky" from "precise because difficult." The
-    responsibility attribution requires SD-003 (self-attribution via counterfactual E2)
-    in addition to precision modulation.
+    responsibility attribution requires MECH-256 (self-attribution via single-pass
+    forward-model comparator; supersedes SD-003, 2026-04-18) in addition to precision
+    modulation.
     This is a claim about the RELATIONSHIP between precision and ethical accountability,
     not about either mechanism in isolation. It asserts: actions committed at higher
     precision carry higher residue weight because the agent was in a state where it could
@@ -37710,7 +37711,7 @@
     - SD-020           # harm_surprise_PE (upgraded to prerequisite; MECH-258)
     - MECH-258         # precision-weighted PE drives dACC policy update
     - MECH-260         # bias suppression against recency / monostrategy
-    - SD-003           # counterfactual agency attribution (shares E2_harm_a forward-model substrate)
+    - MECH-256         # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): self-attribution comparator (shares E2_harm_a forward-model substrate); SD-003 superseded 2026-04-18, this claim consumes the attribution OUTPUT for credit assignment (like-for-like repoint). z_harm_a is not SD-029's z_harm_s, so MECH-256 (general) not SD-029 (stream-specific).
     - ARC-033          # E2_harm_s forward model (parallel architecture; E2_harm_a reuses substrate)
   functional_restatement: >
     The dACC-analog is the MINIMUM VIABLE cingulate substrate: it alone
@@ -37732,9 +37733,9 @@
 
     Output target: a striatal-analog action-value module (Baliki et al
     2010 ACC-NAc coupling) with a learnable weight. Dopamine-analog
-    credit-assignment via SD-003 counterfactual attribution reshapes the
-    ACC -> striatum weight based on whether actions successfully reduced
-    z_harm_a.
+    credit-assignment via MECH-256 forward-model-comparator attribution
+    (supersedes SD-003, 2026-04-18) reshapes the ACC -> striatum weight
+    based on whether actions successfully reduced z_harm_a.
 
     Falsifiable: if the dACC-analog output does not shift action
     selection toward harm-reducing trajectories with magnitude scaling
@@ -42915,7 +42916,7 @@
   location: docs/architecture/hippocampal_anchor_selection.md
 
 - id: ARC-059
-  title: "REE developmental training proceeds in three ordered stages: (1) self-as-object — action-space discovery via motor experimentation, producing the substrate SD-003 requires; (2) objects-as-patterns — object-schema formation via experimental action on the world; (3) others-as-special-objects — modelling other agents as objects with their own policies. The ordering is load-bearing: without a self-model the agent cannot distinguish self-produced from world-produced sensory change; without object-schemas the agent cannot recognise other-agents as a distinguished subclass of objects. Refines the generic ARC-019 curriculum-gates claim."
+  title: "REE developmental training proceeds in three ordered stages: (1) self-as-object — action-space discovery via motor experimentation, producing the substrate MECH-256's comparator requires; (2) objects-as-patterns — object-schema formation via experimental action on the world; (3) others-as-special-objects — modelling other agents as objects with their own policies. The ordering is load-bearing: without a self-model the agent cannot distinguish self-produced from world-produced sensory change; without object-schemas the agent cannot recognise other-agents as a distinguished subclass of objects. Refines the generic ARC-019 curriculum-gates claim."
   claim_type: architectural_commitment
   subject: developmental.three_stage_ordering
   polarity: asserts
@@ -42935,7 +42936,7 @@
     - MECH-278  # stage-2 specialisation (object-schema formation)
     - ARC-010   # stage-3 substrate (V4)
     - MECH-274  # stage-3 sleep-aggregation (V4)
-    - SD-003    # stage-1 closure (counterfactual self-attribution) -- NOTE (2026-08-07 digestion): SD-003 status is superseded (by MECH-256, SD-029) as of 2026-04-18, three days before this claim was registered; functional_restatement/notes still frame this in terms of SD-003. Not changed here (extract-don't-invent scope); flag for governance.
+    - MECH-256  # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): RESOLVES the 2026-08-07 digestion flag below/above. Stage-1 closure is self/world discrimination, which MECH-256's single-pass comparator still supplies (output-consuming, like-for-like repoint); SD-029 (z_harm_s-specific) deliberately not added -- ARC-059 is stream-agnostic.
     - SD-005    # z_self / z_world split (currently engineered; developmental construction flagged)
   epistemic_category: substrate_conditional
   what_would_answer: |
@@ -43025,8 +43026,8 @@
     recognise other-agents as special objects. Stage 1 is self-as-
     object-of-study: motor babbling and action-space discovery
     (MECH-277) produce the substrate of "actions the agent has reason
-    to believe are self-initiated", which SD-003 counterfactual
-    attribution presupposes. Stage 2 is object-formation via
+    to believe are self-initiated", which the MECH-256 forward-model
+    comparator (supersedes SD-003, 2026-04-18) presupposes. Stage 2 is object-formation via
     experimental action (MECH-278): once self-produced change can be
     distinguished from world-produced change, the agent perturbs the
     world and observes which features behave causally together. Stage
@@ -43368,7 +43369,7 @@
   location: docs/architecture/scientist_agent_developmental_ordering.md
 
 - id: MECH-277
-  title: "Stage-1 specialisation of MECH-276: the agent discovers its own action space via motor experimentation (motor babbling) before SD-003 counterfactual self-attribution is well-formed. The agent performs motor acts and observes which sensory changes covary with them; the output is the substrate SD-003 requires -- a set of actions the agent has reason to believe are self-initiated and for which it has counterfactual expectations. Without MECH-277, the counterfactual action space (a_cf) is not well-defined and SD-003 degenerates."
+  title: "Stage-1 specialisation of MECH-276: the agent discovers its own action space via motor experimentation (motor babbling) before self-attribution (MECH-256, single-pass forward-model comparator; supersedes SD-003, 2026-04-18) is well-formed. The agent performs motor acts and observes which sensory changes covary with them; the output is the substrate MECH-256 requires -- a set of actions the agent has reason to believe are self-initiated, so the efference copy (a_actual) fed into the comparator is genuinely self-caused rather than confabulated. Without MECH-277, the self-initiated action representation is not well-defined and MECH-256's residual signal degenerates into noise."
   claim_type: mechanism_hypothesis
   subject: developmental.action_space_discovery
   polarity: asserts
@@ -43385,7 +43386,7 @@
   depends_on:
     - MECH-276  # scientist-agent principle (general form)
     - ARC-059   # developmental ordering
-    - SD-003    # the attribution mechanism MECH-277 feeds
+    - MECH-256  # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): the attribution mechanism MECH-277 feeds; SD-003 superseded 2026-04-18 by a single-pass comparator with no a_cf branch, so MECH-277's role changes from "supplies candidates for a two-pass comparison" to "supplies the self-initiated action representation the comparator's efference copy requires" -- see corrected functional_restatement. NOT MECH-276 (already listed above) -- that mechanism's own a_cf is a deterministic argmax-shift for a DIFFERENT purpose (epistemic schema-revision), not sourced from MECH-277's discovered action space in V3.
     - SD-005    # z_self (the latent this stage populates)
   functional_restatement: >
     The agent does not arrive with a model of its own action space.
@@ -43397,22 +43398,29 @@
     and the attribution is "this sensory change covaries with my
     action output".
 
-    The output of MECH-277 is the prerequisite for SD-003: a
-    well-formed counterfactual action space. SD-003's computation
-    E2(z, a_actual) vs E2(z, a_cf) presupposes that the set of a_cf
-    candidates is meaningful; MECH-277 is what makes that set
-    meaningful.
+    The output of MECH-277 is the prerequisite for MECH-256: a
+    well-formed self-initiated action representation. MECH-256's
+    computation residual = z_x_observed - E2_x(z_x_{t-1}, a_actual)
+    presupposes that a_actual is genuinely the agent's own action
+    (efference copy, not confabulation); MECH-277 is what makes
+    that presupposition meaningful. [Corrected 2026-09-01
+    (sd003-groupB-20260901): SD-003's two-pass counterfactual
+    (E2(z,a_actual) vs E2(z,a_cf)) was superseded 2026-04-18 by
+    MECH-256's single-pass comparator, which has no a_cf branch;
+    the prerequisite this claim supplies is the efference-copy
+    input, not counterfactual candidates. See
+    self_attribution_per_stream.md "Why SD-003 Was Superseded".]
 
     Falsifiable (primary): an agent whose motor-experimentation
-    phase is curtailed should show degenerate SD-003 attribution --
-    the counterfactual comparison is against an arbitrary a_cf
-    distribution rather than an informed one, and self-attribution
-    stability should suffer.
+    phase is curtailed should show degenerate MECH-256 attribution
+    -- the efference-copy signal (a_actual) fed into the comparator
+    is uninformed/arbitrary rather than genuinely self-modelled, and
+    self-attribution stability should suffer.
 
     V3 note: V3 hand-wires action knowledge into the agent (action
     dimensions are pre-specified in config). MECH-277 is not
     actively tested in V3; the assumption is encoded in the
-    substrate. SD-003 experiments should note this as an
+    substrate. MECH-256/SD-029 experiments should note this as an
     architectural shortcut.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: V3 currently hand-wires the action
@@ -43436,16 +43444,16 @@
     clears): curtail an agent's motor-experimentation phase and compare
     against a matched agent given a full discovery phase. Confirming
     signature: the curtailed-discovery agent shows degenerate
-    self-attribution -- its counterfactual-action comparison draws a_cf
-    from an uninformed/arbitrary distribution rather than one shaped by
+    self-attribution -- its efference-copy signal (a_actual) is drawn
+    from an uninformed/arbitrary self-model rather than one shaped by
     observed self-produced sensory covariation, and self-attribution
     stability measurably suffers relative to the full-discovery arm.
 
     FALSIFYING: self-attribution quality is statistically
     indistinguishable between curtailed and full discovery -- the
-    counterfactual action space is well-formed regardless of whether it
-    was discovered or specified, undercutting the claimed necessity of
-    a distinct motor-babbling stage.
+    self-initiated action representation is well-formed regardless of
+    whether it was discovered or specified, undercutting the claimed
+    necessity of a distinct motor-babbling stage.
 
     MEASUREMENT NOTE: the self-attribution mechanism to instrument
     against is whatever V3 substrate is live at test time, not the
@@ -43456,6 +43464,9 @@
     instantiation. This claim's functional_restatement and depends_on
     still reference SD-003 directly -- same staleness ARC-059
     independently flagged for itself over the same SD-003 reference.
+    [RESOLVED 2026-09-01, sd003-groupB-20260901: functional_restatement
+    and depends_on above now reference MECH-256 directly; this note is
+    retained as provenance.]
 
     Evidence status (2026-08-08): no V3 experiment has queued or run
     either prediction, and none can be constructed as a non-degenerate
@@ -65187,7 +65198,8 @@
     trajectory pool contain at least two distinct trajectory classes with
     distinct harm profiles. The argument is mathematical-by-construction: if
     P(a|s) is monomodal, the CEM elite pool contains only trajectories
-    beginning with a*, and SD-003's counterfactual E2(z_t, a_cf) for a_cf != a*
+    beginning with a*, and MECH-257's evaluator-mode E2(z_t, a_cf) for
+    a_cf != a* (prospective rollout-scoring; supersedes SD-003, 2026-04-18)
     is never evaluated in the on-policy candidate distribution. (Was proposed
     2026-05-15 as INV-074 in behavioral_diversity_acceptance_criteria.md but
     never registered; the ID was subsequently taken 2026-05-17 by an unrelated
@@ -65207,22 +65219,30 @@
   registered_utc: "2026-05-25"
   depends_on:
     - ARC-065    # diversity generation pathway that instantiates the prerequisite
-    - SD-003     # counterfactual evaluation mechanism that requires diverse candidates
-    - ARC-033    # E2_harm_s forward model (the comparator SD-003 uses)
+    - MECH-257   # SD-003 -> MECH-257 2026-09-01 (sd003-groupB-20260901): SD-003's two-pass counterfactual E2(z,a_cf) was self-attribution machinery, retired 2026-04-18 with no runtime a_cf branch in its successor (MECH-256/SD-029). The per-candidate "what would E2 predict for a_cf" evaluation INV-076 actually needs is MECH-257's Mode 2 (prospective rollout-scoring over the CEM candidate pool) -- the live mechanism matching the "could have done otherwise" comparison. NOT MECH-256 (Mode 1, retrospective self-attribution -- wrong function for this claim). See docs/architecture/mech_341_e3_score_diversity_preservation.md's own "Depends on" line, which already uses this framing.
+    - ARC-033    # E2_harm_s forward model (the comparator MECH-256/SD-029/MECH-257 use)
     - MECH-341   # E3-scoring diversity preservation -- the substrate that makes the prerequisite operative downstream of CEM
   notes: >
     Distinct from the empirical claim that a monomodal agent is unsafe: the
     claim is that a monomodal agent is CONSTITUTIVELY INCAPABLE of the
-    counterfactual comparison SD-003 requires. Safety could be coincidental (if
+    counterfactual comparison MECH-257's evaluator-mode readout requires. Safety
+    could be coincidental (if
     the monostrategy happens to be harmless), but genuine ethical reasoning
     requires the agent CHOSE the harmless trajectory over alternatives, not
     merely executed it. Invariant type: universal (holds across all substrates,
     all environments, by construction). Falsification would require showing
-    SD-003 can produce ethical counterfactuals from a monomodal proposal pool,
-    which would require a different formulation of SD-003. Rung 4 acceptance
-    criteria operationalise this invariant: criterion 3
-    (cf_diverse_candidate_rate) directly tests whether SD-003 fires on a
-    diverse pool; criterion 4 (ARC-065 ablation reduces harm separation) tests
+    MECH-257's evaluator-mode readout can produce ethical counterfactuals from
+    a monomodal proposal pool, which would require a different formulation of
+    the evaluation mechanism. [Corrected 2026-09-01 (sd003-groupB-20260901):
+    was SD-003, superseded 2026-04-18; self-attribution successor MECH-256
+    has no a_cf branch at all, so the operative mechanism for THIS claim's
+    per-candidate evaluation is MECH-257 Mode 2, not MECH-256 -- see
+    depends_on.] Rung 4 acceptance criteria operationalise this invariant:
+    criterion 3 (cf_diverse_candidate_rate) directly tests whether MECH-257's
+    evaluator-mode readout fires on a diverse pool (as of 2026-09-01,
+    cf_diverse_candidate_rate is NOT implemented anywhere in ree_core --
+    Rung 4 remains unbuilt, grep-confirmed); criterion 4 (ARC-065 ablation
+    reduces harm separation) tests
     whether ARC-065 supplies that diversity. Cross-reference INV-034 (goal
     maintenance necessary for ethical agency): INV-076 is the companion claim
     on the DIVERSITY side. INV-034 is about sustaining the ethical GOAL across
