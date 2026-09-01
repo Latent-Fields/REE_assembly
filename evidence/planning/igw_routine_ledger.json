@@ -3346,7 +3346,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-09-01T13:33:28Z",
       "staged_at": "2026-09-01T13:33:28Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-09-01T15:22:35Z",
+      "completion_summary": "Withdrawn by /metaworker-orchestrate decision lane 2026-09-01 (user-consented). FALSE POSITIVE: substrate_queue entry mech317-action-chunk-boundary-instrument has status 'proposed_REGISTRATION_ONLY_not_a_build_authorisation' and its implementation_hint states verbatim 'REGISTRATION ONLY -- this entry records an instrument debt so it stops living in claim prose; it does NOT authorise a build.' The IGW readiness predicate staged a build-consent chip for an entry that explicitly forbids a build. Predicate defect chipped separately.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "Withdrawn by /metaworker-orchestrate decision lane 2026-09-01 (user-consented). FALSE POSITIVE: substrate_queue entry mech317-action-chunk-boundary-instrument has status 'proposed_REGISTRATION_ONLY_not_a_build_authorisation' and its implementation_hint states verbatim 'REGISTRATION ONLY -- this entry records an instrument debt so it stops living in claim prose; it does NOT authorise a build.' The IGW readiness predicate staged a build-consent chip for an entry that explicitly forbids a build. Predicate defect chipped separately."
     }
   ],
   "dispositions": [
@@ -4532,6 +4536,21 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-29T17:47:03Z",
       "re_eligible_after": "2026-08-31T17:47:03Z"
+    },
+    {
+      "stable_hash": "e65616b08051",
+      "igw_id_at_disposition": "IGW-20260901-221",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-317",
+        "ARC-071"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: mech317-action-chunk-boundary-instrument",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-01T15:22:43Z",
+      "re_eligible_after": "2026-09-03T15:22:43Z"
     }
   ]
 }
