@@ -201,6 +201,78 @@ collected on a non-training agent, which is why `measure_action_mass` runs under
 **N/A.** Warmup is waking-only gradient training. It runs no simulation, no replay, and
 writes nothing to memory, so the `hypothesis_tag=True` requirement does not arise.
 
+## Cross-arm contamination repair (SD-PROBE-WARMUP)
+
+**Amends this SD; status stays IMPLEMENTED.** `failure_autopsy_V3-EXQ-963_2026-08-30`
+confirmed a `corrupting` defect in this SD's own cache machinery, reopening the
+`SD-PROBE-WARMUP` substrate_queue row on 2026-08-30 after it had been closed since
+2026-07-20 as a duplicate of SD-074.
+
+**The defect.** `_warmup_key` hashed only `(seed, recipe, env_kwargs)`.
+`WarmupRecipe.as_dict()` carries the warmup *training schedule*, never the regulator
+flags the caller used to construct `agent` before `warm_agent()` was invoked -- so all
+four arms of a 2x2 sharing one seed hashed identically. The first arm to run always
+minted; `_restore_cached_surface` then `object.__setattr__`-ed that mint's surface onto
+every later arm, writing its regulator presence over each arm's own, already-correct
+construction. In V3-EXQ-963, `T0P0` (`use_noise_floor=False`) minted
+`agent.noise_floor = None` onto `T1P0`/`T1P1`, whose `__init__` had just built a real
+`NoiseFloor`. The guarded call site `if self.noise_floor is not None` was then skipped
+for the rest of the run, so `noise_floor_temp_lift_mean` was exactly `0.0` on all 20
+cells -- including all 10 with the flag correctly `True` -- silently deleting the entire
+TONIC axis from a run that completed and wrote a claim-tagged manifest.
+
+Nothing raised and nothing logged it. `assert_state_dict_shareable` passes because these
+regulators are zero-parameter and non-`nn.Module` (its docstring cites exactly that
+property as what *licenses* the sharing), and the restore's missing-module logging covers
+only cached paths **absent** here, never the reverse. The clincher was the asymmetry: the
+driver's `_fresh_regulator` reinstalls only `agent.phasic_burst` after warmup, so the
+phasic axis survived the restore and the tonic axis did not. `ree_core` is healthy; this
+is a harness defect throughout.
+
+**The repair, three layers.**
+
+| Layer | What | Landed |
+|---|---|---|
+| (a) prevention, key | `_warmup_key(arm_key=...)` folds the caller's arm-conditional flags into the hash; schema v2 -> v3 so every pre-fix blob MISSes | 2026-08-30, ree-v3 `d614a9c` |
+| (b) prevention, restore | a cached attribute is applied only when its TYPE matches the live HIT agent's own value for that name; symmetric in both directions | 2026-08-30, ree-v3 `d614a9c` |
+| (c) detection, assertion | `assert_arm_regulators_live()` / `ArmRegulatorMismatch`, called by `warm_agent` itself (`assert_arm_regulators=True`, keyword-only) after the HIT/MISS branches converge | 2026-09-01 |
+
+(c) is the layer this autopsy asked for by name and is **not** redundant with (a)/(b).
+(a) only separates arms for a caller that actually passes `arm_key`, and no driver in the
+tree does yet. (b) is the primary defence and holds without `arm_key`, but it protects
+only attributes **already live** on the HIT agent: `_restore_cached_surface` Case 1
+restores an attribute the instance never set verbatim and with no type check, by design,
+so a regulator created lazily rather than declared in `__init__` sits outside its cover in
+the install direction. (c) instead reads the agent warmup actually produced and asks
+whether it is still the arm the caller declared, so it fails on any route to the
+corruption -- including routes that do not exist yet.
+
+**Backward compatibility.** (c) is a strict no-op when `arm_key` is `None`, which is what
+every pre-fix caller passes: no declared flags means nothing is checked and nothing is
+raised. That is pinned as a contract against a deliberately-corrupted agent, so the no-op
+cannot silently become a check. It adds no `REEConfig` field.
+
+**End-to-end confirmation, 2026-09-01.** A `--dry-run` of the *unmodified* V3-EXQ-963
+driver (2 seeds x 4 arms) reproduces the defect's mechanism verbatim -- `T0P0` MISSes and
+mints, the other three arms cache-HIT it -- and the restore now refuses 15-16
+type-mismatched attributes instead of clobbering. The instrument reading:
+`noise_floor_temp_lift_mean` is **1.0** (== `noise_floor_alpha`) on both TONIC-ON arms and
+**0.0** on both TONIC-OFF arms, against **0.0 on all 20 cells** in the failed run and 1.0
+on all 10 TONIC-ON cells in pre-defect V3-EXQ-779a. That is the autopsy's own scale-free
+signature, `lift 1.0 -> 0.0`, restored. `mean_dS_tonic` 0.129 vs +0.0053. Note this was
+achieved with **no `arm_key`**, i.e. by layer (b) alone -- which is the documented claim
+that (b) is the primary defence and protects drivers that have not been updated. A 2-seed
+dry-run is not a substitute for the queued validation experiment.
+
+**Still owed, driver-side.** Not done under this SD, because `V3-EXQ-963` is a burned queue
+id whose script must not be edited in place -- it belongs to a new EXQ letter routed through
+`/queue-experiment`. The 963-lineage successor must (i) pass `arm_key=` to `warm_agent`;
+(ii) extend `_fresh_regulator`'s post-warmup reinstall beyond `agent.phasic_burst` to
+`agent.noise_floor`, the asymmetry that produced the diagnostic split; and (iii) record
+`NoiseFloor.get_state()`'s `n_waking_calls` / `last_n_simulation_skips`, which the substrate
+was already computing and which separate "never called" from "called under
+`simulation_mode`" without a re-run.
+
 ## Related Claims
 
 - **MECH-063** -- tonic/phasic control-axis dissociation (the blocked claim; sub-claim (i))
