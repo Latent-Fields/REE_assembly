@@ -1624,6 +1624,23 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0113",
+      "claim_ids": [
+        "MECH-274",
+        "MECH-276",
+        "MECH-278",
+        "ARC-031",
+        "MECH-479"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "CROSS-REFERENCE for GFLAG-0109 (still open) -- read that one first. GFLAG-0109 speculated the user's GFLAG-0105 reading ('MECH-274/276/278/ARC-031 may likewise be v3 prerequisites rather than V4') might mean phase labels have drifted from dependencies GENERALLY, i.e. option (i) there (let MECH-479 follow dependency to v3) could be one instance of a broader pattern. GFLAG-0105 is now resolved and the answer is NOT a uniform pattern: 3 of 4 claims (MECH-274, MECH-278, ARC-031) were confirmed genuinely V4 (relabeled, phase_locked) -- their v3 labels were mechanical/stale, not independently-assessed drift toward v4 dependency. Only 1 of 4 (MECH-276) was genuinely mislabeled the OTHER direction: it should have stayed/is correctly v3, because real V3 substrate for it landed 2026-06-23 (ree_core/attribution/scientist_attribution_buffer.py) that the v4_spec.md cohort table never got updated to reflect. So the lesson for MECH-479 is narrower than 'apply option (i) broadly': check MECH-479's OWN substrate/dependency reality specifically (does real V3-tractable substrate for its prosocial-planning leg exist independent of ARC-083 others-as-slots, the way MECH-276 found an existing single-agent path?) rather than treating GFLAG-0105's outcome as a precedent that phase-follows-dependency always resolves toward v3. Full per-claim evidence in GFLAG-0105's resolution_note and the new GFLAG-0112 (ARC-059 depends_on breadth, out-of-scope follow-on).",
+      "raised_by_session": "metaworker-chip-20260901-v4cut-f5-are-these-v3-prerequisites",
+      "raised_at": "2026-09-01T16:25:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
