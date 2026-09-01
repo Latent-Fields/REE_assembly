@@ -18,10 +18,51 @@ overrides substrate status, so an intentionally-deferred ceiling is never
 re-surfaced as `mapped` / `ceiling_may_have_lifted` just because its named
 substrate is implemented. The remaining buckets follow top-to-bottom:
 
-  ceiling_may_have_lifted  Mapped AND the unblocking substrate_queue entry is
-                           now status=implemented. The bounding substrate has
-                           landed; the verdict is testable again. ACTIONABLE
-                           -- surface for re-queue / retest (Step 6a-v case 3).
+  ceiling_may_have_lifted  Mapped AND EVERY unblocking substrate_queue entry
+                           (excluding ones diagnosed as moot -- see
+                           _is_moot_status) is status=="implemented". The
+                           full bounding substrate has landed; the verdict is
+                           testable again. ACTIONABLE -- surface for
+                           re-queue / retest (Step 6a-v case 3).
+
+                           This is deliberately ALL-of, not ANY-of (fixed
+                           2026-09-01, GFLAG-0108/GFLAG-0100). A claim can
+                           carry several unblocking entries at once (SD-017:
+                           3; ARC-030: 6); firing the moment any ONE of them
+                           lands, while the others -- including the claim's
+                           own actual, possibly re-scoped, retest gate --
+                           are still open, produces a confirmed false
+                           positive that reaches AskUserQuestion every
+                           governance cycle for a retest that is not owed.
+                           A partially-satisfied unblocker set (retest_owed
+                           and some-but-not-all non-moot owners implemented)
+                           stays in `mapped` and is surfaced separately as an
+                           informational-only note (`retest_partial` on the
+                           record, plus its own report section) -- visible,
+                           but not ACTIONABLE.
+
+                           KNOWN RESIDUAL GAP, not fixed here: this still
+                           keys off substrate_queue status=="implemented"
+                           verbatim (matching the pre-existing single-owner
+                           semantics), and several real entries record
+                           "done" under a differently-spelled status
+                           (`phase_1_implemented`, `phase_2_implemented`,
+                           `IMPLEMENTED_2026_06_27_via_...`). A claim whose
+                           unblocker set is ALL genuinely landed but under
+                           one of those spellings will never satisfy the
+                           exact match and so will never fire here -- a false
+                           NEGATIVE, not re-verified against real data before
+                           shipping this fix (out of scope: GFLAG-0108 is
+                           about the ANY-vs-ALL defect, not status-string
+                           normalization, and broadening the match was found
+                           to require guessing at a "terminal status"
+                           taxonomy this audit has no ground truth for). A
+                           false negative here is the safer failure direction
+                           -- it under-reports rather than re-creating the
+                           alarm-fatigue vector this fix exists to close --
+                           but if a claim's unblocker set is genuinely fully
+                           landed and it still is not surfacing, check for
+                           this before assuming nothing changed.
 
   mapped                   At least one substrate_queue entry lists the claim
                            in its `unblocks_claims` (a design owner exists that,
@@ -98,6 +139,38 @@ DEFAULT_AUTOPSY_DIR = REPO_ROOT / "evidence" / "planning"
 
 CEILING_CATEGORY = "substrate_ceiling"
 PARK_DECISION = "deferred"
+
+# substrate_queue status prefixes meaning "this entry will never land, and
+# therefore can never satisfy an unblocker set, but also must not be read as
+# a still-pending blocker forever" -- diagnosed dead ends, not open work.
+# Narrow and drawn directly from the corpus (not a guessed general-purpose
+# status taxonomy): the confirmed motivating case is ARC-030's
+# scaffolded-curriculum-hazard-rebalance, whose own evidence_quality_note
+# says outright it "will never 'land' and should not be read as a pending
+# unblocker" (chip-20260808-scaffolded-c6-misdiagnosis-routing, user-
+# confirmed). The other prefixes are the same shape (superseded / duplicate /
+# closed / diagnosed-no-defect) found by surveying every status string in
+# substrate_queue.json 2026-09-01; none of them back any OTHER
+# substrate_ceiling claim's unblocker set today, so this list has zero blast
+# radius beyond the confirmed case until a new one appears.
+NON_BLOCKING_STATUS_PREFIXES = (
+    "superseded",
+    "duplicate_superseded",
+    "closed_",
+    "diagnosis_done_no_substrate_change_warranted",
+    "diagnosis_corrected_no_substrate_defect",
+)
+
+
+def _is_moot_status(status) -> bool:
+    """True if a substrate_queue entry's status marks it a diagnosed dead end.
+
+    A moot entry is excluded from an unblocker set's ALL-satisfied check
+    (see `ceiling_may_have_lifted`) -- it neither blocks nor satisfies,
+    because it was investigated and found not to warrant a build.
+    """
+    s = str(status).strip().lower()
+    return any(s.startswith(p) for p in NON_BLOCKING_STATUS_PREFIXES)
 
 # GOV-CEIL-1 (ceiling-exhaustion demotion rule). N distinct confirmed
 # substrate_ceiling failure-autopsy verdicts on a claim, with NO positive
@@ -210,6 +283,16 @@ def audit(claims: list[dict], queue: list[dict],
              if str(e.get("status", "")).strip().lower() == "implemented"),
             None,
         )
+        # ALL-of-unblocker-set satisfaction (2026-09-01, GFLAG-0108/GFLAG-0100
+        # fix). Moot entries (diagnosed dead ends -- see _is_moot_status) are
+        # dropped from the set entirely: they neither block nor satisfy.
+        non_moot_owners = [e for e in owners if not _is_moot_status(e.get("status"))]
+        satisfied_owners = [
+            e for e in non_moot_owners
+            if str(e.get("status", "")).strip().lower() == "implemented"
+        ]
+        pending_owners = [e for e in non_moot_owners if e not in satisfied_owners]
+        all_owners_satisfied = bool(non_moot_owners) and not pending_owners
         parked = str(c.get("ceiling_decision", "")).strip().lower() == PARK_DECISION
         own_entries = sd_entries.get(cid, [])
         self_handled = _truthy(c.get("pending_retest_after_substrate")) and bool(own_entries)
@@ -239,7 +322,16 @@ def audit(claims: list[dict], queue: list[dict],
         if binding_set:
             lifted_ready = retest_owed and bool(binding_impl_entries)
         else:
-            lifted_ready = retest_owed and implemented_owner is not None
+            # ALL non-moot owners must be implemented, not just one -- a
+            # partially-satisfied unblocker set (some owners implemented,
+            # at least one still open) is NOT actionable; it stays `mapped`
+            # with a `retest_partial` note instead of firing
+            # `ceiling_may_have_lifted`. See module docstring for why.
+            lifted_ready = retest_owed and all_owners_satisfied
+        retest_partial = (
+            not binding_set and retest_owed and not lifted_ready
+            and bool(satisfied_owners) and bool(pending_owners)
+        )
         rec = {"id": cid, "status": c.get("status"), "n_ceiling_hits": n_hits}
         # PRECEDENCE: an explicit operator park decision wins over substrate
         # status. A `ceiling_decision: deferred` claim is intentionally parked
@@ -271,6 +363,15 @@ def audit(claims: list[dict], queue: list[dict],
             landed_in = "ceiling_may_have_lifted"
         elif mapped:
             rec["unblocked_by"] = [e.get("sd_id") for e in owners]
+            if retest_partial:
+                rec["retest_partial"] = True
+                rec["unblocker_progress"] = (
+                    f"{len(satisfied_owners)}/{len(non_moot_owners)} implemented"
+                )
+                rec["pending_unblockers"] = [
+                    {"sd_id": e.get("sd_id"), "status": str(e.get("status"))[:80]}
+                    for e in pending_owners
+                ]
             buckets["mapped"].append(rec)
             landed_in = "mapped"
         elif self_handled:
@@ -294,7 +395,24 @@ def audit(claims: list[dict], queue: list[dict],
         # `self_handled` bounds its dependents, not itself. A mapped-but-unbuilt
         # paper design owner does NOT exempt -- an owner that never lands across N
         # hits does not rescue the claim from the null.
-        if landed_in in ("mapped", "orphaned") and n_hits >= CEILING_EXHAUSTION_N:
+        #
+        # `retest_partial` (2026-09-01, added alongside the GFLAG-0108 fix
+        # above) IS exempt, and deliberately narrower than "any retest_owed
+        # mapped claim": a claim with SOME unblockers already landed is
+        # making active, verifiable progress -- the opposite of the "paper
+        # design owner that never lands" case the exemption above is written
+        # to NOT excuse. Confirmed live 2026-09-01: without this exemption,
+        # the GFLAG-0108 fix's own two motivating claims (ARC-030, 10
+        # ceiling hits; SD-017, 4) moved straight from the exempt
+        # `ceiling_may_have_lifted` bucket into an un-exempt `mapped`, and
+        # were immediately flagged ACTIONABLE for demotion by THIS overlay
+        # instead -- trading the alarm-fatigue false positive this fix exists
+        # to close for a strictly worse one (a false demotion recommendation
+        # on a claim mid-way through its unblocker set, not a false retest
+        # prompt). A fully-unbuilt (`0/N implemented`) mapped claim is NOT
+        # `retest_partial` and still gets no exemption here, unchanged.
+        if (landed_in in ("mapped", "orphaned") and not retest_partial
+                and n_hits >= CEILING_EXHAUSTION_N):
             exhausted.append({
                 "id": cid,
                 "status": c.get("status"),
@@ -326,6 +444,7 @@ def main() -> int:
     n_orphan = len(buckets["orphaned"])
     n_lifted = len(buckets["ceiling_may_have_lifted"])
     n_exhausted = len(exhausted)
+    partial_recs = [r for r in buckets["mapped"] if r.get("retest_partial")]
 
     if args.json:
         print(json.dumps({
@@ -351,6 +470,15 @@ def main() -> int:
             print("  -- ceiling-may-have-lifted: surface to user (re-queue/retest):")
             for rec in buckets["ceiling_may_have_lifted"]:
                 print(f"    [lifted] {rec['id']} -- unblocking substrate {rec['unblocked_by']} implemented")
+        if partial_recs:
+            print("  -- partially-satisfied unblocker sets (informational, NOT actionable --")
+            print("     retest still owed; see docstring 'ceiling_may_have_lifted' for why):")
+            for rec in partial_recs:
+                pending = ", ".join(
+                    f"{p['sd_id']}({p['status']})" for p in rec["pending_unblockers"]
+                )
+                print(f"    [partial] {rec['id']} -- {rec['unblocker_progress']} "
+                      f"-- still open: {pending}")
         if n_orphan:
             print("  -- ORPHANED: route each to /failure-autopsy (enrichment recommendation):")
             for rec in buckets["orphaned"]:
