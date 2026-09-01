@@ -91944,3 +91944,266 @@
     of a typed signal. DO NOT queue an experiment against this claim -- it is a static/contract
     property, not one an experiment run would move.
   evidence: []
+
+- id: GOV-APPLY-1
+  title: "Unapplied confirmed-autopsy recommendation rule: a CONFIRMED failure-autopsy verdict that was reviewed but never APPLIED decays into a positive claim, so the registry must be scanned for confirmed recommendations claims.yaml does not reflect."
+  subject: governance.epistemics.unapplied_autopsy_recommendation
+  claim_type: governance_rule
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-09-01"
+  registered_note: >
+    Registered 2026-09-01 by session govrule-gaps-20260901. THIS REGISTRATION RECORDS AN
+    EXISTING RULE; it asserts no new policy and changes no scan's behaviour. The rule was
+    already operationally live -- a standing scan wired into scripts/governance.sh, cited by
+    id as authority across CLAUDE.md, the skills and the planning corpus -- while having no
+    entry in this registry, so it could not accumulate evidence, be promoted or demoted, be
+    found by any query over claims.yaml, or be depended on by a machine-readable edge. Found
+    by the Step 3l-bis dangling claim-reference audit, which had been reporting it warn-only
+    since April; full analysis in evidence/planning/claim_gap_investigation_20260901.md.
+    Two of the eight standing-scan siblings (GOV-CEIL-1, GOV-DIAG-1) were registered as they
+    landed and the later six were not, which reads as oversight rather than decision --
+    nothing in the corpus argues these should stay unregistered.
+  functional_restatement: >
+    The other standing scans ask what a set of verdicts MEANS (GOV-CEIL-1, GOV-DIAG-1,
+    GOV-GRAN-1) or whether a verdict was RECORDED (GOV-CAT-1). This one asks whether it was
+    ever APPLIED. The blind spot it closes is structural and lives in /governance's own walk:
+    that walk is driven by pending_review.md, and a run already in review_tracker's
+    reviewed_run_ids is ABSENT from that file, so the confirmed autopsy covering it is never
+    read. The cycle assumes adjudication precedes review -- false for every RE-adjudication,
+    and a corpus sweep re-opens completed, reviewed runs by construction. The load-bearing
+    observation is that an unapplied demotion does not stay neutral: it DECAYS INTO A POSITIVE
+    CLAIM, because the withdrawn reading goes on being asserted by everything downstream.
+  notes: >
+    Wiring: scripts/check_unapplied_autopsy_recommendations.py, governance.sh Step 3h;
+    consumed at /governance Step 6. Four buckets, named by KEY not ordinal (the script's own
+    docstring numbers them inconsistently): unapplied_disposition (ACTIONABLE),
+    unapplied_evidence_direction (ACTIONABLE/WARN), superseded_disposition (WARN),
+    superseded_citation (WARN). Warn-only; --strict gates on unapplied_disposition only.
+    Confirmed 2026-07-20: failure_autopsy_V3-EXQ-604c's demotion of MECH-314b/314c/Q-044 was
+    confirmed and landed yet invisible to three consecutive routing attempts.
+    KNOWN DEFECT, GFLAG-0107 (2026-09-01): all 8 rows then in the ACTIONABLE
+    unapplied_disposition bucket were VERIFIED APPLIED -- false positives, because
+    _target_state() cannot parse the free-prose per_claim_recommendation.change text recent
+    autopsies write. Fix is two-sided (producer prose + an UNCERTIFIABLE bucket) and is
+    tracked on chip-20260830-govapply1-two-blind-spots gap (3).
+
+- id: GOV-DRY-1
+  title: "Dry-run adjudication leak rule: a governance verdict must never rest on a --dry-run smoke, so confirmed autopsies and substrate_queue entries are scanned for citations of dry manifests carrying an ASSERTING evidence stamp."
+  subject: governance.epistemics.dry_run_adjudication_leak
+  claim_type: governance_rule
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-09-01"
+  registered_note: >
+    Registered 2026-09-01 by session govrule-gaps-20260901. THIS REGISTRATION RECORDS AN
+    EXISTING RULE; it asserts no new policy and changes no scan's behaviour. The rule was
+    already operationally live -- a standing scan wired into scripts/governance.sh, cited by
+    id as authority across CLAUDE.md, the skills and the planning corpus -- while having no
+    entry in this registry, so it could not accumulate evidence, be promoted or demoted, be
+    found by any query over claims.yaml, or be depended on by a machine-readable edge. Found
+    by the Step 3l-bis dangling claim-reference audit, which had been reporting it warn-only
+    since April; full analysis in evidence/planning/claim_gap_investigation_20260901.md.
+    Two of the eight standing-scan siblings (GOV-CEIL-1, GOV-DIAG-1) were registered as they
+    landed and the later six were not, which reads as oversight rather than decision --
+    nothing in the corpus argues these should stay unregistered.
+  functional_restatement: >
+    The only standing scan that asks whether a verdict rests on evidence THAT DOES NOT EXIST.
+    A --dry-run smoke writes a real manifest with the same schema and run_id shape as a real
+    run, so a family-match sweep or a failure-record scan can pull one into an adjudication
+    without anything objecting. Only ASSERTING stamps are reported -- a direction
+    (supports/weakens/mixed/unknown), a directional per-claim entry, or any epistemic_category.
+    A dry manifest reading superseded or non_contributory is CORRECTLY QUARANTINED and
+    flagging it would fire on 19 of 36 dry run_ids forever while telling governance to undo
+    the right thing.
+  notes: >
+    Wiring: scripts/check_dry_run_adjudication_leak.py, governance.sh Step 3i; reuses
+    check_dry_run_citations.build_index() rather than re-implementing detection. Warn-only,
+    always exits 0; every write it recommends is governance's, applied in the normal walk.
+    THE REASON IT EXISTS is its own audit's closing finding: this defect was caught and
+    patched per-instance at least FOUR times without the pipeline being fixed --
+    a correct local diagnosis does not survive on its own, only a gate does. Stamp exclusions
+    are keyed on (run_id, flat|pack), not run_id, because commit a6fda79367 stamped three
+    543f flats and never their packs. Corpus state:
+    evidence/planning/dry_run_stamped_manifest_sweep_2026-07-28.md.
+
+- id: GOV-CAT-1
+  title: "Epistemic-category completeness rule: a confirmed failure-autopsy target carrying claim_ids must also carry recommended_epistemic_category, because the claim-keyed counters silently skip a target where it is absent and thereby UNDER-count in the direction that suppresses a demotion."
+  subject: governance.epistemics.epistemic_category_completeness
+  claim_type: governance_rule
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-09-01"
+  registered_note: >
+    Registered 2026-09-01 by session govrule-gaps-20260901. THIS REGISTRATION RECORDS AN
+    EXISTING RULE; it asserts no new policy and changes no scan's behaviour. The rule was
+    already operationally live -- a standing scan wired into scripts/governance.sh, cited by
+    id as authority across CLAUDE.md, the skills and the planning corpus -- while having no
+    entry in this registry, so it could not accumulate evidence, be promoted or demoted, be
+    found by any query over claims.yaml, or be depended on by a machine-readable edge. Found
+    by the Step 3l-bis dangling claim-reference audit, which had been reporting it warn-only
+    since April; full analysis in evidence/planning/claim_gap_investigation_20260901.md.
+    Two of the eight standing-scan siblings (GOV-CEIL-1, GOV-DIAG-1) were registered as they
+    landed and the later six were not, which reads as oversight rather than decision --
+    nothing in the corpus argues these should stay unregistered.
+  functional_restatement: >
+    A completeness precondition for GOV-CEIL-1 rather than a rule about claim content. The
+    ceiling-hit counter keys on targets[].recommended_epistemic_category, and a target where
+    that field is absent or null is skipped -- silently, and in the direction that suppresses
+    a demotion, so a claim sitting at N=2 with an unstamped target may already be exhausted.
+    The asymmetry is what makes it worth a standing scan: the failure mode is invisible and
+    one-directional. Fix direction is ALWAYS THE ARTIFACT -- do not widen GOV-CEIL-1 or the
+    re-derive brake to tolerate a missing field.
+  notes: >
+    Wiring: scripts/check_epistemic_category_completeness.py, governance.sh Step 3g; read the
+    missing_category bucket before trusting a near-threshold GOV-CEIL-1 count. Measured
+    2026-07-20: 27 of 336 confirmed targets carried claim_ids with no category, and
+    backfilling moved seven claims' hit counts.
+
+- id: GOV-SUBPATH-1
+  title: "Substrate-path overlap rule: for every still-open severity:corrupting substrate_queue entry, already-COMPLETED runs whose driver touches its substrate_paths and which finished after the entry was raised must be surfaced as candidates for re-review."
+  subject: governance.epistemics.substrate_path_overlap
+  claim_type: governance_rule
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-09-01"
+  registered_note: >
+    Registered 2026-09-01 by session govrule-gaps-20260901. THIS REGISTRATION RECORDS AN
+    EXISTING RULE; it asserts no new policy and changes no scan's behaviour. The rule was
+    already operationally live -- a standing scan wired into scripts/governance.sh, cited by
+    id as authority across CLAUDE.md, the skills and the planning corpus -- while having no
+    entry in this registry, so it could not accumulate evidence, be promoted or demoted, be
+    found by any query over claims.yaml, or be depended on by a machine-readable edge. Found
+    by the Step 3l-bis dangling claim-reference audit, which had been reporting it warn-only
+    since April; full analysis in evidence/planning/claim_gap_investigation_20260901.md.
+    Two of the eight standing-scan siblings (GOV-CEIL-1, GOV-DIAG-1) were registered as they
+    landed and the later six were not, which reads as oversight rather than decision --
+    nothing in the corpus argues these should stay unregistered.
+  functional_restatement: >
+    The BACKWARD half of the substrate-defect gate. /queue-experiment Step 2.5c is the forward
+    half: it blocks a NEW experiment being queued against a corrupting entry's substrate_paths.
+    This rule asks the complementary question nobody else asks -- which runs ALREADY COMPLETED
+    against substrate later found to silently corrupt results. Crucially it searches via the
+    experiment index rather than the originating claim's own results, so it can surface
+    evidence belonging to a claim the original autopsy never mentioned.
+  notes: >
+    Wiring: scripts/check_substrate_path_overlap.py, governance.sh Step 3k. Warn-only, always
+    exits 0, promotes/demotes nothing -- a human decides whether to re-review; this only
+    surfaces candidates. Depends on substrate_queue entries carrying severity and
+    substrate_paths, which /failure-autopsy Step 7 sets and governance persists unchanged; most
+    entries carry neither and default to the implicit not-yet-run bucket, so coverage grows as
+    those fields are populated rather than being retrofitted. Design:
+    evidence/planning/substrate_defect_gate_plan_2026-08-07.md.
+
+- id: GOV-GRAN-1
+  title: "Granularity-debt recurrence rule: N or more structurally-DIFFERENT confirmed failures on one claim indicate the claim is mis-grained rather than merely unlucky, and it should be re-grained rather than re-run."
+  subject: governance.epistemics.granularity_debt_recurrence
+  claim_type: governance_rule
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-09-01"
+  registered_note: >
+    Registered 2026-09-01 by session govrule-gaps-20260901. THIS REGISTRATION RECORDS AN
+    EXISTING RULE; it asserts no new policy and changes no scan's behaviour. The rule was
+    already operationally live -- a standing scan wired into scripts/governance.sh, cited by
+    id as authority across CLAUDE.md, the skills and the planning corpus -- while having no
+    entry in this registry, so it could not accumulate evidence, be promoted or demoted, be
+    found by any query over claims.yaml, or be depended on by a machine-readable edge. Found
+    by the Step 3l-bis dangling claim-reference audit, which had been reporting it warn-only
+    since April; full analysis in evidence/planning/claim_gap_investigation_20260901.md.
+    Two of the eight standing-scan siblings (GOV-CEIL-1, GOV-DIAG-1) were registered as they
+    landed and the later six were not, which reads as oversight rather than decision --
+    nothing in the corpus argues these should stay unregistered.
+  functional_restatement: >
+    Sibling of GOV-CEIL-1 keyed on a different signature. GOV-CEIL-1 counts the SAME verdict
+    recurring (repeated substrate_ceiling readings); this counts STRUCTURALLY DIFFERENT
+    failures accumulating on one claim, which is the signature of a claim whose grain is wrong
+    -- it bundles several distinct assertions, so each experiment fails for its own reason and
+    no single re-run can converge. The prescribed response is a re-grain via /claim-synthesis,
+    not another experiment.
+  notes: >
+    Wiring: scripts/check_granularity_debt_recurrence.py, governance.sh. Warn-only.
+    ALSO THE ORIGIN OF THE METABOLIZED-EXCLUSION PATTERN the family now shares: a chain whose
+    prescribed response was actually carried out must be able to CLEAR, or it fires every
+    cycle forever, which is the alarm-fatigue Goodhart vector. GOV-GRAN-1 keys that exclusion
+    off a note field on the CLAIM; GOV-DIAG-1 later borrowed the pattern in work-stream shape
+    (diagnostic_recurrence_metabolized on a plan node) precisely because it touches no claim
+    and so had no claim-side field to key on.
+
+- id: GOV-SKILL-1
+  title: "Skill-improvement recurrence rule: when a non-outcome LESSON recurs across N or more failure autopsies and no skill checklist has absorbed it, the recurrence is evidence of a missing procedural guard rather than N independent incidents."
+  subject: governance.epistemics.skill_improvement_recurrence
+  claim_type: governance_rule
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-09-01"
+  registered_note: >
+    Registered 2026-09-01 by session govrule-gaps-20260901. THIS REGISTRATION RECORDS AN
+    EXISTING RULE; it asserts no new policy and changes no scan's behaviour. The rule was
+    already operationally live -- a standing scan wired into scripts/governance.sh, cited by
+    id as authority across CLAUDE.md, the skills and the planning corpus -- while having no
+    entry in this registry, so it could not accumulate evidence, be promoted or demoted, be
+    found by any query over claims.yaml, or be depended on by a machine-readable edge. Found
+    by the Step 3l-bis dangling claim-reference audit, which had been reporting it warn-only
+    since April; full analysis in evidence/planning/claim_gap_investigation_20260901.md.
+    Two of the eight standing-scan siblings (GOV-CEIL-1, GOV-DIAG-1) were registered as they
+    landed and the later six were not, which reads as oversight rather than decision --
+    nothing in the corpus argues these should stay unregistered.
+  functional_restatement: >
+    The first member of the standing-scan family that audits THE SKILLS rather than the claims
+    registry. Roughly half of what /failure-autopsy's learning_extracted surfaces is process,
+    methodology or schema debt unrelated to the specific outcome -- reusable bug patterns,
+    stale cross-referenced docs, statistic-calibration caveats. Any one of those reads as a
+    one-off; the same lesson appearing in N separate autopsies does not, and means a checklist
+    somewhere is missing a line. The rule converts repetition into a procedural finding
+    instead of leaving the lesson to be re-learned per incident.
+  notes: >
+    Wiring: scripts/check_skill_improvement_recurrence.py, governance.sh; pointer artifact
+    evidence/planning/skill_improvement_audit_pointer.json. Scoping:
+    evidence/planning/skill_improvement_audit_scoping_2026-08-01.md. Warn-only. Its
+    already-codified bucket is shown for transparency rather than suppressed, so a lesson a
+    skill HAS absorbed stays visible with its landing site named. Sits in deliberate tension
+    with GOV-HELDOUT-1: this rule surfaces candidate skill edits, and GOV-HELDOUT-1 is the
+    discipline that must be run BEFORE any such edit ships as a general rule.

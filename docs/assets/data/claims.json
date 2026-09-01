@@ -1285,6 +1285,14 @@
     "type": "governance_rule",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: this is a governance_rule, not an empirical claim -- there\nis no experimental falsifier (see notes above). This is a COMPLIANCE-AUDIT condition,\ncheckable by inspecting claims.yaml / docs / thought-intake artefacts for citation\ndiscipline, not by any REE experiment.\n\nVIOLATED-BY: an artefact (claim note, architecture doc, thought-intake writeup,\nskill/CLAUDE.md text) draws a structural parallel between REE (the cognitive\narchitecture) and REE Assembly (the governance/development machinery) and then uses that\nparallel AS EVIDENCE -- treats a finding, invariant, or piece of experimental support in\none system as transferring to the other -- without explicitly flagging the parallel as\nan analogy. Concretely: (i) citing an architecture-side result to justify adopting or\nstrengthening an Assembly-side governance rule, or vice versa, without a disclaimer that\nthe resemblance is rhetorical/structural only; (ii) a claim's confidence, status, or\nevidence_direction being influenced by cross-system resemblance rather than by evidence\nproper to that system; (iii) merging or conflating an architecture-cluster claim with an\nAssembly-cluster claim on analogy grounds alone (the E/F SkillOpt split is the named\nexample of what NOT to do).\n\nCOMPLIANT: the parallel is drawn but explicitly labelled as an analogy and explicitly\ndenied evidential force -- e.g. GOV-STRAT-1's own notes: \"the INV-020 symmetry is an\nANALOGY and MUST BE CITED AS ONE ... It is a reason to ADOPT this rule; it is NOT\nevidence that the Assembly behaves like the architecture, nor that INV-020's\nexperimental support transfers here. It does not.\" The same pattern in GOV-HELDOUT-1\nand GOV-REJECT-1.\n\nAUDIT METHOD: grep claims.yaml / docs/ for REE<->Assembly structural comparisons and\ncheck each hit either (a) carries an explicit analogy disclaimer / cites GOV-ANALOGY-1,\nor (b) is a genuine biological/architectural analogy unrelated to REE:Assembly (e.g.\n\"BLA analogue\" -- out of scope for this rule).\n\n[2026-08-08 thought-digestion]: audit run against the four claims that draw this\nparallel (GOV-STRAT-1, GOV-HELDOUT-1, GOV-REJECT-1, GOV-META-1) -- all four already\ncite GOV-ANALOGY-1 in depends_on and carry the compliant disclaimer. No violation found.\n"
   },
+  "GOV-APPLY-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.unapplied_autopsy_recommendation",
+    "title": "Unapplied confirmed-autopsy recommendation rule: a CONFIRMED failure-autopsy verdict that was reviewed but never APPLIED decays into a positive claim, so the registry must be scanned for confirmed recommendations claims.yaml does not reflect.",
+    "type": "governance_rule"
+  },
   "GOV-BEHADJ-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1308,6 +1316,14 @@
     "status": "candidate",
     "subject": "governance.epistemics.instantiated_organism_capability_contract",
     "title": "A run is not admissible as negative evidence for a claim unless the organism instantiated for that run was demonstrably able to express -- and, where the claim is learning- or development-dependent, to acquire -- the faculty under test. Each organism-level experiment must therefore DECLARE, and a preflight must machine-verify against the instantiated organism, at minimum: the canonical profile identity and every explicit deviation from it; the mechanisms and capabilities the hypothesis presupposes; whether those mechanisms were constructed, enabled and reached on the production path; whether their decisive readouts engaged often enough for the test to be non-vacuous; whether their output could compete at the relevant arbitration surface at the scale present in the run; which forms of change were permitted (parameters, policy/value, E1/E2 representations, memory state, residue/EMA state, offline updates); and, where online learning is load-bearing, whether gradients were enabled, whether the intended trainable parameters were in an optimizer, and whether a parameter-delta witness confirms an actual update path. A run failing any declared precondition self-routes to a capability-precondition diagnostic status and MUST NOT be recorded as evidence against the claim. 'It did not learn' and 'it could not have learned' are different scientific outcomes.",
+    "type": "governance_rule"
+  },
+  "GOV-CAT-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.epistemic_category_completeness",
+    "title": "Epistemic-category completeness rule: a confirmed failure-autopsy target carrying claim_ids must also carry recommended_epistemic_category, because the claim-keyed counters silently skip a target where it is absent and thereby UNDER-count in the direction that suppresses a demotion.",
     "type": "governance_rule"
   },
   "GOV-CEIL-1": {
@@ -1342,6 +1358,14 @@
     "title": "Diagnostic-chain recurrence rule (diagnostic-side analog of the re-derive brake / GOV-CEIL-1): the re-derive brake and GOV-CEIL-1 are BOTH claim-keyed -- they count confirmed failure-autopsy verdicts per claim_id. A pure-diagnostic chain (targets with claim_ids: []) accumulates ZERO on that counter, so a chain of diagnostics circling the same substrate floor never trips the mechanical brake -- it is caught only by a human reading the autopsy stream. This rule adds the missing counter: when N>=3 confirmed pure-diagnostic (claim_ids: []) failure-autopsies that reached NO verdict (recommended_evidence_direction non_contributory / inconclusive) share one bears_on work-stream token, the chain is surfaced with the reading 'the question may be MIS-POSED, not under-powered' -- re-pose the operationalization; do not re-run it harder. Warn-only; PROMOTES/DEMOTES NOTHING.",
     "type": "governance_rule"
   },
+  "GOV-DRY-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.dry_run_adjudication_leak",
+    "title": "Dry-run adjudication leak rule: a governance verdict must never rest on a --dry-run smoke, so confirmed autopsies and substrate_queue entries are scanned for citations of dry manifests carrying an ASSERTING evidence stamp.",
+    "type": "governance_rule"
+  },
   "GOV-EXT-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1373,6 +1397,14 @@
     "status": "candidate",
     "subject": "governance.epistemics.frozen_hypothesis_set",
     "title": "Frozen hypothesis-set pre-registration rule (anti-Goodhart contract over the Narrow/Decide dashboard): the reduction ratio surviving/initial is Goodhart-able from the denominator side -- a campaign can improve its apparent narrowing by padding the initial hypothesis set after the discriminating evidence is already in. This rule pre-registers the contract that forbids it: the initial set is FROZEN at registration (initial_frozen_count_at_registration never moves), a hypothesis must be pre-registered before its adjudicating run resolves, and the ONE sanctioned way an already-adjudicated question's set may grow is LABELLED GOV-FANOUT-1 fan-out whose late legs clear only on GIT-WITNESSED provenance -- a self-reported pre_registered_utc is back-datable and is not evidence. The registry has a SINGLE producer (/failure-autopsy Step 9b); governance is derive-only over it. The audit is advisory and NEVER gates a cycle. Warn-only; PROMOTES/DEMOTES NOTHING.",
+    "type": "governance_rule"
+  },
+  "GOV-GRAN-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.granularity_debt_recurrence",
+    "title": "Granularity-debt recurrence rule: N or more structurally-DIFFERENT confirmed failures on one claim indicate the claim is mis-grained rather than merely unlucky, and it should be re-grained rather than re-run.",
     "type": "governance_rule"
   },
   "GOV-HEALTH-1": {
@@ -1500,6 +1532,14 @@
     "title": "Security and misuse release gate -- 'do not release a capability that can act faster than its containment can understand': before any language/tool/social/deceptive/public-facing capability is released, complete an OWASP-GenAI / MITRE-ATLAS / NIST-RMF security and misuse review.",
     "type": "governance_rule"
   },
+  "GOV-SKILL-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.skill_improvement_recurrence",
+    "title": "Skill-improvement recurrence rule: when a non-outcome LESSON recurs across N or more failure autopsies and no skill checklist has absorbed it, the recurrence is evidence of a missing procedural guard rather than N independent incidents.",
+    "type": "governance_rule"
+  },
   "GOV-STRAT-1": {
     "assembly_state": "gated_v3",
     "epistemic_stance": "believed",
@@ -1525,6 +1565,14 @@
     "title": "Once REE substrate activity is observable (GOV-SUBIMG-1), Assembly should apply a behaviour-linked substrate-association methodology that aligns internal state to behavioural events (event-related analysis across event types, repeated occurrences, and organisms), extends the alignment window across many temporal offsets from t-1 to t-1000+ steps rather than only the immediate surround, treats distributed multivariate substrate-state patterns -- not single variables -- as the primary unit of analysis (representational-similarity-style comparison across current behaviour, location, goal, recent history, developmental age, and subsequent behaviour), tracks how internal-behavioural signatures change across a long individual REE lifetime (longitudinal artificial-organism analysis), and moves from association to causal claims only via checkpoint branch-and-replay intervention against a matched unperturbed sibling branch -- following the same discovery-then-confirmation discipline GOV-BEHADJ-1 already requires for purely behavioural adjudication.\n",
     "type": "governance_rule",
     "what_would_answer": "Not an empirical falsifier -- a methodology-adoption proposal. Checkable in two parts, matching\nthe version-routing split above.\nCORRELATIONAL PART -- VIOLATED BY: an association reported from a single, un-repeated\nalignment (no repeats across occurrences/organisms), or a temporal-offset claim made without\nactually sweeping multiple offsets, or a \"distributed pattern\" claim resting on a single\nvariable dressed up as multivariate. COMPLIANT: at least one real event-related alignment run\nacross repeats, at least one temporal-offset sweep showing where an association appears/\ndisappears, and at least one distributed-pattern (multi-variable) comparison actually run.\nCAUSAL PART -- gated: cannot be exercised (and is not violated by its absence) until a\ncheckpoint-fork capability exists per ARC-124. Once it does, VIOLATED BY treating a\npost-perturbation change as causal without a matched unperturbed sibling replay; COMPLIANT\nwhen a perturb/restore/replay/compare cycle against a matched sibling is actually run.\n"
+  },
+  "GOV-SUBPATH-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.substrate_path_overlap",
+    "title": "Substrate-path overlap rule: for every still-open severity:corrupting substrate_queue entry, already-COMPLETED runs whose driver touches its substrate_paths and which finished after the entry was raised must be surfaced as candidates for re-review.",
+    "type": "governance_rule"
   },
   "GOV-SUBTRACT-1": {
     "assembly_state": "remaining",
