@@ -19992,14 +19992,19 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_035",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-017",
+        "ARC-003"
+      ],
+      "blocked_note": "MECH-035 (vector-valued VALENCE ranked by constraint-first / Pareto-lexicographic comparison rather than scalar collapse) has no V3 substrate to exercise, so no non-vacuous experiment is constructible. Probed empirically 2026-09-01 against ree_core/predictors/e3_selector.py. (1) NO VECTOR COMPARATOR: E3TrajectorySelector exposes zero methods matching pareto/lexicographic/constraint/dominance/rank/vector, and select() ranks candidates solely by argmin/argmax/multinomial/topk over the SCALAR J(zeta) = f_weight*F + lambda_eff*M + rho_residue*Phi_R - benefit_weight*B - goal_weight*G (46 scalar-reduction call sites in select(), 0 vector comparators). Every 'dominance' hit in ree_core is F-DOMINANCE (MECH-439), which is the opposite finding -- the scalar F term dominating the sum. (2) COMPONENT STREAMS ABSENT: of the six streams the claim names (HOMEOSTASIS, HARM, TEMPORAL_COHERENCE, SELF_IMPACT error, option volume, inferred other welfare) only HARM is a live per-candidate V3 stream (45 config knobs); the other five have ZERO config surface on REEConfig. TEMPORAL_COHERENCE and inferred-other-welfare have 0 hits anywhere in ree_core; the only 'homeostasis' hit is MECH-120 SHY synaptic-weight normalisation in SWS, unrelated to a valence stream; the nearest SELF_IMPACT analogs (DR-10 self_viability, DR-12 pe_confidence) are generation:v4, default-off, and documented in-source as 'off the V3 critical path; promotes nothing in V3'. Social/other-welfare tags are scoped V5. (3) NOT PER-CANDIDATE: the per-component decomposition (_last_traj_components, V3-EXQ-571) reduces every component to a batch mean via .mean().item(), so components are not retained per candidate even for the one live stream. The claim's own NON-DEGENERACY PRECONDITION requires the named streams to be independently computable per candidate trajectory AND to show non-zero cross-candidate variance on at least two components SIMULTANEOUSLY, and states explicitly that a one-live-component scenario 'cannot distinguish vector-valued ranking from a scalar collapsed onto that one live component, and should self-route substrate_not_ready rather than count as a verdict'. That precondition is unsatisfiable here. Running anyway would test whether a fixed scalar weighting reproduces the rankings produced by a fixed scalar weighting -- an arithmetic identity that returns the claim's FALSIFYING signature regardless of whether MECH-035 is true, i.e. a vacuous falsification of a candidate claim. Work-graph: complicated (buildable) -- a named build with no open question -- so the route is /implement-substrate (mint a substrate_queue entry first), NOT another experiment. No substrate_queue.json entry and no SD id covers this gap, so blocked_by names the claim's own architectural anchors (ARC-017 stream tags, ARC-003 E3 selection). Verified 2026-09-01: 0 manifests in evidence/experiments/ have ever tagged MECH-035."
     },
     {
       "acceptance_checks": [
