@@ -1609,6 +1609,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0112",
+      "claim_ids": [
+        "ARC-059",
+        "MECH-274",
+        "MECH-278"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "RESIDUAL of GFLAG-0105 (read that one first; it is resolved). ARC-059's own depends_on list spans all 3 developmental stages it names (self-as-object, objects-as-patterns, others-as-special-objects) including MECH-274 and MECH-278, both just relabeled implementation_phase: v4 with phase_locked: true because their own content genuinely needs V4 substrate (MECH-274: multi-agent modelling, zero substrate exists; MECH-278: object-schema-via-intervention, explicitly BYPASSED in V3 per object_representation_v4_plan.md). check_claim_phase_consistency.py now correctly reports these as CONFLICT (ARC-059 -> MECH-274, ARC-059 -> MECH-278) instead of silently re-deriving v3 on MECH-274/278. ARC-059 itself (implementation_phase: v3, v3_pending: true) is a claim ABOUT the ordering across all 3 stages -- its own scope may be over-broad for a single v3 label, since stage 3 (others-as-special-objects) is structurally V4 territory (needs another agent to exist). DECISION OWED: either (a) SPLIT ARC-059 per the F1-F4 pattern (minimal v3 form = stages 1-2 ordering only, self-as-object -> objects-as-patterns; v4 form = the full 3-stage claim including others), routing to /claim-synthesis, or (b) sever/retype the ARC-059->MECH-274 and ARC-059->MECH-278 depends_on edges if ARC-059's own v3-testable content genuinely does not need those specific specializations built. SECOND, SMALLER DEFECT surfaced in the same pass: MECH-276<->MECH-278 is a reciprocal depends_on cycle -- MECH-276's depends_on list includes MECH-278 (commented '# stage-2 specialisation'), which is backwards; MECH-278 already correctly lists MECH-276 as ITS dependency (the general principle a specialization depends on). check_claim_phase_consistency.py now flags this as a LOAD-BEARING cycle since MECH-276 stayed v3 (real substrate confirmed, GFLAG-0105) while MECH-278 moved to v4. Not fixed here (adjacent to but outside GFLAG-0105's exact 4-claim scope) -- the erroneous edge in MECH-276's depends_on should simply be deleted.",
+      "raised_by_session": "metaworker-chip-20260901-v4cut-f5-are-these-v3-prerequisites",
+      "raised_at": "2026-09-01T16:24:29Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
