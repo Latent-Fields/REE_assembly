@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "c3-build1-epideficit-readiness-20260901",
-  "last_updated_utc": "2026-09-01T13:20:46Z",
+  "last_updated_utc": "2026-09-01T13:31:21Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -7093,9 +7093,9 @@
       "governance_2026_08_30": "V3-EXQ-822d, the designated validation_experiment, RAN. The per-candidate-summary AMEND is CONFIRMED ENGAGED (post-centering spread ratio 2.70e-3 vs 2.2e-9 legacy; 0 fallbacks, 0 degenerate ticks) -- the build is not in question. The DV is: prop_delta is an ablation MAGNITUDE and cannot answer SD-082's cross-candidate SPREAD question, and C1 is an ON-arm-only absolute floor the negative control clears MORE strongly (0.001912 vs 0.001556). What is owed is an 822e with a spread-valued DV, not another magnitude test. SD-078/SD-082 pending_retest_after_substrate cleared in claims.yaml this cycle."
     },
     {
-      "sd_id": "SD-083",
+      "sd_id": "mech324-reacquisition-window-isolation",
       "title": "Dissolution-scoped variance/evaluative read on the MECH-324 rapid-reacquisition path (revival currently gated by the saturated sliding tally bucket, not by the reduced repetition bar)",
-      "status": "proposed_GATED_on_v3_exq_829_failure_autopsy_DO_NOT_BUILD_YET",
+      "status": "implemented_instrument_validated_CLAIM_VALIDATION_STILL_OWED (build landed ree-v3 7747a01 2026-07-31)",
       "implementation_status": "not_implemented",
       "added_session": "relaxed-yonath-32fece",
       "added_utc": "2026-07-27T20:51:13Z",
@@ -7125,7 +7125,11 @@
           "run_role": "unknown",
           "run_role_basis": "R5 entry claims a build but nothing dates it"
         }
-      ]
+      ],
+      "renamed_from": "SD-083",
+      "rename_note": "RENAMED 2026-09-01 (session sd083-collision-20260901, user-authorised) to resolve a CROSS-REGISTRY ID COLLISION. This queue entry held sd_id \"SD-083\" from 2026-07-27T20:51:13Z; the claims registry then issued SD-083 to a DIFFERENT and unrelated claim on 2026-07-29 -- consolidation.offline_policy_consolidation_window, a Fisher-weighted EWC design_decision in the MECH-457 retention testbed, now status candidate_substrate_landed. Two objects, one id, across two registries. Direction of the fix: SD-XXX is the CLAIMS registry namespace and that entry is a real registered design_decision, whereas this is a build task -- and this queue's own convention for build tasks that are not claims is a descriptive slug (cf. mech151-action-bias-has-no-e3-ranking-channel, arc071_e3_reselection_on_committed_program). So the CLAIM keeps SD-083 and this entry takes a descriptive slug matching its own design doc, docs/architecture/mech324_reacquisition_window_isolation.md. CONFIRMED SAFE BEFORE RENAMING: zero references in igw_routine_ledger.json and igw_assignments.json; the remaining \"SD-083\" hits across evidence/ and docs/ refer to the CLAIM and are correct as they stand. evidence/experiments/substrate_status_snapshot.json still carries the old id and is DERIVED -- it refreshes on the next full governance regen (CLAUDE.md \"Narrow Edits Only\"; not regenerated here for a one-field change). WHY IT MATTERED: v4_prerequisite_cut_20260901.md already read this id through the wrong lens, filing it under \"Sleep write-path content (P5)\" -- i.e. against the consolidation claim, not this build. Any action taken on \"SD-083\" without disambiguating would have hit the wrong object.",
+      "status_note": "GATE SUPERSEDED 2026-09-01, same pass. Prior status: \"proposed_GATED_on_v3_exq_829_failure_autopsy_DO_NOT_BUILD_YET\". That gate was factually stale: the build it forbade -- use_reacquisition_window_isolation, the dissolution-scoped variance/mean read this entry's own implementation_hint specifies, nested default-OFF under use_chunk_dissolution_retention -- LANDED ree-v3 7747a01 on 2026-07-31 with contract tests (tests/contracts/test_arc071_policy_chunking.py) and a design doc, i.e. the door was walked through while the gate still read DO_NOT_BUILD_YET. VALIDATION IS INSTRUMENT-LEVEL ONLY, deliberately not called claim-validated: V3-EXQ-829a PASSed but is DEGENERATE on its load-bearing criterion (interpretation.criteria_non_degenerate.C2 = False; all_iso_on_cells_sit_on_forced_bar true; scaling_rho_iso_on_w100 = 0.9999999999999998 -- r_reacq lands exactly on ceil(R_min*f_reacq) in every cell, an arithmetic identity, not a measurement). Note its TOP-LEVEL non_degenerate reads True, so a run-level gate reports clean over a degenerate verdict criterion. What 829a establishes is that the instrument works (C5 paired iso-on-faster, C6 reproducing 829's flat signature with isolation OFF), NOT MECH-324's rapid-reacquisition prediction. The V3-EXQ-829 failure autopsy the old gate named is still genuinely owed and is now chipped as chip-20260901-v3exq829-failure-autopsy.",
+      "last_seen_session": "sd083-collision-20260901"
     },
     {
       "sd_id": "MECH-217",
