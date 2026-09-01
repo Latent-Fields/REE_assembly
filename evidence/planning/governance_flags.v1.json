@@ -1071,9 +1071,9 @@
       "summary": "ONE MISSING CONSUMER EXPLAINS FOUR BLOCKED CLAIMS. REEAgent._do_replay() assigns replay_trajs (agent.py:9952, :9959) and never uses it -- verified: exactly two assignment lines, zero consumers in ree_core. Quiescent replay fires (V3-EXQ-761 PASS) and the output is discarded. MECH-092's benefit half, MECH-205's model-correction leg, MECH-121's consolidation test and MECH-209's leg are all this ONE blocker, not four; building the consumer unblocks all four. Separately MECH-092's stated blocker is stale: it cites SD-006 async multi-rate loop, but SD-006 was status:implemented and EXQ-052b-validated 2026-03-21, seven days BEFORE the 2026-03-28 hold citing it was written.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:50:13Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T19:32:40Z",
+      "resolution_note": "APPLIED REE_assembly 3444b9f632 (queue entry) + da501b6c23 (gate repoint). This flag was right on both counts. (1) The missing consumer is now registered as substrate_queue sd_id mech092-replay-consumer-missing -- re-verified at current line numbers: _do_replay assigns replay_trajs at agent.py:10418/:10425 and the function ends at :10428 without reading it, no consumer in ree_core. (2) The stale SD-006 citation was already corrected on MECH-092 by an earlier session; MECH-092's gate now points at the queue entry instead. The SAME stale-SD-006 shape was found and fixed in TWO further claims this flag did not name -- MECH-209 and MECH-291, whose gates cited bare SD-006 and therefore read as CLEARED to any status check, since SD-006's registry status is 'implemented'. SCOPE CORRECTION: 'building the consumer unblocks all four' is HALF TRUE -- it unblocks MECH-092's benefit half and MECH-205 leg (iii); MECH-121 and MECH-209 stay blocked on unbuilt balanced replay scheduling and the MECH-439 ceiling. Recorded in the queue entry so it is not quoted forward."
     },
     {
       "flag_id": "GFLAG-0075",
