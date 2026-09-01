@@ -1055,9 +1055,9 @@
       "summary": "MECH-322 is at 1 of min_experimental_entries=2 and its own block hides this. V3-EXQ-896 (PASS/supports, experiment_purpose=evidence, 2026-08-08T17:09Z) is already in review_tracker.json and already scored by the indexer (genuine_exp_count 1, latest_run_id 896, exp_conf 0.735), but live_status.evidence.from and the evidence_quality_note narrative both stop at 892. 873a and 892 were diagnostic-purpose and contribute 0. Exactly one more contributory evidence run is owed, and the claim's own never-run overnight-improvement falsifier is the natural candidate.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:50:07Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:06:24Z",
+      "resolution_note": "PARTIALLY UPHELD, applied REE_assembly 008d91c0ce. The staleness is real: live_status.evidence still pointed at V3-EXQ-892 (a DIAGNOSTIC) at as_of 2026-08-08, and evidence_quality_note ended on '3rd consecutive non-negative touchpoint', both stopping short of V3-EXQ-896 -- the FOURTH touchpoint and the FIRST contributory one (experiment_purpose evidence, PASS/supports, reviewed, genuine_exp_count 1, 0 fail runs). TWO CORRECTIONS AGAINST THE FLAG. (1) 'Its own block hides this' is false -- MECH-322's what_would_answer states the promotion arithmetic prominently and 896 appears at eight further points carrying its measured values. Nothing was hidden; two fields were behind. (2) The flag quotes exp_conf 0.735; the indexer says 0.722 (0.735 is MECH-463's LITERATURE confidence). The flag copied that figure out of the claim's own paragraph rather than reading the matrix -- so the wrong number was in the claim too, and is corrected there."
     },
     {
       "flag_id": "GFLAG-0074",
