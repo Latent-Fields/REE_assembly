@@ -23,7 +23,7 @@
     "MECH-439"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "diagnostic",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -100,5 +100,6 @@
     "writer_defect": null,
     "n_agents": 16,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Ratified by governance cycle gov-cycle-20260901 (2026-09-01) from confirmed failure_autopsy_V3-EXQ-571b_2026-09-01 (autopsy confirmed in REE_assembly 5ff838702b). Diagnostic presence audit; PASSES its own criteria (clamped top-channel share 0.9368-0.9953 vs 0.85 bar, occupant shifts f_weighted -> harm_weighted 4/4 seeds) but contributes no claim weight to MECH-439. The 936a gate on the 936-family falsifiers does NOT clear: 936a measured the same premise ABSENT (F share 6.33e-06) in its own regime under the same clamp ratio, so the premise is REGIME-DEPENDENT and this run cannot apportion the residue-carried gap."
 }

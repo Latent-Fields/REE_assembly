@@ -21,7 +21,7 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [],
   "evidence_class": "simulation",
-  "evidence_direction": "diagnostic",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -118,5 +118,6 @@
     "writer_defect": false,
     "n_agents": 2,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Ratified by governance cycle gov-cycle-20260901 (2026-09-01) from confirmed failure_autopsy_V3-EXQ-967_2026-09-01 (autopsy confirmed in REE_assembly 5ff838702b). Cheap confirmer; establishes the agent_energy route is OPEN and REFUTES the 966-cluster note's third closed route (agent_energy floor-clamped at 0.0 under a dominating 0.01/step decay): energy_mean 0.4892/0.4845, at floor on only 10.2% of steps, arms differ by up to 0.99 across 709 of 2400 matched steps. The other two routes remain open. Claimless diagnostic."
 }
