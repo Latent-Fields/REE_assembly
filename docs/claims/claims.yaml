@@ -11702,6 +11702,19 @@
     leg MECH-209's what_would_answer already defers to MECH-092 for -- one consumer
     build discharges all three, and the registry should record the test ONCE. Which
     episode gets replayed and how often is MECH-205's, not this claim's.
+  governance_2026_09_01: |
+    [GFLAG-0074, govflags-20260901b] GATE REPOINTED AT A REAL OWNER. This claim's
+    evidence_quality_note says promote-to-active is "gated on the downstream
+    consolidation-benefit test (SD-006 / working viability map)". The SD-006 half was already
+    recorded as stale by an earlier session and that correction stands. What was missing is
+    that the REAL blocker had no owner anywhere: as of 2026-09-01 it is registered as
+    substrate_queue sd_id `mech092-replay-consumer-missing` -- _do_replay assigns replay_trajs
+    (agent.py:10418/:10425) and the function ends at :10428 without reading it; no consumer
+    exists in ree_core/. Cite THAT entry as the gate from here on, not SD-006.
+    The TRIGGERING half remains confirmed (V3-EXQ-761 PASS) and is unaffected.
+    See also MECH-121's governance_2026_09_01 note: the proposed merge of this claim's
+    benefit half into MECH-121 was DECLINED, in favour of one experiment carrying
+    claim_ids: [MECH-092, MECH-121, MECH-209] once the consumer is built.
 - id: MECH-093
   title: "z_beta modulates E3 heartbeat frequency, distinct from precision-weighting."
   claim_type: mechanism_hypothesis
@@ -16497,6 +16510,32 @@
     consolidated (collapses the "balanced scheduling matters" prerequisite into a
     non-factor).
 
+  governance_2026_09_01: |
+    [GFLAG-0086, govflags-20260901b] MERGE DECLINED. The flag proposed folding MECH-092's
+    CONSOLIDATION-BENEFIT HALF into this claim (partial absorption, not supersession), on the
+    grounds that MECH-121 already owns the "E1 world model improves across a sleep cycle vs
+    matched waking control" test and that three claims point at one untested test.
+
+    DECISION (user-approved 2026-09-01): DO NOT MERGE. The premise is accurate -- the three
+    claims really do converge on one untested test -- but merging is the wrong instrument for
+    it. A merge would move an UNTESTED obligation from one claim to another and change
+    nothing about whether it can be run; what actually blocks all three is a single missing
+    consumer (registered 2026-09-01 as substrate_queue sd_id
+    `mech092-replay-consumer-missing`: _do_replay computes replay trajectories and discards
+    them, agent.py:10418/:10425, function ends :10428, no reader in ree_core/). Merging would
+    also destroy the distinction the flag itself insists must survive -- MECH-092's
+    trigger-selectivity content, which V3-EXQ-761 CONFIRMED and this claim does not cover.
+
+    WHAT REPLACES THE MERGE: one experiment, when the consumer is built, carrying
+    claim_ids: [MECH-092, MECH-121, MECH-209]. That gets the convergence the flag correctly
+    identified -- one test discharging three claims -- WITHOUT collapsing three distinct
+    assertions into one, and without the reverse-dep repointing the merge would have required
+    across MECH-205, MECH-209, MECH-289, MECH-291 and closure node sleep_substrate:GAP-2.
+    Per-claim evidence directions will be needed on that manifest (multi-claim rule).
+
+    SCOPE HONESTY: building the consumer does NOT unblock all three. It unblocks MECH-092's
+    benefit half; MECH-121 and MECH-209 remain additionally blocked on unbuilt balanced
+    harm/goal replay scheduling and on the MECH-439 conversion ceiling.
 - id: MECH-122
   title: "Thalamo-cortical spindle-equivalent bursts package E3/hippocampal replay content for z_theta delivery AND gate external sensory input, protecting the consolidation episode from interruption."
   claim_type: mechanism_hypothesis
@@ -29000,6 +29039,35 @@
     replay fires at all is MECH-092's. The downstream "does the corrected model help"
     measurement is gated on MECH-092's missing replay-output consumer and must not be
     posed as a fresh MECH-205 blocker.
+  governance_2026_09_01: |
+    [GFLAG-0075, govflags-20260901b] THE SHIPPED DEFAULT FOR THIS CLAIM'S GATING KNOB IS THE
+    KNOWN-VACUOUS VALUE. Recorded here; the code fix is chipped, not applied by this
+    governance session.
+
+    ree_core/utils/config.py:3175 still reads `pe_surprise_threshold: float = 0.001` -- the
+    exact value this claim's own evidence_quality_note root-causes as the EXQ-258a failure
+    (~53x too high against an observed mean surprise of 1.86e-5). The consumer is
+    agent.py:10550, `if surprise > self.config.pe_surprise_threshold`, where `surprise` is the
+    EXCESS over the PE EMA (agent.py:10548), not the raw magnitude. So any run enabling
+    surprise_gated_replay and inheriting the default writes ZERO VALENCE_SURPRISE entries and
+    READS VACUOUSLY GREEN. The EXQ-258b PASS used 1e-5, set in the experiment and never
+    promoted to the default.
+
+    ASYMMETRY WORTH NOTING: the sibling knob WAS fixed. pe_ema_alpha went 0.1 -> 0.02 and its
+    config comment (config.py:3167-3170) now spells out the calibration lesson in full. The
+    threshold's comment immediately below it (:3172-3174) says nothing about its own
+    miscalibration. One of the pair was learned from; the other was not.
+
+    WORSE THAN THE FLAG STATED: the vacuous value has been COPIED, not merely inherited.
+    v3_exq_887, v3_exq_887b and v3_exq_432 all hardcode pe_surprise_threshold=0.001, as does
+    v3_exq_258a (the original FAIL). Only v3_exq_258b uses 1e-5. So changing the default does
+    NOT retroactively fix those four, and any conclusion they drew from a VALENCE_SURPRISE
+    channel needs re-reading before it is cited.
+
+    BLAST RADIUS OF THE FIX IS SMALL: surprise_gated_replay defaults to False
+    (config.py:3166), so the threshold is live only for runs that opt in -- all of which are
+    currently vacuous. This claim is `status: stable`, which is precisely why it matters: the
+    highest-confidence tier, resting on a knob whose default cannot fire.
 - id: MECH-206
   title: "CA1 acts as a PE-proportional comparator that writes episodes to the surprise buffer: mismatch between CA3 prediction and entorhinal actual input produces a graded signal that tags the episode for offline replay and suppresses retrieval of the now-erroneous prediction."
   claim_type: mechanism_hypothesis
@@ -44166,6 +44234,33 @@
     available paths). Promotion requires ablation experiment demonstrating
     diversity/monostrategy improvement.
 
+  governance_2026_09_01: |
+    [GFLAG-0076, govflags-20260901b] THE ALLEGED MECH-092 / MECH-205 CONTRADICTION IS
+    DISSOLVED, AND ITS RESIDUE IS RECORDED HERE AS A DESIGN CONSTRAINT ON THIS SUBSTRATE.
+
+    THE FLAG'S CLAIM: MECH-092 (via depends_on MECH-289, Gupta 2010) asserts ANTI-RECENCY --
+    under-sampled paths replayed MORE. MECH-205 Refinement D (Mattar & Daw 2018) asserts
+    priority = PE x NEED -- a high-PE episode in a region the agent will never revisit has
+    zero need and is NOT prioritised. For a rare / high-PE / low-revisit region these predict
+    OPPOSITE allocations, on the same drive_state vector consumed by
+    HippocampalModule.replay() start-selection, so at most one can be operative.
+
+    WHY IT DISSOLVES, TWICE OVER. (1) TEXTUALLY the two address different stages -- MECH-092
+    governs anchor/start SELECTION, MECH-205 governs the PROPOSAL DISTRIBUTION -- and each
+    claim says so itself. (2) SUBSTANTIVELY there is nothing to contradict: MECH-289's
+    anti-recency is wired NOWHERE. This entry is ready:false, its implementation_hint reads
+    "not implemented", and no anti-recency code exists in ree_core/. At most one of the two
+    mechanisms exists today, so they cannot be in conflict now.
+
+    THE CONSTRAINT THIS LEAVES, which is why the note lives on SD-038 rather than on either
+    claim: WHEN anti-recency is built here, it MUST be reconciled with MECH-205's PE x NEED
+    prioritisation at the point where both would write the same drive_state vector. Building
+    SD-038 without that reconciliation is what would CREATE the contradiction the flag
+    predicted. The flag's own adjudicator is the right one and should be run as part of this
+    build, not deferred: a single 3-cell probe -- high-PE/high-need, high-PE/low-need,
+    low-PE/high-need. Do not re-derive it.
+    NOTE the flag was raised against a real risk; it is dissolved as a CURRENT contradiction,
+    not dismissed as a future one.
 - id: MECH-280
   pending_retest_after_substrate: true
   evidence_quality_note: |
@@ -91101,6 +91196,20 @@
     k=1 control arm is load-bearing.
     Remove this note once the falsifier is drafted with CTRL_VAR (= SD-070) and CTRL_H1 (= k=1).
 
+  governance_2026_09_01: |
+    [GFLAG-0090, govflags-20260901b] PREMISE NOT ESTABLISHED. This claim's anti-collapse
+    constraint requires the latents to stay predictive "across the ARC-004 temporal spread",
+    i.e. it needs the three depths to span DIFFERENT horizons. ARC-004's rate assertion was
+    narrowed to substrate_conditional on 2026-09-01: as built the depth cascade is three
+    PARALLEL first-order filters sharing one hardcoded constant (alpha_shared = 0.3), so the
+    three depths span no differential horizon at all. The predictive obligation would then be
+    the same obligation three times, which cannot supply the differential structure that is
+    this claim's entire source of anti-collapse leverage.
+    MECH-520 IS NOT REFUTED BY THIS -- it is not formulated in a way V3 can currently
+    instantiate. It is already substrate_conditional / implementation_phase v4, so no status
+    change follows; this note records WHICH upstream premise it is waiting on, which was
+    previously implicit. MECH-522 carries the same dependency and now declares it in
+    depends_on (added the same day); MECH-520 already declared it.
 - id: MECH-521
   title: "Perceptual slot OCCUPANCY is an emergent order parameter of a coupling-versus-lateral-inhibition settling competition, bounded above by an independently-set CAPACITY -- so capacity and occupancy are two distinct regulators rather than one. Occupancy is not read off coherence by counting related coherencies, which is circular (the relatedness criterion IS the grain decision) and ill-posed (coherence nests rather than partitions). Mechanism-agnostic about what sets the coupling constant."
   claim_type: mechanism_hypothesis
