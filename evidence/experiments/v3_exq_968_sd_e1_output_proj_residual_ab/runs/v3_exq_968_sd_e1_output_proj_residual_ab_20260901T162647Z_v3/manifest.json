@@ -1,0 +1,131 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_968_sd_e1_output_proj_residual_ab",
+  "run_id": "v3_exq_968_sd_e1_output_proj_residual_ab_20260901T162647Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-01T16:26:47Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "residual_no_material_difference",
+    "preconditions": [
+      {
+        "name": "encoder_trained",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, per every (seed, arm) cell.",
+        "measured": 0.23063954710960388,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "real_zworld_nondegenerate_h1",
+        "kind": "readiness",
+        "description": "CR_real(h=1) is finite, positive, and backed by at least 10 surviving real samples, every cell -- the same statistic cr_ratio(h=1)'s denominator uses (same-statistic discipline).",
+        "measured": 40.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "no_missing_action_calls",
+        "kind": "readiness",
+        "description": "agent.e1_action_buffer_stats()['missing_action_calls'] (E1DeepPredictor._action_cond_missing_calls) is 0 on every cell (both arms are ITEM-1-ON) -- confirms every actions= call this script made supplied a real action, never a silent zero-fallback.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "direct_action_supply_fraction",
+        "kind": "readiness",
+        "description": "The fraction of agent.e1(...) calls that received a genuine, verified non-None exactly-one-hot actions= argument, minimum across cells.",
+        "measured": 1.0,
+        "threshold": 0.999,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "cr_ratio_h1_finite",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) = CR_rollout(h=1)/CR_real(h=1) is finite and positive on every (arm, seed) cell. CR_real's finiteness is covered by real_zworld_nondegenerate_h1; this covers CR_rollout's centroid_norm independently collapsing toward 0 -- the collapse regime this SD is about -- which would otherwise make cr_ratio(h=1) NaN and silently satisfy neither the 'exceeds' nor 'below' bound below, reading as residual_no_material_difference for a comparison that never happened.",
+        "measured": 0.000922731617737356,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_cr_ratio_h1_relative_lift",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 2.2107741845044977,
+        "threshold": 3.0,
+        "statement": "cr_ratio(h=1) relative lift of ARM_residual over ARM_absolute, per seed, against LIFT_FACTOR derived from ARM_absolute's own cross-seed noise. See interpretation.dv_symmetry_note: a 'below' result is the mechanically expected direction (centroid-norm inflation), not evidence the residual form harms per-action divergence."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_cr_ratio_h1_relative_lift": true
+    },
+    "dv_symmetry_note": "ARM_absolute and ARM_residual are INDEPENDENTLY TRAINED (Phase 0b), not a shared frozen E1 with a flag toggled at read-out time -- so the h=1 frozen-model algebraic identity the contract test pins (residual = seed + absolute, an additive constant that would cancel in pairwise_dist/spread) does NOT apply here: Phase 0b's loss implicitly trains output_proj (and, via backprop, the whole E1 network) toward a DIFFERENT target under each flag (the full next-state under absolute; the state-to-state DELTA under residual), so the two arms' learned weights genuinely differ. An earlier draft of this script assumed the frozen-model invariance would still hold and added a precondition on it; a --dry-run smoke falsified that (spread differed ~44% after 2 training episodes), and the precondition was removed rather than loosened. Consequently pairwise_dist/spread (Phase 4c) and contrast_ratio/cr_ratio(h) (Phase 4/4b) are BOTH genuine, non-confounded discrimination statistics for this design -- see h1_spread_ratios_residual_over_absolute above and the per-seed cr_ratio comparison in per_seed_lift. CAVEAT ADDED AFTER STEP 4.5 RED-TEAM REVIEW (Fable, finding 3): because cr_ratio(h=1) = cr_rollout(h=1)/cr_real(h=1) and cr_real(h=1) is arm-invariant per seed (measured directly from the environment, unaffected by output_proj_residual), the label reduces to cr_rollout(h=1) = spread/centroid_norm, whose centroid_norm denominator the manipulation can shift mechanically (the residual arm's predictions include an additive state-derived term absent from the absolute arm's). This can push cr_ratio(h=1) in EITHER direction independent of genuine per-action-divergence movement -- a 'residual_materially_exceeds_absolute' OR a 'residual_materially_below_absolute' label can each be a centroid-norm artifact rather than a real change in per-action divergence quality. Check cr_rollout_spread_h1_absolute vs cr_rollout_spread_h1_residual in per_seed_lift (the numerator alone, unaffected by the centroid-norm effect) before crediting either direction to genuine divergence improvement. See the module docstring's DV-SYMMETRY INVARIANCE section for the full derivation and the correction it records.",
+    "non_gating_reference": {
+      "note": "cr_ratio(h) / e1coe_score_var(h) at h>1 are recorded per (seed, arm) below for ITEM 2's future baseline ONLY -- they do NOT gate this run's label. C3_VAR_THRESHOLD and CR_ROLLOUT_COLLAPSE_RATIO are ITEM 2's bars, not this A/B's.",
+      "registered_cr_rollout_collapse_ratio": 0.1,
+      "registered_c3_var_threshold": 0.002
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "dfac917680dcf1b994fe8a04d85ae1f622176db935676aa14a96e062746526d1",
+  "substrate_commit": {
+    "commit": "04ffe9f256c7d570d85619ffb940a480d937676a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 4,
+    "goal_state_present": false
+  }
+}
