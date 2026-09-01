@@ -3372,7 +3372,11 @@
       "task_claim_session_id": "igw-auto-igw-232-literature-proposal-for-arc-019-20260901T204138Z",
       "task_claim_claimed_at": "2026-09-01T20:41:38Z",
       "assigned_at": "2026-09-01T20:40:56Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-01T20:58:24Z",
+      "completion_summary": "ARC-019 lit-pull: 5 entries landed (REE_assembly 3a1ce681e9 + 4d0d8d4297), literature_confidence 0 -> 0.688",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -4573,6 +4577,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-01T15:22:43Z",
       "re_eligible_after": "2026-09-03T15:22:43Z"
+    },
+    {
+      "stable_hash": "ee9a95083114",
+      "igw_id_at_disposition": "IGW-20260901-232",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-019"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for ARC-019",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-01T20:58:24Z",
+      "re_eligible_after": "2026-09-03T20:58:24Z"
     }
   ]
 }
