@@ -1640,9 +1640,28 @@
     differentiation) is possible and must be measurable, not assumed away.
     Precedent for taking this seriously: MECH-058 asserted an adjacent
     "timescale separation" framing (for the z_self/z_world split) and was
-    directly tested in V3-EXQ-019 via lag-k autocorrelation -- it FAILED and
-    the claim was retired (superseded by MECH-069, "incommensurable domains,"
-    not timescale). ARC-004 could suffer the same fate.
+    retired (superseded by MECH-069, "incommensurable domains," not timescale).
+    ARC-004 could suffer the same fate.
+
+    [2026-09-01 governance, falsestmt-fix-20260901] CORRECTION -- THE PRECEDENT AS
+    PREVIOUSLY STATED WAS WRONG IN THREE RESPECTS, and it matters because GFLAG-0055
+    uses it as the central argument for superseding THIS claim. The original text
+    read that MECH-058 "was directly tested in V3-EXQ-019 via lag-k autocorrelation
+    -- it FAILED and the claim was retired". Verified 2026-09-01: (i) THE RETIREMENT
+    PREDATES THAT RUN -- MECH-058's superseded_at_utc is 2026-03-15, the V3 lag-k run
+    is 20260317T232028Z, two days LATER; (ii) the retirement basis was a
+    LEARNING-RATE ABLATION pair (V1 EXQ-002, V2 EXQ-019 terrain_timescale), not lag-k
+    autocorrelation; (iii) THE LAG-K RUN'S TIMESCALE CRITERIA BOTH PASSED -- that
+    run's own summary records C1 (dz_world_raw > dz_self) PASS and C2
+    (autocorr_corr[5] > autocorr_self[5]) PASS; its overall FAIL came from C3, a
+    reafference/SD-007 criterion, and C4, an underpowered step count (n=969 < 3000).
+    MECH-058's own note calls both FAILs "consistent with supersession: the test was
+    ill-posed".
+    SO THE PRECEDENT'S REAL SHAPE IS: a claim retired on an ILL-POSED TEST and
+    reframed on conceptual grounds -- which does NOT support "the falsifier fairly
+    failed", and if anything cuts toward narrowing rather than retiring. Do not quote
+    the original framing forward; it also propagated into
+    evidence/planning/e_ladder_realised_timescale_probe_20260820.md.
 
     MEASUREMENT: log z_beta(t), z_theta(t), z_delta(t) trajectories over an
     evaluation rollout (no code change needed -- reuse V3-EXQ-019's lag-k
@@ -34276,18 +34295,29 @@
     move (violating R1/R3).
 
     [2026-08-27 thought-digestion]: verified -- the contract test landed and
-    192/192 contracts PASSed at landing; the retest cohort this claim's own
-    text names (EXQ-471a/475a/483c/490g/524a) ran to completion under
-    StepHarness in the 2026-05-29 cohort autopsy (returned non_contributory for
-    an unrelated Tier-1 library-template gap, NOT a precision-callsite
-    failure -- StepHarness itself worked correctly in all five). StepHarness
-    has been the canonical loop pattern across the entire ree-v3 experiment
-    corpus for three-plus months since. This claim's own stated promotion
-    trigger ('Q-042 will move to candidate-resolved once the regression test
-    lands and at least one V3 experiment exercises both StepHarness and the new
-    test... completes successfully') has fired repeatedly. Recommend a status
-    flip from candidate_resolved to fully resolved -- flagged for governance,
-    not applied here (a status promotion is governance's call).
+    192/192 contracts PASSed at landing.
+
+    [2026-09-01 governance, falsestmt-fix-20260901] CORRECTION -- THE COHORT CLAIM
+    REMOVED FROM THE PARAGRAPH ABOVE WAS FALSE. It asserted that the retest cohort
+    this claim names (EXQ-471a/475a/483c/490g/524a) "ran to completion under
+    StepHarness ... StepHarness itself worked correctly in all five". THREE OF THE
+    FIVE WERE NEVER QUEUED. The cohort autopsy's own section 1
+    (evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md) states that
+    "the 490g letter itself was never queued ... only 483c and 524a got as far as a
+    manifest", and only those two have evidence directories. Both were FAIL (483c
+    mixed/weakens for SD-037; 524a non_contributory diagnostic). A second, smaller
+    error in the same paragraph: StepHarness is the canonical pattern for new
+    goal-pipeline/Tier-1 work, not "across the entire corpus" -- 101 of 1422
+    experiment files reference it.
+    THE CONCLUSION NONETHELESS SURVIVES, on evidence the original note did not cite:
+    V3-EXQ-530c (StepHarness, tagged ARC-016, 2026-05-08) records
+    c0_rv_moved_both_arms: true with arm0 rv reaching 0.0043-0.0050 from a
+    precision_init of 0.5 -- rv demonstrably live under the harness in a real run --
+    and at least six PASSing post-contract StepHarness manifests exist. So the
+    recommended promotion candidate_resolved -> resolved still stands; it is a
+    governance status call and is deliberately NOT applied here. Tracked as
+    GFLAG-0063, which the 2026-09-01 triage reclassified as NOT contested (it quotes
+    a trigger that was already applied on 2026-05-08).
 - id: EXT-001
   title: "Sycophancy: approval-seeking displaces principled goal pursuit."
   claim_type: external_failure_mode
@@ -35001,8 +35031,31 @@
   epistemic_category: substrate_conditional
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: a graded arbitration WEIGHT between a deliberative and
-    a habitual action channel must exist and be readable per-tick. IT DOES NOT, as of
-    2026-08-28. E1 (ree_core/predictors/e1_deep.py) is a slow world model whose own
+    a habitual action channel must exist and be readable per-tick.
+
+    [2026-09-01 governance, falsestmt-fix-20260901] CORRECTION -- THIS PRECONDITION
+    WAS RECORDED AS UNMET AND THAT IS FALSE. The original text read "IT DOES NOT, as
+    of 2026-08-28." A graded, per-tick-readable arbitration weight DOES exist and
+    predates that sentence by five weeks: SD-081 / MECH-477's _arbitrate_dual_system
+    (ree-v3 ree_core/predictors/e3_selector.py:1390, invoked at :2834 inside
+    select(), gated by E3Config.use_dualsystem_arbitration, default False) computes
+    w = sigmoid(gain*(u_habit_n - u_planned_n) + bias) and exposes it per tick via
+    self.last_arbitration. It landed ree-v3 4472811 on 2026-07-22 and was validated
+    by V3-EXQ-811a (PASS, 2026-07-24, supports MECH-477 + MECH-163: 1137/1137
+    non-degenerate ticks, w_mean 0.3645, w_sd 0.2266, w_range 0.9153,
+    rho_w_vs_relative_uncertainty 1.0).
+    WHAT ACTUALLY SURVIVES, and it is real but much narrower than the original
+    sentence: SD-081 arbitrates DEPTH under UNCERTAINTY -- its "habit" leg is the
+    same model-based E3 scorer truncated to dualsystem_habit_depth=2, not a cached
+    model-free policy -- whereas THIS claim asserts arbitration on URGENCY and
+    commitment, keyed to z_harm_a. Different independent variables, different
+    biology (Daw/Niv/Dayan 2005 vs Dolan & Dayan 2013). So the dose-response content
+    below remains unmeasured; the precondition is NOT unmet. Cheapest discriminator,
+    per the 2026-09-01 decision brief: re-run V3-EXQ-811a's design with z_harm_a
+    logged per tick alongside w -- driver-only, shipped substrate, no build.
+    Tracked as GFLAG-0080 (still open). NOTE the paragraph below is also stale on
+    line numbers: urgency_interrupt_threshold is config.py:1037 (not 964) applied at
+    agent.py:6507 (not 6048); the binary-interrupt substance is unaffected.
     module contract states it "is READ-ONLY with respect to z_self and z_world" -- it is
     an associative prior, not a habitual ACTION pathway, so the claim's named model-free
     leg has no substrate referent. The only implemented arbitration is
@@ -41785,10 +41838,23 @@
 
     [2026-08-27 thought-digestion]: implementation_note previously framed the
     ecological demonstration as OUTSTANDING; V3-EXQ-729 PASSED twice six weeks
-    before this pass and is absent from both the claim text and
-    claim_evidence.v1.json (a real indexer gap, not just stale prose --
-    governance flag raised separately, likely a same-day-requeue handling bug
-    in build_experiment_indexes.py).
+    before this pass and is not reflected in the claim text.
+
+    [2026-09-01 governance, falsestmt-fix-20260901] CORRECTION -- THE SENTENCE
+    ABOVE PREVIOUSLY ASSERTED A DEFECT THAT DOES NOT EXIST. It read that the 729
+    runs are "absent from ... claim_evidence.v1.json (a real indexer gap, not just
+    stale prose -- ... likely a same-day-requeue handling bug in
+    build_experiment_indexes.py)". All three parts are FALSE, verified against the
+    live index: BOTH 729 runs ARE present as MECH-268 entries, BOTH carry
+    scoring_excluded: "degenerate", and that is derived from the manifests' own
+    non_degenerate: false / degeneracy_reason "harm_class_fraction_on: zero spread
+    (constant=1, spread=0<=eps=1e-09)", present since their only commit 131b01408f
+    (2026-07-10) -- i.e. already true when the note was written. This is DEGENERACY
+    EXCLUSION WORKING AS DESIGNED, not an indexer bug; no fix is owed to
+    build_experiment_indexes.py and none should be attempted on this basis.
+    THE REAL AND STILL-OPEN QUESTION is different and narrower: can a PASS carrying
+    non_degenerate: false discharge this claim's ecological bar at all? Neither 729
+    run has a failure_autopsy. Raised via GFLAG-0070 (still open).
 - id: MECH-269
   evidence_quality_note: |
     [R4.b stamped 2026-05-29] behavioral_diversity_isolation:GAP-D Theory-4 R4.b decision-rule stamped on diagnostic-probe evidence: V3-EXQ-550 FAIL/supports MECH-269 2026-05-11T20:18Z (wired-but-untrained z_goal did NOT shift action-class entropy, so the substrate-level reading SURVIVES per the manifest's interpretation grid). Run is in claim_evidence.v1.json with evidence_direction=supports but scoring_excluded=diagnostic_probe (experiment_purpose=diagnostic), so the standard /governance pipeline cannot lift this claim off hold_pending_v3_substrate via exp_conf -- the stamp is a governance-level recognition of the V_s-pathology reading, NOT an experimental_confidence move. v3_pending=true preserved. Non-diagnostic behavioural sufficiency test (Q-040b) is owned by goal_pipeline:GAP-4 / V3-EXQ-490g Tier-1 retest cohort -- that is the path to lifting v3_pending. See evidence/planning/behavioral_diversity_isolation_plan.md 2026-05-29 GAP-D R4.b stamp section.
