@@ -208,3 +208,149 @@ Ordered by value per unit effort, judgement-free first:
 No claim status, confidence, `epistemic_category` or `v3_pending` moved in this pass. The seven
 resolutions above are fact corrections and one bookkeeping close; every disposition question is
 left open for governance. The 18 `contested_disposition` flags are out of scope here.
+
+---
+
+# Part 2 — contested dispositions researched (12 flags)
+
+Same session, second pass. Five read-only agents, partitioned by CLUSTER rather than
+arbitrarily, because several flags are two views of one decision. Each was asked for a decision
+BRIEF, not a verdict: verified premises, the real question, mutually exclusive options with the
+strongest argument against each, and whether the call is decidable on desk evidence or needs a
+run. Of the 18 open `contested_disposition` flags, 6 already have owners (GFLAG-0101..0105
+chipped to `/claim-synthesis` this cycle; GFLAG-0109 is the recorded MECH-479 residual), leaving
+these 12.
+
+**Nothing in Part 2 was applied.** These are briefs for governance to decide from.
+
+## Reclassifications — two flags are not what they are filed as
+
+- **GFLAG-0063 is NOT contested.** It quotes a promotion trigger that is ALREADY APPLIED — Q-042
+  reads `status: candidate_resolved` and has since 2026-05-08. The trigger it actually needs is
+  the next sentence in the same field. Its cited evidence is wrong twice over (it asserts a
+  five-run retest cohort "ran to completion under StepHarness"; the cohort autopsy's own section 1
+  records that three of the five were never queued), but its recommendation survives on evidence
+  it did not cite. Near-mechanical promotion to `resolved` plus a bookkeeping correction.
+- **GFLAG-0080 is contested, but about a far narrower question than it states.** Its central
+  assertion — "the graded arbitration weight has never been built" — is REFUTED: SD-081/MECH-477
+  landed `_arbitrate_dual_system` (ree-v3 `e3_selector.py:1390`, gated at `:2834`) on 2026-07-22,
+  and V3-EXQ-811a PASSed on it 2026-07-24, five weeks before the flag. What survives is real but
+  narrow: SD-081 arbitrates DEPTH under UNCERTAINTY, whereas MECH-235 claims arbitration on
+  URGENCY and commitment. Different independent variables.
+
+## The registry-contamination finding (extends Part 1's "self-documented, never applied")
+
+Part 1 found that flags' raising sessions write findings into the affected claim's own text. Part 2
+shows the same mechanism carrying FALSE statements into the registry. Four confirmed:
+
+| claim | registered text asserts | why false |
+|---|---|---|
+| MECH-268 | "a real indexer gap ... likely a same-day-requeue handling bug in `build_experiment_indexes.py`" | No such bug; the runs are correctly degeneracy-excluded (Part 1, GFLAG-0070). |
+| MECH-235 | "a graded arbitration WEIGHT ... must exist and be readable per-tick. IT DOES NOT, as of 2026-08-28." | Built 2026-07-22, validated by a PASS 2026-07-24. |
+| Q-042 | the named retest cohort "ran to completion under StepHarness ... in all five" | Three of five never queued, per the cohort autopsy's own section 1. |
+| ARC-004 | MECH-058 "was directly tested in V3-EXQ-019 via lag-k autocorrelation -- it FAILED and the claim was retired" | Retirement PREDATES that run by two days and rested on a learning-rate ablation; the lag-k run's TIMESCALE criteria (C1, C2) both PASSED. The FAIL came from a reafference criterion (C3) and an underpowered step count (C4, n=969 < 3000). |
+
+The ARC-004 case is the most consequential: GFLAG-0055 uses that precedent as its central argument
+for supersession, and the precedent's real shape -- a claim retired on an ill-posed test and
+reframed -- cuts the other way. The bad citation also propagates into at least one other planning
+artifact.
+
+## Per-cluster outcomes
+
+### ARC-004 depth-is-timescale (GFLAG-0055, 0088) — DECIDABLE NOW
+- The falsifier could NOT have passed: the depth cascade is three parallel first-order filters
+  sharing one hardcoded time constant applied to three within-tick functions of the same input.
+  ARC-004's registered non-degeneracy precondition describes wiring that has never existed.
+- WIRING, NOT TRAINING, is the binding constraint: on the real stack with UNTRAINED encoders,
+  serial smoothing reaches ARC-004's own PASS bar at d-b = +4.342 vs a 0.510 bar, 10/10 seeds,
+  fidelity check max|manual - stack.encode()| = 0.000e+00. This is what makes it a
+  "wrongly implemented" rather than "false" question.
+- Blast radius on RATE is 4 of 38 dependents, not the 36 quoted in the claim's own text; the other
+  ~34 depend on the stack being layered and differentiated, which the FAIL branch preserves.
+- ARC-004 has NO `evidence_quality_note` field and 0 entries in `claim_evidence.v1.json`. Whatever
+  is decided must CREATE the record, not amend one.
+- Brief recommends narrow + reclassify to `substrate_conditional` (medium confidence) over
+  supersede. THE PIVOT, stated by the brief: if "L-space IS a multi-timescale latent stack" is read
+  as the claim's assertion rather than its framing, supersede or split is correct instead.
+- Three corrections are owed regardless of disposition: create the `evidence_quality_note`; fix the
+  MECH-058 citation; add ARC-004 to MECH-522's `depends_on` (undeclared, GFLAG-0090's).
+
+### Replay & consolidation family (GFLAG-0076, 0086) — 3 of 4 sub-decisions DECIDABLE NOW
+- The alleged MECH-092/MECH-205 contradiction DISSOLVES twice over. Textually they address
+  different stages (anchor-selection vs proposal-distribution), each claim saying so itself.
+  Substantively, MECH-289's anti-recency is wired NOWHERE: SD-038 is `ready: false`, hint reads
+  "not implemented", and no anti-recency code exists in `ree_core/`. At most one exists.
+- THE REAL CONTRADICTION IS INTRA-CLAIM: MECH-092's `functional_restatement` says "standard
+  experience replay" while its own `notes` say "NOT standard experience replay" -- and MECH-289's
+  notes assert this was corrected 2026-04-24. It was not.
+- GFLAG-0086's reverse-dep list is 4; the real count is 25.
+- UNOWNED BLOCKER, named by no flag: `_do_replay` (`agent.py:10418/:10425`) computes replay
+  trajectories and discards them; no consumer exists anywhere in `ree_core/`, and the gap has NO
+  `substrate_queue.json` entry despite being cited by four claims.
+- "Building the consumer unblocks all four" is HALF TRUE: it unblocks MECH-092's benefit half and
+  MECH-205 leg (iii); MECH-121 and MECH-209 stay blocked on unbuilt balanced-replay scheduling AND
+  the MECH-439 conversion ceiling. Those two have zero experimental entries between them.
+
+### MECH-317 absorption (GFLAG-0066, 0084, 0087) — ONE DESK SESSION AWAY
+- The absorbing claim is NOT a validated survivor: ARC-071 has `genuine_exp_count 0`,
+  `exp_conf 0.0`, quadrant `plausible_unproven` -- THE SAME QUADRANT as MECH-317. The evidence-tree
+  discriminator that decided the 2026-08-15 orphan adjudication does not separate them at parent
+  level.
+- The children's support reduces to one un-autopsied scored FAIL (829) and one PASS degenerate on
+  its load-bearing criterion: 829a's `interpretation.criteria_non_degenerate.C2 = False`, with
+  `all_iso_on_cells_sit_on_forced_bar: true` and rho = 0.9999999999999998 -- an arithmetic identity,
+  not a measurement. Note the run's TOP-LEVEL `non_degenerate` reads True, so the run-level gate
+  reports clean while the criterion carrying the verdict is degenerate.
+- A PRIOR ADJUDICATION already exists and no flag cites it: EXP-0263/EVB-0227 was gated
+  2026-08-02 with `gating_reason` recommending exactly `superseded_by ARC-071/MECH-323/MECH-324`,
+  25 days before GFLAG-0066.
+- `SD-083` IS A CROSS-REGISTRY ID COLLISION: `claims.yaml` SD-083 is
+  `consolidation.offline_policy_consolidation_window`; `substrate_queue.json` sd_id SD-083 is the
+  MECH-324 reacquisition read. The 2026-09-01 V4 cut already reads it through the wrong lens. Any
+  action on "SD-083" without disambiguation hits the wrong object.
+- MECH-312b is a second orphaned consumer of MECH-317, named in no flag's `claim_ids`.
+- Brief recommends: write the absorption-check memo FIRST (the in-house MECH-318 template, no run
+  needed, and the owning closure node already owes it) and apply its verdict; do not apply a
+  disposition ahead of the memo. These three flags are five decisions; three are independent and
+  should be lifted out.
+
+### Standalone dispositions (GFLAG-0051, 0080, 0085, 0091)
+- **GFLAG-0051 is contested EXACTLY as stated** -- the one clean case in Part 2. A decision was
+  routed once (2026-08-18) and explicitly deferred by GFLAG-0043's resolution. Its cost estimate is
+  TOO HIGH, not too low: `Trajectory` already carries `action_objects` into `e3.select`, so no
+  signature change or threading remains -- only a nonlinear scoring term and the semantic decision.
+- **GFLAG-0085**: ARC-027 has 100% run overlap with SD-010 (6 of 6 entries shared, 0 independent),
+  and its 6 reverse-deps -- not the 2 the flag lists -- all already hold SD-010. Independent of the
+  merge question there is a LIVE SCORING ERROR: ARC-027's `confirmed_established` badge and
+  `lit_conf 0.821` are fed by nociception-anatomy literature the claim's own text declares out of
+  domain. Both of its nominated precedence signatures are compromised (one is another claim's
+  `weakens` entry; one came from a frozen-encoder run).
+- **GFLAG-0091**: the population is ~155, not 121 -- but 2 of the 6 named claims are DETECTOR FALSE
+  POSITIVES (INV-025's testable leg is built, run and passing; INV-026 likewise), and 103 of the
+  155 ALREADY carry the `substrate_conditional` label the flag proposes, none of them routed. The
+  gap is a missing EDGE, not a missing status. Brief recommends an edge-first policy staged behind
+  a dry-run measurement (one session, no run) that would convert "155 unrouted" into "N genuinely
+  ownerless, M merely unlinked" -- the ratio every option is implicitly priced against and that
+  nobody currently has.
+
+## Two corrections that went against the reporting session
+
+Recorded because they bear on how much weight Part 2 should carry.
+
+1. The session's spot-check of 829a's degeneracy read `criteria_non_degenerate` at TOP level and
+   got `None`, appearing to contradict the agent. The agent was right: the field lives under
+   `interpretation.criteria_non_degenerate` and does record `C2: False`. The session looked in the
+   wrong place.
+2. The session wrote "the resolved GFLAG-0097" into an agent's prompt. GFLAG-0097 is `open`. The
+   agent checked rather than reasoning from the false premise, and said so.
+
+## Cheapest next actions from Part 2
+
+1. Correct the four false registry statements above. Independent of every disposition.
+2. Register the missing replay-consumer `substrate_queue` entry -- a blocker cited by four claims
+   that nothing is scheduled to build.
+3. Rename the colliding `substrate_queue` sd_id off `SD-083`, and close that entry: the build it
+   gates landed 2026-07-31 with contract tests and a validating run.
+4. Promote Q-042 to `resolved` with the cohort correction (GFLAG-0063 -- reclassify out of
+   contested first).
+5. Write the MECH-317 absorption memo. No run; unblocks the largest cluster.
