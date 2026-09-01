@@ -1,0 +1,116 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_871b_mech090_e3_reselection_shortcircuit_retest",
+  "run_id": "v3_exq_871b_mech090_e3_reselection_shortcircuit_retest_20260901T212042Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-01T21:20:42Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-090",
+    "ARC-071"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-090": "supports",
+    "ARC-071": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "shortcircuit_working_confirmed",
+    "preconditions": [
+      {
+        "name": "arc071_chunk_commitments_observed_supra_floor",
+        "description": "The probe agent must register some genuine ARC-071 CHUNK-SOURCED commitment during the probe, or there is nothing to compute the ratio DV over. Identical scoping rationale to V3-EXQ-871a's own precondition of the same name.",
+        "control": "Count of probe ticks with agent.e3._persistent_committed_trajectory not None AND metadata['source'] == 'arc071_chunk', worst seed.",
+        "measured": 239.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "shortcircuit_opportunity_present",
+        "description": "ADDED after the Step 4.5 red-team review found the pre-review chunk_max_size=2 design gave the short-circuit ZERO opportunities to ever fire (the commit-tick's own bookkeeping advances _committed_step_idx to 1 within the SAME tick, so a length-2 chunk always reads as already exhausted on every later tick). At least one E3 tick must occur while an unexpired chunk-sourced commitment with room left to continue AND beta elevated already existed, or a shortcircuit_inert reading would be indistinguishable from a design that never gave the fix a chance to act.",
+        "control": "Count of E3 ticks where the PRIOR tick already held a chunk-sourced commitment with existing_readout_step_idx < chunk_length - 1 and beta_elevated, worst seed.",
+        "measured": 21.0,
+        "threshold": 0.0,
+        "comparator": ">",
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_sufficient_commitments_observed",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_discrimination_reached",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_sufficient_commitments_observed": true,
+      "C2_discrimination_reached": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "56ef176e6e9cecb427259dc41f8bc1bbf6640e8589fb0b15106309e6b100543f",
+  "substrate_commit": {
+    "commit": "87fa734a3e70d844f4cb4cc1feff83ca15fc29f6",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_chunk_proposal_injection": true,
+    "heartbeat.breath_period": 50,
+    "use_policy_chunking": true,
+    "use_chunk_all_position_credit": true,
+    "use_chunk_maintenance": true,
+    "use_chunk_proposal_injection": true,
+    "use_persistent_committed_program_handle": true,
+    "use_e3_reselection_shortcircuit": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 18165,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 2,
+    "goal_state_present": false
+  }
+}
