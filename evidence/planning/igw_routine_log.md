@@ -2348,3 +2348,4 @@ One line per hourly tick. ASCII only.
 2026-09-01T21:42:46Z GC removed worktree igw-232-literature-proposal-for-arc-019 (removed; branch deleted)
 2026-09-01T21:42:45Z GC sweep removed 1 orphan worktree(s), kept 9
 2026-09-01T21:44:09Z workset committed (regen -- 245 items, 27 ready, 0 in flight)
+2026-09-01T21:42:45Z SPAWN IGW-20260901-233 skill=/lit-pull prio=40 uuid=99a4afa4-0ffa-45b2-abcf-3692f9bfbcaf pid=25163 worktree=igw-233-literature-proposal-for-arc-052
