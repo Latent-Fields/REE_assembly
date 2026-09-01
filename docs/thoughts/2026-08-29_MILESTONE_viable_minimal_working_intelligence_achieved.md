@@ -1,4 +1,8 @@
-Status: milestone declaration
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-29_MILESTONE_viable_minimal_working_intelligence_achieved.md
+
+Original status line: milestone declaration
+
 Intake class: MILESTONE / NOT A NORMAL THOUGHT INTAKE
 Date: 2026-08-29
 Scope: REE-v3 as the current working organism; implications for the full REE lineage

@@ -2,6 +2,11 @@
 nav_exclude: true
 ---
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-31_play_as_developmental_information_hunger.md
+Claims registered: MECH-528, ARC-136
+
+
 # Play as developmental information hunger across expanding affordance spaces
 
 **Date:** 2026-08-31

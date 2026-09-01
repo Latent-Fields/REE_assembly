@@ -1,3 +1,7 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-30_project_research_metabolism_and_cadence.md
+Claims registered: GOV-METAB-1
+
 # Project metabolism: productive and consolidative phases in the REE research programme
 
 **Date:** 2026-08-30  

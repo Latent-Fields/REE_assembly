@@ -1,4 +1,9 @@
-Status: raw thought intake
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-29_versioning_v3_v4_prerequisite_cut_and_cutover.md
+Claims registered: GOV-V4CUT-1
+
+Original status line: raw thought intake
+
 Date: 2026-08-29
 Scope: REE version ontology; V3 qualification; V3→V4 transition governance
 Authority: exploratory programme thought; does not itself alter version routing, claim status, closure requirements, or release policy

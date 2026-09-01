@@ -2,8 +2,13 @@
 title: Canonical Readiness Umpire — Detecting When a Reference Organism Has Emerged
 date: 2026-08-31
 scope: full REE lineage
-status: thought
+status: processed
 ---
+
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-31_canonical_readiness_umpire.md
+Claims registered: GOV-UMPIRE-1
+
 
 # Canonical Readiness Umpire — Detecting When a Reference Organism Has Emerged
 

@@ -91333,3 +91333,264 @@
     the candidates themselves). The MECH-524 literature pull (targeted_review_interrupted_task_
     resumption) provides context but does not evidence any one of the four candidates over another.
   evidence: []
+- id: GOV-V4CUT-1
+  title: "V4 prerequisite cut: the V3->V4 scientific cutover is gated by qualification of the smallest transitive set of V3 capabilities/claims whose truth or functional adequacy V4 actually assumes -- each either sufficiently demonstrated or bounded-and-instrumented (known failure mode detectable and distinguishable from V4-specific effects) -- adjudicated by a dedicated cutover review, never by a global closure percentage. Version labels name organism/design generations; closure describes validation state; version membership is not inheritance, and inheritance is not closure membership. After qualification the programme legitimately occupies two states at once: V3 as validated simple reference organism, V4 as active development organism."
+  claim_type: governance_rule
+  subject: governance.version_transition.v4_prerequisite_cut
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-01'
+  depends_on:
+    - GOV-V3FREEZE-1   # composes: FREEZE captures the object before substrate moves; the CUT decides what blocks starting V4
+    - GOV-OPACITY-1    # repayment boundary reviewed at the same generation boundary
+    - Q-087            # V3 closure = governance acceptance (user decision 2026-08-01); the cut review is scoped WITHIN that definition
+  notes: >
+    From thought 2026-08-29_versioning_v3_v4_prerequisite_cut_and_cutover.md (intake
+    evidence/planning/thought_intake_2026-08-29_versioning_v3_v4_prerequisite_cut_and_cutover.md).
+    Registered as the adjudication FRAME; the derived classification of unresolved V3 nodes
+    (inherited_prerequisite / validation_of_inherited_capability / v3_only_characterisation /
+    v3_harness_or_calibration / diagnostic_debt / superseded_or_reposed_by_v4 /
+    v4_or_later_architecture / orphan_or_dependency_defect) should be a derived PROJECTION over
+    existing claims/plans (audit-report posture, like GOV-CEIL-1/GOV-APPLY-1), never a second
+    hand-maintained registry. Cutover risks are symmetric: too early embeds inherited V3 defects
+    in richer V4 behaviour (masquerading as novel phenomena); too late turns V3 into an endless
+    validation sink dominated by harness/calibration questions. The optimal cutover is a WINDOW.
+    Companion milestone record: 2026-08-29 MILESTONE declaration (Milestone 1, design objective);
+    Milestone 2 (prerequisite qualification) is what this rule gates. First worked input: the
+    replay-rebucketing intake's version-placement pressure on ARC-134/MECH-507/508/512/521 --
+    prefer claim SPLITS (minimal v3 prerequisite vs richer v4 mechanism) over wholesale
+    relabelling. governance_rule: no EXQ should be minted against this claim; it advances by
+    running the cut derivation and cutover review.
+  evidence: []
+- id: GOV-METAB-1
+  title: "Endogenous productive/consolidative cadence: the research programme alternates between evidence-production and evidence-assimilation modes, with the switch gated on measured consolidation pressure (autopsy debt, recurring symptom classes, queue starvation despite backlog, coordination fraction, stale premises) rather than calendar; the optimisation target is scientifically useful progress per unit cognitive resource while preserving interpretability -- not continuous utilisation. Restart criteria are part of consolidation: its output is a better initial state for the next productive phase, not merely a smaller backlog."
+  claim_type: governance_rule
+  subject: governance.operations.productive_consolidative_cadence
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-01'
+  depends_on:
+    - GOV-HELDOUT-1   # same process-claim discipline: adopting the practice is NOT evidence it works
+  notes: >
+    From thought 2026-08-30_project_research_metabolism_and_cadence.md (intake
+    evidence/planning/thought_intake_2026-08-30_project_research_metabolism_and_cadence.md).
+    PROJECT-METHOD claim about how the Assembly operates, NOT an REE cognitive/sleep claim -- the
+    raw thought's own intake semantics forbid inferring architectural claims from the wake/sleep
+    analogy, and per GOV-ANALOGY-1 the resemblance to REE sleep machinery is an analogy, never
+    evidence. Motivating observation: the 2026-08-28/30 halt-metabolise-restart slope change,
+    which PREDATES the Fable coordination experiment (credit separately). Existing machinery this
+    gives a theory to: the Step 1B pause-pressure gate + ledger (2 recorded outcomes as of
+    registration; known first-reading quirk -- the backward window measures the pause itself).
+    Self-stated weakeners (record outcomes against them): delayed-closure confound; immediate
+    regression to prior progress-per-token despite cleaner state; pauses not improving subsequent
+    validity/throughput; consolidation costing more than the inefficiency it prevents;
+    continuously-interleaved governance performing equally well. Discard the analogy if it
+    encourages ritualised pauses unsupported by measured state. No EXQ against this claim;
+    evidence = longitudinal progress-per-resource measurements across future cycles.
+  evidence: []
+- id: GOV-UMPIRE-1
+  title: "Canonical readiness umpire: REE maintains an explicit, inspectable process for recognising when a reproducible organism has become sufficiently coherent and competent that formal reference-organism review is warranted -- while remaining structurally unable to answer that question itself. The detector observes/derives/reports/escalates state transitions (NO_WARRANT / ADMISSION_PASS_WARRANTED / REFERENCE_ORGANISM_REVIEW_WARRANTED / USER_DECISION_REQUIRED / CANONICAL_OBSERVED) over explicit gates (identifiable organism; admission-doctrine candidate substrate; COEXISTENCE of mechanisms in the same animal; whole-organism non-degeneracy; behavioural evidence; reproducibility) -- never a readiness percentage, never self-canonisation. Warrants are withdrawable; profile-admission readiness and reference-organism readiness remain separate thresholds; for developmental REEs the reproducible object may be the developmental recipe and constitution rather than the adult state."
+  claim_type: governance_rule
+  subject: governance.canonical.readiness_umpire
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: full_lineage
+  registered_utc: '2026-09-01'
+  depends_on:
+    - GOV-CAPCONTRACT-1   # gates D/E lean on the capability/plasticity contract ("did not learn" != "could not have learned")
+    - GOV-V4CUT-1         # sibling generation-boundary governance; umpire state is an input to cutover review
+  notes: >
+    From thought 2026-08-31_canonical_readiness_umpire.md (intake
+    evidence/planning/thought_intake_2026-08-31_canonical_readiness_umpire.md). The canonical-profile
+    MECHANISM already exists (ree-v3 ree_core/utils/canonical_profile.py, _PROFILES deliberately
+    empty; admission doctrine in evidence/planning/architecture_epoch_investigation.md sections 7-9)
+    -- this claim owns the missing FRONT DOOR: machinery that notices when it is time to ask.
+    Key formulations: "canonical readiness is a set of gates, not a progress percentage";
+    "mechanisms demonstrated in different experimental animals do not compose into a competent
+    organism merely because they share a repository"; "the umpire may call for adjudication; it may
+    never adjudicate its own call." Anti-goals (design MUST NOT become): progress optimiser,
+    canonicality leaderboard, mechanism-popularity detector, self-certification loop, completion
+    detector, irreversible milestone. Escalate TRANSITIONS, not persistent states (Steward
+    principle). First implementation: deterministic detector deriving canonical_readiness.v1.json
+    + .md from experimental manifests; fingerprint-coexistence analysis (Gate C) is the substantive
+    new computation; unknown/false/unmeasured stay distinct states -- missing instrumentation must
+    not read as green. Expected immediate V3 verdict: NO_WARRANT, with reasons. governance_rule:
+    no EXQ against this claim; it advances by building the detector and observing its transitions.
+  evidence: []
+- id: MECH-527
+  title: "Stuckness-triggered attractor-escape exploration: a triggered, organism-level annealing analogue in which persistent CONFIDENCE-WITHOUT-RESOLUTION (settled attractor, repeated failure to reduce the active need/goal error -- natural trigger substrate: MECH-482's epistemic_deficit accumulator) transiently injects variation ABOVE the immediate-action level -- perturbing candidate trajectories, strategy proposals, retrieved attractors, goal decompositions, and the precision/authority of the currently dominant attractor, with escalating breadth under continued stuckness -- to escape a false bottom (a locally stable but persistently inadequate basin), then decays after successful resolution. Distinct from tonic or near-tie action noise: the trigger is unresolvedness, not uncertainty; two well-understood, similarly-good actions warrant NO exploration, while a high-confidence failing strategy warrants it strongly."
+  claim_type: mechanism_hypothesis
+  subject: policy.stuckness_triggered_attractor_escape
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-01'
+  depends_on:
+    - MECH-440   # distinguished-from: near-tie/self-annealing weight noise (weakens stands per V3-EXQ-959); MECH-527 is the re-scoped ecological function
+    - MECH-313   # distinguished-from: state-independent tonic floor (non-propagating per V3-EXQ-687)
+    - MECH-482   # the trigger quantity: epistemic_deficit (substrate LANDED 2026-08-29, ree-v3 b69a1b8, SD-102)
+    - MECH-314b  # distinguished-from: first-order uncertainty curiosity (uncertainty is not the trigger here)
+    - MECH-314c  # adjacent: learning-progress; MECH-527's post-resolution decay is the annealing analogue of progress saturation
+  location: docs/architecture/attractor_escape_exploration.md#mech-527
+  notes: >
+    From thought 2026-08-30_false_bottom_exploration_noise.md (intake
+    evidence/planning/thought_intake_2026-08-30_false_bottom_exploration_noise.md). The raw
+    thought's processing note is honoured: V3-EXQ-959 is GENUINE evidence against MECH-440's
+    near-tie/self-annealing operationalisation and STANDS; this claim re-scopes the function, it
+    does not explain the negative away. A valid falsifier requires a genuine FALSE-BOTTOM ecology
+    (locally attractive policy blocking a better delayed-return strategy; blocked shortest-path
+    requiring a counterproductive detour; rule change making a learned policy persistently fail;
+    sparse multi-step reward; globally suboptimal loop basin) with >=3 arms (no perturbation /
+    low-level action noise / stuckness-triggered strategy perturbation) and organism-level DVs
+    (escape probability, discovery latency, basin quality, post-resolution exploration decay,
+    no-unnecessary-exploration negative control). substrate_conditional: the trigger substrate
+    (MECH-482) exists, but the above-action-level perturbation channels and the false-bottom
+    ecology do not -- DO NOT queue an experiment against this until both exist; the
+    chip-20260830-mech440-targeted-lit-pull SHOULD widen its target to triggered/annealing-style
+    exploration so one lit-pull serves both claims. Plausibly V3-testable after that build --
+    routing is /governance's decision, flagged at registration.
+  evidence: []
+- id: MECH-528
+  title: "Self-relative affordance uncertainty: the model under calibration is P(outcome | self-state, world-state, action), not P(outcome | world-state, action) -- E1/E2 maintain uncertainty over action consequences conditional on the CURRENT SELF-STATE, so a change in the self (growth, capability change, damage) selectively makes previously learned environmental relations uncertain again and selectively reopens exploration of the AFFECTED affordance regions without a global novelty reset."
+  claim_type: mechanism_hypothesis
+  subject: development.self_relative_affordance_uncertainty
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-01'
+  depends_on:
+    - SD-025     # distinguished-from: density x unfamiliarity curiosity over the hippocampal map (place-relative, not self-relative)
+    - ARC-057    # the approach-from-curiosity interaction this would extend
+    - MECH-314b  # distinguished-from: generic uncertainty curiosity (conditioning variable here is the changing self)
+    - SD-030     # E2 self-forward-model (V4-deferred) -- the natural home of the self-conditional consequence model
+    - MECH-277   # action-space discovery / self-as-object stage 1 (the V3 beginning this builds on)
+    - ARC-074    # reward-free babbling Phase 0 (earliest self-calibration data source)
+  location: docs/architecture/play_information_hunger.md#mech-528
+  notes: >
+    From thought 2026-08-31_play_as_developmental_information_hunger.md (intake
+    evidence/planning/thought_intake_2026-08-31_play_as_developmental_information_hunger.md).
+    Developmental motor literature anchor (Adolph and colleagues: locomotor development requires
+    continual recalibration against changing bodily capabilities; affordance perception central)
+    NOT yet verified by a lit-pull -- verify before hardening. The cleanest falsifier shape is the
+    raw thought's recalibration experiment: alter a stable property of the agent's body/action
+    model after competence is established; CONFIRMING = affordance exploration selectively returns
+    to the affected region; WEAKENING = global novelty reset or no re-exploration.
+    substrate_conditional / v4: requires a self-state-conditional forward model (SD-030) and a
+    body that can change -- neither exists in V3. DO NOT build in V3; DO NOT queue an experiment.
+  evidence: []
+- id: ARC-136
+  title: "Play as emergent developmental information hunger: play-like behaviour emerges WITHOUT a dedicated play module when basic viability is secure, no urgent commitment dominates action selection, spare behavioural capacity is available, reachable states contain learnable (reducible) uncertainty, and exploration is predicted to produce learning progress -- and the FRONTIER of play MIGRATES across affordance spaces (bodily -> object -> compositional/causal -> social -> symbolic/counterfactual -> abstract) as learning progress in earlier spaces saturates, yielding an endogenous developmental curriculum rather than externally imposed stages. Mastery moves curiosity rather than extinguishing it; human neoteny is read as preservation of the developmental exploratory mode with progressively abstract objects. Explicitly NOT the strong equation play = information gain (play also serves bonding, practice, regulation, signalling)."
+  claim_type: architectural_commitment
+  subject: development.play_emergent_information_hunger_frontier_migration
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-01'
+  depends_on:
+    - MECH-528   # the self-relative uncertainty substrate the earliest (bodily) frontier runs on
+    - MECH-314c  # learning-progress signal -- the migration driver candidate
+    - MECH-482   # epistemic_deficit -- alternative/complementary formulation of "reducible uncertainty remains"
+    - SD-025     # existing curiosity drive; the thought's own comparison task: density x unfamiliarity may be insufficient to generate a curriculum
+    - ARC-019    # RIVAL: explicit staged curriculum gates (externally imposed stages risk hidden oracles); these two must eventually be discriminated, not merged
+    - INV-058    # RIVAL/distinguished: the explicit play_mode-gated language-bootstrap cluster (ARC-049/MECH-194) posits a play_mode primitive; ARC-136 asserts none is needed
+  location: docs/architecture/play_information_hunger.md#arc-136
+  notes: >
+    From thought 2026-08-31_play_as_developmental_information_hunger.md (intake
+    evidence/planning/thought_intake_2026-08-31_play_as_developmental_information_hunger.md).
+    The falsifier menu is the raw thought's candidate tests: play-without-play test (safe,
+    satiated, spare-capacity agent spontaneously performs informative actions with no extrinsic
+    payoff); anti-randomness discriminator (preferentially samples LEARNABLE uncertainty, not
+    merely novel or stochastic states); frontier-migration metric (intrinsic exploration shifts
+    from bodily/action variables toward object/causal/social variables as earlier learning
+    progress saturates); intrinsic-curriculum experiment (ordered transitions emerge without
+    stage-specific rewards). Digestion should pick and formalise what_would_answer from these.
+    substrate_conditional / v4: multi-affordance-space ecologies, object manipulation, and social
+    agents do not exist in V3; the anti-randomness discriminator alone MAY be V3-tractable against
+    SD-025's existing drive -- flagged for /governance routing, not decided at registration.
+    DO NOT build in V3; DO NOT queue an experiment. Literature anchors (Adolph; Gopnik/Schulz
+    information-sensitive play; Oudeyer/Kaplan intrinsic-motivation curricula; comparative play)
+    NOT yet verified -- lit-pull before hardening.
+  evidence: []
+- id: MECH-529
+  title: "Replay-driven rebucketing: accumulated consequential-divergence evidence -- typed insufficiency signals from decision outcomes (prediction/consequence mismatch, harm or goal error, repeated veto/conflict, divergent outcomes following apparently equivalent E1 states), never category labels -- drives split / merge / feature-reweighting / relation-discovery / event-boundary-revision / abstraction-change over E1's equivalence classes, via REPLAY of non-contiguous episodes under a common evaluative frame (retrospective representation learning: later experience revises how earlier experiences are bucketed). Candidate rebucketings are COUNTERFACTUALLY tested before adoption (does representing the distinction improve predictions under relevant alternative actions and contexts?), and consequential revisions preferentially complete in a decoupled/sleep phase whose job includes RE-INDEXING episodic traces so autobiographical addressability survives the representational change -- sleep as safe maintenance of the representational coordinate system itself. E3 must not become E1's teacher: downstream selection changes the learning conditions and evidence pressure on E1, never its truth content directly (non-oracular)."
+  claim_type: mechanism_hypothesis
+  subject: e1.replay_driven_rebucketing_decision_relevance_pressure
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-01'
+  depends_on:
+    - MECH-154   # E1 as addressable associative manifold incl. pattern separation/completion (the forward machinery)
+    - ARC-001    # E1 persistent perception-association substrate
+    - MECH-507   # action-relevant equivalence (compression/decompression) -- MECH-529 is the learning-pressure LOOP that revises those equivalence classes
+    - MECH-508   # attractor-as-generative-disposition -- assumed REVISABLE by this loop
+    - MECH-512   # compression depth -- minimal variable grain is what split/merge demonstrates
+    - ARC-134    # endogenous perceptual grain P0 -- grain must be CORRIGIBLE for this loop to have a substrate
+    - MECH-521   # occupancy/capacity settling competition (the grain operator's dynamics)
+    - ARC-007    # hippocampal sparse episodic traces + segmentation pressure (the replay source)
+    - MECH-147   # pattern separation / completion gates (the functional mapping targets)
+  location: docs/architecture/replay_rebucketing.md#mech-529
+  notes: >
+    From thought 2026-08-31_replay_rebucketing_decision_relevance.md (intake
+    evidence/planning/thought_intake_2026-08-31_replay_rebucketing_decision_relevance.md).
+    The genuinely-new content is the SLOW RETURN PATH (decision consequences -> representational
+    sufficiency evidence -> later E1 reorganisation); the forward path (representation -> state ->
+    task object -> commitment) is already owned by the depends_on set. The raw thought's 8-point
+    necessity test is the falsifier menu for digestion: object correction; object generalisation;
+    episode rebucketing without provenance erasure; measurable decision-relevance improvement;
+    non-oracular learning; replay-of-non-contiguous-episodes contribution; sleep/decoupling
+    contribution; index continuity after rebucketing. VERSION-PLACEMENT PRESSURE: implementation_
+    phase v4 with version_relevance v3_v4 is deliberate -- the thought argues minimal
+    non-degenerate forms of parts of this loop may be v3 PREREQUISITES hiding inside v4-labelled
+    claims; that is adjudicated by the GOV-V4CUT-1 prerequisite-cut audit (prefer claim SPLITS
+    over wholesale relabelling), not settled at registration. substrate_conditional: endogenous
+    grain (ARC-134 P0) is unbuilt and is this loop's substrate floor. DO NOT build in V3 ahead of
+    the cut audit; DO NOT queue an experiment.
+  evidence: []

@@ -1,13 +1,13 @@
 # Thought Sweep Report
 
-Generated: `2026-08-25T21:34:00.145443Z`
+Generated: `2026-09-01T04:23:36.549018Z`
 
 | metric | count |
 |---|---|
-| total thought files | 203 |
-| processed | 202 |
+| total thought files | 212 |
+| processed | 211 |
 | unprocessed | 1 |
-| processed missing `Processed in` links | 23 |
+| processed missing `Processed in` links | 32 |
 
 ## Unprocessed Queue
 
@@ -37,6 +37,15 @@ Generated: `2026-08-25T21:34:00.145443Z`
 - `2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md`
 - `2026-08-24_model_updates_should_be_gated_and_timed.md`
 - `2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md`
+- `2026-08-26_representation_authority_selection.md`
+- `2026-08-27_developmental_integration_and_readiness_programme.md`
+- `2026-08-29_MILESTONE_viable_minimal_working_intelligence_achieved.md`
+- `2026-08-29_versioning_v3_v4_prerequisite_cut_and_cutover.md`
+- `2026-08-30_false_bottom_exploration_noise.md`
+- `2026-08-30_project_research_metabolism_and_cadence.md`
+- `2026-08-31_canonical_readiness_umpire.md`
+- `2026-08-31_play_as_developmental_information_hunger.md`
+- `2026-08-31_replay_rebucketing_decision_relevance.md`
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md`
 
 ## Processed Snapshot
@@ -240,6 +249,15 @@ Generated: `2026-08-25T21:34:00.145443Z`
 - `2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md` (0 link(s) in `Processed in`)
 - `2026-08-24_model_updates_should_be_gated_and_timed.md` (0 link(s) in `Processed in`)
 - `2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md` (0 link(s) in `Processed in`)
+- `2026-08-26_representation_authority_selection.md` (0 link(s) in `Processed in`)
+- `2026-08-27_developmental_integration_and_readiness_programme.md` (0 link(s) in `Processed in`)
+- `2026-08-29_MILESTONE_viable_minimal_working_intelligence_achieved.md` (0 link(s) in `Processed in`)
+- `2026-08-29_versioning_v3_v4_prerequisite_cut_and_cutover.md` (0 link(s) in `Processed in`)
+- `2026-08-30_false_bottom_exploration_noise.md` (0 link(s) in `Processed in`)
+- `2026-08-30_project_research_metabolism_and_cadence.md` (0 link(s) in `Processed in`)
+- `2026-08-31_canonical_readiness_umpire.md` (0 link(s) in `Processed in`)
+- `2026-08-31_play_as_developmental_information_hunger.md` (0 link(s) in `Processed in`)
+- `2026-08-31_replay_rebucketing_decision_relevance.md` (0 link(s) in `Processed in`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (0 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

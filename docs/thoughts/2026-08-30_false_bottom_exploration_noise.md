@@ -1,4 +1,9 @@
-Status: raw thought intake
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-30_false_bottom_exploration_noise.md
+Claims registered: MECH-527
+
+Original status line: raw thought intake
+
 Date: 2026-08-30
 Scope: REE exploration; attractor escape; MECH-440 interpretation and future testing
 Authority: exploratory programme thought; does not itself alter MECH-440 claim status, governance, or experiment interpretation

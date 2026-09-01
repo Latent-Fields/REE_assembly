@@ -1,3 +1,7 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-31_replay_rebucketing_decision_relevance.md
+Claims registered: MECH-529
+
 # Replay-driven rebucketing: decision relevance as pressure on E1 representation
 
 **Date:** 2026-08-31  

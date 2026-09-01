@@ -1195,6 +1195,14 @@
     "title": "'Long life' in an artificial organism is not one property but at least four separable continuities -- cognitive/affective/mnemonic state continuity, parameter/plasticity continuity, body/homeostatic continuity, and ecological/world continuity -- which can be held or broken independently of one another. A persistent-organism experiment must therefore declare which of the four it preserves, because duration under a broken continuity is not developmental opportunity: an organism whose cognitive state persists while its body and world regenerate at every boundary is not aging in a world, and an organism observed for many ticks with its parameters frozen is not developing. The decomposition separates four confounds that a scalar 'lifespan' or 'ticks survived' cannot: age from layout luck, learning from reset effects, injury/recovery from death, and memory accumulation from environmental regeneration.",
     "type": "architectural_commitment"
   },
+  "ARC-136": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "development.play_emergent_information_hunger_frontier_migration",
+    "title": "Play as emergent developmental information hunger: play-like behaviour emerges WITHOUT a dedicated play module when basic viability is secure, no urgent commitment dominates action selection, spare behavioural capacity is available, reachable states contain learnable (reducible) uncertainty, and exploration is predicted to produce learning progress -- and the FRONTIER of play MIGRATES across affordance spaces (bodily -> object -> compositional/causal -> social -> symbolic/counterfactual -> abstract) as learning progress in earlier spaces saturates, yielding an endogenous developmental curriculum rather than externally imposed stages. Mastery moves curiosity rather than extinguishing it; human neoteny is read as preservation of the developmental exploratory mode with progressively abstract objects. Explicitly NOT the strong equation play = information gain (play also serves bonding, practice, regulation, signalling).",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1416,6 +1424,14 @@
     "title": "Meta-optimisation remains SUBORDINATE to provenance, epistemic honesty, and explicit human authority: an Assembly self-improvement loop must not shift governance authority, erase authorship distinctions or uncertainty, or increase artefact volume at the expense of quality.",
     "type": "governance_rule"
   },
+  "GOV-METAB-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.operations.productive_consolidative_cadence",
+    "title": "Endogenous productive/consolidative cadence: the research programme alternates between evidence-production and evidence-assimilation modes, with the switch gated on measured consolidation pressure (autopsy debt, recurring symptom classes, queue starvation despite backlog, coordination fraction, stale premises) rather than calendar; the optimisation target is scientifically useful progress per unit cognitive resource while preserving interpretability -- not continuous utilisation. Restart criteria are part of consolidation: its output is a better initial state for the next productive phase, not merely a smaller backlog.",
+    "type": "governance_rule"
+  },
   "GOV-OPACITY-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1517,12 +1533,28 @@
     "title": "Legibility by subtraction: the V3 closure package is produced by curating and compressing existing material, not by rewriting the research history. Separate the primary reader path (current work) from supporting research and from operational archaeology; retain audit history but remove it from the reader path; mark human vs agent provenance in the public account.",
     "type": "governance_rule"
   },
+  "GOV-UMPIRE-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.canonical.readiness_umpire",
+    "title": "Canonical readiness umpire: REE maintains an explicit, inspectable process for recognising when a reproducible organism has become sufficiently coherent and competent that formal reference-organism review is warranted -- while remaining structurally unable to answer that question itself. The detector observes/derives/reports/escalates state transitions (NO_WARRANT / ADMISSION_PASS_WARRANTED / REFERENCE_ORGANISM_REVIEW_WARRANTED / USER_DECISION_REQUIRED / CANONICAL_OBSERVED) over explicit gates (identifiable organism; admission-doctrine candidate substrate; COEXISTENCE of mechanisms in the same animal; whole-organism non-degeneracy; behavioural evidence; reproducibility) -- never a readiness percentage, never self-canonisation. Warrants are withdrawable; profile-admission readiness and reference-organism readiness remain separate thresholds; for developmental REEs the reproducible object may be the developmental recipe and constitution rather than the adult state.",
+    "type": "governance_rule"
+  },
   "GOV-V3FREEZE-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "governance.version_transition.v3_freeze_and_reference_record",
     "title": "Version-transition artefact gate: V4 substrate expansion must not erase the opportunity to freeze, reproduce, describe and inspect the completed V3. Before substantial V4 substrate expansion a defined minimum V3 closure package must exist AND double as a manipulable causal reference artefact for later cross-version comparison.",
+    "type": "governance_rule"
+  },
+  "GOV-V4CUT-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.version_transition.v4_prerequisite_cut",
+    "title": "V4 prerequisite cut: the V3->V4 scientific cutover is gated by qualification of the smallest transitive set of V3 capabilities/claims whose truth or functional adequacy V4 actually assumes -- each either sufficiently demonstrated or bounded-and-instrumented (known failure mode detectable and distinguishable from V4-specific effects) -- adjudicated by a dedicated cutover review, never by a global closure percentage. Version labels name organism/design generations; closure describes validation state; version membership is not inheritance, and inheritance is not closure membership. After qualification the programme legitimately occupies two states at once: V3 as validated simple reference organism, V4 as active development organism.",
     "type": "governance_rule"
   },
   "IMPL-001": {
@@ -7644,6 +7676,30 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: requires at least one code path where an E3 (or equivalent)\ncandidate's imagined-outcome evaluation could plausibly feed back into a durable store --\nworld-model parameters, a prediction-validation log, or a fact/schema entry -- rather than only\never informing the immediate action-selection decision. If no such path exists, this claim is\nvacuously satisfied and not yet meaningfully auditable (same caveat as ARC-092's own\nnon-degeneracy precondition).\n\nCONFIRMING: for every identified candidate-scoring site, the imagined outcome used to compute a\ncandidate's score is consumed ONLY by the selection/preference decision (which candidate wins,\nwhat prior it sets for a future waking test) and never appears as an input to a REAL prediction's\nvalidation, a world-model parameter update, or a new fact/schema-store write -- matching the\nformal separation Friston et al. 2015 derive between expected-free-energy policy evaluation and\ngenerative-model updating.\n\nFALSIFYING (VIOLATED BY): a code path where an imagined candidate's score, or the imagined\noutcome itself, is consumed by (a) a world-model or policy-parameter update, (b) scoring/\nvalidating a real prediction's accuracy, or (c) a fact/schema-store write -- without an\nintervening real, enacted observation. A single confirmed instance is a targeted MECH-094/E3\ngate fix, not a rejection of the principle (mirrors ARC-092's own falsification handling).\n"
   },
+  "MECH-527": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "policy.stuckness_triggered_attractor_escape",
+    "title": "Stuckness-triggered attractor-escape exploration: a triggered, organism-level annealing analogue in which persistent CONFIDENCE-WITHOUT-RESOLUTION (settled attractor, repeated failure to reduce the active need/goal error -- natural trigger substrate: MECH-482's epistemic_deficit accumulator) transiently injects variation ABOVE the immediate-action level -- perturbing candidate trajectories, strategy proposals, retrieved attractors, goal decompositions, and the precision/authority of the currently dominant attractor, with escalating breadth under continued stuckness -- to escape a false bottom (a locally stable but persistently inadequate basin), then decays after successful resolution. Distinct from tonic or near-tie action noise: the trigger is unresolvedness, not uncertainty; two well-understood, similarly-good actions warrant NO exploration, while a high-confidence failing strategy warrants it strongly.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-528": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "development.self_relative_affordance_uncertainty",
+    "title": "Self-relative affordance uncertainty: the model under calibration is P(outcome | self-state, world-state, action), not P(outcome | world-state, action) -- E1/E2 maintain uncertainty over action consequences conditional on the CURRENT SELF-STATE, so a change in the self (growth, capability change, damage) selectively makes previously learned environmental relations uncertain again and selectively reopens exploration of the AFFECTED affordance regions without a global novelty reset.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-529": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "e1.replay_driven_rebucketing_decision_relevance_pressure",
+    "title": "Replay-driven rebucketing: accumulated consequential-divergence evidence -- typed insufficiency signals from decision outcomes (prediction/consequence mismatch, harm or goal error, repeated veto/conflict, divergent outcomes following apparently equivalent E1 states), never category labels -- drives split / merge / feature-reweighting / relation-discovery / event-boundary-revision / abstraction-change over E1's equivalence classes, via REPLAY of non-contiguous episodes under a common evaluative frame (retrospective representation learning: later experience revises how earlier experiences are bucketed). Candidate rebucketings are COUNTERFACTUALLY tested before adoption (does representing the distinction improve predictions under relevant alternative actions and contexts?), and consequential revisions preferentially complete in a decoupled/sleep phase whose job includes RE-INDEXING episodic traces so autobiographical addressability survives the representational change -- sleep as safe maintenance of the representational coordinate system itself. E3 must not become E1's teacher: downstream selection changes the learning conditions and evidence pressure on E1, never its truth content directly (non-oracular).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -9434,7 +9490,7 @@
   },
   "SD-082": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "candidate_substrate_landed",
     "subject": "pfc.lateral_pfc.common_mode_invariant_trained_rule_to_action_readout",
     "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default.",
