@@ -971,9 +971,9 @@
       "summary": "commitment_closure:GAP-7 still reads status=blocked, but the MECH-091 salient-event trigger wiring LANDED (ree-v3 6293b2395248, 2026-08-17) and its redesigned validation V3-EXQ-944b RAN PASS/supports 2026-08-25 and is UNREVIEWED. Walk pending_review for 944b, then flip the GAP-7 node and clear the substrate_queue pointer; debt-classification record: evidence/planning/work_graph_debt_classification_20260827.md.",
       "raised_by_session": "f-dominance-regime-retest-ddbe10",
       "raised_at": "2026-08-27T20:12:26Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:06:13Z",
+      "resolution_note": "PARTIALLY OVERTAKEN, applied REE_assembly 008d91c0ce. The node claim HELD: commitment_closure:GAP-7 still read status=blocked with a live block naming the 944 autopsy and routing to queue-experiment. Flipped to done -- the wiring landed (ree-v3 6293b2395248, 2026-08-17, two previously-unwired triggers into phase_reset at 4 call sites) and V3-EXQ-944b validated it (PASS/supports, 2026-08-25). blocking_external cleared. MECH-091's live_status forwarded (it read as_of 2026-08-22 while its own evidence_quality_note carried the 2026-08-28 944b entry). THE FLAG'S OTHER HALF IS NOW FALSE: it says 944b is UNREVIEWED and asks that pending_review be walked. True when raised 2026-08-27; the 2026-08-28 cycle reviewed and applied it. CAVEAT CARRIED FORWARD, which the flag omitted: the PASS rests on FIVE OF SIX SEEDS -- seed 7 is red on episode_admits_cycle_contrast / rate_match_holds, unscored not refuting."
     },
     {
       "flag_id": "GFLAG-0068",
