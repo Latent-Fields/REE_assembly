@@ -1325,9 +1325,9 @@
       "summary": "V3-EXQ-862a crashed the manipulation, not the run: its ON/OFF arms were functionally identical for the z_harm_a-to-dACC PE readout (the borrowed 490b 0.85 gate threshold never crossed for z_harm_a's own V_s), confirmed by failure_autopsy_dacc-cluster-862a-870a_2026-08-03. /diagnose-errors 2026-08-28 root-caused this (per-stream threshold never calibrated against z_harm_a's own V_s distribution) and queued successor V3-EXQ-862b (supersedes V3-EXQ-862a) with an empirically-calibrated z_harm_a-specific gate threshold (0.995) plus a new PreflightVsGateZHarmANotHeld precondition. FOLLOW-ON OWED: once V3-EXQ-862b's run lands, set 862a manifest v3_exq_862a_q040c_dacc_pe_weight_delta_correlation_20260802T195935Z_v3's evidence_direction to 'superseded' with a note naming V3-EXQ-862b, and rebuild the index. Nothing else is owed.",
       "raised_by_session": "metaworker-chip-20260827-diagnose-mech269b-q040c-nonengagement",
       "raised_at": "2026-08-28T20:42:02Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T11:57:21Z",
+      "resolution_note": "CLOSED 2026-09-01 (gov-flagtriage-20260901) as a bookkeeping desync, no edit owed. Q-040's own evidence_quality_note has said since 2026-08-29 (commit cdd772b0dd) that 'GFLAG-0092 (which recorded the 862a-level version of this diagnosis) is OVERTAKEN by this entry and resolved' -- but the flag record still read status: open, resolved_at: null, so the registry contradicted the claim. Substance: successor V3-EXQ-862b ran 2026-08-28T22:37Z declaring supersedes 862a, and was itself VOIDED by confirmed failure_autopsy_V3-EXQ-862b_2026-08-29 (DV structurally insensitive), ratified at the 2026-08-29T15:46Z governance walk; Q-040 is now epistemic_category answer_state. RESIDUAL DELIBERATELY NOT ACTIONED: 862a's manifest reads non_contributory rather than the literal 'superseded' this flag asked for. That is left as-is on purpose -- 862b produced no valid replacement reading, so calling 862a superseded would assert a substitution that did not occur. Re-raise if governance prefers the literal enum."
     },
     {
       "flag_id": "GFLAG-0093",
