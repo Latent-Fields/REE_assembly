@@ -914,9 +914,9 @@
       "summary": "Q-042's own stated promotion trigger ('move to candidate-resolved once the regression test lands and at least one V3 experiment exercises both StepHarness and the new test... completes successfully') has fired repeatedly since 2026-05-08: the contract test landed (ree-v3/tests/contracts/test_running_variance_contract.py, commit 5cff117), the named retest cohort (EXQ-471a/475a/483c/490g/524a) ran under StepHarness successfully (2026-05-29), and StepHarness has been the canonical loop pattern across the entire experiment corpus since. Status is still candidate_resolved rather than fully resolved. Recommend governance review a status flip -- a promotion decision, not digestion's to make. Surfaced by thought-digestion 2026-08-27 (grouped mode, group C).",
       "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
       "raised_at": "2026-08-27T19:28:12Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T19:32:36Z",
+      "resolution_note": "APPLIED REE_assembly 3444b9f632. Q-042 promoted candidate_resolved -> resolved (user-approved 2026-09-01), decision logged via record_decision.py. Answer of record: dual-read, delivered by Option A (contract-enforcement via StepHarness) rather than Option B (hoist). IMPORTANT CORRECTION to this flag's own evidence: it cited the five-run retest cohort (EXQ-471a/475a/483c/490g/524a) as having 'ran under StepHarness successfully'. THREE OF THE FIVE WERE NEVER QUEUED -- the cohort autopsy's own section 1 says so, and only 483c and 524a reached a manifest, both FAIL. The promotion nonetheless stands on evidence the flag did not cite: V3-EXQ-530c records c0_rv_moved_both_arms true with arm0 rv reaching 0.0043-0.0050 from precision_init 0.5. Also retires the singleton status value candidate_resolved."
     },
     {
       "flag_id": "GFLAG-0064",
