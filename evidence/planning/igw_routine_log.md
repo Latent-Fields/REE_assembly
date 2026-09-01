@@ -2345,3 +2345,6 @@ One line per hourly tick. ASCII only.
 2026-09-01T20:40:56Z SPAWN IGW-20260901-232 skill=/lit-pull prio=40 uuid=4c4bec28-b4e9-4b18-a4d8-12c9ceda70d8 pid=96048 worktree=igw-232-literature-proposal-for-arc-019
 2026-09-01T20:58:24Z auto-defer igw-232-literature-proposal-for-arc-019 hash=ee9a95083114 for 48h (complete)
 2026-09-01T20:58:49Z complete igw-232-literature-proposal-for-arc-019 spawned->completed outcome=NO_OP: ARC-019 lit-pull: 5 entries landed (REE_assembly 3a1ce681e9 + 4d0d8d4297), liter
+2026-09-01T21:42:46Z GC removed worktree igw-232-literature-proposal-for-arc-019 (removed; branch deleted)
+2026-09-01T21:42:45Z GC sweep removed 1 orphan worktree(s), kept 9
+2026-09-01T21:44:09Z workset committed (regen -- 245 items, 27 ready, 0 in flight)
