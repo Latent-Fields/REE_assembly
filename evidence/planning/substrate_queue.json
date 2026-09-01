@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "c3-build1-epideficit-readiness-20260901",
-  "last_updated_utc": "2026-09-01T07:55:33Z",
+  "last_updated_utc": "2026-09-01T13:20:46Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -8710,6 +8710,26 @@
           "validation_owed": "A V3-EXQ-964 successor (NEW letter) arming the readiness config on both arms, gating on n_targets>=2 AND a non-constant per-candidate readout (last_readout_deficit_range > 0 / last_lp_dev_range > 0) BEFORE C2 is scored. NOT queued by this build session."
         }
       ]
+    },
+    {
+      "sd_id": "mech317-action-chunk-boundary-instrument",
+      "title": "Action-stream chunk-boundary instrument -- the DV MECH-317 was registered to be falsified by, and the one property the ARC-071/MECH-323/MECH-324 absorption does NOT cover",
+      "node_class": "complicated (buildable)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": true,
+      "design_doc": "docs/architecture/mech_317_absorption_check.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-317",
+        "ARC-071"
+      ],
+      "failure_record": [],
+      "implementation_hint": "REGISTRATION ONLY -- this entry records an instrument debt so it stops living in claim prose; it does NOT authorise a build. Need: a readout over the EXECUTED action stream that localises chunk boundaries as action-distribution entropy TROUGHS across time (Smith & Graybiel start-stop bracketing). DO NOT reuse first_action_entropy (ree-v3 hippocampal/module.py:757) -- verified 2026-09-01 to be the entropy of the first-action-class distribution over a candidate PROPOSAL POOL at ONE decision point, i.e. a diversity statistic over proposals, not a temporal boundary detector over executions. No transformation of one yields the other. Exhaustive search of ree_core/ for entropy_trough / chunk_boundary / action_distribution_entropy / boundary_detect / boundary_readout returns ZERO hits each, so nothing existing can be adapted. Serves two consumers: MECH-317's falsifier (reused verbatim per that claim's own instruction -- do not redraft), and ARC-071's LEG 3, which its own what_would_answer records as NEVER ATTEMPTED. Both are behavioural readouts; the ARC-071 family DVs are all library counters (chunk_acc_n_formed, crystallisation_counter, n_reacquisitions, r_reacq) and cannot serve either.",
+      "priority": 2,
+      "added_session": "mech317-apply-20260901",
+      "last_seen_session": "mech317-apply-20260901",
+      "added_utc": "2026-09-01T13:20:46Z",
+      "source_memo": "docs/architecture/mech_317_absorption_check.md (verdict B, recommendation 3)"
     }
   ],
   "schema_version": "substrate_queue/v2"

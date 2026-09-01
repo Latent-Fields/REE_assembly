@@ -54054,6 +54054,7 @@
   subject: rule_discovery.behavioural_pattern_compression
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_conditional   # set 2026-09-01 (mech317-apply-20260901): mechanism absorbed into ARC-071/MECH-323/MECH-324; this claim now carries only the action-stream boundary DV, whose instrument does not exist. See docs/architecture/mech_317_absorption_check.md.
   live_status:
     reading: candidate/v3_pending
     as_of: 2026-07-11
@@ -54123,6 +54124,22 @@
     Not yet experimentally tested. Falsifying experiments are
     SD-054-tractable but require new instrumentation (action-
     chunk boundary detection); EXQ design deferred.
+
+    [2026-09-01 governance, mech317-apply-20260901, docs/architecture/mech_317_absorption_check.md]:
+    NARROWED, NOT RETIRED. epistemic_category set substrate_conditional. This claim's
+    compression MECHANISM is absorbed into the built ARC-071/MECH-323/MECH-324 cluster,
+    which convergently re-derived it under a different architectural parent (ARC-069, not
+    ARC-064) -- policy_chunking.py references neither MECH-317 nor ARC-064 nor MECH-318.
+    What this claim still carries alone is its DEPENDENT VARIABLE: chunk boundaries
+    detectable as action-distribution entropy troughs in the executed action stream. The
+    instrument for that does not exist, exactly as the paragraph above already conceded in
+    2026-05-10. NEAR-MISS, recorded so it is not mistaken for the instrument:
+    first_action_entropy (ree-v3 hippocampal/module.py:757) is the entropy of the
+    first-action-class distribution over a candidate PROPOSAL POOL at ONE decision point --
+    a diversity statistic, not entropy over the executed stream across time. No
+    transformation of one yields the other. Status stays candidate and v3_pending stays
+    true; genuine_exp_count is 0 so nothing is retested and no confidence moves. Answers
+    GFLAG-0066 and GFLAG-0087.
   location: docs/architecture/rule_apprehension_layer.md
 
   what_would_answer: >
@@ -54164,6 +54181,28 @@
 
     [2026-08-27 thought-digestion]: governance flag raised separately naming
     both sides and the reverse-deps, routed to /claim-synthesis.
+
+    [2026-09-01 governance, mech317-apply-20260901]: MERGE PARTIALLY CONFIRMED AND
+    APPLIED. The absorption check this block asked for is written and landed:
+    docs/architecture/mech_317_absorption_check.md (REE_assembly 754a512147), against
+    the docs/architecture/mech_318_absorption_check.md template. VERDICT (B) PARTIALLY
+    ABSORBED. The MECHANISM is absorbed into ARC-071/MECH-323/MECH-324 -- options
+    triple, compressibility trigger, reusable-unit creation and temporally-extended
+    selection all map onto built substrate, with initiation_set and termination_condition
+    as first-class fields at policy_chunking.py:513-514 under a docstring citing Sutton
+    1999 directly. THE DEPENDENT VARIABLE IS NOT ABSORBED and is what this claim now
+    carries: no action-stream boundary readout exists anywhere in ree_core
+    (entropy_trough / chunk_boundary / action_distribution_entropy / boundary_detect /
+    boundary_readout -- zero hits each). This is the fallback (c) stated immediately
+    above, and the falsifier is reused VERBATIM as that fallback instructs. The
+    proposed FULL supersede is REFUSED on the evidence tree: ARC-071 reads
+    genuine_exp_count 0 / exp_conf 0.0 / plausible_unproven, the SAME quadrant as this
+    claim, so the discriminator that settled the 2026-08-15 orphan adjudication does not
+    separate them. Instrument debt registered as substrate_queue entry
+    mech317-action-chunk-boundary-instrument. NOT APPLIED, left for governance: whether
+    MECH-318's and MECH-312b's depends_on edges should be re-pointed -- under PARTIAL
+    absorption this claim survives, so those edges remain valid as they stand, and
+    re-pointing would only be owed under a full supersede.
   digestion_note: "[2026-08-27 thought-digestion, session responsibility-epistemic-hygiene-d6f9d3] MERGE PROPOSAL PENDING /claim-synthesis confirmation against ARC-071/MECH-323/MECH-324 -- see what_would_answer for full detail and GFLAG (raised same session). Remove this note once claim-synthesis resolves the merge question."
 - id: MECH-318
   title: "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. ABSORPTION CHECK 2026-05-10: VERDICT (B) PARTIALLY ABSORBED. Within-V3 functional weight is borne by SD-033a LateralPFCAnalog rule_state buffer (W1 EMA recurrence + W3 substrate-readiness + W4 downstream bias) plus ARC-062 Phase 1 gated_policy multi-stream context discriminator (W3 per-tick rule-context discrimination + W4 score-aggregation training pressure), with ARC-062 Phase 3 GAP-C planned wiring closing the loop between the two. Two residual gaps remain: W2 (multi-task training distribution -- blocked on multi-rule-context substrate, SD-054 single-context insufficient) and W5 (cross-episode hidden-state continuity -- likely V4-scope; SD-033a per-episode reset is architecturally load-bearing for the rest of the agent state machine). Empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate. See REE_assembly/docs/architecture/mech_318_absorption_check.md."
@@ -56598,6 +56637,22 @@
     persisting -- this would show the compression exists mechanically but
     confers no computational benefit, undercutting the claim's stated
     Benefit clause.
+
+    [2026-09-01 governance, mech317-apply-20260901, docs/architecture/mech_317_absorption_check.md]:
+    LEG 3'S INSTRUMENT DEBT IS NOW NAMED AND REGISTERED, not left in prose. LEG 3 needs a
+    behavioural readout over the EXECUTED action stream; this claim's family has none --
+    every ARC-071/MECH-323/MECH-324 DV is a library counter (chunk_acc_n_formed,
+    crystallisation_counter, n_reacquisitions, r_reacq), which cannot localise a boundary
+    or measure latency on a chunked sub-sequence. Registered as substrate_queue entry
+    mech317-action-chunk-boundary-instrument (registration only, NOT a build
+    authorisation), shared with MECH-317, whose own falsifier needs the same instrument.
+    DO NOT mistake first_action_entropy (ree-v3 hippocampal/module.py:757) for it: verified
+    2026-09-01 to be proposal-pool diversity at ONE decision point, not entropy over the
+    executed stream across time. Recorded here because the MECH-317 absorption check found
+    that this claim is the natural host for the debt -- and because carrying such a gap only
+    in claim narrative is the failure mode GFLAG-0083 documents on this very claim, whose
+    live text still names a superseded sd_id. NO status, epistemic_category or depends_on
+    change on ARC-071 by this pass.
   functional_restatement: >
     ARC-071 names the composition direction of the dynamic
     policy-primitive regranularisation cluster. When a sequence
