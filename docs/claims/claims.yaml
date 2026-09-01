@@ -1611,13 +1611,15 @@
 - id: ARC-004
   title: "L-space is a multi-timescale latent stack."
   claim_type: architectural_commitment
-  epistemic_category: standard
+  epistemic_category: substrate_conditional
+  awaiting: serial depth-cascade wiring in LatentStack.encode (z_delta over z_theta history, z_theta over z_beta) -- as-built the three layers are parallel filters sharing alpha_shared=0.3
+  assembly_status: queued
   subject: L_space.latent_stack
   polarity: asserts
   status: active
   live_status:
-    reading: active
-    as_of: 2026-07-11
+    reading: active/substrate_conditional -- LAYERED+DIFFERENTIATED stands; the RATE (timescale-stratification) assertion is narrowed and awaits serial-cascade wiring
+    as_of: 2026-09-01
     needs_review: false
   depends_on:
     - INV-013
@@ -1672,6 +1674,14 @@
     unpacking by layer, a small extension since the per-layer tensors already
     exist inside LatentStack.encode's settling loop).
 
+    [2026-09-01 govapply-20260901] THE MEASUREMENT BELOW IS DEGENERATE AS-BUILT -- do not
+    run it as written. "No code change needed" is false: the depth cascade is three PARALLEL
+    first-order filters sharing one time constant, applied to within-tick functions of the
+    same input, so a per-layer lag-k autocorrelation over the current stack measures three
+    filters that are identical by construction. A genuine test requires the SERIAL wiring
+    this claim's precondition assumes (z_delta reading z_theta's history, z_theta reading
+    z_beta's), which is the substrate this claim now awaits. See evidence_quality_note.
+
     ANSWER "multi-timescale" (PASS) if the layers show a monotonic ordering of
     effective persistence -- z_delta autocorrelation half-life > z_theta's >
     z_beta's -- by a margin exceeding cross-seed noise (>= 0.8 SD of the
@@ -1687,6 +1697,39 @@
     layers' functional roles but would mean "multi-timescale" is the wrong
     description of why they work, structurally analogous to what happened to
     MECH-058, and would prompt a supersession review of ARC-004's framing.
+  evidence_quality_note: |
+    [2026-09-01 governance, govapply-20260901] CREATED, not amended -- ARC-004 had no
+    evidence_quality_note and has ZERO entries in claim_evidence.v1.json. This claim has
+    never been tested; nothing below is a re-reading of an existing record.
+
+    THE NON-DEGENERACY PRECONDITION DESCRIBES WIRING THAT HAS NEVER EXISTED. The
+    precondition text (above) argues the claim is not vacuously true because timescale
+    differentiation "must emerge from the recursive top-down architecture (z_delta reads
+    only z_theta's history, z_theta reads only z_beta's)". As built, the depth cascade is
+    THREE PARALLEL first-order filters sharing one hardcoded time constant
+    (alpha_shared = 0.3), each applied to a within-tick function of the SAME input -- not a
+    serial cascade. So the RATE assertion could not have been confirmed or falsified by any
+    run against the current stack: the measurement described under MEASUREMENT would be
+    degenerate by construction, not a null result.
+
+    WIRING, NOT TRAINING, IS THE BINDING CONSTRAINT -- measured, not inferred. On the real
+    stack with UNTRAINED encoders, substituting SERIAL smoothing reaches ARC-004's own PASS
+    bar at (z_delta - z_beta) half-life delta = +4.342 against a 0.510 bar, 10/10 seeds,
+    with a fidelity check of max|manual - stack.encode()| = 0.000e+00. The claim is
+    therefore "wrongly implemented", not "false".
+
+    BLAST RADIUS OF THE RATE ASSERTION IS 4 OF 38 DEPENDENTS, not the 36 quoted in this
+    claim's own what_would_answer. The other ~34 depend on the stack being LAYERED and
+    DIFFERENTIATED, which survives either branch. This is why the disposition is a
+    narrowing rather than a supersession.
+
+    DISPOSITION (GFLAG-0055, GFLAG-0088; user-approved 2026-09-01): NARROW + reclassify
+    substrate_conditional, NOT supersede. The supersession argument rested on the MECH-058
+    precedent, whose citation was wrong in three respects (corrected inline under
+    what_would_answer) and which, read correctly, cuts toward narrowing. The recorded PIVOT:
+    if "L-space IS a multi-timescale latent stack" is read as this claim's ASSERTION rather
+    than its FRAMING, supersede or split is correct instead -- that reading was considered
+    and not taken.
   location: docs/architecture/l_space.md#arc-004
   source:
     - docs/processed/legacy_tree/docs/architecture/l_space.md
@@ -11555,11 +11598,27 @@
     During quiescent periods between active E3 updates, the hippocampal module performs
     offline replay of compressed recent trajectory experience to consolidate the viability
     map. This offline batch consolidation supplements online map updates and integrates
-    experiences that occurred too fast for real-time E3 processing. This is standard
-    experience replay — implementable in any substrate. The SWR mechanism (internally
-    generated CA3 recurrent dynamics) is the biological substrate; the functional
-    requirement is offline batch consolidation during idle periods, not the oscillatory
-    mechanism.
+    experiences that occurred too fast for real-time E3 processing. The SWR mechanism
+    (internally generated CA3 recurrent dynamics) is the biological substrate; the
+    functional requirement is offline batch consolidation during idle periods, not the
+    oscillatory mechanism.
+
+    [2026-09-01 govapply-20260901] CORRECTED -- THIS FIELD CONTRADICTED THIS CLAIM'S OWN
+    NOTES. The removed sentence read: "This is standard experience replay -- implementable
+    in any substrate." The notes field of this same claim says the opposite, with a citation:
+    "Replay is NOT standard experience replay (Gupta et al. 2010, Neuron 65:695): SWR
+    sequences represent ALL physically available trajectories, generate novel-path routes
+    never behaviorally executed, and show anti-recency weighting." The notes reading is
+    authoritative -- it is lit-backed, it is what MECH-289 was registered to formalise, and
+    it is what this claim's falsifier tests. The consequence of the correction is that
+    "implementable in any substrate" is ALSO wrong: an anti-recency generative sweep needs a
+    specific sampler, which is why SD-038 exists.
+
+    THIS CORRECTION WAS ASSERTED TO HAVE HAPPENED ALREADY, AND HAD NOT. MECH-289's notes
+    state "MECH-092 functional_restatement updated 2026-04-24 to correct this" -- verified
+    2026-09-01: it was not; the sentence was still present, unmodified, four months later.
+    MECH-289's false assertion is corrected in the same pass. Cluster GFLAG-0076/0086,
+    sub-decision D4, user-approved 2026-09-01.
   depends_on:
     - ARC-023
     - ARC-014
@@ -29223,8 +29282,17 @@
     PRECONDITION / CONFIRMING / FALSIFYING block (substrate_conditional, held pending the
     unbuilt ARC-065 rule-creator substrate + balanced harm/goal replay scheduling).
     MECH-092's triggering half is confirmed (V3-EXQ-761 PASS) but its consolidation-
-    benefit half (the half this claim actually needs) remains gated on SD-006 / a
-    working viability map. Score this leg as MECH-121's, not re-litigated here.
+    benefit half (the half this claim actually needs) remains gated on a working viability
+    map. Score this leg as MECH-121's, not re-litigated here.
+
+    [2026-09-01 govapply-20260901] GATE REPOINTED. This sentence previously read "gated on
+    SD-006 / a working viability map". SD-006's registry status is `implemented` and its
+    phase-1 clock demonstrably drives the quiescent replay trigger (ree_core/agent.py:10310-
+    10311), so naming it here made the gate read as cleared to any status check while the
+    actual blocker went unnamed. The viability-map half is the real one, and its blocker is
+    now registered: _do_replay computes replay trajectories and discards them (agent.py:
+    10418/:10425, function ends :10428, no consumer in ree_core/) -- substrate_queue sd_id
+    `mech092-replay-consumer-missing`. Cluster GFLAG-0076/0086, sub-decision D4.
 
     PHENOMENOLOGICAL-MAPPING LEG (mixed -- narrow buildable sub-question + irreducible
     residue): NARROW SUB-QUESTION (in principle buildable, currently unbuilt): does REE
@@ -34117,15 +34185,15 @@
   evidence_quality_note: |
     [2026-05-08 governance]: candidate_resolved with hold_pending_v3_substrate. Architectural answer is settled: dual-read at outcome AND at action selection (lit-pull 2026-05-08 confirmed; clinically and biologically obvious -- consequential effect of decisions cannot be processed for ongoing experimental behaviour without both). Empirical resolution gated on (a) MECH-258 substrate implementation, (b) StepHarness-cohort retest of EXQ-475a/483c/490g/471a/524a -- the StepHarness substrate landed today; retest cohort to be authored under /queue-experiment with careful wiring checks per 2026-05-08 governance. Sleep substrate (MECH-204) shares the gate.
   polarity: open
-  status: candidate_resolved
+  status: resolved
   live_status:
-    reading: candidate_resolved
-    as_of: 2026-07-11
+    reading: resolved
+    as_of: 2026-09-01
     needs_review: false
     evidence:
-      from: "decision:Q-042@2026-05-08T16:58:44Z"
+      from: "governance:GFLAG-0063@2026-09-01 (user-approved promotion; V3 evidence V3-EXQ-530c)"
       as_of: 2026-05-08
-      verdict: hold_pending_v3_substrate/applied
+      verdict: resolved/applied
   implementation_phase: v3
   claim_level: architectural
   registered_utc: 2026-05-08
@@ -34334,6 +34402,14 @@
     governance status call and is deliberately NOT applied here. Tracked as
     GFLAG-0063, which the 2026-09-01 triage reclassified as NOT contested (it quotes
     a trigger that was already applied on 2026-05-08).
+
+    [2026-09-01 govapply-20260901] PROMOTION APPLIED. User approved the recommendation
+    above; status candidate_resolved -> resolved. ANSWER OF RECORD: dual-read -- precision
+    updates at BOTH outcome-integration and action-selection time (the 2026-05-08 lit-pull
+    conclusion), delivered in practice by Option A (contract-enforcement via StepHarness)
+    rather than Option B (hoist). Empirical basis is V3-EXQ-530c, not the five-run cohort
+    the original note cited: three of those five were never queued. This also retires the
+    singleton status value `candidate_resolved`, which Q-042 was the only claim carrying.
 - id: EXT-001
   title: "Sycophancy: approval-seeking displaces principled goal pursuit."
   claim_type: external_failure_mode
@@ -45353,9 +45429,24 @@
   notes: >
     Registered 2026-04-24 from lit-pull synthesis. The "standard experience replay"
     framing in early MECH-092 notes was an architectural assumption that Gupta 2010
-    directly contradicts. MECH-092 functional_restatement updated 2026-04-24 to
-    correct this. MECH-289 is the corrected mechanistic claim that replaces the
+    directly contradicts. MECH-289 is the corrected mechanistic claim that replaces the
     implicit recency-weighted assumption.
+
+    [2026-09-01 govapply-20260901] CORRECTION -- A SENTENCE REMOVED FROM THIS PARAGRAPH WAS
+    FALSE. It read: "MECH-092 functional_restatement updated 2026-04-24 to correct this."
+    Verified 2026-09-01: it was NOT updated. MECH-092's functional_restatement still read
+    "This is standard experience replay -- implementable in any substrate" four months later,
+    contradicting MECH-092's own notes. The correction this sentence announced was actually
+    applied on 2026-09-01, in the same pass that removed this false claim of it.
+    WHY THIS MATTERS BEYOND BOOKKEEPING: the false sentence made the contradiction
+    self-concealing -- any session checking whether MECH-092's framing had been fixed found
+    a claim that it had, in a sibling claim, and stopped. Cluster GFLAG-0076/0086,
+    sub-decision D4, user-approved.
+
+    SEPARATELY, AND STILL OPEN: this claim's anti-recency mechanism is wired NOWHERE.
+    SD-038 is ready:false with an implementation_hint reading "not implemented", and no
+    anti-recency code exists in ree_core/. The falsifier stated above (anti-recency OFF vs
+    ON) is therefore not runnable as of 2026-09-01.
 
     [2026-08-09 addendum, Stage 2 digestion of the 2026-08-08 "prospective navigation
     through goal topology" thought]: Yu et al. 2026 (Nat Neurosci, DOI 10.1038/
@@ -45480,10 +45571,27 @@
       - exploration_weight: HIGH (anti-recency bonus per MECH-289 at max strength)
       - direction_bias: BOTH forward and backward (credit sweep per MECH-290)
 
-    Implementing this requires SD-006 (async multi-rate loop): the quiescent mode
-    runs on the heartbeat cadence, not the step cadence. Until SD-006 is implemented,
-    both modes use the same parameters (the waking defaults), which means quiescent
-    replay underperforms its biological potential.
+    Implementing this requires the quiescent mode to run on the heartbeat cadence rather
+    than the step cadence.
+
+    [2026-09-01 govapply-20260901] GATE REPOINTED -- THE SD-006 GATE HERE WAS STALE AND READ
+    AS BLOCKING WHEN IT WAS NOT. The removed text read: "Implementing this requires SD-006
+    (async multi-rate loop) ... Until SD-006 is implemented, both modes use the same
+    parameters (the waking defaults), which means quiescent replay underperforms its
+    biological potential." SD-006's registry status is `implemented`, and verified against
+    ree-v3 source 2026-09-01 the quiescent path really does run on the clock's cadence:
+    Agent.act calls _do_replay under `ticks.get("e3_quiescent")` (ree_core/agent.py:10310-
+    10311) where `ticks` comes from MultiRateClock.advance() (SD-006 phase 1,
+    ree_core/heartbeat/clock.py). The gate is CLEARED.
+    CAUTION ON THE OTHER SIDE, so this is not over-read: SD-006 phase 2 (full HTA with
+    separate threads) IS still deferred (clock.py:32). Bare "SD-006" is therefore ambiguous
+    and should not be cited as a gate in either direction without naming the phase.
+    THE REAL BLOCKER IS DOWNSTREAM AND HAD NO OWNER UNTIL TODAY: _do_replay computes replay
+    trajectories and DISCARDS them -- `replay_trajs` is assigned at agent.py:10418/:10425 and
+    the function ends at :10428 without ever reading it; no consumer exists anywhere in
+    ree_core/. Now registered as substrate_queue sd_id `mech092-replay-consumer-missing`.
+    The falsifier below is gated on THAT, not on SD-006.
+    Cluster GFLAG-0076/0086, sub-decision D4, user-approved.
 
     Falsifiable: after SD-006 implementation, a factorial experiment {waking-only
     CEM} x {quiescent-mode distinct-params} x {environment with multiple
@@ -91057,6 +91165,7 @@
     - MECH-500  # ephaptic temporal/READINESS authority -- distinct function
     - MECH-456  # cross_stream_binder: promoted candidate->provisional on 733b/733c, the other half of the 725a record
     - ARC-134   # the perceptual-regranularisation commitment this ultimately serves
+    - ARC-004   # the multi-timescale latent stack this claim's grain argument leans on; declared 2026-09-01 (GFLAG-0090) -- NOTE ARC-004's RATE assertion is narrowed/substrate_conditional, so this is a dependency on a premise not yet established
   location: docs/architecture/selection_relevant_representation.md#mech-522
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: MECH-521's own P0-P2 must already be met AND MECH-521's
