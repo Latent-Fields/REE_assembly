@@ -1182,9 +1182,9 @@
       "summary": "MECH-441 and MECH-440 both hold on a gate that RESOLVED IN THE NEGATIVE. Both carry 'gated on ARC-110 validation V3-EXQ-707 returning contributory' with routing 'if it reproduces the single-arena ceiling, route to ARC-110'. V3-EXQ-707b ran 2026-06-29 with all six non-degeneracy gates passing and returned weakens(NARROW) -- committed-class entropy A1_LOOPS 0.838 vs A0_SINGLE_ARENA 0.914, C1 0/3 seeds -- establishing the conversion ceiling as INTRINSIC, not a single-arena artefact. There is no longer an ARC-110 clearance to wait for and no longer an ARC-110 destination to route to. The correct replacement hold is the ARMED-CONVERSION precondition (a two-value config change). REWRITE OWED on both.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:51:02Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:06:31Z",
+      "resolution_note": "PARTIALLY UPHELD AND RE-EVIDENCED, applied REE_assembly 008d91c0ce. The gate did resolve negative -- but NOT via the run the flag cites. V3-EXQ-707b was WITHDRAWN by confirmed failure_autopsy_V3-EXQ-707b_2026-07-20 as a measurement_test_design_defect: it accumulated committed_class_counts on every env step with no e3_tick guard, arm exposure differed by up to +97.6%, and the contrast was sign-inconsistent across all three divergent seeds. So the numbers the flag quotes (A1_LOOPS 0.838 vs 0.914, 'all six gates') are the DISQUALIFIED instrument's. The load-bearing run is V3-EXQ-707c (2026-07-23, repaired, TEN gates not six, a0 1.163 vs a1 1.124, C1 failed, weakens NARROW). MECH-441 re-pointed at its own ARMED-CONVERSION precondition and the dead 'route to ARC-110' clause removed. SCOPE CORRECTION: the flag says BOTH claims carry this gate. Only MECH-441 does -- MECH-440 was never held, its substrate_ceiling was cleared 2026-07-24, its pending_retest_after_substrate cleared 2026-08-29, and its falsifier lineage ran through V3-EXQ-955/959. NO EDIT was made to MECH-440."
     },
     {
       "flag_id": "GFLAG-0083",
