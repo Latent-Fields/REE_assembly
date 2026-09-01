@@ -1544,6 +1544,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0108",
+      "claim_ids": [
+        "SD-017",
+        "ARC-030"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "STRENGTHENS AND EXTENDS GFLAG-0100 (read that one first) -- second confirmed instance of the same check_substrate_ceiling_audit.py partial-satisfaction defect, so the finding is a predicate bug rather than a one-off. The ceiling-may-have-lifted predicate fires when ANY ONE substrate_queue entry listing the claim in unblocks_claims reaches status implemented, not when the claim's ACTUAL retest gate is satisfied. Verified 2026-09-01: SD-017 was flagged because SD-016 is implemented, but SD-017 has THREE unblockers and the live gate is contextmemory-write-path-addressing-degeneracy, still implemented_pending_validation -- and confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 had ALREADY re-scoped SD-017's pending_retest_after_substrate from after-SD-016-armed to after-WRITE-PATH-CONTENT, so the flag cites a gate governance moved past two days before it fired. ARC-030 re-confirmed current the same day: of its six unblockers, mech457_competence_bootstrap_explorer remains blocked_pending_dependency on MECH-229 (status provisional, implementation_phase v3), exactly as GFLAG-0100 recorded. NO RETEST IS OWED ON EITHER CLAIM and pending_retest_after_substrate correctly stays true on both; no claims.yaml change made this cycle. Cost of leaving it: this is an ACTIONABLE bucket that surfaces to AskUserQuestion every cycle for work that does not exist -- the same alarm-fatigue Goodhart vector GFLAG-0107 records for GOV-APPLY-1, and the park/self-handled exclusions exist precisely so ACTIONABLE stays rare enough to read. Proposed fix: require ALL entries listing the claim in unblocks_claims to be terminal (or the claim's own re-scoped retest gate to be named and satisfied) before ceiling_may_have_lifted fires; a partially-satisfied unblocker set should report as its own advisory bucket, not ACTIONABLE.",
+      "raised_by_session": "gov-cycle-20260901",
+      "raised_at": "2026-09-01T08:00:21Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
