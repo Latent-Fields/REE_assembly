@@ -18024,7 +18024,7 @@
       as_of: 2026-04-15
       verdict: supports/PASS
   implementation_phase: v3
-  depends_on: [SD-003, SD-011, ARC-033]
+  depends_on: [SD-011, ARC-033]   # SD-003 edge DROPPED 2026-09-01 (sd003-groupAC-20260901): SD-013's only reference to SD-003 is PROVENANCE -- "Registered 2026-03-28 following SD-003 literature pull" -- not a functional dependency, so there is nothing to repoint. Prose kept, edge removed. (Both successors already depend on SD-013, so a repoint here was also the one direct cycle in the set.)
   notes: >
     Scholkopf et al. 2021 establishes that a forward model trained on observational
     trajectories learns P(z_harm_s_next | z_t, a) -- the correlational distribution --
@@ -18704,7 +18704,7 @@
   implementation_phase: v3
   depends_on:
     - MECH-071
-    - SD-003
+    - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupAC-20260901): SD-003 superseded 2026-04-18; this claim consumes the attribution OUTPUT (causal_sig / attribution capability), which the successor comparator still produces, so the repoint is like-for-like. MECH-256 is the GENERAL stream-agnostic comparator that replaced SD-003's general claim; SD-029 (the narrower V3 instantiation on z_harm_s) deliberately NOT added -- add it only if a specific-stream dependency is actually meant.
     - SD-011
     - ARC-021
   notes: >
@@ -28725,7 +28725,7 @@
     - MECH-094
     - MECH-121
     - INV-049
-    - SD-003
+    - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupAC-20260901): SD-003 superseded 2026-04-18; this claim consumes the attribution OUTPUT (causal_sig / attribution capability), which the successor comparator still produces, so the repoint is like-for-like. MECH-256 is the GENERAL stream-agnostic comparator that replaced SD-003's general claim; SD-029 (the narrower V3 instantiation on z_harm_s) deliberately NOT added -- add it only if a specific-stream dependency is actually meant.
     - ARC-031
   location: docs/architecture/sleep/offline_phases.md#mech-205
   source:
@@ -42644,7 +42644,7 @@
   claim_level: mechanistic
   registered_utc: 2026-04-21
   depends_on:
-    - SD-003   # the waking-half attribution this aggregates
+    - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupAC-20260901): SD-003 superseded 2026-04-18; this claim consumes the attribution OUTPUT (causal_sig / attribution capability), which the successor comparator still produces, so the repoint is like-for-like. MECH-256 is the GENERAL stream-agnostic comparator that replaced SD-003's general claim; SD-029 (the narrower V3 instantiation on z_harm_s) deliberately NOT added -- add it only if a specific-stream dependency is actually meant.  # was SD-003. the waking-half attribution this aggregates
     - MECH-275 # general aggregation mechanism this specialises
     - MECH-272 # state-gated routing framework
     - MECH-271 # routing architecture
@@ -43109,7 +43109,7 @@
   depends_on:
     - MECH-269  # probe channel as proposer-side hypothesis generator
     - MECH-275  # sleep aggregation is the consumer of this mechanism's output
-    - SD-003    # STALE (2026-08-08 digestion pass): SD-003 is status:superseded (by MECH-256/SD-029, 2026-04-18, three days before this claim was registered). The built substrate (scientist_attribution_buffer.py) already composes MECH-256's single-pass comparators, not SD-003's two-pass counterfactual pipeline. Retained for history; treat MECH-256/SD-029 as the operative dependency.
+    - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupAC-20260901): SD-003 superseded 2026-04-18; this claim consumes the attribution OUTPUT (causal_sig / attribution capability), which the successor comparator still produces, so the repoint is like-for-like. MECH-256 is the GENERAL stream-agnostic comparator that replaced SD-003's general claim; SD-029 (the narrower V3 instantiation on z_harm_s) deliberately NOT added -- add it only if a specific-stream dependency is actually meant.  # was SD-003. STALE (2026-08-08 digestion pass): SD-003 is status:superseded (by MECH-256/SD-029, 2026-04-18, three days before this claim was registered). The built substrate (scientist_attribution_buffer.py) already composes MECH-256's single-pass comparators, not SD-003's two-pass counterfactual pipeline. Retained for history; treat MECH-256/SD-029 as the operative dependency.
     - MECH-277  # stage-1 specialisation
     - MECH-278  # stage-2 specialisation
   functional_restatement: >
@@ -63687,7 +63687,7 @@
   depends_on:
     - ARC-080    # umbrella -- object identity as a cross-cutting primitive (this is the self specialisation)
     - SD-005     # V3 BEGINNING -- z_self self/world split (proprioceptive/interoceptive body latent)
-    - SD-003     # V3 BEGINNING -- self-attribution (self-vs-external causal credit)
+    - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupAC-20260901): SD-003 superseded 2026-04-18; this claim consumes the attribution OUTPUT (causal_sig / attribution capability), which the successor comparator still produces, so the repoint is like-for-like. MECH-256 is the GENERAL stream-agnostic comparator that replaced SD-003's general claim; SD-029 (the narrower V3 instantiation on z_harm_s) deliberately NOT added -- add it only if a specific-stream dependency is actually meant.  # was SD-003. V3 BEGINNING -- self-attribution (self-vs-external causal credit)
     - MECH-277   # V3 BEGINNING -- action-space discovery / self-as-object stage 1
     - ARC-059    # V3 BEGINNING -- developmental ordering stage 1 (self before objects before others)
     - ARC-074    # V3 BEGINNING -- reward-free babbling Phase 0 (the self-discovery substrate)
