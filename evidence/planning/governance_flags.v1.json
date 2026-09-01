@@ -1098,9 +1098,9 @@
       "summary": "DIRECT CONTRADICTION, same code path. MECH-092 (via depends_on MECH-289, Gupta 2010) asserts anti-recency: under-sampled paths replayed MORE. MECH-205 Refinement D (Mattar and Daw 2018) asserts priority = PE x NEED: a high-PE episode in a region the agent will never revisit has zero need and is NOT prioritised. For a rare/high-PE/low-revisit region these predict OPPOSITE allocations, and both are instantiated on the SAME drive_state vector consumed by HippocampalModule.replay() start-selection, so at most one can be operative. Neither claim acknowledges the other. A single 3-cell probe (high-PE/high-need, high-PE/low-need, low-PE/high-need) adjudicates both.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:50:23Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T19:32:44Z",
+      "resolution_note": "APPLIED REE_assembly da501b6c23 (sub-decision D1-a). CONTRADICTION DISSOLVED, residue recorded as a design constraint on SD-038. It dissolves twice: TEXTUALLY the two claims govern different stages (MECH-092 anchor/start selection, MECH-205 proposal distribution) and each says so itself; SUBSTANTIVELY MECH-289's anti-recency is wired NOWHERE -- SD-038 is ready:false, its hint reads 'not implemented', and no anti-recency code exists in ree_core -- so at most one mechanism exists and they cannot conflict now. The flag was raised against a REAL risk and is dissolved as a CURRENT contradiction, not dismissed as a future one: the note lives on SD-038 because that is where the risk becomes real, recording that building anti-recency WITHOUT reconciling it against PE x NEED at the shared drive_state write is what would create the predicted conflict. The flag's own 3-cell probe is adopted verbatim as the adjudicator for that build."
     },
     {
       "flag_id": "GFLAG-0077",
