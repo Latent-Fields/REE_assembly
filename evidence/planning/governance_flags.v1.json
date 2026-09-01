@@ -1353,9 +1353,9 @@
       "summary": "INV-090's 2026-07-16 well-posedness update names its real unblock as 'the committed-action/conversion (F-dominance) ceiling' -- this is MECH-439 (F-dominance bounds committed-action diversity), but MECH-439 is absent from INV-090's depends_on. Orphan-prerequisite investigation (chip-20260828-orphan-prerequisite-investigation) surfaced this as a dependency-tracking gap, not a disposition change; propose adding MECH-439 to depends_on.",
       "raised_by_session": "metaworker-chip-20260828-orphan-prerequisite-investigation",
       "raised_at": "2026-08-28T22:23:14Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T11:57:21Z",
+      "resolution_note": "APPLIED 2026-09-01 (gov-flagtriage-20260901). MECH-439 added to INV-090.depends_on, which previously read [INV-089, INV-064, SD-010, ARC-003, ARC-019, ARC-027]. INV-090's own 2026-07-16 well-posedness note (failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16) names its real unblock as 'the committed-action/conversion (F-dominance) ceiling' -- that IS MECH-439 -- but the edge was never declared, so the dependency was invisible to every graph consumer. This is a dependency-tracking gap, not a disposition change: no status, category or confidence moved on either claim. ONE RIDER carried into the inline comment: MECH-439's premise was reclassified the same day by confirmed failure_autopsy_V3-EXQ-571b_2026-09-01 -- the F-channel monopoly is REGIME-DEPENDENT (present at 0.9368-0.9953 in the 571-shape env, absent at 6.33e-06 in 936a's regime under the same clamp ratio), so the edge should be read against that reading and not the flat 88-89% figure in MECH-439's title."
     },
     {
       "flag_id": "GFLAG-0095",
