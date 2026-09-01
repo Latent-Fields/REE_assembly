@@ -3,7 +3,7 @@ closure_plan:
   id: arc_062_rule_apprehension
   title: "Rule Apprehension"
   registered: 2026-05-09
-  last_updated: 2026-08-18
+  last_updated: 2026-09-01
   scope_claims: [MECH-309, ARC-062, ARC-063, ARC-064, ARC-065, ARC-077, MECH-337, MECH-338, MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-316, MECH-317, MECH-318, MECH-319, Q-043, Q-044, Q-045, SD-054, SD-029, MECH-269]
   sibling_plans: [commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution, behavioral_diversity_isolation, conversion_ceiling_campaign]
   nodes:

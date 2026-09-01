@@ -468,3 +468,26 @@ suppressions:
     added: "2026-08-18"
     added_by: "chip-20260817-d001-unowned-v3-claims"
     review_after: "2027-02-18"
+
+  - finding_id: "D-006:GFLAG-0106"
+    reason: >-
+      GFLAG-0106 and GFLAG-0109 share a claim set (MECH-163/478/479), a
+      flag_type and a date, which is what D-006 keys on -- but they are two
+      different questions, and the second exists BECAUSE the first was answered.
+      GFLAG-0106 asked whether v4_spec's V3 full-completion gate was
+      satisfiable; it was not (it named MECH-163, whose legs had been split out
+      to MECH-478/479), and it is RESOLVED: the gate was re-derived on
+      2026-09-01 into MECH-477 + MECH-478 + MECH-479. GFLAG-0109 is the RESIDUAL
+      that re-derivation deliberately created and did not hide: the user
+      RETAINED MECH-479 in the V3 gate against the cut audit's recommendation to
+      move it, while MECH-479 still carries implementation_phase v4 and its test
+      has a V4-1 precondition. So the gate is now coherent in intent and
+      inconsistent in labelling, and that is a live decision nobody has taken.
+      Collapsing the two would erase the residual, which is the opposite of what
+      raising it was for -- a resolved flag would absorb an open question.
+      This is a recorded disposition, not a mute: the finding stays in the
+      report marked suppressed. If a THIRD flag ever lands on this claim set,
+      re-read rather than assuming this entry covers it.
+    added: "2026-09-01"
+    added_by: "falsestmt-fix-20260901"
+    review_after: "2026-12-01"
