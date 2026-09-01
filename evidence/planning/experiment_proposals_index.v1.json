@@ -2644,14 +2644,17 @@
       "priority": "medium",
       "proposal_id": "EXP-0418",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_008",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_at_utc": "2026-09-01T20:41:08Z",
+      "blocked_by_session": "metaworker-chip-proposal-exp-0418",
+      "blocked_note": "No SD/MECH build ticket exists for ARC-008 as literally specified. 2026-08-08 thought-digestion research pass (see claims.yaml ARC-008 digestion_note) found the three-axis eligibility system ARC-008 describes (tau-depth bands, rho-depth strata, routing function G(tau,rho,phi,pi,context)) does NOT exist anywhere in ree-v3/ree_core -- confirmed 2026-09-01 by direct grep: zero hits for tau_band/tau_depth, rho_stratum/rho_depth, phi_regime/depth_phase, eligibility_matrix/M_phi, or the literal string ARC-008 in ree_core/. Only a coarse binary proxy for the phi axis exists (simulation_mode/hypothesis_tag), and that fragment is already independently evidenced under its own stable claim, MECH-094, which does not depend on ARC-008. The digestion note explicitly defers drafting a falsifier or a build ticket until a governance decision is made on whether ARC-008 should be split/reclassified (built phi-fragment folded into/cross-referenced against MECH-094; unbuilt tau/rho portion marked substrate_conditional or excreted) rather than treated as one falsifiable claim -- so the correct next step is NOT /implement-substrate on ARC-008 as-is, it is that governance reclassification decision first (a full research draft already exists per the digestion_note). Do not requeue this proposal until that decision lands."
     },
     {
       "backlog_id": "EVB-1185",
