@@ -167,6 +167,14 @@ INDEX_BODY = """<div class="ree-home">
         Exploratory research materials: no REE manuscript or related work has
         been accepted for peer-reviewed publication. <a href="{{ '/research_status.html' | relative_url }}">Read the research status</a>.
       </p>
+      <div class="ree-milestone-callout" role="note" aria-label="Programme milestone, 29 August 2026">
+        <p class="ree-milestone-kicker">Milestone -- 29 August 2026</p>
+        <p class="ree-milestone-headline"><strong>Viable minimal working intelligence achieved; causal/ablative validation of the responsible architecture remains incomplete.</strong></p>
+        <p class="ree-milestone-body">
+          REE-v3 now demonstrates enough learned, integrated behavioural competence to serve as a working organism for higher-order mechanistic experiments. This is a working programme milestone, not peer-reviewed validation -- it does not assert general intelligence, consciousness, sentience, or that the REE architecture is necessary or sufficient for the competencies observed.
+          Read the <a href="https://github.com/Latent-Fields/REE_assembly/blob/master/docs/thoughts/2026-08-29_MILESTONE_viable_minimal_working_intelligence_achieved.md">milestone declaration</a> and the <a href="{{ '/CURRENT_FRONT.html' | relative_url }}">current evidence and closure view</a>.
+        </p>
+      </div>
       <p class="ree-hero-thesis">
         The core claim is that alignment belongs inside the generative machinery
         of agency: harm modelling, agency attribution, goal persistence,
