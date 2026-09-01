@@ -91875,4 +91875,72 @@
     over wholesale relabelling), not settled at registration. substrate_conditional: endogenous
     grain (ARC-134 P0) is unbuilt and is this loop's substrate floor. DO NOT build in V3 ahead of
     the cut audit; DO NOT queue an experiment.
+
+    UPDATE 2026-09-01 (GOV-V4CUT-1 F3, GFLAG-0103): adjudicated PARTIAL SPLIT, not the full
+    two-contract pull-forward the audit proposed. The non-oracularity half ("E3 communicates
+    typed insufficiency signals ... never category labels", already stated above as a Hard
+    constraint) is independently v3-testable TODAY against E3's existing output surface and is
+    split off as MECH-530. The index-continuity half ("re-indexing episodic traces so
+    autobiographical addressability survives") is NOT split off: on inspection, no
+    episodic-index/addressability concept exists anywhere in ree_core (grep for
+    episode_id/trace_id/episodic_index/addressab* across ree-v3, 2026-09-01: zero hits), and the
+    audit's stated justification -- "testable against the existing SD-017/SD-068 harness" -- does
+    not hold: SD-017's harness measures ContextMemory SLOT differentiation (slot_cosine_sim) and
+    SD-068's lesion harness measures per-PHASE content-fidelity against injected content; neither
+    tracks addressability of an episodic trace across a reindexing event. This claim's OWN
+    falsifier ties index continuity specifically to addressability surviving REBUCKETING
+    (post-rebucketing), which structurally requires the ARC-134 P0 merge/split operator this
+    claim already names as its substrate floor (unbuilt; GFLAG-0101/F1 correctly keeps it v4).
+    Registering an index-continuity claim as v3-testable-today would register a claim nothing can
+    test yet. Stays inside this claim's v4 scope, unsplit, until ARC-134 P0 lands -- at which
+    point a genuine v3-testable index-continuity contract becomes possible and should be split
+    off then, against a real harness. No status, confidence, implementation_phase or
+    version_relevance change to MECH-529 itself follows from this note.
+  evidence: []
+- id: MECH-530
+  title: "E3's decision-outcome signals to any downstream consumer (including a future rebucketing mechanism such as MECH-529) are typed, continuous insufficiency measures -- prediction/consequence mismatch, harm/goal cost, veto/conflict magnitude and count, commit/threshold state -- never semantic category labels. This is an interface contract on E3's EXISTING output surface (SelectionResult, harm_eval/benefit_eval, last_score_diagnostics), holding independently of whether a rebucketing consumer is ever built: E3 already emits only continuous/boolean/count-typed diagnostics keyed by descriptive strings, and preserving that property is what MECH-529's non-oracularity requirement needs to continue holding as more downstream consumers are added."
+  claim_type: design_decision
+  subject: e3.non_oracular_output_typing
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-01
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-01'
+  location: docs/architecture/replay_rebucketing.md#mech-530
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: E3's selection/commitment pathway (ree-v3
+    ree_core/predictors/e3_selector.py) is live and its decision-outcome diagnostic surface
+    (SelectionResult, harm_eval/benefit_eval, last_score_diagnostics) is inspectable -- met
+    today. CONFIRMING: every field of E3's decision-outcome output surface is a continuous,
+    boolean, or count-typed value, and none is a semantic category-label string or enum naming a
+    content class. Verified by direct inspection 2026-09-01: SelectionResult's fields
+    (selected_trajectory, selected_index, selected_action, scores, precision, committed,
+    log_prob, urgency) and the live last_score_diagnostics dict populated across e3_selector.py
+    (go_nogo_*, gap_scaled_commit_*, loop_*, d1d2_conflict, etc.) are exclusively
+    tensor/float/bool/int-typed; a repo-wide grep for category_label/oracular across ree_core
+    and docs/ returned zero hits. No category-label-shaped field exists anywhere on E3's current
+    output surface -- the contract holds today without any new build. FALSIFYING: an existing or
+    newly-added E3 output field is found to encode a semantic category (an object- or
+    context-class label) rather than a typed magnitude; or a future rebucketing consumer is found
+    to require E3 to supply such a label in order to function.
+  notes: >
+    Split from MECH-529 (GOV-V4CUT-1 F3 cut audit,
+    evidence/planning/v4_prerequisite_cut_20260901.md, GFLAG-0103). MECH-529 already states this
+    property as a "Hard constraint" (E3 communicates typed insufficiency signals ... never
+    category labels; E3 must not become E1's teacher); MECH-530 pulls that half forward as an
+    independently v3-testable interface contract on E3's output surface as it exists TODAY,
+    decoupled from MECH-529's split/merge/reweight rebucketing LOOP, which stays v4 (gated on the
+    ARC-134 P0 grain operator per GOV-V4CUT-1 F1 / GFLAG-0101). Unlike MECH-529's sibling
+    index-continuity proposal (left unsplit -- see MECH-529's own 2026-09-01 UPDATE note), this
+    half does not depend on any unbuilt substrate: it is a claim about what E3 emits NOW, checked
+    by direct code inspection, and pinnable going forward by a contract test (not yet written)
+    over ree-v3/ree_core/predictors/e3_selector.py's diagnostic surface, guarding against a
+    future addition (e.g. any MECH-529-adjacent instrumentation) leaking a category label instead
+    of a typed signal. DO NOT queue an experiment against this claim -- it is a static/contract
+    property, not one an experiment run would move.
   evidence: []
