@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-30T16:31:22Z",
+  "last_review_utc": "2026-09-01T08:08:39Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1225,7 +1225,10 @@
     "v3_exq_951_mech320_tonic_vigor_authority_sd054",
     "v3_exq_959_mech440_state_conditioning_self_annealing",
     "v3_exq_822d_sd082_post_action_summary_validation",
-    "v3_exq_965_sd_e1_item1_action_conditioning_validation"
+    "v3_exq_965_sd_e1_item1_action_conditioning_validation",
+    "v3_exq_642b_blocked_agency_calibrated_floor_validation",
+    "v3_exq_571b_e3_variance_monopoly_presence_clamped",
+    "v3_exq_967_mech144_shuffle_inertness_confirmer"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4109,7 +4112,10 @@
     "v3_exq_951_mech320_tonic_vigor_authority_sd054_20260830T125526Z_v3",
     "v3_exq_959_mech440_state_conditioning_self_annealing_20260830T143421Z_v3",
     "v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
-    "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3"
+    "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3",
+    "v3_exq_642b_blocked_agency_calibrated_floor_validation_20260831T131011Z_v3",
+    "v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3",
+    "v3_exq_967_mech144_shuffle_inertness_confirmer_20260901T062344Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5125,6 +5131,24 @@
         "MECH-449"
       ],
       "subject": "Governance 2026-06-23T22:42:06Z. 9 pending (3 PASS, 6 FAIL, 5 diagnostic self-route flags). Autopsy pre-flight: needs-autopsy EMPTY for apply (700+700a covered by confirmed failure_autopsy_V3-EXQ-700-cluster). Promotion/demotion: 0 actionable at walk start (all 151 Decision Queue rows applied). APPLIED: (1) V3-EXQ-702 (sleep_substrate:GAP-3b) clean discriminative PASS, 3/3 seeds supports MECH-272/273/285 with genuine ARM_OFF zero (non_degenerate). v3_pending GATE CLEARED on all three (user: let-it-count, NOT promote); impl_phase stays v3 (v3_run_ct>=1, no re-hold); decision_log clear_v3_pending_gate/applied x3 + decision_state reconciled (was stale hold_pending_v3_substrate 2026-04-25). Post-clear engine: MECH-272/273 promote_to_provisional/pending_user (exp_conf 0.82, 2 exp entries) DEFERRED; MECH-285 no promote (only 1 genuine exp entry; needs a 2nd). (2) V3-EXQ-700 + 700a FAIL covered by confirmed failure_autopsy_V3-EXQ-700-cluster_2026-06-23 -> non_contributory per-claim (already in manifests); MECH-439 substrate_ceiling+pending_retest / ARC-108+MECH-450 substrate_conditional (kept finer split over autopsy's uniform substrate_ceiling; escalation is V4 full BG-thalamo-cortical loop); 700b queued as the harness-fixed retest. UNWEAKENED. (3) V3-EXQ-699 PASS diagnostic, already non_contributory (weights nothing); adjudication precondition_unmet (gapa_consumed_summary_divergence 0.0048<0.05 floor; author met:true overridden by indexer direction-recompute) correctly bars its levers_compound label from driving MECH-448/449 action. MARKED REVIEWED. (4) V3-EXQ-588d PASS claim-free verified diagnostic (encoder_trained met 1.0). MARKED REVIEWED. DEFERRED (user directive 'even diagnostics which fail need failure autopsies'): V3-EXQ-701a (INV-050), 703 (MECH-276 readiness), 460m+460n (closure-commit readiness cluster) STAY PENDING -> 3 /failure-autopsy chips spawned. PROMOTES NOTHING beyond the 272/273 pending_user surfacing."
+    },
+    {
+      "utc": "2026-09-01T08:08:39Z",
+      "session": "gov-cycle-20260901",
+      "reviewed_run_ids": [
+        "v3_exq_642b_blocked_agency_calibrated_floor_validation_20260831T131011Z_v3",
+        "v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3",
+        "v3_exq_967_mech144_shuffle_inertness_confirmer_20260901T062344Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_642b_blocked_agency_calibrated_floor_validation",
+        "v3_exq_571b_e3_variance_monopoly_presence_clamped",
+        "v3_exq_967_mech144_shuffle_inertness_confirmer"
+      ],
+      "claim_ids_touched": [
+        "MECH-439"
+      ],
+      "subject": "2026-09-01 governance cycle: 3 confirmed-autopsy diagnostics adjudicated (642b/571b/967)"
     }
   ],
   "review_log": [
@@ -6631,6 +6655,16 @@
         "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3"
       ],
       "notes": "2026-08-30 governance cycle, PM (governance-20260830-1549). SEVEN runs adjudicated, all against CONFIRMED autopsies -- zero un-adjudicated items left. MANIFEST WRITES (flat AND run pack, each with the evidence_direction_note that is the indexer's _is_annotated marker): 936a weakens -> non_contributory (C2's 0.05 paired-reduction bar sits ~7,900x above the max attainable reduction at OFF-arm F share 6.33e-06; n_reducing=0 guaranteed for any behaviour -- the MIRROR of 936's defect, carried three cycles and now closed); 436g weakens -> non_contributory on all three claims (NO_WRITES calibration arm 0.000 vs 0.9992 written: the ONLINE write path alone collapses the bank, so the BIAS build fixed ADDRESSING and left CONTENT untouched); 822d mixed -> non_contributory on both (C1 is an ON-arm-only absolute floor the negative control clears MORE strongly, 0.001912 vs 0.001556); 966 -> non_contributory on both (block_contacts BIT-IDENTICAL across arms on 4/4 seeds x 4/4 blocks, so the equivalence test read a pure relabelling as supports; MECH-143's weakens came from failing the driver's own declared POSITIVE CONTROL). 951, 959 and 965 manifests already read correctly -- no write owed. CLAIMS.YAML: MECH-320 epistemic_category substrate_ceiling -> STANDARD (the authority substrate is landed AND was armed in 951; the blocker is the DV and the missing well-fed/safe/familiar test bed 547 pre-specified, not the substrate); SD-078 + SD-082 pending_retest_after_substrate cleared to false (the 822d retest they stood on has run); SD-017/ARC-045/MECH-166 pending_retest re-scoped from after-SD-016-armed to after-WRITE-PATH-CONTENT; live_status.evidence re-stamped on MECH-439 (-> 936a artifact) and SD-017/ARC-045/MECH-166 (-> cluster artifact); ten evidence_quality_notes appended. MECH-440 weakens STANDS -- narrowed, not demoted: leg (i) supported (V3-EXQ-955), legs (ii)/(iii) weakened; targeted_review_mech_440 lit-pull commissioned. DELIBERATELY NOT APPLIED: GOV-APPLY-1's three 2026-08-13 V3-EXQ-436e rows recommending epistemic_category unset -> standard for SD-017/ARC-045/MECH-166 are SUPERSEDED -- the 2026-08-16 436f-603u cluster set substrate_ceiling and the 2026-08-30 cluster re-affirms it; applying the older row would have been a regression. GOV-APPLY-1's superseded_disposition bucket did not catch these (it keys on same-claim/different-run pairs where the later recommendation is applied), so this was caught by reading current claims.yaml state before editing. PASS SKIMS (mandatory, logged): 936a -- DEFECT CONFIRMED (the threshold-arithmetic class the 2026-08-30 skim rule was written from), now discharged by its confirmed autopsy. 965 -- diagnostic PASS, autopsy landed mid-cycle (REE_assembly 7e9cf906f9) while this walk was in progress; genuine PASS validating SD-e1 ITEM 1 (cr_ratio(h=1) up 6455x-9775x) but its OWN C1 criterion divides by an analytically-zero control and is uninterpretable -- do NOT cite the 57809x figure; ITEM 2 remains required and the MECH-135/INV-088 retest is NOT unblocked."
+    },
+    {
+      "utc": "2026-09-01T08:08:39Z",
+      "session": "gov-cycle-20260901",
+      "runs_reviewed": [
+        "v3_exq_642b_blocked_agency_calibrated_floor_validation_20260831T131011Z_v3",
+        "v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3",
+        "v3_exq_967_mech144_shuffle_inertness_confirmer_20260901T062344Z_v3"
+      ],
+      "notes": "2026-09-01 governance cycle (gov-cycle-20260901), post-autopsy-sweep. THREE runs adjudicated, all against CONFIRMED autopsies landed by autopsy-sweep-20260901 in REE_assembly 5ff838702b -- zero un-adjudicated items left, so Step 1.5's needs-autopsy set was EMPTY and the cycle completed in one pass. All three are experiment_purpose: diagnostic and therefore already scoring-excluded at build_experiment_indexes.py:3454 (diagnostic_probe) before any direction check; the manifest writes below make the record match the ratified verdict rather than change scoring. MANIFEST WRITES (flat AND run pack, each carrying the evidence_direction_note that is the indexer's _is_annotated marker): 642b non_contributory (already read so; note added), 571b diagnostic -> non_contributory, 967 diagnostic -> non_contributory. 642b: the self-routed label 'z_block_integrator_no_rise' is WITHDRAWN as INCORRECT -- C1/C2 read only z_block_peak, a max statistic against the hard clamp z_block_cap=1.5, and both arms reach exactly 1.500 on 3/3 seeds, so z_block_separation is 0.0 BY ARITHMETIC and both load-bearing criteria are false regardless of behaviour (the threshold-arithmetic defect class the 2026-08-30 skim rule was written from). The substrate build under validation WORKED: CONTROL z_block_mean is 0.064-0.177 of a 1.5 cap vs 642a's pinned-near-cap-everywhere. Its z_goal_stream.writer_defect flag is a DETECTOR FALSE POSITIVE -- the driver pins the goal (GOAL_PIN=0.5) directly, bypassing the counted writer; active_frac 1.0 with writer_calls 0 is a combination an omitted update_z_goal cannot produce. 571b: PASSES its own criteria (clamped top-channel share 0.9368-0.9953 vs 0.85 bar; occupant shifts f_weighted -> harm_weighted 4/4 seeds) but the 936a gate on further 936-family falsifiers does NOT clear -- 936a measured the SAME premise ABSENT (F share 6.33e-06) in its own regime under the same clamp ratio, so the monopoly premise is REGIME-DEPENDENT and 571b cannot apportion the residue-carried gap. MECH-439 note-only: status stays candidate, epistemic_category stays standard, live_status.evidence.from re-stamped -> failure_autopsy_V3-EXQ-571b_2026-09-01. 967: REFUTES the 966-cluster's third closed route -- agent_energy is NOT floor-clamped at 0.0 (energy_mean 0.4892/0.4845, at floor on only 10.2% of steps, arms differ by up to 0.99 across 709 of 2400 matched steps). The other two routes stay open. SUBSTRATE_QUEUE AMENDS: sd_blocked_agency_mismatch_floor_calibration (severity deliberately RETAINED at corrupting -- peak still hits 1.500 on 3/3 seeds so any new peak/max-shaped blocked-agency DV still yields a zero separation that looks like a valid null; the 642a failure_record entry marked resolved) and SD-056 (classification unchanged; adds the clamp's previously-unrecorded side-effect -- E3 committed score range collapses ~800x and 92-97% of rollouts pin at the ceiling). PASS SKIMS: none owed. The mandatory non-outcome-findings driver skim applies to claim-tagged EVIDENCE-purpose PASSes; all three runs this cycle are diagnostic-purpose and were covered by full confirmed autopsies instead, which is the stricter path. GOV-APPLY-1: its 8 ACTIONABLE unapplied_disposition rows were VERIFIED APPLIED and are ALL FALSE POSITIVES -- _target_state() cannot parse the free-prose per_claim_recommendation.change text recent autopsies write. Nothing was re-applied; a mechanical apply pass would have double-appended five evidence_quality_notes. Raised GFLAG-0107. Substrate-ceiling audit's 2 ceiling-may-have-lifted (ARC-030, SD-017) are likewise FALSE POSITIVES of a partial-satisfaction predicate that fires on ANY one unblocker landing; raised GFLAG-0108, resolved GFLAG-0100. Also: 7 hold_pending_v3_substrate decisions recorded; v4_spec's V3 full-completion gate re-derived (GFLAG-0106 resolved, residual GFLAG-0109 raised)."
     }
   ]
 }
