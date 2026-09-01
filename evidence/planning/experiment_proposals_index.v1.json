@@ -2156,7 +2156,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0367",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_081",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2165,7 +2165,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-09-01T20:34:39Z",
+      "gated_by_session": "metaworker-chip-proposal-exp-0367",
+      "gating_reason": "claims.yaml implementation_phase=v4 for ARC-081 (live_status.evidence.verdict=held_v4_by_architectural_commitment/applied, user-confirmed decision 2026-06-06T07:53:48Z). ARC-081 is a substrate_coherence/architectural_commitment coherence-map claim describing the V4 self-object-file-slot cutover; its own SCOPE/GUARD states 'epistemic_category inferred to substrate_coherence (architectural_commitment) -- promote/demote suppressed; this is a coherence map, not an empirical assertion to be gated' and 'registering this child introduces NO substrate code, NO experiments, and changes NO V3 behaviour... must NOT enter V3 closure.' No V3 experiment can test a V4-scoped architectural commitment that explicitly disclaims empirical gating. Confirmed live (not stale) by v3pending_v4_phase_audit_20260901.md Bucket A: ARC-081 (with MECH-265, MECH-325) resolves to assembly_state=gated_v3 today and is deliberately V4-deferred by architectural commitment, not merely awaiting substrate readiness. Re-derive when the DR-10..DR-14 self-model integration audit brings the object-file-slot cutover forward; do not re-open via another lettered /queue-experiment pass on the same architectural-commitment shape."
     },
     {
       "backlog_id": "EVB-0346",
