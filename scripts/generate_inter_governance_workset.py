@@ -117,6 +117,39 @@ ghosts, every one of them already run, so nine finished experiments were being
 counted as in-flight and were suppressing live IGW items (SD-014, MECH-322,
 MECH-472, MECH-074, plus ARC-045 intermittently). See
 `_drop_completed_worktree_ghosts`.
+
+FM12 (2026-09-01): `ready: true` IS NOT THE SAME CLAIM AS "AUTHORISED TO
+BUILD" -- a REGISTRATION-ONLY entry can be both. Every guard above (FM3,
+FM3b, FM4) answers "has the build already landed" and lets an entry through
+when the answer is no; none of them ask the orthogonal question "did the
+entry's own author actually authorise a build". `mech317-action-chunk-
+boundary-instrument` was registered with `ready: true` and
+`status: "proposed_REGISTRATION_ONLY_not_a_build_authorisation"` -- deliberately
+NOT built yet (so every existing matcher correctly stays silent: `status`
+starts with `proposed`, which `_unclassified_ready_items`'s own allowlist
+reads as "explicitly-not-built vocabulary, correctly ready") -- but the status
+prose says in so many words that `ready: true` here does not mean "go build
+it", only "this debt is now tracked". `_substrate_ready_items()` staged it
+into the "Substrate ready: mech317-action-chunk-boundary-instrument" IGW item
+anyway (IGW-20260901-221), presented to the user as build-ready. Withdrawn by
+user-consented decision-chip resolution; see
+evidence/planning/igw_routine_log.md around that id. Fix:
+`_status_denies_build_authorisation` / `_substrate_build_authorisation_denied`,
+a DENYLIST (not the allowlist `_unclassified_ready_items` uses) that only
+excludes a status carrying an explicit denial marker -- it cannot itself
+introduce a new fail-open default, because a status it does not recognise is
+simply left to whatever the existing matchers already decided (this file's
+documented fail-open default is unchanged by this fix, and inverting that
+default file-wide is out of scope for this incident -- see the SUBSTRATE LANE
+note above). Applied at BOTH `skill="/implement-substrate"` emission sites
+that decide substrate readiness from an entry's own status
+(`_substrate_ready_items()` and the retest-blocker synthesis loop's per-entry
+guard) -- see the "ENUMERATE THE EMISSION SITES FIRST" note below; a guard in
+the loader alone would repeat FM3b's mistake of protecting only one of the two
+live paths. (The held-pending-recs loop's `add()` call needs no such guard: it
+never reads a substrate_queue status at all, only a promotion_demotion
+verdict.) Regression test:
+scripts/test_generate_inter_governance_workset_substrate_staleness.py
 """
 from __future__ import annotations
 
@@ -1717,6 +1750,55 @@ def _substrate_implementation_complete(entry: dict | None) -> bool:
     return _status_implementation_complete(impl) or _status_implementation_complete(status)
 
 
+# --- FM12: registered-but-not-authorised (2026-09-01) -------------------------
+# substrate_queue statuses are free prose (see _schema_notes), not enum tokens,
+# so a marker for "this status explicitly denies build authorisation" can only
+# be a substring test -- there is no structured field to key off. Made a
+# DENYLIST on purpose, not an allowlist like `_unclassified_ready_items`'s
+# not-built vocabulary: a denylist's failure-to-match just leaves the entry to
+# whatever the surrounding matchers already decided (this file's existing
+# fail-open default), so a marker missing a future phrasing degrades no worse
+# than the status not existing at all. An allowlist here would instead have to
+# invert the whole lane's fail-open default, which is a much bigger change
+# than this one incident calls for. "not_a_build_author" (not the full
+# "authorisation"/"authorization") deliberately matches both spellings via one
+# shared prefix, mirroring how `_IMPLEMENTATION_COMPLETE_TOKENS` above matches
+# stems rather than whole words.
+_BUILD_AUTHORISATION_DENIED_MARKERS = (
+    "not_a_build_author",
+    "not a build author",
+    "registration_only",
+    "registration only",
+)
+
+
+def _status_denies_build_authorisation(value: str | None) -> bool:
+    """True if the raw status string explicitly says `ready` here does not mean
+    "go build it" -- e.g. a REGISTRATION-ONLY debt entry (FM12)."""
+    s = (value or "").strip().lower()
+    if not s:
+        return False
+    return any(marker in s for marker in _BUILD_AUTHORISATION_DENIED_MARKERS)
+
+
+def _substrate_build_authorisation_denied(entry: dict | None) -> bool:
+    """True if this substrate_queue entry's own status text denies build
+    authorisation -- so it must not be routed to /implement-substrate even
+    when `ready: true` (FM12: `ready` records "this debt is tracked", not
+    "this debt is authorised to be built").
+
+    Checked independently of `_substrate_implementation_complete`: that
+    predicate asks whether the build already landed; this one asks whether a
+    build was ever authorised in the first place. An entry can fail both (not
+    built, not authorised) and must still be excluded.
+    """
+    if not entry:
+        return False
+    impl = entry.get("implementation_status") or ""
+    status = entry.get("status") or ""
+    return _status_denies_build_authorisation(impl) or _status_denies_build_authorisation(status)
+
+
 def _substrate_ready_items() -> list[dict]:
     out = []
     for item in _load_substrate_queue():
@@ -1725,6 +1807,8 @@ def _substrate_ready_items() -> list[dict]:
         if _substrate_resolved(item):
             continue
         if _substrate_implementation_complete(item):
+            continue
+        if _substrate_build_authorisation_denied(item):
             continue
         out.append(item)
     return out
@@ -3058,6 +3142,14 @@ def build_workset() -> dict:
             # "the code landed" and "the claim it unblocks is retestable" are
             # different questions and only the first is settled here.
             if _substrate_implementation_complete(entry):
+                continue
+            # FM12 (2026-09-01): same reasoning as FM3b above, one guard over.
+            # `_substrate_ready_items()`'s FM12 fix protects the "Substrate
+            # ready" loop only; this loop builds its items straight from
+            # `_retest_blockers`' structured blockers and never consults that
+            # loader, so a REGISTRATION-ONLY entry (ready=true, status denies
+            # build authorisation) would still reach here unfiltered.
+            if _substrate_build_authorisation_denied(entry):
                 continue
             emitted_substrate_sd_ids.add(sid)
             entry_status = (

@@ -421,6 +421,118 @@ class NoSubstrateChangeWarrantedTerminalTest(_TempSubstrateQueue):
         self.assertFalse(GEN._status_resolved("diagnosis_done_change_needed_2026"))
 
 
+class StatusDeniesBuildAuthorisationTest(unittest.TestCase):
+    """FM12 (chip-20260901-igw-readiness-registration-only): `ready: true` is
+    not the same claim as "authorised to build".
+
+    Confirmed incident: `mech317-action-chunk-boundary-instrument` carried
+    `ready: true` and `status: "proposed_REGISTRATION_ONLY_not_a_build_
+    authorisation"`. Every existing matcher correctly stayed silent on it --
+    the status starts with `proposed`, which `_unclassified_ready_items`'s own
+    allowlist reads as "explicitly-not-built vocabulary, correctly ready" --
+    but `_substrate_ready_items()` staged it as "Substrate ready:
+    mech317-action-chunk-boundary-instrument" (IGW-20260901-221) anyway,
+    presented to the user as build-ready when the entry's own prose says the
+    opposite.
+    """
+
+    def test_registration_only_marker_is_denied(self):
+        self.assertTrue(
+            GEN._status_denies_build_authorisation(
+                "proposed_REGISTRATION_ONLY_not_a_build_authorisation"
+            )
+        )
+
+    def test_marker_variants_are_denied(self):
+        """Both spellings of authoris/zation, and space- vs underscore-joined."""
+        for status in (
+            "proposed_registration_only_not_a_build_authorisation",
+            "proposed_registration_only_not_a_build_authorization",
+            "registration only -- not a build authorisation",
+            "some_prefix_registration_only",
+        ):
+            with self.subTest(status=status):
+                self.assertTrue(GEN._status_denies_build_authorisation(status))
+
+    def test_ordinary_statuses_are_not_denied(self):
+        """Negative controls -- must not over-fire on ordinary vocabulary,
+        including the surrounding `proposed*` family this entry's status head
+        shares with genuinely-buildable entries."""
+        for status in (
+            "proposed",
+            "pending_implementation",
+            "candidate_v3_pending",
+            "implemented",
+            "implemented_pending_validation",
+            "",
+            None,
+        ):
+            with self.subTest(status=status):
+                self.assertFalse(GEN._status_denies_build_authorisation(status))
+
+    def test_entry_level_predicate_checks_both_status_fields(self):
+        self.assertTrue(
+            GEN._substrate_build_authorisation_denied(
+                {"status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation"}
+            )
+        )
+        self.assertTrue(
+            GEN._substrate_build_authorisation_denied(
+                {"implementation_status": "registration_only_pending_scope"}
+            )
+        )
+        self.assertFalse(GEN._substrate_build_authorisation_denied({}))
+        self.assertFalse(GEN._substrate_build_authorisation_denied(None))
+
+
+class Mech317RegistrationOnlyIncidentReplayTest(_TempSubstrateQueue):
+    """FM12: the exact mech317 entry shape, replayed against the live emission
+    paths (not just the pure-string predicate above)."""
+
+    ENTRY = {
+        "sd_id": "mech317-action-chunk-boundary-instrument",
+        "title": "Action-stream chunk-boundary instrument",
+        "node_class": "complicated (buildable)",
+        "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+        "ready": True,
+        "depends_on_unresolved": [],
+        "unblocks_claims": ["MECH-317", "ARC-071"],
+        "implementation_hint": (
+            "REGISTRATION ONLY -- this entry records an instrument debt so it "
+            "stops living in claim prose; it does NOT authorise a build."
+        ),
+    }
+
+    def test_not_staged_by_substrate_ready_items(self):
+        self._write([dict(self.ENTRY)])
+        self.assertEqual(self._ready_ids(), [])
+
+    def test_not_staged_by_synthesis_loop_guard(self):
+        """The second emission site (FM3b's route) gets the same guard --
+        pinned directly against `_substrate_build_authorisation_denied` since
+        the synthesis loop itself is only reachable through the full
+        `regenerate()` pipeline, which this file does not exercise end to
+        end."""
+        entry = dict(self.ENTRY)
+        self.assertTrue(GEN._substrate_build_authorisation_denied(entry))
+
+    def test_a_genuinely_ready_neighbour_is_unaffected(self):
+        """Negative control: a sibling entry with an ordinary ready status must
+        still surface -- the fix must not over-suppress the lane."""
+        self._write(
+            [
+                dict(self.ENTRY),
+                {
+                    "sd_id": "genuinely-buildable",
+                    "status": "proposed",
+                    "ready": True,
+                    "depends_on_unresolved": [],
+                },
+            ]
+        )
+        self.assertEqual(self._ready_ids(), ["genuinely-buildable"])
+
+
 class LiveSubstrateQueueTest(unittest.TestCase):
     """Against the real file on disk -- the incident items must be gone.
 
@@ -570,6 +682,34 @@ class LiveSubstrateQueueTest(unittest.TestCase):
                     "BUILD_LANDED_STEM_TOKENS or re-point the test" % (sd, raw_status),
                 )
                 self.assertNotIn(sd, ready)
+
+    #: FM12 incident item (2026-09-01, chip-20260901-igw-readiness-
+    #: registration-only): staged as IGW-20260901-221 despite the entry's own
+    #: status denying build authorisation.
+    REGISTRATION_ONLY_ID = "mech317-action-chunk-boundary-instrument"
+
+    def test_registration_only_incident_item_is_not_ready(self):
+        self._assert_corpus_loaded()
+        self.assertIn(
+            self.REGISTRATION_ONLY_ID,
+            self._raw,
+            "%s is no longer in the live substrate_queue -- the assertion "
+            "below would pass against nothing; re-point this test at a "
+            "fixture corpus rather than deleting it" % (self.REGISTRATION_ONLY_ID,),
+        )
+        raw_status = (self._raw[self.REGISTRATION_ONLY_ID].get("status") or "").strip()
+        # Independent oracle, same convention as _looks_build_landed above:
+        # read the raw committed status directly rather than calling the
+        # predicate under test.
+        self.assertIn(
+            "not_a_build_authorisation",
+            raw_status.lower(),
+            "%s's committed status is %r, which no longer carries the "
+            "registration-only marker this test asserts on -- update the "
+            "oracle or re-point the test" % (self.REGISTRATION_ONLY_ID, raw_status),
+        )
+        ready = {it.get("sd_id") for it in GEN._substrate_ready_items()}
+        self.assertNotIn(self.REGISTRATION_ONLY_ID, ready)
 
     def test_scaffolded_curriculum_rebalance_is_resolved(self):
         """FM4 incident item: adjudicated no-substrate-change-warranted, must no
