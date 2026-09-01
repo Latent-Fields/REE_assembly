@@ -1437,9 +1437,9 @@
       "summary": "check_substrate_ceiling_audit.py re-flagged ARC-030 ceiling-may-have-lifted on 2026-08-29 (cycles 14:25Z and 15:46Z) because MECH-307 landed, but its predicate fires on ANY single unblocker landing rather than the full unblocker set: the claim's actual retest gate (non-degeneracy precondition) runs through mech457_competence_bootstrap_explorer, which is blocked_pending_dependency on MECH-229 (still status:provisional/v3_pending, substrate_queue.json sd_id=mech457_competence_bootstrap_explorer). No retest queued this session -- same partial-satisfaction gap the 2026-08-28 governance note already identified; pending_retest_after_substrate correctly stays true.",
       "raised_by_session": "metaworker-chip-20260829-arc030-ceiling-lifted-retest",
       "raised_at": "2026-08-29T17:02:57Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T08:02:18Z",
+      "resolution_note": "Acted on by governance cycle gov-cycle-20260901 (2026-09-01). RE-VERIFIED CURRENT, not withdrawn: of ARC-030's six unblocking substrate_queue entries, mech457_competence_bootstrap_explorer is still blocked_pending_dependency on MECH-229 (status provisional, implementation_phase v3), so the ceiling-may-have-lifted flag remains a false positive and NO retest is owed; pending_retest_after_substrate correctly stays true and no claims.yaml change was made. Closed here because the finding it records is a PREDICATE defect in check_substrate_ceiling_audit.py rather than an ARC-030 claim disposition, and that defect is now tracked generally by GFLAG-0108, which reproduces this analysis and adds an independent second instance (SD-017, flagged this cycle on SD-016 having landed while its retest gate had already been re-scoped past SD-016 to contextmemory-write-path-addressing-degeneracy by the confirmed 966-cluster autopsy). Track the fix on GFLAG-0108; nothing further is owed on ARC-030 itself."
     },
     {
       "flag_id": "GFLAG-0101",
