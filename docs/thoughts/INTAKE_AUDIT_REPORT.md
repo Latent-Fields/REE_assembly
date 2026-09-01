@@ -1,6 +1,6 @@
 # Thought Intake Audit Report
 
-Generated: `2026-08-25T19:43:25.153970Z`
+Generated: `2026-09-01T04:14:52.441353Z`
 
 Ground-truth cross-check of both thought-intake paths against `docs/claims/claims.yaml` -- not a keyword/marker check. See `docs/thoughts/README.md` for what the two paths are and `docs/thoughts/scripts/thought_intake_audit.py` module docstring for the method.
 
@@ -14,11 +14,11 @@ A thought marked `processed` that points at a claim ID no longer in `claims.yaml
 
 | metric | count |
 |---|---|
-| total structured intakes | 91 |
+| total structured intakes | 105 |
 | orphaned / explicitly unregistered | 1 |
-| candidate section present, no IDs named or a sibling candidate is un-ID'd (needs a human read) | 48 |
-| all named candidate IDs registered | 16 |
-| no candidate-claims section (nothing to check) | 26 |
+| candidate section present, no IDs named or a sibling candidate is un-ID'd (needs a human read) | 49 |
+| all named candidate IDs registered | 28 |
+| no candidate-claims section (nothing to check) | 27 |
 
 ### Orphaned / unregistered -- action needed
 
@@ -70,9 +70,10 @@ A thought marked `processed` that points at a claim ID no longer in `claims.yaml
 - `thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md` -- section resolves via ['ARC-092', 'EXT-009', 'INV-004', 'INV-080', 'MECH-083', 'MECH-163', 'MECH-179', 'MECH-261', 'MECH-312b', 'MECH-392', 'MECH-401'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
 - `thought_intake_2026-07-19_multiple_relational_graph_organisations_hippocampal.md` -- section resolves via ['ARC-036', 'MECH-035', 'MECH-069', 'MECH-238', 'MECH-239', 'MECH-269', 'MECH-288', 'MECH-292', 'MECH-293', 'MECH-339', 'SD-004', 'SD-014', 'SD-039'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
 - `thought_intake_2026-08-04_milestone_inspectable_artificial_organism.md` -- section resolves via ['GOV-V3FREEZE-1', 'Q-087'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
-- `thought_intake_2026-08-07_responsibility_counterfactual_memory.md` -- section resolves via ['INV-012', 'MECH-322', 'MECH-485', 'Q-090'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
+- `thought_intake_2026-08-07_responsibility_counterfactual_memory.md` -- section resolves via ['INV-012', 'MECH-322', 'MECH-485', 'MECH-487', 'Q-090'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
 - `thought_intake_2026-08-08_prospective_navigation_through_goal_topology.md` -- section resolves via ['MECH-125', 'MECH-236', 'MECH-289', 'MECH-290', 'SD-046', 'SD-097', 'SD-098'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
 - `thought_intake_2026-08-10_ree_as_a_single_understandable_cognifold.md`
 - `thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md` -- section resolves via ['ARC-047', 'ARC-127', 'INV-050', 'MECH-491', 'SD-017', 'SD-100'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
+- `thought_intake_2026-08-27_developmental_integration_and_readiness_programme.md` -- section resolves via ['ARC-019', 'ARC-120', 'ARC-130', 'ARC-131', 'ARC-135', 'GOV-CAPCONTRACT-1', 'GOV-DIAG-1', 'GOV-FAILLOC-1', 'GOV-HELDOUT-1', 'GOV-INTERVENE-1', 'GOV-PATHVALID-1', 'MECH-511'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
 
 Caveat: this audit only catches candidates that were given a claim-shaped ID (real or placeholder). A file with no 'Candidate claims'-style header at all is assumed to have nothing pending (per the README, some intakes are folded directly into canonical docs with no separate candidate list) -- that assumption is not independently verified here.
