@@ -1026,9 +1026,9 @@
       "summary": "ARC-058's live_status.evidence.from points at failure_autopsy_V3-EXQ-445h_2026-06-19, but that autopsy's own targets[].claim_ids is ['SD-032b'] only -- ARC-058 is never tagged as tested there (claim_evidence.v1.json correctly shows genuine_exp_count:0 for it). Separately, SD-048 (the interoceptive-noise substrate ARC-058 needs for a fair shared-trunk-vs-independent test) has a confirmed re-adjudication -- failure_autopsy_V3-EXQ-512a_2026-08-09, reclassified supports -> non_contributory -- that appears unapplied: both the V3-EXQ-512a manifest on disk and SD-048's own claims.yaml evidence_quality_note still read the old supports framing. ARC-058 given a digestion_note (disposition f, deferred) rather than a falsifier this pass, pending both corrections. Surfaced by thought-digestion 2026-08-27 (grouped mode, wave 3, group G).",
       "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
       "raised_at": "2026-08-27T22:01:30Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:06:21Z",
+      "resolution_note": "SPLIT VERDICT -- THE ARC-058 HALF IS FALSE. Applied REE_assembly 008d91c0ce. The flag says failure_autopsy_V3-EXQ-445h_2026-06-19 'targets claim_ids [SD-032b] only, so ARC-058 is never tested there and the pointer is misleading'. Verified: that autopsy has FOUR targets and targets[3].claim_ids is [ARC-058], failed_criterion not_tested, with a note that ARC-058 needs a dedicated shared-trunk-vs-independent arm. The pointer is CORRECT and live_status.evidence.from is left alone; the false premise was inherited verbatim from ARC-058's own digestion_note, which is now corrected rather than acted on. A SECOND false statement in the same claim -- 'no manifest carries claim_ids including ARC-058' -- is also wrong: the V3-EXQ-595 three-arm ARC-033-vs-ARC-058 series (3 runs, experiment_purpose evidence) is tagged to it; all scored non_contributory, so genuine_exp_count 0 is right, but the arbitration was ATTEMPTED, not never run. THE SD-048 HALF HOLDS: 512a's supports framing is stale (reclassified non_contributory 2026-08-09), and with 511/512a/902 all non_contributory SD-048 has zero clean confirming results. Note the MANIFEST was already corrected; only the claim fields lagged."
     },
     {
       "flag_id": "GFLAG-0072",
