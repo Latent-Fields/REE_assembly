@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build."
     }
   },
-  "last_seen_session": "chip-20260829-sd082-percandidate-summary-fix",
-  "last_updated_utc": "2026-08-30T16:33:49Z",
+  "last_seen_session": "c3-build1-epideficit-readiness-20260901",
+  "last_updated_utc": "2026-09-01T05:01:38Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -8615,9 +8615,9 @@
       "sd_id": "sd_epistemic_deficit_multitarget_readiness",
       "title": "Give the epistemic-deficit accumulator a reachable multi-target regime, and gate its validation on per-candidate differentiation",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "ready": true,
-      "design_doc": null,
+      "status": "implemented_pending_validation",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_102_epistemic_deficit_accumulator.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-482"
@@ -8628,7 +8628,7 @@
           "experiment_type": "v3_exq_964_mech482_epistemic_deficit_validation",
           "metric": "n_targets==1 on all 3 seeds with all 32 candidates matching it; per-candidate readout constant; yoked_divergence_frac exactly 0.0",
           "target": "a validation run must reach n_targets>=2 AND candidates matching >=2 distinct targets (equivalently _last_lp_dev_range > 0) before C2 is interpretable",
-          "resolved": "open"
+          "resolved": "substrate_landed_pending_validation"
         }
       ],
       "implementation_hint": "EpistemicDeficitAccumulator.reset() clears all persistent targets every episode (deliberately, mirroring StructuredCuriosity's per-episode LP-EMA clear), so in 60-step episodes it never exceeds one target and readout() returns a constant vector that cannot move an argmax. Either lengthen the accumulation window / relax the per-episode clear for this sub-flavour, or run the validation in an environment that produces >=2 distinct uncertainty loci per episode. Separately, record StructuredCuriosity._last_lp_dev_range (max-min of lp_contrib) in the manifest -- it is already computed and is exactly the number that decides whether the per-candidate read can differentiate.",
@@ -8640,8 +8640,33 @@
       ],
       "source_autopsy": "failure_autopsy_V3-EXQ-964_2026-08-30.json",
       "added_session": "governance-20260830-0630",
-      "last_seen_session": "governance-20260830-0630",
-      "added_utc": "2026-08-30T07:25:00Z"
+      "last_seen_session": "c3-build1-epideficit-readiness-20260901",
+      "added_utc": "2026-08-30T07:25:00Z",
+      "implementation_log": [
+        {
+          "session": "c3-build1-epideficit-readiness-20260901",
+          "utc": "2026-09-01T05:01:38Z",
+          "repo": "ree-v3",
+          "summary": "Multi-target readiness regime landed behind six no-op-default knobs (match_radius_mode, center_update, persist_targets_across_episodes, target_frame, readout_mode, require_differentiated_readout). MEASURED four independent causes of the n_targets==1 / constant-readout collapse, only ONE of which the autopsy named: (R1) match_radius default 1.0 exceeds the ENTIRE reachable z_world manifold (max pairwise L2 0.41), so n_targets cannot exceed 1 at ANY episode length -- the autopsy's per-episode-clear hypothesis is NECESSARY BUT NOT SUFFICIENT (59 updates within ONE episode already collapse to 1 target); (R2) a matched target re-centers onto the latest z, random-walking 0.82 of path length per 60-step episode against a 0.41 manifold diameter, absorbing the space even under a correct radius; (R3) NOT IN THE AUTOPSY -- UPDATE keys targets on the ENCODER z_world while READOUT matches e2.world_forward PREDICTIONS; measured centroid offset 0.286 against an internal spread of 0.05 (5.6x), so no single radius can both separate targets and match candidates; (R4) NOT IN THE AUTOPSY -- a HARD nearest-match threshold is a STEP function of candidate position and saturates in BOTH directions (all-match -> one constant; all-miss -> zero, also constant), so radius tuning alone cannot work. Fixed with a graded RBF-weighted readout matching the ResidueField precedent the module already cites. R3 and R4 are each independently sufficient to keep the readout constant, so a build addressing only the autopsy's named cause would still have produced a constant readout and a second unsatisfiable C2.",
+          "measured_off_arm": {
+            "n_targets": 1,
+            "differentiated_readout_ticks": "0/180",
+            "last_readout_deficit_range": 0.0,
+            "note": "reproduces the V3-EXQ-964 signature exactly on a real agent"
+          },
+          "measured_on_arm": {
+            "n_targets": 10,
+            "max_n_targets": 10,
+            "differentiated_readout_ticks": "178/180",
+            "last_readout_deficit_range_max": 0.016233,
+            "structured_curiosity_last_lp_dev_range": 0.000811648,
+            "note": "_last_lp_dev_range -- the autopsy's own named readiness statistic, 'exactly the number that decides whether the per-candidate read can differentiate' -- is now > 0, so C2 is satisfiable downstream"
+          },
+          "recording_gap_resolution": "The autopsy's 'record StructuredCuriosity._last_lp_dev_range' item needs NO substrate change: it is already computed (structured_curiosity.py:548) and already exposed as get_state()['last_lp_dev_range']. The 964 gap was the DRIVER never recording it. New accumulator diagnostics added for the same purpose: last_readout_deficit_range, last_readout_n_distinct_targets, max_n_targets, last_effective_match_radius, zworld_scale_dev, n_undifferentiated_readouts, readout_mode.",
+          "contracts": "ree-v3 tests/contracts/test_sd_epistemic_deficit_multitarget_readiness.py (23)",
+          "validation_owed": "A V3-EXQ-964 successor (NEW letter) arming the readiness config on both arms, gating on n_targets>=2 AND a non-constant per-candidate readout (last_readout_deficit_range > 0 / last_lp_dev_range > 0) BEFORE C2 is scored. NOT queued by this build session."
+        }
+      ]
     }
   ],
   "schema_version": "substrate_queue/v2"

@@ -222,3 +222,118 @@ reads from).
 
 Queued via `/queue-experiment` (diagnostic purpose) -- see the queue entry note for the EXQ id and
 acceptance criteria (feature ON vs OFF, readiness-gated, non-vacuous-readout assertion).
+
+---
+
+## AMEND: multi-target readiness (2026-09-01)
+
+Substrate-queue entry `sd_epistemic_deficit_multitarget_readiness`, from the ratified V3-EXQ-964
+autopsy (`evidence/planning/failure_autopsy_V3-EXQ-964_2026-08-30.json`, confirmed at REE_assembly
+`28d14475a5`). Six no-op-default knobs; every default reproduces the pre-amend behaviour exactly.
+
+### What the autopsy established, and what it did not
+
+V3-EXQ-964's C2 ("the downstream consumer can change the committed action") was STRUCTURALLY
+UNSATISFIABLE: all three seeds ended with `n_targets == 1` and
+`last_n_targets_matched_at_readout == 32 == K`, so `readout()` returned the SAME value for every
+candidate, and `StructuredCuriosity` applies `total = total - weight * lp_vec` -- subtracting a
+constant from every candidate score cannot move an argmax. `yoked_divergence_frac == 0.0` was
+mathematically forced and carries zero information about MECH-482.
+
+The autopsy attributed the collapse to `reset()` clearing all targets every episode, and proposed
+lengthening the accumulation window or relaxing the per-episode clear. That hypothesis is
+**necessary but not sufficient**, and three further causes were measured while building the fix.
+Each is independently sufficient to keep the readout constant, so a build addressing only the named
+cause would have produced a second unsatisfiable C2.
+
+### The four causes, measured
+
+**R1 -- the radius exceeds the entire manifold.** `match_radius` defaults to 1.0, justified in the
+original landing as "matching ResidueField's default RBF bandwidth so the two spatial accumulators
+are calibrated to the same z_world scale". That reasoning conflates a SOFT RBF falloff
+(`exp(-d^2/2b^2)`, which still grades every distance inside `b`) with this module's HARD assignment
+threshold (one bucket inside the radius, no grading). Measured on the 964 config (CausalGridWorldV2,
+`world_dim` 16, 180 ticks): the entire reachable z_world manifold has **max pairwise L2 0.41**, less
+than half the default. So `n_targets` could not exceed 1 at ANY episode length -- and the 964 data
+already shows this, since `n_updates == 59` (one 60-step episode) yielded `n_targets == 1`, i.e. the
+collapse is already **intra-episode**.
+
+**R2 -- a matched target is a random walk.** A matched target re-centres onto the latest observation.
+Measured mean consecutive-step L2 is 0.0139, so one target migrates `59 x 0.0139 = 0.82` of path
+length in a 60-step episode -- twice the 0.41 manifold diameter. It absorbs the whole space over time
+even under a correctly-scaled radius. Neither the per-episode clear nor a wider window addresses this.
+
+**R3 -- UPDATE and READOUT operate on systematically offset manifolds (not in the autopsy).** UPDATE
+keys targets on `z_world_prev`, an ENCODER output; READOUT matches `e2.world_forward` PREDICTIONS.
+Measured: realized centroid norm 0.463, predicted 0.556, `||mu_pred - mu_real|| = 0.286`, against an
+internal spread of only ~0.05 in each cloud. The bias is **5.6x the structure the radius must
+resolve**, so no single absolute radius can both separate targets and let candidates match them --
+1.0 spans the offset and collapses everything, while a correctly-scaled ~0.028 resolves structure and
+matches nothing.
+
+**R4 -- a hard threshold saturates in BOTH directions (not in the autopsy).** The nearest-match
+threshold is a STEP function of candidate position. Measured per-tick cross-candidate spread of the
+`e2.world_forward` predictions is 0.0096 against typical target separation ~0.05, so the whole
+32-candidate cloud sits either inside one target's radius (every candidate reads the same deficit) or
+outside every target's radius (every candidate reads 0.0). Both are constants. Radius tuning alone
+therefore cannot work.
+
+### The knobs
+
+| Knob | Default | Effect when set |
+|---|---|---|
+| `epistemic_deficit_match_radius_mode` | `"absolute"` | `"relative"`: effective radius = `frac * running_scale`, self-calibrating as the encoder trains (R1) |
+| `epistemic_deficit_match_radius_relative_frac` | `0.5` | the fraction above |
+| `epistemic_deficit_center_update` | `"replace"` | `"ema"`: anchors a matched target near where its deficit was observed (R2) |
+| `epistemic_deficit_center_ema_beta` | `0.1` | the blend above |
+| `epistemic_deficit_target_frame` | `"realized"` | `"predicted"`: keys targets on `e2.world_forward(zw_prev, a_taken)`, the SAME frame READOUT matches (R3) |
+| `epistemic_deficit_readout_mode` | `"hard_match"` | `"rbf_weighted"`: graded distance-weighted read over all targets, continuous in candidate position (R4) |
+| `epistemic_deficit_persist_targets_across_episodes` | `False` | `reset()` keeps targets + running scale; diagnostics still cleared |
+| `epistemic_deficit_require_differentiated_readout` | `False` | `readout()` REFUSES a constant (provably argmax-inert) vector rather than returning it -- the RUNTIME structural-unsatisfiability check the autopsy's learning #4 asks for |
+
+`"predicted"` is also the more faithful attribution: the deficit is a property of where the model's
+PREDICTION was inadequate. The RBF readout matches the ResidueField precedent this module's own
+docstring already cites -- ResidueField evaluates a distance-weighted sum over persistent centers
+rather than a nearest-centre lookup.
+
+### Measured, on a real agent (`world_dim` 16, 3 x 60 steps, seed 71)
+
+| | defaults (OFF) | readiness config (ON) |
+|---|---|---|
+| `n_targets` | 1 | 10-12 |
+| effective radius | 1.000 | ~0.030 |
+| differentiated readout ticks | **0 / 180** | **178 / 180** |
+| `last_readout_deficit_range` | 0.0 | up to 0.0162 |
+| `StructuredCuriosity.last_lp_dev_range` | 0.0 | 0.000812 |
+
+The OFF arm reproduces the V3-EXQ-964 signature exactly, which is what makes the ON arm meaningful --
+two green arms would otherwise be equally consistent with "the fix works" and "the collapse was never
+reproduced".
+
+### The recording gap needs no substrate change
+
+The autopsy also asks to "record `StructuredCuriosity._last_lp_dev_range` in the manifest -- it is
+already computed and is exactly the number that decides whether the per-candidate read can
+differentiate". It is computed at `structured_curiosity.py:548` and already exposed as
+`get_state()["last_lp_dev_range"]`; the 964 gap was the DRIVER never recording it. New accumulator
+diagnostics were added for the same purpose: `last_readout_deficit_range`,
+`last_readout_n_distinct_targets`, `max_n_targets`, `last_effective_match_radius`,
+`zworld_scale_dev`, `n_undifferentiated_readouts`, `readout_mode`.
+
+### Posture
+
+Phased training: N/A (pure arithmetic, no learned parameters). MECH-094: unchanged --
+`update(simulation_mode=True)` remains a no-op and now also refuses to advance the running scale.
+Evidence-staleness: NOT triggered -- every knob is no-op-default, so no dependent claim's measured
+mechanism changed. PROMOTES NOTHING: MECH-482 stays `candidate` / `substrate_conditional` /
+`pending_retest_after_substrate`; ORNT-2 stays as `/governance` left it.
+
+Contracts: `ree-v3 tests/contracts/test_sd_epistemic_deficit_multitarget_readiness.py` (23; roughly
+half negative controls, including an end-to-end reproduction of the 964 collapse on the OFF arm).
+
+### Validation owed
+
+A V3-EXQ-964 successor (NEW letter -- 964's coordinator row is terminal) arming the readiness config
+on both arms, gating on `n_targets >= 2` AND a non-constant per-candidate readout
+(`last_readout_deficit_range > 0` / `last_lp_dev_range > 0`) as a readiness precondition BEFORE C2 is
+scored. NOT queued by this build session.
