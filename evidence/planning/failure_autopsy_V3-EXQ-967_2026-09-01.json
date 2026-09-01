@@ -1,0 +1,88 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-01T06:44:22Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "red_team_pass": {
+  "ran": true,
+  "model": "fable",
+  "verdict": "CONFIRMED",
+  "note": "Cross-model adversarial pass (Fable), skill Step 7c. The commanded defect -- a ceiling-denominated energy_unclamped_frac read against a floor claim (verified at driver:504) -- is this artifact's OWN corrected central finding, already carried in correction_record. Full per_step_log recomputation matched independently: energy_post means 0.4809/0.4761, floor fractions 10.2%/9.5%, ceiling 0%, 709 differing steps, max diff 0.99, action divergence 46/2400 confined to block 3 (steps 4493-4664, inside the 2400-4799 matched window, reconciling the step-index attack), block 2 = 0/1200, per-block energy divergence 296/413, blocks 0-1 arm-identical by design via block_high_idx. The refutation transfers to 966 (configs match on every substantive parameter, shared seed 42, same 0.01 decay). 'No correction owed to claims.yaml' independently VERIFIED: zero 'floor-clamped' hits in the registry and the applied MECH-143 note already carries the energy-route-open reading."
+ },
+ "targets": [
+  {
+   "run_id": "v3_exq_967_mech144_shuffle_inertness_confirmer_20260901T062344Z_v3",
+   "queue_id": "V3-EXQ-967",
+   "claim_ids": [],
+   "self_route_label": "behaviour_diverges_contacts_coincide",
+   "self_route_verdict": "PARTIALLY UPHELD. The energy route is demonstrably open (energy_mean 0.4892/0.4845, at the 0.0 floor on only 10.2% of steps, arms differing by up to 0.99 across 709 steps), so 966's 'agent_energy floor-clamped' explanation is REFUTED and the inertness is not a closed-route result. But the label's second half -- that the bit-identity is a property of the contact-counting DV (saturation / coarse quantisation) -- is NOT ESTABLISHED. Block-resolved: of the two arm-differing blocks, block 2 has ZERO action divergence across 1200 steps (identical contacts there is a tautology, and read alone is what an insensitive policy looks like) and block 3 has 46/1200 (3.8%), all after step 4493 in a window ending at 4799. The 'bit-identical on 4/4 blocks' headline counts two blocks that share an amplitude assignment by design. Insufficient behavioural exposure is at least as consistent with the data as DV quantisation, and this run cannot separate them.",
+   "failed_criterion": "none -- PASS on C1 (load-bearing), C2 and C3",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim-free confirmer (claim_ids: []); bears on MECH-143 / MECH-144 through the V3-EXQ-966 cluster autopsy",
+    "biological_reference": "clear -- hippocampal value-sensitive trajectory scoring; no translation error implicated, and this run does not reach a test of it",
+    "prerequisites": "present -- P0 warmup genuinely trained (1440 optimiser steps vs floor 1), the precondition that exists so an untrained encoder's indifference cannot be misread as an insensitive policy",
+    "implementation": "complete -- the amplitude -> contact_benefit -> agent_energy chain is live and measured end to end; energy_mean 0.48 and arms differ by up to 0.99",
+    "environment": "adequate -- agent_energy is at the 0.0 floor on only 10.2% of logged steps with a mean of 0.4809 (recomputed from per_step_log); the 966 floor-clamp explanation is refuted. NOTE: the run's own energy_spends_time_unclamped precondition measures distance from the 1.0 CEILING and is uninformative about a FLOOR claim -- the refutation rests on the energy level, not on that precondition",
+    "measurement": "under-instrumented -- the DV is a per-block integer count over blocks in which the arms are action-identical (block 2, 0/1200) or diverge on only 3.8% of late steps (block 3, 46/1200). It cannot discriminate here, but this run does not establish that a finer DV would have",
+    "integration": "coupled -- all routes coupled and observable",
+    "scale": "likely insufficient -- the DOMINANT limitation. 1 seed; only 2 of 4 blocks carry any information; 0/1200 action divergence in one arm-differing block and 46/1200 in the other, all in the last ~13% of the logged window (first divergence step 4493, window 2400-4799)"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "partial",
+    "environment": "not_established",
+    "ree": false,
+    "net_classification": "MIXED -- MEASURES + SCALE, not chargeable to REE. Implementation and Environment both read adequate, so neither MECHANISM nor ENVIRONMENT is established and REE FAILED is not reachable. Measurement is under-instrumented AND behavioural exposure is insufficient; this run cannot apportion between them, so a solo MEASURES read would overstate what was shown."
+   },
+   "biological_reference": {
+    "closest_mechanism": "ventral/intermediate hippocampal value-sensitive place coding feeding trajectory evaluation",
+    "dependencies": [
+     "a depletable interoceptive state that benefit magnitude can move",
+     "an incentive-value store that accumulates per-type experience"
+    ],
+    "is_formal_import": false,
+    "divergence": "none identified -- this run resolves an instrumentation question, not a biology one",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "Claim-free confirmer; 'standard' asserts no epistemic suppression, which is the correct verdict.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "[V3-EXQ-967, failure_autopsy_V3-EXQ-967_2026-09-01] V3-EXQ-967 is the cheap confirmer the 2026-08-30 governance note on MECH-143/144 said would run first. It PARTIALLY resolves the mechanism that failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 left unresolved. ESTABLISHED: the agent_energy route is open. Recomputed from per_step_log (2400 rows, steps 2400-4799), energy_mean is 0.4892 / 0.4845 across arms, energy sits at the 0.0 floor on only 10.2% of steps, and the arms differ by up to 0.99 across 709 steps. The 966 note's third closed route -- agent_energy 'floor-clamped at 0.0 under a 0.01/step decay that dominates' -- is therefore REFUTED; the other two routes (residue sign-gating, agent_health pinned by NUM_HAZARDS=0) are untouched by this run and stand. Note the run's own energy_spends_time_unclamped precondition (0.99) measures distance from the 1.0 CEILING and would read ~1.0 even under a floor clamp, so it is not what refutes the claim; the energy level is. NOT ESTABLISHED: the run's attribution of the surviving contact bit-identity to DV saturation / coarse quantisation. Block-resolved, the logged window covers only the two arm-differing blocks (blocks 0-1 share an amplitude assignment by design, so their matching contacts carry no information). Of those two, block 2 shows ZERO action divergence across 1200 steps -- identical contacts there is a tautology, and read alone resembles the insensitive-policy hypothesis this run is credited with eliminating -- and block 3 shows 46/1200 (3.8%), all after step 4493 in a window ending at 4799, i.e. the arms were action-identical for ~87% of the window. Small integer counts (2 and 6) surviving 46 late divergent steps is at least as consistent with insufficient behavioural exposure as with a coarse DV, and this run cannot separate them. The 'bit-identical on 4/4 blocks' headline overstates the evidence: one block carried discriminative weight. WHAT THIS DOES SUPERSEDE is the 966 autopsy's recommended repair direction -- it routed a retest 'on an env config where the amplitude reaches an unclamped channel', and the amplitude already reaches one; the repair is the DV and the exposure, not the environment. NO CORRECTION TO claims.yaml IS OWED: the note governance applied at the 2026-08-30 PM cycle had already trimmed the three-routes-closed mechanism and said only that the mechanism was unresolved pending this confirmer. Caveat: n=1 seed. PROMOTES/DEMOTES NOTHING.",
+   "per_claim_recommendation": {},
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "Claim-free confirmer; no claim_ids to count against. This reading is NOT substrate_ceiling. The successor is a measurement repair on a different DV, not another letter circling a substrate ceiling."
+   },
+   "read_across_not_adjudicated": [
+    {
+     "bears_on": "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (target V3-EXQ-966)",
+     "note": "Two effects, neither requiring a registry change. (1) That artifact's recommended_evidence_quality_note explains the inertness by all three amplitude routes being closed, including agent_energy 'floor-clamped at 0.0 under a 0.01/step decay that dominates ~0.8 contacts/episode'. This run refutes that third route (energy unclamped 99% of steps, arms differ by up to 0.99). Note the artifact was already internally inconsistent here: its own four_layer_diagnosis.environment reads 'the agent_energy channel is open and amp-scaled in most of each episode, so the earlier clamp-based explanation is withdrawn', so the four-layer read was right and the note text lagged it. The refuted text was NOT carried into claims.yaml -- governance trimmed it at the 2026-08-30 PM cycle -- so this is recorded to stop the artifact being mined later for a mechanism its own successor disproved. The 966 adjudication itself (non_contributory on MECH-143 and MECH-144) STANDS; nothing here reinstates the withdrawn supports. (2) That artifact's routing, 'retest owed on an env config where the amplitude reaches an unclamped channel', is superseded: the env config is adequate and the DV is what needs replacing."
+    }
+   ],
+   "learning_extracted": [
+    "Eliminating one explanation does not establish the named alternative. 967 shows the route is open and the policy is not wholly unresponsive; it does not separate DV quantisation from insufficient behavioural exposure, and its outcome_note asserts the former.",
+    "A count of matching cells is not a count of INFORMATIVE cells. 'Bit-identical on 4/4 blocks' covered two blocks sharing an amplitude assignment by design and one in which the arms took identical actions; only one block carried discriminative weight. Report the informative denominator, not the total.",
+    "A precondition must be denominated on the quantity the claim it tests is about. energy_spends_time_unclamped measures distance from the 1.0 ceiling and was read against a claim about the 0.0 floor -- it would read ~1.0 under exactly the condition it was invoked to exclude. The floor claim is genuinely refuted, but by energy_mean 0.48 and a 10.2% at-floor fraction, not by that precondition.",
+    "A bit-identical DV across arms is a DV property to investigate, not a null result to report. V3-EXQ-966 reported the identity as a finding about the manipulation; the manipulation was live the whole time.",
+    "A repair direction inherited from a prior autopsy needs re-checking against the confirmer's own data. 966's 'change the env config' was reasonable on 966's evidence and is wrong on 967's -- naming a downstream repair is not performing it, and the naming does not survive new evidence automatically.",
+    "An artifact can be internally inconsistent between its four_layer_diagnosis and its recommended_evidence_quality_note, and it is the NOTE that governance writes into the registry. When re-reading a prior autopsy, check the two against each other rather than reading only the field being superseded."
+   ],
+   "routing": "queue-experiment",
+   "routing_note": "A V3-EXQ-966 successor under a new letter changing the DEPENDENT VARIABLE *and* the exposure -- three changes, not one. (1) Replace the per-block integer contact count with a readout sensitive to when and where divergence occurs (per-step contact indicator series, contact timing, or an energy integral over the block), pre-registered against that statistic. (2) Secure enough behavioural divergence to be worth measuring: 0/1200 and 46/1200 in the two arm-differing blocks is not an exposure a per-block count could have resolved under any quantisation. Log the full run rather than two blocks, and report per-block action divergence alongside the DV so a null is interpretable. (3) Run more than one seed. Keep the env config -- it is adequate. Ratified at the Step 8 gate 2026-09-01 with the user present. No substrate work implicated.",
+   "correction_record": {
+    "corrected_before_landing": true,
+    "note": "The first draft cited energy_spends_time_unclamped = 0.99 as refuting 966's floor-clamp claim, and read the DV attribution as established. Both were corrected on a recomputation from per_step_log before this artifact was committed: the floor claim is refuted by the energy LEVEL (mean 0.4809, 10.2% at floor), not by a ceiling-denominated precondition; and the block-resolved action divergence (0/1200 in block 2, 46/1200 in block 3) shows the DV attribution is not established. The corrected reading is what governance should act on."
+   }
+  }
+ ]
+}

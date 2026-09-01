@@ -1,0 +1,114 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-01T06:44:22Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "red_team_pass": {
+  "ran": true,
+  "model": "fable",
+  "verdict": "CONTESTED",
+  "note": "Cross-model adversarial pass (Fable), skill Step 7c. The commensurability attack FAILED -- F family, share method, weighting basis and clamp/arm role all verified equivalent across 936a and 571b, so the five-order gap is real and not a statistic artifact. The contest is narrower and it HOLDS: the flat attribution 'attributable to environment, not instrument' is not established. The gap is wholly carried by residue_weighted (0.999988-0.999998 of 936a's committed variance) and the two runs differ on THREE dimensions -- environment, residue-feeding protocol (936a calls update_residue every env step at driver:760; the executed 571b driver, hash-confirmed 15a694e1100f, has zero calls), and schedule. The isolating measurement (residue_rbf_active_centers) was added post-run and is absent from this manifest. Applied: the attribution weakened to REGIME-dependent throughout, and residue-protocol + schedule parity added to the routed audit spec. All confirmers independently re-verified before applying. Unchanged by the contest: the gate-stays-shut decision, the PASS adjudication, the occupant-shift finding, the SD-056 amend, and the non_contributory direction."
+ },
+ "targets": [
+  {
+   "run_id": "v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3",
+   "queue_id": "V3-EXQ-571b",
+   "claim_ids": [
+    "MECH-439"
+   ],
+   "self_route_label": "f_monopoly_present_clamped_occupant_shifted",
+   "self_route_verdict": "UPHELD, with a scope restriction the label does not carry: monopoly-presence is established for the 571-shape env only, and V3-EXQ-936a measured the same premise ABSENT (F share 6.33e-06) in the 936-family env under the same clamp ratio",
+   "failed_criterion": "none -- PASS on C1 (load-bearing), C2 and C3",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- MECH-439's F-level premise is confirmed for the 571-shape env; its channel-level reading does not transfer across the instrument change (occupant shifts f_weighted -> harm_weighted when the clamp is armed, 4/4 seeds)",
+    "biological_reference": "partial -- E3 score-component authority; no biology divergence implicated by this run",
+    "prerequisites": "present -- all three readiness preconditions met, including clamp_config_landed_every_cell = 1.0, which is load-bearing because REEConfig.from_dims swallows unknown kwargs silently",
+    "implementation": "complete -- the SD-056 rollout clamp is built and demonstrably binding: at_ceiling_frac 0.92-0.97, max||z_w||/ceiling 1.0000 clamped vs 293.86 unclamped",
+    "environment": "adequate for its own question -- a faithful 571-shape reproduction (8x8, 1 hazard). It is NOT the 936-family env (12x12, 4 hazards, reef bipartite, drift) and must not be read as licensing conclusions there",
+    "measurement": "adequate -- the routed statistic is a genuine bounded [0,1] committed partition; scale-invariance verified by recomputation (std/range 0.56-3.18 clamped vs 0.44-1.40 unclamped, ~15 orders above float64 noise)",
+    "integration": "adequate -- env seed derived from the run seed only, so all four arms at a given seed share a layout and the clamp contrast is genuinely within-layout",
+    "scale": "adequate -- 187-285 fresh selections per cell against a 60 floor"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "not_established",
+    "ree": false,
+    "net_classification": "n/a -- this is a PASS; no failure bucket established and REE FAILED is neither reachable nor asserted"
+   },
+   "biological_reference": {
+    "closest_mechanism": "value-component authority in action selection (relative weighting of threat vs affordance channels)",
+    "dependencies": [
+     "a score-component set on a common scale",
+     "a selection regime that actually commits"
+    ],
+    "is_formal_import": false,
+    "divergence": "none identified by this run",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "'standard' preserves current GOV-GRAN-1 and v3-testability behaviour exactly. This run does NOT assert that MECH-439's answer is gated on substrate work, so substrate_conditional / substrate_ceiling would be wrong and would silently starve the claim of experiment lanes.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "[V3-EXQ-571b, failure_autopsy_V3-EXQ-571b_2026-09-01] V3-EXQ-571b is the clamped presence audit that failure_autopsy_V3-EXQ-936a_2026-08-30 required before further 936-family falsifiers could run. It PASSES its own load-bearing criterion: with the SD-056 rollout clamp armed, an F-channel variance monopoly IS present in the committed partition (top share 0.9368-0.9953, 4/4 seeds, against a 0.85 bar), and the occupant shifts WITHIN F -- f_weighted falls 0.9926-1.0000 -> 0.0011-0.0556 and harm_weighted rises ~0 -> 0.9368-0.9953, 4/4 seeds. Two objections were raised against the run and WITHDRAWN on checking: (a) the 9/16 cells with share > 1.0 are the LEGACY 571 covariance-retained pool statistic, recorded only for comparability with the historical 0.886, not the routed committed partition (driver:705-713); (b) A1's committed total variance of 1.5e-05 is a SCALE change, not a degeneracy -- dispersion-to-score-range is 0.56-3.18 clamped vs 0.44-1.40 unclamped and the observed standard deviations sit ~15 orders above float64 precision, and a variance SHARE is scale-invariant. THE GATE DOES NOT CLEAR FOR THE 936-FAMILY ENV. 936a measured the clamped-baseline F variance share at 6.33e-06 (residue_weighted monopolising at ~99.999%) in a 12x12 / 4-hazard / reef-bipartite / drifting env, while 571b measures 0.976-0.996 (harm_weighted monopolising) in an 8x8 / 1-hazard / no-reef / no-drift env at the SAME clamp ratio 2.0. Both are clamp-armed manipulation-off baselines and the gap is not a statistic artifact: it survives both share methods (571b clamped legacy-pool F share 0.886-1.73 vs 936a 6.328e-06 pool / 6.268e-06 committed), both runs use the same F family with residue excluded, and the executed 571b driver is hash-confirmed against the manifest. The CAUSE is NOT established as the environment. The entire gap is carried by residue_weighted (0.999988-0.999998 of 936a's committed variance) and the two runs differ on three dimensions at once: environment (12x12/4-hazard/reef/drift vs 8x8/1-hazard/static), RESIDUE-FEEDING PROTOCOL (936a calls agent.update_residue on every env step at its driver:760; the 571b driver that executed contains zero update_residue calls), and schedule (P0 60 ep x 200 steps vs 20 ep x 100 steps). The isolating measurement, residue_rbf_active_centers, was added to the 571b driver in a post-run commit and is absent from this manifest. The monopoly premise is therefore REGIME-DEPENDENT -- environment and/or residue protocol and/or schedule -- and 571b licenses only the 571 regime. Residue's committed fraction in 571b A1 is nonzero (0.0013-0.0235), so it was a live candidate occupant there and lost, which rules out 'structurally absent' on the 571b side but says nothing about why it dominates on 936a's. The gate consequence is unchanged by the open attribution: 936a measured the premise absent in the falsifiers' OWN regime directly, and that measurement stands whatever its cause. A 936-family falsifier must establish presence in the regime it will run in -- matched on residue protocol and schedule as well as environment -- and must name which F channel it targets. Separately recorded on SD-056: with the clamp armed E3's committed score range collapses ~800x (1.95-16.36 -> 0.0030-0.0067) and 92-97% of rollouts sit pinned at the ceiling -- the clamp removes a real numerical pathology (936 recorded var(F) up to 4.07e72 unarmed) at a previously unrecorded cost to E3's selection dynamic range. Status stays candidate; epistemic_category stays standard; nothing storable moves. PROMOTES/DEMOTES NOTHING.",
+   "per_claim_recommendation": {
+    "MECH-439": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "pending_retest_after_substrate": false,
+     "change": "NOTE-ONLY. Nothing storable moves: status stays candidate and epistemic_category already reads standard, so this row is deliberately NOT ended on a storable value and must clear via the provenance stamp (live_status.evidence.from -> this artifact) rather than by a field match. Apply the evidence_quality_note recording that (i) the clamped monopoly premise IS established for the 571-shape env with the occupant shifted f_weighted -> harm_weighted 4/4 seeds, and (ii) 936a's gate on the 936-family falsifiers does NOT clear, because 936a measured the same premise absent (F share 6.33e-06) in its own REGIME under the same clamp ratio -- the premise is regime-dependent (environment and/or residue-feeding protocol and/or schedule; the gap is wholly residue-carried and this run cannot apportion it)",
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-056",
+    "severity": "corrupting",
+    "substrate_paths": [
+     "ree_core/predictors/e2_fast.py::rollout_with_world",
+     "ree_core/predictors/e3_selector.py::compute_reality_cost",
+     "ree_core/utils/config.py"
+    ],
+    "severity_change_note": "Severity and paths LEFT AS GOVERNANCE ALREADY HAS THEM. This run does not change the classification -- the clamp is the fix, not the defect. The amendment adds one observation about the fix's side-effect.",
+    "failure_record_entry": {
+     "run_id": "v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3",
+     "experiment_type": "v3_exq_571b_e3_variance_monopoly_presence_clamped",
+     "metric": "With the rollout clamp armed, E3 committed score range collapses ~800x (1.95-16.36 unclamped -> 0.0030-0.0067 clamped) and 92-97% of rollouts sit pinned at the ceiling (max||z_w||/ceiling 1.0000 clamped vs 293.86 unclamped). The clamp removes the real divergence it exists to fix, at a previously unrecorded cost to E3 selection dynamic range.",
+     "target": "establish whether E3 selection is meaningfully driven in the clamped regime, or whether near-indistinguishable candidate scores make clamped-regime selection readouts uninformative; any experiment reading E3 selection behaviour with the clamp armed depends on the answer",
+     "resolved": "open"
+    },
+    "resolves_prior_failure_record": []
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "This reading is NOT substrate_ceiling and adds no ceiling hit to MECH-439. The routing is a presence audit in a different environment -- a new question about env-dependence, not another letter circling the same ceiling."
+   },
+   "read_across_not_adjudicated": [
+    {
+     "bears_on": "failure_autopsy_V3-EXQ-936a_2026-08-30",
+     "note": "That artifact's gate ('further 936-family falsifiers REFUSED until a monopoly-present regime is established by a clamped 571b-shape presence audit') is satisfied in LETTER by this run and NOT in PURPOSE. The audit it names passed in the 571-shape env; the falsifiers it gates run in the 936-shape REGIME, where 936a's own summary.off_arm_mean_f_variance_share = 6.33e-06 says the premise is absent. That regime differs from 571b's on environment, residue-feeding protocol AND schedule, and this run cannot apportion the gap between them -- but the absence was measured directly in the gated regime, so the gate decision does not depend on the apportionment. Governance should read the gate as still shut for the 936 env. No change to 936a's own adjudication is proposed -- its reading of V3-EXQ-936a stands."
+    },
+    {
+     "bears_on": "hypothesis_space_registry.v1.json question e3_fdominance_causal_discrimination",
+     "note": "H1-literal-f-dominance and H2-primary-field-dominance are both alive on that question. This run does not discriminate them -- it is a presence audit, not the H1-H4 causal discriminator -- so no leg is resolved and no denominator growth is recorded. But it does add a scope condition the question's decision block does not currently carry: the F-monopoly premise those legs are posed against is environment-dependent. Recommended as a decision-block scope note at the next governance walk, NOT as a leg resolution."
+    }
+   ],
+   "learning_extracted": [
+    "A gate phrased as 'establish premise P by an experiment of shape S' is satisfied by shape S and licenses only shape S's regime. Phrase premise-gates on EVERY dimension the gated work differs on -- environment, driver protocol and schedule -- not just the one easiest to name. The first draft of this artifact promoted the environment dimension into the gate and silently dropped the residue-feeding protocol, committing the very error this item states; the cross-model red-team pass caught it.",
+    "When two runs differ on several dimensions at once, a single-cause attribution needs a measurement that isolates it, not a plausible mechanism. The five-order F-share gap here is wholly carried by residue_weighted while environment, residue-feeding protocol and schedule all differ, and the isolating measurement (residue_rbf_active_centers) was added post-run and is absent from the manifest. 'Regime-dependent' is what the evidence supports.",
+    "A variance SHARE is scale-invariant, so a large drop in absolute variance is not by itself evidence of degeneracy. Compare dispersion to the score range in BOTH regimes before reading a collapse as noise. Correspondingly, set non-degeneracy floors relative to the regime's own scale rather than at a fixed absolute (1e-9) that the fixed regime cannot approach -- the floor here sits 4 orders below the smallest observed value and could not have failed.",
+    "A fix can be correct and still change the regime enough to invalidate downstream readings. The SD-056 clamp removes a genuine numerical pathology and collapses E3's committed score range ~800x in doing so; both facts belong on the substrate entry, not just the first.",
+    "The driver's refusal to move the pre-registered 0.85 bar onto a new statistic ('moving a pre-registered threshold to fit a new statistic would fabricate it') is the correct instinct and is worth propagating -- it is the same discipline V3-EXQ-642b got wrong in the opposite direction by preserving a statistic already known to be degenerate."
+   ],
+   "routing": "queue-experiment",
+   "routing_note": "A monopoly-presence audit matched to the 936-family REGIME on all three dimensions the two runs differ on, not just the environment: (1) env -- 12x12, 4 hazards, 5 resources, reef bipartite, env drift; (2) RESIDUE-FEEDING PROTOCOL -- per-step agent.update_residue(...), as the 936 family's driver does; (3) schedule -- P0 60 episodes x 200 steps/ep. Report which channel holds the monopoly and whether the 0.85 bar clears, and record residue_rbf_active_centers so a future comparison can apportion the gap between environment, residue protocol and schedule rather than asserting one. Dimension (2) was added after the cross-model red-team pass showed that omitting it would let an audit find monopoly-present in the 936 env while starving residue the way 571b does, and wrongly clear the gate for falsifiers that feed residue per step. Ratified at the Step 8 gate 2026-09-01 with the user present, who chose 'gate stays shut for the 936 env'. If the audit does not clear, the 936-family falsifier design needs re-posing against the actual monopolist rather than against F."
+  }
+ ]
+}

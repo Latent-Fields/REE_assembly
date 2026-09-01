@@ -1,0 +1,100 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-01T06:44:22Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "red_team_pass": {
+  "ran": true,
+  "model": "fable",
+  "verdict": "CONFIRMED",
+  "note": "Cross-model adversarial pass (Fable), skill Step 7c. Independently re-derived the peak clamp at ree_core/affect/blocked_agency.py:350 (default 1.5, no config override), confirmed C1/C2 read only z_block_peak (642a driver:457-464), and reproduced all six peaks at exactly 1.500 and the mean separations 0.6805/0.5904/0.7709. Attack (f) on the z_goal dismissal SUCCEEDED in the artifact's favour and CORRECTED it -- see z_goal_writer_defect_note. Hygiene findings applied: mean-separation ratio corrected 4-8x -> 4.1x-9.3x, and the stale z_block_cap line citation :114 -> :153."
+ },
+ "targets": [
+  {
+   "run_id": "v3_exq_642b_blocked_agency_calibrated_floor_validation_20260831T131011Z_v3",
+   "queue_id": "V3-EXQ-642b",
+   "claim_ids": [],
+   "self_route_label": "z_block_integrator_no_rise",
+   "self_route_verdict": "INCORRECT -- the integrator rises and rises in the BLOCK arm (mean separation 0.590-0.771, 3/3 seeds); the peak-difference criterion cannot express it",
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim-free diagnostic (claim_ids: []); bears_on 10 claims, none tagged",
+    "biological_reference": "partial -- frustrative non-reward / RAGE-analog blocked-goal integrator; MECH-353 lit anchor present. The failure is not a biology mismatch.",
+    "prerequisites": "present -- SD-070 encoder warmup and SD-056 world-forward both ran; C0 readiness passed 3/3 (margins 0.62/0.53/0.51 vs floor 0.10)",
+    "implementation": "complete -- the baseline-relative outcome_mismatch_floor (ree-v3 d49db86f3e64670) is built, landed and demonstrably effective: CONTROL z_block_mean 1.26-1.35 -> 0.064-0.177",
+    "environment": "adequate -- static landmark env, harm held at zero, goal pinned; all controls behaved as designed",
+    "measurement": "misleading -- C1 and C2 read only z_block_peak, a max against the hard clamp z_block_cap=1.5. Both arms reach exactly 1.500 on all 3 seeds, so z_block_separation is 0.0 by arithmetic and both criteria are false regardless of behaviour. The recorded z_block_mean separates 0.681/0.590/0.771 against the same 0.20 margin.",
+    "integration": "coupled but unstable -- comparator and integrator are now correctly scaled to one another; the readout is not scaled to the integrator's clamp",
+    "scale": "adequate -- 2400 policy steps/arm/seed, 3 seeds, ~1179 blocked steps per BLOCK arm"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "established",
+    "environment": "not_established",
+    "ree": false,
+    "net_classification": "MEASURES FAILED (solo) -- Implementation reads complete and Environment adequate, so neither MECHANISM nor ENVIRONMENT is established and REE FAILED is not reachable"
+   },
+   "biological_reference": {
+    "closest_mechanism": "frustrative non-reward / RAGE-system blocked-goal integrator (periaqueductal-hypothalamic-amygdala axis)",
+    "dependencies": [
+     "action-outcome comparator",
+     "motor efference copy (agency attribution)",
+     "goal-value maintenance"
+    ],
+    "is_formal_import": false,
+    "divergence": "none identified at the mechanism level; this run did not reach a test of the biology",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "Claim-free diagnostic; 'standard' asserts no epistemic suppression, which is the correct verdict. This reading is NOT substrate_ceiling and adds no ceiling hit to any claim.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "[V3-EXQ-642b, failure_autopsy_V3-EXQ-642b_2026-09-01] V3-EXQ-642b did NOT test whether z_block rises under blocked agency, for the same structural reason as its predecessor. C1 and C2 read only z_block_peak, a max statistic against the hard clamp z_block_cap=1.5 (ree_core/affect/blocked_agency.py:153); both arms reach exactly 1.500 on all 3 seeds, so z_block_separation is 0.0 by arithmetic and both load-bearing criteria are false regardless of behaviour. C2 additionally subtracts a z_harm_a separation that is a structural 0.0 (harm pinned at zero by design). The self-routed label 'z_block_integrator_no_rise' is INCORRECT. The substrate build under validation WORKED: the baseline-relative outcome_mismatch_floor (ree-v3 d49db86f3e64670) moved CONTROL z_block_mean from 642a's 1.26-1.35 to 0.064-0.177 and improved BLOCK-CONTROL mean separation 4.1x-9.3x, from +0.165/+0.121/+0.083 to +0.681/+0.590/+0.771. On the recorded z_block_mean, against the SAME pre-registered margins (C1_MARGIN 0.20, Z_BLOCK_MIN 0.20, C2_MARGIN 0.20), C1 and C2 pass on 3/3 seeds. The peak degeneracy was named in advance by failure_autopsy_V3-EXQ-642a_2026-08-30 (generated 2026-08-30T06:34:18Z, one day before this run executed), whose learning_extracted[1] recommended a headroom DV; the successor implemented the substrate half of that diagnosis and by design reused the criterion. Residual finding: CONTROL still reaches peak 1.500 at a mean of 0.064-0.177, so the integrator saturates on transients even in a free arm. Secondary: the manifest's z_goal_stream.writer_defect true (writer_calls 0 over 14400 ticks) is NOT a defect in this run -- the driver deliberately pins the goal at a fixed magnitude (GOAL_PIN = 0.5, _pin_goal() at v3_exq_642a_blocked_agency_zblock_discriminative.py:224, invoked at :268/:304/:333/:354/:373), which sets z_goal directly and bypasses the counted writer; that is why ticks_active reads 14400/14400 and active_frac 1.0 alongside zero writer calls, a combination an omitted update_z_goal could not produce. Neither C0 nor C3 reads a goal-dependent statistic. This is a live instance of 642a's learning_extracted[3]: the detector cannot separate an omitted update_z_goal from a deliberately pinned constant goal and here mislabels a correct control as a defect. MECH-353's v3_pending gate is NOT cleared and NOT contradicted. PROMOTES/DEMOTES NOTHING.",
+   "per_claim_recommendation": {},
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "sd_blocked_agency_mismatch_floor_calibration",
+    "severity": "corrupting",
+    "substrate_paths": [
+     "ree_core/affect/blocked_agency.py"
+    ],
+    "severity_change_note": "SEVERITY LEFT AT corrupting -- an earlier draft of this artifact proposed downgrading to degrading on the grounds that the calibration now works, and that was withdrawn. The corrupting condition 642a recorded (integrator pinned near cap in EVERY condition) IS fixed on the mean: CONTROL z_block_mean is now 0.064-0.177 of a 1.5 cap. But CONTROL z_block_peak still reaches 1.500 on 3/3 seeds, so any NEW experiment reading a peak/max-shaped blocked-agency DV still gets a zero separation that LOOKS like a valid negative -- which is exactly the corrupting definition, and exactly what consumed this 6-run validation. Downgrading would reduce the Step 2.5c gate's protection precisely where the trap remains live. Re-assess to degrading once a headroom-DV requirement is in place for this substrate.",
+    "failure_record_entry": {
+     "run_id": "v3_exq_642b_blocked_agency_calibrated_floor_validation_20260831T131011Z_v3",
+     "experiment_type": "v3_exq_642b_blocked_agency_calibrated_floor_validation",
+     "metric": "CONTROL z_block_peak still reaches the cap 1.500 on 3/3 seeds while CONTROL z_block_mean is only 0.064-0.177; the integrator saturates on transients in a free arm",
+     "target": "either give the integrator headroom against brief excursions, or require every blocked-agency criterion to route on a headroom DV and record a per-arm saturation fraction",
+     "resolved": "open"
+    },
+    "resolves_prior_failure_record": [
+     {
+      "run_id": "v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3",
+      "resolved": "resolved",
+      "resolved_note": "The 642a item's stated target was 'a working calibration must leave CONTROL-arm z_block well below cap'. The baseline-relative floor built in ree-v3 d49db86f3e64670 achieves exactly that: CONTROL z_block_mean fell from 1.26-1.35 to 0.064-0.177 of a 1.5 cap, and BLOCK-CONTROL mean separation improved 4-8x. The item's trailing clause ('so a BLOCK-vs-CONTROL peak difference >= C1_MARGIN is expressible') is NOT met and is not achievable while any transient touches the cap -- that clause was itself worded on the degenerate statistic and is superseded by the new open item above, not left outstanding against the build."
+     }
+    ],
+    "residual_risk_scope": "The residual corrupting risk is scoped to peak/max-shaped readouts of z_block. Mean, AUC and time-to-threshold readouts have ample dynamic range post-calibration (BLOCK-CONTROL mean separation 0.590-0.771 against a 0.20 margin)."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "Claim-free diagnostic; no claim_ids to count against. This reading is NOT substrate_ceiling and adds no ceiling hit to any claim. The successor is a MEASUREMENT repair on a different statistic, not another letter circling a substrate ceiling, so the brake's refusal clause does not apply."
+   },
+   "learning_extracted": [
+    "Repairing one of two co-diagnosed defects and re-running inherits the other at full cost. failure_autopsy_V3-EXQ-642a_2026-08-30 named the peak degeneracy and the floor miscalibration together; 642b fixed only the floor and spent a 24-minute 6-run validation on a criterion already shown to be arithmetically dead.",
+    "'Reuse the pre-registered threshold verbatim' is the right default and the wrong move once a prior autopsy has shown the STATISTIC cannot vary. The anti-fabrication rule protects a threshold from being moved to fit a result; it does not oblige reuse of a degenerate statistic. Re-derive the criterion's reachability in the fixed regime -- the same lesson 936a's learning_extracted[1] records for the MECH-439 family.",
+    "A validation run's success condition should be stated on the statistic its criterion actually consumes. 642a's failure_record.target was worded on the peak difference, which is unachievable while any transient touches the clamp, even though the calibration it was testing succeeded on the mean.",
+    "A max-statistic against a hard clamp is degenerate for a SUSTAINED-elevation hypothesis in a way a mean is not: a single transient excursion in the control arm zeroes the difference. Where a clamp exists, prefer mean / AUC / time-to-threshold and always record the saturation fraction.",
+    "The z_goal writer-defect detector mislabels a DELIBERATELY PINNED goal as a dead stream. writer_calls=0 with active_frac=1.0 and ticks_active == ticks_total is the signature of a pin (a driver setting z_goal directly), not of an omitted update_z_goal, which cannot produce a full active_frac. 642a's learning_extracted[3] predicted this ambiguity and this run is a live instance of it reaching pending_review.md as a data-quality flag it is not."
+   ],
+   "routing": "queue-experiment",
+   "routing_note": "V3-EXQ-642c, same-question successor under a new letter: identical protocol, env, seeds, arms and budgets; C1/C2 moved onto a headroom DV (z_block_mean, AUC, or time-to-threshold) with margins RE-DERIVED for that statistic rather than transplanted from the peak-calibrated 0.20; per-arm saturation fraction recorded; C0 and C3 unchanged. Ratified at the Step 8 gate 2026-09-01 with the user present, who chose a properly pre-registered successor over adjudicating directly on the already-recorded mean, precisely to avoid the threshold-transplant hazard. NOT routed to implement-substrate: the substrate is built and works.",
+   "z_goal_writer_defect_note": "The pending_review.md 'Dead z_goal stream' row for this run is a FALSE POSITIVE. writer_calls=0 arises because the driver pins the goal (GOAL_PIN=0.5, _pin_goal) rather than writing it through REEAgent.update_z_goal. active_frac 1.0 with ticks_active 14400/14400 is the tell that this is a pin, not an omission. Recommend the detector learn the pinning path, or that pinning drivers stamp the reason."
+  }
+ ]
+}
