@@ -1,6 +1,6 @@
 # Dormant / Chronic High-Conflict Watchlist
 
-Generated: `2026-08-30T15:50:44.831759Z`
+Generated: `2026-08-31T14:22:44.029157Z`
 
 No-deadline visibility report. Lists claims with `conflict_ratio >= 0.55` and an unresolved decision, but invisible to the `mandatory_decision_checkpoint` (which requires `conflict_ratio >= 0.8` AND fresh recent batches). Deliberately carries no deadline -- see `evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record and the full rationale in `build_experiment_indexes.py`.
 
@@ -26,10 +26,9 @@ Sorted worst-conflict-first.
 | `MECH-112` | `chronic_under_threshold` | 0.667 | `candidate` | 23 |
 | `MECH-118` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
 | `MECH-130` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
+| `MECH-143` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
 | `MECH-152` | `chronic_under_threshold` | 0.667 | `provisional` | 4 |
-| `MECH-166` | `chronic_under_threshold` | 0.667 | `candidate` | 10 |
 | `MECH-333` | `chronic_under_threshold` | 0.667 | `candidate` | 7 |
-| `MECH-439` | `chronic_under_threshold` | 0.667 | `candidate` | 14 |
 | `MECH-445` | `chronic_under_threshold` | 0.667 | `candidate` | 8 |
 | `MECH-459` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
 | `MECH-466` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
@@ -40,6 +39,7 @@ Sorted worst-conflict-first.
 | `Q-055` | `dormant_low_activity` | 0.667 | `open` | 0 |
 | `Q-074` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `Q-082` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
+| `SD-078` | `chronic_under_threshold` | 0.667 | `candidate_substrate_landed` | 6 |
 | `MECH-090` | `chronic_under_threshold` | 0.645 | `active` | 24 |
 | `MECH-093` | `chronic_under_threshold` | 0.615 | `provisional` | 19 |
 | `SD-049` | `chronic_under_threshold` | 0.615 | `candidate` | 14 |
