@@ -1394,9 +1394,9 @@
       "summary": "Q-007's HARD PRECONDITION ('z_beta must carry cross-context variance -- V3-EXQ-643's autopsy found the modulatory signal had magnitude but ZERO cross-candidate range') cites the same substrate that V3-EXQ-643a (PASS, 2026-06-06, readiness_met=true, modulatory_authority_range measured 0.22 > floor) validated as fixed post the float32-cancellation bug -- but that run carries claim_ids=[] and was never linked to Q-007, so the precondition was never re-checked. Uncertain whether 643a's E3-candidate-selection-authority range is the SAME substrate as Q-007's z_beta cross-CONTEXT clustering requirement (related but not obviously identical); recommend governance/an owning session re-examine whether Q-007's substrate_conditional gate should be lifted or the claim needs its own targeted check. Surfaced by orphan-prerequisite investigation (chip-20260828-orphan-prerequisite-investigation).",
       "raised_by_session": "metaworker-chip-20260828-orphan-prerequisite-investigation",
       "raised_at": "2026-08-28T22:24:00Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:06:45Z",
+      "resolution_note": "PARTIALLY UPHELD; THE IMPLIED LIFT IS REFUSED. Applied REE_assembly 008d91c0ce. The judgement the flag left open is determinable and the answer is NO: 643a's modulatory_authority_range (e3_selector.py:3122) is max-minus-min of the accumulated E3 score-bias tensor ACROSS ACTION CANDIDATES AT ONE TICK, while Q-007's DV is the z_beta trajectory clustered ACROSS EPISODES by affect context. z_beta is produced by beta_encoder in latent/stack.py and does not appear in e3_selector.py at all; the 643 autopsy contains zero occurrences of z_beta and zero of Q-007. Different quantities -- and the conflation is Q-007's OWN precondition sentence, which predates the flag. So V3-EXQ-643a genuinely discharged the gate the 643 autopsy diagnosed (range 0.2218, queue entry ready:true unblocking 18 claims -- Q-007 not among them), but that is a DIFFERENT gate. substrate_conditional is NOT lifted. What would discharge it is a Q-007-specific probe measuring z_beta between-context separation over affect-labelled episodes; no run in the corpus has produced that statistic."
     },
     {
       "flag_id": "GFLAG-0098",
