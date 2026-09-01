@@ -54749,10 +54749,14 @@
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
-    - ARC-064     # parent architectural commitment
-    - ARC-065     # grandparent
-    - MECH-316    # cross-episode regularities feed the rule-state abstraction
-    - MECH-317    # compressed patterns may be inputs to the rule-state abstraction
+    - ARC-064
+    - ARC-065
+    - MECH-316
+    - MECH-323   # REPOINTED from MECH-317 on 2026-09-01 (GFLAG-0110): what this claim consumes is the
+                 # COMPRESSION MECHANISM (the compressed options whose rule-state it abstracts), and that
+                 # mechanism moved to the ARC-071 cluster in the 2026-09-01 partial absorption. MECH-323 is
+                 # the chunk FORMATION operator. MECH-317 survives but now carries only the entropy-trough
+                 # boundary-readout DV, which this claim does not use -- so this is a repoint, not a split.
   functional_restatement: >
     MECH-318 names the rule-state-abstraction substrate of ARC-064.
     The biology: orbitofrontal cortex encodes task state (Wilson,
@@ -55191,8 +55195,11 @@
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
-    - MECH-312    # parent
-    - MECH-317    # behavioural pattern compression -- maturity is the consolidation product
+    - MECH-312
+    - MECH-323   # REPOINTED from MECH-317 on 2026-09-01 (GFLAG-0110): chunk FORMATION -- the compressed
+                 # options this claim weights by practice maturity.
+    - MECH-324   # chunk MAINTENANCE: crystallisation and persistence under corroboration IS practice
+                 # maturity, which is this claim's own subject. Added alongside MECH-323 for that reason.
   functional_restatement: >
     MECH-312b names the practice / maturity weighting sub-mechanism.
     Each candidate rule or policy mode accumulates a practice-
