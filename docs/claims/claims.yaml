@@ -82908,6 +82908,18 @@
   subject: f_dominance_conversion_ceiling.acquisition_retention_dissociation
   polarity: asserts
   status: retired
+  superseded_by:
+    - MECH-459
+    - MECH-460
+  superseded_by_note: >
+    [2026-09-01 govflags-20260901b] Field FILLED, asserting nothing new -- this claim's own
+    prose already said it verbatim: "there is then no consolidation process and this claim is
+    withdrawn into MECH-459/460", with its own note recording that all three pre-registered
+    conditions were met. The successor was recorded in prose and left out of the
+    machine-readable field, so every walk over the registry saw an orphaned retirement.
+    Audited 2026-09-01 across all terminal-status claims: this was the ONLY instance of a
+    successor named in prose but absent from superseded_by -- a class of one, which is why
+    it was filled by hand rather than by a detector.
   live_status:
     reading: retired
     as_of: 2026-08-01
