@@ -118,6 +118,22 @@ def _atomic_write_text(path: Path, text: str) -> None:
         raise
 
 
+def _relpath_or_fallback(path: Path, base: Path) -> str:
+    """Like `Path.relative_to(base).as_posix()`, but falls back to
+    `os.path.relpath` (which permits ".." segments) when `path` is not nested
+    under `base`. A pack's manifest/metrics/summary files always live under
+    their own experiment_dir, so `.relative_to()` alone was sufficient before
+    flat-only-orphan discovery (2026-09-01): that path's manifest can live at
+    the TOP level of evidence/experiments/ while `experiment_dir` is the
+    `<base>/<experiment_type>/` subdirectory the index is being written into,
+    which `.relative_to()` rejects outright rather than link incorrectly.
+    """
+    try:
+        return path.relative_to(base).as_posix()
+    except ValueError:
+        return os.path.relpath(path, base)
+
+
 START_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:START -->"
 END_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:END -->"
 
@@ -1378,7 +1394,22 @@ def _load_dry_run_run_ids(base_dir: Path) -> set[str]:
             continue
         if not isinstance(manifest, dict):
             continue
-        if not (_is_dry_run(manifest) or path.name.startswith("_dry_")):
+        # THE SUFFIX FORM WAS MISSING, AND IT WAS LEAKING (fixed 2026-09-01,
+        # found while building flat-only-orphan discovery -- see
+        # _scan_flat_only_orphans). This checked the documented `_dry_<run_id>
+        # .json` PREFIX convention only, but a second, equally real naming
+        # convention is live in the corpus: `<run_id>_dry.json` (SUFFIX,
+        # `stem.endswith("_dry")` -- e.g. v3_exq_259_wanting_gradient_
+        # navigation_dry.json, an all-zero toy companion of a real run in the
+        # same directory). scripts/audit_flat_only_orphaned_manifests.py's own
+        # `_is_dry_run` already checks both forms; this one didn't. Confirmed
+        # zero effect on any manifest that reaches scoring TODAY (none of the
+        # 14 newly-caught run_ids match an existing run pack -- they were
+        # flat-only and therefore invisible before flat-only-orphan discovery
+        # existed at all), so this is a pure correctness fix for that new
+        # path, not a change to any previously-scored evidence.
+        if not (_is_dry_run(manifest) or path.name.startswith("_dry_")
+                or path.stem.endswith("_dry")):
             continue
         run_id = manifest.get("run_id")
         if run_id:
@@ -1703,6 +1734,269 @@ def _resolve_flat_sibling(base_dir: Path, run_dir: Path, run_id: str) -> Path | 
     return None
 
 
+# Status precedence for a FLAT-ONLY orphan (no pack anywhere). Wider than the
+# pack loop's own `status | outcome` read below because `result` is a real
+# status carrier in this corpus's "substrate_readiness" diagnostic family --
+# several on-disk flat manifests predate pack_writer.write_flat_manifest
+# (whose own precedence is the narrower `status | overall_outcome | outcome`)
+# and use `result` only. Mirrors scripts/audit_flat_only_orphaned_manifests.
+# _resolve_flat_status (kept in sync by hand; that script is read-only
+# detection, this is the discovery path that makes a finding actually count).
+_FLAT_ONLY_STATUS_FIELDS = ("status", "overall_outcome", "outcome", "result")
+_FLAT_ONLY_NON_MANIFEST_NAMES = {"claim_evidence.v1.json"}
+
+
+def _resolve_flat_only_status(manifest: dict[str, Any]) -> str | None:
+    for key in _FLAT_ONLY_STATUS_FIELDS:
+        val = manifest.get(key)
+        if val not in (None, ""):
+            return str(val)
+    return None
+
+
+def _collect_pack_run_ids(base_dir: Path) -> set[str]:
+    """run_ids covered by a real run pack (runs/<run_id>/manifest.json),
+    UNFILTERED by any dry-run/epoch exclusion the pack loop below applies --
+    a flat manifest is only a true orphan if no pack anywhere matches it by
+    run_id, regardless of whether that pack itself would score."""
+    ids: set[str] = set()
+    for manifest_path in base_dir.glob("**/runs/**/manifest.json"):
+        run_dir = manifest_path.parent
+        if run_dir.parent.name != "runs":
+            continue
+        ids.add(run_dir.name)
+        pm = _load_json(manifest_path)
+        rid = pm.get("run_id") if isinstance(pm, dict) else None
+        if isinstance(rid, str) and rid.strip():
+            ids.add(rid.strip())
+    return ids
+
+
+def _scan_flat_only_orphans(
+    base_dir: Path, pack_run_ids: set[str], dry_run_ids: set[str],
+) -> list[tuple[Path, dict[str, Any]]]:
+    """Flat manifests at evidence/experiments/<run_id>.json or
+    evidence/experiments/<experiment_type>/<run_id>.json with NO matching run
+    pack anywhere -- structurally invisible to the `**/runs/**/manifest.json`
+    glob the pack loop below relies on exclusively. See evidence/planning/
+    flat_only_manifest_indexer_invisibility_staged_20260901.md (root-cause
+    writeup) and scripts/audit_flat_only_orphaned_manifests.py (the read-only
+    detector this discovery path is modeled on -- kept in sync by hand).
+
+    Dry-run smokes are excluded via the SAME `dry_run_ids` set the pack loop
+    already builds (it scans this identical flat-file set), so no separate
+    dry-run check is needed here. Best-effort JSON read, matching
+    `_load_dry_run_run_ids`'s posture for the same corpus-wide flat scan: an
+    unreadable or non-dict file contributes nothing rather than raising.
+    """
+    findings: list[tuple[Path, dict[str, Any]]] = []
+    seen: set[Path] = set()
+    flat_paths = sorted(base_dir.glob("*.json")) + sorted(base_dir.glob("*/[!_]*.json"))
+    for path in flat_paths:
+        if path in seen:
+            continue
+        seen.add(path)
+        if path.name in _FLAT_ONLY_NON_MANIFEST_NAMES:
+            continue
+        if "runs" in path.parts:
+            continue
+        try:
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if not isinstance(manifest, dict):
+            continue
+        run_id = manifest.get("run_id")
+        if not isinstance(run_id, str) or not run_id.strip():
+            continue
+        run_id = run_id.strip()
+        if run_id in pack_run_ids or run_id in dry_run_ids:
+            continue
+        if _resolve_flat_only_status(manifest) is None:
+            continue
+        findings.append((path, manifest))
+    return findings
+
+
+def _build_run_record(
+    experiment_type: str,
+    run_id: str,
+    manifest: dict[str, Any],
+    manifest_path: Path,
+    metrics_path: Path,
+    summary_path: Path,
+    adapter_signals_path: Path | None,
+    metrics: dict[str, float],
+    status: str,
+    current_epoch: str,
+    epoch_start: datetime | None,
+) -> RunRecord:
+    """Construct a RunRecord from an already-resolved manifest + status +
+    metrics dict. Shared by _scan_runs's two discovery paths -- the run-pack
+    glob (status via `status | outcome`, metrics via the pack's own
+    metrics.json) and the flat-only-orphan path (status via the wider
+    `status | overall_outcome | outcome | result` precedence
+    `_resolve_flat_only_status` uses, metrics = {} since a pack-less flat
+    manifest has no separate metrics.json to point metrics_path at -- its own
+    `metrics` field, when present, is an arbitrarily-nested diagnostic dict,
+    not the flat `{name: float}` shape metrics.json's `values` key carries).
+    """
+    timestamp_raw, timestamp = _parse_timestamp(manifest.get("timestamp_utc"), run_id)
+    architecture_epoch = str(manifest.get("architecture_epoch", "")).strip()
+    if not architecture_epoch and current_epoch and epoch_start and timestamp >= epoch_start:
+        architecture_epoch = current_epoch
+
+    signatures = manifest.get("failure_signatures", [])
+    if not isinstance(signatures, list):
+        signatures = []
+    claim_ids_raw = manifest.get("claim_ids_tested") or manifest.get("claim_ids", [])
+    if not isinstance(claim_ids_raw, list):
+        claim_ids_raw = []
+    claim_ids_tested = [str(x).strip() for x in claim_ids_raw if str(x).strip()]
+    evidence_class = str(manifest.get("evidence_class", "simulation")).strip() or "simulation"
+    evidence_direction = _normalize_direction(manifest.get("evidence_direction"))
+    # Per-claim direction overrides: {"ARC-024": "supports", "ARC-026": "weakens"}.
+    # When present for a given claim_id, replaces the run-level evidence_direction
+    # for that claim only.  Keys not present fall back to the run-level direction.
+    raw_per_claim = manifest.get("evidence_direction_per_claim") or {}
+    evidence_direction_per_claim: dict[str, str] = {}
+    if isinstance(raw_per_claim, dict):
+        for cid, val in raw_per_claim.items():
+            normalized = _normalize_direction(val)
+            if normalized != "unknown":  # skip placeholder/empty entries
+                evidence_direction_per_claim[str(cid)] = normalized
+    # direction_explicitly_set: True when manifest has an evidence_direction_note,
+    # meaning the direction was a deliberate manual override and should not be
+    # auto-inferred (e.g. design-inconclusive experiments marked "unknown").
+    direction_explicitly_set = bool(manifest.get("evidence_direction_note"))
+    experiment_purpose = str(manifest.get("experiment_purpose", "evidence")).strip() or "evidence"
+    interpretation_label, adjudication = _compute_adjudication(
+        manifest.get("interpretation"), status, experiment_purpose)
+    # Non-gating sibling of the adjudicating preconditions[]. Computed from the
+    # same manifest but kept strictly OUT of `adjudication` above -- surfacing
+    # only. See _recorded_precondition_findings.
+    recorded_preconditions_unmet = _recorded_precondition_findings(
+        manifest.get("interpretation"))
+    _interp_for_note = manifest.get("interpretation")
+    preconditions_scope_note = str(
+        (_interp_for_note.get("preconditions_scope_note", "")
+         if isinstance(_interp_for_note, dict) else "") or "").strip()
+    evidence_level = _normalize_evidence_level(manifest.get("evidence_level"))
+    # Substrate-staleness gate: honor manually-set manifest fields that mark
+    # this run as mechanistically stale after a downstream substrate change.
+    # `pending_retest_after_substrate` accepts a bool or truthy string;
+    # `superseded_by_substrate` is a "<SD-id>@<YYYY-MM-DD>" reference string.
+    pending_retest_after_substrate = _coerce_bool(
+        manifest.get("pending_retest_after_substrate", False))
+    superseded_by_substrate = str(
+        manifest.get("superseded_by_substrate", "") or "").strip()
+    # Per-claim staleness: de-weight only the named claim(s) in a multi-claim
+    # manifest. `pending_retest_after_substrate_per_claim` is a list of claim
+    # ids; `superseded_by_substrate_per_claim` is {claim_id: "<id>@<date>"}.
+    raw_pr_pc = manifest.get("pending_retest_after_substrate_per_claim") or []
+    pending_retest_after_substrate_per_claim = (
+        [str(x).strip() for x in raw_pr_pc if str(x).strip()]
+        if isinstance(raw_pr_pc, list) else [])
+    raw_sb_pc = manifest.get("superseded_by_substrate_per_claim") or {}
+    superseded_by_substrate_per_claim = (
+        {str(k): str(v).strip() for k, v in raw_sb_pc.items() if str(v).strip()}
+        if isinstance(raw_sb_pc, dict) else {})
+    # Non-degeneracy gate: only an EXPLICIT False excludes; absent/None is a
+    # no-op (we must not treat the silent majority of legacy manifests, which
+    # carry no flag, as degenerate). `non_degenerate_per_claim` keeps only the
+    # entries explicitly set to False.
+    raw_nd = manifest.get("non_degenerate", None)
+    non_degenerate = _coerce_bool(raw_nd) if raw_nd is not None else None
+    raw_nd_pc = manifest.get("non_degenerate_per_claim") or {}
+    non_degenerate_per_claim = (
+        {str(k): _coerce_bool(v) for k, v in raw_nd_pc.items()
+         if _coerce_bool(v) is False}
+        if isinstance(raw_nd_pc, dict) else {})
+    degeneracy_reason = str(manifest.get("degeneracy_reason", "") or "").strip()
+    # Experimental Recording Standard always-core (2026-07-12): surfaced for
+    # queryability, NOT scored. substrate_hash is the reuse prerequisite;
+    # label_balance is the training/eval class-balance guard (047m false-clear
+    # fix). Read defensively -- absent on the legacy corpus (a no-op default).
+    substrate_hash = str(manifest.get("substrate_hash", "") or "").strip()
+    # substrate_commit is recorded as a dict {commit, dirty, branch?, ...}; the
+    # bare sha is what a diff needs, so that is what is surfaced. A legacy
+    # manifest carrying a bare string is accepted too (absent on both shapes
+    # collapses to "" -- a no-op default, same posture as substrate_hash).
+    raw_substrate_commit = manifest.get("substrate_commit")
+    if isinstance(raw_substrate_commit, dict):
+        substrate_commit = str(raw_substrate_commit.get("commit", "") or "").strip()
+    else:
+        substrate_commit = str(raw_substrate_commit or "").strip()
+    # None (never measured) is DELIBERATELY distinct from {} (measured, nothing
+    # enabled) -- see the RunRecord field comment.
+    raw_flags = manifest.get("enabled_default_off_flags")
+    enabled_default_off_flags = raw_flags if isinstance(raw_flags, dict) else None
+    raw_label_balance = manifest.get("label_balance") or {}
+    label_balance = raw_label_balance if isinstance(raw_label_balance, dict) else {}
+    # machine / machine_class read AFTER the flat-provenance backfill above, so
+    # a thin pre-2026-07-16 pack still surfaces the flat sibling's provenance.
+    machine = str(manifest.get("machine", "") or "").strip()
+    machine_class = str(manifest.get("machine_class", "") or "").strip()
+    # queue_id, same reason -- see the RunRecord field comment for why this
+    # exists (run_id identifier hygiene / letter-drop stem collisions).
+    queue_id = str(manifest.get("queue_id", "") or "").strip()
+    # canonical-profile provenance, read the same way as substrate_hash above:
+    # caller-supplied, absent on the legacy corpus (no-op default).
+    canonical_profile = str(manifest.get("canonical_profile", "") or "").strip()
+    canonical_profile_hash = str(manifest.get("canonical_profile_hash", "") or "").strip()
+    # z_goal-stream liveness block, read AFTER the flat-provenance backfill
+    # (same reason as machine_class: a pack from before the mapper carried it
+    # is thin). A non-dict or empty value collapses to {} == UNMEASURED, which
+    # is emitted nowhere -- so a missing block can never be mistaken for a
+    # measured zero. See the RunRecord field comment for why writer_defect,
+    # and not active_frac, is the readable signal.
+    raw_z_goal_stream = manifest.get("z_goal_stream") or {}
+    z_goal_stream = raw_z_goal_stream if isinstance(raw_z_goal_stream, dict) else {}
+
+    return RunRecord(
+        experiment_type=experiment_type,
+        run_id=run_id,
+        timestamp_raw=timestamp_raw,
+        timestamp=timestamp,
+        manifest_path=manifest_path,
+        metrics_path=metrics_path,
+        summary_path=summary_path,
+        manifest_status=status,
+        queue_id=queue_id,
+        failure_signatures=[str(x) for x in signatures],
+        metrics=metrics,
+        claim_ids_tested=claim_ids_tested,
+        evidence_class=evidence_class,
+        evidence_direction=evidence_direction,
+        evidence_direction_per_claim=evidence_direction_per_claim,
+        direction_explicitly_set=direction_explicitly_set,
+        experiment_purpose=experiment_purpose,
+        interpretation_label=interpretation_label,
+        adjudication=adjudication,
+        recorded_preconditions_unmet=recorded_preconditions_unmet,
+        preconditions_scope_note=preconditions_scope_note,
+        architecture_epoch=architecture_epoch,
+        adapter_signals_path=adapter_signals_path,
+        evidence_level=evidence_level,
+        pending_retest_after_substrate=pending_retest_after_substrate,
+        superseded_by_substrate=superseded_by_substrate,
+        pending_retest_after_substrate_per_claim=pending_retest_after_substrate_per_claim,
+        superseded_by_substrate_per_claim=superseded_by_substrate_per_claim,
+        non_degenerate=non_degenerate,
+        non_degenerate_per_claim=non_degenerate_per_claim,
+        degeneracy_reason=degeneracy_reason,
+        substrate_hash=substrate_hash,
+        substrate_commit=substrate_commit,
+        enabled_default_off_flags=enabled_default_off_flags,
+        label_balance=label_balance,
+        machine=machine,
+        machine_class=machine_class,
+        canonical_profile=canonical_profile,
+        canonical_profile_hash=canonical_profile_hash,
+        z_goal_stream=z_goal_stream,
+    )
+
+
 def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, list[RunRecord]]:
     by_experiment: dict[str, list[RunRecord]] = defaultdict(list)
 
@@ -1806,12 +2100,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                     f"reconcile manually."
                 )
 
-        timestamp_raw, timestamp = _parse_timestamp(
-            manifest.get("timestamp_utc"), run_id or run_dir.name
-        )
-        architecture_epoch = str(manifest.get("architecture_epoch", "")).strip()
-        if not architecture_epoch and current_epoch and epoch_start and timestamp >= epoch_start:
-            architecture_epoch = current_epoch
+        run_id = run_id or run_dir.name
 
         artifacts = manifest.get("artifacts", {}) if isinstance(manifest, dict) else {}
         metrics_rel = artifacts.get("metrics_path", "metrics.json")
@@ -1833,161 +2122,42 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                     metrics[k] = float(v)
 
         status = str(manifest.get("status") or manifest.get("outcome", "UNKNOWN")).upper()
-        signatures = manifest.get("failure_signatures", [])
-        if not isinstance(signatures, list):
-            signatures = []
-        claim_ids_raw = manifest.get("claim_ids_tested") or manifest.get("claim_ids", [])
-        if not isinstance(claim_ids_raw, list):
-            claim_ids_raw = []
-        claim_ids_tested = [str(x).strip() for x in claim_ids_raw if str(x).strip()]
-        evidence_class = str(manifest.get("evidence_class", "simulation")).strip() or "simulation"
-        evidence_direction = _normalize_direction(manifest.get("evidence_direction"))
-        # Per-claim direction overrides: {"ARC-024": "supports", "ARC-026": "weakens"}.
-        # When present for a given claim_id, replaces the run-level evidence_direction
-        # for that claim only.  Keys not present fall back to the run-level direction.
-        raw_per_claim = manifest.get("evidence_direction_per_claim") or {}
-        evidence_direction_per_claim: dict[str, str] = {}
-        if isinstance(raw_per_claim, dict):
-            for cid, val in raw_per_claim.items():
-                normalized = _normalize_direction(val)
-                if normalized != "unknown":  # skip placeholder/empty entries
-                    evidence_direction_per_claim[str(cid)] = normalized
-        # direction_explicitly_set: True when manifest has an evidence_direction_note,
-        # meaning the direction was a deliberate manual override and should not be
-        # auto-inferred (e.g. design-inconclusive experiments marked "unknown").
-        direction_explicitly_set = bool(manifest.get("evidence_direction_note"))
-        experiment_purpose = str(manifest.get("experiment_purpose", "evidence")).strip() or "evidence"
-        interpretation_label, adjudication = _compute_adjudication(
-            manifest.get("interpretation"), status, experiment_purpose)
-        # Non-gating sibling of the adjudicating preconditions[]. Computed from the
-        # same manifest but kept strictly OUT of `adjudication` above -- surfacing
-        # only. See _recorded_precondition_findings.
-        recorded_preconditions_unmet = _recorded_precondition_findings(
-            manifest.get("interpretation"))
-        _interp_for_note = manifest.get("interpretation")
-        preconditions_scope_note = str(
-            (_interp_for_note.get("preconditions_scope_note", "")
-             if isinstance(_interp_for_note, dict) else "") or "").strip()
-        evidence_level = _normalize_evidence_level(manifest.get("evidence_level"))
-        # Substrate-staleness gate: honor manually-set manifest fields that mark
-        # this run as mechanistically stale after a downstream substrate change.
-        # `pending_retest_after_substrate` accepts a bool or truthy string;
-        # `superseded_by_substrate` is a "<SD-id>@<YYYY-MM-DD>" reference string.
-        pending_retest_after_substrate = _coerce_bool(
-            manifest.get("pending_retest_after_substrate", False))
-        superseded_by_substrate = str(
-            manifest.get("superseded_by_substrate", "") or "").strip()
-        # Per-claim staleness: de-weight only the named claim(s) in a multi-claim
-        # manifest. `pending_retest_after_substrate_per_claim` is a list of claim
-        # ids; `superseded_by_substrate_per_claim` is {claim_id: "<id>@<date>"}.
-        raw_pr_pc = manifest.get("pending_retest_after_substrate_per_claim") or []
-        pending_retest_after_substrate_per_claim = (
-            [str(x).strip() for x in raw_pr_pc if str(x).strip()]
-            if isinstance(raw_pr_pc, list) else [])
-        raw_sb_pc = manifest.get("superseded_by_substrate_per_claim") or {}
-        superseded_by_substrate_per_claim = (
-            {str(k): str(v).strip() for k, v in raw_sb_pc.items() if str(v).strip()}
-            if isinstance(raw_sb_pc, dict) else {})
-        # Non-degeneracy gate: only an EXPLICIT False excludes; absent/None is a
-        # no-op (we must not treat the silent majority of legacy manifests, which
-        # carry no flag, as degenerate). `non_degenerate_per_claim` keeps only the
-        # entries explicitly set to False.
-        raw_nd = manifest.get("non_degenerate", None)
-        non_degenerate = _coerce_bool(raw_nd) if raw_nd is not None else None
-        raw_nd_pc = manifest.get("non_degenerate_per_claim") or {}
-        non_degenerate_per_claim = (
-            {str(k): _coerce_bool(v) for k, v in raw_nd_pc.items()
-             if _coerce_bool(v) is False}
-            if isinstance(raw_nd_pc, dict) else {})
-        degeneracy_reason = str(manifest.get("degeneracy_reason", "") or "").strip()
-        # Experimental Recording Standard always-core (2026-07-12): surfaced for
-        # queryability, NOT scored. substrate_hash is the reuse prerequisite;
-        # label_balance is the training/eval class-balance guard (047m false-clear
-        # fix). Read defensively -- absent on the legacy corpus (a no-op default).
-        substrate_hash = str(manifest.get("substrate_hash", "") or "").strip()
-        # substrate_commit is recorded as a dict {commit, dirty, branch?, ...}; the
-        # bare sha is what a diff needs, so that is what is surfaced. A legacy
-        # manifest carrying a bare string is accepted too (absent on both shapes
-        # collapses to "" -- a no-op default, same posture as substrate_hash).
-        raw_substrate_commit = manifest.get("substrate_commit")
-        if isinstance(raw_substrate_commit, dict):
-            substrate_commit = str(raw_substrate_commit.get("commit", "") or "").strip()
-        else:
-            substrate_commit = str(raw_substrate_commit or "").strip()
-        # None (never measured) is DELIBERATELY distinct from {} (measured, nothing
-        # enabled) -- see the RunRecord field comment.
-        raw_flags = manifest.get("enabled_default_off_flags")
-        enabled_default_off_flags = raw_flags if isinstance(raw_flags, dict) else None
-        raw_label_balance = manifest.get("label_balance") or {}
-        label_balance = raw_label_balance if isinstance(raw_label_balance, dict) else {}
-        # machine / machine_class read AFTER the flat-provenance backfill above, so
-        # a thin pre-2026-07-16 pack still surfaces the flat sibling's provenance.
-        machine = str(manifest.get("machine", "") or "").strip()
-        machine_class = str(manifest.get("machine_class", "") or "").strip()
-        # queue_id, same reason -- see the RunRecord field comment for why this
-        # exists (run_id identifier hygiene / letter-drop stem collisions).
-        queue_id = str(manifest.get("queue_id", "") or "").strip()
-        # canonical-profile provenance, read the same way as substrate_hash above:
-        # caller-supplied, absent on the legacy corpus (no-op default).
-        canonical_profile = str(manifest.get("canonical_profile", "") or "").strip()
-        canonical_profile_hash = str(manifest.get("canonical_profile_hash", "") or "").strip()
-        # z_goal-stream liveness block, read AFTER the flat-provenance backfill
-        # (same reason as machine_class: a pack from before the mapper carried it
-        # is thin). A non-dict or empty value collapses to {} == UNMEASURED, which
-        # is emitted nowhere -- so a missing block can never be mistaken for a
-        # measured zero. See the RunRecord field comment for why writer_defect,
-        # and not active_frac, is the readable signal.
-        raw_z_goal_stream = manifest.get("z_goal_stream") or {}
-        z_goal_stream = raw_z_goal_stream if isinstance(raw_z_goal_stream, dict) else {}
 
-        by_experiment[experiment_type].append(
-            RunRecord(
-                experiment_type=experiment_type,
-                run_id=run_id,
-                timestamp_raw=timestamp_raw,
-                timestamp=timestamp,
-                manifest_path=manifest_path,
-                metrics_path=metrics_path,
-                summary_path=summary_path,
-                manifest_status=status,
-                queue_id=queue_id,
-                failure_signatures=[str(x) for x in signatures],
-                metrics=metrics,
-                claim_ids_tested=claim_ids_tested,
-                evidence_class=evidence_class,
-                evidence_direction=evidence_direction,
-                evidence_direction_per_claim=evidence_direction_per_claim,
-                direction_explicitly_set=direction_explicitly_set,
-                experiment_purpose=experiment_purpose,
-                interpretation_label=interpretation_label,
-                adjudication=adjudication,
-                recorded_preconditions_unmet=recorded_preconditions_unmet,
-                preconditions_scope_note=preconditions_scope_note,
-                architecture_epoch=architecture_epoch,
-                adapter_signals_path=adapter_signals_path,
-                evidence_level=evidence_level,
-                pending_retest_after_substrate=pending_retest_after_substrate,
-                superseded_by_substrate=superseded_by_substrate,
-                pending_retest_after_substrate_per_claim=pending_retest_after_substrate_per_claim,
-                superseded_by_substrate_per_claim=superseded_by_substrate_per_claim,
-                non_degenerate=non_degenerate,
-                non_degenerate_per_claim=non_degenerate_per_claim,
-                degeneracy_reason=degeneracy_reason,
-                substrate_hash=substrate_hash,
-                substrate_commit=substrate_commit,
-                enabled_default_off_flags=enabled_default_off_flags,
-                label_balance=label_balance,
-                machine=machine,
-                machine_class=machine_class,
-                canonical_profile=canonical_profile,
-                canonical_profile_hash=canonical_profile_hash,
-                z_goal_stream=z_goal_stream,
-            )
-        )
+        by_experiment[experiment_type].append(_build_run_record(
+            experiment_type, run_id, manifest, manifest_path, metrics_path, summary_path,
+            adapter_signals_path, metrics, status, current_epoch, epoch_start,
+        ))
 
     if n_dry_skipped:
         print(f"Excluded {n_dry_skipped} dry-run smoke pack(s) from scoring "
               f"({len(dry_run_ids)} dry-run run_id(s) on disk).")
+
+    # Flat-only orphan discovery (2026-09-01, GFLAG-0111): a manifest written
+    # ONLY via pack_writer.write_flat_manifest, with no matching run pack
+    # anywhere, is invisible to the glob loop above regardless of its run_id's
+    # naming. See _scan_flat_only_orphans for the detection semantics and
+    # evidence/planning/flat_only_manifest_indexer_invisibility_staged_20260901.md
+    # for the corpus scan + affected-claim table this closes.
+    pack_run_ids = _collect_pack_run_ids(base_dir)
+    flat_only_orphans = _scan_flat_only_orphans(base_dir, pack_run_ids, dry_run_ids)
+    n_flat_only_skipped_no_type = 0
+    for flat_path, flat_manifest in flat_only_orphans:
+        run_id = str(flat_manifest.get("run_id", "")).strip()
+        experiment_type = str(flat_manifest.get("experiment_type", "")).strip()
+        if not experiment_type and flat_path.parent != base_dir:
+            experiment_type = flat_path.parent.name
+        if not experiment_type:
+            n_flat_only_skipped_no_type += 1
+            continue
+        status = str(_resolve_flat_only_status(flat_manifest) or "UNKNOWN").upper()
+        by_experiment[experiment_type].append(_build_run_record(
+            experiment_type, run_id, flat_manifest, flat_path, flat_path, flat_path,
+            None, {}, status, current_epoch, epoch_start,
+        ))
+    if flat_only_orphans:
+        print(f"Discovered {len(flat_only_orphans)} flat-only orphaned manifest(s) "
+              f"with no matching run pack (scored directly from the flat file; "
+              f"{n_flat_only_skipped_no_type} skipped for missing experiment_type).")
 
     for runs in by_experiment.values():
         runs.sort(key=lambda r: (r.timestamp, r.run_id))
@@ -2657,11 +2827,11 @@ def _write_experiment_index(
                 adapter_status = "PASS"
             else:
                 adapter_status = "-"
-            summary_rel = run.summary_path.relative_to(experiment_dir).as_posix()
-            metrics_rel = run.metrics_path.relative_to(experiment_dir).as_posix()
-            manifest_rel = run.manifest_path.relative_to(experiment_dir).as_posix()
+            summary_rel = _relpath_or_fallback(run.summary_path, experiment_dir)
+            metrics_rel = _relpath_or_fallback(run.metrics_path, experiment_dir)
+            manifest_rel = _relpath_or_fallback(run.manifest_path, experiment_dir)
             adapter_rel = (
-                run.adapter_signals_path.relative_to(experiment_dir).as_posix()
+                _relpath_or_fallback(run.adapter_signals_path, experiment_dir)
                 if run.adapter_signals_path
                 else None
             )
@@ -8168,6 +8338,13 @@ def main() -> None:
 
         key_metrics = _select_key_metrics(runs, criteria)
         experiment_dir = base_dir / experiment_type
+        # A flat-only orphan (2026-09-01, GFLAG-0111) can be the SOLE run for
+        # its experiment_type, with no runs/<run_id>/ pack ever written -- so,
+        # unlike every pre-existing experiment_type, experiment_dir may not
+        # exist on disk yet. mkdir is a no-op for the pack case (dir already
+        # there); for the flat-only case it is what makes this loop's own
+        # experiment.md / INDEX.md writes below possible at all.
+        experiment_dir.mkdir(parents=True, exist_ok=True)
         profile_path = _ensure_experiment_template(experiment_dir, experiment_type)
 
         design_text, todos = _build_design_implications(runs, args.lookback_failures)

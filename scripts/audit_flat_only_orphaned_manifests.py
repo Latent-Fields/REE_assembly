@@ -1,43 +1,41 @@
 #!/usr/bin/env python3
 """
-Detect flat-only experiment manifests that are structurally invisible to
-build_experiment_indexes.py -- a manifest with no matching run PACK.
+Detect flat-only experiment manifests that are STILL structurally invisible to
+build_experiment_indexes.py after the 2026-09-01 discovery fix -- i.e. ones the
+indexer's own flat-only-orphan path cannot resolve an experiment_type for.
 
 THE DEFECT (found 2026-08-30 by failure_autopsy_966-436g-951-959-822d-cluster,
 diagnosed in full 2026-09-01 while working chip-20260830-exq547-runid-index-
-invisible). build_experiment_indexes.py's _scan_runs discovers evidence by a
-SINGLE glob: `base_dir.glob("**/runs/**/manifest.json")` (build_experiment_
-indexes.py:1731). A flat manifest at evidence/experiments/<run_id>.json is
-read ONLY as a governance-annotation OVERLAY for an ALREADY-DISCOVERED pack
-(_resolve_flat_sibling / _merge_flat_manifest_overrides, ~line 1774) -- never
-as an independent discovery source. So a manifest written ONLY via pack_writer.
-write_flat_manifest(), with no sibling runs/<experiment_type>/runs/<run_id>/
-manifest.json ever created, is permanently invisible to claim_evidence.v1.json,
-REGARDLESS of its run_id's naming convention (the original chip's hypothesis
--- that the "_v3" suffix sitting mid-string rather than at the end caused
-this -- was checked and is FALSE: none of the 3 confirmed counter-examples in
-the corpus with a mid-string "_v3" ARE visible when they lack a pack, and
-renaming the run_id field alone would not change the glob-discovery outcome
-at all).
+invisible) was that build_experiment_indexes.py's _scan_runs discovered
+evidence by a SINGLE glob, `base_dir.glob("**/runs/**/manifest.json")`, so a
+manifest written ONLY via pack_writer.write_flat_manifest() (no sibling
+runs/<experiment_type>/runs/<run_id>/manifest.json ever created) was
+permanently invisible to claim_evidence.v1.json regardless of its run_id's
+naming convention. GFLAG-0111 (evidence_discrepancy, raised 2026-09-01) named
+the 9 claims (ARC-062, MECH-309, MECH-313, ARC-065, MECH-220, SD-015,
+MECH-112, ARC-030, SD-012) whose confidence this changes.
 
-write_flat_manifest is a DELIBERATE, sanctioned writer (pack_writer.py's own
-docstring: "The single sanctioned writer for a FLAT V3 experiment manifest"),
-used directly (no companion write_pack call) by an entire family of
-"substrate-readiness diagnostic" scripts. So this is not a one-off data bug in
-a single manifest -- it is a standing structural gap between a sanctioned
-authoring path and the indexer's discovery path. See
+FIXED 2026-09-01 (chip-20260901-indexer-flatonly-discovery): build_experiment_
+indexes.py now discovers a flat-only manifest DIRECTLY, via
+`_collect_pack_run_ids` + `_scan_flat_only_orphans`, scoring it from the flat
+file itself when no pack exists anywhere for its run_id. That path infers
+`experiment_type` from the manifest's own field, falling back to the flat
+file's parent directory name -- and skips the manifest (uncounted) only when
+NEITHER is available (i.e. the file sits directly at evidence/experiments/
+top level AND carries no `experiment_type` field at all). See
 evidence/planning/flat_only_manifest_indexer_invisibility_staged_20260901.md
-for the full corpus scan, affected-claim table, and two candidate remediations
-(indexer-side discovery of pack-less flat manifests, vs backfilling a run pack
-per affected manifest) left for /governance to choose between -- deliberately
-NOT decided or applied by this script, since either remediation would change
-what counts as scored evidence for several claims (ARC-062, MECH-309,
-MECH-313, ARC-065 have "supports"-direction flat-only orphans right now) and
-that is a scoring-semantics call, not a mechanical one.
+for the corpus scan this was diagnosed from, and note the resulting confidence
+/ evidence_quadrant movement (including an evidence_quadrant flip for
+MECH-112, confirmed_established -> plausible_unproven) is a governance
+disposition applied by /governance's own regen cycle, not by this fix or by
+this script.
 
-THIS SCRIPT is the retrospective-and-CI-facing detection half only (mirrors
-check_run_id_letter_hygiene.py's own split between detection and fix). It is
-READ-ONLY: it writes nothing, commits nothing, and does not touch
+THIS SCRIPT, post-fix, mirrors that SAME experiment_type-inference logic
+(kept in sync by hand -- see build_experiment_indexes._scan_flat_only_orphans)
+so that "finding" now means "genuinely still un-scorable", not merely
+"packless". It is the retrospective-and-CI-facing detection half only
+(mirrors check_run_id_letter_hygiene.py's own split between detection and
+fix). It is READ-ONLY: it writes nothing, commits nothing, and does not touch
 claim_evidence.v1.json or any manifest.
 
 WHAT COUNTS AS A FINDING. A flat manifest at evidence/experiments/<run_id>.json
@@ -49,7 +47,10 @@ WHAT COUNTS AS A FINDING. A flat manifest at evidence/experiments/<run_id>.json
     flat_status uses (status | overall_outcome | outcome), i.e. it is not a
     stub;
   - no runs/<any experiment_type>/runs/<run_id>/manifest.json exists anywhere
-    under evidence/experiments/.
+    under evidence/experiments/ for its run_id;
+  - AND no `experiment_type` is inferable (neither an explicit field nor a
+    parent directory to fall back to) -- i.e. the indexer's own discovery
+    path would skip it too.
 
 USAGE
 -----
@@ -58,7 +59,7 @@ USAGE
 
 Exit codes:
     0  no findings
-    1  one or more flat-only orphaned manifests found
+    1  one or more flat-only manifests found that the indexer still cannot score
 """
 
 from __future__ import annotations
@@ -143,6 +144,16 @@ def find_flat_only_orphans(evidence_dir: Path) -> list[dict[str, Any]]:
         status = _resolve_flat_status(manifest)
         if status is None:
             continue
+        # Mirrors build_experiment_indexes.py's own flat-only-orphan discovery
+        # loop: experiment_type from the manifest field, falling back to the
+        # flat file's parent directory name when the file is not sitting
+        # directly at evidence_dir's top level. Only a manifest for which
+        # NEITHER resolves is still genuinely un-scorable post-fix.
+        experiment_type = str(manifest.get("experiment_type", "")).strip()
+        if not experiment_type and path.parent != evidence_dir:
+            experiment_type = path.parent.name
+        if experiment_type:
+            continue
         findings.append({
             "path": str(path.relative_to(ROOT.parent)),
             "run_id": run_id,
@@ -164,12 +175,15 @@ def main(argv: list[str] | None = None) -> int:
     findings = find_flat_only_orphans(EVIDENCE_DIR)
 
     if not findings:
-        print("no flat-only orphaned manifests found -- clean")
+        print("no flat-only orphaned manifests found -- clean "
+              "(the indexer's own flat-only-orphan path, added 2026-09-01, "
+              "resolves an experiment_type for every packless flat manifest "
+              "currently on disk)")
         return 0
 
-    print(f"{len(findings)} flat-only orphaned manifest(s) found "
-          f"(a real result, no matching run pack -- invisible to "
-          f"claim_evidence.v1.json regardless of run_id naming):")
+    print(f"{len(findings)} flat-only manifest(s) found that the indexer "
+          f"STILL cannot score (no matching run pack AND no experiment_type "
+          f"inferable, neither an explicit field nor a parent directory):")
     contributory = [
         f for f in findings
         if f["claim_ids"] and f["evidence_direction"] in
