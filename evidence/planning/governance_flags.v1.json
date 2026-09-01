@@ -1409,9 +1409,9 @@
       "summary": "Orphan-prerequisite investigation (chip-20260828-orphan-prerequisite-investigation) confirms three claims name a specific unbuilt substrate in their precondition text with NO owner anywhere -- not in any other claim's depends_on, not in substrate_queue.json's unblocks_claims, not in igw_routine_ledger.json/igw_assignments.json/inter_governance_workset.md, and no matching code in ree-v3/ree_core/. (1) ARC-105 needs a multi-scale goal-representation (granularity) substrate, orthogonal to ARC-051's existing level hierarchy. (2) Q-083 needs a genuinely multi-domain substrate (V3 has only one domain). (3) MECH-425 needs a retrieval-time gating policy (arousal-coupled reinstatement gain + content-selective competitor suppression) -- the READ-side sibling of MECH-261's WRITE-gate family; its sibling Q-076 depends on MECH-425 rather than building it. None are on the V3 critical path by the claims' own text, so this is not urgent, but each represents registry-stated intent with zero build routing. Recommend governance decide whether to register substrate_queue entries for these (deferred/off-critical-path is fine) or explicitly mark them out of scope.",
       "raised_by_session": "metaworker-chip-20260828-orphan-prerequisite-investigation",
       "raised_at": "2026-08-28T22:24:11Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:06:48Z",
+      "resolution_note": "VERIFIED, NO EDIT OWED -- the current state IS the disposition. The orphan facts hold in full and were checked independently for each of ARC-105, Q-083 and MECH-425: none appears in any other claim's depends_on as a builder, none in substrate_queue unblocks_claims, none in the IGW ledgers, and the named substrates are absent from ree_core. BUT the flag's framing ('registry-stated intent with zero build routing') mis-describes three explicit NON-intents as intents. ARC-105: 'OFF the V3 critical path: do not build in V3; promote only on a specific failure...' -- a conditional deferral with a stated trigger. MECH-425: 'V4/V5-leaning, OFF the V3 critical path. DO NOT build in V3.' Q-083: 'SUBSTRATE-BLOCKED -- REGISTER SCOPED, DO NOT DESIGN... DO NOT QUEUE AN EXPERIMENT AGAINST THIS IN V3.' All three are substrate_conditional / implementation_phase v4. The absence of a queue owner is what a deliberate v4 deferral LOOKS like in this registry; adding one would assert build intent the claims explicitly disclaim."
     },
     {
       "flag_id": "GFLAG-0099",
