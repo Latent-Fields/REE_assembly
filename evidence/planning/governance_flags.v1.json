@@ -1588,6 +1588,27 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0111",
+      "claim_ids": [
+        "ARC-062",
+        "MECH-309",
+        "MECH-313",
+        "ARC-065",
+        "MECH-220",
+        "SD-015",
+        "MECH-112",
+        "ARC-030",
+        "SD-012"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "6 flat-only V3 experiment manifests (V3-EXQ-542, 544, 544a supports; V3-EXQ-395 x2 weakens; V3-EXQ-259 does_not_support) carry real scored evidence for these claims but are structurally invisible to claim_evidence.v1.json because build_experiment_indexes.py only discovers runs via a runs/<id>/manifest.json pack glob and these manifests were written only via pack_writer.write_flat_manifest (a sanctioned flat-only chokepoint), never via write_pack. See REE_assembly/evidence/planning/flat_only_manifest_indexer_invisibility_staged_20260901.md for full corpus scan (23 findings, 3 buckets) and two candidate remediations (indexer-side pack-less discovery vs backfilling packs) -- a scoring-semantics choice left for /governance.",
+      "raised_by_session": "metaworker-chip-20260830-exq547-runid-index-invisible",
+      "raised_at": "2026-09-01T16:00:44Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
