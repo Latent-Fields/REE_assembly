@@ -741,9 +741,9 @@
       "summary": "V3-EXQ-944a crashed (ERROR, KeyError 'reset_execution_frac', ree-cloud-3, 2026-08-22); its ERROR manifest v3_v3_exq_944a_runner_error_20260822T151058Z_v3 is still evidence_direction 'non_contributory'. /diagnose-errors 2026-08-25 root-caused it (coupled producer/consumer landing-order defect between the 944a driver and the base-module fix f34e17b, confirmed via ree-worker-3's systemd journal after powering the worker on for this diagnosis) and queued successor V3-EXQ-944b (supersedes V3-EXQ-944a). FOLLOW-ON OWED: once V3-EXQ-944b's run lands, set that manifest's evidence_direction to 'superseded' with a note naming V3-EXQ-944b, and rebuild the index. Nothing else is owed.",
       "raised_by_session": "serene-yalow-3dd4b0",
       "raised_at": "2026-08-25T19:28:32Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T11:56:55Z",
+      "resolution_note": "APPLIED 2026-09-01 (gov-flagtriage-20260901). Triage confirmed the flag's precondition had been MET since 2026-08-25: V3-EXQ-944b ran PASS/supports and its own manifest declares supersedes: v3_exq_944a_mech091_salient_event_cycle_boundary, but the owed edit was never made (the 944a ERROR record had exactly one commit, 7a5926b7e6, never touched since). Both copies -- flat evidence/experiments/v3_v3_exq_944a_runner_error_20260822T151058Z_v3.json AND the run-pack manifest.json -- now read evidence_direction: superseded with an evidence_direction_note naming 944b and superseded_by set. NO SCORING EFFECT, verified before writing: the 944a run_id appears 0 times in claim_evidence.v1.json, neither in entries nor in the 228-item unlinked_runs, so this is provenance hygiene. Dry-run gate run first (check_dry_run_citations: 2 clean, 0 dry). No claims.yaml change."
     },
     {
       "flag_id": "GFLAG-0051",
