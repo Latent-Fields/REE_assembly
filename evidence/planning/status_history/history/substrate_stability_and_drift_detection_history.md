@@ -44,6 +44,10 @@ _(no joined events)_
 
 _(no joined events)_
 
+## `substrate_stability:P1c-central-propagation`
+
+_(no joined events)_
+
 ## `substrate_stability:substrate-commit-coverage`
 
 _(no joined events)_

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-01T07:42:29Z",
+  "generated_at": "2026-09-01T15:54:35Z",
   "counts": {
     "total": 1077,
-    "reading_drift": 141,
+    "reading_drift": 142,
     "unstamped": 29,
     "needs_review": 2,
     "never_reviewed": 1056,
-    "provenance_drift": 284
+    "provenance_drift": 289
   },
   "reading_drift": [
     {
@@ -781,6 +781,14 @@
     },
     {
       "claim": "MECH-316",
+      "stored_reading": "candidate/v3_pending",
+      "derived_reading": "candidate/v3_pending/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-317",
       "stored_reading": "candidate/v3_pending",
       "derived_reading": "candidate/v3_pending/substrate_conditional",
       "diffs": [
@@ -3266,7 +3274,7 @@
     {
       "claim": "MECH-290",
       "stored_from": null,
-      "derived_from": "v3_exq_958_mech290_backward_credit_sweep_functional_signature_20260829T113555Z_v3"
+      "derived_from": "decision:MECH-290@2026-09-01T07:59:31.500518Z"
     },
     {
       "claim": "MECH-292",
@@ -3540,7 +3548,7 @@
     },
     {
       "claim": "MECH-439",
-      "stored_from": "failure_autopsy_V3-EXQ-936a_2026-08-30",
+      "stored_from": "failure_autopsy_V3-EXQ-571b_2026-09-01",
       "derived_from": "failure_autopsy_V3-EXQ-571b_2026-09-01"
     },
     {
@@ -3752,6 +3760,31 @@
       "claim": "MECH-492",
       "stored_from": null,
       "derived_from": "v3_exq_950_mech492_mech286_threat_gate_place_safety_sourcing_20260826T122526Z_v3"
+    },
+    {
+      "claim": "Q-094",
+      "stored_from": null,
+      "derived_from": "decision:Q-094@2026-09-01T07:59:31.616310Z"
+    },
+    {
+      "claim": "Q-095",
+      "stored_from": null,
+      "derived_from": "decision:Q-095@2026-09-01T07:59:31.656244Z"
+    },
+    {
+      "claim": "ARC-130",
+      "stored_from": null,
+      "derived_from": "decision:ARC-130@2026-09-01T07:59:31.461858Z"
+    },
+    {
+      "claim": "MECH-524",
+      "stored_from": null,
+      "derived_from": "decision:MECH-524@2026-09-01T07:59:31.538855Z"
+    },
+    {
+      "claim": "MECH-527",
+      "stored_from": null,
+      "derived_from": "decision:MECH-527@2026-09-01T07:59:31.576991Z"
     }
   ],
   "provenance_available": true
