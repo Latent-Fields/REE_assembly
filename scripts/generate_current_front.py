@@ -173,24 +173,48 @@ def derive():
                              default=None)
 
     # --- hypothesis space: the live "hero" question ----------------------------
-    # One line pointing at the /progress map: the surviving-hypothesis count on the
-    # live question (design doc Sec.6). Soft: a missing/malformed JSON is skipped
-    # silently (front doc still generates); it is an additive pointer, not a gate.
+    # One line pointing at the /progress map: the hypothesis-state breakdown on
+    # the live question (design doc Sec.6). Soft: a missing/malformed JSON is
+    # skipped silently (front doc still generates); it is an additive pointer,
+    # not a gate.
+    #
+    # Deliberately does NOT read hero.surviving / .reduction_ratio / .bits_removed.
+    # Those are build_hypothesis_space.py's rollup fields, and `surviving` folds in
+    # a `synthesis.surviving_label` heuristic (+1 "composed survivor") on top of the
+    # per-hypothesis state tally -- a heuristic that goes stale independently of the
+    # states themselves (GFLAG-0093: competence_floor's synthesis prose was never
+    # updated when its last alive leg resolved on 2026-08-08, so `surviving` stayed
+    # frozen at 1 while every hypothesis was already eliminated/confirmed). `alive`
+    # / `confirmed` / `resolved_out` / `superseded`, by contrast, are a direct tally
+    # of each hypothesis's `resolution.state` with no synthesis involved, so they are
+    # used here instead. Self-consistency (they must sum to `initial_frozen_count`)
+    # is checked before trusting them; a mismatch degrades to "could not derive"
+    # (needs_review) rather than printing a plausible-looking wrong number.
     f["hero"] = None
     hs = _read_json(HYPOTHESIS_SPACE)
     if isinstance(hs, dict):
         questions = hs.get("questions") or []
         hero = next((q for q in questions if isinstance(q, dict) and q.get("is_hero")), None)
         if hero:
-            surviving = hero.get("surviving")
+            alive = hero.get("alive")
+            confirmed = hero.get("confirmed")
+            resolved_out = hero.get("resolved_out")
+            superseded = hero.get("superseded")
             initial = hero.get("initial_frozen_count")
-            f["hero"] = {
-                "short_title": hero.get("short_title") or hero.get("qid") or "(live question)",
-                "surviving": surviving,
-                "initial": initial,
-                "reduction_ratio": hero.get("reduction_ratio"),
-                "bits_removed": hero.get("bits_removed"),
-            }
+            counts = (alive, confirmed, resolved_out, superseded)
+            if (all(isinstance(c, int) for c in counts) and isinstance(initial, int)
+                    and sum(counts) == initial):
+                f["hero"] = {
+                    "short_title": hero.get("short_title") or hero.get("qid") or "(live question)",
+                    "alive": alive,
+                    "confirmed": confirmed,
+                    "resolved_out": resolved_out,
+                    "superseded": superseded,
+                    "initial": initial,
+                }
+            else:
+                f["hero"] = {"derive_failed": True}
+                needs_review = True
 
     return f, needs_review
 
@@ -244,17 +268,28 @@ def render(f, needs_review, now):
             b += " (%s)" % f["buildable_desc"]
         lines.append("- **Buildable now (independent of the wall):** %s" % b)
 
-    # hypothesis-space hero question (the live rival-explanation narrowing)
+    # hypothesis-space hero question (the live rival-explanation narrowing).
+    # Reports the state tally directly (alive / confirmed / resolved out) rather
+    # than a single collapsed "N of M still standing" figure -- see the
+    # GFLAG-0093 note in derive() for why a collapsed figure is the thing that
+    # went stale. A hero present but not derivable (needs_review) is skipped here;
+    # the top-of-doc needs_review banner already covers it.
     hero = f.get("hero")
-    if hero:
-        surv = hero["surviving"] if hero["surviving"] is not None else "?"
-        init = hero["initial"] if hero["initial"] is not None else "?"
-        bits = "?" if hero["bits_removed"] is None else ("%.2f" % hero["bits_removed"])
-        pct = ("%.0f%%" % (hero["reduction_ratio"] * 100)
-               if isinstance(hero["reduction_ratio"], (int, float)) else "?")
-        lines.append("- **Live question (hypothesis space):** %s -- %s of %s rival "
-                     "explanations still standing (%s ruled out, ~%s bits removed). "
-                     "Full map: `/progress`." % (hero["short_title"], surv, init, pct, bits))
+    if hero and not hero.get("derive_failed"):
+        bits = []
+        if hero["alive"]:
+            bits.append("%d alive" % hero["alive"])
+        if hero["confirmed"]:
+            bits.append("%d confirmed" % hero["confirmed"])
+        if hero["resolved_out"]:
+            bits.append("%d resolved out" % hero["resolved_out"])
+        if hero["superseded"]:
+            bits.append("%d superseded" % hero["superseded"])
+        if not bits:
+            bits.append("0 hypotheses")
+        lines.append("- **Live question (hypothesis space):** %s -- %s (of %s total). "
+                     "Full map: `/progress`." % (hero["short_title"], ", ".join(bits),
+                                                  hero["initial"]))
     lines.append("")
 
     # closure headline
