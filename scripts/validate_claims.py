@@ -310,11 +310,21 @@ def validate_terminal_dependencies(claims):
     # an ERROR here would block governance.sh --strict for everyone on a backlog this
     # check exists to surface, not to gate. Elevate once the count reaches 0.
     #
-    # NOT A MECHANICAL REPOINT. The obvious fix -- point the edge at superseded_by --
-    # is WRONG in at least one known case: SD-013 -> SD-003 cannot be repointed to
-    # MECH-256/SD-029 because BOTH successors already depend on SD-013, so the repoint
-    # would create a cycle. There the edge should be dropped. Hence WARN and a named
-    # successor list rather than an auto-fix.
+    # NOT A MECHANICAL REPOINT -- but NOT for the reason first shipped. The original
+    # wording of this comment said the obvious fix (point the edge at superseded_by) was
+    # wrong because SD-013 -> SD-003 would create a cycle. CORRECTED 2026-09-01, same
+    # day: that objection is largely void. This claims graph ALREADY CONTAINS 153 CYCLES
+    # over 3915 depends_on edges, including a DIRECT 2-hop one (ARC-007 <-> ARC-018), and
+    # the indexer's loopy belief propagation converges over it (converged=True, 21 iters).
+    # It is a conceptual dependency web, not a build DAG, so "this would introduce a
+    # cycle" is not a disqualifying argument here and should not be used as one.
+    # Measured on the SD-003 fan-in: of its 16 dependants, repointing would close a cycle
+    # for 7 -- but only ONE of those (SD-013) is direct; the other six are 9-12 hop paths
+    # through a single long shared chain, i.e. indistinguishable from the 153 already
+    # tolerated.
+    # The real reason this stays WARN rather than becoming an auto-fix is SEMANTIC: whether
+    # a given successor is actually what the dependant depends on is a per-claim judgement
+    # the registry cannot infer. Hence a named successor list and a human.
     TERMINAL_CLAIM_STATUSES = {"superseded", "retired", "legacy", "rejected"}
 
     def _status_of(claim):
@@ -340,9 +350,12 @@ def validate_terminal_dependencies(claims):
                 succ = [succ]
             if cid in succ:
                 continue  # exclusion (b): successor provenance
-            hint = (f" -- successors are {', '.join(succ)}; repoint or DROP the edge "
-                    "(check first that the successor does not already depend on this "
-                    "claim, which would make a repoint a cycle)"
+            hint = (f" -- successors are {', '.join(succ)}; repoint or DROP the edge. "
+                    "Judge this SEMANTICALLY (is the successor actually what this claim "
+                    "depends on?), not structurally: a successor already depending on this "
+                    "claim does NOT disqualify a repoint, because this graph is not acyclic "
+                    "and is not meant to be -- 153 cycles already exist in it, including a "
+                    "direct 2-hop one, and the indexer's loopy BP converges over them"
                     if succ else
                     " -- no superseded_by recorded on the target, so decide whether to "
                     "drop the edge or name a successor")

@@ -82,16 +82,35 @@ class TestTerminalDependencyLint(unittest.TestCase):
         self.assertIn("SD-029", msg)
 
     def test_message_warns_against_a_blind_repoint(self):
-        """SD-013 -> SD-003 cannot be repointed: BOTH successors already depend on
-        SD-013, so the obvious fix would create a cycle. The message must not
-        imply repointing is always right."""
+        """The message must not imply repointing is always right -- it offers DROP too."""
         claims = [
             {"id": "SD-003", "status": "superseded", "superseded_by": ["MECH-256", "SD-029"]},
             {"id": "SD-013", "status": "provisional", "depends_on": ["SD-003"]},
         ]
         msg = _messages(claims)[0]
         self.assertIn("DROP", msg)
-        self.assertIn("cycle", msg)
+
+    def test_message_does_NOT_offer_a_cycle_as_the_reason(self):
+        """CORRECTED 2026-09-01, same day it shipped. The first version of this hint told
+        the reader to check whether the successor already depends on the claim, "which
+        would make a repoint a cycle" -- treating a cycle as disqualifying.
+
+        That is wrong here and would have sent readers chasing a non-issue. Measured on
+        the live registry the same day: the claims graph ALREADY CONTAINS 153 CYCLES over
+        3915 depends_on edges, including a DIRECT 2-hop one (ARC-007 <-> ARC-018), and the
+        indexer's loopy belief propagation converges over it. It is a conceptual dependency
+        web, not a build DAG.
+
+        So the hint must steer to the SEMANTIC question (is the successor actually what
+        this claim depends on?) and must not present cyclicity as the blocker."""
+        claims = [
+            {"id": "SD-003", "status": "superseded", "superseded_by": ["MECH-256", "SD-029"]},
+            {"id": "SD-013", "status": "provisional", "depends_on": ["SD-003"]},
+        ]
+        msg = _messages(claims)[0]
+        self.assertIn("SEMANTICALLY", msg)
+        self.assertIn("does NOT disqualify", msg)
+        self.assertNotIn("would make a repoint a cycle", msg)
 
     def test_target_without_superseded_by_gets_the_other_hint(self):
         claims = [
