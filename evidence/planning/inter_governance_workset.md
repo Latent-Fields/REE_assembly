@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-01T11:32:08Z`
+Generated: `2026-09-01T12:32:45Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -635,7 +635,7 @@ Instructions:
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** arc_062_rule_apprehension:GAP-B
-- **Why now:** V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g). The MECH-439 F-dominance conversion ceiling has been LIFTED operationally by the MECH-448 (ARC-107) rank-preserving F->eligibility demotion lever (pro
+- **Why now:** V3-EXQ-654h RAN TERMINAL FAIL/non_contributory 2026-06-21T17:57Z (manifest v3_exq_654h_..._20260621T175704Z_v3; superseded V3-EXQ-654g). CORRECTED 2026-09-01 (gov-flagtriage-20260901, GFLAG-0053 + GFLAG-0061, which are the same finding on t
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -646,7 +646,7 @@ Lane: plan | Skill: (plan reconcile)
 Status: in_progress
 Gap(s): arc_062_rule_apprehension:GAP-B
 Claims: MECH-309, ARC-062
-Why now: V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g). The MECH-439 F-dominance conversion ceiling has been LIFTED operationally by the MECH-448 (ARC-107) rank-preserving F->eligibility demotion lever (pro
+Why now: V3-EXQ-654h RAN TERMINAL FAIL/non_contributory 2026-06-21T17:57Z (manifest v3_exq_654h_..._20260621T175704Z_v3; superseded V3-EXQ-654g). CORRECTED 2026-09-01 (gov-flagtriage-20260901, GFLAG-0053 + GFLAG-0061, which are the same finding on t
 
 Instructions:
 - Update plan-of-record doc and closure frontmatter when complete.
