@@ -43,33 +43,36 @@ V4 entry is gated on V3 completion. The current V3 completion gates
    (MECH-163 VTA/planned system)" -- had become UNSATISFIABLE AS WRITTEN:
    MECH-163 was NARROWED 2026-07-22 to leg (1) only, that leg was weakened
    by V3-EXQ-786b, and legs (2) and (3) were split out into MECH-478 and
-   MECH-479. The gate is therefore restated as the conjunction of its three
-   surviving legs:
+   MECH-479. The gate is therefore restated as the conjunction of its
+   surviving V3 legs:
 
    (a) **MECH-477** dual_system_uncertainty_arbitration -- SUPPORTED
        (V3-EXQ-811a). Status candidate, implementation_phase v3.
    (b) **MECH-478** long_horizon_benefit_requires_model_based_rollout --
        implementation_phase v3, v3_pending true. OPEN.
-   (c) **MECH-479** prosocial_planning_requires_planned_system --
-       **RETAINED IN THE V3 GATE by explicit governance decision
-       (2026-09-01)**, against the cut audit's proposal to move it to
-       V4-phase validation. Rationale: a V3 completion gate does not shed a
-       leg merely because that leg is hard to test, and the same principle
-       already governs substrate ceilings -- if lifting the ceiling is
-       required for V3 completion, the enrichment is V3 work, because the
-       phase label follows the dependency.
 
-   **KNOWN TENSION -- recorded, not resolved.** MECH-479 currently carries
-   `implementation_phase: v4`, and the cut audit's ground for moving it out
-   was that testing it structurally requires V4-1 (others-as-slots). Keeping
-   it in the V3 gate while it remains v4-labelled means the gate is
-   satisfiable only once that structural precondition is either met or
-   re-derived. The consistent resolutions are (i) let MECH-479's phase label
-   follow the dependency to v3, or (ii) re-derive the V4-1 precondition so
-   the leg is testable in V3. This is owed to a later cycle and is tracked
-   on its own governance flag; it is NOT a reason to revert to the old
-   MECH-163 wording, which was unsatisfiable for a different and worse
-   reason (it named a claim whose legs no longer live there).
+   **MECH-479 IS NOT IN THIS GATE -- decision REVERSED 2026-09-01, same day.**
+   It was initially RETAINED here against the GOV-V4CUT-1 audit's proposal, on
+   the principle that a V3 completion gate does not shed a leg merely because
+   that leg is hard to test. That principle is sound and is not withdrawn; what
+   changed is a measurement. MECH-479's falsifier requires a SECOND AGENT whose
+   integrated z_harm_a is measurable, and `ree-v3/ree_core/environment/`
+   contains exactly one file (causal_grid_world.py) with no multi-agent support
+   of any kind -- no `n_agents`, no `second_agent`, nothing. So the leg is not
+   merely hard to test in V3; it is untestable in V3 without first building a
+   multi-agent environment that does not exist.
+
+   Retaining it would therefore have made this gate permanently unclosable
+   rather than merely demanding. The user's decision, on being shown that
+   measurement, was that MECH-479 **should move to V4** -- which is what the cut
+   audit originally proposed and what its `implementation_phase: v4` label
+   already said. Gate and label now agree, and the KNOWN TENSION recorded here
+   on 2026-09-01 is resolved rather than deferred.
+
+   NOTE what this does NOT license: reverting to the old "MECH-163 validated"
+   wording, which was unsatisfiable for a different and worse reason (it named a
+   claim whose legs no longer live there). MECH-479 remains a real obligation --
+   it is a V4-phase validation item, not a dropped one. Tracked: GFLAG-0109.
 
 V3-EXQ-495 is the historical queued experiment for MECH-163 (per
 WORKSPACE_STATE 2026-04-30 entries) and is superseded as the gate's owner by
@@ -316,9 +319,10 @@ V4 spec work proceeds in phases:
   precede in V3 per substrate_roadmap.md item 5).
 
 Proceeding past Phase A requires:
-- V3 full completion gate cleared -- MECH-477 (SUPPORTED) + MECH-478 +
-  MECH-479, per the re-derived three-leg gate above (2026-09-01). NOT
-  "MECH-163 PASS": that wording is unsatisfiable, see the gate section.
+- V3 full completion gate cleared -- MECH-477 (SUPPORTED) + MECH-478, per
+  the re-derived gate above (2026-09-01; MECH-479 moved to V4-phase
+  validation the same day -- see the gate section). NOT "MECH-163 PASS":
+  that wording is unsatisfiable, see the gate section.
 - A claim explicitly authorising V4 substrate work (governance
   decision)
 

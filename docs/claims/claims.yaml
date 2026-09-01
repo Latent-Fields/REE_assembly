@@ -3791,6 +3791,26 @@
   location: docs/architecture/control_plane.md#q-007
   source:
     - docs/architecture/control_plane.md
+  governance_2026_09_01: |
+    [GFLAG-0097, govdesk-20260901] THE PRECONDITION CONFLATES TWO DIFFERENT QUANTITIES, and that
+    error is this claim's own, not the flag's. what_would_answer reads: "z_beta must carry
+    cross-context variance -- V3-EXQ-643's autopsy found the modulatory signal had magnitude but
+    ZERO cross-candidate range, so on the current substrate this precondition is unmet."
+    Those are not the same measurement. 643a's modulatory_authority_range
+    (ree-v3/ree_core/predictors/e3_selector.py:3122) is max-minus-min of the accumulated E3
+    score-bias tensor ACROSS ACTION CANDIDATES AT ONE TICK. This claim's DV is the z_beta
+    trajectory clustered ACROSS EPISODES labelled by affect context -- between-context separation
+    over within-context dispersion. z_beta is produced by beta_encoder in latent/stack.py:1353 and
+    does not appear in e3_selector.py at all. The 643 autopsy contains zero occurrences of z_beta
+    and zero of Q-007.
+    SO THE FLAG'S IMPLIED CONCLUSION IS WRONG WHILE ITS OBSERVATION IS RIGHT. V3-EXQ-643a (PASS,
+    2026-06-06, range 0.2218) genuinely validated the substrate the 643 autopsy diagnosed, and the
+    queue entry modulatory-bias-selection-authority is ready:true listing 18 unblocked claims --
+    Q-007 NOT among them. But that discharges a DIFFERENT gate. Do NOT lift substrate_conditional
+    on 643a alone.
+    WHAT WOULD ACTUALLY DISCHARGE IT: a Q-007-specific readiness probe measuring z_beta
+    between-context separation over affect-labelled episodes. No run in the corpus has produced that
+    statistic. Note also 643a carries claim_ids: [] so it reaches no claim in the matrix.
 - id: Q-008
   title: "Legacy: resolved in favor of valence/mu-kappa separation with calibration follow-up."
   claim_type: open_question
@@ -11562,6 +11582,20 @@
     In multi-step plans (W0→W1→W2) each waypoint completion phase-resets E3's clock,
     ensuring harm estimates from each sub-plan are fully integrated before the next begins.
     Neural basis: P300 event-related potential and its theta/alpha oscillatory substrate.
+  governance_2026_09_01: |
+    [GFLAG-0067, govdesk-20260901] PARTIALLY OVERTAKEN. The flag says V3-EXQ-944b is UNREVIEWED and
+    that pending_review should be walked for it. That was true when raised (2026-08-27) and is now
+    FALSE: 944b's run_id is in reviewed_run_ids, the 2026-08-28 governance cycle applied it to this
+    claim's evidence_quality_note, and the indexer scores it (exp_conf 0.76, quadrant
+    confirmed_established, latest_run_id 944b). Nothing is owed on the review.
+    WHAT IS STILL OWED IS THE NODE AND THIS FIELD. live_status still reads as_of 2026-08-22, from
+    governance-cycle-2026-08-22 (failure_autopsy_V3-EXQ-944_2026-08-22), verdict
+    hold_candidate_resolve_conflict/applied -- while evidence_quality_note directly below carries
+    the 2026-08-28 944b PASS/supports entry. The two fields disagree; live_status is the one behind.
+    Status itself correctly stays candidate.
+    CAVEAT THAT MUST TRAVEL WITH ANY FLIP, and which the flag omits: the 944b PASS rests on FIVE OF
+    SIX SEEDS. Seed 7 is red on episode_admits_cycle_contrast / rate_match_holds and is unscored,
+    not refuting. Do not cite a bare PASS.
 - id: MECH-092
   title: "Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation."
   claim_type: mechanism_hypothesis
@@ -35129,6 +35163,23 @@
     ARC-033 arm comparison. The core arbitration this claim was registered to
     resolve has never actually been run.
   digestion_note: "[2026-08-27 thought-digestion, session responsibility-epistemic-hygiene-d6f9d3] DEFERRED (disposition f): before this falsifier can be trusted, two things need resolving. (1) live_status.evidence.from points at failure_autopsy_V3-EXQ-445h_2026-06-19, but that autopsy targets claim_ids: [\"SD-032b\"] only -- ARC-058 is never tested there; the pointer is misleading, either re-point it or annotate it as indirect. (2) SD-048 (the substrate ARC-058 needs for a fair test) has a confirmed-but-apparently-unapplied re-adjudication: failure_autopsy_V3-EXQ-512a_2026-08-09 reclassified supports -> non_contributory, but the manifest on disk and SD-048's own claims.yaml note still read the old supports framing. Route both to a governance flag before treating this claim as testable. Remove this note once resolved."
+  governance_2026_09_01: |
+    [GFLAG-0071, govdesk-20260901] THIS FLAG'S PREMISE ABOUT ARC-058 IS FALSE, and the false
+    premise is ALSO sitting in this claim's own digestion_note -- delete it there rather than
+    acting on it. The flag (inheriting the digestion_note) says
+    failure_autopsy_V3-EXQ-445h_2026-06-19 "targets claim_ids: ['SD-032b'] only -- ARC-058 is
+    never tested there; the pointer is misleading". Verified 2026-09-01: that autopsy has FOUR
+    targets, and targets[3].claim_ids is ["ARC-058"], failed_criterion "not_tested", with a note
+    saying ARC-058 needs a dedicated shared-trunk-vs-independent arm. So live_status.evidence.from
+    points at an artifact that DELIBERATELY ADJUDICATES this claim as untested. The pointer is
+    correct; leave it alone.
+    SECOND FALSE STATEMENT, in this claim's own what_would_answer: "no manifest in the evidence
+    corpus carries claim_ids including ARC-058". Also false -- four experimental entries are tagged
+    ARC-058, including three runs of v3_exq_595_arc033_vs_arc058_post_diversity_three_arm
+    (2026-05-20/21, experiment_purpose evidence), which is literally the ARC-033-vs-ARC-058
+    comparison that sentence says was never run. All three scored non_contributory, so
+    genuine_exp_count is legitimately 0 -- but the arbitration has been ATTEMPTED, not never run.
+    That distinction matters: "never run" invites queueing it again.
 - id: MECH-234
   title: "DMS (goal-directed) and DLS (habitual) corticostriatal circuits can produce simultaneous parallel motor outputs only when targeting anatomically distinct motor effector pools; within the same effector pool, habitual and goal-directed outputs compete via winner-takes-all basal ganglia selection, not independent parallel expression."
   claim_type: mechanism_hypothesis
@@ -39476,6 +39527,24 @@
     [2026-08-27 thought-digestion]: this claim's evidence_quality_note has the
     same 2026-06-22 staleness as MECH-263's (see that entry) -- one shared
     governance flag covers both.
+  governance_2026_09_01: |
+    [GFLAG-0058, govdesk-20260901] evidence_quality_note is FROZEN AT 2026-06-22 (V3-EXQ-485m)
+    and misses three later developments, all verified 2026-09-01:
+    (a) V3-EXQ-714 (2026-07-07), the co-armed FULLSTACK arm 485m routed to: terminal FAIL,
+        self-routed substrate_not_ready_requeue at readiness -- C1b GAP-A divergence 0.004163 and
+        C1g ofc_valuation_devalued_range 0.000701 (against 0.05, non-vacuous on seed 44 only) at
+        full P0=200; C2 never scored. PROMOTES NOTHING.
+    (b) V3-EXQ-719a (2026-07-08): first direct competence measurement -- the integrated all-ON
+        agent forages at 0.065 / 0.0 / 0.455 resources per episode against a 1.0 floor, 0/3 seeds.
+        Reframes the whole downstream retest wall (654h/485i/625e/460h/460i) as ONE competence root.
+    (c) 2026-08-08/12: the MECH-457 competence_floor campaign formally CLOSED, growth_restriction
+        written to the qid, further legs mechanically refused at /failure-autopsy Step 8.
+    NOTE THE INDEXER CANNOT SEE ANY OF THIS FOR THIS CLAIM: 714's and 719a's manifests carry
+    claim_ids ["MECH-309","ARC-062"], so the last experimental entry reaching this claim remains
+    485m. That is why the staleness is invisible to every automated check.
+    SCOPE CORRECTION AGAINST THE FLAG: it implies the claims are ignorant of all three. They are
+    not -- MECH-263's what_would_answer already carries (a) and (c), and this claim defers to it by design. The staleness is FIELD-LOCALISED to
+    evidence_quality_note, and only 719a is absent from every field.
 - id: SD-033c
   title: "vmPFC-analog (subjective value integration): module that integrates scalar value across goals, needs, and competing options to produce a unified value signal. Consolidates existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions under the SD-033 cluster."
   claim_type: design_decision
@@ -40904,6 +40973,24 @@
     FAIL (V3-EXQ-714, 2026-07-07), the 719a convergence, or the MECH-457/
     competence_floor campaign's 2026-08-08/12 closure -- see governance flag
     raised this session (shared with SD-033b).
+  governance_2026_09_01: |
+    [GFLAG-0058, govdesk-20260901] evidence_quality_note is FROZEN AT 2026-06-22 (V3-EXQ-485m)
+    and misses three later developments, all verified 2026-09-01:
+    (a) V3-EXQ-714 (2026-07-07), the co-armed FULLSTACK arm 485m routed to: terminal FAIL,
+        self-routed substrate_not_ready_requeue at readiness -- C1b GAP-A divergence 0.004163 and
+        C1g ofc_valuation_devalued_range 0.000701 (against 0.05, non-vacuous on seed 44 only) at
+        full P0=200; C2 never scored. PROMOTES NOTHING.
+    (b) V3-EXQ-719a (2026-07-08): first direct competence measurement -- the integrated all-ON
+        agent forages at 0.065 / 0.0 / 0.455 resources per episode against a 1.0 floor, 0/3 seeds.
+        Reframes the whole downstream retest wall (654h/485i/625e/460h/460i) as ONE competence root.
+    (c) 2026-08-08/12: the MECH-457 competence_floor campaign formally CLOSED, growth_restriction
+        written to the qid, further legs mechanically refused at /failure-autopsy Step 8.
+    NOTE THE INDEXER CANNOT SEE ANY OF THIS FOR THIS CLAIM: 714's and 719a's manifests carry
+    claim_ids ["MECH-309","ARC-062"], so the last experimental entry reaching this claim remains
+    485m. That is why the staleness is invisible to every automated check.
+    SCOPE CORRECTION AGAINST THE FLAG: it implies the claims are ignorant of all three. They are
+    not -- what_would_answer already carries (a) and (c). The staleness is FIELD-LOCALISED to
+    evidence_quality_note, and only 719a is absent from every field.
 - id: MECH-264
   title: "Frontopolar counterfactual-value tracking: SD-033e maintains, in parallel with SD-033c's chosen-option value signal, a running estimate of the value of unchosen alternatives. A switch-to-alternative decision is signalled when the counterfactual estimate exceeds the chosen estimate by a threshold-sensitive margin."
   claim_type: mechanism_hypothesis
@@ -47665,6 +47752,19 @@
     body-state substrate needed), per the claim's own stated fallback.
   location: docs/architecture/sd_048_interoceptive_noise_dynamics.md
 
+  governance_2026_09_01: |
+    [GFLAG-0071, govdesk-20260901] THE SUPPORTS FRAMING IS STALE; THIS CLAIM HAS NO CONFIRMING
+    EXPERIMENTAL RESULT. evidence_quality_note still reads that V3-EXQ-512a "PASSED (C1/C2/C3 all
+    pass, evidence_direction supports)" and what_would_answer still calls it "a first confirming
+    data point". Both were overtaken by confirmed failure_autopsy_V3-EXQ-512a_2026-08-09, which
+    reclassified 512a supports -> non_contributory: ARM_A scale=3.0 has n_quiet_steps=0 in all
+    three seeds, so C3 degenerates to a residual-noise floor, and C1 alone is too thin (mean effect
+    0.00097, two of three seeds at the exact minimum, seed 43 sign-reversed at -0.00067).
+    With 511, 512a and 902 all non_contributory, SD-048 now has ZERO clean confirming results.
+    The same note's own line -- "FLAGGED, NOT RESOLVED THIS CYCLE: 512a's standing supports verdict
+    ... needs its own re-examination" -- is discharged: the re-examination happened and returned
+    negative. The MANIFEST was already corrected (it carries non_contributory plus a per-claim
+    override); only these claim fields lagged.
 - id: SD-049
   title: "Multi-resource heterogeneity: qualitatively distinct resource types (e.g. food / water / novelty) with per-type identity tags, type-specific spawn distributions, type-specific benefit profiles, and a per-axis homeostatic drive system, plus a curriculum-introduction hook. Provides the goal-identity vocabulary the wanting/liking + identity-distinct-goal cohort (MECH-229/230, MECH-117/216, ARC-030/032, Q-030, SD-015 unblock chain) needs to be honestly tested at substrate level, and the substrate scaffold for downstream developmental-schedule work."
   claim_type: design_decision
@@ -49933,6 +50033,22 @@
     603o exists) -- the escape-affordance-bridge substrate itself IS built, but
     the specific behavioral gate has moved on. Governance flag raised
     separately.
+  governance_2026_09_01: |
+    [GFLAG-0062, govdesk-20260901] THE STALE CITATION IS STALER THAN THE FLAG SAYS, AND THE LEG IT
+    NAMES HAS SINCE CLOSED POSITIVE. The pending_retest_after_substrate comment cites
+    failure_autopsy_V3-EXQ-603h_2026-06-08. The flag calls this "two experiment-letters stale
+    (603l FAILed; a redesign successor 603o exists)". Verified 2026-09-01: 603o did not merely
+    exist -- it RAN on 2026-06-11 and FAILED (non_contributory). And then V3-EXQ-603q ran
+    2026-06-17, PASSED, supports, supersedes 603o, all readiness preconditions met, and is reviewed.
+    Both SD-059 and MECH-358 now carry pending_retest_after_substrate false. The
+    escape-affordance-bridge gate is DISCHARGED, four letters on (603h -> l -> o -> q), not two.
+    SD-054's remaining hold is therefore NOT the bridge but the trained-policy conversion leg
+    (MECH-309, substrate_ceiling, v3_pending) -- which this claim's own what_would_answer and
+    evidence_quality_note already name as the real blocker.
+    THE SAME STALE COMMENT IS A COHORT, NOT A ONE-OFF: the identical 603h citation appears on
+    ARC-060, ARC-068 and MECH-320. Fixing SD-054 alone leaves three copies. Note also that the
+    2026-08-27 digestion note embedded in this claim's what_would_answer repeats the flag's error
+    verbatim ("a redesign successor 603o exists") and needs the same correction.
 - id: SD-055
   title: "Differentiable CEM selection approximation -- replaces the non-differentiable argmax / argsort elite-selection step in HippocampalModule.propose_trajectories() with a softmax-weighted candidate mean so that gradient flows from task reward back through candidate selection to SD-016 cue_action_proj. Opt-in via use_differentiable_cem flag (default False; legacy argmax path bit-identical when off). Preserves ARC-007 STRICT value-flat constraint: scoring uses existing residue-terrain evaluation, not a new value head."
   claim_type: design_decision
@@ -57321,6 +57437,28 @@
     pre-registered 0.75 bar; C7 credit-rule separation 5x. Detail on MECH-323/MECH-324.
   location: docs/architecture/policy_primitive_granularity.md
 
+  governance_2026_09_01: |
+    [GFLAG-0083, govdesk-20260901] UPHELD. The substrate_queue label overstates what closed.
+    Entry arc071_e3_reselection_on_committed_program reads implemented_validated (2026-08-01), but
+    its validation block contains only contract_test / flag_registry / full_contract_suite. Those
+    are FIVE tests in ree-v3/tests/contracts/test_arc071_e3_reselection_shortcircuit.py, which
+    assert premature-reselection behaviour in a synthetic harness with ticks forced. NONE of them
+    measures LEG 2 requirement (i)'s DV, n_genuine_commits / n_e3_ticks. The entry's own not_yet_done
+    field says as much: "no existing experiment enables either today, so this landing changes
+    nothing for any run in flight."
+    NO EXPERIMENT HAS MEASURED THE DV. Only two manifests anywhere contain n_genuine_commits
+    (V3-EXQ-855 and 871a, both 2026-08-02) and both PREDATE any run with the fix on -- 871a is the
+    run that exposed the gap. The single manifest containing use_e3_reselection_shortcircuit has it
+    false.
+    STALE POINTER IN THIS CLAIM: what_would_answer says the fix "is tracked in substrate_queue.json
+    (sd_id mech090-arc071-attick-persistent-handle-fix) as implemented_pending_validation". That
+    sd_id is now marked duplicate_superseded_by_arc071_e3_reselection_on_committed_program, so both
+    the sd_id and the status word are wrong. The following sentence -- that as of 2026-08-07 no
+    experiment has confirmed the fix restores cross-tick persistence -- is STILL TRUE on 2026-09-01
+    and should have its date advanced, not removed.
+    THE OWED EXPERIMENT IS ALREADY CHIPPED under GFLAG-0079
+    (chip-20260901-gflag0079-mech090-owed-retest), which commissions exactly this DV. What remains
+    here is the record-hygiene half only.
 - id: ARC-072
   title: "developmental_bootstrapping_and_cue_indexed_retrieval_gaps -- REE lacks (1) a dedicated diversity-bootstrapping epoch that populates the hippocampal trajectory store before reinforcement narrowing; and (2) a differentiable cue-indexed retrieval path from PFC context representation to trajectory generation. EXQ-561 cluster / MECH-269 is diagnostic of gap (1); EXP-0155 zero-gradient cue_action_proj is diagnostic of gap (2). The two gaps are inter-dependent: the severed cue gradient (gap 2) is the mechanism that prevents diverse option population (gap 1)."
   claim_type: architectural_commitment
@@ -59014,6 +59152,23 @@
     owed -- and the never-run overnight-improvement falsifier is the natural candidate,
     since it is both the missing entry and the claim's own outstanding prediction.
 
+  governance_2026_09_01: |
+    [GFLAG-0073, govdesk-20260901] PARTIALLY UPHELD. The staleness is real: live_status.evidence
+    still points at V3-EXQ-892 (a DIAGNOSTIC) with as_of 2026-08-08, and evidence_quality_note ends
+    on "3rd consecutive non-negative experimental touchpoint (873 mixed -> 873a supports -> 892
+    supports)". Both stop short of V3-EXQ-896
+    (v3_exq_896_mech322_replay_confirmatory_evidence_20260808T170954Z_v3, experiment_purpose
+    EVIDENCE, PASS/supports, reviewed) -- the FOURTH touchpoint and the FIRST that counts:
+    genuine_exp_count 1, 0 fail runs, survival_rate 0.75 against a 0.30 floor, corroboration_rate
+    1.0. live_status should repoint there.
+    TWO CORRECTIONS AGAINST THE FLAG. (1) It says "its own block hides this" -- false. This claim's
+    what_would_answer states the promotion arithmetic prominently, and 896 appears at eight further
+    points carrying its measured values. Nothing is hidden; two fields are simply behind.
+    (2) The flag quotes exp_conf 0.735. The indexer says 0.722 (claim_evidence.v1.json, generated
+    2026-09-01); 0.735 is MECH-463's LITERATURE confidence. The 0.735 figure also appears in this
+    claim's own PROMOTION ARITHMETIC paragraph and is wrong there too -- the flag copied it from
+    the claim rather than reading the matrix. Promotion still needs exactly one more contributory
+    evidence run (min_experimental_entries 2).
 - id: MECH-323
   implementation_note: >-
     SUBSTRATE BUILT 2026-07-22 as ChunkAccumulator in ree-v3/ree_core/policy/policy_chunking.py,
@@ -67873,6 +68028,25 @@
     EXPRESS the effect. So this weakens the GLOBAL-SCALAR route to anti-collapse
     specifically, and says nothing about the PER-CANDIDATE route (MECH-359, v4) or the
     gated-evaluator route the claim's title actually names.
+  governance_2026_09_01: |
+    [GFLAG-0081, govdesk-20260901] THE FLAG'S HEADLINE IS FALSE AND ONE OF THIS CLAIM'S OWN
+    SENTENCES IS SELF-FALSIFYING. The flag says ARC-088 "has a contradicting result it does not
+    carry". It carries it in full -- every figure the flag cites is already in what_would_answer.
+    What is broken is the lead-in sentence there: "THIS BRANCH CURRENTLY HAS A CONTRADICTING RESULT
+    ON THE RECORD, WHICH ARC-088 DOES NOT CARRY AND SHOULD." The twenty lines beneath it ARE the
+    carrying, so the sentence refutes itself and should read simply "THIS BRANCH CARRIES A
+    CONTRADICTING RESULT, recorded here:".
+    ONE OF THE TWO MANDATED CAVEATS IS REFUTED. The block says two caveats must travel with the
+    result, the first being that only a single incumbent regime (harm-weighted) was tested so
+    "channel-agnosticism -- half of what is asserted -- is untested". That was closed the NEXT DAY
+    by V3-EXQ-785b (2026-07-19, experiment_purpose evidence, does_not_support), which reproduced
+    the inertness at the residue_weighted and f incumbents, gate green on both, share_rho -0.143
+    against a +0.6 bar, var_total_fold 1.078 / 1.103, 1757 committed ticks each -- filed in the
+    SAME confirmed autopsy (failure_autopsy_mech463-exogenous-inertness_2026-07-20) the block
+    already cites. ONE caveat survives: z_world participation ratio ~1.06 at world_dim=128.
+    NOTE ON PROVENANCE: 785a's claim_ids is ["MECH-463"] only -- ARC-088 is not tagged in the
+    manifest, which is why its genuine_exp_count is 0. This is an INDIRECT citation via MECH-463,
+    and should be described as such rather than as ARC-088's own evidence.
 - id: ARC-089
   title: "Substrate-independent cognifold primitives: REE specifies its single cognifold (one interacting state-space, not a modular stack) in a hardware-neutral primitive vocabulary -- persistent state, history-dependent deformation, multi-timescale field dynamics, oscillatory propagation, stochastic transition, attractor transitions, residue-as-deformation-of-the-future-action-landscape, commitment as a real boundary between simulated and released action, and offline reintegration -- so that any FUTURE physical substrate is evaluated by whether it can INSTANTIATE these dynamics, not merely execute modular software. The primitives remain software-expressible now while also being legible as future physical-substrate affordances."
   claim_type: architectural_commitment
@@ -74364,6 +74538,22 @@
     good, NEGATIVE when bad -- the asymmetry MECH-423 alone does not capture). epistemic_category
     substrate_conditional: the mechanism is statable and falsifiable now, but the channel it needs is
     V6. DO NOT build in V3.
+  governance_2026_09_01: |
+    [GFLAG-0095, govdesk-20260901] HALF OF THIS FLAG'S PROPOSED FIX WOULD REVERSE A RECORDED
+    EDITORIAL DECISION -- do not apply it. The flag proposes adding BOTH MECH-373 and MECH-422 to
+    depends_on, because what_would_answer names "the V6 language interface: ARC-009 realisation /
+    MECH-373 / MECH-422" while depends_on lists only ARC-009.
+    MECH-373: NO CHANGE. This claim's own possible_overlap_with block already classes it verbatim
+    as "cross-ref, not duplicate" -- MECH-373 parses affect FROM language, MECH-424 is the INVERSE
+    direction. Making it a dependency would silently reverse that.
+    MECH-422: the flag's other half stands. Nothing on record classes it as a cross-reference; it
+    is event-arc grammatical realisation and is plausibly genuine substrate for a
+    language-prediction head.
+    THE REAL DEFECT IS NARROWER THAN "a dependency-tracking gap": it is an INTERNAL INCONSISTENCY
+    inside this claim -- what_would_answer names MECH-373 as required substrate while
+    possible_overlap_with and notes class it as an inverse-direction sibling. Fixing that prose is
+    at least as correct as touching depends_on, and is what stops the orphan detector re-raising
+    this every sweep.
 - id: MECH-425
   title: "Retrieval-time accessibility gating: which stored traces become reinstatable at a given moment is set by two composable READ-side policy layers, not by storage alone. Line A -- a global, slowly-fluctuating, arousal-coupled reinstatement GAIN (content-blind; sets the threshold on whether ANY stored trace crosses into accessibility; stochastic-resonance flavour). Line B -- a content-selective competitive SUPPRESSION that, given what the global gate admits, inhibits specific competitors to keep retrieval clean. The READ-side sibling of MECH-261's mode-conditioned WRITE-gate family: REE owns the gates but not this retrieval-time gating POLICY."
   claim_type: mechanism_hypothesis
@@ -75543,6 +75733,30 @@
     clearance to wait for and no longer an ARC-110 destination to route to. The correct
     replacement hold is the ARMED-CONVERSION PRECONDITION, a two-value config change
     rather than an upstream architectural landing.
+  governance_2026_09_01: |
+    [GFLAG-0082, govdesk-20260901] THE ARC-110 GATE RESOLVED NEGATIVE -- BUT NOT VIA THE RUN THIS
+    CLAIM AND THE FLAG BOTH CITE. implementation_note and what_would_answer say the falsifier is
+    "HELD (blocked_substrate) gated on ARC-110 validation V3-EXQ-707 returning contributory", and
+    quote 707b's numbers (A1_LOOPS 0.838 vs A0_SINGLE_ARENA 0.914, C1 0/3 seeds, "all six
+    non-degeneracy gates").
+    V3-EXQ-707b IS A WITHDRAWN RESULT. confirmed failure_autopsy_V3-EXQ-707b_2026-07-20 withdrew
+    its weakens as a measurement_test_design_defect: it accumulated committed_class_counts on every
+    P2 env step with no e3_tick guard, so its entropy was over a hold-weighted histogram, arm
+    exposure differed by up to +97.6%, and the A1-vs-null contrast was sign-inconsistent across all
+    three divergent seeds. ARC-110's own record says so.
+    THE LOAD-BEARING RUN IS V3-EXQ-707c (2026-07-23, repaired instrument, supersedes 707b): TEN
+    non-degeneracy preconditions met (not six), mean_committed_class_entropy a0_single_arena 1.163
+    vs a1_loops 1.124, C1 load-bearing and FAILED, weakens(NARROW) -- the conversion ceiling is
+    INTRINSIC to MECH-439 F-dominance. So the gate has a resolution, and it is negative; there is
+    no "returning contributory" left to wait for. Re-point the hold at this claim's own
+    ARMED-CONVERSION precondition (P1)+(P2), inherited from ARC-065 -- a two-value config change,
+    not an upstream architectural landing. Delete the ceiling_routing_note's "route to ARC-110"
+    clause: ARC-110 landed 2026-06-27 and its validation returned weakens, so there is no
+    destination.
+    SCOPE CORRECTION AGAINST THE FLAG: it says BOTH MECH-441 and MECH-440 carry this gate. Only
+    MECH-441 does. MECH-440 was never held, its substrate_ceiling was CLEARED 2026-07-24, its
+    pending_retest_after_substrate was cleared 2026-08-29, and its falsifier lineage ran through
+    V3-EXQ-955 and 959. NO EDIT IS OWED ON MECH-440.
 - id: MECH-442
   title: "Committed-action diversity survives the selection/commit step via a behavioral-descriptor eligible-set ARCHIVE (Quality-Diversity / MAP-Elites analog): the committed E3 selection should draw from a structure that, UPSTREAM of the winner-take-all commit, partitions the eligible candidate set by a behavioral descriptor (first-action / committed-action class / e2.world_forward strategy signature, NOT F-rank) and retains the F-best candidate WITHIN each behavioral niche, then commits by a coverage-aware rule -- so a behaviorally-distinct action stays selectable at a moderate primary-score (F) gap, bounded by the per-niche-elite safety envelope, rather than collapsing to F's single global optimum. The validated V3-EXQ-569i top-k shortlist is the descriptor-free degenerate instance (eligible-set axis = F-rank, near-ties only); MAP-Elites generalizes it to a behavioral-descriptor-indexed eligible-set archive paired with an active variability generator (MECH-313), predicted to convert per-candidate diversity into committed-action diversity more robustly than the thin near-tie shortlist. The F-dominated committed argmax itself (MECH-439) is biologically faithful and is NOT changed -- only the eligible-set structure feeding it."
   claim_type: mechanism_hypothesis
@@ -76330,6 +76544,15 @@
     build lever (the A0B1 lift is marginal/seed-fragile -- 0.569 not collapse on the seed-43 monostrategy
     seed -- and the both-levers form A1B1 collapses destructively, so the faithful fix is the eligibility
     constitution, not the parametric commit-T patch). Re-grain owed via /claim-synthesis (secondary route).
+  governance_2026_09_01: |
+    [GFLAG-0099, govdesk-20260901] SCOPE NOTE, no status change. This claim's divisive-
+    normalisation envelope (_f_eligibility_envelope, ree-v3/ree_core/predictors/e3_selector.py:1573)
+    is repeatedly cited elsewhere as the REE instance of a "shared normalisation budget" -- in
+    particular by MECH-521's derivation, which needs exactly such a budget as a third mechanism
+    ingredient. It cannot serve that role: it renormalises raw_scores over E3 TRAJECTORY
+    CANDIDATES, not over a perceptual-token population, and no such online population exists
+    (ARC-134's P0 records that ObjectFileBuffer has no merge and no split). Right form, wrong
+    population. Recorded here so the cross-citation stops being made silently.
 - id: MECH-449
   title: "Go/No-Go eligibility constitution for committed-action conversion: committed-action diversity is recovered not by any single louder channel but by an explicit eligibility CONSTITUTION -- bounded Go pressure (promote a channel when evidence/value/drive/rule/safety make it eligible) AND bounded No-Go pressure (suppress unsafe / stale / perseverative / irrelevant / low-viability channels) governing which candidates may compete for the pallidal-like permission-to-commit gate -- so that lawful, channel-specific access (not scalar dominance) decides the committed action. The full Go/No-Go eligibility-set governance is what converts when the minimal near-tie lever (MECH-447) does not and isolated F->eligibility demotion (MECH-448) is insufficient alone."
   claim_type: mechanism_hypothesis
@@ -80783,7 +81006,7 @@
   subject: selection.commit_gate_arousal_effect_requires_boundary_regime
   polarity: asserts
   status: candidate
-  epistemic_category: standard
+  epistemic_category: substrate_ceiling   # corrected 2026-09-01 (GFLAG-0056/0057) -- see digestion_note
   implementation_phase: v3
   claim_level: mechanistic
   registered_utc: "2026-07-20"
@@ -80808,23 +81031,35 @@
   what_would_answer: >
     REVISED 2026-08-26 (thought-digestion wave 2, user-gated). The prior version would have
     produced a TAUTOLOGICAL FALSE POSITIVE; see the third conjunct, which is mandatory.
-    REACHABILITY (settled on recorded data, no longer open): set
-    `agent.e3.config.commitment_threshold ~ 0.0057` POST-CONSTRUCTION -- it does NOT land through
-    `from_dims`; the established idiom is direct attribute assignment as in v3_exq_018b / v3_exq_050b.
-    Applying candidate thresholds to V3-EXQ-785a's recorded running-variance distribution
-    (p5 0.00259, p25 0.00330, median 0.00562, p75 0.00618, p95 0.00720) puts the gate inside the
-    gated quantity's own dispersion, giving a commit-rate span of roughly 0.60-0.95 versus 785a's
-    0.0099 -- about 35x more headroom. This does NOT require raising z_world variance, so the
-    V3-EXQ-737 z_world collision noted elsewhere does not bite. Calibrate with a cheap 3-threshold
-    x 1-seed x 500-tick sweep first, because commit state feeds the latch and therefore alters the
-    realised rv trajectory.
+    REACHABILITY -- OPEN, AND MEASURED NEGATIVE (corrected 2026-09-01, GFLAG-0056/0057;
+    previously recorded here as "settled on recorded data, no longer open", which was wrong).
+    Setting `agent.e3.config.commitment_threshold ~ 0.0057` POST-CONSTRUCTION is still the right
+    idiom -- it does NOT land through `from_dims`; use direct attribute assignment as in
+    v3_exq_018b / v3_exq_050b. What is wrong is the headroom argument built on it.
+
+    THE POOLING ARTEFACT, stated plainly because it is subtle and it fooled a prior pass. The
+    five percentiles this claim quoted -- p5 0.00259, p25 0.00330, median 0.00562, p75 0.00618,
+    p95 0.00721 -- are the distribution POOLED ACROSS ALL FIVE SEEDS. Recomputed independently
+    from the 785a per-tick sink (n=1765) 2026-09-01: pooled IQR/median = 0.5133. But post-warmup
+    (tick >= 90, this design's own pre-registration) the WITHIN-seed IQR/median is 0.0116, 0.0104,
+    0.0729, 0.0848, 0.0193 -- one to eight percent of median. Seed medians span 0.00261 -> 0.00670,
+    a 2.6x range. So the pooled dispersion is almost entirely BETWEEN-seed: five near-point-masses
+    sitting at different locations. A threshold placed "inside the dispersion" is placed inside
+    SEED IDENTITY, not inside any within-run quantity, and the claimed commit-rate span of roughly
+    0.60-0.95 (versus 785a's 0.0099, "about 35x more headroom") is an artefact of that pooling.
+    A 4000-point threshold sweep finds ZERO feasible thresholds on ANY individual seed; the best
+    single seed reaches 5 of 6 urgency levels.
     NON-DEGENERACY PRECONDITION, three conjuncts, ALL required:
     (1) HEADROOM -- median gate margin (`commit_variance / effective_threshold`) within [0.5, 2.0]
     on >= 50% of scored FRESH-SELECT ticks; commit rate at EVERY urgency level within [0.05, 0.95];
     baseline (urgency-off) commit rate within [0.2, 0.8]. Warmup excluded by pre-registration
     (~first 90 ticks / ~10 fresh selects), since `precision_init = 0.5` starts the EMA above the
-    bound. (2) DISPERSION FLOOR -- IQR(rv)/median(rv) >= a pre-registered floor (785a's value is
-    0.51), so a regime that collapses rv dispersion is caught rather than silently scored.
+    bound. (2) DISPERSION FLOOR -- IQR(rv)/median(rv) >= a pre-registered floor. 785a's 0.51 is the
+    POOLED figure and MUST NOT be used as a per-seed bar: scored per seed, no seed can reach it
+    (max 0.085), so as previously written this conjunct was simultaneously unsatisfiable per-seed
+    AND silently passable if scored pooled. SCORE IT PER SEED, and set the floor from within-seed
+    data. Do NOT simply lower the floor to make it passable -- a regime that collapses rv
+    dispersion is exactly what this conjunct exists to catch.
     (3) THE RESIDUAL DV -- THE CONJUNCT WITHOUT WHICH THE EXPERIMENT IS NOT WORTH RUNNING.
     Because urgency multiplies the BOUND while the gated quantity is provably FLAT (median
     `commit_variance` 0.00561-0.00564 across all six 785a urgency levels, a 0.5% span -- there is
@@ -80906,10 +81141,20 @@
 # --- Cluster A: organisational principles across heterogeneous timescales ----
   digestion_note: >
     2026-08-26 (thought-digestion wave 2, user-gated). THREE CORRECTIONS, none of which change the
-    claim's content: (1) `epistemic_category` moved substrate_conditional -> standard. It was
-    assigned when reachability was open; reachability is now CLOSED on recorded data (see
-    what_would_answer) -- the mechanism exists, has been exercised, and the boundary regime is a
-    post-construction config change, i.e. `complicated (buildable)`. (2) THE FUNCTIONAL RESTATEMENT
+    claim's content: (1) `epistemic_category` moved substrate_conditional -> standard.
+    ** CORRECTION 2026-09-01 (govdesk-20260901, GFLAG-0056/0057): THAT MOVE RESTED ON A FALSE
+    PREMISE AND IS REVERSED -- to substrate_ceiling, NOT back to substrate_conditional. The
+    premise was "reachability is now CLOSED on recorded data". It is not: the percentiles that
+    closure rests on are POOLED ACROSS FIVE SEEDS (see what_would_answer). Recomputed
+    independently from the 785a per-tick sink (n=1765): pooled IQR/median = 0.5133, while
+    post-warmup WITHIN-seed IQR/median is 0.0104-0.0848 across the five seeds. Reachability is
+    OPEN and measured NEGATIVE. The category is substrate_ceiling rather than
+    substrate_conditional because this repo's own discriminator (REE_assembly/CLAUDE.md,
+    "substrate_ceiling vs substrate_conditional, sharpened") turns on whether the mechanism has
+    been EXERCISED: the commit gate is built and has run in 785a plus three independent probes,
+    and its blocker (sd_zworld_warmup_optimizer_group) is SHARED with MECH-457 / INV-088 / Q-002 --
+    both signatures of a ceiling, not of an unbuilt substrate. GFLAG-0057's own prescription
+    ("restore substrate_conditional") is therefore not followed. ** (2) THE FUNCTIONAL RESTATEMENT
     BELOW IS STALE AS OF 2026-08-26T06:58Z. `ree-v3` commit `2023589` ("fix SD-011
     urgency-modulation sign inversion on commit threshold") changed the gate from
     `threshold * (1 - urgency)` to `threshold * (1 + urgency)`. The descending table quoted as
@@ -83386,6 +83631,21 @@
     PROMOTES NOTHING; blocks no V3 closure node. Removing it from MECH-163 REMOVES a V3
     completion obligation that was never satisfiable in V3.
 
+  governance_2026_09_01: |
+    [GFLAG-0109, govdesk-20260901] REMOVED FROM THE V3 FULL-COMPLETION GATE -- user decision,
+    2026-09-01, reversing the retention recorded earlier the same day.
+    It was initially RETAINED against the GOV-V4CUT-1 audit's proposal, on the principle that a V3
+    gate does not shed a leg merely because that leg is hard to test. That principle stands and is
+    not withdrawn. What changed is a measurement: this claim's falsifier requires a SECOND AGENT
+    whose integrated z_harm_a is measurable, and ree-v3/ree_core/environment/ contains exactly one
+    file (causal_grid_world.py) with no multi-agent support of any kind. The leg is therefore not
+    hard to test in V3 -- it is UNTESTABLE in V3 until a multi-agent environment is built, and
+    retaining it would have made the V3 gate permanently unclosable rather than merely demanding.
+    The gate is now MECH-477 + MECH-478 (docs/architecture/v4_spec.md). This claim's own
+    implementation_phase: v4 was already correct; gate and label now agree.
+    NOT A DROPPED OBLIGATION: this is a V4-phase validation item. Note also that the falsifier says
+    both arms must PERCEIVE the other agent -- which is weaker than modelling it as an agent, so
+    the leg may not require full others-as-slots (ARC-083) once a multi-agent environment exists.
 - id: SD-081
   title: "e3.dualsystem_uncertainty_arbitration. An explicit arbitration weight over the HABIT pathway (myopic, depth-limited read of the E3 scorer) and the PLANNED pathway (full-horizon read of the same scorer), driven by the two pathways' relative predictive uncertainty and applied to the E3 selection score upstream of every downstream consumer. Built to make MECH-477 falsifiable: the pre-SD-081 substrate scored candidates with an unconditional full-horizon J(zeta), so no weight existed anywhere between the myopic and the deep read and nothing COULD respond to context novelty."
   claim_type: design_decision
@@ -91339,6 +91599,31 @@
     a fixed relatedness criterion, therefore fixed grain).
     DO NOT build in V3. DO NOT queue an experiment. The derivational toy in what_would_answer is
     the only sanctioned next step and needs no REE substrate.
+  governance_2026_09_01: |
+    [GFLAG-0096 + GFLAG-0099, govdesk-20260901] THE OWED DERIVATIONAL PROBE WAS RUN; THIS CLAIM
+    STILL SAYS IT WAS NOT. what_would_answer contains the sentence "Nothing in the record names
+    this probe." It was run on 2026-08-26 --
+    evidence/planning/mech521_settling_signature_derivation_20260826.md, session insights-7fd98a,
+    a 1-D ring N=240 Mexican-hat probe with no REE imports, exactly the toy this claim specifies.
+    ITS RESULT SPLITS THE SIGNATURE IN TWO. Leg 2 (capacity and occupancy as distinct regulators)
+    is DERIVED. Leg 1 (graceful degradation then whole-domain loss) is NOT: settling alone gives
+    the PURE SLOT HORN -- peak amplitude pinned at 1.000 across M = 2, 8, 16, 28 while peak count
+    saturates at ~6-7. Both halves co-occur only once a SHARED NORMALISATION BUDGET is added
+    (divisive normalisation over a fixed total drive): amplitude then declines 0.996 -> 0.719 while
+    count still saturates. So the mechanism statement's two ingredients (coupling-vs-lateral-
+    inhibition, bounded by an independently-set CAPACITY) are insufficient and a THIRD is required.
+    PRECISION ON WHAT IS NEW, since the flag overstates it: the concept is already present here as
+    substrate gate (P1) ("something must be shared across items"). What is missing is naming it as
+    a required INGREDIENT OF THE MECHANISM rather than an absent precondition. This is a promotion
+    of P1, not a new concept. The probe's own recommendation is explicit that the claim should be
+    AMENDED, not retired.
+    CODE POINTER CORRECTED (GFLAG-0099): the REE analog is _f_eligibility_envelope
+    (ree-v3/ree_core/predictors/e3_selector.py:1573), NOT _loop_normalize (:2064), which is
+    ARC-110's cross-loop z-score. The derivation doc names both and the flag picked the wrong one.
+    AND THE ANALOG DOES NOT DISCHARGE THE NEED: MECH-448's envelope is a genuine divisive
+    normalisation but it normalises over E3 ACTION CANDIDATES. Right form, wrong population --
+    nothing normalises over an online perceptual-token population, because that population does
+    not exist (ARC-134 P0).
 - id: MECH-522
   title: "Ephaptic field strength is the COUPLING CONSTANT of the perceptual settling competition that sets slot occupancy (MECH-521), not a quantity that is measured and counted. A physical field does not enumerate domains; it sets the interaction strength from which the domain count emerges -- and because coherence is a property of each population separately, a field-derived setter is natively HETEROGENEOUS (different streams settling into different domain counts simultaneously) rather than imposing the single ordered abstraction axis that Badre and Nee 2018 reports the evidence does not support. This is a THIRD ephaptic function, distinct from MECH-499 (what the actionable now CONTAINS) and MECH-500 (WHEN a branching future is coherent enough to commit): at what GRAIN the now is carved."
   claim_type: mechanism_hypothesis
