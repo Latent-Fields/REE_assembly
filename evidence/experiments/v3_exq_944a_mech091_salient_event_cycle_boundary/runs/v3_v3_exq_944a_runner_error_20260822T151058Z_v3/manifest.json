@@ -21,7 +21,7 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -39,5 +39,7 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "machine": "ree-cloud-3"
+  "machine": "ree-cloud-3",
+  "evidence_direction_note": "[2026-09-01 governance flag triage, gov-flagtriage-20260901, GFLAG-0050] Superseded by V3-EXQ-944b (v3_exq_944b_mech091_salient_event_cycle_boundary_20260825T205738Z_v3, PASS/supports, 2026-08-25T20:57Z), whose own manifest declares supersedes: v3_exq_944a_mech091_salient_event_cycle_boundary. This record is the synthetic runner ERROR entry for the 944a crash (KeyError 'reset_execution_frac', ree-cloud-3, 2026-08-22); it was never a scoring entry (0 occurrences in claim_evidence.v1.json, neither in entries nor unlinked_runs), so this is provenance hygiene with no confidence effect. Prior value: non_contributory.",
+  "superseded_by": "v3_exq_944b_mech091_salient_event_cycle_boundary_20260825T205738Z_v3"
 }

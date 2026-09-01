@@ -93,3 +93,16 @@ file, and no run (five weeks); MECH-518's registered check would have auto-refut
 common factor is not difficulty -- this probe is ~40 lines and needs no substrate change -- it
 is that nothing routes a written falsifier to anyone. See GFLAG-0054 for the mechanical half of
 that (zero-evidence claims never enter the backlog `/lit-pull` and the proposal queue read).
+
+> **CORRECTION 2026-09-01 (gov-flagtriage-20260901, GFLAG-0089).** The direction claim above --
+> that z_delta's half-life is *shorter* than z_beta's on every seed (margin -0.159) -- is NOT reproducible
+> and must not be quoted forward. `arc004_wiring_topology_probe_20260828.md` section 8/8.1 re-ran this on
+> the real stack across eight variants and obtained d-b of +0.034/+0.050/+0.036/+0.021/+0.102/+0.079/
+> +0.073/-0.037 against bars 0.330-0.562 (fidelity check: max|arm-A manual - stack.encode()| = 0.000e+00),
+> and re-running THIS script as recovered gives -0.125 then -0.097 -- non-deterministic, because
+> `CausalGridWorld()` is constructed unseeded. The honest reading is section 8.1's: no ordering, the effect
+> is indistinguishable from zero and its SIGN IS UNSTABLE.
+>
+> **The FAIL verdict is unaffected and in fact strengthened** -- ARC-004's depth-is-timescale premise still
+> measures absent as built. Only the 'points the wrong way' inversion is withdrawn. The separate question of
+> what follows for ARC-004 (supersession vs narrowing) is GFLAG-0055 / GFLAG-0088 and remains open.

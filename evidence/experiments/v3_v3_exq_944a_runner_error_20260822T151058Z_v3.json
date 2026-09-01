@@ -1,1 +1,25 @@
-{"run_id": "v3_v3_exq_944a_runner_error_20260822T151058Z_v3", "queue_id": "V3-EXQ-944a", "experiment_type": "v3_exq_944a_mech091_salient_event_cycle_boundary", "machine": "ree-cloud-3", "outcome": "ERROR", "result": "ERROR", "evidence_direction": "non_contributory", "evidence_direction_note": "Synthetic runner ERROR record for a crash-before-manifest (script exited non-zero with no sentinel and no manifest). Scoring-neutral; routes to /diagnose-errors.", "claim_ids": [], "experiment_purpose": "diagnostic", "architecture_epoch": "ree_hybrid_guardrails_v1", "dry_run": false, "error_record": true, "crash_before_manifest": true, "exit_code": 1, "has_sentinel": false, "result_summary": "Non-zero exit code 1; no runner sentinel (stdout-derived 'PASS' not trusted on crash)", "started_at": "2026-08-22T13:05:01.821456+00:00", "completed_at": "2026-08-22T15:10:58.890582+00:00", "timestamp_utc": "2026-08-22T15:10:58Z", "script": "experiments/v3_exq_944a_mech091_salient_event_cycle_boundary.py", "title": "MECH-091 salient-event cycle-boundary reset, per-seed gated (successor to V3-EXQ-944)"}
+{
+  "run_id": "v3_v3_exq_944a_runner_error_20260822T151058Z_v3",
+  "queue_id": "V3-EXQ-944a",
+  "experiment_type": "v3_exq_944a_mech091_salient_event_cycle_boundary",
+  "machine": "ree-cloud-3",
+  "outcome": "ERROR",
+  "result": "ERROR",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "[2026-09-01 governance flag triage, gov-flagtriage-20260901, GFLAG-0050] Superseded by V3-EXQ-944b (v3_exq_944b_mech091_salient_event_cycle_boundary_20260825T205738Z_v3, PASS/supports, 2026-08-25T20:57Z), whose own manifest declares supersedes: v3_exq_944a_mech091_salient_event_cycle_boundary. This record is the synthetic runner ERROR entry for the 944a crash (KeyError 'reset_execution_frac', ree-cloud-3, 2026-08-22); it was never a scoring entry (0 occurrences in claim_evidence.v1.json, neither in entries nor unlinked_runs), so this is provenance hygiene with no confidence effect. Prior value: non_contributory.",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "dry_run": false,
+  "error_record": true,
+  "crash_before_manifest": true,
+  "exit_code": 1,
+  "has_sentinel": false,
+  "result_summary": "Non-zero exit code 1; no runner sentinel (stdout-derived 'PASS' not trusted on crash)",
+  "started_at": "2026-08-22T13:05:01.821456+00:00",
+  "completed_at": "2026-08-22T15:10:58.890582+00:00",
+  "timestamp_utc": "2026-08-22T15:10:58Z",
+  "script": "experiments/v3_exq_944a_mech091_salient_event_cycle_boundary.py",
+  "title": "MECH-091 salient-event cycle-boundary reset, per-seed gated (successor to V3-EXQ-944)",
+  "superseded_by": "v3_exq_944b_mech091_salient_event_cycle_boundary_20260825T205738Z_v3"
+}

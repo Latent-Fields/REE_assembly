@@ -30208,7 +30208,7 @@
     HOLDS candidate/substrate_conditional. Governance may retire the driver reading if the
     commitment ceiling proves durable.
   registered: "2026-07-16"
-  depends_on: [INV-089, INV-064, SD-010, ARC-003, ARC-019, ARC-027]
+  depends_on: [INV-089, INV-064, SD-010, ARC-003, ARC-019, ARC-027, MECH-439]   # MECH-439 added 2026-09-01 (gov-flagtriage-20260901, GFLAG-0094): this claim's 2026-07-16 well-posedness note names "the committed-action/conversion (F-dominance) ceiling" as its real unblock -- that IS MECH-439 -- but the edge was never declared. Dependency-tracking gap, not a disposition change. Read MECH-439 as a REGIME-DEPENDENT monopoly (failure_autopsy_V3-EXQ-571b_2026-09-01), not a flat 88-89% one.
   origin: >
     Registered via /claim-synthesis 2026-07-16 as the growth-coupling/driver child split from
     INV-089 (narrowed to the ceiling), from the granularity-debt decomposition in
@@ -37079,6 +37079,15 @@
     operate over the same locked policy, so mode-specific performance
     differences cannot manifest. pending_retest_after_substrate (MECH-269 V_s
     landing).
+    EXQ-452a RETEST ALREADY RAN, recorded 2026-09-01 (gov-flagtriage-20260901,
+    GFLAG-0060): two runs on 2026-05-05 (20260505T184639Z, 20260505T215753Z)
+    reproduce the same C2-fails pattern under the same substrate gap --
+    pe_harm_surprise_corr 0.182 / -0.021 (seed 42; seed 7 STD/INTERVENTIONAL).
+    The later run is marked evidence_direction: superseded; both are diagnostic,
+    so MECH-257's genuine_exp_count stays 0 and no confidence moves. This note
+    previously stopped at the EXQ-452 reclassification and read as though no
+    retest had been attempted. Status, category and pending_retest_after_substrate
+    all unchanged.
   location: docs/architecture/self_attribution_per_stream.md
 
   what_would_answer: >
