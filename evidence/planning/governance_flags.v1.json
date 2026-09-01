@@ -1195,9 +1195,9 @@
       "summary": "ARC-071's substrate_queue label overstates what closed. Entry arc071_e3_reselection_on_committed_program reads implemented_validated (2026-08-01), but that means CONTRACT-TEST validated (5 tests in test_arc071_e3_reselection_shortcircuit.py), NOT an experiment measuring LEG 2 requirement (i)'s DV n_genuine_commits / n_e3_ticks. LEG 2 is still open and LEG 3 has never been queued. The label reads as closing a leg it does not close. ARC-071's text also still names the superseded sd_id mech090-arc071-attick-persistent-handle-fix.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:51:07Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:06:34Z",
+      "resolution_note": "UPHELD, applied REE_assembly 008d91c0ce + e864eebcd1. The queue label did overstate: arc071_e3_reselection_on_committed_program read implemented_validated while its validation block held only contract_test / flag_registry / full_contract_suite -- FIVE tests asserting premature-reselection behaviour in a synthetic harness with ticks forced. A validation_scope field now records that ARC-071 LEG 2's DV (n_genuine_commits / n_e3_ticks) is UNMEASURED; only two manifests anywhere contain that field, both 2026-08-02, both predating any run with the fix on. ARC-071's stale sd_id pointer corrected (mech090-arc071-attick-persistent-handle-fix is now marked duplicate_superseded). THE OWED EXPERIMENT IS ALREADY CHIPPED under GFLAG-0079, so only the record-hygiene half was governance's. NOTE: this flag's count of 5 contract tests is CORRECT and my own GFLAG-0079 chip said 7 -- the chip prompt has been amended."
     },
     {
       "flag_id": "GFLAG-0084",
