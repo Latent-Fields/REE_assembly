@@ -41,6 +41,24 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Optional
 
+def _indexer_version() -> str:
+    """Short content hash of THIS script, recorded in the derived read-model.
+
+    A hand-maintained version string is the thing nobody remembers to bump, so a
+    consumer could not tell whether a DB was built by the indexer it expects. A
+    content hash cannot go stale by omission. Falls back to "unknown" rather than
+    raising -- this is metadata, never a gate.
+    """
+    try:
+        import hashlib
+        return hashlib.sha256(Path(__file__).read_bytes()).hexdigest()[:12]
+    except Exception:
+        return "unknown"
+
+
+INDEXER_VERSION = _indexer_version()
+
+
 def _atomic_write_text(path: Path, text: str) -> None:
     """Replace `path` with `text` in one indivisible step (temp + os.replace).
 
@@ -222,6 +240,20 @@ class RunRecord:
     #   label_balance: {"<label>": {"train_pos_frac": .., "eval_pos_frac": ..}} --
     #     the 047m false-clear fix (a saturated TRAINING label invalidates a run).
     substrate_hash: str = ""
+    # substrate_commit / enabled_default_off_flags -- the two PROSPECTIVE provenance
+    # fields substrate_stability_and_drift_detection_plan.md's drift detector needs
+    # (nodes `substrate-commit-coverage` and `P1c-prospective-recording`). Surfaced
+    # for queryability, NEVER scored: their whole purpose is letting a later reader
+    # reconstruct WHICH substrate was tested, and letting a governance session
+    # measure adoption coverage with a GROUP BY instead of a corpus re-scan.
+    # substrate_commit is the bare sha (the manifest field is a dict; the dict's
+    # `dirty` / `dirty_paths` stay in the manifest, which is authoritative).
+    # enabled_default_off_flags is None when the run never measured it, and a
+    # (possibly empty) dict when it did -- the distinction manifest_core.py's own
+    # docstring insists on, and collapsing it here would destroy it in the read
+    # model exactly as an earlier draft of the producer destroyed it at the source.
+    substrate_commit: str = ""
+    enabled_default_off_flags: dict[str, Any] | None = None
     label_balance: dict[str, Any] = field(default_factory=dict)
     # Recording-provenance surfacing (2026-07-16): the machine + machine_class the
     # run executed on. machine_class is the cloud-authoritative gate class (SD-024)
@@ -1426,6 +1458,19 @@ _FLAT_AUTHORITATIVE_FIELDS = (
     # queryable in the emitted index, not load-bearing to promotion math.
     "substrate_hash",
     "label_balance",
+    # substrate_commit / enabled_default_off_flags / substrate_commit_unavailable
+    # (2026-09-01). Same PROVENANCE-not-direction status as substrate_hash above --
+    # absent from _FLAT_DIRECTION_FIELDS, so they never change how a run scores.
+    # They are listed here because the pack projection did not carry
+    # enabled_default_off_flags until the same date: measured 2026-09-01, 33 flat
+    # manifests had the field and 0 of their pack copies did, so the indexer read
+    # 0 of 1832 runs as having recorded it while a third of recent flat manifests
+    # actually had. The flat overlay fixes the historical corpus immediately; the
+    # sync_v3_results mapping fixes packs written from now on. Both are needed --
+    # neither alone makes the recorded coverage true.
+    "substrate_commit",
+    "enabled_default_off_flags",
+    "substrate_commit_unavailable",
 )
 
 # Subset of the above whose disagreement actually changes how a run scores a
@@ -1459,7 +1504,37 @@ _FLAT_PROVENANCE_BACKFILL_FIELDS = (
     # cannot change how a run scores. Unlike its three string siblings this value
     # is a DICT, which is why _prov_is_empty below is type-aware.
     "z_goal_stream",
+    # substrate_commit / substrate_commit_unavailable / enabled_default_off_flags
+    # (2026-09-01), same whitelist-gap reason as z_goal_stream and machine_class
+    # before them. Measured that day: 33 flat manifests carried
+    # enabled_default_off_flags and 0 of their pack copies did, so the index read
+    # 0 of 1832 runs as having recorded it. sync_v3_results now maps all three, but
+    # that only helps packs written from now on -- this backfill is what makes the
+    # EXISTING corpus's coverage readable. Pure provenance: none is in
+    # _FLAT_DIRECTION_FIELDS, so none can change how a run scores.
+    "substrate_commit",
+    "substrate_commit_unavailable",
+    "enabled_default_off_flags",
 )
+
+# Fields for which ONLY None means absent -- an empty container is a MEASUREMENT.
+#
+# _prov_is_empty treats {} as nothing-worth-backfilling, which is right for
+# z_goal_stream ({} there means the run was never instrumented) and wrong for
+# enabled_default_off_flags, where {} is the positive statement "measured, every
+# known default-off knob confirmed off". Collapsing those two would destroy in the
+# index exactly the distinction manifest_core.enabled_default_off_flags_for_agents
+# was corrected to preserve at the source (see that function's docstring and the
+# substrate_stability plan's P1c completion note, where an earlier draft made the
+# same mistake one layer up).
+_FLAT_PROVENANCE_NONE_IS_ABSENT = frozenset({"enabled_default_off_flags"})
+
+
+def _prov_flat_absent(field: str, value: Any) -> bool:
+    """Field-aware emptiness for the provenance backfill. See the set above."""
+    if field in _FLAT_PROVENANCE_NONE_IS_ABSENT:
+        return value is None
+    return _prov_is_empty(value)
 
 
 def _prov_is_empty(value: Any) -> bool:
@@ -1565,10 +1640,10 @@ def _merge_flat_manifest_overrides(
     prov_filled: dict[str, Any] = {}
     for fld in _FLAT_PROVENANCE_BACKFILL_FIELDS:
         flat_val = flat_manifest.get(fld)
-        if _prov_is_empty(flat_val):
+        if _prov_flat_absent(fld, flat_val):
             continue
         pack_val = pack.get(fld, _MISSING)
-        if pack_val is _MISSING or _prov_is_empty(pack_val):
+        if pack_val is _MISSING or _prov_flat_absent(fld, pack_val):
             prov_filled[fld] = flat_val
     if prov_filled:
         base = {**pack, **prov_filled}
@@ -1830,6 +1905,19 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         # label_balance is the training/eval class-balance guard (047m false-clear
         # fix). Read defensively -- absent on the legacy corpus (a no-op default).
         substrate_hash = str(manifest.get("substrate_hash", "") or "").strip()
+        # substrate_commit is recorded as a dict {commit, dirty, branch?, ...}; the
+        # bare sha is what a diff needs, so that is what is surfaced. A legacy
+        # manifest carrying a bare string is accepted too (absent on both shapes
+        # collapses to "" -- a no-op default, same posture as substrate_hash).
+        raw_substrate_commit = manifest.get("substrate_commit")
+        if isinstance(raw_substrate_commit, dict):
+            substrate_commit = str(raw_substrate_commit.get("commit", "") or "").strip()
+        else:
+            substrate_commit = str(raw_substrate_commit or "").strip()
+        # None (never measured) is DELIBERATELY distinct from {} (measured, nothing
+        # enabled) -- see the RunRecord field comment.
+        raw_flags = manifest.get("enabled_default_off_flags")
+        enabled_default_off_flags = raw_flags if isinstance(raw_flags, dict) else None
         raw_label_balance = manifest.get("label_balance") or {}
         label_balance = raw_label_balance if isinstance(raw_label_balance, dict) else {}
         # machine / machine_class read AFTER the flat-provenance backfill above, so
@@ -1886,6 +1974,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 non_degenerate_per_claim=non_degenerate_per_claim,
                 degeneracy_reason=degeneracy_reason,
                 substrate_hash=substrate_hash,
+                substrate_commit=substrate_commit,
+                enabled_default_off_flags=enabled_default_off_flags,
                 label_balance=label_balance,
                 machine=machine,
                 machine_class=machine_class,
@@ -7906,6 +7996,60 @@ def _guard_worktree_materialised(base_dir: Path, allow_missing: bool) -> None:
     sys.exit(SKEW_GUARD_EXIT_CODE)
 
 
+def _emit_derived_evidence_db(
+    base_dir: Path,
+    matrix: dict[str, Any],
+    by_experiment: dict[str, list[RunRecord]],
+    generated_at: str,
+    allow_missing_runs: bool,
+) -> None:
+    """Write the derived SQLite read-model beside claim_evidence.v1.json.
+
+    Import is LOCAL and guarded: this script is invoked by governance.sh, by
+    /governance, by the hub, and by ad-hoc sessions, and a missing or broken
+    derived-index module must degrade to "no read-model" rather than taking the
+    whole evidence rebuild down with it.
+    """
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import derived_evidence_db as _dedb  # noqa: WPS433
+    except Exception as exc:  # pragma: no cover - import-path dependent
+        print(f"[derived-index] SKIPPED (import failed): {exc}", file=sys.stderr)
+        return
+    try:
+        res = _dedb.build_derived_db(
+            base_dir, matrix,
+            by_experiment=by_experiment,
+            generated_at=generated_at,
+            indexer_version=INDEXER_VERSION,
+            allow_missing_runs=allow_missing_runs,
+        )
+    except _dedb.DerivedIndexSkewError as exc:
+        print("", file=sys.stderr)
+        print(str(exc), file=sys.stderr)
+        print(
+            "[derived-index] This is the SECOND, independent skew check "
+            "disagreeing with the first (_guard_worktree_materialised passed at "
+            "the top of this run). Investigate before trusting any artifact from "
+            "this build.",
+            file=sys.stderr,
+        )
+        sys.exit(SKEW_GUARD_EXIT_CODE)
+    except Exception as exc:  # pragma: no cover - defensive
+        print(f"[derived-index] SKIPPED (build failed): {exc}", file=sys.stderr)
+        return
+    meta = res["meta"]
+    print(
+        "[derived-index] %s  claims=%s entries=%s runs=%s  manifests on_disk=%s "
+        "in_git=%s tracked_absent=%s  skew=%s"
+        % (
+            res["path"].name, meta["n_claims"], meta["n_entries"], meta["n_runs"],
+            meta["n_manifests_on_disk"], meta["n_manifests_in_git"] or "n/a",
+            meta["n_tracked_absent"], meta["skew_gate"],
+        )
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build experiment evidence indexes.")
     parser.add_argument(
@@ -8047,6 +8191,21 @@ def main() -> None:
         claim_registry=claim_registry,
         allow_cross_epoch_claims=set(args.allow_cross_epoch_claim),
     )
+
+    # Derived SQLite read-model (derived_evidence_index:P1). An ADDITIONAL WRITER
+    # at the point the matrix is already in memory -- claim_evidence.v1.json above
+    # is written unchanged, every un-migrated consumer keeps working, and deleting
+    # the DB is always safe. It is NEVER a source of truth; see
+    # derived_evidence_db.py's module docstring for the full contract.
+    #
+    # FAILS OPEN, LOUDLY, WITH ONE EXCEPTION. A derived read-model that cannot be
+    # built must not cost a governance run, so any error is printed and swallowed.
+    # The exception is DerivedIndexSkewError: that is the same HEAD/worktree-skew
+    # refusal `_guard_worktree_materialised` makes at the top of main(), recomputed
+    # independently, and reaching it here means the two disagree -- which is itself
+    # worth stopping for rather than shrugging past.
+    _emit_derived_evidence_db(base_dir, matrix, by_experiment, generated_at,
+                              args.allow_missing_runs)
 
     # Arm-reuse fingerprint index (plan section 9.1). Independent of claim scoring;
     # always refreshed (including --index-only) so the Phase 1 consumer's lookup

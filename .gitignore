@@ -40,3 +40,15 @@ evidence/planning/.igw_routine_pause
 
 # Oversized companion artifact quarantined 2026-08-12 (184.6MB, GitHub 100MB blob limit). Real copy kept locally on hub + Mac; see the .placemarker.json sibling.
 evidence/experiments/v3_exq_921_mech490_sleep_commitgate_spawn_matched/v3_exq_921_mech490_sleep_commitgate_spawn_matched_20260812T152532Z_episode_log.json
+
+# Derived evidence read-model (derived_evidence_index:P1). A disposable SQLite
+# projection of the git-tracked manifests + claim_evidence.v1.json, rebuilt from
+# scratch by evidence/experiments/scripts/build_experiment_indexes.py on every
+# governance run. NEVER a source of truth -- deleting it is always safe, and
+# committing it would create a second, mutable "record" beside the signed one.
+# See evidence/experiments/scripts/derived_evidence_db.py.
+evidence/experiments/.derived/
+
+# Lock sentinel for the serialised review_tracker.json read-modify-write
+# (serve.py _review_tracker_guard). Machine-local, zero-length, never content.
+evidence/experiments/review_tracker.json.lock

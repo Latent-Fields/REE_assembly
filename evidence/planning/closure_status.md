@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-01T07:42:16Z
+Generated: 2026-09-01T08:46:45Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -57,7 +57,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | self_attribution_plan.md | `self_attribution:GAP-6` | SD-031 z_world causal-footprint comparator: V3 discriminative validation | blocked | 6 | medium |  | Both halves of the claims.yaml SD-031 evidence_quality_note gate must hold before the disc | 2026-08-18 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress |  | load-bearing |  | V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g).  | 2026-08-01 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial |  | load-bearing |  | MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN | 2026-08-01 |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress |  | load-bearing |  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-08-30 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress |  | load-bearing |  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-09-01 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:A` | Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space | blocked |  | load-bearing |  | ext: observation-encoding competence build (V3-EXQ-732-localized H2_observation_interface_ | 2026-07-10 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:B` | Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD- | blocked |  | load-bearing |  | Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Th | 2026-07-09 |
 | policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | Re-pose ARC-070's prediction-failure decomposition trigger off the saturated reg | blocked |  | load-bearing | V3-EXQ-938 | 2026-08-21 governance applied confirmed failure_autopsy_V3-EXQ-938_2026-08-20: non_contrib | 2026-08-21 |
@@ -190,7 +190,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
-- **PROCESS**: 84.9% across 55 non-deferred nodes in 10 plan(s).
+- **PROCESS**: 90.5% across 56 non-deferred nodes in 10 plan(s).
 - **V4**: 32.4% across 96 non-deferred nodes in 14 plan(s).
 - **V5**: 16.8% across 38 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -239,14 +239,14 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:QUEUE` | Demand queue CDQ-001..005 (Section-4 rows) + governance Step-6b Sense  | done | high | First Action #1 landed 2026-06-17: convergence_demand_queue.v1.json + /governance Step-6b  | 2026-06-17 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-1` | Temporal Coherence Loop substrate (ARC-053/054/055 phase-coherent V(t) | deferred | high | REVERSAL TRIGGER 1: a V3 working-model failure mode the synaptic forms demonstrably cannot | 2026-06-11 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-2` | Oscillatory multiplexing + ephaptic coherence mechanisms (MECH-225/226 | deferred | high | REVERSAL TRIGGER (concrete, from the boundary doc): if the MECH-271 routing audit cannot d | 2026-06-11 |
-| process | derived_evidence_index_plan.md | `derived_evidence_index:P1` | Phase 1 -- emit a derived gitignored SQLite read-model from build_expe | pending | high |  | 2026-07-18 |
+| process | derived_evidence_index_plan.md | `derived_evidence_index:P1` | Phase 1 -- emit a derived gitignored SQLite read-model from build_expe | done | high |  | 2026-09-01 |
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P1-V3-BOUNDARY` | Phase 1 -- SENT-0 + GOV-HEALTH-1 V3 bright lines (ree-v3 README + regi | done | high | depends_on: ethics_perimeter:P0-PLAN | 2026-06-19 |
 | process | experiment_verification_harness_plan.md | `experiment_verification_harness:GAP-1` | Block 1c in precommit_contracts.sh -- run the 19 test_*_lint.py subset | done | high |  | 2026-08-03 |
 | process | explorer_ui_improvement_plan.md | `explorer_ui_improvement:QUEUE-API` | Surface priority + claimed_by through _queue_items_from_raw() (Finding | done | high |  | 2026-08-02 |
 | process | gov_confirm_1_plan.md | `gov_confirm_1:P1` | Shadow detector -- derive-only `evidence_confirmer` lane in generate_i | done | high |  | 2026-07-14 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-2` | Explicit active-separation operation (separate != failed-integration)  | blocked | high | MECH-147 DG pattern separation must land (V4): non-redundant sparse encoding of similar z_ | 2026-06-10 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-2` | Agent-policy novelty typing (MECH-130): world-state novelty != agent-p | blocked | high | MECH-111 curiosity/novelty signal is the V3 mechanism being TYPED -- it currently rewards  | 2026-06-10 |
-| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:substrate-commit-coverage` | 185 of 269 remaining drift-candidate pairs (69%) record a substrate_ha | open | high |  | 2026-08-07 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:substrate-commit-coverage` | 185 of 269 remaining drift-candidate pairs (69%) record a substrate_ha | done | high |  | 2026-09-01 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-build` | Phase 1 consumer machinery -- arm_fingerprint_index.json writer, try_r | done | medium |  | 2026-06-09 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-fix` | Driver-script_path coupling fix -- include_driver_script_in_hash so a  | done | medium |  | 2026-06-09 |
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:LOOP` | Sense -> Mine -> Register -> Adjudicate cadence (demand-driven, piggyb | done | medium | depends_on: convergence_demand_pipeline:QUEUE | 2026-06-17 |
@@ -264,6 +264,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:parse-knobs-file-coverage` | Teach REE_assembly/scripts/default_off_drift_guard.py's parse_knobs()  | done | medium |  | 2026-08-03 |
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1e-dataflow-cached-state` | Cached-state-check data-flow tracking + non-executable-line exclusion  | done | medium |  | 2026-08-07 |
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1f-more-gate-idioms` | Extend the inertness-idiom filter with further gate-recognition patter | closed | medium |  | 2026-08-07 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1c-central-propagation` | Make enabled_default_off_flags coverage AUTOMATIC at a central chokepo | done | medium |  | 2026-09-01 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-cite` | First live use -- explicit-cite consumer (V3-EXQ-647) reuses all three | done | low |  | 2026-06-09 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-auto` | First AUTOMATED index-HIT in the wild -- next genuinely-needed iterati | done | low | The natural trigger is GONE: the WATCH MARKER fork resolved to (b). V3-EXQ-655 LANDED 2026 | 2026-06-15 |
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1-scope-schema` | Phase 1 -- optional per-claim substrate_scope declarations in claims.y | done | low |  | 2026-08-03 |
@@ -309,7 +310,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-9` | Biology grounding completion (emotional-modulation-of-consolidation wr | closed | medium | L1 emotional modulation of consolidation as the write-weight (McGaugh 2004; Cahill & McGau | 2026-06-13 |
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HANDOFF-REACTIVATE` | Re-activate the REE_convergence -> REE_assembly handoff pipeline (firs | done | medium | DONE 2026-06-19: end-to-end loop validated on the three June rows. All 3 June packets re-v | 2026-06-19 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-3` | Explicit signed competitive multi-field coupling (ARC-084) | deferred | medium | REVERSAL TRIGGER: a V4 multi-field signed-edge layer exists, making the cooperative-only v | 2026-06-11 |
-| process | derived_evidence_index_plan.md | `derived_evidence_index:P2` | Phase 2 -- cut over the six identified consumers, incl. a /api/claims/ | pending | medium | depends_on: derived_evidence_index:P1 | 2026-07-18 |
+| process | derived_evidence_index_plan.md | `derived_evidence_index:P2` | Phase 2 -- cut over the six identified consumers, incl. a /api/claims/ | done | medium | depends_on: derived_evidence_index:P1 | 2026-09-01 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-8` | Biology grounding completion (Vygotsky private speech, DMN, label-as-c | done | medium | DONE 2026-06-13: textbook analogies replaced with mechanism/neuroscience evidence under ev | 2026-06-13 |
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-3` | Drive-arbitration biology grounding (multidrive competition / drive hi | closed | medium | Project rule feedback_biology_before_formal_definitions: commission a biology lit-pull BEF | 2026-06-13 |
 | process | e3_fresh_select_migration_plan.md | `e3_fresh_select_migration:P3` | Build e3-exemption-backlog lint counter (structural fix so this doc be | done | medium |  | 2026-08-10 |

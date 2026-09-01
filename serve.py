@@ -42,6 +42,8 @@ import argparse
 import datetime
 import http.server
 import json
+import contextlib
+import fcntl
 import os
 import re
 import shlex
@@ -112,6 +114,7 @@ _TL_CLAIMS_YAML     = SERVE_DIR / "docs" / "claims" / "claims.yaml"
 _TL_CLAIM_EVIDENCE  = SERVE_DIR / "evidence" / "experiments" / "claim_evidence.v1.json"
 _TL_EVIDENCE_DIR    = SERVE_DIR / "evidence" / "experiments"
 _TL_LITERATURE_DIR  = SERVE_DIR / "evidence" / "literature"
+_DERIVED_DB_PATH    = SERVE_DIR / "evidence" / "experiments" / ".derived" / "evidence.sqlite"
 
 # --- claim_evidence.v1.json shared loader -------------------------------------
 # The file is ~10 MB (486 claims / 4,983 entries). Two request paths used to
@@ -132,6 +135,46 @@ _CLAIM_EVIDENCE_CACHE: dict = {"key": None, "claims": {}}
 
 # Same contract for the 3.7 MB docs/claims/claims.yaml parse; see _tl_load_claims().
 _TL_CLAIMS_CACHE: dict = {"key": None, "claims": []}
+
+
+# Derived read-model preference (derived_evidence_index:P2, plan section 7 rows
+# 2-3). Both remaining in-process consumers of the 12 MB claim_evidence.v1.json
+# -- /api/brain-map's 5 scalars per claim and /api/timeline/events' confidence
+# series -- want only the `claims` map, never the 5,735-row `entries` list that
+# is most of the file. When the derived DB is present they read a 574-row
+# projection of it instead, so the big JSON is not parsed or held resident at
+# all. When it is absent (fresh clone, deleted file, indexer never run) the JSON
+# cache below is used exactly as before: the fallback is load-bearing, because
+# the derived file is disposable BY CONTRACT and its absence is a normal state.
+_ROLLUP_CACHE: dict = {"key": None, "claims": {}}
+
+
+def _claim_rollup_for_serving() -> dict:
+    """The `claims` map, from the derived DB when available. READ-ONLY; shared."""
+    key = _derived_db_key()
+    if key is None:
+        return _load_claim_evidence_claims()
+    if _ROLLUP_CACHE["key"] != key:
+        rows = {}
+        try:
+            sys.path.insert(0, str(SERVE_DIR / "evidence" / "experiments" / "scripts"))
+            import derived_evidence_db as _dedb  # noqa: WPS433
+            conn = _dedb.open_readonly(SERVE_DIR / "evidence" / "experiments")
+            if conn is not None:
+                try:
+                    rows = _dedb.claim_rollup_map(conn)
+                finally:
+                    conn.close()
+        except Exception:
+            rows = {}
+        if not rows:
+            # Any failure at all falls back to the authoritative JSON rather than
+            # serving an empty evidence map, which would render as "no claim has
+            # any evidence" -- a silently wrong page, not a degraded one.
+            return _load_claim_evidence_claims()
+        _ROLLUP_CACHE["claims"] = rows
+        _ROLLUP_CACHE["key"] = key
+    return _ROLLUP_CACHE["claims"]
 
 
 def _load_claim_evidence_claims() -> dict:
@@ -1332,7 +1375,86 @@ def load_review_tracker() -> dict:
 
 
 def save_review_tracker(data: dict) -> None:
-    REVIEW_TRACKER_FILE.write_text(json.dumps(data, indent=2) + "\n")
+    """Write review_tracker.json ATOMICALLY (tmp + os.replace).
+
+    The previous implementation was a bare `write_text`, which truncates the file
+    to zero and then refills it. A crash, a full disk, or a SIGKILL in that window
+    leaves the 685 KB registry that CLAUDE.md calls "the sole source of truth for
+    whether an experiment has been discussed" truncated or empty, with no copy
+    anywhere -- it is hand-maintained state, derivable from nothing. os.replace is
+    atomic on POSIX, so a reader either sees the whole old file or the whole new
+    one and never a partial write.
+    """
+    REVIEW_TRACKER_FILE.parent.mkdir(parents=True, exist_ok=True)
+    tmp = REVIEW_TRACKER_FILE.with_name(f"{REVIEW_TRACKER_FILE.name}.tmp-{os.getpid()}")
+    tmp.write_text(json.dumps(data, indent=2) + "\n")
+    os.replace(str(tmp), str(REVIEW_TRACKER_FILE))
+
+
+# --- review_tracker.json lost-update fix (derived_evidence_index:P2, plan sec 3)
+#
+# THE BUG. `POST /api/review/discuss` did load -> mutate -> save with nothing in
+# between. serve.py runs on a ThreadingHTTPServer, so two review actions arriving
+# together both read the same 685 KB snapshot, each appends its own dir_name, and
+# whichever saves LAST silently erases the other's append. No error, no log line,
+# and the explorer shows the surviving one as if both had landed.
+#
+# WHY NOT THE PLAN'S FIX. Plan section 3 proposes moving this to
+# `INSERT INTO discussed_dirs`. That would relocate CANONICAL, non-derivable state
+# into the gitignored SQLite read-model, whose own contract says deleting it is
+# always safe -- so the fix would trade a rare lost update for a routine total
+# loss. review_tracker.json stays canonical and git-tracked; the DB carries a
+# rebuilt-from-it mirror for querying only.
+#
+# WHY BOTH LOCKS. The threading.Lock serialises this process's own handler
+# threads, which is the confirmed race. The flock covers the other writers of the
+# same file that are not this process at all -- a second serve.py, a governance
+# session running scripts/generate_pending_review.py's siblings, or a human
+# editing via a helper -- and costs nothing when uncontended. Neither subsumes the
+# other. The flock is best-effort by design: a filesystem without working flock
+# (some network mounts) degrades to the in-process lock rather than refusing the
+# write, because refusing to record a review is worse than the race it prevents.
+_REVIEW_TRACKER_LOCK = threading.Lock()
+_REVIEW_TRACKER_LOCKFILE = REVIEW_TRACKER_FILE.with_name(REVIEW_TRACKER_FILE.name + ".lock")
+
+
+@contextlib.contextmanager
+def _review_tracker_guard():
+    with _REVIEW_TRACKER_LOCK:
+        fh = None
+        try:
+            try:
+                _REVIEW_TRACKER_LOCKFILE.parent.mkdir(parents=True, exist_ok=True)
+                fh = open(_REVIEW_TRACKER_LOCKFILE, "a+")
+                fcntl.flock(fh.fileno(), fcntl.LOCK_EX)
+            except Exception:
+                if fh is not None:
+                    try:
+                        fh.close()
+                    except Exception:
+                        pass
+                fh = None
+            yield
+        finally:
+            if fh is not None:
+                try:
+                    fcntl.flock(fh.fileno(), fcntl.LOCK_UN)
+                finally:
+                    fh.close()
+
+
+def update_review_tracker(mutate) -> dict:
+    """Serialised read-modify-write of review_tracker.json.
+
+    `mutate(data)` is called with the file's CURRENT contents, re-read INSIDE the
+    lock -- re-reading is the half that actually fixes the lost update; locking a
+    stale snapshot would only make the overwrite orderly. Returns the saved dict.
+    """
+    with _review_tracker_guard():
+        data = load_review_tracker()
+        mutate(data)
+        save_review_tracker(data)
+        return data
 
 
 # Cache of experiment dir_name -> set(run_id). Rebuilt every _DIR_RUN_TTL seconds
@@ -1461,12 +1583,45 @@ def read_merged_runner_status() -> dict:
             except Exception:
                 pass
 
-    # Fallback: read old monolithic file if no per-machine files found
+    # Fallback: the pre-split monolithic runner_status.json.
+    #
+    # HISTORY ONLY -- the live fields are deliberately stripped (2026-09-01).
+    # This branch used to `return json.loads(STATUS_FILE.read_text())` verbatim,
+    # which handed the explorer's local runner card that file's `current` /
+    # `idle` / `runner_pid` as CURRENT FLEET STATE. The file has been untracked
+    # since 2026-03-22 (`19adc90be7`) and frozen on disk since 2026-07-20, so
+    # what it would render is a months-old snapshot presented as live -- and
+    # silently, because a stale-but-plausible runner card looks exactly like a
+    # fresh one. `completed` and `queue` ARE still real history and are kept:
+    # this is the same distinction generate_pending_review.py already draws when
+    # it reads the same file for its completed-run corpus, and the reason
+    # scripts/experiment_error_rate.py calls it the only record for its era.
+    #
+    # The branch is unreachable in practice (evidence/experiments/runner_status/
+    # has existed since 2026-04-18 and the phase3 heartbeat writer keeps it
+    # populated); it is corrected rather than deleted so that a box which somehow
+    # loses the split directory degrades to "no live status" instead of to a
+    # confidently wrong one.
     if not raw_files and STATUS_FILE.exists():
         try:
-            return json.loads(STATUS_FILE.read_text())
+            legacy = json.loads(STATUS_FILE.read_text())
         except Exception:
             return {}
+        if not isinstance(legacy, dict):
+            return {}
+        return {
+            "completed": legacy.get("completed", []),
+            "queue": legacy.get("queue", []),
+            "current": [],
+            "running": False,
+            "idle": True,
+            "last_updated": legacy.get("last_updated", ""),
+            "_legacy_monolithic_fallback": True,
+            "_legacy_live_fields_stripped": (
+                "runner_status.json is frozen; current/running/runner_pid are not "
+                "live state and have been withheld"
+            ),
+        }
 
     if not raw_files:
         return {}
@@ -2284,8 +2439,9 @@ def _brain_load_region_map() -> dict:
 
 
 def _brain_load_claim_evidence() -> dict:
-    # Shared mtime-keyed loader; see _load_claim_evidence_claims(). READ-ONLY.
-    return _load_claim_evidence_claims()
+    # Derived read-model when built, else the JSON cache; see
+    # _claim_rollup_for_serving(). READ-ONLY, shared.
+    return _claim_rollup_for_serving()
 
 
 def _brain_queued_exqs() -> list[dict]:
@@ -6626,6 +6782,153 @@ def _tl_load_claims() -> list:
     return _TL_CLAIMS_CACHE["claims"]
 
 
+# --- /api/claims/summary ------------------------------------------------------
+# derived_evidence_index:P2, plan section 7 row 1 -- plus the claims.yaml half the
+# plan did not anticipate.
+#
+# WHAT THE EXPLORER DID BEFORE THIS ENDPOINT EXISTED. Every page load of the
+# Claims Explorer fetched TWO large canonical files straight into the browser:
+#   docs/claims/claims.yaml            6.44 MB, parsed with a hand-rolled regex
+#   claim_evidence.v1.json            12.37 MB, for FOUR scalars per claim
+# ~18.8 MB over the wire and both retained in JS memory, to end up with about a
+# dozen small fields per claim. This endpoint serves exactly those fields.
+#
+# IT ALSO FIXES A CORRECTNESS BUG, and that is not a side benefit to gloss over.
+# explorer.html's parseClaimsYaml() is a line-oriented regex scanner: it starts a
+# NEW claim at any line whose first 10 characters contain `id: <ID>`, which also
+# matches `id:` lines nested inside a claim's own prose/source blocks. Measured
+# 2026-09-01 against a PyYAML parse of the same file: the browser parser yields
+# 1025 "claims" of which ~31 are spurious mid-claim splits, MISSES 83 genuine
+# registry entries whose id does not match its `[A-Z]{1,6}-\d{3}` shape
+# (every GOV-*, SENT-*, SOC-HUM-*, and every lettered claim -- MECH-057a,
+# SD-032b, ...), and MISATTRIBUTES fields across the bogus boundaries: 248 claims
+# lost `v3_pending` entirely, 43 got the wrong `depends_on`, and 19/29/15 got the
+# wrong claim_type/subject/status. Serving the real 1077 entries from a real YAML
+# parse is therefore a VISIBLE change to the graph, deliberately made, not a
+# transparent optimisation -- see the completion note on derived_evidence_index:P2.
+#
+# Cached on BOTH source keys (claims.yaml mtime/size AND the evidence source's),
+# never a TTL -- same contract and same reason as _tl_load_claims() above.
+_CLAIMS_SUMMARY_CACHE: dict = {"key": None, "payload": None}
+
+# Mirrors explorer.html's normalizeDep(): strip a trailing comment and any
+# trailing ',' / ']', then reduce to the first bare claim reference if one is
+# present, else keep the stripped text. Replicated rather than simplified so a
+# dependency edge drawn today keeps being drawn after the cutover.
+_DEP_REF_RE = re.compile(r"\b(INV|ARC|MECH|IMPL|Q)-\d{3}\b")
+
+
+def _summary_normalize_dep(item) -> str:
+    text = re.sub(r"#.*", "", str(item))
+    text = re.sub(r"[,\]]+$", "", text).strip()
+    m = _DEP_REF_RE.search(text)
+    return m.group(0) if m else text
+
+
+def _derived_db_key():
+    """(mtime_ns, size) of the derived read-model, or None when it is absent.
+
+    Absent is a NORMAL state, never an error: the DB is disposable by contract
+    (see derived_evidence_db.py). Callers fall back to claim_evidence.v1.json.
+    """
+    try:
+        st = _DERIVED_DB_PATH.stat()
+    except OSError:
+        return None
+    return (st.st_mtime_ns, st.st_size)
+
+
+def _claim_evidence_fields() -> tuple:
+    """({claim_id: {4 evidence fields}}, source_label).
+
+    Prefers the derived SQLite read-model (a 5-column scan over 574 rows) and
+    falls back to the shared 12 MB claim_evidence.v1.json cache. The fallback is
+    load-bearing, not decorative: a checkout that has never run the indexer, or
+    one where the derived file was deleted, must still render the explorer.
+    """
+    if _derived_db_key() is not None:
+        try:
+            sys.path.insert(0, str(SERVE_DIR / "evidence" / "experiments" / "scripts"))
+            import derived_evidence_db as _dedb  # noqa: WPS433
+            conn = _dedb.open_readonly(SERVE_DIR / "evidence" / "experiments")
+            if conn is not None:
+                try:
+                    rows = _dedb.claim_summary_rows(conn)
+                finally:
+                    conn.close()
+                if rows:
+                    return rows, "derived_sqlite"
+        except Exception:
+            pass
+    out = {}
+    for cid, ev in (_load_claim_evidence_claims() or {}).items():
+        if not isinstance(ev, dict):
+            continue
+        out[cid] = {
+            "genuine_exp_count": ev.get("genuine_exp_count") or 0,
+            "evidence_quadrant": ev.get("evidence_quadrant") or None,
+            "experimental_confidence_decoupled": (
+                ev.get("experimental_confidence_decoupled")
+                if isinstance(ev.get("experimental_confidence_decoupled"), (int, float)) else None
+            ),
+            "literature_confidence_parallel": (
+                ev.get("literature_confidence_parallel")
+                if isinstance(ev.get("literature_confidence_parallel"), (int, float)) else None
+            ),
+        }
+    return out, "claim_evidence_json"
+
+
+def build_claims_summary() -> dict:
+    """Compact per-claim summary for the Claims Explorer graph. Cached; read-only."""
+    try:
+        st = _TL_CLAIMS_YAML.stat()
+        yaml_key = (st.st_mtime_ns, st.st_size)
+    except OSError:
+        yaml_key = None
+    key = (yaml_key, _derived_db_key())
+    if _CLAIMS_SUMMARY_CACHE["key"] == key and _CLAIMS_SUMMARY_CACHE["payload"] is not None:
+        return _CLAIMS_SUMMARY_CACHE["payload"]
+
+    evidence, evidence_source = _claim_evidence_fields()
+    claims = []
+    for c in _tl_load_claims():
+        if not isinstance(c, dict):
+            continue
+        cid = str(c.get("id") or "").strip()
+        if not cid:
+            continue
+        ev = evidence.get(cid) or {}
+        claims.append({
+            "id": cid,
+            "claim_type": str(c.get("claim_type") or "").strip(),
+            "subject": str(c.get("subject") or "").strip(),
+            "polarity": str(c.get("polarity") or "").strip(),
+            "status": str(c.get("status") or "").strip(),
+            "location": str(c.get("location") or "").strip(),
+            "implementation_phase": str(c.get("implementation_phase") or "").strip(),
+            "v3_pending": bool(c.get("v3_pending")),
+            "depends_on": [
+                d for d in (_summary_normalize_dep(x) for x in (c.get("depends_on") or [])) if d
+            ],
+            "genuine_exp_count": ev.get("genuine_exp_count") or 0,
+            "evidence_quadrant": ev.get("evidence_quadrant"),
+            "experimental_confidence_decoupled": ev.get("experimental_confidence_decoupled"),
+            "literature_confidence_parallel": ev.get("literature_confidence_parallel"),
+        })
+    claims.sort(key=lambda c: c["id"])
+    payload = {
+        "schema_version": "claims_summary/v1",
+        "generated_at_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "n_claims": len(claims),
+        "evidence_source": evidence_source,
+        "claims": claims,
+    }
+    _CLAIMS_SUMMARY_CACHE["key"] = key
+    _CLAIMS_SUMMARY_CACHE["payload"] = payload
+    return payload
+
+
 def _build_timeline_events() -> dict:
     """Build the timeline events payload from all available data sources."""
     events = []
@@ -6720,8 +7023,10 @@ def _build_timeline_events() -> dict:
     # --- Confidence series ---
     confidence_series = {}
     try:
-        # Shared mtime-keyed loader; see _load_claim_evidence_claims(). READ-ONLY.
-        for cid, cdata in _load_claim_evidence_claims().items():
+        # Derived read-model when built, else the JSON cache. `recent_entries`
+        # is stored VERBATIM in claim_rollup, so this series is byte-identical
+        # either way -- see the column comment in derived_evidence_db.py.
+        for cid, cdata in _claim_rollup_for_serving().items():
             entries = sorted(
                 [e for e in (cdata.get("recent_entries") or []) if e.get("timestamp_utc")],
                 key=lambda e: str(e["timestamp_utc"]),
@@ -7202,6 +7507,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps({"logs": logs}).encode()
             self._json_response(body)
             return
+        if path == "/api/claims/summary":
+            self._json_response(json.dumps(build_claims_summary()).encode())
+            return
         if path == "/api/review/tracker":
             data = load_review_tracker()
             # Map reviewed_run_ids back to experiment dir_names via manifests on
@@ -7347,14 +7655,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             dir_name = payload.get("dir_name", "").strip()
             discussed = bool(payload.get("discussed", True))
             if dir_name:
-                data = load_review_tracker()
-                dirs = data.setdefault("discussed_experiment_dirs", [])
-                if discussed and dir_name not in dirs:
-                    dirs.append(dir_name)
-                elif not discussed and dir_name in dirs:
-                    dirs.remove(dir_name)
-                save_review_tracker(data)
-                result = {"status": "ok", "discussed_experiment_dirs": dirs}
+                def _toggle(data):
+                    dirs = data.setdefault("discussed_experiment_dirs", [])
+                    if discussed and dir_name not in dirs:
+                        dirs.append(dir_name)
+                    elif not discussed and dir_name in dirs:
+                        dirs.remove(dir_name)
+                data = update_review_tracker(_toggle)
+                result = {
+                    "status": "ok",
+                    "discussed_experiment_dirs": data.get("discussed_experiment_dirs", []),
+                }
             else:
                 result = {"status": "error", "message": "missing dir_name"}
         elif path in ("/api/workset/assign", "/api/workset/release"):

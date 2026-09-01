@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-08-20.1 -->
+<!-- EXPLORER_VERSION: 2026-09-01.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -9239,50 +9239,97 @@ END CONFLICT RESOLUTION`;
       const previousView = currentView;
       const previousSelection = selectedId;
 
-      const claimsText = await fetchText(CLAIMS_URL);
-      const normalizedClaims = claimsText
-        .replace(/\uFEFF/g, '')
-        .replace(/\u200B/g, '')
-        .replace(/\r\n/g, '\n')
-        .replace(/\r/g, '\n');
-      if (/^\s*</.test(normalizedClaims)) {
-        throw new Error('claims.yaml returned HTML (not YAML). Start the server from repo root and reload.');
-      }
-      if (!/id:\s*(INV|ARC|MECH|IMPL|Q)-\d{3}/i.test(normalizedClaims)) {
-        throw new Error('claims.yaml did not include any "id:" entries. Check the claims.yaml URL in your browser.');
-      }
+      // PRIMARY PATH: one compact server-rendered summary (~0.49 MB) instead of
+      // downloading and parsing claims.yaml (6.44 MB, regex-scanned in the
+      // browser) AND claim_evidence.v1.json (12.37 MB, for four scalars per
+      // claim) on every page load -- 18.8 MB -> 0.49 MB, ~37x. The server parses
+      // claims.yaml with real YAML behind an mtime-keyed cache, which also fixes
+      // the client parser's mid-claim splits / missed entries; see serve.py
+      // build_claims_summary() for the measured discrepancy.
+      //
+      // claims.yaml REMAINS CANONICAL. This is a projection of it, recomputed on
+      // its mtime, never a second copy of the registry.
+      //
+      // LEGACY FALLBACK below keeps an older server (no /api/claims/summary) and
+      // the static GitHub Pages export working unchanged -- both serve the raw
+      // files with no API at all, so the client parser must stay.
       await loadSubsystemMap();
-      const parsed = parseClaimsYaml(normalizedClaims);
-      if (!parsed.length) {
-        const lines = normalizedClaims.split('\n');
-        const preview = lines.slice(0, 6).join(' | ').slice(0, 300);
-        throw new Error(`Parsed 0 claims from claims.yaml (lines: ${lines.length}). Preview: ${preview}`);
-      }
-      allClaims = parsed.map(normalizeClaim);
-      claimMap = new Map(allClaims.map(c => [c.id, c]));
-
-      // Merge genuine_exp_count from claim_evidence.v1.json
+      let parsed = null;
+      let claimsSource = 'api';
       try {
-        const evResp = await fetch('evidence/experiments/claim_evidence.v1.json', { cache: 'no-store' });
-        if (evResp.ok) {
-          const evData = await evResp.json();
-          const evClaims = evData && evData.claims ? evData.claims : {};
-          for (const [cid, ev] of Object.entries(evClaims)) {
-            const claim = claimMap.get(cid);
-            if (claim) {
-              claim.genuine_exp_count = ev.genuine_exp_count || 0;
-              // Option E shadow fields -- informational, no behavioral effect.
-              claim.evidence_quadrant = ev.evidence_quadrant || null;
-              claim.experimental_confidence_decoupled = typeof ev.experimental_confidence_decoupled === 'number'
-                ? ev.experimental_confidence_decoupled : null;
-              claim.literature_confidence_parallel = typeof ev.literature_confidence_parallel === 'number'
-                ? ev.literature_confidence_parallel : null;
-            }
+        const sumResp = await fetch('/api/claims/summary', { cache: 'no-store' });
+        if (sumResp.ok) {
+          const sum = await sumResp.json();
+          if (sum && Array.isArray(sum.claims) && sum.claims.length) {
+            parsed = sum.claims;
           }
         }
       } catch (e) {
-        // non-fatal: filter simply won't show any evidenced claims
-        console.warn('claim_evidence.v1.json load failed:', e);
+        // fall through to the legacy path
+      }
+
+      if (!parsed) {
+        claimsSource = 'yaml';
+        const claimsText = await fetchText(CLAIMS_URL);
+        const normalizedClaims = claimsText
+          .replace(/\uFEFF/g, '')
+          .replace(/\u200B/g, '')
+          .replace(/\r\n/g, '\n')
+          .replace(/\r/g, '\n');
+        if (/^\s*</.test(normalizedClaims)) {
+          throw new Error('claims.yaml returned HTML (not YAML). Start the server from repo root and reload.');
+        }
+        if (!/id:\s*(INV|ARC|MECH|IMPL|Q)-\d{3}/i.test(normalizedClaims)) {
+          throw new Error('claims.yaml did not include any "id:" entries. Check the claims.yaml URL in your browser.');
+        }
+        parsed = parseClaimsYaml(normalizedClaims);
+        if (!parsed.length) {
+          const lines = normalizedClaims.split('\n');
+          const preview = lines.slice(0, 6).join(' | ').slice(0, 300);
+          throw new Error(`Parsed 0 claims from claims.yaml (lines: ${lines.length}). Preview: ${preview}`);
+        }
+      }
+
+      allClaims = parsed.map(normalizeClaim);
+      claimMap = new Map(allClaims.map(c => [c.id, c]));
+
+      if (claimsSource === 'api') {
+        // The summary already carries the four evidence fields, so the 12 MB
+        // claim_evidence.v1.json fetch below is skipped entirely.
+        for (const c of parsed) {
+          const claim = claimMap.get(c.id);
+          if (!claim) continue;
+          claim.genuine_exp_count = c.genuine_exp_count || 0;
+          claim.evidence_quadrant = c.evidence_quadrant || null;
+          claim.experimental_confidence_decoupled = typeof c.experimental_confidence_decoupled === 'number'
+            ? c.experimental_confidence_decoupled : null;
+          claim.literature_confidence_parallel = typeof c.literature_confidence_parallel === 'number'
+            ? c.literature_confidence_parallel : null;
+        }
+      } else {
+        // Legacy merge from claim_evidence.v1.json (static export / old server).
+        try {
+          const evResp = await fetch('evidence/experiments/claim_evidence.v1.json', { cache: 'no-store' });
+          if (evResp.ok) {
+            const evData = await evResp.json();
+            const evClaims = evData && evData.claims ? evData.claims : {};
+            for (const [cid, ev] of Object.entries(evClaims)) {
+              const claim = claimMap.get(cid);
+              if (claim) {
+                claim.genuine_exp_count = ev.genuine_exp_count || 0;
+                // Option E shadow fields -- informational, no behavioral effect.
+                claim.evidence_quadrant = ev.evidence_quadrant || null;
+                claim.experimental_confidence_decoupled = typeof ev.experimental_confidence_decoupled === 'number'
+                  ? ev.experimental_confidence_decoupled : null;
+                claim.literature_confidence_parallel = typeof ev.literature_confidence_parallel === 'number'
+                  ? ev.literature_confidence_parallel : null;
+              }
+            }
+          }
+        } catch (e) {
+          // non-fatal: filter simply won't show any evidenced claims
+          console.warn('claim_evidence.v1.json load failed:', e);
+        }
       }
 
       // Epistemic overlay (Phase 1). Non-fatal: absent overlay just means no

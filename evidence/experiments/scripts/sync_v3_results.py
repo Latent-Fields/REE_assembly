@@ -288,6 +288,24 @@ def build_runpack_docs(data: dict, experiment_type: str):
         if _val is not None and str(_val).strip() != "":
             manifest[_prov] = _val
 
+    # enabled_default_off_flags / substrate_commit_unavailable (2026-09-01) --
+    # carried SEPARATELY from the loop above, not appended to it, because both
+    # fields distinguish ABSENT from EMPTY and the loop's `str(_val).strip() != ""`
+    # test does not express that. An empty dict happens to survive that test by
+    # accident (str({}) == "{}"), which is exactly the kind of implicit dependence
+    # that breaks the next time the test is tightened. `is not None` says what is
+    # meant: for enabled_default_off_flags, {} is the POSITIVE statement "measured,
+    # every known default-off knob confirmed off" and is not interchangeable with
+    # omission ("never measured") -- see manifest_core.enabled_default_off_flags_
+    # for_agents. Without this mapping the field died at the flat manifest: measured
+    # 2026-09-01, 33 flat manifests carried it and 0 of their pack copies did, so no
+    # pack-scoring surface could ever see it -- the same whitelist gap that dropped
+    # machine_class from every pack before 2026-07-16.
+    for _prov in ("enabled_default_off_flags", "substrate_commit_unavailable"):
+        _val = data.get(_prov)
+        if _val is not None:
+            manifest[_prov] = _val
+
     # z_goal-stream liveness (2026-07-27). Carry the runtime backstop's counter
     # block (ree-v3 experiments/_lib/z_goal_stream.py) through to the pack, which
     # is what build_experiment_indexes scores -- this mapping is a WHITELIST, so

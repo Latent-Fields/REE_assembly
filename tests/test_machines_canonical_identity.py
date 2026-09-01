@@ -662,17 +662,40 @@ def test_an_unknown_numbered_host_is_not_collapsed_in_status(
 
 # --- the monolithic fallback must be untouched ------------------------------
 
-def test_monolithic_fallback_fires_when_no_per_machine_files(
+def test_monolithic_fallback_returns_history_but_never_live_state(
         serve, tmp_path, monkeypatch):
-    """Migration-period behaviour: returned verbatim, not merged."""
+    """The legacy monolith is HISTORY ONLY as of 2026-09-01.
+
+    It used to be returned VERBATIM, which handed the explorer's runner card that
+    file's `runner_pid` / `idle` / `current` as CURRENT fleet state. The file has
+    been untracked since 2026-03-22 and frozen on disk since 2026-07-20, so what
+    that rendered was a months-old snapshot presented as live -- silently, because
+    a stale runner card is indistinguishable from a fresh one. `completed` and
+    `queue` are real history and are kept (generate_pending_review.py and
+    scripts/experiment_error_rate.py both read the same file for exactly that).
+    """
     monkeypatch.setattr(serve, "STATUS_DIR", tmp_path / "absent")
     legacy = tmp_path / "runner_status.json"
-    legacy.write_text(json.dumps(
-        {"schema_version": "v1", "runner_pid": 55, "idle": False}))
+    legacy.write_text(json.dumps({
+        "schema_version": "v1", "runner_pid": 55, "idle": False,
+        "current": {"queue_id": "V3-EXQ-STALE"},
+        "completed": [{"queue_id": "V3-EXQ-1"}],
+        "queue": [{"queue_id": "V3-EXQ-2"}],
+    }))
     monkeypatch.setattr(serve, "STATUS_FILE", legacy)
 
-    assert serve.read_merged_runner_status() == {
-        "schema_version": "v1", "runner_pid": 55, "idle": False}
+    merged = serve.read_merged_runner_status()
+
+    # History preserved.
+    assert merged["completed"] == [{"queue_id": "V3-EXQ-1"}]
+    assert merged["queue"] == [{"queue_id": "V3-EXQ-2"}]
+    # Live state withheld, and the withholding is declared rather than implicit.
+    assert merged["current"] == []
+    assert merged["running"] is False
+    assert merged["idle"] is True
+    assert "runner_pid" not in merged
+    assert merged["_legacy_monolithic_fallback"] is True
+    assert "_legacy_live_fields_stripped" in merged
 
 
 def test_monolithic_fallback_does_not_fire_when_per_machine_files_exist(
