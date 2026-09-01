@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-09-01_mech_440_lman_realtime_context_gating_kao2005",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-440"
+  ],
+  "source": {
+    "title": "Contributions of an avian basal ganglia-forebrain circuit to real-time modulation of song",
+    "authors": [
+      "Kao MH",
+      "Doupe AJ",
+      "Brainard MS"
+    ],
+    "year": 2005,
+    "venue": "Nature",
+    "doi": "10.1038/nature03127",
+    "pmid": "15703748",
+    "volume": "433",
+    "issue": "7026",
+    "pages": "638-643"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.75,
+  "confidence_rationale": "High source quality -- a canonical Nature paper combining microstimulation, recording and lesion in the same circuit, which is unusually strong causal evidence for a systems claim. Filed mixed because it supports the existence and real-time gating of a dedicated variability channel while weakening the specific idea that variability magnitude is a self-tuning property of the selection parameters. Confidence 0.75 rather than higher because the entry partly overlaps the existing Olveczky 2011 entry in this directory, and because songbird motor variability is a considerable distance from categorical action selection.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lesioning the output nucleus of the basal ganglia-forebrain circuit abolishes the natural modulation of song variability, while song itself is preserved. Variability magnitude is therefore delivered by a separable, lesionable channel rather than being an intrinsic property of the motor-production parameters.",
+    "Circuit activity fluctuations correlate with song variability and microstimulation produces specific changes in learned song features, so the same pathway both carries structure and sets variability -- but the variability is gated on a fast, moment-to-moment timescale by circuit state, which is a different timescale from any slow learning-driven decline."
+  ],
+  "tags": [
+    "mech_440",
+    "lman",
+    "songbird",
+    "dedicated_variability_channel",
+    "real_time_gating"
+  ],
+  "mapping": {
+    "source_claim_statement": "An avian basal ganglia-forebrain circuit (the anterior forebrain pathway, whose output nucleus is LMAN) contributes to real-time modulation of song: microstimulation in the circuit produces specific changes in learned features of song, fluctuations in circuit activity correlate with song variability, and lesioning the output nucleus prevents the natural modulation of song variability. The authors interpret this as the circuit biasing motor output or injecting the variability required for reinforcement learning.",
+    "ree_translation": "The relevant point for MECH-440 is the timescale, which is what makes this a distinct contribution from the Olveczky 2011 entry already in this directory. Song variability here is modulated in REAL TIME by circuit state, and removing the circuit removes the modulation while leaving the behaviour. This is the fast, state-conditioned regulation of variability -- and it is anatomically the same channel that, on a much slower developmental timescale, withdraws as song crystallizes. Biology therefore implements both fast state-conditioning and slow annealing on one channel but via different control signals acting on it, rather than as two properties of a single learned parameter. For REE this argues that the noise MAGNITUDE should be an input to the selection head from a separable gating pathway, not a per-parameter quantity expected to discover both regimes from a local confidence EMA.",
+    "mapping_caveat": "Two real limits. First, this entry is adjacent to the existing 2026-07-22 Olveczky entry and should be read as adding the real-time-gating timescale rather than as independent corroboration of the dedicated-channel point, which that entry already carries. Second, song variability is continuous acoustic variability in a highly specialised, largely innate learned motor sequence in a songbird; MECH-440's observable is categorical entropy over committed actions in an artificial selector. The claim that a lesionable gating channel is the right REE analogue is an architectural reading of this result, not something the paper asserts about artificial agents.",
+    "source_context": "Adult and juvenile zebra finches (Bengalese finch data in related work); microstimulation, extracellular recording and lesion of the anterior forebrain pathway during singing."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high on the strength of converging microstimulation, recording and lesion evidence in one paper. Mapping fidelity 0.62 and transfer risk 0.50 both reflect the same gap: acoustic motor variability in a species-specific learned song is a long way from categorical trajectory selection, and part of this entry's content is already carried by the existing Olveczky entry."
+  }
+}

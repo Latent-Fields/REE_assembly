@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-09-01_mech_440_noradrenergic_random_exploration_dubois2021",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-440"
+  ],
+  "source": {
+    "title": "Human complex exploration strategies are enriched by noradrenaline-modulated heuristics",
+    "authors": [
+      "Dubois M",
+      "Habicht J",
+      "Michely J",
+      "Moran R",
+      "Dolan RJ",
+      "Hauser TU"
+    ],
+    "year": 2021,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.59907",
+    "pmid": "33393461",
+    "pmc": "PMC7815309",
+    "volume": "10"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.82,
+  "confidence_rationale": "The strongest dissociation evidence in this pull on methodological grounds: a double-blind, placebo-controlled pharmacological study with two active arms targeting different neuromodulators, which is a far higher bar than the correlational or model-fitting dissociations elsewhere in this literature. It is filed weakens because a selective noradrenergic effect on value-free RANDOM exploration, with no corresponding effect on the directed/uncertainty-driven component, is direct evidence that the exploration components MECH-440 bundles into one learned parameter are under separable neuromodulatory control. Confidence is held below 0.9 by the same mapping distance that limits the Wilson entry -- human bandit choice is not an E3 selection head -- not by any weakness in the design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Propranolol (noradrenergic antagonist) attenuates value-free random exploration while amisulpride (dopaminergic antagonist) does not, and the directed/novelty component is not attenuated in the same way. Two components of exploration are therefore under separable neuromodulatory control -- a pharmacological dissociation, not merely a modelling one.",
+    "This lands specifically on MECH-440's own biological grounding. The claim is justified in claims.yaml by the LC-NE adaptive-gain literature (Aston-Jones and Cohen 2005, Tervo et al. 2014). Here the noradrenergic system is shown to control the value-free RANDOM component specifically -- which supports an LC-NE-gated stochastic floor, but as ONE separable component, not as a single mechanism that also carries state-conditioning and self-annealing."
+  ],
+  "tags": [
+    "mech_440",
+    "noradrenaline",
+    "random_exploration",
+    "pharmacological_dissociation",
+    "lc_ne"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a double-blind, placebo-controlled study contrasting amisulpride (a dopaminergic antagonist), propranolol (a noradrenergic antagonist) and placebo on a human explore-exploit task, the authors report that value-free random exploration is attenuated under propranolol but not under amisulpride, concluding that value-free random exploration is under noradrenergic control, and that human exploration comprises several strategies including value-free random exploration alongside more complex, value-sensitive ones.",
+    "ree_translation": "MECH-440 grounds itself on LC-NE adaptive gain and asserts that the resulting tonic floor is simultaneously propagating, state-conditioned and self-annealing. This paper supports the LC-NE grounding and, in the same result, undercuts the bundling: what noradrenaline is shown to control is the VALUE-FREE RANDOM component -- exploration that ignores value structure -- and that component is separable by drug from the value-sensitive, directed component. A noise floor under noradrenergic control is therefore attested; a noise floor that is under noradrenergic control AND state-conditioned AND self-annealing as one quantity is not. For REE this argues for keeping the tonic floor as its own channel with its own gate, rather than expecting one per-parameter sigma to express all three properties.",
+    "mapping_caveat": "The transfer risks are the usual ones for human psychopharmacology and should not be minimised: single acute doses in healthy volunteers, systemic drugs with effects far broader than the target system (propranolol in particular has peripheral effects that can influence task engagement), and 'value-free random exploration' is a component of a fitted computational model rather than a directly observed behaviour. A dissociation at the level of model components under drug is strong evidence that the components are separable, but it does not establish that the corresponding REE quantities are separable, and I am transferring an argument about architecture rather than a measurement. This entry is also the furthest of this pull's entries from MECH-440's actual observable, which is committed-action entropy in a trajectory selector.",
+    "source_context": "Healthy human adults, double-blind placebo-controlled between-groups pharmacological study (amisulpride vs propranolol vs placebo) on a multi-armed exploration task with computational model fitting."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high -- double-blind, placebo-controlled, two active comparator arms, which is the strongest design in this pull. Mapping fidelity 0.62: the dissociated objects are fitted model components in a human bandit task, not REE quantities. Transfer risk 0.45 reflects acute systemic pharmacology in humans being read as evidence about an artificial selection head's architecture."
+  }
+}

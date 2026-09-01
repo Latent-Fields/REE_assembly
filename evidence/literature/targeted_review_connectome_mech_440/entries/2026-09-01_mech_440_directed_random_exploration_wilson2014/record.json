@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-09-01_mech_440_directed_random_exploration_wilson2014",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-440"
+  ],
+  "source": {
+    "title": "Humans use directed and random exploration to solve the explore-exploit dilemma",
+    "authors": [
+      "Wilson RC",
+      "Geana A",
+      "White JM",
+      "Ludvig EA",
+      "Cohen JD"
+    ],
+    "year": 2014,
+    "venue": "Journal of Experimental Psychology: General",
+    "doi": "10.1037/a0038199",
+    "pmid": "25347535",
+    "pmc": "PMC5635655",
+    "volume": "143",
+    "issue": "6",
+    "pages": "2074-2081"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "A well-designed and heavily replicated paradigm (the Horizon task) with a clean experimental manipulation, so source quality is high. Filed mixed rather than supports because it cuts both ways for MECH-440: it establishes that random exploration -- decision noise -- is genuinely modulated by task conditions rather than being a fixed floor, which supports the PREMISE behind leg (ii); but the modulating quantity is an explicitly computed, externally supplied control signal (the horizon), not a property that emerges from the noise generator learning its own scale. Confidence held at 0.72 by mapping distance: humans in a two-armed bandit are several steps from an E3 selection head.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Random exploration (decision noise) and directed exploration (information seeking) are measured as two separable behavioural signatures within the same subjects and task, which is evidence that 'exploration' is not one quantity even at the level of overt choice.",
+    "The quantity that scales random exploration here is the decision horizon -- an explicit, externally imposed feature of the task that the subject computes over. Noise magnitude is set by a control signal from outside the noise mechanism, not by the noise mechanism annealing itself."
+  ],
+  "tags": [
+    "mech_440",
+    "directed_exploration",
+    "random_exploration",
+    "decision_noise",
+    "horizon_task"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using the Horizon task, in which the number of remaining choices is manipulated, the authors find that humans increase both information-seeking (directed exploration, choosing the more informative option) and decision variability (random exploration) when the horizon is longer, i.e. when there are more future choices over which information could pay off. Both strategies are used, and both are sensitive to the horizon manipulation.",
+    "ree_translation": "For MECH-440 this is the human-behavioural counterpart of the Dhawale two-process result. The useful reading is not 'exploration is state-conditioned, therefore leg (ii) is supported' -- it is more specific than that. What sets the magnitude of random exploration is a computed control variable (how much future there is to exploit information over), supplied to the noise process from outside it. That is architecturally the same shape as \u00d6lveczky's dedicated LMAN variability channel and as Dhawale's slow gain-setting process, and it is architecturally UNLIKE a per-parameter sigma that is expected to discover its own schedule from a local confidence signal. So the entry supports the idea that REE needs state-dependent noise magnitude, while weakening the specific proposal that state-dependence should emerge from the noise parameters themselves.",
+    "mapping_caveat": "The transfer here is long and should not be overstated. These are human subjects making explicit choices between two bandit arms with a manipulated horizon; MECH-440 concerns per-parameter weight noise in a trajectory-selection head with no horizon variable and no explicit information-value computation. 'Random exploration' operationalised as fitted decision noise in a choice model is not the same object as committed-action entropy in E3, and the inference that REE's noise magnitude should likewise be externally gated is an architectural argument I am making, not a finding the paper reports. This entry is best read as corroborating the pattern established by the two stronger animal entries rather than as independent evidence.",
+    "source_context": "Human adults, Horizon task (two-armed bandit with manipulated decision horizon of 1 or 6 remaining choices), behavioural model fitting."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high -- clean manipulation, influential and repeatedly replicated paradigm. Mapping fidelity is the limiting factor at 0.60: fitted decision noise in a bandit choice model maps only loosely onto committed-action entropy in a trajectory selector, and the horizon has no REE analogue. Transfer risk 0.45 reflects that this is human explicit choice, the furthest of the three behavioural entries from REE's substrate."
+  }
+}

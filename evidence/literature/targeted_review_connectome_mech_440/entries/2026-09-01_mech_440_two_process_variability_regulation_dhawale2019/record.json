@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-09-01_mech_440_two_process_variability_regulation_dhawale2019",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-440",
+    "MECH-527"
+  ],
+  "source": {
+    "title": "Adaptive Regulation of Motor Variability",
+    "authors": [
+      "Dhawale AK",
+      "Miyamoto YR",
+      "Smith MA",
+      "Olveczky BP"
+    ],
+    "year": 2019,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2019.08.052",
+    "pmid": "31630947",
+    "pmc": "PMC7339968",
+    "volume": "29",
+    "issue": "21",
+    "pages": "3551-3562.e7"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-440": "weakens",
+    "MECH-527": "supports"
+  },
+  "confidence": 0.86,
+  "confidence_rationale": "The single most decision-relevant paper in this pull, and the only one that directly adjudicates the question MECH-440 was commissioned on. Source quality is very high: millions of trials in a well-controlled rodent forelimb task, with a model comparison that separates the two processes quantitatively rather than asserting them. Mapping fidelity is good but not perfect -- motor variability in a ballistic forelimb movement is not categorical action selection in E3, and the correspondence is functional (what regulates injected variability) rather than structural. Confidence is held below 0.9 by that mapping gap alone, not by any weakness in the source. It is high for a literature entry because the paper's decomposition is exactly the dissociation MECH-440 assumes away, measured directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Motor variability is regulated by TWO distinct processes with different timescales and different inputs, not one. A mechanism that packages state-conditioning and self-annealing as a single learned quantity is asserting a coupling this paper measures apart.",
+    "The FAST process is keyed to recent trial OUTCOMES -- variability increases when performance is poor. It is failure-driven, not uncertainty-driven. A design that expects a single noise parameter to both track state and anneal with confidence is asking one quantity to carry two signals that biology delivers separately.",
+    "The SLOW process does not itself inject variability -- it tunes the GAIN of the fast process, and it is keyed to uncertainty in the reward landscape. So uncertainty enters at the gain-setting layer, one level above the variability injection, rather than scaling the noise directly."
+  ],
+  "tags": [
+    "mech_440",
+    "mech_527",
+    "motor_variability",
+    "exploration",
+    "two_process",
+    "self_annealing",
+    "state_conditioning"
+  ],
+  "mapping": {
+    "source_claim_statement": "Training rats to execute ballistic forelimb movements for reward, across behavioral datasets comprising millions of trials, the authors report that 'motor variability is regulated by two distinct processes. A fast process modulates variability as a function of recent trial outcomes, increasing it when performance is poor and vice versa. A slower process tunes the gain of the fast process based on the uncertainty in the task's reward landscape.' Simulations indicate this two-process strategy optimizes reward accumulation across a wide range of time horizons while also promoting learning.",
+    "ree_translation": "This bears on MECH-440 and MECH-527 in opposite directions, which is why it is filed against both. For MECH-440: the claim asserts state-conditioning (ii) and self-annealing (iii) as two properties of ONE learned per-parameter sigma. This paper measures them as two processes with different timescales, different driving signals, and a hierarchical rather than parallel relationship -- the slow one sets the gain of the fast one. That is a positive finding of dissociability, and it means MECH-440's conjunction was a modelling choice at registration rather than something the biology licenses. For MECH-527: the fast process is precisely the mechanism MECH-527 posits -- variability rises when performance is poor, i.e. keyed to failure rather than to uncertainty -- and it is quantitatively established here in a way MECH-527's own registration text does not yet cite.",
+    "mapping_caveat": "The DV is trial-to-trial kinematic variability in a ballistic forelimb movement, a continuous motor quantity, whereas MECH-440's observable is categorical entropy over committed actions and MECH-527's is escape from a strategy basin. Neither REE quantity is what was measured. The 'two processes' are a fitted model decomposition -- well-supported by the data volume and the model comparison, but a decomposition, not two anatomically identified circuits, so 'dissociable' here means separable in the behavioural regulation, not proven to be separate substrates. Additionally, 'performance is poor' in a graded reward task is not the same as MECH-527's 'confidence without resolution', which requires a settled, confidently-held strategy; this paper does not manipulate confidence independently of performance, so it supports the failure-trigger half of MECH-527 and is silent on the confidence half.",
+    "source_context": "Long-Evans rats, ballistic forelimb reach-to-target task for water reward, fully automated home-cage training yielding datasets of millions of trials; behavioural modelling plus simulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high -- the trial counts make the two-process fit unusually well-powered for a behavioural decomposition, and the authors test it against simpler single-process alternatives. Mapping fidelity 0.72: the functional question (what sets injected variability) transfers cleanly; the measured quantity (kinematic variance) does not. Transfer risk moderate -- rodent motor control to an artificial selection head is a real leap, but the claim being tested is itself a claim about regulation architecture, which is the level at which this paper speaks."
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_527",
+  "entry_id": "2026-09-01_mech_527_extinction_induced_variability_neuringer2001",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-527"
+  ],
+  "source": {
+    "title": "Stability and variability in extinction",
+    "authors": [
+      "Neuringer A",
+      "Kornell N",
+      "Olufs M"
+    ],
+    "year": 2001,
+    "venue": "Journal of Experimental Psychology: Animal Behavior Processes",
+    "doi": null,
+    "pmid": "11199517",
+    "volume": "27",
+    "issue": "1",
+    "pages": "79-94"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "Filed mixed, and the mixture is the point: this paper supports MECH-527's TRIGGER cleanly while supplying the sharpest available evidence against its ATTRACTOR-ESCAPE framing. Source quality is good -- three reinforcement schedules including a yoked control, which rules out the obvious confound that the animals had simply been trained to vary. Confidence 0.74 rather than higher because it is a 2001 operant study in rats with response-sequence topography as the DV, and because the negative half of its message rests on a qualitative statement about rank ordering rather than a quantitative test of basin escape. DOI: none is listed in the PubMed record, so only the PMID is recorded.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Variability rose during extinction but 'the ordering of sequence probabilities was generally unchanged, the most common sequences during reinforcement continuing to be most frequent in extinction'. Persistent failure increased the TAIL of the behavioural distribution without dislodging the dominant response. That is added variation around a preserved attractor, not escape from it.",
+    "The effect appeared under all three schedules including the yoked, non-contingent one, so it is not explained by the animals having previously been reinforced for varying -- which strengthens the trigger finding and, correspondingly, makes the failure to reorder the distribution harder to dismiss.",
+    "The design contrasts acquisition with extinction phases, so it does not test escalation of variability as stuckness persists within an episode, nor decay after a resolution."
+  ],
+  "tags": [
+    "mech_527",
+    "extinction",
+    "operant_variability",
+    "failure_trigger",
+    "attractor_escape",
+    "negative_evidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Long-Evans rats' responding was extinguished after three schedules -- one reinforcing repetitions of a particular three-operandum response sequence, one reinforcing sequences only if they varied, and one yoked so that reinforcement was contingent on neither. The authors report that 'in all cases, rare sequences increased during extinction--variability increased--but the ordering of sequence probabilities was generally unchanged, the most common sequences during reinforcement continuing to be most frequent in extinction', interpreting this as a combination of generally doing what worked before while occasionally doing something very different.",
+    "ree_translation": "For MECH-527's trigger this is close to an ideal operationalisation: a previously successful response continues to be emitted, reward stops, and behavioural variability rises. That is persistent failure of a settled strategy driving variation, with no uncertainty manipulation and no near-tie between options -- exactly the trigger MECH-527 posits and the one MECH-440's near-tie formulation does not capture. But the second clause is the caution the claim needs. If injected variation existed to escape a false bottom, the signature would be reorganisation -- the dominant response losing its rank as the search moves elsewhere. What these rats did instead was keep the dominant sequence dominant and add rare variants underneath it. The claim's 'escape a false bottom' framing therefore describes a FUNCTION that this mechanism may serve only weakly, and REE should not assume that raising variation under stuckness will by itself relocate the policy.",
+    "mapping_caveat": "Two limits, one of which cuts against my own reading. First, extinction is total non-reinforcement, which is a stronger and cruder manipulation than MECH-527's 'persistent failure to reduce the active need/goal error' -- an agent in a false bottom is still getting some return, which is precisely what makes the bottom attractive, and that regime is not tested here. Second, preserved rank ordering over three-operandum sequences is a limited probe of attractor escape: the response space is small and the session short, so a mechanism that would eventually reorganise the distribution might simply not have had room or time to show it. I therefore file the negative half as a genuine caution rather than a refutation, and it is the reason MECH-527's falsifier needs a real false-bottom ecology with a better alternative actually available, as its own registration text already requires.",
+    "source_context": "Long-Evans rats, three-operandum operant response-sequence task, comparison of acquisition under three reinforcement schedules with a subsequent extinction phase."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.80 -- clean operant design with a yoked control, though the analysis of rank ordering is reported qualitatively. Mapping fidelity 0.70: response-sequence variability under extinction maps well onto the trigger half of MECH-527 and only loosely onto 'above-action-level' perturbation, since what varies here is still which operant sequence is emitted."
+  }
+}

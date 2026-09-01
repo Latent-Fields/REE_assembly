@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-09-01_mech_440_state_aware_noisy_exploration_aravindan2021",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-440"
+  ],
+  "source": {
+    "title": "State-Aware Variational Thompson Sampling for Deep Q-Networks",
+    "authors": [
+      "Siddharth Aravindan",
+      "Wee Sun Lee"
+    ],
+    "year": 2021,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2102.03719",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2102.03719"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.78,
+  "confidence_rationale": "Filed weakens with good confidence because of what the paper's existence demonstrates rather than how strong its own results are. MECH-440 asserts that NoisyNet-style weight noise is 'state-conditioned by construction'. This paper proposes SANE specifically to add state-conditioning to NoisyNets via a separate auxiliary module -- which is only a contribution if NoisyNets does not already have it. That is a clean architectural argument that does not depend on SANE's benchmark results replicating. Confidence held to 0.78 because it is an arXiv preprint I did not find a peer-reviewed venue for, and because I am resting on the paper's framing of its own contribution rather than on an experiment that measures NoisyNet's state-dependence directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SANE is motivated as improving on NoisyNets 'by allowing a non-uniform perturbation, where the amount of parameter perturbation is conditioned on the state of the agent', implemented through a separate auxiliary perturbation module whose output is state dependent. State-conditioning is thus an ADDED component, not an emergent property of learned weight noise.",
+    "The stated motivation is that uniform, non-state-conditioned perturbation causes failures in high-risk states -- i.e. the practical problem NoisyNet leaves unsolved is precisely the one MECH-440 assumes NoisyNet already solves by construction."
+  ],
+  "tags": [
+    "mech_440",
+    "noisynet",
+    "sane",
+    "state_conditioning",
+    "thompson_sampling",
+    "architectural_argument"
+  ],
+  "mapping": {
+    "source_claim_statement": "The authors derive a variational Thompson sampling approximation for deep Q-networks in which exploration arises from perturbing parameters with a learned noise distribution, and interpret NoisyNets as an approximation to this variational method. They then propose State Aware Noisy Exploration (SANE), which improves on NoisyNets by allowing a non-uniform perturbation whose magnitude is conditioned on the agent's state, implemented via an auxiliary perturbation module with state-dependent output, motivated by settings in which risky exploration in particular states causes agent failure.",
+    "ree_translation": "This speaks directly to MECH-440 leg (ii). The claim's text asserts that weight noise is 'STATE-CONDITIONED by construction (weight noise x state-dependent activations perturbs different states differently, with no hand-set per-state schedule)'. The architectural fact recorded here is that a subsequent paper in the same line found it necessary to add an auxiliary, explicitly state-dependent module to obtain state-conditioned perturbation magnitude on top of NoisyNets. The 'by construction' argument is not wrong that activations vary by state -- it is wrong that this yields a controlled, usable dependence of perturbation MAGNITUDE on state. That distinction is exactly what V3-EXQ-959's C_STATE criterion tested and what it found only weakly and inconsistently present (2/6 seeds against a 4/6 bar, direction as predicted in 4/6).",
+    "mapping_caveat": "This is an argument from a paper's stated motivation and its framing of its own novelty, not from an experiment that directly measures whether NoisyNet's perturbation magnitude covaries with state. A reviewer could reasonably object that SANE's authors are motivated to distinguish their contribution and might understate what NoisyNets already achieves. I have not verified a peer-reviewed publication venue for this preprint, and I did not read its experimental section closely enough to report its benchmark results. The entry should therefore be weighted as a corroborating architectural observation supporting the Fortunato re-read, not as a standalone empirical refutation of leg (ii).",
+    "source_context": "Deep Q-network agents on standard deep RL benchmarks; algorithmic/architectural contribution with an accompanying variational derivation."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.1,
+    "notes": "Source quality 0.68 -- arXiv preprint, no peer-reviewed venue verified, and the entry rests on the paper's framing rather than a measurement. Mapping fidelity high at 0.88 because the object of discussion IS NoisyNet-style weight noise, the same mechanism REE implements. Transfer risk minimal for the same reason."
+  }
+}

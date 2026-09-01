@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_527",
+  "entry_id": "2026-09-01_mech_527_variable_neighborhood_search_mladenovic1997",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-527"
+  ],
+  "source": {
+    "title": "Variable neighborhood search",
+    "authors": [
+      "N. Mladenovic",
+      "P. Hansen"
+    ],
+    "year": 1997,
+    "venue": "Computers & Operations Research",
+    "doi": "10.1016/S0305-0548(97)00031-2",
+    "volume": "24",
+    "issue": "11",
+    "pages": "1097-1100"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Filed supports at moderate confidence, and the moderation is deliberate: this is a formal precedent, not empirical evidence. VNS specifies exactly the escalate-on-stagnation, reset-on-improvement dynamic that MECH-527 asserts, which matters because that half of the claim has no biological support in this pull -- Karlsson gives the decay but not the escalation. Source quality is high for what it is (the canonical statement of a widely used metaheuristic). Confidence is capped at 0.70 because an optimization metaheuristic being effective on combinatorial problems is weak evidence that a brain does anything similar, and REE's biology-before-formal-definitions invariant means a formal match should inform naming and design rather than count as grounding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "VNS supplies the escalation rule that the biological literature in this pull does not: on failure to improve, the search moves to a broader neighborhood (k <- k+1); on any improvement it collapses back to the narrowest (k <- 1). MECH-527's escalating breadth under continued stuckness with decay after resolution is therefore an already-formalised algorithm, not a novel structure.",
+    "The trigger in VNS is failure to improve after search at the current level -- not any measure of ambiguity or uncertainty among candidate solutions. This is an independent formal precedent for keying perturbation to non-resolution rather than to near-ties, matching MECH-527 and not MECH-440.",
+    "Because a well-known algorithm already has this shape, presenting the escalation/decay dynamic as a new mechanism would over-claim novelty. What is genuinely open in MECH-527 is whether a cognitive architecture implements it, not whether the control structure is a sensible one."
+  ],
+  "tags": [
+    "mech_527",
+    "variable_neighborhood_search",
+    "metaheuristic",
+    "escalating_perturbation",
+    "stagnation_trigger",
+    "naming"
+  ],
+  "mapping": {
+    "source_claim_statement": "Variable Neighborhood Search is a metaheuristic that explores a nested sequence of neighborhoods of increasing size around an incumbent solution. Its control structure is explicit: after shaking and local search within neighborhood k, an improvement causes the search to recentre on the new incumbent and reset to the narrowest neighborhood, while a failure to improve causes the search to move to the next, broader neighborhood. Systematic change of neighborhood is what allows the search to escape local optima that a fixed-neighborhood local search cannot.",
+    "ree_translation": "Two uses for MECH-527, both about form rather than evidence. First, it supplies the escalation half of the claim as an already-specified rule, and it does so with the same trigger MECH-527 chose: failure to improve, not ambiguity. Second, and more consequential for the claim's disposition, it means the escalate-then-collapse dynamic has an established name. MECH-527 would be better positioned as the hypothesis that a VNS-shaped control structure is implemented above the action level in a cognitive architecture -- and that Karlsson-style network resets are its biological signature -- than as a newly coined mechanism. That framing is both more defensible and more citable, and it makes the claim's novel content explicit: not the control structure, but the assertion that a brain-like architecture uses one.",
+    "mapping_caveat": "This is the weakest kind of evidence in the pull and should be weighted accordingly. Combinatorial optimization over an explicit solution space with a well-defined objective and a computable improvement test is not what an embodied agent faces; 'failure to improve' is decidable in VNS and is exactly the quantity MECH-527 must estimate noisily from experience. Nothing here is evidence that any biological system implements VNS, and under the project's biology-before-formal-definitions invariant a formal analogue must not be allowed to stand in for biological grounding. I include it because MECH-527's escalation half would otherwise be entirely unsupported, and because a rename recommendation needs a concrete alternative to point at.",
+    "source_context": "Combinatorial and global optimization; metaheuristic design, with the original four-page statement of the method."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.7,
+    "notes": "Source quality high as the canonical reference for a widely adopted method. Mapping fidelity 0.55 and transfer risk 0.70 are both deliberately unflattering: this is an optimization algorithm, not a finding about any organism, and its structural match to the claim is a reason to align naming and design, not a reason to raise confidence that the mechanism is real."
+  }
+}

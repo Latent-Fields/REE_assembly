@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-09-01_mech_440_noisynet_sigma_nonannealing_fortunato2018",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-440"
+  ],
+  "source": {
+    "title": "Noisy Networks for Exploration",
+    "authors": [
+      "Meire Fortunato",
+      "Mohammad Gheshlaghi Azar",
+      "Bilal Piot",
+      "Jacob Menick",
+      "Ian Osband",
+      "Alex Graves",
+      "Vlad Mnih",
+      "Remi Munos",
+      "Demis Hassabis",
+      "Olivier Pietquin",
+      "Charles Blundell",
+      "Shane Legg"
+    ],
+    "year": 2018,
+    "venue": "International Conference on Learning Representations (ICLR)",
+    "arxiv_id": "1706.10295",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1706.10295"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.88,
+  "confidence_rationale": "Confidence is high and unusually easy to assign, because this entry does not depend on interpreting a distant analogy: MECH-440 names this paper as its external analog and asserts self-annealing on its authority, and the paper's own Section 4 reports that self-annealing does not reliably occur. Source quality is high (the canonical reference for learned parametric weight noise). Mapping fidelity is near-maximal because REE's NoisySelectionHead is a deliberate reimplementation of this algorithm, so the source and the target are the same mechanism rather than an analogy. Held below 0.9 only because the sigma measurement is over 5 Atari games with 3 seeds -- a small sample from which to generalise, and the authors report seed-to-seed variation themselves.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The source paper reports sigma DECREASING in the last layer in all cases, but in the penultimate layer decreasing for only 2 games out of 5 -- and INCREASING in the remaining 3. Its own conclusion is that 'the agent does not necessarily evolve towards a deterministic solution as one might have expected'. Self-annealing is therefore not a property of the algorithm; it is a layer-dependent and problem-dependent outcome.",
+    "The paper characterises the learned noise as a PROBLEM-specific exploration strategy, not a STATE-specific one. It reports no per-state analysis of sigma anywhere. So the source cited for leg (ii) state-conditioning does not in fact measure state-conditioning.",
+    "The paper reports that how sigma evolves 'significantly differs from one game to another and in some cases from one seed to another seed'. A mechanism whose annealing direction is seed-dependent cannot support a pre-registered directional prediction about annealing on a 6-seed experiment without a per-seed engagement gate."
+  ],
+  "tags": [
+    "mech_440",
+    "noisynet",
+    "self_annealing",
+    "state_conditioning",
+    "parametric_noise",
+    "source_re_read"
+  ],
+  "mapping": {
+    "source_claim_statement": "NoisyNet adds parametric noise to network weights with the noise parameters learned by gradient descent alongside the weights, and this induced stochasticity aids exploration, yielding substantially higher scores than entropy-reward or epsilon-greedy heuristics across many Atari games. On the evolution of the noise itself, the paper reports (Section 4, on the mean absolute noise parameter Sigma-bar, averaged across 3 seeds over 5 Atari games): 'We observe that Sigma-bar of the last layer of the network decreases as the learning proceeds in all cases, whereas in the case of the penultimate layer this only happens for 2 games out of 5 (Pong and Beam rider) and in the remaining 3 games Sigma-bar in fact increases. This shows that in the case of NoisyNet-DQN the agent does not necessarily evolve towards a deterministic solution as one might have expected.'",
+    "ree_translation": "This is a deliberate RE-READ of the same source already entered on 2026-06-29 as 2026-06-29_mech_440_noisynet_fortunato2018, which filed it 'supports' at 0.85 and stated that MECH-440's floor 'self-anneals via a gradient-trained sigma' and is 'state-conditioned by construction'. That reading is not sustained by the paper's own Section 4 and this entry records the correction. What the source actually licenses is leg (i) only -- weight noise injected into the parameters propagates into the committed argmax, which is the injection-site correction and is genuinely what NoisyNet demonstrates. It does not license leg (iii): the paper measured annealing and found it in one layer and not another, in 2 of 5 games and reversed in 3. It does not license leg (ii) either, in the sense MECH-440 needs -- 'state-conditioned by construction' is an architectural assertion about weight-noise-times-activations, and the paper offers no per-state measurement to support it, describing the learned behaviour as problem-specific rather than state-specific.",
+    "mapping_caveat": "Two boundaries. First, this is an argument from what the source does NOT establish plus one directly contrary measurement, not from a study designed to refute self-annealing; the sigma analysis is a short observational section over 5 games and 3 seeds, not a controlled test, and it would be an over-read to treat it as proving that learned sigma never anneals. Second, the aggregate Sigma-bar is a mean absolute noise parameter over a layer, so it cannot rule out that individual parameters anneal while the layer mean rises. Its force here is narrower and sufficient: MECH-440 registered self-annealing as an inherited property of this algorithm, and the algorithm's own paper reports the property as unreliable. That converts leg (iii) from 'inherited from the external analog' to 'an independent REE hypothesis needing its own evidence' -- which is exactly the status V3-EXQ-959 then tested and did not support.",
+    "source_context": "Deep RL agents (DQN, Dueling, A3C) on the Atari 2600 benchmark; sigma analysis over 5 games, 3 seeds."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.95,
+    "transfer_risk": 0.1,
+    "notes": "Mapping fidelity is exceptionally high for a literature entry because REE's noisy_selection_head.py is a direct reimplementation of this paper's mechanism -- there is essentially no domain transfer to discount, which is also why transfer_risk is low. Source quality high but not maximal: the sigma section is observational and small-sample, and it is the only part of the paper this entry rests on."
+  }
+}

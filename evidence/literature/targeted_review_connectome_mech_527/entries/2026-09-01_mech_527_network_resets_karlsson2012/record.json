@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_527",
+  "entry_id": "2026-09-01_mech_527_network_resets_karlsson2012",
+  "timestamp_utc": "2026-09-01T04:55:38Z",
+  "claim_ids_tested": [
+    "MECH-527"
+  ],
+  "source": {
+    "title": "Network resets in medial prefrontal cortex mark the onset of behavioral uncertainty",
+    "authors": [
+      "Karlsson MP",
+      "Tervo DG",
+      "Karpova AY"
+    ],
+    "year": 2012,
+    "venue": "Science",
+    "doi": "10.1126/science.1226518",
+    "pmid": "23042898",
+    "volume": "338",
+    "issue": "6103",
+    "pages": "135-139"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "The closest biological match in the literature to what MECH-527 describes, and the reason this pull can say the mechanism is attested rather than merely plausible. Source quality is high -- population recording in rat mPFC with a task designed to dissociate internal-state coding from behavioural coding, published in Science and well cited. Mapping fidelity is the best of any entry in this pull because the paper's own description (a network-wide destabilisation of the dominant belief representation, which decays as a new stable representation forms) is almost a restatement of MECH-527's above-action-level perturbation with post-resolution decay. Held below 0.9 because the paper frames its trigger as the onset of behavioural UNCERTAINTY, which is the one word MECH-527 is at pains to exclude -- see the caveat.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own framing is 'the onset of behavioral uncertainty', not 'confidence without resolution'. MECH-527 wants failure and uncertainty separated as triggers; this paper does not manipulate them independently, so it cannot by itself establish that the trigger is unresolvedness rather than uncertainty.",
+    "Escalating breadth under CONTINUED stuckness is not demonstrated. The paper reports a switch into instability and its subsequent decay, not a graded escalation of perturbation as failure persists. The escalation half of MECH-527 is unsupported by this entry."
+  ],
+  "tags": [
+    "mech_527",
+    "network_reset",
+    "mpfc",
+    "attractor_escape",
+    "above_action_level",
+    "post_resolution_decay"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using a task permitting dissociation between activity encoding an animal's internal state and activity encoding aspects of behavior, the authors report that 'transient increases in the volatility of activity in the rat medial prefrontal cortex accompany periods when an animal's belief is modified after an environmental change. Activity across the majority of sampled neurons underwent marked, abrupt, and coordinated changes when prior belief was abandoned in favor of exploration of alternative strategies. These dynamics reflect network switches to a state of instability, which diminishes over the period of exploration as new stable representations are formed.'",
+    "ree_translation": "This is the biological existence proof for the two structural properties MECH-527 asserts and MECH-440 does not have. First, the perturbation is ABOVE THE ACTION LEVEL: what destabilises is the population-level representation of the animal's belief and strategy, coordinated across the majority of sampled neurons, not the variability of a single motor output. That is the direct analogue of MECH-527's 'perturbing candidate trajectories, strategy proposals, retrieved attractors, and the precision/authority of the currently dominant attractor'. Second, the instability DECAYS ON RESOLUTION -- it 'diminishes over the period of exploration as new stable representations are formed' -- which is MECH-527's post-resolution decay stated almost verbatim. Third, the occasion is the abandonment of a PRIOR BELIEF after the environment changed, i.e. a previously adequate model that has begun to fail, which is at least adjacent to confidence-without-resolution.",
+    "mapping_caveat": "The important caveat is the one MECH-527's own formulation makes salient. The paper's title and framing attribute the reset to the onset of behavioural UNCERTAINTY, whereas MECH-527 explicitly contrasts its trigger with uncertainty and requires that two well-understood, similarly-good options warrant no exploration. In the task, environmental change makes the prior belief wrong AND makes the animal uncertain at the same time, so the two candidate triggers are confounded by design and this paper cannot adjudicate between them. Reading it as evidence for a failure-specific rather than uncertainty-general trigger would be an over-read; it is strong evidence for the PERTURBATION LEVEL and the DECAY, and weak evidence on the TRIGGER. Additionally this is rat mPFC population activity, and treating 'volatility of population activity' as the analogue of REE's attractor precision/authority is an interpretive mapping, not a measured correspondence.",
+    "source_context": "Rats performing a task with unsignalled environmental changes; chronic multi-electrode population recording in medial prefrontal cortex, with analyses separating internal-state from behavioural coding."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity 0.80 is the highest in this pull: the reported phenomenon and the claimed mechanism have the same shape (network-level destabilisation of a dominant representation, decaying as a new one stabilises). Discounted from higher only by the trigger confound (uncertainty vs failure not separated) and by the interpretive step from population volatility to attractor precision."
+  }
+}
