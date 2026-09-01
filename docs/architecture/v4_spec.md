@@ -37,15 +37,44 @@ V4 entry is gated on V3 completion. The current V3 completion gates
    experiment. Demonstrates goal representations are real and influence
    behavior. *SD-012 promoted to provisional 2026-05-02.*
 
-2. **Full completion gate**: hippocampal multi-step trajectory planning
-   validated (MECH-163 VTA/planned system). Required because V4 social
-   extension requires planning trajectories that affect another agent's
-   z_harm_a and benefit_exposure over time -- structurally inaccessible
-   to 1-step greedy.
+2. **Full completion gate** -- RE-DERIVED 2026-09-01 (governance cycle
+   gov-cycle-20260901; GFLAG-0106, GOV-V4CUT-1 finding F6). The original
+   wording -- "hippocampal multi-step trajectory planning validated
+   (MECH-163 VTA/planned system)" -- had become UNSATISFIABLE AS WRITTEN:
+   MECH-163 was NARROWED 2026-07-22 to leg (1) only, that leg was weakened
+   by V3-EXQ-786b, and legs (2) and (3) were split out into MECH-478 and
+   MECH-479. The gate is therefore restated as the conjunction of its three
+   surviving legs:
 
-V3-EXQ-495 is the queued experiment for MECH-163 (per WORKSPACE_STATE
-2026-04-30 entries). Until it lands, V4 substrate work should remain
-spec-only.
+   (a) **MECH-477** dual_system_uncertainty_arbitration -- SUPPORTED
+       (V3-EXQ-811a). Status candidate, implementation_phase v3.
+   (b) **MECH-478** long_horizon_benefit_requires_model_based_rollout --
+       implementation_phase v3, v3_pending true. OPEN.
+   (c) **MECH-479** prosocial_planning_requires_planned_system --
+       **RETAINED IN THE V3 GATE by explicit governance decision
+       (2026-09-01)**, against the cut audit's proposal to move it to
+       V4-phase validation. Rationale: a V3 completion gate does not shed a
+       leg merely because that leg is hard to test, and the same principle
+       already governs substrate ceilings -- if lifting the ceiling is
+       required for V3 completion, the enrichment is V3 work, because the
+       phase label follows the dependency.
+
+   **KNOWN TENSION -- recorded, not resolved.** MECH-479 currently carries
+   `implementation_phase: v4`, and the cut audit's ground for moving it out
+   was that testing it structurally requires V4-1 (others-as-slots). Keeping
+   it in the V3 gate while it remains v4-labelled means the gate is
+   satisfiable only once that structural precondition is either met or
+   re-derived. The consistent resolutions are (i) let MECH-479's phase label
+   follow the dependency to v3, or (ii) re-derive the V4-1 precondition so
+   the leg is testable in V3. This is owed to a later cycle and is tracked
+   on its own governance flag; it is NOT a reason to revert to the old
+   MECH-163 wording, which was unsatisfiable for a different and worse
+   reason (it named a claim whose legs no longer live there).
+
+V3-EXQ-495 is the historical queued experiment for MECH-163 (per
+WORKSPACE_STATE 2026-04-30 entries) and is superseded as the gate's owner by
+the three-leg re-derivation above. Until the gate clears, V4 substrate work
+should remain spec-only.
 
 ## V4 scope (the five primitive additions)
 
@@ -287,7 +316,9 @@ V4 spec work proceeds in phases:
   precede in V3 per substrate_roadmap.md item 5).
 
 Proceeding past Phase A requires:
-- V3 full completion gate cleared (MECH-163 PASS)
+- V3 full completion gate cleared -- MECH-477 (SUPPORTED) + MECH-478 +
+  MECH-479, per the re-derived three-leg gate above (2026-09-01). NOT
+  "MECH-163 PASS": that wording is unsatisfiable, see the gate section.
 - A claim explicitly authorising V4 substrate work (governance
   decision)
 
