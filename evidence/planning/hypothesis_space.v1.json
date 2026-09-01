@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-30T16:24:24Z",
+  "generated_at": "2026-09-01T07:42:18Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,24 +8,24 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 164,
-      "built_modules": 135,
-      "fraction_built": 0.8232,
+      "built_modules": 138,
+      "fraction_built": 0.8415,
       "state_counts": {
-        "proposed": 29,
+        "proposed": 26,
         "implemented": 95,
-        "implemented_pending_validation": 18,
-        "validated": 22
+        "implemented_pending_validation": 20,
+        "validated": 23
       },
-      "build_proof_gap": 113,
-      "build_proof_gap_note": "135 modules built, 113 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 115,
+      "build_proof_gap_note": "138 modules built, 115 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 71.7,
+      "closure_pct": 72.1,
       "node_total": 97,
-      "node_done_weighted": 69.5,
+      "node_done_weighted": 69.9,
       "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
       "authoritative_view": "/closure"
     },
@@ -60,164 +60,170 @@
     {
       "date": "2026-05-06",
       "surviving": 140,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-11",
       "surviving": 139,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-13",
       "surviving": 137,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-15",
       "surviving": 133,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-16",
       "surviving": 132,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-17",
       "surviving": 129,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-18",
       "surviving": 123,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-19",
       "surviving": 119,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-20",
       "surviving": 118,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-24",
       "surviving": 117,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-27",
       "surviving": 115,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-29",
       "surviving": 114,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-07-31",
       "surviving": 113,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-01",
       "surviving": 111,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-02",
       "surviving": 105,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-04",
       "surviving": 104,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-06",
       "surviving": 103,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-08",
       "surviving": 101,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-09",
       "surviving": 99,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-10",
       "surviving": 98,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-11",
       "surviving": 97,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-12",
       "surviving": 96,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-14",
       "surviving": 94,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-17",
       "surviving": 93,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-20",
       "surviving": 92,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-29",
       "surviving": 89,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     },
     {
       "date": "2026-08-30",
+      "surviving": 87,
+      "closure_pct": 72.1,
+      "build_pct": 84.2
+    },
+    {
+      "date": "2026-09-01",
       "surviving": 76,
-      "closure_pct": 71.7,
-      "build_pct": 82.3
+      "closure_pct": 72.1,
+      "build_pct": 84.2
     }
   ],
   "questions": [

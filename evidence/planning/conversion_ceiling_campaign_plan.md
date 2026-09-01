@@ -14,8 +14,8 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_V3-EXQ-936a_2026-08-30"
+        as_of: "2026-09-01"
+        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -29,8 +29,8 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_V3-EXQ-936a_2026-08-30"
+        as_of: "2026-09-01"
+        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -44,8 +44,8 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_V3-EXQ-936a_2026-08-30"
+        as_of: "2026-09-01"
+        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -59,8 +59,8 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_V3-EXQ-936a_2026-08-30"
+        as_of: "2026-09-01"
+        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -74,8 +74,8 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_V3-EXQ-936a_2026-08-30"
+        as_of: "2026-09-01"
+        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -90,8 +90,8 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_V3-EXQ-936a_2026-08-30"
+        as_of: "2026-09-01"
+        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -112,8 +112,8 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_V3-EXQ-936a_2026-08-30"
+        as_of: "2026-09-01"
+        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
