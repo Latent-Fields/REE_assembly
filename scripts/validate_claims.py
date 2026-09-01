@@ -271,6 +271,87 @@ def validate_invariant(claim, substrate_status=None):
     return issues
 
 
+def validate_terminal_dependencies(claims):
+    """WARN on a LIVE claim whose depends_on names a terminal-status claim.
+
+    Returns a list of (level, message) tuples, same shape as validate_invariant.
+    Lifted out of main() so the two exclusions below are directly testable
+    against synthetic fixtures rather than only against the live registry --
+    a test keyed on the live corpus would break the moment the backlog it
+    reports is actually fixed.
+    """
+    issues = []
+    # ---- superseded / retired depends_on target (WARN-only, added 2026-09-01) ----
+    # A LIVE claim carrying a depends_on edge to a claim that has since gone
+    # terminal. Nothing else in the pipeline notices: the indexer reads
+    # depends_on for the MRF graph and gating without checking the target's own
+    # status, so the edge silently keeps asserting a dependency on a claim the
+    # registry has retired. Motivating measurement (GFLAG-0064, 2026-09-01): SD-003
+    # went `superseded` on 2026-04-18 with successors [MECH-256, SD-029], and
+    # SIXTEEN claims still depended on it four months later. The flag that found it
+    # named only three of the sixteen -- which is the point: nobody was counting,
+    # because nothing was checking.
+    #
+    # TWO EXCLUSIONS, and they are load-bearing rather than politeness. Measured on
+    # the 2026-09-01 corpus, 32 edges point at a terminal target but only 26 are
+    # defects; without these the check would false-positive on 6 of 32 (19%), and a
+    # lint that fires on correct work gets switched off:
+    #   (a) TERMINAL SOURCE. A retired/legacy claim depending on another retired or
+    #       legacy claim is frozen history, correctly preserved -- e.g. the IMPL-020
+    #       -> IMPL-021 -> IMPL-022 -> IMPL-024 chain, all legacy. Only a claim that
+    #       is still live can hold a stale edge.
+    #   (b) SUCCESSOR PROVENANCE. A claim listed in its target's own superseded_by
+    #       depending on the claim it superseded is a provenance edge, not a stale
+    #       one -- e.g. MECH-448 -> MECH-447, where MECH-447.superseded_by names
+    #       MECH-448.
+    #
+    # WARN-ONLY on purpose (stabilise-then-elevate, the posture epistemic_category
+    # and assembly_state both shipped under). There are 26 live violations today, so
+    # an ERROR here would block governance.sh --strict for everyone on a backlog this
+    # check exists to surface, not to gate. Elevate once the count reaches 0.
+    #
+    # NOT A MECHANICAL REPOINT. The obvious fix -- point the edge at superseded_by --
+    # is WRONG in at least one known case: SD-013 -> SD-003 cannot be repointed to
+    # MECH-256/SD-029 because BOTH successors already depend on SD-013, so the repoint
+    # would create a cycle. There the edge should be dropped. Hence WARN and a named
+    # successor list rather than an auto-fix.
+    TERMINAL_CLAIM_STATUSES = {"superseded", "retired", "legacy", "rejected"}
+
+    def _status_of(claim):
+        return str(claim.get("status") or "").strip().lower()
+
+    claims_by_id = {c.get("id"): c for c in claims if c.get("id")}
+    for c in claims:
+        cid = c.get("id", "<unknown>")
+        if _status_of(c) in TERMINAL_CLAIM_STATUSES:
+            continue  # exclusion (a): frozen history
+        deps = c.get("depends_on") or []
+        if not isinstance(deps, list):
+            continue
+        for dep in deps:
+            target = claims_by_id.get(dep)
+            if target is None:
+                continue  # dangling ids are a different class; 0 in the corpus today
+            tstatus = _status_of(target)
+            if tstatus not in TERMINAL_CLAIM_STATUSES:
+                continue
+            succ = target.get("superseded_by") or []
+            if isinstance(succ, str):
+                succ = [succ]
+            if cid in succ:
+                continue  # exclusion (b): successor provenance
+            hint = (f" -- successors are {', '.join(succ)}; repoint or DROP the edge "
+                    "(check first that the successor does not already depend on this "
+                    "claim, which would make a repoint a cycle)"
+                    if succ else
+                    " -- no superseded_by recorded on the target, so decide whether to "
+                    "drop the edge or name a successor")
+            issues.append((
+                "WARN",
+                f"{cid} depends_on {dep}, which is status: {tstatus}{hint}"))
+    return issues
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strict", action="store_true", help="exit 1 on any ERROR")
@@ -490,6 +571,8 @@ def main():
                 f"{cid}: diagnostic_evidence_adjudicated=true but evidence_quality_note "
                 "is empty -- the flag is meant to be set at the point a diagnostic run's "
                 "finding is confirmed into the claim's narrative, not on its own"))
+
+    all_issues.extend(validate_terminal_dependencies(claims))
 
     errors = [msg for lvl, msg in all_issues if lvl == "ERROR"]
     warnings = [msg for lvl, msg in all_issues if lvl == "WARN"]
