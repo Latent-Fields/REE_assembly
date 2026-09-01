@@ -56,8 +56,21 @@ informative outcome, not a failure of the pick.
 
 ## TIER 2 -- paced over the coming week (129)
 
-Withdrawn from the live ledger to keep the dispatcher on curated work. Re-mint in small
-batches from this table -- highest dependents first. Do NOT re-mint all at once.
+Withdrawn from the live ledger to keep the dispatcher on curated work.
+
+**THIS IS AUTOMATED -- do not hand re-mint from this table.** `scripts/proposal_backlog_dripfeed.py`
+(launchd `com.ree.proposaldripfeed`, hourly, Mac-only) reads THIS TABLE as its source of truth and
+tops the open proposal-chip count back up to a floor of 10, highest-dependents-first, at most 5 per
+run. It is a TOP-UP, not a scheduled batch: it mints only when the fleet has worked some off, so the
+real pacing is throughput, not a clock, and a busy or stopped fleet simply gets nothing new.
+
+Two properties worth knowing before editing this table:
+- Each paced item is re-minted under a derived `<orig_ref>-paced` chip_ref, because `chip_ledger`
+  resolution is MONOTONE ("a chip never reopens", chip_ledger.py:1115) -- the withdrawn originals
+  cannot be revived. That suffix is also the idempotency key, so re-running is always safe.
+- The parser requires the row shape below exactly. Claim ids with a letter suffix (e.g. `SD-033d`)
+  are supported -- an earlier pattern silently dropped exactly one row, which would then never have
+  been paced back in at all.
 
 | dependents | claim | phase | EXP | chip_ref |
 |---|---|---|---|---|
