@@ -999,9 +999,9 @@
       "summary": "conversion_ceiling_campaign:P4-learned-gating and behavioral_diversity_isolation:GAP-K carry assembly_status blocked_on_upstream, but the named upstream (corrected non-hold-weighted GateDV instrument) LANDED (ree-v3 c309bc6486); the residual hold is the governance decision on the held 713x re-letter (held 2026-08-21), i.e. a decision, not an unknown or a build. Adjudicate the 713x re-letter (or record why it stays held) so the ARC-108/MECH-450 learned-gating face stops reading as blocked; debt-classification record: evidence/planning/work_graph_debt_classification_20260827.md.",
       "raised_by_session": "f-dominance-regime-retest-ddbe10",
       "raised_at": "2026-08-27T20:13:39Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:06:17Z",
+      "resolution_note": "PARTIALLY UPHELD, applied REE_assembly 008d91c0ce. The staleness holds: both conversion_ceiling_campaign:P4-learned-gating and behavioral_diversity_isolation:GAP-K still said they were blocked on a corrected-DV instrument that LANDED at ree-v3 c309bc6486 on 2026-08-19 (experiments/_lib/gate_dv.py plus a 315-line contract test). Both corrected. TWO ERRORS IN THE FLAG. (1) It says the residual hold is 'the governance decision on the held 713x re-letter', i.e. a decision not an unknown. That decision was MADE: GFLAG-0045 resolved 2026-08-21 and REFUSED the re-letter -- 'held' there means the refusal was held in place, not that the call is pending. The flag misread a completed adjudication as an open one, six days after it closed. (2) It omits the SECOND upstream both nodes explicitly state: f_dominance_conversion_ceiling, NOT BUILT and itself parked behind MECH-457 + INV-088 -- which is precisely what makes 'not an unknown and not a build' false."
     },
     {
       "flag_id": "GFLAG-0070",
