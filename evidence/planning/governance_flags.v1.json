@@ -822,9 +822,9 @@
       "summary": "MECH-465's what_would_answer asserts 'REACHABILITY (settled on recorded data, no longer open)' and cites rv percentiles p5 0.00259 / p25 0.00330 / median 0.00562 / p75 0.00618 / p95 0.00720. Those reproduce EXACTLY as the POOLED-ACROSS-SEEDS distribution of V3-EXQ-785a's per-tick running variance; post-warmup the WITHIN-seed IQR/median is 0.010-0.085, not the 0.51 the same paragraph pre-registers as the P2 DISPERSION FLOOR -- so the pooled dispersion is almost entirely BETWEEN-seed and reachability is NOT settled. A live boundary-regime probe at ree-v3 post-2023589 confirms: P1 HEADROOM and P2 both fail 3/3 seeds (within-seed IQR/median 0.0266 / 0.0450 / 0.0279), and the calibration target moves 35-165% while the graded band is only 2.7-4.5% wide. EXP-0590 was declined at the /queue-experiment guardrail and set to blocked_substrate on REE_assembly 9dad9461ef; full analysis in evidence/planning/mech465_boundary_regime_reachability_probe_20260827.md. Governance action owed: correct or qualify the REACHABILITY sentence (and reconsider the substrate_conditional -> standard epistemic_category move made in the same 2026-08-26 pass, which was justified by that sentence).",
       "raised_by_session": "igw-234-proposal-for-mech-465",
       "raised_at": "2026-08-27T06:07:52Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T20:05:57Z",
+      "resolution_note": "UPHELD, applied REE_assembly 008d91c0ce. Verified by independent recomputation from the 785a per-tick sink (n=1765): the five percentiles this claim quoted are the POOLED-ACROSS-FIVE-SEEDS distribution (pooled IQR/median 0.5133), while post-warmup WITHIN-seed IQR/median is 0.0116/0.0104/0.0729/0.0848/0.0193 and seed medians span 2.6x. So 'gate inside the dispersion, ~35x more headroom' places the gate inside SEED IDENTITY, not inside any within-run quantity, and a 4000-point sweep finds zero feasible thresholds on any single seed. MECH-465's what_would_answer now records reachability as OPEN and measured NEGATIVE, and the P2 dispersion floor is marked SCORE-PER-SEED -- as written it was simultaneously unsatisfiable per-seed (max 0.085 vs a 0.51 bar) and silently passable if scored pooled. The floor was NOT lowered."
     },
     {
       "flag_id": "GFLAG-0057",
