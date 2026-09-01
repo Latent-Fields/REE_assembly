@@ -3,10 +3,13 @@
   "literature_type": "targeted_review_arc_027_nociception",
   "entry_id": "2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential",
   "timestamp_utc": "2026-03-19T20:00:00Z",
-  "claim_ids_tested": ["ARC-027"],
+  "claim_ids_tested": [],
   "source": {
     "title": "Equipotentiality of thalamo-amygdala and thalamo-cortico-amygdala circuits in auditory fear conditioning",
-    "authors": ["Romanski LM", "LeDoux JE"],
+    "authors": [
+      "Romanski LM",
+      "LeDoux JE"
+    ],
     "year": 1992,
     "venue": "Journal of Neuroscience",
     "doi": "10.1523/JNEUROSCI.12-11-04501.1992",
@@ -18,8 +21,16 @@
   "confidence_rationale": "Romanski & LeDoux provide the definitive experimental demonstration of the parallel low-road/high-road architecture. Selective lesions show that either the thalamo-amygdala pathway alone OR the thalamo-cortico-amygdala pathway alone is sufficient for fear conditioning; only destroying both disrupts conditioning. This directly grounds ARC-027's claim that the HARM stream operates via a parallel thalamic pathway that bypasses cortical (E1) processing: the sensory signal reaches the amygdala-equivalent independently of the cortical route. The experiment was conducted with auditory stimuli but the same circuit architecture applies to nociceptive/threat signals via the spinothalamic tract feeding posterior thalamic nuclei (VPM/Po) which project directly to the lateral amygdala.",
   "summary_path": "summary.md",
   "tags": [
-    "low-road", "thalamo-amygdala", "fear-conditioning", "parallel-pathway",
-    "arc-027", "harm-stream", "amygdala", "thalamus", "cortex-bypass", "supports"
+    "low-road",
+    "thalamo-amygdala",
+    "fear-conditioning",
+    "parallel-pathway",
+    "arc-027",
+    "harm-stream",
+    "amygdala",
+    "thalamus",
+    "cortex-bypass",
+    "supports"
   ],
   "mapping": {
     "source_claim_statement": "Either the thalamo-amygdala projection (fast, coarse sensory signal direct to lateral amygdala) or the thalamo-cortico-amygdala projection (slower, more refined signal via sensory cortex) is individually sufficient for fear conditioning. Both must be destroyed to disrupt conditioning. The two pathways are equipotential and parallel — they carry the same stimulus information via different routes and timescales.",
@@ -32,5 +43,9 @@
     "mapping_fidelity": 0.85,
     "transfer_risk": 0.25,
     "notes": "Landmark paper with very high source quality. Mapping fidelity is strong — the parallel pathway architecture is the direct claim. Transfer risk is modest: experiment uses auditory CS not nociception, but the posterior thalamic → amygdala nociceptive pathway is well-established by other work (e.g. Bernard & Besson, Gauriau & Bernard)."
-  }
+  },
+  "scoring_exclusion_note": "[2026-09-01 governance, govapply-20260901, GFLAG-0085] UNTAGGED FROM ARC-027's SCORED EVIDENCE, deliberately -- this record is NOT defective and is NOT being disowned. ARC-027 is a FUSED claim: its own what_would_answer separates an OUT-OF-DOMAIN neuroanatomy leg (LeDoux's 'low road') from the one testable REE leg (harm-signal PRECEDENCE in the pipeline), and states of this record and its two siblings that they are 'the claim's biological GROUNDING, not its falsifier, and must never be scored as though a V3 run confirmed or weakened it.' They were nonetheless the ONLY three literature entries attached to ARC-027, so they alone produced literature_confidence 0.821, which cleared the 0.55 lit gate and -- combined with 6 experimental entries that are ALL SD-010's, 0 independent -- put ARC-027 in the confirmed_established quadrant on evidence its own text says cannot bear on it. Removing the claim_ids_tested tag is the minimal fix: it stops the scoring without losing the association, which survives in this record's directory name, in its `tags` ('arc-027'), and by name in ARC-027's own prose (all three papers are cited there). Precedent for fixing a join rather than a record: GFLAG-0032, build_experiment_indexes.py:3613-3629. If a claim is ever registered for the neuroanatomy question itself, retag to that.",
+  "formerly_claim_ids_tested": [
+    "ARC-027"
+  ]
 }

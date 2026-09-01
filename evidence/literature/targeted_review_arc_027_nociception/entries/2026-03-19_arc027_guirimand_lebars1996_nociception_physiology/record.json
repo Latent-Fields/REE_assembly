@@ -3,10 +3,13 @@
   "literature_type": "targeted_review_arc_027_nociception",
   "entry_id": "2026-03-19_arc027_guirimand_lebars1996_nociception_physiology",
   "timestamp_utc": "2026-03-19T20:00:00Z",
-  "claim_ids_tested": ["ARC-027"],
+  "claim_ids_tested": [],
   "source": {
     "title": "Physiology of nociception",
-    "authors": ["Guirimand F", "Le Bars D"],
+    "authors": [
+      "Guirimand F",
+      "Le Bars D"
+    ],
     "year": 1996,
     "venue": "Annales françaises d'anesthésie et de réanimation",
     "doi": "10.1016/S0750-7658(96)89477-9",
@@ -14,12 +17,20 @@
   },
   "evidence_class": "review_nociception_anatomy",
   "evidence_direction": "supports",
-  "confidence": 0.80,
+  "confidence": 0.8,
   "confidence_rationale": "Guirimand & Le Bars provide a comprehensive account of nociceptive anatomy that directly grounds ARC-027's claim about the HARM stream having its own dedicated sensory pathway. Key relevant points: (1) unmyelinated C fibres and fine myelinated Aδ fibres are the dedicated nociceptive afferents — not general sensory fibres; (2) ascending pathways run in the spinothalamic and spinoreticular tracts with relays at multiple supraspinal sites including parabrachial area, PAG, and critically the amygdala and hypothalamus as motivational/neuroendocrine targets; (3) the cingulate, insular and somatosensory cortices also receive nociceptive information — but via a secondary relay, not as the primary pathway. This maps directly to ARC-027: nociception has dedicated peripheral afferents, dedicated spinal pathways, and amygdala/hypothalamic projections that constitute the harm-detection substrate, with cortical processing as a secondary layer.",
   "summary_path": "summary.md",
   "tags": [
-    "nociception", "spinothalamic", "C-fibres", "A-delta", "amygdala",
-    "arc-027", "harm-stream", "ascending-pathways", "dedicated-afferents", "supports"
+    "nociception",
+    "spinothalamic",
+    "C-fibres",
+    "A-delta",
+    "amygdala",
+    "arc-027",
+    "harm-stream",
+    "ascending-pathways",
+    "dedicated-afferents",
+    "supports"
   ],
   "mapping": {
     "source_claim_statement": "Nociception is mediated by dedicated peripheral afferents (unmyelinated C fibres and fine myelinated Aδ fibres), ascending via spinothalamic and spinoreticular tracts, with supraspinal relays at reticular formation, parabrachial area, PAG, thalamic sites, and direct projections to the amygdala and hypothalamus for motivational and neuroendocrine responses. Cortical nociceptive information arrives at cingulate, insular, and somatosensory cortices — but as a downstream layer above the subcortical harm-detection substrates.",
@@ -32,5 +43,9 @@
     "mapping_fidelity": 0.75,
     "transfer_risk": 0.25,
     "notes": "Solid comprehensive review though published in a French anesthesia journal (English abstract). Source quality is good for anatomy; mapping fidelity is moderate — it establishes the dedicated-pathway claim well but is less direct than Romanski & LeDoux on the parallel-architecture point. Low transfer risk for the anatomical claims."
-  }
+  },
+  "scoring_exclusion_note": "[2026-09-01 governance, govapply-20260901, GFLAG-0085] UNTAGGED FROM ARC-027's SCORED EVIDENCE, deliberately -- this record is NOT defective and is NOT being disowned. ARC-027 is a FUSED claim: its own what_would_answer separates an OUT-OF-DOMAIN neuroanatomy leg (LeDoux's 'low road') from the one testable REE leg (harm-signal PRECEDENCE in the pipeline), and states of this record and its two siblings that they are 'the claim's biological GROUNDING, not its falsifier, and must never be scored as though a V3 run confirmed or weakened it.' They were nonetheless the ONLY three literature entries attached to ARC-027, so they alone produced literature_confidence 0.821, which cleared the 0.55 lit gate and -- combined with 6 experimental entries that are ALL SD-010's, 0 independent -- put ARC-027 in the confirmed_established quadrant on evidence its own text says cannot bear on it. Removing the claim_ids_tested tag is the minimal fix: it stops the scoring without losing the association, which survives in this record's directory name, in its `tags` ('arc-027'), and by name in ARC-027's own prose (all three papers are cited there). Precedent for fixing a join rather than a record: GFLAG-0032, build_experiment_indexes.py:3613-3629. If a claim is ever registered for the neuroanatomy question itself, retag to that.",
+  "formerly_claim_ids_tested": [
+    "ARC-027"
+  ]
 }

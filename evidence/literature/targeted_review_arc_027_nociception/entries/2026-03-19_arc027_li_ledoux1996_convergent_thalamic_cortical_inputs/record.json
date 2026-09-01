@@ -3,10 +3,14 @@
   "literature_type": "targeted_review_arc_027_nociception",
   "entry_id": "2026-03-19_arc027_li_ledoux1996_convergent_thalamic_cortical_inputs",
   "timestamp_utc": "2026-03-19T20:00:00Z",
-  "claim_ids_tested": ["ARC-027"],
+  "claim_ids_tested": [],
   "source": {
     "title": "Convergent but temporally separated inputs to lateral amygdala neurons from the auditory thalamus and auditory cortex use different postsynaptic receptors: in vivo intracellular and extracellular recordings in fear conditioning pathways",
-    "authors": ["Li XF", "Stutzmann GE", "LeDoux JE"],
+    "authors": [
+      "Li XF",
+      "Stutzmann GE",
+      "LeDoux JE"
+    ],
     "year": 1996,
     "venue": "Learning & Memory",
     "doi": "10.1101/lm.3.2-3.229",
@@ -18,8 +22,16 @@
   "confidence_rationale": "Li et al. demonstrate that the thalamic (low-road) and cortical (high-road) inputs to the lateral amygdala are not only parallel but mechanistically distinct: the thalamic pathway engages NMDA receptors in addition to AMPA, while the cortical pathway uses only AMPA. This means the two streams carry qualitatively different computational properties — the thalamic route can integrate signals over time via NMDA's voltage-dependent gating. For ARC-027, this deepens the case: the HARM stream (thalamic route) is not just anatomically parallel to E1 but uses a different synaptic mechanism, consistent with it being a distinct sensory channel with its own processing logic rather than a copy of the cortical signal.",
   "summary_path": "summary.md",
   "tags": [
-    "low-road", "thalamo-amygdala", "NMDA", "AMPA", "parallel-pathway",
-    "arc-027", "harm-stream", "lateral-amygdala", "receptor-mechanism", "supports"
+    "low-road",
+    "thalamo-amygdala",
+    "NMDA",
+    "AMPA",
+    "parallel-pathway",
+    "arc-027",
+    "harm-stream",
+    "lateral-amygdala",
+    "receptor-mechanism",
+    "supports"
   ],
   "mapping": {
     "source_claim_statement": "Individual lateral amygdala neurons receive convergent inputs from auditory thalamus (fast, ~12ms latency) and auditory cortex (slow, ~22ms latency). Thalamic transmission requires both AMPA and NMDA receptors; cortical transmission uses only AMPA. NMDA involvement gives the thalamic synapse temporal integration capacity and Hebbian plasticity properties not present in the cortical synapse.",
@@ -32,5 +44,9 @@
     "mapping_fidelity": 0.78,
     "transfer_risk": 0.35,
     "notes": "High quality electrophysiology study. Mapping to ARC-027 is strong for the 'mechanistically distinct parallel channels' claim. Higher transfer risk than Romanski & LeDoux 1992 because the receptor-mechanism argument requires bridging from auditory to nociceptive circuits."
-  }
+  },
+  "scoring_exclusion_note": "[2026-09-01 governance, govapply-20260901, GFLAG-0085] UNTAGGED FROM ARC-027's SCORED EVIDENCE, deliberately -- this record is NOT defective and is NOT being disowned. ARC-027 is a FUSED claim: its own what_would_answer separates an OUT-OF-DOMAIN neuroanatomy leg (LeDoux's 'low road') from the one testable REE leg (harm-signal PRECEDENCE in the pipeline), and states of this record and its two siblings that they are 'the claim's biological GROUNDING, not its falsifier, and must never be scored as though a V3 run confirmed or weakened it.' They were nonetheless the ONLY three literature entries attached to ARC-027, so they alone produced literature_confidence 0.821, which cleared the 0.55 lit gate and -- combined with 6 experimental entries that are ALL SD-010's, 0 independent -- put ARC-027 in the confirmed_established quadrant on evidence its own text says cannot bear on it. Removing the claim_ids_tested tag is the minimal fix: it stops the scoring without losing the association, which survives in this record's directory name, in its `tags` ('arc-027'), and by name in ARC-027's own prose (all three papers are cited there). Precedent for fixing a join rather than a record: GFLAG-0032, build_experiment_indexes.py:3613-3629. If a claim is ever registered for the neuroanatomy question itself, retag to that.",
+  "formerly_claim_ids_tested": [
+    "ARC-027"
+  ]
 }

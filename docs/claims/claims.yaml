@@ -13198,7 +13198,7 @@
   claim_type: architectural_commitment
   subject: harm_stream.parallel_thalamic_pathway
   polarity: asserts
-  status: active
+  status: active   # RATE/consumption leg is substrate_conditional -- see evidence_quality_note (GFLAG-0085, 2026-09-01)
   live_status:
     reading: active
     as_of: 2026-07-11
@@ -13211,6 +13211,45 @@
   source:
     - docs/architecture/sensory_stream_tags.md
   evidence_quality_note: |
+    [2026-09-01 govapply-20260901, GFLAG-0085] THIS CLAIM'S `confirmed_established` QUADRANT
+    WAS UNEARNED ON BOTH AXES, AND ITS CENTRAL CONSEQUENCE IS CONTRADICTED BY THE SUBSTRATE.
+
+    LITERATURE AXIS. literature_confidence was 0.821, clearing the 0.55 lit gate, and it was
+    produced by exactly three entries -- Guirimand & Le Bars 1996, Li & LeDoux 1996, Romanski
+    & LeDoux 1992. All three are the OUT-OF-DOMAIN neuroanatomy leg. This claim's own
+    what_would_answer names all three and says they are "the claim's biological GROUNDING,
+    not its falsifier, and must never be scored as though a V3 run confirmed or weakened it."
+    They were scored anyway, because nothing enforced the instruction. Untagged from their
+    records' claim_ids_tested on 2026-09-01; the association survives in the records'
+    directory name, their `tags`, and by name in this claim's prose.
+
+    EXPERIMENTAL AXIS. Zero independent entries. All 6 are also SD-010's, and 5 of the 6
+    run_ids name sd010 in the slug. This claim's own text already said so.
+
+    THE SUBSTRATE FINDING, which is new and is the reason for the reclassification below.
+    This claim's first stated consequence is "harm_eval is an input to E3, not a head inside
+    E3". As built it is the opposite: the harm term that actually reaches the score at
+    e3_selector.py:1310 is self.harm_eval_head(world_seq) (:1072-1076) -- a head inside E3
+    taking z_world. The production select call (agent.py:9120-9128) passes z_harm_a but not
+    harm_bridge / z_harm_s_current / harm_forward_model, so the z_harm-consuming dispatch
+    branches (:1276, :1280) are never taken outside experiment scripts. And z_harm_a itself
+    only modulates lambda_eff when affective_harm_scale > 0, which defaults to 0.0
+    (config.py:1030), so by default lambda_eff is the constant lambda_ethical.
+
+    CONSEQUENCE FOR THE FALSIFIER. The discriminating manipulation this claim registers is
+    ORDER, not source: "harm available to E3 at trajectory-scoring time versus harm available
+    only after the world-model pass, with the encoder architecture held identical". Neither
+    arm can be run on the production path as configured, because the dedicated stream does
+    not reach E3 scoring in either. So the REE leg is not merely untested -- it is not
+    currently runnable. Hence substrate_conditional.
+
+    WHAT WAS DELIBERATELY NOT DONE. (1) NOT retired into SD-010. This claim's own FALSIFYING
+    branch prescribes that outcome, but only on the strength of the late-availability run,
+    which has never happened -- retiring now would apply a verdict to an experiment nobody
+    ran. (2) NOT merged with SD-010, which GFLAG-0085 proposed: both claims currently assert
+    things about the E3 input path that the substrate contradicts, and merging them would
+    only merge the error. Revisit the merge once both say true things.
+    ---- PRIOR NOTE, PRESERVED ----
     EXQ-027b PASS (2026-03-19): Reafference diagnostic confirms SD-007 hurts E3
     calibration when applied to z_world (correction_delta=-0.045, harm_pred_std
     drops from 0.108 to 0.008). Over-correction explained by applying reafference
@@ -13268,7 +13307,7 @@
     architecture.three_engine_irreducibility). Corrected to ARC-027 (2026-03-19).
 
 # ── Design Decisions (SD) ────────────────────────────────────────────────────
-  epistemic_category: standard
+  epistemic_category: substrate_conditional
   what_would_answer: |
     SCOPE -- THIS CLAIM IS FUSED, AND ONLY ONE LEG IS A REE QUESTION.
     OUT-OF-DOMAIN LEG (named, not dropped): "the spinothalamic tract provides fast
@@ -13921,7 +13960,24 @@
   status_note: >
     The HARM stream (ARC-027) must be a separate sensory pathway independent
     of z_world: dedicated HarmEncoder(harm_obs → z_harm), not subject to
-    reafference correction. E3.harm_eval takes z_harm as primary input.
+    reafference correction.
+
+    [2026-09-01 govapply-20260901, GFLAG-0085] CORRECTION -- A FALSE STATEMENT ABOUT THE
+    AS-BUILT SUBSTRATE REMOVED FROM THIS PARAGRAPH. It read: "E3.harm_eval takes z_harm as
+    primary input." Verified against ree-v3 source 2026-09-01: it does not, on the production
+    path. Agent builds its E3 select kwargs at ree_core/agent.py:9120-9128 passing
+    goal_state, terrain_weight, sweep_threshold_reduction, z_harm_a, score_bias,
+    score_diversity, channel_route_bias -- and NOT harm_bridge, z_harm_s_current or
+    harm_forward_model. So E3ical's three-way harm dispatch (e3_selector.py:1276/1280/1283)
+    always falls through to compute_harm_cost_fallback, which evaluates
+    self.harm_eval_head(world_seq) (e3_selector.py:1072-1076) -- a head INSIDE E3 taking
+    z_world. The z_harm-consuming paths exist but are reachable only when an experiment
+    script supplies those kwargs directly; ree_core never does (harm_bridge /
+    z_harm_s_current appear nowhere in ree_core outside e3_selector.py and latent/stack.py).
+    WHAT SURVIVES AND WHAT DOES NOT: the ENCODER separation this claim owns -- dedicated
+    HarmEncoder(harm_obs -> z_harm), not reafference-corrected -- IS built and is what all
+    22 experimental entries measure. What is not built is the CONSUMPTION half. SD-010's
+    status of `implemented` therefore covers the encoder, not the E3 input path.
     SD-003 attribution operates on harm stream output not full world latent.
     Resolves EXQ-027b over-correction, EXQ-043/044 calibration collapse, and
     EXQ-047 SD-005 calibration shortfall — all converge on fused z_world as
