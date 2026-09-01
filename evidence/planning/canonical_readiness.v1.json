@@ -1,0 +1,278 @@
+{
+  "corpus": {
+    "filter": {
+      "excluded_scoring_excluded": 19,
+      "excluded_superseded": 187,
+      "input_total": 2903,
+      "kept_total": 2697
+    },
+    "load": {
+      "flat_candidates": 963,
+      "flat_valid": 961,
+      "merged_total": 2903,
+      "nested_candidates": 2885,
+      "nested_valid": 2885
+    }
+  },
+  "gates": {
+    "A": {
+      "diagnostics": {
+        "equivalence_for_purpose_tier_status": "unmeasured",
+        "exact_recurring_best_group": null,
+        "fingerprint_recurring_best_group": {
+          "distinct_experiment_types": [
+            "v3_exq_114a_arc007_path_memory_probe",
+            "v3_exq_120a_arc018_viability_map_pair",
+            "v3_exq_266b_q020_valence_geometry_pair",
+            "v3_exq_708b_mech440_precommit_distribution_shape_falsifier",
+            "v3_exq_798_sdmelproducer_graded_nonconverging_world",
+            "v3_exq_800_arc007_residue_scramble_dissociation",
+            "v3_exq_801_arc018_rollout_depth_ablation",
+            "v3_exq_802_arc005_control_plane_routing_double_dissociation",
+            "v3_exq_804_arc003_e3_selection_authority",
+            "v3_exq_805_arc016_eval_derived_commit_threshold",
+            "v3_exq_811_mech477_dualsystem_arbitration_falsifier"
+          ],
+          "example_run_ids": [
+            "v3_exq_114a_arc007_path_memory_probe_20260723T152445Z_v3",
+            "v3_exq_120a_arc018_viability_map_pair_20260723T120339Z_v3",
+            "v3_exq_266b_q020_valence_geometry_pair_20260723T185013Z_v3",
+            "v3_exq_708b_mech440_precommit_distribution_shape_falsifier_20260723T215332Z_v3",
+            "v3_exq_798_sdmelproducer_graded_nonconverging_world_20260723T081627Z_v3",
+            "v3_exq_800_arc007_residue_scramble_dissociation_20260724T063057Z_v3",
+            "v3_exq_801_arc018_rollout_depth_ablation_20260723T223210Z_v3",
+            "v3_exq_802_arc005_control_plane_routing_double_dissociation_20260722T212125Z_v3"
+          ],
+          "group_size": 11
+        },
+        "manifests_with_enabled_default_off_flags": 33,
+        "manifests_with_substrate_commit": 208,
+        "manifests_with_substrate_hash": 375,
+        "total_scorable_manifests": 2697
+      },
+      "reason_codes": [
+        "NO_IDENTIFIABLE_ORGANISM",
+        "no (substrate_commit, enabled_default_off_flags) combination recurs across >=2 distinct experiment_type values at size >=3",
+        "substrate_hash recurrence exists (see fingerprint_recurring_best_group) but is code-identity only -- it does not by itself establish that the SAME configuration was tested, only that the SAME code checkout was; per Gate A tier 2 this is informational, not sufficient to satisfy the gate on its own in this detector"
+      ],
+      "satisfied": false,
+      "tier": null
+    },
+    "B": {
+      "reason": "No instrumentation exists in this detector pass for Gate B (canonical-profile candidate substrate -- admission-doctrine criteria per evidence/planning/architecture_epoch_investigation.md section 9 (corpus enablement, cited-evidence-run check, non-degeneracy, known-interaction check)). This is reported as UNMEASURED, not FALSE: absence of evidence is not evidence of absence, and this detector's conservative posture requires that distinction stay visible rather than collapsing to a green or red reading.",
+      "satisfied": false,
+      "status": "unmeasured"
+    },
+    "C": {
+      "caveat": "The flag-bearing subset of the corpus is thin (a small fraction of the scorable manifests carry enabled_default_off_flags at all) and clustered -- a high pairwise coexistence rate among the flags that DO appear reflects a small number of 'many-flags-at-once' runs, not a broad, repeated demonstration that the listed mechanisms jointly produce non-degenerate behaviour across many independent trials. Read counts, not ratios.",
+      "contributes_to_state": "informational -- see resolve_state()'s docstring for why Gate C does not independently gate the state machine in this v1",
+      "diagnostics": {
+        "distinct_flags_observed": 99,
+        "flags_observed_only_alone_never_paired": [],
+        "manifests_with_any_flag": 33,
+        "manifests_with_multi_flag_combination": 33,
+        "pairs_never_combined_among_observed": 1922,
+        "pairs_observed_at_least_once": 2929,
+        "top_coexisting_pairs": [
+          {
+            "a": "e3.goal_weight",
+            "b": "heartbeat.breath_period",
+            "count": 33
+          },
+          {
+            "a": "e3.goal_weight",
+            "b": "goal.z_goal_enabled",
+            "count": 23
+          },
+          {
+            "a": "goal.z_goal_enabled",
+            "b": "heartbeat.breath_period",
+            "count": 23
+          },
+          {
+            "a": "e3.goal_weight",
+            "b": "latent.use_affective_harm_stream",
+            "count": 22
+          },
+          {
+            "a": "e3.goal_weight",
+            "b": "latent.use_harm_stream",
+            "count": 22
+          },
+          {
+            "a": "heartbeat.breath_period",
+            "b": "latent.use_affective_harm_stream",
+            "count": 22
+          },
+          {
+            "a": "heartbeat.breath_period",
+            "b": "latent.use_harm_stream",
+            "count": 22
+          },
+          {
+            "a": "latent.use_affective_harm_stream",
+            "b": "latent.use_harm_stream",
+            "count": 22
+          },
+          {
+            "a": "e2.e2_action_contrastive_enabled",
+            "b": "e2.e2_rollout_output_norm_clamp_enabled",
+            "count": 21
+          },
+          {
+            "a": "e2.e2_action_contrastive_enabled",
+            "b": "e3.goal_weight",
+            "count": 21
+          },
+          {
+            "a": "e2.e2_action_contrastive_enabled",
+            "b": "goal.z_goal_enabled",
+            "count": 21
+          },
+          {
+            "a": "e2.e2_action_contrastive_enabled",
+            "b": "heartbeat.breath_period",
+            "count": 21
+          },
+          {
+            "a": "e2.e2_rollout_output_norm_clamp_enabled",
+            "b": "e3.goal_weight",
+            "count": 21
+          },
+          {
+            "a": "e2.e2_rollout_output_norm_clamp_enabled",
+            "b": "goal.z_goal_enabled",
+            "count": 21
+          },
+          {
+            "a": "e2.e2_rollout_output_norm_clamp_enabled",
+            "b": "heartbeat.breath_period",
+            "count": 21
+          }
+        ],
+        "top_flags_by_corpus_appearance": [
+          {
+            "count": 33,
+            "flag": "e3.goal_weight"
+          },
+          {
+            "count": 33,
+            "flag": "heartbeat.breath_period"
+          },
+          {
+            "count": 23,
+            "flag": "goal.z_goal_enabled"
+          },
+          {
+            "count": 22,
+            "flag": "latent.use_affective_harm_stream"
+          },
+          {
+            "count": 22,
+            "flag": "latent.use_harm_stream"
+          },
+          {
+            "count": 21,
+            "flag": "e2.e2_action_contrastive_enabled"
+          },
+          {
+            "count": 21,
+            "flag": "e2.e2_rollout_output_norm_clamp_enabled"
+          },
+          {
+            "count": 21,
+            "flag": "e3.benefit_eval_enabled"
+          },
+          {
+            "count": 21,
+            "flag": "latent.harm_history_len"
+          },
+          {
+            "count": 20,
+            "flag": "latent.use_resource_proximity_head"
+          },
+          {
+            "count": 19,
+            "flag": "surprise_gated_replay"
+          },
+          {
+            "count": 19,
+            "flag": "sws_enabled"
+          },
+          {
+            "count": 19,
+            "flag": "use_sleep_loop"
+          },
+          {
+            "count": 18,
+            "flag": "rem_enabled"
+          },
+          {
+            "count": 14,
+            "flag": "use_blocked_agency"
+          },
+          {
+            "count": 13,
+            "flag": "crf_availability_maintenance"
+          },
+          {
+            "count": 13,
+            "flag": "crf_maintenance_couple_to_theta"
+          },
+          {
+            "count": 13,
+            "flag": "crf_mature_pool_dynamics"
+          },
+          {
+            "count": 13,
+            "flag": "crf_persist_rules_across_episode_reset"
+          },
+          {
+            "count": 13,
+            "flag": "lateral_pfc_train_rule_bias_head"
+          }
+        ],
+        "total_possible_pairs_among_observed_flags": 4851
+      },
+      "status": "computed"
+    },
+    "D": {
+      "reason": "No instrumentation exists in this detector pass for Gate D (whole-organism non-degeneracy -- moves, observation variance, action collapse, candidate generation, no NaN dominance; couples to the GOV-CAPCONTRACT-1 capability/plasticity contract). This is reported as UNMEASURED, not FALSE: absence of evidence is not evidence of absence, and this detector's conservative posture requires that distinction stay visible rather than collapsing to a green or red reading.",
+      "satisfied": false,
+      "status": "unmeasured"
+    },
+    "E": {
+      "reason": "No instrumentation exists in this detector pass for Gate E (behavioural evidence -- Behavioural Evidence Ladder rung attributable to a single identifiable organism). This is reported as UNMEASURED, not FALSE: absence of evidence is not evidence of absence, and this detector's conservative posture requires that distinction stay visible rather than collapsing to a green or red reading.",
+      "satisfied": false,
+      "status": "unmeasured"
+    },
+    "F": {
+      "reason": "No instrumentation exists in this detector pass for Gate F (reproducibility -- same frozen configuration (or same developmental recipe/constitution) across multiple seeds/runs/machines). This is reported as UNMEASURED, not FALSE: absence of evidence is not evidence of absence, and this detector's conservative posture requires that distinction stay visible rather than collapsing to a green or red reading.",
+      "satisfied": false,
+      "status": "unmeasured"
+    }
+  },
+  "generated_at_utc": "2026-09-01T04:57:20Z",
+  "reasons": [
+    "Gate A: NO_IDENTIFIABLE_ORGANISM; no (substrate_commit, enabled_default_off_flags) combination recurs across >=2 distinct experiment_type values at size >=3; substrate_hash recurrence exists (see fingerprint_recurring_best_group) but is code-identity only -- it does not by itself establish that the SAME configuration was tested, only that the SAME code checkout was; per Gate A tier 2 this is informational, not sufficient to satisfy the gate on its own in this detector",
+    "Gate B: unmeasured (No instrumentation exists in this detector pass for Gate B (canonical-profile candidate substrate -- admission-doctrine criteria per evidence/planning/architecture_epoch_investigation.md section 9 (corpus enablement, cited-evidence-run check, non-degeneracy, known-interaction check)). This is reported as UNMEASURED, not FALSE: absence of evidence is not evidence of absence, and this detector's conservative posture requires that distinction stay visible rather than collapsing to a green or red reading.)",
+    "Gate D: unmeasured (No instrumentation exists in this detector pass for Gate D (whole-organism non-degeneracy -- moves, observation variance, action collapse, candidate generation, no NaN dominance; couples to the GOV-CAPCONTRACT-1 capability/plasticity contract). This is reported as UNMEASURED, not FALSE: absence of evidence is not evidence of absence, and this detector's conservative posture requires that distinction stay visible rather than collapsing to a green or red reading.)",
+    "Gate E: unmeasured (No instrumentation exists in this detector pass for Gate E (behavioural evidence -- Behavioural Evidence Ladder rung attributable to a single identifiable organism). This is reported as UNMEASURED, not FALSE: absence of evidence is not evidence of absence, and this detector's conservative posture requires that distinction stay visible rather than collapsing to a green or red reading.)",
+    "Gate F: unmeasured (No instrumentation exists in this detector pass for Gate F (reproducibility -- same frozen configuration (or same developmental recipe/constitution) across multiple seeds/runs/machines). This is reported as UNMEASURED, not FALSE: absence of evidence is not evidence of absence, and this detector's conservative posture requires that distinction stay visible rather than collapsing to a green or red reading.)"
+  ],
+  "schema": "canonical_readiness/v1",
+  "state": "NO_WARRANT",
+  "transition_since_prior": {
+    "escalate": true,
+    "has_prior": false,
+    "predicate_transitions": {
+      "gate_a_satisfied": "initial",
+      "gate_b_status": "initial",
+      "gate_d_status": "initial",
+      "gate_e_status": "initial",
+      "gate_f_status": "initial",
+      "state": "initial"
+    },
+    "state_transition": "initial"
+  }
+}
