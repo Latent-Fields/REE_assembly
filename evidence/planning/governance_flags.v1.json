@@ -1524,9 +1524,9 @@
       "summary": "GOV-V4CUT-1 cut audit (v4_prerequisite_cut_20260901.md, F6): v4_spec's V3 full-completion gate ('MECH-163 validated') is unsatisfiable as written -- MECH-163 narrowed 2026-07-22, leg 1 weakened by V3-EXQ-786b, legs 2/3 split to MECH-478/479, and MECH-479 structurally requires V4-1 to test. Proposed re-derivation: V3-side planning gate = MECH-477 arbitration (SUPPORTED, V3-EXQ-811a) + MECH-478 long-horizon leg; MECH-479 moves to V4-phase validation.",
       "raised_by_session": "c2-v4cut-20260901",
       "raised_at": "2026-09-01T04:59:48Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T08:07:32Z",
+      "resolution_note": "APPLIED by governance cycle gov-cycle-20260901 (2026-09-01), with one deliberate departure from the proposal. The unsatisfiable 'MECH-163 validated' V3 full-completion gate was re-derived in docs/architecture/v4_spec.md at BOTH sites it appeared (the gate section and the Phase-A proceed bullet) into an explicit three-leg conjunction: (a) MECH-477 dual_system_uncertainty_arbitration, SUPPORTED via V3-EXQ-811a; (b) MECH-478 long_horizon_benefit_requires_model_based_rollout, phase v3 / v3_pending true, OPEN; (c) MECH-479 prosocial_planning_requires_planned_system. DEPARTURE: the audit proposed moving MECH-479 to V4-phase validation; the user REJECTED that and RETAINED it in the V3 gate, on the ground that a V3 completion gate does not shed a leg merely because that leg is hard to test -- the same principle that already governs substrate ceilings (if lifting the ceiling is required for V3 completion the enrichment is V3 work, because the phase label follows the dependency). The residual tension this creates -- MECH-479 still carries implementation_phase v4 and the audit's ground for moving it was a structural V4-1 (others-as-slots) testing precondition -- is recorded verbatim in the v4_spec gate section as a KNOWN TENSION and is tracked forward on its own flag rather than left implicit here. No claims.yaml change was made."
     },
     {
       "flag_id": "GFLAG-0107",
