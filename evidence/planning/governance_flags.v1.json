@@ -1573,6 +1573,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0110",
+      "claim_ids": [
+        "MECH-318",
+        "MECH-312b",
+        "MECH-317"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "HELD RESIDUAL of the MECH-317 partial-absorption disposition applied 2026-09-01 (REE_assembly 970117ca29; memo docs/architecture/mech_317_absorption_check.md; parents GFLAG-0066 and GFLAG-0087, both now resolved -- read 0087's resolution for why this was split out). ONE QUESTION, DELIBERATELY NOT ANSWERED BY THAT PASS: should MECH-318's and MECH-312b's depends_on edges to MECH-317 move to the ARC-071/MECH-323/MECH-324 cluster, or stay? The case for staying, which is why the pass declined to act: verdict (B) was PARTIAL absorption, so MECH-317 SURVIVES (narrowed to the action-stream boundary-readout claim, epistemic_category now substrate_conditional). A surviving claim's inbound edges are not automatically stale, and GFLAG-0087's 'repoint both' recommendation was written against the FULL supersede that was subsequently refused on the evidence tree -- so acting on it now would be applying a remedy for a disposition that did not happen. The case for moving: what MECH-318 and MECH-312b actually consume from MECH-317 is the COMPRESSION MECHANISM (MECH-318 abstracts the rule state under which the compressed options are deployed; MECH-312b weights arbitration by practice maturity over them), and that mechanism has moved -- it now lives in ARC-071/MECH-323/MECH-324. Post-narrowing, MECH-317 carries only the DV. So both consumers may now be pointing at a claim that no longer asserts the thing they depend on. VERIFIED FACTS EITHER WAY: no ARC-071-family claim mentions rule-state abstraction or practice-maturity weighting anywhere in its record, so a naive repoint would create edges into claims that assert neither; and MECH-312b is absent from GFLAG-0066's and GFLAG-0087's claim_ids entirely, so any disposition applied from those flags' claim lists alone would have orphaned it silently -- it is named here so that cannot recur. A third option exists and may be the right one: SPLIT the edge, pointing the mechanism dependency at the ARC-071 cluster while retaining a DV dependency on MECH-317 where the consumer genuinely needs the boundary readout. Decidable at a desk from the three consumers' own text; needs no run.",
+      "raised_by_session": "mech317-apply-20260901",
+      "raised_at": "2026-09-01T13:23:13Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
