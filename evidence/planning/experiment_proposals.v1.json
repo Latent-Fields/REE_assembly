@@ -16949,6 +16949,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1358",
+      "blocked_note": "INV-077's own claims.yaml entry (claim_type: invariant, invariant_type: universal, epistemic_category: substrate_coherence) states verbatim in its what_would_answer: 'This is a live-repository AUDIT of enforcement mechanisms, not a V3 experiment' and 'No EXP-#### should be minted -- this is a process/code audit, not a V3 cognitive-substrate experiment.' INV-077 is a GOVERNANCE / meta-development invariant over the REE_assembly development loop (it audits the write paths into claims.yaml), not a V3 cognitive-substrate mechanism, so no ree-v3 run can bear on it. The audit it does call for was already performed and returned CONFIRMING -- see the same what_would_answer, 'CONFIRMED CURRENT STATE (2026-08-07 digestion pass): traced and CONFIRMING' -- so there is also no uncertainty left for this proposal's 'targeted probe' to reduce (GOV-REUSE-1: the decisive readout is already recorded). Re-run that audit by tracing sync_daemon.py _PER_WRITER_GUARD_PATHS, governance.sh Step 4, and Check G against the live tree -- not by queueing an EXQ. Skipped rather than queued or blocked_substrate (queue-experiment Step 2.5 is for a substrate-readiness gap on a buildable/probe-gated node; this is a claim-testability guardrail and no substrate build is owed). NOTE RE SIBLING LIT-0750 (same backlog EVB-1358): this disposition applies ONLY to the EXP proposal. The literature_review proposal is NOT skipped and remains legitimately proposed -- INV-077 carries why_now missing_literature_evidence and was itself reaped from arXiv:2606.04455. If this note ever appears ON LIT-0750, that is the build_experiment_indexes.py carry-forward spill (_proposal_identity_keys keys on backlog_id first, so a resolved status on one proposal of a two-proposal backlog is copied onto its sibling), not a real disposition. 2026-09-01, session metaworker-chip-proposal-exp-0749.",
       "claim_id": "INV-077",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -16971,7 +16972,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "skipped",
       "suggested_experiment_type": "claim_probe_inv_077",
       "target_repo": "ree-v3",
       "why_now": [
@@ -19765,14 +19766,20 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_031",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-010",
+        "ARC-006",
+        "MECH-036"
+      ],
+      "blocked_note": "MECH-031 (derived AGENCY / OTHER_SELFLIKE social tags + empathy coupling) has no V3 substrate to exercise, at three independent levels, so no non-vacuous experiment is constructible. (1) ENVIRONMENT: CausalGridWorld is single-agent -- ENTITY_TYPES = {empty,wall,resource,hazard,contaminated,agent,waypoint} (NUM_ENTITY_TYPES=7), where 'agent' marks the LEARNER'S OWN cell (causal_grid_world.py:156). There is no other-agent entity type and no constructor parameter to place one, so the claim's confirming signature -- discriminate interveners from passive dynamics -- has no target to tag. hazard_agent_pursuit is a scripted pursuing hazard (MECH-357 pressure fallback), not a self/world-separating other. (2) TAG DERIVATION: ree_core/ has 0 hits for other_selflike / selflike / intervener / multi_agent. The existing AGENCY machinery (SD-029 comparator, MECH-095 TPJ, MECH-353 BlockedAgency) is SELF-agency attribution, not agency attributed to another entity. ree_core/entities/object_file_buffer.py supplies object persistence with SD-049 resource type hints only -- no agentive/animate tag. (3) EMPATHY COUPLING: 0 config knobs for lambda_empathy / v_other_veto, so MECH-036's other-harm veto threshold cannot be scaled by OTHER_SELFLIKE probability. The claim's own NON-DEGENERACY PRECONDITION (derived tags must show non-zero cross-condition variance) is unsatisfiable when the tags do not exist. Multi-agent social work is scoped V5 in-substrate (ree_core/utils/config.py:9648). No substrate_queue.json entry and no SD id covers this gap, so blocked_by names the architectural anchors rather than an SD. Work-graph: complicated (buildable) -- a named build with no open question -- so the route is /implement-substrate (mint a substrate_queue entry first), NOT another experiment. Verified 2026-09-01: 0 experiments and 0 manifests have ever referenced MECH-031."
     },
     {
       "acceptance_checks": [
