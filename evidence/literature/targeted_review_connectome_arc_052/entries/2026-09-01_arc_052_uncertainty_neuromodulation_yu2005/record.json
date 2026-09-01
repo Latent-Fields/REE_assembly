@@ -1,0 +1,54 @@
+{
+  "claim_ids_tested": [
+    "ARC-052"
+  ],
+  "source": {
+    "title": "Uncertainty, neuromodulation, and attention",
+    "authors": [
+      "Angela J. Yu",
+      "Peter Dayan"
+    ],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.026",
+    "pmid": "15944135",
+    "pmc": null,
+    "volume": "46",
+    "issue": "4",
+    "pages": "681-692"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "The foundational formalisation of neuromodulator-carried uncertainty signals that set inferential gains, and the direct ancestor of the framework ARC-052's notes invoke. It is theory synthesising others' physiological, pharmacological and behavioural data rather than new measurement, so source_quality is capped below an empirical paper of equal standing. Mapping fidelity is good for the architectural shape (modulator-set precision gains) but imperfect on the specific modulators: the paper assigns the roles to acetylcholine and norepinephrine, while ARC-052 names serotonin and norepinephrine.",
+  "failure_signatures": [
+    "The two uncertainty signals are described as 'part-antagonistic, part-synergistic', so a naive implementation that multiplies independent modulator gains onto a single precision term will mis-model their interaction.",
+    "The framework distinguishes EXPECTED uncertainty (known unreliability of a cue within a context) from UNEXPECTED uncertainty (a context switch). ARC-052's two precision clauses map onto these differently -- forward-model accuracy is expected uncertainty, accumulation volatility is closer to unexpected uncertainty -- so a single shared precision-gain pathway for both harm streams would conflate two quantities this literature says are separately represented.",
+    "ARC-052 names serotonin as a precision-gain modulator; this framework does not assign serotonin a role, and the pull found no paper that grounds the serotonergic half of the claim."
+  ],
+  "tags": [
+    "arc-052",
+    "neuromodulation",
+    "precision",
+    "acetylcholine",
+    "norepinephrine",
+    "bayesian"
+  ],
+  "mapping": {
+    "source_claim_statement": "Optimal Bayesian inference under unreliable observations in changing contexts requires representing distinct forms of uncertainty; acetylcholine signals expected uncertainty (known unreliability of predictive cues within a context) and norepinephrine signals unexpected uncertainty (unsignalled context switches producing strongly unexpected observations), and these interact to set how strongly observations update beliefs.",
+    "ree_translation": "ARC-052's neuromodulatory clause -- that ascending modulators set the precision GAINS rather than the precisions being intrinsic to each encoder. Yu and Dayan supply the computational justification for why a gain channel separate from the encoder is the right factorisation: the quantity a modulator carries is a property of the context, shared across streams, and cannot be recovered from within a single stream's own statistics. Their expected/unexpected split also gives REE a principled reason to route ARC-052's two clauses through different signals rather than one.",
+    "mapping_caveat": "This is theory, not measurement: it proposes an assignment consistent with a wealth of existing data rather than testing it. The modulators are ACh and NE; ARC-052 says 5-HT and NE, so only the norepinephrine half is shared, and the pull found nothing grounding the serotonergic half. The framework is also about perceptual/attentional inference in cued tasks, not about an affective harm accumulator, so applying it to z_harm_a is an extension of scope the paper does not make.",
+    "source_context": "Computational theory paper synthesising rodent and human physiological, pharmacological and behavioural literature; attentional cueing tasks as the worked example."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.25,
+    "notes": "Source quality reflects a canonical, heavily cited theory paper -- high for what it is, capped because it contributes no new measurement. Transfer risk is low because the claim being borrowed is architectural (where gains live) rather than a quantitative effect."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_052",
+  "entry_id": "2026-09-01_arc_052_uncertainty_neuromodulation_yu2005",
+  "timestamp_utc": "2026-09-01T21:49:08Z",
+  "summary_path": "summary.md"
+}

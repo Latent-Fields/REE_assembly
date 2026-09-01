@@ -1,0 +1,52 @@
+{
+  "claim_ids_tested": [
+    "ARC-052"
+  ],
+  "source": {
+    "title": "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?",
+    "authors": [
+      "Alex Kendall",
+      "Yarin Gal"
+    ],
+    "year": 2017,
+    "venue": "Advances in Neural Information Processing Systems (NIPS 2017)",
+    "doi": null,
+    "arxiv_id": "1703.04977",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/1703.04977"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Direct engineering evidence that the exact mechanism ARC-052's notes specify -- an encoder emitting (mu, log_sigma) with downstream terms weighted by exp(-log_sigma) -- trains stably and improves performance on real tasks. That is genuine support for feasibility. It is recorded as MIXED rather than supports because the same paper establishes that a likelihood-trained variance head captures ALEATORIC uncertainty, which by construction does not shrink as the model improves; ARC-052 clause (1) asks precision to RISE with forward model accuracy, which is epistemic. Taken at face value the proposed implementation does not compute the quantity the claim requires.",
+  "failure_signatures": [
+    "A network free to predict its own variance can reduce its loss by inflating sigma on difficult inputs instead of improving its mean prediction -- the paper names this 'learned loss attenuation' and presents it as a robustness feature, but for ARC-052 it is a route by which a harm encoder learns to mark the most informative threat inputs as low-precision and so removes them from E3's influence.",
+    "Aleatoric uncertainty learned from a regression likelihood does not decrease with more data or a better model; epistemic uncertainty does. ARC-052 clause (1) ties z_harm_s precision to FORWARD MODEL ACCURACY, an epistemic quantity, so a single log_sigma head trained by NLL cannot implement clause (1) as written.",
+    "In this framework the variance head is trained against a supervised target. z_harm_s and z_harm_a have no ground-truth latent to regress against, so the NLL objective that makes log_sigma meaningful here has no direct analogue in REE and would have to be attached to a proxy (E2 prediction error), changing what the learned sigma means."
+  ],
+  "tags": [
+    "arc-052",
+    "aleatoric",
+    "epistemic",
+    "log-sigma",
+    "loss-attenuation",
+    "implementation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Aleatoric uncertainty captures noise inherent in observations and epistemic uncertainty captures uncertainty in the model that can be explained away given enough data; adding a variance output alongside the mean and training under a heteroscedastic Gaussian likelihood yields a loss interpretable as learned attenuation, which is more robust to noisy data and improved state-of-the-art results on semantic segmentation and depth regression.",
+    "ree_translation": "ARC-052's stated implementation route -- HarmEncoder and AffectiveHarmEncoder each output (z, log_sigma), with E3 weighting inputs by exp(-log_sigma) -- is the heteroscedastic head plus attenuated loss from this paper, transplanted into REE. The paper is therefore the feasibility evidence for the mechanism and, more importantly, the source of the distinction the claim currently elides: the log_sigma head gives aleatoric uncertainty, whereas clause (1)'s 'precision increases with forward model accuracy' is a statement about epistemic uncertainty and needs a separate estimator (sampling/ensembling, or the PE-dispersion route of Lee et al. 2014).",
+    "mapping_caveat": "Supervised computer vision with dense ground-truth targets, not reinforcement learning over latent affective streams. The benchmark gains say the head trains stably and helps on those tasks; they say nothing about whether a precision-weighted z_harm improves attribution or commit gating in REE. The aleatoric/epistemic distinction, by contrast, is a property of the estimator and transfers cleanly -- that is the part of this entry carrying the weight.",
+    "source_context": "Deep learning for computer vision; per-pixel semantic segmentation and monocular depth regression benchmarks."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (NIPS 2017, benchmark-verified, very heavily cited and widely reproduced). The value of this entry is less the empirical result than the conceptual distinction it forces on ARC-052's implementation note, which is why direction is mixed rather than supports."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_052",
+  "entry_id": "2026-09-01_arc_052_learned_variance_attenuation_kendall2017",
+  "timestamp_utc": "2026-09-01T21:49:08Z",
+  "summary_path": "summary.md"
+}

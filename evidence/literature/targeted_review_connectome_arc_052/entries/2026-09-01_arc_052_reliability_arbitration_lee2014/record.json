@@ -1,0 +1,55 @@
+{
+  "claim_ids_tested": [
+    "ARC-052"
+  ],
+  "source": {
+    "title": "Neural computations underlying arbitration between model-based and model-free learning",
+    "authors": [
+      "Sang Wan Lee",
+      "Shinsuke Shimojo",
+      "John P. O'Doherty"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.028",
+    "pmid": "24507199",
+    "pmc": "PMC3968946",
+    "volume": "81",
+    "issue": "3",
+    "pages": "687-699"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Structurally the closest analogue in the pull to what ARC-052 actually proposes: two parallel streams, each carrying an online estimate of its own reliability derived from the dispersion of its prediction errors, with the relative reliability setting how much each stream influences downstream control -- and a neural implementation via modulated connectivity rather than a summed signal. Mapping fidelity is high on architecture. Discounted for domain (instrumental reward learning, not harm) and because arbitration here is between two CONTROL SYSTEMS, whereas ARC-052 weights two LATENT STREAMS feeding one controller.",
+  "failure_signatures": [
+    "Reliability was estimated from the dispersion of each system's prediction errors, which means a stream that is confidently WRONG in a stable way registers as reliable; a precision head trained the same way inherits this, and for z_harm_s a systematically biased but low-variance forward model would be granted high influence over attribution.",
+    "The arbitrator acted by modulating CONNECTIVITY to the model-free valuation system rather than by rescaling a signal at the point of combination, so 'weight by exp(-log_sigma) at the E3 input' is one of at least two implementations and not the one this paper supports.",
+    "Arbitration was asymmetric -- the mechanism worked by suppressing model-free control when model-based reliability was high, not by symmetric precision-weighting of two peers, which is the shape ARC-052 currently assumes."
+  ],
+  "tags": [
+    "arc-052",
+    "reliability",
+    "arbitration",
+    "prediction-error",
+    "prefrontal",
+    "precision-weighting"
+  ],
+  "mapping": {
+    "source_claim_statement": "An arbitration mechanism allocates control over behaviour between model-based and model-free systems as a function of the reliability of their respective predictions, where reliability is estimated online from the distribution of each system's prediction errors (state prediction error for the model-based system, reward prediction error for the model-free system) via an inverse-dispersion measure; inferior lateral prefrontal and frontopolar cortex encode both the reliability signals and their comparison, and connectivity between these regions and model-free valuation areas is negatively modulated by the degree of model-based control.",
+    "ree_translation": "ARC-052's core architectural proposition, instantiated in a different domain: parallel streams each emit a reliability estimate alongside their content, and downstream influence is set by relative reliability. It also supplies a concrete answer to clause (1) -- how z_harm_s precision could rise with forward model accuracy. Lee et al. derive model-based reliability from the dispersion of the STATE prediction error, which is exactly the quantity E2_harm_s produces: when E2_harm_s predictions are good and stable, the derived precision is high. This is a working recipe, not just an existence proof.",
+    "mapping_caveat": "The domain is instrumental reward learning in a sequential decision task, not harm. The two things being weighted are two whole control systems computing the same quantity by different routes, whereas ARC-052 weights two latent streams that encode DIFFERENT content (sensory-discriminative vs affective-motivational, SD-011) and feed a single controller -- so 'relative reliability' has a cleaner interpretation there than here. The arbitration was also asymmetric and implemented as connectivity gating rather than signal rescaling, so the paper supports the principle more strongly than it supports ARC-052's proposed exp(-log_sigma) input weighting.",
+    "source_context": "Healthy adult humans, fMRI, two-stage Markov decision task with manipulated state-transition uncertainty and outcome uncertainty."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.4,
+    "notes": "Highest mapping fidelity on ARCHITECTURE in this pull; the transfer risk term carries the domain gap (reward, control-system arbitration) rather than any methodological concern."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_052",
+  "entry_id": "2026-09-01_arc_052_reliability_arbitration_lee2014",
+  "timestamp_utc": "2026-09-01T21:49:08Z",
+  "summary_path": "summary.md"
+}

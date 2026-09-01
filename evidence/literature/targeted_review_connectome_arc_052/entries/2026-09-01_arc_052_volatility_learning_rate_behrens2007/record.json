@@ -1,0 +1,54 @@
+{
+  "claim_ids_tested": [
+    "ARC-052"
+  ],
+  "source": {
+    "title": "Learning the value of information in an uncertain world",
+    "authors": [
+      "Timothy E. J. Behrens",
+      "Mark W. Woolrich",
+      "Mark E. Walton",
+      "Matthew F. S. Rushworth"
+    ],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1954",
+    "pmid": "17676057",
+    "pmc": null,
+    "volume": "10",
+    "issue": "9",
+    "pages": "1214-1221"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Canonical, heavily replicated demonstration that the weight placed on an accumulated estimate is set by inferred environmental volatility, with a neural correlate (ACC) that predicts the per-subject learning rate. Source quality is very high. Confidence is held below 0.8 because the domain is reward, not harm, and because the paper establishes a volatility-dependent LEARNING RATE rather than a precision term read out by a downstream consumer -- ARC-052's structural commitment (a precision scalar emitted alongside the latent, consumed by E3) is one inferential step beyond what was measured.",
+  "failure_signatures": [
+    "The volatility-to-learning-rate relation was estimated at the level of a scalar value estimate; it does not establish that a high-dimensional latent (z_harm_a) admits a single well-behaved precision scalar rather than needing a per-dimension one.",
+    "Subjects tracked volatility near-optimally only after substantial task exposure; a volatility estimator wired into z_harm_a precision inherits a warm-up period during which its own estimate is unreliable, and nothing in this paper says what a system should do with the accumulator meanwhile."
+  ],
+  "tags": [
+    "arc-052",
+    "volatility",
+    "precision",
+    "learning-rate",
+    "anterior-cingulate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human subjects assess the volatility of an environment in an approximately Bayes-optimal manner and adjust how strongly each new outcome updates their estimate accordingly; activity in anterior cingulate cortex during outcome observation reflects the salience of that outcome for predicting the future, and variation in the ACC signal predicts variation in subjects' learning rates.",
+    "ree_translation": "ARC-052 clause (2) -- z_harm_a precision increases with accumulation stability, and high volatility reduces confidence in the accumulated threat state. Behrens et al. give the biological form of exactly this dependency, in its dual: under high volatility the accumulated history is down-weighted relative to the current observation. A precision scalar on z_harm_a that falls with estimated volatility is the same quantity expressed on the consumer side rather than the update side, and the ACC result supplies a candidate substrate for where the volatility estimate itself would live.",
+    "mapping_caveat": "The paper is about appetitive/reward value in a two-armed bandit, not about a harm or threat stream, and it manipulates volatility of an outcome PROBABILITY, not the stability of an accumulated homeostatic deviation. Learning rate and precision are formally related but not identical: a learning rate governs how the estimate is updated, whereas ARC-052 asks for a precision that governs how much a DOWNSTREAM consumer (E3) trusts the estimate. A system could implement volatility-sensitive learning without ever exposing a precision signal, which is the specific architectural commitment ARC-052 makes.",
+    "source_context": "Healthy adult humans, fMRI, probabilistic two-armed bandit with stable and volatile blocks."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Source quality reflects venue, replication history, and the fact that this is the paper the whole volatility-learning-rate literature is built on. Mapping fidelity is the limiting term: reward domain, and update-side rather than consumer-side precision."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_052",
+  "entry_id": "2026-09-01_arc_052_volatility_learning_rate_behrens2007",
+  "timestamp_utc": "2026-09-01T21:49:08Z",
+  "summary_path": "summary.md"
+}

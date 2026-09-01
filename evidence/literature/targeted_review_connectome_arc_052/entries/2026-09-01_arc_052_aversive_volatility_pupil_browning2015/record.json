@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "ARC-052"
+  ],
+  "source": {
+    "title": "Anxious individuals have difficulty learning the causal statistics of aversive environments",
+    "authors": [
+      "Michael Browning",
+      "Timothy E. Behrens",
+      "Gerhard Jocham",
+      "Jill X. O'Reilly",
+      "Sonia J. Bishop"
+    ],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3961",
+    "pmid": "25730669",
+    "pmc": "PMC4644067",
+    "volume": "18",
+    "issue": "4",
+    "pages": "590-596"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the closest thing in the literature to a direct test of ARC-052's clause (2) IN THE AVERSIVE DOMAIN, and it carries a pupillometric index of noradrenergic gain that speaks to the neuromodulatory clause as well. Held at 0.72 rather than higher because n=31 with the key individual-difference correlations at r=-0.42 (p=0.02) and r=-0.51 (p=0.005) is a modest evidential base for the moderation result, and because pupil diameter is an indirect proxy for locus coeruleus activity, which the authors themselves flag.",
+  "failure_signatures": [
+    "Volatility-driven precision adjustment is not a fixed property of the architecture but an individual-difference variable: high trait anxiety was associated with a reduced change in learning rate between stable and volatile blocks (r(28)=-0.42, p=0.02), i.e. a system can have the volatility machinery and still fail to use it.",
+    "The pupil (noradrenergic) response to volatility was itself blunted in high-anxiety individuals (r(26)=-0.51, p=0.005), so a neuromodulatory precision gain can decouple from the volatility signal it is supposed to transmit -- a wiring in which 5-HT/NE multiplicatively scales precision inherits this as a failure mode, not merely as a tuning knob.",
+    "The authors could not establish that the deficit is specific to aversive learning: a reward version showed no anxiety effect, but the task-by-anxiety difference was not itself statistically significant, so harm-specific precision control is suggested rather than shown."
+  ],
+  "tags": [
+    "arc-052",
+    "aversive-learning",
+    "volatility",
+    "pupillometry",
+    "norepinephrine",
+    "trait-anxiety"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a two-armed bandit where choices could deliver electric shock, low-trait-anxious participants raised their learning rate in a volatile block relative to a stable block while high-trait-anxious participants did not; pupil dilation tracked volatility at the group level (F(1,26)=9.8, p=0.004) and the volatility-related pupil response was reduced in high-anxiety individuals, which the authors interpret as possibly reflecting altered noradrenergic responsivity.",
+    "ree_translation": "Direct support for ARC-052 clause (2) in the harm domain specifically: the weight given to an accumulated aversive estimate is modulated by inferred volatility of the threat environment. The pupillometry additionally supports the neuromodulatory half of the claim -- that precision GAINS are set by an ascending modulator rather than being intrinsic to the encoder -- and identifies norepinephrine as the modulator carrying the volatility term. In REE terms: z_harm_a precision falls under threat volatility, and the fall is implemented by a gain signal external to the harm encoder, which is what ARC-052 proposes to wire in V4 via the neuromodulatory modules.",
+    "mapping_caveat": "The manipulated quantity is the volatility of shock PROBABILITY given a cue, not the stability of an accumulated homeostatic deviation; SD-011's z_harm_a is the latter. The noradrenergic interpretation rests on pupil diameter as an LC proxy, which the authors explicitly say they cannot confirm without pharmacological manipulation. Trait anxiety is a between-subject moderator, so the causal direction (blunted NE gain causes poor volatility adaptation, or vice versa, or a common cause) is not identified. Finally, this study speaks only to z_harm_a; it says nothing about clause (1), the forward-model-accuracy dependence of z_harm_s precision.",
+    "source_context": "31 healthy adults (22 female, 18-40, mean 23.7) screened across the trait-anxiety range; two 90-trial blocks (stable 75/25, volatile reversing every 20 trials at 80/20); trial-varying shock magnitude; concurrent pupillometry."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.3,
+    "notes": "Mapping fidelity is the highest in this pull because the domain is aversive and the neuromodulatory index is measured rather than assumed. Source quality is discounted for n=31 and for individual-difference correlations in the r=0.4-0.5 range, which is the effect-size band where replication is not guaranteed."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_052",
+  "entry_id": "2026-09-01_arc_052_aversive_volatility_pupil_browning2015",
+  "timestamp_utc": "2026-09-01T21:49:08Z",
+  "summary_path": "summary.md"
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-01T20:52:44.082111Z`
+Generated: `2026-09-01T21:54:51.373481Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -64,6 +64,7 @@ Generated: `2026-09-01T20:52:44.082111Z`
 | `targeted_review_connectome_arc_028` | [`2026-04-24_arc_028_theta_replay_codevelopment_muessig2019`](targeted_review_connectome_arc_028/entries/2026-04-24_arc_028_theta_replay_codevelopment_muessig2019/record.json) | 7 | [`summary`](targeted_review_connectome_arc_028/entries/2026-04-24_arc_028_theta_replay_codevelopment_muessig2019/summary.md) |
 | `targeted_review_connectome_arc_030` | [`2026-04-10_arc_030_go_nogo_reinforcement_kravitz2012`](targeted_review_connectome_arc_030/entries/2026-04-10_arc_030_go_nogo_reinforcement_kravitz2012/record.json) | 4 | [`summary`](targeted_review_connectome_arc_030/entries/2026-04-10_arc_030_go_nogo_reinforcement_kravitz2012/summary.md) |
 | `targeted_review_connectome_arc_036` | [`2026-03-29_arc_036_wanting_liking_dissociation_berridge1998`](targeted_review_connectome_arc_036/entries/2026-03-29_arc_036_wanting_liking_dissociation_berridge1998/record.json) | 4 | [`summary`](targeted_review_connectome_arc_036/entries/2026-03-29_arc_036_wanting_liking_dissociation_berridge1998/summary.md) |
+| `targeted_review_connectome_arc_052` | [`2026-09-01_arc_052_volatility_learning_rate_behrens2007`](targeted_review_connectome_arc_052/entries/2026-09-01_arc_052_volatility_learning_rate_behrens2007/record.json) | 5 | [`summary`](targeted_review_connectome_arc_052/entries/2026-09-01_arc_052_volatility_learning_rate_behrens2007/summary.md) |
 | `targeted_review_connectome_arc_108` | [`2026-07-02_arc_108_learned_disinhibitory_gating_aquino2026`](targeted_review_connectome_arc_108/entries/2026-07-02_arc_108_learned_disinhibitory_gating_aquino2026/record.json) | 4 | [`summary`](targeted_review_connectome_arc_108/entries/2026-07-02_arc_108_learned_disinhibitory_gating_aquino2026/summary.md) |
 | `targeted_review_connectome_arc_110` | [`2026-06-29_arc_110_parallel_loops_alexander1986`](targeted_review_connectome_arc_110/entries/2026-06-29_arc_110_parallel_loops_alexander1986/record.json) | 2 | [`summary`](targeted_review_connectome_arc_110/entries/2026-06-29_arc_110_parallel_loops_alexander1986/summary.md) |
 | `targeted_review_connectome_mech_022` | [`2026-04-02_mech_092_awake_remote_replay_karlsson2009`](targeted_review_connectome_mech_022/entries/2026-04-02_mech_092_awake_remote_replay_karlsson2009/record.json) | 4 | [`summary`](targeted_review_connectome_mech_022/entries/2026-04-02_mech_092_awake_remote_replay_karlsson2009/summary.md) |
