@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-01T05:04:49.777374Z`
+Generated: `2026-09-01T20:52:44.082111Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -12,6 +12,7 @@ Generated: `2026-09-01T05:04:49.777374Z`
 | `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
 | `targeted_review_arc_005` | [`2026-08-07_arc_005_uncertainty_neuromodulation_yu2005`](targeted_review_arc_005/entries/2026-08-07_arc_005_uncertainty_neuromodulation_yu2005/record.json) | 4 | [`summary`](targeted_review_arc_005/entries/2026-08-07_arc_005_uncertainty_neuromodulation_yu2005/summary.md) |
 | `targeted_review_arc_014` | [`2026-04-05_arc014_rangel_camerer_montague_2008`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/record.json) | 3 | [`summary`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/summary.md) |
+| `targeted_review_arc_019` | [`2026-09-01_arc_019_starting_small_refutation_rohde1999`](targeted_review_arc_019/entries/2026-09-01_arc_019_starting_small_refutation_rohde1999/record.json) | 5 | [`summary`](targeted_review_arc_019/entries/2026-09-01_arc_019_starting_small_refutation_rohde1999/summary.md) |
 | `targeted_review_arc_022` | [`2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/record.json) | 6 | [`summary`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/summary.md) |
 | `targeted_review_arc_024` | [`2026-03-28_arc_024_threat_proximity_gradient_mobbs2007`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/record.json) | 3 | [`summary`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/summary.md) |
 | `targeted_review_arc_025` | [`2026-03-29_arc_025_hierarchical_active_inference_pezzulo2018`](targeted_review_arc_025/entries/2026-03-29_arc_025_hierarchical_active_inference_pezzulo2018/record.json) | 2 | [`summary`](targeted_review_arc_025/entries/2026-03-29_arc_025_hierarchical_active_inference_pezzulo2018/summary.md) |
