@@ -783,9 +783,9 @@
       "summary": "closure_plan node arc_062_rule_apprehension:GAP-B carries a blocker note stale by two runs: it reads 'V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3)', but 654h ran on 2026-06-21 (manifest v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3) and a further 654i ran on 2026-06-22 (\u2026_20260622T014706Z_v3). GAP-B remains genuinely blocked -- it closes only on a PASS C2 entropy lift, which needs the MECH-439 F-dominance rebalance -- so this is a note-accuracy correction, NOT a signal that GAP-B is now actionable. Worth fixing because GAP-B is the load-bearing keystone that GAP-I, GAP-J and behavioral_diversity_isolation:GAP-G all block on, so a reader triaging the closure map is currently told the keystone is waiting on a run that finished two months ago.",
       "raised_by_session": "metaworker-chip-20260823-queue-refill-fresh-design",
       "raised_at": "2026-08-26T12:15:29Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-01T11:56:56Z",
+      "resolution_note": "APPLIED 2026-09-01 (gov-flagtriage-20260901). GFLAG-0053 and GFLAG-0061 are THE SAME FINDING on the same single field -- arc_062_rule_apprehension:GAP-B's resume_condition -- raised a day apart; the stale string occurred exactly once in the file, so one edit discharges both. The lead sentence 'V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g).' now reads that 654h RAN TERMINAL FAIL/non_contributory 2026-06-21T17:57Z, with the original retained explicitly as HISTORY and the live framing pointed at reconcile_2026_07_09 + reconcile_2026_08_27. The node's own last_updated, which the 2026-08-27 reconcile had left at 2026-08-01, was bumped to 2026-09-01. Node status STAYS in-progress: GAP-B closes only on a PASS C2 committed-class-entropy lift, which has not happened. No claims.yaml, queue or manifest change. See also GFLAG-0061, resolved identically."
     },
     {
       "flag_id": "GFLAG-0054",
