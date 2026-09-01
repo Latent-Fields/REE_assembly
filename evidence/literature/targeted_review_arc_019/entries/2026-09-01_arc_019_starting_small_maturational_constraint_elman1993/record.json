@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_019",
+  "entry_id": "2026-09-01_arc_019_starting_small_maturational_constraint_elman1993",
+  "timestamp_utc": "2026-09-01T20:45:32Z",
+  "claim_ids_tested": [
+    "ARC-019"
+  ],
+  "source": {
+    "title": "Learning and development in neural networks: the importance of starting small",
+    "authors": [
+      "Jeffrey L. Elman"
+    ],
+    "year": 1993,
+    "venue": "Cognition",
+    "doi": "10.1016/0010-0277(93)90058-4",
+    "pmid": "8403835",
+    "pmc": null,
+    "volume": "48",
+    "issue": "1",
+    "pages": "71-99"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "Canonical origin of the 'staged development is necessary' position and the closest historical analogue to ARC-019's architectural commitment: a recurrent network trained on the full-complexity corpus from the start failed, while the same network succeeded when either the input or its own working memory was staged. Source quality is held down by its being a single 1993 simulation study on one artificial grammar with no replication reported in-paper, and by the fact that the central result was later directly contradicted (see the Rohde & Plaut 1999 entry in this directory). Mapping fidelity is moderate: Elman staged input complexity and memory span, not phase-advance on explicit competence criteria as ARC-019 specifies, and his comparison was staged-vs-full-from-the-start rather than matched-total-budget staged-vs-ungated. Aggregate weighted toward mapping_fidelity, as ARC-019 is an architectural commitment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The staged advantage in Elman (1993) was obtained under a comparison where the ungated control never traversed the task at all; an equivalent REE result would be indistinguishable from the V3-EXQ-591 substrate-ceiling non-result unless the non-degeneracy precondition is independently verified first.",
+    "Elman's gating variable was capacity/complexity of the input, not a competence criterion; a REE staged arm gated on DEV-NEED-008 criteria could reproduce his benefit purely by limiting effective input dimensionality early, with the explicit gate doing no work."
+  ],
+  "tags": [
+    "arc-019",
+    "curriculum_learning",
+    "starting_small",
+    "developmental_staging",
+    "connectionist"
+  ],
+  "mapping": {
+    "source_claim_statement": "Networks trained on complex language tasks failed when fully formed but succeeded with limited initial capacity that gradually matured, suggesting developmental constraints may be necessary for mastering complex domains.",
+    "ree_translation": "REE's staged developmental curriculum with phase-advance gates (InfantCurriculumScheduler, infant_substrate_expansion.md Section 8) is the same architectural bet: that a learner exposed to the full task from the outset fails to acquire structure that a progressively-scoped learner acquires, so the staging is load-bearing rather than merely organisational.",
+    "mapping_caveat": "Elman's domain is next-word prediction over an artificial grammar in a small recurrent network with no reward, no embodiment and no policy; REE's is a multi-criterion embodied developmental gate. The transfer assumes the mechanism ('limited early capacity shapes what is learnable later') is domain-general, which is exactly what the subsequent literature disputes. Elman also did not equalise total training budget across arms in the way ARC-019's falsifier requires.",
+    "source_context": "Simple recurrent network, artificial English-like grammar with embedded relative clauses, next-word prediction; 1993."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.55,
+    "notes": "Canonical and historically load-bearing, but a single un-replicated simulation whose headline result was contested within six years. Transfer risk elevated because the mechanism is claimed domain-general on the strength of one language-modelling task."
+  }
+}

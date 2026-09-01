@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_019",
+  "entry_id": "2026-09-01_arc_019_progress_gated_automatic_curriculum_matiisen2020",
+  "timestamp_utc": "2026-09-01T20:45:32Z",
+  "claim_ids_tested": [
+    "ARC-019"
+  ],
+  "source": {
+    "title": "Teacher-Student Curriculum Learning",
+    "authors": [
+      "Tambet Matiisen",
+      "Avital Oliver",
+      "Taco Cohen",
+      "John Schulman"
+    ],
+    "year": 2020,
+    "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+    "doi": "10.1109/TNNLS.2019.2934906",
+    "pmid": "31502993",
+    "pmc": null,
+    "volume": "31",
+    "issue": "9",
+    "pages": "3732-3740"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "The closest mechanistic analogue in this pull to what ARC-019 actually commits to: advancement driven by a measured competence signal rather than a fixed schedule. TSCL selects sub-tasks by the slope of the student's learning curve and additionally revisits tasks whose performance is degrading, and matches or surpasses hand-crafted curricula on decimal addition and Minecraft navigation, solving tasks that were otherwise unsolvable. Mapping fidelity is the highest here because the gate is a competence criterion in a sequential RL setting. Confidence is capped by the same non-degeneracy problem ARC-019 itself flags: where the flat baseline cannot solve the task at all, the comparison shows the curriculum is *necessary for traversal*, not that it produces better outcomes at matched budget.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "TSCL's advantage is largest exactly where the ungated baseline fails outright, which is the V3-EXQ-591 degenerate-comparison shape in mirror image -- a REE result of this form would confirm the substrate needs a curriculum to traverse the task, not that ARC-019's outcome-quality claim holds.",
+    "The teacher gates on learning-progress slope, not on the fixed 7-criterion developmental gate REE uses; if progress-gating is what does the work, REE's fixed DEV-NEED-008 criteria could be the wrong gate and a staged-arm null would then be evidence against the *criteria*, not against staged development."
+  ],
+  "tags": [
+    "arc-019",
+    "automatic_curriculum_learning",
+    "learning_progress",
+    "gated_phase_advance",
+    "reinforcement_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "A Teacher that automatically chooses sub-tasks on which the Student is making the fastest learning progress (and revisits tasks where performance is worsening) matches or surpasses carefully hand-crafted curricula, and solves tasks unsolvable by uniform sampling.",
+    "ree_translation": "ARC-019's phase-advance gate is a coarser instance of the same device: hold the agent on a phase until a competence signal says move on. TSCL supports the general form of the commitment -- criterion-driven progression through sub-tasks is architecturally productive in sequential learners -- and additionally suggests REE's fixed criteria are a special case of a family in which adaptive, progress-derived gates are at least as good.",
+    "mapping_caveat": "TSCL's tasks are an explicitly enumerated set with a designer-supplied decomposition and a dense per-task score; REE's phases are developmental stages in a single continuous embodied environment with a 7-criterion gate that is itself under test. The paper also does not report a matched-total-budget flat control that succeeds -- so it evidences 'curriculum enables traversal', which ARC-019 treats as a *precondition* to be verified, not as the finding.",
+    "source_context": "Deep RL and LSTM supervised sequence tasks: decimal addition, Minecraft navigation; automatic curriculum via learning-progress teacher."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Peer-reviewed journal version of a well-cited workshop line of work; lowest transfer risk in this pull because the setting is sequential RL with an explicit competence gate. Aggregate held to 0.63 by the degenerate-baseline issue, which is the single most important caveat for REE's use of this result."
+  }
+}

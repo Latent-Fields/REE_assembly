@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_019",
+  "entry_id": "2026-09-01_arc_019_starting_small_refutation_rohde1999",
+  "timestamp_utc": "2026-09-01T20:45:32Z",
+  "claim_ids_tested": [
+    "ARC-019"
+  ],
+  "source": {
+    "title": "Language acquisition in the absence of explicit negative evidence: how important is starting small?",
+    "authors": [
+      "Douglas L. T. Rohde",
+      "David C. Plaut"
+    ],
+    "year": 1999,
+    "venue": "Cognition",
+    "doi": "10.1016/s0010-0277(99)00031-1",
+    "pmid": "10520565",
+    "pmc": null,
+    "volume": "72",
+    "issue": "1",
+    "pages": "67-109"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "A direct, systematic attempt to reproduce Elman (1993) that found the opposite: none of their simulations showed an advantage to starting small, and in most cases the staged regime actively hurt, with the harm growing as the artificial language was made more English-like. Source quality is high for this class -- a broader parameter sweep than the original, in the same journal, by authors with no stake in the negative result. Mapping fidelity is the limiting factor: like Elman, they manipulate input/memory complexity rather than a criterion-gated phase advance, and the domain is again language modelling rather than embodied developmental competence. Confidence is set above the Elman entry because a well-executed failure-to-replicate is stronger evidence about a general architectural commitment than the original positive finding it targets.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Staged input presentation produced worse asymptotic performance than full-complexity training in the majority of Rohde & Plaut's simulations, and the deficit increased with task realism -- so a REE staged arm could plausibly underperform its flat control precisely on the harder, more naturalistic tasks REE cares about.",
+    "The original starting-small advantage appears to have been contingent on specific network capacity and training-schedule choices rather than on staging per se; a REE result favouring ARM_2 over ARM_0 therefore requires a hyperparameter-robustness check before it counts as evidence for ARC-019."
+  ],
+  "tags": [
+    "arc-019",
+    "curriculum_learning",
+    "starting_small",
+    "failed_replication",
+    "connectionist"
+  ],
+  "mapping": {
+    "source_claim_statement": "Starting with simplified inputs or limited memory is not necessary in training recurrent networks to learn pseudonatural languages; in fact, such restrictions hinder acquisition as the languages are made more English-like.",
+    "ree_translation": "Applied to ARC-019: explicit staging of the developmental input is not architecturally necessary, and can be a net cost. On this reading the InfantCurriculumScheduler's phase gates buy interpretability and run organisation but not outcome quality -- which is precisely the weaker conclusion ARC-019's FALSIFYING branch describes.",
+    "mapping_caveat": "This is evidence against staging of *input complexity* in supervised sequence prediction. It is not direct evidence against *criterion-gated phase advance in an embodied agent with a reward and a competence floor*, where the argued benefit is about not wasting budget on unmasterable sub-tasks rather than about representational bootstrapping. Treating it as a refutation of ARC-019 as stated would over-transfer.",
+    "source_context": "Simple recurrent networks, pseudo-natural grammars of varying English-likeness, next-word prediction; replication target is Elman (1993)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "High source quality for a computational replication study. Mapping fidelity and transfer risk are the same limits as the Elman entry, and are held constant deliberately so the two entries are comparable as a pair rather than the negative result being scored on easier terms."
+  }
+}

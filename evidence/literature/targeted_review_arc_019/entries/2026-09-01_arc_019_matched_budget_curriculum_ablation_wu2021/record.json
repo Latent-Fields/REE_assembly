@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_019",
+  "entry_id": "2026-09-01_arc_019_matched_budget_curriculum_ablation_wu2021",
+  "timestamp_utc": "2026-09-01T20:45:32Z",
+  "claim_ids_tested": [
+    "ARC-019"
+  ],
+  "source": {
+    "title": "When Do Curricula Work?",
+    "authors": [
+      "Xiaoxia Wu",
+      "Ethan Dyer",
+      "Behnam Neyshabur"
+    ],
+    "year": 2021,
+    "venue": "International Conference on Learning Representations (ICLR)",
+    "doi": null,
+    "arxiv_id": "2012.03107",
+    "url": "https://openreview.net/forum?id=tW4QEInpni",
+    "pmid": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "The closest existing analogue to ARC-019's own falsifier design, and the reason this entry carries the highest confidence in the directory. Wu et al. run thousands of orderings under a matched budget with a random-ordering control that isolates the confound ARC-019's non-degeneracy precondition is groping toward: any apparent curriculum benefit on standard benchmarks is attributable to the *dynamic training-set size*, not to the ordering, because random-curriculum matches or beats curriculum. That is a direct weakening. But the same paper finds curricula do help under a limited training-time budget or with noisy data -- and REE's regime is exactly limited-budget and noisy -- so the honest direction is mixed, not weakens. Held below 0.8 by domain distance: supervised image classification with example-level difficulty ordering, not embodied phase-advance gating.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Any REE staged-vs-flat advantage may be an artefact of the staged arm's smaller effective early training set rather than of the gate ordering; without a random-ordering (or shuffled-phase) control at matched budget, a positive V3 result cannot distinguish these and would not license ARC-019.",
+    "Wu et al. report curricula are beneficial only under limited budget or label noise, so a staged-arm advantage observed at a small episode budget may vanish at a larger one -- a REE experiment that measures one budget cannot claim staging is architecturally load-bearing, only that it is budget-efficient at that point."
+  ],
+  "tags": [
+    "arc-019",
+    "curriculum_learning",
+    "matched_budget_ablation",
+    "negative_control",
+    "implicit_curriculum"
+  ],
+  "mapping": {
+    "source_claim_statement": "For standard benchmark datasets, curricula have only marginal benefits, and randomly ordered samples perform as well or better than curricula and anti-curricula, suggesting that any benefit is entirely due to the dynamic training set size; curriculum (but not anti-curriculum) can improve performance either with limited training time budget or in existence of noisy data.",
+    "ree_translation": "For ARC-019 this splits the claim in two. The strong reading -- explicit stage/gate structure improves outcome quality at matched total budget -- is the one Wu et al. find no support for in their setting, and their random-curriculum control is the design REE's staged-vs-flat comparison currently lacks. The weak reading -- staging is a budget- and noise-efficiency device -- survives, and is the reading REE's own regime (sparse, noisy, episode-budget-constrained developmental training) most plausibly falls under.",
+    "mapping_caveat": "The curriculum here is an ordering over *training examples by difficulty* in i.i.d. supervised learning. REE's is an ordering over *environment/task phases with competence gates* in a sequential embodied setting where later phases are not merely harder but structurally unavailable until earlier competences exist. That structural dependency has no analogue in CIFAR, so a null result there does not straightforwardly transfer; what does transfer is the methodological demand for a set-size control.",
+    "source_context": "CIFAR10 / CIFAR100 / CIFAR100 with noisy labels; thousands of example orderings; supervised image classification; ICLR 2021 oral."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.6,
+    "notes": "Highest source quality in this pull: large-scale systematic ablation, ICLR oral, public code. Transfer risk is nonetheless high because the i.i.d. supervised setting removes the structural phase-dependency that is REE's actual reason for gating. Aggregate is pulled above the component mean because the paper's *methodological* contribution (the random-ordering control) transfers even where its empirical result does not."
+  }
+}
