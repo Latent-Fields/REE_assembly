@@ -2343,3 +2343,4 @@ One line per hourly tick. ASCII only.
 2026-09-01T20:13:54Z LAUNCH (manual interactive) IGW-20260831-222 worktree=igw-222-substrate-ready-sd-e1-rollout-co
 2026-09-01T20:41:22Z workset committed (regen -- 246 items, 28 ready, 0 in flight)
 2026-09-01T20:40:56Z SPAWN IGW-20260901-232 skill=/lit-pull prio=40 uuid=4c4bec28-b4e9-4b18-a4d8-12c9ceda70d8 pid=96048 worktree=igw-232-literature-proposal-for-arc-019
+2026-09-01T20:58:24Z auto-defer igw-232-literature-proposal-for-arc-019 hash=ee9a95083114 for 48h (complete)
