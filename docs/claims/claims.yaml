@@ -13076,9 +13076,25 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: MECH-205
+  implementation_phase: v4
+  phase_provenance: assigned
+  phase_locked: true
+  gflag_0105_note: >
+    RELABELED v3->v4 2026-09-01 (GFLAG-0105). Was phase_provenance: derived /
+    phase_derived_from: MECH-205 -- mechanically inherited from MECH-205 listing
+    ARC-031 in depends_on, never independently assessed against ARC-031's own
+    content. MECH-205 reached status: stable WITHOUT ARC-031 ever being built,
+    proving that depends_on edge is descriptive lineage, not a build gate.
+    Zero substrate exists in ree-v3/ree_core for ARC-031's distinguishing
+    content (z_self TRAJECTORY navigation as its own planning domain evaluated
+    by self-coherence/hypothesis-tag-integrity/self-maintenance cost);
+    HippocampalModule today takes z_self only as a conditioning input
+    alongside z_world, not as a navigated trajectory space. v4_spec.md's own
+    V4-bound cohort table independently classifies ARC-031 as V4-2 (z_self
+    navigation, DR-13 temporal-self-model territory). phase_locked: true set
+    so a future depends_on edge from a v3 claim surfaces as a CONFLICT for
+    human adjudication (check_claim_phase_consistency.py) rather than
+    silently re-deriving v3.
   depends_on:
     - SD-004
     - MECH-113
@@ -42705,12 +42721,29 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: ARC-059
+  implementation_phase: v4
+  phase_provenance: assigned
+  phase_locked: true
   v3_pending: false
   claim_level: mechanistic
   registered_utc: 2026-04-21
+  gflag_0105_note: >
+    RELABELED v3->v4 2026-09-01 (GFLAG-0105). Was phase_provenance: derived /
+    phase_derived_from: ARC-059 -- mechanically inherited from ARC-059 listing
+    MECH-274 in depends_on (ARC-059's own scope spans all 3 developmental
+    stages including the V4 "others" stage), never independently assessed
+    against MECH-274's own content. MECH-274's own evidence_quality_note
+    already says "V4 scope. No V3 experiments will validate this claim
+    directly -- it requires V4's social/empathy system to be implemented
+    first," and its title's own "V4-reserved." prefix is accurate, not stale.
+    Zero multi-agent substrate exists anywhere in ree-v3/ree_core (no
+    MultiAgentCausalGridWorld, no other_agent/z_self_j/z_harm_a_j latents) --
+    the claim requires modelling ANOTHER agent's mind during sleep
+    aggregation, and V3 has no other-agent concept to attribute to at all.
+    phase_locked: true set so ARC-059's depends_on edge surfaces as a
+    CONFLICT for human adjudication (check_claim_phase_consistency.py)
+    rather than silently re-deriving v3; see the new governance flag on
+    ARC-059's depends_on breadth.
   depends_on:
     - MECH-273  # self-model parallel
     - MECH-275  # general aggregation mechanism this specialises
@@ -43316,13 +43349,43 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-09-01
     needs_review: false
-  implementation_phase: v3
-  v3_pending: true
+  implementation_phase: v4
+  phase_provenance: assigned
+  phase_locked: true
+  v3_pending: false
   claim_level: mechanistic
   registered_utc: 2026-04-21
+  gflag_0105_note: >
+    RELABELED v3->v4, v3_pending true->false 2026-09-01 (GFLAG-0105). Own
+    evidence_quality_note already said "V3 engineered z_world means MECH-278
+    is not actively tested in V3. The clean test is a V4 experiment that
+    ablates z_world and requires experimental-action reconstruction," and its
+    own notes: "The architectural shortcut in V3 is a deliberate engineering
+    choice, not an oversight; MECH-278 registers it so V4 can test whether
+    the shortcut held" -- MECH-278 IS the claim that the V3 shortcut needs
+    testing against, which is only meaningful once V4 exists.
+    object_representation_v4_plan.md (generation: v4, deliberately excluded
+    from the V3 closure %) independently classifies MECH-278's object
+    DEFINITION as "currently BYPASSED in V3 (z_world engineered pre-split)"
+    and its summary table states "Object-schema formation (MECH-278,
+    objects-as-patterns) | V4 | BYPASSED in V3 (engineered z_world) | [must
+    NOT enter V3 closure]". ree-v3/ree_core/entities/object_file_buffer.py
+    (a DIFFERENT, actually-built V3 claim, MECH-045) independently separates
+    itself: "A learned figure-ground proposer is a later, separate concern
+    (it overlaps MECH-278 object-schema formation, V4)." No SPLIT needed:
+    F5's caveat that MECH-278's self/world-discrimination precondition (via
+    MECH-277) is already owned by the self_attribution cluster
+    (ARC-033/MECH-256/SD-031/MECH-098/MECH-221, already gated_v3 IP) is
+    independently confirmed -- that precondition-class capability is a
+    DIFFERENT mechanism (forward-model-residual comparators) already tracked
+    there. v3_pending cleared (was checked BEFORE implementation_phase in
+    resolve_assembly_state, so leaving it true would have kept this
+    gated_v3 despite the phase edit). phase_locked: true set so ARC-059's
+    depends_on edge surfaces as a CONFLICT for human adjudication rather
+    than silently re-deriving v3.
   depends_on:
     - MECH-276  # scientist-agent principle (general form)
     - MECH-277  # stage-1 prerequisite (self-model must exist first)
