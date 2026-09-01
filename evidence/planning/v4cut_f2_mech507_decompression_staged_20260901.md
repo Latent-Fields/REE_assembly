@@ -1,7 +1,13 @@
 # GOV-V4CUT-1 F2 -- staged registration: minimal-v3 trained decompression stage
 
-**Status: AWAITING USER REVIEW.** Nothing in this document has been applied to
-`claims.yaml`. Staged by session `metaworker-chip-20260901-v4cut-f2-mech507-trained-decompression`
+**Status: REGISTERED.** User-approved 2026-09-01 (RECOMMENDATION_LOG.jsonl, "Staged claims"
+decision lane, both F1 and F2 options selected) and applied by session
+`metaworker-chip-20260901-v4cut-f1f2-register-approved` (chip
+`chip-20260901-v4cut-f1f2-register-approved`), REE_assembly `bd1e457f94`. Registered as
+**MECH-532** (not MECH-531, the working placeholder this document used -- MECH-531 was taken
+at registration time by this same pass's F1 claim; see MECH-532's own `notes` for the
+reallocation). GFLAG-0102 resolved. Originally staged by session
+`metaworker-chip-20260901-v4cut-f2-mech507-trained-decompression`
 (chip `chip-20260901-v4cut-f2-mech507-trained-decompression`), 2026-09-01.
 
 ## Why staged rather than registered

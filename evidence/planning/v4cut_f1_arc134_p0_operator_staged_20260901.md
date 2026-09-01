@@ -1,7 +1,12 @@
 # GOV-V4CUT-1 F1 -- staged registration: minimal-v3 P0 grain operator
 
-**Status: AWAITING USER REVIEW.** Nothing in this document has been applied to
-`claims.yaml`. Staged by session `v4cut-f1-arc134-p0-grain-operator` (chip
+**Status: REGISTERED.** User-approved 2026-09-01 (RECOMMENDATION_LOG.jsonl, "Staged claims"
+decision lane, both F1 and F2 options selected) and applied by session
+`metaworker-chip-20260901-v4cut-f1f2-register-approved` (chip
+`chip-20260901-v4cut-f1f2-register-approved`), REE_assembly `bd1e457f94`. Registered as
+**MECH-531** (not MECH-530, the id this document provisionally used -- MECH-530 was taken in
+the interim by GOV-V4CUT-1 F3/GFLAG-0103; see MECH-531's own `notes` for the reallocation).
+GFLAG-0101 resolved. Originally staged by session `v4cut-f1-arc134-p0-grain-operator` (chip
 `chip-20260901-v4cut-f1-arc134-p0-grain-operator`), 2026-09-01T16:03:35Z.
 
 ## Why staged rather than registered
