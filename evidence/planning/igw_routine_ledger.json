@@ -3397,7 +3397,10 @@
       "task_claim_session_id": "igw-auto-igw-233-literature-proposal-for-arc-052-20260901T214424Z",
       "task_claim_claimed_at": "2026-09-01T21:44:24Z",
       "assigned_at": "2026-09-01T21:42:45Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-01T22:47:01Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -4612,6 +4615,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-01T20:58:24Z",
       "re_eligible_after": "2026-09-03T20:58:24Z"
+    },
+    {
+      "stable_hash": "be9b95ccddc8",
+      "igw_id_at_disposition": "IGW-20260901-233",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-052"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for ARC-052",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-01T22:47:01Z",
+      "re_eligible_after": "2026-09-03T22:47:01Z"
     }
   ]
 }
