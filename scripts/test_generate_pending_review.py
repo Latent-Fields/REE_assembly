@@ -164,6 +164,16 @@ class ZGoalWriterDefectTests(unittest.TestCase):
         self.assertFalse(self.mod._z_goal_writer_defect(
             {"z_goal_stream": _block(writer_defect=False)}))
 
+    def test_pinned_goal_reading_writer_defect_null_is_NOT_flagged(self):
+        """V3-EXQ-642a/642b's shape: the driver deliberately pins z_goal outside
+        `update_z_goal` (`experiments/_lib/z_goal_stream.py`'s `goal_pinned=True`).
+        `active_frac` reads 1.0 -- unlike the goal-OFF/unmeasured None case above --
+        but `writer_defect` is still None, not True, and must not be flagged. This
+        is the false positive V3-EXQ-642b actually hit in pending_review.md."""
+        self.assertFalse(self.mod._z_goal_writer_defect(
+            {"z_goal_stream": _block(writer_calls=0, active_frac=1.0,
+                                     writer_defect=None, goal_pinned=True)}))
+
     def test_active_frac_alone_can_never_flag(self):
         """The load-bearing negative: no value of active_frac flags a run whose
         writer_defect is not True. active_frac is NOT the signal."""

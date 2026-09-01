@@ -363,10 +363,15 @@ def _z_goal_writer_defect(run: dict) -> bool:
     cannot carry the defect. Flagging the fraction would bury the real signal
     under those.
 
-    `is True` rather than a truthiness test: the producer writes None for
-    "nothing measured" (`ticks_total == 0`), and an ABSENT block means the run
-    never measured the stream at all -- almost the whole historical corpus.
-    Neither is a defect, and neither may be rendered as one.
+    `is True` rather than a truthiness test: the producer also writes None for
+    "nothing measured" (`ticks_total == 0`), for a training-phase-only
+    observation (`eval_stepped=False`), and for a driver that deliberately
+    pins z_goal outside `update_z_goal` as an experimental control
+    (`goal_pinned=True`, e.g. V3-EXQ-642a/642b) -- see
+    `experiments/_lib/z_goal_stream.py`'s module docstring for all three. An
+    ABSENT block means the run never measured the stream at all -- almost the
+    whole historical corpus. None of these is a defect, and none may be
+    rendered as one.
     """
     block = run.get("z_goal_stream")
     if not isinstance(block, dict) or not block:
