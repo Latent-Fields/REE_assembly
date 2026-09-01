@@ -1440,6 +1440,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0101",
+      "claim_ids": [
+        "ARC-134",
+        "MECH-521"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "GOV-V4CUT-1 cut audit (evidence/planning/v4_prerequisite_cut_20260901.md, F1): SPLIT proposed -- pull forward a minimal v3 claim asserting only a corrigible merge/split operator over the existing EntityObservation boundary (fixed capacity, no dynamic regulation); MECH-521's settling dynamics and MECH-522 stay v4_v5. Grounds: MECH-529 names P0 grain as the rebucketing loop's substrate floor and ARC-134's own notes concede the perceptual cell is empty in V3.",
+      "raised_by_session": "c2-v4cut-20260901",
+      "raised_at": "2026-09-01T04:59:06Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
