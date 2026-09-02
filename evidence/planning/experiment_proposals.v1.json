@@ -19458,6 +19458,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1396",
+      "blocked_by": [
+        "ARC-016:graded-precision-consumption",
+        "SD-070ish:sleep-cycle-interleave-in-eval"
+      ],
+      "blocked_note": "MECH-027 hypervigilance signature requires 3 simultaneous channels (elevated gain/precision + shortened prediction horizon + suppressed replay). V3-EXQ-979 authored + smoke-tested + adversarially red-teamed (fable, 2026-09-02): BLOCKING verdict, verified against source. Precision channel has NO graded runtime consumer in the standard E3 tick -- current_precision feeds only a BINARY commit gate (e3_selector.py select(): committed = running_variance < effective_threshold, ~0.40); use_conditional_precision_gate/use_dualsystem_arbitration (the flags that would make precision graded) both default False and are unwired for this purpose. Replay/hippocampal-injection suppression (sleep_loop.draws_per_cycle) is consumed ONLY inside a sleep cycle (phase_manager.py:447); sleep cycles are structurally decoupled from any eval/measurement loop (no force_cycle() call is reachable during a behavioral measurement window), so setting draws_per_cycle during eval writes an attribute nothing reads -- suppression is identically absent in every arm. Horizon (HippocampalConfig.mode_horizon_scale + operating_mode -> effective_horizon -> CEM elite window) IS live and graded -- confirmed by dry-run (ratio 0.22) and by red-team trace. Per claims.yaml MECH-027 what_would_answer: a channel that is flat/torn-down at read time must self-route substrate_not_ready, not count as a verdict -- 2 of 3 named channels are in that state for this claim. Needed before re-attempting: (1) wire a genuinely graded runtime consumer for precision (or enable+validate use_conditional_precision_gate end-to-end), (2) give replay suppression a live path during a measurement window (e.g. interleave force_cycle() calls into eval, or redesign the measurement to span sleep-eligible episode boundaries). Both are named builds (complicated (buildable)), not open questions -- route to /implement-substrate, not another lettered /queue-experiment iteration. Draft driver (horizon channel fully working, all other skill-mandated contract items clean: arm_fingerprint, stamp_recording_core, emit_outcome, validate_experiments.py --strict clean) preserved uncommitted at /Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_979_mech027_control_plane_pathological_modes.py for reuse once the substrate gaps are closed.",
       "claim_id": "MECH-027",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -19480,7 +19485,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_027",
       "target_repo": "ree-v3",
       "why_now": [
