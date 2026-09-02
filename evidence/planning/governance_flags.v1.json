@@ -1734,6 +1734,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0120",
+      "claim_ids": [
+        "SD-015",
+        "MECH-112",
+        "ARC-030",
+        "SD-012"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "v3_exq_259_wanting_gradient_navigation_dry is a fourth instance of the GFLAG-0117 dry-filter blind spot: a _dry-suffixed manifest with top-level dry_run UNSET, carrying an ASSERTING evidence_direction (does_not_support) against four real claims (SD-015, MECH-112, ARC-030, SD-012). Found 2026-09-02 by governance-20260902 while applying the confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 disposition to the 259 entry (CLAUDE.md family-sweep rule: enumerate members and check dry status before writing). Because dry_run is unset, check_dry_run_citations.py reports it UNKNOWN, and the indexer dry filter, generate_pending_review.load_dry_run_run_ids() and GOV-DRY-1 are all structurally blind to it -- exactly the mechanism the 12:48 cycle documented for the three v3_exq_395 smokes. EVIDENCE IT IS A SMOKE: byte-identical to the real run v3_exq_259_wanting_gradient_navigation_1775666895 in EVERY field except run_id and timestamp (dry 2026-04-08T16:47:17Z, real 16:53:01Z, six minutes later). NOT ADJUDICATED HERE, deliberately: governance applied the sanctioned superseded write to the REAL run only and did NOT stamp the twin, because unlike the 395 case no autopsy names the 259 lineage's dry ids (the 12:48 fix rested on failure_autopsy_V3-EXQ-395-cluster_2026-09-02 excluded_dry_run_ids), and byte-identity to a real run is not by itself proof of smoke status. PROPOSED DISPOSITION for /governance + /failure-autopsy: adjudicate whether the twin is a smoke; if so set dry_run true and direction non_contributory with an evidence_direction_note naming the authority, mirroring the 395 repair. It is NOT in reviewed_run_ids and pending_review reads 0, so it does not appear to be scoring -- confirm before deciding urgency. BROADER: the fix direction is the ARTIFACT (runners must always emit top-level dry_run), not widening the filters.",
+      "raised_by_session": "governance-20260902",
+      "raised_at": "2026-09-02T17:35:36Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
