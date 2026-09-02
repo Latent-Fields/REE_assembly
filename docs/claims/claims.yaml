@@ -81079,6 +81079,7 @@
   implementation_phase: v3
   claim_level: mechanistic
   registered_utc: "2026-07-20"
+  pending_retest_after_substrate: true
   depends_on:
     - SD-011
     - MECH-463
@@ -81169,6 +81170,8 @@
     THIS measurement as the MECH-463/MECH-359 discriminator: "does raising the scalar
     change whether and how sharply commitment fires, holding the winner fixed?" -- plus
     astonjones2005 (adaptive gain theory).
+
+    [2026-09-02 governance, governance-20260902]: ORPHAN RESOLVED. MECH-465 was the single orphaned substrate_ceiling claim in check_substrate_ceiling_audit.py (orphaned at the 12:48 cycle too). Its gap is named explicitly in this very note -- the gated quantity sits 25-48x below the commit-gate threshold with commit rate pinned at 0.9 -- which is the 6a-v condition under which governance mints a substrate stub directly rather than routing to /failure-autopsy. Minted substrate_queue entry MECH465-COMMIT-GATE-HEADROOM (pending_implementation, priority 2) and set pending_retest_after_substrate true. No status move: MECH-465 stays candidate/substrate_ceiling. The epicycle caution stated above is carried verbatim onto the queue entry, and the variance-geometry nulls STAND. PROMOTES/DEMOTES NOTHING.
   notes: >
     Z_WORLD CAUTION, RESPECTED RATHER THAN LEANED ON: the stage-1 spike may find the
     boundary regime needs higher z_world variance, which would collide with V3-EXQ-737's
