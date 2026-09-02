@@ -1,3 +1,278 @@
+---
+# Closure-map GOVERNANCE-lane view. Filed `generation: governance` (not v3) for
+# two independent reasons:
+#   (1) SCOPE -- this plan's own opening states it "does not expand REE-v3
+#       strict green-board closure scope", so counting its nodes in the V3
+#       closure % would inflate the V3 denominator with work V3 does not gate on.
+#   (2) LANE DISCRIMINATOR -- the plan owns exactly one claim, GOV-PRESERVE-1
+#       (claim_type: governance_rule, claim_level: governance, depends_on
+#       SENT-0/SENT-11/SENT-12), and section "Governance / ethics" places it
+#       "on the ethics perimeter alongside SENT-* / GOV-*". That is the
+#       governance lane's positive test. The `process` lane was the other
+#       candidate and fits the shape of what is BUILT here (archive backends,
+#       emitter, token exporter, ~50 contract tests), but `process` is defined
+#       as pipelines that own no claims at all (every generation: process plan
+#       carries scope_claims: []), so it misses the discriminator.
+# Consequence, same as ethics_perimeter_plan.md: these nodes stay OUT of the V3
+# closure % (read_closure counts only generation: v3) and OUT of
+# check_closure_drift.py's terminal-state drift logic (it skips any plan whose
+# generation != v3 -- this doc is still DISCOVERED by it like every *_plan.md,
+# just not drift-checked).
+# BEFORE this block existed (added 2026-09-02) the doc was the only one of 57
+# plan files with no frontmatter at all, so read_closure emitted a
+# `frontmatter_pending` placeholder with no `generation` key -- and BOTH the
+# server rollup (serve.py gen_acc) and the client (closure.html
+# `p.generation || 'v3'`) default a missing generation to v3. It was therefore
+# filed under V3 by FALLBACK, never by decision.
+closure_plan:
+  id: preservation_snapshot
+  generation: governance
+  title: "Preservation Snapshot (archival option value, GOV-PRESERVE-1)"
+  registered: 2026-08-14
+  last_updated: 2026-09-02
+  scope_claims: [GOV-PRESERVE-1]
+  sibling_plans: [ethics_perimeter]
+  summary: >
+    Preserve enough of an ended organism -- substrate, developmental history,
+    memories, commitments, embodiment, environment -- that faithful future
+    reconstruction stays possible. Level 1 (birth-replay from
+    (config, seed, commit, machine-class, env spec)) is BUILT and contract-gated;
+    Level 2 (mid-life snapshot/resume) was spiked and is a measured NO-GO on
+    full rollout. Nodes mirror the doc's own "Status table (resume primitive)".
+  nodes:
+    - id: "preservation_snapshot:RECON"
+      title: "Recon -- existing state/provenance/replay machinery; two-fidelity-level split established"
+      phase: 0
+      status: done
+      severity: load-bearing
+      last_updated: 2026-08-14
+      note: >
+        Established that a REE life is a pure function of (REEConfig, seed) on
+        pinned code (0/200 tensors differ across two seed-123 constructions),
+        that provenance capture is mature/centralized (extend, don't rebuild),
+        and that whole-organism save/load does NOT exist -- which is what forces
+        the Level 1 / Level 2 split the rest of the plan is organised around.
+
+    - id: "preservation_snapshot:INC1-RECORD"
+      title: "Increment 1 -- ReconstructionRecord: tagged config serializer, integrity, append-only, bit-identical birth rebuild"
+      phase: 1
+      status: done
+      severity: load-bearing
+      unblocks_claims: [GOV-PRESERVE-1]
+      depends_on: ["preservation_snapshot:RECON"]
+      last_updated: 2026-08-14
+      note: >
+        ree-v3/ree_core/preservation/reconstruction_record.py. Contract
+        tests/contracts/test_reconstruction_record.py (13). Fidelity boundary
+        asserted honestly -- equivalence is pinned on birth CONSTRUCTION, not
+        multi-step replay (torch.multinomial diverges across machine classes),
+        so machine_class is stamped on every record.
+
+    - id: "preservation_snapshot:INC1B-EMITTER"
+      title: "Increment 1b -- preserve_life() emitter glue (opt-in, per-life)"
+      phase: 1
+      status: done
+      severity: high
+      depends_on: ["preservation_snapshot:INC1-RECORD"]
+      last_updated: 2026-08-14
+      note: >
+        ree-v3/experiments/_lib/preservation.py; contract
+        test_preservation_capture.py (3). Emission is opt-in and per-life on
+        purpose -- GOV-PRESERVE-1 asks for PROPORTIONATE preservation, so
+        nothing fires for every run and archive_dir is required and explicit.
+
+    - id: "preservation_snapshot:INC1C-ARCHIVE"
+      title: "Increment 1c -- archive backends (LocalArchive + S3Archive) + AES-GCM client-side encryption + content-addressing"
+      phase: 1
+      status: done
+      severity: high
+      depends_on: ["preservation_snapshot:INC1B-EMITTER"]
+      last_updated: 2026-08-14
+      note: >
+        ree_core/preservation/archive.py; contract test_preservation_archive.py
+        (9). boto3 lazy-imported so ree_core stays import-light; object key
+        embeds the record sha256 so a changed record can never overwrite the
+        original.
+
+    - id: "preservation_snapshot:INC1C-MULTI"
+      title: "Increment 1c -- MultiArchive fan-out (>1 copy) + s3_archive_from_env + storage runbook"
+      phase: 1
+      status: done
+      severity: medium
+      depends_on: ["preservation_snapshot:INC1C-ARCHIVE"]
+      last_updated: 2026-08-14
+      note: >
+        Contract test_preservation_multi.py (5); runbook
+        evidence/planning/preservation_storage_runbook.md. A record is ~10 KB,
+        so cost does not discriminate between providers -- the decision is "how
+        many copies" (LOCKSS / 3-2-1), which is what the fan-out implements.
+
+    - id: "preservation_snapshot:INC1D-TOKEN"
+      title: "Increment 1d -- physical-token exporter (engraveable key line + QR + gz record + manifest + README)"
+      phase: 1
+      status: done
+      severity: medium
+      depends_on: ["preservation_snapshot:INC1-RECORD"]
+      last_updated: 2026-08-14
+      note: >
+        ree_core/preservation/token.py; contract test_preservation_token.py (7),
+        including gz record re-inflates -> verifies -> reconstructs
+        bit-identical. Targets the 132-byte key tier (engraved metal) and the
+        Piql/Svalbard deposit tier.
+
+    - id: "preservation_snapshot:INC1F-AUTOFIRE"
+      title: "Increment 1f -- auto-fire at end-of-life (default-off REEConfig designation; fires on the abnormal path too)"
+      phase: 1
+      status: done
+      severity: load-bearing
+      depends_on: ["preservation_snapshot:INC1B-EMITTER"]
+      last_updated: 2026-08-16
+      note: >
+        ree_core/utils/config.py + experiments/_lib/preservation.py life_scope();
+        contract test_preservation_autofire.py (18, roughly half negative
+        controls). The point is not sugar: an explicit end-of-driver
+        preserve_life() call is exactly the line a driver that RAISES never
+        reaches, so the lives most worth preserving were the ones silently
+        dropped. KeyboardInterrupt/SystemExit included deliberately. Default-off
+        is a HARD no-op, which is what let it land on main.
+
+    - id: "preservation_snapshot:STORAGE-PLAN"
+      title: "European-sovereign storage plan -- tiered stack documented (Hetzner / 2nd EU vendor / Zenodo + Software Heritage / Piql)"
+      phase: 1
+      status: done
+      severity: medium
+      last_updated: 2026-08-14
+      note: >
+        Requirement (user, 2026-08-14): entirely European-owned/-domiciled
+        providers; US-owned clouds excluded even in an EU region (CLOUD Act
+        reaches the company, not the datacentre). The GitHub evidence/ tree is a
+        WORKING copy under US jurisdiction, not a preservation copy.
+
+    - id: "preservation_snapshot:STORAGE-DEPLOY"
+      title: "Provision the live copies -- Hetzner bucket + second-vendor bucket + Zenodo/Software Heritage deposit flow"
+      phase: 2
+      status: open
+      severity: high
+      depends_on: ["preservation_snapshot:INC1C-MULTI", "preservation_snapshot:STORAGE-PLAN"]
+      blocking_on: "operational -- needs the user's provider account plus a generated encryption key held independently of the archives"
+      resume_condition: >
+        Account + independently-held key exist; then follow
+        preservation_storage_runbook.md. Until then every built backend is
+        exercised only against LocalArchive and injected fakes, so no record has
+        a durable off-Mac copy.
+      last_updated: 2026-08-14
+
+    - id: "preservation_snapshot:INC2-SPIKE"
+      title: "Increment 2 de-risking spike -- cost/feasibility measured on the cheapest store plus both worst cases"
+      phase: 2
+      status: done
+      severity: load-bearing
+      depends_on: ["preservation_snapshot:INC1-RECORD"]
+      last_updated: 2026-08-15
+      note: >
+        chip-20260815-preserve-midlife-spike; contract
+        test_preservation_midlife_spike.py (10, green). Deliberately added NO
+        capture/restore code to the substrate -- every restore helper is local
+        to the test file -- so the fleet carries zero new executable surface
+        while the gate below is undecided. Key findings: `centering` reads as
+        config-derived but gates cue-key arithmetic (so restore needs a
+        config-IDENTITY check, not just a round-trip); the residue_field EWC
+        anchor is dropped SILENTLY by state_dict, losing MECH-334 critical-period
+        write-protection with a plausible loss curve; gated_policy crystallization
+        is an ordered procedure, not a dict, and its naive implementation is
+        wrong in the direction that looks fine.
+
+    - id: "preservation_snapshot:INC2-ROLLOUT"
+      title: "Increment 2 -- mid-life snapshot/resume, full ~10-store rollout"
+      phase: 2
+      status: parked
+      severity: medium
+      depends_on: ["preservation_snapshot:INC2-SPIKE"]
+      awaiting: "a concrete queued experiment that requires mid-life resume"
+      revisit_after: "the perturbation / matched-branch design in the imaging thought is queued"
+      resume_condition: >
+        NO-GO on the full rollout as scoped -- not infeasible (every mechanism
+        was proven in a day) but the cost/reuse test is not met: measured
+        1500-2000 LOC across ~12 files (majority test) plus a standing
+        correctness obligation on files that changed on 28% of days over 60,
+        against ZERO currently-queued experiment needing it. Increment 1 already
+        discharges the owning thought's actual ask. GO NARROWLY when an
+        experiment names it, building only the slice it needs:
+        super_ordinal_goal_memory (free, one line), the residue_field EWC anchor
+        (4 keys, proven), and the env plus its two PRNGs (the expensive,
+        unavoidable one). Skip gated_policy unless the experiment crystallizes.
+      last_updated: 2026-08-15
+
+    - id: "preservation_snapshot:INC2-GUARDS"
+      title: "Land regardless of the Increment 2 gate -- attribute-census contract pattern + config-identity check on any snapshot loader"
+      phase: 2
+      status: open
+      severity: medium
+      depends_on: ["preservation_snapshot:INC2-SPIKE"]
+      blocking_on: "no store has acquired a loader yet, so there is nothing for the pattern to attach to"
+      resume_condition: >
+        Apply at the moment ANY store gains a capture/restore pair (whether or
+        not INC2-ROLLOUT is un-parked). Both are cheap and both prevent a SILENT
+        fidelity bug: the census forces the load-bearing-vs-telemetry fork to be
+        classified rather than inspected, and the config-identity check must
+        REFUSE (not warn) on mismatch.
+      last_updated: 2026-08-15
+
+    - id: "preservation_snapshot:GOV-RULE"
+      title: "GOV-PRESERVE-1 registered as a candidate governance_rule on the ethics perimeter"
+      phase: 1
+      status: done
+      severity: load-bearing
+      unblocks_claims: [GOV-PRESERVE-1]
+      cross_plan_link: [ethics_perimeter]
+      last_updated: 2026-08-14
+      note: >
+        docs/claims/claims.yaml -- claim_type governance_rule, claim_level
+        governance, depends_on [SENT-0, SENT-11, SENT-12]. Preservation implies
+        neither immortality nor permission to revive; any future reconstruction
+        needs its own governance. This node is the reason the plan sits in the
+        governance lane rather than the process lane.
+
+    - id: "preservation_snapshot:GOV-POLICY"
+      title: "Open governance questions -- retention/sampling policy, create/read/re-instantiate/delete authority, reclassification trigger"
+      phase: 2
+      status: open
+      severity: high
+      depends_on: ["preservation_snapshot:GOV-RULE"]
+      cross_plan_link: [ethics_perimeter]
+      blocking_on: "GOV-PRESERVE-1 is `candidate`; none of its three open questions has a proposed answer"
+      resume_condition: >
+        GOV-PRESERVE-1's own what_would_answer names the trigger: reassess when
+        (a) a retention/sampling policy is proposed (what is proportionate to
+        keep, and for whom), (b) authority over create/read/re-instantiate/ever-
+        delete is settled, or (c) a reclassification trigger is defined by which
+        a past instance becomes "preserve with priority".
+      ethical_metadata:
+        welfare_relevance: potential
+        requires_welfare_review: true
+        applicable_ethics_gates: [SENT-0, SENT-11, SENT-12]
+      last_updated: 2026-08-14
+
+    - id: "preservation_snapshot:FISHTANK"
+      title: "Memorial Fishtank -- re-instantiate preserved remnants"
+      phase: 3
+      status: parked
+      severity: low
+      depends_on: ["preservation_snapshot:GOV-POLICY"]
+      awaiting: "its own governance -- re-instantiation is precisely what GOV-PRESERVE-1 declines to license"
+      resume_condition: >
+        Aspiration only. Blocked behind GOV-POLICY by construction: prior
+        consent, privacy, identity, welfare, competing claimants and
+        branching-successor moral status all have to be settled before any
+        re-instantiation, and GOV-PRESERVE-1 explicitly does NOT grant
+        permission to revive.
+      ethical_metadata:
+        welfare_relevance: high
+        requires_welfare_review: true
+        applicable_ethics_gates: [SENT-0, SENT-11, SENT-12]
+      last_updated: 2026-08-14
+---
+
 # Preservation Snapshot Plan — preserving the possibility of future reconstruction
 
 **Status:** Increment 1 (birth-replay preservation) BUILT + contract-gated 2026-08-14. Increment 2 (mid-life snapshot/resume) not started.
