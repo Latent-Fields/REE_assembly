@@ -12677,14 +12677,15 @@
       "priority": "medium",
       "proposal_id": "EXP-1153",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "skipped",
       "suggested_experiment_type": "claim_probe_mech_530",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_note": "MECH-530's own claims.yaml entry (claim_type: design_decision, subject: e3.non_oracular_output_typing) states verbatim in its notes: 'DO NOT queue an experiment against this claim -- it is a static/contract property, not one an experiment run would move.' Confirmed by independent re-inspection 2026-09-02: MECH-530 asserts a STATIC INTERFACE CONTRACT on E3's EXISTING output surface -- that every decision-outcome field is a continuous/boolean/count-typed magnitude and none is a semantic category label. Its truth value is a property of source code at a point in time, not of any run's behaviour, so NO experiment output varies with it and no run can confirm or falsify it. Re-verified directly: SelectionResult (e3_selector.py:114-132) is Trajectory/int/torch.Tensor/float/bool only; the 77 last_score_diagnostics writes are bool/int/float; the single label-adjacent field, loop_named_channel_routed_ranges, is Dict[str, float] keyed by ARCHITECTURAL loop-channel names (associative/limbic, from cmap) carrying continuous range values -- a descriptive-string key with a typed value, which the claim explicitly permits, not an object/context class label. The claim already reads CONFIRMED-by-inspection in its own what_would_answer with no build owed. What IS owed is the instrument the claim's notes name as 'not yet written': a CONTRACT TEST over e3_selector.py's diagnostic surface, guarding against a future addition leaking a category label. That is /implement-substrate work (a 'complicated (buildable)' node -- a named build with no open question), not an EXQ run. Substrate gates were run and are CLEAN, so this is explicitly NOT a substrate gap: Step 2.5b re-derive brake = 0 autopsies on MECH-530; Step 2.5c substrate-path overlap = 0 open substrate_queue entries touching e3_selector.py. Skipped rather than blocked_substrate for the same reason as EXP-0273/ARC-080: queue-experiment Step 2.5 is for a buildable/probe-gated node, whereas this is a claim-testability guardrail. Also confirmed: MECH-530 has no completed run (absent from claim_evidence.v1.json, evidence: []) and implementation_phase is still v3 (unchanged since the 2026-09-01 triage). PROVENANCE: EXP-1153 was auto-minted by the 2026-09-01 proposal_tick mass-mint with the generic template objective 'Reduce uncertainty for MECH-530 via targeted experiment runs' and why_now 'missing_experimental_evidence' -- derived mechanically from the claim having no evidence rows, without checking whether the claim is experiment-shaped. A design_decision claim can never accrue experimental evidence rows, so that signal will keep re-minting this proposal; see the massmint triage doc evidence/planning/proposal_tick_massmint_triage_20260901.md. 2026-09-02, session metaworker-chip-proposal-exp-1153-paced, chip chip-proposal-exp-1153-paced."
     },
     {
       "backlog_id": "EVB-1621",
