@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_073",
+  "entry_id": "2026-09-02_arc_073_learning_progress_curriculum_colas2019",
+  "timestamp_utc": "2026-09-02T16:11:02Z",
+  "claim_ids_tested": [
+    "ARC-073"
+  ],
+  "source": {
+    "title": "CURIOUS: Intrinsically Motivated Modular Multi-Goal Reinforcement Learning",
+    "authors": [
+      "Cedric Colas",
+      "Pierre Fournier",
+      "Mohamed Chetouani",
+      "Olivier Sigaud",
+      "Pierre-Yves Oudeyer"
+    ],
+    "year": 2019,
+    "venue": "Proceedings of the 36th International Conference on Machine Learning (PMLR)",
+    "doi": null,
+    "arxiv_id": "1810.06284",
+    "volume": "97",
+    "pages": "1331-1340",
+    "url": "https://proceedings.mlr.press/v97/colas19a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Well-cited ICML paper from the group whose work ARC-073's notes already cite, and the closest computational instantiation of the claim's proposed signal. Marked mixed rather than supports because the agent's LP-driven attention explicitly RETURNS to goal regions whose performance decays -- saturation is demonstrated to be non-terminal, which is the single most consequential qualification of ARC-073's exit criterion. Confidence 0.62: high relevance, simulation-only, and the global-exit half of the claim is untested here rather than supported.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Absolute learning progress is used, not signed LP, precisely so that a module whose performance is DECAYING is re-selected. A REE exit rule keyed on |d(PE)/dt| < threshold across all regions can therefore fire on a transient plateau and close a play episode that would have resumed producing world-model learning.",
+    "CURIOUS implements no transition to a non-exploratory mode at all: LP-based selection reallocates attention WITHIN exploration and never terminates it. The 'across all goal regions -> exit play' half of ARC-073 has no instantiation in the paper it is most naturally read as resting on.",
+    "LP is estimated over a sliding window with epsilon-greedy selection; the estimator is noisy, so the threshold test is a statistical decision with a false-positive rate that ARC-073 does not currently specify."
+  ],
+  "tags": [
+    "arc-073",
+    "learning_progress",
+    "automatic_curriculum",
+    "intrinsic_motivation",
+    "goal_exploration",
+    "transition_criterion"
+  ],
+  "mapping": {
+    "source_claim_statement": "An agent facing many goals of heterogeneous difficulty can build its own curriculum by biasing goal selection toward the modules with the highest ABSOLUTE learning progress, estimated over a sliding window and sampled epsilon-greedily. This makes the agent focus on achievable goals first, ignore impossible or distracting goal spaces (whose LP stays at zero), and return to goals whose competence is decaying.",
+    "ree_translation": "ARC-073 proposes that play persists while learning progress is being produced and ends when |d(PE)/dt| falls below play_lp_saturation_threshold for all reachable regions. CURIOUS is the working demonstration that the first half of that is computable and useful: an LP estimate per goal region does discriminate mastered regions, unlearnable regions, and regions still yielding progress, and steering on it beats a uniform curriculum. This directly supports REE's plan to monitor a rolling LP estimate during play as a GoalConfig-parameterised signal. The second half fares worse. CURIOUS uses absolute LP by design, because a region whose LP has decayed to zero is not finished with -- forgetting makes it productive again later. Saturation in this system is a local, reversible, per-region state, not a global terminal one, and the paper never exits exploration.",
+    "mapping_caveat": "Simulation in a robotic manipulation environment with a small, hand-specified set of goal modules; nothing about episode-level mode switching, homeostatic drive, or an embodied agent with a real task to return to. Reading CURIOUS as support for ARC-073's TRANSITION criterion over-reads it -- it supports the saturation SIGNAL and is silent-to-negative on saturation as a terminal condition. The 'reachable PE regions' quantifier in the claim also has no counterpart here: CURIOUS's module set is given, whereas REE would have to define what the reachable set is at the moment the test is applied.",
+    "source_context": "Modular Goal Fetch Arm simulation; modular UVFA with hindsight experience replay; automated curriculum via absolute learning progress over a sliding window."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Transfer risk is comparatively low because this is an artificial-agent result being transferred to another artificial agent -- the usual animal-to-machine hazard does not apply. Mapping fidelity is the binding constraint: the paper instantiates the signal ARC-073 wants but not the decision ARC-073 makes with it."
+  }
+}

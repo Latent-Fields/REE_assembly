@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_073",
+  "entry_id": "2026-09-02_arc_073_dacc_patch_leaving_threshold_hayden2011",
+  "timestamp_utc": "2026-09-02T16:11:02Z",
+  "claim_ids_tested": [
+    "ARC-073"
+  ],
+  "source": {
+    "title": "Neuronal basis of sequential foraging decisions in a patchy environment",
+    "authors": [
+      "Benjamin Y. Hayden",
+      "John M. Pearson",
+      "Michael L. Platt"
+    ],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2856",
+    "pmid": "21642973",
+    "pmc": null,
+    "volume": "14",
+    "issue": "7",
+    "pages": "933-939"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Canonical single-unit macaque study in a top venue with a clean threshold-crossing result, so source_quality is high. Confidence is held below the source-quality figure because the mapping is analogical: patch-leaving in a depleting reward environment shares the FORM of ARC-073's criterion (leave when the marginal rate of return falls to a threshold rather than after a fixed dwell time) but not its CONTENT (the depleting quantity there is reward rate, not prediction-error reduction / learning progress).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The threshold was not fixed in absolute terms: longer travel times reduced the gain of stay-responses and RAISED the firing-rate threshold for leaving. A REE implementation that hard-codes a single play_lp_saturation_threshold, insensitive to the cost of the transition itself, would be under-specified relative to this finding.",
+    "The quantity that depletes here is exogenous (the patch empties whether or not the animal learns anything). ARC-073's quantity depletes endogenously (PE falls BECAUSE the agent learned). A criterion tuned on an exogenous depletion signal can fire on a merely unrewarding environment rather than on a mastered one."
+  ],
+  "tags": [
+    "arc-073",
+    "patch_leaving",
+    "marginal_value_theorem",
+    "dacc",
+    "transition_criterion",
+    "foraging"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neurons in macaque dorsal anterior cingulate cortex encode a decision variable signalling the relative value of leaving a depleting patch; firing rises across successive stay decisions and patch-leaving occurs when that signal reaches a fixed threshold for a given travel time. Travel time modulates both the gain of the stay-response and the leaving threshold, and these modulations track behaviour better than any single task variable.",
+    "ree_translation": "ARC-073 asserts that play-to-real transition is triggered by a saturation criterion on learning progress (|d(PE)/dt| < threshold) rather than by elapsed episode duration. Hayden et al. establish the general architectural point one level up: in a primate brain, a well-characterised disengagement decision IS implemented as an accumulating value-derivative signal crossing a threshold, and is NOT implemented as a clock. That licenses the SHAPE of ARC-073's proposed mechanism -- a monitored scalar plus a threshold on its rate of change -- and supplies a concrete precedent for the 'competition criterion' alternative in the claim notes, since the threshold there is explicitly set by the opportunity cost of the alternative (travel time) rather than by the patch alone.",
+    "mapping_caveat": "This is evidence for the form of the criterion, not for its content. The depleting variable is reward rate in a foraging task; ARC-073's is prediction-error reduction during play. The transfer assumes that a learning-progress signal is monitored and thresholded the way a reward-rate signal is, which no result here tests. Additionally, the study is about a within-mode choice (this patch vs the next patch), whereas ARC-073 concerns a between-MODE transition (synthetic z_goal play vs homeostatically driven real behaviour); treating them as the same computation is the main over-reach risk.",
+    "source_context": "Macaca mulatta, single-unit recording in dorsal anterior cingulate cortex during a sequential virtual patch-foraging task with manipulated travel times."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Weighted toward mapping_fidelity because ARC-073 is an architecture_hypothesis: what matters is whether the proposed criterion form is neurally plausible, and this study is strong on that while being only analogical on the specific quantity monitored."
+  }
+}

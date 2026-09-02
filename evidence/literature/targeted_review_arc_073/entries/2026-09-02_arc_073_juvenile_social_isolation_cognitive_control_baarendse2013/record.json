@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_073",
+  "entry_id": "2026-09-02_arc_073_juvenile_social_isolation_cognitive_control_baarendse2013",
+  "timestamp_utc": "2026-09-02T16:11:02Z",
+  "claim_ids_tested": [
+    "ARC-073"
+  ],
+  "source": {
+    "title": "Early social experience is critical for the development of cognitive control and dopamine modulation of prefrontal cortex function",
+    "authors": [
+      "Petra J. J. Baarendse",
+      "Danielle S. Counotte",
+      "Patricio O'Donnell",
+      "Louk J. M. J. Vanderschuren"
+    ],
+    "year": 2013,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/npp.2013.47",
+    "pmid": "23403694",
+    "pmc": "PMC3682143",
+    "volume": "38",
+    "issue": "8",
+    "pages": "1485-1494"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Good-quality animal study combining behaviour across three tasks with prefrontal slice physiology, published in a strong venue, and it speaks to a half of ARC-073 that has almost no other evidence. Confidence is held to 0.58 because the manipulation is total social isolation across the play period, which is a much blunter intervention than 'premature transition out of play mode' -- the mapping is directional rather than quantitative.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The deficits appeared specifically 'under novel or challenging circumstances' and impulsive CHOICE was unaffected. Undertraining from truncated play is therefore not a global policy deficit -- a REE falsifier that measures mean task performance in familiar conditions would likely miss it, and would wrongly read a prematurely-transitioned agent as intact.",
+    "The isolated rats were re-socialised until adulthood and the impairments persisted. If this transfers, a REE agent given extra play AFTER a premature transition would not recover the lost policy structure, which makes the transition timing non-recoverable rather than merely suboptimal.",
+    "Loss of prefrontal pyramidal-neuron sensitivity to dopamine accompanied the behavioural deficit, i.e. the cost of truncated play showed up as degraded MODULATION of the control substrate rather than as absent policy. An REE readout of policy content alone would not detect this signature."
+  ],
+  "tags": [
+    "arc-073",
+    "play_deprivation",
+    "social_isolation",
+    "cognitive_control",
+    "prefrontal_dopamine",
+    "undertrained_policy"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rats socially isolated from postnatal day 21 to 42 -- the period of peak social play -- and then re-socialised to adulthood showed lasting impairments in impulsive action and in decision making under novel or challenging conditions, a blunted behavioural response to dopaminergic enhancement, and a loss of dopamine sensitivity in medial prefrontal pyramidal neurons. Impulsive choice was spared.",
+    "ree_translation": "ARC-073's second clause -- 'premature transition leaves policy structure undertrained' -- is the part of the claim with no experimental evidence in the REE corpus and no obvious computational analogue. This study is the closest biological test available: removing the play period and then restoring the social environment does NOT restore the capacities that period was building. In REE terms, if play-mode exit fires before the world-model / policy structure that play is training has converged, the resulting deficit is (a) persistent despite later exposure, (b) selective to novel or high-demand situations rather than global, and (c) visible as degraded neuromodulatory gain over the control substrate rather than as missing behaviour. That is a much more specific prediction for a falsifier than the claim currently states, and it argues that the cost of a badly-set play_lp_saturation_threshold is asymmetric: transitioning too early is expensive and hard to undo, whereas transitioning too late costs only time.",
+    "mapping_caveat": "Social isolation removes far more than play -- it removes all social input, tactile contact, and much environmental variety across three weeks. It is therefore evidence that the developmental window matters, not evidence that COMPETENCE-SATURATION-timed exit is the right way to close it; a fixed-duration play period of adequate length would produce the same protection in this design. The transfer from rodent adolescent social development to an REE play episode closed by MECH-196 is long, and the mechanism (prefrontal dopamine modulation) has no current REE counterpart.",
+    "source_context": "Male rats; social isolation P21-P42 with re-socialisation; five-choice serial reaction time task, delayed reward task, rat gambling task; medial prefrontal cortex slice recordings."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.52,
+    "notes": "Transfer risk is high and stated deliberately: the intervention is deprivation of a developmental window, and ARC-073 is about the criterion that ends such a window from within. Both the species gap and the intervention-shape gap are real. Confidence is nonetheless above the mapping figure because this is the only direct evidence on the claim's undertraining clause."
+  }
+}

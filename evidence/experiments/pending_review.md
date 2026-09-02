@@ -1,22 +1,29 @@
 # Pending Experiment Review
 
-Generated: `2026-09-02T12:48:23Z`  
+Generated: `2026-09-02T16:15:06Z`  
 Last review: `2026-09-02T12:48:15Z`  
-Pending: **5** item(s) -- 1 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
+Pending: **3** item(s) -- 2 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_395_mech220_harm_hub_dry_20260413T074905Z` | 20260413T074928Z | MECH-220 | — |
-| `v3_exq_395_mech220_harm_hub_dry_20260413T075033Z` | 20260413T075102Z | MECH-220 | — |
-| `v3_exq_395_mech220_harm_hub_dry_20260413T075133Z` | 20260413T075203Z | MECH-220 | — |
+| `v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3` | 2026-09-02T15:28 | MECH-439 | — |
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_472_sd011_platform_stability_pilot_20260421T183651Z_v3` | 2026-04-21T18:36 | SD-011 |
+| `v3_exq_976_sd_e1_item2_rollout_consistency_validation_20260902T114700Z_v3` | 2026-09-02T11:47 | (no claim tags) |
+
+## Diagnostic adjudication required (self-route unverified)
+
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
 
 ## Diagnostic -- autopsy required (no confirmed adjudication)
 
@@ -25,14 +32,7 @@ Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED
 | Run ID | Status | Self-route label |
 |--------|--------|-------------------|
 | `v3_exq_472_sd011_platform_stability_pilot_20260421T183651Z_v3` | PASS | — |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| PASS | `v3_exq_976_sd_e1_item2_rollout_consistency_validation_20260902T114700Z_v3` | v3_exq_976_sd_e1_item2_rollout_consistency_validation | V3-EXQ-976 | non_contributory |
+| `v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3` | FAIL | substrate_not_ready_requeue |
 
 ---
 

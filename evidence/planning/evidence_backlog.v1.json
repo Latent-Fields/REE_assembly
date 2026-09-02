@@ -119,6 +119,19 @@
       "recent_targeted_batches": 18
     },
     {
+      "claim_id": "ARC-073",
+      "conflict_ratio": 0.667,
+      "current_status": "candidate",
+      "entries_total": 5,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "pattern": "dormant_low_activity",
+      "recent_targeted_batches": 0
+    },
+    {
       "claim_id": "INV-047",
       "conflict_ratio": 0.667,
       "current_status": "candidate",
@@ -234,6 +247,19 @@
       },
       "pattern": "chronic_under_threshold",
       "recent_targeted_batches": 7
+    },
+    {
+      "claim_id": "MECH-439",
+      "conflict_ratio": 0.667,
+      "current_status": "candidate",
+      "entries_total": 23,
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-08-18T14:09:26.999025Z"
+      },
+      "pattern": "chronic_under_threshold",
+      "recent_targeted_batches": 16
     },
     {
       "claim_id": "MECH-445",
@@ -458,7 +484,7 @@
     }
   ],
   "evidence_scope": "current_epoch_applicable,epoch=ree_hybrid_guardrails_v1",
-  "generated_at_utc": "2026-09-02T05:50:47.320756Z",
+  "generated_at_utc": "2026-09-02T16:17:28.661264Z",
   "items": [
     {
       "adjudication_context": {
@@ -605,8 +631,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.274,
-          "experimental_confidence": 0.425,
+          "delta_lit_minus_exp": 0.275,
+          "experimental_confidence": 0.424,
           "literature_confidence": 0.699
         },
         "conflict_ratio": 1.0,
@@ -620,7 +646,7 @@
         "entries_total": 21,
         "fresh_batches_since_decision": 6,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.562,
+        "overall_confidence": 0.561,
         "recent_targeted_batches": 9,
         "source_counts": {
           "experimental": 9,
@@ -687,8 +713,8 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.235,
-          "experimental_confidence": 0.578,
+          "delta_lit_minus_exp": 0.236,
+          "experimental_confidence": 0.577,
           "literature_confidence": 0.813
         },
         "conflict_ratio": 1.0,
@@ -702,7 +728,7 @@
         "entries_total": 14,
         "fresh_batches_since_decision": 4,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.696,
+        "overall_confidence": 0.695,
         "recent_targeted_batches": 8,
         "source_counts": {
           "experimental": 8,
@@ -772,8 +798,8 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.374,
-          "experimental_confidence": 0.426,
+          "delta_lit_minus_exp": 0.375,
+          "experimental_confidence": 0.425,
           "literature_confidence": 0.8
         },
         "conflict_ratio": 1.0,
@@ -858,8 +884,8 @@
         "claim_type": "architectural_commitment",
         "confidence_split": {
           "delta_lit_minus_exp": 0.284,
-          "experimental_confidence": 0.417,
-          "literature_confidence": 0.701
+          "experimental_confidence": 0.416,
+          "literature_confidence": 0.7
         },
         "conflict_ratio": 1.0,
         "current_status": "candidate",
@@ -872,7 +898,7 @@
         "entries_total": 6,
         "fresh_batches_since_decision": 2,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.531,
+        "overall_confidence": 0.53,
         "recent_targeted_batches": 4,
         "source_counts": {
           "experimental": 4,
@@ -1026,8 +1052,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.301,
-          "experimental_confidence": 0.515,
+          "delta_lit_minus_exp": 0.302,
+          "experimental_confidence": 0.514,
           "literature_confidence": 0.816
         },
         "conflict_ratio": 0.952,
@@ -1111,8 +1137,8 @@
       "signals": {
         "claim_type": "architecture_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.376,
-          "experimental_confidence": 0.456,
+          "delta_lit_minus_exp": 0.377,
+          "experimental_confidence": 0.455,
           "literature_confidence": 0.832
         },
         "conflict_ratio": 0.923,
@@ -1126,7 +1152,7 @@
         "entries_total": 18,
         "fresh_batches_since_decision": 7,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.644,
+        "overall_confidence": 0.643,
         "recent_targeted_batches": 11,
         "source_counts": {
           "experimental": 11,
@@ -1280,8 +1306,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.027,
-          "experimental_confidence": 0.695,
+          "delta_lit_minus_exp": 0.028,
+          "experimental_confidence": 0.694,
           "literature_confidence": 0.722
         },
         "conflict_ratio": 0.889,
@@ -1364,8 +1390,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.231,
-          "experimental_confidence": 0.592,
+          "delta_lit_minus_exp": 0.232,
+          "experimental_confidence": 0.591,
           "literature_confidence": 0.823
         },
         "conflict_ratio": 0.85,
@@ -1449,8 +1475,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.269,
-          "experimental_confidence": 0.541,
+          "delta_lit_minus_exp": 0.27,
+          "experimental_confidence": 0.54,
           "literature_confidence": 0.81
         },
         "conflict_ratio": 0.824,
@@ -1464,7 +1490,7 @@
         "entries_total": 23,
         "fresh_batches_since_decision": 6,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.676,
+        "overall_confidence": 0.675,
         "recent_targeted_batches": 9,
         "source_counts": {
           "experimental": 9,
@@ -1535,8 +1561,8 @@
         "claim_type": "design_decision",
         "confidence_split": {
           "delta_lit_minus_exp": 0.089,
-          "experimental_confidence": 0.545,
-          "literature_confidence": 0.634
+          "experimental_confidence": 0.544,
+          "literature_confidence": 0.633
         },
         "conflict_ratio": 0.8,
         "current_status": "candidate",
@@ -1549,7 +1575,7 @@
         "entries_total": 15,
         "fresh_batches_since_decision": 5,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.59,
+        "overall_confidence": 0.589,
         "recent_targeted_batches": 7,
         "source_counts": {
           "experimental": 7,
@@ -1618,8 +1644,8 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.433,
-          "experimental_confidence": 0.395,
+          "delta_lit_minus_exp": 0.434,
+          "experimental_confidence": 0.394,
           "literature_confidence": 0.828
         },
         "conflict_ratio": 0.8,
@@ -1632,7 +1658,7 @@
         ],
         "entries_total": 13,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.612,
+        "overall_confidence": 0.611,
         "recent_targeted_batches": 8,
         "source_counts": {
           "experimental": 8,
@@ -1787,8 +1813,8 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.391,
-          "experimental_confidence": 0.397,
+          "delta_lit_minus_exp": 0.392,
+          "experimental_confidence": 0.396,
           "literature_confidence": 0.788
         },
         "conflict_ratio": 0.8,
@@ -1870,8 +1896,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.536,
-          "experimental_confidence": 0.313,
+          "delta_lit_minus_exp": 0.537,
+          "experimental_confidence": 0.312,
           "literature_confidence": 0.849
         },
         "conflict_ratio": 0.8,
@@ -1884,7 +1910,7 @@
         ],
         "entries_total": 6,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.635,
+        "overall_confidence": 0.634,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -2037,8 +2063,8 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.47,
-          "experimental_confidence": 0.306,
+          "delta_lit_minus_exp": 0.471,
+          "experimental_confidence": 0.305,
           "literature_confidence": 0.776
         },
         "conflict_ratio": 0.8,
@@ -2117,8 +2143,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.21,
-          "experimental_confidence": 0.373,
+          "delta_lit_minus_exp": 0.211,
+          "experimental_confidence": 0.372,
           "literature_confidence": 0.583
         },
         "conflict_ratio": 1.0,
@@ -2189,15 +2215,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.151,
-          "experimental_confidence": 0.651,
+          "delta_lit_minus_exp": 0.152,
+          "experimental_confidence": 0.65,
           "literature_confidence": 0.802
         },
         "conflict_ratio": 0.857,
         "current_status": "candidate",
         "entries_total": 10,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.727,
+        "overall_confidence": 0.726,
         "recent_targeted_batches": 6,
         "source_counts": {
           "experimental": 6,
@@ -2335,14 +2361,14 @@
         "claim_type": "architecture_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.11,
-          "experimental_confidence": 0.674,
-          "literature_confidence": 0.784
+          "experimental_confidence": 0.673,
+          "literature_confidence": 0.783
         },
         "conflict_ratio": 0.783,
         "current_status": "provisional",
         "entries_total": 36,
         "fresh_batches_since_decision": 8,
-        "overall_confidence": 0.729,
+        "overall_confidence": 0.728,
         "recent_targeted_batches": 15,
         "source_counts": {
           "experimental": 33,
@@ -2408,14 +2434,14 @@
         "claim_type": "design_decision",
         "confidence_split": {
           "delta_lit_minus_exp": 0.316,
-          "experimental_confidence": 0.47,
-          "literature_confidence": 0.786
+          "experimental_confidence": 0.469,
+          "literature_confidence": 0.785
         },
         "conflict_ratio": 0.737,
         "current_status": "candidate",
         "entries_total": 52,
         "fresh_batches_since_decision": 27,
-        "overall_confidence": 0.628,
+        "overall_confidence": 0.627,
         "recent_targeted_batches": 24,
         "source_counts": {
           "experimental": 39,
@@ -2676,6 +2702,78 @@
           ]
         }
       },
+      "backlog_id": "EVB-1698",
+      "claim_id": "MECH-439",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-08-18T14:09:26.999025Z"
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "directional_conflict_alert",
+        "low_exp_conf"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.34,
+          "experimental_confidence": 0.462,
+          "literature_confidence": 0.802
+        },
+        "conflict_ratio": 0.667,
+        "current_status": "candidate",
+        "entries_total": 23,
+        "fresh_batches_since_decision": 3,
+        "overall_confidence": 0.632,
+        "recent_targeted_batches": 16,
+        "source_counts": {
+          "experimental": 16,
+          "literature": 7
+        }
+      },
+      "status": "in_progress"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "external_model_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
       "backlog_id": "EVB-0446",
       "claim_id": "INV-047",
       "evidence_needed": [
@@ -2696,15 +2794,15 @@
       "signals": {
         "claim_type": "derived_prediction",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.121,
-          "experimental_confidence": 0.734,
+          "delta_lit_minus_exp": -0.12,
+          "experimental_confidence": 0.733,
           "literature_confidence": 0.613
         },
         "conflict_ratio": 0.667,
         "current_status": "candidate",
         "entries_total": 14,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.674,
+        "overall_confidence": 0.673,
         "recent_targeted_batches": 10,
         "source_counts": {
           "experimental": 10,
@@ -2841,14 +2939,14 @@
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.469,
-          "experimental_confidence": 0.281,
-          "literature_confidence": 0.75
+          "experimental_confidence": 0.28,
+          "literature_confidence": 0.749
         },
         "conflict_ratio": 0.667,
         "current_status": "candidate",
         "entries_total": 10,
         "fresh_batches_since_decision": 1,
-        "overall_confidence": 0.515,
+        "overall_confidence": 0.514,
         "recent_targeted_batches": 7,
         "source_counts": {
           "experimental": 7,
@@ -2913,15 +3011,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.299,
-          "experimental_confidence": 0.343,
+          "delta_lit_minus_exp": 0.3,
+          "experimental_confidence": 0.342,
           "literature_confidence": 0.642
         },
         "conflict_ratio": 0.667,
         "current_status": "candidate",
         "entries_total": 10,
         "fresh_batches_since_decision": 7,
-        "overall_confidence": 0.463,
+        "overall_confidence": 0.462,
         "recent_targeted_batches": 8,
         "source_counts": {
           "experimental": 8,
@@ -2985,8 +3083,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.069,
-          "experimental_confidence": 0.588,
+          "delta_lit_minus_exp": 0.07,
+          "experimental_confidence": 0.587,
           "literature_confidence": 0.657
         },
         "conflict_ratio": 0.667,
@@ -3058,15 +3156,15 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.42,
+          "delta_lit_minus_exp": 0.419,
           "experimental_confidence": 0.302,
-          "literature_confidence": 0.722
+          "literature_confidence": 0.721
         },
         "conflict_ratio": 0.667,
         "current_status": "active",
         "entries_total": 9,
         "fresh_batches_since_decision": 4,
-        "overall_confidence": 0.512,
+        "overall_confidence": 0.511,
         "recent_targeted_batches": 5,
         "source_counts": {
           "experimental": 6,
@@ -3129,14 +3227,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.273,
-          "experimental_confidence": 0.552,
+          "delta_lit_minus_exp": 0.274,
+          "experimental_confidence": 0.551,
           "literature_confidence": 0.825
         },
         "conflict_ratio": 0.667,
         "current_status": "candidate",
         "entries_total": 8,
-        "overall_confidence": 0.689,
+        "overall_confidence": 0.688,
         "recent_targeted_batches": 3,
         "source_counts": {
           "experimental": 3,
@@ -3199,8 +3297,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.066,
-          "experimental_confidence": 0.694,
+          "delta_lit_minus_exp": 0.067,
+          "experimental_confidence": 0.693,
           "literature_confidence": 0.76
         },
         "conflict_ratio": 0.667,
@@ -3344,15 +3442,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.305,
-          "experimental_confidence": 0.378,
+          "delta_lit_minus_exp": 0.306,
+          "experimental_confidence": 0.377,
           "literature_confidence": 0.683
         },
         "conflict_ratio": 0.667,
         "current_status": "provisional",
         "entries_total": 6,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.5,
+        "overall_confidence": 0.499,
         "recent_targeted_batches": 4,
         "source_counts": {
           "experimental": 4,
@@ -3416,8 +3514,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.305,
-          "experimental_confidence": 0.515,
+          "delta_lit_minus_exp": 0.306,
+          "experimental_confidence": 0.514,
           "literature_confidence": 0.82
         },
         "conflict_ratio": 0.667,
@@ -3488,8 +3586,8 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.068,
-          "experimental_confidence": 0.707,
+          "delta_lit_minus_exp": -0.067,
+          "experimental_confidence": 0.706,
           "literature_confidence": 0.639
         },
         "conflict_ratio": 0.667,
@@ -3633,8 +3731,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.566,
-          "experimental_confidence": 0.223,
+          "delta_lit_minus_exp": 0.567,
+          "experimental_confidence": 0.222,
           "literature_confidence": 0.789
         },
         "conflict_ratio": 0.667,
@@ -3707,15 +3805,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.442,
-          "experimental_confidence": 0.244,
+          "delta_lit_minus_exp": 0.443,
+          "experimental_confidence": 0.243,
           "literature_confidence": 0.686
         },
         "conflict_ratio": 0.667,
         "current_status": "candidate",
         "entries_total": 3,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.539,
+        "overall_confidence": 0.538,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -3779,15 +3877,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.136,
-          "experimental_confidence": 0.824,
+          "delta_lit_minus_exp": -0.135,
+          "experimental_confidence": 0.823,
           "literature_confidence": 0.688
         },
         "conflict_ratio": 0.625,
         "current_status": "active",
         "entries_total": 64,
         "fresh_batches_since_decision": 43,
-        "overall_confidence": 0.756,
+        "overall_confidence": 0.755,
         "recent_targeted_batches": 24,
         "source_counts": {
           "experimental": 45,
@@ -3851,8 +3949,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.164,
-          "experimental_confidence": 0.612,
+          "delta_lit_minus_exp": 0.165,
+          "experimental_confidence": 0.611,
           "literature_confidence": 0.776
         },
         "conflict_ratio": 0.615,
@@ -4285,15 +4383,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.566,
-          "experimental_confidence": 0.28,
+          "delta_lit_minus_exp": 0.567,
+          "experimental_confidence": 0.279,
           "literature_confidence": 0.846
         },
         "conflict_ratio": 0.5,
         "current_status": "candidate",
         "entries_total": 16,
         "fresh_batches_since_decision": 10,
-        "overall_confidence": 0.563,
+        "overall_confidence": 0.562,
         "recent_targeted_batches": 13,
         "source_counts": {
           "experimental": 13,
@@ -4358,8 +4456,8 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.361,
-          "experimental_confidence": 0.451,
+          "delta_lit_minus_exp": 0.362,
+          "experimental_confidence": 0.45,
           "literature_confidence": 0.812
         },
         "conflict_ratio": 0.5,
@@ -4430,8 +4528,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.409,
-          "experimental_confidence": 0.334,
+          "delta_lit_minus_exp": 0.41,
+          "experimental_confidence": 0.333,
           "literature_confidence": 0.743
         },
         "conflict_ratio": 0.5,
@@ -4503,15 +4601,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.379,
-          "experimental_confidence": 0.426,
+          "delta_lit_minus_exp": 0.38,
+          "experimental_confidence": 0.425,
           "literature_confidence": 0.805
         },
         "conflict_ratio": 0.5,
         "current_status": "candidate",
         "entries_total": 8,
         "fresh_batches_since_decision": 1,
-        "overall_confidence": 0.616,
+        "overall_confidence": 0.615,
         "recent_targeted_batches": 4,
         "source_counts": {
           "experimental": 4,
@@ -4577,14 +4675,14 @@
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.363,
-          "experimental_confidence": 0.372,
-          "literature_confidence": 0.735
+          "experimental_confidence": 0.371,
+          "literature_confidence": 0.734
         },
         "conflict_ratio": 0.5,
         "current_status": "candidate",
         "entries_total": 7,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.553,
+        "overall_confidence": 0.552,
         "recent_targeted_batches": 4,
         "source_counts": {
           "experimental": 4,
@@ -4724,14 +4822,14 @@
         "claim_type": "design_decision",
         "confidence_split": {
           "delta_lit_minus_exp": 0.562,
-          "experimental_confidence": 0.255,
-          "literature_confidence": 0.817
+          "experimental_confidence": 0.254,
+          "literature_confidence": 0.816
         },
         "conflict_ratio": 0.5,
         "current_status": "candidate",
         "entries_total": 5,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.676,
+        "overall_confidence": 0.675,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -4795,8 +4893,8 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.538,
-          "experimental_confidence": 0.234,
+          "delta_lit_minus_exp": 0.539,
+          "experimental_confidence": 0.233,
           "literature_confidence": 0.772
         },
         "conflict_ratio": 0.5,
@@ -4939,15 +5037,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.26,
-          "experimental_confidence": 0.57,
+          "delta_lit_minus_exp": 0.261,
+          "experimental_confidence": 0.569,
           "literature_confidence": 0.83
         },
         "conflict_ratio": 0.444,
         "current_status": "candidate",
         "entries_total": 17,
         "fresh_batches_since_decision": 5,
-        "overall_confidence": 0.7,
+        "overall_confidence": 0.699,
         "recent_targeted_batches": 9,
         "source_counts": {
           "experimental": 9,
@@ -5083,13 +5181,13 @@
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.023,
-          "experimental_confidence": 0.734,
-          "literature_confidence": 0.757
+          "experimental_confidence": 0.733,
+          "literature_confidence": 0.756
         },
         "conflict_ratio": 0.444,
         "current_status": "candidate",
         "entries_total": 12,
-        "overall_confidence": 0.743,
+        "overall_confidence": 0.742,
         "recent_targeted_batches": 10,
         "source_counts": {
           "experimental": 10,
@@ -5154,15 +5252,15 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.458,
+          "delta_lit_minus_exp": 0.457,
           "experimental_confidence": 0.382,
-          "literature_confidence": 0.84
+          "literature_confidence": 0.839
         },
         "conflict_ratio": 0.438,
         "current_status": "provisional",
         "entries_total": 64,
         "fresh_batches_since_decision": 3,
-        "overall_confidence": 0.611,
+        "overall_confidence": 0.61,
         "recent_targeted_batches": 24,
         "source_counts": {
           "experimental": 39,
@@ -5299,14 +5397,14 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.311,
-          "experimental_confidence": 0.582,
+          "delta_lit_minus_exp": 0.312,
+          "experimental_confidence": 0.581,
           "literature_confidence": 0.893
         },
         "conflict_ratio": 0.417,
         "current_status": "implemented",
         "entries_total": 32,
-        "overall_confidence": 0.738,
+        "overall_confidence": 0.737,
         "recent_targeted_batches": 15,
         "source_counts": {
           "experimental": 16,
@@ -5371,15 +5469,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.33,
-          "experimental_confidence": 0.482,
+          "delta_lit_minus_exp": 0.331,
+          "experimental_confidence": 0.481,
           "literature_confidence": 0.812
         },
         "conflict_ratio": 0.4,
         "current_status": "candidate",
         "entries_total": 38,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.647,
+        "overall_confidence": 0.646,
         "recent_targeted_batches": 14,
         "source_counts": {
           "experimental": 14,
@@ -5443,8 +5541,8 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.616,
-          "experimental_confidence": 0.28,
+          "delta_lit_minus_exp": 0.617,
+          "experimental_confidence": 0.279,
           "literature_confidence": 0.896
         },
         "conflict_ratio": 0.4,
@@ -5516,8 +5614,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.417,
-          "experimental_confidence": 0.451,
+          "delta_lit_minus_exp": 0.418,
+          "experimental_confidence": 0.45,
           "literature_confidence": 0.868
         },
         "conflict_ratio": 0.4,
@@ -5588,15 +5686,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.004,
-          "experimental_confidence": 0.771,
+          "delta_lit_minus_exp": 0.005,
+          "experimental_confidence": 0.77,
           "literature_confidence": 0.775
         },
         "conflict_ratio": 0.4,
         "current_status": "candidate",
         "entries_total": 14,
         "fresh_batches_since_decision": 5,
-        "overall_confidence": 0.773,
+        "overall_confidence": 0.772,
         "recent_targeted_batches": 6,
         "source_counts": {
           "experimental": 6,
@@ -5659,14 +5757,14 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.057,
-          "experimental_confidence": 0.734,
+          "delta_lit_minus_exp": 0.058,
+          "experimental_confidence": 0.733,
           "literature_confidence": 0.791
         },
         "conflict_ratio": 0.4,
         "current_status": "candidate",
         "entries_total": 14,
-        "overall_confidence": 0.763,
+        "overall_confidence": 0.762,
         "recent_targeted_batches": 10,
         "source_counts": {
           "experimental": 10,
@@ -5729,15 +5827,15 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.146,
-          "experimental_confidence": 0.703,
+          "delta_lit_minus_exp": 0.147,
+          "experimental_confidence": 0.702,
           "literature_confidence": 0.849
         },
         "conflict_ratio": 0.4,
         "current_status": "candidate",
         "entries_total": 12,
         "fresh_batches_since_decision": 5,
-        "overall_confidence": 0.776,
+        "overall_confidence": 0.775,
         "recent_targeted_batches": 5,
         "source_counts": {
           "experimental": 5,
@@ -5803,14 +5901,14 @@
         "claim_type": "architectural_commitment",
         "confidence_split": {
           "delta_lit_minus_exp": 0.438,
-          "experimental_confidence": 0.337,
-          "literature_confidence": 0.775
+          "experimental_confidence": 0.336,
+          "literature_confidence": 0.774
         },
         "conflict_ratio": 0.4,
         "current_status": "candidate",
         "entries_total": 9,
         "fresh_batches_since_decision": 3,
-        "overall_confidence": 0.556,
+        "overall_confidence": 0.555,
         "recent_targeted_batches": 3,
         "source_counts": {
           "experimental": 3,
@@ -5874,15 +5972,15 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.172,
-          "experimental_confidence": 0.608,
+          "delta_lit_minus_exp": 0.173,
+          "experimental_confidence": 0.607,
           "literature_confidence": 0.78
         },
         "conflict_ratio": 0.4,
         "current_status": "provisional",
         "entries_total": 8,
         "fresh_batches_since_decision": 4,
-        "overall_confidence": 0.694,
+        "overall_confidence": 0.693,
         "recent_targeted_batches": 5,
         "source_counts": {
           "experimental": 5,
@@ -5947,8 +6045,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.485,
-          "experimental_confidence": 0.378,
+          "delta_lit_minus_exp": 0.486,
+          "experimental_confidence": 0.377,
           "literature_confidence": 0.863
         },
         "conflict_ratio": 0.4,
@@ -6019,8 +6117,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.475,
-          "experimental_confidence": 0.302,
+          "delta_lit_minus_exp": 0.476,
+          "experimental_confidence": 0.301,
           "literature_confidence": 0.777
         },
         "conflict_ratio": 0.4,
@@ -6091,8 +6189,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.142,
-          "experimental_confidence": 0.637,
+          "delta_lit_minus_exp": 0.143,
+          "experimental_confidence": 0.636,
           "literature_confidence": 0.779
         },
         "conflict_ratio": 0.4,
@@ -6163,8 +6261,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.075,
-          "experimental_confidence": 0.77,
+          "delta_lit_minus_exp": -0.074,
+          "experimental_confidence": 0.769,
           "literature_confidence": 0.695
         },
         "conflict_ratio": 0.4,
@@ -6378,15 +6476,15 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.233,
-          "experimental_confidence": 0.602,
+          "delta_lit_minus_exp": 0.234,
+          "experimental_confidence": 0.601,
           "literature_confidence": 0.835
         },
         "conflict_ratio": 0.343,
         "current_status": "provisional",
         "entries_total": 49,
         "fresh_batches_since_decision": 18,
-        "overall_confidence": 0.719,
+        "overall_confidence": 0.718,
         "recent_targeted_batches": 18,
         "source_counts": {
           "experimental": 19,
@@ -6449,8 +6547,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.023,
-          "experimental_confidence": 0.797,
+          "delta_lit_minus_exp": 0.024,
+          "experimental_confidence": 0.796,
           "literature_confidence": 0.82
         },
         "conflict_ratio": 0.333,
@@ -6520,9 +6618,9 @@
       "signals": {
         "claim_type": "mechanism",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.241,
+          "delta_lit_minus_exp": 0.24,
           "experimental_confidence": 0.605,
-          "literature_confidence": 0.846
+          "literature_confidence": 0.845
         },
         "conflict_ratio": 0.333,
         "current_status": "provisional",
@@ -6591,8 +6689,8 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.137,
-          "experimental_confidence": 0.709,
+          "delta_lit_minus_exp": 0.138,
+          "experimental_confidence": 0.708,
           "literature_confidence": 0.846
         },
         "conflict_ratio": 0.333,
@@ -6663,8 +6761,8 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.34,
-          "experimental_confidence": 0.408,
+          "delta_lit_minus_exp": 0.341,
+          "experimental_confidence": 0.407,
           "literature_confidence": 0.748
         },
         "conflict_ratio": 0.333,
@@ -6951,9 +7049,9 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.381,
+          "delta_lit_minus_exp": 0.38,
           "experimental_confidence": 0.458,
-          "literature_confidence": 0.839
+          "literature_confidence": 0.838
         },
         "conflict_ratio": 0.333,
         "current_status": "candidate",
@@ -7022,8 +7120,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.164,
-          "experimental_confidence": 0.809,
+          "delta_lit_minus_exp": -0.163,
+          "experimental_confidence": 0.808,
           "literature_confidence": 0.645
         },
         "conflict_ratio": 0.333,
@@ -7166,15 +7264,15 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.111,
-          "experimental_confidence": 0.656,
+          "delta_lit_minus_exp": 0.112,
+          "experimental_confidence": 0.655,
           "literature_confidence": 0.767
         },
         "conflict_ratio": 0.333,
         "current_status": "candidate",
         "entries_total": 6,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.712,
+        "overall_confidence": 0.711,
         "recent_targeted_batches": 3,
         "source_counts": {
           "experimental": 3,
@@ -7238,8 +7336,8 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.294,
-          "experimental_confidence": 0.545,
+          "delta_lit_minus_exp": 0.295,
+          "experimental_confidence": 0.544,
           "literature_confidence": 0.839
         },
         "conflict_ratio": 0.286,
@@ -7381,15 +7479,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.242,
-          "experimental_confidence": 0.617,
+          "delta_lit_minus_exp": 0.243,
+          "experimental_confidence": 0.616,
           "literature_confidence": 0.859
         },
         "conflict_ratio": 0.267,
         "current_status": "candidate",
         "entries_total": 24,
         "fresh_batches_since_decision": 1,
-        "overall_confidence": 0.738,
+        "overall_confidence": 0.737,
         "recent_targeted_batches": 10,
         "source_counts": {
           "experimental": 10,
@@ -7452,8 +7550,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.28,
-          "experimental_confidence": 0.58,
+          "delta_lit_minus_exp": 0.281,
+          "experimental_confidence": 0.579,
           "literature_confidence": 0.86
         },
         "conflict_ratio": 0.267,
@@ -7523,15 +7621,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.226,
+          "delta_lit_minus_exp": 0.225,
           "experimental_confidence": 0.62,
-          "literature_confidence": 0.846
+          "literature_confidence": 0.845
         },
         "conflict_ratio": 0.25,
         "current_status": "active",
         "entries_total": 25,
         "fresh_batches_since_decision": 7,
-        "overall_confidence": 0.733,
+        "overall_confidence": 0.732,
         "recent_targeted_batches": 11,
         "source_counts": {
           "experimental": 15,
@@ -7948,15 +8046,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.183,
-          "experimental_confidence": 0.637,
+          "delta_lit_minus_exp": 0.184,
+          "experimental_confidence": 0.636,
           "literature_confidence": 0.82
         },
         "conflict_ratio": 0.222,
         "current_status": "candidate",
         "entries_total": 13,
         "fresh_batches_since_decision": 3,
-        "overall_confidence": 0.729,
+        "overall_confidence": 0.728,
         "recent_targeted_batches": 6,
         "source_counts": {
           "experimental": 6,
@@ -8020,8 +8118,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.579,
-          "experimental_confidence": 0.267,
+          "delta_lit_minus_exp": 0.58,
+          "experimental_confidence": 0.266,
           "literature_confidence": 0.846
         },
         "conflict_ratio": 0.222,
@@ -8091,8 +8189,8 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.231,
-          "experimental_confidence": 0.626,
+          "delta_lit_minus_exp": 0.232,
+          "experimental_confidence": 0.625,
           "literature_confidence": 0.857
         },
         "conflict_ratio": 0.207,
@@ -8162,8 +8260,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.029,
-          "experimental_confidence": 0.793,
+          "delta_lit_minus_exp": 0.03,
+          "experimental_confidence": 0.792,
           "literature_confidence": 0.822
         },
         "conflict_ratio": 0.2,
@@ -8232,8 +8330,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.017,
-          "experimental_confidence": 0.789,
+          "delta_lit_minus_exp": 0.018,
+          "experimental_confidence": 0.788,
           "literature_confidence": 0.806
         },
         "conflict_ratio": 0.2,
@@ -8302,8 +8400,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.088,
-          "experimental_confidence": 0.756,
+          "delta_lit_minus_exp": 0.089,
+          "experimental_confidence": 0.755,
           "literature_confidence": 0.844
         },
         "conflict_ratio": 0.118,
@@ -8373,8 +8471,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.045,
-          "experimental_confidence": 0.888,
+          "delta_lit_minus_exp": -0.044,
+          "experimental_confidence": 0.887,
           "literature_confidence": 0.843
         },
         "conflict_ratio": 0.095,
@@ -8444,91 +8542,19 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.084,
-          "experimental_confidence": 0.825,
+          "delta_lit_minus_exp": 0.085,
+          "experimental_confidence": 0.824,
           "literature_confidence": 0.909
         },
         "conflict_ratio": 0.091,
         "current_status": "stable",
         "entries_total": 43,
         "fresh_batches_since_decision": 23,
-        "overall_confidence": 0.867,
+        "overall_confidence": 0.866,
         "recent_targeted_batches": 22,
         "source_counts": {
           "experimental": 25,
           "literature": 18
-        }
-      },
-      "status": "covered"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "external_model_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0054",
-      "claim_id": "MECH-220",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "applied",
-        "recommendation": "hold_candidate_resolve_conflict",
-        "timestamp_utc": "2026-04-25T15:42:09.107828Z"
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "high",
-      "reasons": [
-        "active_conflict",
-        "low_exp_conf"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "mechanism_hypothesis",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.543,
-          "experimental_confidence": 0.295,
-          "literature_confidence": 0.838
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "entries_total": 9,
-        "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.567,
-        "recent_targeted_batches": 2,
-        "source_counts": {
-          "experimental": 5,
-          "literature": 4
         }
       },
       "status": "covered"
@@ -8684,6 +8710,81 @@
         }
       },
       "status": "in_progress"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "external_model_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-1205",
+      "claim_id": "ARC-073",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "medium",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "architecture_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.666,
+          "experimental_confidence": 0.0,
+          "literature_confidence": 0.666
+        },
+        "conflict_ratio": 0.667,
+        "current_status": "candidate",
+        "entries_total": 5,
+        "overall_confidence": 0.666,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 5
+        }
+      },
+      "status": "open"
     },
     {
       "adjudication_context": {
@@ -9787,14 +9888,14 @@
       "signals": {
         "claim_type": "question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.872,
+          "delta_lit_minus_exp": 0.871,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.872
+          "literature_confidence": 0.871
         },
         "conflict_ratio": 0.0,
         "current_status": "resolved",
         "entries_total": 15,
-        "overall_confidence": 0.872,
+        "overall_confidence": 0.871,
         "source_counts": {
           "experimental": 0,
           "literature": 15
@@ -10743,15 +10844,15 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.834,
+          "delta_lit_minus_exp": 0.833,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.834
+          "literature_confidence": 0.833
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 8,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.834,
+        "overall_confidence": 0.833,
         "source_counts": {
           "experimental": 0,
           "literature": 8
@@ -11550,14 +11651,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.821,
+          "delta_lit_minus_exp": 0.82,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.821
+          "literature_confidence": 0.82
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 6,
-        "overall_confidence": 0.821,
+        "overall_confidence": 0.82,
         "source_counts": {
           "experimental": 0,
           "literature": 6
@@ -11695,14 +11796,14 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.8,
+          "delta_lit_minus_exp": 0.799,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.8
+          "literature_confidence": 0.799
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 6,
-        "overall_confidence": 0.8,
+        "overall_confidence": 0.799,
         "source_counts": {
           "experimental": 0,
           "literature": 6
@@ -12134,15 +12235,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.901,
+          "delta_lit_minus_exp": 0.9,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.901
+          "literature_confidence": 0.9
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 5,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.901,
+        "overall_confidence": 0.9,
         "source_counts": {
           "experimental": 0,
           "literature": 5
@@ -12427,15 +12528,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.802,
+          "delta_lit_minus_exp": 0.801,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.802
+          "literature_confidence": 0.801
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 5,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.802,
+        "overall_confidence": 0.801,
         "source_counts": {
           "experimental": 0,
           "literature": 5
@@ -12864,14 +12965,14 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.805,
+          "delta_lit_minus_exp": 0.804,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.805
+          "literature_confidence": 0.804
         },
         "conflict_ratio": 0.0,
         "current_status": "open",
         "entries_total": 5,
-        "overall_confidence": 0.805,
+        "overall_confidence": 0.804,
         "source_counts": {
           "experimental": 0,
           "literature": 5
@@ -13301,15 +13402,15 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.777,
+          "delta_lit_minus_exp": 0.776,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.777
+          "literature_confidence": 0.776
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 5,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.777,
+        "overall_confidence": 0.776,
         "source_counts": {
           "experimental": 0,
           "literature": 5
@@ -16087,14 +16188,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.783,
+          "delta_lit_minus_exp": 0.782,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.783
+          "literature_confidence": 0.782
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
-        "overall_confidence": 0.783,
+        "overall_confidence": 0.782,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -16452,14 +16553,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.788,
+          "delta_lit_minus_exp": 0.787,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.788
+          "literature_confidence": 0.787
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
-        "overall_confidence": 0.788,
+        "overall_confidence": 0.787,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -16672,14 +16773,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.79,
+          "delta_lit_minus_exp": 0.789,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.79
+          "literature_confidence": 0.789
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
-        "overall_confidence": 0.79,
+        "overall_confidence": 0.789,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -16745,14 +16846,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.775,
+          "delta_lit_minus_exp": 0.774,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.775
+          "literature_confidence": 0.774
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
-        "overall_confidence": 0.775,
+        "overall_confidence": 0.774,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -17110,14 +17211,14 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.629,
+          "delta_lit_minus_exp": 0.628,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.629
+          "literature_confidence": 0.628
         },
         "conflict_ratio": 0.0,
         "current_status": "open",
         "entries_total": 3,
-        "overall_confidence": 0.629,
+        "overall_confidence": 0.628,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -17399,15 +17500,15 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.713,
+          "delta_lit_minus_exp": 0.712,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.713
+          "literature_confidence": 0.712
         },
         "conflict_ratio": 0.0,
         "current_status": "open",
         "entries_total": 3,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.713,
+        "overall_confidence": 0.712,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -17984,15 +18085,15 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.779,
+          "delta_lit_minus_exp": 0.778,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.779
+          "literature_confidence": 0.778
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.779,
+        "overall_confidence": 0.778,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -18424,14 +18525,14 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.774,
+          "delta_lit_minus_exp": 0.773,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.774
+          "literature_confidence": 0.773
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
-        "overall_confidence": 0.774,
+        "overall_confidence": 0.773,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -18716,14 +18817,14 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.771,
+          "delta_lit_minus_exp": 0.77,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.771
+          "literature_confidence": 0.77
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
-        "overall_confidence": 0.771,
+        "overall_confidence": 0.77,
         "source_counts": {
           "experimental": 0,
           "literature": 3
@@ -19302,14 +19403,14 @@
       "signals": {
         "claim_type": "governance_rule",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.736,
+          "delta_lit_minus_exp": 0.735,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.736
+          "literature_confidence": 0.735
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 2,
-        "overall_confidence": 0.736,
+        "overall_confidence": 0.735,
         "source_counts": {
           "experimental": 0,
           "literature": 2
@@ -19593,15 +19694,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.751,
+          "delta_lit_minus_exp": 0.75,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.751
+          "literature_confidence": 0.75
         },
         "conflict_ratio": 0.0,
         "current_status": "provisional",
         "entries_total": 2,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.751,
+        "overall_confidence": 0.75,
         "source_counts": {
           "experimental": 0,
           "literature": 2
@@ -19666,15 +19767,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.789,
+          "delta_lit_minus_exp": 0.788,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.789
+          "literature_confidence": 0.788
         },
         "conflict_ratio": 0.0,
         "current_status": "provisional",
         "entries_total": 2,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.789,
+        "overall_confidence": 0.788,
         "source_counts": {
           "experimental": 0,
           "literature": 2
@@ -20105,14 +20206,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.737,
+          "delta_lit_minus_exp": 0.736,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.737
+          "literature_confidence": 0.736
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 2,
-        "overall_confidence": 0.737,
+        "overall_confidence": 0.736,
         "source_counts": {
           "experimental": 0,
           "literature": 2
@@ -21419,14 +21520,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.636,
+          "delta_lit_minus_exp": 0.635,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.636
+          "literature_confidence": 0.635
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 2,
-        "overall_confidence": 0.636,
+        "overall_confidence": 0.635,
         "source_counts": {
           "experimental": 0,
           "literature": 2
@@ -21564,14 +21665,14 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.598,
+          "delta_lit_minus_exp": 0.597,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.598
+          "literature_confidence": 0.597
         },
         "conflict_ratio": 0.0,
         "current_status": "open",
         "entries_total": 2,
-        "overall_confidence": 0.598,
+        "overall_confidence": 0.597,
         "source_counts": {
           "experimental": 0,
           "literature": 2
@@ -25661,72 +25762,6 @@
       "recommendation": "collect_targeted_evidence",
       "signals": {
         "claim_type": "architectural_commitment",
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "overall_confidence": 0.0,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "external_model_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-1205",
-      "claim_id": "ARC-073",
-      "evidence_needed": [
-        "experimental",
-        "literature"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run paired experiment + literature cycle before status change.",
-      "priority": "medium",
-      "reasons": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "architecture_hypothesis",
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "overall_confidence": 0.0,
@@ -58342,14 +58377,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.767,
-          "experimental_confidence": 0.767,
+          "delta_lit_minus_exp": -0.766,
+          "experimental_confidence": 0.766,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 1,
-        "overall_confidence": 0.767,
+        "overall_confidence": 0.766,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -58414,15 +58449,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.767,
-          "experimental_confidence": 0.767,
+          "delta_lit_minus_exp": -0.766,
+          "experimental_confidence": 0.766,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 1,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.767,
+        "overall_confidence": 0.766,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -58488,14 +58523,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.423,
-          "experimental_confidence": 0.423,
+          "delta_lit_minus_exp": -0.422,
+          "experimental_confidence": 0.422,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 1,
-        "overall_confidence": 0.423,
+        "overall_confidence": 0.422,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -58560,15 +58595,15 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.767,
-          "experimental_confidence": 0.767,
+          "delta_lit_minus_exp": -0.766,
+          "experimental_confidence": 0.766,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 1,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.767,
+        "overall_confidence": 0.766,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -58727,8 +58762,8 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.614,
-          "experimental_confidence": 0.221,
+          "delta_lit_minus_exp": 0.615,
+          "experimental_confidence": 0.22,
           "literature_confidence": 0.835
         },
         "conflict_ratio": 0.333,
@@ -58939,8 +58974,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.228,
-          "experimental_confidence": 0.617,
+          "delta_lit_minus_exp": 0.229,
+          "experimental_confidence": 0.616,
           "literature_confidence": 0.845
         },
         "conflict_ratio": 0.0,
@@ -59010,14 +59045,14 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.302,
-          "experimental_confidence": 0.51,
+          "delta_lit_minus_exp": 0.303,
+          "experimental_confidence": 0.509,
           "literature_confidence": 0.812
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 16,
-        "overall_confidence": 0.661,
+        "overall_confidence": 0.66,
         "recent_targeted_batches": 9,
         "source_counts": {
           "experimental": 9,
@@ -59080,15 +59115,15 @@
       "signals": {
         "claim_type": "architecture_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.561,
-          "experimental_confidence": 0.288,
+          "delta_lit_minus_exp": 0.562,
+          "experimental_confidence": 0.287,
           "literature_confidence": 0.849
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 15,
         "fresh_batches_since_decision": 2,
-        "overall_confidence": 0.625,
+        "overall_confidence": 0.624,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -59222,15 +59257,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.426,
-          "experimental_confidence": 0.438,
+          "delta_lit_minus_exp": 0.427,
+          "experimental_confidence": 0.437,
           "literature_confidence": 0.864
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate_substrate_landed",
         "entries_total": 12,
         "fresh_batches_since_decision": 4,
-        "overall_confidence": 0.651,
+        "overall_confidence": 0.65,
         "recent_targeted_batches": 6,
         "source_counts": {
           "experimental": 6,
@@ -59363,14 +59398,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.38,
-          "experimental_confidence": 0.455,
+          "delta_lit_minus_exp": 0.381,
+          "experimental_confidence": 0.454,
           "literature_confidence": 0.835
         },
         "conflict_ratio": 0.0,
         "current_status": "provisional",
         "entries_total": 11,
-        "overall_confidence": 0.645,
+        "overall_confidence": 0.644,
         "recent_targeted_batches": 3,
         "source_counts": {
           "experimental": 4,
@@ -59433,14 +59468,14 @@
       "signals": {
         "claim_type": "derived_prediction",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.4,
-          "experimental_confidence": 0.448,
+          "delta_lit_minus_exp": 0.401,
+          "experimental_confidence": 0.447,
           "literature_confidence": 0.848
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 11,
-        "overall_confidence": 0.648,
+        "overall_confidence": 0.647,
         "recent_targeted_batches": 7,
         "source_counts": {
           "experimental": 7,
@@ -59503,8 +59538,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.409,
-          "experimental_confidence": 0.46,
+          "delta_lit_minus_exp": 0.41,
+          "experimental_confidence": 0.459,
           "literature_confidence": 0.869
         },
         "conflict_ratio": 0.0,
@@ -59573,8 +59608,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.307,
-          "experimental_confidence": 0.513,
+          "delta_lit_minus_exp": 0.308,
+          "experimental_confidence": 0.512,
           "literature_confidence": 0.82
         },
         "conflict_ratio": 0.0,
@@ -59643,14 +59678,14 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.308,
-          "experimental_confidence": 0.524,
+          "delta_lit_minus_exp": 0.309,
+          "experimental_confidence": 0.523,
           "literature_confidence": 0.832
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate_substrate_landed",
         "entries_total": 11,
-        "overall_confidence": 0.678,
+        "overall_confidence": 0.677,
         "recent_targeted_batches": 3,
         "source_counts": {
           "experimental": 3,
@@ -59783,8 +59818,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.146,
-          "experimental_confidence": 0.711,
+          "delta_lit_minus_exp": 0.147,
+          "experimental_confidence": 0.71,
           "literature_confidence": 0.857
         },
         "conflict_ratio": 0.0,
@@ -59855,14 +59890,14 @@
         "claim_type": "design_decision",
         "confidence_split": {
           "delta_lit_minus_exp": 0.314,
-          "experimental_confidence": 0.54,
-          "literature_confidence": 0.854
+          "experimental_confidence": 0.539,
+          "literature_confidence": 0.853
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 10,
         "fresh_batches_since_decision": 1,
-        "overall_confidence": 0.697,
+        "overall_confidence": 0.696,
         "recent_targeted_batches": 4,
         "source_counts": {
           "experimental": 4,
@@ -59995,15 +60030,15 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.431,
-          "experimental_confidence": 0.388,
+          "delta_lit_minus_exp": 0.432,
+          "experimental_confidence": 0.387,
           "literature_confidence": 0.819
         },
         "conflict_ratio": 0.0,
         "current_status": "open",
         "entries_total": 9,
         "fresh_batches_since_decision": 3,
-        "overall_confidence": 0.604,
+        "overall_confidence": 0.603,
         "recent_targeted_batches": 4,
         "source_counts": {
           "experimental": 4,
@@ -60207,9 +60242,9 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.534,
+          "delta_lit_minus_exp": 0.533,
           "experimental_confidence": 0.303,
-          "literature_confidence": 0.837
+          "literature_confidence": 0.836
         },
         "conflict_ratio": 0.0,
         "current_status": "provisional",
@@ -60347,15 +60382,15 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.566,
-          "experimental_confidence": 0.297,
+          "delta_lit_minus_exp": 0.567,
+          "experimental_confidence": 0.296,
           "literature_confidence": 0.863
         },
         "conflict_ratio": 0.0,
         "current_status": "open",
         "entries_total": 8,
         "fresh_batches_since_decision": 1,
-        "overall_confidence": 0.637,
+        "overall_confidence": 0.636,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -60632,14 +60667,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.416,
-          "experimental_confidence": 0.426,
+          "delta_lit_minus_exp": 0.417,
+          "experimental_confidence": 0.425,
           "literature_confidence": 0.842
         },
         "conflict_ratio": 0.0,
         "current_status": "provisional",
         "entries_total": 7,
-        "overall_confidence": 0.676,
+        "overall_confidence": 0.675,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -60702,8 +60737,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.305,
-          "experimental_confidence": 0.48,
+          "delta_lit_minus_exp": 0.306,
+          "experimental_confidence": 0.479,
           "literature_confidence": 0.785
         },
         "conflict_ratio": 0.0,
@@ -60858,6 +60893,77 @@
         }
       },
       "status": "in_progress"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "external_model_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-1699",
+      "claim_id": "MECH-467",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-08-16T11:57:28.983273Z"
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "medium",
+      "reasons": [
+        "low_exp_conf"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.233,
+          "experimental_confidence": 0.549,
+          "literature_confidence": 0.782
+        },
+        "conflict_ratio": 0.0,
+        "current_status": "candidate",
+        "entries_total": 7,
+        "fresh_batches_since_decision": 3,
+        "overall_confidence": 0.666,
+        "recent_targeted_batches": 4,
+        "source_counts": {
+          "experimental": 4,
+          "literature": 3
+        }
+      },
+      "status": "covered"
     },
     {
       "adjudication_context": {
@@ -61251,6 +61357,77 @@
           ]
         }
       },
+      "backlog_id": "EVB-0054",
+      "claim_id": "MECH-220",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-04-25T15:42:09.107828Z"
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "medium",
+      "reasons": [
+        "low_exp_conf"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.558,
+          "experimental_confidence": 0.28,
+          "literature_confidence": 0.838
+        },
+        "conflict_ratio": 0.0,
+        "current_status": "candidate",
+        "entries_total": 6,
+        "fresh_batches_since_decision": 0,
+        "overall_confidence": 0.615,
+        "recent_targeted_batches": 2,
+        "source_counts": {
+          "experimental": 2,
+          "literature": 4
+        }
+      },
+      "status": "covered"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "external_model_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
       "backlog_id": "EVB-0607",
       "claim_id": "MECH-236",
       "evidence_needed": [
@@ -61270,8 +61447,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.36,
-          "experimental_confidence": 0.459,
+          "delta_lit_minus_exp": 0.361,
+          "experimental_confidence": 0.458,
           "literature_confidence": 0.819
         },
         "conflict_ratio": 0.0,
@@ -61413,13 +61590,13 @@
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.442,
-          "experimental_confidence": 0.33,
-          "literature_confidence": 0.772
+          "experimental_confidence": 0.329,
+          "literature_confidence": 0.771
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 6,
-        "overall_confidence": 0.595,
+        "overall_confidence": 0.594,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -61695,8 +61872,8 @@
       "signals": {
         "claim_type": "derived_prediction",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.588,
-          "experimental_confidence": 0.247,
+          "delta_lit_minus_exp": 0.589,
+          "experimental_confidence": 0.246,
           "literature_confidence": 0.835
         },
         "conflict_ratio": 0.0,
@@ -61905,8 +62082,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.486,
-          "experimental_confidence": 0.339,
+          "delta_lit_minus_exp": 0.487,
+          "experimental_confidence": 0.338,
           "literature_confidence": 0.825
         },
         "conflict_ratio": 0.0,
@@ -61975,15 +62152,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.113,
-          "experimental_confidence": 0.711,
+          "delta_lit_minus_exp": 0.114,
+          "experimental_confidence": 0.71,
           "literature_confidence": 0.824
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 5,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.796,
+        "overall_confidence": 0.795,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -62189,13 +62366,13 @@
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.429,
-          "experimental_confidence": 0.383,
-          "literature_confidence": 0.812
+          "experimental_confidence": 0.382,
+          "literature_confidence": 0.811
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 5,
-        "overall_confidence": 0.705,
+        "overall_confidence": 0.704,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -62330,8 +62507,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.4,
-          "experimental_confidence": 0.384,
+          "delta_lit_minus_exp": 0.401,
+          "experimental_confidence": 0.383,
           "literature_confidence": 0.784
         },
         "conflict_ratio": 0.0,
@@ -62400,14 +62577,14 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.49,
+          "delta_lit_minus_exp": 0.489,
           "experimental_confidence": 0.285,
-          "literature_confidence": 0.775
+          "literature_confidence": 0.774
         },
         "conflict_ratio": 0.0,
         "current_status": "active",
         "entries_total": 5,
-        "overall_confidence": 0.653,
+        "overall_confidence": 0.652,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -62612,8 +62789,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.342,
-          "experimental_confidence": 0.426,
+          "delta_lit_minus_exp": 0.343,
+          "experimental_confidence": 0.425,
           "literature_confidence": 0.768
         },
         "conflict_ratio": 0.0,
@@ -62683,14 +62860,14 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.401,
-          "experimental_confidence": 0.396,
+          "delta_lit_minus_exp": 0.402,
+          "experimental_confidence": 0.395,
           "literature_confidence": 0.797
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 5,
-        "overall_confidence": 0.637,
+        "overall_confidence": 0.636,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -62964,14 +63141,14 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.406,
-          "experimental_confidence": 0.401,
+          "delta_lit_minus_exp": 0.407,
+          "experimental_confidence": 0.4,
           "literature_confidence": 0.807
         },
         "conflict_ratio": 0.0,
         "current_status": "active",
         "entries_total": 4,
-        "overall_confidence": 0.706,
+        "overall_confidence": 0.705,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -63176,14 +63353,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.333,
-          "experimental_confidence": 0.345,
+          "delta_lit_minus_exp": 0.334,
+          "experimental_confidence": 0.344,
           "literature_confidence": 0.678
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 4,
-        "overall_confidence": 0.512,
+        "overall_confidence": 0.511,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -63247,14 +63424,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.526,
-          "experimental_confidence": 0.268,
+          "delta_lit_minus_exp": 0.527,
+          "experimental_confidence": 0.267,
           "literature_confidence": 0.794
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 4,
-        "overall_confidence": 0.663,
+        "overall_confidence": 0.662,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -63317,8 +63494,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.348,
-          "experimental_confidence": 0.399,
+          "delta_lit_minus_exp": 0.349,
+          "experimental_confidence": 0.398,
           "literature_confidence": 0.747
         },
         "conflict_ratio": 0.0,
@@ -63459,14 +63636,14 @@
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.21,
-          "experimental_confidence": 0.584,
-          "literature_confidence": 0.794
+          "experimental_confidence": 0.583,
+          "literature_confidence": 0.793
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 4,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.742,
+        "overall_confidence": 0.74,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -63530,14 +63707,14 @@
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.215,
-          "experimental_confidence": 0.584,
-          "literature_confidence": 0.799
+          "experimental_confidence": 0.583,
+          "literature_confidence": 0.798
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 4,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.745,
+        "overall_confidence": 0.744,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -63601,8 +63778,8 @@
       "signals": {
         "claim_type": "mechanism",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.38,
-          "experimental_confidence": 0.363,
+          "delta_lit_minus_exp": 0.381,
+          "experimental_confidence": 0.362,
           "literature_confidence": 0.743
         },
         "conflict_ratio": 0.0,
@@ -63672,14 +63849,14 @@
       "signals": {
         "claim_type": "derived_prediction",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.017,
-          "experimental_confidence": 0.76,
+          "delta_lit_minus_exp": 0.018,
+          "experimental_confidence": 0.759,
           "literature_confidence": 0.777
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 4,
-        "overall_confidence": 0.773,
+        "overall_confidence": 0.772,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -63955,8 +64132,8 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.448,
-          "experimental_confidence": 0.309,
+          "delta_lit_minus_exp": 0.449,
+          "experimental_confidence": 0.308,
           "literature_confidence": 0.757
         },
         "conflict_ratio": 0.0,
@@ -64098,8 +64275,8 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.327,
-          "experimental_confidence": 0.375,
+          "delta_lit_minus_exp": 0.328,
+          "experimental_confidence": 0.374,
           "literature_confidence": 0.702
         },
         "conflict_ratio": 0.0,
@@ -64240,8 +64417,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.417,
-          "experimental_confidence": 0.327,
+          "delta_lit_minus_exp": 0.418,
+          "experimental_confidence": 0.326,
           "literature_confidence": 0.744
         },
         "conflict_ratio": 0.0,
@@ -64310,8 +64487,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.051,
-          "experimental_confidence": 0.691,
+          "delta_lit_minus_exp": 0.052,
+          "experimental_confidence": 0.69,
           "literature_confidence": 0.742
         },
         "conflict_ratio": 0.0,
@@ -64381,14 +64558,14 @@
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
           "delta_lit_minus_exp": 0.305,
-          "experimental_confidence": 0.426,
-          "literature_confidence": 0.731
+          "experimental_confidence": 0.425,
+          "literature_confidence": 0.73
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
         "fresh_batches_since_decision": 2,
-        "overall_confidence": 0.528,
+        "overall_confidence": 0.527,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -64593,15 +64770,15 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.403,
+          "delta_lit_minus_exp": 0.402,
           "experimental_confidence": 0.28,
-          "literature_confidence": 0.683
+          "literature_confidence": 0.682
         },
         "conflict_ratio": 0.0,
         "current_status": "open",
         "entries_total": 3,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.549,
+        "overall_confidence": 0.548,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -64665,15 +64842,15 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.373,
-          "experimental_confidence": 0.357,
+          "delta_lit_minus_exp": 0.374,
+          "experimental_confidence": 0.356,
           "literature_confidence": 0.73
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 3,
         "fresh_batches_since_decision": 1,
-        "overall_confidence": 0.606,
+        "overall_confidence": 0.605,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -64736,8 +64913,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.155,
-          "experimental_confidence": 0.584,
+          "delta_lit_minus_exp": 0.156,
+          "experimental_confidence": 0.583,
           "literature_confidence": 0.739
         },
         "conflict_ratio": 0.0,
@@ -64879,8 +65056,8 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.077,
-          "experimental_confidence": 0.694,
+          "delta_lit_minus_exp": -0.076,
+          "experimental_confidence": 0.693,
           "literature_confidence": 0.617
         },
         "conflict_ratio": 0.0,
@@ -64950,14 +65127,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.038,
-          "experimental_confidence": 0.696,
+          "delta_lit_minus_exp": -0.037,
+          "experimental_confidence": 0.695,
           "literature_confidence": 0.658
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 2,
-        "overall_confidence": 0.677,
+        "overall_confidence": 0.676,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -65020,8 +65197,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.109,
-          "experimental_confidence": 0.594,
+          "delta_lit_minus_exp": 0.11,
+          "experimental_confidence": 0.593,
           "literature_confidence": 0.703
         },
         "conflict_ratio": 0.0,
@@ -65446,8 +65623,8 @@
       "signals": {
         "claim_type": "mechanism",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.013,
-          "experimental_confidence": 0.701,
+          "delta_lit_minus_exp": -0.012,
+          "experimental_confidence": 0.7,
           "literature_confidence": 0.688
         },
         "conflict_ratio": 0.0,
@@ -65517,8 +65694,8 @@
       "signals": {
         "claim_type": "mechanism",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.075,
-          "experimental_confidence": 0.708,
+          "delta_lit_minus_exp": -0.074,
+          "experimental_confidence": 0.707,
           "literature_confidence": 0.633
         },
         "conflict_ratio": 0.0,
@@ -65588,15 +65765,15 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.322,
-          "experimental_confidence": 0.362,
+          "delta_lit_minus_exp": 0.323,
+          "experimental_confidence": 0.361,
           "literature_confidence": 0.684
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 2,
         "fresh_batches_since_decision": 0,
-        "overall_confidence": 0.523,
+        "overall_confidence": 0.522,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,

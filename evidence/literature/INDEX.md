@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-01T21:54:51.373481Z`
+Generated: `2026-09-02T16:14:48.849206Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -39,6 +39,7 @@ Generated: `2026-09-01T21:54:51.373481Z`
 | `targeted_review_arc_068_opportunity_cost` | [`2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007`](targeted_review_arc_068_opportunity_cost/entries/2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007/record.json) | 6 | [`summary`](targeted_review_arc_068_opportunity_cost/entries/2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007/summary.md) |
 | `targeted_review_arc_070_decomposition` | [`2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009`](targeted_review_arc_070_decomposition/entries/2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009/record.json) | 7 | [`summary`](targeted_review_arc_070_decomposition/entries/2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009/summary.md) |
 | `targeted_review_arc_071_composition` | [`2026-08-01_arc_071_dls_procedural_replay_thompson2026`](targeted_review_arc_071_composition/entries/2026-08-01_arc_071_dls_procedural_replay_thompson2026/record.json) | 10 | [`summary`](targeted_review_arc_071_composition/entries/2026-08-01_arc_071_dls_procedural_replay_thompson2026/summary.md) |
+| `targeted_review_arc_073` | [`2026-09-02_arc_073_postpubertal_play_shift_hormonal_smith1997`](targeted_review_arc_073/entries/2026-09-02_arc_073_postpubertal_play_shift_hormonal_smith1997/record.json) | 5 | [`summary`](targeted_review_arc_073/entries/2026-09-02_arc_073_postpubertal_play_shift_hormonal_smith1997/summary.md) |
 | `targeted_review_arc_092_imagination_learning_constraint` | [`2026-08-28_arc_092_rem_creativity_priming_cai2009`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/record.json) | 2 | [`summary`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/summary.md) |
 | `targeted_review_arc_112` | [`2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/record.json) | 3 | [`summary`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/summary.md) |
 | `targeted_review_arc_130` | [`2026-08-25_arc_130_option_critic_architecture_bacon2017`](targeted_review_arc_130/entries/2026-08-25_arc_130_option_critic_architecture_bacon2017/record.json) | 2 | [`summary`](targeted_review_arc_130/entries/2026-08-25_arc_130_option_critic_architecture_bacon2017/summary.md) |

@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_073",
+  "entry_id": "2026-09-02_arc_073_mvt_patch_leaving_acc_causal_kane2022",
+  "timestamp_utc": "2026-09-02T16:11:02Z",
+  "claim_ids_tested": [
+    "ARC-073"
+  ],
+  "source": {
+    "title": "Rat Anterior Cingulate Cortex Continuously Signals Decision Variables in a Patch Foraging Task",
+    "authors": [
+      "Gary A. Kane",
+      "Morgan H. James",
+      "Amitai Shenhav",
+      "Nathaniel D. Daw",
+      "Jonathan D. Cohen",
+      "Gary Aston-Jones"
+    ],
+    "year": 2022,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1940-21.2022",
+    "pmid": "35688627",
+    "pmc": "PMC9302469",
+    "volume": "42",
+    "issue": "29",
+    "pages": "5730-5744"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Strong design -- a leaky-accumulator MVT model fitted against recorded ACC activity AND a pharmacological inactivation to test causality -- in a solid venue. Direction is mixed rather than supports because the two halves of the result bear in opposite directions on ARC-073: the behavioural half replicates the depletion-threshold decision rule in a second species, while the causal half dissociates that rule from the cortical signal that appeared to implement it. Confidence sits at 0.58 because the entry is doing double duty and neither half maps cleanly onto play.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ACC inactivation profoundly changed foraging decisions and response times, YET rats still followed the MVT decision rule. A REE design that locates the play-exit criterion in one monitored signal and assumes ablating that signal removes the transition would be contradicted by this dissociation.",
+    "The authors conclude the ACC encodes foraging-related variables 'for reasons unrelated to patch-leaving decisions'. A correlate that tracks the saturation variable beautifully is therefore not evidence that the correlate is the trigger -- which is exactly the inference an REE diagnostic reading a rolling LP estimate would be tempted to make."
+  ],
+  "tags": [
+    "arc-073",
+    "patch_leaving",
+    "marginal_value_theorem",
+    "acc",
+    "causal_inactivation",
+    "transition_criterion"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rats in a patch-foraging task follow the marginal value theorem, leaving a patch when its reward rate depletes to the average rate across patches. A leaky-accumulator MVT model predicts ACC activity within and across trials closely. However, pharmacological ACC inactivation altered foraging decisions and response times while leaving the MVT decision rule intact, indicating the ACC encodes foraging variables for reasons unrelated to the patch-leaving decision itself.",
+    "ree_translation": "For ARC-073 this cuts two ways. Supporting: the depletion-to-threshold decision rule is species-general and survives a strong causal manipulation, which strengthens the case that a saturation criterion (rather than a scheduled duration) is the natural form for a disengagement decision -- REE can reasonably build play-episode close on |d(PE)/dt| < threshold and expect it to be a robust rule. Weakening: the specific implementation story ARC-073 gestures at -- monitor a rolling estimate, threshold it, close the episode -- is precisely the story this paper dissociates. The signal that best tracks the decision variable was not the thing making the decision. If REE instruments play-mode exit by watching one LP estimator, that estimator may be a correlate rather than a cause, and a diagnostic that manipulates it may find behaviour unchanged.",
+    "mapping_caveat": "The dissociation is about neural locus, and ARC-073 makes no anatomical commitment -- it is a claim about the criterion, not about where the criterion is computed. So the weakening half is a caution about how REE would VALIDATE the mechanism rather than a direct contradiction of the claim. It is included because ARC-073's implementation note ('monitor rolling LP estimate during play; close episode when LP drops below play_lp_saturation_threshold') does make an implicit single-locus commitment that this result puts pressure on. Rodent foraging to synthetic-goal play remains a long transfer.",
+    "source_context": "Male rats, ACC single-unit recording plus pharmacological inactivation, during a patch-foraging task with model-based decision-variable estimates."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.56,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (model + recording + causal manipulation). Mapping fidelity depressed by the same foraging-vs-play gap as the Hayden entry, and further by the fact that the causal half speaks to validation methodology rather than to the claim's own content."
+  }
+}

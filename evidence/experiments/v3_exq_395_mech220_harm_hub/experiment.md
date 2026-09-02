@@ -13,8 +13,6 @@
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
 - `v3_exq_395_mech220_harm_hub_20260418T202544Z_v3` at `2026-04-18T20:26:57Z` signatures: none
-- `v3_exq_395_mech220_harm_hub_dry_20260413T075133Z` at `20260413T075203Z` signatures: none
-- `v3_exq_395_mech220_harm_hub_dry_20260413T075033Z` at `20260413T075102Z` signatures: none
 
 Recurring signatures:
 

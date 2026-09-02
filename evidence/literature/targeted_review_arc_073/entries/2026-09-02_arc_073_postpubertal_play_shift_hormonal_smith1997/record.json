@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_073",
+  "entry_id": "2026-09-02_arc_073_postpubertal_play_shift_hormonal_smith1997",
+  "timestamp_utc": "2026-09-02T16:11:02Z",
+  "claim_ids_tested": [
+    "ARC-073"
+  ],
+  "source": {
+    "title": "The postpubertal change in the playful defense of male rats depends upon neonatal exposure to gonadal hormones",
+    "authors": [
+      "Lesley K. Smith",
+      "Margaret L. Forgie",
+      "Sergio M. Pellis"
+    ],
+    "year": 1997,
+    "venue": "Physiology & Behavior",
+    "doi": "10.1016/s0031-9384(97)00397-1",
+    "pmid": "9402629",
+    "pmc": null,
+    "volume": "63",
+    "issue": "1",
+    "pages": "151-155"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.55,
+  "confidence_rationale": "An older, small-scale developmental-psychobiology study in a mid-tier venue, so source_quality is the limiting factor. It is included because it is the cleanest available counter-case to ARC-073's exclusion clause ('not by scheduled duration'): the transition out of juvenile-typical play here is preprogrammed by perinatal hormone exposure and fails to occur in neonatally castrated males regardless of their play experience. Confidence 0.55 reflects genuine evidential weight against a strong reading of the claim, tempered by design limitations and by the fact that it concerns a change in play STYLE rather than play-to-real mode exit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Neonatally castrated males failed to show the age-related shift in playful defense that intact males showed, despite normal juvenile play experience. Competence accumulated through play was therefore not sufficient to trigger the transition -- an organisational hormonal signal was necessary.",
+    "The transition in intact animals arrives on a pubertal schedule. If an REE agent's play-to-real transition is driven purely by an LP-saturation test, it has no analogue of the maturational gate that biology appears to use, and the claim's 'not by scheduled duration' exclusion is stronger than the animal data support.",
+    "Prior work in this line reports that changes in play frequency and defensive tactics arise largely independently of social experience, which is the direct inverse of a competence-triggered account."
+  ],
+  "tags": [
+    "arc-073",
+    "play_ontogeny",
+    "pubertal_transition",
+    "gonadal_hormones",
+    "maturational_schedule",
+    "counter_evidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "The shift from juvenile-typical to adult-typical playful defense tactics in male rats after puberty depends on neonatal exposure to gonadal hormones: neonatally castrated males failed to exhibit the age-related change that intact males showed, indicating the postpubertal change is preprogrammed perinatally rather than produced by accumulating play experience.",
+    "ree_translation": "ARC-073 asserts the play-to-real transition is triggered by competence saturation or drive pressure and explicitly NOT by scheduled duration. In the one biological system where the developmental play transition has been dissected, the timing is at least partly a maturational schedule set long before the play period begins, and removing that schedule abolishes the transition even though play itself proceeds. Translated to REE: the exclusion clause in ARC-073 is the weakest part of the claim. A defensible architecture would make the LP-saturation test a NECESSARY condition operating inside a maturational window -- an AND rather than a replacement -- which is closer to how ARC-049 and the surrounding play cluster are already framed, and would leave the claim falsifiable without over-claiming that no clock is involved.",
+    "mapping_caveat": "The transition studied is a change in the STYLE of playful defense within continuing play, not an exit from play into non-play behaviour, so it is not a direct test of the play-to-real mode switch ARC-073 describes. The mechanism (perinatal androgen organisation of a sexually dimorphic behaviour) has no REE counterpart at all, and the inference from 'the tactical shift is hormonally scheduled' to 'the mode exit is scheduled' is a real extrapolation. It is recorded as weakening rather than decisive for exactly that reason: it makes the strong reading of the exclusion clause untenable without refuting the saturation criterion itself.",
+    "source_context": "Male rats, neonatal castration versus intact controls, dyadic play-fighting observation of defensive tactics before and after puberty."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.48,
+    "notes": "Older study, modest N typical of the era, and no replication was located in this pull. Retained because a claim asserting a negative ('not by scheduled duration') is falsified by exactly this kind of case, and the corpus otherwise contains only supporting material for the play cluster."
+  }
+}
