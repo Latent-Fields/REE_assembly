@@ -1,0 +1,284 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_969_contextmemory_write_content_h2_operating_point",
+  "run_id": "v3_exq_969_contextmemory_write_content_h2_operating_point_20260902T203931Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-02T20:39:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "h2_no_operating_point_improves_content_discrimination_null_holds",
+    "preconditions": [
+      {
+        "name": "writepath_engaged_every_cell",
+        "measured": 505.0,
+        "threshold": 60.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "H2_any_operating_point_improves_content_discrimination": true
+    },
+    "criteria": [
+      {
+        "name": "H2_readiness_untrained_baseline_headroom",
+        "load_bearing": false,
+        "kind": "readiness",
+        "passed": true,
+        "measured": 0.85,
+        "threshold": 0.25,
+        "direction": "lower",
+        "note": "Precondition shared by every Phase A/B directional comparison: mean_jaccard(GUMBEL_UNTRAINED, Phase A, n=10) must be >= 0.25 for 'materially lower' to be satisfiable at all. If unmet, the load-bearing criterion below reads precondition_unmet rather than a plain FAIL -- a floor effect is not evidence that no operating point works."
+      },
+      {
+        "name": "H2_any_operating_point_improves_content_discrimination",
+        "load_bearing": true,
+        "passed": false,
+        "precondition_unmet": false,
+        "any_discovery": false,
+        "mean_jaccard_untrained_baseline": 0.85,
+        "required_margin": 0.25,
+        "alpha_corrected": 0.0125,
+        "n_configs_tested": 4,
+        "n_configs_cleared_margin": 0,
+        "n_configs_cleared_significance": 0,
+        "n_configs_counts_as_discovery": 0,
+        "winning_config_labels": [],
+        "winning_config_tagger_moved": true,
+        "note": "PASS iff the readiness precondition above is met AND at least one of the N_CONFIGS_TESTED=4 tested configs (Phase A w=0.5/n=10, or any of Phase B's 3 weight configs) counts_as_discovery: observed_diff (mean_jaccard_untrained - mean_jaccard_trained) >= 0.25 (the real-effect-size floor) AND an EXACT permutation-test p_value < alpha_corrected (0.05/4=0.0125, Bonferroni-corrected across the 4 configs tested) AND that config's write_addr_tagger genuinely moved from init (see F3/tagger_moved). This replaces a raw mean-margin-only OR test across configs, which at this DV's near-binary per-seed shape had a measured 25-68% false-positive rate under the null with no multiplicity correction -- see raw_margin_reading on each config in H2_per_config_table for the old (non-gating) reading, kept for comparison. This is H2's actual null-test: PASS = an operating point was found with the effect size, significance, AND engagement to count as a real discovery; FAIL (precondition met) = the null holds -- no operating point in this neighborhood escapes 956's wrong-direction result at this power. A FAIL here is a real, scientifically valid, expected-possible outcome, not a bug. precondition_unmet=True means the comparison could not be made at all, not that every operating point was tried and failed."
+      },
+      {
+        "name": "H2_per_config_table",
+        "load_bearing": false,
+        "passed": true,
+        "kind": "descriptive",
+        "configs": [
+          {
+            "config_label": "GUMBEL_TRAINED_W0P5",
+            "phase": "A",
+            "weight": 0.5,
+            "anneal_steps": 2000,
+            "n_seeds": 10,
+            "mean_jaccard_trained": 1.0,
+            "delta_from_untrained_baseline": 0.15000000000000002,
+            "observed_diff": -0.15,
+            "p_value": 1.0,
+            "permutation_method": "exact_sign_flip",
+            "n_permutations_or_resamples": 1024,
+            "alpha_corrected": 0.0125,
+            "cleared_margin": false,
+            "cleared_significance": false,
+            "tagger_moved": true,
+            "counts_as_discovery": false,
+            "raw_margin_reading": {
+              "load_bearing": false,
+              "directional_pass": false,
+              "note": "OLD raw mean-margin-only reading (no significance test, no multiplicity correction) -- kept as a non-gating descriptive field for side-by-side comparison against the corrected reading. NOT the load-bearing criterion; see counts_as_discovery."
+            }
+          },
+          {
+            "config_label": "GUMBEL_TRAINED_W0P1",
+            "phase": "B",
+            "weight": 0.1,
+            "anneal_steps": 2000,
+            "n_seeds": 6,
+            "mean_jaccard_trained": 0.9166666666666666,
+            "delta_from_untrained_baseline": 0.06666666666666665,
+            "observed_diff": -0.06666666666666665,
+            "p_value": 0.7857142857142857,
+            "permutation_method": "exact",
+            "n_permutations_or_resamples": 8008,
+            "alpha_corrected": 0.0125,
+            "cleared_margin": false,
+            "cleared_significance": false,
+            "tagger_moved": true,
+            "counts_as_discovery": false,
+            "raw_margin_reading": {
+              "load_bearing": false,
+              "directional_pass": false,
+              "note": "OLD raw mean-margin-only reading (no significance test, no multiplicity correction) -- kept as a non-gating descriptive field for side-by-side comparison against the corrected reading. NOT the load-bearing criterion; see counts_as_discovery."
+            }
+          },
+          {
+            "config_label": "GUMBEL_TRAINED_W2P0",
+            "phase": "B",
+            "weight": 2.0,
+            "anneal_steps": 2000,
+            "n_seeds": 6,
+            "mean_jaccard_trained": 0.9166666666666666,
+            "delta_from_untrained_baseline": 0.06666666666666665,
+            "observed_diff": -0.06666666666666665,
+            "p_value": 0.7857142857142857,
+            "permutation_method": "exact",
+            "n_permutations_or_resamples": 8008,
+            "alpha_corrected": 0.0125,
+            "cleared_margin": false,
+            "cleared_significance": false,
+            "tagger_moved": true,
+            "counts_as_discovery": false,
+            "raw_margin_reading": {
+              "load_bearing": false,
+              "directional_pass": false,
+              "note": "OLD raw mean-margin-only reading (no significance test, no multiplicity correction) -- kept as a non-gating descriptive field for side-by-side comparison against the corrected reading. NOT the load-bearing criterion; see counts_as_discovery."
+            }
+          },
+          {
+            "config_label": "GUMBEL_TRAINED_W8P0",
+            "phase": "B",
+            "weight": 8.0,
+            "anneal_steps": 2000,
+            "n_seeds": 6,
+            "mean_jaccard_trained": 0.8888888888888888,
+            "delta_from_untrained_baseline": 0.03888888888888886,
+            "observed_diff": -0.03888888888888886,
+            "p_value": 0.625,
+            "permutation_method": "exact",
+            "n_permutations_or_resamples": 8008,
+            "alpha_corrected": 0.0125,
+            "cleared_margin": false,
+            "cleared_significance": false,
+            "tagger_moved": true,
+            "counts_as_discovery": false,
+            "raw_margin_reading": {
+              "load_bearing": false,
+              "directional_pass": false,
+              "note": "OLD raw mean-margin-only reading (no significance test, no multiplicity correction) -- kept as a non-gating descriptive field for side-by-side comparison against the corrected reading. NOT the load-bearing criterion; see counts_as_discovery."
+            }
+          }
+        ],
+        "note": "Descriptive table of all 4 tested weight configs' mean Jaccard, permutation-test result (observed_diff, p_value, method, cleared_margin, cleared_significance, tagger_moved, counts_as_discovery), and the OLD non-gating raw_margin_reading for comparison. Always 'passed' -- this is a measurement, not a criterion; H2_any_operating_point_improves_content_discrimination above is the actual gate."
+      },
+      {
+        "name": "H2_phaseA_paired_sign_count",
+        "load_bearing": false,
+        "passed": true,
+        "kind": "descriptive",
+        "n_seeds_total": 10,
+        "n_seeds_wrong_direction": 2,
+        "n_seeds_correct_direction": 0,
+        "n_seeds_tied": 8,
+        "per_seed_deltas": [
+          {
+            "seed": 11,
+            "delta": 0.0
+          },
+          {
+            "seed": 23,
+            "delta": 0.0
+          },
+          {
+            "seed": 31,
+            "delta": 0.5
+          },
+          {
+            "seed": 47,
+            "delta": 1.0
+          },
+          {
+            "seed": 53,
+            "delta": 0.0
+          },
+          {
+            "seed": 61,
+            "delta": 0.0
+          },
+          {
+            "seed": 79,
+            "delta": 0.0
+          },
+          {
+            "seed": 83,
+            "delta": 0.0
+          },
+          {
+            "seed": 97,
+            "delta": 0.0
+          },
+          {
+            "seed": 101,
+            "delta": 0.0
+          }
+        ],
+        "note": "Seed IS the pairing key: seed S's GUMBEL_TRAINED_W0P5 cell minus seed S's GUMBEL_UNTRAINED cell, per-seed Jaccard delta. Positive delta = wrong direction (matches 956's own finding); negative delta = correct direction. Purely descriptive -- not itself a pass/fail criterion; a bigger-n read on whether 956's wrong-direction move at w=0.5 replicates."
+      },
+      {
+        "name": "GUMBEL_UNTRAINED_tagger_received_zero_gradient",
+        "load_bearing": false,
+        "passed": true,
+        "n_seeds_frozen": 10,
+        "n_seeds_total": 10,
+        "note": "Mechanical negative control: weight=0.0 should leave write_addr_tagger's state_dict byte-identical to its random init across the whole real training run."
+      },
+      {
+        "name": "trained_configs_tagger_received_gradient",
+        "load_bearing": false,
+        "passed": true,
+        "n_cells_moved": 28,
+        "n_cells_total": 28,
+        "note": "Mechanical positive control, aggregated across ALL trained cells in both phases: every weight>0 cell should move write_addr_tagger's parameters away from init over the real training run, regardless of whether that movement achieves content-discrimination."
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "707c7910449e9994653ba32bf9283c93e6e4eef9352d37dc0ab4e108e89e635c",
+  "substrate_commit": {
+    "commit": "a92c98e68313b12ed404f7c16d1e0b32b2a3b04e",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.contextmemory_gated_content_write": true,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.anchor_set.use_sd039_anchor_payload": true,
+    "heartbeat.breath_period": 50,
+    "use_noise_floor": true,
+    "contextmemory_write_addressing_loss_weight": 8.0
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 38,
+    "goal_state_present": false
+  }
+}
