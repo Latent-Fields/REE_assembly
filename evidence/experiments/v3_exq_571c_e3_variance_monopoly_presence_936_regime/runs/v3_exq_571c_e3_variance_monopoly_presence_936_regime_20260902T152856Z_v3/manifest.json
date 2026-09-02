@@ -23,7 +23,7 @@
     "MECH-439"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "diagnostic",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -422,5 +422,6 @@
     "writer_defect": false,
     "n_agents": 16,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-09-02 governance, governance-20260902] Ratified from confirmed failure_autopsy_V3-EXQ-571c_2026-09-02.json (landed REE_assembly b98e2ccd45; autopsy Step 8 gate ratified 2026-09-02, user present). UNSCORED: the arm readiness gate fired on n_live_channels (1.0 vs threshold 2.0) in all four arms and precedes criterion evaluation, so criteria_non_degenerate is false for all six criteria and the load-bearing C1 PASS (modal xcand share 0.999992 vs 0.85 bar) is voided. Scores nothing against MECH-439; direction corrected diagnostic -> non_contributory."
 }

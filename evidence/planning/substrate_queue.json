@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "sd018-directional-field-amend-ba5834ed",
-  "last_updated_utc": "2026-09-02T15:03:22Z",
+  "last_updated_utc": "2026-09-02T17:30:32Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -5565,24 +5565,25 @@
         "E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-required? DISPOSITION OWED, GFLAG-0116 + GFLAG-0051"
       ],
       "unblocks_claims": [
-        "MECH-439",
-        "MECH-309",
         "ARC-062",
         "ARC-063",
-        "MECH-263",
+        "ARC-107",
         "MECH-260",
-        "Q-045",
-        "MECH-313",
-        "SD-037",
+        "MECH-263",
         "MECH-280",
         "MECH-281",
+        "MECH-309",
+        "MECH-313",
+        "MECH-341",
+        "MECH-439",
         "MECH-445",
         "MECH-446",
         "MECH-447",
         "MECH-448",
         "MECH-449",
-        "ARC-107",
-        "Q-078"
+        "Q-045",
+        "Q-078",
+        "SD-037"
       ],
       "fallback_ladder": [
         {
@@ -5905,6 +5906,13 @@
           "target": "competence >= 1.0 resources/ep on a majority of seeds (so the committed-action dissociation DV is defined) before any conversion-ceiling behavioural retest is licensed",
           "run_role": "post_build",
           "run_role_basis": "R3 run > entry.implementation_log.utc"
+        },
+        {
+          "run_id": "v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3",
+          "experiment_type": "v3_exq_571c_e3_variance_monopoly_presence_936_regime",
+          "metric": "Within-tick cross-candidate variance share in the 936 regime: a single channel holds 0.98-0.99999 in 15 of 16 cells (residue_weighted in all 8 fed cells, F/harm_weighted in 7 of 8 starved cells at 0.994-0.9998; sole exception B2/seed46 at 0.7379 with 3 live channels). Every competing channel clears the absolute liveness floor 1e-12 yet falls below the 1e-3 relative-share floor, so n_live_channels=1 red-gated all four arms and the run scored nothing.",
+          "target": ">=2 E3 score channels simultaneously above a 1e-3 relative cross-candidate share in the 936 regime, so that 'which channel holds authority' is a contest rather than a restatement of units -- the precondition every MECH-439 / ARC-062 channel-authority experiment silently assumes",
+          "resolved": "open"
         }
       ],
       "metric_trajectory": {
@@ -5927,11 +5935,11 @@
         ],
         "prediction": "If conflict-grading is load-bearing, ARM_A1B1 lifts committed-class entropy gap-CONCENTRATED (strict-above the gap-blind controls) -> MECH-439 supports, ceiling lifted, downstream retests unblock. If the lift is UNIFORM (gap-blind controls match ARM_A1B1) -> 'just a bigger shortlist', escalate to rung 2 (rank_preserving_F_to_eligibility_demotion). If NO lift at all (ARM_A1B1 ~ collapsed controls) -> structural bound caps below proposer ceiling -> rung 3+ (divisive-norm/output-null/QD-archive), recouped to V3 by phase-label-follows-dependency."
       },
-      "implementation_hint": "Conflict-grade near-tie parametric family EXHAUSTED by V3-EXQ-689a (rung 1 FAIL/non_contributory). LEAD build now = rung 2 rank-preserving F->eligibility demotion (MECH-448): remove F from the final committed argmin, use it ONLY as a graded eligibility envelope (rank-preserving renormalisation vs the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439), behind a no-op-default flag in e3_selector.py, so a modulatory/diversity channel arbitrates within the F-eligible set WITHOUT disinhibiting harmful classes. Broader follow-on = MECH-449 Go/No-Go eligibility governance (the ARC-107 BG-selector constitution). Falsifier = committed-action-class entropy strict-above BOTH control sets on >=2/3 seeds, order preserved on the numerators (F still ranks within-eligible), no global disinhibition of harmful classes. Routed to /implement-substrate. Downstream retests (arc_062:GAP-B 654h, 485i OFC, 445h dACC c2, 625e SD-037 axis-b, 687-successor GAP-C) gated on the constitutional lever PASS, NOT the exhausted conflict-grade selector. || 485i ENVELOPE-ENGAGEMENT RETUNE (failure_autopsy_V3-EXQ-485i_2026-06-21, for the V3-EXQ-485j re-queue): 485i confirmed the MECH-448 demotion lever requires the divergent-pool non-vacuity precondition to ENGAGE -- it silently fell back to all-admit (f_eligibility_excluded_count==0) on the OFC-isolated SD-054 behavioural bank's SPREAD F, because no candidate's merit-share cleared the absolute 0.30 floor. NOTE the 485i harness calls e3.select() DIRECTLY with a hand-built OFC score_bias (NOT agent.select_action), so candidate_summary_source=e2_world_forward is INERT in that path AND the envelope thresholds raw_scores (primary F over the candidate trajectories), which that knob does not peak -- so the applicable fix is option (b): MEASURE the behavioural-bank per-candidate merit-share distribution first and CALIBRATE an ABSOLUTE f_eligibility_envelope_floor below the max share so the envelope excludes a non-empty tail (per (arm,seed); raw_scores is bias-independent + constant across the eval drives so one probe suffices). KEEP an ABSOLUTE share floor (a fraction-of-max degenerates to the margin shortlist); KEEP dn_sigma=0.0 (raising sigma shrinks shares toward the empty->all-admit fallback). KEEP precond-3 (f_eligibility_excluded_count>0 on >=2/3 seeds) as a HARD readiness gate that must PASS before the C1 devaluation-shift / C2 discrimination-separation DVs run, so a non-engaging envelope (flat F -> calibration fails) self-routes substrate_not_ready_requeue rather than producing a misattributed shift. This is a behavioural-harness calibration on the SUPERSEDING ARC-107 constitutional lever (MECH-448, validated 689d / promoted provisional 2026-06-21), NOT a MECH-439 F-variance rebalance. [2026-06-21 654h amend] The same MECH-448 all-admit no-op (excluded_count==0) recurs on the arc_062 rule-apprehension bank (V3-EXQ-654h): port the 485j per-(arm,seed) envelope-floor calibration onto the arc_062 bank for the V3-EXQ-654i re-queue (keep use_candidate_rule_field swept; use_f_eligibility_demotion=True matched-constant on BOTH arms; keep C1e excluded_count>0 as a hard pre-DV readiness gate). failure_autopsy_V3-EXQ-485j confirmed MECH-448 demotion GENERALISES off GAP-A for this discrimination/committed-diversity family (the gate to re-queue 654i is CLEARED).",
+      "implementation_hint": "Conflict-grade near-tie parametric family EXHAUSTED by V3-EXQ-689a (rung 1 FAIL/non_contributory). LEAD build now = rung 2 rank-preserving F->eligibility demotion (MECH-448): remove F from the final committed argmin, use it ONLY as a graded eligibility envelope (rank-preserving renormalisation vs the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439), behind a no-op-default flag in e3_selector.py, so a modulatory/diversity channel arbitrates within the F-eligible set WITHOUT disinhibiting harmful classes. Broader follow-on = MECH-449 Go/No-Go eligibility governance (the ARC-107 BG-selector constitution). Falsifier = committed-action-class entropy strict-above BOTH control sets on >=2/3 seeds, order preserved on the numerators (F still ranks within-eligible), no global disinhibition of harmful classes. Routed to /implement-substrate. Downstream retests (arc_062:GAP-B 654h, 485i OFC, 445h dACC c2, 625e SD-037 axis-b, 687-successor GAP-C) gated on the constitutional lever PASS, NOT the exhausted conflict-grade selector. || 485i ENVELOPE-ENGAGEMENT RETUNE (failure_autopsy_V3-EXQ-485i_2026-06-21, for the V3-EXQ-485j re-queue): 485i confirmed the MECH-448 demotion lever requires the divergent-pool non-vacuity precondition to ENGAGE -- it silently fell back to all-admit (f_eligibility_excluded_count==0) on the OFC-isolated SD-054 behavioural bank's SPREAD F, because no candidate's merit-share cleared the absolute 0.30 floor. NOTE the 485i harness calls e3.select() DIRECTLY with a hand-built OFC score_bias (NOT agent.select_action), so candidate_summary_source=e2_world_forward is INERT in that path AND the envelope thresholds raw_scores (primary F over the candidate trajectories), which that knob does not peak -- so the applicable fix is option (b): MEASURE the behavioural-bank per-candidate merit-share distribution first and CALIBRATE an ABSOLUTE f_eligibility_envelope_floor below the max share so the envelope excludes a non-empty tail (per (arm,seed); raw_scores is bias-independent + constant across the eval drives so one probe suffices). KEEP an ABSOLUTE share floor (a fraction-of-max degenerates to the margin shortlist); KEEP dn_sigma=0.0 (raising sigma shrinks shares toward the empty->all-admit fallback). KEEP precond-3 (f_eligibility_excluded_count>0 on >=2/3 seeds) as a HARD readiness gate that must PASS before the C1 devaluation-shift / C2 discrimination-separation DVs run, so a non-engaging envelope (flat F -> calibration fails) self-routes substrate_not_ready_requeue rather than producing a misattributed shift. This is a behavioural-harness calibration on the SUPERSEDING ARC-107 constitutional lever (MECH-448, validated 689d / promoted provisional 2026-06-21), NOT a MECH-439 F-variance rebalance. [2026-06-21 654h amend] The same MECH-448 all-admit no-op (excluded_count==0) recurs on the arc_062 rule-apprehension bank (V3-EXQ-654h): port the 485j per-(arm,seed) envelope-floor calibration onto the arc_062 bank for the V3-EXQ-654i re-queue (keep use_candidate_rule_field swept; use_f_eligibility_demotion=True matched-constant on BOTH arms; keep C1e excluded_count>0 as a hard pre-DV readiness gate). failure_autopsy_V3-EXQ-485j confirmed MECH-448 demotion GENERALISES off GAP-A for this discrimination/committed-diversity family (the gate to re-queue 654i is CLEARED).\n\n[2026-09-02 governance governance-20260902, from confirmed failure_autopsy_V3-EXQ-571c_2026-09-02] 571c removes this rung's standing TRACTABILITY blocker. The rung was held up by the absence of a per-channel decomposition at the select site; 571c's instrument supplies exactly that -- a bounded, sum-to-one within-tick CROSS-CANDIDATE partition over the additive channels, latch-gated to genuine fresh selections, with per-cell liveness and partition_coverage recorded. The operator should therefore be specified against the joint channel scale (per-channel standardisation against a running scale estimate, or a pooled divisive denominator over the declared components) rather than against F alone, because F is only one of the two occupants observed: residue_weighted monopolises in every fed cell while F holds 0.994-0.9998 in 7 of 8 starved cells. Must be default-off and bit-identical when off, and must expose the per-channel scale estimates so a successor can verify commensurability was achieved rather than assumed. The success target is the readiness condition this run could not meet: >=2 channels simultaneously above a 1e-3 relative cross-candidate share.",
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-20260902-0548",
+      "last_seen_session": "governance-20260902",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -6059,7 +6067,14 @@
           "flag": "GFLAG-0114 (ratified by user this cycle)",
           "note": "UNDECLARED GATE declared. depends_on_unresolved was [] and node_class complex (probe-gated) while the probe chain had already RUN and resolved (V3-EXQ-813+948 CONFIRMED H-observation-interface; 965 left SD-e1 ITEM 2 validation owed), so closure_status reported this node 'not ready with no unresolved dependencies' and 35 of 43 non-done v3 nodes sat behind an invisible blocker. node_class moved to complicated (buildable): the two concrete gates are builds, not probes. Rung 3 is listed as unresolved but its V3-required status is CONTESTED, not buildable-on-demand -- decide with GFLAG-0051 before treating it as a build."
         }
-      ]
+      ],
+      "severity": "corrupting",
+      "substrate_paths": [
+        "ree_core/predictors/e3_selector.py::score_trajectory",
+        "ree_core/residue/field.py::add_residue",
+        "ree_core/residue/field.py::RBFLayer.forward"
+      ],
+      "amend_note_2026_09_02": "Changed from CREATE to AMEND after the cross-model red-team pass. The entry's implementation_hint already carries the divisive-normalisation rung ('rank-preserving renormalisation vs the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439'), which is the operator this run's finding calls for -- so a new SD-E3-CHANNEL-COMMENSURABILITY entry would have duplicated live work. What this run contributes is (i) evidence that the rung's target should be the JOINT channel scale rather than F specifically, and (ii) removal of that rung's standing tractability blocker. Severity and paths otherwise LEFT AS GOVERNANCE HAS THEM; this amendment adds the residue write/read path (add_residue writes self.weights with an unbounded +=; RBFLayer.forward is what compute_residue_cost sums) because it is the channel that monopolises in every fed cell and it was not previously named on this entry. NOTE for whoever implements: field.py::update_valence is NOT this path -- SD-RESIDUE-VALENCE-BOUND clamps valence_vecs, a different accumulator, and arming it would not move this DV."
     },
     {
       "sd_id": "v4_loop_segregation",

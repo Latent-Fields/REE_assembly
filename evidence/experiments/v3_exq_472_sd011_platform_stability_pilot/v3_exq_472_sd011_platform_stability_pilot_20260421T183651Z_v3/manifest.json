@@ -6,7 +6,7 @@
   ],
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_purpose": "diagnostic",
-  "evidence_direction": "diagnostic",
+  "evidence_direction": "non_contributory",
   "outcome": "DIAGNOSTIC",
   "status": "DIAGNOSTIC",
   "timestamp_utc": "20260421T183651Z",
@@ -137,5 +137,6 @@
       "n_steps_measured_post": 628
     }
   ],
-  "note": "Diagnostic pilot -- anchors C7 perturbation-recovery threshold and C5 dual_advantage multiplier for the EXP-0090 main evidence script. Not itself an evidence run. Not PASS/FAIL scored."
+  "note": "Diagnostic pilot -- anchors C7 perturbation-recovery threshold and C5 dual_advantage multiplier for the EXP-0090 main evidence script. Not itself an evidence run. Not PASS/FAIL scored.",
+  "evidence_direction_note": "[2026-09-02 governance, governance-20260902] Ratified from confirmed failure_autopsy_V3-EXQ-472_2026-09-02.json (landed REE_assembly b98e2ccd45; autopsy Step 8 gate ratified 2026-09-02, user present). UNSCORED calibration pilot with no acceptance criterion; scores nothing against SD-011. Direction corrected diagnostic -> non_contributory. CORRECTION, not a status move -- SD-011 stays stable, epistemic_category standard."
 }

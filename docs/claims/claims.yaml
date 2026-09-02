@@ -6592,6 +6592,8 @@
     non_contributory stands; the self-routed label substrate_not_ready_requeue is corrected. Retest owed
     after the probe_warmup repair (substrate_queue SD-PROBE-WARMUP). epistemic_category set to standard (the
     claim carried none).
+
+    [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_V3-EXQ-963a_2026-09-02] via the GOV-APPLY-1 ACTIONABLE bucket (run already in reviewed_run_ids, invisible to the pending-review walk): the recommended storable move (pending_retest_after_substrate true) was ALREADY satisfied on this claim, so no field changed; recorded here so the 963a substrate hold has an auditable citation rather than resting on an unapplied-looking row. MECH-063 stays provisional/standard. PROMOTES/DEMOTES NOTHING.
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -11002,7 +11004,7 @@
   subject: control_plane.commitment_gated_policy_output
   polarity: asserts
   status: active
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: false
   live_status:
     reading: active
     as_of: 2026-08-03
@@ -11097,6 +11099,8 @@
     mech090-arc071-attick-persistent-handle-fix (extend the between-tick fix to the AT-tick selection
     site). A future validation should use a tick-rate-normalised DV (n_genuine_commits/n_e3_ticks), not
     raw mean segment length. pending_retest_after_substrate=true.
+
+    [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_V3-EXQ-968-871b_2026-09-02] via the GOV-APPLY-1 ACTIONABLE bucket (run already in reviewed_run_ids, invisible to the pending-review walk): SUBSTRATE HOLD DISCHARGED -- the non-degeneracy precondition is satisfied and the wiring fix is exercised by V3-EXQ-871b, so pending_retest_after_substrate moves true -> false and the diagnostic is adjudicated. MECH-090 keeps epistemic_category standard and stays active. Absorbed into commitment_closure:GAP-4 the same cycle. PROMOTES/DEMOTES NOTHING.
   implementation_note: >
     BISTABLE LATCH IMPLEMENTED 2026-04-10. REEAgent._e3_tick() and select_action() in
     ree_core/agent.py. Config: HeartbeatConfig.beta_gate_bistable (bool, False default).
@@ -11279,6 +11283,7 @@
     BG as centralized selection mechanism: winner-takes-all via lateral inhibition in
     striatum resolves competition for access to motor and cognitive resources. Grounds
     the single-selection (not graded) nature of the commitment gate.
+  diagnostic_evidence_adjudicated: true
   depends_on:
     - ARC-023
     - ARC-021
@@ -14113,6 +14118,7 @@
       verdict: "non_contributory/none -- claimless diagnostic; characterise as a measurement / test-design gap, NOT substrate_ceiling. Do not record substrate_ceiling on any claim from this run."
   implementation_phase: v3
   claim_level: architectural
+  diagnostic_evidence_adjudicated: true
   depends_on: [SD-010, ARC-027]
   functional_restatement: >
     The single z_harm vector conflates two functionally distinct nociceptive signals:
@@ -14221,6 +14227,8 @@
     an anticipatory contextual-safety gate, which needs proximity/intensity. Status unchanged
     (stable). The consequence is downstream on MECH-303, not here -- see that claim's note and the
     SD-MECH303-THRESHOLD-SOURCING substrate_queue entry created this cycle.
+
+    [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_V3-EXQ-472_2026-09-02.json]: V3-EXQ-472 (2026-04-21 platform-stability pilot) is an UNSCORED calibration pilot with no acceptance criterion, recorded non_contributory. Its manifest previously carried evidence_direction: diagnostic, which reads as a scored diagnostic result; it is not one and scores nothing against SD-011. This is a CORRECTION, not a status move -- SD-011 stays stable and epistemic_category stays standard. PROMOTES/DEMOTES NOTHING.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -52457,6 +52465,7 @@
   epistemic_category: standard
   claim_level: architectural
   registered_utc: "2026-05-10"
+  diagnostic_evidence_adjudicated: true
   depends_on: []
   functional_restatement: >
     ARC-065 registers the architectural slot for the behavioural diversity
@@ -52662,6 +52671,8 @@
     /claim-synthesis as granularity debt: the coarse 'diversity is load-bearing'
     claim under-names the range-reaches != range-carves distinction. No confidence
     change this cycle (the specific GAP-A R1.b sub-hypothesis is the synthesis input).
+
+    [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_substrate-readiness-cluster_2026-09-02] via the GOV-APPLY-1 ACTIONABLE bucket (run already in reviewed_run_ids, invisible to the pending-review walk): diagnostic adjudicated for V3-EXQ-544. No count changes and no status move -- ARC-065 stays stable/standard. PROMOTES/DEMOTES NOTHING.
   notes: >
     HYBRID-naming convention (Pull 4 R4): the title carries both the REE-
     internal architectural name (behavioral_diversity_generation_pathway)
@@ -57096,6 +57107,8 @@
   v3_pending: true
   claim_level: architectural
   registered_utc: "2026-05-10"
+  diagnostic_evidence_adjudicated: true
+  pending_retest_after_substrate: true
   depends_on:
     - ARC-069     # parent dynamic-regranularisation commitment
     - MECH-163    # dual systems substrate that ARC-071 names the transition for
@@ -57424,6 +57437,8 @@
     required.
 
     [2026-08-02 governance, V3-EXQ-871 (run v3_exq_855), confirmed failure_autopsy_V3-EXQ-871_2026-08-02, MECH-090/ARC-071 commit-latch post-fix validation]: self-routed substrate_not_ready_requeue (precondition arc071_chunk_commitments_observed_supra_floor measured 0.0 vs threshold 10.0, worst seed), adjudicated measurement_test_design_defect, NOT a substrate ceiling. Root cause: use_persistent_committed_program_handle=True was set for the ENTIRE cell (formation + probe) rather than scoped to the probe phase, which changes select_action's between-E3-tick fast path and cascades (via RNG-coupled environment dynamics) into materially different chunk-formation outcomes -- same seeds 101/505 formed only 1/0 chunks here vs 2/2 under V3-EXQ-841 (flag at lineage default) on 2026-07-31, a direct same-seed comparison. V3-EXQ-810a's/841's "readiness inherited by construction" claim only holds when the flag stays at its lineage default during formation. Neither MECH-090 nor ARC-071 evidence changes (non_contributory, precondition_unmet). Route: V3-EXQ-871a, scoping the flag to the probe phase only.
+
+    [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_V3-EXQ-968-871b_2026-09-02] via the GOV-APPLY-1 ACTIONABLE bucket (run already in reviewed_run_ids, invisible to the pending-review walk): epistemic_category substrate_conditional is RE-GROUNDED, not merely reaffirmed. The LEG 2 justification is now stale -- 871b exercised the wiring fix and DOES measure the DV -- so the category rests on LEG 3's missing chunk-boundary instrument instead. The governance_2026_09_01 assertion 'NO EXPERIMENT HAS MEASURED THE DV' is therefore only partly true; what remains true is that no run has measured it under conditions where it could exceed the floor. pending_retest_after_substrate set true; diagnostic adjudicated. Status stays candidate. PROMOTES/DEMOTES NOTHING.
   notes: >
     Cross-reference: ARC-071 is the inverse of ARC-070
     (decomposition). Asymmetric triggers (slow / repetition-driven
@@ -61308,6 +61323,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - MECH-194
     - ARC-049
@@ -61342,6 +61358,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - MECH-194
     - MECH-195
@@ -75415,6 +75432,9 @@
     protocol and/or schedule). The gap is wholly residue-carried and 571b cannot apportion it, so a
     936-family falsifier still needs its regime pinned to a measured-monopoly-present configuration
     before it can be non-degenerate. PROMOTES/DEMOTES NOTHING.
+
+    [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_V3-EXQ-571c_2026-09-02.json]: V3-EXQ-571c is UNSCORED and non_contributory -- the arm readiness gate fired on n_live_channels (measured 1.0 vs threshold 2.0) in all four arms, and the gate precedes criterion evaluation, so criteria_non_degenerate is false for all six criteria. The load-bearing C1 was nonetheless arithmetically PASSED (modal within-tick cross-candidate variance share 0.999992, min 0.999989, vs a 0.85 bar, 4/4 B1 seeds unanimous) before being voided. The informative finding is that the monopoly's OCCUPANT is regime-dependent under the lineage's own F_COMPONENTS definition: F holds it in 7 of 8 residue-STARVED cells at 0.994-0.9998, while residue_weighted holds it in every FED cell with F falling to ~4e-06 to 1.1e-05. MECH-439's F-monopoly premise therefore HOLDS starved and FAILS fed, with the environment held fixed across the contrast. No channel is dead -- every non-structurally-zero component clears the absolute liveness floor (1e-12); every liveness failure is of the RELATIVE share floor (1e-3), which is what makes a commensurability operator the addressable lever. The re-derive brake FIRED (14 counted hits) and REFUSED a 571d that re-measures the monopoly with one more channel bounded; a run whose DV is the commensurability operator itself remains permitted and preferred. Status unchanged (candidate); epistemic_category standard; ceiling_decision remains exhausted. PROMOTES/DEMOTES NOTHING.
+  diagnostic_evidence_adjudicated: true
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
     - MECH-309   # monomodal-policy-collapse equilibrium this names the selection-side mechanism of

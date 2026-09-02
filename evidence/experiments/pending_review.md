@@ -1,29 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-09-02T17:08:47Z`  
-Last review: `2026-09-02T12:48:15Z`  
-Pending: **3** item(s) -- 2 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-09-02T17:22:17Z`  
+Last review: `2026-09-02T17:21:49Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3` | 2026-09-02T15:28 | MECH-439 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_472_sd011_platform_stability_pilot_20260421T183651Z_v3` | 2026-04-21T18:36 | SD-011 |
-| `v3_exq_976_sd_e1_item2_rollout_consistency_validation_20260902T114700Z_v3` | 2026-09-02T11:47 | (no claim tags) |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+All experiments reviewed. Nothing pending.
 
 ---
 

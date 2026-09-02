@@ -14,7 +14,7 @@
     "ARC-030": "does_not_support",
     "SD-012": "does_not_support"
   },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "superseded",
   "outcome": "FAIL",
   "criteria": {
     "c1_wanting_populated": false,
@@ -715,5 +715,6 @@
     "p1_episodes": 50,
     "steps_per_ep": 200
   },
-  "timestamp": "2026-04-08T16:53:01.788251Z"
+  "timestamp": "2026-04-08T16:53:01.788251Z",
+  "evidence_direction_note": "[2026-09-02 governance, governance-20260902] Applied from confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 via the GOV-APPLY-1 ACTIONABLE bucket (the run was already in reviewed_run_ids, so the pending-review walk could not see it). MECH-112 is deprecated and split into MECH-229/MECH-230, so 259's weakens entry must stop counting against it; ARC-030 keeps substrate_ceiling and only this entry moves. Direction does_not_support -> superseded."
 }
