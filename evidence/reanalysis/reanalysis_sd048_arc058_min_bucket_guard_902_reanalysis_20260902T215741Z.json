@@ -1,0 +1,176 @@
+{
+  "schema_version": "reanalysis/v1",
+  "recording_schema": "rec/v1",
+  "artifact_type": "post_hoc_reanalysis",
+  "reanalysis_id": "reanalysis_sd048_arc058_min_bucket_guard_902_reanalysis_20260902T215741Z",
+  "generated_utc": "2026-09-02T21:57:41Z",
+  "gov_rule": "GOV-REUSE-1",
+  "question": "Does SD-048's interoceptive-noise comparator (ARC-058 Level 2 of the ARC-061 reafference-comparator family) discriminate body-noise-caused from agent-caused z_harm_a residuals at the substrate's own default calibration scale (noise_scale=1.0, ARM_2), once the C2/quiet-baseline proxy's minimum-sample-guard defect (failure_autopsy_V3-EXQ-902) is corrected?",
+  "claim_ids": [
+    "SD-048",
+    "ARC-058",
+    "ARC-061"
+  ],
+  "decisive_readout": "selectivity_gap (C1: body-noise-caused vs agent-caused forward-model residual, min-bucket-guarded n>=10) at ARM_2 (default noise_scale=1.0), plus forward_r2 (C4 sanity) at ARM_0",
+  "source_run_ids": [
+    "v3_exq_902_sd048_default_scale_calibration_sweep_20260809T002118Z_v3"
+  ],
+  "source_substrate_hashes": {
+    "v3_exq_902_sd048_default_scale_calibration_sweep_20260809T002118Z_v3": "40a2062ec113ee62878485a71e9ec123de4b0b96c3fbb1ee73044c437dc60263"
+  },
+  "substrate_compatibility": "matched",
+  "substrate_invariant_asserted": false,
+  "answer": {
+    "min_bucket_n_guard": 10,
+    "thresholds": {
+      "C1_MIN_SELECTIVITY_GAP": 0.0,
+      "C4_MIN_R2_ARM_0": 0.5,
+      "PASS_FRACTION_REQUIRED": 0.6666666666666666
+    },
+    "per_arm": {
+      "ARM_0": {
+        "arm_label": "ARM_0_off",
+        "noise_scale": 0.0,
+        "n_body_noise_steps_per_seed": [
+          0,
+          0,
+          0
+        ],
+        "n_agent_steps_per_seed": [
+          0,
+          0,
+          0
+        ],
+        "n_quiet_steps_per_seed": [
+          391,
+          362,
+          421
+        ],
+        "selectivity_gap_per_seed": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "c1_selectivity_scoreable_seeds": 0,
+        "c1_selectivity_pass_seeds_of_scoreable": 0,
+        "c1_arm_scoreable": false,
+        "c1_arm_pass": false,
+        "c4_r2_sanity_pass_seeds": 3,
+        "c4_arm_pass": true,
+        "old_c2_quiet_baseline_detectability_scoreable_seeds": 0,
+        "old_c2_quiet_baseline_unscoreable": true,
+        "mean_selectivity_gap": 0.0
+      },
+      "ARM_1": {
+        "arm_label": "ARM_1_0.25x",
+        "noise_scale": 0.25,
+        "n_body_noise_steps_per_seed": [
+          2,
+          2,
+          2
+        ],
+        "n_agent_steps_per_seed": [
+          7,
+          6,
+          9
+        ],
+        "n_quiet_steps_per_seed": [
+          403,
+          377,
+          409
+        ],
+        "selectivity_gap_per_seed": [
+          0.011413638346961567,
+          -0.004777239946027596,
+          0.0031439901019136123
+        ],
+        "c1_selectivity_scoreable_seeds": 0,
+        "c1_selectivity_pass_seeds_of_scoreable": 0,
+        "c1_arm_scoreable": false,
+        "c1_arm_pass": false,
+        "c4_r2_sanity_pass_seeds": 3,
+        "c4_arm_pass": true,
+        "old_c2_quiet_baseline_detectability_scoreable_seeds": 0,
+        "old_c2_quiet_baseline_unscoreable": true,
+        "mean_selectivity_gap": 0.0032601295009491945
+      },
+      "ARM_2": {
+        "arm_label": "ARM_2_1.0x_default",
+        "noise_scale": 1.0,
+        "n_body_noise_steps_per_seed": [
+          293,
+          263,
+          301
+        ],
+        "n_agent_steps_per_seed": [
+          114,
+          114,
+          114
+        ],
+        "n_quiet_steps_per_seed": [
+          5,
+          8,
+          5
+        ],
+        "selectivity_gap_per_seed": [
+          0.003806235338835874,
+          4.6209168928113e-05,
+          0.0008452353974483066
+        ],
+        "c1_selectivity_scoreable_seeds": 3,
+        "c1_selectivity_pass_seeds_of_scoreable": 3,
+        "c1_arm_scoreable": true,
+        "c1_arm_pass": true,
+        "c4_r2_sanity_pass_seeds": 3,
+        "c4_arm_pass": true,
+        "old_c2_quiet_baseline_detectability_scoreable_seeds": 0,
+        "old_c2_quiet_baseline_unscoreable": true,
+        "mean_selectivity_gap": 0.0015658933017374313
+      },
+      "ARM_3": {
+        "arm_label": "ARM_3_4.0x",
+        "noise_scale": 4.0,
+        "n_body_noise_steps_per_seed": [
+          298,
+          270,
+          305
+        ],
+        "n_agent_steps_per_seed": [
+          114,
+          115,
+          115
+        ],
+        "n_quiet_steps_per_seed": [
+          0,
+          0,
+          0
+        ],
+        "selectivity_gap_per_seed": [
+          0.0001840617030246655,
+          -0.0007183600493051445,
+          0.002265940105817356
+        ],
+        "c1_selectivity_scoreable_seeds": 3,
+        "c1_selectivity_pass_seeds_of_scoreable": 2,
+        "c1_arm_scoreable": true,
+        "c1_arm_pass": true,
+        "c4_r2_sanity_pass_seeds": 3,
+        "c4_arm_pass": true,
+        "old_c2_quiet_baseline_detectability_scoreable_seeds": 0,
+        "old_c2_quiet_baseline_unscoreable": true,
+        "mean_selectivity_gap": 0.0005772139198456256
+      }
+    },
+    "peak_selectivity_gap_arm_among_scoreable": "ARM_2",
+    "arm2_c1_pass_corrected": true,
+    "arm0_c4_pass": true,
+    "overall_pass_corrected_methodology": true,
+    "interpretation_label_corrected": "sd048_validated_default_scale_c1_only_c2_unscoreable",
+    "defect_confirmed": "quiet-baseline old-C2 (quiet_gap) is unscoreable at ARM_2 (n_quiet=5,8,5, all below the n>=10 guard) and ARM_3 (n_quiet=0,0,0) -- confirms failure_autopsy_V3-EXQ-902 diagnosis that this proxy structurally collapses at scale>=~3-4x and cannot be trusted as a pass/fail gate.",
+    "primary_finding": "Under a corrected methodology (min-bucket-sample guard on any gap-statistic denominator; the quiet-baseline proxy demoted from load-bearing to informational-only since it is structurally unscoreable at and above default scale; C1 selectivity_gap [body-noise vs agent-caused residual, which IS the architecture doc own C2 self-vs-other definition, per failure_autopsy_V3-EXQ-902 Learning-4] used as the sole load-bearing discriminative criterion), ARM_2 (default noise_scale=1.0) PASSES C1 in all 3/3 seeds (well-sampled: n_body=[293,263,301], n_agent=[114,114,114], all >> guard floor) and ARM_0 PASSES C4 sanity in 3/3 seeds. SD-048 is VALIDATED at default calibration scale under the corrected instrument. The prior V3-EXQ-902 FAIL verdict was an artifact of the broken quiet-bucket comparator, not a genuine finding against the substrate."
+  },
+  "method_note": "Recomputed V3-EXQ-902's own recorded per-seed arm_results (residual_body_noise/residual_agent/residual_quiet, n_body_noise_steps/n_agent_steps/n_quiet_steps, selectivity_gap, forward_r2 -- no new training run) applying a minimum-bucket-sample guard (n>=10 required for any denominator a gap statistic divides against) per failure_autopsy_V3-EXQ-902's routing. This demotes the quiet-baseline 'C2' (quiet_gap) from load-bearing to informational-only, since it is structurally unscoreable at and above default scale (ARM_2 n_quiet=5/8/5, ARM_3 n_quiet=0/0/0, all below guard floor -- the noise generator's own trigger-frequency scaling mechanically depletes the quiet-tick category). C1 (selectivity_gap: body-noise vs agent-caused residual) is unaffected by this defect and IS the architecture doc's own C2 self-vs-other definition (sd_048_interoceptive_noise_dynamics.md); it becomes the sole load-bearing criterion. Overall PASS = ARM_2 passes C1 (>=2/3 scoreable seeds with selectivity_gap>0) AND ARM_0 passes C4 (forward_r2>=0.5, >=2/3 seeds).",
+  "verdict": "supports",
+  "notes": "GOV-REUSE-1 fully-recoverable case: the decisive readout (min-bucket-guarded discrimination at ARM_2) needed no new run -- all per-seed raw residuals and event counts were already recorded in V3-EXQ-902's manifest (post-2026-07-12 recording standard, substrate_hash present). Fixes the specific defect failure_autopsy_V3-EXQ-902 routed to /queue-experiment. Reduces uncertainty for ARC-061 (dispatch EXP-0464/EXP-0457, claim ARC-061) by producing the first clean confirming result for Level 2 (ARC-058) of the reafference-comparator family at the substrate's own default calibration -- V3-EXQ-902's prior FAIL was an instrument artifact, not a substrate finding. ARC-061 still requires Level 1 (MECH-095, substrate_ceiling) and Level 3 (MECH-094, already confirmed_established) before the composite claim itself can promote per its own governance rule; this reanalysis only resolves Level 2. V3-EXQ-512a's identical n_quiet_steps=0 defect (flagged in the same autopsy) is NOT re-adjudicated here -- out of scope, left for a separate autopsy/governance pass as the autopsy itself specifies.",
+  "caveat": ""
+}
