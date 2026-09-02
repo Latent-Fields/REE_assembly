@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_113",
+  "entry_id": "2026-09-02_arc_113_abstract_reasoning_network_dissociation_kean2025",
+  "timestamp_utc": "2026-09-02T20:20:49Z",
+  "claim_ids_tested": [
+    "ARC-113"
+  ],
+  "source": {
+    "title": "A human brain network specialized for abstract formal reasoning",
+    "authors": [
+      "Hope Kean",
+      "Alex Fung",
+      "Chiebuka Ohams",
+      "Jason Chen",
+      "Josh Rule",
+      "Joshua Tenenbaum",
+      "Steven Piantadosi",
+      "Evelina Fedorenko"
+    ],
+    "year": 2025,
+    "venue": "bioRxiv preprint",
+    "doi": "10.1101/2025.10.21.683445",
+    "pmid": null,
+    "url": "https://www.biorxiv.org/content/10.1101/2025.10.21.683445v1"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Methodologically the strongest imaging work in this pull -- deep-data precision fMRI, 24 participants, 10 experiments, with a near-zero Dice overlap (0.02 whole-brain, 0.04 frontal) between the abstract-reasoning network and the Multiple Demand network. It is cited in ARC-113's own source material. But its mapping to ARC-113 is INDIRECT: it dissociates reasoning from OTHER cognitive systems rather than dissociating the stages WITHIN the rule pipeline, which is what ARC-113 asserts. The within-reasoning deduction/induction split in MD engagement is the part that bears on the claim directly, and it is a secondary finding. Preprint status also caps source quality.",
+  "failure_signatures": [
+    "The abstract reasoning network responded robustly and SIMILARLY during both deductive and inductive reasoning, during matrix problems, and during multiplication and division -- so at network resolution this evidence is equally consistent with ONE general abstract-reasoning module, which is the collapsed reading ARC-113 denies.",
+    "The dissociation demonstrated is between reasoning and non-reasoning systems (language, MD, intuitive physics, social), not among stages of a rule pipeline; a study of this design could not detect stage collapse within the reasoning network even if it were total.",
+    "The authors note they sampled only neurologically healthy educated adults from an industrialized culture and question generalisation across populations and other reasoning types."
+  ],
+  "tags": [
+    "arc-113",
+    "abstract_reasoning",
+    "network_dissociation",
+    "multiple_demand",
+    "precision_fmri",
+    "deduction_induction",
+    "support_tag:pipeline_not_domain_general"
+  ],
+  "mapping": {
+    "source_claim_statement": "A network of frontal brain areas supporting abstract formal reasoning robustly dissociates from the domain-general Multiple Demand network as well as from the language, intuitive physical reasoning, and social reasoning networks; the network responds during both deductive and inductive reasoning, matrix problems, and arithmetic. The Multiple Demand network was engaged by inductive reasoning and matrix problems but not by deductive syllogisms.",
+    "ree_translation": "Abstract reasoning is not absorbed into a general-purpose executive resource: it has its own substrate, distinct from working-memory/fluid-intelligence machinery and from language. For ARC-113 this is second-order support -- it establishes that the rule pipeline is a real functional object that does not collapse into domain-general control. The directly relevant detail is the asymmetry in MD engagement: inductive reasoning and matrix problems recruited MD while deductive syllogisms did not, which is a dissociation BETWEEN reasoning operations and therefore evidence that apprehension-type and derivation-type stages draw on different resources.",
+    "mapping_caveat": "The strongest and most-replicated result here is orthogonal to ARC-113: it separates reasoning from language and MD, whereas ARC-113 asserts non-collapse among stages INSIDE reasoning. Read carelessly this entry would be over-counted as support. Precision fMRI resolves networks, not pipeline stages, so a single abstract-reasoning network responding to everything is exactly what a collapsed-stage architecture would also produce -- the evidence does not discriminate. Preprint, not yet peer reviewed.",
+    "source_context": "24 participants (mean age 26.4, 14 female), deep-data precision fMRI, 1-3 sessions of 2-3 hours each, 10 fMRI experiments; deductive syllogisms, inductive reasoning, matrix reasoning, arithmetic."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (precision fMRI, large per-subject data, explicit network-overlap statistics) offset by the lowest mapping fidelity in this pull, since the headline dissociation is between systems rather than between pipeline stages. For an architectural claim mapping_fidelity dominates, hence the modest aggregate."
+  },
+  "summary_path": "summary.md"
+}

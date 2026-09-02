@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_113",
+  "entry_id": "2026-09-02_arc_113_rule_search_discovery_following_phases_cao2016",
+  "timestamp_utc": "2026-09-02T20:20:49Z",
+  "claim_ids_tested": [
+    "ARC-113"
+  ],
+  "source": {
+    "title": "Dissociable roles of medial and lateral PFC in rule learning",
+    "authors": [
+      "Bihua Cao",
+      "Wei Li",
+      "Fuhong Li",
+      "Hong Li"
+    ],
+    "year": 2016,
+    "venue": "Brain and Behavior",
+    "doi": "10.1002/brb3.551",
+    "pmid": "27843701",
+    "pmc": "PMC5102646",
+    "volume": "6",
+    "issue": "11",
+    "pages": "e00551"
+  },
+  "evidence_class": "neuroscience_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "A clean within-subject decomposition of rule learning into three temporally ordered phases (search -> discovery -> following) with a double dissociation between posterior lateral PFC and anterior medial PFC across them, which is the ordered-stage structure ARC-113 asserts. Confidence is moderate rather than high because the evidence is activation-difference correlational rather than causal, and because the authors themselves concede the phase effects are not dissociated from the passage of time -- a confound that bears directly on the ORDERING part of the claim.",
+  "failure_signatures": [
+    "The authors state the phase effects were not dissociated from the passage of time; because search, discovery and following necessarily occur in that temporal order within a trial block, an apparent stage dissociation could partly reflect time-on-task or difficulty (search RT 1421 ms vs following RT 529 ms) rather than distinct stage machinery.",
+    "The authors report uncertainty about whether participants held explicit rule knowledge during the discovery and following phases, so the boundary between the apprehension stage and the application stage is behaviourally inferred rather than directly verified.",
+    "Rule-discovery elevated BOTH medial and lateral PFC relative to their neighbouring phases rather than isolating a discovery-specific substrate, which is consistent with a transitional blend of adjacent stages rather than a cleanly separable one."
+  ],
+  "tags": [
+    "arc-113",
+    "rule_learning",
+    "stage_ordering",
+    "prefrontal",
+    "fmri",
+    "rule_discovery",
+    "support_tag:ordered_phases"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rule-search activated posterior lateral PFC more, while rule-following activated anterior medial PFC more; the intermediate rule-discovery phase showed elevated activation in both MPFC and dorsal anterior cingulate relative to search, and greater LPFC activation than following -- medial and lateral PFC have dissociable contributions in rule learning.",
+    "ree_translation": "Rule learning unfolds as a temporally ordered sequence of phases with distinct neural substrates, and the substrate shifts systematically as the system moves from searching for a regularity, through apprehending it, to applying it. This maps onto three consecutive ARC-113 stages -- candidate regularity apprehension (search), the apprehension-to-representation transition (discovery), and prediction/behavioural interaction under the acquired rule (following) -- and supports the claim that these are not one undifferentiated reasoning operation running at different intensities.",
+    "mapping_caveat": "This is correlational task-activation fMRI: it shows that different phases recruit different regions, not that removing one phase produces a characteristic failure, which is what ARC-113's falsifier actually requires. The phases are defined post hoc from the behavioural response record rather than manipulated. The task is a constrained clock-like card judgement with 20 hidden rules, far narrower than ARC-113's cycle, and the paper speaks to only three of eleven stages -- it is silent on counterfactual simulation, generalisation and long-term integration.",
+    "source_context": "21 right-handed adults (1 excluded for motion), event-related 3T fMRI; clock-like card displays judged for congruence with a hidden rule; 4 runs, 20 rules, 6-11 trials per rule."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Small-N single-site fMRI with an acknowledged time-on-task confound caps source quality. Mapping fidelity is mid-range: the ordered-phase structure is a good structural match to ARC-113 but the evidence is associative, not ablative."
+  },
+  "summary_path": "summary.md"
+}

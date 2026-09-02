@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_113",
+  "entry_id": "2026-09-02_arc_113_frontal_lesion_rule_stage_dissociation_capkova2025",
+  "timestamp_utc": "2026-09-02T20:20:49Z",
+  "claim_ids_tested": [
+    "ARC-113"
+  ],
+  "source": {
+    "title": "Dissociating Frontal Lobe Lesion Induced Deficits in Rule Value Learning Using Reinforcement Learning Models and a WCST Analog",
+    "authors": [
+      "Lucie Capkova",
+      "Matthew Ainsworth",
+      "Farshad A. Mansouri",
+      "Mark J. Buckley"
+    ],
+    "year": 2025,
+    "venue": "eNeuro",
+    "doi": "10.1523/ENEURO.0117-25.2025",
+    "volume": "12",
+    "issue": "5",
+    "pages": "ENEURO.0117-25.2025"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "The strongest falsifier-shaped evidence in this pull: five bilateral frontal lesion groups in 18 macaques on a WCST analog, with a reinforcement-learning model separating WHICH latent rule-learning parameter each lesion damaged. The deficits are qualitatively distinct rather than graded severities of one impairment, which is exactly the dissociable-signature pattern ARC-113's stage ablation predicts. Held below source_quality because per-group n is 3-4 and because the lesioned components correspond to only about three of ARC-113's eleven stages, so the ordered-cycle reading itself is untested here.",
+  "failure_signatures": [
+    "Two of the five lesion groups (superior dorsolateral PFC, frontopolar cortex) produced NO significant deficit on any learning-rate parameter and no impairment on overall WCST performance, so a naive one-region-per-stage reading of the rule pipeline is refuted by this dataset.",
+    "ACC, PS and OFC groups all showed REDUCED model fit after lesion, which the authors attribute to task-related factors their RL model does not capture; a stage decomposition read only through fitted parameters can therefore miss real post-ablation structure.",
+    "OFC and ACC lesions BOTH increased choice stochasticity (beta) and both impaired repeat-after-surprising-reward, so the dissociation is partial: some post-ablation signatures are shared across components rather than unique to one."
+  ],
+  "tags": [
+    "arc-113",
+    "rule_learning",
+    "lesion_dissociation",
+    "wcst",
+    "prefrontal",
+    "stage_ablation",
+    "support_tag:dissociable_failure_signatures"
+  ],
+  "mapping": {
+    "source_claim_statement": "Orbitofrontal cortex lesions impaired rule value learning from both positive and negative feedback; principal sulcus lesion deficits were consistent with impoverished maintenance of rule representations in working memory; anterior cingulate cortex lesion impairments likely reflected inability to flexibly switch between trial-and-error and working-memory response modes.",
+    "ree_translation": "Damaging different components of a rule-learning system produces qualitatively DIFFERENT failure signatures, not a common decrement. In ARC-113 terms this is direct support for stage non-collapsibility across three adjacent stages: representation (PS / working-memory maintenance of the rule), outcome comparison and regularity refinement (OFC / rule-value updating from feedback), and control of transitions between apprehension and application modes (ACC). If these stages were one reasoning module, all three lesions would degrade the same parameter.",
+    "mapping_caveat": "This is a macaque colour/shape WCST analog with a low-dimensional, externally-cued rule space; ARC-113 concerns an eleven-stage cycle including counterfactual simulation, generalisation and long-term integration, none of which this task exercises. The paper establishes LOCAL dissociability among about three stages, not the ordered cycle. Aspiration lesions carry acknowledged white-matter damage, so region-to-stage attribution is weaker than the parameter-level dissociation itself. Anatomical dissociation in a primate brain is also a different evidence type from ARC-113's falsifier, which is a stage ablation inside the REE substrate.",
+    "source_context": "18 macaques (7 M. mulatta, 11 M. fuscata) across 5 bilateral lesion groups; computerised WCST analog, 300 trials/session, covert colour or shape rule inferred from binary feedback; last 10 pre-lesion vs first 10 post-lesion sessions."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Within-subject pre/post design plus an explicit generative model raise source quality well above a correlational imaging study. Mapping fidelity is capped by partial stage coverage; transfer risk is moderate because the rule space is far simpler than REE's."
+  },
+  "summary_path": "summary.md"
+}

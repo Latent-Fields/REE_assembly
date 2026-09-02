@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_113",
+  "entry_id": "2026-09-02_arc_113_common_dissociable_induction_components_jia2011",
+  "timestamp_utc": "2026-09-02T20:20:49Z",
+  "claim_ids_tested": [
+    "ARC-113"
+  ],
+  "source": {
+    "title": "Common and dissociable neural correlates associated with component processes of inductive reasoning",
+    "authors": [
+      "Xiuqin Jia",
+      "Peipeng Liang",
+      "Jie Lu",
+      "Yanhui Yang",
+      "Ning Zhong",
+      "Kuncheng Li"
+    ],
+    "year": 2011,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2011.03.020",
+    "pmid": "21406238",
+    "volume": "56",
+    "issue": "4",
+    "pages": "2292-9"
+  },
+  "evidence_class": "neuroscience_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Genuinely two-directional and included for that reason. The component-specific networks (fronto-parietal for identification, striatal-thalamic for extrapolation) support stage non-collapsibility; the COMMON recruitment of left superior parietal lobule/precuneus and left DLPFC across both components is evidence that adjacent stages share substrate rather than being fully separable. Confidence is moderate: peer-reviewed in a strong journal but N=20, a 2011 numerical-induction task, and the shared-substrate finding is exactly the kind of partial collapse ARC-113 must survive.",
+  "failure_signatures": [
+    "Left superior parietal lobule extending into precuneus and left DLPFC were COMMONLY recruited across both rule identification and rule extrapolation, so the two components are not substrate-disjoint; a strict reading of ARC-113 in which stages share no machinery is not supported by this dataset.",
+    "The design contrasts rule induction against rule induction WITH application, so extrapolation is never observed in isolation from identification; the component-specific attribution rests on a subtraction, and a genuinely non-decomposable process could produce a similar difference map.",
+    "The task is numerical inductive reasoning only; the authors' own framing ties the component decomposition to numerical stimuli, and the paper gives no evidence the same decomposition holds for other rule domains."
+  ],
+  "tags": [
+    "arc-113",
+    "inductive_reasoning",
+    "component_processes",
+    "shared_substrate",
+    "fmri",
+    "identification_extrapolation",
+    "support_tag:partial_dissociation"
+  ],
+  "mapping": {
+    "source_claim_statement": "The left superior parietal lobule extending into the precuneus and left dorsolateral prefrontal cortex were commonly recruited in the two components, while the fronto-parietal network was more specific to identification and the striatal-thalamic network was more specific to extrapolation.",
+    "ree_translation": "Rule identification (apprehending a candidate regularity) and rule extrapolation (applying and generalising it) are partially but NOT fully dissociable: they recruit distinct networks on top of a shared prefrontal-parietal core. For ARC-113 this cuts both ways. The component-specific networks support the claim that apprehension and generalisation are distinct stages. The shared core is evidence for the opposing reading -- that stages of the rule pipeline are variations on common machinery rather than architecturally separate modules -- and is the most direct counter-evidence found in this pull.",
+    "mapping_caveat": "Shared neural substrate does not by itself refute functional non-collapsibility -- two stages can be computationally distinct while implemented on overlapping tissue, and REE's stages are functional components, not brain regions. So this entry should not be read as strong disconfirmation; it is a warning that a stage-ablation falsifier keyed on SHARED-RESOURCE separability would give the wrong answer. Only two of ARC-113's eleven stages are addressed, in a numerical task, with N=20 in 2011-era fMRI.",
+    "source_context": "20 right-handed adults; event-related fMRI; three conditions -- rule induction (RI), rule induction with application (RIA), and a perceptual judgment control; numerical inductive reasoning."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Peer-reviewed NeuroImage study with an explicit common-vs-dissociable contrast, which is precisely the question ARC-113 poses; capped by small N, single task domain, and the subtraction logic underlying component attribution."
+  },
+  "summary_path": "summary.md"
+}

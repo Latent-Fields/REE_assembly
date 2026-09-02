@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_113",
+  "entry_id": "2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026",
+  "timestamp_utc": "2026-09-02T20:20:49Z",
+  "claim_ids_tested": [
+    "ARC-113"
+  ],
+  "source": {
+    "title": "Think Through a Bottleneck: Hourglass Reasoning for Rigorous Induction",
+    "authors": [
+      "Huan Zhu"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2607.11696",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2607.11696"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Mapping fidelity is the highest in this pull -- the paper implements and then ABLATES stage isolation in an induction pipeline, which is ARC-113's non-collapse requirement stated as an engineering manipulation. The Struct-SR ablation (structured intermediates WITHOUT isolation collapsing below baseline) is the single most on-target result available anywhere in this search. Confidence is held below 0.75 by source quality: a single-author, non-peer-reviewed 2026 preprint on two proprietary model families, with a public ARC-AGI-2 evaluation set and an acknowledged optimistic bias in pass@5.",
+  "failure_signatures": [
+    "On BBEH-Linguini with GPT-5.5 the staged architecture performed WORSE than the monolithic baseline (pass@1 58.3% -> 46.5%, pass@5 67.4% -> 63.1%), so enforced stage separation is not universally beneficial and can cost accuracy in some rule-induction domains.",
+    "Weak initial induction degraded final performance by 20.5 percentage points and the downstream Refiner could not compensate, showing that an ordered pipeline inherits a hard dependency on early-stage quality -- a characteristic failure signature of ORDERING, not merely of separation.",
+    "Structured intermediate representations WITHOUT enforced context isolation (the Struct-SR variant) collapsed accuracy below even the unstructured baseline, so naming the stages is insufficient; only the topology of information flow produced the gain.",
+    "Separation is enforced by prompting and context isolation rather than architectural constraint, so the paper offers no guarantee that the stages did not silently recombine inside the frozen model."
+  ],
+  "tags": [
+    "arc-113",
+    "rule_induction",
+    "stage_isolation",
+    "ablation",
+    "llm",
+    "arc_agi",
+    "support_tag:collapse_ablation"
+  ],
+  "mapping": {
+    "source_claim_statement": "What actually matters is a structurally enforced isolation between reasoning stages, so that information can only pass between them as a compressed symbolic state; ablations confirm that the gains come from the isolation between stages and the quality of the initial induction, not from prompt wording or the particular symbolic form used.",
+    "ree_translation": "A rule-induction system that separates induction, deduction, implementation and error-driven refinement into stages communicating only through a compressed rule state outperforms one in which those stages share a single undifferentiated context -- and REMOVING the isolation while keeping the stage vocabulary degrades performance below baseline. This is ARC-113's non-collapse requirement tested as a manipulation: collapsing the pipeline into one reasoning context produces a characteristic failure in which the system abandons the induced rule and patches the artifact directly, anchoring on instance-specific detail instead of the abstract regularity.",
+    "mapping_caveat": "The stages here are prompt-level roles imposed on a FROZEN large language model, not learned components of a substrate; nothing is trained, and the isolation is soft (context partitioning) rather than architectural. REE's stages are substrate components with their own learning dynamics, so a gain from prompt-level isolation in an LLM is at best an existence proof that stage collapse has a measurable cost, not evidence about REE's substrate. The four Hourglass stages also map onto only the middle of ARC-113's cycle -- there is no analog of experience, behavioural interaction, or long-term integration.",
+    "source_context": "Frozen GPT-5.5 and Gemini 3.1 Pro; three benchmarks -- ARC-AGI-2 (visual abstraction), ChipBench (Verilog synthesis), BBEH-Linguini (textual rule induction from linguistics-olympiad puzzles)."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.55,
+    "notes": "For an architectural claim mapping_fidelity is weighted heaviest, which is what lifts this entry above its modest source quality. Transfer risk is elevated: a frozen-LLM prompting result may not survive translation to a trained substrate at all."
+  },
+  "summary_path": "summary.md"
+}
