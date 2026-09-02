@@ -3578,7 +3578,11 @@
       "task_claim_session_id": "igw-auto-igw-239-literature-proposal-for-arc-120-20260902T211501Z",
       "task_claim_claimed_at": "2026-09-02T21:15:01Z",
       "assigned_at": "2026-09-02T21:12:35Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-02T21:37:30Z",
+      "completion_summary": "lit-pull ARC-120: 5 entries landed (REE_assembly 4a86cb63be), lit_conf 0.852, 4 supports / 1 mixed; flagged ARC-120 sandboxed-vs-consequential authority wording gap for governance",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -4906,6 +4910,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T20:42:35Z",
       "re_eligible_after": "2026-09-04T20:42:35Z"
+    },
+    {
+      "stable_hash": "8e328701f90f",
+      "igw_id_at_disposition": "IGW-20260902-239",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-120"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for ARC-120",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T21:37:32Z",
+      "re_eligible_after": "2026-09-04T21:37:32Z"
     }
   ]
 }
