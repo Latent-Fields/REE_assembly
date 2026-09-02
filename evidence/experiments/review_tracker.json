@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-01T08:08:39Z",
+  "last_review_utc": "2026-09-02T12:48:15Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1228,7 +1228,20 @@
     "v3_exq_965_sd_e1_item1_action_conditioning_validation",
     "v3_exq_642b_blocked_agency_calibrated_floor_validation",
     "v3_exq_571b_e3_variance_monopoly_presence_clamped",
-    "v3_exq_967_mech144_shuffle_inertness_confirmer"
+    "v3_exq_967_mech144_shuffle_inertness_confirmer",
+    "v3_exq_259_wanting_gradient_navigation",
+    "v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest",
+    "v3_exq_968_sd_e1_output_proj_residual_ab",
+    "v3_exq_871b_mech090_e3_reselection_shortcircuit_retest",
+    "v4_exq_002_dr13_self_recurrence_falsifier",
+    "v4_exq_003_dr10_z_self_viability_falsifier",
+    "v3_exq_542_arc062_gated_policy_substrate_readiness",
+    "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot",
+    "v3_exq_545_mech314_structured_curiosity_substrate_readiness",
+    "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness",
+    "v3_exq_547_mech320_tonic_vigor_substrate_readiness",
+    "v3_exq_613_sd056_e2_action_contrastive_substrate_readiness",
+    "v3_exq_617_sd056_multistep_substrate_readiness"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4115,7 +4128,26 @@
     "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3",
     "v3_exq_642b_blocked_agency_calibrated_floor_validation_20260831T131011Z_v3",
     "v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3",
-    "v3_exq_967_mech144_shuffle_inertness_confirmer_20260901T062344Z_v3"
+    "v3_exq_967_mech144_shuffle_inertness_confirmer_20260901T062344Z_v3",
+    "v3_exq_259_wanting_gradient_navigation_1775666895",
+    "v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest_20260902T001425Z_v3",
+    "v3_exq_968_sd_e1_output_proj_residual_ab_20260901T162647Z_v3",
+    "v3_exq_871b_mech090_e3_reselection_shortcircuit_retest_20260901T212042Z_v3",
+    "v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4",
+    "v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4",
+    "v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z",
+    "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002616Z",
+    "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002633Z",
+    "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z",
+    "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
+    "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T164550Z",
+    "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T172604Z",
+    "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T164557Z",
+    "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z",
+    "v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z",
+    "v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z",
+    "v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z",
+    "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6665,6 +6697,32 @@
         "v3_exq_967_mech144_shuffle_inertness_confirmer_20260901T062344Z_v3"
       ],
       "notes": "2026-09-01 governance cycle (gov-cycle-20260901), post-autopsy-sweep. THREE runs adjudicated, all against CONFIRMED autopsies landed by autopsy-sweep-20260901 in REE_assembly 5ff838702b -- zero un-adjudicated items left, so Step 1.5's needs-autopsy set was EMPTY and the cycle completed in one pass. All three are experiment_purpose: diagnostic and therefore already scoring-excluded at build_experiment_indexes.py:3454 (diagnostic_probe) before any direction check; the manifest writes below make the record match the ratified verdict rather than change scoring. MANIFEST WRITES (flat AND run pack, each carrying the evidence_direction_note that is the indexer's _is_annotated marker): 642b non_contributory (already read so; note added), 571b diagnostic -> non_contributory, 967 diagnostic -> non_contributory. 642b: the self-routed label 'z_block_integrator_no_rise' is WITHDRAWN as INCORRECT -- C1/C2 read only z_block_peak, a max statistic against the hard clamp z_block_cap=1.5, and both arms reach exactly 1.500 on 3/3 seeds, so z_block_separation is 0.0 BY ARITHMETIC and both load-bearing criteria are false regardless of behaviour (the threshold-arithmetic defect class the 2026-08-30 skim rule was written from). The substrate build under validation WORKED: CONTROL z_block_mean is 0.064-0.177 of a 1.5 cap vs 642a's pinned-near-cap-everywhere. Its z_goal_stream.writer_defect flag is a DETECTOR FALSE POSITIVE -- the driver pins the goal (GOAL_PIN=0.5) directly, bypassing the counted writer; active_frac 1.0 with writer_calls 0 is a combination an omitted update_z_goal cannot produce. 571b: PASSES its own criteria (clamped top-channel share 0.9368-0.9953 vs 0.85 bar; occupant shifts f_weighted -> harm_weighted 4/4 seeds) but the 936a gate on further 936-family falsifiers does NOT clear -- 936a measured the SAME premise ABSENT (F share 6.33e-06) in its own regime under the same clamp ratio, so the monopoly premise is REGIME-DEPENDENT and 571b cannot apportion the residue-carried gap. MECH-439 note-only: status stays candidate, epistemic_category stays standard, live_status.evidence.from re-stamped -> failure_autopsy_V3-EXQ-571b_2026-09-01. 967: REFUTES the 966-cluster's third closed route -- agent_energy is NOT floor-clamped at 0.0 (energy_mean 0.4892/0.4845, at floor on only 10.2% of steps, arms differ by up to 0.99 across 709 of 2400 matched steps). The other two routes stay open. SUBSTRATE_QUEUE AMENDS: sd_blocked_agency_mismatch_floor_calibration (severity deliberately RETAINED at corrupting -- peak still hits 1.500 on 3/3 seeds so any new peak/max-shaped blocked-agency DV still yields a zero separation that looks like a valid null; the 642a failure_record entry marked resolved) and SD-056 (classification unchanged; adds the clamp's previously-unrecorded side-effect -- E3 committed score range collapses ~800x and 92-97% of rollouts pin at the ceiling). PASS SKIMS: none owed. The mandatory non-outcome-findings driver skim applies to claim-tagged EVIDENCE-purpose PASSes; all three runs this cycle are diagnostic-purpose and were covered by full confirmed autopsies instead, which is the stricter path. GOV-APPLY-1: its 8 ACTIONABLE unapplied_disposition rows were VERIFIED APPLIED and are ALL FALSE POSITIVES -- _target_state() cannot parse the free-prose per_claim_recommendation.change text recent autopsies write. Nothing was re-applied; a mechanical apply pass would have double-appended five evidence_quality_notes. Raised GFLAG-0107. Substrate-ceiling audit's 2 ceiling-may-have-lifted (ARC-030, SD-017) are likewise FALSE POSITIVES of a partial-satisfaction predicate that fires on ANY one unblocker landing; raised GFLAG-0108, resolved GFLAG-0100. Also: 7 hold_pending_v3_substrate decisions recorded; v4_spec's V3 full-completion gate re-derived (GFLAG-0106 resolved, residual GFLAG-0109 raised)."
+    },
+    {
+      "utc": "2026-09-02T12:48:15Z",
+      "session": "governance-20260902-0548",
+      "runs_reviewed": [
+        "v3_exq_259_wanting_gradient_navigation_1775666895",
+        "v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest_20260902T001425Z_v3",
+        "v3_exq_968_sd_e1_output_proj_residual_ab_20260901T162647Z_v3",
+        "v3_exq_871b_mech090_e3_reselection_shortcircuit_retest_20260901T212042Z_v3",
+        "v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4",
+        "v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4",
+        "v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z",
+        "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002616Z",
+        "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002633Z",
+        "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z",
+        "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
+        "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T164550Z",
+        "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T172604Z",
+        "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T164557Z",
+        "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z",
+        "v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z",
+        "v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z",
+        "v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z",
+        "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z"
+      ],
+      "notes": "2026-09-02 governance cycle. 19 of 23 pending items adjudicated; 1 STAYS PENDING and 3 drop out as smokes. (A) SIX id-matched confirmed autopsies from autopsy-sweep 3a4fa3367f: 259, 963a, 968, 871b, V4-EXQ-002/003. (B) THIRTEEN substrate-readiness runs cleared on failure_autopsy_substrate-readiness-cluster_2026-09-02 (confirmed, scope=cluster), which diagnoses a 14-run shared-template family (is_independent_bugs:false) citing the 2026-06-06 retrospective audit's sampling disposition. THAT ARTIFACT RECORDED NO MEMBERSHIP -- it named only 544 and 544a -- so check_autopsy_coverage.py saw 1 of 14 and pending_review.md re-flagged the other 13 as un-autopsied, and would have every future cycle. Membership was RECONSTRUCTED BY GOVERNANCE (13 pending readiness runs + 544a = exactly 14, all experiment_purpose=diagnostic, matching the artifact's own count and its naming of 544a) and backfilled as targets[0].covered_runs[] with an exact run_id key per member -- covered_run_ids as bare strings is INVISIBLE to _collect_ids, which matches only keys named exactly run_id/queue_id, and the index reads COMMITTED content at ref, so the shape and the commit both matter. Guarded additive-only diff; a governance_amendment field records that this is a reconstruction, not the producer's own enumeration. REE_assembly 20ac9d7cab. (C) THREE v3_exq_395_..._dry_ smokes NOT added here -- they are not experiments. They were carrying real scored evidence: two of them were the ONLY experimental rows against MECH-220 (weakens, scoring_excluded None) alongside three literature supports, which is what produced MECH-220's hold_candidate_resolve_conflict. All three had top-level dry_run UNSET, so check_dry_run_citations.py, the indexer's dry filter, pending_review.md's exclusion AND GOV-DRY-1 were every one of them structurally blind -- GOV-DRY-1 reported 0 asserting dry stamps this cycle for exactly that reason. Contained flat-only (no packs exist for these three): dry_run set true, direction -> non_contributory (075033Z keeps its dedup superseded), per-claim aligned, evidence_direction_note carrying the authority (failure_autopsy_V3-EXQ-395-cluster_2026-09-02 excluded_dry_run_ids). (D) v3_exq_472_sd011_platform_stability_pilot STAYS PENDING -- diagnostic PASS, genuinely un-autopsied, no confirmed or in-flight target. Needs /failure-autopsy; reported, not chipped (failure-autopsy work re-derives its own worklist). PASS SKIMS: none owed -- all 5 non-diagnostic PASSes (544, 968, 871b, V4-002, V4-003) carry confirmed autopsies, the stricter path. GFLAG-0114 RATIFIED: f_dominance_conversion_ceiling depends_on_unresolved [] -> 3 gates, node_class complex (probe-gated) -> complicated (buildable), status_phase build_owed (REE_assembly cb888c354d). The probe chain had already run and resolved, so closure_status was reporting 'not ready with no unresolved dependencies' while 35 of 43 non-done v3 nodes sat behind an invisible blocker. Gate 3 (E3 channel-scale normalisation rung 3) listed as unresolved but flagged CONTESTED not buildable -- GFLAG-0116 + GFLAG-0051 decide it. CHIPPING: SD-018 amend was already chipped at 05:39 (task_08632a05, open/unclaimed) -- chip_ledger's chip_ref uniqueness constraint caught this session's duplicate, which was withdrawn. SD-e1 ITEM 2 NOT chipped: IGW-20260831-222 has it staged. Audits: closure_drift 0, hypothesis-space a=b=c=d=0 and fan-out recurrence 0, GOV-DIAG-1 0, GOV-CEIL-1 0 exhausted / 0 may-have-lifted / 1 orphan (MECH-465), GOV-DRY-1 0 (blind, see C), GOV-SUBPATH-1 0, Steward ESCALATE=no."
     }
   ]
 }
