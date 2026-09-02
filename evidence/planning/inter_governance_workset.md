@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-02T15:01:02Z`
+Generated: `2026-09-02T16:03:34Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -14,9 +14,7 @@ UI: http://localhost:8000/workset
 - Pending review: **5**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-571c, V3-EXQ-591g, V3-EXQ-906c
-
-- Auto-absorbed retests (queued, suppressed from workset): MECH-439 -> V3-EXQ-571c
+- Live EXQs: V3-EXQ-591g, V3-EXQ-906c
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): MECH-074d -> v3_exq_894c_mech074d_bla_entropy_weight_sweep_20260810T212602Z_v3, MECH-152 -> v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3, Q-081 -> v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3
 
@@ -2784,31 +2782,7 @@ Instructions:
 
 </details>
 
-### IGW-20260902-238 -- Proposal for ARC-073
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260902-238
-Title: Proposal for ARC-073
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: ARC-073
-Proposal backlog id (stable): EVB-1205
-Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260902-239 -- Literature proposal for ARC-073
+### IGW-20260902-238 -- Literature proposal for ARC-073
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2816,7 +2790,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260902-239
+REE inter-governance work item: IGW-20260902-238
 Title: Literature proposal for ARC-073
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2831,7 +2805,7 @@ Instructions:
 
 </details>
 
-### IGW-20260902-240 -- Proposal for ARC-113
+### IGW-20260902-239 -- Proposal for ARC-113
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2839,7 +2813,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260902-240
+REE inter-governance work item: IGW-20260902-239
 Title: Proposal for ARC-113
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -2855,7 +2829,7 @@ Instructions:
 
 </details>
 
-### IGW-20260902-241 -- Literature proposal for ARC-113
+### IGW-20260902-240 -- Literature proposal for ARC-113
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2863,7 +2837,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260902-241
+REE inter-governance work item: IGW-20260902-240
 Title: Literature proposal for ARC-113
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2878,7 +2852,7 @@ Instructions:
 
 </details>
 
-### IGW-20260902-242 -- Proposal for ARC-120
+### IGW-20260902-241 -- Proposal for ARC-120
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2886,7 +2860,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260902-242
+REE inter-governance work item: IGW-20260902-241
 Title: Proposal for ARC-120
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -2897,6 +2871,29 @@ Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_s
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260902-242 -- Literature proposal for ARC-120
+
+- **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260902-242
+Title: Literature proposal for ARC-120
+Lane: lit | Skill: /lit-pull
+Status: ready
+Claims: ARC-120
+Proposal backlog id (stable): EVB-1233
+Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+Instructions:
+- Use /lit-pull for the claim cluster named.
 - Workset: http://localhost:8000/workset
 ```
 
