@@ -3527,8 +3527,12 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-09-02T19:07:41Z",
       "staged_at": "2026-09-02T19:07:41Z",
-      "status": "launched_manual",
-      "launched_at": "2026-09-02T20:13:32Z"
+      "status": "completed",
+      "launched_at": "2026-09-02T20:13:32Z",
+      "completed_at": "2026-09-02T20:26:09Z",
+      "completion_summary": "Did not build the staged gate-rescale (3 prior probes already declined it, 1.02-1.25x dispersion vs 1.455x bar). Found the probes share an untrained-z_world confound and a stale status read (sd_zworld_warmup_optimizer_group is actually validated since 2026-07-22). User redirected via /metaworker-orchestrate decision lane to: correct substrate_queue.json's MECH465-COMMIT-GATE-HEADROOM entry with this finding, then run a spike extending the 08-27 probe harness with the validated z_world warmup. Follow-on chip: chip-20260902-mech465-zworld-warmup-spike.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "Did not build the staged gate-rescale (3 prior probes already declined it, 1.02-1.25x dispersion vs 1.455x bar). Found the probes share an untrained-z_world confound and a stale status read (sd_zworld_warmup_optimizer_group is actually validated since 2026-07-22). User redirected via /metaworker-orchestrate decision lane to: correct substrate_queue.json's MECH465-COMMIT-GATE-HEADROOM entry with this finding, then run a spike extending the 08-27 probe harness with the validated z_world warmup. Follow-on chip: chip-20260902-mech465-zworld-warmup-spike."
     },
     {
       "igw_id": "IGW-20260902-238",
@@ -4849,6 +4853,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T16:33:59Z",
       "re_eligible_after": "2026-09-04T16:33:59Z"
+    },
+    {
+      "stable_hash": "4dafb051f849",
+      "igw_id_at_disposition": "IGW-20260902-219",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-465"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: MECH465-COMMIT-GATE-HEADROOM",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T20:26:09Z",
+      "re_eligible_after": "2026-09-04T20:26:09Z"
     }
   ]
 }
