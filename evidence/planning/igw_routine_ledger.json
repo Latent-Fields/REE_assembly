@@ -3499,7 +3499,11 @@
       "task_claim_session_id": "igw-auto-igw-238-literature-proposal-for-arc-073-20260902T160414Z",
       "task_claim_claimed_at": "2026-09-02T16:04:14Z",
       "assigned_at": "2026-09-02T16:03:16Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-02T16:33:59Z",
+      "completion_summary": "lit-pull ARC-073: 5 entries (2 supports/2 mixed/1 weakens) landed REE_assembly 0bbbb38a2b, lit_conf 0 -> 0.666; experimental half not queueable (no play-mode substrate in V3), raised GFLAG-0118",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0235 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -4785,6 +4789,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T15:15:58Z",
       "re_eligible_after": "2026-09-04T15:15:58Z"
+    },
+    {
+      "stable_hash": "f3db6bd66d39",
+      "igw_id_at_disposition": "IGW-20260902-238",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-073"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for ARC-073",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T16:33:59Z",
+      "re_eligible_after": "2026-09-04T16:33:59Z"
     }
   ]
 }
