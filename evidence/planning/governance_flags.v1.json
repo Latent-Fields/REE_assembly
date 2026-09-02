@@ -1717,9 +1717,9 @@
       "summary": "ARC-073 and MECH-327 lack epistemic_category while three of ARC-073's four depends_on siblings (ARC-049, MECH-194, MECH-195) carry epistemic_category: substrate_conditional. The whole play-mode cluster is unimplemented in ree-v3 (word-boundary grep for a play mode in ree_core finds only 'replay_mode'; GoalConfig has no play_lp_saturation_threshold), so an ARC-073 experiment can only be blocked_substrate -- yet because ARC-073 is not marked substrate_conditional it is NOT suppressed by generate_inter_governance_workset.py's _EPI_SUPPRESS_PROPOSAL filter and IGW duly raised EVB-1205 asking for experimental evidence (IGW-20260902-238). Proposed disposition: set epistemic_category: substrate_conditional on ARC-073 and MECH-327 to match their cluster, which suppresses the experiment-proposal lane without touching status. Raised from the ARC-073 lit-pull (REE_assembly 0bbbb38a2b); the literature half of EVB-1205 is now landed, the experimental half is not queueable.",
       "raised_by_session": "igw-238-literature-proposal-for-arc-073",
       "raised_at": "2026-09-02T16:30:51Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-02T17:20:44Z",
+      "resolution_note": "APPLIED 2026-09-02 by governance cycle governance-20260902 (user-approved at the Step 3 agenda). Set epistemic_category: substrate_conditional on BOTH ARC-073 and MECH-327 in REE_assembly docs/claims/claims.yaml, matching three of ARC-073's four depends_on siblings (ARC-049, MECH-194, MECH-195). Rationale: ARC-073's promotion_demotion row read hold_candidate_resolve_conflict on conflict_ratio 0.667, but that conflict is ENTIRELY literature-derived (exp_entries=0, lit_entries=5 from the 2026-09-02 EVB-1205 pull) and literature/experimental evidence are not co-equal; the mechanism is substrate-blocked (verified 2026-09-02: ree-v3 has no play mode, GoalConfig has no play_lp_saturation_threshold). substrate_conditional suppresses the proposal lane that raised EVB-1205's unbuildable experimental half. Status unchanged: both stay candidate. NOT applied this cycle and left for a future one: the lit-pull's separate proposal to NARROW ARC-073 so LP-saturation is a necessary condition WITHIN a maturational window (AND) rather than a replacement for scheduled timing -- see the smith1997 entry in evidence/literature/targeted_review_arc_073."
     },
     {
       "flag_id": "GFLAG-0119",
