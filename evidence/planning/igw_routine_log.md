@@ -2385,3 +2385,5 @@ One line per hourly tick. ASCII only.
 2026-09-02T15:01:46Z reaped TASK_CLAIMS igw-auto-igw-239-proposal-for-arc-052-20260902T135855Z (ledger IGW-20260902-239 -> completed_resumable)
 2026-09-02T15:01:46Z GC keep igw-239-proposal-for-arc-052 (ledger IGW-20260902-239 -> completed_resumable; 1 untracked artifact(s) e.g. _landwt/)
 2026-09-02T15:00:44Z SPAWN IGW-20260902-238 skill=/queue-experiment prio=40 uuid=60ff4ae8-e5e2-4ac0-a3bf-45c9ae524a52 pid=91678 worktree=igw-238-proposal-for-arc-073
+2026-09-02T15:15:57Z retire-proposal LIT-0458 -> executed (igw-238-proposal-for-arc-073; complete)
+2026-09-02T15:15:58Z auto-defer igw-238-proposal-for-arc-073 hash=554d1b40c7f0 for 48h (complete)
