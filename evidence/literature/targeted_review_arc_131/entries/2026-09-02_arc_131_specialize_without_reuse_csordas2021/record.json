@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_131",
+  "entry_id": "2026-09-02_arc_131_specialize_without_reuse_csordas2021",
+  "timestamp_utc": "2026-09-02T23:26:37Z",
+  "claim_ids_tested": [
+    "ARC-131"
+  ],
+  "source": {
+    "title": "Are Neural Nets Modular? Inspecting Functional Modularity Through Differentiable Weight Masks",
+    "authors": [
+      "Robert Csordas",
+      "Sjoerd van Steenkiste",
+      "Jurgen Schmidhuber"
+    ],
+    "year": 2021,
+    "venue": "International Conference on Learning Representations (ICLR 2021)",
+    "arxiv_id": "2010.02066",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2010.02066"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Peer-reviewed ICLR paper with released code, a purpose-built measurement instrument (learned binary weight masks that isolate the subnetwork responsible for a specific function), and a result stated in exactly the vocabulary ARC-131 needs: networks satisfy specialization but not reuse. This is the strongest ML-side entry in this pull because it does not merely assert that composition changes things -- it MEASURES, inside a trained composed system, that a functional module exists and is nonetheless not recruited where the task structure says it should be. Confidence held below 0.8 because the failure it documents arises during joint training rather than at the composition of independently pre-validated components, which is ARC-131's own motivating shape.",
+  "failure_signatures": [
+    "A composed network can contain an identifiable, functionally correct subnetwork for an operation and still solve a second instance of the same operation with a disjoint set of weights -- 'combination-specific weights are learned to deal with certain command combinations, even when they are governed by the same rules'.",
+    "Apparent weight sharing between modules is not evidence of functional recruitment: the authors report that sharing 'does not reflect task similarity (as desired) but can mostly be explained by rather trivial shared I/O interfaces', so a naive parameter-overlap metric would score a non-installed mechanism as installed.",
+    "The reuse failure holds even on the simplest available test case ('Preuse is violated even in this simple case'), so architectural simplicity is not protective."
+  ],
+  "tags": [
+    "arc-131",
+    "modularity",
+    "component_engagement",
+    "systematic_generalization",
+    "installability",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using learned binary weight masks to identify the subnetwork responsible for a given function, the authors find across several standard architectures and datasets that networks do specialize (distinct functions map to distinguishable subnets) but do not reuse those subnets across instances of the same underlying operation; measured weight sharing tracks shared input/output interfaces rather than task similarity, and networks trained on algorithmic tasks 'appear to fail to learn general, modular, compositional algorithms'.",
+    "ree_translation": "ARC-131 claims that whether a mechanism EXPRESSES in the composed system is a separate, checkable property from whether the mechanism WORKS. Csordas et al. give the cleanest external instrument for exactly that separation: the mask identifies that a competent module is present, and the behaviour of the full network shows it is not being recruited on cases it should cover. Their Pspecialize/Preuse split is a direct external precedent for ARC-131's insistence that a component-level PASS establishes only that an operation is possible. It also supplies the methodological lesson REE most needs: the presence of the module and its engagement have to be measured by two different probes, because the first will read positive while the second reads negative.",
+    "mapping_caveat": "The paper's modules emerge from end-to-end training on the composed task; they are not independently validated components later installed into a larger organism, which is ARC-131's motivating case (REE's inert coalition controller, or a selector rendered equivalent to its OFF arm). The transferable finding is therefore that module-existence and module-engagement dissociate and require separate measurement -- not that REE's specific installation path will fail the same way. A second boundary worth stating: the paper's positive half (specialization DOES emerge reliably) is a mild constraint on any over-reading of ARC-131, since it shows composition does not uniformly destroy structure; what it destroys is recruitment. Finally, the tasks are supervised and algorithmic (arithmetic, SCAN, CFQ, Mathematics dataset), with no closed action loop, no competing drives, and no resource/mode occupancy -- three of the operating-condition channels ARC-131 names have no analogue here.",
+    "source_context": "Feed-forward, recurrent and transformer architectures on algorithmic and systematic-generalization benchmarks (double addition/multiplication, SCAN, CFQ, Mathematics dataset); supervised training, no agent, no environment."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Peer-reviewed at a top venue, novel and carefully validated measurement method, code released, findings consistent across several architectures and datasets. Mapping fidelity high: the paper's central distinction is nearly isomorphic to ARC-131's. Transfer risk relatively low for an ML source because the construct being transferred (a component exists but is not engaged in the composed system) is architecture-independent, though the specific benchmarks are far from REE's embodied setting."
+  },
+  "summary_path": "summary.md"
+}

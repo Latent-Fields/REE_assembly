@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_131",
+  "entry_id": "2026-09-02_arc_131_latent_learning_performance_dissociation_tolman1930",
+  "timestamp_utc": "2026-09-02T23:26:37Z",
+  "claim_ids_tested": [
+    "ARC-131"
+  ],
+  "source": {
+    "title": "Introduction and removal of reward, and maze performance in rats",
+    "authors": [
+      "Edward C. Tolman",
+      "Charles H. Honzik"
+    ],
+    "year": 1930,
+    "venue": "University of California Publications in Psychology",
+    "volume": "4",
+    "pages": "257-275",
+    "doi": null,
+    "pmid": null,
+    "url": null
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Canonical, century-old, repeatedly replicated demonstration of the learning-performance (competence-expression) dissociation, and the single closest external construct to ARC-131's installability axis -- the audit that cleared ARC-131 against MECH-459 (evidence/planning/arc131_mech459_duplication_audit_20260825.md, section 2) identified exactly this paper as the discipline-standard analog and recommended a lit-pull citing it. Held at 0.6 rather than higher for three reasons stated plainly: (a) this session verified the citation and the design through secondary sources (the bibliographic record and standard textbook/encyclopedia accounts), not by reading the 1930 primary text, which is not available online in full; (b) 1930 rodent maze methodology carries no modern statistical reporting, so the effect's magnitude cannot be independently assessed from the record consulted; (c) the paper's mechanism of non-expression is motivational drive alone, which is only ONE of the seven operating-condition channels ARC-131 enumerates (it says nothing about competing-signal scale, upstream representation availability, or resource/mode occupancy).",
+  "failure_signatures": [
+    "A competence that is demonstrably present in an agent can produce behaviour statistically indistinguishable from an agent that lacks it entirely, for as long as the composed system's operating conditions do not call for it -- so an ablation-style OFF-vs-ON comparison run under the wrong conditions returns a null that is indistinguishable from 'the mechanism was never built'.",
+    "Conversely, the competence can appear abruptly and near-completely (the delayed-reward group matched the always-rewarded group within one to two trials) once conditions change, which means a null result at time t carries no information about the mechanism's presence, only about the composed system's current state."
+  ],
+  "tags": [
+    "arc-131",
+    "latent_learning",
+    "learning_performance_dissociation",
+    "installability",
+    "behavioral_animal",
+    "canonical_source"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rats run in a complex maze without food reward for the first ten days showed little improvement in error rate relative to a never-rewarded control; when reward was introduced on day eleven, their performance dropped to match (and by some measures surpass) the group that had been rewarded throughout, within one to two trials. The authors conclude that the learning had occurred during the unrewarded period and was simply not being expressed in performance.",
+    "ree_translation": "ARC-131 asserts that a mechanism which passes component-level validation can nonetheless fail to appear at all in the composed organism, because the rest of the organism sets the operating conditions under which the mechanism would express. Tolman and Honzik establish the same logical structure in a biological agent, and establish it as the discipline's canonical case rather than a curiosity: the competence (a maze representation) was fully present and provably so, yet the behavioural readout of the whole animal showed nothing until a composition-level condition (drive state) changed. This is the biological existence proof that ARC-131's installability axis names a real property of composed agents and not merely an engineering excuse for a null result.",
+    "mapping_caveat": "Two boundaries. First, the direction of the dissociation is not identical: Tolman's animals acquired the competence inside the composed organism and failed to express it, whereas ARC-131's motivating REE cases (an inert coalition controller; a selector made silently equivalent to its own OFF arm by a permissive fallback envelope) concern a mechanism validated in ISOLATION and then failing to be recruited on composition. The shared structure is competence-without-expression; the acquisition path differs, and that difference matters for what a REE installability probe would have to measure. Second, latent learning is a motivational/drive account, and reading it as generic support for all seven of ARC-131's operating-condition channels over-extends it -- it evidences the existence of the dissociation, not its full mechanistic breadth.",
+    "source_context": "Laboratory rats, multi-unit T-maze, error and latency measures across daily trials, three reward conditions (always rewarded, never rewarded, reward introduced on day 11). 1930 methodology; no modern effect-size or variance reporting in the record consulted."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high as a canonical construct (the learning-performance distinction it established is standard textbook material and has been replicated in many forms), discounted for 1930 methodology and for this session's reliance on secondary bibliographic verification rather than the primary text. Mapping fidelity high on the structural claim, capped below 0.8 because the acquisition path differs from REE's isolation-then-composition case. Transfer risk moderate-high: rodent behaviour to a designed computational architecture is an analogy about the SHAPE of the failure, not a mechanistic transfer."
+  },
+  "summary_path": "summary.md"
+}

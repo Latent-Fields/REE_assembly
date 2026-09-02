@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_131",
+  "entry_id": "2026-09-02_arc_131_cognitive_motor_dissociation_monti2010",
+  "timestamp_utc": "2026-09-02T23:26:37Z",
+  "claim_ids_tested": [
+    "ARC-131"
+  ],
+  "source": {
+    "title": "Willful modulation of brain activity in disorders of consciousness",
+    "authors": [
+      "Martin M. Monti",
+      "Audrey Vanhaudenhuyse",
+      "Martin R. Coleman",
+      "Melanie Boly",
+      "John D. Pickard",
+      "Luaba Tshibanda",
+      "Adrian M. Owen",
+      "Steven Laureys"
+    ],
+    "year": 2010,
+    "venue": "New England Journal of Medicine",
+    "volume": "362",
+    "issue": "7",
+    "pages": "579-589",
+    "doi": "10.1056/NEJMoa0905370",
+    "pmid": "20130250",
+    "pmc": null
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Landmark NEJM study, 54-patient multicentre cohort, and the founding demonstration of what is now a named and independently replicated clinical entity (cognitive motor dissociation). Source quality is the highest in this pull. Confidence is nonetheless capped at 0.65 because mapping fidelity is the weakest: this is a biological analogy about the SHAPE of a competence/expression dissociation in a damaged organism, and REE's installability failures are design failures in an intact designed system, not lesions. It earns its place because it is the one entry where the isolated probe and the composed-organism readout were run on the same subject at the same time and disagreed -- which is exactly the measurement structure an installability check needs -- and because REE's brain-like construction principle makes the biological instance load-bearing rather than decorative.",
+  "failure_signatures": [
+    "'Of the 54 patients enrolled in the study, 5 were able to willfully modulate their brain activity. In three of these patients, additional bedside testing revealed some sign of awareness, but in the other two patients, no voluntary behavior could be detected by means of clinical assessment' -- the composed organism's behavioural readout returned a complete null for a competence that a targeted probe showed to be intact.",
+    "'One patient was able to use our technique to answer yes or no to questions during functional MRI; however, it remained impossible to establish any form of communication at the bedside' -- the competence was not merely present but functionally rich (sustained, instruction-following, question-answering), and still produced nothing whatsoever through the composed output path.",
+    "The base rate matters as much as the cases: only 5 of 54 probed positive, so a probe sensitive enough to detect the dissociation still returns mostly nulls, and a null from the probe cannot be read as confirming the behavioural null."
+  ],
+  "tags": [
+    "arc-131",
+    "cognitive_motor_dissociation",
+    "disorders_of_consciousness",
+    "competence_expression_dissociation",
+    "installability",
+    "fmri_lesion",
+    "clinical"
+  ],
+  "mapping": {
+    "source_claim_statement": "Among 54 patients diagnosed as vegetative or minimally conscious, functional MRI using motor-imagery and spatial-navigation tasks detected wilful, instruction-following brain activity in 5; two of those five showed no voluntary behaviour at all on clinical bedside assessment, and one was able to answer yes/no questions inside the scanner while remaining unable to communicate at the bedside by any means.",
+    "ree_translation": "ARC-131 says a component-level PASS establishes that an operation is possible but not that the whole organism can enter the states in which it expresses. Monti et al. is the clinical instance in a biological organism, and it is unusually clean because the two readouts were taken on the SAME subject: the fMRI paradigm is the isolated probe (the competence is there, it responds to instruction, it is sustained and specific), and the bedside examination is the composed-organism readout (nothing). The channel of failure is one ARC-131 names explicitly -- the downstream action space -- and the case establishes that this channel alone, with cognition entirely intact upstream, is sufficient to produce a total behavioural null. For REE the operational lesson is the one the study itself embodies: the only way the dissociation was ever detected was by building a second, non-behavioural probe that reads the mechanism directly. An installability audit that relies solely on the agent's behavioural output cannot distinguish 'not installed' from 'installed and unable to express'.",
+    "mapping_caveat": "The transfer is structural and should not be pushed further. These are severe acquired brain injuries -- the non-expression has a lesion aetiology with no counterpart in a designed architecture, where the analogous failure is an absent or mis-wired recruitment path rather than damaged tissue. Nor did the mechanism here pass an independent component-level validation BEFORE composition, which is ARC-131's stated case; the probe and the composed readout were contemporaneous. And the clinical literature's own construct (cognitive motor dissociation) is specifically about the motor output pathway, so it evidences one of ARC-131's seven operating-condition channels well and the other six not at all. Finally, this entry speaks to installability and is silent on ARC-131's dissociation from RETENTION, which no paper in this pull tests.",
+    "source_context": "Human patients (n=54) with disorders of consciousness (vegetative state or minimally conscious state) from two European centres, studied with task-based functional MRI (motor imagery: tennis; spatial imagery: navigating a familiar house) alongside standardised bedside behavioural assessment."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Source quality very high: NEJM, multicentre, adequately powered for the question, and the finding has been independently replicated and codified as cognitive motor dissociation in the years since. Mapping fidelity is the weak link and is scored honestly at 0.5 -- a lesioned biological organism is not a designed architecture and the aetiologies do not correspond. Transfer risk correspondingly high; the value of the entry is the measurement structure (two simultaneous probes that disagree) rather than the mechanism."
+  },
+  "summary_path": "summary.md"
+}

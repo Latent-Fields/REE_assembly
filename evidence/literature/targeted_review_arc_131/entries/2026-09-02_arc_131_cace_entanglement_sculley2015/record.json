@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_131",
+  "entry_id": "2026-09-02_arc_131_cace_entanglement_sculley2015",
+  "timestamp_utc": "2026-09-02T23:26:37Z",
+  "claim_ids_tested": [
+    "ARC-131"
+  ],
+  "source": {
+    "title": "Hidden Technical Debt in Machine Learning Systems",
+    "authors": [
+      "D. Sculley",
+      "Gary Holt",
+      "Daniel Golovin",
+      "Eugene Davydov",
+      "Todd Phillips",
+      "Dietmar Ebner",
+      "Vinay Chaudhary",
+      "Michael Young",
+      "Jean-Francois Crespo",
+      "Dan Dennison"
+    ],
+    "year": 2015,
+    "venue": "Advances in Neural Information Processing Systems 28 (NIPS 2015)",
+    "pages": "2503-2511",
+    "doi": null,
+    "url": "https://proceedings.neurips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.48,
+  "confidence_rationale": "The CACE principle is the closest thing in the ML-systems literature to a general statement of ARC-131's premise, and it is stated in almost the same words -- entanglement makes isolation of improvements impossible. But this is a practitioner experience report from one organisation: it presents no measurements, no controls, no counterfactual, and no quantification of how often isolated validation actually fails to transfer. It is included as a statement of the general form that a mature engineering discipline arrived at independently, and it should be weighted as consensus-of-practice rather than as evidence. Confidence deliberately set below 0.5 to record that: the ARC-131 case does not get stronger by counting this as a fourth supporting study.",
+  "failure_signatures": [
+    "'Machine learning systems mix signals together, entangling them and making isolation of improvements impossible' -- a component-level improvement measured in isolation may not be a system-level improvement, and the paper reports this as the normal case in production ML rather than an edge case.",
+    "'If the input distribution of values in one feature changes, the importance, weights, or use of the remaining features may all change' -- this is ARC-131's 'input state distribution' channel named explicitly as a route by which composition alters a validated component's operating conditions.",
+    "The authors extend CACE beyond input signals to 'hyper-parameters, learning settings, sampling methods, convergence thresholds, data selection', which means an isolated PASS is contingent on configuration choices the composed system may not preserve."
+  ],
+  "tags": [
+    "arc-131",
+    "cace_principle",
+    "entanglement",
+    "ml_systems_engineering",
+    "installability",
+    "theoretical_review",
+    "consensus_of_practice"
+  ],
+  "mapping": {
+    "source_claim_statement": "Real-world ML systems accrue system-level technical debt from ML-specific sources including entanglement: because ML models mix signals, no input is ever really independent, so changing or adding any one thing changes the importance and use of everything else -- the CACE principle, Changing Anything Changes Everything -- which makes isolated improvement of a component impossible to validate in isolation.",
+    "ree_translation": "ARC-131 asserts that a component-level PASS establishes only that an operation is possible, not that the whole agent can enter the states in which the mechanism operates or that it remains competitive once other mechanisms are enabled. CACE is the same assertion arrived at independently by production ML engineering, and its value to ARC-131 is precisely that independence: the general property is not a REE-local rationalisation for null results but a constraint another discipline had to build process around. The specific channels CACE names -- input distribution shift, changed relative weighting of competing signals, configuration coupling -- are three of the seven channels ARC-131 enumerates, named in the same causal role.",
+    "mapping_caveat": "This is an experience/position paper, not a study; nothing in it is measured, and the failure rate of isolated validation is nowhere quantified. It also concerns supervised production pipelines where the entangled units are FEATURES inside one model, whereas ARC-131 concerns typed MECHANISMS composed into an agent -- the entanglement is at a different granularity, and the mapping is by analogy of structure, not by shared substrate. Most importantly, CACE is a statement about the difficulty of ATTRIBUTION under composition (you cannot isolate the effect of a change), whereas ARC-131 makes the stronger claim of NON-EXPRESSION (the mechanism may never operate at all). The second does not follow from the first, and this entry should not be read as evidencing it; the Csordas and Shazeer entries in this directory carry that half.",
+    "source_context": "Production machine learning systems at Google, circa 2014-2015; supervised prediction pipelines with feature engineering, configuration, and data dependencies. Retrospective practitioner account across many systems, no single study design."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is the limiting factor and is scored on what the paper IS -- a peer-reviewed but unmeasured experience report -- rather than on its (very large) citation count, which reflects resonance rather than evidential strength. Mapping fidelity moderate: the general form matches, the granularity does not, and CACE's attribution claim is weaker than ARC-131's non-expression claim. Transfer risk moderate; production pipelines and cognitive architectures share the compositional structure but little else."
+  },
+  "summary_path": "summary.md"
+}

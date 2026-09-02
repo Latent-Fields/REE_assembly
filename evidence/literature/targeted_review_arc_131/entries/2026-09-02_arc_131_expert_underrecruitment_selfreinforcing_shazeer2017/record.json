@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_131",
+  "entry_id": "2026-09-02_arc_131_expert_underrecruitment_selfreinforcing_shazeer2017",
+  "timestamp_utc": "2026-09-02T23:26:37Z",
+  "claim_ids_tested": [
+    "ARC-131"
+  ],
+  "source": {
+    "title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
+    "authors": [
+      "Noam Shazeer",
+      "Azalia Mirhoseini",
+      "Krzysztof Maziarz",
+      "Andy Davis",
+      "Quoc Le",
+      "Geoffrey Hinton",
+      "Jeff Dean"
+    ],
+    "year": 2017,
+    "venue": "International Conference on Learning Representations (ICLR 2017)",
+    "arxiv_id": "1701.06538",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1701.06538"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Foundational, heavily replicated result whose practical consequence -- that an explicit auxiliary balancing loss is REQUIRED, not optional, for components to be recruited at all -- has been independently re-derived by every large mixture-of-experts system built since. That downstream replication is what earns the confidence: this is not one paper's observation but a standing engineering constraint. Held at 0.7 rather than higher because the paper documents the failure as an obstacle it had to route around, not as a controlled study of non-recruitment, and because the mechanism (a learned gate with a rich-get-richer dynamic) is one specific route to non-expression rather than the general property ARC-131 asserts.",
+  "failure_signatures": [
+    "'We have observed that the gating network tends to converge to a state where it always produces large weights for the same few experts' -- a competent component can be present, correctly implemented, and never selected by the composed system.",
+    "'This imbalance is self-reinforcing, as the favored experts are trained more rapidly and thus are selected even more by the gating network' -- non-recruitment is not a neutral equilibrium that a longer run would escape; it actively deepens with training, so 'train it longer' is not a remedy.",
+    "The remedy required an explicit auxiliary objective ('This additional loss encourages all experts to have equal importance'), i.e. installation had to be FORCED by a term that exists for no other reason; nothing in the primary task objective installs the component."
+  ],
+  "tags": [
+    "arc-131",
+    "mixture_of_experts",
+    "expert_collapse",
+    "component_engagement",
+    "installability",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a sparsely-gated mixture-of-experts layer, the learned gating network converges to selecting the same few experts, an imbalance that is self-reinforcing because favoured experts train faster and are therefore selected more; the authors introduce importance and load auxiliary losses specifically to counteract this and obtain balanced expert utilization.",
+    "ree_translation": "This is the closest ML analogue to ARC-131's assertion that a mechanism can be built, correct, and simply never entered. The experts here are components that would pass any isolated test -- they are the same feed-forward networks that work fine standing alone -- and the failure is entirely at the level of the composed system's recruitment dynamics. Two things transfer directly to REE. First, ARC-131's claim that composition changes 'the scale/variance of competing signals' and 'availability of competent upstream representations' has a concrete instance here: the gate's own learning dynamics are the competing signal. Second, and more usefully for REE's audit practice, the fix was an explicit installation-forcing term. That suggests an installability check for REE should ask not only 'was the mechanism recruited' but 'what in the architecture would ever recruit it', which is precisely the diagnosis ARC-131 records for the inert coalition controller (present, typed, never endogenously invoked).",
+    "mapping_caveat": "The mixture-of-experts gate is a single differentiable routing layer trained jointly with its experts; REE's recruitment paths are heterogeneous, partly hand-written, and mostly not differentiable, so the specific rich-get-richer mechanism does not transfer. What transfers is the structural point that recruitment is a separate function from competence and can fail on its own. Note also that the paper's experts are interchangeable in kind, whereas REE's mechanisms are typed and non-substitutable, so the load-balancing REMEDY is not importable -- forcing uniform recruitment across REE mechanisms would violate ARC-131's own explicit caution that some mechanisms should be conditionally recruited or mutually inhibitory. Cite this for the failure, not the fix.",
+    "source_context": "Large-scale language modelling and machine translation with sparsely-gated mixture-of-experts layers (up to 137 billion parameters), distributed training; supervised sequence tasks, no agent, no environment."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Very high source quality by influence and by independent downstream replication of the specific finding (load balancing is now standard practice in every large MoE system, which is stronger evidence than a single controlled study would be). Mapping fidelity good on the failure mode, lower on the remedy, which is explicitly NOT importable to REE. Transfer risk moderate: supervised sequence modelling to an embodied architecture, and a differentiable gate to REE's non-differentiable recruitment paths."
+  },
+  "summary_path": "summary.md"
+}
