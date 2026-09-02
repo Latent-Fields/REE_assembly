@@ -1,0 +1,136 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_972_contextmemory_write_content_h4_input_distribution",
+  "run_id": "v3_exq_972_contextmemory_write_content_h4_input_distribution_20260902T211758Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-02T21:17:58Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "h4_supported_representation_undifferentiated",
+    "preconditions": [
+      {
+        "name": "writepath_engaged_every_cell",
+        "measured": 1446.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "H4_representation_separability_measured": true
+    },
+    "criteria": [
+      {
+        "name": "H4_representation_separability_measured",
+        "load_bearing": true,
+        "kind": "measurement",
+        "passed": true,
+        "n_seeds_ready": 5,
+        "n_seeds_required": 3,
+        "n_seeds_total": 5,
+        "note": "This is a MEASUREMENT criterion, not a pass/fail on a scientific direction: it 'passes' whenever the H4 readiness precondition (per-seed buffer size >= 50) held on >= 3/5 seeds, regardless of what separability_score's sign turns out to be. See interpretation.h4_reading for the separate, non-gating descriptive reading of the measured value."
+      },
+      {
+        "name": "descriptive_mean_separability_score",
+        "load_bearing": false,
+        "kind": "descriptive",
+        "passed": true,
+        "mean_separability_score": 0.028062987327575683,
+        "h4_reading": "representation_undifferentiated",
+        "h4_noise_floor": 0.05,
+        "n_seeds_in_mean": 5,
+        "note": "Purely descriptive -- always 'passed' (this is a measurement, not a criterion). H4_NOISE_FLOOR=0.05 is a conservative noise floor for a cosine-similarity statistic, not a rigorously derived value; stated explicitly rather than overclaiming precision."
+      },
+      {
+        "name": "cross_cluster_cone_check",
+        "load_bearing": false,
+        "kind": "descriptive",
+        "passed": true,
+        "mean_intra_safe_cosine": 0.9803905487060547,
+        "mean_intra_dangerous_cosine": 0.97126784324646,
+        "mean_inter_cosine": 0.9477662086486817,
+        "note": "The SD-008 '~0.98-cosine cone' reference H4's null cites: reports whether the WHOLE representation (regardless of context) sits in a tight near-1.0 cosine cone (both intra values near 1.0, would explain low separability structurally -- H4's own proposed mechanism) vs. genuinely spread out."
+      },
+      {
+        "name": "GUMBEL_TRAINED_tagger_received_gradient",
+        "load_bearing": false,
+        "kind": "control",
+        "passed": true,
+        "n_seeds_moved": 5,
+        "n_seeds_total": 5,
+        "note": "Mechanical positive control, copied from 956's own convention: weight=0.5 should move write_addr_tagger's parameters away from init over the real training run. Non-gating -- this experiment's own DV does not depend on whether addressing training succeeds."
+      },
+      {
+        "name": "cross_reference_probe_2cluster_jaccard_non_gating",
+        "load_bearing": false,
+        "kind": "cross_reference",
+        "passed": true,
+        "mean_probe_2cluster_jaccard": 0.6666666666666666,
+        "note": "Non-gating context only -- 956/H1 own the load-bearing test of whether write_addr_tagger's own post-hoc, synthetic-probe content-discrimination succeeds. Reported here purely so a reader can compare against this experiment's own real-agent representation-separability reading for the same seeds."
+      }
+    ],
+    "h4_reading": "representation_undifferentiated"
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "fff0d4a68bb4e59d3588f4ac961ba5c2907b39e74e569620525eae842dafab4c",
+  "substrate_commit": {
+    "commit": "9acd62aa7d876b32f8c3fa35cce81921adab9be1",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.contextmemory_gated_content_write": true,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.anchor_set.use_sd039_anchor_payload": true,
+    "heartbeat.breath_period": 50,
+    "contextmemory_write_addressing_loss_weight": 0.5,
+    "use_noise_floor": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 5,
+    "goal_state_present": false
+  }
+}
