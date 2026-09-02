@@ -33494,14 +33494,20 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_494",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "MECH-494-context-arbitrator",
+        "contextmemory-write-path-addressing-degeneracy",
+        "SD-e1-rollout-consistency-training"
+      ],
+      "blocked_note": "/queue-experiment Step 2.5 + 2.5c stop (2026-09-02). (1) SUBSTRATE ABSENT: MECH-494's DV is context-switch rate under a retain-vs-switch-vs-create arbitration over STORED contexts. No such arbitration exists in ree_core -- there is no active-context state at all (grep for active_context/current_context/context_id/switch_to_context/create_context over ree_core/ returns nothing), matching the claim's own text ('nothing consumes it to arbitrate retain-vs-switch-vs-create over stored contexts'). MECH-288's event_segmenter emits observation-side boundaries only and is consumed as a region KEY, so measuring it would test MECH-288, not MECH-494. (2) TWO OPEN CORRUPTING SUBSTRATE_QUEUE ENTRIES overlap the exact modules any MECH-494 driver must exercise: contextmemory-write-path-addressing-degeneracy (severity corrupting, status implemented_pending_validation, ree_core/predictors/e1_deep.py::ContextMemory.write -- where stored contexts live) and SD-e1-rollout-consistency-training (severity corrupting, status item1_validated_item2_pending, e1_deep.py::forward / ::predict_long_horizon -- the forward model that would produce the explanatory-failure signal). Both statuses contain 'pending' and are therefore OPEN per Step 2.5c. (3) ENVIRONMENT IS PARTLY THERE, better than the 2026-08-19 intake assumed: transient surprise (transient_events_enabled / scheduled_external_hazard_enabled), sensor noise (weather_field_enabled -- agent-independent continuous perturbation of the hazard percept), gradual drift (background_drift_enabled, drift_policy=random_walk), and -- the discriminating action-consequence condition -- world_rule_shift (SD-MEL-PRODUCER, IMPLEMENTED 2026-07-21: re-permutes the action->displacement map so the scene is unchanged while action consequences invert) all exist. STILL MISSING: (a) RECURRENCE -- world_rule_shift applies cumulative RANDOM transpositions so a rule never returns, and without recurring contexts 'switch back to a stored context' is indistinguishable from 'create a new one', which is the exact trichotomy under test; (b) an abrupt OBSERVATION-side latent transition (world_rule_shift_scope hard-rejects anything but 'action_map'). ROUTE: /implement-substrate for the arbitrator plus the recurring-context environment pair -- both 2026-08-19 intakes independently say 'build the 2x2 environment family once, for both' and 'do not queue an experiment yet'. NOT AUTHORED: an experiment now could only implement the criterion inside the driver, which would test the driver rather than the substrate. Also note MECH-153 (ContextMemory undifferentiated without a supervised context-labeling objective) and MECH-309 (monostrategy collapse) remain live and would each independently null this run, per the intake's own precondition check."
     },
     {
       "acceptance_checks": [
