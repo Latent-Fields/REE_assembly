@@ -20011,6 +20011,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1403",
+      "blocked_by": [
+        "MECH-037-substrate"
+      ],
+      "blocked_note": "No V3 substrate exists for the provenance-gating pathway MECH-037 requires (hippocampal trace/temporal-ordering signal -> precision down-weighting -> E3 commitment licensing, with E1-generated content, the trace/ordering signal, and the E3 commit decision each separately instrumented and measurable). Confirmed by grep: no confabulation/provenance_gating/reality_filter/temporal_order/trace_support tokens anywhere in ree_core; e3_selector.py precision is driven only by ARC-016 dynamic precision (E3 prediction-error variance EMA), not by any hippocampal-trace signal; no substrate_queue.json entry names MECH-037/papez; no SD in ree-v3/CLAUDE.md \"SD Design Decisions Implemented\" covers this. The claim text itself (claims.yaml what_would_answer) already states this and instructs any run to self-route substrate_not_ready rather than count as a null result. No SD has even been drafted for this mechanism -- needs new SD design via /implement-substrate before any experiment can be queued.",
       "claim_id": "MECH-037",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -20033,7 +20037,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_037",
       "target_repo": "ree-v3",
       "why_now": [
