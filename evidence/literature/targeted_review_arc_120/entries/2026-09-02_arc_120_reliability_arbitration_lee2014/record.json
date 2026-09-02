@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_120",
+  "entry_id": "2026-09-02_arc_120_reliability_arbitration_lee2014",
+  "timestamp_utc": "2026-09-02T21:19:31Z",
+  "claim_ids_tested": [
+    "ARC-120"
+  ],
+  "source": {
+    "title": "Neural computations underlying arbitration between model-based and model-free learning.",
+    "authors": [
+      "Sang Wan Lee",
+      "Shinsuke Shimojo",
+      "John P O'Doherty"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.028",
+    "pmid": "24507199",
+    "pmc": "PMC3968946",
+    "volume": "81",
+    "issue": "3",
+    "pages": "687-699"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct human fMRI evidence that a dedicated neural arbitrator encodes each controller's RELIABILITY and the comparison between reliabilities, and that it acts by DOWN-MODULATING the losing controller's valuation pathway. That last finding is the strongest single piece of external support for ARC-120's specific shape -- authority is actively withheld from an existing computation, not merely unclaimed. Held below 0.85 by fMRI's indirectness and by the same momentary-vs-developmental gap that limits Daw 2005.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An architecture in which the gate is implemented only at the winner's side (the competent module simply writes/acts) and never suppresses the incompetent module's ongoing influence leaves the losing controller's valuation signal intact -- the opposite of the negative modulation Lee et al. observe.",
+    "If a system carries no explicit representation of per-module reliability, there is nothing for an arbitrator to compare, and any resulting gate is necessarily a fixed architectural prior rather than an earned-authority mechanism."
+  ],
+  "tags": [
+    "arc_120",
+    "competence_before_authority",
+    "arbitration",
+    "reliability",
+    "frontopolar",
+    "inferior_lateral_pfc",
+    "model_based_model_free"
+  ],
+  "mapping": {
+    "source_claim_statement": "Inferior lateral prefrontal and frontopolar cortex encode the reliability of model-based and model-free predictions and the output of a comparison between them; connectivity from these regions to model-free valuation areas is negatively modulated by the degree of model-based control, suggesting arbitration works by suppressing the model-free valuation system when the arbitrator deems the model-based system should drive behaviour.",
+    "ree_translation": "Behavioural authority is allocated by an explicit, separately-represented competence signal (prediction reliability) and is enforced by actively SUPPRESSING the non-selected computation's influence on valuation -- not by leaving it to win or lose on its own merits. For ARC-120 this is the mechanistic form the 'competence -> authority' step takes in a brain: a dedicated arbitrator, an explicit reliability variable per module, and a gate that acts on the loser rather than only enabling the winner.",
+    "mapping_caveat": "Human fMRI in a two-stage Markov decision task; reliability here is a trial-by-trial estimate of prediction error variance in a value-learning system, and the authority at stake is action selection only. It does not test write/consolidation authority, does not test a developmental ordering, and cannot speak to whether REE's four existing gates share a single principle. BOLD connectivity modulation is correlational and does not establish that the frontopolar signal causes the suppression.",
+    "source_context": "Human fMRI, healthy adults, two-stage sequential-decision (Markov) task with varying state-transition uncertainty and reward stochasticity."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "Strong venue and design; the reliability-comparison regressor and the negative-modulation finding are exactly the two things ARC-120 needs, which lifts mapping_fidelity above the Daw 2005 entry despite fMRI's weaker source quality relative to a canonical theory paper. Transfer risk stays moderate: human decision-making to a computational substrate, and correlational connectivity evidence."
+  }
+}

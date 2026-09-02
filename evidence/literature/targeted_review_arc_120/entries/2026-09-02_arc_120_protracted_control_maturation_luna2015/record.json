@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_120",
+  "entry_id": "2026-09-02_arc_120_protracted_control_maturation_luna2015",
+  "timestamp_utc": "2026-09-02T21:19:31Z",
+  "claim_ids_tested": [
+    "ARC-120"
+  ],
+  "source": {
+    "title": "An integrative model of the maturation of cognitive control.",
+    "authors": [
+      "Beatriz Luna",
+      "Scott Marek",
+      "Bart Larsen",
+      "Brenden Tervo-Clemmens",
+      "Rajpreet Chahal"
+    ],
+    "year": 2015,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev-neuro-071714-034054",
+    "pmid": "26154978",
+    "pmc": "PMC5661874",
+    "volume": "38",
+    "pages": "151-170"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the one entry that speaks to ARC-120's DEVELOPMENTAL half rather than its arbitration half, and that is why it is here despite a lower score. It documents that the component computations of cognitive control are present and recruitable in childhood while the ability to CONSISTENTLY exert control arrives much later, tracking signal-to-noise and network specialisation rather than the appearance of the computation. Confidence is limited by the fact that this is a synthesis rather than a test, and that maturation is a substrate story (myelination, dopamine/GABA interaction) that may impose the ordering for reasons unrelated to any authority gate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Consistency, not capacity, is what matures -- an architecture that tests a mechanism's competence by whether it CAN produce the right output, rather than whether it does so RELIABLY across contexts, will grant authority far too early.",
+    "The maturational ordering is imposed partly by substrate constraints (signal-to-noise, network integration) rather than by an explicit gate, so a system can exhibit ARC-120's sequence without containing any competence-gating mechanism at all -- the sequence is evidence for the principle only where the ordering is enforced rather than merely emergent."
+  ],
+  "tags": [
+    "arc_120",
+    "competence_before_authority",
+    "development",
+    "cognitive_control",
+    "maturation",
+    "prefrontal"
+  ],
+  "mapping": {
+    "source_claim_statement": "The ability to consistently exert cognitive control improves into adulthood as component processes (inhibitory control, performance monitoring, working memory) become flexibly integrated; unique maturational changes in brain structure, supported by dopaminergic-GABAergic interactions, enhance network synchronisation and signal-to-noise ratio, which in turn drive specialisation and strengthening of the networks supporting adult-level control.",
+    "ree_translation": "Empirical support for ARC-120's ordering claim specifically: the component computations EXIST and are recruitable long before the system reliably lets them govern behaviour, and what changes in between is measured competence (consistency, signal-to-noise, integration) rather than the arrival of a new computation. This is the developmental-sequence half of ARC-120 -- existence -> representation -> competence -> authority -- observed in a biological system over years.",
+    "mapping_caveat": "An integrative review, not a test of ARC-120; the ordering it documents is at least partly IMPOSED by substrate maturation (myelination, receptor development) rather than ENFORCED by a gate, and ARC-120 asserts a gate. A developmental sequence that emerges from slow hardware is compatible with, but does not demonstrate, an architectural commitment to earning authority. Human developmental neuroimaging and behaviour; no computational substrate.",
+    "source_context": "Integrative review of human developmental cognitive neuroscience -- cellular, circuit and systems evidence spanning childhood to adulthood, with adolescence framed as a period of heightened experience-seeking."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Annual Review, authoritative group). Mapping_fidelity is the limiting factor: the review demonstrates the ORDERING but not that the ordering is enforced by a competence gate, which is what ARC-120 actually asserts. Transfer risk 0.45 -- human developmental timescales to a computational substrate with no equivalent of myelination or receptor maturation is a long transfer, and the mechanism producing the ordering may not survive it."
+  }
+}

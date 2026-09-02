@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_120",
+  "entry_id": "2026-09-02_arc_120_uncertainty_arbitration_daw2005",
+  "timestamp_utc": "2026-09-02T21:19:31Z",
+  "claim_ids_tested": [
+    "ARC-120"
+  ],
+  "source": {
+    "title": "Uncertainty-based competition between prefrontal and dorsolateral striatal systems for behavioral control.",
+    "authors": [
+      "Nathaniel D Daw",
+      "Yael Niv",
+      "Peter Dayan"
+    ],
+    "year": 2005,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1560",
+    "pmid": "16286932",
+    "pmc": null,
+    "volume": "8",
+    "issue": "12",
+    "pages": "1704-1711"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical, heavily replicated normative account whose central move is exactly ARC-120's: two controllers both EXIST and both compute a full answer on every trial, yet behavioural authority is allocated to whichever is currently more accurate rather than shared or granted by default. Held below 0.8 because the paper is a normative/computational proposal rather than a direct test, and because its 'competence' is a per-trial uncertainty estimate rather than the accumulated developmental competence ARC-120's sequence describes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A design in which every existing controller contributes to the behavioural output in proportion to nothing but its existence (fixed blend, or unconditional veto) reproduces the failure Daw et al. identify: the statistically inefficient controller drags the accurate one whenever their estimates disagree.",
+    "If the arbitration signal is a fixed architectural prior rather than a running estimate of each controller's own accuracy, authority stops tracking competence and the account collapses back to an ad hoc gate."
+  ],
+  "tags": [
+    "arc_120",
+    "competence_before_authority",
+    "arbitration",
+    "uncertainty",
+    "dual_controller",
+    "model_based_model_free"
+  ],
+  "mapping": {
+    "source_claim_statement": "The brain contains multiple behavioural-choice controllers (a prefrontal/model-based and a dorsolateral-striatal/model-free system); because a surfeit of control creates its own choice problem, the systems compete under a Bayesian arbitration principle in which each controller is deployed when its own predictions are least uncertain -- that is, when it should be most accurate.",
+    "ree_translation": "This is the general form of ARC-120's 'competence -> authority' step, stated normatively for behavioural control: the mere existence of a computation confers no behavioural authority; authority is allocated by a running estimate of that computation's accuracy. REE's per-event eligibility (ARC-107), map-stability gating (SD-032b), mode gating (MECH-261) and committed-vs-imagined tagging (MECH-094) are, on ARC-120's reading, four domain-specific instantiations of the same allocation rule Daw et al. derive for action selection.",
+    "mapping_caveat": "The paper arbitrates between two ACTION-SELECTION controllers on a per-trial basis. ARC-120 additionally covers WRITE authority (memory consolidation, commitment) and asserts a DEVELOPMENTAL ordering across the lifetime of a mechanism; neither is in scope here. Nothing in this paper bears on the second half of ARC-120 -- whether REE's four existing gates are instances of one principle rather than four unrelated gates -- which is an internal architectural question no external paper can settle.",
+    "source_context": "Normative reinforcement-learning theory with simulation, framed against rodent and human instrumental-conditioning data (devaluation, overtraining, lesion dissociations)."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Very high source quality (canonical, ~decades of downstream replication). Mapping_fidelity weighted heavily as ARC-120 is architectural: the paper's arbitration principle maps cleanly onto the competence->authority step but not onto the developmental-sequence or write-authority parts of the claim. Transfer risk moderate: the principle is domain-general, but its instantiation as per-trial uncertainty is narrower than ARC-120's notion of competence."
+  }
+}

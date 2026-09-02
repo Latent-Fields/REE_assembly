@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_120",
+  "entry_id": "2026-09-02_arc_120_responsibility_gated_control_haruno2001",
+  "timestamp_utc": "2026-09-02T21:19:31Z",
+  "claim_ids_tested": [
+    "ARC-120"
+  ],
+  "source": {
+    "title": "Mosaic model for sensorimotor learning and control.",
+    "authors": [
+      "Masahiko Haruno",
+      "Daniel M Wolpert",
+      "Mitsuo Kawato"
+    ],
+    "year": 2001,
+    "venue": "Neural Computation",
+    "doi": "10.1162/089976601750541778",
+    "pmid": "11570996",
+    "pmc": null,
+    "volume": "13",
+    "issue": "10",
+    "pages": "2201-2220"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "MOSAIC is the clearest constructive demonstration that competence-gated authority is not merely normatively desirable but LEARNABLE and SUFFICIENT: a controller's share of the motor command is set by its paired forward model's predictive accuracy, and the same signal that gates control also gates that controller's own learning. The paper reports a specific failure mode on novel shape-dynamic pairings that is directly informative for REE. Held at 0.72 because it is simulation on object-manipulation dynamics, several transfers removed from REE's write/commitment authority.",
+  "failure_signatures": [
+    "When a familiar cue is paired with unfamiliar dynamics, MOSAIC shows 'inappropriate activation of modules ... followed by on-line correction': a competence gate keyed on a PROXY (cue, context tag) rather than on measured predictive error grants authority to the wrong module until reafference corrects it.",
+    "Generalisation holds only inside the polyhedron spanned by already-learned dynamics; a competence estimate has no validity outside the region over which competence was demonstrated, so an authority gate that extrapolates its own reliability estimate will over-grant.",
+    "Gradient-descent learning of the responsibility assignment was sensitive to initial conditions and learning parameters where EM was not -- a competence signal that is itself poorly estimated makes the authority gate unreliable in a way that is invisible from the gate's own outputs."
+  ],
+  "summary_path": "summary.md",
+  "tags": [
+    "arc_120",
+    "competence_before_authority",
+    "responsibility_signal",
+    "forward_model",
+    "modular_control",
+    "mosaic"
+  ],
+  "mapping": {
+    "source_claim_statement": "In the MOSAIC architecture, multiple paired forward (predictor) and inverse (controller) models learn simultaneously; each module's contribution to the motor command is weighted by a responsibility signal derived from how well its forward model predicts the current sensory consequences, and the same responsibility signal weights that module's own learning. The architecture learns to manipulate multiple objects, switches between them appropriately, generalises within the span of learned dynamics, and mis-activates modules when a familiar shape is paired with novel dynamics.",
+    "ree_translation": "A working existence proof of ARC-120's principle in a control architecture: a module's authority over the output is a continuous function of its DEMONSTRATED predictive competence, computed online from its own error, with no separate hand-designed gate. It also supplies a second arrow ARC-120 does not state but is compatible with -- responsibility gates LEARNING as well as control, so an incompetent module is not merely denied authority but is prevented from mislearning from outcomes it did not cause.",
+    "mapping_caveat": "Pure simulation of object-manipulation dynamics with a small number of hand-specified regimes; no biological measurement and no memory-write or commitment authority. The 'competence' is one-step predictive accuracy of a forward model, which is a much narrower construct than ARC-120's developmental competence. The responsibility signal is also a soft weighting rather than a gate, so this supports a graded reading of ARC-120 more directly than a thresholded one.",
+    "source_context": "Computational simulation; sensorimotor control of object manipulation under multiple dynamic regimes; gradient-descent and EM learning compared."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "Well-regarded formalisation of an influential architecture, but simulation-only. Mapping_fidelity good for the competence->authority arrow and for the learning-gating corollary; poor for the developmental-sequence and write-authority parts of ARC-120. Transfer risk raised to 0.40 because motor control with a clean reafferent error signal is an unusually favourable case -- REE's authority domains mostly lack an equivalently well-posed prediction error."
+  }
+}

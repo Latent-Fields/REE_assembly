@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_120",
+  "entry_id": "2026-09-02_arc_120_twitch_bootstrapped_authority_blumberg2013",
+  "timestamp_utc": "2026-09-02T21:19:31Z",
+  "claim_ids_tested": [
+    "ARC-120"
+  ],
+  "source": {
+    "title": "Twitching in sensorimotor development from sleeping rats to robots.",
+    "authors": [
+      "Mark S Blumberg",
+      "Hugo Gravato Marques",
+      "Fumiya Iida"
+    ],
+    "year": 2013,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2013.04.075",
+    "pmid": "23787051",
+    "pmc": "PMC3709969",
+    "volume": "23",
+    "issue": "12",
+    "pages": "R532-R537"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Deliberately included as the pressure test on ARC-120 rather than as support. Myoclonic twitches are motor OUTPUT authority exercised by a circuit with no competence whatsoever, and the resulting reafference is what BUILDS the sensorimotor map -- so competence cannot be a precondition for output here; it is a consequence of it. Scored mixed rather than weakens because twitching occurs during active sleep, when the behavioural consequences are quarantined, which is arguably a sandboxed-authority variant of ARC-120 rather than a violation. That ambiguity is the finding, and it is the most useful thing in this pull.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A strict reading of ARC-120 -- no output authority before demonstrated competence -- is a chicken-and-egg deadlock for any mechanism whose competence can only be acquired through the reafferent consequences of its own output. Twitching is the biological counterexample: the map does not exist until the incompetent circuit acts.",
+    "Any REE gate that conditions authority on competence must therefore specify a BOOTSTRAP path (a quarantined regime in which the incompetent mechanism acts and learns without behavioural consequence). A gate with no bootstrap path is not conservative, it is inert -- the mechanism can never earn what it is denied.",
+    "The quarantine is state-dependent, not mechanism-dependent: the same spinal/supraspinal circuitry has consequential authority in wake and sandboxed authority in active sleep. A gate implemented per-mechanism cannot express this; it needs a global mode variable."
+  ],
+  "tags": [
+    "arc_120",
+    "competence_before_authority",
+    "counterevidence",
+    "bootstrap",
+    "motor_babbling",
+    "twitching",
+    "active_sleep",
+    "reafference",
+    "developmental_robotics"
+  ],
+  "mapping": {
+    "source_claim_statement": "Myoclonic twitches -- jerky limb movements long dismissed as functionless by-products of a dreaming brain -- are produced by identified neural mechanisms that also convey sensory feedback from the twitching limb to spinal cord and brain; this reafference is proposed to drive the self-organisation of spinal and supraspinal sensorimotor circuits, and robot models in which twitches are mimicked show the basic neural circuitry self-organising.",
+    "ree_translation": "A developing motor circuit is granted output authority BEFORE it has any competence, and the reafference from that incompetent output is precisely what constructs the map on which later competence depends. Read strictly, this contradicts ARC-120's 'never granted merely because a computation exists'. Read as ARC-120's designers would likely want, active sleep is a quarantine -- authority granted inside a regime where consequences do not reach the world -- which makes it a SANDBOXED-AUTHORITY instance of the principle rather than a violation. ARC-120 as currently worded does not distinguish these, and it should.",
+    "mapping_caveat": "A Current Biology review/perspective, not a decisive experiment; the functional claim (twitch reafference builds the map) is well-motivated and supported by the robotic self-organisation results but remains a proposal rather than a demonstrated necessity. Rodent and robot; no human data and no memory-write or commitment authority. Whether active sleep genuinely quarantines consequences is itself an assumption -- twitches do move limbs and do produce real proprioceptive and tactile input, so the 'sandbox' is a sandbox for behavioural consequence, not for sensory consequence.",
+    "source_context": "Perspective review spanning infant-rat neurophysiology (active-sleep twitching, spinal and supraspinal reafference) and developmental robotics (musculoskeletal robot models in which twitch-driven self-organisation was reproduced)."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Confidence here scores how well the entry establishes the TENSION it is included to establish, not how strongly it supports the claim. Source quality 0.72: authoritative group, high-visibility venue, but a perspective piece resting on a functional proposal. Mapping_fidelity 0.70 -- the bootstrap problem transfers cleanly and abstractly to any competence-gated architecture. Transfer risk 0.35: the chicken-and-egg structure is substrate-independent, which is why this is worth acting on despite being rodent/robot work."
+  }
+}
