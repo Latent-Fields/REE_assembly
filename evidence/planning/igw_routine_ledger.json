@@ -3450,6 +3450,30 @@
       "task_claim_session_id": "igw-auto-igw-239-proposal-for-arc-052-20260902T135855Z",
       "task_claim_claimed_at": "2026-09-02T13:58:55Z",
       "assigned_at": "2026-09-02T13:57:52Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-02T15:01:31Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
+    },
+    {
+      "igw_id": "IGW-20260902-238",
+      "stable_hash": "554d1b40c7f0",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "ARC-073"
+      ],
+      "owner_exq": null,
+      "title": "Proposal for ARC-073",
+      "worktree": ".claude/worktrees/igw-238-proposal-for-arc-073",
+      "branch": "claude/igw-238-proposal-for-arc-073",
+      "session_uuid": "60ff4ae8-e5e2-4ac0-a3bf-45c9ae524a52",
+      "pid": 91678,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-238-proposal-for-arc-073 && claude --resume 60ff4ae8-e5e2-4ac0-a3bf-45c9ae524a52",
+      "task_claim_session_id": "igw-auto-igw-238-proposal-for-arc-073-20260902T150149Z",
+      "task_claim_claimed_at": "2026-09-02T15:01:49Z",
+      "assigned_at": "2026-09-02T15:00:44Z",
       "status": "spawned"
     }
   ],
@@ -4708,6 +4732,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T14:29:46Z",
       "re_eligible_after": "2026-09-04T14:29:46Z"
+    },
+    {
+      "stable_hash": "1bbffd85f0fe",
+      "igw_id_at_disposition": "IGW-20260902-239",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-052"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for ARC-052",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T15:01:46Z",
+      "re_eligible_after": "2026-09-04T15:01:31Z"
     }
   ]
 }
