@@ -1,0 +1,160 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-02T16:13:52Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3",
+   "queue_id": "V3-EXQ-571c",
+   "claim_ids": [
+    "MECH-439"
+   ],
+   "self_route_label": "substrate_not_ready_requeue",
+   "self_route_verdict": "GATE UPHELD, REMEDY CLAUSE REFUTED. The readiness gate fired correctly and the run is correctly unscored. But the label's own remedy -- 'Re-queue at an adequate n' -- is refuted by the run's own data: the decomp_samples_sufficient precondition (floor 60) was MET in all 16 cells at 130-219. The sole failing precondition, in all four arms, is n_live_channels, which is not a sample-size quantity and cannot be moved by sampling more. (Two cells, B2/42 and B2/46, did miss the driver's OWN richer target of 200 fresh selections at 130 and 145; that is a real shortfall but it is not what red-gated the run, and it did not breach the precondition floor.)",
+   "failed_criterion": "readiness precondition n_live_channels (measured 1.0, threshold 2.0) in ALL FOUR arms; all five other preconditions met in every arm. The arm gate takes the WORST cell across an arm's seeds, so a single red cell reds the arm: 8 of the 16 individual cells in fact carry >=2 live channels and are marked cell_decidable. The load-bearing C1 is arithmetically PASSED (modal share 0.999992 vs a 0.85 bar, 4/4 B1 seeds unanimous on residue_weighted) but voided by the gate, which precedes criterion evaluation; criteria_non_degenerate is false for all six criteria.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- the run is vacuous by its own gate and scores nothing against MECH-439. The REASON it is vacuous is nonetheless informative, and it cuts BOTH ways for the claim: in 15 of 16 cells a single channel holds 0.98-0.99999 of within-tick cross-candidate variance, and WHICH channel it is depends on the residue-feeding protocol -- residue_weighted in every fed cell (F share ~4e-06 to 1.1e-05), F itself (harm_weighted, per the lineage's own F_COMPONENTS) in 7 of 8 starved cells at 0.994-0.9998. So MECH-439's F-monopoly premise HOLDS in the residue-starved regime and FAILS in the fed one. MECH-439 already carries ceiling_decision: exhausted; this run neither disturbs nor discharges that.",
+    "biological_reference": "partial -- multi-attribute value integration in action selection (striatal/OFC channels contributing to a common decision variable). The biological analogue presupposes channels on a common currency; the absence of any commensurating operator across E3's additive channels is the translation gap this run measures directly. No new biology divergence implicated.",
+    "prerequisites": "present -- every readiness precondition except n_live_channels met in all 16 cells: decomp_samples_sufficient 130-219 vs 60, clamp_config_landed 1.0, residue_protocol_landed 1.0, xcand and temporal total-variance non-degenerate. The two landing checks are load-bearing because REEConfig.from_dims swallows unknown kwargs silently.",
+    "implementation": "partial -- the SD-056 E2 rollout clamp is built, armed and binding (at-ceiling frac 0.9638, max||z_w||/ceiling 1.0000). There is NO counterpart bound on the residue quantity E3 actually reads: compute_residue_cost reaches RBFLayer.forward, which sums self.weights (field.py:122-149), and self.weights is written only by the unbounded += in add_residue (field.py:171). SD-RESIDUE-VALENCE-BOUND does NOT cover this path -- it clamps the separate valence_vecs accumulator (field.py:294-332) -- so arming residue.valence_bounding_enabled would not move this DV. No operator commensurates the channels jointly.",
+    "environment": "adequate -- a faithful 936-family regime (12x12, 4 hazards, 5 resources, reef bipartite, env drift), constructed from the lineage's own canonical baseline module, which is exactly what 571b's routing required.",
+    "measurement": "adequate, and an improvement on its predecessors -- the routed DV was moved from the temporal partition to the within-tick CROSS-CANDIDATE partition, which is the quantity MECH-439's premise is actually about; the temporal partitions are still recorded for comparability. The gate did its job: it refused to let a 0.999992 share on an effectively one-channel partition read as a monopoly.",
+    "integration": "adequate -- make_env(seed) is arm-independent, so all four arms share a layout at a given seed and the protocol/warm-up contrasts are genuinely within-layout.",
+    "scale": "adequate against the precondition floor -- 130-219 latch-gated fresh selections per cell against a floor of 60. Two starved+warmup cells (B2/42 at 130, B2/46 at 145) fell short of the driver's own richer 200-selection target; B2/46 is also the single cell in the run with no monopoly, so its lower sample count is a caveat on the most interesting cell."
+   },
+   "failure_location": {
+    "mechanism": "partial",
+    "measures": "established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MIXED (MECHANISM partial; MEASURES and ENVIRONMENT each independently adequate). NOT chargeable to REE. Implementation reads PARTIAL -- the residue-side scale bound is built but unarmed, and no joint commensurability operator exists -- so REE FAILED is neither reached nor asserted."
+   },
+   "biological_reference": {
+    "closest_mechanism": "multi-attribute value integration in action selection (striatal / OFC value channels summed into a common decision variable)",
+    "dependencies": [
+     "score components on a commensurable scale",
+     "a selection regime that actually commits",
+     "at least two channels carrying candidate-specific evidence"
+    ],
+    "is_formal_import": false,
+    "divergence": "no NEW divergence; the absence of a common-currency normalisation across E3's additive channels is the standing gap, measured here directly",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "'standard' preserves current GOV-GRAN-1 and v3-testability behaviour, matching the readings 936/936a/571b took. The substrate gating is carried by re_derive_brake.fired, the substrate_queue amendment, and the claim's already-true pending_retest_after_substrate -- not by suppressing the claim's experiment lanes. Surfaced at the Step 8 gate as a genuine judgement call: an argument exists for substrate_conditional now that repeated runs show the channel-authority question unreachable until scales are commensurable, but MECH-439 already carries ceiling_decision: exhausted, so that category's suppression is largely redundant while its lane-starvation cost is not.",
+   "recommended_evidence_direction": "non_contributory",
+   "per_claim_recommendation": {
+    "MECH-439": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "pending_retest_after_substrate": true,
+     "change": "NOTE-ONLY on the storable claim fields -- status stays candidate, epistemic_category already reads standard, pending_retest_after_substrate already reads true, ceiling_decision stays exhausted. Apply the evidence_quality_note and set the adjudication flag this claim does not yet carry -> diagnostic_evidence_adjudicated: true",
+     "status_change": "none -- stays candidate (ceiling_decision remains exhausted)"
+    }
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": true,
+    "threshold": 2,
+    "literal_count_meets_threshold": true,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_f-dominance-conversion-cluster_2026-06-20",
+     "failure_autopsy_V3-EXQ-689_2026-06-19",
+     "failure_autopsy_V3-EXQ-689a_2026-06-20",
+     "failure_autopsy_V3-EXQ-700-cluster_2026-06-23",
+     "failure_autopsy_V3-EXQ-700b_2026-06-24",
+     "failure_autopsy_V3-EXQ-700c_2026-06-26",
+     "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+     "failure_autopsy_V3-EXQ-709_2026-07-03",
+     "failure_autopsy_V3-EXQ-711-713_2026-07-20",
+     "failure_autopsy_V3-EXQ-936_2026-08-18",
+     "failure_autopsy_V3-EXQ-936a_2026-08-30",
+     "failure_autopsy_V3-EXQ-571b_2026-09-01"
+    ],
+    "counted_hits": 14,
+    "refused_requeue": true,
+    "route_to": "implement-substrate",
+    "upstream_substrate": "f_dominance_conversion_ceiling",
+    "note": "14 counted hits under R1-R3, independently reproduced by this session and matching the driver's own Step 2.5b figure of 14. MECH-439 additionally already carries ceiling_decision: exhausted, so this brake corroborates a recorded state rather than escalating to a new one. REFUSED: a 571d that re-runs the same presence audit with one more channel bounded. Three consecutive runs (936a, 571b, 571c) have established the monopoly's existence and only moved its occupant; a fourth letter varying which channel is bounded is the loop this brake exists to stop. EXPLICITLY STILL PERMITTED, and preferred: a run whose DV is the commensurability OPERATOR itself (the f_dominance_conversion_ceiling divisive-normalisation rung, whose tractability blocker 571c's instrument removes), or a redesign testing a different mechanism. The refusal is on re-measuring the monopoly, not on acting against it."
+   },
+   "learning_extracted": [
+    "A readiness gate that fires is not automatically a measurement failure. Here the gate IS the finding: n_live_channels=1 in the worst cell of every arm says the partition MECH-439's premise is posed over is effectively one-dimensional there -- a substantive fact about the substrate, not a shortfall of the instrument.",
+    "Read the self-route's REMEDY clause, not only its label. 'substrate_not_ready_requeue: re-queue at an adequate n' names a remedy this run's own data refutes: the sample precondition was met at 130-219 against a floor of 60 in every one of the 16 cells. The failing quantity was never n. A label whose remedy is wrong sends the next session to build the wrong thing.",
+    "No channel is DEAD; the partition is one-dimensional in RELATIVE terms only. Every non-structurally-zero component in every one of the 16 cells clears the ABSOLUTE liveness floor (1e-12); every liveness failure in the run is a failure of the RELATIVE share floor (1e-3). This distinguishes 'the channels carry no information' (false) from 'one channel's scale swamps the others' (true), and only the second is addressable by a commensurability operator.",
+    "THE OCCUPANT IS REGIME-DEPENDENT AND F IS ONE OF THE OCCUPANTS. Under the lineage's own definition (driver:345, F_COMPONENTS = f_weighted + harm_weighted), F holds the monopoly in 7 of 8 starved cells at F-share 0.994-0.9998, while in every fed cell residue_weighted holds it and F falls to ~1e-05. So MECH-439's F-monopoly premise is not simply absent in the 936 regime -- it is TRUE when residue is starved and FALSE when residue is fed. The environment is held fixed across that contrast, which is what makes it informative.",
+    "The one genuinely contested cell is the one with no monopoly. B2/seed46 is the only cell in the run with n_live_channels=3 and no channel above the 0.85 bar (top share 0.737871, monopoly_present false). It is also one of two cells short of the driver's 200-selection target (145). One cell is not a result, but it is the only direct observation in this lineage of what the partition looks like when more than one channel is live, and it is worth targeting deliberately rather than leaving to chance.",
+    "No bound exists on the residue channel E3 actually reads, and the obvious candidate does not cover it. E3's residue term reaches RBFLayer.forward, which sums self.weights (field.py:122-149); self.weights is written only by an unbounded += in add_residue (field.py:171). SD-RESIDUE-VALENCE-BOUND clamps a DIFFERENT accumulator (valence_vecs, field.py:294-332). This distinction cost the first draft of this artifact a wrong substrate path and a wrong remedy, and the cross-model red-team pass is what caught it: check which field a fix actually writes before treating it as the counterpart to another fix.",
+    "Correspondingly, 'bounding one channel relocates the monopoly to the next-largest' is a MECHANISM STORY this run does not demonstrate. The sequence 936 (F unbounded) -> 936a (residue) -> 571b (harm) -> 571c (residue fed / F starved) is consistent with it, but no run has bounded two channels at once and observed the outcome. Stated as a prediction to be tested, not as a finding.",
+    "The gate and the criterion it guards are jointly satisfiable only in a narrow band. With three non-zero components, n_live_channels>=2 requires the second share >= 1e-3 and hence the top share <= 0.999 (necessary, not sufficient), while C1's monopoly bar is >= 0.85. So this design can return a scored 'monopoly present' verdict only for a monopoly in roughly [0.85, 0.999]; a STRONGER monopoly always self-routes to 'not ready'. B1 measured 0.999992. The instrument cannot confirm the strongest form of its own hypothesis -- worth fixing in the design, not by loosening the gate.",
+    "The precondition's own description under-states the predicate it enforces. It names only MIN_LIVE_CHANNEL_VARIANCE (1e-12); the code (driver:1044-1046) also requires MIN_LIVE_CHANNEL_SHARE (1e-3), added in red-team pass 2. Every failure in this run is on the floor the description omits, so a reader trusting the description would go looking for dead channels and find none.",
+    "C6 records a scope limit that would have bitten even a clean result: under use_modulatory_shortlist_then_modulate the routed partition decides the final commit on only 0.056 of B1 selections (min 0.005). The primary-score channels build the eligibility shortlist and a modulatory accumulator picks the winner inside it, so a monopoly in this partition is a monopoly over ELIGIBILITY, not over commitment as MECH-439 frames it."
+   ],
+   "read_across_not_adjudicated": [
+    {
+     "bears_on": "hypothesis_space_registry.v1.json question e3_fdominance_causal_discrimination, leg H5-score-scale-uncontrolled",
+     "note": "This run is a fourth corroboration of H5 and the first to hold the ENVIRONMENT fixed while varying only the residue protocol, showing the occupant tracking the protocol while the monopoly's existence does not vary. H5 is already resolution.state=confirmed, so no state change and no denominator growth is proposed; recommended as a Mode B resolving-run append at the next governance walk. H1-H4 remain alive and are NOT discriminated by this run."
+    },
+    {
+     "bears_on": "failure_autopsy_V3-EXQ-571b_2026-09-01",
+     "note": "571b left the 936a-vs-571b five-order gap unapportioned between environment, residue-feeding protocol and schedule, and routed this run to record residue_rbf_active_centers so a successor could apportion it. That measurement is now present: residue_rbf_first_saturation_episode is 1-2 with 32/32 centres active in every fed cell and -1 with 0/32 centres in every starved cell, with the environment held fixed at the 936 regime throughout, and the occupant tracking that protocol split exactly. This is CONSISTENT WITH the gap being carried by the residue protocol rather than the environment. It is deliberately not stated more strongly: the driver names C3/C5 as wiring checks overdetermined by the manipulation and states 'No gap apportionment is claimed', the arms are gate-red, and they are matched on decomposition sample count rather than exposure. Recorded as a read; this autopsy does not overturn the driver's own refusal to apportion."
+    },
+    {
+     "bears_on": "SD-RESIDUE-VALENCE-BOUND (substrate_queue, status implemented, severity degrading)",
+     "note": "CORRECTED after the red-team pass, and recorded because the error is an easy one to repeat. That entry is NOT the residue-side counterpart to SD-056 for this DV: it clamps RBFLayer valence_vecs (field.py:294-332), whereas E3's residue term sums RBFLayer.weights via forward (field.py:122-149), written by the unbounded += in add_residue (field.py:171). Arming residue.valence_bounding_enabled would not move the residue share at all. No severity or scope change is proposed for that entry; this note exists so the next session does not mistake it for the missing bound."
+    }
+   ],
+   "routing": "implement-substrate",
+   "routing_note": "RATIFIED AT THE STEP 8 GATE, 2026-09-02, user present. AMEND f_dominance_conversion_ceiling rather than create a new entry -- its implementation_hint already carries the divisive-normalisation rung, and 571c's contribution is to remove that rung's standing tractability blocker (it supplies the per-channel decomposition at the select site the rung lacked) and to redirect its target from F specifically to the JOINT channel scale. Add ree_core/residue/field.py::add_residue and RBFLayer.forward to substrate_paths -- that is the write/read path of the channel which monopolises in every fed cell and it was not previously named; note explicitly on the entry that field.py::update_valence is NOT this path, since SD-RESIDUE-VALENCE-BOUND clamps a different accumulator and arming it would not move this DV. Append the four metric_trajectory observations (936, 936a, 571b, 571c). THE RE-DERIVE BRAKE FIRES and a same-claim re-queue is REFUSED: no 571d that re-measures monopoly presence with one more channel bounded. Three consecutive runs have established the monopoly's existence and only moved its occupant. EXPLICITLY PERMITTED AND PREFERRED: a run whose DV is the commensurability OPERATOR itself. The user considered and did not select prioritising the bound-two-channels test as a separate queued item; it remains the natural first falsifier of this autopsy's own untested prediction (that bounding residue relocates rather than dissolves the monopoly) and should be posed as part of the operator work rather than as another presence audit. epistemic_category stays 'standard' by user decision at the same gate: MECH-439 already carries ceiling_decision: exhausted, so substrate_conditional's suppression is largely redundant while its lane-starvation cost is not.",
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "f_dominance_conversion_ceiling",
+    "amend_rationale": "Changed from CREATE to AMEND after the cross-model red-team pass. The entry's implementation_hint already carries the divisive-normalisation rung ('rank-preserving renormalisation vs the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439'), which is the operator this run's finding calls for -- so a new SD-E3-CHANNEL-COMMENSURABILITY entry would have duplicated live work. What this run contributes is (i) evidence that the rung's target should be the JOINT channel scale rather than F specifically, and (ii) removal of that rung's standing tractability blocker.",
+    "severity": "corrupting",
+    "substrate_paths": [
+     "ree_core/predictors/e3_selector.py::score_trajectory",
+     "ree_core/residue/field.py::add_residue",
+     "ree_core/residue/field.py::RBFLayer.forward"
+    ],
+    "severity_change_note": "Severity and paths otherwise LEFT AS GOVERNANCE HAS THEM; this amendment adds the residue write/read path (add_residue writes self.weights with an unbounded +=; RBFLayer.forward is what compute_residue_cost sums) because it is the channel that monopolises in every fed cell and it was not previously named on this entry. NOTE for whoever implements: field.py::update_valence is NOT this path -- SD-RESIDUE-VALENCE-BOUND clamps valence_vecs, a different accumulator, and arming it would not move this DV.",
+    "unblocks_claims": [
+     "MECH-439",
+     "ARC-062",
+     "MECH-309",
+     "MECH-341"
+    ],
+    "implementation_hint_addendum": "571c removes this rung's standing TRACTABILITY blocker. The rung was held up by the absence of a per-channel decomposition at the select site; 571c's instrument supplies exactly that -- a bounded, sum-to-one within-tick CROSS-CANDIDATE partition over the additive channels, latch-gated to genuine fresh selections, with per-cell liveness and partition_coverage recorded. The operator should therefore be specified against the joint channel scale (per-channel standardisation against a running scale estimate, or a pooled divisive denominator over the declared components) rather than against F alone, because F is only one of the two occupants observed: residue_weighted monopolises in every fed cell while F holds 0.994-0.9998 in 7 of 8 starved cells. Must be default-off and bit-identical when off, and must expose the per-channel scale estimates so a successor can verify commensurability was achieved rather than assumed. The success target is the readiness condition this run could not meet: >=2 channels simultaneously above a 1e-3 relative cross-candidate share.",
+    "metric_trajectory_observations_to_append": [
+     "V3-EXQ-936 (2026-08-17): var(F) up to 4.07e72 unbounded; std(non-F)/std(F) below float32 eps in 7 of 8 cells -- the modulatory stack additively annihilated.",
+     "V3-EXQ-936a (2026-08-29): with the SD-056 rollout clamp armed the monopoly persists with a DIFFERENT occupant -- residue_weighted at 0.9999876-0.9999998 of committed variance, F's share 6.33e-06.",
+     "V3-EXQ-571b (2026-09-01): clamped presence audit in the 571-shape env -- monopoly present, occupant shifts f_weighted -> harm_weighted 4/4 seeds (top share 0.9368-0.9953).",
+     "V3-EXQ-571c (2026-09-02): the 936-regime audit, environment held fixed, residue protocol varied. Gate-red on n_live_channels=1 in the worst cell of all four arms; 8 of 16 cells individually decidable. Occupant is residue_weighted in every fed cell (F share 4e-06 to 1.1e-05) and F (harm_weighted) in 7 of 8 starved cells (F share 0.994-0.9998). Single cell with no monopoly: B2/seed46, top share 0.7379, n_live 3. Every competing channel clears the 1e-12 absolute variance floor and fails only the 1e-3 RELATIVE share floor -- the monopoly is a scale phenomenon, not dead channels."
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3",
+     "experiment_type": "v3_exq_571c_e3_variance_monopoly_presence_936_regime",
+     "metric": "Within-tick cross-candidate variance share in the 936 regime: a single channel holds 0.98-0.99999 in 15 of 16 cells (residue_weighted in all 8 fed cells, F/harm_weighted in 7 of 8 starved cells at 0.994-0.9998; sole exception B2/seed46 at 0.7379 with 3 live channels). Every competing channel clears the absolute liveness floor 1e-12 yet falls below the 1e-3 relative-share floor, so n_live_channels=1 red-gated all four arms and the run scored nothing.",
+     "target": ">=2 E3 score channels simultaneously above a 1e-3 relative cross-candidate share in the 936 regime, so that 'which channel holds authority' is a contest rather than a restatement of units -- the precondition every MECH-439 / ARC-062 channel-authority experiment silently assumes",
+     "resolved": "open"
+    },
+    "resolves_prior_failure_record": []
+   },
+   "pre_routing_checks": {
+    "ran": true,
+    "fire_count": 0,
+    "fires": [],
+    "note": "Clean. C2-strict in particular did not fire on the recommended `create` of SD-E3-CHANNEL-COMMENSURABILITY, independently confirming no existing substrate_queue entry already covers the cross-channel commensurability gap (SD-056 and SD-RESIDUE-VALENCE-BOUND each bound a single channel)."
+   },
+   "red_team_pass": {
+    "ran": true,
+    "model": "fable",
+    "verdict": "CONTESTED",
+    "note": "Cross-model adversarial pass (Fable), skill Step 7c, run against the draft with the author's reasoning withheld. THREE defects, all upheld on independent re-verification by the author, all in the draft's READING rather than in the run's science. (D1) The draft's 'residue-side bound is built but unarmed' premise was MISATTRIBUTED: SD-RESIDUE-VALENCE-BOUND clamps RBFLayer valence_vecs (field.py:294-332), but E3's residue term reaches RBFLayer.forward, which reads self.weights (field.py:122-149) -- written only by the unbounded += in add_residue (field.py:171). Arming residue.valence_bounding_enabled cannot touch phi. The refusal SURVIVES but for the opposite and stronger reason: no bound on the residue channel E3 actually reads exists at all. 'Bounding one channel relocates the monopoly' is accordingly downgraded from a demonstrated claim to an undemonstrated mechanism story. (D2) driver:345 defines F_COMPONENTS = ('f_weighted','harm_weighted'), so harm_weighted IS F in this lineage; the draft's 'F holds the monopoly in NO arm' was FALSE -- monopoly_occupant_is_f is true in 7 of 16 cells, every one of them in a starved arm. (D3) The draft's 'every cell' absolutes were false: B2/seed46 reads top share 0.737871 with monopoly_present false and n_live_channels 3, 8 of 16 cells carry >=2 live channels, and 2 cells missed the driver's own 200 fresh-select target (while still clearing the 60 precondition floor); the quoted lower bound 0.9379 was 571b's figure, wrongly imported. Also flagged and accepted: the recommended CREATE duplicated existing work -- f_dominance_conversion_ceiling already carries a divisive-normalisation rung -- so the routing is changed to AMEND. CONFIRMED AS DRAFTED and not moved by the contest: the band arithmetic in (c) (right, and for the right reason -- top share <= 0.999 is necessary, not sufficient); the (d) inference that absence from enabled_default_off_flags is genuine proof the flag was off (the helper recurses REEConfig.residue, manifest_core.py:355-397 / config.py:3201, and the list carries no truncation marker); and the (f) reading of substrate drift as a labelling caveat only (the red team recomputed 201efa... = ree-v3 6447b45 exactly, and the drifted-to tree touched only never-re-imported files). Severity 'corrupting' upheld against the queue's own legend."
+   }
+  }
+ ]
+}
