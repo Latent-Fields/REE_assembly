@@ -22479,6 +22479,12 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1434",
+      "blocked_by": [
+        "mirror_modelling_other_self_v5:MIRROR-1",
+        "mirror_modelling_other_self_v5:MIRROR-2",
+        "mirror_modelling_other_self_v5:MIRROR-7"
+      ],
+      "blocked_note": "MECH-127 requires the full mirror-modelling substrate: pre-encounter OTHER_SELFLIKE tagging (MIRROR-1, status: blocked), a mirror that runs COUNTERFACTUALLY off the self-model (MIRROR-2, status: blocked), and the MIRROR-7 apex node (counterfactual empathic activation itself, status: blocked) per mirror_modelling_other_self_v5_plan.md. ree-v3/CLAUDE.md's SD Design Decisions Implemented sections have zero mentions of OTHER_SELFLIKE, mirror-modelling, or counterfactual-other machinery -- none of it is built. claims.yaml's own what_would_answer for MECH-127 states this explicitly: 'design-only as of this writing -- it has no built substrate and no experiment has ever attempted to test it.' A run today could not represent an absent other's hypothetical cost and would test nothing but MECH-031-style modulation by mistake. Route: /implement-substrate on MIRROR-1/MIRROR-2 first.",
       "claim_id": "MECH-127",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -22501,7 +22507,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_127",
       "target_repo": "ree-v3",
       "why_now": [
