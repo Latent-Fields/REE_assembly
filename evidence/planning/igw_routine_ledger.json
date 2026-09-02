@@ -3425,7 +3425,11 @@
       "task_claim_session_id": "igw-auto-igw-238-proposal-for-arc-019-20260902T125614Z",
       "task_claim_claimed_at": "2026-09-02T12:56:14Z",
       "assigned_at": "2026-09-02T12:55:33Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-02T14:29:30Z",
+      "completion_summary": "queued V3-EXQ-591g for ARC-019 (ree-v3 939d67348e, live in coordinator DB): live closed-loop validation of the 591f crossing-count Phase 0->1 curriculum gate, the precondition ARC-019 itself requires; EVB-1189 executed-flip deferred (proposals file held by autopsy-exq976 pause) and chipped as chip-20260902-evb1189-executed-flip",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "queued V3-EXQ-591g for ARC-019 (ree-v3 939d67348e, live in coordinator DB): live closed-loop validation of the 591f crossing-count Phase 0->1 curriculum gate, the precondition ARC-019 itself requires; EVB-1189 executed-flip deferred (proposals file held by autopsy-exq976 pause) and chipped as chip-20260902-evb1189-executed-flip"
     },
     {
       "igw_id": "IGW-20260902-239",
@@ -4690,6 +4694,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T13:41:02Z",
       "re_eligible_after": "2026-09-04T13:41:02Z"
+    },
+    {
+      "stable_hash": "6217c74ba0b9",
+      "igw_id_at_disposition": "IGW-20260902-238",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-019"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for ARC-019",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T14:29:46Z",
+      "re_eligible_after": "2026-09-04T14:29:46Z"
     }
   ]
 }
