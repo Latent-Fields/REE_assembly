@@ -3269,8 +3269,12 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-08-31T09:51:58Z",
       "staged_at": "2026-08-31T09:51:58Z",
-      "status": "launched_manual",
-      "launched_at": "2026-09-01T20:13:29Z"
+      "status": "completed",
+      "launched_at": "2026-09-01T20:13:29Z",
+      "completed_at": "2026-09-02T13:41:02Z",
+      "completion_summary": "landed ree-v3 6447b45 (SD-e1 ITEM 2 rollout_consistency_loss + 4 default-off E1Config knobs; on origin/main); validated by V3-EXQ-976 (20260902T114700Z, diagnostic PASS/non_contributory). Session died before /session-land; completed by housekeeping subagent of sd018-directional-field-amend-ba5834ed.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "landed ree-v3 6447b45 (SD-e1 ITEM 2 rollout_consistency_loss + 4 default-off E1Config knobs; on origin/main); validated by V3-EXQ-976 (20260902T114700Z, diagnostic PASS/non_contributory). Session died before /session-land; completed by housekeeping subagent of sd018-directional-field-amend-ba5834ed."
     },
     {
       "igw_id": "IGW-20260831-224",
@@ -4650,6 +4654,21 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-01T22:47:01Z",
       "re_eligible_after": "2026-09-03T22:47:01Z"
+    },
+    {
+      "stable_hash": "080f0d73182b",
+      "igw_id_at_disposition": "IGW-20260831-222",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: SD-e1-rollout-consistency-training",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T13:41:02Z",
+      "re_eligible_after": "2026-09-04T13:41:02Z"
     }
   ]
 }
