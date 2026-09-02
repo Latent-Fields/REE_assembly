@@ -1,0 +1,446 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest",
+  "run_id": "v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest_20260902T001425Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-02T00:14:25.555356Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-063",
+    "SD-069"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-063": "non_contributory",
+    "SD-069": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "sampling_shortfall": {
+      "self_route": "sample_starvation_requeue",
+      "reason": "One or more cells hit the total-step cap before reaching their sample floors. This is a SAMPLING failure, not a substrate capability failure -- do not route to substrate_not_ready_requeue without an independent capability check.",
+      "n_starved_cells": 16,
+      "starved_cells": [
+        {
+          "arm": "T1P0",
+          "seed": 11,
+          "n_env_steps": 2400,
+          "n_episodes": 28,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 522,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 11,
+          "n_env_steps": 2400,
+          "n_episodes": 36,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 751,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 11,
+          "n_env_steps": 2400,
+          "n_episodes": 23,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 571,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P0",
+          "seed": 17,
+          "n_env_steps": 2400,
+          "n_episodes": 55,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 772,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P0",
+          "seed": 17,
+          "n_env_steps": 2400,
+          "n_episodes": 14,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 390,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P0",
+          "seed": 23,
+          "n_env_steps": 2400,
+          "n_episodes": 23,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 478,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P0",
+          "seed": 23,
+          "n_env_steps": 2400,
+          "n_episodes": 12,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 355,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 23,
+          "n_env_steps": 2400,
+          "n_episodes": 16,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 395,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 23,
+          "n_env_steps": 2400,
+          "n_episodes": 199,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "quiescent_ticks": {
+              "measured": 195,
+              "threshold": 200
+            }
+          }
+        },
+        {
+          "arm": "T0P0",
+          "seed": 29,
+          "n_env_steps": 2400,
+          "n_episodes": 52,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 778,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P0",
+          "seed": 29,
+          "n_env_steps": 2400,
+          "n_episodes": 36,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 582,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 29,
+          "n_env_steps": 2400,
+          "n_episodes": 31,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 474,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 29,
+          "n_env_steps": 2400,
+          "n_episodes": 17,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 394,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P0",
+          "seed": 37,
+          "n_env_steps": 2400,
+          "n_episodes": 31,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 580,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 37,
+          "n_env_steps": 2400,
+          "n_episodes": 22,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 485,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 37,
+          "n_env_steps": 2400,
+          "n_episodes": 13,
+          "stop_reason": "step_cap",
+          "episode_cap_can_bind": false,
+          "max_env_steps": 2400,
+          "max_episodes": 2400,
+          "shortfall": {
+            "selections": {
+              "measured": 463,
+              "threshold": 800
+            }
+          }
+        }
+      ]
+    },
+    "readiness_unmet_sample_kind": [],
+    "readiness_unmet_capability_kind": [
+      "baseline_entropy_headroom"
+    ],
+    "preconditions": [
+      {
+        "name": "phasic_fires_real_events_converged",
+        "kind": "sample",
+        "control": "PHASIC-ON cells: SD-075 n_events_converged (min across cells) -- the regulator's own lifetime post-convergence event count, not the raw full-stream event-tick count 779b used",
+        "measured": 61.0,
+        "threshold": 10,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": {
+          "seed": 23,
+          "arm": "T0P1",
+          "value": 61,
+          "n_env_steps": 2400,
+          "n_episodes": 16,
+          "stop_reason": "step_cap",
+          "sample_floors_met": false
+        }
+      },
+      {
+        "name": "both_partitions_populated",
+        "kind": "sample",
+        "control": "PHASIC-ON cells: quiescent ticks, full stream (so the transient R_transient is computable; min across cells)",
+        "measured": 195.0,
+        "threshold": 10,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": {
+          "seed": 23,
+          "arm": "T1P1",
+          "value": 195,
+          "n_env_steps": 2400,
+          "n_episodes": 199,
+          "stop_reason": "step_cap",
+          "sample_floors_met": false
+        }
+      },
+      {
+        "name": "tonic_axis_live",
+        "kind": "capability",
+        "control": "TONIC-ON cells: noise_floor_temp_lift (worst cell, not mean -- met is a worst-case all() claim)",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": {
+          "seed": 11,
+          "arm": "T1P0",
+          "value": 1.0,
+          "n_env_steps": 2400,
+          "n_episodes": 28,
+          "stop_reason": "step_cap",
+          "sample_floors_met": false
+        }
+      },
+      {
+        "name": "sample_sufficiency",
+        "kind": "sample",
+        "control": "min fresh E3 selections over cells (full stream)",
+        "measured": 355.0,
+        "threshold": 20,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": {
+          "seed": 23,
+          "arm": "T1P0",
+          "value": 355,
+          "n_env_steps": 2400,
+          "n_episodes": 12,
+          "stop_reason": "step_cap",
+          "sample_floors_met": false
+        }
+      },
+      {
+        "name": "baseline_entropy_headroom",
+        "kind": "capability",
+        "control": "T0P0 sustained entropy strictly inside (E_SAT_LOW, E_SAT_HIGH); worst baseline cell (max distance from either bound), not mean; scoped to baseline ON PURPOSE -- see entropy_headroom_per_arm diagnostic for the treatment arms this gate cannot see",
+        "measured": 0.019541663373384185,
+        "threshold_low": 0.02,
+        "threshold_high": 0.98,
+        "comparator_low": ">",
+        "comparator_high": "<",
+        "direction": "interval",
+        "met": false,
+        "offending_cell": {
+          "seed": 17,
+          "arm": "T0P0",
+          "value": 0.019541663373384185
+        }
+      }
+    ],
+    "criteria": [
+      {
+        "name": "double_dissociation_C1_and_C2",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "double_dissociation_C1_and_C2": true
+    },
+    "summary": "MECH-063 sub-claim (ii) tonic-vs-phasic dissociation on the E3 softmax temperature -- DRIVER-REPAIR LETTER of V3-EXQ-963 (which itself RETESTed V3-EXQ-779b/779a/779) against the SD-075-corrected phasic regulator (carry continuity + convergence gate) with every cell's agent SD-074-warmed (num_episodes=40, 952's confirmed rescue exposure, held fixed across the whole grid). V3-EXQ-963's own run silently lost its entire TONIC axis to a probe_warmup cross-arm cache-restore defect (failure_autopsy_V3-EXQ-963_2026-08-30); this letter passes arm_key to warm_agent, reinstalls a fresh NoiseFloor post-warmup (symmetric with the existing phasic_burst reinstall), and records NoiseFloor.get_state()'s n_waking_calls/last_n_simulation_skips -- see module docstring 'DRIVER-REPAIR LETTER' for the three numbered items. The TONIC lever (MECH-313 noise_floor) moves the SUSTAINED (quiescent-tick) baseline entropy; the PHASIC lever (SD-069 phasic_surprise_burst, sharp instantaneous_pe source) moves an EVENT-LOCKED entropy TRANSIENT; cross-legs ~0. PASS = both hold (independent tonic-baseline vs phasic-transient degrees of freedom on one readout); FAIL/weakens = they do not dissociate; FAIL/non_contributory = the run could not test the claim. R1 (phasic_fires_real_events_converged) reads SD-075's n_events_converged rather than 779b's raw event-tick count, per SD-075's design doc; R_transient/S_sustained_entropy remain full-stream, matching 779a's already-validated computation (see module docstring 'DESIGN CHOICE'). NOT an isolation of carry-mode vs warmup-training credit -- both are inherited jointly from V3-EXQ-952's confirmed design (see module docstring 'ISOLATION CAVEAT'); this retest's own reading does not depend on that attribution."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "70e25c12a0593a5cdd8f7c8dc84ee6917b89628c001e0b4e7e1a2e46ccd4ea29",
+  "substrate_commit": {
+    "commit": "84e211ac8c782bc85c3bdf0118bfd0f926682dd8",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_action_class_scaffold_candidates": true,
+    "heartbeat.breath_period": 50,
+    "use_control_vector_logging": true,
+    "use_noise_floor": true,
+    "use_phasic_burst": true,
+    "phasic_burst_warmup_ticks": -1
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 91053,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 20,
+    "goal_state_present": false
+  }
+}
