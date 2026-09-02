@@ -1,0 +1,162 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-02T05:04:59Z",
+ "scope": "cluster",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_968_sd_e1_output_proj_residual_ab_20260901T162647Z_v3",
+   "queue_id": "V3-EXQ-968",
+   "claim_ids": [],
+   "failed_criterion": "discrimination",
+   "self_route_label": "residual_no_material_difference",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim-free diagnostic",
+    "biological_reference": "n/a at this layer",
+    "prerequisites": "present -- all 5 P0 readiness preconditions met",
+    "implementation": "complete -- the residual flag is genuinely plumbed (driver:347 -> config.py:8077 -> e1_deep.py:629,957,975) and all 4 arm_fingerprints are distinct",
+    "environment": "adequate",
+    "measurement": "misleading -- PASS is a hardcoded literal (driver:1170 status='PASS', :1176 passed=True); the only FAIL path is P0-readiness-unmet, so the scientific criterion could not have failed. C1 'measured' reports the max across seeds, one-sided, against a two-tailed rule",
+    "integration": "coupled",
+    "scale": "under-powered -- the LIFT_FACTOR floor max(3.0, 2.0*1.01636)=3.0 rests on a 2-sample noise estimate"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MEASURES -- the null label is a threshold artifact, not an absence of effect"
+   },
+   "biological_reference": {
+    "closest_mechanism": "n/a",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "n/a",
+    "lit_status": "absent"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-968's self-route 'residual_no_material_difference' is NOT supportable and should not be read as a null. The arms genuinely differed (4 distinct arm_fingerprints; flag plumbed driver:347 -> config.py:8077 -> e1_deep.py:629,957,975), and the effect is LARGE and OPPOSITE IN SIGN across seeds: cr_rollout spread(h=1) res/abs = 2.29x on seed 42 and 0.36x on seed 123. The 'no material difference' label is a THRESHOLD ARTIFACT: seed 42's lift 2.211 and seed 123's inverse lift 2.9443 both narrowly miss the same 3.0 bar (the latter by 1.9%) in opposite directions, giving n_exceeds=0 and n_below=0, which falls through to the final else: branch. The driver's own mixed_across_seeds label needed one seed to clear 3.0. The 3.0 bar is itself floor-bound from a 2-sample noise estimate (logged unfixed as red-team finding (4) in the queue note). PASS certifies readiness only -- status and passed are hardcoded literals at driver:1170/:1176. Lineage precedent: the confirmed V3-EXQ-965 autopsy (968's own declared source_autopsy) already recorded that this driver family's C1 control arm is analytically pinned.",
+   "per_claim_recommendation": {},
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false
+   },
+   "learning_extracted": [
+    "Two seeds narrowly missing the same bar in OPPOSITE directions is a heterogeneity finding; collapsing it to 'no material difference' via a fall-through else: destroys the signal.",
+    "A hardcoded status='PASS' makes the manifest's outcome field a readiness receipt, not a result.",
+    "A criterion whose noise floor is estimated from 2 samples cannot arbitrate a 2.2x effect."
+   ],
+   "routing": "queue-experiment"
+  },
+  {
+   "run_id": "v3_exq_871b_mech090_e3_reselection_shortcircuit_retest_20260901T212042Z_v3",
+   "queue_id": "V3-EXQ-871b",
+   "claim_ids": [
+    "MECH-090",
+    "ARC-071"
+   ],
+   "failed_criterion": "negative_control",
+   "self_route_label": "shortcircuit_working_confirmed",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- MECH-090's registered non-degeneracy precondition IS satisfied (83<104, 53<99) and its CONFIRMING clause is arguably met, but the prescribed DV sits at its mechanical floor, so the run cannot separate 'the gate works' from 'nothing could have moved'",
+    "biological_reference": "partial -- striatal chunking (Graybiel/Sakai/Wymbs) is convergent on substrate, open on parameterisation",
+    "prerequisites": "present",
+    "implementation": "complete -- the short-circuit path was genuinely exercised (21 and 56 opportunity ticks)",
+    "environment": "adequate",
+    "measurement": "misleading -- opportunity_continuation_rate is exactly 1.0 in both cells with 0 counter-examples in 77 ticks; the driver predicate (:665-673) coincides with agent.py:7202-7222 on step-idx and chunk-source, and the only escape is a beta release, but beta_elevated is TRUE on 959/959 ticks in both cells -- so the gate's beta conjunct was never exercised: a constant where the design requires variation",
+    "integration": "isolated -- NO control arm; both arm_results rows are A_HIER_S5 with both flags ON",
+    "scale": "under-powered -- 77 opportunity ticks total"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MEASURES -- a confirmation with no control arm and a near-tautological numerator"
+   },
+   "biological_reference": {
+    "closest_mechanism": "striatal action chunking / options framework",
+    "dependencies": [
+     "ARC-069",
+     "MECH-163",
+     "ARC-023",
+     "ARC-021",
+     "MECH-057a",
+     "MECH-138"
+    ],
+    "is_formal_import": false,
+    "divergence": "parameterisation open (how many repetitions to chunk; what stops chunks-of-chunks)",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-871b's self-route 'shortcircuit_working_confirmed' overstates what the run establishes, though less severely than an earlier draft of this autopsy claimed. (1) NO CONTROL ARM: both arm_results rows are A_HIER_S5 with both probe flags true; the 'pre-fix 0.0' baseline is asserted by construction (driver:344-347) and 871a could not have measured it (chunk_max_size=2 yields zero opportunities). (2) THE CONFIRMING NUMERATOR WAS NEVER AT RISK: opportunity_continuation_rate is 1.0 with 0 counter-examples in 77 ticks, the driver predicate (:665-673) coincides with the substrate gate (agent.py:7202-7222) on step-idx and chunk-source, and the sole escape route -- a beta release -- never occurred, since beta_elevated is true on 959/959 ticks in both cells. The beta conjunct is constant where the design requires it to vary. (3) THE PRESCRIBED DV IS MEASURED, AND AT ITS FLOOR -- correcting an earlier draft of this autopsy which said it 'remains unmeasured': 871b does compute n_genuine_commits/n_e3_ticks (83/94 = 0.883 and 53/99 = 0.535, against 871a's 113/103 and 103/93), and decomposing the 83 over tick_records gives 73 exhausted-chunk E3 ticks + 10 episode starts + 0 opportunity re-commits. The DV is therefore at its mechanical floor and the driver's own <=0.5 working ceiling was unreachable in seed 101 by ANY short-circuit behaviour. So the correct reading is not 'the DV was substituted away and left unmeasured' but 'the DV was measured, is at floor, and cannot discriminate at this chunk supply'. MECH-090's registered non-degeneracy precondition (n_genuine_commits_identity_based < n_e3_ticks + n_episodes_probe) IS satisfied -- 83<104 and 53<99 -- so the 871a defect signature is genuinely absent and the wiring fix is genuinely exercised. What is still missing is a condition under which the rate COULD exceed the floor.",
+   "per_claim_recommendation": {
+    "MECH-090": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "MECH-090 keeps standard; its non-degeneracy precondition is satisfied and the wiring fix is exercised, so the substrate hold is discharged -> set pending_retest_after_substrate false",
+     "pending_retest_after_substrate": false,
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "status_change": "none -- stays active"
+    },
+    "ARC-071": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "substrate_conditional",
+     "change": "ARC-071 keeps substrate_conditional, but RE-GROUNDED: the LEG 2 justification is stale (the wiring fix was exercised by 871b). The category now rests on LEG 3's missing chunk-boundary instrument -> epistemic_category: substrate_conditional",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "status_change": "none -- stays candidate",
+     "note": "ARC-071's governance_2026_09_01 field ('NO EXPERIMENT HAS MEASURED THE DV') is now only partly true: 871b measures it. What remains true is that no run has measured it under conditions where it could exceed the floor."
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "c1_disposition": "C1 fired naming v3_exq_049c_mech090_beta_gate_v2, v3_exq_592b and v3_exq_592c_mech090_commit_readiness_gate_validation as MECH-090 drivers on disk that have NEVER scored. Named here rather than dismissed: three unrun commit-readiness drivers sitting beside a claim whose registered DV is still unmeasured is itself part of this finding. The routing is NOT a new driver -- it is (a) re-read 871b on the DV it already computed, and (b) require a real control arm on any successor. Whether one of these three unrun drivers already supplies that control arm is a question for the governance walk, not something this autopsy resolves.",
+    "c2_disposition": "C2 fired naming commitment-closure-control-plane, mech090-arc071-attick-persistent-handle-fix and mech317-action-chunk-boundary-instrument. The third is directly on point and is named here rather than dismissed: mech317-action-chunk-boundary-instrument exists precisely to instrument the chunk-boundary DV, which is the measurement 871b substituted away from. If that instrument is landed, the prescribed DV becomes measurable without inventing a new probe. Action stays 'none' because these entries already exist and this autopsy adds no new substrate need."
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": true,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false
+   },
+   "learning_extracted": [
+    "A rate of exactly 1.0 from a predicate that coincides with the gate under test is a plumbing receipt; here the sole escape route (beta release) never occurred, beta_elevated being true on 959/959 ticks.",
+    "An A/B whose two arms carry identical flags has no control arm, whatever the arm labels say.",
+    "'The DV was not measured' and 'the DV is at its mechanical floor' are different findings with different fixes -- decomposing the numerator is what separates them.",
+    "A <=0.5 ceiling is not a threshold the run failed to reach; at 73 exhausted-chunk ticks out of 83 it was arithmetically unreachable at this chunk supply."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "two fresh diagnostic PASSes whose self-routed labels are both unsupported by their own data -- one a threshold artifact read as a null, one a control-free confirmation",
+  "is_independent_bugs": false,
+  "structural_property": "a diagnostic PASS in this corpus certifies that the harness ran, not that the scientific question was answered; neither manifest carries preconditions[] so the indexer's adjudication flag never fired on either",
+  "readings": [
+   "self_route_labels_unsupported",
+   "diagnostic_pass_is_a_readiness_receipt"
+  ]
+ },
+ "human_confirmation": {
+  "confirmed_utc": "2026-09-02T05:04:59Z",
+  "gate": "failure-autopsy Step 8 interactive gate",
+  "red_team_model": "fable",
+  "red_team_note": "Both passes run on a different model from the drafting model, per Step 7c."
+ }
+}

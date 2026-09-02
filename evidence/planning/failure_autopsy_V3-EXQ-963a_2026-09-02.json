@@ -1,0 +1,141 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-02T05:04:59Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest_20260902T001425Z_v3",
+   "queue_id": "V3-EXQ-963a",
+   "claim_ids": [
+    "MECH-063",
+    "SD-069"
+   ],
+   "failed_criterion": "absolute",
+   "self_route_label": "substrate_not_ready_requeue",
+   "four_layer_diagnosis": {
+    "claim_alignment": "intact (untested) -- neither axis could be measured: the sustained axis has no entropy headroom on a warmed agent, and the transient axis has no transient to measure",
+    "biological_reference": "clear -- LC tonic/phasic dual-mode gain control; not a formal import",
+    "prerequisites": "present -- R1-R4 met; R3 tonic_axis_live 1.0 confirms the 963 probe_warmup repair genuinely worked (lift computed from applied temperature, agent.py:12551; was 0.0 in 963)",
+    "implementation": "partial -- the tonic lever now fires, but the PHASIC regulator does not decay: on PHASIC-ON cells the event-tick rate is 0.390-0.884 (seed 23 T1P1 fires on 1489 of 1684 selections) against 0.007-0.136 for the same burst config in V3-EXQ-779a",
+    "environment": "adequate",
+    "measurement": "misleading -- a burst that fires on up to 88% of ticks is a sustained regime, so C2's transient-dominance clause (driver:864-866) is being asked to find a transient that never ends; it fails on seeds 11 and 23 by 5-13x from hundreds of event ticks",
+    "integration": "coupled but unstable -- substrate_stable_across_run false; on-disk hash drifted mid-run (3 ree_core commits inside the run window)",
+    "scale": "adequate -- the driver's own readiness floors (20/10/10) were met >=17x; the 800-select stopping target is a different floor and its shortfall is downstream of the burst behaviour"
+   },
+   "failure_location": {
+    "mechanism": "established",
+    "measures": "not_established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MIXED (MECHANISM+MEASURES) -- the phasic regulator's dynamics are wrong AND the warmed-agent baseline has no entropy headroom; not chargeable to REE"
+   },
+   "biological_reference": {
+    "closest_mechanism": "locus coeruleus tonic/phasic dual-mode gain control",
+    "dependencies": [
+     "ARC-005",
+     "MECH-039",
+     "MECH-040",
+     "MECH-055",
+     "MECH-313"
+    ],
+    "is_formal_import": false,
+    "divergence": "none identified at this layer",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "Kept standard rather than substrate_ceiling/substrate_conditional. The mechanism is not shown inert and MECH-063 remains v3-testable once the burst regulator decays and the warmup leaves headroom; marking it substrate_conditional would suppress GOV-GRAN-1 surfacing and flag the claim not-v3-testable, which overstates the finding. The substrate work owed is recorded in recommended_substrate_queue_entry, which is what the brake and the routing key on -- not the category.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-963a (FAIL 2026-09-02) is NON-CONTRIBUTORY, and -- correcting the reading this autopsy first drafted -- the cause is NOT sampling starvation. Two independent, recomputed pillars refute that. (1) THE PHASIC BURST NO LONGER DECAYS. On PHASIC-ON cells the event-tick rate (n_event_ticks/n_e3_selects) is 0.390-0.884 in 963a against 0.007-0.136 in V3-EXQ-779a under the same burst config; seed 23 T1P1 fires on 1489 of 1684 selections. A transient that occupies up to 88% of ticks is a quasi-sustained regime, which is why C2's dominance clause (driver:864-866) fails on seeds 11 and 23 by 5-13x off hundreds of event ticks, and why the one quiescent-tick shortfall (seed 23 T1P1, 195/200) appears at all -- it is a SYMPTOM of the burst never decaying, not a sampling accident. (2) THE WARMED BASELINE HAS NO ENTROPY HEADROOM. T0P0 S_sustained_entropy fell from 0.152-0.610 in 779a to 0.0195-0.153 in 963a, a 3-26x collapse on EVERY seed under the SD-074 warmup. The R5 failure is therefore reproducible and structural across 963 and 963a, not a 4.6e-4 fluke on one cell; seed 17 is the tail of a systematic collapse. The predecessor autopsy failure_autopsy_V3-EXQ-963_2026-08-30 had ALREADY refuted starvation on the identical 16/20 profile, and this reading now engages that rather than re-charging it. CONSEQUENCE FOR ROUTING: raising MAX_ENV_STEPS_PER_CELL can at best rescue seeds 29 and 37, giving 3/5 against MIN_SEEDS 4 -- the cap bump cannot produce a result. And the counterfactual matters: had seed 17 cleared the 0.02 floor, the driver would have emitted FAIL/weakens on 1/5 dissociating seeds (driver:1041-1046), not a positive. What the run does establish positively is that the 963 probe_warmup repair worked (R3 tonic_axis_live 1.0 on 10/10 TONIC-ON cells). Separately, the label logic (driver:1005-1034) never reads the sampling_shortfall block it ships (computed :1003, stored passively), so the emitted substrate_not_ready_requeue is unreliable in either direction -- and SD-069's what_would_answer had explicitly forbidden that label for a starvation run and prescribed raising the 2400 cap, neither of which the driver honoured.",
+   "per_claim_recommendation": {
+    "MECH-063": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "MECH-063 already stores epistemic_category standard, so the storable move is the substrate hold this run establishes -> set pending_retest_after_substrate true",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- stays provisional"
+    },
+    "SD-069": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "SD-069 gains a substrate hold on the burst-decay/carry-mode fix -> set pending_retest_after_substrate true",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "create",
+    "sd_id_suggested": "sd_phasic_burst_decay_and_warmup_headroom",
+    "title": "Phasic burst must decay on a warmed agent, and warmup must leave sustained-entropy headroom",
+    "implementation_hint": "Two coupled defects block the MECH-063 (ii) tonic/phasic dissociation and are both regulator behaviour, not sampling. (a) BURST DECAY: with signal_source instantaneous_pe, trigger_ratio 1.2 and decay 0.5, the phasic burst occupies 0.390-0.884 of E3 ticks on a warmed agent (779a: 0.007-0.136), so no transient is separable. Give the burst a carry-mode/refractory decay whose realised duty cycle is bounded and asserted. (b) WARMUP HEADROOM: the SD-074 warmup drives T0P0 sustained entropy to 0.0195-0.153 (779a: 0.152-0.610), pinning the R5 headroom gate at its 0.02 floor reproducibly. Either the warmup must leave headroom or R5's band must be re-derived for warmed agents. Both must be verified BEFORE any further 963-lineage letter.",
+    "unblocks_claims": [
+     "MECH-063",
+     "SD-069"
+    ],
+    "depends_on_unresolved": [
+     "SD-074",
+     "SD-075"
+    ],
+    "priority_suggested": 1,
+    "severity": "corrupting",
+    "substrate_paths": [
+     "ree_core/utils/config.py",
+     "ree_core/agent.py"
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest_20260902T001425Z_v3",
+     "experiment_type": "v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest",
+     "metric": "phasic event-tick rate 0.390-0.884 on PHASIC-ON cells (779a 0.007-0.136); T0P0 sustained entropy 0.0195-0.153 (779a 0.152-0.610)",
+     "target": "burst duty cycle bounded well below the quiescent floor, and T0P0 sustained entropy inside the 0.02-0.98 band on a warmed agent",
+     "resolved": "open"
+    },
+    "c2_disposition": "C2 fired naming SD-074, SD-PROBE-WARMUP (severity corrupting) and sd_phasic_ema_episode_continuity as already unblocking MECH-063/SD-069. All three are real and relevant lineage entries -- SD-PROBE-WARMUP is the V3-EXQ-963 autopsy's own routing target and sd_phasic_ema_episode_continuity is V3-EXQ-779b's -- but none of them addresses THIS run's binding constraint, which is the MAX_ENV_STEPS_PER_CELL 2400 cap. SD-PROBE-WARMUP in particular is now demonstrably DISCHARGED by this run: R3 tonic_axis_live 1.0 on 10/10 TONIC-ON cells is exactly the repair it was raised for. Action stays 'none' because the fix is a driver/config change, not a substrate build."
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": true,
+    "threshold": 2,
+    "literal_count_meets_threshold": true,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_20260329-legacy-cluster_2026-08-08",
+     "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18",
+     "failure_autopsy_V3-EXQ-779b_2026-07-19",
+     "failure_autopsy_V3-EXQ-963_2026-08-30"
+    ],
+    "supersedes_autopsy": null,
+    "refused_requeue": true,
+    "route_to": "implement-substrate",
+    "upstream_substrate": "sd_phasic_burst_decay_and_warmup_headroom",
+    "brake_note": "FIRES as the 5th hit for MECH-063 (threshold 2). An earlier draft of this autopsy released the brake on the theory that the failure was sampling starvation owing no substrate build; the adversarial pass refuted that and the release is withdrawn. This target owes a substrate build (action: create), so under R3 the instrument carve-out does not apply and the run counts. A V3-EXQ-963b that merely raises MAX_ENV_STEPS_PER_CELL is REFUSED: it can rescue at most seeds 29 and 37, giving 3/5 against MIN_SEEDS 4, and it would leave both regulator defects untouched. A successor is admissible only after the burst is shown to decay on a warmed agent and R5 headroom is restored."
+   },
+   "learning_extracted": [
+    "An event-tick rate of 0.39-0.88 where the predecessor saw 0.007-0.136 is a regime change in the regulator, not a sampling difference; the step-cap shortfall is its symptom.",
+    "A 3-26x collapse in baseline entropy across every seed makes a headroom gate fail structurally; reading its worst cell as a 4.6e-4 near-miss inverts cause and tail.",
+    "A repaired lever can make a lineage LOOK closer to a result while moving the binding constraint somewhere new -- 963's tonic axis is genuinely fixed and 963a is not therefore nearer a PASS.",
+    "Checking the counterfactual is what exposes a false near-miss: clearing seed 17's floor would have produced FAIL/weakens on 1/5 seeds, not a positive.",
+    "A self-route label emitted by logic that never reads the shortfall block it ships is unreliable in BOTH directions, not merely biased toward one.",
+    "what_would_answer instructions are enforced nowhere: SD-069 named the cap fix and forbade the label, and the successor did neither."
+   ],
+   "routing": "implement-substrate",
+   "resolves_prior_failure_record": [
+    {
+     "run_id": "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest_20260830T023012Z_v3",
+     "resolved": "resolved",
+     "resolved_note": "V3-EXQ-963a's R3 tonic_axis_live 1.0 (lift 1.000 on 10/10 TONIC-ON cells) closes the probe_warmup cross-arm cache-restore defect raised against SD-PROBE-WARMUP by failure_autopsy_V3-EXQ-963_2026-08-30."
+    }
+   ]
+  }
+ ],
+ "cluster_pattern": null,
+ "human_confirmation": {
+  "confirmed_utc": "2026-09-02T05:04:59Z",
+  "gate": "failure-autopsy Step 8 interactive gate",
+  "red_team_model": "fable",
+  "red_team_note": "Both passes run on a different model from the drafting model, per Step 7c."
+ }
+}

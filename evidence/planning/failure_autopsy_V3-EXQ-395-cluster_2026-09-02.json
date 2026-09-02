@@ -1,0 +1,107 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-02T05:04:59Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [
+  "v3_exq_395_mech220_harm_hub_dry_20260413T074905Z",
+  "v3_exq_395_mech220_harm_hub_dry_20260413T075033Z",
+  "v3_exq_395_mech220_harm_hub_dry_20260413T075133Z"
+ ],
+ "targets": [
+  {
+   "run_id": "v3_exq_395_mech220_harm_hub_20260418T202544Z_v3",
+   "queue_id": "V3-EXQ-395",
+   "claim_ids": [
+    "MECH-220"
+   ],
+   "failed_criterion": "discrimination",
+   "readjudication_of": "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08",
+   "four_layer_diagnosis": {
+    "claim_alignment": "intact (untested) -- the hub was never given a channel to behaviour, so MECH-220 could not express itself",
+    "biological_reference": "partial -- cingulate-insula hub is lit-supported (4 entries, targeted_review_connectome_mech_220), but the cited 'Chen (2023)' source is absent from the corpus",
+    "prerequisites": "present at claim level; irrelevant here because the driver bypasses them",
+    "implementation": "absent -- HarmHub does not exist in ree_core at all (grep for class HarmHub / HarmHub( over ree-v3/ree_core/ returns nothing). The hub was only ever an inline module inside the experiment driver. z_harm_a consumption DOES exist in ree_core (agent.py:6471-6474, 6505, 7367, 9124, 10355-10358) but that is a different mechanism from the hub MECH-220 asserts.",
+    "environment": "adequate",
+    "measurement": "misleading -- C1 (harm_rate) measures a quantity the manipulation provably cannot reach; C3 measures the manipulation directly and moved",
+    "integration": "isolated -- the driver substitutes its own _hub_guided_action for the substrate selection path, and there is no substrate hub to integrate with",
+    "scale": "adequate"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MEASURES -- test-design defect in the driver; the substrate mechanism was never exercised"
+   },
+   "biological_reference": {
+    "closest_mechanism": "cingulate-insula hub coordinating sensory and affective pain streams",
+    "dependencies": [
+     "SD-011",
+     "SD-020",
+     "SD-021",
+     "ARC-016"
+    ],
+    "is_formal_import": false,
+    "divergence": "none established -- the experiment did not reach the mechanism",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "Test-design defect, not a substrate ceiling. Deliberately NOT substrate_ceiling: nothing about the substrate was measured, so asserting a ceiling would be unfalsifiable (and no substrate_hash was recorded either).",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-395 is NON-CONTRIBUTORY for a TEST-DESIGN reason, now established mechanically. _hub_guided_action (v3_exq_395_mech220_harm_hub.py:457-492) reads agent._current_latent.z_harm / .z_harm_a -- values with no dependence on the candidate cell (nx,ny) or the loop index i. No simulated step is taken and the obs_harm/obs_harm_a arguments are never used in the body, so harm_pred is the SAME SCALAR for all five candidates and the score reduces to K + haz_prox(i) - 0.5*res_prox(i). An additive constant cannot change an argmin, so the hub cannot change the selected action at ANY hub_weight. The driver never calls agent.act or agent.select_action (zero matches), so the real consumer path -- where z_harm_a genuinely is wired (agent.py:6471-6474, 6505, 7367, 9124, 10355-10358) -- was entirely bypassed. Corroboration is stronger than equal means: harm_events AND total_steps are identical per seed per condition (seed 42: 174/5982 both arms), i.e. bit-identical trajectories, exactly as a constant offset on a shared RNG stream predicts. C3 moved (+0.09..+0.14) because it measures the manipulation directly. CORRECTION TO THE STANDING NOTE: the 2026-04-19 attribution of this null to missing SD-032b is not supportable -- SD-032b's consumer pathway is irrelevant to a driver that never routes through it. The hold 'pending V3-EXQ-445 retest' is additionally undischargeable on its own terms: the 445 lineage ran 11 times across 8 letters (445, 445a/b/c/f/g/h), all FAIL/non_contributory, and NOT ONE tags MECH-220. TWO FURTHER FACTS, both verified this pass. (1) MECH-220's mechanism has NO SUBSTRATE IMPLEMENTATION: HarmHub does not exist anywhere in ree-v3/ree_core -- the only hub that has ever existed is the inline module in this experiment driver. So no run to date has tested a substrate hub, and the claim's implementation_phase v3 is not yet met. (2) THE ONLY 'weakens' EVIDENCE AGAINST MECH-220 IN THE INDEX COMES FROM TWO SMOKES: claim_evidence.v1.json carries weakens entries for v3_exq_395_..._dry_20260413T074905Z and ..._dry_20260413T075133Z with scoring_excluded=None, i.e. both counted, while the real 2026-04-18 run is correctly excluded as non_contributory and the third smoke is excluded as superseded. MECH-220's direction_counts therefore reads weakens: 2 against genuine_exp_count 0 -- both from 3-episode dry runs. Excluding those two entries is the single highest-value action from this autopsy.",
+   "per_claim_recommendation": {
+    "MECH-220": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "MECH-220 currently carries NO epistemic_category field at all, and its only weakens evidence is two dry smokes that must be excluded -> epistemic_category: standard",
+     "pending_retest_after_substrate": false,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_grandfathered-zworld-forward-cluster_2026-08-08"
+    ],
+    "supersedes_autopsy": "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08",
+    "refused_requeue": false,
+    "route_to": "queue-experiment",
+    "upstream_substrate": null
+   },
+   "learning_extracted": [
+    "An ablation entering a scoring function as a term constant across candidates is inert against any argmin DV, however large the weight.",
+    "Identical total_steps as well as identical event counts per seed per arm is the signature of bit-identical trajectories, and is a stronger tell than an equal aggregate rate.",
+    "A driver that reimplements action selection locally instead of calling agent.select_action can silently bypass the very substrate wiring the claim is about.",
+    "A conditional hold ('held pending retest X') has no mechanism to notice that X ran, failed 11 times, and never carried the tag that would discharge it.",
+    "A closure-sweep stub that says 'No re-diagnosis' clears a run from the un-autopsied net without anyone having read the driver.",
+    "A claim can carry its only negative evidence from --dry-run smokes when the smokes predate the pack_writer chokepoint that stamps dry_run, because scoring exclusion keys on that field and the run_id substring is not consulted.",
+    "MECH-220 asserts a hub that was never built in ree_core; four runs argued about a mechanism that exists only inside a test driver."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "exact-zero behavioural delta with nonzero representational delta, reproduced across 4 runs",
+  "is_independent_bugs": false,
+  "structural_property": "one driver-level constant-offset defect, shared by all four runs of the same experiment type",
+  "readings": [
+   "driver_test_design_defect_confirmed_mechanically"
+  ]
+ },
+ "human_confirmation": {
+  "confirmed_utc": "2026-09-02T05:04:59Z",
+  "gate": "failure-autopsy Step 8 interactive gate",
+  "red_team_model": "fable",
+  "red_team_note": "Both passes run on a different model from the drafting model, per Step 7c."
+ }
+}

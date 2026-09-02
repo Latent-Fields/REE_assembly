@@ -1,0 +1,220 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-02T05:04:59Z",
+ "scope": "cluster",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4",
+   "queue_id": "V4-EXQ-003",
+   "claim_ids": [],
+   "failed_criterion": "absolute",
+   "self_route_label": "dr10_z_self_viability_changes_selection",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim-free V4 diagnostic (unblocks_claims ARC-081, MECH-215)",
+    "biological_reference": "n/a at this layer",
+    "prerequisites": "present",
+    "implementation": "complete -- the lever is wired",
+    "environment": "adequate",
+    "measurement": "misleading -- the load-bearing precondition is tautological: driver:128 sets high_sv = cell_gap + DECISIVENESS_MARGIN (1.0) and driver:179 tests high_sv > gap, i.e. gap+1.0 > gap. The manifest's measured 1.0 / threshold 1.0 is a boolean rendered as a float (driver:252), not a measurement. C2 is annotated in code as true by construction (driver:259). C1 is arithmetically forced once the lever is connected: a penalty of gap+1.0 pushes the argmin 1.0 past second-best",
+    "integration": "coupled",
+    "scale": "n/a"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MEASURES -- the only reachable FAIL state in the whole DR-10 design is 'the lever is not connected'"
+   },
+   "biological_reference": {
+    "closest_mechanism": "n/a",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "n/a",
+    "lit_status": "absent"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V4-EXQ-003's self-route 'dr10_z_self_viability_changes_selection' certifies WIRING, not viability-sensitivity. Its load-bearing precondition is tautological (driver:128 high_sv = cell_gap + 1.0; driver:179 tests high_sv > gap), its C2 is annotated in the source itself as 'uniform self-viability range == 0 by construction' (driver:259) and flagged load_bearing false, and C1 is arithmetically forced once the lever is connected. The cost is caller-supplied and no z_self is read anywhere in the driver; the ecological source is a documented follow-on. All three criteria_non_degenerate flags are constants (hardcoded True or bool over module constants), never data-derived. NOT a claim-layer finding: claim_ids is empty and V4 sits outside the V3 denominator by design (docs/architecture/version_layering_doctrine.md).",
+   "per_claim_recommendation": {},
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false
+   },
+   "learning_extracted": [
+    "A precondition of the form x = y + m; assert x > m is a wiring receipt; rendering its boolean as a float 'measured' value disguises that in the manifest."
+   ],
+   "routing": "queue-experiment"
+  },
+  {
+   "run_id": "v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4",
+   "queue_id": "V4-EXQ-002",
+   "claim_ids": [],
+   "failed_criterion": "negative_control",
+   "self_route_label": "dr13_self_recurrence_delivers_stateful_subject",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim-free V4 diagnostic",
+    "biological_reference": "n/a at this layer",
+    "prerequisites": "present",
+    "implementation": "complete",
+    "environment": "adequate",
+    "measurement": "under-instrumented -- C1_carries_history is genuinely reachable-false, but it is compared against a FIXED FLOOR (0.001), not against the OFF arm. The A0_OFF arm (EMA, no recurrence) scores 0.330/0.154/0.174, clearing that floor comfortably and beating A1 on 2 of 3 seeds. The ON-vs-OFF comparison exists only in summary.secondary_recur_vs_ema_hist_disc, explicitly labelled 'NOT a gate'",
+    "integration": "coupled",
+    "scale": "3 seeds"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MEASURES -- the gate does not test the contrast the design doc specifies"
+   },
+   "biological_reference": {
+    "closest_mechanism": "n/a",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "n/a",
+    "lit_status": "absent"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V4-EXQ-002's self-route 'dr13_self_recurrence_delivers_stateful_subject' is not supported by its own gate. C1_carries_history is reachable-false -- the one genuinely non-degenerate criterion across both V4 runs -- but it compares to a fixed 0.001 floor rather than to the OFF arm, and the OFF arm (EMA, no recurrence) clears it at 0.330/0.154/0.174, scoring HIGHER than the recurrence arm on 2 of 3 seeds. The DR-13 design doc's falsifier is explicitly about going 'beyond the EMA snapshot' and whether recurrence 'buys nothing over the EMA'; the implementation never gates on that contrast, leaving it in a field labelled NOT a gate. So the run cannot distinguish 'recurrence delivers a stateful subject' from 'an EMA does the same job'. NOT a claim-layer finding: claim_ids empty, V4 outside the V3 denominator by design.",
+   "per_claim_recommendation": {},
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false
+   },
+   "learning_extracted": [
+    "An OFF arm that clears the gate more often than the ON arm, while the ON-vs-OFF contrast sits in a field marked 'NOT a gate', is a falsifier that cannot falsify."
+   ],
+   "routing": "queue-experiment"
+  },
+  {
+   "run_id": "v3_exq_259_wanting_gradient_navigation_1775666895",
+   "queue_id": "V3-EXQ-259",
+   "claim_ids": [
+    "ARC-030",
+    "MECH-112",
+    "SD-012",
+    "SD-015"
+   ],
+   "failed_criterion": "absolute",
+   "self_route_label": null,
+   "four_layer_diagnosis": {
+    "claim_alignment": "intact (untested) -- and MECH-112 is DEPRECATED, split into MECH-229/MECH-230 on 2026-04-13, five days after this run",
+    "biological_reference": "not re-derived -- this is a bookkeeping adjudication, not a fresh diagnosis",
+    "prerequisites": "unknown",
+    "implementation": "unknown",
+    "environment": "unknown",
+    "measurement": "misleading -- every metric is exactly 0.0 in both arms",
+    "integration": "unknown",
+    "scale": "unknown"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "not_established",
+    "ree": false,
+    "net_classification": "MIXED/uncertain -- a degenerate 2026-04-08 run superseded in fact but not in metadata; not chargeable to REE"
+   },
+   "biological_reference": {
+    "closest_mechanism": "wanting/incentive-salience gradient navigation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "not established",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "superseded",
+   "recommended_evidence_quality_note": "V3-EXQ-259 (2026-04-08) is a REAL completed FAIL -- the manifest exists at evidence/experiments/v3_exq_259_wanting_gradient_navigation/, committed once in e9f85337a2 and never modified, and runner_status corroborates a 288.7s completed run on DLAPTOP-4.local. It is NOT a crash record and does not route to /diagnose-errors. It appears in pending_review only because the GFLAG-0111 indexer fix (76921a56ce, 2026-09-01T19:08Z) began discovering flat-only orphaned manifests; the run did not change, the net widened. It should be marked SUPERSEDED rather than adjudicated on its merits, for three converging reasons: (1) every metric is exactly 0.0 in both arms, so it discriminates nothing; (2) it tags MECH-112, which was DEPRECATED and split into MECH-229/MECH-230 on 2026-04-13, five days later -- so its evidence weighs against a claim that no longer exists in that form; (3) functional successors already exist -- v3_exq_326_wanting_gradient_nav_fix (FAIL, itself marked superseded) and v3_exq_326a (PASS, supports, tagging the post-split MECH-229) -- but nothing carries a supersedes pointer back to 259. The gap is the missing pointer, not a missing diagnosis.",
+   "per_claim_recommendation": {
+    "MECH-112": {
+     "recommended_evidence_direction": "superseded",
+     "recommended_epistemic_category": "standard",
+     "change": "MECH-112 is deprecated and split into MECH-229/MECH-230; 259's weakens entry should stop counting against it -> evidence_direction: superseded",
+     "pending_retest_after_substrate": false,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- already deprecated"
+    },
+    "ARC-030": {
+     "recommended_evidence_direction": "superseded",
+     "recommended_epistemic_category": "substrate_ceiling",
+     "change": "ARC-030 keeps substrate_ceiling; only the 259 entry moves -> evidence_direction: superseded",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- stays candidate"
+    },
+    "SD-012": {
+     "recommended_evidence_direction": "superseded",
+     "recommended_epistemic_category": "standard",
+     "change": "Only the 259 entry moves -> evidence_direction: superseded",
+     "pending_retest_after_substrate": false,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- stays provisional"
+    },
+    "SD-015": {
+     "recommended_evidence_direction": "superseded",
+     "recommended_epistemic_category": "substrate_ceiling",
+     "change": "SD-015 keeps substrate_ceiling; only the 259 entry moves -> evidence_direction: superseded",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "c1_disposition": "C1 fired naming three unrun drivers on disk for these claims: v3_exq_226_arc030_combined_selector_redesign, v3_exq_235_mech112_arc030_clean_goal_gate, v3_exq_238_sd012_drive_weight_ablation_fix. Named in full rather than silenced. MIS-ATTRIBUTED to this target: 259's routing is governance-note-only, not queue-experiment -- the check aggregates routing across the artifact's targets and the two queue-experiment routings belong to the V4 targets, which carry claim_ids: []. Substantively, v3_exq_235_mech112_arc030_clean_goal_gate targets MECH-112, which was deprecated and split into MECH-229/MECH-230 on 2026-04-13; reviving a driver against the dead id is not something this autopsy recommends. Whether v3_exq_226 and v3_exq_238 should run is a live question for the governance walk, but it is not created or answered by this supersession bookkeeping.",
+    "c2_disposition": "C2 fired naming scaffolded-curriculum-hazard-rebalance and sd_blocked_agency_mismatch_floor_calibration as substrate entries already unblocking these claims. Both named, neither disputed, neither acted on: this target proposes no substrate work at all -- its entire disposition is a supersession pointer onto an already-answered question (v3_exq_326a)."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false
+   },
+   "learning_extracted": [
+    "An indexer fix that widens discovery surfaces old runs as new pending work; the correct response is supersession bookkeeping, not a fresh diagnosis.",
+    "A run tagging a claim that was later deprecated and split keeps weighing against the dead id until something explicitly supersedes it.",
+    "Functional supersession (326/326a exist and answer the question) is invisible to tooling without a supersedes pointer."
+   ],
+   "routing": "governance-note-only"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "three runs that entered pending_review by NET WIDENING rather than by new results -- the V4 pair via the purpose-keyed 'diagnostic autopsy required' section (both were already reviewed with user sign-off on 2026-07-01), and 259 via the GFLAG-0111 flat-manifest discovery fix landed 2026-09-01",
+  "is_independent_bugs": false,
+  "structural_property": "the two V4 runs share a real defect class with each other (a falsifier whose gate cannot fail: one tautological, one floor-compared against an OFF arm that also clears it); 259 shares only the surfacing mechanism, not the defect, and its disposition is bookkeeping",
+  "readings": [
+   "net_widening_not_new_science",
+   "v4_falsifier_gates_cannot_fail"
+  ]
+ },
+ "human_confirmation": {
+  "confirmed_utc": "2026-09-02T05:04:59Z",
+  "gate": "failure-autopsy Step 8 interactive gate",
+  "red_team_model": "fable",
+  "red_team_note": "Both passes run on a different model from the drafting model, per Step 7c."
+ }
+}
