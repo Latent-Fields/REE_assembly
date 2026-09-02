@@ -1,11 +1,79 @@
-# Project Insights — 2026-08-25
+# Project Insights — 2026-09-02
 
-Generated: 2026-08-25T07:01:44Z
-Recommendations fixed at: 2026-08-25T07:01:44Z (REE_assembly `git log --since="90 minutes ago"` showed only `igw-ledger: update` — no autopsy landed mid-run)
+Generated: 2026-09-02T05:36:00Z
+Recommendations fixed at: 2026-09-02T05:36:00Z
+
+> **Provenance of this revision.** The front sections below (live front, live campaign, buildable-now,
+> Recommendations) were rewritten on 2026-09-02 by the cross-plan root-cause synthesis session
+> (`crossplan-rootcause-synthesis-20260902`; record:
+> [`evidence/planning/cross_plan_root_cause_synthesis_20260902.md`](evidence/planning/cross_plan_root_cause_synthesis_20260902.md)).
+> They were derived by reading the autopsy stream and every non-done v3 closure node end to end, not by
+> a new fleet measurement. The **Experiment Health / Substrate Bottlenecks / Process-friction** figures
+> further down are the 2026-08-25 `/dual-insights` measurements, retained verbatim under an appendix
+> heading and NOT re-measured this pass; re-run `/dual-insights` to refresh them.
 
 ---
 
-## Experiment Health
+- **Ready & not-yet-implemented** (buildable now): **SD-018** (directional resource-field amend — V3-EXQ-948 CONFIRMED that z_world discards the 25-dim local resource gradient present in its own input; routed /implement-substrate, user-confirmed 2026-08-25, still un-owned). *(Second buildable-now item, an experiment not a build: the SD-e1 ITEM 2 rollout-consistency validation run, owed since 2026-08-30, unminted.)*
+
+### The live front is the observation -> z_world -> E1/E2-rollout interface, not the selector: 39 of 43 remaining v3 nodes chain to it
+
+E3 is scoring candidate futures that carry no resource-directional information (V3-EXQ-948: a
+reader of `z_world` alone forages 0.5 res/ep against a 1.0 floor; the same reader given
+`z_world` + the local resource field clears it 3/3 seeds) and that collapse over the rollout horizon
+(V3-EXQ-108b -> 965: action-blind, single-step-trained E1; ITEM 1 landed, `cr_ratio` still 25-37x
+short). So candidate scores are near-identical, committed selection never engages (V3-EXQ-925:
+`committed_fraction` 0.000), and the residual variance is a scale artifact of whichever channel is
+largest (936a: `residue_weighted` 99.999%; 571b: `harm_weighted` 0.94-0.995; "F-dominance" only in
+the unclamped 571 world). Competence floor, conversion ceiling, monostrategy, F-dominance and
+candidate-pool collapse are five readings of that one gap.
+
+The gap is `complicated (buildable)`: the probe chain (719a -> 724 -> 732a -> 737/738 -> 813 -> 948;
+108b -> 954 -> 965) has run and named two items. Neither is declared as a dependency anywhere on the
+critical path — `f_dominance_conversion_ceiling` still carries `depends_on_unresolved: []` and
+`complex (probe-gated)`, which is why closure_status reports it "not ready with no unresolved
+dependencies". Three flags raised this session (evidence_discrepancy on the undeclared gate;
+stale_note on `conversion_ceiling_root`'s decision block and the hero pointer; contested_disposition
+on E3 channel-scale normalisation, to be decided together with GFLAG-0051).
+
+## The live campaign — what the front rests on, and what is in flight
+
+Nothing is queued on this front. The table is the evidence path the headline is derived from, lead
+first; the next run is unminted (Recommendation 2).
+
+| run | role | what it established |
+|---|---|---|
+| **V3-EXQ-948** (2026-08-25, confirmed, red-teamed) | **1 (lead)** | H-observation-interface CONFIRMED: the directional resource field is the missing content, even with SD-018's scalar proximity head active |
+| V3-EXQ-965 (2026-08-30) | 2 | SD-e1 ITEM 1 (action conditioning) validated; ITEM 2 (rollout-consistency objective) landed, validation owed |
+| V3-EXQ-571b (2026-09-01, confirmed) | 3 | F-monopoly premise is regime-dependent under the clamp; occupant shifts to `harm_weighted`; clamp collapses E3 score range ~800x |
+| V3-EXQ-925 / 925a (2026-08-12 / 08-28) | 4 | H0 selector-regime confound + H5 uncontrolled score scale confirmed; H1-H4 alive, untestable as posed |
+
+What is NOT on the path, and why: MECH-448/449 (ARC-107) and the ARC-108/110 loop-segregation
+builds are landed, no-op default and currently unmeasurable — every conversion PASS/FAIL before
+2026-07-20 used a hold-weighted DV and was withdrawn; the corrected instrument (`GateDVRecorder`,
+ree-v3 `c309bc6486`) exists and a 713x re-letter was refused 2026-08-21. They become measurable
+once the interface delivers differentiated candidates and the score sum is normalised.
+
+Node accounting (full table in the synthesis record, section 2): 35 nodes chain through the
+single FULLSTACK / GAP-I / "competent all-ON substrate" gate; 4 more (ORNT-2/3/4, REPOSE) chain to
+sibling E1/E2-representation builds; 4 are independent (ORNT-6 governance call, mech357 BUILD,
+GAP-4-battery, ORNT-1 with no declared blocker at all).
+
+## Recommendations
+
+1. **Own the SD-018 directional-field amend and queue the SD-e1 ITEM 2 validation — the two named, unowned items on the v3 critical path.** SD-018: `complicated (buildable)`, routed `/implement-substrate` by confirmed failure_autopsy_V3-EXQ-948_2026-08-25 and user-confirmed; two admissible shapes (re-scope the scalar proximity target to a directional readout, or route `resource_field_view` as an explicit channel beside `z_world`); no build item, chip, or owner exists. SD-e1 ITEM 2: the entry's own hint says "THE NEXT ACTION IS AN EXPERIMENT, NOT A BUILD" — train WITH `rollout_consistency_loss`, decay=1.0 as the flat control, bar `cr_ratio(h=1) >= 0.1`; unminted. *(Gates: no open chip or TASK_CLAIMS entry covers either — verified 2026-09-02; the target is the interface, not a selector node; not applied; not brake-refused — 948's autopsy explicitly reads this as a new build, not a letter.)*
+2. **Declare the gate.** Set `depends_on_unresolved` on `f_dominance_conversion_ceiling` to the two items above plus E3 channel-scale normalisation, flip its `node_class` to `complicated (buildable)`, re-point `awaiting:` on the seven `conversion_ceiling_campaign` assembling nodes and give them a `revisit_after`. Plan-frontmatter and substrate-queue edits only; no claim moves. (GFLAG raised.)
+3. **Decide E3 channel-scale normalisation (rung 3) together with GFLAG-0051.** Both ask what E3's additive score sum may contain and on what scale. Until decided, refuse further 936-family and 654h-class conversion falsifiers — each of the last four was degenerate on score scale, class floor, or DV weighting. (GFLAG raised.)
+4. **Re-point the hypothesis-space hero** to `conversion_ceiling_root` and fix its stale `live_gate` (V3-EXQ-808 ran 2026-07-24). Extends GFLAG-0093. (GFLAG raised.)
+5. **Name ORNT-1's blocker** in `orienting_epistemic_deficit_v3_plan.md` — the one node whose gate is undeclared in its own plan rather than on the wrong object.
+
+**Already owned — reported, not recommended:** the 2026-09-01 flag-triage backlog (25 STILL-HOLDS + 7 PARTIAL, 12 contested briefs unapplied) is governance's; section 7 of the synthesis record says which of those the binding constraint decides. `chip-20260823-queue-refill-fresh-design` (queue depth) is superseded in substance by Recommendation 1.
+
+---
+
+## Appendix — prior-cycle measurements (2026-08-25, retained verbatim, not re-measured)
+
+### Experiment Health
 
 - **Total runs:** 223 (PASS: 81 | FAIL: 137 | ERROR: 5 | **error rate: 2.2%**) — window: 2026-07-26 → 2026-08-24, source: coordinator DB `results` + `experiments` on hub `ree@91.98.130.117` via `scripts/experiment_error_rate.py --days 30`.
   - **0 phantom completions**, 0 unexplained bookkeeping gaps, 0 operator cancellations — so 2.2% is a point estimate, not an interval.
@@ -44,7 +112,7 @@ All-time across 921 manifests: **448 distinct EXQ bases, 67 with 3+ iterations.*
 
 ---
 
-## Substrate Bottlenecks
+### Substrate Bottlenecks
 
 `evidence/planning/substrate_queue.json` — 161 entries. Counts below use the canonical boolean `ready` and `depends_on_unresolved` fields, not the free-text `status` field (which carries prose paragraphs on ~40 entries and cannot be tallied).
 
@@ -70,7 +138,7 @@ Cross-referencing against the high-iteration chains above: the two heaviest fail
 
 ---
 
-## Governance State
+### Governance State
 
 - **Claims registry:** 1019 claims in `docs/claims/claims.yaml` — 751 `candidate`, 96 `provisional`, 68 `active`, 38 `open`, 21 `stable`, 17 `legacy`, 9 `candidate_substrate_landed`, 7 `implemented`, 5 `resolved`, 3 `retired`.
 - **Claims pending V3 substrate (`v3_pending: true`): 239.**
@@ -80,7 +148,7 @@ Cross-referencing against the high-iteration chains above: the two heaviest fail
 
 ---
 
-## Literature Coverage
+### Literature Coverage
 
 - **Priority-1 backlog items still open: 0.** `evidence/planning/evidence_backlog.v1.json` (generated 2026-08-23T06:11:34Z) holds 417 items — 123 `high` priority, and **zero of them are `open`** (all `in_progress` or `covered`).
 - **Total open items: 137** — all `medium` priority. Status split: 203 `in_progress`, 137 `open`, 77 `covered`.
@@ -90,7 +158,7 @@ Cross-referencing against the high-iteration chains above: the two heaviest fail
 
 ---
 
-## Human-Intervention Patterns
+### Human-Intervention Patterns
 
 Derived from 583 dated session blocks in `WORKSPACE_STATE.md` covering 2026-07-26 → 2026-08-25.
 
@@ -106,7 +174,7 @@ Derived from 583 dated session blocks in `WORKSPACE_STATE.md` covering 2026-07-2
 
 ---
 
-## Recommendations
+### Recommendations
 
 Three of the four candidate actions this analysis surfaced are **already owned by open chips** and are therefore *not* recommended (gate 1 — recommending owned work sends a session to duplicate it). They are listed under "Already owned" below so the coverage is visible.
 
