@@ -1720,6 +1720,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0119",
+      "claim_ids": [
+        "MECH-063",
+        "SD-069"
+      ],
+      "flag_type": "stale_note",
+      "summary": "GFLAG-0078 is stale: it is premised on V3-EXQ-779a/779b (2026-07-18/19) and directs a step-cap-only successor, but two newer, more-recent runs on the current substrate (V3-EXQ-963 2026-08-30, V3-EXQ-963a 2026-09-02) already superseded that lineage and their confirmed autopsy (failure_autopsy_V3-EXQ-963a_2026-09-02) EXPLICITLY REFUSES a step-cap-only successor: 'A V3-EXQ-963b that merely raises MAX_ENV_STEPS_PER_CELL is REFUSED: it can rescue at most seeds 29 and 37, giving 3/5 against MIN_SEEDS 4, and it would leave both regulator defects untouched.' The real blocker (post-SD-074 warmup) is two regulator/config defects -- phasic burst no longer decays on a warmed agent (event-tick rate 0.39-0.88 vs 779a's 0.007-0.136) and the warmup collapses T0P0 sustained-entropy headroom (0.0195-0.153 vs 779a's 0.152-0.610) -- not sampling starvation. The re-derive brake FIRED (5th hit, threshold 2) and routes to /implement-substrate on a new substrate entry sd_phasic_burst_decay_and_warmup_headroom (action:create, not yet present in substrate_queue.json, depends_on_unresolved SD-074/SD-075). GFLAG-0078 should be closed/superseded by governance rather than acted on literally; the correct next step is /implement-substrate on sd_phasic_burst_decay_and_warmup_headroom once SD-074/SD-075 land, not another /queue-experiment letter.",
+      "raised_by_session": "metaworker-chip-20260901-gflag0078-sd069-stepcap",
+      "raised_at": "2026-09-02T16:47:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
