@@ -16716,14 +16716,20 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_inv_072",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "multi-agent/other-agent modeling",
+        "violence action affordance",
+        "similarity/threat inference substrate"
+      ],
+      "blocked_note": "No runnable V3 substrate for INV-072 (queue-experiment Step 2.5c gate, checked 2026-09-02). Searched ree_core/ for violence, axiom, ethic/moral, dehuman*, other_agent/second_agent/opponent, multi-agent env support, and a language module: zero hits on violence/axiom/dehuman/multi-agent/language; threat and similarity hits are all env-hazard or representation-similarity code, not other-agent self-like/threat modeling. causal_grid_world.py has no other-agent/opponent concept at all -- REE V3 is single-agent-vs-environment. INV-072 also depends on INV-070 (epistemic responsibility for accurate similarity/threat inference), whose claims.yaml implementation_phase is already v5 -- so the dependency chain itself is not V3-reachable, independent of the missing violence/multi-agent machinery. Needs, at minimum: an other-agent representation in the environment/agent stack, a self-like/similarity classifier over that representation, a threat-prediction pathway, a violence/harm-to-other action affordance, and an accurate-vs-inaccurate inference manipulation -- none of which exist yet. Route via /implement-substrate once a design for agent-vs-agent modeling exists; until then this is architecturally out of reach, not a missing-script gap."
     },
     {
       "acceptance_checks": [
