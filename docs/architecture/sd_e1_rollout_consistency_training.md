@@ -9,7 +9,7 @@ nav_order: 13
 
 **Claim ID:** SD-e1-rollout-consistency-training
 **Subject:** `predictors.e1_deep.E1DeepPredictor.transition`
-**Status:** ITEM 1 IMPLEMENTED (2026-08-29, VALIDATED by V3-EXQ-965 2026-08-30) / ABSOLUTE-VS-RESIDUAL BRANCH SUBSTRATE IMPLEMENTED (2026-09-01, experiment owed) / ITEM 2 PENDING
+**Status:** ITEM 1 IMPLEMENTED (2026-08-29, VALIDATED by V3-EXQ-965 2026-08-30) / ABSOLUTE-VS-RESIDUAL BRANCH CLOSED (substrate 2026-09-01, V3-EXQ-968 returned no material difference) / ITEM 2 SUBSTRATE IMPLEMENTED 2026-09-01 (candidate 1; validation experiment owed)
 **Registered:** 2026-08-03 (substrate_queue.json)
 **Depends on:** none unresolved (probe-gating discharged by V3-EXQ-954, 2026-08-29)
 **Blocks:** INV-088, MECH-135 (both carry `pending_retest_after_substrate: true`)
@@ -131,7 +131,7 @@ Bit-identical.
 encoder trains under the existing `compute_prediction_loss` MSE). **MECH-094:** not
 applicable -- this SD adds no new content-to-memory write path.
 
-## Solution -- ITEM 2 (pending)
+## Solution -- ITEM 2 (candidate 1 substrate landed 2026-09-01; validation owed)
 
 The multi-step / rollout-consistency training objective. Candidate ranking from the
 synthesis, Section 3, all of which presuppose item 1 and none of which should be adopted
@@ -206,10 +206,124 @@ wrong residual base, where a looser "the numbers moved" check would not), non-va
 branches, gradient still reaching `output_proj`, and `from_dims` reachability. It deliberately
 does **not** assert that residual beats absolute -- that is the experiment.
 
-**Still owed:** the A/B itself. A cheap `/queue-experiment` diagnostic on the ITEM 1 ON arm,
-absolute vs residual `output_proj`, reading per-action divergence at the E1 output and
-`cr_ratio(h=1)`; take it before committing to a large ITEM 2 objective build, per this
-lineage's own recorded lesson that a 49-second probe re-scoped ITEM 1.
+### The A/B result -- V3-EXQ-968, 2026-09-01: NO MATERIAL DIFFERENCE
+
+The A/B was queued and run the same day
+(`v3_exq_968_sd_e1_output_proj_residual_ab_20260901T162647Z_v3`, outcome PASS,
+`experiment_purpose: diagnostic`, `evidence_direction: non_contributory`). Both arms
+ITEM 1 ON, 2 seeds, absolute vs residual `output_proj`.
+
+Interpretation label: **`residual_no_material_difference`**.
+
+| seed | `cr_ratio(h=1)` absolute | `cr_ratio(h=1)` residual | residual/absolute lift |
+|---|---|---|---|
+| 42  | 2.673e-03 | 5.909e-03 | **2.21x** |
+| 123 | 2.717e-03 | 9.227e-04 | **0.34x** |
+
+**Read this carefully, and do not compress it into a direction.** The two seeds disagree in
+SIGN: residual is ~2.2x better on seed 42 and ~0.34x, i.e. worse, on seed 123. Neither
+approaches the pre-registered `lift_factor_abs_floor` of **3.0** (derived from the absolute
+arm's own cross-seed noise, `measured_absolute_arm_noise_ratio` 1.016). Both
+`residual_materially_exceeds` and `residual_materially_below` are **false** on both seeds.
+That sign-inconsistency against an unmet floor is exactly why the label is "no material
+difference" -- it is **not** a finding that residual is worse, and **not** a finding that
+residual is better. All five readiness preconditions were met (encoder trained,
+`CR_real(h=1)` non-degenerate at 40 surviving samples, `missing_action_calls` = 0,
+`direct_action_supply_fraction` = 1.0, `cr_ratio(h=1)` finite), so this is a real
+comparison that returned null, not a vacuous one.
+
+**Consequence.** The doc's own pre-registered cheap branch is now spent, and it did not
+relieve the crush. `output_proj_residual` stays in the substrate, default-off, as a
+characterised null rather than a recommendation. ITEM 2 is the remaining route, and the
+~675x LSTM+output_proj crush remains its target -- now known not to be a mere
+parameterisation artefact.
+
+### ITEM 2 substrate -- candidate 1, landed 2026-09-01
+
+`E1DeepPredictor.rollout_consistency_loss(initial_state, targets, actions=None,
+horizon=None, horizon_weights_decay=None, simulation_mode=False)`, gated by four
+`E1Config` knobs, all no-op at default:
+
+| Param | Type | Default | Purpose |
+|---|---|---|---|
+| `e1_rollout_consistency_enabled` | bool | `False` | master switch |
+| `e1_rollout_consistency_weight` | float | `1.0` | caller-side scaling; the helper returns the UNWEIGHTED horizon-mean |
+| `e1_rollout_consistency_horizon` | int | `5` | rollout depth the objective covers |
+| `e1_rollout_consistency_horizon_weights_decay` | float | `1.0` | `w_t = decay ** t`; 1.0 = uniform, <1.0 = TD-MPC discounting |
+
+The objective rolls the transition out autoregressively from `initial_state` under
+`actions` and penalises per-step deviation from the OBSERVED latent trajectory:
+`L = sum_t (w_t * MSE(pred_t, targets[:, t, :])) / sum_t w_t`.
+
+**What this adds over `REEAgent.compute_prediction_loss`, which is the question that
+nearly stopped this build.** That method ALREADY rolls E1 out autoregressively to
+`prediction_horizon` and MSEs the whole trajectory, and post-ITEM-1 it already supplies the
+executed action sequence (agent.py, the `_e1_actions` slice). So the multi-step FORM was
+present on the agent-loop path before this landing, and candidate 1 is not the greenfield
+build the ranked list makes it sound like. Two things were genuinely missing:
+
+1. **The per-step discount.** `F.mse_loss` over the stacked rollout weights every horizon
+   step equally. Under an autoregressive rollout deep-step error is larger by construction,
+   so a flat mean lets the deepest steps dominate the gradient; `decay < 1.0` is TD-MPC's
+   actual form. At `decay=1.0` this helper reduces to the flat form to within float32 reduction-order error (the helper reduces per-step then weights; F.mse_loss reduces over all elements at once -- mathematically equal, different summation order, measured 6.4e-08 RELATIVE at worst and bit-identical on the legacy branch) --
+   so the discount is the only behavioural axis added. The contract asserts that identity
+   at `rtol=1e-6`, NOT bit-exactly: an earlier revision asserted bit-identity and was
+   machine-class flaky, passing on `ree-worker-4` while failing on `darwin-arm64`. A
+   float32-eps tolerance still catches every real defect here, since a wrong denominator,
+   a t=1 weight origin, or a dropped step is wrong by a FACTOR.
+2. **Reachability.** `compute_prediction_loss` is only reachable through the agent loop, and
+   **every driver in this SD's own lineage bypasses it**, training E1 directly and
+   single-step teacher-forced: `F.mse_loss(e1_pred[:, 0, :], total_curr.detach())` at
+   V3-EXQ-954:312, V3-EXQ-965:409 and V3-EXQ-968:431. So the multi-step objective has never
+   once been exercised in the lineage that motivated this SD. The doc's Problem section
+   states defect (a) as "E1 is trained at `horizon=1`" -- that is true of these DRIVERS, not
+   of the substrate, and the distinction was not previously recorded here.
+
+**Not phased-training-gated:** no new head trains on a moving latent target; the objective
+trains existing `transition_rnn` / `output_proj` weights. **MECH-094:** carried anyway as a
+`simulation_mode` gate returning zero, matching SD-056's helper convention -- replay / DMN
+paths cannot recruit the objective.
+
+**`compute_prediction_loss` is deliberately NOT rewired.** Agent-loop wiring would change a
+path several hundred experiments depend on, for no consumer that exists yet; it is held
+until the validation experiment reports.
+
+Contract: `ree-v3/tests/contracts/test_e1_rollout_consistency_loss.py` (24 tests). It pins
+the flat-form identity at `decay=1.0` (at float32-eps tolerance, and the docstring says why not bit-exactly), the discount's SIGN (against a target whose
+error is concentrated at the deep end, so an inverted exponent fails), that gradient reaches
+BOTH `output_proj` and `transition_rnn` (the ~675x crush's location -- an objective that
+cannot deliver gradient there cannot move it), that deep-step-only error still produces
+gradient (otherwise this is a single-step loss wearing a horizon argument), hidden-state
+save/restore, the MECH-094 gate, grad-connected degenerate returns, horizon clamping,
+fail-closed shape validation, and all three `from_dims` wiring sites. It deliberately does
+**not** assert that multi-step beats single-step -- that is the experiment.
+
+### Why candidate 1 and NOT a rollout-endpoint contrastive
+
+A contrastive objective over candidate action SEQUENCES was designed and deliberately not
+built (2026-09-01). It would have been named `e1_rollout_sequence_divergence_*`, never
+"next-state contrastive", because it is genuinely a **different objective** from the
+synthesis's de-prioritised #5: #5 constrains the one-step transition `f(z, a)`, whereas this
+would constrain the **iterated map** under action sequences -- which is what the C3
+evaluator actually consumes (it scores 40 sequences, not 40 single actions). So #5's "the
+one relevant comparison (TD-MPC) went the other way" does not settle it.
+
+It was rejected on the OTHER half of #5's objection. *"No long-horizon anchor found"* applies
+to a long-horizon contrastive with **more** force, not less: extending contrastive to long
+horizon is precisely the unanchored move, where a t=1 next-state contrastive at least has
+Srivastava 2021 behind it (the verdict that grounded SD-056's t=1 landing). And the in-repo
+precedent that looked like a warrant does not survive checking: E2's SD-056 multi-step
+contrastive amend (`e2_fast.py`, 2026-05-31) is **built but never validated** --
+`e2_action_contrastive_multistep_enabled` is `true` in **zero** runs across the entire
+evidence corpus, measured 2026-09-01. It shows the shape is implementable, not that it works.
+
+The remaining argument for preferring it over candidate 1 was that an accuracy objective
+"already trains" the crushed weights and so would not move them. **That was intuition, not
+measurement, and it is recorded as such**: no experiment in this lineage has ever trained E1
+with a multi-step objective at all, so there is no observation of what one does to the
+crush; and the phrase described `compute_prediction_loss`, code this lineage never executes.
+Candidate 1 is the doc's ranked-strongest AND the untried one. A null on it narrows ITEM 2's
+real target and buys the departure to a contrastive with evidence rather than intuition.
 
 ## Architecture Context
 
@@ -242,3 +356,7 @@ precedent for optional conditioning), MECH-151, MECH-216, SD-016 (ContextMemory 
 - `evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md` --
   the four objective levers and the code-verified observation that all four presuppose an
   action-conditioned transition.
+- `evidence/experiments/v3_exq_968_sd_e1_output_proj_residual_ab_20260901T162647Z_v3.json` --
+  the absolute-vs-residual A/B; PASS, `residual_no_material_difference`, seeds disagreeing in
+  direction against an unmet 3.0 pre-registered floor. Closes the doc's own pre-registered
+  branch as a characterised null.

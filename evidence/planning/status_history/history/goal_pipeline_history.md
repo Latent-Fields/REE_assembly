@@ -116,7 +116,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-08-09T05:43Z` [autopsy] `failure_autopsy_V3-EXQ-228b_2026-08-09` -> [`evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json) :: autopsy does_not_support/measurement_test_design_defect routing=queue-experiment
 - `2026-08-10T06:27Z` [autopsy] `failure_autopsy_V3-EXQ-228c_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json) :: autopsy weakens/substrate_conditional routing=implement-substrate
-- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion **<- live head**
+- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion
+- `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
 
 ## `goal_pipeline:GAP-2`
 
@@ -230,7 +231,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-08-09T05:43Z` [autopsy] `failure_autopsy_V3-EXQ-228b_2026-08-09` -> [`evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json) :: autopsy does_not_support/measurement_test_design_defect routing=queue-experiment
 - `2026-08-10T06:27Z` [autopsy] `failure_autopsy_V3-EXQ-228c_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json) :: autopsy weakens/substrate_conditional routing=implement-substrate
-- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion **<- live head**
+- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion
+- `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
 
 ## `goal_pipeline:GAP-3`
 
@@ -344,7 +346,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-08-09T05:43Z` [autopsy] `failure_autopsy_V3-EXQ-228b_2026-08-09` -> [`evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json) :: autopsy does_not_support/measurement_test_design_defect routing=queue-experiment
 - `2026-08-10T06:27Z` [autopsy] `failure_autopsy_V3-EXQ-228c_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json) :: autopsy weakens/substrate_conditional routing=implement-substrate
-- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion **<- live head**
+- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion
+- `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
 
 ## `goal_pipeline:GAP-4`
 
@@ -458,7 +461,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-08-09T05:43Z` [autopsy] `failure_autopsy_V3-EXQ-228b_2026-08-09` -> [`evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json) :: autopsy does_not_support/measurement_test_design_defect routing=queue-experiment
 - `2026-08-10T06:27Z` [autopsy] `failure_autopsy_V3-EXQ-228c_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json) :: autopsy weakens/substrate_conditional routing=implement-substrate
-- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion **<- live head**
+- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion
+- `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
 
 ## `goal_pipeline:GAP-5`
 
@@ -572,7 +576,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-08-09T05:43Z` [autopsy] `failure_autopsy_V3-EXQ-228b_2026-08-09` -> [`evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json) :: autopsy does_not_support/measurement_test_design_defect routing=queue-experiment
 - `2026-08-10T06:27Z` [autopsy] `failure_autopsy_V3-EXQ-228c_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json) :: autopsy weakens/substrate_conditional routing=implement-substrate
-- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion **<- live head**
+- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion
+- `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
 
 ## `goal_pipeline:GAP-6`
 
@@ -686,7 +691,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-08-09T05:43Z` [autopsy] `failure_autopsy_V3-EXQ-228b_2026-08-09` -> [`evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json) :: autopsy does_not_support/measurement_test_design_defect routing=queue-experiment
 - `2026-08-10T06:27Z` [autopsy] `failure_autopsy_V3-EXQ-228c_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json) :: autopsy weakens/substrate_conditional routing=implement-substrate
-- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion **<- live head**
+- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion
+- `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
 
 ## `goal_pipeline:GAP-7`
 
@@ -800,5 +806,6 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-08-09T05:43Z` [autopsy] `failure_autopsy_V3-EXQ-228b_2026-08-09` -> [`evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228b_2026-08-09.json) :: autopsy does_not_support/measurement_test_design_defect routing=queue-experiment
 - `2026-08-10T06:27Z` [autopsy] `failure_autopsy_V3-EXQ-228c_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228c_2026-08-10.json) :: autopsy weakens/substrate_conditional routing=implement-substrate
-- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion **<- live head**
+- `2026-08-13T05:24Z` [autopsy] `failure_autopsy_V3-EXQ-228d_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-228d_2026-08-13.json) :: autopsy does_not_support/standard routing=governance-demotion
+- `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
 

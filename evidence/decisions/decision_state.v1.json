@@ -2260,13 +2260,13 @@
       "timestamp_utc": "2026-05-08T16:58:44Z"
     },
     "Q-042": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
+      "actor": "governance session govapply-20260901 (user-approved)",
+      "decision_needed": "Q-042 asked whether the precision update should fire at action-selection, outcome-integration, or both. Architectural answer settled 2026-05-08 (dual-read); empirical resolution was gated on a five-run StepHarness retest cohort. Promote to resolved?",
       "decision_status": "applied",
-      "rationale": "Q-042 status candidate_resolved. Architectural answer is biologically obvious (consequential effect of decisions cannot be processed for ongoing experimental behaviour without dual-read). Lit-pull 2026-05-08 confirmed. Hold remains empirical: (a) MECH-258 substrate implementation, (b) StepHarness-cohort retest of EXQ-475a/483c/490g/471a/524a. StepHarness substrate landed 2026-05-08; retest cohort to be authored. evidence_quality_note refined.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-08T16:58:44Z"
+      "rationale": "User-approved 2026-09-01 (GFLAG-0063). Empirical basis is V3-EXQ-530c (c0_rv_moved_both_arms true; arm0 rv 0.5 -> 0.0043-0.0050), NOT the five-run cohort the claim's own note cited -- three of those five were never queued (corrected in the same pass). Six further PASSing post-contract StepHarness manifests corroborate.",
+      "recommendation": "promote_candidate_resolved_to_resolved",
+      "selected_option": "Promote to resolved. Answer of record: dual-read, delivered via Option A (contract-enforcement through StepHarness) rather than Option B (hoist).",
+      "timestamp_utc": "2026-09-01T18:55:25.202541Z"
     },
     "Q-043": {
       "actor": "user",
@@ -2827,7 +2827,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-01T15:53:47.654819Z",
+  "generated_at_utc": "2026-09-02T05:02:33.433623Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

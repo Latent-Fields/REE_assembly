@@ -12,13 +12,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -32,13 +31,12 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -158,13 +156,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -178,13 +175,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -199,13 +195,12 @@ closure_plan:
       status: deferred
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -217,13 +212,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -235,13 +229,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -254,13 +247,12 @@ closure_plan:
       status: partial
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -286,13 +278,12 @@ closure_plan:
       status: blocked_pending_substrate
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -306,13 +297,12 @@ closure_plan:
       status: blocked_pending_substrate
       severity: low
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -328,13 +318,12 @@ closure_plan:
       status: blocked
       severity: low
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -346,13 +335,12 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -368,13 +356,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]

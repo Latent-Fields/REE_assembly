@@ -11,10 +11,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -28,10 +28,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -45,10 +45,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -62,10 +62,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -79,10 +79,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -96,10 +96,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -113,10 +113,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -130,10 +130,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -147,10 +147,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -164,10 +164,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -181,10 +181,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -204,10 +204,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -225,10 +225,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -243,10 +243,10 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -271,10 +271,10 @@ closure_plan:
       status: blocked_pending_substrate
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -301,10 +301,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -319,10 +319,10 @@ closure_plan:
       status: done
       severity: governance
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:

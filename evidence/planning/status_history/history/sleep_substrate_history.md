@@ -122,6 +122,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-2`
 
@@ -241,6 +242,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-3`
 
@@ -360,6 +362,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-3b`
 
@@ -479,6 +482,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-4`
 
@@ -598,6 +602,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-5`
 
@@ -717,6 +722,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-5b`
 
@@ -836,6 +842,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-6`
 
@@ -955,6 +962,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-7`
 
@@ -1074,6 +1082,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-8`
 
@@ -1193,6 +1202,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 
 ## `sleep_substrate:GAP-9`
 
@@ -1312,4 +1322,5 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-24T02:38Z` [manifest] `v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3` -> [`evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json`](../../../../evidence/experiments/v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-25T18:17Z` [autopsy] `failure_autopsy_861f-mech180-cluster-a_2026-08-25` -> [`evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json`](../../../../evidence/planning/failure_autopsy_861f-mech180-cluster-a_2026-08-25.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 

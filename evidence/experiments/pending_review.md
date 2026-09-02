@@ -1,16 +1,61 @@
 # Pending Experiment Review
 
-Generated: `2026-09-01T17:06:23Z`  
+Generated: `2026-09-02T05:51:18Z`  
 Last review: `2026-09-01T08:08:39Z`  
-Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **23** item(s) -- 18 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 13 diagnostic run(s) with no confirmed autopsy
 
-## Unclaimed manifests (PASS/FAIL with no claim tags)
+## FAIL (action required)
 
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_259_wanting_gradient_navigation_1775666895` | 2026-04-08T16:48 | ARC-030, MECH-112, SD-012, SD-015 | — |
+| `v3_exq_963a_mech063ii_tonic_phasic_dissociation_retest_20260902T001425Z_v3` | 2026-09-02T00:14 | MECH-063, SD-069 | — |
+| `v3_exq_395_mech220_harm_hub_dry_20260413T074905Z` | 20260413T074928Z | MECH-220 | — |
+| `v3_exq_395_mech220_harm_hub_dry_20260413T075033Z` | 20260413T075102Z | MECH-220 | — |
+| `v3_exq_395_mech220_harm_hub_dry_20260413T075133Z` | 20260413T075203Z | MECH-220 | — |
 
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| PASS | `v3_exq_968_sd_e1_output_proj_residual_ab_20260901T162647Z_v3` | v3_exq_968_sd_e1_output_proj_residual_ab | V3-EXQ-968 | non_contributory |
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_472_sd011_platform_stability_pilot_20260421T183651Z_v3` | 2026-04-21T18:36 | SD-011 |
+| `v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z` | 2026-05-09T20:22 | ARC-062, MECH-309 |
+| `v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z` | 2026-05-10T10:44 | ARC-065, MECH-313 |
+| `v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T164550Z` | 2026-05-10T16:45 | ARC-065, MECH-314, MECH-314a, MECH-314b, MECH-314c |
+| `v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T164557Z` | 2026-05-10T16:45 | MECH-319 |
+| `v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T172604Z` | 2026-05-10T17:26 | ARC-065, MECH-314, MECH-314a, MECH-314b, MECH-314c |
+| `v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z` | 2026-05-10T17:26 | MECH-319 |
+| `v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z` | 2026-05-10T20:56 | ARC-066, MECH-320 |
+| `v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002616Z` | 2026-05-20T00:26 | ARC-062, MECH-309 |
+| `v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002633Z` | 2026-05-20T00:26 | ARC-062, MECH-309 |
+| `v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z` | 2026-05-20T04:16 | ARC-062, MECH-309 |
+| `v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z` | 2026-05-29T08:32 | (no claim tags) |
+| `v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z` | 2026-05-31T11:31 | (no claim tags) |
+| `v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z` | 2026-06-04T15:40 | (no claim tags) |
+| `v3_exq_968_sd_e1_output_proj_residual_ab_20260901T162647Z_v3` | 2026-09-01T16:26 | (no claim tags) |
+| `v3_exq_871b_mech090_e3_reselection_shortcircuit_retest_20260901T212042Z_v3` | 2026-09-01T21:20 | ARC-071, MECH-090 |
+| `v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4` | 20260701T065002Z | (no claim tags) |
+| `v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4` | 20260701T074023Z | (no claim tags) |
+
+## Diagnostic -- autopsy required (no confirmed adjudication)
+
+Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
+
+| Run ID | Status | Self-route label |
+|--------|--------|-------------------|
+| `v3_exq_472_sd011_platform_stability_pilot_20260421T183651Z_v3` | PASS | — |
+| `v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z` | PASS | — |
+| `v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T164550Z` | PASS | — |
+| `v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T164557Z` | PASS | — |
+| `v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T172604Z` | PASS | — |
+| `v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z` | PASS | — |
+| `v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z` | PASS | — |
+| `v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002616Z` | PASS | — |
+| `v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002633Z` | PASS | — |
+| `v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z` | PASS | — |
+| `v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z` | PASS | — |
+| `v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z` | PASS | — |
+| `v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z` | PASS | — |
 
 ---
 

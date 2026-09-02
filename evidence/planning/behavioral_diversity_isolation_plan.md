@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -44,10 +44,10 @@ closure_plan:
       status: partial
       severity: load-bearing
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -91,10 +91,10 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -128,10 +128,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -149,10 +149,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -169,10 +169,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -187,10 +187,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -205,10 +205,10 @@ closure_plan:
       status: blocked
       severity: low
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -225,10 +225,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -244,10 +244,10 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -290,10 +290,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -315,10 +315,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-01"
-        from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
+        as_of: "2026-09-02"
+        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:

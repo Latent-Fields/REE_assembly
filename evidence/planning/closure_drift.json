@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-01T15:58:20Z",
+  "generated_at": "2026-09-02T05:55:27Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 0,
+    "stale_since": 1,
     "suppressed": 3,
     "assembling": 10,
     "assembling_revisit_due": 0,
@@ -107,5 +107,16 @@
     }
   ],
   "drifted": [],
-  "stale_since": []
+  "stale_since": [
+    {
+      "node_id": "commitment_closure:GAP-4",
+      "plan": "commitment_closure_plan.md",
+      "node_status": "in-progress",
+      "owner_exq": null,
+      "node_last_updated": "2026-08-18",
+      "reasons": [
+        "failure_autopsy_V3-EXQ-968-871b_2026-09-02.json (2026-09-02) reclassified MECH-090"
+      ]
+    }
+  ]
 }

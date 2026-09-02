@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-01T15:58:12Z
+Generated: 2026-09-02T05:52:36Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,12 +8,12 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **72.1%** across 97 non-deferred nodes in 17 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **34** nodes.
+- Weighted progress: **73.0%** across 97 non-deferred nodes in 17 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **33** nodes.
 - Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **10** nodes.
 - Deferred (not required for v3 closure): 10 nodes.
-- Done: 63 nodes.
-- Status tally: assembling=10  blocked=14  blocked_pending_substrate=3  deferred=10  done=63  in_progress=9  open=4  partial=3  upstream_blocked=1
+- Done: 64 nodes.
+- Status tally: assembling=10  blocked=13  blocked_pending_substrate=3  deferred=10  done=64  in_progress=9  open=4  partial=3  upstream_blocked=1
 
 ## Plans
 
@@ -28,7 +28,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 50% | partial:1 | 2026-08-29 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 56% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:2 partial:1 | 2026-09-01 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-01 |
-| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 79% | assembling:1 blocked:1 deferred:1 done:7 in_progress:2 | 2026-08-22 |
+| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-08-22 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-14 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-07-21 |
 | `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
@@ -37,7 +37,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-16 |
 
-## Remaining work to close v3 (34)
+## Remaining work to close v3 (33)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
@@ -75,7 +75,6 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I-absorption` | ARC-064 absorption checks for MECH-316 (cross-episode regularities) + MECH-317 ( | blocked_pending_substrate |  | low |  | depends_on: arc_062_rule_apprehension:GAP-I | 2026-09-01 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked |  | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-G` | Theory 7 (blocked on GAP-B): MECH-314 curiosity weight (Goldilocks calibration) | blocked |  | low |  | BLOCKED ON behavioral_diversity_isolation:GAP-B only (status partial, severity load-bearin | 2026-08-18 |
-| commitment_closure_plan.md | `commitment_closure:GAP-7` | MECH-091 salient-event trigger wiring (2 of 3 triggers unwired; phase_reset itse | blocked |  | low |  | ext: substrate_queue MECH091-SALIENT-EVENT-TRIGGER-WIRING (V3, buildable now) | 2026-08-22 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:MECH-191` | MECH-191 cross-architecture legibility unblock check (does A's dispositional rea | open |  | low |  | depends_on: global_workspace_jlens:A | 2026-07-09 |
 
 ## Assembly frontier -- required, under construction (10)
@@ -84,7 +83,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=queue-experiment | blocked_on_upstream |  | 2026-08-12 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=implement-substrate | blocked_on_upstream |  | 2026-08-12 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=queue-experiment | built |  | 2026-06-23 |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
@@ -110,7 +109,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | self_attribution_plan.md | `self_attribution:GAP-5` | SD-030 z_self materialisation (V4) | deferred |  |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-5` | Sleep entry K-episode deterministic (no arousal trigger) | deferred | ext: V4 SD-037 arousal substrate |
 
-## Done (63)
+## Done (64)
 
 - `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A` -- Does the control plane route at all? Channel-vs-content double dissociation over precision
 - `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A-precision-diagnostic` -- Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, no
@@ -130,6 +129,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `commitment_closure_plan.md` `commitment_closure:GAP-2` -- EXP-0157 (V3-EXQ-461) delayed-reward persistence PASS
 - `commitment_closure_plan.md` `commitment_closure:GAP-3` -- CausalGridWorldV2 env extensions (tolerance/counter-evidence/dual-cue)
 - `commitment_closure_plan.md` `commitment_closure:GAP-5` -- MECH-090 V_s commit-release pathway (V3-EXQ-481 FAIL)
+- `commitment_closure_plan.md` `commitment_closure:GAP-7` -- MECH-091 salient-event trigger wiring (2 of 3 triggers unwired; phase_reset itself is buil
 - `commitment_closure_plan.md` `commitment_closure:GAP-9` -- SD-033c/d/e graph-consolidation incomplete
 - `goal_pipeline_plan.md` `goal_pipeline:GAP-1` -- MECH-307 anticipatory-affect conjunction architecture
 - `goal_pipeline_plan.md` `goal_pipeline:GAP-2` -- SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)

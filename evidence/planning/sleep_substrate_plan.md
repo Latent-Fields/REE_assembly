@@ -16,7 +16,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -33,7 +34,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -64,7 +66,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -82,7 +85,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -102,7 +106,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -119,7 +124,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -137,7 +143,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -187,7 +194,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -206,7 +214,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -224,7 +233,8 @@ closure_plan:
         verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
