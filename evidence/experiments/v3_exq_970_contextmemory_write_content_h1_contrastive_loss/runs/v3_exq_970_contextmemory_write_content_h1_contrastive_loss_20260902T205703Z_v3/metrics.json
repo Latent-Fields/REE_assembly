@@ -1,0 +1,118 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "n_write_calls_per_seed_regime_a": {
+      "REGIME_A_UNTRAINED": [
+        1546,
+        1460,
+        1478,
+        1576,
+        1446,
+        1321
+      ],
+      "REGIME_A_TRAINED": [
+        1404,
+        1446,
+        1494,
+        1723,
+        1549,
+        1502
+      ]
+    },
+    "probe_heldout_real_latent_jaccard_per_seed_regime_a": {
+      "REGIME_A_UNTRAINED": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "REGIME_A_TRAINED": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "probe_2cluster_jaccard_synthetic_per_seed_regime_a": {
+      "REGIME_A_UNTRAINED": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.5
+      ],
+      "REGIME_A_TRAINED": [
+        1.0,
+        0.0,
+        1.0,
+        0.5,
+        0.5,
+        0.0
+      ]
+    },
+    "probe_2cluster_jaccard_trained_clusters_per_seed_regime_b": {
+      "REGIME_B_UNTRAINED": [
+        0.5,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "REGIME_B_TRAINED": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "probe_2cluster_jaccard_fresh_clusters_per_seed_regime_b": {
+      "REGIME_B_UNTRAINED": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.5
+      ],
+      "REGIME_B_TRAINED": [
+        0.5,
+        0.0,
+        0.5,
+        0.0,
+        1.0,
+        0.5
+      ]
+    },
+    "mean_probe_heldout_real_latent_jaccard_regime_a": {
+      "REGIME_A_UNTRAINED": NaN,
+      "REGIME_A_TRAINED": NaN
+    },
+    "mean_probe_2cluster_jaccard_synthetic_regime_a": {
+      "REGIME_A_UNTRAINED": 0.4166666666666667,
+      "REGIME_A_TRAINED": 0.5
+    },
+    "mean_probe_2cluster_jaccard_trained_clusters_regime_b": {
+      "REGIME_B_UNTRAINED": 0.5833333333333334,
+      "REGIME_B_TRAINED": 0.0
+    },
+    "mean_probe_2cluster_jaccard_fresh_clusters_regime_b": {
+      "REGIME_B_UNTRAINED": 0.4166666666666667,
+      "REGIME_B_TRAINED": 0.4166666666666667
+    },
+    "permutation_test": {
+      "p_value_regime_a": NaN,
+      "p_value_regime_b": 0.0625,
+      "alpha_corrected": 0.025,
+      "n_paired_seeds_regime_a": 0,
+      "n_paired_seeds_regime_b": 6
+    }
+  }
+}

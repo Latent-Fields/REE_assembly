@@ -1,0 +1,170 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_970_contextmemory_write_content_h1_contrastive_loss",
+  "run_id": "v3_exq_970_contextmemory_write_content_h1_contrastive_loss_20260902T205703Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-02T20:57:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "h1_content_referencing_objective_not_confirmed_either_regime",
+    "preconditions": [
+      {
+        "name": "Regime_B::untrained_baseline_headroom",
+        "precondition": "untrained_baseline_headroom",
+        "arm": "Regime_B",
+        "kind": "readiness",
+        "description": "mean_jaccard(<regime>_UNTRAINED) has enough headroom below 1.0 for a 0.25-margin drop to be satisfiable",
+        "control": "C2-style readiness -- an already-near-floor untrained baseline would make 'materially lower' structurally unsatisfiable regardless of training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.5833333333333334,
+        "threshold": 0.25,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "H1_content_referencing_objective_succeeds_in_either_regime": true,
+      "H1_regime_A_content_referencing_objective_succeeds": false,
+      "H1_regime_B_content_referencing_objective_succeeds": true
+    },
+    "criteria": [
+      {
+        "name": "H1_content_referencing_objective_succeeds_in_either_regime",
+        "load_bearing": true,
+        "passed": false,
+        "regime_a_pass": false,
+        "regime_b_pass": false,
+        "mean_jaccard_untrained_regime_a": NaN,
+        "mean_jaccard_trained_regime_a": NaN,
+        "mean_jaccard_untrained_regime_b": 0.5833333333333334,
+        "mean_jaccard_trained_regime_b": 0.0,
+        "required_margin": 0.25,
+        "p_value_regime_a": NaN,
+        "p_value_regime_b": 0.0625,
+        "alpha_corrected": 0.025,
+        "n_paired_seeds_regime_a": 0,
+        "n_paired_seeds_regime_b": 6,
+        "combination_rule": "OR across regimes -- either regime succeeding is sufficient evidence FOR H1; the null (H1 false) requires BOTH regimes to fail their own headroom-gated comparison. Per Finding F4, a regime's own PASS additionally requires its paired sign-flip permutation-test p-value to clear the Bonferroni-corrected alpha (0.05 / 2 regimes) -- a bare margin drop alone is no longer sufficient.",
+        "note": "This is the genuinely open question. A FAIL in one regime with a PASS in the other is NOT 'mostly failed' -- see combination_rule. A FAIL in both is a real, expected-possible scientific outcome (see module docstring), not a bug."
+      },
+      {
+        "name": "H1_bare_margin_reading_non_gating",
+        "load_bearing": false,
+        "kind": "descriptive",
+        "passed": true,
+        "regime_a_pass": false,
+        "regime_b_pass": true,
+        "note": "SECONDARY reading, kept for comparison only (Finding F4): the OLD gate-green-plus-margin-drop criterion, with no significance test. The load-bearing criterion above is the permutation-test-gated version; this field exists so a reader can see whether the statistical correction changed the verdict for either regime."
+      },
+      {
+        "name": "P0_writepath_engaged_regime_a",
+        "load_bearing": false,
+        "kind": "readiness",
+        "passed": true,
+        "measured": 1321,
+        "threshold": 200.0,
+        "direction": "lower"
+      },
+      {
+        "name": "untrained_baseline_headroom_regime_a",
+        "load_bearing": false,
+        "kind": "readiness",
+        "passed": false,
+        "measured": NaN,
+        "threshold": 0.25,
+        "direction": "lower"
+      },
+      {
+        "name": "untrained_baseline_headroom_regime_b",
+        "load_bearing": false,
+        "kind": "readiness",
+        "passed": true,
+        "measured": 0.5833333333333334,
+        "threshold": 0.25,
+        "direction": "lower"
+      },
+      {
+        "name": "regime_a_tagger_gradient_controls",
+        "load_bearing": false,
+        "kind": "control",
+        "passed": true,
+        "n_untrained_frozen": 6,
+        "n_untrained_total": 6,
+        "n_trained_moved": 6,
+        "n_trained_total": 6,
+        "note": "Mechanical positive/negative control: lambda_h1=0.0 should leave write_addr_tagger byte-identical to init; lambda_h1=0.5 should move it."
+      },
+      {
+        "name": "regime_b_tagger_gradient_controls",
+        "load_bearing": false,
+        "kind": "control",
+        "passed": true,
+        "n_untrained_frozen": 6,
+        "n_untrained_total": 6,
+        "n_trained_moved": 6,
+        "n_trained_total": 6,
+        "note": "Mechanical positive/negative control: 0 SGD steps should leave write_addr_tagger byte-identical to init; 15000 steps should move it."
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "0fc0e79e608c9027b55edb11412d8451e75740531652a41b268c5f6b7a425094",
+  "substrate_commit": {
+    "commit": "e1330f7eb683122912e2221436b1fcd230dc83ed",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.contextmemory_gated_content_write": true,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.anchor_set.use_sd039_anchor_payload": true,
+    "heartbeat.breath_period": 50,
+    "use_noise_floor": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": false
+  }
+}
