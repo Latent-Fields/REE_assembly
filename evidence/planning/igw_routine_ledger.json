@@ -3628,7 +3628,11 @@
       "task_claim_session_id": "igw-auto-igw-243-literature-proposal-for-arc-131-20260902T232135Z",
       "task_claim_claimed_at": "2026-09-02T23:21:35Z",
       "assigned_at": "2026-09-02T23:20:32Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-02T23:47:23Z",
+      "completion_summary": "lit-pull ARC-131: 5 verified literature entries landed (REE_assembly 275bc8d0b4), literature_confidence 0 -> 0.815; chipped EXP proposal-id instability defect",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull ARC-131: 5 verified literature entries landed (REE_assembly 275bc8d0b4), literature_confidence 0 -> 0.815; chipped EXP proposal-id instability defect"
     }
   ],
   "dispositions": [
@@ -4984,6 +4988,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T22:37:36Z",
       "re_eligible_after": "2026-09-04T22:37:36Z"
+    },
+    {
+      "stable_hash": "c81315cd628a",
+      "igw_id_at_disposition": "IGW-20260902-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-131"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for ARC-131",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T23:47:23Z",
+      "re_eligible_after": "2026-09-04T23:47:23Z"
     }
   ]
 }
