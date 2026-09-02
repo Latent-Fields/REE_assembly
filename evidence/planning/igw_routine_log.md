@@ -2377,3 +2377,10 @@ One line per hourly tick. ASCII only.
 2026-09-02T13:57:52Z SPAWN IGW-20260902-239 skill=/queue-experiment prio=40 uuid=788369f8-5b2d-4200-855f-8c0eacfc24f3 pid=66450 worktree=igw-239-proposal-for-arc-052
 2026-09-02T14:29:46Z retire-proposal EXP-0256 -> executed (igw-238-proposal-for-arc-019; complete)
 2026-09-02T14:29:46Z auto-defer igw-238-proposal-for-arc-019 hash=6217c74ba0b9 for 48h (complete)
+2026-09-02T14:30:18Z complete igw-238-proposal-for-arc-019 spawned->completed outcome=USEFUL_LANDED: queued V3-EXQ-591g for ARC-019 (ree-v3 939d67348e, live in coordinator DB): live
+2026-09-02T15:01:02Z GC removed worktree igw-238-proposal-for-arc-019 (removed; branch deleted)
+2026-09-02T15:00:44Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-02T15:01:31Z workset committed (regen -- 253 items, 30 ready, 0 in flight)
+2026-09-02T15:01:46Z auto-defer IGW-20260902-239 hash=1bbffd85f0fe for 48h (reaped -> completed_resumable)
+2026-09-02T15:01:46Z reaped TASK_CLAIMS igw-auto-igw-239-proposal-for-arc-052-20260902T135855Z (ledger IGW-20260902-239 -> completed_resumable)
+2026-09-02T15:01:46Z GC keep igw-239-proposal-for-arc-052 (ledger IGW-20260902-239 -> completed_resumable; 1 untracked artifact(s) e.g. _landwt/)
