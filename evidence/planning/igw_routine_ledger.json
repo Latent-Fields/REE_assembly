@@ -3603,7 +3603,11 @@
       "task_claim_session_id": "igw-auto-igw-242-literature-proposal-for-arc-121-20260902T221846Z",
       "task_claim_claimed_at": "2026-09-02T22:18:46Z",
       "assigned_at": "2026-09-02T22:16:37Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-02T22:37:35Z",
+      "completion_summary": "lit-pull ARC-121: 5 literature entries landed (REE_assembly 6495fd2005 on origin/master); lit_conf 0 -> 0.745, quadrant plausible_unproven, 3 supports / 1 mixed / 1 weakens. Chipped chip-20260902-arc121-harm-ethics-lit-gap for the uncovered harm/ethics consumer.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull ARC-121: 5 literature entries landed (REE_assembly 6495fd2005 on origin/master); lit_conf 0 -> 0.745, quadrant plausible_unproven, 3 supports / 1 mixed / 1 weakens. Chipped chip-20260902-arc121-harm-ethics-lit-gap for the uncovered harm/ethics consumer."
     }
   ],
   "dispositions": [
@@ -4945,6 +4949,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T21:37:32Z",
       "re_eligible_after": "2026-09-04T21:37:32Z"
+    },
+    {
+      "stable_hash": "769f13d51fd2",
+      "igw_id_at_disposition": "IGW-20260902-242",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-121"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for ARC-121",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T22:37:36Z",
+      "re_eligible_after": "2026-09-04T22:37:36Z"
     }
   ]
 }
