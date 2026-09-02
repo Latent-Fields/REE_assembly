@@ -2321,10 +2321,25 @@ CLOSURE_STATUS_WEIGHTS = {
     "closed": None,
 }
 
-# Default generation for a plan/node that does not declare one. The V3 closure
-# map predates the `generation` field, so any plan without it is V3 by
-# definition -- this keeps the V3 closure % bit-identical after V4/V5 plans land.
+# Default generation for a plan/node that HAS closure_plan frontmatter but does
+# not declare a `generation`. The V3 closure map predates the `generation` field,
+# so any such plan is V3 by definition -- this keeps the V3 closure % bit-identical
+# after V4/V5 plans land. 16 plan docs relied on this as of 2026-09-02; do not
+# change it without expecting the headline V3 closure % to move.
 CLOSURE_DEFAULT_GENERATION = "v3"
+
+# Generation for a plan doc with NO closure_plan frontmatter AT ALL (i.e.
+# `_parse_plan_frontmatter` returned None). This is deliberately NOT
+# CLOSURE_DEFAULT_GENERATION: the default above is backward compatibility with a
+# filing decision made before the field existed, whereas a doc with no
+# frontmatter has had NO filing decision made about it -- there is nothing to be
+# backward-compatible with. Collapsing the two put
+# `preservation_snapshot_plan.md` in the headline V3 closure map for 19 days
+# (created 2026-08-14, found by the user 2026-09-02, one-off fix a5dd9112b6):
+# the worst possible default, since the V3 view is the one everybody reads.
+# These plans contribute zero nodes, so this only ever moves an empty
+# placeholder card out of V3 and into a bucket that names the problem.
+CLOSURE_UNFILED_GENERATION = "unfiled"
 
 PENDING_REVIEW_FILE = SERVE_DIR / "evidence" / "experiments" / "pending_review.md"
 REE_V3_QUEUE_FILE = SERVE_DIR.parent / "ree-v3" / "experiment_queue.json"
@@ -4433,10 +4448,16 @@ def read_closure() -> dict:
         seen_files.add(fname)
         plan = _parse_plan_frontmatter(path)
         if plan is None:
+            # No closure_plan frontmatter at all -> UNFILED, not V3. See the
+            # CLOSURE_UNFILED_GENERATION comment: an explicit generation here is
+            # what stops an unfiled plan from silently defaulting into the
+            # headline V3 closure map via the `or CLOSURE_DEFAULT_GENERATION`
+            # fallbacks in the rollup below and in closure.html.
             plans.append({
                 "id": fname.replace("_plan.md", ""),
                 "title": fname.replace("_plan.md", "").replace("_", " ").title(),
                 "file": fname,
+                "generation": CLOSURE_UNFILED_GENERATION,
                 "frontmatter_pending": True,
                 "node_count": 0,
                 "progress": 0.0,

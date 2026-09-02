@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-08-20.1 -->
+<!-- CLOSURE_VERSION: 2026-09-02.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -792,6 +792,7 @@
     <button type="button" data-gen="clinical" title="Clinical lane: psychiatric failure modes as architectural states (psychiatric_failure_modes.md). A syndrome is a clinical object, not a version -- its claims are spread across generations by construction (catatonia subtype II = SD-036 v3 + MECH-214/215 v4), so filing by generation splits every syndrome. Not governance, not process, not deferred; excluded from the V3 closure %.">clinical</button>
     <button type="button" data-gen="meta" title="Self-assessment lane: the programme judging itself. Does the machinery force closure before substrate is ready (assembly_vs_closure_plan.md); is the confidence number honest (epistemic_overlay_plan.md); where is REE ahead, reinventing, or flawed as an AI design (ree_ai_design_critique_plan.md). Distinct from `process`, which owns pipeline infrastructure -- these three ask whether the programme's own judgements are sound, and own no substrate science either. Keyed `generation: meta` in the plan files; excluded from the V3 closure %.">self-assessment</button>
     <button type="button" data-gen="deferred" title="Deferred-by-commitment parking lot: substrate deliberately not built, each with its reversal trigger.">deferred</button>
+    <button type="button" data-gen="unfiled" title="Unfiled: plan docs with NO closure_plan frontmatter at all, so nobody has yet decided which generation they belong to. This is NOT a lane to leave things in -- the fix is to add closure_plan frontmatter to the doc (generation, nodes), after which it moves to its real generation. They sit here rather than in V3 because an absent filing decision is not a V3 filing decision; preservation_snapshot_plan.md hid in the V3 map for 19 days that way. Excluded from the V3 closure %.">unfiled</button>
   </span>
   <span class="gen" id="gen"></span>
   <span class="links">
@@ -1098,6 +1099,7 @@ function renderAll() {
       : GEN_VIEW === 'process' ? 'REE Process Pipelines'
       : GEN_VIEW === 'clinical' ? 'REE Psychiatric Failure Modes'
       : GEN_VIEW === 'meta' ? 'REE Self-Assessment'
+      : GEN_VIEW === 'unfiled' ? 'REE Unfiled Plans (no closure_plan frontmatter)'
       : 'REE ' + GEN_VIEW.toUpperCase() + ' Roadmap';
   }
   const ovTitle = document.querySelector('.overall .title');
@@ -1109,6 +1111,7 @@ function renderAll() {
       : GEN_VIEW === 'process' ? 'Process pipelines (intake + tooling; own no substrate science; excluded from v3 %)'
       : GEN_VIEW === 'clinical' ? 'Psychiatric failure modes as architectural states (clinical objects, version-orthogonal; excluded from v3 %)'
       : GEN_VIEW === 'meta' ? 'Self-assessment: the programme judging its own closure, confidence and design (version-orthogonal; excluded from v3 %)'
+      : GEN_VIEW === 'unfiled' ? 'Unfiled: no closure_plan frontmatter, so no generation has been chosen. Fix by filing the doc, not by leaving it here (excluded from every %)'
       : GEN_VIEW.toUpperCase() + ' roadmap progress (excluded from v3 %)';
   }
   document.getElementById('gen').textContent =
