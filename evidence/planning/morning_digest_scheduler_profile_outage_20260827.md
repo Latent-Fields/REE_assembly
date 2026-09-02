@@ -320,3 +320,41 @@ still unknown.
 (`audit_scheduled_task_fires.py --task <id> --scheduler-log --profiles`) remains the way to
 adjudicate a future gap. Note it takes a `--task` argument — with two tasks, check both
 before concluding a slot was missed.
+
+## 11. The same twin applied to `ree-lit-pull-am` (2026-09-02)
+
+`ree-lit-pull-am` sits on the identical owning profile (`e6c369d5 / 327a6a20`) and has
+already been confirmed missed by the same outage (section 4: "`ree-lit-pull-am` (missed
+08-21T06:00Z)"). The user asked for the same fix, so `ree-lit-pull-am-b` was registered on
+the OTHER profile (`5879f72b / eceb62e1`), same mechanism as section 10:
+
+| | `ree-lit-pull-am` | `ree-lit-pull-am-b` |
+|---|---|---|
+| profile | `e6c369d5 / 327a6a20` | `5879f72b / eceb62e1` |
+| cron (local) | `0 7 * * *` (daily) | `50 7 * * *` (daily) |
+| Check-1 anchor | 420 min (07:00) | 470 min (07:50) |
+| lock | `/tmp/ree-lit-pull-am.lock` | **the same path** |
+| Check-2 already-done | — | **none — deliberately, see below** |
+
+Both invoke the `lit-pull` skill unchanged, with the same automated 2-claim tiered
+selector.
+
+**Difference from the morning-digest twin: no Check-2 is needed, and one was deliberately
+NOT added.** Section 10 point 3 explains why `morning_agenda.md` needed an
+already-generated-today guard: it is a daily OVERWRITTEN snapshot, so a second run the same
+day duplicates it wholesale. Literature pulls are structurally different — ADDITIVE, not
+overwritten, and the selector already reads live coverage state
+(`evidence/literature/**/record.json` `claim_ids_tested`, cross-checked against
+`evidence_backlog.v1.json`) off disk before picking targets. If the 07:00 run on the owning
+profile pulls literature for claim X, that write lands in the same local `REE_assembly`
+checkout the 07:50 twin reads from (single machine, one working tree) — so by 07:50 claim X
+already reads as covered and the twin's selector naturally moves on to the next backlog
+item instead of re-pulling it. The 50-minute offset exists to give the 07:00 run room to
+finish and commit before the twin's selector reads state, not to gate a duplicate-output
+check the way Check-2 does. Do not add a Check-2-style guard here; there is nothing for it
+to check that the selector doesn't already handle, and a wrong "already ran today" heuristic
+would incorrectly block the twin on a day the owning profile is signed out.
+
+The shared-lock and distinct-taskId reasoning from section 10 points 1-2 apply unchanged
+(reused as-is, not restated). `ree-lit-pull-pm` and `ree-weekend-lit` were left untouched —
+only the daily AM task was reported as affected, and neither of the other two was asked for.
