@@ -1,0 +1,219 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_976_sd_e1_item2_rollout_consistency_validation",
+  "run_id": "v3_exq_976_sd_e1_item2_rollout_consistency_validation_20260902T114700Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-02T11:47:00Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "rollout_consistency_mixed_across_seeds",
+    "preconditions": [
+      {
+        "name": "encoder_trained",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, per every (seed, arm) cell.",
+        "measured": 0.23063954710960388,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "real_zworld_nondegenerate_h1",
+        "kind": "readiness",
+        "description": "CR_real(h=1) is finite, positive, and backed by at least 10 surviving real samples, every cell -- the same statistic cr_ratio(h=1)'s denominator uses.",
+        "measured": 40.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "no_missing_action_calls",
+        "kind": "readiness",
+        "description": "E1DeepPredictor._action_cond_missing_calls is 0 on every cell (every arm is ITEM-1-ON) -- every actions= call this script made, including the rollout_consistency_loss rollouts, supplied a real action sequence, never a silent zero-fallback.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "direct_action_supply_fraction",
+        "kind": "readiness",
+        "description": "The fraction of E1 calls that received a genuine non-None one-hot actions= argument (or explicit per-step sequence), minimum across cells.",
+        "measured": 1.0,
+        "threshold": 0.999,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "cr_ratio_h1_finite",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) = CR_rollout(h=1)/CR_real(h=1) is finite and positive on every (arm, seed) cell -- the exact statistic the decision rule routes on (same-statistic discipline; 968's guard against a NaN silently reading as no-difference).",
+        "measured": 2.9842043670542283e-05,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "e1_grad_steps_matched",
+        "kind": "readiness",
+        "description": "Every arm took the same number of E1 OPTIMISER STEPS at a seed (max over seeds of max-minus-min across arms). True by construction of the shared trailing-window schedule (red-team C2) -- it certifies the schedule landed, not that supervision VOLUME matched: a rollout window carries RC_HORIZON targets per step against the incumbent's one (supervision_targets_per_window is recorded per cell). That asymmetry IS the manipulation.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "control": "identical random policy, env, seeds and trailing-window schedule in every arm",
+        "met": true
+      },
+      {
+        "name": "rc_objective_non_vacuous",
+        "kind": "readiness",
+        "description": "On every ON cell, the mean cosine similarity between the E1 GRADIENT of the trained rollout-consistency objective and the E1 gradient of the incumbent single-step objective, both built on the SAME window (sampled every 10 windows), is <= 0.95: the multi-step objective trained E1 in a measurably different direction, so the ON arm is not a vacuous flag-only arm (red-team B2: a loss-VALUE difference is a tautology of autoregressive rollout and the OFF arm scores highest on it; kept as rc_vs_single_rel_diff, a diagnostic). Worst (highest) cell recorded.",
+        "measured": 0.9331029785726739,
+        "threshold": 0.95,
+        "direction": "upper",
+        "comparator": "<=",
+        "control": "both objectives' gradients taken on identical windows in every arm; ON arms only gate",
+        "offending_cell": "ARM_rc_decay_seed2024",
+        "met": true,
+        "kind_note": "INFORMATIONAL for adjudication of the WHOLE run: the gate is applied PER ON ARM (a vacuous arm is excluded from the label, it does not void the other arm -- red-team pass 2, N2). The whole-run readiness conjunct is at_least_one_on_arm_non_vacuous.",
+        "per_arm_max_grad_cos": {
+          "ARM_rc_flat": 0.7484434167926844,
+          "ARM_rc_decay": 0.9331029785726739
+        },
+        "per_arm_vacuous": {
+          "ARM_rc_flat": false,
+          "ARM_rc_decay": false
+        }
+      },
+      {
+        "name": "at_least_one_on_arm_non_vacuous",
+        "kind": "readiness",
+        "description": "At least one ON arm clears the per-arm gradient-cosine vacuity gate on every seed; if BOTH ON arms are collinear with the incumbent the run has no non-vacuous manipulation to route on.",
+        "measured": 2.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "trained_calls_at_depth0",
+        "kind": "readiness",
+        "description": "Fraction of trained E1 calls that started from a zero LSTM hidden state, minimum over ALL cells -- must be 1.0: the OFF arm's incumbent (968) call is stateful and accumulates hidden state within an episode while rollout_consistency_loss resets and restores, and Phase 4 evaluates at depth 0, so without symmetrisation a lift would be jointly caused by the objective and a train/eval regime match (red-team B1). Symmetrised deliberately in this driver.",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "every ROUTED arm's trained call routed through the same save/reset/restore lifecycle; ARM_single_step_stateful is EXCLUDED by design (it is the stateful 968 incumbent kept as the commensurability anchor) and its own depth-0 fraction is recorded as stateful_anchor_depth0_frac_per_seed",
+        "stateful_anchor_depth0_frac_per_seed": {
+          "seed42": 0.037023324694557574,
+          "seed123": 0.03825554705432287,
+          "seed7": 0.037341299477221805,
+          "seed2024": 0.036968576709796676
+        },
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_cr_ratio_h1_relative_lift_rc_flat",
+        "load_bearing": true,
+        "passed": true,
+        "arm_verdict": "mixed",
+        "arm_verdict_at_trained_horizon": "null",
+        "measured": 5.753989897084846,
+        "measured_min": 0.8844035514280026,
+        "threshold": 3.0,
+        "statement": "cr_ratio(h=1) relative lift of ARM_rc_flat over ARM_single_step, per seed, against the FIXED pre-registered bar 3.0; verdict on at least 3/4 seeds; paired sign test recorded. The same rule at h=RC_HORIZON is the recorded secondary. See interpretation.dv_symmetry_note: check cr_rollout_spread before crediting either direction (centroid-norm caveat)."
+      },
+      {
+        "name": "C1_cr_ratio_h1_relative_lift_rc_decay",
+        "load_bearing": true,
+        "passed": true,
+        "arm_verdict": "mixed",
+        "arm_verdict_at_trained_horizon": "mixed",
+        "measured": 4.135069087532248,
+        "measured_min": 0.3009028365628383,
+        "threshold": 3.0,
+        "statement": "cr_ratio(h=1) relative lift of ARM_rc_decay over ARM_single_step, per seed, against the FIXED pre-registered bar 3.0; verdict on at least 3/4 seeds; paired sign test recorded. The same rule at h=RC_HORIZON is the recorded secondary. See interpretation.dv_symmetry_note: check cr_rollout_spread before crediting either direction (centroid-norm caveat)."
+      },
+      {
+        "name": "C2_evaluator_bar_reached",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 0,
+        "threshold": 1,
+        "statement": "Any ON cell reaches BOTH evaluator bars (cr_ratio(h=1) >= 0.1 and e1coe_score_var(h=1) >= 0.002). RECORDED, not routing -- a lift below the bar is progress on the SD's target, not its closure. NOTE (red-team C3): the two evaluator quantities can move in opposite directions; e1coe_score_var_rel_change is recorded per seed so the reader sees both."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_cr_ratio_h1_relative_lift_rc_flat": true,
+      "C1_cr_ratio_h1_relative_lift_rc_decay": true,
+      "C2_evaluator_bar_reached": true
+    },
+    "combination_rule": "Per ON arm, per seed: relative lift of cr_ratio(h=1) over ARM_single_step vs the FIXED pre-registered LIFT_BAR (3.0); arm verdict lifts/degrades needs >= MAJORITY_SEEDS seeds in that direction, null = neither direction on any seed, mixed otherwise. Label composes the two arm verdicts (see docstring); a null or mixed at h=1 with a LIFT at h=RC_HORIZON (same rule) becomes rollout_consistency_lift_at_trained_horizon_only, which does NOT license the withheld contrastive. A paired sign test across seeds is recorded per arm. No criterion gates PASS/FAIL once readiness is met -- the run is a classification. C2 is recorded only.",
+    "convergence_note": "trained_loss_last_over_first_fifth per cell (ratio of the last-fifth to the first-fifth per-episode trained loss) is recorded so a null can be read against how far training had progressed (red-team C4); it is not gated, because the budget (100 x 200) is the lineage's and matching 965/968 is what makes the numbers commensurable.",
+    "dv_symmetry_note": "cr_ratio(h=1) = cr_rollout(h=1)/cr_real(h=1); cr_real(h=1) is arm-invariant per seed, so the contrast reduces to cr_rollout(h=1) = spread/centroid_norm over the 40 candidate rollout endpoints. A changed training objective moves E1's learned weights and hence every endpoint non-uniformly (neither a common rescaling nor a permutation of the candidate index), so the manipulation reaches the DV and the direction is genuinely open for both ON arms. 968's caveat stands: the centroid_norm denominator can shift mechanically under a different objective, so per_seed_lift carries cr_rollout_spread_h1 for both arms -- check the numerator alone before crediting a lift or a degradation to a real change in per-action divergence.",
+    "commensurability_note": "ARM_single_step (the ROUTED OFF arm) trains from a zero hidden state -- a deliberate departure from 965/968's stateful incumbent (red-team B1). So a 'degrades' means 'worse than a depth-0-trained single-step incumbent', NOT 'worse than the lineage's incumbent'. ARM_single_step_stateful is 968's incumbent verbatim, kept as a NON-ROUTING commensurability anchor: its cr_ratio(h=1) is directly comparable to 965/968's recorded numbers, and per_seed_lift_vs_stateful_968_incumbent / arm_verdicts_vs_stateful_968_incumbent apply the identical lift rule against it (recorded, never routed). Red-team pass 2, N1. Its measured depth-0 fraction is recorded per seed.",
+    "h1_structural_favour_note": "The routed OFF arm's training step is, after symmetrisation, the same operation as the h=1 evaluation (one depth-0 single-step prediction), while the ON arms spread their gradient over RC_HORIZON steps of which the first is that same operation. A 'degrades' at h=1 is therefore structurally favoured, not evidence against multi-step consistency per se (red-team pass 2, N5); the trained-horizon secondary is the counterweight, and it overrides degrades as well as null/mixed. A lift at h=5 is credible; a null at h=5 is weaker evidence than a null at h=1, because the h=5 candidate rollouts are re-primed per step with an E2-predicted self slot whereas training rolls E1 out alone.",
+    "what_degrades_licenses": "rollout_consistency_degrades_cr_ratio_h1 (an ON arm worse than the depth-0 incumbent by >= LIFT_BAR on >= MAJORITY_SEEDS seeds at h=1, with no lift at h=5) licenses NOTHING downstream on its own: it is read against the stateful anchor (is it also below 968's incumbent?), the numerator spread, and the convergence proxy before any substrate decision; it does not license the contrastive.",
+    "what_a_null_licenses": "rollout_consistency_null -- a null at h=1 AND no lift at h=RC_HORIZON, against the fixed bar 3.0 on >= MAJORITY_SEEDS seeds with the sign test recorded -- licenses the deliberately-withheld rollout-endpoint contrastive over candidate action sequences (e1_rollout_sequence_divergence_*; substrate_queue SD-e1-rollout-consistency-training item-2 log, why_not_contrastive). rollout_consistency_lift_at_trained_horizon_only does NOT license it: it says h=1 is the wrong readout for this objective. Neither says anything about MECH-135 / INV-088 or about other budgets. cr_real(h) is arm-invariant per seed (measured from the environment), so the h=1 contrast is exactly cr_rollout(h=1); the ratio is a per-seed constant rescale, not a confound remover."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "201efa594aead4682402ea11741f6a2995f5b09d294ec7850cde9490b70fb42d",
+  "substrate_commit": {
+    "commit": "77dcc1ddd0f81a3a45c882183748820332dcc948",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.action_conditioned_transition": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "e1.e1_rollout_consistency_enabled": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 16,
+    "goal_state_present": false
+  }
+}
