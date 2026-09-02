@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build."
     }
   },
-  "last_seen_session": "govapply-20260901",
-  "last_updated_utc": "2026-09-02T12:45:49Z",
+  "last_seen_session": "sd018-directional-field-amend-ba5834ed",
+  "last_updated_utc": "2026-09-02T15:03:22Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -2065,20 +2065,21 @@
     {
       "added_session": "queue-completeness-sd018-2026-05-08T2030Z",
       "depends_on_unresolved": [],
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_018_resource_proximity_supervision.md",
       "failure_record": [
         {
           "run_id": "v3_exq_948_observation_interface_re_representation_probe_20260825T142115Z_v3",
           "experiment_type": "v3_exq_948_observation_interface_re_representation_probe",
           "metric": "with SD-018's use_resource_proximity_head=true already active, ppo_ree_latent (z_world only) 0.5 res/ep vs ppo_latent_plus_localfield (z_world + full 25-dim resource field) 2.23 res/ep vs 1.0 competence floor; all 3 seeds of the field-augmented arm clear the floor, none of the latent-only arm do",
-          "target": "a downstream reader of z_world (under SD-018's existing scalar proximity supervision, or an extended/richer version of it) should clear the 1.0 D3 competence floor on a strict majority of seeds"
+          "target": "a downstream reader of z_world (under SD-018's existing scalar proximity supervision, or an extended/richer version of it) should clear the 1.0 D3 competence floor on a strict majority of seeds",
+          "amend_status": "AWAITING VALIDATION -- directional field head landed 2026-09-02 (see implementation_log); target re-tested by the owed 948-shape probe with use_resource_field_head OFF vs ON"
         }
       ],
       "implementation_hint": "Identified during V3 wiring audit 2026-04-07: EXQ-085m proved benefit_eval_r2=-0.004 (z_world orthogonal to resource proximity). Without auxiliary supervision, z_world is trained only on E1 world-model prediction loss, which is invariant to resource saliency. Implementation: SplitEncoder.resource_proximity_head = nn.Sequential(nn.Linear(world_dim, 1), nn.Sigmoid()); MSE loss against max(resource_field_view) backprops through z_world encoder. Module: ree_core/encoder/split_encoder.py + ree_core/agent.py.compute_resource_proximity_loss. Config: use_resource_proximity_head (default False), resource_proximity_weight (default 0.5). Backward-compatible. Mirrors SD-009 event-contrastive supervision on the harm side. 2026-05-08 governance note: EXQ-536a/b diagnostic non_contributory; same crossed-wiring read as ARC-030 sibling -- substrate landed but downstream consumer wiring is the remaining blocker (separate from this entry).",
       "implementation_status": "implemented",
       "implemented_session": "v3-wiring-audit-2026-04-07",
       "implemented_utc": "2026-04-07T00:00:00Z",
-      "last_seen_session": "f-dominance-regime-retest-ddbe10",
+      "last_seen_session": "sd018-directional-field-amend-ba5834ed",
       "metric_trajectory": {
         "current_blocker": "Downstream consumer wiring (ARC-030 / MECH-117 sibling), AND (per V3-EXQ-948, 2026-08-25) the existing scalar proximity signal (max(resource_field_view)) is insufficient for downstream competence even where consumer wiring is not the issue -- a full 25-dim directional field is what restores foraging competence in 948's probe. 2026-08-25 (chip-20260825-sd018-missing-validation): the r2>0.5 validation was NOT actually missing -- V3-EXQ-257 (2026-04-06) directly tested use_resource_proximity_head=True and its outcome was simply never copied into this observations array. It was already reviewed and formally autopsied (failure_autopsy_grandfathered-sd003-mech112-dacc-cluster_2026-08-08.json, target v3_exq_257...): recommended_epistemic_category=precondition_unmet, recommended_evidence_direction=non_contributory, recommended_substrate_queue_entry.action=none (folded into the existing SD-012/MECH-229-230 seeding-quality gap, no new entry needed). The bar itself therefore remains genuinely UNTESTED cleanly -- EXQ-257's C1 criterion failed in 2/3 seeds via numerical blowup caused by z_goal_norm collapsing to ~1e-10 (insufficient seeding curriculum in that run's config, not a defect in SD-018's own head/loss), while the 1 seed that seeded properly (seed 3) scored r2=0.9984 (clears the >0.5 bar). No new experiment queued for this chip: governance already dispositioned EXQ-257 on 2026-08-08 as needing no new substrate_queue action, and a clean re-test would need to guarantee non-degenerate z_goal seeding first (MECH-229/230 family territory) rather than re-deriving the same confound.",
         "direction": "higher_is_better",
@@ -2108,7 +2109,7 @@
       "priority": 2,
       "ready": true,
       "sd_id": "SD-018",
-      "status": "implemented",
+      "status": "amend_implemented_pending_validation",
       "title": "encoder.resource_proximity_supervision -- benefit-side analog of SD-009 forcing z_world to encode resource proximity",
       "unblocks_claims": [
         "SD-015 z_resource encoder pipeline",
@@ -2118,14 +2119,24 @@
         "MECH-457",
         "ARC-065"
       ],
-      "validation_experiment": "EXQ-085m diagnostic + EXQ-085h..o cluster",
+      "validation_experiment": "EXQ-085m diagnostic + EXQ-085h..o cluster | 2026-09-02 AMEND: directional field head landed; its 948-shape OFF-vs-ON validation is OWED and not yet queued (see implementation_log[0].validation). NOTE (948 autopsy secondary finding, still true): SD-018's own post-implementation r2>0.5 validation was never cleanly recorded -- EXQ-257 was confounded (see metric_trajectory).",
       "severity": "degrading",
       "substrate_paths": [
         "ree_core/agent.py::compute_resource_proximity_loss",
         "ree_core/latent/stack.py",
         "ree_core/latent/zworld_p0.py"
       ],
-      "node_class": "complicated (buildable)"
+      "node_class": "complicated (buildable)",
+      "implementation_log": [
+        {
+          "date_utc": "2026-09-02T14:19:27Z",
+          "session": "sd018-directional-field-amend-ba5834ed",
+          "chip_ref": "chip-20260902-sd018-directional-field-amend",
+          "what": "AMEND (shape (a) of the 948 autopsy's two, user-confirmed): directional resource-field regression head on z_world -- SplitEncoder.resource_field_head = Linear(world_dim, 25) + Sigmoid, MSE against the full resource_field_view (world_obs[225:250]), backprop into world_encoder. Config LatentStackConfig.use_resource_field_head (default False) / resource_field_weight (0.5) / resource_field_dim (25), all three from_dims sites; ZWorldP0Config.resource_field_weight (0.0, P0 leg derives the target from the buffered world_obs). LatentState.resource_field_pred; REEAgent.compute_resource_field_loss. Bit-identical OFF (same-seed sense() hash + state-dict keys identical to pre-amend HEAD). Contracts tests/contracts/test_sd018_resource_field_head.py + boot-matrix row + flag-inertness probe. Shape (b) (raw field as side-channel past z_world) is the fallback if (a) nulls.",
+          "ree_v3_commit": "ree-v3 028a625e09 (origin/main, 2026-09-02)",
+          "validation": "OWED, not queued here per the routing chip: 948-shape diagnostic, shared P0 with resource_field_weight > 0 on the ON arm, arms field-head OFF vs ON (scalar head on in both, x734-family base config), PPO reader of z_world alone, DV res/ep vs the 1.0 D3 floor on a strict seed majority + held-out linear decode of resource_field_view from z_world; claims INV-088 + MECH-457 read-across."
+        }
+      ]
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
@@ -7598,7 +7609,7 @@
       "sd_id": "SD-MECH267-HORIZON-DEPTH",
       "title": "Mode-conditioned horizon-depth modulation for HippocampalModule.propose_trajectories",
       "node_class": "complicated (buildable)",
-      "status": "implemented_pending_validation",
+      "status": "implemented_validated_negative_869a_fail_routed_gov_fanout1",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -7613,17 +7624,25 @@
           "target": "C1 gap >= 0.01 floor at iters=3 (production-persistence) with both noise-scale AND horizon-depth mechanisms active",
           "run_role": "post_build",
           "run_role_basis": "R3 run > entry.implementation_note_update:freetext (same_day -- audit)"
+        },
+        {
+          "run_id": "v3_exq_869a_mech267_mode_conditioning_content_persistence_retest_20260802T195943Z_v3",
+          "experiment_type": "v3_exq_869a_mech267_mode_conditioning_content_persistence_retest",
+          "metric": "C1 (iters=3) production-persistence gap still below the 0.01 floor with BOTH mode_noise_scale and mode_horizon_scale active (FAIL, non_contributory; supersedes 869)",
+          "target": "C1 gap >= 0.01 floor at iters=3 (production-persistence) with both noise-scale AND horizon-depth mechanisms active",
+          "run_role": "post_build",
+          "run_role_basis": "run after implemented_utc 2026-08-02T13:31:00Z; added 2026-09-02 during stale-entry reconcile"
         }
       ],
       "implementation_hint": "MECH-267's claim registration and 2026-04-20 implementation_note name TWO mechanisms: noise-scale modulation (built, default-off/bit-identical) and horizon-depth modulation (explicitly deferred to 'V4 reconsideration', but directly evidenced by Wikenheiser & Redish 2015 and matching the original lit-pull's own recommendation). Add a mode-conditional multiplier/selector on HippocampalModule.propose_trajectories's rollout depth (shallower in external_task, longer in internal/imagination mode). The washed-out-under-CEM-elite-refit pattern V3-EXQ-869 found is consistent with a noise-scale-only implementation being structurally insufficient against CEM's iterative refit toward a mode-independent value optimum -- not with the claim being biologically wrong.",
       "priority": 2,
       "added_session": "infallible-villani-f280fa",
-      "last_seen_session": "infallible-villani-f280fa",
+      "last_seen_session": "sd018-directional-field-amend-ba5834ed",
       "implementation_status": "implemented",
       "implemented_utc": "2026-08-02T13:31:00Z",
       "implemented_session": "insights-34f9b4",
       "implementation_note_update": "IMPLEMENTED 2026-08-02 (ree-v3 commit e0117eea8b, REE_assembly 37d1da187d): HippocampalConfig.mode_horizon_scale (companion to mode_noise_scale, same mode_conditioning_enabled switch); HippocampalModule._compute_mode_horizon_scale mirrors _compute_mode_noise_scale; _score_trajectory gained optional max_horizon param windowing CEM elite-selection to a mode-conditioned fraction of the trajectory (not the physical rollout length, which stays a fixed structural network dimension). Bit-identical when disabled/operating_mode=None, verified via targeted smoke test. New design doc REE_assembly/docs/architecture/sd_mech267_horizon_depth_modulation.md. STATUS implemented_pending_validation: the retest combining both mechanisms (V3-EXQ-869 C1 condition, num_cem_iterations=3, both mode_noise_scale AND mode_horizon_scale active) is not yet queued -- follow-up chip chip-20260802-mech267-horizon-depth-retest spawned for it.",
-      "validation_experiment": "PENDING -- chip-20260802-mech267-horizon-depth-retest (/queue-experiment, re-queue V3-EXQ-869 C1 condition with both mechanisms active)"
+      "validation_experiment": "V3-EXQ-869a (ree-v3 bbb634825c; run v3_exq_869a_mech267_mode_conditioning_content_persistence_retest_20260802T195943Z_v3, ree-cloud-4) -- FAIL, non_contributory: C1 iters=3 gap still washed out with both mode_noise_scale AND mode_horizon_scale active; autopsy failure_autopsy_V3-EXQ-869a_2026-08-03 routed MECH-267 to the GOV-FANOUT-1 3-leg portfolio (H1 leg V3-EXQ-923 ran; CEM-selection fix SD-MECH267-CEM-SELECTION-FIX / V3-EXQ-928 followed). Entry left stale at implemented_pending_validation until 2026-09-02 (chip-20260802-mech267-horizon-depth-retest was resolved done 2026-08-02; the entry was not updated). Corrected by sd018-directional-field-amend-ba5834ed."
     },
     {
       "sd_id": "SD-092",
@@ -7754,7 +7773,7 @@
       "sd_id": "SD-e1-rollout-consistency-training",
       "title": "E1 forward-model multi-step rollout-consistency training objective",
       "node_class": "complicated (buildable)",
-      "status": "item2_substrate_landed_validation_owed",
+      "status": "item2_candidate1_validated_mixed_contrastive_decision_owed",
       "ready": true,
       "design_doc": "docs/architecture/sd_e1_rollout_consistency_training.md",
       "depends_on_unresolved": [],
@@ -7777,13 +7796,20 @@
           "metric": "post-ITEM-1 cr_ratio(h=1) = 2.67e-03..3.96e-03 (up 6455x-9775x from A_off 4.14e-07/4.05e-07) but still 25-37x short of the 0.1 bar; e1coe_score_var(h=1) = 6.9e-09..1.5e-07 vs the 0.002 bar (5-7 orders short)",
           "target": "cr_ratio(h=1) >= 0.1 and e1coe_score_var >= 0.002 under an action-conditioned E1 with an ITEM 2 rollout-consistency objective",
           "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_976_sd_e1_item2_rollout_consistency_validation_20260902T114700Z_v3",
+          "experiment_type": "v3_exq_976_sd_e1_item2_rollout_consistency_validation",
+          "metric": "candidate-1 (rollout_consistency_loss, H=5, decay 1.0 / 0.5) cr_ratio(h=1) = 1.22e-03..1.26e-02 on the ON arms vs 5.9e-04..6.7e-03 depth-0 incumbent (rc_flat lift 0.88/5.75/3.35/1.87, mixed); depth growth h1->h5 OFF x2.6-3.8 vs ON x0.5-1.75 (damping); e1coe_score_var(h=1) 2.7e-08..6.1e-06",
+          "target": "cr_ratio(h=1) >= 0.1 and e1coe_score_var >= 0.002 under a multi-step-trained action-conditioned E1 (still 8-80x and 2.5+ orders short respectively)",
+          "resolved": "open"
         }
       ],
-      "implementation_hint": "ITEM 2 SUBSTRATE LANDED 2026-09-01 (candidate 1: E1DeepPredictor.rollout_consistency_loss + four default-off E1Config knobs e1_rollout_consistency_{enabled,weight,horizon,horizon_weights_decay}). THE NEXT ACTION IS AN EXPERIMENT, NOT A BUILD -- do not re-open this as /implement-substrate. The pre-registered absolute-vs-residual branch is SPENT: V3-EXQ-968 returned 'residual_no_material_difference' (seeds disagreeing in direction, neither approaching the 3.0 floor -- do NOT write it up as residual being worse or better). READ BEFORE DESIGNING THE VALIDATION EXPERIMENT: every driver in this lineage trains E1 SINGLE-STEP teacher-forced (F.mse_loss(e1_pred[:, 0, :], ...) at V3-EXQ-954:312, 965:409, 968:431), so the multi-step objective has never been exercised here and the validation experiment must actually TRAIN with rollout_consistency_loss rather than merely enable the flag -- enabling it changes nothing on its own, by design (it gates an objective, not the forward path; contract-pinned). Include decay=1.0 as the flat-form control, since at decay=1.0 the helper is exactly F.mse_loss over the rollout window. If candidate 1 returns a null, THAT is what licenses the rollout-endpoint contrastive (e1_rollout_sequence_divergence_*) which was designed and deliberately withheld here for want of evidence -- see the item-2 log entry's why_not_contrastive. ALSO STILL OPEN: action_cond_unzero_self_slot defaults True despite V3-EXQ-965 returning a null for it; flipping a shipped default is a behaviour change owed a user decision, and ITEM 2 need not re-ablate it.",
+      "implementation_hint": "ITEM 2 CANDIDATE 1 VALIDATED 2026-09-02 by V3-EXQ-976 (autopsy failure_autopsy_V3-EXQ-976_2026-09-02, USER-CONFIRMED 2026-09-02): driver label rollout_consistency_mixed_across_seeds -- a weak, heterogeneous h=1 positive over the depth-0 incumbent (rc_flat 2 of 4 seeds >= 3.0, 0 below, gm 2.4x; within 0.4-1.8x of 968's stateful incumbent on its healthy seeds), DAMPED depth growth at h>=2 (h1->h5 OFF x2.6-3.8 vs rc_flat x1.1-1.75, rc_decay x0.5-1.7; 8/8 ON cells grow less than OFF -- a trajectory-accuracy objective works AGAINST per-action divergence at depth, the mechanism why_not_contrastive named), and NO absolute progress on the bars (best ON cr_ratio(h=1) 1.26e-02, 7.9x short of 0.1; e1coe var 2.5 orders short of 0.002; bars read at h=1, where the evaluator runs the trained map). Under the DRIVER's relative rule this is 'mixed', not the licensing null; under THIS ENTRY's own absolute-leaning text ('if candidate 1 returns a null ... against the 0.1 / 0.002 bars') it IS the null. USER DECISION TAKEN 2026-09-02 (autopsy Q1, entry text governs): the withheld rollout-endpoint contrastive (e1_rollout_sequence_divergence_*) is licensed -> next build item (/implement-substrate, candidate for item 3), evaluated against the same h=1 bars with a depth-0-symmetrised single-step OFF arm AND 968's stateful anchor, n>=6 seeds. In parallel, NOT as a gate: a /queue-experiment sibling probe adding an E1-alone rollout readout (predict_long_horizon on the same 40 sequences) beside the hybrid readout, for the MECH-135 30-step consumer question (the hybrid evaluator re-primes z_self from E2 and re-projects the prior per step from h=2; a retrain, ~11 min). Horizon/budget re-dosing of candidate 1 (H=30, 400 eps) is LOW priority and needs a supervision-matched OFF cell (5 single-step updates per window). Keep action_cond_unzero_self_slot=True on every arm in any successor (unchanged open decision; 976 adds no evidence on it).",
       "priority": 2,
       "added_session": "epic-mirzakhani-4928b5",
       "added_utc": "2026-08-03T11:45:20Z",
-      "last_seen_session": "governance-20260830-1549",
+      "last_seen_session": "sd018-directional-field-amend-ba5834ed",
       "origin": "Confirmed failure_autopsy_V3-EXQ-108b_2026-08-03; create recommendation applied by /governance 2026-08-03. Blocked pending a commissioned /lit-pull (targeted_review_e1_forward_model_rollout_consistency). RESOLVED 2026-08-25 (chip-20260825-e1-rollout-consistency-litpull): the lit-pull was actually commissioned and completed 2026-08-03 (session metaworker-chip-20260803-litpull-e1-rollout-consistency) but that session's own substrate_queue.json update was deferred at authoring time due to a TASK_CLAIMS conflict on this file (two other sessions held active claims on it then) -- see the review's own 'What this synthesis does NOT do' closing section. This entry's depends_on_unresolved and implementation_hint are updated here to reflect the review's findings; see evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md.",
       "status_phase": "build_owed",
       "implementation_log": [
@@ -7839,7 +7865,7 @@
           "substrate_gate_note": "This entry carries severity 'corrupting' with substrate_paths ['ree_core/predictors/e1_deep.py::forward', 'ree_core/predictors/e1_deep.py::predict_long_horizon']. This build TARGETS that entry and is the sanctioned exception to its own gate. It ADDS a method and reads the existing rollout; it does not modify either listed path's behaviour -- pinned by a contract asserting the rollout is bit-identical with the new flag on.",
           "what_it_adds_over_compute_prediction_loss": "REEAgent.compute_prediction_loss ALREADY rolls E1 out autoregressively to prediction_horizon and MSEs the whole trajectory, supplying the executed action sequence post-ITEM-1 -- so the multi-step FORM was already present on the agent-loop path, and candidate 1 was NOT the greenfield build the ranked list implies. Two real gaps: (i) F.mse_loss weights every horizon step EQUALLY, and under an autoregressive rollout deep-step error is larger by construction, so a flat mean lets the deepest steps dominate; decay<1.0 is TD-MPC's actual form, and at decay=1.0 the helper reduces to the flat form to within float32 reduction-order error (the helper reduces per-step then weights; F.mse_loss reduces over all elements at once -- mathematically equal, different summation order, measured 6.4e-08 RELATIVE at worst and bit-identical on the legacy branch), so the discount is the only axis added. The contract pins that at rtol=1e-6, NOT bit-exactly -- an earlier revision asserted bit-identity and passed on ree-worker-4 while failing on darwin-arm64. (ii) compute_prediction_loss is reachable only through the agent loop, and EVERY driver in this lineage bypasses it, training single-step teacher-forced -- F.mse_loss(e1_pred[:, 0, :], ...) at V3-EXQ-954:312, 965:409, 968:431. So the multi-step objective has never once been exercised in the lineage that motivated this SD. The doc's defect (a) 'trained at horizon=1' is true of the DRIVERS, not of the substrate.",
           "why_not_contrastive": "A rollout-endpoint contrastive over candidate action SEQUENCES was designed and deliberately NOT built. It is genuinely distinct from the synthesis's de-prioritised #5 'contrastive next-state' (it constrains the iterated map, not the one-step transition -- and the C3 evaluator scores SEQUENCES), so #5's 'TD-MPC went the other way' does not settle it. Rejected on #5's OTHER objection: 'no long-horizon anchor found' applies to a long-horizon contrastive with MORE force, not less. The in-repo precedent is not a warrant either -- E2's SD-056 multi-step contrastive amend (e2_fast.py, 2026-05-31) has e2_action_contrastive_multistep_enabled true in ZERO runs across the whole evidence corpus (measured 2026-09-01): built, never validated. The remaining argument for preferring it -- that an accuracy objective 'already trains' the crushed weights so would not move them -- was INTUITION, not measurement, and is recorded as such: no experiment in this lineage has ever trained E1 multi-step at all. Candidate 1 is both the doc's ranked-strongest and the untried one; a null on it narrows ITEM 2's target and buys the contrastive with evidence.",
-          "validation_status": "BUILT, not yet validated -- the validation experiment is owed and is chipped, not queued here. Owed: a /queue-experiment diagnostic on the ITEM 1 ON arm training E1 with rollout_consistency_loss (decay sweep incl. 1.0 as the flat-form control) vs the lineage's incumbent single-step teacher-forced loss, reading cr_ratio(h=1) and e1coe_score_var against the 0.1 / 0.002 evaluator bars. Does NOT make MECH-135 / INV-088 retestable: as of V3-EXQ-965 those bars are still missed by 25-37x (cr_ratio) and 5-7 orders (e1coe_score_var), and nothing here has moved them yet.",
+          "validation_status": "VALIDATED AS MIXED by V3-EXQ-976 (2026-09-02, v3_exq_976_sd_e1_item2_rollout_consistency_validation_20260902T114700Z_v3, PASS, diagnostic, non_contributory; autopsy USER-CONFIRMED 2026-09-02). ARM_rc_flat cr_ratio(h=1) relative lift over the depth-0 single-step incumbent 0.884 / 5.754 / 3.345 / 1.873 (seeds 42/123/7/2024) against the fixed 3.0 bar: 2 exceed, 0 below -> mixed; ARM_rc_decay 1.174 / 2.773 / 4.135 / 0.301 -> mixed. At h=5 (trained horizon) rc_flat 0.337 / 2.662 / 1.828 / 0.773 (verdict null) and rc_decay 0.449 / 1.269 / 1.598 / 0.055 (mixed) -- read this as DAMPING, not absence: the OFF arm's cr_ratio grows x2.6-3.8 from h=1 to h=5 while rc_flat grows x1.1-1.75 and rc_decay x0.5-1.7 (ON absolute level flat-to-mildly-rising with h; 8/8 ON cells grow less than OFF). No cell reaches either evaluator bar (best cr_ratio(h=1) 1.26e-02 vs 0.1; best e1coe var 6.1e-06 vs 0.002). Objective genuinely trained (driver:618-629; per-ON-cell grad-cos vs the incumbent 0.71-0.75 flat, 0.92-0.93 decay, ceiling 0.95 -- a pair-level certificate, the stateful anchor reads 0.72-0.74 too). Against 968's stateful incumbent (anchor arm) at h=1: within 0.38-1.84x on seeds 42/123/7; the anchor's seed-2024 cell is ~100x action-insensitive at every readout (2.98e-05). The contrastive is NOT licensed on the driver's relative rule and IS the null on this entry's absolute text -- user decision owed.",
           "deliberately_not_done": "compute_prediction_loss is NOT rewired to use the discount. That path is depended on by several hundred experiments and there is no consumer yet; agent-loop wiring is held until the validation experiment reports."
         }
       ],
@@ -7848,7 +7874,8 @@
         "ree_core/predictors/e1_deep.py::forward",
         "ree_core/predictors/e1_deep.py::predict_long_horizon"
       ],
-      "governance_2026_08_30": "ITEM 1 VALIDATED by V3-EXQ-965 (confirmed autopsy). severity 'corrupting' and substrate_paths RESTORED here -- V3-EXQ-954's confirmed autopsy recommended both and neither was ever applied, leaving the /queue-experiment Step 2.5c gate INERT on this entry; that dropped handoff is repaired by this write. ITEM 2 remains required and is now quantified (cr_ratio(h=1) still 25-37x short of the 0.1 bar; e1coe_score_var 5-7 orders below 0.002), so MECH-135/INV-088 are NOT yet retestable. Do NOT cite 965's 57809x C1 figure -- that criterion divides by an analytically-zero control and is uninterpretable."
+      "governance_2026_08_30": "ITEM 1 VALIDATED by V3-EXQ-965 (confirmed autopsy). severity 'corrupting' and substrate_paths RESTORED here -- V3-EXQ-954's confirmed autopsy recommended both and neither was ever applied, leaving the /queue-experiment Step 2.5c gate INERT on this entry; that dropped handoff is repaired by this write. ITEM 2 remains required and is now quantified (cr_ratio(h=1) still 25-37x short of the 0.1 bar; e1coe_score_var 5-7 orders below 0.002), so MECH-135/INV-088 are NOT yet retestable. Do NOT cite 965's 57809x C1 figure -- that criterion divides by an analytically-zero control and is uninterpretable.",
+      "user_decision_2026_09_02": "Q1 contrastive build SANCTIONED (entry absolute null governs) -> next /implement-substrate item; Q2 H-c E1-alone rollout readout probe to run alongside (/queue-experiment, not a gate); Q3 3-leg ledger growth on sd_e1_residual_crush_locus approved for /governance to apply; Q4 stateful-anchor depth-collapse recorded as note only; Q5 this amend applied. Chips recorded by sd018-directional-field-amend-ba5834ed."
     },
     {
       "sd_id": "sd014-decouple-wanting-liking-writepath",

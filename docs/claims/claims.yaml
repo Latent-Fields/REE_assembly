@@ -30631,6 +30631,15 @@
   title: encoder.resource_proximity_supervision
   claim_type: substrate_decision
   status: implemented
+  implementation_note: >
+    [2026-09-02 SD-018 AMEND, implement-substrate] Directional resource-field head landed in ree-v3
+    (LatentStackConfig.use_resource_field_head, default False; resource_field_weight 0.5;
+    resource_field_dim 25; ZWorldP0Config.resource_field_weight 0.0): SplitEncoder.resource_field_head
+    regresses the full 25-dim resource_field_view (world_obs[225:250]) from z_world, generalising the
+    scalar max(field) head. Routed by confirmed failure_autopsy_V3-EXQ-948_2026-08-25 (a z_world-only
+    reader forages 0.5 res/ep vs the 1.0 floor with the scalar head active; the same reader given the
+    full field clears it 3/3). Bit-identical OFF. Validation experiment owed (948-shape probe, field
+    head OFF vs ON). Design doc: docs/architecture/sd_018_resource_proximity_supervision.md.
   live_status:
     reading: implemented
     as_of: 2026-07-11
