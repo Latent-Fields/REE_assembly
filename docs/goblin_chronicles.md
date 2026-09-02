@@ -56,6 +56,10 @@ The origin tale is told on [REE for My Parents](ree_for_my_parents.md). The date
 - 30 August — [The Forge That Learned to Digest](goblin_chronicles/2026-08-30-the-forge-that-learned-to-digest.md)
 - 30 August — [The Other Fires](goblin_chronicles/2026-08-30-the-other-fires.md)
 
+### September 2026
+
+- 2 September — [The Day the War Ended and the Creature Stirred](goblin_chronicles/2026-09-02-the-day-the-war-ended-and-the-creature-stirred.md)
+
 ---
 
 The Chronicles are unfinished because the project is unfinished. New entries should be added when a real project turn is worth preserving in story form; failures, reversals, exhausted hypotheses, and good stopping points are as eligible as successes.
