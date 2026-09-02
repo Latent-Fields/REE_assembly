@@ -3474,7 +3474,11 @@
       "task_claim_session_id": "igw-auto-igw-238-proposal-for-arc-073-20260902T150149Z",
       "task_claim_claimed_at": "2026-09-02T15:01:49Z",
       "assigned_at": "2026-09-02T15:00:44Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-02T15:15:44Z",
+      "completion_summary": "marked EVB-1205/EXP-0457 blocked_substrate: no play mode in ree-v3 (zero play_mode/synthetic_z_goal hits), no episode-level LP saturation monitor; LIT-0458 left proposed",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0457 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -4746,6 +4750,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T15:01:46Z",
       "re_eligible_after": "2026-09-04T15:01:31Z"
+    },
+    {
+      "stable_hash": "554d1b40c7f0",
+      "igw_id_at_disposition": "IGW-20260902-238",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-073"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for ARC-073",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T15:15:58Z",
+      "re_eligible_after": "2026-09-04T15:15:58Z"
     }
   ]
 }
