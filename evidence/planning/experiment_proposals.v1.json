@@ -7175,14 +7175,19 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_055",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-053",
+        "ARC-054"
+      ],
+      "blocked_note": "Substrate-readiness check (2026-09-02, /queue-experiment Step 2.5, dispatched as chip-proposal-exp-0451 -- note: that chip title cites EXP-0451, which no longer exists in the current proposals file after a governance regen; EXP-0448/EVB-1200 is the current experimental-lane proposal for this same claim). ARC-055 claims.yaml implementation_phase is v4 (candidate status), deliberately staged AFTER its v3-phase prerequisites ARC-053 and ARC-054 (both phase v3, candidate). Confirmed empirically: MECH-269/MECH-269b implement per-stream/per-region verisimilitude scoring (V_s) inside HippocampalModule, but ARC-055 requires V(t) and D_V EXPLICITLY available as consumable signals to (1) E3 trajectory selection, (2) E1 state representation, (3) E2 transition-model prediction, and (4) learning-update prioritisation -- grep of ree_core/predictors/e3_selector.py and the E1/E2 predictor modules for D_V/verisimilitude found zero consumption call sites. No substrate_queue.json entry covers this gap. ARC-055s own notes field describes a 3-stage implementation plan (Stage 1: prediction-error-only V; Stage 2: + global phase coherence; Stage 3: level-specific hierarchical V) none of which is built. This matches the disposition already given to this claims prior proposal iteration (chip-proposal-exp-0510, 2026-09-01 massmint triage, NOT V3-TESTABLE bucket, implementation_phase v4). Route via /implement-substrate once ARC-053/ARC-054 (E3 selection + E1/E2 wiring) are built and a design exists for exposing V(t)/D_V as explicit signals; until then this is architecturally out of reach for V3, not a missing-script gap."
     },
     {
       "acceptance_checks": [
