@@ -1673,6 +1673,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0116",
+      "claim_ids": [
+        "MECH-439",
+        "ARC-107",
+        "ARC-007",
+        "MECH-151"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "DISPOSITION OWED before any further conversion falsifier: is E3 channel-scale normalisation (f_dominance_conversion_ceiling fallback_ladder rung 3, divisive_normalization_pooled_denominator, labelled 'V4-leaning' on 2026-06-19) V3-required? The record since 2026-07-20 says every selection-face conversion measurement is degenerate on three independent grounds -- hold-weighted DV (689d/711/713 withdrawn; GateDVRecorder landed 2026-08-19), class floor default 2 capping committed-class entropy at ~ln(3) (GFLAG-0072), and UNCONTROLLED SCORE SCALE: 925 found committed_fraction 0.000 at default config (H0), 936a found residue_weighted at 99.999% of committed variance under the clamp, and 571b found harm_weighted at 0.94-0.995 in the 571-shape env -- the monopolist is whichever channel is largest in SCALE, and 936's biological-reference finding names the absence of any normalisation on the E3 additive score sum as a load-bearing formal-import divergence with no targeted_review. MECH-439 as titled ('F monopolises 88-89%') was measured unclamped by a diagnostic run and does not transfer; the honest re-pose is scale-level, which makes rung 3 the falsifier rather than another eligibility lever. By phase-label-follows-dependency rung 3 is V3 if any V3 closure node needs it (35 do -- see cross_plan_root_cause_synthesis_20260902.md sec 2a/4). This is the SAME question as open GFLAG-0051 (ARC-007 option A: give E3 an action-object input channel vs strict 'E3 introduces ALL weighting'): both ask what E3's score sum may contain and on what scale. Recommend deciding the two together, and gating the 936-family and 654h-class falsifiers on the decision rather than on another letter.",
+      "raised_by_session": "crossplan-rootcause-synthesis-20260902",
+      "raised_at": "2026-09-02T05:33:42Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
