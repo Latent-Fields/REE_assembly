@@ -1763,6 +1763,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0122",
+      "claim_ids": [
+        "ARC-019"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-591g crashed (UnboundLocalError in aggregation, ree-cloud-2, 2026-09-02T20:17:44Z, after 5h46m and before any manifest was written); its synthetic ERROR manifest v3_v3_exq_591g_runner_error_20260902T201744Z_v3 is still evidence_direction 'non_contributory'. /diagnose-errors 2026-09-02 root-caused it -- the F4 telemetry-dropout guard defined 'dropout_bypassed' seven lines BELOW the c_discriminates expression consuming it, and gate_green short-circuited past the undefined name on every --dry-run so the smoke test and validate_experiments --strict both passed it clean -- and queued successor V3-EXQ-591h (supersedes V3-EXQ-591g; ree-v3 origin/main 32004c8; statement reordering only, no DV/criterion/threshold/verdict change; claim tags re-evaluated and user-confirmed as ARC-019/non_contributory). FOLLOW-ON OWED: once V3-EXQ-591h's run lands, set that ERROR manifest's evidence_direction to 'superseded' with a note naming V3-EXQ-591h, and rebuild the index. Nothing else is owed.",
+      "raised_by_session": "diagnose-errors-591g",
+      "raised_at": "2026-09-02T21:32:49Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
