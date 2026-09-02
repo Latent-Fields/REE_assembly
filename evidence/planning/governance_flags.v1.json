@@ -1689,6 +1689,23 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0117",
+      "claim_ids": [
+        "MECH-220",
+        "ARC-062",
+        "MECH-309",
+        "MECH-313",
+        "ARC-065"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "PIPELINE DEFECT (dry-run filter blind spot; the three V3-EXQ-395 smokes are the concrete instance). generate_pending_review.load_dry_run_run_ids() and check_dry_run_citations.build_index() both enumerate only TWO manifest shapes -- EVIDENCE_DIR.glob('*.json') (top-level flat) and EVIDENCE_DIR.glob('*/runs/*/manifest.json') (canonical packs). A THIRD shape exists in the corpus and matches NEITHER: the per-experiment-type flat manifest at evidence/experiments/<type>/<run_id>.json, one directory deep with no pack. Consequence: for a manifest of that shape, setting dry_run:true has NO EFFECT on any guard -- pending_review's dry exclusion cannot see it, check_dry_run_citations reports 'no manifest on disk', and GOV-DRY-1 (which keys on the same index) reports 0 asserting dry stamps while an asserting dry stamp is live. Confirmed 2026-09-02: the three v3_exq_395_mech220_harm_hub_dry_* manifests had dry_run UNSET and two carried evidence_direction weakens against MECH-220 with scoring_excluded None -- the ONLY experimental rows against that claim, alongside three literature supports, which is what generated its hold_candidate_resolve_conflict. Governance contained them (dry_run true, non_contributory, note; REE_assembly 20ac9d7cab) and they STILL appear in the regenerated pending_review FAIL bucket, because the glob cannot reach them. GFLAG-0111's six flat-only manifests (V3-EXQ-542/544/544a supports, 395 x2 weakens, 259 does_not_support) are the same shape and the same exposure. Recommend: add EVIDENCE_DIR.glob('*/*.json') (excluding runs/ and _NON_MANIFEST_FILES) to both enumerators, with a regression test pinning all three shapes; then re-run GOV-DRY-1, which is currently reporting a false 0.",
+      "raised_by_session": "governance-20260902-0548",
+      "raised_at": "2026-09-02T12:49:13Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
