@@ -3,7 +3,7 @@ closure_plan:
   id: behavioral_diversity_isolation
   title: "Behavioural Diversity Isolation"
   registered: 2026-05-25
-  last_updated: 2026-09-01
+  last_updated: 2026-09-02
   scope_claims: [ARC-065, ARC-062, ARC-064, MECH-260, MECH-269, MECH-269b, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-320, MECH-341, MECH-439, SD-003, SD-017, SD-029, SD-054, Q-043, Q-044, Q-045, Q-054, Q-055, INV-074, INV-076]
   sibling_plans: [arc_062_rule_apprehension, commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution, conversion_ceiling_campaign]
   nodes:

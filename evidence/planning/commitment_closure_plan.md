@@ -3,7 +3,7 @@ closure_plan:
   id: commitment_closure
   title: "Commitment / Closure / Mode-Governance"
   registered: 2026-05-08
-  last_updated: 2026-08-22
+  last_updated: 2026-09-02
   scope_claims: [SD-033a, SD-033b, SD-033c, SD-033d, SD-033e, SD-034, MECH-090, MECH-091, MECH-260, MECH-262, MECH-263, MECH-266, MECH-267, MECH-268]
   sibling_plans: [sd033_governance]
   nodes:
