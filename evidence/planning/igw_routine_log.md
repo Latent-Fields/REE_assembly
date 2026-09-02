@@ -2375,3 +2375,5 @@ One line per hourly tick. ASCII only.
 2026-09-02T13:41:12Z complete IGW-20260831-222 launched_manual->completed outcome=USEFUL_LANDED: landed ree-v3 6447b45 (SD-e1 ITEM 2 rollout_consistency_loss + 4 default-off E1C
 2026-09-02T13:58:37Z workset committed (regen -- 253 items, 30 ready, 0 in flight)
 2026-09-02T13:57:52Z SPAWN IGW-20260902-239 skill=/queue-experiment prio=40 uuid=788369f8-5b2d-4200-855f-8c0eacfc24f3 pid=66450 worktree=igw-239-proposal-for-arc-052
+2026-09-02T14:29:46Z retire-proposal EXP-0256 -> executed (igw-238-proposal-for-arc-019; complete)
+2026-09-02T14:29:46Z auto-defer igw-238-proposal-for-arc-019 hash=6217c74ba0b9 for 48h (complete)
