@@ -1,0 +1,133 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_971_contextmemory_write_content_h3_task_coupled",
+  "run_id": "v3_exq_971_contextmemory_write_content_h3_task_coupled_20260902T211117Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-02T21:11:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "h3_task_coupled_objective_fails_margin_null_confirmed",
+    "preconditions": [
+      {
+        "name": "writepath_engaged_every_cell",
+        "measured": 1504.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "H3_task_coupled_objective_succeeds": true
+    },
+    "criteria": [
+      {
+        "name": "H3_readiness_untrained_baseline_headroom",
+        "load_bearing": false,
+        "kind": "readiness",
+        "passed": true,
+        "measured": 0.4,
+        "threshold": 0.25,
+        "direction": "lower",
+        "note": "Precondition for the load-bearing criterion's interpretability, not part of the manipulation itself: mean_jaccard(H3_UNTRAINED) must be >= 0.25 for 'materially lower' to be satisfiable at all. If unmet, the load-bearing criterion below reads precondition_unmet rather than a plain FAIL -- a floor effect is not evidence the coupling failed."
+      },
+      {
+        "name": "H3_task_coupled_objective_succeeds",
+        "load_bearing": true,
+        "passed": false,
+        "precondition_unmet": false,
+        "directional_result": false,
+        "mean_jaccard_h3_untrained": 0.4,
+        "mean_jaccard_h3_trained": 1.0,
+        "required_margin": 0.25,
+        "note": "PASS iff the readiness precondition is met AND mean_jaccard(H3_TRAINED) <= mean_jaccard(H3_UNTRAINED) - 0.25. This is H3's own registered open question; a FAIL here (precondition met, directional_result False) is H3's own null -- 'coupled training still fails the margin' -- a real, expected-possible scientific outcome, not a bug. A FAIL with precondition_unmet=True means the comparison could not be made at all, not that coupled training was tried and failed."
+      },
+      {
+        "name": "H3_UNTRAINED_tagger_received_zero_gradient",
+        "load_bearing": false,
+        "passed": true,
+        "n_seeds_frozen": 5,
+        "n_seeds_total": 5,
+        "note": "Mechanical negative control: LAMBDA_H3=0.0 should leave write_addr_tagger's state_dict byte-identical to its random init across the whole real training run (h3_loss's term is structurally never added to `total`, and contextmemory_write_addressing_loss_weight=0.0 rules out 956's own mechanism as an alternate source of movement)."
+      },
+      {
+        "name": "H3_TRAINED_tagger_received_gradient",
+        "load_bearing": false,
+        "passed": true,
+        "n_seeds_moved": 5,
+        "n_seeds_total": 5,
+        "note": "Mechanical positive control: LAMBDA_H3=1.0 should move write_addr_tagger's parameters away from init over the real training run, regardless of whether that movement achieves content-discrimination (the load-bearing criterion above)."
+      },
+      {
+        "name": "H3_coupling_loss_trend_descriptive",
+        "load_bearing": false,
+        "passed": true,
+        "h3_loss_mean_first_episode_untrained": 0.6675279986858367,
+        "h3_loss_mean_last_episode_untrained": 0.6641363551616669,
+        "h3_loss_mean_first_episode_trained": 0.6273084703286489,
+        "h3_loss_mean_last_episode_trained": 0.6514293451312307,
+        "note": "Purely descriptive (always 'passed' -- this is a measurement, not a criterion): mean h3_loss (harm-prediction BCE via the soft-read path) at the start vs end of training, per arm. Lets a reader distinguish 'the coupling loss itself never moved' from 'the coupling loss improved but that did not translate into content-discrimination as measured by the synthetic probe' -- the latter is a more informative FAIL than the former."
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "0a115b23f3b6c465fcd1705040238b02aec858b034d0997d327ef8ba616ffbd0",
+  "substrate_commit": {
+    "commit": "5b1260f62d96e2fd2e457ff8ebee52e404c8530c",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.contextmemory_gated_content_write": true,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.anchor_set.use_sd039_anchor_payload": true,
+    "heartbeat.breath_period": 50,
+    "use_noise_floor": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 10,
+    "goal_state_present": false
+  }
+}
