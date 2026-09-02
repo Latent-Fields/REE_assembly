@@ -65,7 +65,7 @@ for c in open_chips:
 | Claim | Phase | Statement (truncated) | Withdrawn chip(s) | EXP proposal(s) |
 |---|---|---|---|---|
 | ARC-031 | v4 | HippocampalModule navigates z_self trajectory space (deliberation sequences) in addition to z_world... | chip-proposal-exp-0433, chip-proposal-exp-0437 | EXP-0433, EXP-0437 |
-| ARC-055 | v4 | Verisimilitude signal availability: V(t) and D_V must be explicitly available to E3 selection... | chip-proposal-exp-0451 | EXP-0451 |
+| ARC-055 | v4 | Verisimilitude signal availability: V(t) and D_V must be explicitly available to E3 selection... | chip-proposal-exp-0451 | EXP-0451 -- **ROUTED 2026-09-02**: current experimental-lane proposal EXP-0448 (same EVB-1200 backlog item; EXP-0451 renumbered away on a governance regen) marked `blocked_substrate` in `experiment_proposals.v1.json` (REE_assembly `e309cde5c8`), per chip-proposal-exp-0451's own re-dispatch. No further routing owed for this row. |
 | ARC-082 | v4 | Tools/affordances as object->action binding (PILLAR 3 of ARC-080)... | chip-proposal-exp-0466, chip-proposal-exp-0468 | EXP-0466, EXP-0468 |
 | ARC-083 | v4 | Others-as-object (PILLAR 4 of ARC-080): each other agent gets its own token-keyed object-file slot... | chip-proposal-exp-0470 | EXP-0470 |
 | INV-039 | v4 | Schema-primed rapid assimilation: any hippocampal planning system with a stable prior map must gate... | chip-proposal-exp-0676, chip-proposal-exp-0678 | EXP-0676, EXP-0678 |
