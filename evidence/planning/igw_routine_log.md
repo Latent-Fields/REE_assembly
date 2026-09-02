@@ -2402,3 +2402,5 @@ One line per hourly tick. ASCII only.
 2026-09-02T19:08:21Z workset committed (regen -- 252 items, 32 ready, 0 in flight)
 2026-09-02T19:07:41Z STAGE IGW-20260902-219 skill=/implement-substrate prio=25 worktree=igw-219-substrate-ready-mech465-commit-g (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-02T20:10:33Z SPAWN IGW-20260902-238 skill=/lit-pull prio=40 uuid=7ea0e635-d331-4397-bd03-fd4b5e8cf83d pid=59810 worktree=igw-238-literature-proposal-for-arc-113
+2026-09-02T20:13:41Z LAUNCH (manual interactive) IGW-20260902-219 worktree=igw-219-substrate-ready-mech465-commit-g
+2026-09-02T20:26:09Z auto-defer 4dafb051f849 hash=4dafb051f849 for 48h (complete)
