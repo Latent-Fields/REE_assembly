@@ -15,6 +15,14 @@ The origin tale is told on [REE for My Parents](ree_for_my_parents.md). The date
 
 > **Publication note:** the canonical working copies are maintained in `Latent-Fields/ree-paper/fantasy/`. This page is the public reading index. Public mirrors are intended to track the canonical Chronicle files without rewriting them into a cleaner success story.
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="assets/fantasy/02_steve_house_witness.jpg" alt="A small goblin dog sitting alone in a warm, lantern-lit magical room, watching"
+       style="max-width:420px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">
+    Steve, keeping watch. Someone has to witness the whole of it.
+  </figcaption>
+</figure>
+
 ## Chronicles
 
 ### June 2026

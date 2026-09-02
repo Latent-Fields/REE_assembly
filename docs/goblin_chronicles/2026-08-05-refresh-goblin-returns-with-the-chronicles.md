@@ -5,6 +5,14 @@ nav_exclude: true
 
 # Goblin Chronicle: Refresh Goblin Returns with the Chronicles
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/03_symbolic_portrait_annotated.jpg" alt="An annotated symbolic portrait, with labelled elements: cognition, writing, coffee and persistence, dragon and myth, home and family, and the dog Steve"
+       style="max-width:480px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">
+    The scrolls unrolled, and for once, the plate came with labels.
+  </figcaption>
+</figure>
+
 Refresh Goblin burst through the great doors so quickly that three scrolls escaped his satchel and skidded across the stone floor.
 
 “I have them!”

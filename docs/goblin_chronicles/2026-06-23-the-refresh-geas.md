@@ -11,6 +11,14 @@ nav_exclude: true
 **Related files:** `goblin_story_scene_bank_2026-06-09.md`, `goblin_story_consolidated.md`, `goblin_chronicle_plan.md`  
 **Real-world shadow:** experiment progress moved from stale state-change commits on `master` to a force-updated `live-status` orphan branch generated from the coordinator database.
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/07_goblin_portrait_no_annotations.jpg" alt="A goblin-scholar portrait: coffee, an open book, a small dragon, a dog, and a luminous cognition motif"
+       style="max-width:420px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">
+    Refresh Goblin, unsatisfied but still held by the geas.
+  </figcaption>
+</figure>
+
 ---
 
 ## 1. User-originated fragment

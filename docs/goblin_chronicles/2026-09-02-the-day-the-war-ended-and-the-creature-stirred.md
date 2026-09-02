@@ -645,4 +645,22 @@ The war was over.
 
 ---
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/09_goblin_view_glass_reef.jpg" alt="Two goblins in a brass submersible workshop; one presses his face to a round porthole, tongue against the glass, watching a small mechanical fish explore a tiled reef beyond"
+       style="max-width:560px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">
+    <em>thwick.</em> Refresh Goblin, against the view glass.
+  </figcaption>
+</figure>
+
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/fishtank_sd018_directional_field_live.jpg" alt="A screenshot of the REE Fishtank viewer: a small fish agent among jellyfish and food markers in a tiled reef tank, with live vitals and affect readouts"
+       style="max-width:480px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">
+    What was actually on the other side of the glass — the REE Fishtank viewer, mid-episode on the SD-018 directional-field lineage. V3-EXQ-978, the run this chronicle ends on, is that lineage's newest chapter, running now.
+  </figcaption>
+</figure>
+
+---
+
 [← Back to The Goblin Chronicles](../goblin_chronicles.md)

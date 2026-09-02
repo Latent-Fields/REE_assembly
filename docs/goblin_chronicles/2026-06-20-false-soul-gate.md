@@ -11,6 +11,14 @@ nav_exclude: true
 **Related files:** `goblin_origin.md`, `goblin_story_consolidated.md`, `goblin_chronicle_plan.md`  
 **Technical shadow:** basal-ganglia-like selector design pressure; risk of biologically named but functionally incorrect architecture; REE_assembly governance resisting premature implementation.
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/06_goblin_family_soul_magic.jpg" alt="Goblins in family form gathered around a small soul-magic glow, a familiar close by"
+       style="max-width:480px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">
+    The soul being sought, not the soul achieved — the light the magics kept trying to build wrong.
+  </figcaption>
+</figure>
+
 ---
 
 ## 1. User-originated fragment
