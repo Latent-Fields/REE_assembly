@@ -7586,7 +7586,7 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "executed",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_arc_073",
       "target_repo": "REE_assembly",
       "why_now": [
@@ -7594,9 +7594,9 @@
         "missing_literature_evidence",
         "synthetic_signals_only"
       ],
-      "retired_by_igw": "IGW-20260902-238",
-      "retired_reason": "igw outcome=USEFUL_LANDED: proposal EXP-0457 -> blocked_substrate (triage landed)",
-      "retired_at": "2026-09-02T15:15:45Z"
+      "restored_at_utc": "2026-09-02T15:18:07Z",
+      "restored_by_session": "igw-238-proposal-for-arc-073",
+      "restored_reason": "RESTORED by session igw-238-proposal-for-arc-073 at 2026-09-02T15:18:07Z. igw_routine_tick.py retire_proposal_for_entry() wrongly flipped this LITERATURE proposal to 'executed' at 2026-09-02T15:15:45Z during `complete` for IGW-20260902-238. That session did NO literature work: it marked the EXPERIMENTAL twin EXP-0457 blocked_substrate. The function's title-pin was empty, so its fallback loop matched on claim_id ALONE with no proposal_type/lane filter, correctly skipped EXP-0457 under its own Guard 2 (never clobber a deliberate blocked_substrate), and then DISPLACED the flip onto this literature twin -- defeating Guard 2's stated purpose. A literature review is never blocked by absent V3 substrate, and none was performed here, so 'executed' was false on both counts. ARC-073's why_now still carries missing_literature_evidence."
     },
     {
       "acceptance_checks": [
