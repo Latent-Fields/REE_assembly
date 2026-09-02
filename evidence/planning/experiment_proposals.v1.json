@@ -6819,14 +6819,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "skipped",
       "suggested_experiment_type": "claim_probe_arc_043",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": null,
+      "blocked_note": "ARC-043's own architecture doc (docs/architecture/five_axioms_foundations.md#arc-043, 'Conceptual Stack: Axioms Through Learning') states verbatim: 'The axioms imply a conceptual ordering from epistemic ground through the full learning loop. This is not a computational pipeline -- it is a logical dependency structure showing what each layer requires from the layers below it.' ARC-043 asserts that Layers 0-4 are the five/eight axioms, Layer 5 is ethics derived from them, Layer 6 is REE as decision system, Layers 7-9 close the action-consequence-learning loop -- a LOGICAL/DEFINITIONAL ordering of the spec's own concepts, not a claim about V3 runtime behaviour. No experiment output can vary with whether this conceptual layering holds; its truth is a property of the documentation's derivation structure, verified by inspection/derivation, not by any ree-v3 run. Contrast with sibling ARC-024 (same location doc, but a genuinely testable claim about world-latent proxy structure, executed as EXP-0046/EXQ-028/029/033) -- co-location in the axioms doc does not make a claim experiment-shaped. Skipped rather than blocked_substrate for the same reason as EXP-0273/ARC-080, EXP-0696+LIT-0697/INV-077, and EXP-1128+LIT-1129/MECH-530: queue-experiment Step 2.5 is for a buildable/probe-gated substrate-readiness gap, whereas this is a claim-testability guardrail -- no SD/MECH substrate is missing (ARC-043 depends_on INV-025..029/ARC-024/INV-042, all conceptual/axiomatic claims, none a V3 implementation dependency). NOTE RE SIBLING LIT-0441 (same backlog EVB-1194): this disposition applies ONLY to the EXP proposal. LIT-0441 (literature_review) is NOT skipped by this edit and remains legitimately proposed. PROVENANCE: the dispatch brief that spawned this session (chip-proposal-exp-0440) incorrectly stated 'claim ARC-037' with ARC-037's objective text (a different proposal, EXP-0438) -- verified against this file that proposal_id=EXP-0440 actually carries claim_id=ARC-043; proceeded on proposal_id as the authoritative key. 2026-09-02T20:17:10Z, session metaworker-chip-proposal-exp-0440, chip chip-proposal-exp-0440."
     },
     {
       "acceptance_checks": [
