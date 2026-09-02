@@ -2387,3 +2387,7 @@ One line per hourly tick. ASCII only.
 2026-09-02T15:00:44Z SPAWN IGW-20260902-238 skill=/queue-experiment prio=40 uuid=60ff4ae8-e5e2-4ac0-a3bf-45c9ae524a52 pid=91678 worktree=igw-238-proposal-for-arc-073
 2026-09-02T15:15:57Z retire-proposal LIT-0458 -> executed (igw-238-proposal-for-arc-073; complete)
 2026-09-02T15:15:58Z auto-defer igw-238-proposal-for-arc-073 hash=554d1b40c7f0 for 48h (complete)
+2026-09-02T15:16:19Z complete igw-238-proposal-for-arc-073 spawned->completed outcome=USEFUL_LANDED: marked EVB-1205/EXP-0457 blocked_substrate: no play mode in ree-v3 (zero play_mo
+2026-09-02T16:03:33Z GC removed worktree igw-238-proposal-for-arc-073 (removed; branch deleted)
+2026-09-02T16:03:16Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-02T16:03:58Z workset committed (regen -- 253 items, 30 ready, 0 in flight)
