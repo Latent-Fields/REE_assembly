@@ -20200,14 +20200,21 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_039",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-005",
+        "ARC-016",
+        "MECH-019",
+        "salience_coordinator_mode_taxonomy"
+      ],
+      "blocked_note": "Substrate-readiness check (2026-09-02): MECH-039 requires 6 named control channels independently measurable at runtime plus 3 named modes (task-engaged, default-mode-like, emergency) as stable clusters. Only 3/6 channels have live default-reachable attributes (e3.current_precision [ARC-016], e3.commit_threshold + beta_gate.is_elevated, sleep_loop_manager phase enum). The other 3 (arousal, action-readiness/motor-gating, hard-veto) have no unified live attribute: arousal would need combining unlabeled proxies (e3.volatility_estimate + clock.e3_steps_per_tick); action-readiness exists only as a private CommitReadiness._readiness field gated off by default (use_commit_readiness=False); hard-veto has no implemented concept at all (closest proxy pag_freeze_gate.is_active is a freeze-specific gate, default off, narrower than a general veto). The implemented mode taxonomy (SalienceCoordinator.current_mode, SD-032a, default off) has 4 modes (external_task/internal_planning/internal_replay/offline_consolidation) with no \"emergency\" mode at all. Running now would mean combining 3 previously-uncombined default-off flags for the first time and substituting weaker proxies for 2 undefined channels -- not a probe-gated unknown but buildable substrate work (public accessors for readiness, a defined veto signal, an emergency-mode branch). Route via /implement-substrate before re-attempting this experiment."
     },
     {
       "acceptance_checks": [
