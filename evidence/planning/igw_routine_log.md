@@ -2426,3 +2426,4 @@ One line per hourly tick. ASCII only.
 2026-09-02T23:21:18Z workset committed (regen -- 254 items, 32 ready, 0 in flight)
 2026-09-02T23:20:32Z SPAWN IGW-20260902-243 skill=/lit-pull prio=40 uuid=7da85326-af18-43e9-bcb8-62031b587ba5 pid=64468 worktree=igw-243-literature-proposal-for-arc-131
 2026-09-02T23:47:23Z auto-defer igw-243-literature-proposal-for-arc-131 hash=c81315cd628a for 48h (complete)
+2026-09-02T23:48:07Z complete igw-243-literature-proposal-for-arc-131 spawned->completed outcome=USEFUL_LANDED: lit-pull ARC-131: 5 verified literature entries landed (REE_assembly 275bc8d0b4)
