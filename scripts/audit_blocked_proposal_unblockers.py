@@ -176,20 +176,28 @@ def main() -> int:
     args = ap.parse_args()
 
     root = Path(args.root) if args.root else repo_root()
-    rows = audit(root)
+    all_rows = audit(root)
+    rows = all_rows
     if args.bucket:
-        rows = [r for r in rows if r["bucket"] == args.bucket.upper()]
+        rows = [r for r in all_rows if r["bucket"] == args.bucket.upper()]
 
     if args.json:
         print(json.dumps({"findings": rows, "n": len(rows)}, indent=2))
         return 0
 
     order = ["READY", "PARTIAL", "UNOWNED", "OWNED"]
-    counts = {b: sum(1 for r in rows if r["bucket"] == b) for b in order}
+    # Count over ALL rows, never the --bucket-filtered view: a filtered run used
+    # to print "proposals carrying blocked_by: 2", which reads as a data
+    # discrepancy against the unfiltered 19 rather than as a filter, and cost a
+    # reader a diagnostic detour. The filter belongs in the body, not the census.
+    counts = {b: sum(1 for r in all_rows if r["bucket"] == b) for b in order}
     print("BLOCKED-PROPOSAL UNBLOCKER AUDIT")
     print("=" * 74)
     print("proposals carrying blocked_by: %d   %s" % (
-        len(rows), "  ".join("%s=%d" % (b, counts[b]) for b in order)))
+        len(all_rows), "  ".join("%s=%d" % (b, counts[b]) for b in order)))
+    if args.bucket:
+        print("showing only [%s] -- %d of %d" % (
+            args.bucket.upper(), len(rows), len(all_rows)))
 
     for bucket in order:
         sel = [r for r in rows if r["bucket"] == bucket]
@@ -222,7 +230,7 @@ def main() -> int:
                 print("       %-4s %-44.44s %s" % (mark, b["id"], detail))
 
     if any(b["ready"] is True and not b["satisfied"] and b["owned"]
-           for r in rows for b in r["blockers"]):
+           for r in rows for b in r["blockers"]):  # footnote follows what is SHOWN
         print("\nWAIT* = substrate_queue says ready=True but its status string is not one")
         print("this script recognises as satisfied (several statuses are free prose).")
         print("Not auto-cleared -- read the entry and decide.")

@@ -5724,13 +5724,16 @@ def _proposal_lane(item: dict[str, Any]) -> str:
     resolved EXPERIMENTAL proposal's status is carried onto its LITERATURE
     twin, and vice versa.
 
-    That is not hypothetical. Six literature reviews were found carrying
+    That is not hypothetical. SEVEN literature reviews were found carrying
     `status: blocked_substrate` with a byte-identical `blocked_by` /
-    `blocked_note` copied from their experimental twin (EVB-1185, -1398,
-    -1401, -1408, -1583, and MECH-474's pair). A literature review is never
+    `blocked_note` copied from their experimental twin: EVB-1185, -1398,
+    -1401, -1408, -1583, -1585 and -1595. A literature review is never
     blocked by absent V3 substrate -- the papers can be read whatever the
-    substrate does -- so those six were suppressed from the workset for no
-    valid reason.
+    substrate does -- so those seven were suppressed from the workset for no
+    valid reason. (First stated as six on 2026-09-02 from a hand-listed set;
+    the re-derivation the repair chip performs found EVB-1595 as well, which
+    is why that chip re-derives rather than trusting a list. EVB-1185's pair
+    carries `blocked_by: []`, so there the bled field is `blocked_note` only.)
 
     NORMALISATION IS LOAD-BEARING, not tidiness: manual_proposals.v1.json
     spells the lane `literature` (12 items) while the generated file spells
