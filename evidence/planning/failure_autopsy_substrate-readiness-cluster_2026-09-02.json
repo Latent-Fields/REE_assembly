@@ -1,131 +1,210 @@
 {
- "schema_version": "failure_autopsy/v1",
- "generated_utc": "2026-09-02T05:04:59Z",
- "scope": "cluster",
- "status": "confirmed",
- "dry_run_checked": true,
- "excluded_dry_run_ids": [],
- "targets": [
-  {
-   "run_id": "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
-   "queue_id": "V3-EXQ-544",
-   "claim_ids": [
-    "ARC-065",
-    "MECH-313"
-   ],
-   "failed_criterion": "absolute",
-   "self_route_label": null,
-   "four_layer_diagnosis": {
-    "claim_alignment": "intact (untested) -- a wiring gate cannot bear on a mechanism claim, and in practice none of these reaches a scored count",
-    "biological_reference": "n/a at this layer",
-    "prerequisites": "present",
-    "implementation": "complete -- the API exists and responds",
-    "environment": "n/a -- no episodic loop; elapsed 0.68-2.54s, an in-process API exercise",
-    "measurement": "misleading -- PASS criteria in 12 of 14 are plumbing assertions (is-not-None, shape equality, isfinite, exact arithmetic identity against a hand-written table, counter increments), decided in 0.684-2.539s with no episodic loop. Two genuine exceptions: 613 UC3/UC4 (held-out accuracy 0.891 vs a random baseline, gate 0.50) and, weakly, 542/542a UC4.",
-    "integration": "isolated",
-    "scale": "n/a"
-   },
-   "failure_location": {
-    "mechanism": "not_established",
-    "measures": "not_established",
-    "environment": "not_established",
-    "ree": false,
-    "net_classification": "MEASURES -- a readiness gate emitting a claim-bearing evidence_direction"
-   },
-   "biological_reference": {
-    "closest_mechanism": "ACC stochastic gating / LC adaptive gain (noise-floor family)",
-    "dependencies": [],
-    "is_formal_import": false,
-    "divergence": "n/a",
-    "lit_status": "present",
-    "c3_disposition": "C3 fired against an lit_status of ABSENT; the check is right and the draft was wrong. MECH-313 has 2 targeted_review entries (tervo2014 ACC stochastic gating, astonjones2005 adaptive gain). Corrected to present. This does not change the routing -- the finding is about the readiness gate emitting claim evidence, not about a literature gap."
-   },
-   "recommended_epistemic_category": "standard",
-   "recommended_evidence_direction": "non_contributory",
-   "recommended_evidence_quality_note": "The V3-EXQ substrate-readiness family (14 runs, 2026-04-21 to 2026-06-04) decides PASS on PLUMBING assertions in 12 of 14 cases -- is-not-None, shape equality, isfinite, exact arithmetic identity against a hand-written table, counter increments -- completing in 0.684-2.539s with no episodic loop, while every driver hardcodes evidence_direction = 'supports' if all_pass else 'weakens' on its tagged claims. That authoring template is real and worth recording. THE EVIDENCE-INTEGRITY ALARM IS WITHDRAWN, however, and this is stated plainly because an earlier draft of this autopsy asserted it: the containment is COMPLETE, not partial. direction_counts and source_counts are built from entries with scoring_excluded ALREADY FILTERED, so the readiness runs reach no headline count. The worked case an earlier draft cited as the sharpest harm is in fact the refutation: MECH-313's 5 supports are its five LITERATURE entries (diayn/eysenbach2018, sac/haarnoja2018, dvd/parkerholder2020, tervo2014, astonjones2005), its source_counts read {experimental: 0, literature: 6}, and both the 544 and 544a rows carry scoring_excluded=diagnostic_probe. Nothing from this family weights any claim. Governance had additionally ALREADY applied the remedy: 545x2, 546x2 and 547 were reclassified non_contributory in the 2026-05-11 walk (d72741c9e0), 542a x3 were authored non_contributory, and 613/617/639 carry no claim_ids -- leaving a claim-bearing supports residue of exactly THREE manifests (542, 544, 544a), i.e. hygiene, not a class-level defect. WHAT DOES SURVIVE, and is the durable finding: all 14 fail the Experimental Recording Standard always-core -- substrate_hash, substrate_commit and config are absent from every one, because each driver calls write_flat_manifest with config=manifest.get('config') where no 'config' key was ever set, making both provenance kwargs None by construction. seeds is absent from 13 of 14. None of the 14 carries interpretation/preconditions[]/criteria_non_degenerate, so the indexer's adjudication flag could never fire on the class.",
-   "per_claim_recommendation": {
-    "MECH-313": {
-     "recommended_evidence_direction": "non_contributory",
-     "recommended_epistemic_category": "standard",
-     "change": "No headline exposure after all -- MECH-313's supports are literature and the readiness rows are already scoring-excluded. The only storable move is to mark the diagnostic adjudicated -> diagnostic_evidence_adjudicated: true",
-     "pending_retest_after_substrate": false,
-     "recommended_diagnostic_evidence_adjudicated": true,
-     "status_change": "none -- stays candidate"
-    },
-    "ARC-065": {
-     "recommended_evidence_direction": "non_contributory",
-     "recommended_epistemic_category": "standard",
-     "change": "As MECH-313: no count changes; mark the diagnostic adjudicated -> diagnostic_evidence_adjudicated: true",
-     "pending_retest_after_substrate": false,
-     "recommended_diagnostic_evidence_adjudicated": true,
-     "status_change": "none -- stays candidate"
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-02T05:04:59Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
+      "queue_id": "V3-EXQ-544",
+      "claim_ids": [
+        "ARC-065",
+        "MECH-313"
+      ],
+      "failed_criterion": "absolute",
+      "self_route_label": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested) -- a wiring gate cannot bear on a mechanism claim, and in practice none of these reaches a scored count",
+        "biological_reference": "n/a at this layer",
+        "prerequisites": "present",
+        "implementation": "complete -- the API exists and responds",
+        "environment": "n/a -- no episodic loop; elapsed 0.68-2.54s, an in-process API exercise",
+        "measurement": "misleading -- PASS criteria in 12 of 14 are plumbing assertions (is-not-None, shape equality, isfinite, exact arithmetic identity against a hand-written table, counter increments), decided in 0.684-2.539s with no episodic loop. Two genuine exceptions: 613 UC3/UC4 (held-out accuracy 0.891 vs a random baseline, gate 0.50) and, weakly, 542/542a UC4.",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES -- a readiness gate emitting a claim-bearing evidence_direction"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ACC stochastic gating / LC adaptive gain (noise-floor family)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present",
+        "c3_disposition": "C3 fired against an lit_status of ABSENT; the check is right and the draft was wrong. MECH-313 has 2 targeted_review entries (tervo2014 ACC stochastic gating, astonjones2005 adaptive gain). Corrected to present. This does not change the routing -- the finding is about the readiness gate emitting claim evidence, not about a literature gap."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "The V3-EXQ substrate-readiness family (14 runs, 2026-04-21 to 2026-06-04) decides PASS on PLUMBING assertions in 12 of 14 cases -- is-not-None, shape equality, isfinite, exact arithmetic identity against a hand-written table, counter increments -- completing in 0.684-2.539s with no episodic loop, while every driver hardcodes evidence_direction = 'supports' if all_pass else 'weakens' on its tagged claims. That authoring template is real and worth recording. THE EVIDENCE-INTEGRITY ALARM IS WITHDRAWN, however, and this is stated plainly because an earlier draft of this autopsy asserted it: the containment is COMPLETE, not partial. direction_counts and source_counts are built from entries with scoring_excluded ALREADY FILTERED, so the readiness runs reach no headline count. The worked case an earlier draft cited as the sharpest harm is in fact the refutation: MECH-313's 5 supports are its five LITERATURE entries (diayn/eysenbach2018, sac/haarnoja2018, dvd/parkerholder2020, tervo2014, astonjones2005), its source_counts read {experimental: 0, literature: 6}, and both the 544 and 544a rows carry scoring_excluded=diagnostic_probe. Nothing from this family weights any claim. Governance had additionally ALREADY applied the remedy: 545x2, 546x2 and 547 were reclassified non_contributory in the 2026-05-11 walk (d72741c9e0), 542a x3 were authored non_contributory, and 613/617/639 carry no claim_ids -- leaving a claim-bearing supports residue of exactly THREE manifests (542, 544, 544a), i.e. hygiene, not a class-level defect. WHAT DOES SURVIVE, and is the durable finding: all 14 fail the Experimental Recording Standard always-core -- substrate_hash, substrate_commit and config are absent from every one, because each driver calls write_flat_manifest with config=manifest.get('config') where no 'config' key was ever set, making both provenance kwargs None by construction. seeds is absent from 13 of 14. None of the 14 carries interpretation/preconditions[]/criteria_non_degenerate, so the indexer's adjudication flag could never fire on the class.",
+      "per_claim_recommendation": {
+        "MECH-313": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "No headline exposure after all -- MECH-313's supports are literature and the readiness rows are already scoring-excluded. The only storable move is to mark the diagnostic adjudicated -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": false,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        },
+        "ARC-065": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "As MECH-313: no count changes; mark the diagnostic adjudicated -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": false,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "c1_disposition": "C1 fired claiming v3_exq_544a_mech313_noise_floor_substrate_readiness has NEVER scored. THE CHECK IS WRONG HERE and an earlier draft of this autopsy repeated it: 544a DID run, on 2026-05-29 (manifest v3_exq_544a_..._v3_20260529T154903Z.json, PASS, present in claim_evidence.v1.json with scoring_excluded=diagnostic_probe). Recorded rather than silently dropped, because the fire drove a wrong learning item in the first draft, now removed.",
+        "c2_disposition": "C2 fired naming MECH-314a-Phase-2-impl, INF-ENV-002, SD-056 (corrupting) and SD-PROBE-WARMUP (corrupting) as already unblocking ARC-065/MECH-313. All four are real, and none is disputed. Action stays 'none' because this autopsy identifies no NEW substrate need: its finding is an authoring-template defect in the readiness drivers (hardcoded evidence_direction, config/seeds unset by construction), which is a driver fix, not a substrate build.",
+        "sd_id_suggested": "readiness_driver_manifest_provenance_template",
+        "title": "Substrate-readiness drivers must record always-core provenance (substrate_hash, substrate_commit, config, seeds)",
+        "implementation_hint": "All 14 substrate-readiness drivers call write_flat_manifest(..., config=manifest.get(\"config\"), seeds=None) where no \"config\" key was ever set, so both provenance kwargs are None BY CONSTRUCTION and every manifest in the family lacks substrate_hash, substrate_commit and config (seeds absent in 13/14). Fix the shared authoring template so readiness runs stamp the Experimental Recording Standard always-core via experiments/_lib/manifest_core.stamp_recording_core(...). Secondary, lower priority: these drivers hardcode evidence_direction = \"supports\" if all_pass else \"weakens\" on tagged claims; a readiness gate should emit non_contributory (or no direction) rather than a claim-bearing one. NOTE the evidence-weighting alarm is WITHDRAWN -- scoring exclusion contains it completely -- so this second item is hygiene, not an integrity fix.",
+        "unblocks_claims": [
+          "ARC-062",
+          "MECH-309",
+          "ARC-065",
+          "MECH-313",
+          "MECH-314",
+          "MECH-319",
+          "ARC-066",
+          "MECH-320",
+          "SD-011"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "severity": "cosmetic",
+        "substrate_paths": [
+          "experiments/_lib/manifest_core.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
+          "experiment_type": "v3_exq_544_mech313_noise_floor_substrate_readiness",
+          "metric": "14/14 readiness manifests lack substrate_hash, substrate_commit and config; 13/14 lack seeds",
+          "target": "always-core provenance present on every readiness manifest",
+          "resolved": "open"
+        },
+        "severity_note": "cosmetic, deliberately NOT corrupting or degrading: no evidence is weighted by these runs (scoring exclusion is complete and was verified this pass), so the defect costs reproducibility and auditability, not evidence quality. It must not gate unrelated experiments."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "A readiness gate that hardcodes evidence_direction from its own all_pass flag looks like an evidence-integrity problem and is not one here: scoring_excluded filtering is applied upstream of direction_counts, so the containment is complete.",
+        "Check WHICH entries produce a headline count before calling it exposure -- MECH-313's 5 supports are literature, not the plumbing gates that were suspected.",
+        "The durable defect in this family is the recording standard, not the evidence weighting: 14/14 lack substrate_hash/substrate_commit/config because write_flat_manifest is called with a config key that was never set.",
+        "Governance had already reclassified most of this family in the 2026-05-11 walk; the residue is 3 manifests, so the correct output is hygiene, not a class-level alarm."
+      ],
+      "routing": "implement-substrate",
+      "governance_amendment": {
+        "by": "governance cycle 2026-09-02, session governance-20260902-0548",
+        "scope": "ADDITIVE machine-readable membership ONLY. No diagnosis, direction, category, recommendation, routing or human_confirmation field was read-modified-written. Emitted as covered_runs[] with an exact `run_id` key per member, because check_autopsy_coverage.py's _collect_ids matches ONLY keys named exactly run_id/queue_id -- a covered_run_ids list of bare strings is invisible to it.",
+        "basis": "The artifact asserts a 14-run family in cluster_pattern.shape and names 544 + 544a, but recorded NO membership, so check_autopsy_coverage.py saw 1 of 14 and pending_review.md re-flagged the other 13 as un-autopsied. Membership RECONSTRUCTED BY GOVERNANCE, not authored by the autopsy: the 13 readiness runs pending at 2026-09-02T05:51:18Z plus 544a (already reviewed) enumerate to exactly 14, all experiment_purpose=diagnostic, matching the artifact's own count and its naming of 544a.",
+        "user_ratified": "2026-09-02, option 'Accept + backfill ids'",
+        "caveat": "A reconstruction is not the producer's own enumeration. Future CLUSTER autopsies should emit covered_run_ids at authoring time; raised as a governance flag this cycle."
+      },
+      "covered_runs": [
+        {
+          "run_id": "v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002616Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002633Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
+          "role": "cluster_member",
+          "representative": true
+        },
+        {
+          "run_id": "v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T164550Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T172604Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T164557Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z",
+          "role": "cluster_member",
+          "representative": false
+        },
+        {
+          "run_id": "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z",
+          "role": "cluster_member",
+          "representative": false
+        }
+      ]
     }
-   },
-   "recommended_substrate_queue_entry": {
-    "action": "create",
-    "c1_disposition": "C1 fired claiming v3_exq_544a_mech313_noise_floor_substrate_readiness has NEVER scored. THE CHECK IS WRONG HERE and an earlier draft of this autopsy repeated it: 544a DID run, on 2026-05-29 (manifest v3_exq_544a_..._v3_20260529T154903Z.json, PASS, present in claim_evidence.v1.json with scoring_excluded=diagnostic_probe). Recorded rather than silently dropped, because the fire drove a wrong learning item in the first draft, now removed.",
-    "c2_disposition": "C2 fired naming MECH-314a-Phase-2-impl, INF-ENV-002, SD-056 (corrupting) and SD-PROBE-WARMUP (corrupting) as already unblocking ARC-065/MECH-313. All four are real, and none is disputed. Action stays 'none' because this autopsy identifies no NEW substrate need: its finding is an authoring-template defect in the readiness drivers (hardcoded evidence_direction, config/seeds unset by construction), which is a driver fix, not a substrate build.",
-    "sd_id_suggested": "readiness_driver_manifest_provenance_template",
-    "title": "Substrate-readiness drivers must record always-core provenance (substrate_hash, substrate_commit, config, seeds)",
-    "implementation_hint": "All 14 substrate-readiness drivers call write_flat_manifest(..., config=manifest.get(\"config\"), seeds=None) where no \"config\" key was ever set, so both provenance kwargs are None BY CONSTRUCTION and every manifest in the family lacks substrate_hash, substrate_commit and config (seeds absent in 13/14). Fix the shared authoring template so readiness runs stamp the Experimental Recording Standard always-core via experiments/_lib/manifest_core.stamp_recording_core(...). Secondary, lower priority: these drivers hardcode evidence_direction = \"supports\" if all_pass else \"weakens\" on tagged claims; a readiness gate should emit non_contributory (or no direction) rather than a claim-bearing one. NOTE the evidence-weighting alarm is WITHDRAWN -- scoring exclusion contains it completely -- so this second item is hygiene, not an integrity fix.",
-    "unblocks_claims": [
-     "ARC-062",
-     "MECH-309",
-     "ARC-065",
-     "MECH-313",
-     "MECH-314",
-     "MECH-319",
-     "ARC-066",
-     "MECH-320",
-     "SD-011"
-    ],
-    "depends_on_unresolved": [],
-    "priority_suggested": 3,
-    "severity": "cosmetic",
-    "substrate_paths": [
-     "experiments/_lib/manifest_core.py"
-    ],
-    "failure_record_entry": {
-     "run_id": "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
-     "experiment_type": "v3_exq_544_mech313_noise_floor_substrate_readiness",
-     "metric": "14/14 readiness manifests lack substrate_hash, substrate_commit and config; 13/14 lack seeds",
-     "target": "always-core provenance present on every readiness manifest",
-     "resolved": "open"
-    },
-    "severity_note": "cosmetic, deliberately NOT corrupting or degrading: no evidence is weighted by these runs (scoring exclusion is complete and was verified this pass), so the defect costs reproducibility and auditability, not evidence quality. It must not gate unrelated experiments."
-   },
-   "pending_retest_after_substrate": false,
-   "narrow_supports_flag": true,
-   "re_derive_brake": {
-    "fired": false,
-    "threshold": 2,
-    "literal_count_meets_threshold": false,
-    "prior_substrate_ceiling_autopsies": [],
-    "refused_requeue": false
-   },
-   "learning_extracted": [
-    "A readiness gate that hardcodes evidence_direction from its own all_pass flag looks like an evidence-integrity problem and is not one here: scoring_excluded filtering is applied upstream of direction_counts, so the containment is complete.",
-    "Check WHICH entries produce a headline count before calling it exposure -- MECH-313's 5 supports are literature, not the plumbing gates that were suspected.",
-    "The durable defect in this family is the recording standard, not the evidence weighting: 14/14 lack substrate_hash/substrate_commit/config because write_flat_manifest is called with a config key that was never set.",
-    "Governance had already reclassified most of this family in the 2026-05-11 walk; the residue is 3 manifests, so the correct output is hygiene, not a class-level alarm."
-   ],
-   "routing": "implement-substrate"
-  }
- ],
- "cluster_pattern": {
-  "shape": "14 substrate-readiness diagnostics, 12 of which decide PASS on plumbing assertions, all emitting a hardcoded claim-bearing evidence_direction",
-  "is_independent_bugs": false,
-  "structural_property": "One shared authoring template, not 14 independent defects: every driver calls write_flat_manifest with config/seeds unset by construction (the durable finding, 14/14), and every one hardcodes evidence_direction from all_pass (real, but fully contained by scoring exclusion, and already remediated by governance for all but 3 manifests). Two runs are genuine exceptions on the science: 613 UC3/UC4, and weakly 542/542a UC4. The 545/546/542a duplicates are re-emissions, not replicates -- 0 of 37 and 0 of 82 metric leaves differ.",
-  "readings": [
-   "recording_standard_failure_class_confirmed",
-   "evidence_weighting_alarm_withdrawn_containment_complete"
   ],
-  "prior_disposition_honoured": "retrospective_diagnostic_selfroute_audit_2026-06-06.md classed this family low priority and recommended sampling rather than per-run autopsies; this is therefore ONE cluster target, not 14."
- },
- "human_confirmation": {
-  "confirmed_utc": "2026-09-02T05:04:59Z",
-  "gate": "failure-autopsy Step 8 interactive gate",
-  "red_team_model": "fable",
-  "red_team_note": "Both passes run on a different model from the drafting model, per Step 7c."
- }
+  "cluster_pattern": {
+    "shape": "14 substrate-readiness diagnostics, 12 of which decide PASS on plumbing assertions, all emitting a hardcoded claim-bearing evidence_direction",
+    "is_independent_bugs": false,
+    "structural_property": "One shared authoring template, not 14 independent defects: every driver calls write_flat_manifest with config/seeds unset by construction (the durable finding, 14/14), and every one hardcodes evidence_direction from all_pass (real, but fully contained by scoring exclusion, and already remediated by governance for all but 3 manifests). Two runs are genuine exceptions on the science: 613 UC3/UC4, and weakly 542/542a UC4. The 545/546/542a duplicates are re-emissions, not replicates -- 0 of 37 and 0 of 82 metric leaves differ.",
+    "readings": [
+      "recording_standard_failure_class_confirmed",
+      "evidence_weighting_alarm_withdrawn_containment_complete"
+    ],
+    "prior_disposition_honoured": "retrospective_diagnostic_selfroute_audit_2026-06-06.md classed this family low priority and recommended sampling rather than per-run autopsies; this is therefore ONE cluster target, not 14."
+  },
+  "human_confirmation": {
+    "confirmed_utc": "2026-09-02T05:04:59Z",
+    "gate": "failure-autopsy Step 8 interactive gate",
+    "red_team_model": "fable",
+    "red_team_note": "Both passes run on a different model from the drafting model, per Step 7c."
+  }
 }

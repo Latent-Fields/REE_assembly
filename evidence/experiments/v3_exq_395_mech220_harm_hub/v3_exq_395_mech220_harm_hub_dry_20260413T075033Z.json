@@ -8,7 +8,7 @@
   "experiment_purpose": "evidence",
   "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "MECH-220": "weakens"
+    "MECH-220": "superseded"
   },
   "outcome": "FAIL",
   "timestamp_utc": "20260413T075102Z",
@@ -140,7 +140,8 @@
     "mean_ablated_z_harm_a_norm": 0.7413222671879662,
     "mean_z_harm_a_norm_delta": 0.11109244234032101
   },
-  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=bfe2ad006485) to v3_exq_395_mech220_harm_hub_dry_20260413T075133Z emitted 1.0min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "evidence_direction_note": "DRY-RUN SMOKE, CONTAINED by governance cycle 2026-09-02 (session governance-20260902-0548), authority failure_autopsy_V3-EXQ-395-cluster_2026-09-02.json (confirmed), which names this run in excluded_dry_run_ids and establishes the manifest asserts 100/100/100 from module constants. Top-level dry_run was UNSET, so check_dry_run_citations.py, the indexer's dry filter, pending_review.md and GOV-DRY-1 were all structurally blind to it; dry_run set true here so those guards see it. A smoke is not evidence and carries no direction. | PRIOR NOTE PRESERVED: DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=bfe2ad006485) to v3_exq_395_mech220_harm_hub_dry_20260413T075133Z emitted 1.0min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
   "superseded_by": "v3_exq_395_mech220_harm_hub_dry_20260413T075133Z",
-  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature",
+  "dry_run": true
 }

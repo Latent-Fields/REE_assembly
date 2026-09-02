@@ -6,9 +6,9 @@
     "MECH-220"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-220": "weakens"
+    "MECH-220": "non_contributory"
   },
   "outcome": "FAIL",
   "timestamp_utc": "20260413T075203Z",
@@ -139,5 +139,7 @@
     "mean_hub_z_harm_a_norm": 0.8524147095282872,
     "mean_ablated_z_harm_a_norm": 0.7413222671879662,
     "mean_z_harm_a_norm_delta": 0.11109244234032101
-  }
+  },
+  "dry_run": true,
+  "evidence_direction_note": "DRY-RUN SMOKE, CONTAINED by governance cycle 2026-09-02 (session governance-20260902-0548), authority failure_autopsy_V3-EXQ-395-cluster_2026-09-02.json (confirmed), which names this run in excluded_dry_run_ids and establishes the manifest asserts 100/100/100 from module constants. Top-level dry_run was UNSET, so check_dry_run_citations.py, the indexer's dry filter, pending_review.md and GOV-DRY-1 were all structurally blind to it; dry_run set true here so those guards see it. A smoke is not evidence and carries no direction."
 }
