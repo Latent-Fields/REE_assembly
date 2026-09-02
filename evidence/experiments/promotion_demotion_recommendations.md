@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-09-02T17:08:31.267147Z`
+Generated: `2026-09-02T18:46:17.434782Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -10,13 +10,12 @@ Use this as the human-in-the-loop review queue.
 
 | claim_id | current_status | decision_needed | recommendation | decision_status |
 |---|---|---|---|---|
-| `ARC-030` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-032` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-041` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-042` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-045` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-051` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `ARC-052` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `ARC-052` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-058` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-060` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-062` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -28,7 +27,7 @@ Use this as the human-in-the-loop review queue.
 | `ARC-070` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-071` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `ARC-073` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `ARC-073` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `pending_user` |
 | `ARC-077` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-078` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-088` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -164,7 +163,7 @@ Use this as the human-in-the-loop review queue.
 | `Q-037` | `open` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-040` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-041` | `open` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `Q-042` | `resolved` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `Q-042` | `resolved` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-043` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-054` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-055` | `open` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -217,25 +216,6 @@ Use this as the human-in-the-loop review queue.
 | `SD-101` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 
 ## Decision Details
-
-### ARC-030
-- Current status: `candidate`
-- Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.383, conflict_ratio=0.429, exp_entries=4, lit_entries=10; directions supports=11, weakens=3, mixed=0, unknown=0, conflict_ratio=0.429
-- Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
-- Recommendation: `hold_candidate_resolve_conflict`
-- Options (pros/cons):
-  - Acknowledge conflict, no status change (claim remains gated pending the probe/substrate — no build-relevant experiment is available yet)
-  - Escalate the upstream probe/substrate dependency if resolving this conflict has become urgent
-  - Re-open for conflict-resolution experiments once the upstream probe/substrate lands and the gate clears
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-03-29T21:16:41.149863Z`
-- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
-- Last rationale: Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.
 
 ### ARC-032
 - Current status: `candidate`
@@ -297,7 +277,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-045
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.257, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.256, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -344,7 +324,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance session governance-20260902 (user-approved)` at `2026-09-02T17:20:34.236624Z`
+- Last selected option: Accept the hold. Wait for V3 substrate implementation (correct path).
+- Last rationale: Accepted 2026-09-02. ARC-052 is candidate/implementation_phase=v3 with directions supports=4, weakens=0, mixed=1, conflict_ratio=0 -- no V3 experimental runs yet, so nothing to promote or demote on. Work-graph debt: complicated (buildable), gated on an upstream V3 substrate build, not on a reducible unknown at this node. Session igw-239-arc052-proposal held a live claim on ARC-052 during this cycle; its in-flight work was left untouched. No claims.yaml change.
 
 ### ARC-058
 - Current status: `candidate`
@@ -546,13 +529,13 @@ Use this as the human-in-the-loop review queue.
 
 ### ARC-073
 - Current status: `candidate`
-- Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0, conflict_ratio=0.667, exp_entries=0, lit_entries=5; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
+- Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
+- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0, conflict_ratio=0.667, exp_entries=0, lit_entries=5; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
+  - Acknowledge conflict, no status change (claim remains gated pending the probe/substrate — no build-relevant experiment is available yet)
+  - Escalate the upstream probe/substrate dependency if resolving this conflict has become urgent
+  - Re-open for conflict-resolution experiments once the upstream probe/substrate lands and the gate clears
 - Discussion scope with Codex:
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
@@ -1084,7 +1067,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.603, conflict_ratio=0.471, exp_entries=13, lit_entries=6; directions supports=13, weakens=4, mixed=2, unknown=0, conflict_ratio=0.471
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.631, conflict_ratio=0.375, exp_entries=12, lit_entries=6; directions supports=13, weakens=3, mixed=2, unknown=0, conflict_ratio=0.375
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1324,7 +1307,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-166
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.257, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.256, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -2937,11 +2920,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `governance session govapply-20260901 (user-approved)` at `2026-09-01T18:55:25.202541Z`
-- Last selected option: Promote to resolved. Answer of record: dual-read, delivered via Option A (contract-enforcement through StepHarness) rather than Option B (hoist).
-- Last rationale: User-approved 2026-09-01 (GFLAG-0063). Empirical basis is V3-EXQ-530c (c0_rv_moved_both_arms true; arm0 rv 0.5 -> 0.0043-0.0050), NOT the five-run cohort the claim's own note cited -- three of those five were never queued (corrected in the same pass). Six further PASSing post-contract StepHarness manifests corroborate.
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance session governance-20260902 (user-approved)` at `2026-09-02T17:20:34.190181Z`
+- Last selected option: Record a HOLD, no status change. Q-042 stays resolved.
+- Last rationale: STALE RE-FLAG, not an open decision. Q-042 was promoted to resolved on 2026-09-01 by govapply-20260901 (user-approved, GFLAG-0063) on the empirical basis of V3-EXQ-530c, corroborated by six PASSing post-contract StepHarness manifests; directions supports=5, weakens=0, conflict_ratio=0. It re-fires each cycle only because the derive rule sees implementation_phase=v3 with no V3-tagged experimental runs. HOLD RECORDED so it stops re-flagging pending_user, same shape as ARC-106/ARC-130. No claims.yaml change; status stays resolved.
 
 ### Q-043
 - Current status: `open`
@@ -3324,7 +3306,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.505, conflict_ratio=0.588, exp_entries=5, lit_entries=13; directions supports=12, weakens=5, mixed=1, unknown=0, conflict_ratio=0.588
+- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.5, conflict_ratio=0.5, exp_entries=4, lit_entries=13; directions supports=12, weakens=4, mixed=1, unknown=0, conflict_ratio=0.5
 - Evidence quality note: 2026-07-10 (governance, failure_autopsy_V3-EXQ-538a, confirmed; user-adjudicated): V3-EXQ-538a (SD-049 Phase-2 sleep-on ablation) re-ran the pre-enrichment 514f coarse reef config (~0.4% consumption, ~30-50 classifier updates); the identity/consumption pathway was starved so the run is non_contributory for SD-015 (manifest self-declared weakens overridden). SD-015 UNCHANGED candidate / substrate_c…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -3860,7 +3842,6 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-090` | `active` | 0.609 |
 | `SD-007` | `implemented` | 0.609 |
 | `MECH-099` | `candidate` | 0.6 |
-| `SD-015` | `candidate` | 0.588 |
 | `MECH-128` | `candidate` | 0.571 |
 | `MECH-295` | `candidate` | 0.571 |
 | `ARC-019` | `provisional` | 0.5 |
@@ -3876,14 +3857,13 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `Q-093` | `open` | 0.5 |
 | `Q-095` | `open` | 0.5 |
 | `SD-009` | `candidate` | 0.5 |
+| `SD-015` | `candidate` | 0.5 |
 | `SD-024` | `candidate` | 0.5 |
 | `SD-050` | `provisional` | 0.5 |
 | `SD-087` | `candidate` | 0.5 |
-| `MECH-112` | `candidate` | 0.471 |
 | `MECH-116` | `candidate` | 0.444 |
 | `MECH-204` | `candidate` | 0.444 |
 | `SD-049` | `candidate` | 0.444 |
-| `ARC-030` | `candidate` | 0.429 |
 | `ARC-042` | `candidate` | 0.4 |
 | `ARC-068` | `candidate` | 0.4 |
 | `INV-089` | `provisional` | 0.4 |
@@ -3895,6 +3875,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `SD-023` | `candidate` | 0.4 |
 | `SD-047` | `provisional` | 0.4 |
 | `Q-019` | `open` | 0.381 |
+| `MECH-112` | `candidate` | 0.375 |
 | `ARC-038` | `candidate` | 0.333 |
 | `ARC-066` | `candidate` | 0.333 |
 | `CDQ-007` | `unknown` | 0.333 |
@@ -3902,10 +3883,6 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-318` | `candidate` | 0.333 |
 | `Q-020` | `candidate` | 0.333 |
 | `ARC-007` | `provisional` | 0.312 |
+| `ARC-030` | `candidate` | 0.308 |
 
 WARNING: 75 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
-
-## Substrate changes with dependent invariants
-
-No substrate status changes this run. No dependent invariants flagged.
-
