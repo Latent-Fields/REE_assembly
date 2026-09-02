@@ -1606,7 +1606,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0270",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_arc_052",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1615,7 +1615,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "executed_by": "V3-EXQ-977",
+      "executed_queue_id": "V3-EXQ-977"
     },
     {
       "backlog_id": "EVB-0272",
@@ -3103,14 +3105,18 @@
       "priority": "medium",
       "proposal_id": "EXP-0457",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_073",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-09-02T15:08:40Z",
+      "gated_by_session": "igw-238-proposal-for-arc-073",
+      "gating_reason": "blocked_substrate: ARC-073 (play-to-real transition triggered by competence saturation d(PE)/dt < threshold or by competitive drive pressure, not by a scheduled clock; premature transition leaves policy structure undertrained) is unrunnable on ree-v3 at dc7cb1f because BOTH the IV and the DV are unconstructible. IV: there is no play mode to transition OUT of -- word-boundary greps over the whole ree-v3 *.py tree return ZERO hits for play_mode / play_frame / play_episode / play_frame_tag / synthetic_z_goal, so MECH-194's synthetic z_goal+z_harm substitution and ARC-049's co-maintained frame tag are both absent; and there is no episode-level learning-progress estimator to threshold (zero hits for lp_saturation / competence_saturation / pe_slope / d_pe_dt / play_lp). The learning_progress symbols that DO exist (config.use_curiosity_learning_progress, curiosity_learning_progress_weight, curiosity_learning_progress_source, policy/epistemic_deficit.py) are MECH-314c's PER-CANDIDATE curiosity bias into within-step action selection -- an input to selection, not a rolling episode-level d(PE)/dt monitor with a saturation trigger, so they cannot stand in for the IV. The drive-competition alternative trigger is half-present at best: drive_level (18 files) and benefit_exposure (7 files) exist for SD-012, but with no synthetic z_goal the competition has only one arm. DV: 'policy structure undertrained' is defined relative to MECH-195's strategy-transfers / calibration-re-anchors dissociation at play close (MECH-196), neither of which is built. MEASUREMENT-ONLY VARIANT CONSIDERED AND REJECTED: the tempting substitute is a generic exploratory phase terminated at a fixed step count vs at a PE-saturation criterion, scored on downstream competence. That tests a GENERIC phase-advance criterion, not ARC-073 -- ARC-073's specific content is that the transition exits a SYNTHETIC-SIGNAL frame, and its cost model depends on the calibration re-anchoring that only synthetic-signal substitution creates. With no synthetic signals there is nothing to re-anchor, so neither direction would licitly attach to ARC-073; and the downstream-competence DV would land on the known conversion / F-dominance ceiling, re-deriving a vacuous FAIL. Consistent with the 2026-06-07 play-cluster precedents EVB-0254 (ARC-049), EVB-0256 (MECH-197) and EVB-0219 (MECH-312). GOVERNANCE NOTE -- why this item reached the IGW proposal lane at all: ARC-073's play-mode dependencies MECH-194, MECH-195, MECH-196 and ARC-049 all carry epistemic_category: substrate_conditional (which _EPI_SUPPRESS_PROPOSAL suppresses), but ARC-073 itself carries NO epistemic_category and no implementation_phase, so it leaks through the filter. Sibling MECH-327 (sensorimotor-play PE-locus probe upweighting) has the identical gap. This is a claims.yaml classification miss, not a generator bug; claims.yaml is governance-only, so it is flagged here rather than edited by this /queue-experiment session.",
+      "release_condition": "Play mode exists in ree-v3: MECH-194 synthetic z_goal/z_harm substitution with full E3/E2/E1 learning flow, ARC-049's co-maintained (agent + env) play frame tag, and MECH-196 episode-close real-signal recalibration -- PLUS an episode-level rolling learning-progress estimator with a GoalConfig play_lp_saturation_threshold. Until then this is /implement-substrate work, not /queue-experiment work. A lit pull for ARC-073 is NOT blocked: the sibling literature proposal for EVB-1205 stays 'proposed'."
     },
     {
       "backlog_id": "EVB-1205",
