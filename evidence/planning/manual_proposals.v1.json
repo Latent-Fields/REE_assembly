@@ -2139,12 +2139,16 @@
         "FALSIFYING: interaction term is additive or null despite both non-degeneracy preconditions holding.",
         "Report claim_ids_tested=['ARC-044'] and evidence_direction. Explicitly flag in the manifest that this run does not adjudicate the MECH-026/MECH-093 facets of ARC-044's title."
       ],
-      "status": "executed",
+      "status": "blocked_substrate",
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 1) while drafting ARC-044's what_would_answer. No prior ARC-044-tagged experiment or proposal existed. Next step is /queue-experiment.",
       "backlog_id": "EVB-0584",
       "executed_by": "V3-EXQ-832",
-      "executed_queue_id": "V3-EXQ-832"
+      "executed_queue_id": "V3-EXQ-832",
+      "blocked_by": [
+        "no_mech152_arc016_shared_gain_readout"
+      ],
+      "blocked_note": "blocked_substrate (2026-09-02, /queue-experiment attempt drafted as V3-EXQ-990, never queued -- BLOCKED by two independent adversarial design-review passes, fable model, both citing the same structural finding). (a) NO SHARED READOUT: MECH-152's w_harm enters ONLY E3Selector.score_trajectory's harm term (`m = m * w_harm`, ree_core/predictors/e3_selector.py ~line 1383) and ARC-016's running_variance enters ONLY the commit gate (`committed = commit_variance < effective_threshold`, same file ~line 3672); traced candidate generation (ree_core/predictors/e2_fast.py:generate_candidates_random, confirmed precision-blind) and select()'s only rv read (the gate itself) -- no code path lets the two mechanisms jointly determine any single measurable quantity. ARC-044's what_would_answer text presupposes a 'combined harm-evaluation precision/variability readout' that does not exist to be measured in the current substrate. (b) INDEPENDENTLY, e3_selector.py's harm_eval_head (~lines 413-418, the only harm-cost path available with no harm_bridge/harm_forward_model) receives NO training gradient anywhere in this driver family's loss inventory (agent.py ~10787-12033) -- it is a fixed random projection of z_world, so even a differently-designed shared-readout would be measuring noise, not a harm estimate. Neither finding is a script bug: fix requires either building actual coupling machinery in ree_core (a substrate change) or ARC-044's what_would_answer being reframed by governance/claim-target -- neither in scope for /queue-experiment. Follow-on: chip-20260902-arc044-mech152-arc016-no-shared-readout (chip_ledger.py)."
     },
     {
       "proposal_id": "EXP-0583",
