@@ -1641,6 +1641,23 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0114",
+      "claim_ids": [
+        "MECH-439",
+        "MECH-457",
+        "INV-088",
+        "MECH-448",
+        "ARC-108"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "UNDECLARED GATE on the v3 critical path. substrate_queue f_dominance_conversion_ceiling (ready:false, 26 failure records, unblocks 18 claims) carries depends_on_unresolved: [] and node_class complex (probe-gated), and closure_status therefore reports it 'not ready with no unresolved dependencies'; behavioral_diversity_isolation:GAP-K, conversion_ceiling_campaign:P4-learned-gating and :GENERATION say 'parked behind MECH-457 + INV-088', which point at a discrimination (competence_floor) that CLOSED 2026-08-08 rather than at a build. The probe chain has RUN: V3-EXQ-813+948 CONFIRMED H-observation-interface on conversion_ceiling_root (z_world discards the directional resource field; a reader given z_world+25-dim field clears the D3 floor 3/3 seeds, latent-only 0/3), routed /implement-substrate amend SD-018 and user-confirmed 2026-08-25 -- but SD-018 still reads status:implemented/ready:true with NO build item, chip, or owner; and V3-EXQ-965 (2026-08-30) left SD-e1-rollout-consistency-training ITEM 2 'validation owed', unminted. Cross-plan trace (evidence/planning/cross_plan_root_cause_synthesis_20260902.md): 39 of the 43 non-done v3 nodes chain to this observation->z_world->E1/E2-rollout interface, 35 of them through the single FULLSTACK/GAP-I gate, and the 7 campaign assembling nodes have no revisit_after and still await a routing that fired in July. Recommend: (1) set depends_on_unresolved on f_dominance_conversion_ceiling to [SD-018 directional-field amend, SD-e1 ITEM 2 validation, E3 channel-scale normalisation (rung 3)] and node_class complicated (buildable); (2) chip the SD-018 amend to /implement-substrate and the SD-e1 ITEM 2 run to /queue-experiment; (3) re-point awaiting: on the 7 campaign nodes and set revisit_after.",
+      "raised_by_session": "crossplan-rootcause-synthesis-20260902",
+      "raised_at": "2026-09-02T05:33:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
