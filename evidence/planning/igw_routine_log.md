@@ -2415,3 +2415,6 @@ One line per hourly tick. ASCII only.
 2026-09-02T21:37:32Z auto-defer igw-239-literature-proposal-for-arc-120 hash=8e328701f90f for 48h (complete)
 2026-09-02T21:37:57Z complete igw-239-literature-proposal-for-arc-120 spawned->completed outcome=NO_OP: lit-pull ARC-120: 5 entries landed (REE_assembly 4a86cb63be), lit_conf 0.852, 4
 2026-09-02T21:40:11Z correct igw-239-literature-proposal-for-arc-120 outcome NO_OP->USEFUL_LANDED (AUTO cannot see a work-repo landing: REE_assembly 4a86cb63be)
+2026-09-02T22:16:53Z GC removed worktree igw-239-literature-proposal-for-arc-120 (removed; branch deleted)
+2026-09-02T22:16:37Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-02T22:18:32Z workset committed (regen -- 253 items, 32 ready, 0 in flight)
