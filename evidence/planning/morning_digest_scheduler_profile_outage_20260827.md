@@ -243,3 +243,80 @@ log would add cost and cover nothing the other two miss.
   re-selecting a profile on its own, is not established. The log shows only the transition.
 * The `global_limit (active=3, limit=3)` cap is documented above as observed; it has not been
   shown to have dropped any digest run.
+
+## 10. RECURRENCE 2026-08-31/09-01, and the mitigation actually taken (2026-09-02)
+
+### The recurrence
+
+Section 8's recommended action was performed: the owning profile re-initialised
+**2026-08-29 10:09:40** and the 08-29 slot was served. It then broke again the next day and
+stayed broken. Measured 2026-09-02T05:20Z by `/morning-digest` Step 9 diagnostic (d):
+
+| when | profile initialised | dispatches |
+|---|---|---|
+| 2026-08-29 10:09:40 | `e6c369d5 / 327a6a20` (owning) | — |
+| 2026-08-30 18:05:30 | `5879f72b / eceb62e1` | 0 |
+| 2026-08-30 18:40:16 | `5879f72b / eceb62e1` | 0 |
+| 2026-08-31 15:59:01 | `5879f72b / eceb62e1` | 0 |
+| 2026-09-01 20:23:29 | `5879f72b / eceb62e1` | 0 |
+
+Two weekday slots lost (Mon 08-31, Tue 09-01); Sat 08-29 and Sun 08-30 are not misses (cron
+is `7 5 * * 1-5`). Cumulative profile coverage now reads **48 spawns, all under
+`e6c369d5 / 327a6a20`**; six other (account, org) pairs have 29 initialisations between them
+and **zero** spawns.
+
+Sleep is **ruled out**, and more cleanly than in the original incident: `pmset -g log`
+records no sleep or wake event after **2026-08-29 15:45** — i.e. the Mac was continuously
+awake across both missed slots — and `pmset -g custom` reports `sleep 0` on AC. The app was
+up (`/Applications/Claude.app/Contents/MacOS/Claude` pid 48691, started 2026-09-01 20:23,
+still running at diagnosis time).
+
+**What this recurrence adds to the record:** section 8's fix is not durable. Re-signing into
+the owning profile restores dispatch, but the profile switches back on its own cadence
+(here, within ~32 hours). Section 9's open question — whether the switch is a deliberate user
+action or the app re-selecting — is still unresolved, but the recurrence makes the *cost* of
+leaving it unresolved concrete: a manual profile fix buys about one day.
+
+### The mitigation (user decision, 2026-09-02)
+
+The user's constraint: *"I will always have one of either account open locally."* So rather
+than chase the profile, **register a twin task on the OTHER profile** so that whichever
+account is signed in, one of the two dispatches.
+
+| | `ree-morning-digest` | `ree-morning-digest-b` |
+|---|---|---|
+| profile | `e6c369d5 / 327a6a20` | `5879f72b / eceb62e1` |
+| cron (local) | `7 5 * * 1-5` | `0 6 * * 1-5` |
+| Check-1 anchor | 307 min (05:07) | 360 min (06:00) |
+| lock | `/tmp/ree-morning-digest.lock` | **the same path** |
+| Check-2 already-done | — | yes |
+
+Both invoke the `morning-digest` skill unchanged. Three things about this are load-bearing:
+
+1. **A DISTINCT taskId was used, deliberately.** `create_scheduled_task` writes
+   `~/.claude/scheduled-tasks/<taskId>/SKILL.md`, and that directory tree is on the shared
+   filesystem while *registration* is per-profile. Reusing `ree-morning-digest` would have
+   overwritten the existing SKILL.md with a 06:00 Check-1 anchor while the other profile's
+   registration still fires it at 05:07 — a permanent self-`STALE_SKIP` the moment the user
+   signs back in, and one that would look exactly like a third new fault.
+2. **The lock path is shared on purpose.** It is what makes the two mutually exclusive if a
+   profile is switched mid-morning. Do not rename it to match the taskId.
+3. **Check-2 (already-generated-today) is new and is not redundant with the lock.** The lock
+   is released at task end, so an 05:07 run finishing at ~05:40 would leave the 06:00 fire
+   free to run a *second* full digest — duplicating the agenda and re-spawning the same
+   follow-on chips. Check-2 compares the date in `morning_agenda.md`'s heading against
+   `date -u +%Y-%m-%d` and skips.
+
+### Do not "simplify" this back to one task
+
+Two morning-digest tasks looks like duplication and will invite consolidation. It is not:
+the second one exists precisely because per-profile registration means a single task has a
+single point of failure that is invisible from inside the app. Deleting either twin
+re-opens the outage for whichever profile it covered. If consolidation is ever genuinely
+wanted, the prerequisite is establishing *why* the profile switches (section 9), which is
+still unknown.
+
+**Not superseded:** section 8's diagnostic advice still stands, and diagnostic (d)
+(`audit_scheduled_task_fires.py --task <id> --scheduler-log --profiles`) remains the way to
+adjudicate a future gap. Note it takes a `--task` argument — with two tasks, check both
+before concluding a slot was missed.
