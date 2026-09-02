@@ -237,3 +237,72 @@ signal 3 as well, which is what made Fix B worth proposing at the same time.
   `ree-cloud-4` produces ssh-to-self artifacts -- one "Permission denied" error string is split across
   three rows and read as three separate findings. That is a real measurement defect in the audit but a
   separate, smaller problem; noted here so the next reader does not re-diagnose it.
+
+---
+
+## Addendum -- generation 4, and a correction to its recorded explanation
+
+Found while closing out this pass: **`chip-pausepressure-dlaptop-g4` already exists.** It spawned
+2026-09-02T17:10:50Z and was resolved 17:53:16Z -- i.e. generation 4 fired and was closed *while this
+generation-3 root-cause pass was being dispatched*. Trip metrics: `open_chips 178 > 40`,
+`recorded_7d 1016 > 150`, same episodic gen>=2, `enablement_findings 3`.
+
+That makes the count **four generations in five days**, and it strengthens rather than changes the
+root cause above: g4's recorded response was *again* a backlog-side remedy ("letting normal dispatch
+catch up"), the fourth in a row, and again no generator was touched.
+
+### Two things in g4's resolution note that matter
+
+**(1) It confirms the remedy text is not actionable -- corroborating Fix B from a different angle.**
+Verbatim: *"the Orchestrator initially mis-framed 'schedule a full pause window' as a ready-to-run
+procedure; the 2026-08-29 campaign it referenced is a one-time bespoke engineering campaign (already
+landed), and section 12 of fleet_commit_sequencing_redesign_20260829.md states the pause-pressure gate
+is still a TRIAL with no codified skill. Corrected with the user: no campaign executed."*
+
+So the single remedy the chip names is not merely mis-routed (the finding above) -- it does not exist
+as a runnable procedure at all. Every generation has been handed a pointer to a one-time historical
+campaign as though it were a repeatable playbook. This is a second, independent reason the verdict text
+must name the actual driver rather than prescribe a fixed response, and it should be treated as part of
+Fix B's scope.
+
+**(2) Its causal attribution is measurably wrong, and it is the version currently on the ledger.**
+Verbatim: *"the Orchestrator had stopped the Dispatcher on both cloud boxes for ~50 min to avoid
+contention with a concurrent /governance run, so normal dispatch throughput paused right as governance
+minted ~100 chips."*
+
+The ~100 chips are real -- 99 were minted in the 16:36-16:38Z window. **Governance did not mint them.**
+They are `chip-proposal-exp-*` with `origin: proposal_tick`. And governance did not create the
+eligibility either: counting `status == "proposed" AND proposal_type == "experimental"` items in
+`evidence/planning/experiment_proposals.v1.json` across five revisions spanning the whole day gives
+
+| Revision | Committed | experimental + proposed |
+|---|---|---|
+| `77b60c7bcd` (governance regen) | 05:56Z | 241 |
+| `3cfc2317a8` | 15:09Z | 237 |
+| `ca55d8610e` (index regen) | 16:59Z | 238 |
+| `0bbbb38a2b` | 16:27Z | 239 |
+| `37ba3edcbb` (governance regen) | 17:10Z | 238 |
+
+**Flat at 237-241 all day.** There was no eligibility spike for governance to have caused. The pool
+has been sitting at roughly that size the whole time.
+
+### What that actually implies (a refinement, in the fix's favour)
+
+`proposal_routine_tick` is idempotent per `proposal_id` (the chip_ref dedup), so it is not an unbounded
+*growth* process -- it is an uncapped **one-time drain of a standing ~240-item backlog**. 168 distinct
+proposals were drained on 09-01 and 124 on 09-02 (overlap 5), which is close to exhausting the pool.
+Two consequences:
+
+- The 120 currently-open proposal chips are largely the *residue of a completed drain*, so this
+  particular family will not keep growing at today's rate. Anyone reading `open_chips 195` as runaway
+  growth will be wrong -- which is exactly the misreading an un-attributed aggregate invites, and is
+  the same error in the opposite direction from g4's.
+- But the drain **re-arms whenever the pool grows**, and it drains in minutes rather than at the
+  fleet's working rate. Fix A's value is precisely that it converts a minutes-long drain into a paced
+  one at the floor the user already ratified. This is a throughput/pacing fix, not a containment fix,
+  and the doc's Fix A wording should be read that way.
+
+None of this weakens the root cause: whether the driver is a drain or a growth process, the gate cannot
+tell you which, because it does not attribute. Four generations have now been answered with four
+backlog-side remedies, one of which pointed at a procedure that does not exist and one of which blamed
+the wrong producer. That is the cost of the missing attribution, stated as plainly as the evidence allows.
