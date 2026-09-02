@@ -3553,7 +3553,11 @@
       "task_claim_session_id": "igw-auto-igw-238-literature-proposal-for-arc-113-20260902T201118Z",
       "task_claim_claimed_at": "2026-09-02T20:11:18Z",
       "assigned_at": "2026-09-02T20:10:33Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-02T20:42:35Z",
+      "completion_summary": "lit-pull ARC-113: 5 literature entries landed REE_assembly 388dbe5768 (4 supports + 1 mixed; lit_conf 0.823, exp stays gated on ARC-062 GAP-B). Chipped 3 follow-ons incl. EXP-0486 conflicting with ARC-113's own DO-NOT-QUEUE gate.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull ARC-113: 5 literature entries landed REE_assembly 388dbe5768 (4 supports + 1 mixed; lit_conf 0.823, exp stays gated on ARC-062 GAP-B). Chipped 3 follow-ons incl. EXP-0486 conflicting with ARC-113's own DO-NOT-QUEUE gate."
     }
   ],
   "dispositions": [
@@ -4867,6 +4871,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T20:26:09Z",
       "re_eligible_after": "2026-09-04T20:26:09Z"
+    },
+    {
+      "stable_hash": "d1a503221ce7",
+      "igw_id_at_disposition": "IGW-20260902-238",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-113"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for ARC-113",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-02T20:42:35Z",
+      "re_eligible_after": "2026-09-04T20:42:35Z"
     }
   ]
 }
