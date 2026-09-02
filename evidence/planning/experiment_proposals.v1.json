@@ -20523,19 +20523,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
+      "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_043",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "blocked_by": [
-        "MECH-054",
-        "MECH-095"
-      ],
-      "blocked_note": "Substrate gate (EXP-0829 readiness check, 2026-09-01): MECH-043's behavioral half is not constructible on the current substrate. (1) NO PRECISION->DV COUPLING: the claim requires 'misallocation of this channel produce a measurable shift in a hallucination-like DV'. The only hallucination-like DV substrate present is the MECH-095 TPJ agency comparator (misattribution of self-caused events to external agency, ree_core/comparator/tpj_comparator.py). TPJComparator.compare() is a pure function of (z_self_pred, z_self_obs, self.agency_threshold) -- verified by AST: no precision token (current_precision/_running_variance/precision_norm/dacc_precision_scale) appears anywhere in ree_core/comparator/, and agency_threshold is assigned only at construction (agent.py:893 <- config.tpj_agency_threshold), never at runtime. The DV is therefore INVARIANT to a gain sweep of the unsigned channel by construction; the only residual path (precision -> commit gate -> different committed actions -> different z_self trajectory) is a confound, not the 'attributable to THIS channel specifically' attribution the claim demands. The unsigned channel's three real consumers are the E3 commit gate, dACC affective-PE weighting (dacc.py:195), and the SD-020 harm surprise target (agent.py:11243) -- none is an attribution DV. (2) NO DISSOCIATION CONTROL: falsifier (iv) requires demonstrating functional dissociation from MECH-054's signed harm/benefit precision channels, but MECH-054 has ZERO implementation in ree_core (0 occurrences; pi_H/pi_B exist only as an 'Implementation Sketch' in docs/architecture/precision_control.md). There is no signed-channel substrate to dissociate from, so (iv) can be neither confirmed nor falsified. Preconditions (a)/(b)/(c) DO hold and were confirmed: the audited term is unsigned by construction (e3_selector.update_running_variance: prediction_error.pow(2).mean()), live-invoked from the real step loop (e3_selector.py:4151), and influences commitment + learning rate. Owed build routes to /implement-substrate; NO substrate_queue entry currently unblocks MECH-043 (0 entries), so this work is unowned. Queueing a gain sweep now would yield a DV that cannot move for the reason under test -- a null would be uninterpretable between falsifier (iii) and an instrument defect. ARC-109 is deferred to V4; ARC-108 is implemented but substrate_conditional. NOTE: sibling proposal LIT-0830 shares backlog_id EVB-1408 and is deliberately left 'proposed' -- the literature-grounding route is unaffected by this substrate gap."
+      ]
     },
     {
       "acceptance_checks": [
@@ -32842,14 +32837,18 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_470",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "MECH-468"
+      ],
+      "blocked_note": "/queue-experiment Step 2.5 stop (2026-09-02). MECH-470 needs a topological term = relational distance to the current anchor along TYPED PATHS over the anchor set. (1) NO EDGE STRUCTURE EXISTS in ree-v3. ree_core/hippocampal/anchor_set.py Anchor carries only (key, z_world, active, created_at, last_accessed, below_threshold_streak, goal_payload) -- zero relational fields -- and AnchorSet exposes zero neighbour/adjacency/path/distance accessors (probed live 2026-09-02, not just read from docs). A repo-wide grep for typed-edge machinery over anchors returns nothing: the sole 'adjacency' hit in ree_core is a grid-placement comment in causal_grid_world.py, and SD-091 'coalition topology' is a star topology over SUBSYSTEMS whose own scope statement excludes edge-level interaction graphs. This is precisely what MECH-468 asserts -- REE's typed relations are each realised as a payload field, a gate, or a scoring term, and NONE is exposed as an edge type over the anchor set. (2) SECOND, INDEPENDENT BLOCKER: the falsifier is a ranking-quality comparison 'on EXISTING ghost-bank traces', and no such traces exist. GhostGoalBank telemetry is aggregate counters (n_candidates_scanned, n_admitted, component_sums); 0 of 4 ghost-related manifests carry per-anchor identity. So there is neither a per-anchor trace to re-rank nor a functional-role label to score ranking quality against. (3) THE GATE IS EXPLICIT IN claims.yaml: MECH-470 is 'gated behind the MECH-468 edge-type inventory spike (the typed-path distance it needs must be recoverable from logged telemetry); no experiment proposal minted'. EXP-1107 was auto-minted by the 2026-09-01 proposal_tick over that instruction. The owed next move is that SPIKE, not an experiment -- MECH-468's own note says 'FIRST MOVE IS A SCOPING SPIKE, NOT A PROBE'; node class complicated (buildable). (4) PARTIAL SPIKE ANSWER ALREADY IN HAND from this pass, in the negative: the typed-path distance is NOT recoverable from the current logged telemetry, so the spike cannot be cleared by reading the existing corpus -- it needs per-anchor ghost-bank trace recording first. (5) Step 2.5c substrate-path overlap gate is CLEAR: the only open substrate_queue entry touching ree_core/hippocampal/ is mech203-valence-pool-admissibility (module.py::_select_valence_weighted_start, severity unset, different function), so nothing corrupting blocks this path -- the block is the absent substrate itself. No script authored, no queue entry appended. Checked by chip-proposal-exp-1107-paced, 2026-09-02T02:52Z."
     },
     {
       "acceptance_checks": [
@@ -34976,15 +34975,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "skipped",
+      "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_530",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "blocked_note": "MECH-530's own claims.yaml entry (claim_type: design_decision, subject: e3.non_oracular_output_typing) states verbatim in its notes: 'DO NOT queue an experiment against this claim -- it is a static/contract property, not one an experiment run would move.' Confirmed by independent re-inspection 2026-09-02: MECH-530 asserts a STATIC INTERFACE CONTRACT on E3's EXISTING output surface -- that every decision-outcome field is a continuous/boolean/count-typed magnitude and none is a semantic category label. Its truth value is a property of source code at a point in time, not of any run's behaviour, so NO experiment output varies with it and no run can confirm or falsify it. Re-verified directly: SelectionResult (e3_selector.py:114-132) is Trajectory/int/torch.Tensor/float/bool only; the 77 last_score_diagnostics writes are bool/int/float; the single label-adjacent field, loop_named_channel_routed_ranges, is Dict[str, float] keyed by ARCHITECTURAL loop-channel names (associative/limbic, from cmap) carrying continuous range values -- a descriptive-string key with a typed value, which the claim explicitly permits, not an object/context class label. The claim already reads CONFIRMED-by-inspection in its own what_would_answer with no build owed. What IS owed is the instrument the claim's notes name as 'not yet written': a CONTRACT TEST over e3_selector.py's diagnostic surface, guarding against a future addition leaking a category label. That is /implement-substrate work (a 'complicated (buildable)' node -- a named build with no open question), not an EXQ run. Substrate gates were run and are CLEAN, so this is explicitly NOT a substrate gap: Step 2.5b re-derive brake = 0 autopsies on MECH-530; Step 2.5c substrate-path overlap = 0 open substrate_queue entries touching e3_selector.py. Skipped rather than blocked_substrate for the same reason as EXP-0273/ARC-080: queue-experiment Step 2.5 is for a buildable/probe-gated node, whereas this is a claim-testability guardrail. Also confirmed: MECH-530 has no completed run (absent from claim_evidence.v1.json, evidence: []) and implementation_phase is still v3 (unchanged since the 2026-09-01 triage). PROVENANCE: EXP-1153 was auto-minted by the 2026-09-01 proposal_tick mass-mint with the generic template objective 'Reduce uncertainty for MECH-530 via targeted experiment runs' and why_now 'missing_experimental_evidence' -- derived mechanically from the claim having no evidence rows, without checking whether the claim is experiment-shaped. A design_decision claim can never accrue experimental evidence rows, so that signal will keep re-minting this proposal; see the massmint triage doc evidence/planning/proposal_tick_massmint_triage_20260901.md. 2026-09-02, session metaworker-chip-proposal-exp-1153-paced, chip chip-proposal-exp-1153-paced."
+      ]
     },
     {
       "acceptance_checks": [
@@ -43759,9 +43757,9 @@
       "claims_tested": [
         "MECH-285"
       ],
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "dispatch_mode": "discriminative_pair",
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
       "prerequisites": [
         "MECH-285 offline-arm substrate wired (ree_core/hippocampal/sleep_replay_sampler.py or equivalent; HippocampalConfig.use_mech285_sleep_priority flag)",
