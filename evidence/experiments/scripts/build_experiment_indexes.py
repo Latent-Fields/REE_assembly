@@ -5712,6 +5712,75 @@ def _proposal_identity_keys(item: dict[str, Any]) -> list[str]:
     return keys
 
 
+def _proposal_lane(item: dict[str, Any]) -> str:
+    """The LANE half of a proposal's identity key, normalised.
+
+    `backlog_id` is stable but NOT unique: one EVB legitimately backs two
+    proposals on the same claim, an `experimental` one and a
+    `literature_review` twin (measured 2026-09-02 over the live 1150 items:
+    915 distinct backlog_ids, 234 duplicate groups). Keying the status
+    carry-forward on the identity key ALONE therefore collapses those two
+    onto one dict slot, and whichever record is read second wins -- so a
+    resolved EXPERIMENTAL proposal's status is carried onto its LITERATURE
+    twin, and vice versa.
+
+    That is not hypothetical. Six literature reviews were found carrying
+    `status: blocked_substrate` with a byte-identical `blocked_by` /
+    `blocked_note` copied from their experimental twin (EVB-1185, -1398,
+    -1401, -1408, -1583, and MECH-474's pair). A literature review is never
+    blocked by absent V3 substrate -- the papers can be read whatever the
+    substrate does -- so those six were suppressed from the workset for no
+    valid reason.
+
+    NORMALISATION IS LOAD-BEARING, not tidiness: manual_proposals.v1.json
+    spells the lane `literature` (12 items) while the generated file spells
+    it `literature_review` (523 items). Without collapsing the two, a manual
+    literature proposal's resolution would stop carrying forward the moment
+    this key went in -- turning a cross-lane bleed into a silent wipe, which
+    is the strictly worse direction.
+    """
+    _t = str(item.get("proposal_type") or "").strip()
+    if _t.startswith("literature"):
+        return "literature"
+    return _t or "?"
+
+
+def lookup_existing_proposal_status(
+    item: dict[str, Any],
+    status_map: dict[tuple[str, str], dict],
+    lanes_by_key: dict[str, set[str]],
+) -> dict | None:
+    """Resolved status carried forward for `item`, matched on (identity key, LANE).
+
+    Falls back to a lane-agnostic match ONLY where the identity key is
+    unambiguous (exactly one lane registered under it). That fallback is what
+    preserves the transitional behaviour _proposal_identity_keys documents --
+    an old record written under proposal_id before its backlog_id was minted,
+    or a lane spelling that changed -- while still refusing the EXP/LIT twin
+    collision, where two lanes share one key and a lane-agnostic match IS the
+    bug. Module-level (rather than a closure over main()'s two dicts) so the
+    twin collision has a direct regression test.
+    """
+    lane = _proposal_lane(item)
+    for k in _proposal_identity_keys(item):
+        hit = status_map.get((k, lane))
+        if hit is not None:
+            return hit
+        # Lane-agnostic fallback, deliberately narrow: it fires ONLY when a
+        # lane is genuinely UNKNOWN on one side, never merely because the key
+        # happens to be unambiguous today. An unambiguous key is exactly the
+        # shape the original bleed had -- the experimental twin resolved while
+        # its literature twin was still "proposed", so only one lane was
+        # registered -- so gating on ambiguity would leave the bug in place.
+        # Two KNOWN, DIFFERENT lanes never match, however few are registered.
+        lanes = lanes_by_key.get(k)
+        if lanes and len(lanes) == 1:
+            only = next(iter(lanes))
+            if lane == "?" or only == "?":
+                return status_map.get((k, only))
+    return None
+
+
 # Status-family fields carried forward from an existing (pre-regen) resolved
 # proposal onto its freshly-regenerated counterpart (and written back onto
 # manual_proposals.v1.json -- both sites in main() share this same set via
@@ -7001,7 +7070,12 @@ def _write_planning_outputs(
     # indices can be reserved below BEFORE the auto counter runs -- see the
     # reservation block immediately after. Also reused later (the carry-forward
     # and re-append-missing-resolved-items blocks) so the file is read once.
-    _existing_proposal_status: dict[str, dict] = {}
+    _existing_proposal_status: dict[tuple[str, str], dict] = {}
+    # identity key -> the set of lanes registered under it, so the read side can
+    # tell an UNAMBIGUOUS type-agnostic match (safe: transitional records whose
+    # lane spelling changed or is absent) from an AMBIGUOUS one (the EXP/LIT twin
+    # collision -- must NOT match across lanes). See _proposal_lane.
+    _existing_lanes_by_key: dict[str, set[str]] = {}
     _existing_proposals_doc: dict | None = None
     _existing_proposals_path = planning_root / "experiment_proposals.v1.json"
     if _existing_proposals_path.exists():
@@ -7019,10 +7093,17 @@ def _write_planning_outputs(
                     }
                     # Register under EVERY identity key this OLD record carries
                     # (not just the preferred one) -- see _proposal_identity_keys.
+                    _ep_lane = _proposal_lane(_ep)
                     for _ep_key in _ep_keys:
-                        _existing_proposal_status[_ep_key] = _ep_status
+                        _existing_proposal_status[(_ep_key, _ep_lane)] = _ep_status
+                        _existing_lanes_by_key.setdefault(_ep_key, set()).add(_ep_lane)
         except Exception:
             _existing_proposals_doc = None  # malformed existing file -- skip silently
+
+    def _lookup_existing_status(_item: dict) -> dict | None:
+        return lookup_existing_proposal_status(
+            _item, _existing_proposal_status, _existing_lanes_by_key
+        )
 
     # Numeric proposal-id indices already hand-assigned in manual_proposals.v1.json
     # (e.g. EXP-0085..EXP-0176). The auto counter below MUST skip these so an
@@ -7048,7 +7129,7 @@ def _write_planning_outputs(
     if _existing_proposals_doc is not None:
         for _ep in _existing_proposals_doc.get("items", []):
             _ep_keys = _proposal_identity_keys(_ep)
-            if not _ep_keys or not any(k in _existing_proposal_status for k in _ep_keys):
+            if not _ep_keys or not any(k in _existing_lanes_by_key for k in _ep_keys):
                 continue  # only resolved (non-"proposed") entries get re-appended later
             _m = re.match(r"^(?:EXP|LIT)-(\d+)$", str(_ep.get("proposal_id") or ""))
             if _m:
@@ -7426,16 +7507,17 @@ def _write_planning_outputs(
     # Carry forward non-proposed status from the existing proposals file.
     # Generated proposals always start as "proposed"; any manual status edits
     # (e.g. "executed") are wiped on regeneration unless we re-apply them here.
-    # Key by backlog_id (stable across regenerations); fall back to proposal_id
-    # for manual proposals that may not carry a backlog_id.
+    # Key by (identity key, LANE) -- backlog_id preferred and stable across
+    # regenerations, proposal_id as fallback for manual proposals that carry no
+    # backlog_id. The LANE half is required because backlog_id is NOT unique:
+    # see _proposal_lane and _lookup_existing_status.
     # (_existing_proposal_status / _existing_proposals_doc were loaded earlier,
     # before the proposal_id counter, so their numeric ids could be reserved --
     # see "ALSO reserve every already-RESOLVED existing proposal_id" above.)
     for _p in proposals:
-        for _key in _proposal_identity_keys(_p):
-            if _key in _existing_proposal_status:
-                _p.update(_existing_proposal_status[_key])
-                break
+        _carried = _lookup_existing_status(_p)
+        if _carried is not None:
+            _p.update(_carried)
 
     # Preserve historical resolution records for items that no longer appear
     # in the freshly-generated `proposals` list AT ALL -- e.g. a claim that
@@ -7491,11 +7573,7 @@ def _write_planning_outputs(
             for _mp in _manual_doc.get("items", []):
                 if not isinstance(_mp, dict):
                     continue
-                _resolved = None
-                for _mp_key in _proposal_identity_keys(_mp):
-                    _resolved = _existing_proposal_status.get(_mp_key)
-                    if _resolved:
-                        break
+                _resolved = _lookup_existing_status(_mp)
                 if not _resolved:
                     continue
                 for _k, _v in _resolved.items():
