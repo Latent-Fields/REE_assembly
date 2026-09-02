@@ -64,6 +64,7 @@ Source plan: `evidence/planning/fast_empathy_v5_plan.md`
 - `2026-08-11T20:51Z` [manifest] `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` -> [`evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json`](../../../../evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json) :: PASS manifest supports
 - `2026-08-12T04:16Z` [autopsy] `failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12#V3-EXQ-917` -> [`evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json) :: autopsy supports/standard routing=implement-substrate
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 
 ## `fast_empathy_v5:EMP-2`
 
@@ -125,6 +126,7 @@ Source plan: `evidence/planning/fast_empathy_v5_plan.md`
 - `2026-08-11T20:51Z` [manifest] `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` -> [`evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json`](../../../../evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json) :: PASS manifest supports
 - `2026-08-12T04:16Z` [autopsy] `failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12#V3-EXQ-917` -> [`evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json) :: autopsy supports/standard routing=implement-substrate
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 
 ## `fast_empathy_v5:EMP-3`
 
@@ -186,6 +188,7 @@ Source plan: `evidence/planning/fast_empathy_v5_plan.md`
 - `2026-08-11T20:51Z` [manifest] `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` -> [`evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json`](../../../../evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json) :: PASS manifest supports
 - `2026-08-12T04:16Z` [autopsy] `failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12#V3-EXQ-917` -> [`evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json) :: autopsy supports/standard routing=implement-substrate
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 
 ## `fast_empathy_v5:EMP-4`
 
@@ -247,6 +250,7 @@ Source plan: `evidence/planning/fast_empathy_v5_plan.md`
 - `2026-08-11T20:51Z` [manifest] `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` -> [`evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json`](../../../../evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json) :: PASS manifest supports
 - `2026-08-12T04:16Z` [autopsy] `failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12#V3-EXQ-917` -> [`evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json) :: autopsy supports/standard routing=implement-substrate
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 
 ## `fast_empathy_v5:EMP-5`
 
@@ -308,6 +312,7 @@ Source plan: `evidence/planning/fast_empathy_v5_plan.md`
 - `2026-08-11T20:51Z` [manifest] `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` -> [`evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json`](../../../../evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json) :: PASS manifest supports
 - `2026-08-12T04:16Z` [autopsy] `failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12#V3-EXQ-917` -> [`evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json) :: autopsy supports/standard routing=implement-substrate
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 
 ## `fast_empathy_v5:EMP-6`
 
@@ -369,6 +374,7 @@ Source plan: `evidence/planning/fast_empathy_v5_plan.md`
 - `2026-08-11T20:51Z` [manifest] `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` -> [`evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json`](../../../../evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json) :: PASS manifest supports
 - `2026-08-12T04:16Z` [autopsy] `failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12#V3-EXQ-917` -> [`evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json) :: autopsy supports/standard routing=implement-substrate
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 
 ## `fast_empathy_v5:EMP-7`
 
@@ -430,4 +436,5 @@ Source plan: `evidence/planning/fast_empathy_v5_plan.md`
 - `2026-08-11T20:51Z` [manifest] `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` -> [`evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json`](../../../../evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json) :: PASS manifest supports
 - `2026-08-12T04:16Z` [autopsy] `failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12#V3-EXQ-917` -> [`evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json) :: autopsy supports/standard routing=implement-substrate
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 

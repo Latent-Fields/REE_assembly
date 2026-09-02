@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-02T05:52:36Z
+Generated: 2026-09-02T17:09:13Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -85,13 +85,13 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=implement-substrate | blocked_on_upstream |  | 2026-08-12 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=queue-experiment | built |  | 2026-06-23 |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | routing=queue-experiment | blocked_on_upstream |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | routing=queue-experiment | ran_non_contributory |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | routing=queue-experiment | built |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | routing=queue-experiment | blocked_on_upstream |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=implement-substrate | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=implement-substrate | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | routing=implement-substrate | blocked_on_upstream |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | routing=implement-substrate | ran_non_contributory |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | routing=implement-substrate | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | routing=implement-substrate | built |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | routing=implement-substrate | blocked_on_upstream |  |  |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 prot | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress |  | 2026-06-23 |
 
 ## Deferred -- not required for v3 closure (10)
@@ -176,11 +176,11 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-9` -- Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sole K-episod
 
-## Plans WITHOUT closure_plan frontmatter (1)
+## Plans WITHOUT closure_plan frontmatter (0)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
-- `evidence/planning/preservation_snapshot_plan.md`
+_None -- every plan doc is mapped._
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 
@@ -188,7 +188,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 
 - **CLINICAL**: 28.2% across 11 non-deferred nodes in 1 plan(s).
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
-- **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
+- **GOVERNANCE**: 84.2% across 19 non-deferred nodes in 2 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
 - **PROCESS**: 90.5% across 56 non-deferred nodes in 10 plan(s).
 - **V4**: 32.4% across 96 non-deferred nodes in 14 plan(s).
@@ -198,6 +198,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | gen | plan | node | title | status | sev | gate (readiness) | last_updated |
 |-----|------|------|-------|--------|-----|------------------|--------------|
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-CATEGORY` | Phase 0 -- governance_rule category + 22 SENT/GOV claims registered | done | load-bearing |  | 2026-06-19 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:RECON` | Recon -- existing state/provenance/replay machinery; two-fidelity-leve | done | load-bearing |  | 2026-08-14 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:GATE` | Section 9.0 hard prerequisite -- cross-instance determinism gate (610  | done | high |  | 2026-06-07 |
 | process | derived_evidence_index_plan.md | `derived_evidence_index:P0b` | Phase 0b -- cache the uncached 3.7 MB claims.yaml yaml.safe_load in se | done | high |  | 2026-07-18 |
 | process | e3_fresh_select_migration_plan.md | `e3_fresh_select_migration:P0` | Extract E3 fresh-select instrument into shared helper + migrate first  | done | high |  | 2026-07-20 |
@@ -234,6 +235,9 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-1` | Type-vs-token-vs-anchor representational fork (the first design decisi | done | load-bearing | V3 LIVE object work is TYPE-level: SD-049 per-type tag + classifier head; SD-015 location- | 2026-06-14 |
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-1` | Smell-vs-sight adaptor-depth fork (the first design decision) | done | load-bearing | V3 LIVE perception is the near-raw / gradient end: smell-like sensing, gradient-only world | 2026-06-14 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-1` | Opening-vs-closure asymmetry framing + the V3-conservative-is-insuffic | blocked | load-bearing | CLOSURE side already built: INV-074 (crystallization necessity, universal invariant), MECH | 2026-06-14 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC1-RECORD` | Increment 1 -- ReconstructionRecord: tagged config serializer, integri | done | load-bearing | depends_on: preservation_snapshot:RECON | 2026-08-14 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC1F-AUTOFIRE` | Increment 1f -- auto-fire at end-of-life (default-off REEConfig design | done | load-bearing | depends_on: preservation_snapshot:INC1B-EMITTER | 2026-08-16 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:GOV-RULE` | GOV-PRESERVE-1 registered as a candidate governance_rule on the ethics | done | load-bearing |  | 2026-08-14 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-1` | Harm-to-agency signal: goal-interference over trajectory pairs (MECH-1 | blocked | load-bearing | MECH-163 multi-step hippocampal planning PASS (the V4/social entry gate; stays v3 -- it is | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-2` | Anti-collapse MAP consolidation (ARC-088) -- audit distinctness across | in_progress | high | ARC-088 is implementation_phase v3 (a unifying MAP over already-owned V3 affect machinery: | 2026-06-10 |
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:QUEUE` | Demand queue CDQ-001..005 (Section-4 rows) + governance Step-6b Sense  | done | high | First Action #1 landed 2026-06-17: convergence_demand_queue.v1.json + /governance Step-6b  | 2026-06-17 |
@@ -245,6 +249,8 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | explorer_ui_improvement_plan.md | `explorer_ui_improvement:QUEUE-API` | Surface priority + claimed_by through _queue_items_from_raw() (Finding | done | high |  | 2026-08-02 |
 | process | gov_confirm_1_plan.md | `gov_confirm_1:P1` | Shadow detector -- derive-only `evidence_confirmer` lane in generate_i | done | high |  | 2026-07-14 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-2` | Explicit active-separation operation (separate != failed-integration)  | blocked | high | MECH-147 DG pattern separation must land (V4): non-redundant sparse encoding of similar z_ | 2026-06-10 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC1B-EMITTER` | Increment 1b -- preserve_life() emitter glue (opt-in, per-life) | done | high | depends_on: preservation_snapshot:INC1-RECORD | 2026-08-14 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC1C-ARCHIVE` | Increment 1c -- archive backends (LocalArchive + S3Archive) + AES-GCM  | done | high | depends_on: preservation_snapshot:INC1B-EMITTER | 2026-08-14 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-2` | Agent-policy novelty typing (MECH-130): world-state novelty != agent-p | blocked | high | MECH-111 curiosity/novelty signal is the V3 mechanism being TYPED -- it currently rewards  | 2026-06-10 |
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:substrate-commit-coverage` | 185 of 269 remaining drift-candidate pairs (69%) record a substrate_ha | done | high |  | 2026-09-01 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-build` | Phase 1 consumer machinery -- arm_fingerprint_index.json writer, try_r | done | medium |  | 2026-06-09 |
@@ -258,6 +264,9 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-2` | Open, extensible affect-stream taxonomy (handles, not a final ontology | done | medium | V3 SEED present: affect_primitives.md already registers a three-way harm dissociation (SD- | 2026-06-13 |
 | v6 | grammar_primitive_mining_v6_plan.md | `grammar_primitive_mining_v6:GRAM-2` | Grammar->substrate mapping table (the mining artifact): per primitive, | open | medium | No substrate gate to AUTHOR the table -- it is a living V5/V6 design artifact (doc + metho | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-2` | Biology grounding lit-pull (Hensch / Bear-Singer / Froemke / Kilgard / | done | medium | Project rule feedback_biology_before_formal_definitions: commission this /lit-pull BEFORE  | 2026-06-17 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC1C-MULTI` | Increment 1c -- MultiArchive fan-out (>1 copy) + s3_archive_from_env + | done | medium | depends_on: preservation_snapshot:INC1C-ARCHIVE | 2026-08-14 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC1D-TOKEN` | Increment 1d -- physical-token exporter (engraveable key line + QR + g | done | medium | depends_on: preservation_snapshot:INC1-RECORD | 2026-08-14 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:STORAGE-PLAN` | European-sovereign storage plan -- tiered stack documented (Hetzner /  | done | medium |  | 2026-08-14 |
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1b-default-off-filter` | Phase 1b -- a changed file whose diff is confined to code reachable on | done | medium |  | 2026-08-03 |
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1c-prospective-recording` | Prospective-only recording of enabled default-off REEConfig flags into | done | medium |  | 2026-08-03 |
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1d-interprocedural-hop` | One-hop interprocedural extension to Phase 1b: build a corpus-wide fun | done | medium |  | 2026-08-03 |
@@ -295,6 +304,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-2` | PILLAR 1 -- token-instance object-file substrate (permanence through o | open | load-bearing | Reactivate ARC-006 / MECH-044 / MECH-045 (object-file + relational binding + object-file p | 2026-06-10 |
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-2` | PILLAR A -- low-adaptor (smell/gradient) primitive: near-raw orientati | open | load-bearing | V3 gradient-only sensing already approximates a smell-like primitive (follow / escape / st | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-3` | PILLAR A -- ACh-analog basal-forebrain plasticity-gain gate | blocked | load-bearing | MECH-333 open-phase core (pre-window F-gradient attenuation / PV-analog competitive gating | 2026-06-10 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC2-SPIKE` | Increment 2 de-risking spike -- cost/feasibility measured on the cheap | done | load-bearing | depends_on: preservation_snapshot:INC1-RECORD | 2026-08-15 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-3` | Relational / propositional inference over named relations (transitivit | blocked | high | ARR-2 compositional generalisation in place (named relations exist as recombinable symbols | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-3` | Expression as emergent action geometry (MECH-360) -- the readout side  | blocked | high | AE-1 (MECH-359) per-candidate affect vector built -- expression style (hesitation, latency | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-4` | Candidate-gradient hippocampal episode schema (MECH-361) -- affect gra | blocked | high | AE-1 (MECH-359) per-candidate affect vector built | 2026-06-10 |
@@ -304,6 +314,8 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | object_reasoning_abstraction_v4_plan.md | `object_reasoning_abstraction_v4:OBJ-ABS-3` | PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed an | blocked | high | MECH-269 AnchorSet / V_s substrate live in V3 (SD-040 adds a type-key projection alongside | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-4` | PILLAR B -- state-conditional plasticity-gain architectural commitment | blocked | high | ARC-075 (infant-curriculum plasticity-magnitude asymmetry, candidate, implementation_phase | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-7` | Layer-specificity adjudication (one global scalar vs per-substrate gat | open | high | Open question: does plasticity-gain modulate identically across encoder / residue / hippoc | 2026-06-10 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:STORAGE-DEPLOY` | Provision the live copies -- Hetzner bucket + second-vendor bucket + Z | open | high | operational -- needs the user's provider account plus a generated encryption key held inde | 2026-08-14 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:GOV-POLICY` | Open governance questions -- retention/sampling policy, create/read/re | open | high | GOV-PRESERVE-1 is `candidate`; none of its three open questions has a proposed answer | 2026-08-14 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-3` | Consent / incidental-vs-constitutive qualifier on harm-to-agency (the  | blocked | high | RHM-1 goal-interference signal exists (the thing being qualified) | 2026-06-10 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-7` | Biology grounding for relational/compositional reasoning + analogy (li | deferred | medium | Per project rule feedback_biology_before_formal_definitions: compositional generalisation, | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-9` | Biology grounding completion (per-candidate/option-specific value codi | done | medium | L1 option-specific / per-candidate value coding (Padoa-Schioppa 2006 OFC offer-value neuro | 2026-06-16 |
@@ -337,6 +349,8 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-6` | Biology grounding completion (object-files / permanence / affordances  | in_progress | medium | L1 object-files & feature-binding (Kahneman/Treisman/Gibbs 1992; Treisman & Gelade 1980 FI | 2026-06-10 |
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-6` | Adaptor-maturity curriculum gate: each sense admitted when its adaptor | open | medium | ARC-019 staged developmental curriculum (provisional) -- the existing curriculum-stages cl | 2026-06-10 |
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-7` | Biology grounding completion (perceptual-manifold / colour-geometry /  | done | medium | L1 perceptual-manifold / similarity geometry -- PULLED 2026-06-12 (IGW-20260612-156): Shep | 2026-06-12 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC2-ROLLOUT` | Increment 2 -- mid-life snapshot/resume, full ~10-store rollout | parked | medium | NO-GO on the full rollout as scoped -- not infeasible (every mechanism was proven in a day | 2026-08-15 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:INC2-GUARDS` | Land regardless of the Increment 2 gate -- attribute-census contract p | open | medium | no store has acquired a loader yet, so there is nothing for the pattern to attach to | 2026-08-15 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-6` | Biology grounding for relational harm + love-as-care (harm-to-agency,  | closed | medium | Project rule feedback_biology_before_formal_definitions: MECH-129 (harm-to-agency), MECH-1 | 2026-06-12 |
 | process | explorer_ui_improvement_plan.md | `explorer_ui_improvement:PENDING-REVIEW-DEEPLINK` | pendingReviewBadge deep-links to the pending_review.md doc instead of  | done | low |  | 2026-08-02 |
 | process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P2-governance-surface` | Phase 2 -- surface Phase-0/1 candidates in /governance or morning-dige | open | low |  | 2026-08-03 |
@@ -397,6 +411,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:LOW-MUZERO` | Pull the COMPLETED MuZero/EfficientZero reanalyze adapter (replay writ | done | low | DONE 2026-06-19 (session convergence-cdq005-muzero-reanalyze-20260619T1856Z; CDQ-005). MuZ | 2026-06-19 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-4` | Attention = distributed precision-selection (a MAP, not a substrate -- | deferred | low | REVERSAL TRIGGER: a SPECIFIC attention-bottleneck failure that the existing distributed pr | 2026-06-11 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-6` | PILLAR D -- BDNF-analog trophic window-duration knob (lowest priority) | deferred | low | The duration knob sits ON TOP of the gain knob (PLW-3) and the closure clock (PLW-5); both | 2026-06-10 |
+| governance | preservation_snapshot_plan.md | `preservation_snapshot:FISHTANK` | Memorial Fishtank -- re-instantiate preserved remnants | parked | low | Aspiration only. Blocked behind GOV-POLICY by construction: prior consent, privacy, identi | 2026-08-14 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-6` | Symbolic reasoning cannot override embodied harm sensing (the V6 insta | blocked | load-bearing | ARR-2 + ARR-4 in place (a reasoning capacity powerful enough to need this guard -- composi | 2026-06-10 |
 | v5 | loveability_ethical_agency_v5_plan.md | `loveability_ethical_agency_v5:LOVE-6` | Ethical agency as care-biased choice among live alternatives (kindness | blocked | load-bearing | LOVE-2 + LOVE-3 + LOVE-4 + LOVE-5 all demonstrably stable | 2026-06-10 |
 | v4 | object_reasoning_abstraction_v4_plan.md | `object_reasoning_abstraction_v4:OBJ-ABS-6` | PILLAR D -- theta-packaging + cognitive-map traversal scale to the act | blocked | load-bearing | MECH-089 theta-gamma packaging primitive + MECH-294 theta-burst-as-E3-packet sibling confi | 2026-06-10 |

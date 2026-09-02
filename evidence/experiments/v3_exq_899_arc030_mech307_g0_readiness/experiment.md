@@ -13,7 +13,7 @@
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
 - `v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3` at `2026-08-08T21:48:33Z` signatures: none
-- `v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3` at `2026-08-08T15:31:48Z` signatures: none
+- `v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3` at `20260808T153148Z` signatures: none
 
 Recurring signatures:
 

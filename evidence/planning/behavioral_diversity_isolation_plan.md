@@ -13,7 +13,7 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -45,7 +45,7 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -92,7 +92,7 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -129,7 +129,7 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -150,7 +150,7 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -170,7 +170,7 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -188,7 +188,7 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -206,7 +206,7 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -226,7 +226,7 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -245,7 +245,7 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -291,7 +291,7 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -316,7 +316,7 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        from: "failure_autopsy_V3-EXQ-571c_2026-09-02"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"

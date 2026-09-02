@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-09-02T16:55:22.402441Z`
+Generated: `2026-09-02T17:08:31.267147Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -1895,11 +1895,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, mixed_evidence
 - Evidence breakdown: supports=35, weakens=1, conflict_ratio=0.056, exp_conf=0.768, lit_conf=0.856, overall_confidence_legacy=0.812
 - Recent entries:
-  - `2026-05-08T17:07:53Z` `literature` `targeted_review_hippocampal_affect_stream_count` direction=`supports` confidence=0.8
-  - `2026-05-10T08:56:17Z` `literature` `targeted_review_mech_312_arbitration_divergences` direction=`supports` confidence=0.68
   - `2026-05-10T08:56:17Z` `literature` `targeted_review_mech_312_arbitration_divergences` direction=`supports` confidence=0.78
   - `2026-06-05T19:44:17Z` `literature` `targeted_review_fatigue_vs_helplessness_dissociation` direction=`supports` confidence=0.84
   - `2026-08-11T20:51:19Z` `experimental` `v3_exq_917_mech303_harm_threshold_calibration_battery` direction=`supports` confidence=0.75
+  - `20260408T190019Z` `experimental` `v3_exq_241a_sd011_second_source_validation` direction=`non_contributory` confidence=0
+  - `20260408T231939Z` `experimental` `v3_exq_241b_sd011_second_source_info_gain` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.` (1)
   - `The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified.` (1)
@@ -2132,7 +2132,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-050
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.708, lit_conf=0.645, overall_confidence_legacy=0.67
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.707, lit_conf=0.645, overall_confidence_legacy=0.67
 - Recent entries:
   - `2026-07-11T19:57:47Z` `experimental` `v3_exq_517d_mech302_relief_completion_discriminative_pair` direction=`supports` confidence=0.75
   - `2026-08-30T06:06:03Z` `literature` `targeted_review_sd_050` direction=`supports` confidence=0.78
@@ -2172,7 +2172,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-087
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.254, lit_conf=0.816, overall_confidence_legacy=0.675
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.253, lit_conf=0.816, overall_confidence_legacy=0.675
 - Recent entries:
   - `2026-08-01T12:44:31Z` `experimental` `v3_exq_856_sd087_harm_surprise_pe_fingerprint` direction=`weakens` confidence=0.75
   - `2026-08-02T06:04:25Z` `literature` `targeted_review_sd_087` direction=`supports` confidence=0.72
