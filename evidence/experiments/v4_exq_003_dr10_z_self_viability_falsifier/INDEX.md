@@ -1,6 +1,6 @@
 # Experiment Index: v4_exq_003_dr10_z_self_viability_falsifier
 
-Generated: `2026-09-01T21:54:51.373481Z`
+Generated: `2026-09-02T16:55:22.402441Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-09-01T21:54:51.373481Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4` | `20260701T074023Z` | PASS | - | - | - | - | [`summary`](../v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4.json) / [`manifest`](../v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4.json) / [`metrics`](../v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4.json) |
+| `v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4` | `2026-07-01T07:40:23Z` | PASS | - | - | - | - | [`summary`](../v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4.json) / [`manifest`](../v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4.json) / [`metrics`](../v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4.json) |

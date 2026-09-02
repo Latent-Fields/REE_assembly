@@ -1,4 +1,4 @@
-# Experiment: v3_exq_241a_sd011_second_source_validation
+# Experiment: v3_exq_571c_e3_variance_monopoly_presence_936_regime
 
 ## What it tests
 
@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_241a_sd011_second_source_validation_20260408T190019Z_v3` at `2026-04-08T19:00:19Z` signatures: none
+- `v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3` at `2026-09-02T15:28:56Z` signatures: none
 
 Recurring signatures:
 

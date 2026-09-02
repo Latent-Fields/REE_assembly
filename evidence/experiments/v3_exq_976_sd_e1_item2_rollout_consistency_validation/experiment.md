@@ -1,4 +1,4 @@
-# Experiment: v3_exq_241a_sd011_second_source_validation
+# Experiment: v3_exq_976_sd_e1_item2_rollout_consistency_validation
 
 ## What it tests
 
@@ -11,10 +11,5 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-Recent failure runs:
-- `v3_exq_241a_sd011_second_source_validation_20260408T190019Z_v3` at `2026-04-08T19:00:19Z` signatures: none
-
-Recurring signatures:
-
-Suggested design TODOs:
+No recent FAIL runs. Keep monitoring key stop metrics.
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->
