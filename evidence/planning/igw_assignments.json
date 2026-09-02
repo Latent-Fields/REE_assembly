@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-02T22:37:35Z",
+  "generated_at": "2026-09-02T23:22:04Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -8847,6 +8847,28 @@
         "priority": 40,
         "claim_ids": [
           "ARC-121"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260902T232032Z-c81315cd-claude_local",
+      "stable_hash": "c81315cd628a",
+      "igw_id_at_assign": "IGW-20260902-243",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-02T23:20:32Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=7da85326-af18-43e9-bcb8-62031b587ba5 branch=claude/igw-243-literature-proposal-for-arc-131",
+      "item_snapshot": {
+        "skill": "/lit-pull",
+        "title": "Literature proposal for ARC-131",
+        "lane": "lit",
+        "priority": 40,
+        "claim_ids": [
+          "ARC-131"
         ]
       }
     }
