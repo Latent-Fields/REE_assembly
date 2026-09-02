@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_121",
+  "entry_id": "2026-09-02_arc_121_uncertainty_distinct_systems_bach2012",
+  "timestamp_utc": "2026-09-02T22:24:52Z",
+  "claim_ids_tested": [
+    "ARC-121"
+  ],
+  "source": {
+    "title": "Knowing how much you don't know: a neural organization of uncertainty estimates.",
+    "authors": [
+      "Dominik R. Bach",
+      "Raymond J. Dolan"
+    ],
+    "year": 2012,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn3289",
+    "pmid": "22781958",
+    "pmc": null,
+    "volume": "13",
+    "issue": "8",
+    "pages": "572-586"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "The clearest direct counter-evidence in this pull, and scored highest among the non-supporting entries because its target is precise: it addresses uncertainty, which ARC-121 names explicitly as a constituent of the shared object, and concludes for distinct encodings in distinct systems. Held at 0.72 rather than higher because 'distinct neural systems' is an anatomical finding that does not by itself settle whether those encodings index one functionally shared object, and because the review is from 2012 and predates much of the shared-map literature that the supporting entries draw on.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If uncertainty is encoded by distinct representations in distinct neural systems, then at least one named constituent of ARC-121's 'shared epistemic-state object' is, in the biological case, plural rather than singular -- the convergence ARC-121 asserts does not hold for uncertainty.",
+    "The distinctions are drawn along theoretically motivated lines (expected vs. unexpected uncertainty, risk vs. ambiguity, estimation vs. state uncertainty) that a single undifferentiated uncertainty slot in a shared object would fail to preserve, so a REE design collapsing them risks a known biological mismatch rather than a simplification."
+  ],
+  "tags": [
+    "arc-121",
+    "uncertainty",
+    "distinct-systems",
+    "counter-evidence",
+    "risk-ambiguity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Integrating divergent theoretical treatments of uncertainty into one decision-making framework, the authors conclude that 'the currently available evidence indicates that distinct neural encoding (including summary statistic-type representations) of uncertainty occurs in distinct neural systems'.",
+    "ree_translation": "Weakens ARC-121 at a specific, named seam. If REE builds a single uncertainty field inside one shared epistemic-state object, it departs from the biological organisation this review reports, in which functionally different uncertainties are carried by different systems. The REE-relevant reading is that the shared object may need to be typed and multi-slot rather than a single scalar or single field -- or that uncertainty is the constituent where the convergence framing breaks first.",
+    "mapping_caveat": "Anatomically distinct encodings do not entail functionally private state: several systems could each compute a different uncertainty statistic and still write into one shared, jointly readable object, which would be consistent with ARC-121. The review also predates the entorhinal/hippocampal generalisation work the supporting entries rest on, so it is not the field's last word. Human and animal decision-neuroscience scope; nothing here bears on engineered substrates directly.",
+    "source_context": "Review integrating human fMRI, primate electrophysiology and computational decision-theoretic treatments of risk, ambiguity, volatility and estimation uncertainty."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity 0.8 is the second-highest in this pull because the paper's subject matter is a constituent ARC-121 names verbatim, rather than a neighbouring construct. Source quality 0.85 for venue and integrative scope, discounted for being a review and for its age relative to the supporting literature."
+  }
+}

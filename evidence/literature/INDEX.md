@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-02T21:30:05.793851Z`
+Generated: `2026-09-02T22:29:49.745035Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -44,6 +44,7 @@ Generated: `2026-09-02T21:30:05.793851Z`
 | `targeted_review_arc_112` | [`2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/record.json) | 3 | [`summary`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/summary.md) |
 | `targeted_review_arc_113` | [`2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/record.json) | 5 | [`summary`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/summary.md) |
 | `targeted_review_arc_120` | [`2026-09-02_arc_120_uncertainty_arbitration_daw2005`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/record.json) | 5 | [`summary`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/summary.md) |
+| `targeted_review_arc_121` | [`2026-09-02_arc_121_uncertainty_distinct_systems_bach2012`](targeted_review_arc_121/entries/2026-09-02_arc_121_uncertainty_distinct_systems_bach2012/record.json) | 5 | [`summary`](targeted_review_arc_121/entries/2026-09-02_arc_121_uncertainty_distinct_systems_bach2012/summary.md) |
 | `targeted_review_arc_130` | [`2026-08-25_arc_130_option_critic_architecture_bacon2017`](targeted_review_arc_130/entries/2026-08-25_arc_130_option_critic_architecture_bacon2017/record.json) | 2 | [`summary`](targeted_review_arc_130/entries/2026-08-25_arc_130_option_critic_architecture_bacon2017/summary.md) |
 | `targeted_review_arc_132` | [`2026-08-26_arc132_circular_inference_jardri2013`](targeted_review_arc_132/entries/2026-08-26_arc132_circular_inference_jardri2013/record.json) | 1 | [`summary`](targeted_review_arc_132/entries/2026-08-26_arc132_circular_inference_jardri2013/summary.md) |
 | `targeted_review_arc_133` | [`2026-08-26_arc_133_teleological_stance_gergely_csibra2003`](targeted_review_arc_133/entries/2026-08-26_arc_133_teleological_stance_gergely_csibra2003/record.json) | 5 | [`summary`](targeted_review_arc_133/entries/2026-08-26_arc_133_teleological_stance_gergely_csibra2003/summary.md) |

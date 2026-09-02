@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_121",
+  "entry_id": "2026-09-02_arc_121_ofc_task_state_abstraction_wilson2014",
+  "timestamp_utc": "2026-09-02T22:24:52Z",
+  "claim_ids_tested": [
+    "ARC-121"
+  ],
+  "source": {
+    "title": "Orbitofrontal cortex as a cognitive map of task space.",
+    "authors": [
+      "Robert C. Wilson",
+      "Yuji K. Takahashi",
+      "Geoffrey Schoenbaum",
+      "Yael Niv"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.005",
+    "pmid": "24462094",
+    "pmc": "PMC4001869",
+    "volume": "81",
+    "issue": "2",
+    "pages": "267-279"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Aggregate weighted toward mapping_fidelity for this architectural claim. The paper's structure is precisely ARC-121's producer/consumer shape -- one region maintains a state abstraction that is explicitly 'used for reinforcement learning elsewhere in the brain' -- which is a closer structural match than the format-level evidence. Discounted to 0.70 because it is a unifying theory generating predictions rather than a direct test, and because a decade of subsequent work has both extended and complicated the strict OFC-as-state-space account.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The account is explicitly proposed as a unifying THEORY that reinterprets classic reversal/extinction/devaluation findings post hoc; the authors themselves frame the discriminating experiments as future predictions.",
+    "A single producer feeding a single consumer family (RL valuation) is weaker than ARC-121's assertion of many heterogeneous consumers; nothing here shows harm/ethics evaluation or possibility-representation reading the same state label."
+  ],
+  "tags": [
+    "arc-121",
+    "orbitofrontal-cortex",
+    "task-state",
+    "state-abstraction",
+    "producer-consumer"
+  ],
+  "mapping": {
+    "source_claim_statement": "OFC 'provides an abstraction of currently available information in the form of a labeling of the current task state, which is used for reinforcement learning (RL) elsewhere in the brain', especially where task states include unobservable information.",
+    "ree_translation": "There is biological precedent for REE's architecture holding a single explicit state abstraction as a first-class object that downstream mechanisms consume, rather than each mechanism re-deriving state privately -- and specifically for that object having to carry UNOBSERVABLE (belief-like) content, which is what makes it epistemic rather than merely perceptual.",
+    "mapping_caveat": "The demonstrated consumer set is reinforcement learning and dopaminergic prediction error, not the full ARC-121 consumer list. 'Task state' is also narrower than 'epistemic state': it is a partition of a task's latent situations, not a representation of knowledge, uncertainty and commitment jointly. Rodent lesion/electrophysiology plus human task modelling; transfer to REE's substrate scale is inferential.",
+    "source_context": "Theory paper explaining rodent OFC lesion effects on reversal learning, delayed alternation, extinction and devaluation, plus OFC lesion effects on VTA dopamine neuron firing during an RL task."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.8: highly cited Neuron theory paper with real explanatory reach across independent datasets, but not itself a new measurement. Transfer risk 0.4 -- the highest among the supporting entries -- because the rodent task-state construct is several abstraction levels below REE's z_world-scale epistemic object."
+  }
+}

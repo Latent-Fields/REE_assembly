@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_121",
+  "entry_id": "2026-09-02_arc_121_cognitive_map_general_coding_behrens2018",
+  "timestamp_utc": "2026-09-02T22:24:52Z",
+  "claim_ids_tested": [
+    "ARC-121"
+  ],
+  "source": {
+    "title": "What Is a Cognitive Map? Organizing Knowledge for Flexible Behavior.",
+    "authors": [
+      "Timothy E. J. Behrens",
+      "Timothy H. Muller",
+      "James C. R. Whittington",
+      "Shirley Mark",
+      "Alon B. Baram",
+      "Kimberly L. Stachenfeld",
+      "Zeb Kurth-Nelson"
+    ],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.10.002",
+    "pmid": "30359611",
+    "pmc": null,
+    "volume": "100",
+    "issue": "2",
+    "pages": "490-509"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Strong source, but mapping fidelity is the limiting term. The review establishes that a single CODING SCHEME (relational, map-like) recurs across spatial and non-spatial domains; ARC-121 asserts something stronger and different -- that distinct mechanisms read and update one shared OBJECT INSTANCE. Shared format is evidence for, but not equivalent to, shared object; confidence set in the moderate band to reflect that gap rather than the paper's quality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Common coding format across domains is compatible with many mechanism-private instances of that format; the review does not establish that one instance is jointly maintained, which is the specific content of ARC-121.",
+    "The non-spatial evidence surveyed is substantially thinner and more recent than the spatial evidence, so the generalisation is a research programme the authors advocate rather than a settled finding."
+  ],
+  "tags": [
+    "arc-121",
+    "cognitive-map",
+    "relational-structure",
+    "generalisation",
+    "shared-format"
+  ],
+  "mapping": {
+    "source_claim_statement": "Map-like representations observed in spatial contexts 'may be an instance of general coding mechanisms capable of organizing knowledge of all kinds', with common principles unifying apparently disparate spatial and non-spatial functions.",
+    "ree_translation": "REE's mechanisms should be expected to converge on one representational FORMAT for the epistemic relationship (relational structure over entities), rather than each inventing a bespoke encoding -- the weaker, format-level half of ARC-121's convergence assertion.",
+    "mapping_caveat": "This is the load-bearing caveat for the whole pull: the review supports shared FORMAT, ARC-121 asserts shared OBJECT. A federation of mechanisms could each hold a private relational map and satisfy every finding reviewed here while falsifying ARC-121 in its stated design sense. Additionally the review is a synthesis and advocacy piece, not primary data.",
+    "source_context": "Review of rodent and human electrophysiology, fMRI and computational modelling spanning spatial navigation, conceptual/social spaces, and artificial agents."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Neuron; authors are principals of the literature reviewed) but discounted from 0.9 because a review inherits its evidence rather than adding any. Mapping fidelity deliberately mid-band: the format-versus-instance distinction is exactly where a careless read would over-credit ARC-121."
+  }
+}

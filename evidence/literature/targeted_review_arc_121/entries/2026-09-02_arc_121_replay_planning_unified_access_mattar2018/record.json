@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_121",
+  "entry_id": "2026-09-02_arc_121_replay_planning_unified_access_mattar2018",
+  "timestamp_utc": "2026-09-02T22:24:52Z",
+  "claim_ids_tested": [
+    "ARC-121"
+  ],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay.",
+    "authors": [
+      "Marcelo G. Mattar",
+      "Nathaniel D. Daw"
+    ],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0232-z",
+    "pmid": "30349103",
+    "pmc": "PMC6203620",
+    "volume": "21",
+    "issue": "11",
+    "pages": "1609-1617"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Weighted toward mapping_fidelity, as ARC-121 is an architectural framing claim. The paper's explicit stated contribution is that planning, learning and consolidation are not separate functions but one prioritized-access operation over one common value/model representation -- that is ARC-121's thesis instantiated at exactly three of the consumers ARC-121 names. Held below 0.8 because the shared object demonstrated is a value/successor structure over a spatial MDP, materially narrower than the knowledge/belief/uncertainty/possibility/commitment bundle ARC-121 asserts, and because the evidence is a normative model fitted to existing place-cell findings rather than a decisive new measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The unification is demonstrated over a single spatial-navigation MDP; the paper does not show that the same prioritized-access quantity governs access to non-spatial, ethical or self-model content, so convergence outside that domain is asserted by extension rather than measured.",
+    "A single normative rule explaining several phenomena is compatible with those phenomena being implemented by separate mechanisms that happen to approximate the same optimum; the paper's evidence is behavioural/statistical fit, not a demonstration that one physical representation is read by all three functions."
+  ],
+  "tags": [
+    "arc-121",
+    "replay",
+    "planning",
+    "prioritized-access",
+    "shared-epistemic-state"
+  ],
+  "mapping": {
+    "source_claim_statement": "A normative theory in which memories are accessed in order of the utility of accessing them (gain x need) predicts hippocampal replay statistics and 'unifies seemingly disparate proposed functions of replay including planning, learning, and consolidation'.",
+    "ree_translation": "Replay, planning and learning in REE should not be built as three mechanisms with private state; they are three read/update patterns over one shared epistemic-state object, differing in which access-priority regime is active rather than in what they operate on. Directly supports ARC-121's core assertion for the prediction/replay/planning/learning subset of consumers.",
+    "mapping_caveat": "The shared object in the paper is a value function plus a transition model over a small spatial MDP. ARC-121's object additionally spans possibility, commitment and harm/ethics evaluation; this paper speaks to NONE of the ethics/harm consumer, and the extension from a spatial value structure to a general epistemic relationship is REE's inference, not the authors'.",
+    "source_context": "Simulated rodent spatial navigation tasks, compared against published hippocampal place-cell replay statistics (forward/reverse replay, reward modulation, novelty effects)."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Nature Neuroscience; theory reproduces a broad, independently collected body of replay findings). Mapping fidelity is the highest in this pull because the paper's own framing is unification-of-functions-over-one-representation. Transfer risk is moderate rather than low: spatial-MDP to general epistemic state is a real leap."
+  }
+}
