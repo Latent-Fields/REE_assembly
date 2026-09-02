@@ -18,10 +18,27 @@ produce a V3 experiment regardless of who holds the chip). Original chip content
 prompt) is preserved in each chip's own `resolution_note_history` in `TASK_CHIPS.json` --
 this doc adds the claim-phase grounding that chip text didn't carry.
 
-**Re-derivation note.** `proposal_tick` will keep re-minting these (and new ones for other
-v4/v5 claims) on every tick until the root-cause chip lands. Re-run the classification query
-below periodically and append newly-withdrawn chips to the matching claim's row (or a new row)
-rather than opening a second copy of this doc:
+**Root-cause fix landed 2026-09-02** (`REE_Working` `99ad40f31b`):
+`igw_routine_tick._claim_is_v3_testable` now checks `implementation_phase`, so
+`proposal_routine_tick` will no longer mint a `chip-proposal-exp-*` for any of these claims
+going forward -- it silently skips them each tick instead. The re-derivation query below is
+now only needed if the phase check itself regresses; it is not expected to find anything new.
+
+**EXP-id caveat (confirmed 2026-09-02).** `proposal_id`s in `experiment_proposals.v1.json`
+reshuffle on every governance regen (tracked separately, still open:
+`chip-20260902-proposal-id-reference-rot`). Checking the EXP ids in the tables below against
+the live file the same day already found several stale: `EXP-0437`/`EXP-0451`/`EXP-0470`/
+`EXP-0881`/`EXP-0889`/`EXP-0896`/`EXP-0914`/`EXP-0943`/`EXP-0945`/`EXP-1146`/`EXP-1148`/
+`EXP-1150` no longer exist, and several that still resolve now point at a **different** claim
+(`EXP-0891` -> MECH-213, `EXP-0910` -> MECH-233, `EXP-0932` -> MECH-248, `EXP-1152` -> SD-019a).
+**Treat the `EXP-<N>` column as historical provenance only -- re-resolve by `claim_id` in
+`experiment_proposals.v1.json` before acting on any row**, exactly as
+`chip-20260902-proposal-id-reference-rot`'s own fix will eventually make unnecessary. This is
+also why no chip was spawned here to route the remaining rows' proposals to `blocked_substrate`
+by EXP id: doing so against a stale id would misfile the wrong proposal.
+
+**Re-derivation note.** Re-run the classification query below periodically and append newly-
+found claims to the matching row (or a new row) rather than opening a second copy of this doc:
 
 ```bash
 python3 -c "
