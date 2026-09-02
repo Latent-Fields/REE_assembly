@@ -10048,6 +10048,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1251",
+      "blocked_by": [
+        "ARC-010",
+        "ARC-047"
+      ],
+      "blocked_note": "Substrate-readiness check (2026-09-02, /queue-experiment Step 2.5, dispatched as chip-proposal-exp-0534 -- note: that chip's stored prompt cites claim_id EXT-009, which no longer matches this proposal_id after a governance regen; EXP-0534/EVB-1251 is the current experimental-lane proposal for EXT-006, confirmed by direct lookup 2026-09-02). EXT-006 (\"Other-model collapse: no homologous model of other agents' internal states\") is keyed to ree_mechanism ARC-010 (mirror modelling/kappa coupling) and INV-008 (precision routing). ARC-010's own claims.yaml what_would_answer field states this directly: \"Currently blocked, not testable: no multi-agent environment and no other-agent latent/inference channel exist in the V3 substrate,\" and names ARC-047 (Multi-agent gridworld with affective state leakage as scent fields) as the designated minimal substrate for testing ARC-010 specifically -- ARC-047 is itself status: candidate, confidence 0.0, implementation_phase: v5. Confirmed empirically (2026-09-02): grep of ree_core/ for SocialGridWorld/multi_agent/other_agent/otherness returns zero implementation hits anywhere in the substrate. INV-008 (precision is routed and depth-specific) is separately answerable by architectural audit and is already CONFIRMING per its own live claims.yaml text -- but INV-008 alone does not establish homologous other-agent modelling; the decisive test EXT-006 needs (whether harm-to-others registers in the same residue field as the agent's own trajectory selection, i.e. ARC-010's kappa coupling) requires the ARC-047 multi-agent substrate, which does not exist. This is a named build (complicated (buildable)), gated to implementation_phase v5 -- not a probe-gated open question a diagnostic script could resolve. Route via /implement-substrate once ARC-047 lands; until then this is architecturally out of reach for V3.",
       "claim_id": "EXT-006",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -10070,7 +10075,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_ext_006",
       "target_repo": "ree-v3",
       "why_now": [
