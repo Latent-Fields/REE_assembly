@@ -1,0 +1,237 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_980_sd_e1_h1c_readout_regime_e1_alone",
+  "run_id": "v3_exq_980_sd_e1_h1c_readout_regime_e1_alone_20260902T212300Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-02T21:23:00Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "readout_regime_consistent_damping_replicates",
+    "preconditions": [
+      {
+        "name": "encoder_trained",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during Phase 0a, every cell.",
+        "measured": 0.23063954710960388,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "real_zworld_nondegenerate_h1",
+        "kind": "readiness",
+        "description": "CR_real(h=1) is finite, positive, and backed by at least 10 surviving real samples, every cell.",
+        "measured": 40.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "no_missing_action_calls",
+        "kind": "readiness",
+        "description": "E1DeepPredictor._action_cond_missing_calls is 0 on every cell, including this driver's new E1-alone predict_long_horizon calls.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "direct_action_supply_fraction",
+        "kind": "readiness",
+        "description": "Fraction of E1 calls (both readouts + training) with a genuine one-hot actions=.",
+        "measured": 1.0,
+        "threshold": 0.999,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "cr_ratio_hybrid_h1_finite",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) under the HYBRID readout is finite and positive on every cell.",
+        "measured": 2.9842043670542283e-05,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "cr_ratio_e1alone_h1_finite",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) under the NEW E1-ALONE readout is finite and positive on every cell -- same-statistic discipline extended to this driver's own readout (V3-EXQ-980).",
+        "measured": 2.9842043670542283e-05,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "cr_ratio_finite_at_decision_horizons",
+        "kind": "readiness",
+        "description": "cr_ratio(h) under BOTH readouts is finite and positive on every (arm, seed) cell at every horizon in depth_horizons_for_damping (the horizons the damping VERDICT actually reads, not just h=1) -- red-team (fable) Finding B: a NaN/non-positive cell here would silently starve _damping_verdict's n_total while every other readiness gate stayed green, up to producing a definite 'not_damped' from zero evidence at n_total=0.",
+        "measured": 1.0369777210230942e-05,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "depth_horizons_checked": [
+          5,
+          30
+        ],
+        "met": true
+      },
+      {
+        "name": "e1_grad_steps_matched",
+        "kind": "readiness",
+        "description": "Every arm took the same number of E1 optimiser steps at a seed.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "control": "identical random policy, env, seeds and trailing-window schedule in every arm",
+        "met": true
+      },
+      {
+        "name": "rc_objective_non_vacuous",
+        "kind": "readiness",
+        "description": "On every ON cell, the mean cosine similarity between the E1 GRADIENT of the trained rollout-consistency objective and the incumbent single-step objective is <= 0.95.",
+        "measured": 0.9331029785726739,
+        "threshold": 0.95,
+        "direction": "upper",
+        "comparator": "<=",
+        "control": "both objectives' gradients taken on identical windows in every arm; ON arms only gate",
+        "offending_cell": "ARM_rc_decay_seed2024",
+        "met": true,
+        "kind_note": "INFORMATIONAL for adjudication of the WHOLE run; applied PER ON ARM. The whole-run readiness conjunct is at_least_one_on_arm_non_vacuous.",
+        "per_arm_max_grad_cos": {
+          "ARM_rc_flat": 0.7484434167926844,
+          "ARM_rc_decay": 0.9331029785726739
+        },
+        "per_arm_vacuous": {
+          "ARM_rc_flat": false,
+          "ARM_rc_decay": false
+        }
+      },
+      {
+        "name": "at_least_one_on_arm_non_vacuous",
+        "kind": "readiness",
+        "description": "At least one ON arm clears the per-arm gradient-cosine vacuity gate on every seed.",
+        "measured": 2.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "trained_calls_at_depth0",
+        "kind": "readiness",
+        "description": "Fraction of trained E1 calls that started from a zero LSTM hidden state, minimum over ALL cells -- must be 1.0 (B1 depth-0 symmetrisation, inherited from 976).",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "every ROUTED arm's trained call routed through the same save/reset/restore lifecycle; ARM_single_step_stateful is EXCLUDED by design (the non-routing anchor)",
+        "stateful_anchor_depth0_frac_per_seed": {
+          "seed42": 0.037023324694557574,
+          "seed123": 0.03825554705432287,
+          "seed7": 0.037341299477221805,
+          "seed2024": 0.036968576709796676
+        },
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_readout_regime_damping_replication_rc_flat",
+        "load_bearing": true,
+        "passed": true,
+        "hybrid_verdict": "damped",
+        "e1alone_verdict": "damped",
+        "discrimination": "readout_regime_replicates_damping",
+        "measured_hybrid_damped_fraction": 1.0,
+        "measured_e1alone_damped_fraction": 1.0,
+        "threshold": 0.5,
+        "statement": "Depth-growth damping of ARM_rc_flat relative to ARM_single_step in cr_ratio(h) at h in [5, 30], majority-of-cells rule, compared under the HYBRID Phase-4 evaluator readout vs the E1-ALONE readout. Declared null: both readouts agree. Discriminating: hybrid damped but e1-alone NOT damped -> the consumer's regime, not E1's objective, suppresses divergence at depth."
+      },
+      {
+        "name": "C1_readout_regime_damping_replication_rc_decay",
+        "load_bearing": true,
+        "passed": true,
+        "hybrid_verdict": "damped",
+        "e1alone_verdict": "damped",
+        "discrimination": "readout_regime_replicates_damping",
+        "measured_hybrid_damped_fraction": 1.0,
+        "measured_e1alone_damped_fraction": 1.0,
+        "threshold": 0.5,
+        "statement": "Depth-growth damping of ARM_rc_decay relative to ARM_single_step in cr_ratio(h) at h in [5, 30], majority-of-cells rule, compared under the HYBRID Phase-4 evaluator readout vs the E1-ALONE readout. Declared null: both readouts agree. Discriminating: hybrid damped but e1-alone NOT damped -> the consumer's regime, not E1's objective, suppresses divergence at depth."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_readout_regime_damping_replication_rc_flat": true,
+      "C1_readout_regime_damping_replication_rc_decay": true
+    },
+    "combination_rule": "Per ON arm, per readout (hybrid, e1alone): 4 seeds x 2 depth horizons = 8 {seed x horizon} cells; a majority (>= 5 of 8) must show growth_on(h) < growth_off(h) (same readout on both sides) for that arm-readout to verdict 'damped'. A cell with a non-finite/non-positive input is excluded from n_total (never counted as non-damped); if fewer than all 8 cells survive, the arm-readout verdicts 'undetermined' rather than a false 'not_damped' -- gated in practice by the cr_ratio_finite_at_decision_horizons precondition. Per ON arm, compose the hybrid and e1alone verdicts into a discrimination (replicates / consumer-suppresses / hybrid-suppresses / neither / undetermined). Run-level label composes the two ON arms' discriminations (see module docstring for the full composition; a contradictory pair -- one arm each direction -- composes to readout_regime_mixed_across_arms, not to a directional label). No criterion gates PASS/FAIL once readiness is met -- the run is a classification (every per-arm criterion below is load_bearing because EACH one independently reports a genuine discrimination outcome that must be read, not because the run-level label accepts on any single one clearing a bar).",
+    "readout_symmetry_note": "cr_ratio(h) = cr_rollout(h)/cr_real(h); cr_real(h) is identical across both readouts (Phase 4b, environment-derived, unaffected by which Phase-4 scorer runs). The hybrid and e1-alone readouts are two different deterministic functions of the SAME trained E1/E2 weights and the SAME 40 action sequences -- neither a common rescaling nor a permutation of the readout choice, so a discrepancy between them is a genuine measurement of which map the objective's depth effect is visible on, not a DV-symmetry artifact.",
+    "what_replication_means": "readout_regime_consistent_damping_replicates: 976's damping finding is a property of E1's trained weights, visible on E1's own rollout map, not an artifact of the hybrid consumer's regime. Does NOT license or withhold the ITEM-3 rollout-endpoint contrastive (H-f) -- that licence is read at h=1 from 976, unaffected by this run.",
+    "what_discrepancy_means": "readout_regime_discrepant_consumer_suppresses_divergence: the hybrid Phase-4 evaluator (and by extension the MECH-135 108b:451-463 30-step endpoint consumer, the SAME scorer) suppresses per-action divergence that IS present in E1's own rollout map at depth. Any successor measuring the MECH-135 endpoint question must use an E1-alone readout, or it will under-read a divergence-preserving objective's true effect."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3020335a15347ade5b7f948984c5268eb53325d6dd1b56fa5f49cd38839357b4",
+  "substrate_commit": {
+    "commit": "75fbed5a586bcff0070ec2a7d40be3cacf61b692",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.action_conditioned_transition": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "e1.e1_rollout_consistency_enabled": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 16,
+    "goal_state_present": false
+  }
+}
