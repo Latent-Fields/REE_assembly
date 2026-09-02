@@ -2400,3 +2400,4 @@ One line per hourly tick. ASCII only.
 2026-09-02T18:05:34Z ERROR IGW-20260902-221: TASK_CLAIMS.json stale read, refused to write the protecting claim -- not staging: TASK_CLAIMS.json is missing 90 entries that HEAD already has, after 3 fresh reads (first: metaworker-chip-20260901-gflag0078-sd069-stepcap). Refusing to write. Check for HEAD/worktree skew per CLAUDE.md before re-running.
 2026-09-02T18:05:34Z ERROR IGW-20260902-221: worktree removed
 2026-09-02T19:08:21Z workset committed (regen -- 252 items, 32 ready, 0 in flight)
+2026-09-02T19:07:41Z STAGE IGW-20260902-219 skill=/implement-substrate prio=25 worktree=igw-219-substrate-ready-mech465-commit-g (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
