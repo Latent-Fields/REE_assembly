@@ -12222,6 +12222,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1294",
+      "blocked_note": "IMPL-002 (claim_type: implementation_note, subject: repo.meta, title 'Repository metadata and contribution process') asserts facts about this repository's own metadata and contribution process (CITATION.cff, CONTRIBUTING.md, GitHub issue templates) -- it is not a claim about V3 cognitive-substrate behaviour, so no ree-v3 experiment output can vary with whether it holds. This is a claim-testability guardrail, not a substrate-readiness gap (queue-experiment Step 2.5 is for a buildable/probe-gated node) -- same disposition class as EXP-0264/ARC-080, EXP-0442/ARC-043, EXP-0708/INV-077, EXP-1140/MECH-530 in this file. Systemic: all 27 IMPL-* claims in claims.yaml (IMPL-001..IMPL-027) share claim_type implementation_note with subjects under repo.*/docs.*/examples.*/roadmap.*/etc -- none describe V3 runtime/mechanism behaviour, so the 18 EXP-06xx proposals auto-minted one-per-IMPL-claim (EXP-0604..EXP-0638, see proposal_tick_massmint_triage_20260901.md) are the same mechanical over-mint documented there for design_decision/architectural_commitment/invariant claim types, just not yet triaged for implementation_note. Only EXP-0606 is disposed here, per this session's scope (CLAUDE.md Scope Discipline); the sibling EXP-06xx/IMPL-* proposals remain 'proposed' and are flagged as follow-on, not fixed in this pass. LIT-0607 (IMPL-002's literature_review sibling) is NOT skipped by this edit and remains legitimately proposed -- whether prior literature exists on open-source contribution-process conventions is a separate, answerable question from whether a V3 run can move IMPL-002. PROVENANCE: the dispatch brief that spawned this session (chip-proposal-exp-0606) stated 'claim IMPL-008' -- verified against this file that proposal_id=EXP-0606 actually carries claim_id=IMPL-002 (IMPL-008's own experimental proposal is EXP-0612, still proposed); proceeded on proposal_id as the authoritative key, per the EXP-0440/ARC-043 precedent in this same file. 2026-09-02T23:50:38Z, session 91d89d36-e4cc-4aa7-8f84-ff85ac259238, chip chip-proposal-exp-0606.",
       "claim_id": "IMPL-002",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -12244,7 +12245,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "skipped",
       "suggested_experiment_type": "claim_probe_impl_002",
       "target_repo": "ree-v3",
       "why_now": [
