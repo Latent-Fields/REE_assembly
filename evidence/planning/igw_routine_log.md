@@ -2404,3 +2404,5 @@ One line per hourly tick. ASCII only.
 2026-09-02T20:10:33Z SPAWN IGW-20260902-238 skill=/lit-pull prio=40 uuid=7ea0e635-d331-4397-bd03-fd4b5e8cf83d pid=59810 worktree=igw-238-literature-proposal-for-arc-113
 2026-09-02T20:13:41Z LAUNCH (manual interactive) IGW-20260902-219 worktree=igw-219-substrate-ready-mech465-commit-g
 2026-09-02T20:26:09Z auto-defer 4dafb051f849 hash=4dafb051f849 for 48h (complete)
+2026-09-02T20:26:34Z complete 4dafb051f849 launched_manual->completed outcome=USEFUL_LANDED: Did not build the staged gate-rescale (3 prior probes already declined it, 1.02-
+2026-09-02T20:42:35Z auto-defer igw-238-literature-proposal-for-arc-113 hash=d1a503221ce7 for 48h (complete)
