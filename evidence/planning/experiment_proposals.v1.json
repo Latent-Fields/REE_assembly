@@ -20946,7 +20946,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1415",
-      "claim_id": "MECH-065",
+      "blocked_by": [
+        "chip-20260902-mech065-rc-conflict-s5-substrate"
+      ],
+      "blocked_note": "queue-experiment Step 2.5 substrate gate: NOT buildable yet. MECH-065's own claims.yaml what_would_answer NON-DEGENERACY PRECONDITION states verbatim 'MECH-065 is currently a schematic design claim -- the RC_conflict signal, the DA_A/DA_M lock-in-pressure dampening, the commitment-threshold (tau/theta_high/theta_low) hysteresis, and the Pi_rc guarded floor are all still on the control-plane doc's own TODO list', and any run against a flat/uncomputed RC_conflict channel self-routes substrate_not_ready, not a verdict. Confirmed 2026-09-02: docs/architecture/control_plane_signal_map.md 'TODOs for the repo' section (last edited 2026-08-09) still lists 'Specify update equations/interfaces for S5 reality-coherence conflict computation, hysteresis, and recovery curve' and 'Pi_rc guarded floor contract and retuning policy' as unformalised. Direct grep of ree-v3/ree_core for pi_rc_floor, theta_high, theta_low, tau_rc_recovery, DA_A, DA_M lock_in_pressure, and RC_conflict: zero hits -- no ree_core module computes this signal. ree-v3/CLAUDE.md 'SD Design Decisions Implemented' has no entry for reality-coherence/RC-conflict. The one experiment with adjacent naming, V3-EXQ-158 (Q-018 threshold calibration, PASS/supports, claim_ids=['Q-018'] only), implements a synthetic script-local proxy (rc_conflict = L2 norm of a prediction-error signal) inside the driver script itself, not reusable ree_core substrate, and does not test DA_A/DA_M lock-in dampening, hysteresis, or the ratio-based internal/authority precision framing MECH-065's own falsifying signature requires -- it does not carry evidence for MECH-065. No substrate_queue.json entry exists for MECH-065 as of this check. claim_evidence.v1.json has no MECH-065 entry (no completed run evidence). All 6 depends_on claims (ARC-005, ARC-007, ARC-018, MECH-037, MECH-054, MECH-062) have cleared the V3-Pending Gate, so the blocker is the RC-conflict/S5 control-plane substrate itself, not an upstream dependency gate. Routed to /implement-substrate via chip-20260902-mech065-rc-conflict-s5-substrate (2026-09-02). Do not requeue until that build lands and Step 2.5a's empirical probe confirms RC_conflict is a live, independently-readable, non-zero-variance channel under a provenance/authority-mismatch manipulation. 2026-09-02, session 5bee2d7c-7430-4121-9d34-dbea85f5403c (chip-proposal-exp-0841-paced; NOTE the dispatch cited proposal id EXP-0841, but the registry's EXP-0841 belongs to MECH-132/EVB-1436 -- the actual MECH-065 proposal is this entry, EXP-0802/EVB-1415; the 2026-09-01 proposal_tick_massmint_triage_20260901.md row for MECH-065 carries the stale id).",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
@@ -20968,7 +20971,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_065",
       "target_repo": "ree-v3",
       "why_now": [
