@@ -2370,3 +2370,4 @@ One line per hourly tick. ASCII only.
 2026-09-02T10:55:31Z skip: paused (.igw_routine_pause present)
 2026-09-02T11:55:32Z skip: paused (.igw_routine_pause present)
 2026-09-02T12:55:58Z workset committed (regen -- 253 items, 30 ready, 0 in flight)
+2026-09-02T12:55:33Z SPAWN IGW-20260902-238 skill=/queue-experiment prio=40 uuid=fcee3dd0-67e3-4267-a268-024739e37c20 pid=42417 worktree=igw-238-proposal-for-arc-019
