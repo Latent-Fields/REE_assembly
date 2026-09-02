@@ -56,6 +56,20 @@ informative outcome, not a failure of the pick.
 
 ## TIER 2 -- paced over the coming week (129)
 
+**RE-RANKED 2026-09-02 FOR BUILDABILITY, not depth.** The original order was by dependent count,
+on the reasoning that falsifying a load-bearing claim buys the most information. That is sound
+information theory and exactly wrong for *buildability*: measured across the whole proposals file,
+BLOCKED proposals average **4.96 dependents (median 3)** against **1.86 (median 1)** for available
+ones -- the most depended-upon claims are the foundational, architectural ones whose substrate has
+not been built. Ranking by depth therefore selected FOR un-buildability, and the first batch drawn
+that way blocked at ~67% against a 4.6% population rate (EXP-0418/0812/0817/0829 all
+`blocked_substrate`, all four of that date's blocks).
+
+The order below now favours concrete leaf mechanisms: low dependent count, MECH over ARC, explicit
+v3 phase. Entries already proven `blocked_substrate`, or already executed/queued, are sunk to the
+bottom rather than deleted -- a block is a fact about today's substrate, not a permanent verdict,
+and they become eligible again once the owed builds land.
+
 Withdrawn from the live ledger to keep the dispatcher on curated work.
 
 **THIS IS AUTOMATED -- do not hand re-mint from this table.** `scripts/proposal_backlog_dripfeed.py`
@@ -74,61 +88,68 @@ Two properties worth knowing before editing this table:
 
 | dependents | claim | phase | EXP | chip_ref | title |
 |---|---|---|---|---|---|
-| 5 | MECH-065 | - | EXP-0841 | `chip-proposal-exp-0841` | Reality-coherence conflict lane modulates loop precision and commitment thresholds... |
-| 5 | MECH-037 | - | EXP-0820 | `chip-proposal-exp-0820` | Papez-like loop provides provenance gating and reality filtering |
-| 5 | INV-072 | - | EXP-0746 | `chip-proposal-exp-0746` | Violence corollary: violence is conditionally permissible only when an agent is not... |
-| 5 | EXT-009 | - | EXP-0609 | `chip-proposal-exp-0609` | Similarity-gated care collapse (REFLEXIVE / self-directed failure mode): because REE... |
-| 5 | ARC-044 | - | EXP-0501 | `chip-proposal-exp-0501` | Context-dependent neuromodulatory gain is a single unifying mechanism expressed at... |
-| 4 | MECH-107 | v3 | EXP-0862 | `chip-proposal-exp-0862` | Exhalation is the physiological instantiation of E3 trajectory-abandonment — each... |
-| 4 | MECH-019 | - | EXP-0800 | `chip-proposal-exp-0800` | Control plane shapes modes of cognition, not discrete choices |
-| 4 | ARC-008 | - | EXP-0418 | `chip-proposal-exp-0418` | Commitment eligibility is gated by tau, rho, and phi |
-| 3 | SD-077 | v3 | EXP-1214 | `chip-proposal-exp-1214` | Common-mode-invariant (centered) super-ordinal goal-anchor cue key: the MECH-189... |
-| 3 | SD-070 | v3 | EXP-1204 | `chip-proposal-exp-1204` | z_world P0 anti-collapse encoder-training recipe: a mini-batched P0 that trains the... |
-| 3 | MECH-468 | v3 | EXP-1103 | `chip-proposal-exp-1103` | Hippocampal anchor TOPOLOGY carries functional information not present in local anchor... |
-| 3 | MECH-126 | - | EXP-0874 | `chip-proposal-exp-0874` | Specific modes of REE state abstraction failure -- overmerge, oversplit, temporal... |
-| 3 | MECH-110 | v3 | EXP-0867 | `chip-proposal-exp-0867` | Laughter is rapid repeated hypothesis-tag cycling — threat activation followed... |
-| 3 | MECH-105 | v3 | EXP-0860 | `chip-proposal-exp-0860` | Hippocampal sequence completion drives BG beta release via subiculum-NAc-VTA... |
-| 3 | MECH-055 | - | EXP-0837 | `chip-proposal-exp-0837` | Affective channel separation keeps hedonic tone, valence, and signed PE distinct |
-| 3 | EXT-003 | - | EXP-0597 | `chip-proposal-exp-0597` | Reward hacking: scalar reward conflates incommensurable error signals |
-| 3 | ARC-131 | v3 | EXP-0573 | `chip-proposal-exp-0573` | Installability is a competence dissociable from isolated component-level validation: a... |
-| 2 | SD-090 | - | EXP-1228 | `chip-proposal-exp-1228` | Mechanism functional-role classification, and a removal-justification vocabulary. Five... |
-| 2 | SD-089 | - | EXP-1226 | `chip-proposal-exp-1226` | Claim-origin provenance: the registry records the epistemic origin class of each... |
-| 2 | MECH-495 | v3 | EXP-1123 | `chip-proposal-exp-1123` | The objective for hippocampal/episodic memory organisation is RELATIONAL... |
-| 2 | MECH-251 | v3 | EXP-0967 | `chip-proposal-exp-0967` | z_goal projects to a precision template vector that is additively written to the E1... |
-| 2 | MECH-223 | - | EXP-0928 | `chip-proposal-exp-0928` | Animated agency attribution overweighting: systematic bias toward attributing... |
-| 2 | MECH-221 | v3 | EXP-0924 | `chip-proposal-exp-0924` | z_world must be continuously residualized against z_self predictions; efference-copy... |
-| 2 | MECH-211 | - | EXP-0917 | `chip-proposal-exp-0917` | schema_consolidation_as_search_grammar |
-| 2 | MECH-161 | v3 | EXP-0899 | `chip-proposal-exp-0899` | Ready vigilance (MECH-026) requires an arousal regulator that maintains an optimal... |
-| 2 | MECH-084 | - | EXP-0858 | `chip-proposal-exp-0858` | Noradrenaline as attentional snap and E1/E2 sampling ratio modulator |
-| 2 | MECH-080 | - | EXP-0851 | `chip-proposal-exp-0851` | Rollout truncation set-points as psychiatric individual differences substrate... |
-| 2 | MECH-018 | - | EXP-0798 | `chip-proposal-exp-0798` | Residue integration during sleep |
-| 2 | MECH-011 | - | EXP-0784 | `chip-proposal-exp-0784` | Language and learning dynamics |
-| 2 | MECH-005 | - | EXP-0780 | `chip-proposal-exp-0780` | Path authority and interruptibility via norepinephrine-like control |
-| 2 | MECH-004 | - | EXP-0778 | `chip-proposal-exp-0778` | Signal-to-knob wiring map for control plane |
-| 2 | INV-024 | - | EXP-0711 | `chip-proposal-exp-0711` | Offline consolidation and online commitment must remain isolated at... |
-| 2 | INV-023 | - | EXP-0709 | `chip-proposal-exp-0709` | Protected offline recalibration/integration regimes are structurally required |
-| 2 | IMPL-023 | - | EXP-0677 | `chip-proposal-exp-0677` | REE-v2 representation-interface-first spec and phase gate |
-| 2 | ARC-120 | v3 | EXP-0557 | `chip-proposal-exp-0557` | Behavioural/write authority in REE is (and should remain) EARNED through demonstrated... |
-| 2 | ARC-073 | - | EXP-0519 | `chip-proposal-exp-0519` | Play-to-real transition is triggered by competence saturation (d(PE)/dt < threshold)... |
-| 1 | SD-086 | v3 | EXP-1222 | `chip-proposal-exp-1222` | z_harm_a's functional readout must be a calibrated scalar valuation, not the latent... |
-| 1 | SD-071 | v3 | EXP-1206 | `chip-proposal-exp-1206` | First-order consolidation-phase readouts validated: the NREM slot-filling and SWS... |
+| 0 | MECH-530 | v3 | EXP-1153 | `chip-proposal-exp-1153` | E3's decision-outcome signals to any downstream consumer (including a future... |
+| 0 | MECH-494 | v3 | EXP-1121 | `chip-proposal-exp-1121` | The criterion for abandoning an inferred context is PERSISTENT, STRUCTURED evidence... |
+| 0 | MECH-474 | v3 | EXP-1110 | `chip-proposal-exp-1110` | LEARNING-MECHANISM META-SELECTION (narrow form): the control plane selects among the... |
+| 0 | MECH-470 | v3 | EXP-1107 | `chip-proposal-exp-1107` | Topological position improves ghost-goal reactivation ranking: MECH-292/293 rank... |
+| 0 | MECH-426 | v3 | EXP-1079 | `chip-proposal-exp-1079` | progress_velocity_maintenance |
+| 0 | MECH-384 | v3 | EXP-1045 | `chip-proposal-exp-1045` | Lightweight self-narration trace/debug scaffold: an optional traceable field set... |
+| 0 | MECH-167 | v3 | EXP-0903 | `chip-proposal-exp-0903` | z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion... |
+| 0 | MECH-136 | v3 | EXP-0886 | `chip-proposal-exp-0886` | E3 harm evaluation must apply an agency-gain correction to counteract E2's systematic... |
+| 0 | MECH-115 | v3 | EXP-0870 | `chip-proposal-exp-0870` | Hypothesis tag (MECH-094) reliability degrades with z_self dispersion; high D_eff... |
+| 0 | MECH-109 | v3 | EXP-0865 | `chip-proposal-exp-0865` | Voluntary respiratory modulation provides the one top-down deliberate handle on the E3... |
 | 1 | MECH-469 | v3 | EXP-1105 | `chip-proposal-exp-1105` | Relation types are NOT collapsible to one adjacency structure: collapsing all edge... |
 | 1 | MECH-464 | v3 | EXP-1099 | `chip-proposal-exp-1099` | D1/D2 opponent dopamine gain is ORDER-CHANGING, not a uniform scalar: because it gains... |
-| 1 | MECH-327 | - | EXP-1003 | `chip-proposal-exp-1003` | During sensorimotor play, E1 prediction-error locus upweights probe-action selection:... |
-| 1 | MECH-249 | - | EXP-0963 | `chip-proposal-exp-0963` | Acetylcholine/noradrenaline balance implements action-mode-specific hippocampal write... |
-| 1 | MECH-248 | - | EXP-0961 | `chip-proposal-exp-0961` | Source monitoring (frontoparietal network; Johnson-Raye tradition) is a candidate... |
 | 1 | MECH-239 | v3 | EXP-0947 | `chip-proposal-exp-0947` | The hippocampal indexing substrate includes a temporal dimension implemented via time... |
 | 1 | MECH-237 | v3 | EXP-0944 | `chip-proposal-exp-0944` | The z_goal attractor must be globally reachable across the z_goal sub-space —... |
 | 1 | MECH-222 | v3 | EXP-0926 | `chip-proposal-exp-0926` | Failure of continuous z_self residualization produces self-attribution contamination... |
 | 1 | MECH-213 | v3 | EXP-0920 | `chip-proposal-exp-0920` | e1_e2_joint_rem_calibration |
 | 1 | MECH-208 | v3 | EXP-0913 | `chip-proposal-exp-0913` | Valence-asymmetric replay causally drives approach/avoidance bias: harm-path replay is... |
 | 1 | MECH-206 | v3 | EXP-0911 | `chip-proposal-exp-0911` | CA1 acts as a PE-proportional comparator that writes episodes to the surprise buffer:... |
-| 1 | MECH-170 | - | EXP-0905 | `chip-proposal-exp-0905` | Sleep architecture restoration in early MCI should produce dissociated cognitive... |
 | 1 | MECH-162 | v3 | EXP-0901 | `chip-proposal-exp-0901` | z_resource (SD-015, object-identity encoding) and z_world (spatial-contextual... |
 | 1 | MECH-160 | v3 | EXP-0897 | `chip-proposal-exp-0897` | The E2 action_bias pathway (MECH-151, OFC analog) and E3 terrain_weight pathway... |
+| 1 | MECH-125 | v3 | EXP-0872 | `chip-proposal-exp-0872` | E3 trajectory selection implements multi-constraint viability evaluation rather than... |
+| 0 | SD-081 | v3 | EXP-1216 | `chip-proposal-exp-1216` | e3.dualsystem_uncertainty_arbitration. An explicit arbitration weight over the HABIT... |
+| 0 | SD-075 | v3 | EXP-1212 | `chip-proposal-exp-1212` | Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus... |
+| 0 | SD-074 | v3 | EXP-1210 | `chip-proposal-exp-1210` | Trained-enough agent substrate for read-only control-plane telemetry probes: a... |
+| 0 | SD-033d | v3 | EXP-1176 | `chip-proposal-exp-1176` | Premotor/SMA-analog (sequence execution substrate): module that holds candidate action... |
+| 0 | MECH-328 | - | EXP-1005 | `chip-proposal-exp-1005` | Synthetic and real z_goal vectors must lie in the same latent manifold for... |
+| 0 | MECH-250 | - | EXP-0965 | `chip-proposal-exp-0965` | The end of exhalation (expiration phase) provides a hard, periodic release signal for... |
+| 0 | MECH-247 | - | EXP-0959 | `chip-proposal-exp-0959` | Trauma-shaped hypervigilant priors can generate psychotic-like symptoms by structuring... |
+| 0 | MECH-246 | - | EXP-0957 | `chip-proposal-exp-0957` | Psychotic-like symptoms can arise from signal-degradation pareidolia: sufficiently... |
+| 0 | MECH-234 | - | EXP-0941 | `chip-proposal-exp-0941` | DMS (goal-directed) and DLS (habitual) corticostriatal circuits can produce... |
+| 0 | MECH-233 | - | EXP-0939 | `chip-proposal-exp-0939` | Threat and approach valence enter hippocampal terrain through mechanistically... |
+| 0 | MECH-227 | - | EXP-0935 | `chip-proposal-exp-0935` | Anaesthesia as D_V collapse: general anaesthesia abolishes consciousness by disrupting... |
+| 0 | MECH-190 | - | EXP-0907 | `chip-proposal-exp-0907` | Cooperative predator defense emerges without language when defense scent pressure is... |
+| 0 | MECH-157 | - | EXP-0892 | `chip-proposal-exp-0892` | External vs internal cognition modes are controlled by precision-routing... |
+| 0 | MECH-134 | - | EXP-0884 | `chip-proposal-exp-0884` | A vmPFC-analog substrate must activate goal approach pull as a distinct property from... |
+| 0 | MECH-133 | - | EXP-0882 | `chip-proposal-exp-0882` | A vmPFC-analog substrate must activate safety memories with sufficient force to... |
+| 0 | MECH-132 | - | EXP-0880 | `chip-proposal-exp-0880` | A vmPFC-analog substrate must activate social and identity constraints as live... |
+| 0 | MECH-079 | - | EXP-0849 | `chip-proposal-exp-0849` | Phenomenological continuous selfhood is an artefact of stable hippocampal map geometry |
+| 0 | MECH-078 | - | EXP-0847 | `chip-proposal-exp-0847` | Amygdala bootstraps novel valence for unmapped hippocampal territory; anxiety... |
+| 0 | MECH-050 | - | EXP-0833 | `chip-proposal-exp-0833` | Functional locality supports attribution without requiring anatomical columns |
+| 0 | MECH-049 | - | EXP-0831 | `chip-proposal-exp-0831` | Temporal phase compartmentalisation preserves ethical constraint independence |
+| 0 | MECH-042 | - | EXP-0827 | `chip-proposal-exp-0827` | Telemetry exposure channels report internal control-plane state for diagnostics |
+| 0 | MECH-038 | - | EXP-0822 | `chip-proposal-exp-0822` | Arcuate-like sequence-to-motor channel nudges language emergence |
+| 0 | MECH-028 | - | EXP-0810 | `chip-proposal-exp-0810` | Ethical behavior depends on mode transitions and learning preservation |
+| 0 | MECH-023 | - | EXP-0804 | `chip-proposal-exp-0804` | Responsibility is geometric and path-dependent |
+| 0 | MECH-021 | - | EXP-0802 | `chip-proposal-exp-0802` | Subjective now is a control surface across temporal horizons |
+| 0 | MECH-013 | - | EXP-0788 | `chip-proposal-exp-0788` | Language failure modes and pathologies |
+| 0 | MECH-012 | - | EXP-0786 | `chip-proposal-exp-0786` | Language and institutions interplay |
+| 0 | MECH-002 | - | EXP-0774 | `chip-proposal-exp-0774` | Precision control analogues shape cognitive regimes |
+| 0 | INV-040 | v3 | EXP-0731 | `chip-proposal-exp-0731` | A minimal sensory cue pattern in z_world is sufficient to activate the appropriate... |
+| 2 | MECH-495 | v3 | EXP-1123 | `chip-proposal-exp-1123` | The objective for hippocampal/episodic memory organisation is RELATIONAL... |
+| 2 | MECH-251 | v3 | EXP-0967 | `chip-proposal-exp-0967` | z_goal projects to a precision template vector that is additively written to the E1... |
+| 2 | MECH-221 | v3 | EXP-0924 | `chip-proposal-exp-0924` | z_world must be continuously residualized against z_self predictions; efference-copy... |
+| 2 | MECH-161 | v3 | EXP-0899 | `chip-proposal-exp-0899` | Ready vigilance (MECH-026) requires an arousal regulator that maintains an optimal... |
+| 1 | SD-086 | v3 | EXP-1222 | `chip-proposal-exp-1222` | z_harm_a's functional readout must be a calibrated scalar valuation, not the latent... |
+| 1 | SD-071 | v3 | EXP-1206 | `chip-proposal-exp-1206` | First-order consolidation-phase readouts validated: the NREM slot-filling and SWS... |
+| 1 | MECH-327 | - | EXP-1003 | `chip-proposal-exp-1003` | During sensorimotor play, E1 prediction-error locus upweights probe-action selection:... |
+| 1 | MECH-249 | - | EXP-0963 | `chip-proposal-exp-0963` | Acetylcholine/noradrenaline balance implements action-mode-specific hippocampal write... |
+| 1 | MECH-248 | - | EXP-0961 | `chip-proposal-exp-0961` | Source monitoring (frontoparietal network; Johnson-Raye tradition) is a candidate... |
+| 1 | MECH-170 | - | EXP-0905 | `chip-proposal-exp-0905` | Sleep architecture restoration in early MCI should produce dissociated cognitive... |
 | 1 | MECH-159 | - | EXP-0895 | `chip-proposal-exp-0895` | Moral progress in REE is hypothesised to be intergenerational: childhood plasticity... |
 | 1 | MECH-131 | - | EXP-0878 | `chip-proposal-exp-0878` | A vmPFC-analog substrate must activate stored aversive residue as an anticipatory... |
-| 1 | MECH-125 | v3 | EXP-0872 | `chip-proposal-exp-0872` | E3 trajectory selection implements multi-constraint viability evaluation rather than... |
 | 1 | MECH-082 | - | EXP-0855 | `chip-proposal-exp-0855` | Hippocampal map distortion propagates through E2 to bias E1 attentional sampling... |
 | 1 | MECH-067 | - | EXP-0845 | `chip-proposal-exp-0845` | A machine-checkable phase/store/actor permission matrix is required to enforce... |
 | 1 | MECH-066 | - | EXP-0843 | `chip-proposal-exp-0843` | Pre-commit and post-commit channels may share representations but must stay separated... |
@@ -142,52 +163,12 @@ Two properties worth knowing before editing this table:
 | 1 | MECH-003 | - | EXP-0776 | `chip-proposal-exp-0776` | Precision must be tau-scoped with lossy projections |
 | 1 | INV-093 | v3 | EXP-0760 | `chip-proposal-exp-0760` | Skill optimisation must NOT trade harm sensitivity for competence (learning-side... |
 | 1 | INV-092 | v3 | EXP-0758 | `chip-proposal-exp-0758` | Distractor suppression must remain SELECTIVELY PERMEABLE to harm and other-agent... |
-| 1 | INV-069 | - | EXP-0742 | `chip-proposal-exp-0742` | The self is defined as the dynamically sustained process maintaining high... |
-| 1 | IMPL-019 | - | EXP-0675 | `chip-proposal-exp-0675` | Self-first, social-later developmental testing order heuristic |
-| 1 | IMPL-008 | - | EXP-0657 | `chip-proposal-exp-0657` | Program phases, repository roles, and phase-gate criteria |
-| 1 | ARC-037 | v3 | EXP-0494 | `chip-proposal-exp-0494` | REE requires a causal attribution routing circuit (anterior insula equivalent) that... |
+| 3 | MECH-468 | v3 | EXP-1103 | `chip-proposal-exp-1103` | Hippocampal anchor TOPOLOGY carries functional information not present in local anchor... |
+| 3 | MECH-110 | v3 | EXP-0867 | `chip-proposal-exp-0867` | Laughter is rapid repeated hypothesis-tag cycling — threat activation followed... |
+| 3 | MECH-105 | v3 | EXP-0860 | `chip-proposal-exp-0860` | Hippocampal sequence completion drives BG beta release via subiculum-NAc-VTA... |
 | 0 | SD-088 | - | EXP-1224 | `chip-proposal-exp-1224` | The claims index must represent source-dependence between supporting judgements. Two... |
-| 0 | SD-081 | v3 | EXP-1216 | `chip-proposal-exp-1216` | e3.dualsystem_uncertainty_arbitration. An explicit arbitration weight over the HABIT... |
-| 0 | SD-075 | v3 | EXP-1212 | `chip-proposal-exp-1212` | Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus... |
-| 0 | SD-074 | v3 | EXP-1210 | `chip-proposal-exp-1210` | Trained-enough agent substrate for read-only control-plane telemetry probes: a... |
-| 0 | SD-033d | v3 | EXP-1176 | `chip-proposal-exp-1176` | Premotor/SMA-analog (sequence execution substrate): module that holds candidate action... |
-| 0 | MECH-530 | v3 | EXP-1153 | `chip-proposal-exp-1153` | E3's decision-outcome signals to any downstream consumer (including a future... |
-| 0 | MECH-494 | v3 | EXP-1121 | `chip-proposal-exp-1121` | The criterion for abandoning an inferred context is PERSISTENT, STRUCTURED evidence... |
-| 0 | MECH-474 | v3 | EXP-1110 | `chip-proposal-exp-1110` | LEARNING-MECHANISM META-SELECTION (narrow form): the control plane selects among the... |
-| 0 | MECH-470 | v3 | EXP-1107 | `chip-proposal-exp-1107` | Topological position improves ghost-goal reactivation ranking: MECH-292/293 rank... |
-| 0 | MECH-426 | v3 | EXP-1079 | `chip-proposal-exp-1079` | progress_velocity_maintenance |
-| 0 | MECH-384 | v3 | EXP-1045 | `chip-proposal-exp-1045` | Lightweight self-narration trace/debug scaffold: an optional traceable field set... |
-| 0 | MECH-328 | - | EXP-1005 | `chip-proposal-exp-1005` | Synthetic and real z_goal vectors must lie in the same latent manifold for... |
-| 0 | MECH-250 | - | EXP-0965 | `chip-proposal-exp-0965` | The end of exhalation (expiration phase) provides a hard, periodic release signal for... |
-| 0 | MECH-247 | - | EXP-0959 | `chip-proposal-exp-0959` | Trauma-shaped hypervigilant priors can generate psychotic-like symptoms by structuring... |
-| 0 | MECH-246 | - | EXP-0957 | `chip-proposal-exp-0957` | Psychotic-like symptoms can arise from signal-degradation pareidolia: sufficiently... |
-| 0 | MECH-234 | - | EXP-0941 | `chip-proposal-exp-0941` | DMS (goal-directed) and DLS (habitual) corticostriatal circuits can produce... |
-| 0 | MECH-233 | - | EXP-0939 | `chip-proposal-exp-0939` | Threat and approach valence enter hippocampal terrain through mechanistically... |
-| 0 | MECH-227 | - | EXP-0935 | `chip-proposal-exp-0935` | Anaesthesia as D_V collapse: general anaesthesia abolishes consciousness by disrupting... |
-| 0 | MECH-190 | - | EXP-0907 | `chip-proposal-exp-0907` | Cooperative predator defense emerges without language when defense scent pressure is... |
-| 0 | MECH-167 | v3 | EXP-0903 | `chip-proposal-exp-0903` | z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion... |
-| 0 | MECH-157 | - | EXP-0892 | `chip-proposal-exp-0892` | External vs internal cognition modes are controlled by precision-routing... |
-| 0 | MECH-136 | v3 | EXP-0886 | `chip-proposal-exp-0886` | E3 harm evaluation must apply an agency-gain correction to counteract E2's systematic... |
-| 0 | MECH-134 | - | EXP-0884 | `chip-proposal-exp-0884` | A vmPFC-analog substrate must activate goal approach pull as a distinct property from... |
-| 0 | MECH-133 | - | EXP-0882 | `chip-proposal-exp-0882` | A vmPFC-analog substrate must activate safety memories with sufficient force to... |
-| 0 | MECH-132 | - | EXP-0880 | `chip-proposal-exp-0880` | A vmPFC-analog substrate must activate social and identity constraints as live... |
-| 0 | MECH-115 | v3 | EXP-0870 | `chip-proposal-exp-0870` | Hypothesis tag (MECH-094) reliability degrades with z_self dispersion; high D_eff... |
-| 0 | MECH-109 | v3 | EXP-0865 | `chip-proposal-exp-0865` | Voluntary respiratory modulation provides the one top-down deliberate handle on the E3... |
-| 0 | MECH-079 | - | EXP-0849 | `chip-proposal-exp-0849` | Phenomenological continuous selfhood is an artefact of stable hippocampal map geometry |
-| 0 | MECH-078 | - | EXP-0847 | `chip-proposal-exp-0847` | Amygdala bootstraps novel valence for unmapped hippocampal territory; anxiety... |
-| 0 | MECH-050 | - | EXP-0833 | `chip-proposal-exp-0833` | Functional locality supports attribution without requiring anatomical columns |
-| 0 | MECH-049 | - | EXP-0831 | `chip-proposal-exp-0831` | Temporal phase compartmentalisation preserves ethical constraint independence |
-| 0 | MECH-042 | - | EXP-0827 | `chip-proposal-exp-0827` | Telemetry exposure channels report internal control-plane state for diagnostics |
-| 0 | MECH-038 | - | EXP-0822 | `chip-proposal-exp-0822` | Arcuate-like sequence-to-motor channel nudges language emergence |
-| 0 | MECH-028 | - | EXP-0810 | `chip-proposal-exp-0810` | Ethical behavior depends on mode transitions and learning preservation |
-| 0 | MECH-023 | - | EXP-0804 | `chip-proposal-exp-0804` | Responsibility is geometric and path-dependent |
-| 0 | MECH-021 | - | EXP-0802 | `chip-proposal-exp-0802` | Subjective now is a control surface across temporal horizons |
-| 0 | MECH-013 | - | EXP-0788 | `chip-proposal-exp-0788` | Language failure modes and pathologies |
-| 0 | MECH-012 | - | EXP-0786 | `chip-proposal-exp-0786` | Language and institutions interplay |
-| 0 | MECH-002 | - | EXP-0774 | `chip-proposal-exp-0774` | Precision control analogues shape cognitive regimes |
 | 0 | INV-095 | - | EXP-0763 | `chip-proposal-exp-0763` | Existence has value sufficient to justify its continuation |
 | 0 | INV-063 | - | EXP-0736 | `chip-proposal-exp-0736` | minimum_entropy_intake_sleep_dependency |
-| 0 | INV-040 | v3 | EXP-0731 | `chip-proposal-exp-0731` | A minimal sensory cue pattern in z_world is sufficient to activate the appropriate... |
 | 0 | INV-022 | - | EXP-0707 | `chip-proposal-exp-0707` | Trust/precision allocation must remain heterogeneous, not a single scalar |
 | 0 | IMPL-027 | - | EXP-0683 | `chip-proposal-exp-0683` | Technical comparison: REE versus Meta AI/KAUST Neural Computers roadmap |
 | 0 | IMPL-026 | - | EXP-0681 | `chip-proposal-exp-0681` | Medication classification by predicted attribution pipeline effect: a reference table... |
@@ -200,9 +181,42 @@ Two properties worth knowing before editing this table:
 | 0 | EXT-004 | - | EXP-0599 | `chip-proposal-exp-0599` | Goal misgeneralization: causal consequences do not carry forward across contexts |
 | 0 | EXT-002 | - | EXP-0595 | `chip-proposal-exp-0595` | Hallucination: no persistent error residue accumulates to shape future outputs |
 | 0 | EXT-001 | - | EXP-0578 | `chip-proposal-exp-0578` | Sycophancy: approval-seeking displaces principled goal pursuit |
+| 2 | MECH-223 | - | EXP-0928 | `chip-proposal-exp-0928` | Animated agency attribution overweighting: systematic bias toward attributing... |
+| 2 | MECH-211 | - | EXP-0917 | `chip-proposal-exp-0917` | schema_consolidation_as_search_grammar |
+| 2 | MECH-084 | - | EXP-0858 | `chip-proposal-exp-0858` | Noradrenaline as attentional snap and E1/E2 sampling ratio modulator |
+| 2 | MECH-080 | - | EXP-0851 | `chip-proposal-exp-0851` | Rollout truncation set-points as psychiatric individual differences substrate... |
+| 2 | MECH-018 | - | EXP-0798 | `chip-proposal-exp-0798` | Residue integration during sleep |
+| 2 | MECH-011 | - | EXP-0784 | `chip-proposal-exp-0784` | Language and learning dynamics |
+| 2 | MECH-005 | - | EXP-0780 | `chip-proposal-exp-0780` | Path authority and interruptibility via norepinephrine-like control |
+| 2 | MECH-004 | - | EXP-0778 | `chip-proposal-exp-0778` | Signal-to-knob wiring map for control plane |
+| 4 | MECH-107 | v3 | EXP-0862 | `chip-proposal-exp-0862` | Exhalation is the physiological instantiation of E3 trajectory-abandonment — each... |
+| 1 | INV-069 | - | EXP-0742 | `chip-proposal-exp-0742` | The self is defined as the dynamically sustained process maintaining high... |
+| 1 | IMPL-019 | - | EXP-0675 | `chip-proposal-exp-0675` | Self-first, social-later developmental testing order heuristic |
+| 1 | IMPL-008 | - | EXP-0657 | `chip-proposal-exp-0657` | Program phases, repository roles, and phase-gate criteria |
+| 3 | SD-077 | v3 | EXP-1214 | `chip-proposal-exp-1214` | Common-mode-invariant (centered) super-ordinal goal-anchor cue key: the MECH-189... |
+| 3 | SD-070 | v3 | EXP-1204 | `chip-proposal-exp-1204` | z_world P0 anti-collapse encoder-training recipe: a mini-batched P0 that trains the... |
+| 3 | MECH-126 | - | EXP-0874 | `chip-proposal-exp-0874` | Specific modes of REE state abstraction failure -- overmerge, oversplit, temporal... |
+| 3 | MECH-055 | - | EXP-0837 | `chip-proposal-exp-0837` | Affective channel separation keeps hedonic tone, valence, and signed PE distinct |
 | 0 | ARC-121 | v3 | EXP-0560 | `chip-proposal-exp-0560` | REE's mechanisms increasingly converge on maintaining and consuming a SHARED... |
-| 0 | ARC-061 | - | EXP-0515 | `chip-proposal-exp-0515` | Self-attribution is implemented via a family of forward-model comparators at motor,... |
 | 0 | ARC-052 | v3 | EXP-0504 | `chip-proposal-exp-0504` | harm_precision_weighting |
+| 2 | SD-090 | - | EXP-1228 | `chip-proposal-exp-1228` | Mechanism functional-role classification, and a removal-justification vocabulary. Five... |
+| 2 | SD-089 | - | EXP-1226 | `chip-proposal-exp-1226` | Claim-origin provenance: the registry records the epistemic origin class of each... |
+| 2 | INV-024 | - | EXP-0711 | `chip-proposal-exp-0711` | Offline consolidation and online commitment must remain isolated at... |
+| 2 | INV-023 | - | EXP-0709 | `chip-proposal-exp-0709` | Protected offline recalibration/integration regimes are structurally required |
+| 2 | IMPL-023 | - | EXP-0677 | `chip-proposal-exp-0677` | REE-v2 representation-interface-first spec and phase gate |
+| 4 | MECH-019 | - | EXP-0800 | `chip-proposal-exp-0800` | Control plane shapes modes of cognition, not discrete choices |
+| 1 | ARC-037 | v3 | EXP-0494 | `chip-proposal-exp-0494` | REE requires a causal attribution routing circuit (anterior insula equivalent) that... |
+| 3 | EXT-003 | - | EXP-0597 | `chip-proposal-exp-0597` | Reward hacking: scalar reward conflates incommensurable error signals |
+| 5 | MECH-065 | - | EXP-0841 | `chip-proposal-exp-0841` | Reality-coherence conflict lane modulates loop precision and commitment thresholds... |
+| 5 | MECH-037 | - | EXP-0820 | `chip-proposal-exp-0820` | Papez-like loop provides provenance gating and reality filtering |
+| 0 | ARC-061 | - | EXP-0515 | `chip-proposal-exp-0515` | Self-attribution is implemented via a family of forward-model comparators at motor,... |
+| 2 | ARC-120 | v3 | EXP-0557 | `chip-proposal-exp-0557` | Behavioural/write authority in REE is (and should remain) EARNED through demonstrated... |
+| 3 | ARC-131 | v3 | EXP-0573 | `chip-proposal-exp-0573` | Installability is a competence dissociable from isolated component-level validation: a... |
+| 5 | INV-072 | - | EXP-0746 | `chip-proposal-exp-0746` | Violence corollary: violence is conditionally permissible only when an agent is not... |
+| 5 | EXT-009 | - | EXP-0609 | `chip-proposal-exp-0609` | Similarity-gated care collapse (REFLEXIVE / self-directed failure mode): because REE... |
+| 2 | ARC-073 | - | EXP-0519 | `chip-proposal-exp-0519` | Play-to-real transition is triggered by competence saturation (d(PE)/dt < threshold)... |
+| 5 | ARC-044 | - | EXP-0501 | `chip-proposal-exp-0501` | Context-dependent neuromodulatory gain is a single unifying mechanism expressed at... |
+| 4 | ARC-008 | - | EXP-0418 | `chip-proposal-exp-0418` | Commitment eligibility is gated by tau, rho, and phi |
 ## NOT V3-TESTABLE -- do not queue as V3 work (27)
 
 | dependents | claim | phase | EXP | chip_ref | title |
