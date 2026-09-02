@@ -2406,3 +2406,8 @@ One line per hourly tick. ASCII only.
 2026-09-02T20:26:09Z auto-defer 4dafb051f849 hash=4dafb051f849 for 48h (complete)
 2026-09-02T20:26:34Z complete 4dafb051f849 launched_manual->completed outcome=USEFUL_LANDED: Did not build the staged gate-rescale (3 prior probes already declined it, 1.02-
 2026-09-02T20:42:35Z auto-defer igw-238-literature-proposal-for-arc-113 hash=d1a503221ce7 for 48h (complete)
+2026-09-02T20:43:01Z complete igw-238-literature-proposal-for-arc-113 spawned->completed outcome=USEFUL_LANDED: lit-pull ARC-113: 5 literature entries landed REE_assembly 388dbe5768 (4 support
+2026-09-02T21:12:37Z GC removed worktree igw-219-substrate-ready-mech465-commit-g (removed; branch deleted)
+2026-09-02T21:12:53Z GC removed worktree igw-238-literature-proposal-for-arc-113 (removed; branch deleted)
+2026-09-02T21:12:35Z GC sweep removed 2 orphan worktree(s), kept 11
+2026-09-02T21:14:46Z workset committed (regen -- 251 items, 31 ready, 0 in flight)
