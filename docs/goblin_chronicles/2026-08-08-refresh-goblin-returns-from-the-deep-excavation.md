@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Refresh Goblin Returns from the Deep Excavation
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/18_deep_excavation.png" alt="Refresh Goblin bursts into a dust-filled archive with red string, rulers and newly excavated scrolls"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The old scrolls connected: not a clean past, but a recoverable one.</figcaption>
+</figure>
+
 *8 August 2026*
 
 Refresh Goblin came hurtling through the archive door with dust in his hair, three rulers under one arm, and a suspiciously large bundle of red string under the other.

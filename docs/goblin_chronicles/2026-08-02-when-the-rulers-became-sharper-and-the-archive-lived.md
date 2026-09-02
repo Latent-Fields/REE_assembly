@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Goblin Chronicle: When the Rulers Became Sharper and the Archive Lived
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/16_rulers_archive_lived.png" alt="Goblin scholars sharpen brass rulers beside an organised archive that glows with warm life"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Sharper rulers let the archive correct itself without pretending it had never been wrong.</figcaption>
+</figure>
+
 **Date recorded:** 2026-08-02  
 **Folder:** `fantasy`  
 **Status:** chronicle-layer governance and epistemic-maturity fragment  

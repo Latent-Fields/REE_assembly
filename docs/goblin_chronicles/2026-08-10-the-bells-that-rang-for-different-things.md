@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Bells That Rang for Different Things
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/22_bells_different_things.png" alt="A mechanical fish swims through a reef tank while four small brass bells glow in different colours and goblins record their patterns"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">For once the bells did not merely ring. They rang for different things.</figcaption>
+</figure>
+
 *10 August 2026*
 
 By afternoon, the fishtank had become offensively informative.

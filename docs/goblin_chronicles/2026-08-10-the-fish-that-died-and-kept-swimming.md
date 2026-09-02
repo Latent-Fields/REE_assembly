@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Fish That Died and Kept Swimming
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/24_fish_died_kept_swimming.png" alt="At dawn a mechanical fish calmly swims through the reef tank while Refresh Goblin stares in surprise and one boot lies behind him"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The evidence had changed while Refresh Goblin was asleep.</figcaption>
+</figure>
+
 *10 August 2026*
 
 The next morning, Refresh Goblin ran into the fishtank room and stopped so suddenly that one of his boots came off.

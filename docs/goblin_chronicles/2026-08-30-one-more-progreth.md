@@ -5,6 +5,12 @@ nav_exclude: true
 
 # One More Progreth
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/33_one_more_progreth.png" alt="At a nearly empty mana gauge Refresh Goblin reaches toward one last lever while Ledger Goblin signals a gentle stop and Smith Goblin closes the forge"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Not after one more repair. Not after one more progreth. Stop.</figcaption>
+</figure>
+
 *30 August 2026*
 
 The mana gauge was nearly empty.

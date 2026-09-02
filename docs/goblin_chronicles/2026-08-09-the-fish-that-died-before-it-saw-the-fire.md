@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Fish That Died Before It Saw the Fire
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/21_fish_died_before_fire.png" alt="A small mechanical fish enters a richly instrumented reef tank while a warm goal glow remains distant beyond a rock"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">A magnificent tank is not yet a world in which the fish can reach the fire.</figcaption>
+</figure>
+
 *9 August 2026*
 
 The goblins had built a fishtank.

@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Anchor Goblin and the Second Pipe
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/26_anchor_second_pipe.png" alt="Anchor Goblin steadies a glowing copper pipe while Smith Goblin works with a wrench and Refresh Goblin waits hopefully"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Anchor Goblin held the second pipe steady. His spell was, as ever: GO ON.</figcaption>
+</figure>
+
 *11 August 2026*
 
 The forge had acquired a second pipe.

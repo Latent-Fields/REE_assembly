@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The War of the Shared Scroll
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/29_war_shared_scroll.png" alt="Many goblins attempt to update one huge shared scroll at once in a busy workshop full of tablets and crossed message pipes"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The workshop learned to do more things at once, and promptly tried to do all of them to the same scroll.</figcaption>
+</figure>
+
 *27–28 August 2026*
 
 At first, the problem looked like success.

@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Trickling of the Magics
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/17_trickling_magics.png" alt="A thin blue thread of magic runs through copper pipes into a small patient forge watched by two goblins"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The fire was not gone. It merely gathered.</figcaption>
+</figure>
+
 The magics no longer roared.
 
 They dripped.

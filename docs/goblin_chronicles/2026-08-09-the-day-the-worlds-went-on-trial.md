@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Day the Worlds Went on Trial
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/20_worlds_on_trial.png" alt="A goblin council holds a sober trial before a newly built wet reef tank, with tools and a puzzled bucket nearby"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Before blaming the fish, the council asked whether the world had given it a fair chance to answer.</figcaption>
+</figure>
+
 *9 August 2026*
 
 The fishtank was still wet.

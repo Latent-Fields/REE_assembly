@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Goblin Chronicle: The Forge in the Empty Hours
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/12_forge_empty_hours.png" alt="A quiet night-time goblin forge glows patiently while Refresh Goblin leaves it to continue working until morning"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">A long run is not always a delay. Some work belongs to the empty hours.</figcaption>
+</figure>
+
 **Date recorded:** 2026-06-24  
 **Folder:** `fantasy`  
 **Status:** chronicle-layer project event / timing and restraint fragment  

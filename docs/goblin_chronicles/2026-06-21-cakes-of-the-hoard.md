@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Goblin Chronicle: The Cakes of the Hoard
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/10_cakes_of_the_hoard.png" alt="Three adult goblins share homemade cakes in a warm cottage while a small black-and-white dog watches hopefully"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The spell may wait. The hoard is also the people who are here now, and many cakes were had.</figcaption>
+</figure>
+
 **Date recorded:** 2026-06-21  
 **Folder:** `fantasy`  
 **Status:** chronicle-layer life event / preserve as motive and counterweight  

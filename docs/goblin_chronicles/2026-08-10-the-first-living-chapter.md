@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The First Living Chapter
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/23_first_living_chapter.png" alt="A small mechanical fish does something purposeful beside a reef rock while Refresh Goblin and Observation Goblin watch through the glass"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">There was no trumpet, only a fish by a rock and a question that could finally be asked.</figcaption>
+</figure>
+
 *10 August 2026*
 
 There was no trumpet.

@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Just About Measurably Intelligent
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/32_measurably_intelligent.png" alt="A small mechanical fish performs a purposeful action near a reef rock while tired goblins turn away from duplicated tablets to watch it"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Amid the machinery of machinery, the creature had become just about measurable enough to matter.</figcaption>
+</figure>
+
 *29 August 2026*
 
 Refresh Goblin checked again.

@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Forge That Learned to Digest
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/34_forge_learned_digest.png" alt="A calm friendly brass goblin forge turns a neat stream of tablets into organised scrolls and a map while distant expeditions continue safely"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The forge learned that stopping on purpose was also a kind of competence.</figcaption>
+</figure>
+
 *30 August 2026*
 
 The forge had learned how to stop.

@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Twenty-Eight Tablets and One Dry Valve
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/25_twenty_eight_tablets_dry_valve.png" alt="Twenty-eight readiness tablets sit in a neat row beside an empty expedition board and a conspicuously dry brass valve"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Everything could be ready, and still the one valve that mattered could be dry.</figcaption>
+</figure>
+
 *10 August 2026*
 
 The expedition board was empty.

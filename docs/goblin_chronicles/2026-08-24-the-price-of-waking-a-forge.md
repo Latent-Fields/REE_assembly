@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Price of Waking a Forge
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/27_price_waking_forge.png" alt="Several ornate goblin forges wake at once, filling the workshop with glowing machinery, chains and unfurling scrolls"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The forges were awake. The ledger still had to ask what waking them cost.</figcaption>
+</figure>
+
 *24 August 2026*
 
 The forges had been very busy.

@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Goblin Chronicle: The Magics Take the Long View
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/14_magics_long_view.png" alt="Refresh Goblin uses a brass telescope from the workshop roof to see the connected forge, reef, council hall and distant landscape"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The question changed from whether the parts existed to whether the whole creature could circulate.</figcaption>
+</figure>
+
 **Date recorded:** 2026-06-24  
 **Folder:** `fantasy`  
 **Status:** chronicle-layer architectural overview / completion-plan artefact  

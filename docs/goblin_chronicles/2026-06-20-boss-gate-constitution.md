@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Goblin Chronicle: The Boss at the Voting Box, and the New Constitution
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/11_boss_gate_constitution.png" alt="A goblin council challenges an oversized goblin on a voting box while a new constitutional scroll and brass latch are prepared"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The advisers did not need louder lanterns. They needed lawful authority at the final gate.</figcaption>
+</figure>
+
 **Date recorded:** 2026-06-20
 **Folder:** `fantasy`
 **Status:** chronicle-layer story event / preserve as plot-turn

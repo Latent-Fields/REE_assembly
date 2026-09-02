@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Day Refresh Goblin Stopped Asking for Progress
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/31_stopped_asking_progress.png" alt="Refresh Goblin presses his face flat against a warm workshop viewport while goblins and distant furnaces continue working beyond the glass"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Watching was allowed. Touching the glass was perhaps unavoidable.</figcaption>
+</figure>
+
 *29 August 2026*
 
 The forge did not sleep.

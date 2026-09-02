@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Two Wells and the Lighter Chant
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/28_two_wells_lighter_chant.png" alt="Two contrasting magical wells feed a quiet goblin forge while Anchor Goblin brings tea to Refresh Goblin beside a low mana gauge"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The forge survived the price of waking; now it was learning how to spend less to begin.</figcaption>
+</figure>
+
 *25–27 August 2026*
 
 The forge had survived the price of waking.

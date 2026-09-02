@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Day the Forge Fell Off the World
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/30_forge_fell_off_world.png" alt="A brass goblin forge drifts above a torn map-world while goblins hurriedly reconnect message pipes and check small machines"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The forge had not exploded. It had simply lost contact with the world that was supposed to contain it.</figcaption>
+</figure>
+
 *28 August 2026*
 
 Refresh Goblin had left the workshop in a state of controlled emergency.

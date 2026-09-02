@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Goblin Chronicle: The Five Expeditions
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/15_five_expeditions.png" alt="Five goblin expeditions return to the council with a long rope, watchtower lens, maps, compass and small mechanical fish"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The counting was true. The mystery remained, now small enough to pursue.</figcaption>
+</figure>
+
 The council no longer gathered to ask whether the creature lacked another organ.
 
 Those days had mostly passed.

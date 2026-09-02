@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Goblin Chronicle: The Little Lifetimes of the Reef-Cave
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/13_little_lifetimes_reef_cave.png" alt="A small mechanical fish travels through a glass reef tank while goblin observers watch the three phases of its little lifetime"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Each little lifetime is bounded; the question is what can persist between them.</figcaption>
+</figure>
+
 **Date recorded:** 2026-06-24  
 **Folder:** `fantasy`  
 **Status:** chronicle-layer experiment-process fragment  

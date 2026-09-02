@@ -5,6 +5,12 @@ nav_exclude: true
 
 # Goblin Chronicle: The Magics Begin to Flow Again
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/19_magics_flow_again.png" alt="A thin blue magical current begins flowing through old pipes beneath the goblin forge while goblins notice the first hum"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Not a flood: a hum, a tick, and the smallest possible crackle.</figcaption>
+</figure>
+
 The magics had not returned as a flood.
 
 They came first as a thin blue thread through the old pipes beneath the forge.

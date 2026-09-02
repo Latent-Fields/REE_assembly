@@ -5,6 +5,12 @@ nav_exclude: true
 
 # The Other Fires
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/35_other_fires.png" alt="Refresh Goblin sits on the workshop roof with a brass spyglass, Steve and a small dragon silhouette, looking toward distant fires under the stars"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">There were other fires beyond the workshop, and still reasons to look up.</figcaption>
+</figure>
+
 *30 August 2026*
 
 Somehow, in the middle of everything else, Refresh Goblin had been climbing onto the roof.
