@@ -9,7 +9,7 @@ nav_order: 13
 
 **Claim ID:** SD-e1-rollout-consistency-training
 **Subject:** `predictors.e1_deep.E1DeepPredictor.transition`
-**Status:** ITEM 1 IMPLEMENTED (2026-08-29, VALIDATED by V3-EXQ-965 2026-08-30) / ABSOLUTE-VS-RESIDUAL BRANCH CLOSED (substrate 2026-09-01, V3-EXQ-968 returned no material difference) / ITEM 2 SUBSTRATE IMPLEMENTED 2026-09-01 (candidate 1; validation experiment owed)
+**Status:** ITEM 1 IMPLEMENTED (2026-08-29, VALIDATED by V3-EXQ-965 2026-08-30) / ABSOLUTE-VS-RESIDUAL BRANCH CLOSED (substrate 2026-09-01, V3-EXQ-968 returned no material difference) / ITEM 2 SUBSTRATE IMPLEMENTED 2026-09-01 (candidate 1; VALIDATED MIXED by V3-EXQ-976 2026-09-02, user-confirmed autopsy; the entry's absolute text reads it as a null) / ITEM 3 SUBSTRATE IMPLEMENTED 2026-09-03 (rollout-endpoint contrastive, licensed by V3-EXQ-976 Q1; validation experiment owed)
 **Registered:** 2026-08-03 (substrate_queue.json)
 **Depends on:** none unresolved (probe-gating discharged by V3-EXQ-954, 2026-08-29)
 **Blocks:** INV-088, MECH-135 (both carry `pending_retest_after_substrate: true`)
@@ -298,7 +298,7 @@ save/restore, the MECH-094 gate, grad-connected degenerate returns, horizon clam
 fail-closed shape validation, and all three `from_dims` wiring sites. It deliberately does
 **not** assert that multi-step beats single-step -- that is the experiment.
 
-### Why candidate 1 and NOT a rollout-endpoint contrastive
+### Why candidate 1 and NOT a rollout-endpoint contrastive (2026-09-01 landing text -- see ITEM 3 below for the reversal)
 
 A contrastive objective over candidate action SEQUENCES was designed and deliberately not
 built (2026-09-01). It would have been named `e1_rollout_sequence_divergence_*`, never
@@ -325,6 +325,124 @@ crush; and the phrase described `compute_prediction_loss`, code this lineage nev
 Candidate 1 is the doc's ranked-strongest AND the untried one. A null on it narrows ITEM 2's
 real target and buys the departure to a contrastive with evidence rather than intuition.
 
+## Solution -- ITEM 3, the rollout-endpoint contrastive (landed 2026-09-03)
+
+**The licence.** V3-EXQ-976 (2026-09-02, PASS, diagnostic, non_contributory; user-confirmed
+autopsy) validated candidate 1 as MIXED under the driver's own relative rule but as the
+**null** under this entry's absolute text ("if candidate 1 returns a null ... against the
+0.1 / 0.002 bars"). Two findings drove the reversal of the 2026-09-01 rejection above:
+
+- Candidate 1 made **no absolute progress** on the evaluator bars: best ON `cr_ratio(h=1)`
+  1.26e-02 against the 0.1 bar (7.9x short); best `e1coe_score_var` 2.5 orders of magnitude
+  short of 0.002.
+- Candidate 1 **DAMPS per-action divergence growth at depth**: h1->h5 the OFF (depth-0)
+  incumbent's `cr_ratio` grows x2.6-3.8, while the ON (rollout-consistency) arms grow only
+  x0.5-1.75 -- 8 of 8 ON cells damped relative to OFF. This is the mechanism, not a
+  coincidence: a trajectory-accuracy objective trained against OBSERVED intermediate states
+  is minimised, in part, by letting the deep-step prediction drift toward a common,
+  low-variance trajectory (smaller average per-step error), which is exactly the opposite
+  of what a per-action-divergence evaluator needs. **An accuracy objective works against the
+  per-action divergence the evaluator needs.**
+
+User decision Q1 (2026-09-02, `substrate_queue.json` `user_decision_2026_09_02`): "if the
+entry's text governs, the withheld rollout-endpoint contrastive
+(`e1_rollout_sequence_divergence_*`) is licensed -> next build item." Scope clause carried
+from the routing autopsy (V3-EXQ-980, 2026-09-02): 980 measured only trajectory-accuracy arms
+and eliminated H-c (readout regime -- the hybrid E1/E2 evaluator does not explain the
+residual crush; 8/8 cells damped under both readouts, and at h=30 the hybrid reads
+1.16-2.36x **higher** absolute `cr_ratio` than an E1-alone readout on every ON cell). That
+strengthens, not weakens, the ITEM-3 licence, but the hybrid-consumer conclusion is
+extrapolated **by sign** to a divergence-preserving objective it did not itself test -- so
+the item-3 driver keeps 980's E1-alone readout beside the hybrid at h=30 (already written
+into the driver design; near-zero marginal cost) so the MECH-135 30-step consumer question
+is measured on the arm it was actually asked about, not only extrapolated onto it.
+
+**The objective.** Constrains the ITERATED map under candidate action SEQUENCES -- what the
+C3 evaluator actually consumes (it scores 40 sequence endpoints, not 40 single actions) --
+via a rollout-**endpoint** InfoNCE contrastive, distinct from BOTH the synthesis's
+de-prioritised #5 (one-step `f(z, a)`, SD-056's shape) and ITEM 2 (per-step trajectory
+accuracy against every intermediate observed state). For K sibling candidate action
+sequences sharing one initial state:
+
+```python
+preds[i]     = predict_long_horizon(initial_state, horizon=h, actions=action_sequences[i])[-1]
+logits[i, j] = -||preds[j] - endpoint_targets[i]||^2 / tau
+L = cross_entropy(logits, label=arange(K))
+```
+
+Same anchor-to-prediction asymmetric InfoNCE convention SD-056 uses on E2 (a symmetric
+form would double cost for no architectural gain). The loss is a pure function of the
+**final** predicted state -- it carries no per-step MSE against intermediate observed
+states at all, so unlike ITEM 2 it cannot be minimised by letting the deep trajectory
+collapse toward a shared low-variance path. A collapsed configuration (every candidate's
+endpoint identical, the ITEM 2 damping signature) is exactly what this loss penalises
+**hardest**: every off-diagonal logit approaches the diagonal one, InfoNCE saturates toward
+its worst finite value `log(K)`, and the gradient concretely pushes each collapsed
+prediction toward its own observed target and away from the others (verified directly by
+contract: `-grad` has positive dot product with `target_i - pred_i` and negative dot
+product with `target_j - pred_i` for `j != i`).
+
+**Substrate:** `E1DeepPredictor.rollout_sequence_divergence_loss(initial_state,
+action_sequences, endpoint_targets, weight=None, temperature=None,
+min_batch_classes=None, horizon=None, simulation_mode=False)`, gated by five `E1Config`
+knobs, all no-op at default:
+
+| Param | Type | Default | Purpose |
+|---|---|---|---|
+| `e1_rollout_sequence_divergence_enabled` | bool | `False` | master switch |
+| `e1_rollout_sequence_divergence_weight` | float | `1.0` | caller-side scaling; the helper returns the UNWEIGHTED InfoNCE cross-entropy |
+| `e1_rollout_sequence_divergence_horizon` | int | `5` | rollout depth to the scored endpoint |
+| `e1_rollout_sequence_divergence_temperature` | float | `0.1` | InfoNCE tau; mirrors SD-056's `e2_action_contrastive_temperature` |
+| `e1_rollout_sequence_divergence_min_batch_classes` | int | `2` | minimum distinct action-**sequence** count before the batch is non-degenerate |
+
+**Degeneracy guard: distinct full SEQUENCES, not distinct first actions.** Deliberately
+stricter than SD-056's first-action-only floor on E2. Two candidates sharing a first action
+but diverging on a later step are still informative negatives for an ENDPOINT objective
+(they test whether the later divergence propagates all the way to the endpoint), and a K=4
+batch with 4 distinct first actions but only 2 distinct full sequences would be degenerate
+here even though SD-056's floor would pass it. The floor counts unique `[K, h]` rows of
+per-step `argmax` action classes.
+
+**Requires ITEM 1 to be informative, does not enforce it.** With
+`action_conditioned_transition=False`, `predict_long_horizon` ignores `action_sequences`
+entirely (ITEM 1's own contract), so every candidate's endpoint is an identical function of
+the identical action-blind input and every logit is exactly equal by construction -- the
+loss is a finite, well-defined uniform `log(K)`. The mechanism by which this fails to train
+anything is subtler than "the gradient is zero": a uniform softmax against a one-hot label
+has an entirely ordinary nonzero per-logit gradient. What vanishes is the **sum** of that
+pull across the K candidates once they all share one computational path -- pulls toward K
+different targets from one shared value sum to a pull toward their MEAN, which
+self-cancels. The gradient reaching the shared trunk (`output_proj`, the LSTM) is therefore
+exactly zero in real arithmetic (empirically ~1e-6x the magnitude of the ITEM-1-engaged
+case -- float32 noise around an exact cancellation), so no training signal reaches E1
+either way. This objective does not raise or check the ITEM 1 precondition itself, the same
+"flag gates an objective, not the forward path" boundary ITEM 2 holds.
+
+**`compute_prediction_loss` is deliberately NOT rewired**, for the same reason ITEM 2's
+isn't: that path is depended on by several hundred experiments and there is no consumer
+yet; agent-loop wiring stays held until the validation experiment reports.
+
+**Backward compatible.** No module and no parameter is added in either setting -- pure
+function of existing weights, exactly like ITEM 2 and SD-056's E2 contrastive helpers.
+Bit-identical OFF (predictions unperturbed by the flag) verified directly, not merely
+asserted equal.
+
+Contract: `ree-v3/tests/contracts/test_e1_rollout_endpoint_contrastive.py`. Pins bit-identical
+OFF; non-vacuity (finite, nonzero, gradient reaching `output_proj` AND the LSTM); the
+collapsed-endpoint-penalised-hardest property against a hand-built pair of targets and
+predictions; the concrete per-candidate gradient-direction test described above; the
+distinct-full-sequence degeneracy floor (including the "same first action, diverges later"
+discrimination SD-056's floor would miss); the documented ITEM-1-off null (checked as
+"orders of magnitude below an informative gradient" rather than a brittle absolute
+tolerance, since the true value is exactly zero only in real arithmetic); MECH-094;
+grad-connected degenerate returns; horizon clamping; malformed-shape refusal; and all three
+`from_dims` wiring sites. It deliberately does **not** assert that this objective clears
+the evaluator bars, or that it beats ITEM 2 -- that is the validation experiment's job.
+
+**Deliberately not done here.** No agent-loop wiring (see above). No claim about whether
+this objective, once trained, actually clears the C3 bars or improves on candidate 1 --
+that is exactly what the owed validation experiment measures.
+
 ## Architecture Context
 
 E1 is the long-horizon world model; E2 is the fast motor-sensory transition model. SD-056
@@ -337,10 +455,13 @@ additive input channel.
 ## What This SD Enables
 
 - **INV-088** (`inv088_evaluator_degeneracy_cause`) and **MECH-135**, both currently
-  `pending_retest_after_substrate: true`, become retestable once item 1 lands.
+  `pending_retest_after_substrate: true`, become retestable once one of the ITEM 2 / ITEM 3
+  objectives clears the evaluator bars -- item 1 alone is necessary but, per V3-EXQ-965/976,
+  not sufficient.
 - Any evaluator that scores candidate action sequences through E1 -- the C3 measurement in the
   108 lineage is the canonical consumer.
-- Item 2, which is misdirected without item 1.
+- Item 2, which is misdirected without item 1; item 3, which is likewise informative only
+  with item 1 engaged (see the ITEM 3 section above).
 
 ## Related Claims
 
@@ -360,3 +481,11 @@ precedent for optional conditioning), MECH-151, MECH-216, SD-016 (ContextMemory 
   the absolute-vs-residual A/B; PASS, `residual_no_material_difference`, seeds disagreeing in
   direction against an unmet 3.0 pre-registered floor. Closes the doc's own pre-registered
   branch as a characterised null.
+- `evidence/experiments/v3_exq_976_sd_e1_item2_rollout_consistency_validation_20260902T114700Z_v3.json`
+  -- ITEM 2 candidate-1 validation, PASS/diagnostic/non_contributory; MIXED under the driver's
+  relative rule, the null under this entry's absolute text; the depth-damping finding that
+  licenses ITEM 3. User-confirmed autopsy, 2026-09-02.
+- `evidence/experiments/v3_exq_980_sd_e1_h1c_readout_regime_e1_alone_20260902T212300Z_v3.json`
+  -- H-c (readout regime) eliminated; strengthens the ITEM-3 licence with the sign-extrapolation
+  scope caveat carried into the ITEM 3 driver design (E1-alone readout kept beside the hybrid
+  at h=30).
