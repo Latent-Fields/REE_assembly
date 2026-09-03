@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_004",
+  "entry_id": "2026-09-03_ext_004_side_effects_future_tasks_krakovna2020",
+  "timestamp_utc": "2026-09-03T08:57:57Z",
+  "claim_ids_tested": [
+    "EXT-004"
+  ],
+  "source": {
+    "title": "Avoiding Side Effects By Considering Future Tasks",
+    "authors": [
+      "Victoria Krakovna",
+      "Laurent Orseau",
+      "Richard Ngo",
+      "Miljan Martic",
+      "Shane Legg"
+    ],
+    "year": 2020,
+    "venue": "Advances in Neural Information Processing Systems 33 (NeurIPS 2020)",
+    "arxiv_id": "2010.07877",
+    "doi": null,
+    "url": "https://proceedings.neurips.cc/paper/2020/hash/dc1913d422398c25c5f0b81cab94cc87-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This is the entry that evidences EXT-004's ABSENCE claim, which the two goal-misgeneralization papers do not touch, and it is the reason the pull is not simply a survey of one phenomenon. EXT-004 asserts that standard agents have no mechanism for the causal consequences of prior actions to penalise analogous actions in novel contexts. Testing an absence requires looking at the state of the art in exactly the place such a mechanism would live -- the side-effect-avoidance literature -- and asking what its representation of consequence actually ranges over. Krakovna et al. is the strongest available specimen: a NeurIPS paper by a DeepMind safety group, with theorems (interference incentives formally defined, and the future-task-plus-baseline construction shown to avoid them in the deterministic case), gridworld experiments, and released code. And its answer is unambiguous. Consequence is represented as the loss of ability to complete possible FUTURE TASKS, evaluated relative to a BASELINE POLICY (such as doing nothing) within the CURRENT task. Every term in that construction is indexed to the episode in progress. Nothing accumulates across episodes; nothing carries the cost of a prior harm into a novel context; the penalty is recomputed from scratch each time. So the best-engineered consequence-representation in the field is exactly the within-episode, baseline-relative object EXT-004 says is not enough, which is direct support. Held at 0.70 rather than higher because the paper is not ABOUT cross-context transfer at all -- it never poses the question -- so the support is inferential (reading a scope boundary off a design) rather than measured, and because a single well-chosen exemplar cannot establish an absence across a whole literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The auxiliary reward penalises side effects by rewarding the ability to complete possible future tasks, and that ability is evaluated relative to a baseline policy within the current task. Consequence is therefore a within-episode, baseline-relative quantity: an action's cost is recomputed from the current episode's starting conditions every time, and no term in the construction carries a cost incurred in a previous episode into a new one.",
+    "The authors introduce the baseline policy specifically to remove an INTERFERENCE incentive -- an agent otherwise gains by preventing environmental events, including irreversible actions by other agents, that would reduce future task achievability. This is a documented pathology of making an agent sensitive to consequence at all, and it is a hazard REE's residue field inherits rather than escapes: a persistent cost signal is a standing incentive to prevent the world from changing.",
+    "The paper reports that its method is more effective for avoiding side effects than the common approach of penalizing irreversible actions. If direct irreversibility-penalisation is the weaker baseline, then an REE commit-boundary framed as irreversibility-flagging is being compared against a method already shown to beat it, and the comparison must be made explicitly rather than assumed favourable.",
+    "The interference result is proved only in the deterministic case. Any REE argument that a persistent consequence record avoids interference incentives inherits that restriction and does not have a stochastic-case guarantee to appeal to."
+  ],
+  "tags": [
+    "ext-004",
+    "arc-013",
+    "inv-006",
+    "side-effects",
+    "irreversibility",
+    "baseline-relative",
+    "absence-evidence",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reward designers must specify both what to do and what not to do. The authors propose an algorithm that automatically generates an auxiliary reward penalising side effects: the auxiliary objective rewards the ability to complete possible future tasks, which decreases if the agent causes side effects during the current task. Because this can also incentivise the agent to interfere with environmental events that make future tasks less achievable -- including irreversible actions by other agents -- they introduce a baseline policy representing a default course of action, such as doing nothing, and use it to filter out future tasks that are not achievable by default. Interference incentives are formally defined and the future-task approach with a baseline policy is shown to avoid them in the deterministic case. In gridworld environments testing for side effects and interference, the method avoids interference and is more effective at avoiding side effects than the common approach of penalizing irreversible actions.",
+    "ree_translation": "This entry is used as a probe rather than as a demonstration, and the probe is aimed at EXT-004's absence claim: that no mechanism exists by which the consequences of prior actions penalise analogous actions in NOVEL CONTEXTS. Krakovna et al. is where such a mechanism would live if it lived anywhere, because side-effect penalisation is precisely the sub-field devoted to making agents sensitive to the damage they do. What the probe returns is a scope boundary. The paper's representation of consequence is the loss of future-task achievability, measured against a do-nothing baseline, inside the current task. It is a well-founded and carefully-defended object, and it is entirely episode-indexed. Read against REE, this is the sharpest available statement of what ARC-013's persistent latent-space curvature would add that the state of the art does not have: not sensitivity to consequence, which the field already has and has formalised, but PERSISTENCE of that sensitivity across the episode boundary and across contexts that merely resemble the one in which the harm occurred. The paper also hands REE a hazard it must own. The interference incentive is a documented pathology of consequence-sensitivity as such -- an agent that is penalised for reduced future achievability acquires a reason to stop the world from changing. A residue field that persists across contexts does not escape this incentive; it extends its reach, and REE needs its own analogue of the baseline-policy filter or an argument why it does not.",
+    "mapping_caveat": "The inference here is from a design's scope to a literature's absence, and that is weaker than a measurement, so three limits apply. First and most important, the paper never asks about cross-context transfer -- it is not a negative result about persistence, it is a paper about something else whose boundaries happen to be informative. Reading it as evidence that cross-context consequence carry-forward has been TRIED and FAILED would be a serious misuse; the correct reading is that it was not attempted. Second, one exemplar cannot establish an absence across the whole side-effect and safe-exploration literature, however well chosen; the entry supports EXT-004's absence claim, it does not close it, and a genuinely thorough test would need a systematic survey. Third, the empirical work is small deterministic gridworlds and the interference theorem is proved only in the deterministic case, so quantitative claims do not transfer to REE's setting -- only the structural observation about what the penalty ranges over does, and that observation is the entirety of what this entry contributes.",
+    "source_context": "Tabular and small gridworld environments (AI-safety-gridworlds-style) designed to test side-effect avoidance and interference; deterministic dynamics for the formal results. No embodied, human, or deployed-system data. Code released as part of google-deepmind/deepmind-research."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.86: NeurIPS 2020 main track, formal definition plus a proved result in the deterministic case, gridworld experiments, released code, and authorship by the DeepMind group that largely defined this sub-field. Mapping fidelity 0.68 is the highest in this pull, which is worth flagging because the paper is the one LEAST about goal misgeneralization -- the fidelity is high because EXT-004's absence clause and this paper's design scope are talking about the same object (what a consequence penalty ranges over), whereas the goal-misgeneralization entries are talking past the claim's causal half. Transfer risk 0.35, low because the load-bearing observation is structural rather than quantitative: the tiny deterministic gridworlds do not need to transfer for the scope reading to hold. The aggregate 0.70 is set below what those components would suggest, on purpose, because the support is INFERENTIAL -- an absence read off a single design rather than measured -- and that form-of-evidence discount is the same discount applied to the Silver et al. counterweight in the EXT-003 pull, recorded here so a later reader does not raise it on the mistaken view that mapping ambiguity was the limiter."
+  }
+}

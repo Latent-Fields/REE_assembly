@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_004",
+  "entry_id": "2026-09-03_ext_004_reversibility_aware_rl_grinsztajn2021",
+  "timestamp_utc": "2026-09-03T08:57:57Z",
+  "claim_ids_tested": [
+    "EXT-004"
+  ],
+  "source": {
+    "title": "There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning",
+    "authors": [
+      "Nathan Grinsztajn",
+      "Johan Ferret",
+      "Olivier Pietquin",
+      "Philippe Preux",
+      "Matthieu Geist"
+    ],
+    "year": 2021,
+    "venue": "Advances in Neural Information Processing Systems 34 (NeurIPS 2021)",
+    "arxiv_id": "2106.04480",
+    "doi": null,
+    "url": "https://proceedings.neurips.cc/paper/2021/hash/0e98aeeb54acf612b9eb4e48a269814c-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Included because EXT-004's ree_mechanism list leads with an irreversibility idea -- the entry in claims.yaml glosses ARC-013 as 'commit boundary: authority transition for irreversible actions' -- and this is the strongest existing result on whether irreversibility is learnable at all. The finding is genuinely striking and cuts both ways for REE, which is why the direction is mixed. It supports the REE commitment in one specific and non-obvious respect: approximate reversibility can be estimated with NO priors and NO reward function, purely self-supervised, from the surrogate task of ranking randomly sampled trajectory events in chronological order -- the intuition being that events always observed in the same order are likely separated by an irreversible sequence. That is a direct existence proof that an agent can acquire a commit-boundary-like signal from raw experience rather than from designer annotation, which is the harder half of making ARC-013 architecturally credible, and the authors report control policies that never fail and reduce interaction side-effects to zero on synthetic tasks even without reward access. It weakens EXT-004 in the more important respect: the estimator is learned from experience within an environment and applied to actions within it, and there is no component that carries the cost of a PAST irreversible act into a structurally analogous act in a NOVEL context. It is prospective ('is this action irreversible from here?'), not retrospective ('did I do this before, and at what cost?'). EXT-004's claim is specifically about the retrospective, cross-context direction. Confidence 0.62 is the lowest of the four non-counterweight entries because the paper's subject and the claim's subject overlap only partially, and because the gloss in claims.yaml that motivated including it appears to be inaccurate -- see the mapping caveat and summary.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The reversibility estimator is prospective and state-local: it asks whether an action is irreversible from the current state, learned from the temporal ordering of events in the agent's own experience of that environment. It does not represent the cost of a past irreversible act, and so provides no mechanism for a prior harm to penalise an analogous action in a novel context -- the exact direction EXT-004 is about.",
+    "Because reversibility is inferred from the chronological order of observed events, the signal requires the agent to have already accumulated experience in that environment. A newly-deployed agent in a novel context has no reversibility estimate at all, which is precisely the deployment situation goal misgeneralization concerns.",
+    "The demonstration that side-effects can be reduced to zero WITHOUT access to the reward function shows that an irreversibility signal can be obtained independently of any value or harm representation. If a commit boundary is separable from the harm signal in this way, REE's coupling of the two through a residue field is an additional architectural commitment requiring its own justification, not a consequence of needing irreversibility detection.",
+    "EXT-004's ree_mechanism list glosses ARC-013 as 'commit boundary: authority transition for irreversible actions', but ARC-013 in claims.yaml is 'Residue is persistent latent-space curvature; hippocampal paths form a cognitive map'. The commit-boundary content this paper bears on therefore may not be attached to the claim ARC-013 actually makes, so the mechanism link this entry was selected to test may be mis-registered."
+  ],
+  "tags": [
+    "ext-004",
+    "arc-013",
+    "irreversibility",
+    "commit-boundary",
+    "self-supervised",
+    "registry-discrepancy",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Approximate reversibility can be learned through a simple surrogate task: ranking randomly sampled trajectory events in chronological order, on the intuition that pairs of events always observed in the same order are likely to be separated by an irreversible sequence of actions. Learning the temporal order of events can be done in a fully self-supervised way, which the authors use to estimate the reversibility of actions from experience, without any priors. Two strategies incorporate reversibility into RL agents, one for exploration (RAE) and one for control (RAC). In several environments including Sokoban, and in synthetic tasks, the approach learns control policies that never fail and reduces to zero the side-effects of interactions, even without access to the reward function.",
+    "ree_translation": "REE's architecture posits a commit boundary at which an action passes from revisable simulation into irreversible execution, and EXT-004's mechanism list invokes that idea. The question this entry answers is whether such a boundary has to be designed in or can be discovered, and the answer is the useful one: it can be discovered, from nothing but the temporal statistics of the agent's own experience, with no reward signal and no designer priors. For REE that is a genuine strengthening of the plausibility of ARC-013's substrate story -- the boundary need not be a hand-placed annotation, which is the objection an architectural reviewer would raise first. The question it does NOT answer is EXT-004's. The estimator runs forward from the current state and asks whether this action forecloses options; EXT-004 asks whether the cost of a past foreclosure follows the agent into a new context. Those are different quantities and the paper computes only the first. So REE should read this as evidence that one PRECONDITION of the commit boundary is satisfiable, and not as evidence about consequence carry-forward at all.",
+    "mapping_caveat": "Two caveats and one registry finding. First, the overlap between this paper's subject and EXT-004's is partial by construction: reversibility-awareness is prospective and within-environment, EXT-004 is retrospective and cross-context, and the entry must not be cited as though the paper had addressed the latter. Second, the result that side-effects can be zeroed without access to the reward function is quietly awkward for REE rather than supportive: it shows an irreversibility signal is obtainable independently of any harm or value representation, so REE's coupling of commit boundary to residue is an extra commitment needing separate justification rather than something forced by the need for irreversibility detection. Third, and flagged here because it affects whether this entry is testing what it appears to test: EXT-004's ree_mechanism list glosses ARC-013 as 'commit boundary: authority transition for irreversible actions', but ARC-013's registered title is 'Residue is persistent latent-space curvature; hippocampal paths form a cognitive map', and the same list glosses INV-008 as 'residue couples into selection across episodes' where INV-008's registered title is 'Precision is routed and depth-specific, not global'. The commit-boundary content lives elsewhere in the registry (ARC-003 and MECH-061 are the candidates). This entry is therefore scored against the mechanism EXT-004's notes DESCRIBE, and a governance flag has been raised for the registry discrepancy rather than the claim being edited from a literature pull.",
+    "source_context": "Model-free deep RL in simulated environments including Sokoban (a canonical irreversibility benchmark, since boxes pushed into corners cannot be retrieved) plus synthetic control tasks such as Turf. No embodied, human, or deployed-system data; reversibility is defined operationally over observed trajectory statistics, not against ground-truth physical reversibility."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.48,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.84: NeurIPS 2021 main track, a clean theoretical motivation for the surrogate task, two concrete algorithms, and evaluation on Sokoban which is the standard hard case for irreversibility. Mapping fidelity 0.48 is the lowest in the pull and is doing all the work: the paper's quantity (prospective, within-environment reversibility) and the claim's quantity (retrospective, cross-context consequence) are different objects that share a vocabulary, and the shared vocabulary is exactly what makes the mis-mapping tempting. Transfer risk 0.45, the highest here, because Sokoban-style reversibility is defined over discrete gridworld dynamics and REE's commit boundary is a claim about an embodied action loop. Aggregate 0.62: the entry earns its place by settling the 'can it be learned at all' question and by surfacing the registry discrepancy, not by supporting EXT-004's central assertion, and the number should not be read as though it did."
+  }
+}

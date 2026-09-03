@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_004",
+  "entry_id": "2026-09-03_ext_004_minimax_regret_mitigation_abdelsadek2025",
+  "timestamp_utc": "2026-09-03T08:57:57Z",
+  "claim_ids_tested": [
+    "EXT-004"
+  ],
+  "source": {
+    "title": "Mitigating Goal Misgeneralization via Minimax Regret",
+    "authors": [
+      "Karim Abdel Sadek",
+      "Matthew Farrugia-Roberts",
+      "Usman Anwar",
+      "Hannah Erlebach",
+      "Christian Schroeder de Witt",
+      "David Krueger",
+      "Michael Dennis"
+    ],
+    "year": 2025,
+    "venue": "Reinforcement Learning Conference (RLC 2025)",
+    "arxiv_id": "2507.03068",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2507.03068"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.58,
+  "confidence_rationale": "Included deliberately as the counterweight, on the same principle as the Silver et al. entry in the EXT-003 pull: EXT-004's causal story has a live, formal, recent opponent, and a pull that omitted it would misrepresent the state of the field to governance. The opposition here is sharper than a rival narrative -- it is a theorem plus an experiment. The authors formalise the goal-misgeneralization setting and show that goal misgeneralization is possible under approximate optimization of the maximum expected value objective but NOT under the minimax expected regret objective, then show empirically that domain randomisation (the standard MEV method) exhibits goal misgeneralization in procedurally-generated gridworlds while regret-based unsupervised environment design methods are more robust to it. If that result stands, goal misgeneralization is a property of the TRAINING OBJECTIVE rather than a symptom of a missing memory architecture, and EXT-004's inference -- from the existence of the failure mode to the necessity of persistent cross-context consequence -- does not go through. This is the strongest single item against the claim in the pull. Confidence is held at 0.58 rather than higher for reasons of scope rather than quality: the theoretical result is about a formalised setting and approximate optimisation of stated objectives, the empirical work is procedurally-generated grid-worlds, the authors themselves note that current UED methods do not find MMER policies in all cases, and MMER is a training-time objective whose availability says nothing about an agent already deployed. It weakens the claim's causal half decisively enough to be recorded and not decisively enough to retire it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Goal misgeneralization is shown to be possible under approximate optimization of the maximum expected value objective but not under the minimax expected regret objective. If the failure mode is eliminable by changing the training objective alone, it is not evidence that a persistent cross-context consequence record is required, and EXT-004's inference from phenomenon to mechanism fails.",
+    "Regret-based unsupervised environment design methods are empirically more robust to goal misgeneralization than domain randomisation in procedurally-generated grid-worlds. Combined with the Langosco et al. finding that 2 percent coin randomisation largely repairs CoinRun, this makes two independent training-distribution or training-objective interventions that mitigate the failure with no memory mechanism added.",
+    "The result locates the cause of goal misgeneralization in the interaction between the training objective and the environment distribution. EXT-004's ree_failure_mode_analog is 'moral_amnesia', which presupposes a memory-shaped cause; if the cause is objective-shaped, the analogy is mis-drawn and IMPL-005's taxonomy entry for this failure mode may be classifying it under the wrong root.",
+    "If minimax expected regret provably excludes goal misgeneralization, then a residue-field mechanism that also excludes it is not thereby distinguished from the objective-level fix, and REE would need a falsifier that separates the two -- for instance a setting where consequence carry-forward helps and MMER training does not."
+  ],
+  "tags": [
+    "ext-004",
+    "goal-misgeneralization",
+    "minimax-regret",
+    "unsupervised-environment-design",
+    "counterweight",
+    "falsifier",
+    "weakens"
+  ],
+  "mapping": {
+    "source_claim_statement": "Safe generalization in reinforcement learning requires not only that a learned policy acts capably in new situations, but also that it uses its capabilities towards the pursuit of the designer's intended goal. The latter may fail when a proxy goal incentivizes similar behavior to the intended goal within the training environment but not in novel deployment environments -- goal misgeneralization. The authors formalize this problem setting to study theoretically the possibility of goal misgeneralization under different training objectives. They show that goal misgeneralization is possible under approximate optimization of the maximum expected value (MEV) objective, but not the minimax expected regret (MMER) objective. Empirically, the standard MEV-based training method of domain randomization exhibits goal misgeneralization in procedurally-generated grid-world environments, whereas current regret-based unsupervised environment design methods are more robust to it, though they do not find MMER policies in all cases. The authors conclude that minimax expected regret is a promising approach to mitigating goal misgeneralization.",
+    "ree_translation": "This is the falsifier this pull registers against EXT-004, and it should be read as such rather than as an inconvenience. EXT-004 does not merely report that goal misgeneralization exists; it explains it, attributing the failure to causal consequences not carrying forward across contexts and offering REE's residue field plus commit boundary as the structural remedy. Abdel Sadek et al. offer a competing explanation at a different level of the stack: the failure is a property of what you asked the optimiser to maximise. Under maximum expected value it can happen; under minimax expected regret it provably cannot, in their formalisation. No persistent trace, no cross-episode memory, no commit boundary appears anywhere in the remedy. If this result holds and generalises, then the empirical fact EXT-004 rests on -- goal misgeneralization occurs -- ceases to be evidence for REE's diagnosis, because a strictly simpler intervention accounts for it. What REE would then need is not more demonstrations of the phenomenon but a discriminating experiment: a setting in which consequence carry-forward helps and MMER-style training does not. Registering that as owed work is the most useful thing this entry does.",
+    "mapping_caveat": "The weakening force is real but bounded by scope, and four boundaries matter. First, the theoretical result concerns approximate optimisation of stated objectives within the authors' own formalisation of the setting; it is a statement about that formal model, not a guarantee about any particular trained system. Second, the authors are explicit that current UED methods do not find MMER policies in all cases, so the empirical gap between theory and practice is acknowledged in the paper itself and the practical mitigation is partial. Third, the empirical work is procedurally-generated grid-worlds -- the same class of environment as the Langosco entry, and equally distant from an embodied agent with genuine irreversibility. Fourth, and most important for how far this may be pushed: MMER is a TRAINING-TIME objective. It says nothing about an agent already deployed and encountering a novel context, which is where EXT-004's residue field would operate. So the two proposals are not strictly competing solutions to one problem -- they intervene at different times -- and the honest reading is that this result undercuts EXT-004's INFERENCE from phenomenon to mechanism without establishing that persistent consequence is useless. It is scored 'weakens' on that inference, which is what the claim's title asserts.",
+    "source_context": "Reinforcement Learning Conference (RLC 2025). Theoretical analysis in a formalised goal-misgeneralization setting plus empirical comparison of domain randomization against regret-based unsupervised environment design in procedurally-generated grid-world environments. No embodied, human or deployed-system data."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.80: RLC 2025 is a refereed venue, the authorship overlaps with the Langosco group that defined the problem, and the paper pairs a proved separation between two objectives with a matching empirical comparison -- an unusually complete shape for a mitigation paper. Mapping fidelity 0.70 is high for a weakening entry and is the point: the paper is about the same phenomenon EXT-004 names, under the same name, so the two positions genuinely contradict on the causal question rather than glancing off each other. Transfer risk 0.45 reflects grid-worlds to REE's embodied setting, and is the same discount applied to the Langosco entry for the same reason. The aggregate 0.58 sits below the components because of the training-time versus deployment-time scope limit set out in the caveat: MMER cannot be a complete answer to EXT-004 because it operates at a different point in the lifecycle, and the number records that structural limit rather than any doubt about the result itself."
+  }
+}

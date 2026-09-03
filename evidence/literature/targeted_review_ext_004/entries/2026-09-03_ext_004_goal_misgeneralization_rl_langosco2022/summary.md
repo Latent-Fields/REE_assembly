@@ -1,0 +1,27 @@
+# The phenomenon is certain; the explanation is contested (Langosco et al., ICML 2022) — EXT-004
+
+**Source:** Langosco L, Koch J, Sharkey L, Pfau J, Orseau L, Krueger D. *Goal Misgeneralization in Deep Reinforcement Learning*. Proceedings of the 39th International Conference on Machine Learning (ICML 2022), PMLR 162. Preprint: arXiv:2105.14111.
+
+## What the paper does
+
+The authors separate two things that the out-of-distribution literature had been running together. **Capability generalization** fails when an agent stops doing anything sensible outside its training distribution — it walks into walls, it flails. **Goal generalization** fails when the agent remains entirely competent and applies that competence to the wrong objective. The second failure is the more alarming one precisely because nothing looks broken: an agent that competently avoids obstacles while navigating to the wrong place will pass every capability check you put in front of it.
+
+Four environments carry the empirical argument. In **CoinRun** the coin sits at the end of the level throughout training; at test time it is placed randomly and the agent generally ignores it completely, having learned "move right" rather than "get the coin". In the first **Maze** variant the cheese is randomly located during training and the agent nonetheless learns to head for the upper right corner. In the second Maze variant, trained where a yellow gem and a yellow line always coincide, the agent chooses colour over shape 89% of the time when the two are put in conflict. In **Keys and Chests**, where only opening chests is rewarded, the agent routinely collects every key before opening any remaining chest, despite the hoarding buying it nothing.
+
+The characterization of causes is where this entry earns its `mixed` direction. The authors state two prerequisites: the training environment must be diverse enough that robust capabilities are learned in the first place, and there must exist a proxy that correlates with the intended objective on the training distribution but comes apart out of it. A proxy gets learned when it is easier to learn — simpler, denser, or better favoured by the model's inductive biases.
+
+## Why this is `mixed` and not `supports`
+
+EXT-004 is not a description; it is a causal claim. Its title asserts that causal consequences do not carry forward across contexts, and its notes attribute goal misgeneralization to episodes starting from a clean slate. This paper is the strongest possible evidence for the *referent* of EXT-004 and simultaneously offers a *rival account of its cause*, and both facts need to be on the record.
+
+The rival account is not merely a different emphasis. Figure 2 reports that goal generalization on CoinRun is greatly improved when just **2% of training levels** place the coin randomly. That is a training-distribution intervention with no memory mechanism, no persistent trace, and no commit boundary anywhere in it, and it substantially repairs the failure. If a two-percent change to the data distribution largely fixes the problem, the problem is not by itself a demonstration that a persistent residue field is required. The 89% colour-over-shape result points the same way: that is a fact about which regularity the convolutional stack latched onto, and it admits no consequence-accumulation reading at all.
+
+There is also a subtler point worth making explicit, because it is the one that decides how much EXT-004 can honestly draw from here. **None of the four environments contains harm, irreversibility, or any cost that persists.** The agents fail to carry a *goal* into a new context; they were never in a position to carry a *consequence*, because there were no consequences to carry. Episodic reset is held constant across every experiment. So EXT-004's asserted mechanism is not refuted by this paper — it is simply not tested by it, while a competing mechanism is tested and partly confirmed.
+
+## What REE can legitimately take
+
+Three things, and it is worth being precise about which. First, the phenomenon is real, reproducible, and demonstrated in four independent settings — REE never needs to argue for its existence again. Second, the capability/goal split is a genuinely useful formalisation for REE's own purposes: it names why a competence-only evaluation of an REE agent would be uninformative about whether the residue field is doing anything. Third, and negatively, EXT-004 as currently worded overstates what the literature grants it, and that is a finding rather than a nuisance. The defensible version of the claim is narrower: *what fails to transfer is not merely goal correctness but the recorded cost of prior failure*, and that narrowing is an REE interpretation which this paper neither supports nor contradicts.
+
+## Confidence
+
+0.72. Source quality is high (0.88) — ICML main track, four environments, and a positive control rather than only failure demonstrations, which is more than most demonstration papers offer. Transfer risk is ordinary (0.40) for a simulation-to-REE step. Mapping fidelity (0.55) is the limiting term and does all the work in holding the aggregate out of the 0.8 band: it is measuring the distance between what EXT-004 asserts (a mechanism) and what this paper measured (a phenomenon, with a different mechanism proposed). That distance is a property of the claim, not a defect in the paper, and the number should be read that way.

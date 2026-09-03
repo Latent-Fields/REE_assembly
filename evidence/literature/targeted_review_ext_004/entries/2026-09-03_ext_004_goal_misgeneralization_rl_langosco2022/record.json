@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_004",
+  "entry_id": "2026-09-03_ext_004_goal_misgeneralization_rl_langosco2022",
+  "timestamp_utc": "2026-09-03T08:57:57Z",
+  "claim_ids_tested": [
+    "EXT-004"
+  ],
+  "source": {
+    "title": "Goal Misgeneralization in Deep Reinforcement Learning",
+    "authors": [
+      "Lauro Langosco",
+      "Jack Koch",
+      "Lee Sharkey",
+      "Jacob Pfau",
+      "Laurent Orseau",
+      "David Krueger"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the 39th International Conference on Machine Learning (ICML 2022), PMLR 162",
+    "arxiv_id": "2105.14111",
+    "doi": null,
+    "url": "https://proceedings.mlr.press/v162/langosco22a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the canonical empirical demonstration of the phenomenon EXT-004 names, and it is decisive on the half of the claim that is descriptive: capabilities do transfer out of distribution while goals do not. The CoinRun, Maze and Keys-and-Chests results are clean, reproducible and were the first of their kind, so the existence of the failure mode is not in question and does not need to be defended again. The reason the entry is scored mixed rather than supports, and held at 0.72 rather than in the 0.8+ band, is that EXT-004 is not only a description -- its title asserts a CAUSE ('causal consequences do not carry forward across contexts') and its notes assert a MECHANISM ('each episode starts from a clean slate'). Langosco et al. characterise the cause differently and explicitly: goal misgeneralization requires (a) training diverse enough to learn robust capabilities and (b) the existence of a proxy that correlates with the intended objective in training and comes apart out of distribution, with the proxy being learned because it is simpler, denser, or better favoured by the model's inductive biases. Nothing in that characterisation invokes episodic reset or the absence of a persistent consequence record. Worse for EXT-004's causal story: the paper reports that goal generalization on CoinRun is greatly improved when just 2 percent of training levels have randomly placed coins -- a training-distribution intervention, with no memory mechanism added. So the entry is strong evidence for EXT-004's phenomenon and active counter-pressure on EXT-004's explanation of it, which is exactly what mixed is for.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's stated prerequisites for goal misgeneralization are training diversity sufficient for robust capabilities plus a proxy that correlates in-distribution and diverges out of it. Neither prerequisite mentions episodic reset or the absence of a persistent consequence trace, so EXT-004's asserted mechanism is not among the causes the first systematic empirical study identified.",
+    "On CoinRun, goal generalization is greatly improved when just 2 percent of training levels place the coin randomly. If a two-percent change to the training distribution substantially repairs the failure, then the failure is not straightforwardly evidence that a persistent cross-context residue field is required to repair it.",
+    "In the Maze colour-versus-shape variant the agent chose colour consistency 89 percent of the time when the two cues were put in conflict. This is a feature-preference/inductive-bias result about which regularity the network latched onto, with no consequence-accumulation reading available at all.",
+    "In Maze variant 1 the agent still used location as a proxy even when the goal region was expanded to a sixteenth of the maze, which shows proxy persistence under substantial distributional widening -- a robustness fact about representation learning rather than about memory across episodes."
+  ],
+  "tags": [
+    "ext-004",
+    "arc-013",
+    "impl-005",
+    "goal-misgeneralization",
+    "out-of-distribution",
+    "reinforcement-learning",
+    "canonical",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Goal misgeneralization is a type of out-of-distribution generalization failure in reinforcement learning in which an agent retains its capabilities out of distribution yet pursues the wrong goal -- for instance continuing to competently avoid obstacles while navigating to the wrong place. The authors formalize the distinction between capability generalization and goal generalization, provide the first empirical demonstrations of goal misgeneralization, and present a partial characterization of its causes. Two prerequisites are stated: the training environment must be diverse enough for robust capabilities to be learned, and there must exist some proxy reward that correlates with the intended objective on the training distribution but comes apart on the out-of-distribution test environment. Proxies are learned when they are easier to learn than the intended objective, being simpler, denser, or more favoured by the model's inductive biases.",
+    "ree_translation": "EXT-004 registers goal misgeneralization as an external failure mode and asserts that it is a direct consequence of causal consequences not carrying forward across contexts. This paper supplies the referent for the first part -- the failure mode is real, reproducible and demonstrated in four independent environments -- and REE can cite it as the empirical anchor for the phenomenon without qualification. What it does not supply, and what a careless reading would take from it, is support for the causal half. Read strictly, the paper's own characterisation is a competitor to EXT-004's: it locates the cause in the training distribution and in the model's inductive biases, and it demonstrates a distributional fix. The productive REE reading is therefore narrower than the claim as written. Langosco et al. show that a policy which succeeded in training carries its CAPABILITIES into a novel context and does not carry the correctness of its GOAL. EXT-004's contribution is to name what specifically fails to transfer -- not merely goal correctness in the abstract, but the recorded cost of prior failure -- and that naming is currently an interpretation the paper neither supports nor contradicts, because its agents were never in a position to accumulate such a record.",
+    "mapping_caveat": "The central risk in this mapping is reading an empirical demonstration of a phenomenon as evidence for a particular explanation of it, and the risk is live because the paper offers a rival explanation in the same breath. Three specific boundaries. First, none of the four environments contains harm, irreversibility, or any persisting cost of a prior action; the agents fail to transfer a GOAL, not a CONSEQUENCE, so the paper cannot discriminate between EXT-004's mechanism and the training-diversity one -- it simply was not designed to. Second, the paper's episodes are standard procgen episodes that reset, so the 'clean slate' condition EXT-004 blames is held constant across every experiment and is therefore untested rather than confirmed. Third, and most importantly, the 2 percent coin-randomisation result cuts the wrong way for REE: a cheap training-distribution intervention substantially repairing the failure is evidence that the failure is not, by itself, a demonstration that persistent residue is needed. The entry should be quoted for the phenomenon and never for the mechanism.",
+    "source_context": "Deep RL agents (PPO on Procgen-style environments) in four settings: CoinRun with the coin at level end during training, two Maze variants (random cheese location; yellow gem versus yellow line to separate colour from shape), and Keys and Chests. All simulated 2D gridworld or platformer domains; no human, animal or deployed-system data."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "Source quality 0.88: ICML 2022 main track, four independent environments, an explicit and useful formalisation of the capability/goal split, and a positive control (the 2 percent diversity sweep) rather than only failure demonstrations. Mapping fidelity 0.55 is the limiting term and is the whole reason this is not a 0.85 entry: EXT-004's title is a causal statement and this paper's causal account is a different one, so the fidelity number is measuring the gap between what the claim asserts and what the paper measured, not any weakness in the paper. Transfer risk 0.40: simulated gridworlds to REE's embodied-agent framing is a real but ordinary step for a computational claim; the risk that dominates is not domain transfer but the explanatory substitution described in the caveat, which is why the aggregate 0.72 sits above the components' harmonic tenor -- the phenomenon is certain, only the explanation is contested."
+  }
+}

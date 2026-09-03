@@ -1,0 +1,35 @@
+# Where the mechanism would live if it lived anywhere (Krakovna et al., NeurIPS 2020) — EXT-004
+
+**Source:** Krakovna V, Orseau L, Ngo R, Martic M, Legg S. *Avoiding Side Effects By Considering Future Tasks*. Advances in Neural Information Processing Systems 33 (NeurIPS 2020). Preprint: arXiv:2010.07877. Code released in `google-deepmind/deepmind-research` under `side_effects_penalties`.
+
+## Why this paper is in a goal-misgeneralization pull
+
+EXT-004 makes two separable assertions. The first is descriptive — goal misgeneralization happens — and the Langosco and Shah entries settle it. The second is an **absence**: that LLMs and standard RL agents *have no mechanism* for the causal consequences of prior actions to penalise analogous actions in novel contexts. Nothing in the goal-misgeneralization literature tests that. Testing an absence means going to the place where the mechanism would live if it lived anywhere, and asking what its representation of consequence actually ranges over. That place is the side-effect-avoidance literature, and this is its strongest specimen.
+
+## What the paper does
+
+The problem the authors take on is that a reward designer must specify both what to do and what not to do, and the second half is unbounded. Their solution is to generate the "what not to do" automatically: an auxiliary reward that pays the agent for retaining the **ability to complete possible future tasks**, an ability which decreases whenever the agent causes side effects during the current task. Break the vase and a whole family of hypothetical future tasks involving the vase become unachievable; the auxiliary reward notices.
+
+This construction has a pathology, and the authors find it themselves. An agent rewarded for future-task achievability acquires a reason to **interfere** — to prevent events in the environment that would reduce achievability, including irreversible actions taken by other agents. They therefore introduce a **baseline policy**, a default course of action such as doing nothing, and use it to filter out future tasks that would not have been achievable anyway. Interference incentives are given a formal definition and the construction is shown to avoid them in the deterministic case. In gridworlds testing for side effects and interference, the method avoids interference and is "more effective for avoiding side effects than the common approach of penalizing irreversible actions".
+
+## What the probe returns
+
+Read every term of the construction and ask what it is indexed to. The ability to complete future tasks — evaluated *in the current task*. The baseline policy — a default course of action *in this episode*. The penalty — recomputed from the current episode's starting conditions, every time.
+
+**The best-engineered representation of consequence in the field is entirely episode-indexed.** Nothing accumulates across episodes. No cost incurred in a prior episode is carried into a novel one. An agent that broke a vase yesterday approaches today's vase with a penalty function that has never heard of yesterday. That is precisely the object EXT-004 says is not enough, and finding it at the state of the art rather than at the margins is what makes this entry support the claim rather than merely illustrate it.
+
+It also sharpens what ARC-013's persistent latent-space curvature would actually contribute. The contribution is *not* sensitivity to consequence — the field has that, and has formalised it more carefully than REE has. The contribution is **persistence of that sensitivity across the episode boundary and into contexts that merely resemble the one where the harm occurred**. Stating it that way is more modest and more defensible than the framing in EXT-004's notes, and it has the advantage of being a claim about something the literature demonstrably does not do rather than about something it has never thought of.
+
+## The hazard REE inherits
+
+The interference incentive is not an artefact of this particular design. It is a pathology of consequence-sensitivity *as such*: any agent penalised for reduced future achievability has a standing reason to freeze the world. Krakovna et al. neutralise it with the baseline-policy filter, and prove the neutralisation only for deterministic dynamics.
+
+A residue field that persists *across* contexts does not escape this incentive — it extends its reach, from one episode to the agent's whole history. REE needs either its own analogue of the baseline filter or an explicit argument why the incentive does not arise, and it does not currently have either on the record. There is a second, less comfortable point in the same finding: the authors report that their method beats "penalizing irreversible actions", which is the closest existing analogue to a commit boundary framed as irreversibility-flagging. Any REE argument that a commit boundary is the right structure is being made against a baseline the literature has already shown to be the weaker one, and that comparison should be made explicitly rather than assumed to go REE's way.
+
+## Limitations
+
+The inference here runs from a *design's scope* to a *literature's absence*, which is weaker than a measurement, and three limits follow. The paper never asks about cross-context transfer — it is not a negative result about persistence, it is a paper about something else whose boundaries happen to be informative, and reading it as evidence that persistence has been *tried and failed* would be a serious misuse. One exemplar, however well chosen, cannot establish an absence across the whole side-effect and safe-exploration literature; this supports EXT-004's absence clause without closing it, and closing it would need a systematic survey. And the empirical work is small deterministic gridworlds with the theorem proved only for deterministic dynamics, so nothing quantitative transfers — only the structural observation about what the penalty ranges over, which is the entirety of what the entry contributes.
+
+## Confidence
+
+0.70. Source quality 0.86 (NeurIPS main track, formal result, experiments, released code, and the group that largely defined this sub-field). Mapping fidelity 0.68 is the *highest* in this pull, which is worth flagging as odd on its face: the paper least about goal misgeneralization maps best onto the claim. That is because EXT-004's absence clause and this paper's design scope are about the same object — what a consequence penalty ranges over — whereas the goal-misgeneralization entries partly talk past the claim's causal half. Transfer risk 0.35 is low because the load-bearing observation is structural, so the tiny gridworlds do not need to transfer. The aggregate is nonetheless set *below* what those components suggest, deliberately: the support is inferential, an absence read off one design rather than measured. That is a discount on evidentiary *form*, not on mapping quality, and it is recorded here so a later reader does not raise the number on the mistaken view that the mapping was the limiter.

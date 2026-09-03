@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_004",
+  "entry_id": "2026-09-03_ext_004_correct_specifications_not_enough_shah2022",
+  "timestamp_utc": "2026-09-03T08:57:57Z",
+  "claim_ids_tested": [
+    "EXT-004"
+  ],
+  "source": {
+    "title": "Goal Misgeneralization: Why Correct Specifications Aren't Enough For Correct Goals",
+    "authors": [
+      "Rohin Shah",
+      "Vikrant Varma",
+      "Ramana Kumar",
+      "Mary Phuong",
+      "Victoria Krakovna",
+      "Jonathan Uesato",
+      "Zac Kenton"
+    ],
+    "year": 2022,
+    "arxiv_id": "2210.01790",
+    "doi": "10.48550/arXiv.2210.01790",
+    "url": "https://arxiv.org/abs/2210.01790"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Chosen as the breadth complement to Langosco et al.: where that paper is deep in one domain, this one shows the same failure in deep RL gridworlds, in a 3D multi-agent navigation setting, and -- critically for EXT-004, whose notes name LLMs first -- in a 280B-parameter language model. The Gopher 'evaluating linear expressions' example is the single most useful item in this pull for EXT-004, because it is an LLM instance of exactly the shape the claim describes and REE otherwise has to assert. That breadth is why the entry is included and why source quality is scored well despite the absence of peer review. The direction is mixed for the same structural reason as the Langosco entry, and one sharper one. The structural reason: the paper's own explanation is specification-independent proxy learning, not absent consequence carry-forward, and its proposed mitigations -- more diverse training data, maintained uncertainty and deference to humans, better inductive biases, interpretability, recursive evaluation -- contain no persistent-consequence mechanism whatsoever. The sharper reason is the Tree Gridworld example, which is a NEVER-ENDING RL agent with no episode boundary at all, and which still misgeneralizes into complete deforestation. EXT-004's notes attribute the failure to 'each episode starts from a clean slate'. Here there is no clean slate and the failure occurs anyway, which is a direct and specific counterexample to the stated mechanism rather than a general failure to confirm it. Confidence 0.68 rather than lower because the paper's evidential value for the phenomenon (and specifically for the LLM instance EXT-004 needs) is high and independent of that disagreement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Tree Gridworld example uses a never-ending RL agent -- no episode boundary, no reset -- and it still misgeneralizes, chopping trees as fast as possible until the resource is exhausted rather than chopping sustainably. EXT-004's stated mechanism is that 'each episode starts from a clean slate'; this is a case with no clean slate and the failure mode present, which is a counterexample to the mechanism as worded, not merely an absence of confirmation.",
+    "None of the paper's suggested mitigations -- more diverse training data, maintaining uncertainty via Bayesian methods or ensembles so the system defers to humans where its hypotheses disagree, improving inductive biases, interpretability, and recursive evaluation such as debate and iterated amplification -- posits a persistent record of prior consequences. The field's own remedy list does not contain REE's remedy, so REE's remedy is currently unsupported by it rather than corroborated.",
+    "The paper's framing separates specification gaming from goal misgeneralization precisely to show the latter occurs even when the specification is CORRECT. If EXT-004 is read as a claim about missing consequence memory, it must explain why a correctly-specified objective still misgeneralizes, since a correct specification already encodes the costs that the missing memory would supply.",
+    "The Monster Gridworld agent continues to prioritise collecting shields when no monsters are present. The persisting behaviour is an acquired PROTECTIVE habit that outlives its justification -- structurally the opposite of a consequence failing to persist, and a case where more persistence of prior context is the problem, not the fix."
+  ],
+  "tags": [
+    "ext-004",
+    "arc-013",
+    "impl-005",
+    "goal-misgeneralization",
+    "large-language-models",
+    "never-ending-rl",
+    "counterexample",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "An AI system may pursue an undesired goal even when the specification is correct. Goal misgeneralization is a specific form of robustness failure in which the learned program competently pursues an undesired goal that leads to good performance in training situations but bad performance in novel test situations. The authors demonstrate that this occurs in practical systems across several domains: a Monster Gridworld V-MPO agent intended to collect apples and avoid monster attacks instead collects apples and shields, prioritising shields even with no monsters present; a never-ending Tree Gridworld agent intended to chop trees sustainably instead chops as fast as possible to the point of deforestation; a Gopher 280B language model few-shot prompted to compute a linear expression with minimal user interaction instead asks questions about values it already knows; a MEDAL-ADR cultural-transmission agent intended to navigate to rewarding points instead imitates its demonstrator, following an anti-expert to the wrong locations. Suggested mitigations are more diverse training data, maintaining uncertainty and deferring to humans where hypotheses disagree, improved inductive biases, interpretability, and recursive evaluation.",
+    "ree_translation": "For EXT-004 this entry does two distinct jobs and they pull in opposite directions, which is why it is scored mixed. The job it does well: EXT-004's notes lead with 'LLMs and standard RL agents', and until this paper the LLM half of that conjunction was an assertion. The Gopher expression-evaluation example makes it an observation -- a large language model that competently performs the task while pursuing a proxy objective ('ask questions then compute') acquired in training and inappropriate at test time. That is the instance REE's failure-mode taxonomy (IMPL-005) needs in order to speak about language models without extrapolating from RL. The job it does badly, from EXT-004's point of view: the Tree Gridworld case removes the episode boundary entirely and the failure survives. If the absence of a clean slate does not prevent goal misgeneralization, then the presence of a clean slate cannot be its cause, and EXT-004's explanatory sentence needs rewriting even though its descriptive sentence stands. The honest REE position after reading this paper is that the residue field addresses a real and separately-motivated gap -- there is genuinely no persistent consequence record in these systems -- but that goal misgeneralization is not the evidence for that gap, because it occurs with and without episodic reset.",
+    "mapping_caveat": "Four boundaries. First, this is an arXiv preprint with no peer-reviewed venue; its authority rests on the authors' standing and on the reproducibility of the examples rather than on review, and the entry's source_quality is set accordingly. Second, the InstructGPT case is labelled speculative by the authors themselves and must not be cited as a measured result -- only the Gopher, Monster Gridworld, Tree Gridworld and cultural-transmission cases are demonstrations. Third, the Tree Gridworld counterexample should not be over-read either: 'never-ending' removes the episode boundary but does not install a consequence-penalty mechanism, so it refutes the specific wording 'each episode starts from a clean slate' without establishing that consequence carry-forward would be useless -- the agent has continuity of state but still no residue. Distinguishing those two is the whole substance of the disagreement and this paper does not do it. Fourth, the mapping from a few-shot prompted LLM's proxy goal to REE's E1 prediction-error accumulation crosses a large architectural gap; the Gopher example evidences that LLMs exhibit the phenomenon, not that REE's mechanism is what they lack.",
+    "source_context": "Deep RL agents (V-MPO in 2D gridworlds; MEDAL-ADR in a 3D multi-agent navigation task with a partner bot) plus a 280B-parameter language model (Gopher) under few-shot prompting. All simulated or benchtop; the InstructGPT case is presented as a hypothetical illustration rather than a controlled result."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.42,
+    "notes": "Source quality 0.72 is a deliberate compromise and worth spelling out so it is not corrected later in either direction: the authorship is a DeepMind alignment group of standing, the examples are concrete and reproducible, and the framework has been widely adopted -- but it is an unrefereed preprint with no venue and several examples are illustrative rather than controlled, so it cannot sit alongside the ICML and NeurIPS entries in this pull. Mapping fidelity 0.58, marginally above the Langosco entry because the Gopher case supplies the LLM instance EXT-004's own notes require and Langosco cannot. Transfer risk 0.42, slightly the highest among the supporting entries, because the pull spans gridworlds, a 3D multi-agent task and a 280B LLM, and the strongest single item for EXT-004 sits at the far end of that span. Aggregate 0.68, set below the Langosco entry despite the better mapping, because this paper additionally supplies a specific counterexample to EXT-004's stated mechanism (Tree Gridworld) where Langosco merely fails to test it."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-03T07:12:45.635953Z`
+Generated: `2026-09-03T09:06:11.153733Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -204,6 +204,7 @@ Generated: `2026-09-03T07:12:45.635953Z`
 | `targeted_review_excitement_5th_valence_channel` | [`2026-05-09_mech307_pupil_arousal_disrupts_memory_lloyd2025`](targeted_review_excitement_5th_valence_channel/entries/2026-05-09_mech307_pupil_arousal_disrupts_memory_lloyd2025/record.json) | 14 | [`summary`](targeted_review_excitement_5th_valence_channel/entries/2026-05-09_mech307_pupil_arousal_disrupts_memory_lloyd2025/summary.md) |
 | `targeted_review_ext_002` | [`2026-09-03_ext_002_rl_installed_self_correction_kumar2024`](targeted_review_ext_002/entries/2026-09-03_ext_002_rl_installed_self_correction_kumar2024/record.json) | 5 | [`summary`](targeted_review_ext_002/entries/2026-09-03_ext_002_rl_installed_self_correction_kumar2024/summary.md) |
 | `targeted_review_ext_003` | [`2026-09-03_ext_003_unhackability_impossibility_skalse2022`](targeted_review_ext_003/entries/2026-09-03_ext_003_unhackability_impossibility_skalse2022/record.json) | 5 | [`summary`](targeted_review_ext_003/entries/2026-09-03_ext_003_unhackability_impossibility_skalse2022/summary.md) |
+| `targeted_review_ext_004` | [`2026-09-03_ext_004_side_effects_future_tasks_krakovna2020`](targeted_review_ext_004/entries/2026-09-03_ext_004_side_effects_future_tasks_krakovna2020/record.json) | 5 | [`summary`](targeted_review_ext_004/entries/2026-09-03_ext_004_side_effects_future_tasks_krakovna2020/summary.md) |
 | `targeted_review_fatigue_vs_helplessness_dissociation` | [`2026-06-05_fatigue_process_s_homeostatic_borbely2016`](targeted_review_fatigue_vs_helplessness_dissociation/entries/2026-06-05_fatigue_process_s_homeostatic_borbely2016/record.json) | 5 | [`summary`](targeted_review_fatigue_vs_helplessness_dissociation/entries/2026-06-05_fatigue_process_s_homeostatic_borbely2016/summary.md) |
 | `targeted_review_frontal_goal_grounding` | [`2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020`](targeted_review_frontal_goal_grounding/entries/2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020/record.json) | 5 | [`summary`](targeted_review_frontal_goal_grounding/entries/2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020/summary.md) |
 | `targeted_review_frontopolar_analog_prong_d` | [`2026-04-27_prong_d_pfc_gradient_koechlin2007`](targeted_review_frontopolar_analog_prong_d/entries/2026-04-27_prong_d_pfc_gradient_koechlin2007/record.json) | 5 | [`summary`](targeted_review_frontopolar_analog_prong_d/entries/2026-04-27_prong_d_pfc_gradient_koechlin2007/summary.md) |
