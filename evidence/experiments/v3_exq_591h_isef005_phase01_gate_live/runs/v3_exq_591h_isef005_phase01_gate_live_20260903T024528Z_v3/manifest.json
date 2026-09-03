@@ -1,0 +1,241 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_591h_isef005_phase01_gate_live",
+  "run_id": "v3_exq_591h_isef005_phase01_gate_live_20260903T024528Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-03T02:45:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-019"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "crossing_count_gate_discriminates_live_closed_loop",
+    "preconditions": [
+      {
+        "name": "spike_arm_reproduces_advance",
+        "description": "COUNT of ARM_SPIKE seeds reaching Phase 1. The legacy-gate control is the positive control (591c advanced 4/5 seeds); below floor means the lineage basis did not reproduce, so nothing here is a verdict.",
+        "measured": 4,
+        "threshold": 2,
+        "direction": "lower",
+        "control": "ARM_SPIKE = the legacy single-episode spike gate (591c reproduction)",
+        "met": true
+      },
+      {
+        "name": "crossing_counts_reach_gate_minimum",
+        "description": "MAX over seeds of post-ep_min spike-bar crossing count in ARM_SPIKE. This is the SAME COUNT statistic the crossing-count gate routes on. Below floor, the gate could admit NO seed under any outcome, so C_live_gate_discriminates would be STARVED rather than falsified.",
+        "measured": 37,
+        "threshold": 3,
+        "direction": "lower",
+        "control": "best-crossing seed in ARM_SPIKE (seed 44)",
+        "offending_cell": "seed 44",
+        "met": true
+      },
+      {
+        "name": "oracle_genuine_explorers_present",
+        "description": "COUNT of seeds the level oracle (full-run h_pos_mean on ARM_SPIKE) labels genuine. Below floor -> no positive class to admit.",
+        "measured": 3,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "full-run h_pos_mean measured on ARM_SPIKE (the control arm)",
+        "met": true
+      },
+      {
+        "name": "oracle_non_explorers_present",
+        "description": "COUNT of seeds the oracle labels NON-genuine. Below floor -> no negative class to reject, so 'discriminates' is untestable on this seed draw.",
+        "measured": 2,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "full-run h_pos_mean measured on ARM_SPIKE (the control arm)",
+        "met": true
+      },
+      {
+        "name": "live_false_advancer_present",
+        "description": "COUNT of seeds that are oracle-non-genuine AND were admitted by the legacy spike gate in ARM_SPIKE -- i.e. a live false advancer for the crossing gate to REJECT. Below floor, the reject leg is never challenged: a seed that never spikes is rejected by BOTH gates, so its rejection cannot be attributed to the crossing rule, and a PASS would overstate the result. 591f's own false_advancer definition was conjunctive in exactly this way.",
+        "measured": 1,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "ARM_SPIKE advance decisions x the oracle label (591f: seed 45)",
+        "offending_cell": "live false advancers: [45]",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_live_gate_discriminates": true,
+      "C_arms_differ": true
+    },
+    "criteria": [
+      {
+        "name": "C_live_gate_discriminates",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_arms_differ",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "readiness_anchors": [
+      {
+        "anchor_name": "spike_arm_reproduces_advance",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.4,
+        "margin_cells": 0,
+        "required_score": 0.4,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 4,
+        "reference_score": 0.8,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ]
+      },
+      {
+        "anchor_name": "crossing_counts_reach_gate_minimum",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.2,
+        "margin_cells": 0,
+        "required_score": 0.2,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 3,
+        "reference_score": 0.6,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "anchor_name": "oracle_genuine_explorers_present",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.2,
+        "margin_cells": 0,
+        "required_score": 0.2,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 3,
+        "reference_score": 0.6,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "anchor_name": "oracle_non_explorers_present",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.2,
+        "margin_cells": 0,
+        "required_score": 0.2,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 2,
+        "reference_score": 0.4,
+        "per_cell_scored": [
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "anchor_name": "live_false_advancer_present",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.2,
+        "margin_cells": 0,
+        "required_score": 0.2,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 1,
+        "reference_score": 0.2,
+        "per_cell_scored": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    ]
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3020335a15347ade5b7f948984c5268eb53325d6dd1b56fa5f49cd38839357b4",
+  "substrate_commit": {
+    "commit": "62aad1e74c34a8c37465f6e1279d09346e71d4fc",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.novelty_bonus_weight": 0.5,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_noise_floor": true,
+    "use_structured_curiosity": true,
+    "use_sleep_loop": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 320000,
+    "ticks_active": 25390,
+    "writer_calls": 320000,
+    "active_frac": 0.07934375,
+    "writer_defect": false,
+    "n_agents": 10,
+    "goal_state_present": true
+  }
+}
