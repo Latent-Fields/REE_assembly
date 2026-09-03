@@ -1842,9 +1842,9 @@
       "summary": "SUPERSEDES GFLAG-0126 (same finding, corrected successor). EXT-005's ree_mechanism field lists SD-003, whose status in claims.yaml is 'superseded', and EXT-005's notes quote the retired SD-003 two-pass formulation verbatim ('E2(z_t, a_actual) - E2(z_t, a_cf) is the agent's causal signature in latent space') as REE's live answer. The correct live successor for EXT-005's WORLD-state attribution is SD-031 (single-pass agency attribution on the z_world causal-footprint reafferent stream: residual = z_world_observed - E2_world(z_world_{t-1}, a_actual)) -- NOT SD-029, which GFLAG-0126 named and which is the parallel comparator on the z_harm_s stream. Also relevant: ARC-033 (E2_harm_s forward model), ARC-037 (causal attribution routing), MECH-095 (TPJ agency comparator). Correction source: the parallel session igw-239-ext005-exq-995, which is building V3-EXQ-995 against SD-031 as the built-in-substrate successor. Recommend governance update EXT-005's ree_mechanism to [SD-031, SD-005] and rewrite its notes' formula to the SD-031 single-pass form.",
       "raised_by_session": "igw-239-literature-proposal-for-ext-005",
       "raised_at": "2026-09-03T11:17:57Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-03T20:49:08Z",
+      "resolution_note": "Applied by governance-20260903T2013 after V3-EXQ-995 PASS: claims.yaml EXT-005 -- ree_mechanism SD-003 -> SD-031 (SD-005 kept); notes rewritten off the retired two-pass formulation onto the SD-031 single-pass comparator residual. Commit: this cycle's governance commit on REE_assembly master."
     },
     {
       "flag_id": "GFLAG-0128",
