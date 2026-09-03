@@ -3881,8 +3881,8 @@
       "status": "completed",
       "completed_at": "2026-09-03T11:19:57Z",
       "completion_summary": "lit-pull EXT-005: 5 entries in targeted_review_ext_005 (REE_assembly 6dbbb15509), lit_confidence 0->0.772; GFLAG-0125 (wording too strong vs Kiciman) + GFLAG-0127 (ree_mechanism points at superseded SD-003, successor is SD-031); 1 chip for the OOD falsifier",
-      "outcome": "NO_OP",
-      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "corrected 2026-09-03T11:21Z by the owning session igw-239-literature-proposal-for-ext-005: the AUTO classifier returned NO_OP because it probes the WORKTREE branch for commits, and this /lit-pull's output landed in REE_assembly (6dbbb15509 on master, verified on origin) -- 5 literature entries under evidence/literature/targeted_review_ext_005/, EXT-005 lit_confidence 0->0.772, plus GFLAG-0125/0127 (2fd19a1c04, 187609a6b5) and chip-20260903-ext005-attribution-ood-falsifier. Known shape: memory reference_igw_complete_auto_outcome_misfiles_worktree_sessions. The IGW brief template instructs --outcome AUTO, which is what produced it. The sibling entry at worktree igw-239-proposal-for-ext-005 (status completed_resumable, the GC'd earlier spawn of the same IGW) is deliberately left untouched."
     }
   ],
   "dispositions": [

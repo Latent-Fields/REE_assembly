@@ -2485,3 +2485,5 @@ One line per hourly tick. ASCII only.
 2026-09-03T10:58:08Z GC removed worktree igw-239-proposal-for-ext-005 post-reap (ledger IGW-20260903-239 -> completed_resumable; removed; branch deleted)
 2026-09-03T10:57:10Z SPAWN IGW-20260903-239 skill=/lit-pull prio=40 uuid=4edfd053-020d-4c7f-8713-fa870c40dbaa pid=3737 worktree=igw-239-literature-proposal-for-ext-005
 2026-09-03T11:19:58Z auto-defer igw-239-literature-proposal-for-ext-005 hash=2b8848c00c91 for 48h (complete)
+2026-09-03T11:20:19Z complete igw-239-literature-proposal-for-ext-005 spawned->completed outcome=NO_OP: lit-pull EXT-005: 5 entries in targeted_review_ext_005 (REE_assembly 6dbbb15509)
+2026-09-03T11:21:30Z outcome-correction igw-239-literature-proposal-for-ext-005 NO_OP->USEFUL_LANDED (AUTO probes the worktree branch; work landed in REE_assembly 6dbbb15509)
