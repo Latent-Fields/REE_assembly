@@ -3753,7 +3753,11 @@
       "task_claim_session_id": "igw-auto-igw-245-literature-proposal-for-ext-003-20260903T054011Z",
       "task_claim_claimed_at": "2026-09-03T05:40:11Z",
       "assigned_at": "2026-09-03T05:38:37Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-03T06:12:54Z",
+      "completion_summary": "lit-pull EXT-003: 5 entries landed (REE_assembly d775ee1b18 + 125002cd8e + ac618f0b7a), literature_confidence 0 -> 0.763, 4 supports / 1 weakens, quadrant plausible_unproven",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -5179,6 +5183,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T05:39:33Z",
       "re_eligible_after": "2026-09-05T05:39:32Z"
+    },
+    {
+      "stable_hash": "ce02a71327d4",
+      "igw_id_at_disposition": "IGW-20260903-245",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-003"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for EXT-003",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T06:12:54Z",
+      "re_eligible_after": "2026-09-05T06:12:54Z"
     }
   ]
 }
