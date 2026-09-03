@@ -1545,6 +1545,8 @@
     - docs/processed/legacy_tree/architecture/E2.md
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
+  notes: >
+    [2026-09-03, thought intake `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty`] SHARPENING OF AN EXISTING DISTINCTION, no change to status, evidence, or the `what_would_answer` above. ARC-002's confirming signature already separates a strong form (E2's action-conditioned predictions discriminate viable from non-viable actions above a naive baseline) from a weaker one (`cand_world_pairwise_dist` / `world_forward_contrastive_loss` showing predicted-outcome divergence across actions that tracks true viability differences). The source thought supplies the reason that ordering is right, in one line worth recording: "absolute prediction asks, 'what is likely to happen?'; effect prediction asks, 'what changes because of this candidate?'" -- and, sharply, "a system can model environmental evolution accurately while remaining poor at estimating its own causal contribution. Conversely, an action-effect representation can support choice while being an impoverished world model." The weaker form is weaker precisely because divergence-across-actions is a necessary but not sufficient condition for the affordance qualifier in ARC-002's title: a predictor can carry action-conditional divergence that is decision-useful while still failing to encode "what am I able to do here" as structure distinct from "what happens next". No new falsifier, no new criterion, and no change to the existing non-degeneracy precondition is proposed -- this records WHY the two forms are ordered as they are, for whoever next designs an ARC-002 test.
 - id: ARC-003
   title: "E3 selects and commits trajectories."
   claim_type: architectural_commitment
@@ -4951,6 +4953,8 @@
   location: docs/architecture/hippocampal_systems.md#mech-033
   source:
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
+  notes: >
+    [2026-09-03, thought intake `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty`] CROSS-REFERENCE ONLY, no change to status, evidence, or the four-PASS record. MECH-033 owns the E2-kernel-to-hippocampal-rollout handoff. If a decision-facing centred action-effect view is ever derived from E2's action-conditioned predictions (SD-056's descendants; see the SD-056 note of the same date), MECH-033 is the interface it would ride, and the source thought names the property that interface would then have to preserve: the chaining step must carry the action-relevant DIFFERENCES and their unresolved uncertainty forward, not only the expected content -- "when hippocampal systems chain transitions, does uncertainty widen, remain calibrated, or collapse silently?" MECH-033's existing evidence chain speaks to whether chained kernels improve harm navigation; it says nothing either way about whether cross-candidate divergence or dispersion SURVIVES the chaining, and no current metric on this claim measures that. Recorded as a gap in what the interface is instrumented for, not as a defect in the claim and not as a new falsification obligation. Any future test would need SD-056's lever enabled first, since `cand_world_pairwise_dist` at the source has been measured at 0.0 (V3-EXQ-571) -- a chaining-preservation measurement on a collapsed source is vacuous by construction.
 - id: MECH-034
   title: "Viability mapping updates are distinct from residue curvature updates."
   claim_type: mechanism_hypothesis
@@ -50366,6 +50370,7 @@
     V3-EXQ-613 fails; (c) option (i) extend GAP-B one-hot bypass to all
     bias-channel consumers of first-step z_world is still on the table as a
     tactical step if V3-EXQ-569a is needed urgently.
+    [2026-09-03, thought intake `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty`] EXTERNAL PRECEDENT AND TWO ADDITIONS, no change to this claim's status, phase, chosen lever, or outstanding validation debt. Chen, Wang and Li, *Counterfactual Quotient Models: Learning What Actions Change, Not What the World Does* (arXiv:2608.22092, 2026 -- UNVERIFIED PREPRINT, not independently checked in this pass; a `/lit-pull` must verify it before it is cited as support) arrives independently at the problem SD-056 already owns in REE coordinates: that a decision system trained on reconstruction-shaped absolute-future targets can fit the action effect to approximately zero while keeping training loss low, and that the fix is to make the action-conditional CONTRAST the learned target rather than a post-hoc subtraction ("predict the action effect directly, rather than predict several absolute futures and subtract them only after approximation"). This is external corroboration for the lever SD-056 already chose on other grounds (2026-05-28 lit-pull synthesis, lever B contrastive next-state), NOT new evidence for or against it. FIRST ADDITION -- a fourth lever for the record, not asserted to work: the CQM formulation's retained object is a signed successor measure with zero total mass (which future events become more or less likely under one intervention relative to a declared action baseline `rho`), i.e. a direct centred regression target `effect(s,a) = future_features(s,a) - sum_b rho(b|s) future_features(s,b)`. That sits alongside SD-056's already-recorded rejected alternatives (lever A PLSM-style MI factorisation, lever C SWIRL-style MI maximisation) as a lever D should lever B fail; it is recorded so a future `/implement-substrate` sees the option, and it is not a recommendation. SECOND ADDITION -- a second candidate ROUTE to the same collapse: SD-056's registered diagnosis is dimensional/objective-shaped (action contributes ~11% of `world_forward` input dimensionality, so training settles in the state-dominated local minimum). Radha and Goktas (arXiv:2605.25313, same unverified-preprint caveat) report an independent route -- under TEACHER FORCING the learned action term collapses because the target encoder has already observed the future, and counterfactual targets restore action sensitivity. If REE's E2 training pipeline teacher-forces anywhere on the `world_forward` path, that is a second, separately-removable cause of the identical `cand_world_pairwise_dist = 0.0` signature, and a cheap negative control exists: does the action term survive when the target encoder has not seen the future? THIRD, a boundary this intake asks SD-056 to carry explicitly: a decision-facing centred view must never REPLACE the absolute channel. The quotient deliberately discards action-independent information, and ARC-001 owns preserving it -- an efficient quotient "might rank the current actions accurately while becoming blind to shared hazards, anomalous environmental changes, another agent's independently evolving state, or a later change in objectives", so any SD-056-descended derived view must keep the absolute prediction available for anomaly/safety sensitivity and must be measured for that preservation as a negative-control trade-off, not only for its ranking gain. NOTHING HERE DISCHARGES SD-056'S EXISTING DEBT: the 569e-equivalent Pathway-A-vs-B re-run recorded as never-queued in this claim's own `digestion_note` (2026-08-07) remains the correct next move on this thread, ahead of any new arm proposed by the source thought's Experiment A.
   location: docs/architecture/sd_056_e2_action_conditional_divergence.md
 
 - id: MECH-309
@@ -89717,6 +89722,7 @@
     internal selection boundary does not by itself establish that authority reaches committed
     behaviour." Neither paper is REE-specific; confidence held at 0.55/0.65 respectively -- see the
     entries' record.json for full mapping caveats and confidence components.
+    [2026-09-03, thought intake `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty`] INDEPENDENT RE-DERIVATION plus a candidate external corroborant and one standing caution; no change to status, phase, the version-routing flag, or the 2026-08-26 evidence adjudication. A 2026-09-02 thought arriving from an entirely different direction -- world-model architecture and counterfactual prediction, with no reference to this claim's motivating cases -- states the ladder almost stage-for-stage: "representation -> endogenous recruitment -> local prediction/proposal -> competitive authority -> selection -> fresh commitment -> execution -> ecological consequence -> retention/generalisation", and draws the same operational conclusion, that "an experiment that measures only E1/E2 loss or hippocampal rollout fidelity can therefore report a false green while the organism has lost the corresponding behaviour". Independent convergence on the stage decomposition is worth recording; it is not evidence, and it does not advance the ladder's own validation. CANDIDATE EXTERNAL CORROBORANT, routed to the existing `evidence/literature/targeted_review_arc_130/` directory rather than a new one: Nijjer, *The World Model Remembers, the Actor Forgets* (arXiv:2607.19749, 2026 -- UNVERIFIED PREPRINT, not independently checked in this pass) reports component probes finding preserved reward discrimination, values and termination structure for earlier tasks while behavioural performance collapsed, in a never-cleared-replay regime -- an external instance of retained representation dissociating from retained behavioural competence, which is this claim's distinctive post-authority contribution. Its scope is narrow and must be carried into any `record.json`: a 17M-parameter Dreamer-family agent, MiniGrid task chains, three seeds, one replay-maintained regime, with the paper itself reporting latent drift despite preservation by co-trained world-model heads, i.e. "world-model memory" does not mean a frozen geometry. STANDING CAUTION, and the reason this addendum is worth its length: this result must NOT be read as reviving MECH-476 (RETIRED). MECH-476 was REE's general acquisition-vs-retention claim and it was retired because its own falsifier (V3-EXQ-836a/d/e) found retention invariant to dose, interval and novelty and better explained by MECH-459's return-scale-invariance normaliser than by a dedicated consolidation process. An external component-level dissociation in a different architecture under a different training regime is not counter-evidence to that finding, and a session that treats it as such would be re-opening a retired claim on literature alone, against `feedback_lit_exp_decoupled`. The correct reading is narrower and is the one already stated above: it is an external instance of the ladder's dissociation, tagged to ARC-130, at preprint confidence.
   evidence_quality_note: |
     [2026-08-26, chip-20260826-arc130-authority-throughput-evidence-tagging, cross-tag of
     pre-existing evidence per EVB-0633/EXP-0379 release_condition (a); not a new experiment]:
@@ -89876,6 +89882,7 @@
     staged, or mutually inhibitory; the requirement is that the architecture CAN compose or
     recruit the mechanism in the situations for which its own claim assigns it a role, not that it
     must always be active.
+    [2026-09-03, thought intake 2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty] Cross-reference only: see the same-dated addendum on ARC-130 (independent re-derivation of the causal-reach ladder by the source thought; Nijjer 2026 arXiv:2607.19749 as a candidate external instance of retained representation dissociating from retained behavioural competence, banked under evidence/literature/targeted_review_arc_130/; standing caution that it must not be read as reviving retired MECH-476). No status, evidence, or scope change.
   evidence: []
 
 - id: GOV-PATHVALID-1
@@ -90531,7 +90538,7 @@
     V3 and DO NOT queue a V3 experiment -- no generative-precision channel distinct from
     current_precision (MECH-043) exists in ree_core/predictors/e3_selector.py today; a dedicated
     channel would need to be added before this is testable.
-
+    [2026-09-03, thought intake `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty`] INDEPENDENT ARRIVAL plus one adjacent measurable, no change to status, phase, or scope. The source thought reaches MECH-510's generative-vs-error separation by a different route (partial observability and blind rollout rather than attractor precision) and states the consequence in a form worth keeping: "a predictor can be unsure which future applies while a subsequently observed discrepancy is highly reliable, or vice versa". That is this claim's two axes moving independently, argued from prediction dynamics rather than from representational form -- corroboration of the distinction's usefulness, not evidence for the mechanism, and it does not change what MECH-510 must show. ADJACENT MEASURABLE, routed ELSEWHERE and flagged here so the two are not confused: the same thought proposes that "a predictive state used for counterfactual action comparison should not become more certain merely because it has been rolled forward without new evidence". A registry search found nothing asserting or measuring that (zero hits for blind-rollout or uncertainty-monotonicity-over-horizon formulations; the nearest, MECH-231, concerns predictive ACCURACY degrading with horizon, not the predictor's own uncertainty estimate failing to widen). It is therefore routed as a proposed `IMPL-022` contract-field addition (`latent_uncertainty_horizon_dissipation_rate` plus a non-dissipation required check), NOT as a claim and NOT as an extension of MECH-510 -- non-dissipation is a property of the ROLLOUT DYNAMICS, whereas MECH-510 is about which precision quantity is being routed. If a `/governance` cycle judges the requirement itself claim-worthy rather than merely measurable, MECH-510 is the natural `depends_on` anchor for it. External source: Radha and Goktas, *UWM-JEPA* (arXiv:2605.25313, 2026 -- UNVERIFIED PREPRINT, not independently checked in this pass). Note the paper does NOT establish durable long-horizon belief preservation (both model families degraded at longer horizons) and does not claim calibrated Bayesian posteriors; its "belief state" is operational. Its density-matrix/unitary parameterisation carries no privileged status for REE and is not proposed for import.
 - id: MECH-511
   title: >
     Durable ("deep") revision of E1 or a deep attractor should be gated by a LEARNING ELIGIBILITY
@@ -93339,4 +93346,102 @@
     per the same discipline GOV-HELDOUT-1 applies to itself, not defended by adding more schema.
 
     '
+  evidence: []
+
+- id: Q-102
+  title: 'Can REE use internally generated (imagined, replayed, or model-generated) trajectories to preserve
+    or repair BEHAVIOURAL ACCESS -- the route by which retained predictive or procedural knowledge again
+    reaches proposal, competitive authority, selection, fresh commitment and execution -- by updating
+    retrieval, readout, ranking or eligibility mappings, while those trajectories remain categorically
+    barred from acquiring the autobiographical, residue-write, realized-reward, reinforcement and direct-authority
+    status of experienced events; and if so, what is the safe update target and what provenance rules
+    make the separation machine-checkable rather than conventional?
+
+    '
+  claim_type: open_question
+  subject: simulation.imagined_trajectory_behavioural_access_repair
+  polarity: open
+  status: open
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: '2026-09-03'
+  depends_on:
+  - MECH-094
+  - ARC-020
+  - ARC-130
+  - ARC-131
+  related_claims:
+  - MECH-322
+  - INV-011
+  - INV-019
+  - MECH-256
+  - MECH-476
+  source_documents:
+  - docs/thoughts/2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md
+  - evidence/planning/thought_intake_2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md
+  - docs/thoughts/2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md
+  - evidence/planning/thought_intake_2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md
+  location: docs/architecture/sleep.md#arc-020
+  notes: 'Registered 2026-09-03 from the "Candidate open question" section of the 2026-09-02 raw thought
+    "Decision-Useful Counterfactual World Models Under Uncertainty" (evidence/planning/thought_intake_2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md).
+    The same question is reached independently by the sibling 2026-09-02 sleep thought ("Sleep as Deferred
+    Reorganisation and Behavioural-Access Repair"), which frames it as a provenance question over four
+    provenance classes rather than as an access-repair question -- REGISTER ONCE, covering both framings;
+    see the dedupe note at the head of this file.
+
+    WHAT THIS EXTENDS. MECH-094 (stable) establishes the strict default: simulation-mode content -- internally
+    generated trajectories, rehearsal, imagination -- must not accumulate in phi(z) as committed experience,
+    and failures of that separation produce confabulation. MECH-322 (candidate, v3) is REE''s one existing
+    narrow exception, and it is narrow in exactly the ways that make this question live: it permits ARC-071
+    chunk formation from REPLAYED sequences only, only in designated sleep phase, only where the sequence
+    carries a value-tag from PRIOR REAL-EXECUTED episodes, only with a replay_origin=True audit flag,
+    and only with accelerated dissolution if not corroborated by real waking execution within N episodes.
+    This question asks whether an analogous typed, auditable, corroboration-gated path can exist for a
+    strictly harder case that MECH-322''s conditions exclude by construction: trajectories that are MODEL-GENERATED
+    rather than replayed from realized experience, updating ACCESS/READOUT/ELIGIBILITY mappings rather
+    than forming policy chunks. ARC-130 supplies the decomposition of "behavioural access" the answer
+    must be scored against (endogenous recruitment, local operation, competitive authority, committed
+    throughput, ecological consequence, retention) rather than a flat behaves/does-not-behave verdict;
+    ARC-131 adds that a repaired route must express once the whole organism is composed, not only in an
+    isolated probe.
+
+    WHAT THIS IS NOT. (a) NOT a proposal to relax MECH-094, and not a challenge to it -- MECH-094''s strict
+    gating remains the default and this question is posed against that constraint, exactly as MECH-322
+    was. (b) NOT a duplicate of MECH-322, which answers a different, easier case (see above). (c) NOT
+    the general acquisition-vs-retention claim: MECH-476 was RETIRED after its own falsifier (V3-EXQ-836a/d/e)
+    found retention invariant to dose/interval/novelty and explained by MECH-459''s return-scale-invariance
+    normaliser rather than by a dedicated consolidation process. The external preprint that prompted this
+    question (Nijjer 2026, dream rehearsal, arXiv:2607.19749 -- UNVERIFIED PREPRINT, not independently
+    checked in this pass) reports a component-level dissociation within one replay-maintained Dreamer-family
+    regime at 17M parameters over three seeds, and MUST NOT be used to resurrect MECH-476. (d) NOT a claim
+    that dream self-imitation works; the raw thought is explicit that the external mechanism "should not
+    be imported directly" and that "the safe update target and provenance rules remain unresolved". (e)
+    NOT an assertion about sleep specifically -- it is anchored at sleep.md#arc-020 because ARC-020 owns
+    the offline write-boundary, but the question applies to any offline or protected-mode rehearsal, waking
+    DMN included.
+
+    DO NOT BUILD IN V3 AND DO NOT QUEUE A V3 EXPERIMENT from this claim. ARC-020''s own what_would_answer
+    records that its non-degeneracy precondition CURRENTLY FAILS: an exhaustive grep of ree-v3/ree_core/
+    for write_locus, permission_matrix, POL/CAPS/ID authority-store analogs, commit_token and commit_boundary
+    returns zero hits, so there is no reachable typed write path for an offline-originated update to violate
+    or respect. Any rehearsal-arm experiment run before that precondition is met would be vacuous and
+    must self-route substrate_not_ready rather than report a verdict. This claim is registered to carry
+    the question durably, not to authorise work on it.
+
+    VERSION ROUTING. Parked implementation_phase v4 / version_relevance v4_v5 per standing thought-intake
+    practice and per the source thought''s own routing note, which places "dream-based behavioural rehearsal"
+    among the threads that "appear more naturally aligned with later substrate unless a current gate proves
+    them necessary". Phase-follows-dependency applies: if a governance cycle finds a current V3 closure
+    gate that genuinely requires access repair, the phase moves with the dependency. Flagged rather than
+    decided here. REGISTERED ONCE for both 2026-09-02 raw thoughts (counterfactual world models; sleep
+    as deferred reorganisation) -- the sleep thought frames the same question over four provenance classes
+    (experienced episode / reconstructed replay / counterfactual continuation from an experienced anchor
+    / fully model-generated dream) and a realized-first rehearsal hypothesis; its intake cross-references
+    this id rather than registering a second. what_would_answer deliberately absent: owed to /thought-digestion.'
+  live_status:
+    reading: open
+    as_of: '2026-09-03'
+    needs_review: false
   evidence: []

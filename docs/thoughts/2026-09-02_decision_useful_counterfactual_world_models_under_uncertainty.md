@@ -1,7 +1,11 @@
 # Thought: Decision-Useful Counterfactual World Models Under Uncertainty
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md
+Claims registered: Q-102 (shared with the sleep thought; refinements recorded on SD-056, MECH-510, ARC-002, MECH-033, ARC-130/131 as notes-only cross-references)
+
 **Date:** 2026-09-02  
-**Status:** Raw evidence-backed thought; hypothesis-generating; not ingested; no claim, version, build, or experiment is authorised by this document.  
+**Original status line:** Raw evidence-backed thought; hypothesis-generating; not ingested; no claim, version, build, or experiment is authorised by this document.  
 **Scope:** Full Reflective–Ethical Engine (REE) lineage, with immediate relevance to the E1/E2/hippocampus/E3 interface and later relevance to continual learning and sleep.  
 **Primary repositories:** `REE_assembly`, `ree-v3`  
 **Nearby claims and contracts:** ARC-001, ARC-002, ARC-003, ARC-018, MECH-033, MECH-057, MECH-094, ARC-120, ARC-130, ARC-131, MECH-507, MECH-509, MECH-510, MECH-511, INV-103  

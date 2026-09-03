@@ -156,7 +156,7 @@ Additional thought anchor: `docs/thoughts/2026-02-23_some_subjective_experience_
 
 None noted in preserved sources.
 
-## Related Claims (IDs)
+## Related Claims (IDs), Q-102
 
 - ARC-011
 - ARC-020
