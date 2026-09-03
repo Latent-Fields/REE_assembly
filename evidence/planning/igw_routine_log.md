@@ -2469,3 +2469,6 @@ One line per hourly tick. ASCII only.
 2026-09-03T07:48:20Z SPAWN IGW-20260903-244 skill=/queue-experiment prio=40 uuid=f2caa377-abcc-4932-b8ba-e60bd89c4b67 pid=32457 worktree=igw-244-proposal-for-ext-002
 2026-09-03T07:58:57Z auto-defer igw-244-proposal-for-ext-002 hash=de69ebcfc002 for 48h (complete)
 2026-09-03T07:59:18Z complete igw-244-proposal-for-ext-002 spawned->completed outcome=DUPLICATE: DUPLICATE dispatch: V3-EXQ-983 already queued+running for EVB-1247/EXT-002 (ree-
+2026-09-03T08:51:20Z GC removed worktree igw-244-proposal-for-ext-002 (removed; branch deleted)
+2026-09-03T08:51:02Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-03T08:51:49Z workset committed (regen -- 259 items, 34 ready, 0 in flight)
