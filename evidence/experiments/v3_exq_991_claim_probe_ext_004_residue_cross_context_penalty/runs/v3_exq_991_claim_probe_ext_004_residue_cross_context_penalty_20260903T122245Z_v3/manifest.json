@@ -1,0 +1,71 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty",
+  "run_id": "v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty_20260903T122245Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-03T12:22:45Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "EXT-004"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "prior_harm_experience_does_not_transfer_cross_context",
+    "method": "paired_exposed_naive_cross_context_transfer",
+    "note": "content-of-the-field manipulation (Context A hazard-live for EXPOSED, harm-neutralised for NAIVE; rho_residue identical 0.5 in both arms so neither the CEM proposal channel nor the E3 scoring channel is bypassed), paired env layouts across arms via deterministic per-seed env seeding; DV = harm_rate in a held-out Context B never seen during Context A",
+    "attribution_caveat": "supports/does_not_support here means EXT-004's overall behavioural claim (prior harm cost carries into a novel context); it does NOT isolate ARC-013's residue field specifically from other persistent cross-episode state (ARC-108 w_chan/V-hat_t, MECH-165 exploration buffer) as the mechanism -- see module docstring."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5512200831275b8e23d185ac4159bbb352e5452f16378f4aaf38169591e8e4ce",
+  "substrate_commit": {
+    "commit": "70416b5c04dfb813ffd94d661c45e2a31dd93ee3",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 10,
+    "goal_state_present": false
+  }
+}
