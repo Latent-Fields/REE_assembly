@@ -3828,7 +3828,11 @@
       "task_claim_session_id": "igw-auto-igw-244-literature-proposal-for-ext-004-20260903T085207Z",
       "task_claim_claimed_at": "2026-09-03T08:52:07Z",
       "assigned_at": "2026-09-03T08:51:02Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-03T09:12:01Z",
+      "completion_summary": "lit-pull EXT-004: 5 entries landed (REE_assembly 3a3e9ce69b), literature_confidence 0 -> 0.63; GFLAG-0124 raised (3470f44b33) -- phenomenon settled but asserted cause contradicted, plus ARC-013/INV-008 mechanism-gloss drift",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull EXT-004: 5 entries landed (REE_assembly 3a3e9ce69b), literature_confidence 0 -> 0.63; GFLAG-0124 raised (3470f44b33) -- phenomenon settled but asserted cause contradicted, plus ARC-013/INV-008 mechanism-gloss drift"
     }
   ],
   "dispositions": [
@@ -5296,6 +5300,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T07:58:57Z",
       "re_eligible_after": "2026-09-05T07:58:57Z"
+    },
+    {
+      "stable_hash": "316d25461d31",
+      "igw_id_at_disposition": "IGW-20260903-244",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-004"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for EXT-004",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T09:12:02Z",
+      "re_eligible_after": "2026-09-05T09:12:02Z"
     }
   ]
 }
