@@ -2456,3 +2456,7 @@ One line per hourly tick. ASCII only.
 2026-09-03T05:39:38Z GC removed worktree igw-243-literature-proposal-for-ext-002 post-reap (ledger IGW-20260903-243 -> completed_resumable; removed; branch deleted)
 2026-09-03T05:38:37Z SPAWN IGW-20260903-245 skill=/lit-pull prio=40 uuid=a03bee7e-b0f5-4021-a222-65a204c23ace pid=91610 worktree=igw-245-literature-proposal-for-ext-003
 2026-09-03T06:12:54Z auto-defer igw-245-literature-proposal-for-ext-003 hash=ce02a71327d4 for 48h (complete)
+2026-09-03T06:13:17Z complete igw-245-literature-proposal-for-ext-003 spawned->completed outcome=NO_OP: lit-pull EXT-003: 5 entries landed (REE_assembly d775ee1b18 + 125002cd8e + ac618
+2026-09-03T06:44:06Z GC removed worktree igw-245-literature-proposal-for-ext-003 (removed; branch deleted)
+2026-09-03T06:43:08Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-03T06:46:07Z workset committed (regen -- 258 items, 34 ready, 0 in flight)
