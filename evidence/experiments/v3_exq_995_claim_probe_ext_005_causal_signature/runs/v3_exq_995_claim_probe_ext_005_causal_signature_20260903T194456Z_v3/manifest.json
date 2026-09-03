@@ -1,0 +1,142 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_995_claim_probe_ext_005_causal_signature",
+  "run_id": "v3_exq_995_claim_probe_ext_005_causal_signature_20260903T194456Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-03T19:44:56Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "EXT-005"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "causal_signature_present",
+    "preconditions": [
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.37136900424957275,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "n_latent_stack_tensors": 49,
+        "n_latent_stack_changed": 5,
+        "p0_episodes": 250,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "context": "V3-EXQ-995 worst seed 48",
+        "offending_cell": "seed=48"
+      },
+      {
+        "name": "zworld_encodes_exogenous_change",
+        "kind": "readiness",
+        "description": "bare ||z_obs - z_prev|| AUROC for hazard-moved vs not, in the STAY stratum (agent does not displace)",
+        "control": "positive control -- the agent cannot have caused the change, so a sub-floor reading means z_world does not represent hazard position and NO comparator could be tested on it",
+        "measured": 0.9957856056596068,
+        "threshold": 0.8,
+        "direction": "lower",
+        "offending_cell": "seed=48",
+        "met": true
+      },
+      {
+        "name": "move_ok_confound_absent",
+        "kind": "readiness",
+        "description": "bare ||z_obs - z_prev|| AUROC in MOVE_OK must sit near chance; outside the band the verdict criteria are confounded by raw change magnitude and the design is invalid, not falsified",
+        "control": "negative control -- agent displacement dominates the change magnitude here, so the raw signal should carry no drift information",
+        "measured": 0.42953876726570545,
+        "threshold_low": 0.4,
+        "threshold_high": 0.6,
+        "direction": "interval",
+        "offending_cell": "seed=45",
+        "met": true
+      },
+      {
+        "name": "causal_class_events_sufficient",
+        "kind": "readiness",
+        "description": "min(n_drift, n_no_drift) in the held-out MOVE_OK stratum",
+        "control": "the exact precondition every prior attempt failed -- V3-EXQ-783 recorded attribution_gap null on all 16 attribution_ready arms with 'insufficient events of one or both causal classes'",
+        "measured": 3587.0,
+        "threshold": 500.0,
+        "direction": "lower",
+        "offending_cell": "seed=47",
+        "met": true
+      },
+      {
+        "name": "e2world_action_pathway_live",
+        "kind": "readiness",
+        "description": "mean ||f(z, a_i) - f(z, a_j)|| AT INITIALISATION, over a fixed z_world batch and two distinct actions (the post-training value is recorded per arm as action_pathway_wiring_trained but does NOT gate)",
+        "control": "wiring check, measured before any training so it is a property of the module and not of what training taught it. This is what separates 'the action input never reaches the output' (instrument not ready) from 'the model LEARNED the action carries little information' -- the latter is the causal_signature_absent finding C2/C3 report, and gating on a post-training probe would have misrouted exactly that finding to substrate_not_ready_requeue",
+        "measured": 0.28334611654281616,
+        "threshold": 0.0001,
+        "comparator": ">",
+        "direction": "lower",
+        "offending_cell": "seed=45 arm=BASE",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_comparator_discriminates_move_ok": true,
+      "C2_beats_bare_change_magnitude": true,
+      "C3_discrimination_is_action_conditioned": true
+    },
+    "gate_green": true
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4a1f8a270610f8977dda15b9fe08da9a00b25b32f8f87019def5fc621e46dda4",
+  "substrate_commit": {
+    "commit": "e82e3282794ccfca3d9f728425afdbb654f31b7b",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 5,
+    "goal_state_present": false
+  }
+}
