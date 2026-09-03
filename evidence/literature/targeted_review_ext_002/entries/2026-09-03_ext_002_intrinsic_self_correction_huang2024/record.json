@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_002",
+  "entry_id": "2026-09-03_ext_002_intrinsic_self_correction_huang2024",
+  "timestamp_utc": "2026-09-03T04:47:29Z",
+  "claim_ids_tested": [
+    "EXT-002"
+  ],
+  "source": {
+    "title": "Large Language Models Cannot Self-Correct Reasoning Yet",
+    "authors": [
+      "Jie Huang",
+      "Xinyun Chen",
+      "Swaroop Mishra",
+      "Huaixiu Steven Zheng",
+      "Adams Wei Yu",
+      "Xinying Song",
+      "Denny Zhou"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Learning Representations (ICLR 2024)",
+    "arxiv_id": "2310.01798",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2310.01798"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Peer-reviewed (ICLR 2024) and directly on the mechanism: the paper isolates intrinsic self-correction -- revision using only the model's own capabilities, with no external feedback -- and finds accuracy drops across all models and benchmarks tested, with the answer-change analysis showing revisions are not selective toward actual errors (GSM8K, GPT-3.5: 74.7% unchanged, and among the changes correct->incorrect outnumbers incorrect->correct). That is the behavioural consequence EXT-002 predicts: with no internally generated error signal to steer by, a second pass has nothing to act on and its edits are as likely to be harmful as helpful. Confidence is held at 0.74 because the finding is about a prompted revision protocol, which is one operationalisation of self-correction and not the only conceivable one, and because a negative result underdetermines a mechanistic absence relative to the positive dissociation Zhang et al. provide.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Prompting a model to review and revise its own reasoning without oracle labels lowers accuracy across every model and benchmark tested (GPT-4-Turbo GSM8K 91.5 -> 88.0 after one round; Llama-2 GSM8K 62.0 -> 43.5 -> 36.5 over two rounds).",
+    "Reported gains from self-correction in prior work (RCI, Reflexion) depend on oracle labels used to decide when to stop revising; removing that external signal removes the gain, indicating the correcting signal was never endogenous.",
+    "Revision is not selective toward actual errors -- on GSM8K GPT-3.5 keeps its answer 74.7% of the time and, among the changes, is more likely to turn a correct answer incorrect than the reverse."
+  ],
+  "tags": [
+    "ext-002",
+    "llm",
+    "hallucination",
+    "self-correction",
+    "error-signal",
+    "reasoning",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Intrinsic self-correction -- an LLM revising its initial response using only its own capabilities, with no external feedback and no oracle label to decide when to stop -- does not improve reasoning accuracy and consistently decreases it across models, benchmarks and feedback prompts. The improvements reported by earlier self-correction work are attributable to oracle labels, unfair baselines, or sub-optimal initial prompts rather than to a genuine endogenous correction ability. The authors' diagnosis is that LLMs cannot properly judge the correctness of their own reasoning.",
+    "ree_translation": "EXT-002 asserts that no persistent error residue accumulates to shape future outputs. The most direct behavioural prediction of that assertion is that a system given a second attempt should not systematically do better on that attempt, because nothing carried forward marks which parts of the first attempt were wrong. Huang et al. test exactly that and find it. Where REE would have the E1 prediction error of attempt one deposited into phi(z) and biasing E3 selection on attempt two (ARC-005, INV-006, INV-008), a transformer's second attempt is conditioned on the first attempt's text with no annotation of which parts of it cost anything, so the revision is unguided. The paper's finding that reported self-correction gains vanish once the external verifier is removed is the same point in a different form: the correcting signal was always exogenous.",
+    "mapping_caveat": "This is a null-to-negative result about one operationalisation -- prompted revision on reasoning benchmarks -- and null results are weak evidence for mechanistic absence. A defender of self-correction could argue the prompting protocol, not the architecture, is what failed. It also bears on reasoning tasks with checkable answers rather than on open-ended factual hallucination, so the extension to EXT-002's subject (llm.hallucination) is by argument rather than by measurement. The 'Yet' in the title is the authors' own signal that they take the limitation to be contingent on current training rather than architectural, which is a weaker position than EXT-002's.",
+    "source_context": "Reasoning benchmarks GSM8K, CommonSenseQA and HotpotQA with GPT-3.5, GPT-4, GPT-4-Turbo and Llama-2; multi-round prompted self-revision compared against single-pass standard prompting, run both with oracle labels (as in prior work) and without them (intrinsic setting); also re-examines multi-agent debate against self-consistency and prompt-design confounds. ICLR 2024."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.3,
+    "notes": "Source quality high -- ICLR 2024, careful controls separating oracle-informed from genuinely intrinsic revision, and it corrected a live overclaim in the literature. Mapping fidelity moderate: the behavioural prediction is right but the tasks are checkable-answer reasoning rather than open-ended factual generation, and a null result underdetermines the mechanism. Transfer risk moderate for the same reason -- reasoning-benchmark to hallucination transfer is an argument, not a measurement."
+  }
+}

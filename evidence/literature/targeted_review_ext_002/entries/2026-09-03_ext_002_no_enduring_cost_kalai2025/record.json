@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_002",
+  "entry_id": "2026-09-03_ext_002_no_enduring_cost_kalai2025",
+  "timestamp_utc": "2026-09-03T04:47:29Z",
+  "claim_ids_tested": [
+    "EXT-002"
+  ],
+  "source": {
+    "title": "Why Language Models Hallucinate",
+    "authors": [
+      "Adam Tauman Kalai",
+      "Ofir Nachum",
+      "Santosh S. Vempala",
+      "Edwin Zhang"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2509.04664",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2509.04664"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The paper's central argument is exactly the second half of EXT-002's assertion -- that a false statement incurs no enduring cost -- and it derives that from the objective functions rather than asserting it. Under binary (right/wrong) grading, an abstention scores identically to a confident falsehood, so nothing in the optimisation ever installs a standing penalty on having been wrong. Mapping fidelity is therefore high at the level of 'no cost accrues'. Confidence is held below 0.8 for two reasons: it is an unrefereed preprint at pull time, and its account of the missing penalty is located in the training/evaluation objective rather than in the inference-time state, whereas EXT-002's REE contrast (phi(z) modulating trajectory selection on subsequent steps) is an inference-time mechanism. The paper establishes the absence; it does not test what a present residue would do.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Under binary right/wrong grading an abstention and a confident falsehood receive the same score, so no gradient or scoring pressure distinguishes having-been-wrong from having-declined.",
+    "Because the deficit sits in the objective rather than in a repairable runtime buffer, mitigations that only add post-hoc hallucination benchmarks leave the underlying no-cost structure intact."
+  ],
+  "tags": [
+    "ext-002",
+    "llm",
+    "hallucination",
+    "error-residue",
+    "calibration",
+    "objective-design",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Language models hallucinate because pretraining makes some error rate statistically unavoidable for arbitrary facts, and because post-training evaluation overwhelmingly grades answers on a binary right/wrong basis, which rewards guessing over admitting uncertainty. Confident falsehoods are therefore not merely tolerated by the optimisation target; they are weakly preferred to abstention.",
+    "ree_translation": "EXT-002 asserts that no persistent error residue accumulates to shape future outputs in transformer LLMs. Kalai et al. supply the economic form of that assertion: there is no term anywhere in the training or evaluation pipeline that makes a past false statement more costly than a past abstention, so there is nothing for a residue to be a record of. In REE, E1 prediction errors deposit into phi(z) and modulate subsequent trajectory selection (ARC-005, INV-006, INV-008), which is precisely a standing cost attached to having been wrong. The paper is best read as evidence for the negative half of the claim -- the mechanism EXT-002 says is missing is missing for a reason the authors can name.",
+    "mapping_caveat": "The paper locates the missing penalty in the training and evaluation objective, not in the runtime state. EXT-002's REE contrast is an inference-time trace that modulates the next step; a reader could satisfy Kalai et al.'s diagnosis by changing the grading rubric alone, with no persistent per-episode residue at all. So this entry supports 'no enduring cost' strongly and 'no persistent residue mechanism' only by implication. Preprint status at pull time; no peer-reviewed venue verifiable via arXiv, OpenAlex, Crossref or DBLP on 2026-09-03.",
+    "source_context": "Theoretical analysis of the modern LLM training pipeline (pretraining as density estimation, post-training under binary-graded benchmarks), with a reduction of hallucination to errors in binary classification; no new empirical model training."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Source quality discounted for unrefereed preprint status despite strong authorship and an explicit argument rather than an assertion. Mapping fidelity high on the no-cost half of EXT-002. Transfer risk low -- the subject is literally the claim's subject (llm.hallucination), so there is no cross-species or cross-task transfer to discount, only the objective-vs-runtime level mismatch already charged against mapping fidelity."
+  }
+}

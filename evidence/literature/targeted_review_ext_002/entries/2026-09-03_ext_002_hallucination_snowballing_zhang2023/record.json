@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_002",
+  "entry_id": "2026-09-03_ext_002_hallucination_snowballing_zhang2023",
+  "timestamp_utc": "2026-09-03T04:47:29Z",
+  "claim_ids_tested": [
+    "EXT-002"
+  ],
+  "source": {
+    "title": "How Language Model Hallucinations Can Snowball",
+    "authors": [
+      "Muru Zhang",
+      "Ofir Press",
+      "William Merrill",
+      "Alisa Liu",
+      "Noah A. Smith"
+    ],
+    "year": 2023,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2305.13534",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2305.13534"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the strongest empirical entry in the set because it dissociates knowledge from correction. ChatGPT and GPT-4 identify 67% and 87% of their own prior mistakes when those mistakes are re-presented in isolation, yet in the generating trajectory they commit to the error and manufacture further false claims to justify it. The information needed to penalise the earlier error is demonstrably inside the model; what is missing is any pathway by which the committed error becomes a cost that biases the continuation away from itself. That is EXT-002's mechanism gap measured directly rather than inferred. Held below 0.8 because the effect is measured over a single context window on three constructed QA datasets and two 2023-era closed models, so it evidences absence-of-correction over the generation horizon rather than absence-of-residue across episodes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A model that can recognise a statement as false when shown it in isolation will still assert and defend that same statement when it is downstream of its own earlier commitment.",
+    "Errors compound within a trajectory rather than decaying: the earlier hallucination raises the probability of later ones that the model would not otherwise have made.",
+    "Self-knowledge of the error (67% ChatGPT, 87% GPT-4 detection) is present and inert -- availability of the error signal does not make it operative on the trajectory."
+  ],
+  "tags": [
+    "ext-002",
+    "llm",
+    "hallucination",
+    "error-residue",
+    "error-propagation",
+    "over-commitment",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Language models over-commit to early mistakes. On three constructed QA datasets where ChatGPT and GPT-4 frequently give an incorrect answer and then justify it, the justifications contain further incorrect claims that the same models can separately identify as incorrect (67% and 87% detection respectively). Hallucination therefore snowballs: an early error causes later errors the model would not otherwise have made.",
+    "ree_translation": "EXT-002 asserts that prediction errors leave no persistent trace that penalises future outputs. Snowballing is the observable signature of exactly that absence, and it is the sharper form of the evidence: the error does influence the continuation, but with the wrong sign. In a system with a residue field, an accumulated error deposit raises the cost of the region of latent space that produced it and pushes trajectory selection away (REE: phi(z) modulating E1/E3 selection per ARC-005, INV-006, INV-008). In a transformer, the earlier token sequence influences the continuation only as evidence to be conditioned on and made consistent with, so the error is amplified rather than penalised. The 67%/87% detection figures are the load-bearing part: they rule out the competing explanation that the model simply did not know, leaving the absence of a correction pathway as the residual account.",
+    "mapping_caveat": "The demonstration lives entirely within one context window. It shows that no error-penalising signal operates over the generation horizon; it does not directly test persistence across episodes, which is the stronger reading of EXT-002 and which is trivially true for a stateless API model but which this paper does not measure. Also, ChatGPT and GPT-4 as accessed in 2023 are closed systems with undisclosed post-training and possible retrieval or safety scaffolding, so the result characterises a deployed system rather than a bare transformer decoder. Finally, no peer-reviewed venue was verifiable via arXiv, OpenAlex, Crossref or DBLP on 2026-09-03; recorded as preprint.",
+    "source_context": "Three purpose-built question-answering datasets (primality, senator search, graph connectivity) probing cases where the model states an incorrect answer and then explains it; ChatGPT and GPT-4 via API, 2023; self-detection measured by re-presenting the model's own generated claims out of context."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.20,
+    "notes": "Source quality moderate-to-good: a clean, well-designed dissociation with quantified self-detection rates, but small constructed datasets, two closed models, and preprint status at pull time. Mapping fidelity is the highest in this set -- the experiment isolates precisely the variable EXT-002 is about (does a committed error acquire a cost?) and answers no while controlling for ignorance. Transfer risk low: same domain, same artefact class as the claim."
+  }
+}

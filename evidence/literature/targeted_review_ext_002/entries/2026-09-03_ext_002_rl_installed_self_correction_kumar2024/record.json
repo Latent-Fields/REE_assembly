@@ -1,0 +1,68 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_002",
+  "entry_id": "2026-09-03_ext_002_rl_installed_self_correction_kumar2024",
+  "timestamp_utc": "2026-09-03T04:47:29Z",
+  "claim_ids_tested": [
+    "EXT-002"
+  ],
+  "source": {
+    "title": "Training Language Models to Self-Correct via Reinforcement Learning",
+    "authors": [
+      "Aviral Kumar",
+      "Vincent Zhuang",
+      "Rishabh Agarwal",
+      "Yi Su",
+      "John D. Co-Reyes",
+      "Avi Singh",
+      "Kate Baumli",
+      "Shariq Iqbal",
+      "Colton Bishop",
+      "Rebecca Roelofs",
+      "Lei M. Zhang",
+      "Kay McKinney",
+      "Disha Shrivastava",
+      "Cosmin Paduraru",
+      "George Tucker",
+      "Doina Precup",
+      "Feryal Behbahani",
+      "Aleksandra Faust"
+    ],
+    "year": 2024,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2409.12917",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2409.12917"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the deliberate counterweight in the pull. SCoRe shows that multi-turn online RL on self-generated correction traces can install a genuine second-attempt improvement (+15.6% on MATH, +9.1% on HumanEval self-correction for Gemini 1.0 Pro and 1.5 Flash), with no oracle label and no second model -- which is a partial rebuttal to the strongest reading of EXT-002, that transformers have no mechanism at all by which prediction errors can come to penalise future outputs. It is only partial, and the paper says why itself: the capability is a learned disposition in the weights, acquired offline over a training distribution, not a per-episode error trace deposited at inference and read by the next step. Nothing about the deployed model accumulates anything from the specific error it just made. Confidence 0.62 reflects genuine relevance discounted for preprint status and for the fact that the paper's own framing (SFT variants fail; behaviour collapse; regularisation needed to avoid it) documents how fragile the installed behaviour is.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Supervised fine-tuning on offline model-generated correction traces fails to instil self-correction -- either distribution mismatch with the model's own errors, or behaviour collapse onto a single ineffective correction mode.",
+    "The installed capability is a weight-level policy over a training distribution, so it does not confer any per-episode accumulation: the model that has just made an error carries nothing forward from that particular error into the next step.",
+    "Even after RL the improvement is a bounded delta on a second attempt at the same problem (+15.6% MATH, +9.1% HumanEval), not an error-driven change to the trajectory as it is generated."
+  ],
+  "tags": [
+    "ext-002",
+    "llm",
+    "hallucination",
+    "self-correction",
+    "reinforcement-learning",
+    "counterweight",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Self-correction can be trained into an LLM with multi-turn online reinforcement learning on entirely self-generated correction traces (SCoRe), without a second model, a stronger teacher, or additional supervision. Supervised fine-tuning on offline traces is shown to be insufficient -- it hits either distribution mismatch or behaviour collapse -- and SCoRe addresses this by training under the model's own distribution with regularisation plus a reward bonus that amplifies correction. Gemini 1.0 Pro and 1.5 Flash gain 15.6% and 9.1% in self-correction performance on MATH and HumanEval respectively.",
+    "ree_translation": "EXT-002 asserts that no persistent error residue accumulates to shape future outputs. SCoRe complicates the absolute form of that assertion: prediction errors CAN be made to shape future outputs, by routing them through an RL objective that writes the resulting disposition into the weights. But the two mechanisms differ in the property EXT-002 actually turns on. REE's phi(z) is a per-episode, inference-time accumulation -- this error, just now, deposited into the latent terrain and biasing the very next selection (ARC-005, INV-006, INV-008). SCoRe's correction ability is a population-level prior learned offline: it makes the model better at the general behaviour 'revise your last answer' without carrying any record of the specific error it just committed. So the entry weakens the strong architectural reading (no possible mechanism) and leaves the operative reading (no accumulating per-episode residue at inference) intact.",
+    "mapping_caveat": "The weakening is real but narrow, and should not be over-read in either direction. It does not show a transformer accumulating error residue at inference; it shows that a training procedure can install a revision policy. Conversely, a governance reader should not dismiss it as irrelevant just because the mechanism is weight-level -- REE's own residue is also a mechanism for errors to change behaviour, and the two are competing implementations of the same functional role, differing in timescale and in whether the record is episode-specific. Preprint at pull time; no refereed venue was verifiable via arXiv, OpenAlex, Crossref, DBLP or OpenReview on 2026-09-03. The results are on two Gemini models on checkable-answer benchmarks, not on open-ended factual hallucination.",
+    "source_context": "Multi-turn online RL (SCoRe) on Gemini 1.0 Pro and Gemini 1.5 Flash; MATH and HumanEval; entirely self-generated correction traces with no oracle label or teacher model; includes negative results for SFT-based variants and an analysis of behaviour collapse."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Source quality moderate-to-good: strong industrial lab, careful negative results for the SFT baselines, but unrefereed at pull time and evaluated on two proprietary models. Mapping fidelity 0.60 -- the paper bears on EXT-002 obliquely, as a boundary case rather than a test, and the timescale distinction that keeps the claim standing is an interpretive move on my part rather than something the paper measures. Transfer risk 0.40, the highest in this pull: checkable-answer benchmarks, closed models, and a training procedure whose generality beyond the reported setting is unestablished."
+  }
+}

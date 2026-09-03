@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_002",
+  "entry_id": "2026-09-03_ext_002_episodic_error_memory_shinn2023",
+  "timestamp_utc": "2026-09-03T04:47:29Z",
+  "claim_ids_tested": [
+    "EXT-002"
+  ],
+  "source": {
+    "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+    "authors": [
+      "Noah Shinn",
+      "Federico Cassano",
+      "Edward Berman",
+      "Ashwin Gopinath",
+      "Karthik Narasimhan",
+      "Shunyu Yao"
+    ],
+    "year": 2023,
+    "venue": "Advances in Neural Information Processing Systems 36 (NeurIPS 2023)",
+    "arxiv_id": "2303.11366",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2303.11366"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Supports EXT-002 by remedy rather than by direct measurement of the absence. Reflexion's design concedes the claim: to get an LLM agent to learn from its own mistakes across trials, the authors had to build an external episodic memory buffer holding verbal reflections on past failures and re-inject it into the next attempt's context, explicitly noting that this is achieved 'not by updating weights'. That the scaffold has to be constructed, held outside the model, and re-supplied each trial is direct architectural evidence that the base system carries no such trace. The reported gains (91% pass@1 on HumanEval against 80% for the GPT-4 baseline) show the missing quantity is functionally significant. Confidence is capped at 0.70 for two reasons: the paper is engineering rather than a controlled test of EXT-002, and Huang et al. (ICLR 2024, this same pull) find Reflexion's gains depend on oracle labels deciding when to stop -- which does not damage this entry's use as evidence that the error record must be supplied exogenously, but does forbid citing the headline numbers as evidence of endogenous self-correction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cross-trial learning from one's own errors is not available in the base model and has to be reconstructed as an external text buffer that is re-injected into context each trial.",
+    "The error record is verbal and episodic rather than a graded state: it must be re-read and re-interpreted every trial, and it does not modulate generation continuously the way a latent-space penalty would.",
+    "Per Huang et al. (ICLR 2024), Reflexion's evaluation uses oracle labels to decide when to stop iterating, so the reported gains do not establish that the model can detect its own errors unaided."
+  ],
+  "tags": [
+    "ext-002",
+    "llm",
+    "hallucination",
+    "error-residue",
+    "episodic-memory",
+    "verbal-reinforcement",
+    "remedy-evidence",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Language agents can be made to learn from trial-and-error without weight updates or expensive fine-tuning, by verbally reflecting on task feedback signals and maintaining those reflections in an episodic memory buffer that is fed into subsequent trials. This yields large gains across sequential decision-making, coding and language reasoning -- for example 91% pass@1 on HumanEval versus 80% for the GPT-4 baseline.",
+    "ree_translation": "EXT-002 asserts that transformer LLMs have no mechanism by which prediction errors leave a persistent trace shaping future outputs. Reflexion is the constructive proof of that absence: the entire contribution is an external prosthesis for the missing mechanism. The reflection buffer is a hand-built, text-encoded analogue of what REE's phi(z) provides natively -- a persistent record of what went wrong that is present and operative on the next attempt (ARC-005, INV-006, INV-008). Two structural differences are informative for REE. The buffer is symbolic and episodic where phi(z) is continuous and latent, so it must be re-read and re-interpreted rather than modulating selection continuously; and it lives outside the model, so it can be cleared, truncated, or simply not supplied, whereas a residue field is not optional.",
+    "mapping_caveat": "This is remedy evidence, not absence evidence. It shows that adding an error record helps, which is consistent with EXT-002 but also consistent with weaker readings -- a system could have some partial internal error signal and still benefit from an explicit buffer. It is also an engineering paper with heterogeneous benchmarks rather than a controlled test of the mechanism. Most importantly, Huang et al. (ICLR 2024) classify Reflexion's protocol as oracle-label-dependent for the stopping decision, so the headline improvements must not be cited as evidence that the model detects its own errors; they evidence only that an externally supplied error record is useful once available.",
+    "source_context": "LLM agents (primarily GPT-4 and GPT-3.5 era models) on sequential decision-making (ALFWorld), reasoning (HotpotQA) and code generation (HumanEval, MBPP); feedback signals both external and internally simulated; no weight updates; NeurIPS 2023."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high -- NeurIPS 2023, widely replicated framework, with ablations over feedback type and source. Mapping fidelity is the limiting term: remedy evidence is indirect for an absence claim, and the oracle-label dependency identified by Huang et al. constrains which of the paper's results are usable here. Transfer risk moderate: the agentic benchmarks are further from open-ended factual hallucination than the other entries in this pull, and the argument runs through the design of the scaffold rather than through the measured outcomes."
+  }
+}
