@@ -3778,7 +3778,11 @@
       "task_claim_session_id": "igw-auto-igw-243-proposal-for-arc-120-20260903T064621Z",
       "task_claim_claimed_at": "2026-09-03T06:46:21Z",
       "assigned_at": "2026-09-03T06:43:08Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-03T07:06:25Z",
+      "completion_summary": "gated EVB-1233 blocked_substrate: ARC-120 is a framing claim with no runtime discriminator; all 4 instance gates default-OFF; routed to /claim-synthesis (REE_assembly 839b42850d + 3b8d448cf3)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "gated EVB-1233 blocked_substrate: ARC-120 is a framing claim with no runtime discriminator; all 4 instance gates default-OFF; routed to /claim-synthesis (REE_assembly 839b42850d + 3b8d448cf3)"
     }
   ],
   "dispositions": [
@@ -5218,6 +5222,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T06:12:54Z",
       "re_eligible_after": "2026-09-05T06:12:54Z"
+    },
+    {
+      "stable_hash": "9720d1c54a5f",
+      "igw_id_at_disposition": "IGW-20260903-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-120"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for ARC-120",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T07:06:26Z",
+      "re_eligible_after": "2026-09-05T07:06:26Z"
     }
   ]
 }
