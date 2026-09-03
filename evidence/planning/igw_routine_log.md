@@ -2500,3 +2500,6 @@ One line per hourly tick. ASCII only.
 2026-09-03T13:15:14Z retire-proposal LIT-0532 -> executed (igw-241-proposal-for-ext-008; complete)
 2026-09-03T13:15:14Z auto-defer igw-241-proposal-for-ext-008 hash=6e04c9fb2e81 for 48h (complete)
 2026-09-03T13:15:36Z complete igw-241-proposal-for-ext-008 spawned->completed outcome=USEFUL_LANDED: No experiment queued (correct outcome): marked EVB-1253/EXT-008 experimental pro
+2026-09-03T14:05:01Z GC removed worktree igw-241-proposal-for-ext-008 (removed; branch deleted)
+2026-09-03T14:04:42Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-03T14:05:26Z workset committed (regen -- 255 items, 34 ready, 0 in flight)
