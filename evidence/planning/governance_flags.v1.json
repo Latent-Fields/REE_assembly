@@ -1829,9 +1829,9 @@
       "summary": "EXT-005's ree_mechanism field lists SD-003, but SD-003's status in claims.yaml is 'superseded'; EXT-005's notes also quote the retired SD-003 formulation verbatim ('E2(z_t, a_actual) - E2(z_t, a_cf) is the agent's causal signature in latent space') as REE's live answer to the claim. The live successors are SD-029 (single-pass agency attribution via forward-model comparator on the z_harm_s reafferent stream: residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual)) and ARC-033/ARC-037. Noticed while writing the targeted_review_ext_005 literature pull (REE_assembly 6dbbb15509), which had to translate the claim into the live mechanism by hand for every one of its five entries. Recommend governance update EXT-005's ree_mechanism and notes to point at the successor claims so the external-failure-mode entry and the substrate cluster stay joined.",
       "raised_by_session": "igw-239-literature-proposal-for-ext-005",
       "raised_at": "2026-09-03T11:14:26Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-03T11:18:19Z",
+      "resolution_note": "Superseded by GFLAG-0127 (REE_assembly 187609a6b5), same session, same finding, corrected successor claim. GFLAG-0126 recommended pointing EXT-005's ree_mechanism at SD-029; SD-029 is the comparator on the z_harm_s harm stream, whereas EXT-005's subject is WORLD-state attribution, whose live successor to SD-003 is SD-031 (residual = z_world_observed - E2_world(z_world_{t-1}, a_actual)). Acting on GFLAG-0126 as written would have pointed the claim at the wrong stream. No other content differs."
     },
     {
       "flag_id": "GFLAG-0127",
