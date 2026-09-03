@@ -3803,7 +3803,11 @@
       "task_claim_session_id": "igw-auto-igw-244-proposal-for-ext-002-20260903T074924Z",
       "task_claim_claimed_at": "2026-09-03T07:49:24Z",
       "assigned_at": "2026-09-03T07:48:20Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-03T07:58:56Z",
+      "completion_summary": "DUPLICATE dispatch: V3-EXQ-983 already queued+running for EVB-1247/EXT-002 (ree-v3 ead80daeab, claimed by ree-cloud-4 05:33:52Z). Queued nothing; flipped the proposal that caused the re-spawn -- EVB-1247 status=executed, executed_by=V3-EXQ-983 (REE_assembly 97a3871cea, on origin/master).",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "DUPLICATE dispatch: V3-EXQ-983 already queued+running for EVB-1247/EXT-002 (ree-v3 ead80daeab, claimed by ree-cloud-4 05:33:52Z). Queued nothing; flipped the proposal that caused the re-spawn -- EVB-1247 status=executed, executed_by=V3-EXQ-983 (REE_assembly 97a3871cea, on origin/master)."
     }
   ],
   "dispositions": [
@@ -5257,6 +5261,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T07:06:26Z",
       "re_eligible_after": "2026-09-05T07:06:26Z"
+    },
+    {
+      "stable_hash": "de69ebcfc002",
+      "igw_id_at_disposition": "IGW-20260903-244",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-002"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for EXT-002",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T07:58:57Z",
+      "re_eligible_after": "2026-09-05T07:58:57Z"
     }
   ]
 }
