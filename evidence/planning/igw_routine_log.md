@@ -2497,3 +2497,5 @@ One line per hourly tick. ASCII only.
 2026-09-03T13:02:16Z GC sweep removed 1 orphan worktree(s), kept 11
 2026-09-03T13:02:59Z workset committed (regen -- 255 items, 34 ready, 0 in flight)
 2026-09-03T13:02:16Z SPAWN IGW-20260903-241 skill=/queue-experiment prio=40 uuid=a3474039-eec6-40a0-81ef-b560607641d9 pid=51731 worktree=igw-241-proposal-for-ext-008
+2026-09-03T13:15:14Z retire-proposal LIT-0532 -> executed (igw-241-proposal-for-ext-008; complete)
+2026-09-03T13:15:14Z auto-defer igw-241-proposal-for-ext-008 hash=6e04c9fb2e81 for 48h (complete)
