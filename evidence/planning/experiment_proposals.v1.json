@@ -3964,16 +3964,27 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1226",
+      "blocked_by": [
+        "ARC-062",
+        "MECH-309",
+        "arc_062_rule_apprehension:GAP-B",
+        "f-dominance-conversion-ceiling"
+      ],
+      "blocked_note": "ARC-113's own claims.yaml notes carry an explicit standing gate -- 'GATED: DO NOT QUEUE THE ABLATION WHILE ARC-062 GAP-B IS UNRESOLVED' -- and record that no experiment proposal is minted for it. GAP-B is still status=in-progress with a 2026-09-02 live verdict of non_contributory and re_derive brake fired. 7 of ARC-113's 9 depends_on claims are v3_pending: true.",
       "claim_id": "ARC-113",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-03T03:36:26Z",
+      "gated_by_session": "igw-240-proposal-for-arc-113",
+      "gating_reason": "EXP-0278 (auto-minted; EXP-#### numbers renumber every governance regen -- the stable key is EVB-1226/experimental) DECLINED at the /queue-experiment Step 2.5 substrate-readiness guardrail (session igw-240-proposal-for-arc-113, IGW-20260903-240, 2026-09-03). THREE GROUNDS, each independently sufficient. (1) THE CLAIM ITSELF FORBIDS IT. ARC-113's claims.yaml notes open with '*** GATED: DO NOT QUEUE THE ABLATION WHILE ARC-062 GAP-B IS UNRESOLVED. ***' and state the claim is 'REGISTERED as testable-but-gated, and no experiment proposal is minted'. The proposal_tick auto-minted one anyway; this is the same conflict already raised as chip-20260902-arc113-exp0486-gate-conflict (claimed and resolved by this session). (2) THE GATE IS STILL LIVE. arc_062_rule_apprehension:GAP-B is status=in-progress with live.as_of 2026-09-02, verdict non_contributory/standard, next routing=implement-substrate, brake=fired (arc_062_rule_apprehension_plan.md). ARC-062 is epistemic_category=substrate_ceiling / v3_pending; 7 of ARC-113's 9 depends_on claims (ARC-062, ARC-063, MECH-338, MECH-316, ARC-069, ARC-070, ARC-071) are v3_pending: true. Step 2.5 point 3 makes that a blocked_substrate stop on its own. The re-derive brake counts 26 braking autopsies on ARC-062 and 25 on MECH-309 -- the mechanism any ARC-113 stage ablation must exercise -- against 0 on ARC-113 itself, i.e. ARC-113 is untested only because its lineage's substrate ceiling has been adjudicated 26 times. (3) THE RUN WOULD PRODUCE A FALSE REFUTATION, NOT MERELY A NULL -- this is the load-bearing ground and it is worse than the ordinary vacuous-result case. ARC-113's registered falsifier is a stage ablation whose PASS requires the per-stage failure signatures to be DISSOCIABLE, and its own NON-DEGENERACY GUARD states that 'an undifferentiated performance decrement across every ablation REFUTES the ordered-cycle reading rather than supporting it'. V3-EXQ-654g (20260619T213118Z, FAIL/non_contributory, verified in-manifest this session) establishes exactly that undifferentiated decrement is what the current substrate must return: its C1a/C1b/C1c/C1d criteria are ALL criteria_non_degenerate=True -- the rule state is differentiated, matured, active and demonstrably propagates to committed action -- while C2_paired_lift is False, committed-class entropy lift +0.011 nats on 0/3 seeds. The behavioural DV is pinned by the MECH-439 F-dominance conversion ceiling upstream of any stage manipulation, so every stage's ablation reads the same flat decrement REGARDLESS of whether the stages are genuinely non-collapsible. The design therefore cannot distinguish 'stages are collapsible' (the claim is false) from 'the conversion ceiling annihilates the DV' (the claim is untested) -- and the grid routes that aliasing to a REFUTATION of a claim the run never tested. COMMITMENT-FREE FALLBACK CONSIDERED AND DECLINED AS NOT-YET-DESIGNABLE, NOT AS UNWANTED: a measurement-only per-stage liveness/variance diagnostic on the intact baseline is the right next experimental move and is genuinely ungated by GAP-B (it needs no differentiated committed behaviour). But it is not authorable today: ree_core has the individual stage mechanisms (policy/candidate_rule_field.py, policy/policy_chunking.py, pfc/lateral_pfc_analog.py rule_state, pfc/frontopolar_analog.py counterfactual) and ZERO per-stage discriminating readouts to measure variance ON -- stage_ablation / ablate_stage / rule_pipeline / stage_signature all return 0 hits across ree_core and experiments. Building those readouts is /implement-substrate work, and the prior stage is the audit ARC-113's own notes name as the FIRST MOVE ('FIRST MOVE IS AN AUDIT, NOT AN EXPERIMENT: which rule-pipeline stages are implemented, which planned, which absent'), which is already owned by the open chip chip-20260902-arc113-stage-implementation-audit. Queuing an instrumentation run now would pre-empt that audit and duplicate a chipped item. NOTE FOR THE PROPOSAL TICK: the two auto-minted queue-experiment chips on this claim (chip-proposal-exp-0486, chip-proposal-exp-0274) are the same gate conflict recurring across regens; they should be withdrawn rather than worked.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for ARC-113 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0278",
       "proposal_type": "experimental",
+      "release_condition": "TWO ROUTES, and they release DIFFERENT experiments -- do not conflate them. (A) FOR THE GATED BEHAVIOURAL ABLATION (this proposal): arc_062_rule_apprehension:GAP-B must close on a contributory PASS -- specifically a C2 committed-class-entropy lift showing that differentiated rule_state moves the committed argmax -- which requires the MECH-439 F-dominance conversion rebalance, currently routed to /implement-substrate and tracked behind the live v3 front (the observation -> z_world -> E1/E2 interface; SD-018 directional-field amend and the SD-e1 ITEM 2 validation are its named unowned items). Only then does the intact baseline show the LIVE PER-STAGE VARIANCE ARC-113's own non-degeneracy guard requires, and only then can an undifferentiated decrement be read as a refutation rather than as the ceiling. (B) FOR THE UNGATED MEASUREMENT-ONLY ROUTE (a NEW proposal, not this one): complete the stage-implementation audit (chip-20260902-arc113-stage-implementation-audit) tabling which of ARC-113's 11 stages are implemented / planned / absent against ARC-062/063, MECH-338, MECH-316 and ARC-069-071, grounded in real consumers rather than registered flags; then build the per-stage discriminating readouts it identifies via /implement-substrate; then a commitment-free per-stage liveness/variance diagnostic becomes authorable. That route needs no GAP-B closure and is the cheaper path to first evidence on ARC-113.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -3986,7 +3997,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_113",
       "target_repo": "ree-v3",
       "why_now": [
