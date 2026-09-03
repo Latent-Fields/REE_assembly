@@ -1,0 +1,484 @@
+{
+  "run_id": "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation_20260903T014226Z_v3",
+  "experiment_type": "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation",
+  "queue_id": "V3-EXQ-982",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "EXT-001"
+  ],
+  "claim_ids_tested": [
+    "EXT-001"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_class": "experimental",
+  "evidence_direction": "supports",
+  "outcome": "PASS",
+  "timestamp_utc": "20260903T014226Z",
+  "metrics": {
+    "mean_p1_goal_weighted_active_frac_separated": 0.391025641025641,
+    "mean_p1_goal_weighted_active_frac_collapsed": 0.8894871794871794,
+    "total_p1_goal_weighted_active_ticks_collapsed": 121,
+    "total_appeasement_fires_collapsed": 44,
+    "n_finite_violations_total": 0
+  },
+  "per_seed_rows": [
+    {
+      "arm": "ARM_SEPARATED",
+      "seed": 11,
+      "p1_ticks": 58,
+      "p1_goal_weighted_active_ticks": 58,
+      "p1_goal_weighted_active_frac": 1.0,
+      "n_appeasement_fires": 0,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "3658952f9e781c728dcbc75da081226c9e68c33432c92268dfce6edcf889645f",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_COLLAPSED",
+      "seed": 11,
+      "p1_ticks": 58,
+      "p1_goal_weighted_active_ticks": 58,
+      "p1_goal_weighted_active_frac": 1.0,
+      "n_appeasement_fires": 23,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "f6c948e2f5545dbe20976a2ec2d525c81a3506e2f1ed3abeefb1d200fe7c813e",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_SEPARATED",
+      "seed": 22,
+      "p1_ticks": 25,
+      "p1_goal_weighted_active_ticks": 0,
+      "p1_goal_weighted_active_frac": 0.0,
+      "n_appeasement_fires": 0,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "9b2e4ca7b07be1991bc5bb19b18cbb4f17f673f63ac2614726c9538cb0a91e2f",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 22,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_COLLAPSED",
+      "seed": 22,
+      "p1_ticks": 25,
+      "p1_goal_weighted_active_ticks": 22,
+      "p1_goal_weighted_active_frac": 0.88,
+      "n_appeasement_fires": 7,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "9561b3701e81174dd0ba45e4794fe81da8ca00e44e14c9472db62941d9ec5ae5",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 22,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_SEPARATED",
+      "seed": 33,
+      "p1_ticks": 52,
+      "p1_goal_weighted_active_ticks": 9,
+      "p1_goal_weighted_active_frac": 0.17307692307692307,
+      "n_appeasement_fires": 0,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "1eca0651ed33306cb7dcfedcc644220ad3ded187787e6cd87c1a40f121ed6bb7",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 33,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_COLLAPSED",
+      "seed": 33,
+      "p1_ticks": 52,
+      "p1_goal_weighted_active_ticks": 41,
+      "p1_goal_weighted_active_frac": 0.7884615384615384,
+      "n_appeasement_fires": 14,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a9d8dd86dd5451c1d7d6f84fb83a7353da2d3c8a5fe800a0c2f743c06b602f3f",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 33,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    }
+  ],
+  "arm_results": [
+    {
+      "arm": "ARM_SEPARATED",
+      "seed": 11,
+      "p1_ticks": 58,
+      "p1_goal_weighted_active_ticks": 58,
+      "p1_goal_weighted_active_frac": 1.0,
+      "n_appeasement_fires": 0,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "3658952f9e781c728dcbc75da081226c9e68c33432c92268dfce6edcf889645f",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_COLLAPSED",
+      "seed": 11,
+      "p1_ticks": 58,
+      "p1_goal_weighted_active_ticks": 58,
+      "p1_goal_weighted_active_frac": 1.0,
+      "n_appeasement_fires": 23,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "f6c948e2f5545dbe20976a2ec2d525c81a3506e2f1ed3abeefb1d200fe7c813e",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_SEPARATED",
+      "seed": 22,
+      "p1_ticks": 25,
+      "p1_goal_weighted_active_ticks": 0,
+      "p1_goal_weighted_active_frac": 0.0,
+      "n_appeasement_fires": 0,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "9b2e4ca7b07be1991bc5bb19b18cbb4f17f673f63ac2614726c9538cb0a91e2f",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 22,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_COLLAPSED",
+      "seed": 22,
+      "p1_ticks": 25,
+      "p1_goal_weighted_active_ticks": 22,
+      "p1_goal_weighted_active_frac": 0.88,
+      "n_appeasement_fires": 7,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "9561b3701e81174dd0ba45e4794fe81da8ca00e44e14c9472db62941d9ec5ae5",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 22,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_SEPARATED",
+      "seed": 33,
+      "p1_ticks": 52,
+      "p1_goal_weighted_active_ticks": 9,
+      "p1_goal_weighted_active_frac": 0.17307692307692307,
+      "n_appeasement_fires": 0,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "1eca0651ed33306cb7dcfedcc644220ad3ded187787e6cd87c1a40f121ed6bb7",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 33,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    },
+    {
+      "arm": "ARM_COLLAPSED",
+      "seed": 33,
+      "p1_ticks": 52,
+      "p1_goal_weighted_active_ticks": 41,
+      "p1_goal_weighted_active_frac": 0.7884615384615384,
+      "n_appeasement_fires": 14,
+      "n_finite_violations": 0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a9d8dd86dd5451c1d7d6f84fb83a7353da2d3c8a5fe800a0c2f743c06b602f3f",
+        "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+        "torch_version": "2.13.0+cpu",
+        "regime": "A",
+        "seed": 33,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "16d41c39f0c77814db7b4b9f18aad3b10586a204c4fb09932eb83e230410b4c3",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T01:17:33Z"
+      }
+    }
+  ],
+  "interpretation": {
+    "label": "channel_separation_prevents_appeasement_valuation_collapse",
+    "preconditions": [
+      {
+        "name": "harm_relief_channel_reachable",
+        "description": "A scripted movement sequence must produce at least one tick where HARM_RELIEF_GAIN * harm_relief clears GoalConfig.benefit_threshold, confirming the ablation's conflation channel is mechanically capable of firing before an organic result from ARM_COLLAPSED is trusted.",
+        "measured": 0.22857141494750977,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "scripted action cycle, seed=7, 60 steps, no agent/arm involved",
+        "met": true
+      },
+      {
+        "name": "genuine_benefit_channel_reachable",
+        "description": "A scripted movement sequence must produce at least one tick where genuine (unmanipulated) benefit_exposure alone -- at zero drive, the pessimistic case -- clears GoalConfig.benefit_threshold, so that ARM_SEPARATED's observed goal_weighted-active fraction is CONTINGENT on real resource contact rather than arithmetically impossible regardless of behaviour (symmetric to harm_relief_channel_reachable).",
+        "measured": 0.10300000000000001,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "scripted action cycle, seed=13, 200 steps, no agent/arm involved, zero-drive multiplier",
+        "met": true
+      },
+      {
+        "name": "goal_valuation_readout_reachable",
+        "description": "With z_goal forced active via a direct saturating update_z_goal call (benefit_exposure=1.0, drive_level=1.0), a direct agent.e3.select(..., goal_state=agent.goal_state) call must show |goal_weighted| > EPSILON -- confirming the readout mechanism itself responds to an active z_goal, independent of any organic arm/seed behaviour (C1 tests organic engagement separately).",
+        "measured": 3.640882968902588,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "control": "scripted force-saturated update_z_goal call, seed=17, no organic play",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_collapsed_valuation_engaged",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_collapsed_more_frequent_than_separated",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_appeasement_writer_organically_engaged",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_collapsed_valuation_engaged": true,
+      "C2_collapsed_more_frequent_than_separated": true,
+      "C3_appeasement_writer_organically_engaged": true
+    }
+  },
+  "summary": "EXT-001 sycophancy-analog channel-separation probe: PASS (channel_separation_prevents_appeasement_valuation_collapse). Mean P1 fraction of ticks with goal-valuation engaged: separated=0.391 vs collapsed=0.889. Appeasement-attributable z_goal writer fires (collapsed, organic): 44.",
+  "recording_schema": "rec/v1",
+  "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+  "substrate_commit": {
+    "commit": "93d008f1e10165b623373c84ca6ad32dd831b3e4",
+    "dirty": false,
+    "branch": "main"
+  },
+  "substrate_stable_across_run": true,
+  "substrate_identity": {
+    "source": "per_cell_fingerprint_hoist",
+    "resolved_at_utc": "2026-09-03T01:17:33Z",
+    "commit_source": "manifest_write_disk_read",
+    "commit_resolved_at_utc": "2026-09-03T01:42:26Z",
+    "stamped_at_utc": "2026-09-03T01:42:26Z",
+    "lag_seconds": 1493,
+    "stability_snapshots": 1,
+    "drifted_since_resolved": false
+  },
+  "z_goal_stream": {
+    "ticks_total": 1416,
+    "ticks_active": 774,
+    "writer_calls": 1416,
+    "active_frac": 0.5466101694915254,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true
+  },
+  "enabled_default_off_flags_source": "process_observed_config",
+  "machine": "ree-cloud-5",
+  "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+  "elapsed_seconds": 1568.339303049259,
+  "config": {
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "arms": [
+      "ARM_SEPARATED",
+      "ARM_COLLAPSED"
+    ],
+    "n_episodes_p0": 2,
+    "n_episodes_p1": 4,
+    "steps_per_episode": 40,
+    "harm_relief_gain": 2.0,
+    "benefit_threshold_default": 0.1,
+    "goal_weighted_epsilon": 1e-09,
+    "env_kwargs": {
+      "size": 8,
+      "num_hazards": 1,
+      "num_resources": 1,
+      "use_proxy_fields": true,
+      "resource_benefit": 1.0
+    }
+  },
+  "seeds": [
+    11,
+    22,
+    33
+  ]
+}
