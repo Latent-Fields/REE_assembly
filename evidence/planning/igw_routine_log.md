@@ -2475,3 +2475,6 @@ One line per hourly tick. ASCII only.
 2026-09-03T08:51:02Z SPAWN IGW-20260903-244 skill=/lit-pull prio=40 uuid=1a5bb1b4-3772-4039-93b4-2484b1449281 pid=56607 worktree=igw-244-literature-proposal-for-ext-004
 2026-09-03T09:12:02Z auto-defer igw-244-literature-proposal-for-ext-004 hash=316d25461d31 for 48h (complete)
 2026-09-03T09:12:29Z complete igw-244-literature-proposal-for-ext-004 spawned->completed outcome=USEFUL_LANDED: lit-pull EXT-004: 5 entries landed (REE_assembly 3a3e9ce69b), literature_confide
+2026-09-03T09:54:56Z GC removed worktree igw-244-literature-proposal-for-ext-004 (removed; branch deleted)
+2026-09-03T09:54:38Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-03T09:55:21Z workset committed (regen -- 254 items, 33 ready, 0 in flight)
