@@ -2523,3 +2523,4 @@ One line per hourly tick. ASCII only.
 2026-09-03T18:15:15Z skip IGW-20260903-244: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-09-03T19:17:05Z workset committed (regen -- 255 items, 34 ready, 0 in flight)
 2026-09-03T19:16:22Z no eligible item (skipped 255): IGW-20260903-001:skill /governance not allowed; IGW-20260903-002:skill /governance not allowed; IGW-20260903-003:skill /governance not allowed
+2026-09-03T20:17:28Z skip: paused (.igw_routine_pause present)

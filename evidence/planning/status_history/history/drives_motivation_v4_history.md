@@ -62,6 +62,7 @@ Source plan: `evidence/planning/drives_motivation_v4_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/competence_implementation_gap routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-03T07:21Z` [decision] `decision:ARC-073@2026-09-03T07:21:41.816055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L467`](../../../../evidence/decisions/decision_log.v1.jsonl#L467) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `drives_motivation_v4:DRV-2`
 
@@ -121,6 +122,7 @@ Source plan: `evidence/planning/drives_motivation_v4_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/competence_implementation_gap routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-03T07:21Z` [decision] `decision:ARC-073@2026-09-03T07:21:41.816055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L467`](../../../../evidence/decisions/decision_log.v1.jsonl#L467) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `drives_motivation_v4:DRV-3`
 
@@ -180,6 +182,7 @@ Source plan: `evidence/planning/drives_motivation_v4_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/competence_implementation_gap routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-03T07:21Z` [decision] `decision:ARC-073@2026-09-03T07:21:41.816055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L467`](../../../../evidence/decisions/decision_log.v1.jsonl#L467) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `drives_motivation_v4:DRV-5`
 
@@ -239,4 +242,5 @@ Source plan: `evidence/planning/drives_motivation_v4_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/competence_implementation_gap routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy unchanged_as_recorded/standard routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V4-EXQ-002-003_2026-09-02#V3-EXQ-259` -> [`evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V4-EXQ-002-003_2026-09-02.json) :: autopsy superseded/standard routing=governance-note-only **<- live head**
+- `2026-09-03T07:21Z` [decision] `decision:ARC-073@2026-09-03T07:21:41.816055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L467`](../../../../evidence/decisions/decision_log.v1.jsonl#L467) :: decision hold_candidate_resolve_conflict (applied)
 
