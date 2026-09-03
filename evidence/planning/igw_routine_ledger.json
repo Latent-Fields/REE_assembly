@@ -3678,7 +3678,11 @@
       "task_claim_session_id": "igw-auto-igw-240-proposal-for-arc-121-20260903T022827Z",
       "task_claim_claimed_at": "2026-09-03T02:28:27Z",
       "assigned_at": "2026-09-03T02:27:29Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-03T02:40:36Z",
+      "completion_summary": "marked EVB-1234/experimental (ARC-121) blocked_substrate: no shared epistemic-state object in ree_core to serve as the discriminative pair's primary condition; MECH-483 unimplemented",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0257 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -5062,6 +5066,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T01:26:50Z",
       "re_eligible_after": "2026-09-05T01:26:50Z"
+    },
+    {
+      "stable_hash": "9437d6f707f8",
+      "igw_id_at_disposition": "IGW-20260903-240",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-121"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for ARC-121",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T02:40:37Z",
+      "re_eligible_after": "2026-09-05T02:40:37Z"
     }
   ]
 }

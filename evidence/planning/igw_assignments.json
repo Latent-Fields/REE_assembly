@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-03T02:28:54Z",
+  "generated_at": "2026-09-03T02:40:37Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -8951,6 +8951,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "session_uuid=76282d01-3159-402b-8adb-4de103a8be96 branch=claude/igw-240-proposal-for-arc-121",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for ARC-121",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "ARC-121"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260903T024037Z-9437d6f7-claude_local",
+      "stable_hash": "9437d6f707f8",
+      "igw_id_at_assign": "IGW-20260903-240",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-03T02:40:37Z",
+      "released_at": "2026-09-03T02:40:37Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "complete: igw-240-proposal-for-arc-121 -> completed (outcome=USEFUL_LANDED)",
+      "released_event_for": "asn-20260903T022729Z-9437d6f7-claude_local",
       "note": "session_uuid=76282d01-3159-402b-8adb-4de103a8be96 branch=claude/igw-240-proposal-for-arc-121",
       "item_snapshot": {
         "skill": "/queue-experiment",
