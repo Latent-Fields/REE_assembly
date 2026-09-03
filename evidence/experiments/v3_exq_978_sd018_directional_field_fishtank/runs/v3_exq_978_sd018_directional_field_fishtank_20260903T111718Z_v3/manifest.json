@@ -1,0 +1,517 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_978_sd018_directional_field_fishtank",
+  "run_id": "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-03T11:17:18Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-088",
+    "MECH-457"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "INV-088": "unknown",
+    "MECH-457": "unknown"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "directional_head_did_not_change_zworld_at_this_operating_point",
+    "combination_rule": "PASS iff C_on_clears_floor (load-bearing) AND C_off_subfloor_replication. C_decode_lift is REPORTED, not gating: it attributes a lift rather than producing one, and a lift with a flat decode is a real and interesting result (it would mean the auxiliary loss helped by some route other than exposing the gradient) that must not be suppressed into a FAIL.",
+    "preconditions": [
+      {
+        "name": "field_loss_off::zworld_encoder_trained_in_p0",
+        "precondition": "zworld_encoder_trained_in_p0",
+        "arm": "field_loss_off",
+        "kind": "readiness",
+        "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder. Both arms run the same recipe, so this speaks for both.",
+        "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.28158509731292725,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "field_loss_off::zworld_not_collapsed",
+        "precondition": "zworld_not_collapsed",
+        "arm": "field_loss_off",
+        "kind": "readiness",
+        "description": "z_world must retain more than one effective dimension. The amend's own ML note names 25-dim-target-dominates-P0 collapse as its hazard, and the substrate has measured PR 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating- point failure, NOT evidence the directional head does not help.",
+        "control": "participation ratio of frozen z_world over the decode-probe samples",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.3981238608981705,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "field_loss_off::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "field_loss_off",
+        "kind": "readiness",
+        "description": "The env must be floor-achievable FROM THE SAME 5x5 resource field the amend supervises -- closes the V3-EXQ-732a privileged-oracle confound, so an arm that fails is genuinely under-powered rather than obs-starved.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "field_loss_on::zworld_encoder_trained_in_p0",
+        "precondition": "zworld_encoder_trained_in_p0",
+        "arm": "field_loss_on",
+        "kind": "readiness",
+        "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder. Both arms run the same recipe, so this speaks for both.",
+        "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.286665141582489,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "field_loss_on::field_leg_ran",
+        "precondition": "field_leg_ran",
+        "arm": "field_loss_on",
+        "kind": "readiness",
+        "description": "The ON arm's directional P0a leg must have ACTUALLY run (weight > 0 AND the head present AND world_obs wide enough), not merely been configured. Measures the trainer's own used_resource_field_head, so a regression in the P0a seam reads as substrate-not-ready rather than as a scientific null.",
+        "control": "ZWorldP0Trainer.used_resource_field_head on the ON arm's own warmup",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "field_loss_on::field_head_decodes_on_arm",
+        "precondition": "field_head_decodes_on_arm",
+        "arm": "field_loss_on",
+        "kind": "readiness",
+        "description": "The ON arm's trained head must beat a constant-mean predictor on P0a's OWN held-out field split. `field_leg_ran` certifies only that the leg was configured and stepped; this certifies it LEARNED something. Without it a head that ran and learned nothing reads as a scientific null about SD-018 rather than as a failed operating point for the P0a recipe.",
+        "control": "ZWorldP0Trainer resource_field_holdout.r2 on the ON arm's own warmup",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.6271448603616319,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "field_loss_on::zworld_not_collapsed",
+        "precondition": "zworld_not_collapsed",
+        "arm": "field_loss_on",
+        "kind": "readiness",
+        "description": "z_world must retain more than one effective dimension. The amend's own ML note names 25-dim-target-dominates-P0 collapse as its hazard, and the substrate has measured PR 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating- point failure, NOT evidence the directional head does not help.",
+        "control": "participation ratio of frozen z_world over the decode-probe samples",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.400935096125225,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "field_loss_on::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "field_loss_on",
+        "kind": "readiness",
+        "description": "The env must be floor-achievable FROM THE SAME 5x5 resource field the amend supervises -- closes the V3-EXQ-732a privileged-oracle confound, so an arm that fails is genuinely under-powered rather than obs-starved.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      }
+    ],
+    "per_arm_gate": {
+      "non_degenerate": true,
+      "degeneracy_reason": "",
+      "all_green": true,
+      "any_green": true,
+      "green_arms": [
+        "field_loss_off",
+        "field_loss_on"
+      ],
+      "red_arms": [],
+      "adjudication_preconditions": [
+        {
+          "name": "field_loss_off::zworld_encoder_trained_in_p0",
+          "precondition": "zworld_encoder_trained_in_p0",
+          "arm": "field_loss_off",
+          "kind": "readiness",
+          "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder. Both arms run the same recipe, so this speaks for both.",
+          "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+          "direction": "lower",
+          "applies": true,
+          "measured": 0.28158509731292725,
+          "threshold": 1e-06,
+          "met": true
+        },
+        {
+          "name": "field_loss_off::zworld_not_collapsed",
+          "precondition": "zworld_not_collapsed",
+          "arm": "field_loss_off",
+          "kind": "readiness",
+          "description": "z_world must retain more than one effective dimension. The amend's own ML note names 25-dim-target-dominates-P0 collapse as its hazard, and the substrate has measured PR 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating- point failure, NOT evidence the directional head does not help.",
+          "control": "participation ratio of frozen z_world over the decode-probe samples",
+          "direction": "lower",
+          "applies": true,
+          "measured": 3.3981238608981705,
+          "threshold": 2.0,
+          "met": true
+        },
+        {
+          "name": "field_loss_off::d3_local_view_greedy_clears_floor",
+          "precondition": "d3_local_view_greedy_clears_floor",
+          "arm": "field_loss_off",
+          "kind": "readiness",
+          "description": "The env must be floor-achievable FROM THE SAME 5x5 resource field the amend supervises -- closes the V3-EXQ-732a privileged-oracle confound, so an arm that fails is genuinely under-powered rather than obs-starved.",
+          "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+          "direction": "lower",
+          "applies": true,
+          "measured": 45.75,
+          "threshold": 1.0,
+          "met": true
+        },
+        {
+          "name": "field_loss_on::zworld_encoder_trained_in_p0",
+          "precondition": "zworld_encoder_trained_in_p0",
+          "arm": "field_loss_on",
+          "kind": "readiness",
+          "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder. Both arms run the same recipe, so this speaks for both.",
+          "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+          "direction": "lower",
+          "applies": true,
+          "measured": 0.286665141582489,
+          "threshold": 1e-06,
+          "met": true
+        },
+        {
+          "name": "field_loss_on::field_leg_ran",
+          "precondition": "field_leg_ran",
+          "arm": "field_loss_on",
+          "kind": "readiness",
+          "description": "The ON arm's directional P0a leg must have ACTUALLY run (weight > 0 AND the head present AND world_obs wide enough), not merely been configured. Measures the trainer's own used_resource_field_head, so a regression in the P0a seam reads as substrate-not-ready rather than as a scientific null.",
+          "control": "ZWorldP0Trainer.used_resource_field_head on the ON arm's own warmup",
+          "direction": "lower",
+          "applies": true,
+          "measured": 1.0,
+          "threshold": 0.5,
+          "met": true
+        },
+        {
+          "name": "field_loss_on::field_head_decodes_on_arm",
+          "precondition": "field_head_decodes_on_arm",
+          "arm": "field_loss_on",
+          "kind": "readiness",
+          "description": "The ON arm's trained head must beat a constant-mean predictor on P0a's OWN held-out field split. `field_leg_ran` certifies only that the leg was configured and stepped; this certifies it LEARNED something. Without it a head that ran and learned nothing reads as a scientific null about SD-018 rather than as a failed operating point for the P0a recipe.",
+          "control": "ZWorldP0Trainer resource_field_holdout.r2 on the ON arm's own warmup",
+          "direction": "lower",
+          "applies": true,
+          "measured": 0.6271448603616319,
+          "threshold": 0.0,
+          "met": true
+        },
+        {
+          "name": "field_loss_on::zworld_not_collapsed",
+          "precondition": "zworld_not_collapsed",
+          "arm": "field_loss_on",
+          "kind": "readiness",
+          "description": "z_world must retain more than one effective dimension. The amend's own ML note names 25-dim-target-dominates-P0 collapse as its hazard, and the substrate has measured PR 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating- point failure, NOT evidence the directional head does not help.",
+          "control": "participation ratio of frozen z_world over the decode-probe samples",
+          "direction": "lower",
+          "applies": true,
+          "measured": 3.400935096125225,
+          "threshold": 2.0,
+          "met": true
+        },
+        {
+          "name": "field_loss_on::d3_local_view_greedy_clears_floor",
+          "precondition": "d3_local_view_greedy_clears_floor",
+          "arm": "field_loss_on",
+          "kind": "readiness",
+          "description": "The env must be floor-achievable FROM THE SAME 5x5 resource field the amend supervises -- closes the V3-EXQ-732a privileged-oracle confound, so an arm that fails is genuinely under-powered rather than obs-starved.",
+          "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+          "direction": "lower",
+          "applies": true,
+          "measured": 45.75,
+          "threshold": 1.0,
+          "met": true
+        }
+      ],
+      "vacuous_arms": [],
+      "per_arm_gate": {
+        "green_arms": [
+          "field_loss_off",
+          "field_loss_on"
+        ],
+        "red_arms": [],
+        "structurally_vacuous_arms": [],
+        "vacuity_reason_by_arm": {},
+        "all_green": true,
+        "any_green": true,
+        "failed_preconditions_by_arm": {},
+        "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+        "green": [
+          {
+            "arm": "field_loss_off",
+            "gate_green": true,
+            "structurally_vacuous": false,
+            "vacuity_reason": "",
+            "failed_preconditions": [],
+            "preconditions": [
+              {
+                "name": "field_loss_off::zworld_encoder_trained_in_p0",
+                "precondition": "zworld_encoder_trained_in_p0",
+                "arm": "field_loss_off",
+                "kind": "readiness",
+                "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder. Both arms run the same recipe, so this speaks for both.",
+                "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+                "direction": "lower",
+                "applies": true,
+                "measured": 0.28158509731292725,
+                "threshold": 1e-06,
+                "met": true
+              },
+              {
+                "name": "field_loss_off::zworld_not_collapsed",
+                "precondition": "zworld_not_collapsed",
+                "arm": "field_loss_off",
+                "kind": "readiness",
+                "description": "z_world must retain more than one effective dimension. The amend's own ML note names 25-dim-target-dominates-P0 collapse as its hazard, and the substrate has measured PR 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating- point failure, NOT evidence the directional head does not help.",
+                "control": "participation ratio of frozen z_world over the decode-probe samples",
+                "direction": "lower",
+                "applies": true,
+                "measured": 3.3981238608981705,
+                "threshold": 2.0,
+                "met": true
+              },
+              {
+                "name": "field_loss_off::d3_local_view_greedy_clears_floor",
+                "precondition": "d3_local_view_greedy_clears_floor",
+                "arm": "field_loss_off",
+                "kind": "readiness",
+                "description": "The env must be floor-achievable FROM THE SAME 5x5 resource field the amend supervises -- closes the V3-EXQ-732a privileged-oracle confound, so an arm that fails is genuinely under-powered rather than obs-starved.",
+                "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+                "direction": "lower",
+                "applies": true,
+                "measured": 45.75,
+                "threshold": 1.0,
+                "met": true
+              }
+            ],
+            "scoped_out": [
+              {
+                "name": "field_loss_off::field_leg_ran",
+                "precondition": "field_leg_ran",
+                "arm": "field_loss_off",
+                "applies": false,
+                "reason": "field_head_off runs the same architecture with P0a weight 0.0, so its leg not running is what that arm IS, not a readiness failure"
+              },
+              {
+                "name": "field_loss_off::field_head_decodes_on_arm",
+                "precondition": "field_head_decodes_on_arm",
+                "arm": "field_loss_off",
+                "applies": false,
+                "reason": "field_head_off trains no directional leg (P0a weight 0.0), so it has no held-out field r2 to certify"
+              }
+            ]
+          },
+          {
+            "arm": "field_loss_on",
+            "gate_green": true,
+            "structurally_vacuous": false,
+            "vacuity_reason": "",
+            "failed_preconditions": [],
+            "preconditions": [
+              {
+                "name": "field_loss_on::zworld_encoder_trained_in_p0",
+                "precondition": "zworld_encoder_trained_in_p0",
+                "arm": "field_loss_on",
+                "kind": "readiness",
+                "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder. Both arms run the same recipe, so this speaks for both.",
+                "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+                "direction": "lower",
+                "applies": true,
+                "measured": 0.286665141582489,
+                "threshold": 1e-06,
+                "met": true
+              },
+              {
+                "name": "field_loss_on::field_leg_ran",
+                "precondition": "field_leg_ran",
+                "arm": "field_loss_on",
+                "kind": "readiness",
+                "description": "The ON arm's directional P0a leg must have ACTUALLY run (weight > 0 AND the head present AND world_obs wide enough), not merely been configured. Measures the trainer's own used_resource_field_head, so a regression in the P0a seam reads as substrate-not-ready rather than as a scientific null.",
+                "control": "ZWorldP0Trainer.used_resource_field_head on the ON arm's own warmup",
+                "direction": "lower",
+                "applies": true,
+                "measured": 1.0,
+                "threshold": 0.5,
+                "met": true
+              },
+              {
+                "name": "field_loss_on::field_head_decodes_on_arm",
+                "precondition": "field_head_decodes_on_arm",
+                "arm": "field_loss_on",
+                "kind": "readiness",
+                "description": "The ON arm's trained head must beat a constant-mean predictor on P0a's OWN held-out field split. `field_leg_ran` certifies only that the leg was configured and stepped; this certifies it LEARNED something. Without it a head that ran and learned nothing reads as a scientific null about SD-018 rather than as a failed operating point for the P0a recipe.",
+                "control": "ZWorldP0Trainer resource_field_holdout.r2 on the ON arm's own warmup",
+                "direction": "lower",
+                "applies": true,
+                "measured": 0.6271448603616319,
+                "threshold": 0.0,
+                "met": true
+              },
+              {
+                "name": "field_loss_on::zworld_not_collapsed",
+                "precondition": "zworld_not_collapsed",
+                "arm": "field_loss_on",
+                "kind": "readiness",
+                "description": "z_world must retain more than one effective dimension. The amend's own ML note names 25-dim-target-dominates-P0 collapse as its hazard, and the substrate has measured PR 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating- point failure, NOT evidence the directional head does not help.",
+                "control": "participation ratio of frozen z_world over the decode-probe samples",
+                "direction": "lower",
+                "applies": true,
+                "measured": 3.400935096125225,
+                "threshold": 2.0,
+                "met": true
+              },
+              {
+                "name": "field_loss_on::d3_local_view_greedy_clears_floor",
+                "precondition": "d3_local_view_greedy_clears_floor",
+                "arm": "field_loss_on",
+                "kind": "readiness",
+                "description": "The env must be floor-achievable FROM THE SAME 5x5 resource field the amend supervises -- closes the V3-EXQ-732a privileged-oracle confound, so an arm that fails is genuinely under-powered rather than obs-starved.",
+                "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+                "direction": "lower",
+                "applies": true,
+                "measured": 45.75,
+                "threshold": 1.0,
+                "met": true
+              }
+            ],
+            "scoped_out": []
+          }
+        ],
+        "red": []
+      }
+    },
+    "criteria_non_degenerate": {
+      "C_on_clears_floor": true,
+      "C_decode_lift": true,
+      "C_off_subfloor_replication": true
+    },
+    "criteria": [
+      {
+        "name": "C_on_clears_floor",
+        "load_bearing": true,
+        "passed": false,
+        "description": "field_head_on clears the 1.0 competence floor on a strict majority of seeds, reading z_world alone"
+      },
+      {
+        "name": "C_off_subfloor_replication",
+        "load_bearing": false,
+        "passed": true,
+        "description": "field_head_off does NOT clear the floor -- replicates the 948/813 latent anchor. If this fails the contrast is uninterpretable, which is why it is a criterion and not an assumption"
+      },
+      {
+        "name": "C_decode_lift",
+        "load_bearing": false,
+        "passed": false,
+        "description": "held-out linear decode of resource_field_view from frozen z_world lifts by >= 0.05 r2 on the ON arm AND clears r2 > 0 absolutely -- the mechanism check that makes a competence lift attributable to directional content. The absolute floor is load-bearing: a margin between two sub-mean decodes is a lift of nothing (red-team F4)"
+      }
+    ],
+    "null_reading": {
+      "directional_content_present_but_does_not_convert": "decode lifted, competence did not -- displaces the observation-interface leg toward the CONSUMER side; shape (b) is the next build",
+      "directional_head_did_not_change_zworld_at_this_operating_point": "neither lifted -- a statement about the P0a recipe at resource_field_weight=0.50, NOT about the hypothesis. Re-run at another weight before concluding"
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "21d9e701a3b29ba27ca8254161d3f449a343b0905435b6dccb981d78cb979a52",
+  "substrate_commit": {
+    "commit": "963196d13d34ffa0eb0af8f6a95695fb9e636b6f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "latent.use_resource_field_head": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_action_contrastive_multistep_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_vs_rollout_gating": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_context_from_e2_world_forward": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "use_ofc_analog": true,
+    "ofc_harm_dim": 32,
+    "use_ofc_devaluation_head": true,
+    "ofc_train_devaluation_head": true,
+    "use_gated_policy": true,
+    "use_noise_floor": true,
+    "use_e3_score_diversity": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 278229,
+    "ticks_active": 277110,
+    "writer_calls": 278229,
+    "active_frac": 0.9959781331205589,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
