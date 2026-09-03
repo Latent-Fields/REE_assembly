@@ -1819,6 +1819,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0126",
+      "claim_ids": [
+        "EXT-005"
+      ],
+      "flag_type": "stale_note",
+      "summary": "EXT-005's ree_mechanism field lists SD-003, but SD-003's status in claims.yaml is 'superseded'; EXT-005's notes also quote the retired SD-003 formulation verbatim ('E2(z_t, a_actual) - E2(z_t, a_cf) is the agent's causal signature in latent space') as REE's live answer to the claim. The live successors are SD-029 (single-pass agency attribution via forward-model comparator on the z_harm_s reafferent stream: residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual)) and ARC-033/ARC-037. Noticed while writing the targeted_review_ext_005 literature pull (REE_assembly 6dbbb15509), which had to translate the claim into the live mechanism by hand for every one of its five entries. Recommend governance update EXT-005's ree_mechanism and notes to point at the successor claims so the external-failure-mode entry and the substrate cluster stay joined.",
+      "raised_by_session": "igw-239-literature-proposal-for-ext-005",
+      "raised_at": "2026-09-03T11:14:26Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
