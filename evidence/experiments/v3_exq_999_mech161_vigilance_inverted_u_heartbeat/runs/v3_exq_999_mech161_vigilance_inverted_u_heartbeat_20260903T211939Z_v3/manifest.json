@@ -1,0 +1,75 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat",
+  "run_id": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-161"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "baseline_avoidance_discrimination_margin",
+        "measured": -0.260797342192691,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "trained agent evaluated at the training heartbeat rate (P=10); positive control that hazard-avoidance behaviour was trained at all",
+        "met": false,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_interior_max_margin": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4de172267704c6a2d8d422bc0ddc55eee71af56c65fe01593fa493ff72f03d71",
+  "substrate_commit": {
+    "commit": "7d896c94765c7cfb8053dc20fe51449edff27e3a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "latent.use_event_classifier": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  }
+}
