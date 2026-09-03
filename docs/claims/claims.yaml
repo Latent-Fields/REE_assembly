@@ -91045,6 +91045,7 @@
     (Gergely & Csibra), and the animal-cognition predator-category literature that unifies
     causally-dissimilar items by relation-to-organism, are the obvious anchors and should be
     commissioned before hardening. DO NOT build in V3. DO NOT queue an experiment.
+    2026-09-03 thought-intake cross-reference (not evidence, not a status change): docs/thoughts/2026-09-03_temporary_coordinated_representational_transformations.md proposes a related family -- persistent/transient 'directive structures' (goals one instance) that temporarily reorganise a shared substrate into a decision-relevant representation R_(t,a) = T(S_t, D_t, a). The novelty audit (evidence/planning/thought_intake_2026-09-03_temporary_coordinated_representational_transformations.md) found the substantive content already covered by MECH-359, ARC-065 GAP-A and the MECH-516/517/518 interface-collapse family; the 'directive structures' superclass did not clear the bar for a new claim. Source cross-reference only.
 - id: ARC-134
   title: "The unit of PERCEPT is a dynamic representation, not a fixed primitive: perceptual grain rescales with circumstance, so that the same scene is individuated coarsely or finely depending on demand. This is the perceptual analogue of ARC-069's already-accepted policy-side commitment, and ARC-069's rationale transfers axis-independently -- a fixed grain is either too fine (combinatorial explosion in what must be tracked and bound) or too coarse (units fail to map onto the actual state). REE has made this commitment for policy (ARC-069/070/071) and for context slots offline (MECH-166) but never for online perception, where the unit remains fixed."
   claim_type: architectural_commitment
@@ -93233,4 +93234,109 @@
     social ecology are held fixed, regardless of developmental-history difference -- i.e. only ARCHITECTURAL
     ancestry matters, and ontogenetic ancestry is safely treated as a historical artefact rather than
     as machinery later organisms require.'
+  evidence: []
+
+- id: GOV-ROTATE-1
+  title: 'Claim rotation (epistemic representation layer, not a second evidence ledger): REE''s claim
+    system may hold multiple explicit representations of one canonical claim -- architectural, transformation,
+    behavioural, developmental, biological-analogue -- each exposing a different diagnostic question /
+    observable / intervention point, while the canonical claim retains a SINGLE evidence and promotion
+    state across all of them (multiple views, ONE truth state); when translating a claim into an alternative
+    view exposes empirical content the original wording did not entail, that content becomes a NEW claim
+    with its own evidence record and must NEVER inherit the parent claim''s evidence.'
+  claim_type: governance_rule
+  subject: governance.epistemics.claim_rotation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-09-03'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-03'
+  source_thought: docs/thoughts/2026-09-03_claim_rotation_dual_view_claim_matrix.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-FANOUT-1
+  - GOV-HELDOUT-1
+  - GOV-FROZEN-1
+  functional_restatement: 'Epistemic-hygiene governance rule; a REPRESENTATION-LAYER member of the warn-only
+    routing-standard family (GOV-CEIL-1 ceiling-exhaustion detection, GOV-DIAG-1 diagnostic-recurrence
+    detection, GOV-FANOUT-1 bottleneck response, GOV-HELDOUT-1 rule-change validation, GOV-FROZEN-1 denominator
+    integrity). Those govern how work is stopped, answered, escalated, or reported; this one governs how
+    a STALLED claim may be RE-DESCRIBED without multiplying evidence. THE MECHANISM. A canonical claim
+    C_i may carry >=1 alternative REPRESENTATIONS R_i1, R_i2, ... -- each an alternative coordinate system
+    (architectural / transformation / behavioural / developmental / biological-analogue / other) over
+    the SAME scientific commitment, each optionally carrying: a view name, a restated statement, a diagnostic
+    question, operational observables, intervention points, expected signatures, and a falsifier for the
+    VIEW itself (does this view fail to be useful). Evidence and promotion state live ONLY on the canonical
+    claim C_i and its actual experiments; a representation is a lens for finding a discriminating experiment,
+    never an independent thing that can itself be "supported" or "weakened". THE SAFEGUARD (load-bearing,
+    not optional). A translation between views can smuggle a genuinely new empirical proposition into
+    what reads as mere rephrasing. When it does, the new content is split into its OWN claim with its
+    own evidence and promotion state, explicitly NOT inheriting C_i''s accumulated evidence. This is the
+    discriminator between legitimate rotation (restating what a claim would have to mean in different
+    coordinates) and claim laundering (acquiring apparent support by moving between formulations of what
+    is actually a different, untested proposition). TRIGGER = a claim has stalled (no discriminating next
+    experiment is apparent in its current representation) AND rotating it into a different view plausibly
+    exposes one. NON-FALSIFYING-SAFE / does nothing on its own: it changes no claim''s status or confidence
+    and gates no promotion -- it is a heuristic for generating the NEXT experiment design, not a verdict
+    on any experiment already run.
+
+    '
+  notes: 'From thought-intake 2026-09-03 (docs/thoughts/2026-09-03_claim_rotation_dual_view_claim_matrix.md),
+    read alongside its companion thoughts on the same date (2026-09-03_ree_as_predictive_sensorimotor_transformation.md,
+    2026-09-03_temporary_coordinated_representational_transformations.md). Registered by session thought-routing-20260903,
+    not by the concurrent V3-EXQ-978 failure-autopsy session -- this claim adjudicates NOTHING about 978
+    and no claims.yaml edit against 978''s own claims (INV-088, MECH-457) is made here or implied by this
+    registration.
+
+    (i) BUILD DISCIPLINE, STATED EXPLICITLY AND BINDING: no schema, tooling, or second ledger is to be
+    built for claim rotation until at least ONE rotation is SHOWN -- on a real, already-run adjudication,
+    not a toy example -- to have produced a smaller or more discriminating next experiment than the pre-rotation
+    framing would have. The source thought''s own YAML rendering of a representations schema (its section
+    5) is illustrative only and explicitly "should not be implemented merely because the thought exists."
+    Until that one demonstrated case exists, rotation is a manual reasoning habit for the person or session
+    designing the next experiment, not a machine-readable structure this claim authorises building.
+
+    (ii) THE FIRST HELD-OUT TRIAL is the V3-EXQ-978 failure autopsy, at REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-978_2026-09-03.md
+    (PENDING as of this claim''s registration -- referred to by path only, never adjudicated here). That
+    autopsy is a natural test case because INV-088 (z_world differentiation) can be posed in two coordinate
+    systems on the SAME 978 result: the architectural framing ("does z_world discard directional information")
+    and the transformation framing ("at which transformation does the sign/ordering/usefulness of the
+    resource- direction distinction stop propagating toward action"). Per GOV-HELDOUT-1 discipline, the
+    outcome of THAT SPECIFIC QUESTION -- did rotating INV-088 from architectural into transformation coordinates
+    produce a smaller or more discriminating next experiment than the architectural framing alone would
+    have -- is the ONLY admissible evidence for or against this claim at this stage, and MUST be recorded
+    on THIS claim (as a dated note, not a status change) once the 978 autopsy lands. A rotation that merely
+    restates the same next step in different words counts as a null result for this claim, not a confirmation.
+
+    (iii) WHAT THIS IS EXPLICITLY NOT, stated to prevent scope creep at the first opportunity (this registration)
+    rather than after machinery exists: NOT a second evidence ledger -- evidence and promotion state live
+    only on the canonical claim, never duplicated per view, never summed across views. NOT GOV-FANOUT-1
+    -- fan-out is a PORTFOLIO of independently falsifiable RIVAL hypotheses run in parallel when a bottleneck
+    fires and the open question is a discrimination between named alternatives; rotation is a single claim
+    viewed from different angles to find its next experiment, and does not by itself constitute the diverse-axis
+    coverage GOV-FANOUT-1 requires -- a rotated view MAY inform one leg of a GOV-FANOUT-1 portfolio, but
+    rotating a claim is not equivalent to fanning it out. NOT a paraphrase licence -- restating a claim
+    without changing what experiment it suggests is unhelpful ceremony per the success criterion below,
+    not a legitimate use of this rule.
+
+    (iv) SUCCESS CRITERION, quoted verbatim from the source thought (2026-09-03_claim_rotation_dual_view_claim_matrix.md,
+    section 11, "What would make this idea unhelpful"):
+
+    "Does rotating a stalled claim produce a clearer, smaller or more discriminating next experiment?
+
+    If not, the machinery is unnecessary."
+
+    This is the durable acceptance test for the practice itself, independent of any single trial''s outcome
+    -- if the 978 trial (ii) and subsequent trials repeatedly fail this test, the practice should be demoted
+    per the same discipline GOV-HELDOUT-1 applies to itself, not defended by adding more schema.
+
+    '
   evidence: []

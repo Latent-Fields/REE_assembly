@@ -1,6 +1,10 @@
 # Thought: Claim Rotation and Dual-View Claim Matrices
 
-Status: epistemic/governance tooling thought — not a new scientific claim and not a second independent evidence ledger
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-03_claim_rotation_dual_view_claim_matrix.md
+Claims registered: GOV-ROTATE-1
+
+Original status line: epistemic/governance tooling thought — not a new scientific claim and not a second independent evidence ledger
 
 Date: 2026-09-03
 

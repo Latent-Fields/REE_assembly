@@ -1542,6 +1542,14 @@
     "title": "Reanalysis-first / answer-from-recorded-data rule (consumer complement to the Experimental Recording Standard): before authoring a NEW experiment, check whether the decisive readout the experiment would produce is ALREADY RECORDED -- or derivable by post-hoc reprocessing -- in existing manifests on a COMPATIBLE substrate (a matching or lineage-equivalent top-level substrate_hash, or a provably substrate-invariant readout). If the answer is fully recoverable, do NOT queue a run: produce a RECORDED post-hoc reanalysis artifact that cites the source run_ids. If only partially recoverable, DOWNGRADE to a minimal targeted run for the missing readout alone. Author a fresh full experiment only when the answer genuinely cannot be recovered from recorded data. This is the forward mystery(known-data) router -- it converts the recording standard's over-recorded readouts into avoided compute. Warn-only routing standard; PROMOTES/DEMOTES NOTHING.",
     "type": "governance_rule"
   },
+  "GOV-ROTATE-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.claim_rotation",
+    "title": "Claim rotation (epistemic representation layer, not a second evidence ledger): REE's claim system may hold multiple explicit representations of one canonical claim -- architectural, transformation, behavioural, developmental, biological-analogue -- each exposing a different diagnostic question / observable / intervention point, while the canonical claim retains a SINGLE evidence and promotion state across all of them (multiple views, ONE truth state); when translating a claim into an alternative view exposes empirical content the original wording did not entail, that content becomes a NEW claim with its own evidence record and must NEVER inherit the parent claim's evidence.",
+    "type": "governance_rule"
+  },
   "GOV-SEC-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",

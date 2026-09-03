@@ -1,8 +1,12 @@
 # Thought: REE as a Predictive Sensorimotor Transformation
 
+Status: processed
+Intake: docs/architecture/lens_predictive_sensorimotor_transformation.md (processed directly into a canonical lens page; no Stage 2 intake)
+Claims registered: none (lens only)
+
 ## A different representation of the same architecture
 
-Status: conceptual reframing / architectural lens — explicitly not a new REE claim
+Original status line: conceptual reframing / architectural lens — explicitly not a new REE claim
 
 Date: 2026-09-03
 
