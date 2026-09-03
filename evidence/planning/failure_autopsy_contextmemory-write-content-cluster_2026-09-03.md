@@ -250,11 +250,18 @@ graded against it** -- the class the directive names. H2 and H4 are not loss des
 mutual-information statistic, no K >= 4 cluster extension, and no per-draw contingency table appears in
 any of the four drivers or manifests.
 
-**How this was resolved (user decision, 2026-09-03).** The directive is dated 2026-08-29, and
-**governance itself routed this H1-H4 portfolio on 2026-08-30**, the day after. Put to the user at the
-Step 8 gate, the decision was that **the later routing supersedes** and the directive is overridden. The
+**How this was resolved (user decision, 2026-09-03; citation corrected 2026-09-03 after independent
+review).** The directive is dated 2026-08-29. This artifact originally justified overriding it by citing
+governance's 2026-08-30 note on this portfolio as having "routed" it, with the later routing said to
+supersede the directive. An independent adversarial review of this artifact found that citation does not
+hold: the 2026-08-30 note (`failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.md` section 13)
+routes an unrelated open question to this hypothesis-space entry and explicitly states nothing was queued
+as a result; H1-H4 were in fact built and queued on 2026-09-02, and no driver references the C2
+directive. **The correct and sufficient authority is direct user authorization**, given at the Step 8
+gate independent of that citation -- the user reviewed the build and considered it justified. The
 directive is therefore quoted here as the origin of the instrument finding -- which the portfolio's own
-data independently confirm -- and **not** as a standing prohibition. No refusal is recorded (section 5).
+data independently confirm -- and **not** as a standing prohibition that was violated without
+authorization. No refusal is recorded (section 5).
 
 ### 3.3 The budget -- an argument this autopsy tested and WITHDREW
 
@@ -345,9 +352,10 @@ claim-keyed counter returns 0 for them directly.)
 
 An earlier draft of this artifact **refused** a further write-side loss design, on the strength of the
 substrate entry's 2026-08-29 directive. **That refusal is withdrawn.** At this autopsy's Step 8 gate
-(2026-09-03) the user was shown that the directive predates the portfolio by four days while governance
-itself routed the H1-H4 portfolio on 2026-08-30, the day after, and directed that **the later routing
-supersedes** -- so the directive is read as overridden and no refusal is recorded.
+(2026-09-03) the user reviewed the build directly and considered it justified, authorizing the override.
+(An earlier version of this artifact instead cited governance's 2026-08-30 note as having "routed" the
+portfolio with the later routing superseding the directive; an independent review found that citation
+does not hold -- see section 3.2 -- so direct user authorization is recorded as the actual basis.)
 
 **What that does not change.** The instrument finding rests on measurement, not on the directive: 72 of
 89 portfolio cells can only return Jaccard 0.0 or 1.0; 969 Phase A's paired test returned its maximum
@@ -430,9 +438,10 @@ warns about -- *inapplicable is not "no fire"* -- and it is why 7c carried the w
 1. **Amend** `contextmemory-write-path-addressing-degeneracy` with the four failure records, the
    instrument-redesign hint, and a `depends_on_unresolved` naming the **SD-070 encoder recipe** -- the
    upstream lever belongs there, not here (see the JSON sibling).
-2. **The 2026-08-29 C2 directive is superseded** by governance's 2026-08-30 routing (user decision at
-   this autopsy's gate). Governance may wish to mark it so in the substrate entry, so the contradiction
-   does not resurface. No re-queue refusal is recorded.
+2. **The 2026-08-29 C2 directive was overridden by direct user authorization** at this autopsy's Step 8
+   gate (not by governance's 2026-08-30 note, which an independent review found does not itself route or
+   supersede the directive -- see section 3.2). Governance may wish to mark this in the substrate entry,
+   so the contradiction does not resurface. No re-queue refusal is recorded.
 3. **Do not** set any `evidence_direction` or `epistemic_category` on SD-017 / ARC-045 / MECH-166 from
    these runs -- they are claim-free and contribute to no claim's confidence.
 4. **Ledger:** all four legs stay `alive` with `resolving_runs` and `basis` recorded (Step 9b).
@@ -450,4 +459,4 @@ next session.
 | "A ~10x under-run training budget is a shared cause across all four legs" | **WITHDRAWN** | The realised schedule equals V3-EXQ-956's seed-for-seed; it is the environment's early-termination behaviour and the schedule the substrate entry registered. |
 | "H2's data cannot bear the null reading" | **INVERTED** | The baseline mismatch is conservative for the null; seed-matched, every operating point moved the wrong way by ~0.5. |
 | "The input distribution is the binding constraint" | **RETAINED, downgraded to leading hypothesis** | It loses its H1 leg and now rests on H2's direction plus H4's measurement, with H4's statistic hedged. |
-| "REFUSED: do not queue a further write-side loss design against the unchanged instrument" | **WITHDRAWN** | User decision at the Step 8 gate: governance's 2026-08-30 routing supersedes the 2026-08-29 directive. The instrument finding itself is unaffected -- it rests on measurement. |
+| "REFUSED: do not queue a further write-side loss design against the unchanged instrument" | **WITHDRAWN** | Direct user authorization at the Step 8 gate overrides the 2026-08-29 directive (not governance's 2026-08-30 note, which an independent review found does not itself route or supersede it -- see section 3.2). The instrument finding itself is unaffected -- it rests on measurement. |
