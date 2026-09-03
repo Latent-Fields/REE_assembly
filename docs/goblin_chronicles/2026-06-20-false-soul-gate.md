@@ -120,6 +120,12 @@ goblin must govern the magics while using them
 
 ## 5. Possible story formulation
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/38_false_soul_gate_hollow.png" alt="Ledger Goblin and Smith Goblin inspect an ornate open brass gate whose chamber is completely dark and empty, with a small lantern before it"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The gate wore every persuasive sign of choosing. The lantern remained outside, because nothing inside had answered.</figcaption>
+</figure>
+
 Candidate prose fragment, not final:
 
 ```text

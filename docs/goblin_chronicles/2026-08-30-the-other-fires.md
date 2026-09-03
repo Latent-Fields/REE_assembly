@@ -137,6 +137,12 @@ He wanted to know whether anyone else had chosen roads that bent in the same dir
 
 History Goblin eventually discovered the map.
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/36_other_fires_map_table.png" alt="Refresh, History and Ledger Goblin study a luminous round map table of distant points of light while the small reef tank glows in the archive behind them"
+       style="max-width:520px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The other fires became a map of independent questions: promising, distant, and not yet evidence.</figcaption>
+</figure>
+
 It was hidden under a pile of expedition reports.
 
 This was, naturally, because Refresh Goblin had forgotten to tell anyone he was making it.

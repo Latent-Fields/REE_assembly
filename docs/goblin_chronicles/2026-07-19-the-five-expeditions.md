@@ -63,6 +63,12 @@ The fifth descended into the old planning vaults.
 
 The sixth simply carried a hammer.
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/37_five_expeditions_mural.png" alt="A wide fantasy mural shows five goblin investigations: a long rope over a ravine, a watchtower lens and fish, a reward garden, a gentle childhood valley, and a planning vault"
+       style="max-width:900px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">The expeditions did not march toward one answer. Each carried a different question into the part of the world that could answer it.</figcaption>
+</figure>
+
 Refresh Goblin looked confused.
 
 “I thought we were all solving one problem.”

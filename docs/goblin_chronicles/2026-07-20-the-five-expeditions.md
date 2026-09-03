@@ -52,6 +52,12 @@ Planner Goblin descended beneath the assembly house.
 
 Hand Goblin carried only a hammer.
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="../assets/fantasy/37_five_expeditions_mural.png" alt="A wide fantasy mural shows five goblin investigations: a long rope over a ravine, a watchtower lens and fish, a reward garden, a gentle childhood valley, and a planning vault"
+       style="max-width:900px;width:100%;height:auto;border:1px solid #d0d7de;border-radius:8px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em">Do not follow goblins. Follow questions, each to the place where it can be answered.</figcaption>
+</figure>
+
 Refresh Goblin looked worried.
 
 "There are too many goblins."
