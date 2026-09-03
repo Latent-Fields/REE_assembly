@@ -3615,16 +3615,26 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1234",
+      "blocked_by": [
+        "MECH-483",
+        "MECH-482",
+        "no-shared-epistemic-state-object-in-ree-core"
+      ],
+      "blocked_note": "No shared epistemic-state object exists in ree-v3/ree_core to serve as the discriminative pair's primary condition (support and ablation arms would be identical); MECH-483 unimplemented and MECH-482 still v3_pending.",
       "claim_id": "ARC-121",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "gated_at_utc": "2026-09-03T02:35:46Z",
+      "gated_by_session": "igw-240-proposal-for-arc-121",
+      "gating_reason": "EXP-0257 discriminative pair DECLINED at the /queue-experiment Step 2.5 substrate-readiness guardrail (session igw-240-proposal-for-arc-121, 2026-09-03). TWO INDEPENDENT GROUNDS. (1) STRUCTURAL: the mandated dispatch_mode=discriminative_pair requires 'primary condition vs explicit ablation/control', but ARC-121's primary condition -- ONE shared epistemic-state object jointly read and updated by prediction, replay, harm/ethics evaluation, planning and learning -- has NO REFERENT in the current substrate. ree-v3/ree_core contains no epistemic_state object and no BeliefState-family class (zero matches for either), and the constituents ARC-121 bundles live in separately-parameterised, mechanism-private modules: ResidueField (residue/field.py), EpistemicDeficitAccumulator (policy/epistemic_deficit.py) and E2WorldUncertaintyHead (predictors/e2_world_uncertainty.py, whose own docstring records that it 'shares NO parameters with E2WorldForward or the encoder'). With no shared object to ablate, the support arm and the ablation arm are the SAME RUN: the required pair is undefined, not merely difficult. (2) DEPENDENCY: MECH-483 (orient/survey), one of ARC-121's four depends_on entries, is v3_pending: true with ZERO ree_core implementation; MECH-482 is also still v3_pending: true (its module landed 2026-08 but the claim is not cleared). Step 2.5 point 3 makes either a blocked_substrate stop on its own. COMMITMENT-FREE FALLBACK CONSIDERED AND REJECTED: a measurement-only correlational diagnostic over the separate carriers cannot discriminate, because all of them derive from prediction error over the same z_world trajectory, so any observed correlation is explained by shared UPSTREAM INPUT rather than by a shared OBJECT -- precisely the shared-format-vs-shared-instance confound the 2026-09-02 literature pull already named as the limiting term (Behrens2018 entry: 'Shared format is evidence for, but not equivalent to, shared object'; Bach2012 weakens-entry: distinct encodings in distinct systems). Such a run would return evidence_direction unknown / non-contributory, which is the vacuous-result outcome this guardrail exists to prevent. OBSERVATION FOR GOVERNANCE, NOT ADJUDICATED HERE: ARC-121's registered falsifier is design-trajectory -- 'falsified in the design sense if REE's future substrate development keeps adding local, mechanism-private belief/uncertainty representations' -- and MECH-482, added as one of ARC-121's OWN dependencies, is exactly such an addition; its module docstring devotes a 'WHY THIS NEEDS ITS OWN MODULE' section to why it could not reuse existing persistent state, and deliberately rejected MECH-441's ModelDisagreementEnsemble as a source. ARC-121's claims.yaml notes independently record that it is 'not directly falsifiable by a single experiment' and 'LOWER PRIORITY than its instances'.",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for ARC-121 with matched seeds and pre-registered thresholds.",
       "priority": "medium",
       "proposal_id": "EXP-0257",
       "proposal_type": "experimental",
+      "release_condition": "A unified epistemic-state object exists in ree-v3/ree_core -- ONE instance jointly read AND updated by at least two of the mechanism families ARC-121 names (prediction, replay, harm/ethics evaluation, planning, learning) -- so that a support-vs-ablation pair has a manipulable referent; AND MECH-483 (orient/survey) is implemented with v3_pending cleared. Until then, ARC-121's evidence route is (a) an architectural audit of belief/uncertainty representation sharing across ree_core, which is its own registered design-sense falsifier, and (b) experiments on its INSTANCES (MECH-482, MECH-483, SD-034, MECH-094) -- not a discriminative pair on the framing claim itself.",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -3637,7 +3647,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_121",
       "target_repo": "ree-v3",
       "why_now": [
