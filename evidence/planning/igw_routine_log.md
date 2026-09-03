@@ -2431,3 +2431,8 @@ One line per hourly tick. ASCII only.
 2026-09-03T00:23:01Z GC sweep removed 1 orphan worktree(s), kept 11
 2026-09-03T00:23:46Z workset committed (regen -- 256 items, 32 ready, 0 in flight)
 2026-09-03T00:23:01Z SPAWN IGW-20260903-245 skill=/lit-pull prio=40 uuid=0798d814-b394-4265-8015-e28804d3fbb5 pid=91743 worktree=igw-245-literature-proposal-for-ext-001
+2026-09-03T01:26:50Z workset committed (regen -- 255 items, 31 ready, 0 in flight)
+2026-09-03T01:26:50Z auto-defer IGW-20260903-245 hash=6eb70e704738 for 48h (reaped -> completed_resumable)
+2026-09-03T01:26:50Z reaped TASK_CLAIMS igw-auto-igw-245-literature-proposal-for-ext-001-20260903T002418Z (ledger IGW-20260903-245 -> completed_resumable)
+2026-09-03T01:26:52Z GC removed worktree igw-245-literature-proposal-for-ext-001 post-reap (ledger IGW-20260903-245 -> completed_resumable; removed; branch deleted)
+2026-09-03T01:26:03Z no eligible item (skipped 255): IGW-20260903-001:skill /governance not allowed; IGW-20260903-225:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260903-226:status=blocked blocked_by=ready_blocked_by: STALE TEXT CORRECTED 2026-08-07T18:17Z (session metaworker-chip-20260807-substrate-queue-stale-gating-audit; companion sweep to the ARC-065 GAP-A fix REE_assembly ffb4dbc4fc): the named gate RAN and d; ARC-062 [implemented]
