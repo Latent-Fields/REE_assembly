@@ -3928,7 +3928,11 @@
       "task_claim_session_id": "igw-auto-igw-241-proposal-for-ext-008-20260903T130315Z",
       "task_claim_claimed_at": "2026-09-03T13:03:15Z",
       "assigned_at": "2026-09-03T13:02:16Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-03T13:14:59Z",
+      "completion_summary": "No experiment queued (correct outcome): marked EVB-1253/EXT-008 experimental proposal blocked_substrate -- no V3 substrate DV; falsifier is the planned-not-built meta-agent benchmark harness per Q-069. REE_assembly 599f3c0ede on origin/master. Literature twin LIT-0532 left proposed.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "No experiment queued (correct outcome): marked EVB-1253/EXT-008 experimental proposal blocked_substrate -- no V3 substrate DV; falsifier is the planned-not-built meta-agent benchmark harness per Q-069. REE_assembly 599f3c0ede on origin/master. Literature twin LIT-0532 left proposed."
     }
   ],
   "dispositions": [
@@ -5452,6 +5456,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T12:23:42Z",
       "re_eligible_after": "2026-09-05T12:23:42Z"
+    },
+    {
+      "stable_hash": "6e04c9fb2e81",
+      "igw_id_at_disposition": "IGW-20260903-241",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-008"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for EXT-008",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T13:15:14Z",
+      "re_eligible_after": "2026-09-05T13:15:14Z"
     }
   ]
 }
