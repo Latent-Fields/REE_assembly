@@ -1,4 +1,4 @@
-# Experiment: v3_exq_614_mech341_p3_behavioural_falsifier_3arm
+# Experiment: v3_exq_591h_isef005_phase01_gate_live
 
 ## What it tests
 
@@ -11,10 +11,5 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-Recent failure runs:
-- `v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3` at `20260529T191318Z` signatures: none
-
-Recurring signatures:
-
-Suggested design TODOs:
+No recent FAIL runs. Keep monitoring key stop metrics.
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

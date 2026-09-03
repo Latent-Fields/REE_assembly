@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_972_contextmemory_write_content_h4_input_distribution
 
-Generated: `2026-09-02T21:57:59.619674Z`
+Generated: `2026-09-02T21:26:35.220898Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-09-03T01:53:35.376479Z`
+Generated: `2026-09-03T06:58:15.828845Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -10,7 +10,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0001` | `ARC-041` | `candidate` | 1 | 0 | 0.285 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0002` | `INV-088` | `candidate` | 1 | 0.5 | 0.236 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0003` | `INV-091` | `candidate` | 1 | 0.4 | 0.376 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0004` | `MECH-075` | `candidate` | 1 | 0.583 | 0.275 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0004` | `MECH-075` | `candidate` | 1 | 0.583 | 0.276 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0005` | `Q-084` | `candidate` | 1 | 0.667 | 0.569 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0006` | `Q-090` | `candidate` | 1 | 0.6 | 0.568 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0007` | `SD-016` | `implemented` | 1 | 0.375 | 0.403 | 0 | no | no | `mandatory_decision_checkpoint` |
@@ -21,46 +21,46 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0012` | `MECH-098` | `candidate` | 0.917 | 0 | 0.446 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0013` | `MECH-440` | `candidate` | 0.889 | 0.727 | 0.029 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0014` | `MECH-074d` | `candidate` | 0.857 | 0.5 | 0.153 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0015` | `MECH-457` | `candidate` | 0.85 | 0.273 | 0.233 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0015` | `MECH-457` | `candidate` | 0.85 | 0.273 | 0.234 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0016` | `MECH-295` | `candidate` | 0.833 | 0.167 | 0.424 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0017` | `MECH-321` | `candidate` | 0.824 | 0.286 | 0.27 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0018` | `ARC-110` | `candidate` | 0.8 | 0.6 | 0.434 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0017` | `MECH-321` | `candidate` | 0.824 | 0.286 | 0.271 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0018` | `ARC-110` | `candidate` | 0.8 | 0.6 | 0.435 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0019` | `MECH-111` | `candidate` | 0.8 | 0 | 0.531 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0020` | `MECH-472` | `candidate` | 0.8 | 0.25 | 0.538 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0021` | `Q-002` | `active` | 0.8 | 0 | 0.393 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0022` | `Q-003` | `active` | 0.8 | 0 | 0.603 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0023` | `Q-086` | `candidate` | 0.8 | 0.25 | 0.472 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0023` | `Q-086` | `candidate` | 0.8 | 0.25 | 0.473 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0024` | `SD-076` | `candidate` | 0.8 | 0.625 | 0.09 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0025` | `ARC-024` | `provisional` | 0.783 | 0 | 0.111 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0026` | `SD-015` | `candidate` | 0.737 | 0.231 | 0.317 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0027` | `MECH-116` | `candidate` | 0.727 | 0 | 0.54 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0028` | `ARC-073` | `candidate` | 0.667 | 0.6 | 0.666 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0028` | `ARC-073` | `candidate` | 0.667 | 0.6 | 0.665 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0029` | `INV-047` | `candidate` | 0.667 | 0.75 | -0.119 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0030` | `INV-087` | `candidate` | 0.667 | 0.75 | -0.066 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0031` | `MECH-073` | `provisional` | 0.667 | 0.625 | -0.033 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0032` | `MECH-130` | `candidate` | 0.667 | 0.6 | 0.68 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0033` | `MECH-143` | `candidate` | 0.667 | 0.8 | 0.071 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0034` | `MECH-445` | `candidate` | 0.667 | 0.5 | 0.301 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0032` | `MECH-130` | `candidate` | 0.667 | 0.6 | 0.679 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0033` | `MECH-143` | `candidate` | 0.667 | 0.8 | 0.072 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0034` | `MECH-445` | `candidate` | 0.667 | 0.5 | 0.302 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0035` | `Q-055` | `open` | 0.667 | 0.5 | 0.662 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0036` | `Q-082` | `candidate` | 0.667 | 0.75 | 0.696 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0037` | `SD-078` | `candidate_substrate_landed` | 0.667 | 0.5 | 0.068 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0038` | `MECH-090` | `active` | 0.625 | 0.579 | -0.134 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0039` | `MECH-463` | `candidate` | 0.5 | 0.667 | 0.364 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0038` | `MECH-090` | `active` | 0.625 | 0.579 | -0.133 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0039` | `MECH-463` | `candidate` | 0.5 | 0.667 | 0.365 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0040` | `MECH-070` | `retiring` | 0.4 | 0.75 | 0.548 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0041` | `SD-024` | `candidate` | 0.4 | 0.6 | -0.073 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0042` | `Q-020` | `candidate` | 0.333 | 0.833 | 0.342 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0043` | `SD-050` | `provisional` | 0.333 | 0.75 | -0.162 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0044` | `ARC-046` | `candidate` | 0 | 0.5 | 0.429 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0045` | `ARC-093` | `candidate` | 0 | 0.5 | 0.764 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0046` | `ARC-106` | `candidate` | 0 | 0.5 | 0.806 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0047` | `ARC-112` | `candidate` | 0 | 0.75 | 0.757 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0048` | `GOV-BEHADJ-1` | `candidate` | 0 | 0.556 | 0.825 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0049` | `INV-045` | `candidate` | 0 | 1 | 0.39 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0050` | `INV-053` | `stable` | 0 | 0.5 | 0.022 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0051` | `INV-065` | `candidate` | 0 | 0.667 | 0.776 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0052` | `INV-080` | `candidate` | 0 | 0.667 | 0.744 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0053` | `MECH-025b` | `candidate` | 0 | 0.5 | 0.307 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0054` | `MECH-069` | `stable` | 0 | 0.5 | 0.083 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0042` | `MECH-069` | `stable` | 0.333 | 0.5 | -0.006 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0043` | `Q-020` | `candidate` | 0.333 | 0.833 | 0.342 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0044` | `SD-050` | `provisional` | 0.333 | 0.75 | -0.161 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0045` | `ARC-046` | `candidate` | 0 | 0.5 | 0.429 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0046` | `ARC-093` | `candidate` | 0 | 0.5 | 0.764 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0047` | `ARC-106` | `candidate` | 0 | 0.5 | 0.806 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0048` | `ARC-112` | `candidate` | 0 | 0.75 | 0.757 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0049` | `GOV-BEHADJ-1` | `candidate` | 0 | 0.556 | 0.824 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0050` | `INV-045` | `candidate` | 0 | 1 | 0.39 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0051` | `INV-053` | `stable` | 0 | 0.5 | 0.022 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0052` | `INV-065` | `candidate` | 0 | 0.667 | 0.776 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0053` | `INV-080` | `candidate` | 0 | 0.667 | 0.744 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0054` | `MECH-025b` | `candidate` | 0 | 0.5 | 0.308 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0055` | `MECH-177` | `candidate` | 0 | 0.5 | 0.736 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0056` | `MECH-181` | `candidate` | 0 | 0.5 | 0.684 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0057` | `MECH-207` | `candidate` | 0 | 0.5 | 0.728 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
@@ -71,7 +71,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0062` | `MECH-339` | `candidate` | 0 | 0.5 | 0.093 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0063` | `MECH-357` | `candidate` | 0 | 0.667 | 0.144 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0064` | `MECH-391` | `candidate` | 0 | 0.5 | 0.82 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0065` | `MECH-439` | `candidate` | 0 | 0.714 | 0.166 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0065` | `MECH-439` | `candidate` | 0 | 0.714 | 0.167 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0066` | `MECH-477` | `candidate` | 0 | 0.5 | 0.05 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0067` | `MECH-500` | `candidate` | 0 | 1 | 0.68 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0068` | `MECH-520` | `candidate` | 0 | 0.75 | 0.802 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
@@ -94,8 +94,8 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0085` | `SD-018` | `implemented` | 0 | 0.5 | 0.341 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0086` | `SD-027` | `candidate` | 0 | 0.5 | 0.678 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0087` | `SD-055` | `candidate` | 0 | 0.5 | 0.471 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0088` | `SD-063` | `provisional` | 0 | 0.5 | 0.159 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0089` | `SD-079` | `provisional` | 0 | 1 | -0.157 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0088` | `SD-063` | `provisional` | 0 | 0.5 | 0.16 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0089` | `SD-079` | `provisional` | 0 | 1 | -0.156 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0090` | `SD-082` | `candidate_substrate_landed` | 0 | 0.5 | 0.31 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0091` | `SD-092` | `candidate` | 0 | 0.5 | 0.685 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0092` | `SD-099` | `candidate` | 0 | 0.5 | 0.779 | 0 | no | no | `monitor_and_collect_targeted_evidence` |

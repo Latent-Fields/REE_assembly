@@ -1,0 +1,120 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation",
+  "run_id": "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation_20260903T014226Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-03T01:42:26Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "EXT-001"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "channel_separation_prevents_appeasement_valuation_collapse",
+    "preconditions": [
+      {
+        "name": "harm_relief_channel_reachable",
+        "description": "A scripted movement sequence must produce at least one tick where HARM_RELIEF_GAIN * harm_relief clears GoalConfig.benefit_threshold, confirming the ablation's conflation channel is mechanically capable of firing before an organic result from ARM_COLLAPSED is trusted.",
+        "measured": 0.22857141494750977,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "scripted action cycle, seed=7, 60 steps, no agent/arm involved",
+        "met": true
+      },
+      {
+        "name": "genuine_benefit_channel_reachable",
+        "description": "A scripted movement sequence must produce at least one tick where genuine (unmanipulated) benefit_exposure alone -- at zero drive, the pessimistic case -- clears GoalConfig.benefit_threshold, so that ARM_SEPARATED's observed goal_weighted-active fraction is CONTINGENT on real resource contact rather than arithmetically impossible regardless of behaviour (symmetric to harm_relief_channel_reachable).",
+        "measured": 0.10300000000000001,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "scripted action cycle, seed=13, 200 steps, no agent/arm involved, zero-drive multiplier",
+        "met": true
+      },
+      {
+        "name": "goal_valuation_readout_reachable",
+        "description": "With z_goal forced active via a direct saturating update_z_goal call (benefit_exposure=1.0, drive_level=1.0), a direct agent.e3.select(..., goal_state=agent.goal_state) call must show |goal_weighted| > EPSILON -- confirming the readout mechanism itself responds to an active z_goal, independent of any organic arm/seed behaviour (C1 tests organic engagement separately).",
+        "measured": 3.640882968902588,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "control": "scripted force-saturated update_z_goal call, seed=17, no organic play",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_collapsed_valuation_engaged",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_collapsed_more_frequent_than_separated",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_appeasement_writer_organically_engaged",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_collapsed_valuation_engaged": true,
+      "C2_collapsed_more_frequent_than_separated": true,
+      "C3_appeasement_writer_organically_engaged": true
+    }
+  },
+  "machine": "ree-cloud-5",
+  "machine_class": "linux-x86_64-py3.10-torch2.13.0+cpu",
+  "substrate_hash": "a6e8e0df54f4fff141f6eeb65e3cf883b571495e4bc6aa22b11cc34b049777e3",
+  "substrate_commit": {
+    "commit": "93d008f1e10165b623373c84ca6ad32dd831b3e4",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 1416,
+    "ticks_active": 774,
+    "writer_calls": 1416,
+    "active_frac": 0.5466101694915254,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}

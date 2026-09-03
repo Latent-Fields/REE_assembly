@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-02T17:09:24Z",
+  "generated_at": "2026-09-03T06:59:03Z",
   "counts": {
     "total": 1086,
-    "reading_drift": 145,
+    "reading_drift": 147,
     "unstamped": 29,
     "needs_review": 2,
     "never_reviewed": 1065,
-    "provenance_drift": 290
+    "provenance_drift": 293
   },
   "reading_drift": [
     {
@@ -837,6 +837,22 @@
     },
     {
       "claim": "ARC-072",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-327",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "ARC-073",
       "stored_reading": "candidate",
       "derived_reading": "candidate/substrate_conditional",
       "diffs": [
@@ -2475,6 +2491,11 @@
       "derived_from": "failure_autopsy_grandfathered-r5-legacy-provenance-sweep_2026-08-08"
     },
     {
+      "claim": "ARC-019",
+      "stored_from": null,
+      "derived_from": "failure_autopsy_V3-EXQ-591h_2026-09-03"
+    },
+    {
       "claim": "MECH-025",
       "stored_from": "decision:MECH-025@2026-08-10",
       "derived_from": "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
@@ -3180,6 +3201,11 @@
       "derived_from": "failure_autopsy_V3-EXQ-395-cluster_2026-09-02"
     },
     {
+      "claim": "ARC-052",
+      "stored_from": null,
+      "derived_from": "decision:ARC-052@2026-09-02T17:20:34.236624Z"
+    },
+    {
       "claim": "MECH-229",
       "stored_from": "failure_autopsy_V3-EXQ-538a_2026-07-10",
       "derived_from": "failure_autopsy_grandfathered-goalseeding-cluster_2026-08-08"
@@ -3197,7 +3223,12 @@
     {
       "claim": "Q-042",
       "stored_from": "governance:GFLAG-0063@2026-09-01 (user-approved promotion; V3 evidence V3-EXQ-530c)",
-      "derived_from": "decision:Q-042@2026-09-01T18:55:25.202541Z"
+      "derived_from": "decision:Q-042@2026-09-02T17:20:34.190181Z"
+    },
+    {
+      "claim": "EXT-001",
+      "stored_from": null,
+      "derived_from": "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation_20260903T014226Z_v3"
     },
     {
       "claim": "MECH-232",

@@ -1,4 +1,4 @@
-# Experiment: v3_exq_707c_arc110_loop_segregation_c2_release_repair
+# Experiment: v3_exq_981_mech027_control_plane_pathological_modes
 
 ## What it tests
 
@@ -12,8 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260723T151429Z_v3` at `2026-07-23T15:14:29Z` signatures: none
-- `v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260722T041239Z_v3` at `20260722T041239Z` signatures: none
+- `v3_exq_981_mech027_control_plane_pathological_modes_20260903T053044Z_v3` at `2026-09-03T05:30:44Z` signatures: none
 
 Recurring signatures:
 
