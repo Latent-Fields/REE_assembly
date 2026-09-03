@@ -1,0 +1,188 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_951c_mech320_vt_floor_diagnostic_sd054",
+  "run_id": "v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-03T14:05:38Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-320"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "vt_floor_driven_by_low_v_raw",
+    "preconditions": [
+      {
+        "name": "reached_p2_alive",
+        "kind": "readiness",
+        "description": "P1 survival >= 2/3 seeds so the agent reaches P2 alive (same precondition shape 951/603n/812 already validate on this exact curriculum).",
+        "control": "P1 survival gate (median episode length last window >= scaffold_p1_survival_gate_steps).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "sufficient_floor_hit_sample",
+        "kind": "readiness",
+        "description": "Pooled P2 floor-hit tick count (across all arms/seeds) is large enough to trust a gate-caused-vs-raw-caused classification, rather than a handful of ticks.",
+        "control": "n_floor_hit ticks pooled across ARM_0/1/2 x all valid seeds.",
+        "measured": 25787.0,
+        "threshold": 30.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "gate_caused_classification": true
+    },
+    "criteria": [
+      {
+        "name": "gate_caused_classification",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "pooled_p2_floor_diagnostics": {
+      "n_ticks": 27000,
+      "n_floor_hit": 25787,
+      "floor_hit_frac": 0.9550740740740741,
+      "n_floor_hit_gate_caused": 0,
+      "n_floor_hit_raw_caused": 25787,
+      "floor_hit_gate_caused_frac": 0.0,
+      "n_seeds_excluded_unsurvived": 0,
+      "per_cell_gate_caused_fracs": [
+        {
+          "seed": 42,
+          "arm": "ARM_0_baseline",
+          "n_floor_hit": 3000,
+          "gate_caused_frac": 0.0
+        },
+        {
+          "seed": 42,
+          "arm": "ARM_1_vigor_additive",
+          "n_floor_hit": 3000,
+          "gate_caused_frac": 0.0
+        },
+        {
+          "seed": 42,
+          "arm": "ARM_2_vigor_multiplicative",
+          "n_floor_hit": 3000,
+          "gate_caused_frac": 0.0
+        },
+        {
+          "seed": 43,
+          "arm": "ARM_0_baseline",
+          "n_floor_hit": 2602,
+          "gate_caused_frac": 0.0
+        },
+        {
+          "seed": 43,
+          "arm": "ARM_1_vigor_additive",
+          "n_floor_hit": 2760,
+          "gate_caused_frac": 0.0
+        },
+        {
+          "seed": 43,
+          "arm": "ARM_2_vigor_multiplicative",
+          "n_floor_hit": 2425,
+          "gate_caused_frac": 0.0
+        },
+        {
+          "seed": 45,
+          "arm": "ARM_0_baseline",
+          "n_floor_hit": 3000,
+          "gate_caused_frac": 0.0
+        },
+        {
+          "seed": 45,
+          "arm": "ARM_1_vigor_additive",
+          "n_floor_hit": 3000,
+          "gate_caused_frac": 0.0
+        },
+        {
+          "seed": 45,
+          "arm": "ARM_2_vigor_multiplicative",
+          "n_floor_hit": 3000,
+          "gate_caused_frac": 0.0
+        }
+      ],
+      "heterogeneous_across_cells": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "621b2afd9262236c1b9164e5b08f061f518e00c694041f255841957f70eebf89",
+  "substrate_commit": {
+    "commit": "d08230c58ba76b07e1b6d8d4ac4c65465af258a7",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_e2_harm_s_forward": true,
+    "latent.use_resource_encoder": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e3.goal_weight": 1.0,
+    "e3.use_modulatory_selection_authority": true,
+    "heartbeat.breath_period": 50,
+    "goal.drive_floor": 0.9,
+    "goal.z_goal_enabled": true,
+    "goal.use_incentive_token_bank": true,
+    "goal.use_cue_recall": true,
+    "use_tonic_vigor": true,
+    "tonic_vigor_noop_class": 4,
+    "tonic_vigor_v_t_floor": 0.05,
+    "use_modulatory_selection_authority": true,
+    "use_instrumental_avoidance": true,
+    "use_pag_freeze_gate": true,
+    "use_mech295_liking_bridge": true,
+    "use_mech307_split_surprise": true,
+    "use_mech307_schema_multichannel": true,
+    "use_mech307_predicted_location_write": true,
+    "use_mech307_conjunction": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 130577,
+    "ticks_active": 130574,
+    "writer_calls": 65859,
+    "active_frac": 0.9999770250503535,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
