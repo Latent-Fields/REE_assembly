@@ -80,7 +80,8 @@ CONTROL_REQUIRED_STATES = {"confirmed"} | SUPERSEDED_STATES
 ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed",
                     "h_fanout_recurrence", "i_confirmed_backed",
                     "j_confirmed_unverifiable", "k_discovery_growth",
-                    "l_discovery_recurrence", "m_recurrence_acknowledged"}
+                    "l_discovery_recurrence", "m_recurrence_acknowledged",
+                    "n_ledger_pending"}
 
 # Distinct labelled fan-out portfolios on ONE question before the recurrence
 # overlay fires. Matches GOV-CEIL-1's CEILING_EXHAUSTION_N and GOV-DIAG-1's
@@ -864,6 +865,189 @@ def audit(registry: dict, timeseries: list) -> dict:
     return flags
 
 
+# ---------------------------------------------------------------------------
+# Ledger-pending scan (advisory bucket `n_ledger_pending`)
+#
+# WHY THIS EXISTS. `/failure-autopsy` in STAGING MODE must not write this
+# registry -- it is a live dashboard input -- so Step 9b instead DRAFTS its
+# intended Mode A/B/C edits into a `hypothesis_space_ledger_pending` field on
+# the autopsy artifact, for "the confirming interactive session or the next
+# /governance walk" to apply. Until 2026-09-03 nothing applied those blocks and,
+# worse, nothing CHECKED that they had been applied: a grep for the field name
+# across REE_assembly/scripts/ and REE_Working/scripts/ returned zero hits while
+# 34 confirmed artifacts carried one, the oldest from 2026-07-19. The concrete
+# failure that surfaced the gap: failure_autopsy_V3-EXQ-976_2026-09-02 drafted
+# three pre-registered legs for `sd_e1_residual_crush_locus` and they were still
+# absent a day later, so V3-EXQ-980 adjudicated a leg (`H-readout-regime`) that
+# did not exist in the ledger. A drafted edit with no applier and no auditor is
+# indistinguishable from an applied one -- which is the same silent-no-op-reads-
+# as-success failure this script's own fail-open handler exists to prevent.
+#
+# WHAT IT DETECTS, per CONFIRMED artifact carrying a block: a `qid` the block
+# names that is absent from the registry; a `hid` it names that is absent from
+# every question; and a `hid` whose registry state has not reached the resolved
+# state the block intends. That last clause is the one that catches a drafted
+# Mode B resolve nobody ever applied -- the 861f-mech180-cluster-a case, deferred
+# by TASK_CLAIMS arbitration on 2026-08-25 and then simply forgotten.
+#
+# WHAT IT DELIBERATELY DOES NOT DETECT, and why:
+#   (1) A registry state MORE resolved than the block intended is never flagged.
+#       That is ordinary supersession by a later, better-informed autopsy
+#       (816c-822 drafted `alive`; the 2026-07-28 sweep later confirmed the same
+#       leg on further evidence). Flagging it would train readers to skip the
+#       section, which costs more than the miss.
+#   (2) No comparison of `basis` prose, `resolving_runs`, decision blocks, or
+#       axis-family rows. These blocks are free-form -- 34 artifacts share no two
+#       identical schemas -- so a deeper equality check would be guesswork
+#       reported as fact.
+#   (3) Sub-trees a block marks as explicitly NOT recommended
+#       (`if_the_confirming_session_disagrees`, `optional_new_question_sketch`,
+#       `optional_cosmetic_corroboration`) are pruned before the walk. Reading a
+#       declined alternative as an owed edit is the obvious false-positive
+#       source, and these are its named carriers.
+# So a QUIET result means "nothing this scan can see is missing", NOT "every
+# block was applied". It is a floor on the hole, not a proof of its absence.
+#
+# NOT a duplicate of `check_unapplied_autopsy_recommendations.py` (GOV-APPLY-1),
+# which asks the same "was the verdict ever APPLIED?" question one plane over:
+# that audit walks a confirmed autopsy's `recommended_*` fields against the CLAIMS
+# layer (claims.yaml / substrate_queue.json); this one walks its Step 9b draft
+# against the LEDGER. An artifact can be clean under one and dirty under the
+# other -- 861f-mech180-cluster-a landed its claim-side routing while its ledger
+# block sat unapplied for nine days.
+#
+# ADVISORY, like every bucket here: exits 0, gates nothing. A block a human has
+# deliberately decided NOT to apply (superseded by a later adjudication) keeps
+# appearing until that decision is recorded ON the block -- set `applied: true`,
+# `registry_written: true`, an `applied_utc`, or `superseded_by: "<artifact>"`,
+# and the scan goes quiet for it. Recording the disposition is the fix; deleting
+# the field is not.
+# ---------------------------------------------------------------------------
+LEDGER_PENDING_FIELD = "hypothesis_space_ledger_pending"
+AUTOPSY_GLOB = "failure_autopsy_*.json"
+# Only a CONFIRMED artifact's block is OWED. A staging artifact still at
+# `awaiting_human_confirmation` has not passed its own Step 8 gate, so its draft
+# is correctly pending rather than missing -- flagging it would report the
+# skill working as designed as a defect.
+LEDGER_PENDING_OWED_STATUS = "confirmed"
+_PENDING_HYPOTHETICAL_KEYS = {"if_the_confirming_session_disagrees",
+                              "optional_new_question_sketch",
+                              "optional_cosmetic_corroboration"}
+_PENDING_QID_KEYS = ("qid", "question_qid", "question", "candidate_qid")
+_PENDING_HID_KEYS = ("hid", "hypothesis")
+_PENDING_STATE_KEYS = ("state", "proposed_state")
+_PENDING_RES_KEYS = ("resolution", "resolution_patch")
+# Any TRUTHY one of these means the block records its own disposition. Truthiness
+# matters: several blocks carry `"applied_utc": null`, which asserts the opposite.
+_PENDING_SETTLED_KEYS = ("applied", "registry_written", "applied_utc", "superseded_by")
+# untested < alive < resolved. Everything resolved ranks equally: the check asks
+# "has the registry got at least this far", never "is it in exactly this state".
+_PENDING_STATE_RANK = {"untested": 0, "alive": 1}
+
+
+def _pending_state_rank(state: str) -> int:
+    return _PENDING_STATE_RANK.get(state or "untested", 2)
+
+
+def _prune_hypothetical(node):
+    """Drop sub-trees a block marks as explicitly NOT recommended."""
+    if isinstance(node, dict):
+        return {k: _prune_hypothetical(v) for k, v in node.items()
+                if k not in _PENDING_HYPOTHETICAL_KEYS}
+    if isinstance(node, list):
+        return [_prune_hypothetical(v) for v in node]
+    return node
+
+
+def _collect_pending_intents(block, known_hids: set) -> tuple:
+    """Return (qids_named, {hid: intended_state_or_None}) for one pending block."""
+    qids, intents = set(), {}
+
+    def record(hid, state):
+        # A later mention carrying a state beats an earlier bare one.
+        if hid not in intents or (intents[hid] is None and state is not None):
+            intents[hid] = state
+
+    def state_of(node):
+        for k in _PENDING_STATE_KEYS:
+            if isinstance(node.get(k), str):
+                return node[k]
+        for k in _PENDING_RES_KEYS:
+            sub = node.get(k)
+            if isinstance(sub, dict) and isinstance(sub.get("state"), str):
+                return sub["state"]
+        return None
+
+    def walk(node):
+        if isinstance(node, dict):
+            for k in _PENDING_QID_KEYS:
+                v = node.get(k)
+                if isinstance(v, str) and v:
+                    qids.add(v)
+            for k in _PENDING_HID_KEYS:
+                v = node.get(k)
+                if isinstance(v, str) and v:
+                    record(v, state_of(node))
+            # `intended: {"<hid>": {...,"resolution":{...}}}` -- the hid is the
+            # KEY, not a value, so the value-keyed clauses above never see it.
+            # Gated on `known_hids` so an arbitrary key can never be read as one.
+            for k, v in node.items():
+                if k in known_hids and isinstance(v, dict):
+                    record(k, state_of(v))
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+
+    walk(block)
+    return qids, intents
+
+
+def scan_ledger_pending(registry: dict, planning_dir=None) -> list:
+    """Confirmed autopsy blocks whose drafted ledger edit is not in the registry.
+
+    Kept OUT of `audit()` on purpose: `audit()` is a pure function of
+    (registry, timeseries) and its self-test cases lean on that, while this
+    reads the planning directory. `main()` merges the result into `flags`.
+    """
+    planning_dir = Path(planning_dir) if planning_dir is not None else PLANNING_DIR
+    questions = registry.get("questions") or []
+    known_qids = {q.get("qid") for q in questions}
+    state_by_hid = {}
+    for q in questions:
+        for h in (q.get("hypotheses") or []):
+            state_by_hid[h.get("hid")] = (h.get("resolution") or {}).get("state") or "untested"
+    known_hids = set(state_by_hid)
+
+    msgs = []
+    for path in sorted(Path(planning_dir).glob(AUTOPSY_GLOB)):
+        art = _load_json(path)
+        if not isinstance(art, dict):
+            continue
+        block = art.get(LEDGER_PENDING_FIELD)
+        if not isinstance(block, dict) or not block:
+            continue
+        if (art.get("status") or "") != LEDGER_PENDING_OWED_STATUS:
+            continue
+        if any(block.get(k) for k in _PENDING_SETTLED_KEYS):
+            continue
+        qids, intents = _collect_pending_intents(
+            _prune_hypothetical(block), known_hids)
+        gaps = []
+        for qid in sorted(q for q in qids if q not in known_qids):
+            gaps.append(f"question `{qid}` absent from the registry")
+        for hid, want in sorted(intents.items()):
+            if hid not in known_hids:
+                gaps.append(f"hypothesis `{hid}` absent from the registry")
+            elif want and _pending_state_rank(want) > _pending_state_rank(state_by_hid[hid]):
+                gaps.append(f"`{hid}` drafted as `{want}`, registry has "
+                            f"`{state_by_hid[hid]}`")
+        if gaps:
+            msgs.append(f"`{path.name}`: " + "; ".join(gaps))
+    return msgs
+
+
 def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> str:
     # `e_labelled_growth` is ADVISORY -- it is reported, but never counted as a flag.
     total = sum(len(v) for k, v in flags.items() if k not in ADVISORY_BUCKETS)
@@ -1177,6 +1361,35 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         L.append("")
     if not wit and not unv:
         L.append("_No fan-out leg required a provenance check this cycle._")
+        L.append("")
+    pend = flags.get("n_ledger_pending") or []
+    L.append(f"## Advisory -- drafted ledger edits not reflected in the registry "
+             f"({len(pend)}, NOT violations)")
+    L.append("")
+    if pend:
+        L.append(
+            "`/failure-autopsy` in staging mode drafts its intended Step 9b edits into a "
+            "`hypothesis_space_ledger_pending` block on the autopsy artifact instead of "
+            "writing this registry, for the confirming session or the next `/governance` "
+            "walk to apply. Each CONFIRMED artifact below names a question, a hypothesis, "
+            "or an intended resolved state that the registry does not currently carry."
+        )
+        L.append("")
+        for msg in pend:
+            L.append(f"- {msg}")
+        L.append("")
+        L.append(
+            "A gap here is not automatically an owed edit -- a later, better-informed "
+            "autopsy may have superseded the draft, which is a legitimate outcome. Apply "
+            "it, or record the disposition on the block (`applied` / `registry_written` / "
+            "`applied_utc` / `superseded_by`) so it stops being reported. Note the scan "
+            "compares question, hypothesis and resolved-state presence only -- never "
+            "`basis` prose or `resolving_runs` -- so a quiet result is a floor on the "
+            "gap, not a proof there is none."
+        )
+        L.append("")
+    else:
+        L.append("_No confirmed autopsy carries an unreflected `hypothesis_space_ledger_pending` block._")
         L.append("")
     L.append("---")
     L.append("")
@@ -2023,6 +2236,7 @@ def main() -> int:
         return 0
     timeseries = _load_timeseries(TIMESERIES)
     flags = audit(registry, timeseries)
+    flags["n_ledger_pending"] = scan_ledger_pending(registry)
     REPORT.write_text(render_report(flags, registry, timeseries, now), encoding="utf-8")
     total = sum(len(v) for k, v in flags.items() if k not in ADVISORY_BUCKETS)
     print(f"Hypothesis-space integrity report written: {_rel(REPORT)}")
@@ -2048,6 +2262,13 @@ def main() -> int:
             print(f"    [recurrence] {qid}")
     print(f"  labelled discovery growth (advisory, not a flag): "
           f"{len(flags['k_discovery_growth'])} note(s)")
+    n_pend = len(flags.get("n_ledger_pending") or [])
+    print(f"  drafted ledger edits not reflected (advisory, not a flag): {n_pend}")
+    if n_pend:
+        print("  -- staged Step 9b blocks whose question/hypothesis/state is not in")
+        print("     the registry. Apply, or record the disposition on the block:")
+        for msg in flags["n_ledger_pending"]:
+            print(f"    [ledger-pending] {msg.split('`')[1] if '`' in msg else msg[:60]}")
     n_disc_rec = len(flags["l_discovery_recurrence"])
     print(f"  discovery-growth recurrence (N>={FANOUT_RECURRENCE_N} events, ACTIONABLE): "
           f"{n_disc_rec}")

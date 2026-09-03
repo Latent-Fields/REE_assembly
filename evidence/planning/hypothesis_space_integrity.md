@@ -1,6 +1,6 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-03T05:05:55Z
+Generated: 2026-09-03T05:27:08Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
@@ -167,6 +167,16 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `inv088_evaluator_degeneracy_cause`/`H-horizon-compounding`: entered the registry 2026-08-29 <= resolution 2026-08-29
 - `inv088_evaluator_degeneracy_cause`/`H-action-blindness`: entered the registry 2026-08-29 <= resolution 2026-08-29
 - `sd_e1_residual_crush_locus`/`H-readout-regime`: `failure_autopsy_V3-EXQ-976_2026-09-02.json` committed 2026-09-02 <= resolution 2026-09-02
+
+## Advisory -- drafted ledger edits not reflected in the registry (3, NOT violations)
+
+`/failure-autopsy` in staging mode drafts its intended Step 9b edits into a `hypothesis_space_ledger_pending` block on the autopsy artifact instead of writing this registry, for the confirming session or the next `/governance` walk to apply. Each CONFIRMED artifact below names a question, a hypothesis, or an intended resolved state that the registry does not currently carry.
+
+- `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`: question `mech357_stageh_discrimination_bottleneck` absent from the registry; hypothesis `H-dv-saturation` absent from the registry; hypothesis `H-gate-extinct-in-window` absent from the registry; hypothesis `H-pressure-magnitude` absent from the registry
+- `failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07.json`: question `sd017_arc045_slot_differentiation` absent from the registry; hypothesis `H-436d-c1-baseline-is-a-metric-artifact` absent from the registry; hypothesis `H-436d-c1-is-a-genuine-null` absent from the registry
+- `failure_autopsy_V3-EXQ-934_2026-08-16.json`: `H1-cap-miscalibration` drafted as `split`, registry has `alive`
+
+A gap here is not automatically an owed edit -- a later, better-informed autopsy may have superseded the draft, which is a legitimate outcome. Apply it, or record the disposition on the block (`applied` / `registry_written` / `applied_utc` / `superseded_by`) so it stops being reported. Note the scan compares question, hypothesis and resolved-state presence only -- never `basis` prose or `resolving_runs` -- so a quiet result is a floor on the gap, not a proof there is none.
 
 ---
 

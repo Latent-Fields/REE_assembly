@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-03T05:05:47Z",
+  "generated_at": "2026-09-03T05:21:48Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,29 +31,29 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 78,
+      "total_surviving": 77,
       "total_initial": 144,
       "total_initial_at_registration": 117,
       "total_fanout_added": 27,
-      "total_resolved_out": 55,
-      "total_confirmed": 33,
+      "total_resolved_out": 56,
+      "total_confirmed": 34,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 38.2,
-      "net_narrowing_pct": 33.3,
+      "reduction_pct_vs_current": 38.9,
+      "net_narrowing_pct": 34.2,
       "convergence_classes": {
-        "narrowing": 19,
-        "static": 17,
+        "narrowing": 20,
+        "static": 16,
         "circling": 4,
         "refining": 2,
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "78 alive against 117 originally enumerated, and against 144 including 27 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "77 alive against 117 originally enumerated, and against 144 including 27 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 43
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 18,
+      "ready": 19,
       "open_questions": 43
     }
   },
@@ -209,26 +209,32 @@
       "build_pct": 82.0
     },
     {
+      "date": "2026-08-24",
+      "surviving": 94,
+      "closure_pct": 73.0,
+      "build_pct": 82.0
+    },
+    {
       "date": "2026-08-29",
-      "surviving": 92,
+      "surviving": 91,
       "closure_pct": 73.0,
       "build_pct": 82.0
     },
     {
       "date": "2026-08-30",
-      "surviving": 90,
-      "closure_pct": 73.0,
-      "build_pct": 82.0
-    },
-    {
-      "date": "2026-09-02",
       "surviving": 89,
       "closure_pct": 73.0,
       "build_pct": 82.0
     },
     {
+      "date": "2026-09-02",
+      "surviving": 88,
+      "closure_pct": 73.0,
+      "build_pct": 82.0
+    },
+    {
       "date": "2026-09-03",
-      "surviving": 78,
+      "surviving": 77,
       "closure_pct": 73.0,
       "build_pct": 82.0
     }
@@ -4314,28 +4320,30 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": "H-producer-unstable-271 (H2) is a labelled follow-on after H1 and H3, not in the initial frozen set: its n=5-on-17befb8c sketch is aliased with H3 (861c already HIGH-graded 271 at n=5, so 271 is not like seed 7).",
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
-        "families_touched": [],
-        "families_fresh": [
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 2 fully closed",
+        "families_closed": [
           "instrumentation",
           "process"
         ],
+        "families_touched": [
+          "instrumentation"
+        ],
+        "families_fresh": [],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 2,
-      "alive": 2,
-      "resolved_out": 0,
-      "confirmed": 0,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 1,
       "superseded": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
       "synthesis": null,
       "hypotheses": [
         {
@@ -4343,33 +4351,34 @@
           "label": "Extra CALIB_DRAWS consumed measurement-phase RNG (intervention not isolated)",
           "desc": "Extra CALIB_DRAWS consumed measurement-phase RNG (intervention not isolated)",
           "axis": "measurement",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
             "V3-EXQ-861f"
           ],
-          "basis": null,
+          "basis": "Driver's own declared null: H1 NOT SUPPORTED because both the reseeded cell (0.9475) and the unreseeded control (0.8845) sit below 1.0, in both duplicate runs. Control criterion met (unreseeded control reproduces 861e's decisive-cell value to ~1e-7), so this is the driver's pre-registered INFORMATIVE null, not an uninformative/ambiguous read. User-confirmed 2026-08-25.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-substrate-machine-delta",
           "label": "861c vs 861e executed different substrate/machine (f810969/cloud-4 vs 17befb8c/hub)",
           "desc": "861c vs 861e executed different substrate/machine (f810969/cloud-4 vs 17befb8c/hub)",
           "axis": "algorithm",
-          "state": "alive",
+          "state": "confirmed",
           "evidence_runs": [
-            "V3-EXQ-861g"
+            "V3-EXQ-861g",
+            "V3-EXQ-861f"
           ],
-          "basis": "V3-EXQ-861g n10 factor 1.007 > 1.0 on pinned f810969 (pin control bit-identical to 861c 1.2146) while 861e collapsed to 0.884 on 17befb8c. Declared-null H3 SUPPORTED as substrate/machine delta. State left alive: 861g ran on ree-cloud-2 vs 861e on ree-worker-1 (machine bundled with pin); user hold 2026-08-23T18:15:21Z -- do not confirm until V3-EXQ-861f (H1) lands.",
+          "basis": "861g (2026-08-23) established the substrate difference (f810969 n10 factor 1.007 vs 17befb8c 0.884) but left it 'alive' pending resolution of a machine confound (861g on ree-cloud-2 vs 861e on ree-worker-1). 861f's own in-run unreseeded control (2026-08-23/24) reproduces 861e's exact decisive-cell value (abs delta 0.0 and 1.1e-7) on THREE independent machine identities including a genuine cross-machine-CLASS boundary (linux-x86_64/py3.10 vs darwin-arm64/py3.13), resolving the machine confound: current-substrate readouts are machine-invariant to ~1e-7, so the divergence from f810969 is attributable to substrate, not machine. Note met_elimination_bar left false (per rule 4, only eliminated/split require the full bar; confirmed only requires control_passed) -- this is a confirm, not an elimination of a rival.",
           "children": [],
           "met_elimination_bar": false
         }
       ],
       "decision": {
-        "readiness_state": "discriminative_ready",
-        "evidence_decile": 7,
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
         "decision_question": "Which hypothesis explains the 861e C2 1/3 miss given that R3 passed, the 861c n=10 projection is refuted, and 861c already HIGH-graded seed 271 at n=5?",
-        "distance_phrase": "1 of 2 first-portfolio isolation legs landed (H3=V3-EXQ-861g, state still alive pending H1). H1=V3-EXQ-861f claimed on ree-cloud-4. H2 is a labelled follow-on, not in the frozen denominator.",
+        "distance_phrase": "All 3 portfolio legs landed (H1=861f eliminated, H3=861g+861f confirmed, CONTROL=861h passed). qid answered: substrate delta between f810969 and 17befb8c, machine and RNG and write-lock all ruled out. Residual open question (WHICH commit, possible inversion via 76cbf84) is scoped as a new substrate_queue entry (mel-f810969-vs-17befb8c-collapse-bisection), not a live hypothesis on this qid.",
         "live_gate": "H1 reseeded n=10 on 17befb8c vs H3 pin-f810969 n=10, each with a declared null. H2 is follow-on after those two.",
         "observation_bottleneck": null
       }
@@ -4890,6 +4899,21 @@
       "moved": "V3-EXQ-948 supplies the positive demonstration 813 could not: under the identical W3_survival_zeroed objective, ppo_ree_latent (z_world only) does not clear the D3 floor (0.5) while ppo_latent_plus_localfield (z_world + the 25-dim resource field) clears it on all 3 seeds (2.233; per-seed lift +0.75/+2.05/+2.4, monotonic, no sign crossing). 813's anchor pair replicates exactly (0.5 / 9.033). CONFIRMED, not merely supported: the missing content is NAMED as the resource gradient. Sharpened by failure_autopsy_V3-EXQ-948_2026-08-25 adversarial pass: this holds even though SD-018's scalar resource-proximity auxiliary supervision (latent.use_resource_proximity_head) was already active in this run's base config -- the scalar signal is insufficient, the full directional field is what restores competence. Does NOT eliminate H-substrate-ceiling or H-f-dominance (design does not test them). Routed implement-substrate, action:amend, target SD-018 (user-confirmed).",
       "resolved_utc": "2026-08-25T14:21:15Z",
       "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-861f",
+      "all_runs": [
+        "V3-EXQ-861f"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+      "claims": [
+        "INV-050",
+        "MECH-180"
+      ],
+      "moved": "Driver's own declared null: H1 NOT SUPPORTED because both the reseeded cell (0.9475) and the unreseeded control (0.8845) sit below 1.0, in both duplicate runs. Control criterion met (unreseeded control reproduces 861e's decisive-cell value to ~1e-7), so this is the driver's pre-registered INFORMATIVE null, not an uninformative/ambiguous read. User-confirmed 2026-08-25.",
+      "resolved_utc": "2026-08-24T02:38:53Z",
+      "evidence_direction": "non_contributory"
     },
     {
       "run": "V3-EXQ-942",
@@ -6151,21 +6175,6 @@
         "MECH-152"
       ],
       "moved": "Neither eliminated nor confirmed. The recovery is real in sign but falls below A2's own across-seed SD (0.184 vs 0.193 harm; 0.174 vs 0.193 goal) on n=3, reaches only 37% / 60% of the 194a bar, and is rank-inverted by the tagger-OFF control (A0_OFF r_w_harm 0.356 at w_harm_std ~1e-6). An uninformative run narrows nothing; it surfaces the observation bottleneck recorded on this question.",
-      "resolved_utc": null,
-      "evidence_direction": "pending"
-    },
-    {
-      "run": "V3-EXQ-861g",
-      "all_runs": [
-        "V3-EXQ-861g"
-      ],
-      "momentum_class": "inconclusive",
-      "qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
-      "claims": [
-        "INV-050",
-        "MECH-180"
-      ],
-      "moved": "V3-EXQ-861g n10 factor 1.007 > 1.0 on pinned f810969 (pin control bit-identical to 861c 1.2146) while 861e collapsed to 0.884 on 17befb8c. Declared-null H3 SUPPORTED as substrate/machine delta. State left alive: 861g ran on ree-cloud-2 vs 861e on ree-worker-1 (machine bundled with pin); user hold 2026-08-23T18:15:21Z -- do not confirm until V3-EXQ-861f (H1) lands.",
       "resolved_utc": null,
       "evidence_direction": "pending"
     },

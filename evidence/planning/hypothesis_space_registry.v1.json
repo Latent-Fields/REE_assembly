@@ -4654,7 +4654,8 @@
    "registered_utc": "2026-08-21T01:56:34Z",
    "fanout_sources": [
     "failure_autopsy_V3-EXQ-861e_2026-08-21.json",
-    "failure_autopsy_861g-861h-mech180-cluster_2026-08-23.json"
+    "failure_autopsy_861g-861h-mech180-cluster_2026-08-23.json",
+    "failure_autopsy_861f-mech180-cluster-a_2026-08-25.json"
    ],
    "is_hero": false,
    "initial_frozen_count": 2,
@@ -4673,13 +4674,18 @@
       "V3-EXQ-861f"
      ],
      "resolution": {
-      "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": "pending",
-      "resolved_utc": null,
-      "control_passed": false,
-      "non_degenerate": null,
-      "met_elimination_bar": false
+      "state": "eliminated",
+      "resolving_runs": [
+       "V3-EXQ-861f"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
+      "self_route_label": "third_drive_independent_seed_replication_confirmed",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-08-24T02:38:53Z",
+      "basis": "Driver's own declared null: H1 NOT SUPPORTED because both the reseeded cell (0.9475) and the unreseeded control (0.8845) sit below 1.0, in both duplicate runs. Control criterion met (unreseeded control reproduces 861e's decisive-cell value to ~1e-7), so this is the driver's pre-registered INFORMATIVE null, not an uninformative/ambiguous read. User-confirmed 2026-08-25."
      }
     },
     {
@@ -4693,16 +4699,18 @@
       "V3-EXQ-861g"
      ],
      "resolution": {
-      "state": "alive",
+      "state": "confirmed",
       "resolving_runs": [
-       "V3-EXQ-861g"
+       "V3-EXQ-861g",
+       "V3-EXQ-861f"
       ],
-      "evidence_direction": "pending",
-      "resolved_utc": null,
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
       "control_passed": true,
       "non_degenerate": true,
       "met_elimination_bar": false,
-      "basis": "V3-EXQ-861g n10 factor 1.007 > 1.0 on pinned f810969 (pin control bit-identical to 861c 1.2146) while 861e collapsed to 0.884 on 17befb8c. Declared-null H3 SUPPORTED as substrate/machine delta. State left alive: 861g ran on ree-cloud-2 vs 861e on ree-worker-1 (machine bundled with pin); user hold 2026-08-23T18:15:21Z -- do not confirm until V3-EXQ-861f (H1) lands."
+      "resolved_utc": "2026-08-25T18:17:31Z",
+      "basis": "861g (2026-08-23) established the substrate difference (f810969 n10 factor 1.007 vs 17befb8c 0.884) but left it 'alive' pending resolution of a machine confound (861g on ree-cloud-2 vs 861e on ree-worker-1). 861f's own in-run unreseeded control (2026-08-23/24) reproduces 861e's exact decisive-cell value (abs delta 0.0 and 1.1e-7) on THREE independent machine identities including a genuine cross-machine-CLASS boundary (linux-x86_64/py3.10 vs darwin-arm64/py3.13), resolving the machine confound: current-substrate readouts are machine-invariant to ~1e-7, so the divergence from f810969 is attributable to substrate, not machine. Note met_elimination_bar left false (per rule 4, only eliminated/split require the full bar; confirmed only requires control_passed) -- this is a confirm, not an elimination of a rival."
      }
     }
    ],
@@ -4710,12 +4718,12 @@
    "decision": {
     "decision_question": "Which hypothesis explains the 861e C2 1/3 miss given that R3 passed, the 861c n=10 projection is refuted, and 861c already HIGH-graded seed 271 at n=5?",
     "live_gate": "H1 reseeded n=10 on 17befb8c vs H3 pin-f810969 n=10, each with a declared null. H2 is follow-on after those two.",
-    "decidable": false,
+    "decidable": true,
     "decision_log_ref": null,
-    "distance_phrase": "1 of 2 first-portfolio isolation legs landed (H3=V3-EXQ-861g, state still alive pending H1). H1=V3-EXQ-861f claimed on ree-cloud-4. H2 is a labelled follow-on, not in the frozen denominator.",
+    "distance_phrase": "All 3 portfolio legs landed (H1=861f eliminated, H3=861g+861f confirmed, CONTROL=861h passed). qid answered: substrate delta between f810969 and 17befb8c, machine and RNG and write-lock all ruled out. Residual open question (WHICH commit, possible inversion via 76cbf84) is scoped as a new substrate_queue entry (mel-f810969-vs-17befb8c-collapse-bisection), not a live hypothesis on this qid.",
     "observation_bottleneck": null
    },
-   "notes": "Opened by failure_autopsy_V3-EXQ-861e_2026-08-21 at confirmation. Step 7c CONTESTED: first-portfolio frozen set is H1 vs H3 only. H-producer-unstable-271 (H2) is a labelled follow-on after H1 and H3, not in the initial frozen set: its n=5-on-17befb8c sketch is aliased with H3 (861c already HIGH-graded 271 at n=5, so 271 is not like seed 7). 2026-08-23T18:15:21Z failure_autopsy_861g-861h-mech180-cluster: H3 isolation landed, CONTROL (861h) passed and is NOT a fourth frozen hypothesis; H3 left alive (machine confound + wait for 861f)."
+   "notes": "Opened by failure_autopsy_V3-EXQ-861e_2026-08-21 at confirmation. Step 7c CONTESTED: first-portfolio frozen set is H1 vs H3 only. H-producer-unstable-271 (H2) is a labelled follow-on after H1 and H3, not in the initial frozen set: its n=5-on-17befb8c sketch is aliased with H3 (861c already HIGH-graded 271 at n=5, so 271 is not like seed 7). 2026-08-23T18:15:21Z failure_autopsy_861g-861h-mech180-cluster: H3 isolation landed, CONTROL (861h) passed and is NOT a fourth frozen hypothesis; H3 left alive (machine confound + wait for 861f). 2026-09-03T05:21:31Z failure_autopsy_861f-mech180-cluster-a_2026-08-25.json: Mode B resolve applied (drafted 2026-08-25, deferred by TASK_CLAIMS arbitration and never re-applied; artifact status=confirmed, confirmed_utc 2026-08-25T18:17:31Z). H1 eliminated, H3 confirmed, decision.decidable true. No legs added."
   },
   {
    "qid": "mech440_noise_propagation_to_committed_diversity",
