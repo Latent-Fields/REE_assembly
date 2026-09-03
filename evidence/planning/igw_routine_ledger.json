@@ -3878,7 +3878,11 @@
       "task_claim_session_id": "igw-auto-igw-239-literature-proposal-for-ext-005-20260903T105811Z",
       "task_claim_claimed_at": "2026-09-03T10:58:11Z",
       "assigned_at": "2026-09-03T10:57:10Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-03T11:19:57Z",
+      "completion_summary": "lit-pull EXT-005: 5 entries in targeted_review_ext_005 (REE_assembly 6dbbb15509), lit_confidence 0->0.772; GFLAG-0125 (wording too strong vs Kiciman) + GFLAG-0127 (ree_mechanism points at superseded SD-003, successor is SD-031); 1 chip for the OOD falsifier",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -5374,6 +5378,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T10:58:06Z",
       "re_eligible_after": "2026-09-05T10:57:52Z"
+    },
+    {
+      "stable_hash": "2b8848c00c91",
+      "igw_id_at_disposition": "IGW-20260903-239",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-005"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for EXT-005",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T11:19:58Z",
+      "re_eligible_after": "2026-09-05T11:19:58Z"
     }
   ]
 }
