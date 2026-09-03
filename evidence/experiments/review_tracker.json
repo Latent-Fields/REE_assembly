@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-03T07:23:52Z",
+  "last_review_utc": "2026-09-03T20:44:11Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1253,7 +1253,16 @@
     "v3_exq_972_contextmemory_write_content_h4_input_distribution",
     "v3_exq_980_sd_e1_h1c_readout_regime_e1_alone",
     "v3_exq_591h_isef005_phase01_gate_live",
-    "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation"
+    "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation",
+    "v3_exq_977_arc052_harm_stream_conditional_precision",
+    "v3_exq_951c_mech320_vt_floor_diagnostic_sd054",
+    "v3_exq_995_claim_probe_ext_005_causal_signature",
+    "v3_exq_981_mech027_control_plane_pathological_modes",
+    "v3_exq_993_ext003_arc021_merged_channel_ablation",
+    "v3_exq_994_claim_probe_ext_007_consolidation_retention",
+    "v3_exq_978_sd018_directional_field_fishtank",
+    "v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty",
+    "v3_exq_983_ext002_residue_error_persistence"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4169,7 +4178,16 @@
     "v3_exq_972_contextmemory_write_content_h4_input_distribution_20260902T211758Z_v3",
     "v3_exq_980_sd_e1_h1c_readout_regime_e1_alone_20260902T212300Z_v3",
     "v3_exq_591h_isef005_phase01_gate_live_20260903T024528Z_v3",
-    "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation_20260903T014226Z_v3"
+    "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation_20260903T014226Z_v3",
+    "v3_exq_977_arc052_harm_stream_conditional_precision_20260903T112134Z_v3",
+    "v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3",
+    "v3_exq_995_claim_probe_ext_005_causal_signature_20260903T194456Z_v3",
+    "v3_exq_981_mech027_control_plane_pathological_modes_20260903T053044Z_v3",
+    "v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3",
+    "v3_exq_994_claim_probe_ext_007_consolidation_retention_20260903T053351Z_v3",
+    "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3",
+    "v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty_20260903T122245Z_v3",
+    "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6769,6 +6787,22 @@
         "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation_20260903T014226Z_v3"
       ],
       "notes": "2026-09-03 governance cycle (gov-20260903-0650). 7 of 10 pending items adjudicated; 3 left PENDING BY DECISION (route B, user-chosen at the Step 1.5 gate). AUTOPSY-COVERED (6 diagnostics, all confirmed + dry_run_checked:true, landed REE_assembly d51fc6aaa5): V3-EXQ-969/970/971/972 ContextMemory write-content H1-H4 cluster (failure_autopsy_contextmemory-write-content-cluster_2026-09-03), V3-EXQ-980 SD-e1 H1c (failure_autopsy_V3-EXQ-980_2026-09-03), V3-EXQ-591h ISEF005 (failure_autopsy_V3-EXQ-591h_2026-09-03). All recommend non_contributory / standard; applied. V3-EXQ-591h CLAIM TAG REMOVED: the autopsy's recommended_claim_tag_change (remove_tag ARC-019) was user-approved at the Step 3 gate and written to BOTH manifest copies (flat + run pack), with evidence_direction_note citing d51fc6aaa5 as the ratifying commit. Its two arms are bit-identical on 5/5 seeds -- the only phase->agent channel is config.e3.novelty_bonus_weight, whose consumer was deleted 2026-05-25 as dead-by-construction -- so it bears on ARC-019 in neither direction; the tag is what put an untested claim into pending_review as though tested. ARC-019 returns to a literature-only evidence channel. MANDATORY STEP 2b PASS SKIM (1 claim-tagged evidence PASS this cycle): V3-EXQ-982 (EXT-001, supports) -- SKIM FOUND A QUALIFICATION, not a defect. Criteria combine as a genuine c1 AND c2 AND c3 with correct direction routing, and top-level criteria:null is benign (they live under interpretation.criteria). But the threshold arithmetic is weak: C1 (collapsed active ticks > 0) and C3 (collapsed appeasement fires > 0) are EXISTENCE bars pooled across all seeds, and the driver's own SCOPE LIMIT states ARM_SEPARATED cannot produce appeasement fires BY CONSTRUCTION (update_z_goal is the sole z_goal writer and never reads hazard state) -- confirmed in-manifest, all 3 separated seeds read fires=0 exactly. So C3 verifies that the injection worked; it is an instrument check counted as one of three load-bearing criteria for EXT-001. C2 (mean_col > mean_sep) is a bare zero-margin comparison over 3 seeds with no test and no epsilon: pooled it passes 0.889 vs 0.391, but PER SEED it is 2 wins and 1 EXACT TIE -- seed 11 reads 1.0 vs 1.0, the separated arm's valuation machinery active on 100% of P1 ticks, identical to collapsed. Not routed to /failure-autopsy (no actual defect; the driver is honest about the scope limit), but it qualifies the weight: EXT-001's entire experimental confidence (0.775, quadrant novel_discovery) rests on this single run (genuine_exp_count=1). LEFT PENDING BY DECISION -- 3 claim-tagged evidence FAILs with no confirmed and no in-flight autopsy; NO evidence_direction written for any of them this cycle, and no chip (needs-autopsy is /failure-autopsy work, which pending_review.md re-derives): (1) V3-EXQ-981 (MECH-027, 2h45m) -- non_degenerate=True but 4 of 11 preconditions UNMET, including positive_control_hazard_sensitivity measured -0.431 against a +0.05 bar (a positive control that came back NEGATIVE), replay_channel_baseline_reachable 0.0/1.0, and two HV-channel checks ~50x under floor; C1 failed 0.525 vs 1.154; self-routes substrate_not_ready_requeue. (2) V3-EXQ-993 (ARC-021, EXT-003, MECH-069, 53 SECONDS) -- non_degenerate=False; neither DENSE nor SPARSE cleared SEPARATED_SIGNAL_FLOOR=0.02, measured -0.00065 and -0.00022 (~30x under floor and sign-flipped). LIVE MIS-SCORING TO WATCH: the manifest reads evidence_direction unknown with per-claim all-unknown, but the indexer wrote weakens into all three claim entries with rationale 'FAIL with weakening direction'. It IS stamped scoring_excluded:degenerate and that exclusion was verified holding for direction_counts this cycle, but the fix is a manifest write (Step 4, flat AND pack) and that needs a ratified autopsy first. (3) V3-EXQ-994 (EXT-007, 8 SECONDS) -- non_degenerate=False, BOTH preconditions failed: context_memory write path 0.449/0.50, and the WITHOUT_CONSOLIDATION control retained at 0.9997 against a 0.98 bar, i.e. the interference manipulation never happened. NEGATIVE FINDING, stated so it is not re-investigated: all three ran on ree-cloud-4, the box the Healer found 61 commits stale until ~05:15Z today -- but all three ran at ree-v3 6772762, which WAS main's tip at the time. NOT a stale-substrate confound. They do carry one uncommitted worker path (experiments/_lib/baselines/arc019_curriculum_gating.py) worth handing to the autopsy. DRY-RUN CHECK: all 10 pending manifests checked with check_dry_run_citations.py -- 0 dry, 4 clean on the claim-tagged subset; no dry manifest was read into this walk or stamped."
+    },
+    {
+      "utc": "2026-09-03T20:44:11Z",
+      "session": "governance-20260903T2013",
+      "runs_reviewed": [
+        "v3_exq_977_arc052_harm_stream_conditional_precision_20260903T112134Z_v3",
+        "v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3",
+        "v3_exq_995_claim_probe_ext_005_causal_signature_20260903T194456Z_v3",
+        "v3_exq_981_mech027_control_plane_pathological_modes_20260903T053044Z_v3",
+        "v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3",
+        "v3_exq_994_claim_probe_ext_007_consolidation_retention_20260903T053351Z_v3",
+        "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3",
+        "v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty_20260903T122245Z_v3",
+        "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3"
+      ],
+      "notes": "2026-09-03 governance cycle (governance-20260903T2013), user present. 9 pending adjudicated, 0 left. AUTOPSY-COVERED (7, all confirmed + dry_run_checked:true, landed REE_assembly af8d2cabde by session autopsy-outstanding-20260903, cross-model Fable red-team CONTESTED with corrections applied; a second red-team by this cycle applied further amendments the user ratified): V3-EXQ-951c (MECH-320 diagnostic PASS: classification correct but NON-DISCRIMINATING, gates pinned at 1.0 on both beds, v_raw max 0.0 so v_t sits at floor before any gate is consulted; MECH-320 entry amended severity corrupting / tonic_vigor.py; brake refuses a 6th behavioural retest); V3-EXQ-978 (INV-088/MECH-457, mixed -> non_contributory; SD-018 shape (a) validated-negative on a green gate; OFF arm already decodes the field r2 0.71/0.86; fan-out to a capacity-matched frozen-latent oracle-adapter discriminator); V3-EXQ-981 (MECH-027 untested, 4/11 preconditions unmet, C1 bar 1.154 on a [0,1] DV; positive control reversed -0.43 on all seeds -- 981a must check band assignment before redesigning the env; pending_retest_after_substrate deliberately NOT set since no substrate is missing; run added to MECH465-COMMIT-GATE-HEADROOM failure_record); V3-EXQ-983 (EXT-002 weakens -> non_contributory, DV range 0.047 vs bar 0.15; weak-null residual recorded); V3-EXQ-991 (EXT-004 does_not_support -> non_contributory on construct validity; weak-null residual recorded, DV not pinned); V3-EXQ-993 (ARC-021/EXT-003/MECH-069 unknown -> non_contributory, indexer had scored weakens; control arm no signal 13.1x under floor; the harm head that compresses is DRIVER-LOCAL, so NO substrate entry -- folded into the redesign; dv-dynamic-range-precondition-class CREATED at severity degrading with harness-only paths, NOT corrupting on causal_grid_world.py which 1201 drivers import and would have blocked Step 2.5c fleet-wide); V3-EXQ-994 (EXT-007 non_contributory already; contextmemory entry +1 record). MANIFEST WRITES flat+pack with evidence_direction_note: 978, 983, 991, 993 (REE_assembly 635d6c2fc9). MANDATORY STEP 2b PASS SKIMS (2 claim-tagged evidence PASSes), threshold arithmetic read against measured baselines: V3-EXQ-977 (ARC-052 supports) -- SKIM: NOTHING FOUND. Genuine AND of R2 positive control + C1 + C2 with per-seed majority; C1 floor 0.10 plus permutation null (p95 ~0.055) vs measured 0.22-0.41; C2 bar -0.10 plus null (p05 ~-0.05) vs measured -0.26/-0.32/-0.14/-0.30/-0.08 -- seed 47 FAILS C2, so the bar is attainable in both directions. First experimental support for ARC-052 (genuine_exp 0 -> 1). V3-EXQ-995 (EXT-005 supports) -- SKIM: NOTHING FOUND, one qualification logged: C1 mean AUROC 0.644 vs 0.55 bar, C2 comparator-minus-bare 0.204 vs 0.05, but the bare reference sits at 0.43 (below chance) so ~0.07 of the C2 gap is the bare delta anti-discriminating; C2 still clears at 0.14 if bare were at chance. Makes GFLAG-0125/0127 live (applied this cycle). DRY-RUN CHECK: all 9 manifests clean (check_dry_run_citations.py, 9 clean / 0 dry)."
     }
   ]
 }
