@@ -3853,6 +3853,31 @@
       "task_claim_session_id": "igw-auto-igw-239-proposal-for-ext-005-20260903T095541Z",
       "task_claim_claimed_at": "2026-09-03T09:55:41Z",
       "assigned_at": "2026-09-03T09:54:38Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-03T10:57:52Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-09-03T10:58:08Z"
+    },
+    {
+      "igw_id": "IGW-20260903-239",
+      "stable_hash": "2b8848c00c91",
+      "skill": "/lit-pull",
+      "lane": "lit",
+      "priority": 40,
+      "claim_ids": [
+        "EXT-005"
+      ],
+      "owner_exq": null,
+      "title": "Literature proposal for EXT-005",
+      "worktree": ".claude/worktrees/igw-239-literature-proposal-for-ext-005",
+      "branch": "claude/igw-239-literature-proposal-for-ext-005",
+      "session_uuid": "4edfd053-020d-4c7f-8713-fa870c40dbaa",
+      "pid": 3737,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-239-literature-proposal-for-ext-005 && claude --resume 4edfd053-020d-4c7f-8713-fa870c40dbaa",
+      "task_claim_session_id": "igw-auto-igw-239-literature-proposal-for-ext-005-20260903T105811Z",
+      "task_claim_claimed_at": "2026-09-03T10:58:11Z",
+      "assigned_at": "2026-09-03T10:57:10Z",
       "status": "spawned"
     }
   ],
@@ -5335,6 +5360,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T09:12:02Z",
       "re_eligible_after": "2026-09-05T09:12:02Z"
+    },
+    {
+      "stable_hash": "2e593a74f5ea",
+      "igw_id_at_disposition": "IGW-20260903-239",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-005"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for EXT-005",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T10:58:06Z",
+      "re_eligible_after": "2026-09-05T10:57:52Z"
     }
   ]
 }
