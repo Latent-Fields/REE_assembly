@@ -1806,6 +1806,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0125",
+      "claim_ids": [
+        "EXT-005"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "EXT-005's registered wording ('LLMs can produce fluent causal language without ANY internal mechanism that computes a genuine causal signature') is contradicted as written by Kiciman et al. 2024 (TMLR), which reports GPT-3.5/4 at 97% pairwise causal discovery, 92% counterfactual reasoning and 86% on necessary-and-sufficient-cause vignettes, with robustness checks showing the results survive on post-training-cutoff datasets -- recorded as the 'weakens' entry in the new targeted_review_ext_005 pull (REE_assembly 6dbbb15509, 5 entries, lit_confidence 0 -> 0.772). The narrowed claim that DOES survive the pull, and that REE's SD-029/ARC-037 cluster actually answers, is the absence of a FIRST-PERSON, RUN-TIME causal signature over the agent's own interventions: Kiciman's own stated qualifier is that LLMs 'operate on the text metadata' and 'ignore the actual data', and no task in that paper (or in Zecevic 2023 or Jin 2024) tests agent-caused vs world-caused attribution at all. Recommend governance re-word EXT-005 to the narrowed form rather than leave a blanket-absence claim standing against contrary measurement.",
+      "raised_by_session": "igw-239-literature-proposal-for-ext-005",
+      "raised_at": "2026-09-03T11:14:02Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
