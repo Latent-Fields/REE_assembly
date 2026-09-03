@@ -2462,3 +2462,4 @@ One line per hourly tick. ASCII only.
 2026-09-03T06:46:07Z workset committed (regen -- 258 items, 34 ready, 0 in flight)
 2026-09-03T06:43:08Z SPAWN IGW-20260903-243 skill=/queue-experiment prio=40 uuid=bfed469a-1348-4839-84c3-8554036e9a09 pid=87108 worktree=igw-243-proposal-for-arc-120
 2026-09-03T07:06:26Z auto-defer igw-243-proposal-for-arc-120 hash=9720d1c54a5f for 48h (complete)
+2026-09-03T07:06:47Z complete igw-243-proposal-for-arc-120 spawned->completed outcome=USEFUL_LANDED: gated EVB-1233 blocked_substrate: ARC-120 is a framing claim with no runtime dis
