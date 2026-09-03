@@ -1,0 +1,274 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_977_arc052_harm_stream_conditional_precision",
+  "run_id": "v3_exq_977_arc052_harm_stream_conditional_precision_20260903T112134Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-03T11:21:34Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-052"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "harm_stream_precision_is_context_dependent",
+    "preconditions": [
+      {
+        "name": "z_world__point::norm_residual_supra_floor",
+        "precondition": "norm_residual_supra_floor",
+        "arm": "z_world__point",
+        "kind": "readiness",
+        "description": "THIS ARM's own normalised held-out residual (rmse/target_std; the arm's own mean prediction, so the point and quantile cells each certify themselves): the stream carries realized prediction-error spread for a precision estimate to track.",
+        "control": "this arm's own head on held-out transitions of this stream",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0910395951934862,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "z_world__point::n_test_transitions_supra_floor",
+        "precondition": "n_test_transitions_supra_floor",
+        "arm": "z_world__point",
+        "kind": "readiness",
+        "description": "Held-out transition count for this stream.",
+        "control": "collection budget for this seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 952.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "z_world__quantile::norm_residual_supra_floor",
+        "precondition": "norm_residual_supra_floor",
+        "arm": "z_world__quantile",
+        "kind": "readiness",
+        "description": "THIS ARM's own normalised held-out residual (rmse/target_std; the arm's own mean prediction, so the point and quantile cells each certify themselves): the stream carries realized prediction-error spread for a precision estimate to track.",
+        "control": "this arm's own head on held-out transitions of this stream",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.08661937475204015,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "z_world__quantile::n_test_transitions_supra_floor",
+        "precondition": "n_test_transitions_supra_floor",
+        "arm": "z_world__quantile",
+        "kind": "readiness",
+        "description": "Held-out transition count for this stream.",
+        "control": "collection budget for this seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 952.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "z_world__quantile::pvar_relative_spread_supra_floor",
+        "precondition": "pvar_relative_spread_supra_floor",
+        "arm": "z_world__quantile",
+        "kind": "readiness",
+        "description": "Trained quantile head's per-input predictive-variance RELATIVE spread (range/mean). Per e2_world_uncertainty.py, RELATIVE spread -- not absolute range -- separates a trained head from a random-init one. Guards a false null from an untrained head.",
+        "control": "the quantile cell's own trained head on held-out transitions",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8919789791107178,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "z_harm_s__point::norm_residual_supra_floor",
+        "precondition": "norm_residual_supra_floor",
+        "arm": "z_harm_s__point",
+        "kind": "readiness",
+        "description": "THIS ARM's own normalised held-out residual (rmse/target_std; the arm's own mean prediction, so the point and quantile cells each certify themselves): the stream carries realized prediction-error spread for a precision estimate to track.",
+        "control": "this arm's own head on held-out transitions of this stream",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.10809195013945455,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "z_harm_s__point::n_test_transitions_supra_floor",
+        "precondition": "n_test_transitions_supra_floor",
+        "arm": "z_harm_s__point",
+        "kind": "readiness",
+        "description": "Held-out transition count for this stream.",
+        "control": "collection budget for this seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 952.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "z_harm_s__quantile::norm_residual_supra_floor",
+        "precondition": "norm_residual_supra_floor",
+        "arm": "z_harm_s__quantile",
+        "kind": "readiness",
+        "description": "THIS ARM's own normalised held-out residual (rmse/target_std; the arm's own mean prediction, so the point and quantile cells each certify themselves): the stream carries realized prediction-error spread for a precision estimate to track.",
+        "control": "this arm's own head on held-out transitions of this stream",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.09833044421204964,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "z_harm_s__quantile::n_test_transitions_supra_floor",
+        "precondition": "n_test_transitions_supra_floor",
+        "arm": "z_harm_s__quantile",
+        "kind": "readiness",
+        "description": "Held-out transition count for this stream.",
+        "control": "collection budget for this seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 952.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "z_harm_s__quantile::pvar_relative_spread_supra_floor",
+        "precondition": "pvar_relative_spread_supra_floor",
+        "arm": "z_harm_s__quantile",
+        "kind": "readiness",
+        "description": "Trained quantile head's per-input predictive-variance RELATIVE spread (range/mean). Per e2_world_uncertainty.py, RELATIVE spread -- not absolute range -- separates a trained head from a random-init one. Guards a false null from an untrained head.",
+        "control": "the quantile cell's own trained head on held-out transitions",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0755810737609863,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "z_harm_a__point::volatility_iv_relative_spread_supra_floor",
+        "precondition": "volatility_iv_relative_spread_supra_floor",
+        "arm": "z_harm_a__point",
+        "kind": "readiness",
+        "description": "Held-out accumulation-volatility IV relative spread (std/mean). C2 correlates predicted precision AGAINST this IV, so a structurally constant IV would make C2 unmeasurable rather than false. Degeneracy guard on C2's own regressor.",
+        "control": "env-level accumulated_harm rolling std over held-out transitions",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.6041127537186554,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "z_harm_a__point::n_test_transitions_supra_floor",
+        "precondition": "n_test_transitions_supra_floor",
+        "arm": "z_harm_a__point",
+        "kind": "readiness",
+        "description": "Held-out transition count for this stream.",
+        "control": "collection budget for this seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 952.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "z_harm_a__quantile::volatility_iv_relative_spread_supra_floor",
+        "precondition": "volatility_iv_relative_spread_supra_floor",
+        "arm": "z_harm_a__quantile",
+        "kind": "readiness",
+        "description": "Held-out accumulation-volatility IV relative spread (std/mean). C2 correlates predicted precision AGAINST this IV, so a structurally constant IV would make C2 unmeasurable rather than false. Degeneracy guard on C2's own regressor.",
+        "control": "env-level accumulated_harm rolling std over held-out transitions",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.6041127537186554,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "z_harm_a__quantile::n_test_transitions_supra_floor",
+        "precondition": "n_test_transitions_supra_floor",
+        "arm": "z_harm_a__quantile",
+        "kind": "readiness",
+        "description": "Held-out transition count for this stream.",
+        "control": "collection budget for this seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 952.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "z_harm_a__quantile::pvar_relative_spread_supra_floor",
+        "precondition": "pvar_relative_spread_supra_floor",
+        "arm": "z_harm_a__quantile",
+        "kind": "readiness",
+        "description": "Trained quantile head's per-input predictive-variance RELATIVE spread (range/mean). Per e2_world_uncertainty.py, RELATIVE spread -- not absolute range -- separates a trained head from a random-init one. Guards a false null from an untrained head.",
+        "control": "the quantile cell's own trained head on held-out transitions",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.1460225582122803,
+        "threshold": 0.05,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "R2_zworld_positive_control": true,
+      "C1_harm_s_precision_error_corr": true,
+      "C2_harm_a_precision_volatility_corr": true
+    },
+    "scope": "Tests ARC-052 half (B), the context-dependence antecedent, only. Half (A) -- precision heads inside the encoders and E3 precision-weighting of harm-stream influence -- is NOT built and is NOT tested here; it is /implement-substrate work."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3c3391d953ac47f64bc73f61a7a7bf8917521ddd3025c37be6c3e9fd152ddc0e",
+  "substrate_commit": {
+    "commit": "963196d13d34ffa0eb0af8f6a95695fb9e636b6f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 5,
+    "goal_state_present": false
+  }
+}
