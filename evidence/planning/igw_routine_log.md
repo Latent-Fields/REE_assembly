@@ -2514,3 +2514,8 @@ One line per hourly tick. ASCII only.
 2026-09-03T16:12:09Z reaped TASK_CLAIMS igw-auto-igw-242-proposal-for-ext-009-20260903T150922Z (ledger IGW-20260903-242 -> completed_resumable)
 2026-09-03T16:12:11Z GC removed worktree igw-242-proposal-for-ext-009 post-reap (ledger IGW-20260903-242 -> completed_resumable; removed; branch deleted)
 2026-09-03T16:11:14Z SPAWN IGW-20260903-243 skill=/lit-pull prio=40 uuid=523820b4-3934-40f0-8668-179281a3d688 pid=23061 worktree=igw-243-literature-proposal-for-ext-009
+2026-09-03T17:14:36Z workset committed (regen -- 255 items, 34 ready, 0 in flight)
+2026-09-03T17:14:37Z auto-defer IGW-20260903-243 hash=d3e65416c088 for 48h (reaped -> completed_resumable)
+2026-09-03T17:14:37Z reaped TASK_CLAIMS igw-auto-igw-243-literature-proposal-for-ext-009-20260903T161214Z (ledger IGW-20260903-243 -> completed_resumable)
+2026-09-03T17:14:39Z GC removed worktree igw-243-literature-proposal-for-ext-009 post-reap (ledger IGW-20260903-243 -> completed_resumable; removed; branch deleted)
+2026-09-03T17:13:51Z skip IGW-20260903-244: no fresh runner heartbeat (experiment-lane item would just sit in queue)
