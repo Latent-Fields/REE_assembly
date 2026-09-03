@@ -3977,6 +3977,31 @@
       "task_claim_session_id": "igw-auto-igw-242-proposal-for-ext-009-20260903T150922Z",
       "task_claim_claimed_at": "2026-09-03T15:09:22Z",
       "assigned_at": "2026-09-03T15:08:21Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-03T16:11:55Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-09-03T16:12:11Z"
+    },
+    {
+      "igw_id": "IGW-20260903-243",
+      "stable_hash": "d3e65416c088",
+      "skill": "/lit-pull",
+      "lane": "lit",
+      "priority": 40,
+      "claim_ids": [
+        "EXT-009"
+      ],
+      "owner_exq": null,
+      "title": "Literature proposal for EXT-009",
+      "worktree": ".claude/worktrees/igw-243-literature-proposal-for-ext-009",
+      "branch": "claude/igw-243-literature-proposal-for-ext-009",
+      "session_uuid": "523820b4-3934-40f0-8668-179281a3d688",
+      "pid": 23061,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-243-literature-proposal-for-ext-009 && claude --resume 523820b4-3934-40f0-8668-179281a3d688",
+      "task_claim_session_id": "igw-auto-igw-243-literature-proposal-for-ext-009-20260903T161214Z",
+      "task_claim_claimed_at": "2026-09-03T16:12:14Z",
+      "assigned_at": "2026-09-03T16:11:14Z",
       "status": "spawned"
     }
   ],
@@ -5529,6 +5554,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T15:09:03Z",
       "re_eligible_after": "2026-09-05T15:09:03Z"
+    },
+    {
+      "stable_hash": "0758bcfd8f0e",
+      "igw_id_at_disposition": "IGW-20260903-242",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-009"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for EXT-009",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T16:12:09Z",
+      "re_eligible_after": "2026-09-05T16:11:54Z"
     }
   ]
 }
