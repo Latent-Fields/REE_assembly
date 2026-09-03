@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_005",
+  "entry_id": "2026-09-03_ext_005_llm_causal_benchmarks_kiciman2024",
+  "timestamp_utc": "2026-09-03T11:03:06Z",
+  "claim_ids_tested": [
+    "EXT-005"
+  ],
+  "source": {
+    "title": "Causal Reasoning and Large Language Models: Opening a New Frontier for Causality",
+    "authors": [
+      "Emre Kiciman",
+      "Robert Ness",
+      "Amit Sharma",
+      "Chenhao Tan"
+    ],
+    "year": 2024,
+    "venue": "Transactions on Machine Learning Research (TMLR)",
+    "arxiv_id": "2305.00050",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2305.00050"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "weakens",
+  "confidence": 0.66,
+  "confidence_rationale": "This is the pull's counterweight and it is a serious one, which is why it is here rather than a token dissent. GPT-3.5/4 reach 97% on pairwise causal discovery (a 13-point gain over the best prior method), 92% on counterfactual reasoning (20-point gain), and 86% on event causality -- determining necessary and sufficient causes in vignettes, which is ACTUAL causation and therefore the closest published task to what EXT-005 says LLMs cannot do. Crucially, the authors run robustness checks and report that the results are not explained by memorisation alone, because performance holds on datasets created after the training cutoff. That directly stresses the recitation account Zecevic et al. propose and Jin et al. measure. Confidence is 0.66 rather than higher because of a limitation the authors themselves state and which cuts hard in EXT-005's favour on inspection: 'LLMs ignore the actual data' and operate 'on the text metadata' -- i.e. the high scores are obtained by reasoning over variable NAMES and natural-language context, not over observations or interventions. That is a description of a very good causal-knowledge retrieval-and-composition system, which is compatible with EXT-005's premise rather than refuting it. The authors also report unpredictable failure modes and discuss fundamental limits. So the entry weakens EXT-005's blanket phrasing ('without ANY internal mechanism') while leaving its architectural core intact; the direction is 'weakens' because it is genuine contrary evidence against the claim as written, not because the claim collapses.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The claim as written -- that LLMs produce causal language 'without any internal mechanism' -- is too strong to survive contact with these numbers: 97% pairwise causal discovery, 92% counterfactual reasoning, 86% event causality, each beating the best prior dedicated method.",
+    "Memorisation alone does not account for the results: performance is retained on datasets constructed after the training cutoff, so the simplest version of the recitation account is falsified.",
+    "The authors' own stated limit is the load-bearing qualifier: LLMs 'ignore the actual data' and operate on text metadata, so the competence is over variable names and described context rather than over observations or interventions.",
+    "LLMs exhibit unpredictable failure modes, which the authors flag as a barrier to relying on this competence -- a system that is right 97% of the time with no signal about which 3% is not offering a causal signature."
+  ],
+  "tags": [
+    "ext-005",
+    "causal-attribution",
+    "llm",
+    "actual-causation",
+    "counterfactual-reasoning",
+    "causal-discovery",
+    "weakens",
+    "counterweight"
+  ],
+  "mapping": {
+    "source_claim_statement": "A behavioural study benchmarking LLMs' capability to generate causal arguments. Across a wide range of tasks LLMs generate text corresponding to correct causal arguments with high probability, surpassing the best-performing existing methods: GPT-3.5/4-based algorithms reach 97% on pairwise causal discovery (13-point gain), 92% on a counterfactual reasoning task (20-point gain), and 86% accuracy determining necessary and sufficient causes in vignettes. Robustness checks show the capabilities cannot be explained by dataset memorisation alone, as the models generalise to datasets created after the training cutoff. The authors note that LLMs exhibit unpredictable failure modes, discuss fundamental limits, and observe that because LLMs operate on text metadata they ignore the actual data -- pointing toward combining LLMs with existing causal techniques.",
+    "ree_translation": "EXT-005 as registered says LLMs produce fluent causal language 'without ANY internal mechanism that computes a genuine causal signature'. Read literally, these numbers weaken that. 86% on necessary-and-sufficient-cause vignettes is a result on actual causation -- the sub-problem EXT-005 is closest to -- and the post-cutoff generalisation defeats the simplest recitation story. But the authors' own framing tells REE where the boundary really is, and it is a more useful boundary than the one EXT-005 draws. LLMs achieve this by operating on TEXT METADATA: variable names, described context, the semantics of the entities involved. They ignore the data. What REE's SD-029 comparator computes is not metadata at all; it is a residual against a forward model's prediction for an action this agent just issued, available only to a system that has an efference copy. The honest translation is therefore that EXT-005's premise should be narrowed rather than defended: LLMs demonstrably have SOME causal-inferential machinery over described situations, and what they lack is a first-person, run-time signature over their own interventions. That narrowed claim is the one REE's architecture actually answers, and it survives this paper intact.",
+    "mapping_caveat": "Read this entry carefully rather than as a simple refutation, in both directions. Against EXT-005: the tasks are third-person and textual throughout -- vignettes, variable pairs, described counterfactuals -- so nothing here tests whether a model can attribute a state change to its own action, and the paper cannot be cited as evidence that it can. In EXT-005's favour: neither can the paper be waved away, because 'it's only text' is exactly the mode in which EXT-005 says the illusion is produced, and a claim that predicts failure on such tasks has been embarrassed by these numbers. Second caveat: the 97%/92%/86% figures are on GPT-3.5/4 with particular prompting strategies and specific benchmarks; the authors' own report of unpredictable failure modes means these are not a floor. Third: 'surpassing the best-performing existing methods' is a comparison against prior causal-NLP algorithms, not against a ground-truth causal mechanism, and a better score than a weak baseline is not itself evidence of a mechanism.",
+    "source_context": "Behavioural benchmarking study of LLMs across causal discovery, counterfactual reasoning and actual-causation (event causality) tasks, with robustness checks including post-training-cutoff datasets. Models: primarily GPT-3.5 and GPT-4. Code and datasets at https://github.com/py-why/pywhy-llm. No human subjects; no species or clinical transfer."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.28,
+    "notes": "Source quality 0.85: TMLR with an ICLR 2025 presentation and Outstanding Certification finalist status, credible authorship in the causal-inference community, broad task coverage, and -- the part that matters most for a counterweight -- robustness checks the authors ran against their own preferred conclusion. Mapping fidelity 0.58 is the lowest in the pull and is what caps confidence at 0.66: the tasks are entirely third-person and textual, so the paper contradicts EXT-005's blanket wording while never touching its self-attribution content. Transfer risk 0.28: no domain transfer, but a real generation-and-prompting dependence, and the authors' own 'unpredictable failure modes' caveat means the headline numbers should not be treated as a stable property of the systems."
+  }
+}

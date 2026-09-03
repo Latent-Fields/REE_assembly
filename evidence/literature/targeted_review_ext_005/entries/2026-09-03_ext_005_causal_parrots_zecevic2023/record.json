@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_005",
+  "entry_id": "2026-09-03_ext_005_causal_parrots_zecevic2023",
+  "timestamp_utc": "2026-09-03T11:03:06Z",
+  "claim_ids_tested": [
+    "EXT-005"
+  ],
+  "source": {
+    "title": "Causal Parrots: Large Language Models May Talk Causality But Are Not Causal",
+    "authors": [
+      "Matej Zecevic",
+      "Moritz Willig",
+      "Devendra Singh Dhami",
+      "Kristian Kersting"
+    ],
+    "year": 2023,
+    "venue": "Transactions on Machine Learning Research (TMLR)",
+    "arxiv_id": "2308.13067",
+    "doi": null,
+    "url": "https://openreview.net/forum?id=tv46tCzs83"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the paper that states EXT-005's premise most directly and gives it a mechanism rather than a complaint. The authors argue that an LLM's apparent causal competence is recitation of causal facts that were already correlationally present in its training text, and they formalise this with the notion of a meta SCM -- a structural causal model whose variables ARE causal facts about other SCMs. That construction is exactly what EXT-005 needs: it explains how fluent causal language can be produced with no machinery that computes a causal quantity, because the causal quantity was computed by someone else and written down. Confidence sits at 0.74 rather than higher for two reasons. First, the central move is a conjecture, explicitly labelled as such by the authors ('we conjecture that in the cases where LLM succeed in doing causal inference, underlying was a respective meta SCM'), and the empirical section is a supporting illustration rather than a test of it -- the accuracies reported (GPT-3 45% on causal chains, 61.11% on intuitive physics; Luminous 50% / 11.11%; OPT-30B 20% / 19.44%) show weakness, not the absence of a mechanism, and weakness is compatible with a poor causal model as well as with none. Second, the paper's subject is causal inference about the WORLD, not self-attribution: nothing here bears on whether an LLM can distinguish a state change it produced from one it merely observed. Confidence is not lower because the meta-SCM framing is the correct diagnosis of the shape of the gap EXT-005 names, and because the pre-registered prediction it licenses -- degrade to genuinely novel causal structure and performance should collapse -- is exactly what Jin et al. independently found.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An LLM can produce correct causal statements about a domain while holding no causal model of it, because the causal facts were correlationally available in the training corpus as text.",
+    "Success on a causal benchmark is therefore not evidence of a causal mechanism -- it is consistent with recitation from a meta SCM whose variables are other people's causal conclusions.",
+    "On tasks that require composing causal structure rather than recalling it (causal chains, intuitive physics), the models tested performed at or below chance-adjacent levels: GPT-3 45% / 61.11%, Luminous 50% / 11.11%, OPT-30B 20% / 19.44%.",
+    "The failure is not fixed by scale: the authors' framing is that the training signal never contains the interventional structure a causal model requires, so more of it does not supply what is missing."
+  ],
+  "tags": [
+    "ext-005",
+    "sd-029",
+    "mech-095",
+    "arc-037",
+    "causal-attribution",
+    "llm",
+    "meta-scm",
+    "causal-parrots",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "LLMs cannot be causal. Where they appear to perform causal inference, the explanation is a 'meta SCM' -- a structural causal model whose variables encode causal facts about other SCMs -- which made those causal facts correlationally recoverable from natural-language training data. On this account LLMs are parrots: they recite causal knowledge embedded in the data rather than computing it. The authors' empirical analysis finds current LLMs are 'even weak causal parrots', performing poorly on common-sense causal chains and intuitive physics.",
+    "ree_translation": "EXT-005 asserts that language can describe causation without any mechanism that computes a causal signature. Zecevic et al. supply the positive account of how that is possible, which the bare assertion lacks: causal facts are themselves text, so a next-token model trained on text acquires their statistical shadow without ever forming the interventional object that produced them. In REE terms, the missing thing has a name and a formula. SD-029's comparator computes residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual), and the retired SD-003 formulation computed E2(z_t, a_actual) - E2(z_t, a_cf). Both are differences between a forward model's prediction under the action actually taken and the observed or counterfactual alternative. That difference is a quantity the architecture computes at run time from its own efference copy; it is not a fact that can be looked up, and it is exactly the thing a meta SCM cannot contain, because it is indexed to this agent's action on this occasion. The paper's argument is therefore not merely consistent with EXT-005 -- it identifies why the gap is structural rather than a matter of insufficient training.",
+    "mapping_caveat": "Three boundaries. (1) The meta-SCM account is a conjecture the authors state as such, not a proven result; this entry must not be cited as having established that LLMs cannot be causal, only as having given the most coherent available explanation of how fluent causal talk can be mechanism-free. (2) The paper is about causal inference concerning the world -- 'does altitude cause temperature' -- and not about SELF-attribution. EXT-005's specific content is the agent-caused / world-caused distinction, and no experiment here tests it. The transfer from 'no causal model of the world' to 'no causal signature of own agency' is an inference this entry makes on REE's behalf and does not import from the source. (3) The empirical numbers are from GPT-3, Luminous and OPT-30B with some GPT-4 results; the model generation is old relative to 2026 and the low accuracies should not be quoted as current, only as the evidence available when the argument was made.",
+    "source_context": "Machine-learning theory paper with a supporting empirical section. Tasks: common-sense causal inference (causal chains as propositional logic, intuitive physics), causal discovery against six ground-truth graphs (Altitude, Health, Driving, Recovery, Cancer, Earthquake) scored by SID/SHD/F1, and a k-NN probe of GPT-3 Ada embeddings against ConceptNet causal facts. No human subjects, no species transfer."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality 0.78: TMLR is a solid venue with real review, the formal construction is careful, but the empirical section is illustrative rather than decisive and the headline claim is explicitly a conjecture. Mapping fidelity 0.72: the paper targets EXT-005's premise squarely (fluent causal language without a causal mechanism) but addresses world-causation rather than self-attribution, which is the half EXT-005 actually cares about. Transfer risk 0.30: no domain transfer in the usual sense, but there is a real generation-transfer risk -- the models tested predate the systems EXT-005 is about, and Kiciman et al. in this same pull report much stronger numbers on overlapping task types."
+  }
+}

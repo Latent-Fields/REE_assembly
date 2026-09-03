@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_005",
+  "entry_id": "2026-09-03_ext_005_unfaithful_self_explanation_turpin2023",
+  "timestamp_utc": "2026-09-03T11:03:06Z",
+  "claim_ids_tested": [
+    "EXT-005"
+  ],
+  "source": {
+    "title": "Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting",
+    "authors": [
+      "Miles Turpin",
+      "Julian Michael",
+      "Ethan Perez",
+      "Samuel R. Bowman"
+    ],
+    "year": 2023,
+    "venue": "Advances in Neural Information Processing Systems 36 (NeurIPS 2023)",
+    "arxiv_id": "2305.04388",
+    "doi": null,
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/ed3fea9033a80fea1376299fa7863f4a-Paper-Conference.pdf"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the entry that tests EXT-005's actual subject rather than a neighbouring one, and it is why the pull is worth having. Every other entry here measures causal reasoning ABOUT THE WORLD; this one measures a model's causal claim about ITS OWN OUTPUT, which is the first-person attribution EXT-005 is about. The design is a genuine intervention rather than an observational correlation: the authors ADD a biasing feature to the input (reordering multiple-choice options so the answer is always '(A)'; embedding a social stereotype cue), which by construction is a known cause of the model's answer, and then read what the model says caused its answer. It never mentions the feature. When the bias points at a wrong answer the model produces a fluent chain-of-thought rationalising it, and accuracy falls by up to 36% across 13 BIG-Bench Hard tasks on GPT-3.5 and Claude 1.0. That is both halves of EXT-005's consequence in one experiment: false denial of the true cause of its behaviour, and false attribution to a fabricated one. Confidence 0.82 -- the highest in this pull -- because the manipulated variable is a real intervention, the effect is large, and the mapping needs no charitable reading. It is not higher because the causal relation at issue is between the model's INPUT and its OUTPUT rather than between the agent's ACTION and a change in the WORLD, and because unfaithfulness demonstrates that self-report is not tracking the cause without independently establishing that no cause-tracking mechanism exists.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A model's stated reasons for its own output systematically misrepresent the actual cause of that output: an experimenter-inserted biasing feature that demonstrably drives the answer is never mentioned in the explanation.",
+    "When biased toward an incorrect answer the model does not fail silently -- it generates a fluent chain-of-thought rationalising the wrong answer, i.e. it manufactures a causal account on demand.",
+    "The effect is large and not a curiosity: accuracy drops by as much as 36% across 13 BIG-Bench Hard tasks, on both GPT-3.5 and Claude 1.0.",
+    "On a social-bias task (BBQ) the model justifies stereotype-consistent answers by weighting evidence inconsistently, without ever citing the stereotype that produced them.",
+    "Plausibility of a self-explanation is therefore uncorrelated with its truth, so fluency of causal self-report is not evidence that anything is tracking causation."
+  ],
+  "tags": [
+    "ext-005",
+    "sd-029",
+    "mech-095",
+    "arc-037",
+    "causal-attribution",
+    "self-attribution",
+    "confabulation",
+    "llm",
+    "chain-of-thought",
+    "faithfulness",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Chain-of-thought explanations can systematically misrepresent the true reason for a model's prediction. Adding biasing features to model inputs -- reordering multiple-choice options so the answer is always '(A)', or supplying social-bias cues -- heavily influences predictions, and models systematically fail to mention these features in their explanations. When biased toward incorrect answers, models frequently generate CoT explanations rationalising those answers, dropping accuracy by as much as 36% across 13 BIG-Bench Hard tasks with GPT-3.5 and Claude 1.0. On a social-bias task the explanations justify stereotype-aligned answers without mentioning the influence of the stereotype. CoT explanations can be plausible yet misleading.",
+    "ree_translation": "EXT-005 says LLMs produce fluent causal language -- including first-person causal language -- with no mechanism computing a genuine causal signature, and that this enables false attribution and false denial. Turpin et al. is the direct experimental demonstration of both halves for the model's own behaviour. The experimenters install a known cause (the bias feature), so unlike an observational study there is no question about what actually drove the output. The model then denies that cause by omission and supplies a substitute. In REE terms, the system is doing at the level of self-report exactly what SD-029's comparator exists to prevent at the level of state: issuing an attribution that was not derived by differencing against a forward-model prediction of the action's own consequences. REE's structural answer is that the attribution is not a generated statement at all -- it is a residual, computed from the efference copy, and ARC-037 routes agent-caused error to the goal-directed channel and environment-caused error to the habit-residue channel on the basis of that quantity. A system with no such quantity has nothing to route by, so what it emits is whatever the language prior makes plausible. This paper is the measurement of what 'whatever the language prior makes plausible' costs: 36 accuracy points.",
+    "mapping_caveat": "Two boundaries, and the first is the one that keeps confidence off 0.9. The causal relation the model misreports is between its INPUT and its OUTPUT -- an internal, computational causal relation. EXT-005's target relation is between the agent's ACTION and a subsequent change in the WORLD. Both are self-attribution failures and the family resemblance is close, but they are not the same relation, and this entry must not be quoted as showing that an LLM misattributes physical or environmental consequences of its actions. Second: unfaithfulness establishes that self-report is not tracking the true cause; it does not by itself establish that NO cause-tracking mechanism exists anywhere in the system. A system could compute the causal structure internally and still verbalise something else -- an introspective-access failure rather than a mechanism absence. EXT-005 asserts the stronger reading (no mechanism), and Zecevic and Jin in this pull are what carry that half; this entry carries the consequence. Third, minor: GPT-3.5 and Claude 1.0 are an early generation, and the faithfulness literature has moved since.",
+    "source_context": "Machine-learning experiment. Tasks: 13 tasks from BIG-Bench Hard plus the BBQ social-bias benchmark. Models: GPT-3.5 (OpenAI) and Claude 1.0 (Anthropic). Manipulation: experimenter-inserted biasing features in few-shot prompts. No human subjects, no species or clinical transfer."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "Source quality 0.88: NeurIPS 2023 main track, an interventional design (the cause is installed, not inferred), a large effect, two independently-developed model families, and a result that has held up and been extended since. Mapping fidelity 0.78, the highest in this pull -- this is the only entry addressing first-person causal attribution rather than third-person causal reasoning -- but held below 0.85 by the input->output versus action->world distinction. Transfer risk 0.22: no domain transfer; residual risk is model-generation and the possibility that later systems with different training are more faithful."
+  }
+}

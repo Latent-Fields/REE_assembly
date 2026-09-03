@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_005",
+  "entry_id": "2026-09-03_ext_005_corr2cause_near_random_jin2024",
+  "timestamp_utc": "2026-09-03T11:03:06Z",
+  "claim_ids_tested": [
+    "EXT-005"
+  ],
+  "source": {
+    "title": "Can Large Language Models Infer Causation from Correlation?",
+    "authors": [
+      "Zhijing Jin",
+      "Jiarui Liu",
+      "Zhiheng Lyu",
+      "Spencer Poff",
+      "Mrinmaya Sachan",
+      "Rada Mihalcea",
+      "Mona Diab",
+      "Bernhard Scholkopf"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Learning Representations (ICLR 2024)",
+    "arxiv_id": "2306.05836",
+    "doi": null,
+    "url": "https://openreview.net/forum?id=vqIH0ObdqL"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This is the strongest EMPIRICAL entry in the pull and the one that converts Zecevic et al.'s conjecture into a measurement. The design is what makes it load-bearing: Corr2Cause strips out the empirical/commonsense knowledge that every prior causal-NLP benchmark leaks, presenting only correlational statements over abstract variables and asking for the causal relation. That isolates the inferential step from the recall step, which is precisely the confound that makes high scores on other causal benchmarks uninformative about mechanism. Seventeen LLMs land at close to random. The finetuning result is what raises confidence above 0.75: models CAN be fitted to the task, but the fit does not survive perturbing variable names and surface expressions, i.e. what was learned was the textual shape of the answers rather than the inference that generates them. That is a direct, quantified instance of EXT-005's shape -- fluent causal output with no underlying operation. Confidence is 0.80 rather than higher because Corr2Cause is a formal inference task over static correlational statements, and EXT-005's actual subject is an agent's on-line attribution of a state change to its own action. Failing to infer a DAG from correlations and failing to compute an efference-copy residual are both causal deficits, but they are not the same deficit, and the entry should not pretend otherwise.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Seventeen LLMs perform close to random on pure causal inference once empirical/commonsense knowledge is removed from the task -- the competence visible on other causal benchmarks does not survive the removal.",
+    "Finetuning does not repair the deficit: models fitted to Corr2Cause succeed only in-distribution and fail once variable names and textual expressions are perturbed, indicating the learned object is surface form rather than inference.",
+    "Existing causal-NLP benchmarks conflate causal inference with recall of empirical knowledge, so scores on them cannot distinguish a system that computes causal structure from one that recites it.",
+    "A system can output well-formed causal claims about a set of variables while having no operation that maps the given correlations onto a causal graph."
+  ],
+  "tags": [
+    "ext-005",
+    "sd-029",
+    "arc-037",
+    "causal-attribution",
+    "llm",
+    "corr2cause",
+    "benchmark",
+    "out-of-distribution",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Existing causal-NLP datasets test discovery of causality from empirical/commonsense knowledge rather than causal inference itself. The authors introduce Corr2Cause, a benchmark of over 200,000 samples that presents a set of correlational statements and asks for the causal relationship between the variables, thereby testing pure causal inference. Seventeen existing LLMs achieve close to random performance. Finetuning does not generalise: the finetuned models perform causal inference only in-distribution, when variable names and textual expressions resemble the training set, and fail out-of-distribution.",
+    "ree_translation": "EXT-005 says language can describe causation without a mechanism computing it. Jin et al. give that assertion an experimental signature and a control. The control is the important part: previous causal benchmarks let a model score well by recalling that smoking causes cancer, which is a fact about the world available in text; Corr2Cause removes the fact and leaves only the inference. Performance collapses to near chance. For REE this is the empirical counterpart of the meta-SCM argument in Zecevic et al. -- when the causal conclusion is not already in the corpus, nothing generates it. The architectural reading is that a causal signature must be COMPUTED from something the agent has and text does not: an intervention it performed. REE's comparator family (SD-029, and the SD-003 counterfactual formulation it succeeded) is exactly a computation over the agent's own intervention, and ARC-037 is the routing circuit that decides where the resulting attribution goes. The paper is silent on all of that, but it establishes the negative half cleanly: absent such a computation, causal output is surface form, and the finetuning result shows that more supervision on the surface does not conjure the computation.",
+    "mapping_caveat": "The central limit is task shape. Corr2Cause is offline, third-person and formal: given a set of correlational statements about variables the system did not act on, name the causal relation. EXT-005's failure mode is online, first-person and agentive: attribute an observed state change to one's own action or to the world. A system could in principle be bad at the first and good at the second (a comparator needs no DAG induction), so this entry supports EXT-005 by establishing the absence of general causal machinery, not by testing self-attribution. Second caveat: near-random performance measures the ABSENCE of a competence, and inferring the absence of a mechanism from the absence of a competence is a step, not an identity -- a weak mechanism is also consistent with the data. Third: the evaluation is on the model generation available in 2023-2024 and the finetuning result, while more robust than the zero-shot one, was obtained on that generation too.",
+    "source_context": "Machine-learning benchmark paper. Dataset of >200K synthetic samples built from correlational statements over abstract variables; seventeen LLMs evaluated zero-shot, plus finetuning experiments with in-distribution and perturbed out-of-distribution test sets. No human subjects; no species or clinical transfer."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "Source quality 0.88: ICLR 2024 main conference, senior causal-inference authorship (Scholkopf), large dataset, and -- the reason this is the highest source-quality score in the pull -- a design whose whole point is to remove the confound that makes competing results ambiguous. Mapping fidelity 0.70 is the limiting term: the task is formal third-person causal induction, EXT-005's subject is first-person agentive attribution, and the two are related but distinct deficits. Transfer risk 0.25: no domain transfer, only generation transfer, and the finetuning result partially insulates against that by showing the failure is not a prompting artefact."
+  }
+}

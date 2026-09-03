@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_005",
+  "entry_id": "2026-09-03_ext_005_robust_agents_causal_models_richens2024",
+  "timestamp_utc": "2026-09-03T11:03:06Z",
+  "claim_ids_tested": [
+    "EXT-005"
+  ],
+  "source": {
+    "title": "Robust Agents Learn Causal World Models",
+    "authors": [
+      "Jonathan Richens",
+      "Tom Everitt"
+    ],
+    "year": 2024,
+    "venue": "International Conference on Learning Representations (ICLR 2024), Oral",
+    "arxiv_id": "2402.10877",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2402.10877"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "This is the only formal result in the pull and it cuts both ways, which is why it is recorded as mixed rather than forced into a direction. The theorem: any agent capable of satisfying a regret bound under a large set of distributional shifts must have learned an approximate causal model of the data-generating process, converging to the true model for optimal agents. Read one way it WEAKENS EXT-005 -- it removes the option of asserting that a system has no causal model merely because it was trained without explicit causal supervision; if the system is robust under shift, a causal model is entailed, whatever the training signal looked like. Read the other way it STRENGTHENS EXT-005 by supplying a criterion the claim currently lacks: causal-model possession is diagnosable by behaviour under distributional shift, not by benchmark accuracy in-distribution, and by that criterion Jin et al.'s finetuned-but-OOD-brittle models are exactly the negative case the theorem predicts. That is the entry's real value to REE: it converts EXT-005 from an assertion about internals into a falsifiable prediction about generalisation. Confidence 0.70. Source quality is the highest available (ICLR oral, a proved theorem). Mapping fidelity is the limiting term: the theorem concerns causal models of the DATA-GENERATING PROCESS in a decision problem with a regret bound, and says nothing about self/other attribution or about systems, like LLMs, that are not straightforwardly regret-bounded agents over the environment they describe.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In-distribution benchmark accuracy cannot distinguish a system with a causal model from one without; only behaviour under a large set of distributional shifts can, because only the former is entailed by a regret bound under shift.",
+    "A system that is brittle out-of-distribution -- e.g. the Corr2Cause finetuned models, which succeed only when variable names and phrasings resemble training -- has by the contrapositive not learned the causal model.",
+    "The converse of the theorem is the trap for EXT-005 as written: absence of explicit causal training is not evidence of absence of a causal model, so 'it was only trained on text' does not establish the claim.",
+    "Approximation is graded, not binary: the learned model converges to the true causal model only for optimal agents, so intermediate systems hold partial causal models -- a fact any claim asserting total absence must accommodate."
+  ],
+  "tags": [
+    "ext-005",
+    "sd-029",
+    "arc-037",
+    "causal-attribution",
+    "causal-world-model",
+    "distributional-shift",
+    "formal-result",
+    "falsifier",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "It is not known whether agents must learn causal models to generalise to new domains, or whether other inductive biases suffice. The authors prove that any agent capable of satisfying a regret bound under a large set of distributional shifts must have learned an approximate causal model of the data-generating process, and that this converges to the true causal model for optimal agents. Implications are discussed for transfer learning and causal inference.",
+    "ree_translation": "EXT-005 is stated as a claim about the ABSENCE of an internal mechanism, which is the hardest kind of claim to evidence and the easiest to over-state. Richens and Everitt give it the operational form it needs. Causal-model possession is not something to be asserted from training provenance; it is entailed by, and therefore diagnosable from, robustness under distributional shift. That reframing does two things for REE. It disciplines EXT-005 -- 'trained only on text, therefore no causal model' is not a valid inference, and the claim must instead rest on measured OOD brittleness, which is exactly what Jin et al. supply and what Kiciman et al.'s post-cutoff robustness check partially contests. And it hands REE a falsifier design for its own side: if SD-029's comparator and ARC-037's routing constitute a genuine causal attribution mechanism rather than a correlational shortcut, the agent carrying them should hold its attribution accuracy under shifts of the environment's causal structure that leave the surface statistics intact -- and an ablated arm without the comparator should not. That is a runnable V3 experiment, and it is the most useful thing this pull produced.",
+    "mapping_caveat": "Three boundaries, and the first is substantial. The theorem is about a causal model of the DATA-GENERATING PROCESS held by an agent facing a decision problem with a regret bound under distributional shift. An LLM answering causal questions about vignettes is not straightforwardly such an agent -- it is not optimising regret over the environment it describes -- so applying the theorem to LLMs requires an argument the paper does not make, and this entry must not be cited as directly establishing anything about LLM internals. Second, 'approximate causal model' is graded: the result licenses claims about partial causal structure, not about the presence or absence of a discrete mechanism, so it does not adjudicate EXT-005's binary phrasing so much as reject the binary. Third, the theorem concerns causal models of the world; EXT-005's specific target is the agent-caused / world-caused distinction over the agent's OWN actions, and while an agent's own action is a variable in its causal model, the paper does not single that variable out or treat self-attribution as a distinct competence.",
+    "source_context": "Theoretical machine-learning paper: formal definitions and proved theorems about agents satisfying regret bounds under distributional shift. No experiments, no species or clinical transfer. ICLR 2024 oral presentation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.2,
+    "notes": "Source quality 0.92, the highest in the pull: ICLR 2024 oral, a proved theorem rather than a benchmark, from the same group whose 'Discovering agents' (Artificial Intelligence 322:103963, 2023) established that agent discovery requires interventional rather than observational data -- a companion result pointing the same way. Mapping fidelity 0.60 is the limiting term and is why confidence sits at 0.70 despite the source quality: the theorem's subject is regret-bounded agents and world causal models, not LLM self-attribution, and the bridge to EXT-005 is one this entry builds rather than imports. Transfer risk 0.20, the lowest here -- it is a mathematical result, so there is no domain step; the residual is only the applicability question already named in the caveat."
+  }
+}
