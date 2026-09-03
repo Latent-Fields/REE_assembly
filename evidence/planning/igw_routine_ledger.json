@@ -3728,6 +3728,31 @@
       "task_claim_session_id": "igw-auto-igw-243-literature-proposal-for-ext-002-20260903T043504Z",
       "task_claim_claimed_at": "2026-09-03T04:35:04Z",
       "assigned_at": "2026-09-03T04:32:17Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-03T05:39:33Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-09-03T05:39:38Z"
+    },
+    {
+      "igw_id": "IGW-20260903-245",
+      "stable_hash": "ce02a71327d4",
+      "skill": "/lit-pull",
+      "lane": "lit",
+      "priority": 40,
+      "claim_ids": [
+        "EXT-003"
+      ],
+      "owner_exq": null,
+      "title": "Literature proposal for EXT-003",
+      "worktree": ".claude/worktrees/igw-245-literature-proposal-for-ext-003",
+      "branch": "claude/igw-245-literature-proposal-for-ext-003",
+      "session_uuid": "a03bee7e-b0f5-4021-a222-65a204c23ace",
+      "pid": 91610,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-245-literature-proposal-for-ext-003 && claude --resume a03bee7e-b0f5-4021-a222-65a204c23ace",
+      "task_claim_session_id": "igw-auto-igw-245-literature-proposal-for-ext-003-20260903T054011Z",
+      "task_claim_claimed_at": "2026-09-03T05:40:11Z",
+      "assigned_at": "2026-09-03T05:38:37Z",
       "status": "spawned"
     }
   ],
@@ -5140,6 +5165,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T03:45:10Z",
       "re_eligible_after": "2026-09-05T03:45:10Z"
+    },
+    {
+      "stable_hash": "aee0b99de197",
+      "igw_id_at_disposition": "IGW-20260903-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-002"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for EXT-002",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T05:39:33Z",
+      "re_eligible_after": "2026-09-05T05:39:32Z"
     }
   ]
 }
