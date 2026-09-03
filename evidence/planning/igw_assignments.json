@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-03T14:06:10Z",
+  "generated_at": "2026-09-03T15:09:03Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -9446,6 +9446,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "session_uuid=38f5a8a6-268f-484e-9c33-07393720353e branch=claude/igw-241-literature-proposal-for-ext-008",
+      "item_snapshot": {
+        "skill": "/lit-pull",
+        "title": "Literature proposal for EXT-008",
+        "lane": "lit",
+        "priority": 40,
+        "claim_ids": [
+          "EXT-008"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260903T150903Z-7ed3488a-claude_local",
+      "stable_hash": "7ed3488ae14a",
+      "igw_id_at_assign": "IGW-20260903-241",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-03T15:09:03Z",
+      "released_at": "2026-09-03T15:09:03Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260903T140442Z-7ed3488a-claude_local",
       "note": "session_uuid=38f5a8a6-268f-484e-9c33-07393720353e branch=claude/igw-241-literature-proposal-for-ext-008",
       "item_snapshot": {
         "skill": "/lit-pull",
