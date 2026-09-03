@@ -2483,3 +2483,4 @@ One line per hourly tick. ASCII only.
 2026-09-03T10:58:06Z auto-defer IGW-20260903-239 hash=2e593a74f5ea for 48h (reaped -> completed_resumable)
 2026-09-03T10:58:06Z reaped TASK_CLAIMS igw-auto-igw-239-proposal-for-ext-005-20260903T095541Z (ledger IGW-20260903-239 -> completed_resumable)
 2026-09-03T10:58:08Z GC removed worktree igw-239-proposal-for-ext-005 post-reap (ledger IGW-20260903-239 -> completed_resumable; removed; branch deleted)
+2026-09-03T10:57:10Z SPAWN IGW-20260903-239 skill=/lit-pull prio=40 uuid=4edfd053-020d-4c7f-8713-fa870c40dbaa pid=3737 worktree=igw-239-literature-proposal-for-ext-005
