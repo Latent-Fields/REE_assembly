@@ -23,8 +23,10 @@
     "EXT-004"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "EXT-004": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -67,5 +69,6 @@
     "writer_defect": null,
     "n_agents": 10,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance 2026-09-03 (cycle governance-20260903T2013): ratified confirmed autopsy failure_autopsy_ext-claim-probe-cluster_2026-09-03 (REE_assembly af8d2cabde) at this cycle's Step 2b, user present, cross-model red-team applied. does_not_support WITHDRAWN -> non_contributory. The DV (harm_rate in held-out Context B) measures hazard-field occupancy rather than the action-level suppression EXT-004's rider (ARC-013 residue) names; the non_contributory branch was structurally unreachable (naive_control_clean is constant-TRUE); and the driver's own attribution_caveat records that residue is not isolated from other cross-episode state (ARC-108, MECH-165). Residual carried per this cycle's red-team: the DV is NOT pinned (59x across cells) and 4/5 seeds showed no transfer (exposed 0.055 vs naive 0.048, ratio 1.18) against a 15% reduction bar at n=5 -- a weak, underpowered null on the rider prediction, to be carried into the redesign, not read as unmeasured."
 }

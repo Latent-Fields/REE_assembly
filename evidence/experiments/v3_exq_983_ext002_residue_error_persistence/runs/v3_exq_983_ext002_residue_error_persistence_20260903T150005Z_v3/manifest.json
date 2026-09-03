@@ -23,8 +23,10 @@
     "EXT-002"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "EXT-002": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -195,5 +197,6 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance 2026-09-03 (cycle governance-20260903T2013): ratified confirmed autopsy failure_autopsy_ext-claim-probe-cluster_2026-09-03 (REE_assembly af8d2cabde) at this cycle's Step 2b, user present, cross-model red-team applied. weakens WITHDRAWN -> non_contributory. The DV (decline_gap) realised a range of 0.0468 across all six cells against a C1 threshold of 0.15 (3.2x short), and the three seeds differ ~31x in realised harm_rate_train (0.024 vs 0.73/0.74), so no effect of the registered size could have been observed. Residual carried per this cycle's red-team, not erased: the P3 positive control passed at 51x margin and the residue ablation reached behaviour (action-stream divergence 0.19-0.30) while decline_gap did not move -- a WEAK null the redesign must pre-register a headroom-derived bar against, plus a training-completion gate before pooling seeds."
 }

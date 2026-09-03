@@ -25,11 +25,11 @@
     "MECH-069"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-021": "unknown",
-    "EXT-003": "unknown",
-    "MECH-069": "unknown"
+    "ARC-021": "non_contributory",
+    "EXT-003": "non_contributory",
+    "MECH-069": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -126,5 +126,6 @@
       "experiments/_lib/baselines/arc019_curriculum_gating.py"
     ],
     "branch": "main"
-  }
+  },
+  "evidence_direction_note": "Governance 2026-09-03 (cycle governance-20260903T2013): ratified confirmed autopsy failure_autopsy_ext-claim-probe-cluster_2026-09-03 (REE_assembly af8d2cabde) at this cycle's Step 2b, user present, cross-model red-team applied. unknown -> non_contributory (the indexer had been scoring this degenerate FAIL as weakens on all three claims). The SEPARATED control arm produced no signal in either condition: calibration_gap -0.00065 DENSE / -0.00022 SPARSE, largest |gap| in any of 12 cells 0.00152 against SEPARATED_SIGNAL_FLOOR 0.02 (13.1x), so the ablation had nothing to remove and C1/C2 were unreachable (largest paired diff 0.00233 vs MARGIN 0.01). Substrate finding: the forward head is action-sensitive (0.089-0.137) but the harm head maps well-separated latents onto near-identical sigmoids (~0.2% of range). ARC-021 retest owed once that readout compression is fixed; MECH-069 (stable) is not moved by a readout ceiling; EXT-003 is not evidence either way (user ruling 2026-09-03: lit-only conflict non-gating)."
 }

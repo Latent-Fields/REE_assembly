@@ -24,10 +24,10 @@
     "MECH-457"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "INV-088": "unknown",
-    "MECH-457": "unknown"
+    "INV-088": "non_contributory",
+    "MECH-457": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -513,5 +513,6 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Governance 2026-09-03 (cycle governance-20260903T2013): ratified confirmed autopsy failure_autopsy_V3-EXQ-978_2026-09-03 (REE_assembly af8d2cabde) at this cycle's Step 2b, user present, cross-model red-team applied. mixed WITHDRAWN -> non_contributory. SD-018 shape (a) validation nulled cleanly on a fully green 8/8 gate (directional head trained, field r2 0.68/0.63/0.65) but BOTH arms forage at or below the random-walk anchor (OFF 0.0/0.25/0.55, ON 0.3/0.3/0.25 vs 0.85-1.05), the OFF arm already decodes the field from z_world (r2 0.71 sense / 0.86 encoder), and the arm-mean difference (+0.017) is one third of the DV's 0.05 quantum. Neither INV-088's evaluator/z_world relation nor MECH-457's actor-critic substrate was exercised (downstream-beneficiary co-tags). Routed /queue-experiment: frozen-latent supervised oracle-adapter discriminator (H-B consumer vs H-C geometry), capacity-matched to the policy head per this cycle's red-team; SD-018 amend_status -> validated-negative-for-shape-(a)."
 }
