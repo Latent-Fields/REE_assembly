@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-03T15:09:03Z",
+  "generated_at": "2026-09-03T15:09:50Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -9477,6 +9477,28 @@
         "priority": 40,
         "claim_ids": [
           "EXT-008"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260903T150821Z-0758bcfd-claude_local",
+      "stable_hash": "0758bcfd8f0e",
+      "igw_id_at_assign": "IGW-20260903-242",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-03T15:08:21Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=593dde27-ef80-47ea-a8bc-158236f485b6 branch=claude/igw-242-proposal-for-ext-009",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for EXT-009",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "EXT-009"
         ]
       }
     }
