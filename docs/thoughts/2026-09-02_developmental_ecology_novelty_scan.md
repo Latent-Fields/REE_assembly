@@ -1,6 +1,10 @@
+Status: processed
+Intake: docs/incubator/developmental_ecology/README.md
+Processing note (2026-09-03): processed directly into the Developmental Ecology incubator (README + ecology_adapter_v0_1.md + assay_001_yoked_controllability_prereg.md, REE_assembly 74312b8b7d/5295c87ed1/51072112ab, 2026-09-02) rather than a claims intake -- an adjacent programme, not an REE architecture claim, per the document's own status line. No claims registered.
+
 Research Note: Developmental Ecology Assays — Preliminary Novelty and Neighbour Scan
 
-Status: preliminary literature scan — not a systematic review; do not ingest as an REE architecture claim
+Original status line: preliminary literature scan — not a systematic review; do not ingest as an REE architecture claim
 
 Date: 2026-09-02
 Purpose: Test whether the developmental-ecology-assay idea discovered in the 2026-09-02 voice discussion is already established elsewhere, identify its closest neighbours, and sharpen the first falsifiable experiment.
