@@ -93378,6 +93378,9 @@
   - INV-019
   - MECH-256
   - MECH-476
+  - MECH-319
+  - MECH-430
+  - MECH-514
   source_documents:
   - docs/thoughts/2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md
   - evidence/planning/thought_intake_2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md
@@ -93444,4 +93447,190 @@
     reading: open
     as_of: '2026-09-03'
     needs_review: false
+  evidence: []
+
+- id: ARC-137
+  title: 'Offline integration is a protected family of TYPED transformations, not a unitary replay update:
+    retention/interference repair, representational reorganisation, recalibration/attribution repair,
+    and behavioural-access repair are distinct offline OUTCOMES (a partition by what changed, not by which
+    phase ran), and each requires its own declared WRITE TARGET, its own PROVENANCE CLASS for the content
+    it may consume, and its own DISTAL WAKING READOUT. Replay is a transport and sampling operation shared
+    by all four, never a sufficient description of the transformation any of them performs. Consequently
+    a readout appropriate to one operation is not evidence about another: retention is shown by preserved
+    or recovered competence after interference on old and transfer cases; reorganisation by changed relational
+    transfer, equivalence-class behaviour, generalisation or state construction WITH trace/index continuity;
+    recalibration by improved calibration or causal attribution under held-out outcomes, never by narrower
+    uncertainty alone (a sharper but wrong posterior is a failure, and reduced ambivalence from attractor
+    collapse or gate lockout must be separated from reduced ambivalence from evidence integration); and
+    access repair by restored endogenous recruitment, fresh commitment, executed behaviour and ecological
+    consequence while upstream content is held fixed.'
+  claim_type: architectural_commitment
+  subject: sleep.typed_offline_transformation_taxonomy
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-03'
+  depends_on:
+  - ARC-011
+  - ARC-020
+  - MECH-030
+  - MECH-462
+  - SD-068
+  - ARC-130
+  - MECH-529
+  - MECH-273
+  - MECH-094
+  location: docs/architecture/sleep.md#arc-011
+  notes: 'From thought 2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md (intake
+    evidence/planning/thought_intake_2026-09-02_sleep_as_deferred_reorganisation_ and_behavioural_access_repair.md).
+
+    WHAT THIS EXTENDS. ARC-011 gives offline integration''s PURPOSES as a rationale list; ARC-020 gives
+    ONE undifferentiated MAY/MUST-NOT write list for all offline work; MECH-030 gives a PHASE-indexed
+    family ("replay vs abstraction, local vs global, emotional reweighting vs factual integration"). None
+    of the three partitions offline work by OUTCOME, and none pairs an outcome with a required write target,
+    provenance class, and distal readout. MECH-462 is the closest existing partial owner and is generalised
+    here, not superseded: it already rules that a second-order-over-representations phase (REM precision
+    recalibration) is content-free BY TYPE and readable only through a downstream behavioural discrimination
+    consequence -- that is this claim''s readout rule, stated for one axis inside the SD-068 harness.
+
+    WHAT THIS IS NOT. (a) NOT a new sleep module, mechanism, or substrate -- the raw thought says so explicitly
+    ("This does not presently justify a new sleep module"). (b) NOT a restatement of the authority boundary:
+    the thought''s companion invariant ("sleep may repair access to competition but cannot mint authority")
+    was duplication-audited during intake and found DERIVABLE from ARC-020 + ARC-120 + ARC-130 + INV-024,
+    and was deliberately NOT registered. (c) NOT an amendment to ARC-020: the audit did surface a residual
+    -- ARC-020''s permissive MAY-update list (representational parameters, residue/viability structures,
+    precision priors, replay prioritization) does not name the access-route quantities the fourth operation
+    targets (retrieval-cue mappings, model-to-policy readouts, proposal distributions, eligibility / competitive-gain
+    mappings), so access repair is today neither explicitly permitted nor explicitly forbidden. That residual
+    is FLAGGED FOR /governance as a question about ARC-020''s scope; nothing here resolves it and ARC-020
+    is untouched. (d) NOT ownership of any of the four operations: reorganisation is MECH-529/MECH-513/ARC-132/MECH-514''s;
+    recalibration is MECH-273/MECH-275/MECH-204''s; retention is SD-083/MECH-475/MECH-457''s (with MECH-476
+    RETIRED 2026-08-01 on its own falsifier); behavioural-access failure is INV-037/ARC-130/ARC-131/ MECH-480''s.
+    This claim types the family; it takes nothing from its members.
+
+    VERSION-ROUTING FLAG (explicit deviation from the default v4 thought-intake park; needs /governance
+    confirmation, NOT decided here). Scoped implementation_phase v3 / version_relevance v3 on the ARC-130/ARC-131
+    precedent, because it is an audit/interpretation framework over already-running V3 sleep machinery
+    and immediately applicable to sleep experiment design and failure-autopsy practice. epistemic_category
+    substrate_conditional nonetheless, because the four operations are not all reachable in V3 today.
+
+    DO NOT BUILD, DO NOT QUEUE. sleep_substrate_plan.md''s status table is the authority and it does not
+    support an experiment from this claim: sleep_substrate:GAP-2 is upstream-blocked on arc_062_rule_apprehension:GAP-B
+    (rule-creator/discriminator substrate, unlanded); MECH-275''s MECH-276 counterfactual-attribution
+    feedstock is unbuilt; SD-016 ContextMemory content discrimination is unresolved (V3-EXQ-418j/k FAIL,
+    cos_cross_mean 0.987-0.9999); and V3-EXQ-994 (2026-09-03, EXT-007 consolidation-retention ablation)
+    returned FAIL / non_contributory / non_degenerate=false because the WITHOUT arm never sustained a
+    measurable interference dose (retention_score 0.9997). The operative deliverable from this thought
+    is a plan-of-record measurement-doctrine edit, not a run.
+
+    LITERATURE (the thought''s own report; NOT INDEPENDENTLY VERIFIED IN THIS PASS, no /lit-pull performed):
+    Yoshida & Toyoizumi 2023 (Curr Opin Neurobiol 83:102799) for the evidential asymmetry between well-modelled
+    selective NREM consolidation and more speculative REM reorganisation -- a phase name is not proof
+    of a distinct computation; Solomon 2026 (bioRxiv, PREPRINT) and Oyarzun 2017 (J Neurosci 37:7748)
+    for the reorganisation readout; Nijjer 2026 (arXiv, PREPRINT) for the access-repair readout; Chen
+    2026 (bioRxiv, PREPRINT) for the recalibration readout; Bazhenov 2026 (arXiv, PREPRINT) for the retention
+    readout. The shared MECH-094 provenance question this thought also raises is registered ONCE as Q-102
+    (by the sibling counterfactual-world-models intake, same session); the fourth operation (behavioural-access
+    repair) is the offline-rehearsal framing of that question.'
+  live_status:
+    reading: candidate
+    as_of: '2026-09-03'
+    needs_review: false
+  source_documents:
+  - docs/thoughts/2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md
+  - evidence/planning/thought_intake_2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md
+  evidence: []
+  related_claims:
+  - Q-102
+  - MECH-462
+  - SD-068
+  - ARC-131
+  - INV-037
+- id: MECH-533
+  title: 'Developmental co-maturation of offline scheduling and offline competence: the benefit of frequent
+    early offline phases is CONDITIONAL on the maturity of the offline machinery itself, so offline FREQUENCY
+    and offline COMPETENCE develop together and cannot be substituted for one another. Early agents may
+    need frequent protected windows precisely because traces are fragile and representations change rapidly,
+    while their replay selection, sequence fidelity, cross-episode aggregation, and re-indexing competence
+    are still immature -- so adding sleep cycles to an agent whose replay content, sequencing, or write-address
+    discrimination is degenerate produces cycles without transformation. A developmental test must therefore
+    CROSS frequency with competence and hold apart at least seven things that are routinely conflated:
+    sleep-cycle frequency; amount and diversity of waking content; replay coverage and sequence fidelity;
+    ContextMemory content discrimination; transformation competence; behavioural access after waking;
+    and a stage-appropriate ecology in which the result can be expressed. Firing many empty or degenerate
+    cycles is not developmental consolidation, and longer observation under no_grad() is not development
+    if no relevant learning update occurs.'
+  claim_type: mechanism_hypothesis
+  subject: development.offline_frequency_competence_comaturation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-03'
+  depends_on:
+  - SD-017
+  - MECH-092
+  - MECH-285
+  - MECH-273
+  - INV-049
+  - INV-050
+  - INV-055
+  - ARC-131
+  location: docs/architecture/replay_development_analysis.md
+  notes: 'From thought 2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md (intake
+    as above). EXTRACTION, NOT INVENTION: docs/architecture/replay_development_analysis.md already banks
+    the exact literature and flags the gap three separate times -- Buhl & Buzsaki 2005 ("suggests missing
+    claim (replay hardware maturation gate)", DEV-NEED-029), Noguchi, Matsumoto & Ikegaya 2023 ("suggests
+    missing claim (replay sequence fidelity as developmental metric)"), and Horvath 2016 ("suggests missing
+    claim (stage-indexed SWS:REM ratio)"). Verified at registration: no claims.yaml entry registers replay-competence
+    maturation, and none registers the JOINT conditional form.
+
+    WHAT THIS EXTENDS. DEV-NEED-007 (developmental_needs_register.md, "Frequent offline integration during
+    early development") asserts the FREQUENCY half only, and its own open question is "What sleep:wake
+    ratio and post-sleep improvement metrics should be required for infancy?" -- this claim answers the
+    shape of that question by making the ratio''s benefit competence-conditional. DEV-NEED-007 keeps the
+    frequency half; nothing there is superseded.
+
+    WHAT THIS IS NOT. NOT "infant agents should sleep more" -- the raw thought explicitly rejects that
+    reading. NOT INV-074 / MECH-333 / MECH-334 (critical-period plasticity crystallisation): those schedule
+    the PLASTICITY RATE of the dominant scoring pathway; this claim is about the maturity of the OFFLINE
+    MACHINERY (selection, sequencing, aggregation, re-indexing) and its interaction with cadence. NOT
+    INV-050/MECH-180 (MEL-driven frequency/duration): those set HOW MUCH offline phase the error burden
+    demands; this claim says the demanded phase does nothing unless the machinery running it is competent.
+    NOT a scheduler proposal.
+
+    VERSION ROUTING. implementation_phase v4 / version_relevance v3_v4, flagged for governance. The FREQUENCY
+    axis is manipulable in V3 today (K-cadence, and sleep_substrate:GAP-9''s within-life trigger -- both
+    the MEL/need-crossing arm and the step-ceiling backstop landed 2026-08-14, with the SD-SLEEP-ENTRY-PRESSURE
+    correctness fix 2026-08-26). The COMPETENCE axis is not: replay sequence fidelity has no manipulable
+    knob, and ContextMemory content discrimination is an unresolved substrate gap (SD-016; V3-EXQ-418j/k
+    FAIL, cos_cross_mean 0.987-0.9999, separation_gap_mean 0.0000-0.0039 across all four arms). A crossing
+    design is therefore half-reachable, which is exactly substrate_conditional.
+
+    DO NOT BUILD, DO NOT QUEUE. A frequency-only developmental sleep experiment is precisely the degenerate
+    design this claim names ("cycles without transformation"), and the competence arm has no substrate
+    to vary. The entry point, if ever un-parked, is a replay-fidelity manipulation plus a resolved SD-016
+    write-address discrimination -- not another cadence sweep.
+
+    LITERATURE (the thought''s own report; NOT INDEPENDENTLY VERIFIED IN THIS PASS): Seehagen, Konrad,
+    Herbert & Schneider 2015 (PNAS 112:1625) for the frequency half (a nap >= 30 min within 4 h of learning
+    supported 6- and 12-month-old retention at 4 h and 24 h; non-nappers failed); Buhl & Buzsaki 2005
+    (Neuroscience 134:1423) and Noguchi 2023 (J Neurosci 43:6126) and Pochinok 2024 (Nat Commun 15) for
+    the competence half (fast ripple oscillations emerge only late in the second postnatal week; SWR membrane-potential
+    dynamics reach adult-like temporal precision later still; developmental increase of inhibition promotes
+    ripple emergence and hippocampal-prefrontal communication). The first three are already table rows
+    in replay_development_analysis.md and need promoting to evidence/literature/ entries with EVB ids;
+    Pochinok 2024 is not yet in the repo at all.
+
+    '
+  live_status:
+    reading: candidate
+    as_of: '2026-09-03'
+    needs_review: false
+  source_documents:
+  - docs/thoughts/2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md
+  - evidence/planning/thought_intake_2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md
   evidence: []

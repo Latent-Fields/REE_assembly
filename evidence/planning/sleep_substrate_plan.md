@@ -665,6 +665,67 @@ SD-016 confound, the experiment configs must additionally enable:
 - Multi-episode driver (>= K episodes between sleep cycles; K=1 acceptable
   for first PASS but worth flagging)
 
+### Measurement doctrine for offline-operation experiments
+
+Applies to the GAP-2 Tier-1 cohort and its deferred successors (418m / 436b), to any
+V3-EXQ-994 successor, and to any future sleep ON/OFF run. Design requirement, not a
+gate: nothing here authorises a run, and GAP-2 remains upstream-blocked.
+
+**(i) Declare the operation under test.** Offline work is four distinct outcomes with
+different write targets and different falsifiers; name exactly one as the DV owner in
+the queue-entry note and the manifest `experiment_purpose`:
+`retention` (did earlier competence survive later learning?), `reorganisation` (did
+shared structure change?), `recalibration` (is the posterior better CALIBRATED?), or
+`access_repair` (can retained knowledge again reach proposal/selection/action?).
+Replay is transport, shared by all four; "replay occurred" names no operation.
+
+**(ii) Use that operation's own distal readout.** A readout appropriate to one
+operation is not evidence about another.
+
+| Operation | Required distal readout |
+|---|---|
+| Retention | preserved or recovered competence after interference, on old AND transfer cases |
+| Reorganisation | changed relational transfer, equivalence-class behaviour, generalisation, or state construction, WITH trace/index continuity |
+| Recalibration | improved calibration or causal attribution under HELD-OUT outcomes -- never narrower uncertainty alone; a sharper but wrong posterior is a failure, and reduced ambivalence from attractor collapse or gate lockout must be separated from reduced ambivalence from evidence integration |
+| Access repair | restored endogenous recruitment, fresh commitment, executed behaviour and ecological consequence, WHILE upstream content is held fixed |
+
+**(iii) Log the whole chain; do not read a null before checking the earlier links.**
+
+`waking experience -> valid write -> replay availability -> replay selection -> offline
+transformation -> retained change -> waking recruitment -> competition -> fresh
+commitment -> execution -> ecological consequence`
+
+Eleven links, each separately recorded. A null at the end is uninterpretable until the
+earlier ones are shown live: V3-EXQ-994 (2026-09-03) returned FAIL / non_contributory /
+`non_degenerate: false` because its WITHOUT arm never sustained a measurable
+interference dose (retention_score 0.9997), i.e. the retention operation's precondition
+failed at link 2-3 and nothing downstream could have been read. Earlier organism-level
+sleep observations were reset-confounded; V3-EXQ-909 measured internal replay diversity
+and goal-latent retention, not behavioural reorganisation.
+
+**(iv) Necessary diagnostics, insufficient outcomes.** None of the following, alone or
+in combination, is a result. Record them; never accept one as the finding:
+
+- a sleep cycle fired;
+- replay occurred;
+- multiple slots were occupied;
+- a parameter tensor changed;
+- a posterior update was called;
+- goal state remained bit-identical;
+- replay diversity exceeded a low floor;
+- post-sleep movement looked smoother.
+
+**(v) Waking-vs-sleep is measured, not assumed.** MECH-092 already permits waking
+quiescent replay, so a sleep arm must be compared against an equal-compute waking arm
+with replay PERMITTED (and, separately, one with replay DISABLED) before any effect is
+attributed to decoupling rather than to replay.
+
+Source: `docs/thoughts/2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md`,
+intake `evidence/planning/thought_intake_2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md`.
+Related: MECH-462 (a second-order phase is readable only downstream), SD-068/SD-071/SD-072
+(the per-phase lesion/readout instrument), ARC-130 (causal-reach ladder), GOV-PATHVALID-1
+(a mocked-downstream positive control certifies the consumer, not the production organism).
+
 ---
 
 ## Cross-references

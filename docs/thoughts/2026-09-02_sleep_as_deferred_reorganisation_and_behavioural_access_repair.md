@@ -1,7 +1,11 @@
 # Thought: Sleep as Deferred Reorganisation and Behavioural-Access Repair
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md
+Claims registered: ARC-137, MECH-533 (the shared MECH-094 provenance question is Q-102, registered via the sibling counterfactual-world-models intake); measurement doctrine inserted into evidence/planning/sleep_substrate_plan.md
+
 **Date:** 2026-09-02  
-**Status:** Raw evidence-backed thought; hypothesis-generating; not ingested; no claim, version, build, or experiment is authorised by this document.  
+**Original status line:** Raw evidence-backed thought; hypothesis-generating; not ingested; no claim, version, build, or experiment is authorised by this document.  
 **Scope:** Full Reflective–Ethical Engine (REE) lineage, with immediate relevance to sleep/replay, ContextMemory, hippocampal indexing, attribution, precision, commitment, and developmental scheduling.  
 **Primary repositories:** `REE_assembly`, `ree-v3`  
 **Nearby claims and contracts:** ARC-007, ARC-011, ARC-018, ARC-020, ARC-038, ARC-045, ARC-063, ARC-130, ARC-131, SD-017, MECH-030, MECH-092, MECH-094, MECH-120-123, MECH-203-205, MECH-272, MECH-273, MECH-275, MECH-285, DEV-NEED-007, INV-049, INV-050
