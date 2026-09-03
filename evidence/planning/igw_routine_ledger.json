@@ -3653,7 +3653,11 @@
       "task_claim_session_id": "igw-auto-igw-245-literature-proposal-for-ext-001-20260903T002418Z",
       "task_claim_claimed_at": "2026-09-03T00:24:18Z",
       "assigned_at": "2026-09-03T00:23:01Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-03T01:26:50Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-09-03T01:26:52Z"
     }
   ],
   "dispositions": [
@@ -5023,6 +5027,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-02T23:47:23Z",
       "re_eligible_after": "2026-09-04T23:47:23Z"
+    },
+    {
+      "stable_hash": "6eb70e704738",
+      "igw_id_at_disposition": "IGW-20260903-245",
+      "owner_exq": null,
+      "claim_ids": [
+        "EXT-001"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for EXT-001",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-03T01:26:50Z",
+      "re_eligible_after": "2026-09-05T01:26:50Z"
     }
   ]
 }
