@@ -2503,3 +2503,4 @@ One line per hourly tick. ASCII only.
 2026-09-03T14:05:01Z GC removed worktree igw-241-proposal-for-ext-008 (removed; branch deleted)
 2026-09-03T14:04:42Z GC sweep removed 1 orphan worktree(s), kept 11
 2026-09-03T14:05:26Z workset committed (regen -- 255 items, 34 ready, 0 in flight)
+2026-09-03T14:04:42Z SPAWN IGW-20260903-241 skill=/lit-pull prio=40 uuid=38f5a8a6-268f-484e-9c33-07393720353e pid=74898 worktree=igw-241-literature-proposal-for-ext-008
