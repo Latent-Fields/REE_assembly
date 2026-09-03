@@ -3756,8 +3756,8 @@
       "status": "completed",
       "completed_at": "2026-09-03T06:12:54Z",
       "completion_summary": "lit-pull EXT-003: 5 entries landed (REE_assembly d775ee1b18 + 125002cd8e + ac618f0b7a), literature_confidence 0 -> 0.763, 4 supports / 1 weakens, quadrant plausible_unproven",
-      "outcome": "NO_OP",
-      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "3 commits landed and verified on origin/master in REE_assembly (d775ee1b18 five literature entries, 125002cd8e evidence/literature/INDEX.md, ac618f0b7a evidence/experiments/claim_evidence.v1.json); EXT-003 literature_confidence 0 -> 0.763, entries 0 -> 5. Corrected from NO_OP: the AUTO classifier looks for WORKTREE commits, but a /lit-pull session's output lands in the REE_assembly work repo, which an umbrella worktree does not contain (CLAUDE.md 'Worktree / Chipped Sessions' point 3), so AUTO cannot see it."
     }
   ],
   "dispositions": [
