@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-03T07:48:38Z`
+Generated: `2026-09-03T08:51:21Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -2872,31 +2872,7 @@ Instructions:
 
 </details>
 
-### IGW-20260903-244 -- Proposal for EXT-002
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260903-244
-Title: Proposal for EXT-002
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: EXT-002
-Proposal backlog id (stable): EVB-1247
-Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260903-245 -- Literature proposal for EXT-004
+### IGW-20260903-244 -- Literature proposal for EXT-004
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2904,7 +2880,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260903-245
+REE inter-governance work item: IGW-20260903-244
 Title: Literature proposal for EXT-004
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2919,7 +2895,7 @@ Instructions:
 
 </details>
 
-### IGW-20260903-246 -- Proposal for EXT-005
+### IGW-20260903-245 -- Proposal for EXT-005
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2927,7 +2903,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260903-246
+REE inter-governance work item: IGW-20260903-245
 Title: Proposal for EXT-005
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -2943,7 +2919,7 @@ Instructions:
 
 </details>
 
-### IGW-20260903-247 -- Literature proposal for EXT-005
+### IGW-20260903-246 -- Literature proposal for EXT-005
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2951,7 +2927,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260903-247
+REE inter-governance work item: IGW-20260903-246
 Title: Literature proposal for EXT-005
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2966,7 +2942,7 @@ Instructions:
 
 </details>
 
-### IGW-20260903-248 -- Literature proposal for EXT-006
+### IGW-20260903-247 -- Literature proposal for EXT-006
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2974,7 +2950,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260903-248
+REE inter-governance work item: IGW-20260903-247
 Title: Literature proposal for EXT-006
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2984,6 +2960,30 @@ Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_s
 
 Instructions:
 - Use /lit-pull for the claim cluster named.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260903-248 -- Proposal for EXT-008
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260903-248
+Title: Proposal for EXT-008
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: EXT-008
+Proposal backlog id (stable): EVB-1253
+Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
 - Workset: http://localhost:8000/workset
 ```
 
