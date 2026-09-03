@@ -1,0 +1,206 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation",
+  "run_id": "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-03T21:36:59Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "rollout_endpoint_contrastive_lifts_cr_ratio_h1",
+    "preconditions": [
+      {
+        "name": "encoder_trained",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, per every (seed, arm) cell.",
+        "measured": 0.23063954710960388,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "real_zworld_nondegenerate_h1",
+        "kind": "readiness",
+        "description": "CR_real(h=1) is finite, positive, and backed by at least 10 surviving real samples, every cell.",
+        "measured": 40.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "no_missing_action_calls",
+        "kind": "readiness",
+        "description": "E1DeepPredictor._action_cond_missing_calls is 0 on every cell -- every actions= call this script made (incl. the ARM_RC_DECAY / ARM_RSD training calls) supplied a real action sequence, never a silent zero-fallback.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "direct_action_supply_fraction",
+        "kind": "readiness",
+        "description": "The fraction of E1 calls that received a genuine non-None one-hot actions= argument, minimum across cells.",
+        "measured": 1.0,
+        "threshold": 0.999,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "cr_ratio_h1_finite",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) is finite and positive on every (arm, seed) cell -- the exact statistic the decision rule routes on.",
+        "measured": 0.0005414919340613266,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "e1_grad_steps_matched",
+        "kind": "readiness",
+        "description": "Every arm took the same number of E1 optimiser steps at a seed. TRUE BY CONSTRUCTION under the uniform trailing-window trigger (see module docstring); measured, not assumed.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "control": "identical random policy, env, seeds and trailing-window schedule in every arm",
+        "met": true
+      },
+      {
+        "name": "rsd_objective_engaged",
+        "kind": "readiness",
+        "description": "ARM_RSD's rollout_sequence_divergence_loss training calls were non-degenerate (n_distinct_full_sequences >= 2) on a nonzero fraction of ticks, on every seed. Below floor means ARM_RSD's objective NEVER meaningfully engaged -- every call fell through to the grad-connected zero-loss branch. This gates the whole run: an arm whose loss never engages self-routes to substrate_not_ready_requeue, never a claim verdict.",
+        "measured": 1.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "K sampled real windows per tick, distinct-full-sequence floor replicated pre-call",
+        "per_seed": {
+          "seed42": 1.0,
+          "seed123": 1.0,
+          "seed7": 1.0,
+          "seed2024": 1.0,
+          "seed17": 1.0,
+          "seed31": 1.0
+        },
+        "met": true
+      },
+      {
+        "name": "rsd_action_sensitive",
+        "kind": "readiness",
+        "description": "ARM_RSD's rollout_sequence_divergence_loss actually DEPENDS on the sampled action sequences (mean loss under a row-permuted action assignment / mean loss under the real assignment >= 1.05, on every seed). rsd_objective_engaged alone can read True on a degenerate 'identity shortcut' where the replay-buffer's per-sample distinct initial states let E1 minimise the loss via endpoint ~= init (temporally-close windows are spatially close in a slow-drift env regardless of action) without ever reading the action sequence -- red-team finding #1/#2, 2026-09-03. Below floor means the loss engaged on a basis unrelated to per-action divergence: self-routes substrate_not_ready_requeue, never a claim verdict.",
+        "measured": 1.31576691570651,
+        "threshold": 1.05,
+        "direction": "lower",
+        "comparator": ">=",
+        "control": "row-permuted action-sequence assignment (init/endpoint pairing unchanged), isolated RNG stream, computed under no_grad every RSD training tick",
+        "per_seed": {
+          "seed42": 1.3816357054934605,
+          "seed123": 1.31576691570651,
+          "seed7": 1.417150885068173,
+          "seed2024": 1.5194905235039573,
+          "seed17": 1.4304620367736676,
+          "seed31": 1.3315027040916674
+        },
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_rsd_relative_lift",
+        "load_bearing": true,
+        "passed": true,
+        "arm_verdict": "lifts",
+        "arm_verdict_at_trained_horizon": "lifts",
+        "measured": 6,
+        "threshold": 3.0,
+        "statement": "cr_ratio(h=1) relative lift of ARM_RSD over ARM_OFF, per seed, against the FIXED pre-registered bar 3.0; verdict on >= 4/6 seeds."
+      },
+      {
+        "name": "C2_rsd_absolute_bars",
+        "load_bearing": true,
+        "passed": false,
+        "measured": 0,
+        "threshold": 4,
+        "statement": "ARM_RSD clears BOTH absolute evaluator bars (cr_ratio(h=1) >= 0.1 AND e1coe_score_var(h=1) >= 0.002) on >= 4/6 seeds."
+      },
+      {
+        "name": "C3_evaluator_bar_reached_any_arm",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 0,
+        "threshold": 1,
+        "statement": "Any (arm, seed) cell reaches both evaluator bars. RECORDED, not routing."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_rsd_relative_lift": true,
+      "C2_rsd_absolute_bars": true,
+      "C3_evaluator_bar_reached_any_arm": true
+    },
+    "combination_rule": "ARM_RSD is compared against ARM_OFF by relative lift of cr_ratio(h=1) against the FIXED pre-registered LIFT_BAR (3.0); arm verdict lifts/degrades needs >= MAJORITY_SEEDS (4/6) seeds in that direction, null = neither direction on any seed, mixed otherwise. Separately, ARM_RSD is checked against the entry's own ABSOLUTE evaluator bars (cr_ratio(h=1)>=0.1 AND e1coe_score_var>=0.002) on >= MAJORITY_SEEDS seeds -- clearing these routes the label regardless of the relative-lift verdict (Q1's strongest branch). See module docstring LABEL COMPOSITION for the full routing table. A null or mixed/degrades at h=1 with a LIFT at the trained horizon (RC_HORIZON=5 or RSD_HORIZON=5) becomes rollout_endpoint_contrastive_lift_at_trained_horizon_only.",
+    "dv_symmetry_note": "cr_ratio(h) = cr_rollout(h)/cr_real(h); cr_real(h) is arm-invariant per seed, so the contrast reduces to cr_rollout(h) = spread/centroid_norm over the 40 candidate rollout endpoints. A changed training objective moves E1's learned weights and hence every endpoint non-uniformly (neither a common rescaling nor a permutation of the candidate index), so the manipulation reaches the DV and the direction is genuinely open.",
+    "e1_alone_readout_note": "cr_ratio_e1alone_by_h (and cr_rollout_e1alone_by_h) are the V3-EXQ-980 sibling readout at every checkpoint including h=30 -- an E1-alone predict_long_horizon rollout with no E2 self-slot re-priming. RECORDED for the MECH-135 30-step consumer question, EXPLICITLY NOT A GATE (user_decision_2026_09_02 Q2); the label above routes only on the hybrid readout's cr_ratio_by_h.",
+    "what_all_null_licenses": "all_arms_null_residual_crush_locus_elsewhere: ARM_ANCHOR (968's strongest prior incumbent), ARM_RC_DECAY (ITEM 2), and ARM_RSD (ITEM 3) all null against ARM_OFF -- contributes a third leg to the sd_e1_residual_crush_locus ledger per user_decision_2026_09_02 Q3. Does NOT by itself say where the crush is; that is governance's read."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5a198a8e8ccf68df736449e35996b112794c73d00c8b3025608251b1785fbafe",
+  "substrate_commit": {
+    "commit": "5f88f7f27c5b42445b48c7f8718fd1fde7acaa4e",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.action_conditioned_transition": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "e1.output_proj_residual": true,
+    "e1.e1_rollout_consistency_enabled": true,
+    "e1.e1_rollout_sequence_divergence_enabled": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": false
+  }
+}
