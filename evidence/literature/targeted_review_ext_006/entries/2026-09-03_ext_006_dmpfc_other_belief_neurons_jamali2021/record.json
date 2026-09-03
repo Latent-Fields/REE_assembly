@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_006",
+  "entry_id": "2026-09-03_ext_006_dmpfc_other_belief_neurons_jamali2021",
+  "timestamp_utc": "2026-09-03T12:06:09Z",
+  "claim_ids_tested": [
+    "EXT-006",
+    "ARC-010"
+  ],
+  "source": {
+    "title": "Single-neuronal predictions of others' beliefs in humans",
+    "authors": [
+      "Mohsen Jamali",
+      "Benjamin L. Grannan",
+      "Evelina Fedorenko",
+      "Rebecca Saxe",
+      "Raymundo Baez-Mendoza",
+      "Ziv M. Williams"
+    ],
+    "year": 2021,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-021-03184-0",
+    "pmid": "33505022",
+    "pmc": "PMC7990696",
+    "volume": "591",
+    "issue": "7851",
+    "pages": "610-614"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "EXT-006 is an assertion about what LLMs lack, but the word doing the work is 'homologous' -- REE's claim is not merely that other agents should be modelled, but that they should be modelled in a substrate continuous with the one used for the self, so that harm to another can register in the same residue field. That is an architectural commitment about representational format, and no LLM benchmark can bear on it. This paper is the closest available biological grounding. Recording from 324 putative neurons in the human dorsomedial prefrontal cortex during awake deep-brain-stimulation surgery, the authors find that 20.0% (n=42) of neurons predicted whether the participant was considering another's beliefs (83+/-2% collective decoding accuracy) and 23% (n=49) predicted whether the belief considered was false versus true (78+/-3%). Two results carry most of the weight for REE. First, only 11 of those 49 neurons distinguished false from true PHYSICAL representations, so the code is specific to belief rather than reflecting general representational updating. Second, 27.7% of neurons in a control task encoded the participant's OWN imagined false versus true beliefs, but these were 'largely distinct' from the other-belief neurons -- self and other are separably encoded in the same region and by the same recording method. Confidence is held at 0.63 by transfer distance rather than by study quality. This establishes that a dedicated, self-separable other-belief code exists in human cortex; it does not establish that such a code is necessary for social competence, nor anything about coupling into action selection, which is the part ARC-010 actually asserts. An Author Correction was subsequently issued relocating the recording sites somewhat posterolaterally without altering the results.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Only 11 of the 49 neurons that discriminated others' false from true beliefs also discriminated false from true physical representations, indicating a belief-specific code rather than a general representational-update signal.",
+    "Neurons encoding the participant's own imagined false versus true beliefs (27.7% of 112 in the control task) were largely distinct from those encoding others' beliefs, so self-model and other-model are separably represented rather than collapsed into one.",
+    "Population prediction accuracy tracked behaviour: 72% on trials the participant answered correctly versus 56% on incorrect trials, so the neural other-model is coupled to task performance rather than epiphenomenal.",
+    "Simultaneous prediction of all four belief features succeeded on 36+/-2% of trials against a chance rate of 6.25%, indicating a structured multi-feature representation rather than a single scalar."
+  ],
+  "tags": [
+    "ext-006",
+    "arc-010",
+    "inv-008",
+    "theory-of-mind",
+    "dmpfc",
+    "single-unit",
+    "human-electrophysiology",
+    "false-belief",
+    "self-other-distinction",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neurons in the human dorsomedial prefrontal cortex reliably encode information about others' beliefs across richly varying scenarios. These cells distinguish representations of the participant's own beliefs from representations of another's, accurately predict whether the belief under consideration is true or false, track the inferred belief from the other person's perspective, and relate to behavioural outcome -- revealing a cellular mechanism supporting theory of mind.",
+    "ree_translation": "The load-bearing word in EXT-006 is 'homologous'. REE does not merely claim that other agents should be modelled; it claims they should be modelled in a substrate continuous with the self-model, so that predicted harm to another registers as a penalty in the same residue field that governs the agent's own trajectory selection (ARC-010). That is a claim about representational format, and no language benchmark can speak to it -- which is why this pull needs a biological entry alongside the four LLM ones. Jamali et al. supply an existence proof at the resolution that matters: in the same cortical region, recorded by the same electrodes in the same sessions, there are cells that encode another's belief and cells that encode one's own imagined belief, and the two populations are largely distinct. That is the exact shape ARC-010 assumes -- shared substrate, separable indexing -- rather than a single merged representation or two unrelated systems. The belief-specificity result is the second useful constraint: only 11 of 49 other-belief neurons also discriminated true from false physical states, so this is not a generic 'something is being represented as counterfactual' signal that a world-model would supply for free. If a system's other-model is a special case of its world-model, this is evidence that biology does not build it that way. And the behavioural coupling -- 72% population prediction accuracy on correct trials versus 56% on incorrect ones -- is the first faint gesture at the thing ARC-010 actually asserts, namely that the other-model has consequences for what the agent does. It is only a gesture: correlation with trial accuracy is very far from a penalty term entering a selection objective.",
+    "mapping_caveat": "Five boundaries, and the transfer distance here is the largest in this pull. (1) The paper says nothing whatsoever about language models; its relevance to EXT-006 is entirely as grounding for the architectural alternative REE proposes, never as evidence about what LLMs do or do not have. (2) It establishes that a self-separable other-belief code EXISTS in human dmPFC; it does not establish that such a code is NECESSARY for social competence, which is the inference EXT-006 would need and which would require lesion or causal-perturbation evidence. (3) It says nothing about coupling into action selection. Correlation between population decoding and trial accuracy is not a demonstration that the other-model enters an objective function, and ARC-010's kappa coupling remains unevidenced by this or any other paper found. (4) The participants are 11 adults undergoing awake DBS surgery for essential tremor, Parkinson's disease and dystonia, with a mean age of 62; this is a small, clinical, older sample, recorded intraoperatively, and generalisation to healthy cognition carries the usual caveats of human single-unit work. (5) The beliefs are propositional beliefs about object identity and location in verbally presented false-belief vignettes -- not affective or latent states, which is what ARC-010's coupling would need to model. Provenance note: an Author Correction (Nature 618, E25, 2023; doi 10.1038/s41586-023-06263-6) reports that reconstruction of the recording locations on a standardised 3D brain model placed the sites somewhat more posterolaterally and more broadly than originally estimated, spanning the superior frontal gyrus and part of its medial middle frontal gyrus border; the authors state the neuronal findings, analyses and other figures are unaffected. Anyone citing this entry for a precise anatomical localisation should read the correction first.",
+    "source_context": "Human single-neuron electrophysiology, Nature. 15 participants total (11 in the primary task, 4 in additional controls; 5 female, 6 male in the primary group, mean age 62, range 32-73), diagnoses essential tremor (7), Parkinson's disease (3), dystonia (1). Recordings via custom microelectrode arrays with five tungsten microelectrodes advanced during awake surgery for deep brain stimulation placement; 324 putative neurons (212 primary task over 17 sessions, ~12 per session; 112 control tasks). Verbal false-belief vignettes with questions about others' true and false beliefs, physical-state controls, and a self-belief control condition. Open access via PMC7990696."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.88: Nature, human single-unit recording -- a rare and technically demanding preparation -- with appropriate physical-state and self-belief controls, and effects that are large relative to the stated chance levels. Held below 0.9 by the small clinical sample intrinsic to intraoperative work and by the subsequent anatomical Author Correction. Mapping fidelity 0.55: the self/other separability result maps onto ARC-010's architectural assumption unusually well, but the paper is about propositional belief in humans and EXT-006 is about latent-state modelling in artificial systems, so most of the claim is untouched. Transfer risk 0.45, the highest in this pull and deliberately so: human cortex to artificial architecture, older clinical DBS sample to general cognition, and propositional belief to the affective latent state ARC-010's coupling would actually need."
+  }
+}

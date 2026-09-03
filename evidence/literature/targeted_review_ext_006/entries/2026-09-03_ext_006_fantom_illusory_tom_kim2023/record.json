@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_006",
+  "entry_id": "2026-09-03_ext_006_fantom_illusory_tom_kim2023",
+  "timestamp_utc": "2026-09-03T12:06:09Z",
+  "claim_ids_tested": [
+    "EXT-006"
+  ],
+  "source": {
+    "title": "FANToM: A Benchmark for Stress-testing Machine Theory of Mind in Interactions",
+    "authors": [
+      "Hyunwoo Kim",
+      "Melanie Sclar",
+      "Xuhui Zhou",
+      "Ronan Le Bras",
+      "Gunhee Kim",
+      "Yejin Choi",
+      "Maarten Sap"
+    ],
+    "year": 2023,
+    "venue": "Proceedings of EMNLP 2023",
+    "arxiv_id": "2310.15421",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2310.15421"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the strongest entry in the pull for EXT-006's specific content, because it is the only one that tests the RUNNING half of the claim. Prior ToM benchmarks present a finished narrative and ask one question about it; EXT-006 is about maintaining a model of another agent's latent state across an interaction in which that state keeps changing. FANToM constructs 256 multiparty conversations with 10,000 questions in which characters enter and leave, so information access diverges continuously and each character's belief set must be carried forward. Under the paper's all-question aggregate scoring for short conversations, humans reach 87.5% while GPT-4 with chain-of-thought reaches 26.6%, ChatGPT 3.7%, and Mistral Instruct 0.1%. The gap is large, it is against a measured human baseline rather than a ceiling assumption, and it survives chain-of-thought and fine-tuning. More diagnostic than the gap is the paper's central methodological finding: models score substantially higher on multiple-choice belief questions than on the free-response and prerequisite information-access questions that the same belief attribution logically requires, which the authors read as evidence that 'some instances of successful LLM ToM reasoning in FANToM should be interpreted as illusory'. That dissociation is exactly the EXT-006 mechanism -- a correct-looking answer produced by discrimination among offered options rather than by consulting a maintained state. Confidence is 0.82 rather than higher only because the models are 2023-generation and because the all-question aggregate is a strict conjunctive score whose absolute values are not directly comparable to per-item accuracies elsewhere in the literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "On the all-question aggregate over short information-asymmetric conversations, GPT-4 with chain-of-thought reaches 26.6% against a measured human baseline of 87.5%; ChatGPT reaches 3.7% and Mistral Instruct 0.1%.",
+    "Models answer multiple-choice belief questions far better than the free-response and information-access questions that the same belief attribution presupposes, so a correct belief answer is not underwritten by the reasoning that would have to produce it.",
+    "The authors characterise this dissociation directly: 'some instances of successful LLM ToM reasoning in FANToM should be interpreted as illusory'.",
+    "The gap is not closed by chain-of-thought prompting or by fine-tuning, so it does not behave like a prompting or surface-format deficiency.",
+    "Failures concentrate where mental states must be kept non-merged across a conversation -- characters who left the room are credited with information they could not have received -- which is a failure to maintain per-agent state rather than a failure to reason about a single stated belief."
+  ],
+  "tags": [
+    "ext-006",
+    "arc-010",
+    "inv-008",
+    "theory-of-mind",
+    "illusory-tom",
+    "information-asymmetry",
+    "conversation",
+    "llm",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Existing theory-of-mind evaluations use passive narratives that lack interactivity. FANToM stress-tests ToM inside information-asymmetric multiparty conversations, asking multiple question types that demand identical underlying reasoning in order to expose false ToM capability. State-of-the-art models substantially underperform humans, and the gap is not closed by chain-of-thought reasoning or fine-tuning; some apparent successes are illusory, arising from question format rather than from the reasoning the question presupposes.",
+    "ree_translation": "EXT-006 has two components that most of the ToM literature does not separate: that the other-model is absent, and that what exists instead is pattern completion. FANToM separates them, and confirms both. The absence is shown by the conversational design: when characters enter and leave, each one's accessible information is a state that must be updated at every turn, and the collapse from an 87.5% human baseline to 26.6% for the best model is a collapse specifically on maintaining that state, not on reading a belief off a static story. The pattern-completion diagnosis is shown by the question-type dissociation: the same underlying fact is asked as a multiple choice and as a free response, and the model gets the multiple choice right while failing the free response and the prerequisite information-access question. A system consulting a maintained belief state would score alike on both, because both queries read the same variable. A system doing completion over surface form scores better where the surface offers the answer to discriminate among. For REE this is the direct falsifier shape for ARC-010: kappa coupling is defined over a continuously maintained other-state, and the evidence here is that the thing being called theory of mind in LLMs does not persist across turns and is not queryable in a format-invariant way. It is worth being explicit that this is a fact about a class of systems REE is not, and its role is to motivate why REE builds an explicit other-model rather than to say anything about whether REE's implementation works.",
+    "mapping_caveat": "Four boundaries. (1) Model generation: GPT-4-0613, ChatGPT and Mistral Instruct are 2023 systems, and this is the same generation-transfer risk that runs through every LLM entry in this pull. (2) The all-question aggregate is a strict conjunctive score -- a model must answer every question about a conversation correctly -- so 26.6% is not comparable to a per-item accuracy from another benchmark, and quoting it beside such a number would misrepresent both. (3) The 'illusory ToM' conclusion is an inference from a score dissociation across question formats, not a mechanistic measurement; it is a strong and well-designed inference, but it establishes that the belief answers are not underwritten by the prerequisite reasoning, not what representation is actually there. (4) FANToM is a language benchmark, so it bears only on the first half of EXT-006. Whether an other-model, once maintained, would couple into action selection as a penalty in the residue field is untouched here and is not testable in this paradigm at all."
+    ,
+    "source_context": "Machine-learning benchmark paper, EMNLP 2023. 256 generated multiparty conversations, 10,000 questions, six question types (free-response and multiple-choice belief, information-access as list and yes/no, answerability as list and yes/no), evaluated with a measured human baseline. Models tested include GPT-4-0613, ChatGPT, and open-weight instruction-tuned models, with and without chain-of-thought and fine-tuning. No human subjects beyond the baseline annotation, no species transfer."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Source quality 0.85: peer-reviewed at a strong venue, large purpose-built benchmark, measured rather than assumed human baseline, and the key inference rests on a within-paper dissociation rather than on an absolute score -- which is the right design when the worry is benchmark contamination. Mapping fidelity 0.85: the interactive, information-asymmetric design targets the 'running structural model' phrase in EXT-006 more directly than any other paper found, and the question-type dissociation targets the 'pattern completion' phrase. Held below 0.9 because the paper reasons about behaviour and format, never about internal representation. Transfer risk 0.30: model generation only; no species, task, or population transfer is involved."
+  }
+}

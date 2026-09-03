@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_006",
+  "entry_id": "2026-09-03_ext_006_symbolic_belief_tracker_sclar2023",
+  "timestamp_utc": "2026-09-03T12:06:09Z",
+  "claim_ids_tested": [
+    "EXT-006"
+  ],
+  "source": {
+    "title": "Minding Language Models' (Lack of) Theory of Mind: A Plug-and-Play Multi-Character Belief Tracker",
+    "authors": [
+      "Melanie Sclar",
+      "Sachin Kumar",
+      "Peter West",
+      "Alane Suhr",
+      "Yejin Choi",
+      "Yulia Tsvetkov"
+    ],
+    "year": 2023,
+    "venue": "Proceedings of ACL 2023",
+    "arxiv_id": "2306.00924",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2306.00924"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Every other entry in this pull establishes the negative half of EXT-006 -- that the other-model is missing. This one supplies the constructive complement, which is what makes it worth including even though its headline result is an engineering improvement rather than a finding about deficits. SymbolicToM adds an explicit external structure -- a graphical representation tracking each character's beliefs, their estimate of other characters' beliefs, and higher orders -- and reads answers off it at decoding time, leaving the underlying network untouched. GPT-3-Davinci gains 38 absolute points on ToMi (92% averaged across question types), and GPT-3.5 gains 78 points on second-order false-belief questions. That is an unusually clean causal attribution for this literature: the network's parameters, training data and prompt are held constant while an explicit belief-state representation is added, and performance moves by a large margin. It licenses the inference EXT-006 needs -- the deficit is the absence of a maintained structural representation, not an absence of the underlying knowledge, since the same network supplies all the semantics either way. The out-of-distribution results strengthen this: on story-structure variants, GPT-3.5 with SymbolicToM reaches 100% on one variant against 65% for a supervised baseline that degrades badly, indicating that the structure generalises where a fitted mapping does not. Confidence is held to 0.76 by two things: the authors' own finding that ToMi contains spurious patterns and that human answers disagree with ToMi labels depending on physical commonsense, which weakens the benchmark all the numbers rest on; and the fact that the tracker is a symbolic scaffold outside the network, so this shows a structural other-model is SUFFICIENT to repair the behaviour, not that the network could host one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Large neural language models 'still lack basic theory of mind capabilities out-of-the-box', and the authors argue scaling will not supply them because the phenomenon is inherently symbolic and implicit.",
+    "The deficit is repaired by adding an explicit external belief-state structure at decoding time with no change to the network: GPT-3-Davinci gains 38 absolute points on ToMi, reaching 92% averaged across question types.",
+    "Second-order false-belief questions -- what A believes B believes -- show the largest gap, with GPT-3.5 gaining 78 absolute points once the belief graph is supplied, which locates the failure at recursive state maintenance rather than at single-belief attribution.",
+    "Supervised ToM baselines collapse on out-of-distribution story structures while the explicit tracker holds up: on one variant GPT-3.5 with SymbolicToM reaches 100% against 65% for supervised TTT.",
+    "The ToMi benchmark itself carries spurious structure -- the authors' human study finds that physical commonsense makes human answers depend on the nouns used, and disagree with ToMi's own labels."
+  ],
+  "tags": [
+    "ext-006",
+    "arc-010",
+    "inv-008",
+    "theory-of-mind",
+    "belief-tracking",
+    "second-order-belief",
+    "symbolic-scaffold",
+    "llm",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Large neural language models lack basic theory of mind out of the box, and scaling alone will not imbue them with it because the phenomenon is inherently symbolic and implicit. SymbolicToM is a decoding-time, plug-and-play algorithm that maintains explicit graphical representations of each character's beliefs, their estimates of other characters' beliefs, and higher-order levels, without supervision or model modification. It dramatically improves zero-shot ToM performance on ToMi and is robust out of distribution where supervised baselines are not. The work also exposes spurious patterns in existing ToM benchmarks.",
+    "ree_translation": "EXT-006 asserts an absence: no homologous model of other agents' internal states. An absence claim is hard to evidence directly, and the other entries in this pull evidence it by its consequences -- brittleness, format-dependence, failure to persist across turns. Sclar et al. evidence it by supplying the missing thing and watching the consequences disappear. The manipulation is unusually clean for this literature because everything except the belief representation is held fixed: same weights, same training data, same semantic knowledge, and an explicit per-character belief graph added on top at decode time. Performance moves 38 to 78 absolute points. The inference this licenses is precise and is exactly what EXT-006 needs: what was missing was the maintained structural representation, not the knowledge, because the network was always able to supply the semantics once something else was keeping track of who knew what. The second-order result sharpens it further. The largest gains are on what A believes B believes -- recursive state, the level at which pattern completion has the least to go on and a structural model has the most. For REE this is the closest thing in the literature to a positive existence argument for the design ARC-010 commits to: an explicit, separately maintained model of another agent's state is not merely a nice-to-have but is the difference between 14% and 92% on the recursive cases. The correspondence should not be overstated -- SymbolicToM tracks propositional beliefs in reading comprehension, while ARC-010 needs a latent state whose predicted degradation enters the residue field -- but the architectural moral transfers: the other-model has to be built, not hoped for.",
+    "mapping_caveat": "Four boundaries, and the first is the most important. (1) SymbolicToM is a symbolic scaffold OUTSIDE the network, constructed by a separate algorithm that parses the story. It therefore shows that an explicit structural other-model is sufficient to repair the behaviour; it does not show that the network can host one, nor that a learned internal representation would work. REE's other-model is internal and learned, so this is an argument by analogy about what kind of thing is needed, not evidence about REE's implementation. (2) All the headline numbers rest on ToMi, and the same paper reports that ToMi has spurious patterns and that human answers disagree with its labels depending on physical commonsense -- the authors deserve credit for surfacing this, but it means the benchmark is doing less work than the point estimates suggest. (3) The task is reading comprehension over generated narratives with propositional beliefs about object locations; nothing here involves an agent's affective or latent state, which is what ARC-010's coupling actually needs to model. (4) Model generation again: GPT-3-Davinci and GPT-3.5, a 2023 result.",
+    "source_context": "Machine-learning methods paper, ACL 2023. Zero-shot decoding-time intervention evaluated on the ToMi benchmark (first- and second-order false-belief reading comprehension), with out-of-distribution story-structure variants and comparison against supervised baselines, plus a small human study on benchmark label validity. Base models GPT-3-Davinci and GPT-3.5. No human subjects beyond the label study, no species transfer."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Source quality 0.82: ACL main conference, a clean intervention design in which the only thing that varies is the presence of the belief structure, plus the intellectual honesty of reporting that their own evaluation benchmark is flawed. Held below 0.85 because those flawed benchmark labels underpin every number. Mapping fidelity 0.72: the paper's structural moral maps well onto ARC-010's commitment, but the tracked object is propositional belief about object location in reading comprehension, whereas ARC-010 needs a latent state whose predicted degradation is coupled into selection -- a real gap the entry must not paper over. Transfer risk 0.30: model generation, plus the scaffold-versus-internal distinction, which is handled explicitly in the caveat rather than discounted here."
+  }
+}

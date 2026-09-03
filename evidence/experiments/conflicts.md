@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-09-03T11:10:39.191389Z`
+Generated: `2026-09-03T12:14:07.866920Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -34,7 +34,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `INV-047` | directional, mixed_evidence | 1 | 1 | 1 | `2026-07-20_inv_047_multiple_orderings_young2015` | 4 |
 | `INV-054` | directional, source_disagreement | 6 | 1 | 0.286 | `2026-05-05_inv_054_sudden_gains_tang1999` | 7 |
 | `INV-087` | directional, mixed_evidence | 2 | 1 | 0.667 | `2026-08-07_inv087_episodic_shaping_terminal_potential_grzes2017` | 5 |
-| `INV-088` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025` | 7 |
+| `INV-088` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3` | 8 |
 | `INV-089` | directional | 4 | 1 | 0.4 | `2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016` | 5 |
 | `INV-091` | directional, source_disagreement, mixed_evidence | 3 | 3 | 1 | `v3_exq_828b_inv091_cross_stream_similarity_band_dynamic_budget_20260802T073924Z_v3` | 8 |
 | `MECH-070` | directional, mixed_evidence | 1 | 4 | 0.4 | `2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017` | 6 |
@@ -79,7 +79,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-440` | directional, mixed_evidence | 4 | 4 | 1 | `2026-09-01_mech_440_two_process_variability_regulation_dhawale2019` | 12 |
 | `MECH-442` | directional | 4 | 1 | 0.4 | `2026-06-18_mech_442_two_stage_variability_tesileanu2017` | 5 |
 | `MECH-445` | directional, source_disagreement, mixed_evidence | 1 | 1 | 1 | `v3_exq_717_mech445_commit_intent_regime_scoped_falsifier_20260707T105300Z_v3` | 3 |
-| `MECH-457` | directional, source_disagreement, mixed_evidence | 16 | 2 | 0.222 | `2026-07-14_mech_457_striatal_start_stop_chunking_jin_costa2010` | 22 |
+| `MECH-457` | directional, source_disagreement, mixed_evidence | 16 | 2 | 0.222 | `v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3` | 23 |
 | `MECH-463` | directional, source_disagreement, mixed_evidence | 1 | 2 | 0.667 | `2026-07-20_mech_463_tonic_ne_exploration_null_jepma2010` | 5 |
 | `MECH-466` | directional, source_disagreement | 2 | 1 | 0.667 | `v3_exq_831_mech466_event_relative_alignment_20260727T201435Z_v3` | 3 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
@@ -182,7 +182,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-024
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=11, weakens=9, conflict_ratio=0.9, exp_conf=0.642, lit_conf=0.783, overall_confidence_legacy=0.713
+- Evidence breakdown: supports=11, weakens=9, conflict_ratio=0.9, exp_conf=0.641, lit_conf=0.783, overall_confidence_legacy=0.712
 - Recent entries:
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.7
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.78
@@ -652,13 +652,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-088
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.208, lit_conf=0.812, overall_confidence_legacy=0.661
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.363, lit_conf=0.812, overall_confidence_legacy=0.632
 - Recent entries:
-  - `2026-07-27T00:50:12Z` `experimental` `v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix` direction=`supports` confidence=0.75
   - `2026-08-02T12:16:43Z` `experimental` `v3_exq_108b_mech135_inv088_zworld_disambiguation` direction=`non_contributory` confidence=0
   - `2026-08-03T14:22:13Z` `literature` `targeted_review_e1_forward_model_rollout_consistency` direction=`mixed` confidence=0.68
   - `2026-08-03T14:22:13Z` `literature` `targeted_review_e1_forward_model_rollout_consistency` direction=`mixed` confidence=0.58
   - `2026-08-29T09:37:05Z` `experimental` `v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe` direction=`non_contributory` confidence=0
+  - `2026-09-03T11:17:18Z` `experimental` `v3_exq_978_sd018_directional_field_fishtank` direction=`mixed` confidence=0.5
 - Recurring failure signatures:
   - `Development was pronounced at both the perceptual (visual) and abstract (medial prefrontal) ends of the sensory-association gradient in 4-10 year olds, contradicting the classical view -- which INV-088's ordering premise invokes -- that sensory areas develop first and association areas last.` (1)
   - `The study measures functional network segregation/integration, not evaluator readout quality as a function of representational differentiation, so it can neither confirm nor refute the causal bound; it only removes strict temporal precedence as supporting evidence.` (1)
@@ -690,7 +690,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-091
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=3, conflict_ratio=1, exp_conf=0.354, lit_conf=0.8, overall_confidence_legacy=0.577
+- Evidence breakdown: supports=3, weakens=3, conflict_ratio=1, exp_conf=0.353, lit_conf=0.8, overall_confidence_legacy=0.577
 - Recent entries:
   - `2026-07-26T16:32:21Z` `experimental` `v3_exq_827_inv091_cross_stream_similarity_band` direction=`non_contributory` confidence=0
   - `2026-07-26T19:34:19Z` `experimental` `v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync` direction=`non_contributory` confidence=0
@@ -1343,7 +1343,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-230
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=9, weakens=1, conflict_ratio=0.2, exp_conf=0.569, lit_conf=0.806, overall_confidence_legacy=0.747
+- Evidence breakdown: supports=9, weakens=1, conflict_ratio=0.2, exp_conf=0.568, lit_conf=0.806, overall_confidence_legacy=0.747
 - Recent entries:
   - `2026-06-01T11:53:07Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
   - `2026-06-02T17:01:06Z` `experimental` `v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
@@ -1542,13 +1542,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-457
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=16, weakens=2, conflict_ratio=0.222, exp_conf=0.209, lit_conf=0.823, overall_confidence_legacy=0.669
+- Evidence breakdown: supports=16, weakens=2, conflict_ratio=0.222, exp_conf=0.363, lit_conf=0.823, overall_confidence_legacy=0.639
 - Recent entries:
-  - `2026-07-25T22:22:52Z` `experimental` `v3_exq_821_mech457_consummation_binding` direction=`non_contributory` confidence=0
   - `2026-07-26T00:59:30Z` `experimental` `v3_exq_819_mech457_inv088_zworld_trained_vs_random` direction=`weakens` confidence=0.75
   - `2026-07-27T00:50:12Z` `experimental` `v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix` direction=`supports` confidence=0.75
   - `2026-07-30T12:05:15Z` `experimental` `v3_exq_748a_mech457_hrep_zworldp0_rederivation` direction=`supports` confidence=0.75
   - `2026-08-08T16:17:18Z` `experimental` `v3_exq_821b_mech457_consummation_binding` direction=`weakens` confidence=0.75
+  - `2026-09-03T11:17:18Z` `experimental` `v3_exq_978_sd018_directional_field_fishtank` direction=`mixed` confidence=0.5
 - Recurring failure signatures:
   - `Frozen-encoder success in ATC was CONDITIONAL on the encoder being trained with a temporal-contrastive objective on control-relevant observation streams. REE's e2 world-forward contrastive is temporally-contrastive in spirit, but if its features do not expose resource/hazard structure at the 5x5 local-view scale, a frozen-encoder + policy-head build can underperform -- the exact H2 residual.` (1)
   - `ATC still trains the policy end-to-end by RL on reward. The paper is therefore ALSO evidence against REE's status quo: a decoupled encoder does NOT remove the need for a reward-trained policy; REE's bias-head is not a substitute for the RL-trained actor ATC always keeps.` (1)

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_006",
+  "entry_id": "2026-09-03_ext_006_trivial_alterations_ullman2023",
+  "timestamp_utc": "2026-09-03T12:06:09Z",
+  "claim_ids_tested": [
+    "EXT-006"
+  ],
+  "source": {
+    "title": "Large Language Models Fail on Trivial Alterations to Theory-of-Mind Tasks",
+    "authors": [
+      "Tomer Ullman"
+    ],
+    "year": 2023,
+    "venue": "arXiv preprint (cs.AI, cs.CL)",
+    "arxiv_id": "2302.08399",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2302.08399"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "This is the cleanest available demonstration of the specific dissociation EXT-006 asserts: an LLM that answers a false-belief question correctly, and goes on answering it the same way after the world has been altered so that the answer is now wrong. Ullman takes the Kosinski (2023) success case and applies eight perturbations that leave the ToM principle intact -- transparent container, an unreadable label, trusted testimony contradicting the label, the agent having written the label herself, querying the agent who did the moving -- and in every case GPT-3.5 continues to assign 87-99% probability to the original false-belief completion. That pattern is diagnostic rather than merely poor: a system tracking a latent belief variable would have that variable move when the evidence available to the tracked agent moves, and here it does not move at all. Confidence sits at 0.7 rather than higher for three reasons. First, this is an unrefereed preprint reporting single-probe completion probabilities with no seeds, no variance, and no statistical test -- it is a demonstration, not a measurement, and Ullman presents it as such. Second, it tests one model of one generation (GPT-3.5); the argument that scale will not fix this is asserted, not shown, and Strachan et al. (2024) in this same pull report GPT-4 at or above human level on four of five ToM measures, which at minimum means the raw accuracy claim does not survive to the next generation. Third, the paper's own framing is epistemological -- that the zero-hypothesis should be skeptical and outlying failures should outweigh average success -- which is a methodological argument that EXT-006 can borrow but is not itself evidence about mechanism. Confidence is not lower because the failure shape, not the failure rate, is what EXT-006 needs, and the failure shape here is exactly right: the answer is invariant to the very evidence a belief model would be conditioned on.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Making the container transparent so the agent can see the true contents does not move the model's belief attribution: P(chocolate) stays at 95% when the correct answer is now popcorn.",
+    "Stating that the agent cannot read, then having her look at the label, leaves the false-belief attribution at 98% -- the model conditions on the label's presence, not on the agent's capacity to extract information from it.",
+    "Explicit trusted testimony that contradicts the label ('ignore the label, the bag has popcorn') leaves the attribution at 97%.",
+    "Having the agent fill the bag herself and only then read the label leaves the attribution at 87%, attributing a false belief to an agent who has direct knowledge of the contents.",
+    "In the unexpected-transfer task, asking where the agent who MOVED the object will look for it returns the pre-move location at 99% -- the model answers the false-belief template rather than the question.",
+    "Changing the preposition 'in' to 'on' throughout an otherwise unchanged Sally-Anne scenario still yields 97% on the wrong location, showing sensitivity to surface form rather than to the represented situation."
+  ],
+  "tags": [
+    "ext-006",
+    "arc-010",
+    "inv-008",
+    "theory-of-mind",
+    "false-belief",
+    "llm",
+    "other-model-collapse",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Recent reports that large language models have acquired theory of mind rest on benchmark items that are close to their canonical published form. Small alterations that preserve the ToM principle but change what the story character can know -- transparent containers, uninformative labels, trusted testimony, late labelling, querying the second character -- 'turn the results on their head'. The author argues the zero-hypothesis for evaluating intuitive psychology in machines should be skeptical, and that outlying failure cases should outweigh average success rates.",
+    "ree_translation": "EXT-006 asserts that LLMs simulate theory of mind by pattern completion over text rather than by maintaining a running structural model of another agent's latent state. Ullman's perturbations are, in effect, an ablation of the inputs any such model would have to consume. A structural other-model has a state variable -- what this agent has had epistemic access to -- and the answer is a function of that variable. If the variable existed, making the container transparent would change it, and the answer would follow. It does not follow; the answer stays pinned at the value the canonical story template licenses. That is the signature of a completion conditioned on story SHAPE rather than on tracked agent STATE, which is precisely the mechanism EXT-006 names. For REE this matters beyond benchmark scoring, because ARC-010's kappa coupling requires that predicted degradation in another agent register as a penalty in the same residue field that governs the agent's own trajectory selection. A coupling term can only be computed from a state that moves with evidence. An other-model that is invariant to the other's epistemic situation contributes a constant to the selection objective, and a constant is not a coupling -- it cannot distinguish a trajectory that harms the other from one that does not.",
+    "mapping_caveat": "Four boundaries. (1) Preprint, not peer-reviewed, and methodologically a demonstration: single completions, probabilities reported to two significant figures, no seeds, no variance, no inferential statistics. It should be cited for the shape of the failure and never for an effect size. (2) The model is GPT-3.5. This is a 2023 result about a 2022-generation system, and EXT-006 is a claim about the class of systems, so there is real generation-transfer risk -- Strachan et al. (2024), in this same pull, is the counterweight and must be read alongside it. (3) The result licenses 'no belief-state variable that moves with the other's evidence'; it does NOT license 'no internal representation of other agents at all', which is a stronger claim this entry does not support. Interpretability work could in principle find a belief-like representation that the completion head fails to use. (4) Nothing here tests the second half of EXT-006 -- whether an other-model, if present, would couple into action selection. No language-model benchmark can test that, because there is no selection process to couple into.",
+    "source_context": "Machine-learning evaluation of GPT-3.5 on two canonical false-belief paradigms (unexpected contents / Smarties; unexpected transfer / Sally-Anne), probing next-token completion probabilities on hand-constructed variants. No human subjects, no species transfer. Written as a direct response to Kosinski (2023), which had reported ToM-comparable performance in LLMs."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.62: an unrefereed preprint by a serious cognitive scientist, reporting single-probe completion probabilities with no variance estimates or statistics -- the evidence is a well-chosen demonstration rather than a measurement, and the paper is honest about this. Mapping fidelity 0.88: unusually high, because the manipulations are exactly the ablation EXT-006's mechanism predicts should matter and does not -- the paper was not written about REE but could hardly be closer to the claim's content. Transfer risk 0.35: the sole risk is model generation, and it is a live one -- GPT-3.5 in 2023 is two generations from what EXT-006 is about, and the strongest contrary evidence in this pull is precisely a later-generation result."
+  }
+}

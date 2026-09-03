@@ -1,0 +1,68 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_006",
+  "entry_id": "2026-09-03_ext_006_tom_battery_humans_strachan2024",
+  "timestamp_utc": "2026-09-03T12:06:09Z",
+  "claim_ids_tested": [
+    "EXT-006"
+  ],
+  "source": {
+    "title": "Testing theory of mind in large language models and humans",
+    "authors": [
+      "James W. A. Strachan",
+      "Dalila Albergo",
+      "Giulia Borghini",
+      "Oriana Pansardi",
+      "Eugenio Scaliti",
+      "Saurabh Gupta",
+      "Krati Saxena",
+      "Alessandro Rufo",
+      "Stefano Panzeri",
+      "Guido Manzi",
+      "Michael S. A. Graziano",
+      "Cristina Becchio"
+    ],
+    "year": 2024,
+    "venue": "Nature Human Behaviour",
+    "doi": "10.1038/s41562-024-01882-z",
+    "pmid": "38769463",
+    "pmc": "PMC11272575",
+    "volume": "8",
+    "issue": "7",
+    "pages": "1285-1295"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "This is the strongest contrary evidence available against EXT-006's behavioural surface, and it is included for that reason. Against a human sample of 1,907 across a five-test battery (false belief, irony, faux pas, hinting, strange stories), GPT-4 performed at ceiling alongside humans on false belief and significantly BETTER than humans on irony, hinting and strange stories. If EXT-006 is read as predicting that LLMs will fail theory-of-mind assessment, this refutes it for four of five measures in a well-powered peer-reviewed study at a strong venue. The direction is nevertheless recorded as mixed rather than weakens, because two findings inside the paper cut the other way and the authors' own conclusion is the more careful one. GPT-4 scored notably below humans on faux pas, the one test requiring simultaneous tracking of what a speaker knows and how a listener is affected. More telling, LLaMA2-70B -- much the weaker model everywhere else -- scored 100% on faux pas in all but one run, and the authors attribute this not to superior mentalizing but to a bias towards attributing ignorance, so a correct ToM answer was produced by a mechanism that is not ToM. That is EXT-006's mechanism claim demonstrated inside the paper that otherwise weakens it. The authors themselves decline the mentalizing inference, describing 'a dissociation between competence and performance' and stating that emulating human-like responses 'does not mean that this analogy extends to the underlying cognition giving rise to those responses'. Confidence 0.71 reflects high source quality against modest mapping fidelity: EXT-006 is a claim about mechanism, and a behavioural battery cannot adjudicate mechanism in either direction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "GPT-4 scored notably below human level on faux pas recognition, the one test in the battery requiring a speaker's knowledge state and a listener's affective response to be tracked at once.",
+    "LLaMA2-70B scored 100% on faux pas in all but one run despite being the weaker model on every other test; the authors attribute this to a bias towards attributing ignorance rather than to mentalizing, so a correct theory-of-mind answer was produced by a non-theory-of-mind mechanism.",
+    "The authors describe 'a dissociation between competence and performance' -- the models 'may be competent, that is, have the technical sophistication to compute mentalistic-like inferences but perform differently from humans under uncertain circumstances'.",
+    "The authors explicitly decline the mechanism inference: 'While LLMs are designed to emulate human-like responses, this does not mean that this analogy extends to the underlying cognition giving rise to those responses.'"
+  ],
+  "tags": [
+    "ext-006",
+    "arc-010",
+    "inv-008",
+    "theory-of-mind",
+    "faux-pas",
+    "human-comparison",
+    "llm",
+    "mixed",
+    "counterweight"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across a battery of five established theory-of-mind measures -- false belief, irony, faux pas, hinting, and strange stories -- GPT-4 performed at or above the level of a human comparison sample of 1,907 on four, at ceiling alongside humans on false belief and significantly better than humans on irony, hinting and strange stories, while scoring notably lower on faux pas. LLaMA2-70B outperformed humans only on faux pas, which follow-up analysis attributed to a bias towards attributing ignorance rather than to superior mentalizing. The authors conclude that LLMs exhibit behaviour consistent with the outputs of mentalistic inference in humans, while emphasising that behavioural similarity does not establish similarity of the underlying cognition.",
+    "ree_translation": "This entry exists to keep EXT-006 honest, and it does two jobs. The first is straightforwardly corrective: any version of EXT-006 that predicts LLMs will fail theory-of-mind assessment is false, and this is the study that makes it false, with adequate power, a real human comparison sample and peer review at a strong venue. The claim as registered does not say that -- it says the ToM is produced by pattern completion rather than by a maintained structural model -- but the distinction is easy to lose in summary, and a governance record that cited only the failure literature would be reporting a selected corpus. The second job is more interesting. The LLaMA2 faux-pas result is EXT-006's own mechanism claim appearing inside the paper that otherwise weakens it: a model achieves near-perfect scores on a theory-of-mind test through a response bias that has nothing to do with modelling anyone's mind. That is the pattern-completion diagnosis in its purest form, and it is what makes a high score uninformative about the presence of an other-model. The faux-pas deficit in GPT-4 is suggestive on the same axis, since faux pas is the one item in the battery that requires two agents' states to be held simultaneously -- what the speaker knows and how the listener is affected -- which is the closest the battery comes to FANToM's multi-agent state maintenance, and it is where the strong model is weakest. For ARC-010 the net reading is that behavioural ToM competence is not the bottleneck and should not be treated as REE's differentiator; what REE claims to add is the coupling of the other-model into selection, and nothing in this literature, supportive or contrary, speaks to that.",
+    "mapping_caveat": "Four boundaries. (1) The central one: this is a behavioural battery and EXT-006 is a claim about mechanism, so the study cannot adjudicate it in either direction -- the authors say so themselves. It is recorded as mixed rather than weakens for exactly this reason, and it must not be cited as having refuted EXT-006. (2) The battery uses established psychological instruments in close to their canonical form, and their canonical form is well represented in training corpora; contamination is not controlled here and is the standing objection to any positive ToM result of this kind. Ullman (2023) in this same pull is the direct methodological rejoinder. (3) The human sample of 1,907 is a comparison baseline collected by the authors, not a normative population sample, so 'better than humans' means better than this sample on these instruments. (4) The tests are single-shot narrative items and so, like most of this literature, cannot speak to maintenance of another agent's state across an extended interaction -- the half of EXT-006 that FANToM addresses and finds against.",
+    "source_context": "Comparative behavioural study, Nature Human Behaviour. Five established theory-of-mind instruments administered to GPT-4, GPT-3.5 and LLaMA2 (70B, 13B, 7B) across multiple runs, and to a human comparison sample totalling 1,907 participants. Open access via PMC11272575. No species transfer; the transfer at issue is from human-designed clinical/developmental instruments to a machine respondent."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.3,
+    "notes": "Source quality 0.9: Nature Human Behaviour, large human comparison sample, multiple models and multiple runs, and authors who state the limits of their own inference rather than overselling it. Mapping fidelity 0.55, and this is what caps the entry: EXT-006 asserts the absence of a maintained structural other-model, which is a claim about mechanism, and a battery of narrative instruments measures output. High scores are consistent with a structural model and equally consistent with very good completion -- as the paper's own LLaMA2 faux-pas result demonstrates within its own data. Transfer risk 0.30: instruments designed for humans applied to a machine respondent, plus uncontrolled benchmark contamination, which is a real risk for the positive findings specifically."
+  }
+}
