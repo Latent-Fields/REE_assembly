@@ -2439,3 +2439,7 @@ One line per hourly tick. ASCII only.
 2026-09-03T02:28:10Z workset committed (regen -- 255 items, 31 ready, 0 in flight)
 2026-09-03T02:27:29Z SPAWN IGW-20260903-240 skill=/queue-experiment prio=40 uuid=76282d01-3159-402b-8adb-4de103a8be96 pid=41425 worktree=igw-240-proposal-for-arc-121
 2026-09-03T02:40:37Z auto-defer igw-240-proposal-for-arc-121 hash=9437d6f707f8 for 48h (complete)
+2026-09-03T02:40:58Z complete igw-240-proposal-for-arc-121 spawned->completed outcome=USEFUL_LANDED: marked EVB-1234/experimental (ARC-121) blocked_substrate: no shared epistemic-st
+2026-09-03T03:30:09Z GC removed worktree igw-240-proposal-for-arc-121 (removed; branch deleted)
+2026-09-03T03:29:51Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-03T03:30:36Z workset committed (regen -- 255 items, 31 ready, 0 in flight)
