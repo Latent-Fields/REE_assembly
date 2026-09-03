@@ -34661,6 +34661,23 @@
     an agent can satisfy the reward by optimising any one channel at the expense of
     the others. REE maintains three distinct BG-like loops (ARC-021) with separate
     learning channels that cannot be mutually satisfied by a single exploit.
+  evidence_quality_note: >
+    GOVERNANCE 2026-09-03 (user ruling at the /governance Step 3 gate): the standing
+    hold_candidate_resolve_conflict recommendation on this claim is NON-GATING and has been
+    dispositioned as applied. Verified state at that cycle: genuine_exp_count = 0 -- every
+    evidence entry is LITERATURE. The four supports (Vamplew 2022, Skalse 2022, Pan 2022,
+    Gao 2023) sit against ONE weakens, Silver 2021, which the 2026-09-03 lit-pull recorded
+    DELIBERATELY as a counterweight and capped at 0.50 for evidentiary FORM (hypothesis
+    paper, no experiment or proof) -- explicitly NOT for mapping ambiguity, and explicitly
+    so it would not later be "corrected" upward. So the conflict gating promotion is an
+    intentionally-recorded counterweight, not a live contradiction. A literature-only
+    conflict must not by itself halt a claim; it may legitimately motivate broader
+    hypothesis-space testing. What this claim actually waits on is EXPERIMENTAL evidence,
+    the load-bearing channel. Status stays candidate for THAT reason, not for conflict
+    resolution. NOTE the one experimental entry present, V3-EXQ-993 (2026-09-03), is
+    scoring_excluded degenerate (neither condition cleared SEPARATED_SIGNAL_FLOOR = 0.02;
+    measured -0.0007 / -0.0002) and is NOT yet autopsied -- it is not evidence either way
+    and must not be read as the missing experimental channel.
   registered: "2026-04-13"
   source:
     - docs/REE_failure_modes.md
@@ -61365,6 +61382,17 @@
     - MECH-327
     - ARC-049
   location: docs/architecture/play_substrate_design.md
+  evidence_quality_note: >
+    GOVERNANCE 2026-09-03 (user ruling at the /governance Step 3 gate): the standing
+    hold_candidate_resolve_conflict recommendation on this claim is NON-GATING and has been
+    dispositioned as applied. Verified state at that cycle: genuine_exp_count = 0 -- all five
+    evidence entries are LITERATURE (2 supports: Hayden 2011 dACC patch-leaving, juvenile
+    social-isolation cognitive control; 2 mixed: Colas 2019 learning-progress curriculum,
+    Kane 2022 MVT/ACC causal; 1 weakens: Smith 1991 postpubertal play shift). A
+    literature-only conflict must not by itself halt a claim; it may legitimately motivate
+    broader hypothesis-space testing. What this claim actually waits on is EXPERIMENTAL
+    evidence, the load-bearing channel. Status stays candidate for THAT reason, not for
+    conflict resolution.
   notes: "Pezzulo 2014 (homeostatic vs. exploratory drive competition): transition from exploration to exploitation is driven by the ratio of exploratory to homeostatic drive strength, not by a fixed clock. Forestier 2022 (CURIOUS -- modular curiosity + competence saturation in robotics): play continues as long as learning progress is positive for any goal region; transition to real-task mode occurs when LP < threshold across all goal regions. REE translation: play episodes should persist as long as E1 PE is declining (d(PE)/dt < 0 but |d(PE)/dt| > threshold) -- i.e., as long as play is producing useful world-model learning. When learning progress saturates (|d(PE)/dt| < threshold for all reachable PE regions), homeostatic drive (SD-012) reasserts and overrides synthetic z_goal, triggering episode close (MECH-196). Implementation: monitor rolling LP estimate during play; close episode when LP drops below play_lp_saturation_threshold (GoalConfig parameter). Alternative trigger: real homeostatic drive_level exceeds synthetic z_goal benefit_exposure (competition criterion)."
 
 - id: Q-048

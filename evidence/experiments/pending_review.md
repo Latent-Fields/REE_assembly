@@ -1,28 +1,16 @@
 # Pending Experiment Review
 
-Generated: `2026-09-03T06:58:31Z`  
-Last review: `2026-09-02T17:21:49Z`  
-Pending: **10** item(s) -- 4 PASS, 6 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-09-03T07:24:00Z`  
+Last review: `2026-09-03T07:23:52Z`  
+Pending: **3** item(s) -- 0 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_969_contextmemory_write_content_h2_operating_point_20260902T203931Z_v3` | 2026-09-02T20:39 | (no claim tags) | — |
-| `v3_exq_970_contextmemory_write_content_h1_contrastive_loss_20260902T205703Z_v3` | 2026-09-02T20:57 | (no claim tags) | — |
-| `v3_exq_971_contextmemory_write_content_h3_task_coupled_20260902T211117Z_v3` | 2026-09-02T21:11 | (no claim tags) | — |
 | `v3_exq_981_mech027_control_plane_pathological_modes_20260903T053044Z_v3` | 2026-09-03T05:30 | MECH-027 | — |
 | `v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3` | 2026-09-03T05:33 | ARC-021, EXT-003, MECH-069 | — |
 | `v3_exq_994_claim_probe_ext_007_consolidation_retention_20260903T053351Z_v3` | 2026-09-03T05:33 | EXT-007 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_972_contextmemory_write_content_h4_input_distribution_20260902T211758Z_v3` | 2026-09-02T21:17 | (no claim tags) |
-| `v3_exq_980_sd_e1_h1c_readout_regime_e1_alone_20260902T212300Z_v3` | 2026-09-02T21:23 | (no claim tags) |
-| `v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation_20260903T014226Z_v3` | 2026-09-03T01:42 | EXT-001 |
-| `v3_exq_591h_isef005_phase01_gate_live_20260903T024528Z_v3` | 2026-09-03T02:45 | ARC-019 |
 
 ---
 

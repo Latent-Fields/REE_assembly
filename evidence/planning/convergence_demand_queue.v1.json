@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-08-16T19:13:43Z",
+  "last_updated_utc": "2026-09-03T07:28:04Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -351,6 +351,60 @@
       "in_flight": null,
       "registered_candidate_claims": [],
       "last_known_state_note": "Sensed /governance 2026-08-12 (session sd-016-h3-algorithm-3370cd) from confirmed failure_autopsy_V3-EXQ-923_2026-08-12. Paired with substrate_queue entry SD-MECH267-CEM-SELECTION-FIX (priority 1, created same cycle), which is deliberately UNSCOPED between H2 and H3 per the 2026-08-12 user decision -- neither locus has been costed. This row is the demand-side twin of that entry: the build cannot responsibly start until the locus fork resolves. NOTE the third external source is the load-bearing one to mine first -- if elite-set mode collapse is a GENERIC property of vanilla CEM with known published fixes, that reframes the whole question from 'which REE locus is wrong' to 'which standard CEM remedy applies', and neither H2 nor H3 as currently posed may be the right frame."
+    },
+    {
+      "row_id": "CDQ-009",
+      "added_utc": "2026-09-03T07:28:04Z",
+      "added_by": "/governance cycle gov-20260903-0650 (Step 6b Sense pass)",
+      "target_nodes": [
+        "sleep_substrate:GAP-2"
+      ],
+      "generation": "v3",
+      "blocks_v3_critical_path": false,
+      "routing_target": "convergence_intake",
+      "mechanism_gap": "The ContextMemory WRITE STREAM carries too little class-discriminable structure for ANY addressing objective to condition on. V3-EXQ-972 (2026-09-02) measured train-time write-stream separability at 0.0281 (intra-class cosine 0.980 safe / 0.971 dangerous vs inter-class 0.948). The 2026-09-02 four-leg portfolio 969/970/971/972 exhausted the write-side OBJECTIVE axis (contrastive loss, operating point, task-coupling, input distribution) without adjudicating any leg, and its confirmed cluster autopsy concludes the binding constraint is UPSTREAM in the representation, not in the objective. The needed mechanism is one that makes a learned latent stream carry separable class structure a downstream addressing/read mechanism can key on -- i.e. prevention of representational under-differentiation/collapse in the encoder, which is a heavily-studied external problem. Note the node's own standing verdict is already non_contributory/substrate_ceiling (as_of 2026-08-30, failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g), so this is a ceiling that objective-side work has now independently re-confirmed from a second direction.",
+      "external_sources": [
+        {
+          "name": "vicreg_variance_invariance_covariance",
+          "intake_state": "NEW",
+          "path": null,
+          "angle": "explicit variance + covariance terms that make representational collapse a penalised failure mode rather than an emergent one; maps onto 'raise z_world entropy' as a loss-shaped rather than architecture-shaped lever"
+        },
+        {
+          "name": "barlow_twins_redundancy_reduction",
+          "intake_state": "NEW",
+          "path": null,
+          "angle": "cross-correlation-to-identity objective as a decorrelation mechanism for an already-trained write stream"
+        },
+        {
+          "name": "whitening_decorrelation_methods",
+          "intake_state": "NEW",
+          "path": null,
+          "angle": "post-hoc whitening of the write stream as the cheapest test of whether structure exists OFF the raw cosine axis (the autopsy's own stated ambiguity)"
+        }
+      ],
+      "blocks_on": [
+        {
+          "kind": "experiment",
+          "id": "held-out linear probe on the ContextMemory write stream",
+          "clears_when": "A held-out linear probe reports whether the write stream carries ANY class structure. The cluster autopsy states an uncentred cosine cannot distinguish 'no structure' from 'structure off the raw axis', so the 0.0281 reading does not by itself establish absence.",
+          "note": "If the probe finds structure, this demand narrows to a READ/addressing problem and this row should be re-posed or withdrawn. If it finds none, the encoder-side external intake below is the right route. Do NOT mine external sources before this resolves."
+        },
+        {
+          "kind": "substrate",
+          "id": "SD-070 encoder recipe (raise z_world entropy)",
+          "clears_when": "SD-070's own lever is scoped or ruled out. The contextmemory-write-path-addressing-degeneracy substrate_queue entry declared SD-070 in depends_on_unresolved this cycle (GFLAG-0114 undeclared-gate pattern), so an internal owner already exists.",
+          "note": "This row is the EXTERNAL complement to that internal lever, not a duplicate of it. If SD-070's recipe suffices, withdraw this row."
+        }
+      ],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "At least one version-scoped candidate claim registered in claims.yaml naming the mechanism that keeps the ContextMemory write stream class-separable, wired into sleep_substrate:GAP-2's depends_on with an arch-doc stub.",
+        "satisfied": false
+      },
+      "priority": 1,
+      "in_flight": null,
+      "last_known_state_note": "SENSE-ONLY row: no intake run, no claim registered, no REE_convergence thread opened. Appended by the /governance 2026-09-03 Step 6b Sense pass because the 969-972 portfolio's confirmed cluster autopsy re-confirmed sleep_substrate:GAP-2's substrate_ceiling from the objective side and named the representation as the binding constraint. Both blocks_on gates are OPEN, so this row is NOT dispatchable now -- the held-out probe must resolve first. Flagged to the user in the cycle's closing report; the external_sources naming is a FIRST PASS by the Sense step and is the part most likely to need revision at Mine time."
     }
   ]
 }
