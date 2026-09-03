@@ -1,0 +1,107 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-03T04:15:52Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_980_sd_e1_h1c_readout_regime_e1_alone_20260902T212300Z_v3",
+      "queue_id": "V3-EXQ-980",
+      "claim_ids": [],
+      "self_route_label": "readout_regime_consistent_damping_replicates",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: []; the run bears on INV-088 / MECH-135 through its question, not through a tag",
+        "biological_reference": "clear -- forward-model rollout divergence under candidate action sequences; the question here is about the READOUT, not the mechanism",
+        "prerequisites": "present -- ITEM 1's action channel landed and works (V3-EXQ-965); all 16 cells trained (2,614-2,705 grad steps, gap 0 on every seed)",
+        "implementation": "complete -- both readouts computed on the identical 40 sequences; bit-identical at h=1 as the design predicts",
+        "environment": "adequate. Noted for a reader of the manifest alone: substrate_stable_across_run is false (12 cells at hash 56b47d5a, 4 at 3020335a, from include_driver_script_in_hash=(arm != OFF_ARM)) and substrate_commit.dirty is true on one unrelated path. The bit-identity to V3-EXQ-976 -- which ran clean -- proves this had no numerical effect.",
+        "measurement": "under-instrumented -- the criterion discriminates, but the PASS token is assigned unconditionally once readiness passes, the reported threshold (0.5) is not the applied rule (>=5/8 = 0.625), and the completeness guard is denominated on the invocation's own seed list",
+        "integration": "coupled but stable",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- the scientific finding stands on a real directional margin, but several test-design defects sit alongside it. Not chargeable to REE; this run tests a readout, not a competence."
+      },
+      "biological_reference": {
+        "closest_mechanism": "forward-model (cerebellar / parietal) multi-step prediction preserving action-conditioned divergence",
+        "dependencies": [
+          "an action channel into the transition (ITEM 1, landed)",
+          "a training objective that penalises divergence collapse"
+        ],
+        "is_formal_import": false,
+        "divergence": "none introduced by this run -- it is a readout probe",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free readout probe. No epistemic suppression is asserted; the residual-crush question stays fully v3-testable.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-980 adjudicated the H-c / H-readout-regime sibling leg of sd_e1_residual_crush_locus and ELIMINATED it: its declared null (both readouts agree -- damping under each) held with a real margin. Because the hybrid and E1-alone readouts are bit-identical at h=1 on all 16 cells, growth_e1alone(h) = growth_hybrid(h) x r(h) is an identity rather than an approximation; a flip to 'not damped' required r_ON/r_OFF between 1.828 and 7.975, and the measured ratio was 0.4922-0.9200 on every one of the 16 decision cells. Equivalently, under the E1-alone readout the OFF arm's depth growth exceeds the ON arms' by 2.52x-10.99x on every cell (against 1.83x-7.98x under hybrid): the E1-alone readout moves every cell FURTHER onto the damped side, never toward the discriminating one. Verdict 8/8 damped under both readouts on both ON arms, on a healthy substrate (2,614-2,705 grad steps per cell, gap 0 every seed; grad_cos_samples 262-271, never 0; cr_real_h1 0.1998-0.2677 against a 1e-4 floor; zero missing action calls; trained_loss_last_over_first_fifth 0.405-0.729). The sign is also opposite to the hypothesis on the consumer's own statistic: at h=30 the hybrid readout reports 1.16x-2.36x HIGHER absolute cr_ratio than E1-alone on every ON cell (and ~1.0x on OFF), so the hybrid consumer is if anything over-generous to the ON arms at depth rather than suppressing them. The evaluator's hybrid E1/E2 regime is therefore NOT what suppresses E1-side divergence at depth. FOUR BOUNDS, all disclosed. (1) The run's PASS token carries no scientific information: status/outcome/verdict are assigned unconditionally once readiness passes (driver:1577) and every criterion is emitted passed:true (driver:1587); the finding lives entirely in interpretation.label. (2) The hybrid half of this run is bit-identical to V3-EXQ-976 across all 16 cells and all 7 horizons (96/112 cell fields exactly equal; the 16 differences are all arm_fingerprint). That cuts two ways: 'replicates' in the self-route label describes a byte-level re-emission rather than an independent replication sample, but it is also what makes the pre-registered null's 'on the same trained cells' clause literally true. Only the E1-alone series is new evidence. (3) A 109x readout discrepancy in the discriminating direction exists on ARM_single_step_stateful seed2024 (hybrid growth 0.347 vs E1-alone 37.9 at h=30). That arm's exclusion from the verdict is PRE-REGISTERED in the driver's ON_ARMS/OFF_ARM/DEPTH0_ARMS definitions (driver:279-321), not post hoc -- what the V3-EXQ-976 autopsy separately called post hoc at n=4 was treating that cell as an outlier in anchor-vs-ON comparisons. The discrepancy is a degenerate-base artifact: the cell's h=1 cr_ratio is 2.98e-05, ~100x below every other cell, while its E1-alone h=30 value sits inside the ordinary band. With that arm substituted as OFF, both readouts still agree (neither_damped). (4) SCOPE: the null was measured on trajectory-accuracy arms only, since no divergence-preserving arm exists yet, so the conclusion that the hybrid consumer would not under-read such an objective is extrapolated by sign rather than measured. The cheap confirmer costs nothing: keep 980's E1-alone readout beside the hybrid at h=30 in the ITEM-3 driver.",
+      "per_claim_recommendation": {},
+      "recommended_diagnostic_evidence_adjudicated": null,
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The readout regime is eliminated as an explanation for the E1 residual crush. The remaining live legs are all about the objective (class, dose) or the output parameterisation -- the discrimination has genuinely narrowed by one axis (eval-dynamics closed).",
+        "A diagnostic whose status is assigned unconditionally on readiness should not also emit status: PASS -- the token is read as a scientific verdict by every downstream consumer including pending_review.md. Emit the readiness state and carry the outcome only in interpretation.label.",
+        "When a probe's control half is a byte-identical re-run of a prior experiment, say so in the label: 'replicates' implies an independent sample and this was a re-emission.",
+        "A completeness guard denominated on the invocation's own seed list (expected_total = len(seeds) x len(horizons), driver:1497) cannot detect an under-run of seeds; registered_majority_seeds is computed and written to the manifest but never read by any verdict. Latent here (the run used its full 4 seeds), corrupting in a short-seed invocation.",
+        "An anchor arm excluded from the verdict by pre-registered design can still be the only place a discriminating signal appears. Reporting it (as this run's manifest does) is what let the exclusion be audited as principled rather than convenient."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "basis": "This run ELIMINATED a leg rather than re-testing a claim against a known ceiling. It is the cheap sibling probe the V3-EXQ-976 autopsy explicitly designated as 'a sibling, never a gate', and it did its job. No refusal applies.",
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "route_to": "implement-substrate",
+    "upstream_substrate": "SD-e1-rollout-consistency-training"
+  },
+  "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-e1-rollout-consistency-training",
+    "severity": "corrupting",
+    "substrate_paths": [
+      "ree_core/predictors/e1_deep.py::forward",
+      "ree_core/predictors/e1_deep.py::predict_long_horizon"
+    ],
+    "implementation_hint": "H-c (readout regime) is ELIMINATED by V3-EXQ-980: the hybrid E1/E2 evaluator regime does not explain the residual per-action crush -- an E1-alone rollout readout moves every decision cell FURTHER into damped (r 0.49-0.92 against a 1.83-7.98 flip bar), 8/8 under both readouts, and at h=30 the hybrid actually reports 1.16-2.36x HIGHER absolute cr_ratio than E1-alone on every ON cell. The entry's existing ITEM-3 licence is therefore strengthened, not weakened: the remaining live loci are the objective CLASS (divergence-preserving vs trajectory-accuracy) and its DOSE, plus the output parameterisation. SCOPE CLAUSE for the ITEM-3 build: 980 measured only trajectory-accuracy arms, so the hybrid-consumer conclusion is extrapolated by sign to a divergence-preserving one. Keep 980's E1-alone readout beside the hybrid at h=30 in the item-3 driver (already written, ~zero cost) so the MECH-135 consumer question is measured on the arm it was actually asked about. NOTE ON SCOPE OF THIS AMEND: the entry's status already reads ..._LICENSED_item3, its hint already records that the E1-alone probe is 'NOT a gate, in parallel', and the build is already chipped as chip-20260902-sde1-item3-rollout-endpoint-contrastive. Priority, severity, paths and unblocks_claims are unchanged no-ops; the operational content of this amend is this paragraph plus the 980 record.",
+    "unblocks_claims": [
+      "INV-088",
+      "MECH-135"
+    ],
+    "depends_on_unresolved": [],
+    "priority_suggested": 2,
+    "resolves_prior_failure_record": [],
+    "implementation_log_entry": {
+      "run_id": "v3_exq_980_sd_e1_h1c_readout_regime_e1_alone_20260902T212300Z_v3",
+      "finding": "H-c (readout regime) ELIMINATED -- the hybrid E1/E2 evaluator regime does not explain the residual per-action crush. E1-alone readout ratio r_ON/r_OFF 0.4922-0.9200 against a 1.828-7.975 flip bar; 8/8 cells damped under both readouts; at h=30 hybrid reads 1.16-2.36x HIGHER absolute cr_ratio than E1-alone on every ON cell.",
+      "note": "Recorded as an implementation-log entry, NOT a failure_record: the run's counterfactual readout did not materialise, which is the null HOLDING, not an open failure. The three existing failure_record entries (108b, 965, 976) name the SD's bars as targets and are genuinely open; this is not that shape."
+    }
+  },
+  "fanout_recommendation": {
+    "is_discrimination": false,
+    "note": "No new fan-out. The 2026-09-02 V3-EXQ-976 autopsy already pre-registered the successor portfolio (H-objective-class-divergence, H-readout-regime, H-objective-horizon-budget); this run closes one of those three. Opening more legs before the lead build runs would duplicate that portfolio."
+  },
+  "hypothesis_space_ledger_pending": {
+    "note": "This session APPLIES the blocks below (it is interactive and holds the Step 8 gate). Two edits are combined: (a) the labelled fan-out growth drafted but never applied by failure_autopsy_V3-EXQ-976_2026-09-02 (staging mode), and (b) this run's own resolution of one of those legs. (a) must land for (b) to be well-formed -- H-readout-regime does not exist in the registry today.",
+    "carried_forward_from": "failure_autopsy_V3-EXQ-976_2026-09-02.json :: hypothesis_space_ledger_pending",
+    "git_witness": "failure_autopsy_V3-EXQ-976_2026-09-02.{md,json} added at REE_assembly 985c619de5, committer date 2026-09-02T15:09:21+01:00 (14:09:21Z), CONFIRMED at baf4941661 2026-09-02T16:26:50+01:00 (15:26:50Z). V3-EXQ-980 ran at 2026-09-02T21:23Z. Pre-registration precedes adjudication and is git-witnessed -- invariant 3a(a) satisfied.",
+    "growth_restriction_check": "sd_e1_residual_crush_locus carries NO growth_restriction field (re-read 2026-09-03). No STOP. Surfaced at the Step 8 gate anyway because this is growth on an adjudicated question."
+  },
+  "step_7b_result": "PENDING",
+  "step_7c_result": "PENDING",
+  "confirmed_utc": "2026-09-03T05:04:52Z",
+  "confirmed_by": "user (interactive Step 8 gate, 4 AskUserQuestion decisions logged to the recommendation-agreement ledger)"
+}

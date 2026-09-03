@@ -4833,7 +4833,8 @@
    ],
    "registered_utc": "2026-08-29T15:36:15Z",
    "fanout_sources": [
-    "failure_autopsy_V3-EXQ-956_2026-08-29.json"
+    "failure_autopsy_V3-EXQ-956_2026-08-29.json",
+    "failure_autopsy_contextmemory-write-content-cluster_2026-09-03.json"
    ],
    "is_hero": false,
    "initial_frozen_count": 4,
@@ -4847,16 +4848,21 @@
      "desc": "Swap in a contrastive/cluster-supervised loss at the same schedule, on BOTH real-agent latents and the synthetic 2-cluster stream as training input (the dual regime avoids conflation with H4). Null: Jaccard does not drop by the 0.25 margin in either regime. Precedent: V3-EXQ-907's confirmed read-path result (context-referencing objective broke the saddle at the same 15,000-step schedule); both failed write-side losses (MoE importance; pairwise diversity) are content-blind objectives.",
      "axis": "algorithm",
      "pre_registered_utc": "2026-08-29T15:36:15Z",
-     "adjudicating_runs": [],
+     "adjudicating_runs": [
+      "V3-EXQ-970"
+     ],
      "resolution": {
       "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": "pending",
+      "resolving_runs": [
+       "V3-EXQ-970"
+      ],
+      "evidence_direction": "non_contributory",
       "resolved_utc": null,
       "control_passed": false,
-      "non_degenerate": null,
+      "non_degenerate": false,
       "met_elimination_bar": false,
-      "basis": "Live: two content-blind objectives have failed; no content-referencing objective has been tried on the write path."
+      "basis": "V3-EXQ-970 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED, AND CARRIES THE PORTFOLIO'S STRONGEST POSITIVE SIGNAL. Regime A (real agent latents) never produced its load-bearing DV: probe_heldout_real_latent_jaccard was null in 12/12 cells because the held-out gate needs >208 dangerous states and every cell yielded 171-195, so Regime A scored out in every possible world at this schedule. Regime B (synthetic 2-cluster stream) reached the BEST value the DV admits -- Jaccard 0.0 on 6/6 seeds -- and still returned FAIL, because with 2 of 6 paired diffs exactly zero the exact sign-flip p-grid floors at 1/2^4 = 0.0625 against alpha_corrected 0.025: no outcome could have cleared it. The self-route 'not confirmed in either regime' is a gate artifact, not a null. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
+      "epistemic_category": "standard"
      }
     },
     {
@@ -4865,16 +4871,21 @@
      "desc": "First leg: cheap +10-seed x 2-gumbel-arm sweep (~26 min cloud) -- also settles whether 956's +0.267 wrong-direction move (p~0.25 at n=5) is real. Then weights {0.1, 2.0, 8.0} x anneal schedules at moderate scale. Null: no operating point moves Jaccard in the correct direction. NOT eliminated by 956 (only w=0.5 ever measured).",
      "axis": "process",
      "pre_registered_utc": "2026-08-29T15:36:15Z",
-     "adjudicating_runs": [],
+     "adjudicating_runs": [
+      "V3-EXQ-969"
+     ],
      "resolution": {
       "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": "pending",
+      "resolving_runs": [
+       "V3-EXQ-969"
+      ],
+      "evidence_direction": "non_contributory",
       "resolved_utc": null,
       "control_passed": false,
-      "non_degenerate": null,
+      "non_degenerate": false,
       "met_elimination_bar": false,
-      "basis": "Live: single operating point measured; direction-of-movement question unresolved at n=5."
+      "basis": "V3-EXQ-969 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED. Phase B carries no untrained arm at its own seeds and is graded against Phase A's disjoint 10-seed pool (mean 0.85); the same instrument reads 0.400 (956, 971) / 0.4167 (970) on the Phase-B seed family, so the reported deltas are cross-seed-set. Phase A's paired sign test returned p=1.0, the maximum the test can produce, with 8 of 10 seeds tied at delta 0. Two weight settings 20x apart (w=0.1, w=2.0) gave bit-identical per-seed DV vectors. The gating criterion WAS attainable at the observed baseline, so this is a data/instrument failure rather than an unreachable bar -- but no operating-point conclusion is licensed. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
+      "epistemic_category": "standard"
      }
     },
     {
@@ -4883,16 +4894,21 @@
      "desc": "Couple the SD-016 read-path retrieval loss through write selection (straight-through) so end-task pressure reaches the tagger. Null: coupled training still fails the margin. If confirmed, the frame 'train the tagger with a standalone auxiliary loss' is wrong.",
      "axis": "drive",
      "pre_registered_utc": "2026-08-29T15:36:15Z",
-     "adjudicating_runs": [],
+     "adjudicating_runs": [
+      "V3-EXQ-971"
+     ],
      "resolution": {
       "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": "pending",
+      "resolving_runs": [
+       "V3-EXQ-971"
+      ],
+      "evidence_direction": "non_contributory",
       "resolved_utc": null,
       "control_passed": false,
-      "non_degenerate": null,
+      "non_degenerate": false,
       "met_elimination_bar": false,
-      "basis": "Live: untested; motivated by the two standalone-loss failures."
+      "basis": "V3-EXQ-971 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED; its 'null confirmed' label is not supportable. The load-bearing criterion is a bare mean-margin comparison at n=5 with no permutation test and no multiplicity correction -- the exact reading both sibling drivers demote to non-gating on this DV (measured FPR 25-68% in 969, ~15% in 970). Independently the objective did not train: the coupling loss ROSE across training (0.6273 -> 0.6514) while the untrained arm fell slightly, so a null cannot be attributed to the mechanism. The trained arm collapsed toward the single-slot regime the substrate entry exists to prevent (entropy 3.97 -> 0.79-1.48 bits; self_repeat 0.06 -> 0.71-0.88). See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
+      "epistemic_category": "standard"
      }
     },
     {
@@ -4901,27 +4917,32 @@
      "desc": "Instrument train-time content structure: record pairwise-cosine distribution / cluster separability of the actual write-stream latents during training alongside the tagger's selections (un-instrumented in the 956 manifest). Null: latents carry separable structure the tagger ignores (which refocuses on H1/H3).",
      "axis": "representation",
      "pre_registered_utc": "2026-08-29T15:36:15Z",
-     "adjudicating_runs": [],
+     "adjudicating_runs": [
+      "V3-EXQ-972"
+     ],
      "resolution": {
       "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": "pending",
+      "resolving_runs": [
+       "V3-EXQ-972"
+      ],
+      "evidence_direction": "non_contributory",
       "resolved_utc": null,
       "control_passed": false,
-      "non_degenerate": null,
+      "non_degenerate": false,
       "met_elimination_bar": false,
-      "basis": "Live: red-team-surfaced; the probe's synthetic-stream instrument cannot see the training input distribution."
+      "basis": "V3-EXQ-972 RESULT (2026-09-02) -- LEG STAYS ALIVE but is now the BEST-SUPPORTED of the four. Its PASS is explicitly a measurement-validity gate, not a scientific verdict (the driver says 'do not read passed: true here as H4 refuted'). The measurement is substantive and first-of-kind: train-time write-stream latents sit in a narrow cone -- intra-class cosine 0.980 (safe) / 0.971 (dangerous) against inter-class 0.948, mean separability 0.0281 over 5 seeds. Safe and dangerous states are very nearly collinear, so there is little content structure for any write-side objective to condition on. The direction is well-evidenced; the threshold crossing rests on a floor the manifest itself calls not rigorously derived, and the leg has no comparator arm. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
+      "epistemic_category": "standard"
      }
     }
    ],
    "synthesis": null,
    "decision": {
     "decision_question": "Which mechanism family (objective / operating point / task coupling / input distribution) gates content-conditioned write addressing -- and is a learned write-address policy the right frame at all?",
-    "live_gate": "Portfolio not yet queued: governance ratifies the 956 autopsy routing, then /queue-experiment designs the legs (H2's seed-sweep first; design-audit for coverage + verdict-aliasing).",
+    "live_gate": "Instrument redesign, not another leg. failure_autopsy_contextmemory-write-content-cluster_2026-09-03 REFUSES a further write-side loss design against the unchanged C2 instrument.",
     "decidable": false,
     "decision_log_ref": null,
-    "distance_phrase": "0 of 4 legs adjudicated; the corrupting substrate entry stays implemented_pending_validation until one mechanism demonstrates content-conditioned selection.",
-    "observation_bottleneck": "Train-time latent content structure is un-instrumented (H4); the C2 probe instrument is coarse at n=5 seeds (bimodal Jaccard lattice)."
+    "distance_phrase": "0 of 4 legs adjudicated after the full portfolio ran. All four returned on 2026-09-02 and none discriminated: three FAILs are gate artifacts (unreachable p-floor, cross-seed-set baseline, a criterion both siblings demoted) and the fourth is a single-arm measurement whose PASS is explicitly not a verdict. The binding constraint is now the INSTRUMENT: the 2-cluster occupied-set Jaccard is near-binary (45/53 cells with both occupied sets at cardinality 1) and the substrate entry's own 2026-08-29 directive to replace it with a contingency-table mutual information has not been executed.",
+    "observation_bottleneck": "The C2 DV cannot resolve graded change at n=5-6 (near-binary; ties saturate paired tests and force exact p-grids whose floor can exceed the corrected alpha). H4's train-time cone measurement (separability 0.0281) is the one readout in the portfolio that did resolve."
    }
   },
   {
@@ -5016,10 +5037,12 @@
    ],
    "registered_utc": "2026-08-30T16:19:45Z",
    "fanout_sources": [
-    "failure_autopsy_V3-EXQ-965_2026-08-30.json"
+    "failure_autopsy_V3-EXQ-965_2026-08-30.json",
+    "failure_autopsy_V3-EXQ-976_2026-09-02.json",
+    "failure_autopsy_V3-EXQ-980_2026-09-03.json"
    ],
    "is_hero": false,
-   "initial_frozen_count": 3,
+   "initial_frozen_count": 6,
    "initial_frozen_count_at_registration": 3,
    "hypotheses": [
     {
@@ -5078,26 +5101,104 @@
      "pre_registration_source": "docs/architecture/sd_e1_rollout_consistency_training.md @ REE_assembly 1f8870d290",
      "resolution": {
       "state": "alive",
+      "resolving_runs": [
+       "V3-EXQ-976"
+      ],
+      "evidence_direction": "non_contributory",
+      "resolved_utc": null,
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": false,
+      "basis": "PRE-REGISTRATION (retained verbatim): Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation.\n\nV3-EXQ-976 RESULT (2026-09-02) -- LEG STAYS ALIVE, NARROWED AND WEAKENED. Candidate 1 itself (rollout_consistency_loss, H=5, flat and decay-0.5 forms, genuinely trained) was run directly, skipping DaD. Self-route rollout_consistency_mixed_across_seeds, accurate: rc_flat cr_ratio(h=1) lift over the depth-0 incumbent 0.88/5.75/3.35/1.87 (2 of 4 >= 3.0, 0 below; sign p=0.31), rc_decay 1.17/2.77/4.14/0.30; no cell within 7.9x of the 0.1 bar. At depth the objective DAMPS per-action divergence growth (8/8 ON cells grow less than OFF). Non-discriminating non_contributory: neither eliminated (a weak h=1 positive is consistent with it) nor confirmed (no bar progress); the damping is evidence against its trajectory-ACCURACY form and for the divergence-class sibling H-objective-class-divergence. Applied 2026-09-03 from the hypothesis_space_ledger_pending block of failure_autopsy_V3-EXQ-976_2026-09-02, which drafted it under the staging rule and could not write the registry.",
+      "epistemic_category": "standard",
+      "self_route_label": "rollout_consistency_mixed_across_seeds"
+     }
+    },
+    {
+     "hid": "H-objective-class-divergence",
+     "label": "no trajectory-ACCURACY objective un-crushes; a divergence-preserving SEQUENCE objective is required",
+     "desc": "The LSTM+output_proj crush is a property that trajectory-accuracy losses (single-step or multi-step, flat or discounted) are indifferent-to-hostile to: they pull the rollout toward ONE observed trajectory and so damp divergence across candidate action sequences. Only an objective that directly rewards endpoint divergence across candidate sequences (the withheld e1_rollout_sequence_divergence_* contrastive) moves cr_ratio(h). Distinct from H-training-objective by the accuracy-vs-divergence split the substrate entry's why_not_contrastive draws.",
+     "axis": "learning-signal",
+     "basis": "V3-EXQ-976: the H=5 accuracy objective damps depth growth of per-action spread on 8/8 ON cells (OFF x2.6-3.8 h1->h5 vs ON x0.5-1.75) while producing at most a weak h=1 bump -- the first measurement of the mechanism why_not_contrastive named as intuition. Declared null: a contrastive-trained ON arm within the 3.0 paired-lift band of a depth-0 single-step incumbent at h=1 AND with depth growth no larger than the incumbent's, n>=6 seeds.",
+     "pre_registered_utc": "2026-09-02T14:09:21Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-976_2026-09-02.json",
+     "resolution": {
+      "state": "alive",
       "resolving_runs": [],
       "evidence_direction": "pending",
       "resolved_utc": null,
       "control_passed": false,
       "non_degenerate": null,
-      "met_elimination_bar": false,
-      "basis": "Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation."
+      "met_elimination_bar": false
+     }
+    },
+    {
+     "hid": "H-readout-regime",
+     "label": "the evaluator's hybrid E1/E2 rollout regime suppresses E1-side divergence at depth (MECH-135 consumer question)",
+     "desc": "From h=2 the C3 evaluator re-primes z_self from E2 each step and re-computes E1's prior/context from the hybrid state, while every E1 objective trains E1's own autoregressive map (predict_long_horizon: prior once, own total fed back). The maps coincide exactly at h=1 (where the bars are read) and differ after. Hypothesis: the hybrid regime suppresses per-action divergence an E1 objective produces at depth, so the 30-step endpoint consumer would under-read even a divergence-preserving objective. NOT a claim that the evaluator is blind to E1.",
+     "axis": "eval-dynamics",
+     "basis": "V3-EXQ-976 measurement row; the readout was never computed in the lineage (all six drivers use the hybrid scorer). Declared null: on the same trained cells, the ON-vs-OFF depth-growth contrast under an E1-alone rollout readout (predict_long_horizon on the identical 40 sequences) matches the hybrid readout's (damping in both).",
+     "pre_registered_utc": "2026-09-02T14:09:21Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-976_2026-09-02.json",
+     "resolution": {
+      "state": "eliminated",
+      "resolving_runs": [
+       "V3-EXQ-980"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
+      "self_route_label": "readout_regime_consistent_damping_replicates",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-09-02T21:23:00Z",
+      "basis": "V3-EXQ-980 (2026-09-02) ELIMINATED this leg: its declared null held with a real margin. Because the hybrid and E1-alone readouts are bit-identical at h=1 on all 16 cells, growth_e1alone(h) = growth_hybrid(h) x r(h) exactly; a flip to 'not damped' required r_ON/r_OFF in 1.828-7.975 and the measured ratio was 0.4922-0.9200 on every one of the 16 decision cells -- the E1-alone readout moved every cell 2.0x-11.0x FURTHER into damped. Verdict 8/8 damped under both readouts on both ON arms, on a healthy substrate (2,614-2,705 grad steps per cell, gap 0 every seed; grad_cos_samples 262-271; cr_real_h1 0.20-0.27 against a 1e-4 floor; zero missing action calls). The evaluator's hybrid regime is therefore NOT what suppresses E1-side divergence at depth. Bounded by three disclosed caveats: the run's PASS token is assigned unconditionally on readiness; its hybrid half is a byte-identical re-emission of V3-EXQ-976 rather than an independent sample; and a 109x readout discrepancy in the discriminating direction sits on ARM_single_step_stateful seed2024, an anchor arm no criterion reads and which the 976 autopsy had already flagged as ~100x action-insensitive. Adjudicated by confirmed autopsy failure_autopsy_V3-EXQ-980_2026-09-03."
+     }
+    },
+    {
+     "hid": "H-objective-horizon-budget",
+     "label": "candidate 1 is right in kind but under-dosed (H=5, 100 episodes)",
+     "desc": "Refinement of H-training-objective: the multi-step accuracy objective moves per-action divergence only at a horizon near the evaluator's (H -> 30) and/or a converged budget; 976's H=5 default and still-falling training loss (last/first fifth 0.49-0.73) did not test the leg. Weakened a priori by 976's damping signature, which predicts more dose damps more.",
+     "axis": "learning-signal",
+     "basis": "V3-EXQ-976 scope statement ('says nothing about other horizons or budgets'); trained_loss_last_over_first_fifth 0.49-0.73 on every routed cell; supervision-volume asymmetry declared as the manipulation. Declared null: no (H, budget) cell in {5,30} x {100,400} lifts cr_ratio(h=1) >= 3.0 on a majority of >=6 seeds against a supervision-matched OFF cell.",
+     "pre_registered_utc": "2026-09-02T14:09:21Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-976_2026-09-02.json",
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "resolved_utc": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false
      }
     }
    ],
    "synthesis": null,
    "decision": {
     "decision_question": "Which locus should SD-e1 ITEM 2 actually target -- the absolute-vs-residual output parameterisation, or the multi-step training objective -- given that ITEM 1's interface fix lifted per-action signal by 6455x-9775x yet left the evaluator statistic 25-37x short of its bar?",
-    "live_gate": "Two live legs on different axes (representation vs learning-signal), neither yet probed. Not decidable until at least one is run; the design doc's own pre-registered branch makes the output_proj probe the cheaper first cut.",
+    "live_gate": "H-objective-class-divergence (the rollout-endpoint contrastive, ITEM 3) is the lead and is already LICENSED by the substrate entry's status string. The cheap sibling probe is now spent.",
     "decidable": false,
     "observation_bottleneck": null,
     "decision_log_ref": null,
-    "distance_phrase": "1 of 3 legs resolved (interface eliminated as SUFFICIENT by V3-EXQ-965); 2 alive, both cheap relative to a full ITEM 2 objective build."
+    "distance_phrase": "2 of 6 legs eliminated: H-interface-action-channel (necessary, not sufficient -- V3-EXQ-965) and H-readout-regime (the hybrid evaluator regime does not explain the residual crush -- V3-EXQ-980). H-outputproj-parameterisation alive after 968 (threshold artifact); H-training-objective alive-narrowed-weakened after 976; H-objective-class-divergence is the lead build; H-objective-horizon-budget untested."
    },
-   "registration_note": "Registered by failure_autopsy_V3-EXQ-965_2026-08-30 (user-confirmed at the Step 8 gate). Deliberately a NEW question rather than growth on inv088_evaluator_degeneracy_cause: that question asks about the CAUSE of evaluator degeneracy, is fully resolved (5 legs, 0 alive, decidable), and V3-EXQ-965 bears on the REMEDY -- attaching here would conflate two questions and would be growth on an already-adjudicated one. As a new question, no growth_restriction applies and invariant 3 is not engaged. All three legs share one git witness (commit 1f8870d290, 2026-08-29T21:18:48Z), which enumerates the interface item, the five ranked objective candidates, and the output_proj suspect, and pre-dates the run (2026-08-30T14:59:08Z) by ~17.7 hours."
+   "registration_note": "Registered by failure_autopsy_V3-EXQ-965_2026-08-30 (user-confirmed at the Step 8 gate). Deliberately a NEW question rather than growth on inv088_evaluator_degeneracy_cause: that question asks about the CAUSE of evaluator degeneracy, is fully resolved (5 legs, 0 alive, decidable), and V3-EXQ-965 bears on the REMEDY -- attaching here would conflate two questions and would be growth on an already-adjudicated one. As a new question, no growth_restriction applies and invariant 3 is not engaged. All three legs share one git witness (commit 1f8870d290, 2026-08-29T21:18:48Z), which enumerates the interface item, the five ranked objective candidates, and the output_proj suspect, and pre-dates the run (2026-08-30T14:59:08Z) by ~17.7 hours.",
+   "fanout_growth_events": [
+    {
+     "recorded_utc": "2026-09-03T05:04:52Z",
+     "pre_registered_utc": "2026-09-02T14:09:21Z",
+     "fanout_source": "failure_autopsy_V3-EXQ-976_2026-09-02.json",
+     "added_hids": [
+      "H-objective-class-divergence",
+      "H-readout-regime",
+      "H-objective-horizon-budget"
+     ],
+     "delta": 3,
+     "note": "Portfolio opened by the candidate-1 validation returning mixed at h=1 with depth damping: the remaining question is a discrimination among objective class, readout regime and dose. Drafted by that artifact under the staging rule and applied here by the confirming interactive session (2026-09-03), together with V3-EXQ-980's resolution of H-readout-regime. Git witness: the pre-registering artifact was added at REE_assembly 985c619de5, committer date 2026-09-02T14:09:21Z, and CONFIRMED at baf4941661 15:26:50Z; V3-EXQ-980 ran at 21:23Z, so pre-registration precedes adjudication. initial_frozen_count 3 -> 6; initial_frozen_count_at_registration stays 3."
+    }
+   ],
+   "fanout_growth_note": "This question has grown once (3 -> 6) and has not converged: report its reduction ratio against initial_frozen_count_at_registration = 3 as well as against the current denominator. Two of the three added legs are on the learning-signal family, which already held H-training-objective -- read the convergence_class before treating the growth as refinement."
   }
  ]
 }

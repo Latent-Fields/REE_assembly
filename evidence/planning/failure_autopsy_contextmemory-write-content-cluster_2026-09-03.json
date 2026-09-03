@@ -1,0 +1,328 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-03T04:15:52Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_970_contextmemory_write_content_h1_contrastive_loss_20260902T205703Z_v3",
+      "queue_id": "V3-EXQ-970",
+      "claim_ids": [],
+      "self_route_label": "h1_content_referencing_objective_not_confirmed_either_regime",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: []",
+        "biological_reference": "partial -- content-addressed episodic write selection (hippocampal pattern separation, DG); the objective family is a formal contrastive import, not a biological translation",
+        "prerequisites": "missing -- content structure in the write stream (the H4 leg measures it absent)",
+        "implementation": "complete for the schedule this lineage uses -- the realised step counts match V3-EXQ-956 seed-for-seed (956 GUMBEL_UNTRAINED [1546,1460,1478,1576,1446] == 970 REGIME_A_UNTRAINED on the five shared seeds), so the gap to the nominal 15,000 is the harness's normal early-termination schedule (episodes break on `done`; dangerous episodes end at ~3.8 steps), NOT an under-run specific to this portfolio",
+        "environment": "adequate",
+        "measurement": "misleading -- Regime A's load-bearing DV was null in 12/12 cells; Regime B's exact p-floor (0.0625) exceeds its own alpha (0.025); and the load-bearing Regime B readout is a trained-set statistic whose fresh-set counterpart is flat",
+        "integration": "isolated",
+        "scale": "unknown -- the realised schedule is the lineage precedent and is what the substrate entry registered as 'a real training schedule', so under-training cannot explain a difference from 956; whether it suffices in absolute terms is untested"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES -- dominant locus is measurement/test-design; the mechanism was never fairly tested. NOT chargeable to REE."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal dentate-gyrus pattern separation feeding content-addressed CA3 storage",
+        "dependencies": [
+          "differentiated upstream sensory/contextual representation",
+          "sufficient training exposure"
+        ],
+        "is_formal_import": true,
+        "divergence": "contrastive/InfoNCE is a formal objective import; the biological analogue achieves separation by expansion recoding upstream of storage, not by a loss on the addressing policy",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure mode is measurement_test_design_defect, recorded here rather than in the category field. NOT substrate_ceiling: stamping one would suppress GOV-GRAN-1 surfacing and mark the claims non-v3-testable on the strength of an instrument that never measured them.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-970 (H1, content-referencing objective) did NOT adjudicate its leg, and -- contrary to a reading its headline numbers invite -- it produced NO evidence that the objective family is capable. Regime A (real agent latents) never produced its load-bearing DV: probe_heldout_real_latent_jaccard was null in 12/12 cells because the held-out gate requires >208 dangerous states and every cell yielded 171-195, so Regime A scored out in every possible world at this schedule, collapsing the OR-across-regimes criterion to a single regime. Regime B (a synthetic 2-cluster stream) is where the eye-catching number lives: the trained arm reached Jaccard 0.0 on 6/6 seeds on probe_2cluster_jaccard_TRAINED_clusters. That readout evaluates on the exact bases the arm trained on. The portfolio's own GENERALIZATION readout, on a fresh cluster pair from the same generative family, is FLAT: mean_probe_2cluster_jaccard_fresh_clusters_regime_b is 0.4166666666666667 for the trained arm and 0.4166666666666667 for the untrained arm -- identical to full float precision. Regime B is a bare write_addr_tagger MLP (no env, no agent, no write() during training) run for 15,000 Adam steps on two fixed centroids, with final_h1_loss = -2.0 on 6/6, i.e. saturated at the L1 maximum. That is memorisation of two points with zero transfer, not a demonstration of content-conditioning capability. The gate defect is nonetheless real and independent: with 2 of 6 paired diffs exactly zero the exact sign-flip p-grid floors at 1/2^4 = 0.0625 against alpha_corrected 0.025, so no outcome could have cleared the significance bar (the driver's own n=5->6 fix assumed zero ties and does not close it). H1 therefore remains formally ALIVE only because Regime A -- the real-latent regime that would have tested it -- never ran; the synthetic regime's result does not support the leg.",
+      "per_claim_recommendation": {},
+      "recommended_diagnostic_evidence_adjudicated": null,
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A significance gate whose attainable p-grid floor exceeds its own alpha is unfalsifiable; the floor is set by the TIE COUNT in the untrained baseline, which is not under the experimenter's control. The driver's own n=5->6 fix assumed zero ties and did not close it.",
+        "A held-out split sized by an absolute constant (N_HELDOUT=200) against a class count the environment's early-termination schedule determines (~180) is unreachable by construction; size held-out splits as a FRACTION of realised class count, or assert reachability at design time.",
+        "When a driver computes both a trained-set and a fresh-set readout, the SCIENTIFIC claim belongs to the fresh-set one. Here they diverge maximally -- 0.0 on the trained clusters, 0.4167 (== untrained) on fresh -- and reading only the first would have credited a capability the run does not show."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_969_contextmemory_write_content_h2_operating_point_20260902T203931Z_v3",
+      "queue_id": "V3-EXQ-969",
+      "claim_ids": [],
+      "self_route_label": "h2_no_operating_point_improves_content_discrimination_null_holds",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: []",
+        "biological_reference": "partial -- operating-point/gain sweep has no specific biological referent beyond neuromodulatory gain",
+        "prerequisites": "missing -- same input-distribution prerequisite as H1",
+        "implementation": "complete for the schedule this lineage uses -- the realised step counts match V3-EXQ-956 seed-for-seed (956 GUMBEL_UNTRAINED [1546,1460,1478,1576,1446] == 970 REGIME_A_UNTRAINED on the five shared seeds), so the gap to the nominal 15,000 is the harness's normal early-termination schedule (episodes break on `done`; dangerous episodes end at ~3.8 steps), NOT an under-run specific to this portfolio",
+        "environment": "adequate",
+        "measurement": "under-instrumented -- Phase B graded against a disjoint-seed pool (conservative for the null, but it understated the true contrast 7-12x); Phase A's paired test pinned at p=1.0 with 8/10 tied at the DV's worst value; 20x-apart gain settings indistinguishable",
+        "integration": "isolated",
+        "scale": "unknown -- the realised schedule is the lineage precedent and is what the substrate entry registered as 'a real training schedule', so under-training cannot explain a difference from 956; whether it suffices in absolute terms is untested"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES -- cross-seed-set baseline plus a tie-saturated paired test; the operating-point question was not answered."
+      },
+      "biological_reference": {
+        "closest_mechanism": "neuromodulatory gain control over a selection policy",
+        "dependencies": [
+          "a DV able to resolve graded change"
+        ],
+        "is_formal_import": true,
+        "divergence": "a weight sweep is an engineering knob, not a translated mechanism",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure mode is measurement_test_design_defect (baseline mismatch + DV saturation).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-969 (H2, operating point) reports its null as holding, and on DIRECTION the seed-matched data support that null MORE strongly than the run itself showed -- the reverse of what the manifest's reported deltas suggest. Phase B carries no untrained arm at its own seeds and is graded against Phase A's disjoint 10-seed pool (mean 0.85). Because the untrained tagger never receives gradient, its probe value is a deterministic function of seed, and the seed-matched untrained baseline for Phase B's seeds [42,7,13,100,200,300] is [0.0,1.0,1.0,0.0,0.0,0.5] (mean 0.4167). Recomputed seed-matched, every operating point's MEAN moved Jaccard the WRONG way by about 0.5 (W0P1 -0.500, W2P0 -0.500, W8P0 -0.472; one-sided sign-flip p(drop) 0.969/0.969/0.938), against the -0.067/-0.067/-0.039 the cross-seed-set comparison reported -- 7-12x larger and in the same direction. Per seed the split is identical across all three configs: 4 of 6 seeds worse (42, 100, 200 by 1.0; 300 by 0.5), 1 tied (13), and 1 -- seed 7 -- BETTER by 0.5 (0.667 under w=8.0). So the claim is about means and the majority of seeds, NOT about every seed: seed 7 improved under all three weights, and it is the only cell in the leg that did. Phase A agrees: the paired sign test returned p=1.0 with 8 of 10 seeds tied at delta 0 (both arms pinned at Jaccard 1.0) and, of the two seeds that moved, BOTH moved the wrong way (n_seeds_correct_direction = 0, n_seeds_wrong_direction = 2). So the baseline mismatch was CONSERVATIVE for the null, and no tested operating point improved content discrimination. The surviving objection is resolution, not direction: two settings 20x apart (w=0.1, w=2.0) produced bit-identical per-seed DV vectors and identical occupied sets, and 8/10 Phase A seeds sat pinned at the DV's worst value, so the instrument cannot certify that NO operating point anywhere would work -- only that none of these four did, none came close, and all four moved the wrong way on average and on 4 of 6 seeds. H2 stays alive on that residual, not on any positive signal.",
+      "per_claim_recommendation": {},
+      "recommended_diagnostic_evidence_adjudicated": null,
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "An untrained baseline is a deterministic function of seed (random init), so a baseline pool must be seed-matched to the arms it grades. Here the mismatch happened to be conservative for the null, but that was luck: the same defect with the signs reversed would have manufactured a positive.",
+        "Two weight settings 20x apart returning a bit-identical per-seed DV vector is a statement about the instrument's resolution, not about the mechanism's insensitivity to gain.",
+        "A directional null can be well-supported by an instrument too coarse to license the corresponding universal claim: 'none of these four operating points helped, all four hurt' is earned here; 'no operating point could help' is not."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_971_contextmemory_write_content_h3_task_coupled_20260902T211117Z_v3",
+      "queue_id": "V3-EXQ-971",
+      "claim_ids": [],
+      "self_route_label": "h3_task_coupled_objective_fails_margin_null_confirmed",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: []",
+        "biological_reference": "clear -- task/reward gradient reaching an encoding policy is well-evidenced (hippocampal-prefrontal task modulation of encoding)",
+        "prerequisites": "missing -- same input-distribution prerequisite",
+        "implementation": "complete for the schedule this lineage uses -- the realised step counts match V3-EXQ-956 seed-for-seed (956 GUMBEL_UNTRAINED [1546,1460,1478,1576,1446] == 970 REGIME_A_UNTRAINED on the five shared seeds), so the gap to the nominal 15,000 is the harness's normal early-termination schedule (episodes break on `done`; dangerous episodes end at ~3.8 steps), NOT an under-run specific to this portfolio",
+        "environment": "adequate",
+        "measurement": "misleading -- graded by a bare mean-margin test at n=5 with no permutation test and no multiplicity correction; both sibling drivers demote exactly this reading as unusable on exactly this DV (measured FPR 25-68% and ~15%)",
+        "integration": "partially coupled",
+        "scale": "unknown -- the realised schedule is the lineage precedent and is what the substrate entry registered as 'a real training schedule', so under-training cannot explain a difference from 956; whether it suffices in absolute terms is untested"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES + MECHANISM-untested -- the grading criterion is one both siblings rejected, and the objective itself did not train."
+      },
+      "biological_reference": {
+        "closest_mechanism": "prefrontal/task-driven modulation of hippocampal encoding selectivity",
+        "dependencies": [
+          "a read path whose gradient is informative",
+          "trainable coupling"
+        ],
+        "is_formal_import": false,
+        "divergence": "straight-through coupling is an engineering approximation of a real gradient path; the biology is well-evidenced, so the class is sound",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure mode is measurement_test_design_defect compounded by an unoptimised objective (competence_implementation_gap).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-971 (H3, task-coupled objective) did NOT adjudicate its leg, and its 'null confirmed' label is not supportable. Its load-bearing criterion is a bare mean-margin comparison at n=5 with no permutation test and no multiplicity correction -- the precise reading both sibling drivers demote to non-gating on this same DV, citing measured false-positive rates of 25-68% (V3-EXQ-969) and ~15% (V3-EXQ-970). Independently, the objective did not train: the coupling loss ROSE across training (mean first episode 0.6273 -> last episode 0.6514) while the untrained arm fell slightly (0.6675 -> 0.6641), so a null cannot be attributed to the mechanism. The trained arm's write behaviour collapsed toward the single-slot regime the substrate entry contextmemory-write-path-addressing-degeneracy exists to prevent (entropy 3.96-3.98 -> 0.785-1.484 bits; self_repeat_rate 0.059-0.064 -> 0.714-0.882) with Jaccard pinned at 1.0 on 5/5 seeds. H3 remains alive.",
+      "per_claim_recommendation": {},
+      "recommended_diagnostic_evidence_adjudicated": null,
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A rising training loss on the objective under test voids a null: the mechanism was not instantiated, so its absence of effect is uninformative. Assert objective convergence as a precondition, not a descriptive footnote.",
+        "When two sibling drivers in the same portfolio demote a criterion as unusable on a shared DV, a third leg using it as its GATE is a portfolio-level inconsistency that a design audit should catch before queueing."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_972_contextmemory_write_content_h4_input_distribution_20260902T211758Z_v3",
+      "queue_id": "V3-EXQ-972",
+      "claim_ids": [],
+      "self_route_label": "h4_supported_representation_undifferentiated",
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: []",
+        "biological_reference": "clear -- upstream expansion recoding / pattern separation is the biological prerequisite for content-addressed storage",
+        "prerequisites": "present -- this leg MEASURES the prerequisite rather than depending on it",
+        "implementation": "complete for its measurement purpose -- single arm, no comparator needed for a descriptive statistic",
+        "environment": "adequate",
+        "measurement": "adequate for the cone statistic; the PASS token itself is a measurement-validity gate, not a scientific verdict (the driver says so explicitly)",
+        "integration": "isolated",
+        "scale": "adequate for a descriptive measurement"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "Not a failure -- an informative measurement. The single genuinely load-bearing result in the portfolio."
+      },
+      "biological_reference": {
+        "closest_mechanism": "dentate-gyrus expansion recoding producing decorrelated inputs to CA3",
+        "dependencies": [
+          "a sensory/contextual encoder that decorrelates classes"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at this layer -- the measurement is descriptive",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "This target is a genuine measurement; the label's 'h4_supported' half derives from an explicitly non-gating reading and should not be read as the leg being adjudicated.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-972 (H4, input distribution) is the one leg of the portfolio that produced a load-bearing measurement, and its PASS is NOT a scientific verdict: the gating criterion is declared in the manifest as 'a MEASUREMENT criterion, not a pass/fail on a scientific direction', and the driver states 'do not read passed: true here as H4 refuted or passed: false as H4 supported'. The measurement itself is substantive and first-of-kind: train-time write-stream latents sit in a narrow cone with intra-class cosine 0.980 (safe) / 0.971 (dangerous) against inter-class cosine 0.948, giving a mean separability score of 0.0281 across 5 seeds. Safe and dangerous states are very nearly collinear in the write stream under this statistic -- the SD-008 under-differentiation cone, measured at training time for the first time in this lineage. HEDGE: separability_score is an UNCENTRED cosine contrast, which is insensitive to structure that a learned projection could still exploit (a common mean dominates all three cosines). It therefore supports 'the classes are not linearly separated in the raw write stream', NOT the stronger 'there is no structure for any objective to condition on'. The cheap confirmer for the stronger claim is a linear probe (logistic regression, safe-vs-dangerous, held-out) on the same recorded latents. The 'h4_supported' half of the label comes from comparing 0.0281 against a floor the manifest itself calls 'a conservative noise floor ... not a rigorously derived value', so the DIRECTION is well-evidenced while the threshold crossing is not. The non-gating cross-reference probe reproduces V3-EXQ-956 cell-for-cell and set-for-set (J = [1.0, 0.5, 0.333, 0.5, 1.0], mean 0.667), confirming instrument stability across drivers. H4 remains alive pending a comparator, but is now the best-supported leg.",
+      "per_claim_recommendation": {},
+      "recommended_diagnostic_evidence_adjudicated": null,
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "Train-time write-stream latents are near-collinear across the safe/dangerous distinction under an uncentred cosine contrast (separability 0.0281; inter-class cosine 0.948). First train-time measurement of the SD-008 cone in this lineage, and it reframes the portfolio toward the input distribution.",
+        "An uncentred cosine contrast cannot distinguish 'no structure' from 'structure not aligned with the raw axis'; a held-out linear probe is the cheap upgrade and should be added to the recording standard for this family.",
+        "A single-arm descriptive measurement can be the most informative leg of a portfolio whose comparative legs are instrument-limited."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "One mis-posed instrument, used unchanged by all four legs against an on-the-record directive not to build against it. Three legs returned readings the instrument cannot license at the strength claimed; the fourth returned the portfolio's only load-bearing measurement, and it points upstream of everything the other three tested.",
+    "is_independent_bugs": false,
+    "structural_property": "The 2-cluster occupied-set Jaccard DV (PROBE_CLUSTERS=2, PROBE_JITTER=0.0078, n=5-10) is near-binary: portfolio-wide, 72 of 89 cells carrying probe_2cluster_occupied have BOTH clusters' occupied set at cardinality 1, so Jaccard can only be 0.0 or 1.0. (Restricted to the 53 cells in 969/971/972 the figure is 45/53; the fuller denominator is the honest one.) A near-binary DV at n=5-10 cannot resolve graded change, saturates paired tests with ties (969 Phase A: 8/10 tied, p=1.0 -- the test's maximum), and forces exact permutation p-grids whose floor can exceed the corrected alpha (970 Regime B: 0.0625 vs 0.025). Every comparative conclusion in the portfolio inherits this. The substrate entry contextmemory-write-path-addressing-degeneracy recorded the property on 2026-08-29 and directed, verbatim, 'DO NOT build a third loss design against C2 as currently written ... redesign the instrument -- e.g. mutual information over the contingency table, not set-Jaccard'. Two of the four legs (H1/970, H3/971) are new loss designs graded against the unchanged instrument.",
+    "not_a_common_factor": "An earlier draft of this autopsy also named a '~10x under-run training budget' as a shared cause. That is WITHDRAWN on measurement: the realised step counts equal V3-EXQ-956's seed-for-seed (956 GUMBEL_UNTRAINED [1546,1460,1478,1576,1446] == 970 REGIME_A_UNTRAINED on the five shared seeds), so the gap to the nominal 15,000 is the harness's ordinary early-termination schedule -- episodes break on `done`, dangerous episodes ending at ~3.8 steps -- and is exactly the schedule the substrate entry registered as 'a real training schedule'. Under-training therefore cannot explain any difference from 956. Recorded rather than deleted: the argument was tested and did not hold. It does remain the mechanism behind 970's unreachable N_HELDOUT=200 gate.",
+    "readings": [
+      "instrument_redesign_required",
+      "input_distribution_is_the_leading_hypothesis"
+    ],
+    "convergent_read": "Three of the four legs point AWAY from 'a better write-side objective fixes this', and the fourth measures an input stream with little exploitable structure. Specifically: H2's seed-matched contrast shows every tested operating point moving Jaccard the WRONG way by ~0.5 (0/10 seeds improving in Phase A); H3's coupled objective did not train (loss rose 0.6273 -> 0.6514) and its arm collapsed toward the single-slot regime; H1 showed no transferable capability even on a synthetic stream engineered to have content structure (trained-cluster Jaccard 0.0 but fresh-cluster Jaccard 0.4167, identical to untrained); and H4 measured real train-time latents at separability 0.0281. The leading hypothesis is that the binding constraint sits UPSTREAM of the addressing policy, in the write stream's representation. IMPORTANT LIMITS, stated because an earlier draft of this autopsy overstated exactly here: (1) H1's synthetic result is memorisation of two centroids with zero generalization, NOT a demonstration that the objective family is capable -- that claim is withdrawn; (2) H4's statistic is an uncentred cosine contrast and cannot distinguish 'no structure' from 'structure off the raw axis'; (3) the near-binary DV limits all three comparative legs. This is the hypothesis the redesigned instrument should be built to test, not a finding to apply."
+  },
+  "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": true,
+    "refused_requeue": false,
+    "route_to": "implement-substrate",
+    "upstream_substrate": "contextmemory-write-path-addressing-degeneracy",
+    "basis": "The COUNT is past threshold -- the substrate entry holds open failure records for V3-EXQ-943, V3-EXQ-956 and V3-EXQ-436g, and by the R1-R3 counter the claims it unblocks stand at SD-017 12, ARC-045 4, MECH-166 4 prior confirmed ceiling-hit targets. The brake nonetheless does NOT fire and NO re-queue is refused, by explicit USER DECISION at this autopsy's Step 8 gate (2026-09-03): the substrate entry's 2026-08-29 directive ('DO NOT build a third loss design against C2 as currently written') is OVERRIDDEN by governance's later routing of this H1-H4 portfolio on 2026-08-30, and the user directed that the later routing supersedes. The earlier draft of this artifact refused a further write-side loss design; that refusal is WITHDRAWN on that decision. WHAT THIS DOES NOT CHANGE: the instrument finding stands on its own measurement, independently of any directive -- 72 of 89 portfolio cells can only return Jaccard 0.0 or 1.0, 969 Phase A's paired test returned its maximum p of 1.0 with 8/10 ties, and 970 Regime B's attainable p-floor (0.0625) exceeds its own alpha (0.025). The instrument redesign remains this autopsy's recommended routing on the evidence. A future session queueing another loss design against the unchanged instrument is not blocked by a brake, but should read section 3.1 first and expect the same resolution limits.",
+    "prior_substrate_ceiling_autopsies": [
+      "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30",
+      "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16",
+      "failure_autopsy_V3-EXQ-956_2026-08-29"
+    ],
+    "user_decision_note": "AskUserQuestion 'Directive conflict', 2026-09-03: user selected 'Treat the routing as superseding'."
+  },
+  "fanout_recommendation": {
+    "is_discrimination": false,
+    "note": "Deliberately omitted as a portfolio recommendation: the bottleneck routes to ONE unambiguous build (the instrument redesign the substrate entry already specifies). Fanning out again before the instrument can resolve graded change would reproduce this portfolio."
+  },
+  "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "contextmemory-write-path-addressing-degeneracy",
+    "severity": "corrupting",
+    "substrate_paths": [
+      "ree_core/predictors/e1_deep.py::ContextMemory.write"
+    ],
+    "implementation_hint": "TWO SEPARABLE PIECES; the first is this entry's, the second is not. (1) THIS ENTRY -- execute the instrument redesign it already directs (amended 2026-08-29) BEFORE any further write-side loss design: replace the 2-cluster occupied-set Jaccard with a mutual-information statistic over the full contingency table, raise PROBE_CLUSTERS to >= 4, record the per-draw contingency table, and report the FRESH-cluster (generalization) readout as the load-bearing one -- V3-EXQ-970 shows the trained-set and fresh-set readouts diverging maximally (0.0 vs 0.4167) and only the latter is a capability claim. Also size any held-out split as a FRACTION of realised class count (970's N_HELDOUT=200 against ~180 realised dangerous states was unreachable in 12/12 cells, a consequence of the env's ~3.8-step dangerous episodes), and assert objective convergence as a precondition (971's coupling loss rose across training). (2) NOT THIS ENTRY -- the 2026-09-02 portfolio's leading hypothesis is that the binding constraint is upstream, in the write stream's representation: V3-EXQ-972 measured train-time latents at separability 0.0281 (intra 0.980/0.971 vs inter 0.948 cosine). This entry's own hint already names that lever as SD-070's, not its own. Route it there rather than absorbing it here, and confirm it first with a held-out linear probe, since an uncentred cosine cannot distinguish 'no structure' from 'structure off the raw axis'.",
+    "unblocks_claims": [
+      "SD-017",
+      "ARC-045",
+      "MECH-166"
+    ],
+    "depends_on_unresolved": [
+      "SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complementary lever (NOT this entry)'. Declared explicitly because H4's measurement makes the input-distribution lever the leading hypothesis, and filing that finding here with an empty depends_on_unresolved would be the undeclared-gate pattern GFLAG-0114 flagged on 2026-09-02."
+    ],
+    "priority_suggested": 1,
+    "failure_record_entry": [
+      {
+        "run_id": "v3_exq_970_contextmemory_write_content_h1_contrastive_loss_20260902T205703Z_v3",
+        "experiment_type": "contextmemory_write_content_h1_contrastive_loss",
+        "metric": "Regime A DV null in 12/12 cells (held-out gate needs >208 dangerous states, observed 171-195); Regime B exact p-floor 0.0625 vs alpha_corrected 0.025 despite trained arm reaching Jaccard 0.0 on 6/6",
+        "target": "a gate whose attainable p-grid can clear its own alpha, and a held-out split reachable at the realised class count",
+        "resolved": "open"
+      },
+      {
+        "run_id": "v3_exq_969_contextmemory_write_content_h2_operating_point_20260902T203931Z_v3",
+        "experiment_type": "contextmemory_write_content_h2_operating_point",
+        "metric": "Phase B graded against a disjoint 10-seed untrained pool (0.85) vs seed-matched ~0.4167; Phase A paired sign test p=1.0 with 8/10 ties",
+        "target": "seed-matched untrained baseline and a DV that resolves graded change",
+        "resolved": "open"
+      },
+      {
+        "run_id": "v3_exq_971_contextmemory_write_content_h3_task_coupled_20260902T211117Z_v3",
+        "experiment_type": "contextmemory_write_content_h3_task_coupled",
+        "metric": "gated on a bare mean-margin test at n=5 (siblings measured 25-68% and ~15% FPR on this DV); coupling loss rose 0.6273 -> 0.6514",
+        "target": "a significance-tested criterion and a converging objective",
+        "resolved": "open"
+      },
+      {
+        "run_id": "v3_exq_972_contextmemory_write_content_h4_input_distribution_20260902T211758Z_v3",
+        "experiment_type": "contextmemory_write_content_h4_input_distribution",
+        "metric": "train-time write-stream separability 0.0281 (intra 0.980/0.971 vs inter 0.948 cosine)",
+        "target": "content structure in the write stream sufficient for any addressing objective to condition on",
+        "resolved": "open"
+      }
+    ],
+    "resolves_prior_failure_record": []
+  },
+  "step_7b_result": "Run twice. FIRST PASS (pre-red-team): fire_count 0, with C1/C2/C3 INAPPLICABLE (claim-keyed; no target carries claim_ids) and C5 inapplicable -- the case the skill warns about, since inapplicable is not 'no fire', and 7c then found six defects 7b structurally could not see. SECOND PASS (post-revision): fire_count 1 -- C6, naming probe_2cluster_jaccard seed 7 as a minority-seed dissent against an absolute in the revised H2 prose. ACTED ON: the fire was correct, and the prose was corrected. Seed-matched, seed 7 is the one cell in the leg where the trained arm IMPROVED (by 0.5, and 0.667 at w=8.0) while 4 of 6 seeds worsened and 1 tied. The note and the .md now state the split explicitly and scope the claim to means and to 4 of 6 seeds. C6 continues to fire on the corrected text because the check is keyword-based and the prose still contains absolute-sounding constructions; that residual fire is DISMISSED with reason -- the dissenting cell it names is now documented by value, by seed and by direction in both artifacts.",
+  "step_7c_result": "CONTESTED (red-team run on Fable, a different model from the drafter). Six verdict-moving defects, ALL ACCEPTED and applied: D1 undeclared SD-070 gate -> depends_on_unresolved now names it; D2 missing ledger block -> added; D3 non-existent substrate path -> removed; D4 the 'objective family is CAPABLE' convergent read was a trained-set readout whose fresh-set counterpart is flat (0.4167 == untrained) -> claim WITHDRAWN, convergent read rewritten; D5 the '~10x under-run budget' is the harness's normal early-termination schedule, identical to 956 seed-for-seed -> withdrawn and recorded as a tested-and-dropped argument; D6 the cross-seed-set baseline is CONSERVATIVE for H2's null, making the null's direction stronger not weaker -> 969's reading inverted. Hygiene accepted: 45/53 restated as the portfolio-wide 72/89; refusal wording reconciled and governance's 2026-08-30 routing of this portfolio noted; 972's uncentred-cosine limit hedged with a linear-probe confirmer. The drafter independently verified D4 (fresh_clusters 0.4167 == 0.4167) and D5 (956 vs 970 write-call identity) against the manifests before accepting.",
+  "hypothesis_space_ledger_pending": {
+    "note": "This session is INTERACTIVE and holds the Step 8 gate, so it applies these blocks itself rather than deferring them. Recorded here so the intended edit is auditable against the registry diff.",
+    "qid": "contextmemory_write_content_discrimination",
+    "growth_restriction_check": "field ABSENT on the question (re-read 2026-09-03). No STOP. No growth is proposed in any case -- this is Mode B resolve only.",
+    "mode": "Mode B resolve x4, NO growth",
+    "initial_frozen_count": "UNCHANGED at 4 (no legs added); initial_frozen_count_at_registration stays 4",
+    "mode_b_resolve": [
+      {
+        "hid": "H1-loss-objective-mismatch",
+        "resolving_runs": [
+          "V3-EXQ-970"
+        ],
+        "state": "alive",
+        "why_not_eliminated": "Regime A -- the real-latent regime that would have tested the leg -- never produced its DV (null in 12/12 cells). The synthetic regime showed memorisation without transfer (fresh-cluster Jaccard 0.4167 == untrained), which is evidence AGAINST the leg but was gathered on an input the leg was not about. Bar not met: control_passed false, non_degenerate false."
+      },
+      {
+        "hid": "H2-operating-point",
+        "resolving_runs": [
+          "V3-EXQ-969"
+        ],
+        "state": "alive",
+        "why_not_eliminated": "Direction is well-supported (every tested operating point moved Jaccard the wrong way by ~0.5 seed-matched; 0/10 Phase A seeds improved), but the near-binary DV cannot license the universal 'no operating point improves discrimination'. This is the closest of the four to elimination and should be revisited FIRST once the instrument is redesigned."
+      },
+      {
+        "hid": "H3-task-pressure-required",
+        "resolving_runs": [
+          "V3-EXQ-971"
+        ],
+        "state": "alive",
+        "why_not_eliminated": "The objective did not train (coupling loss rose 0.6273 -> 0.6514), so the mechanism was never instantiated; and the grading criterion is one both sibling drivers demote as unusable on this DV. Nothing was tested."
+      },
+      {
+        "hid": "H4-input-distribution",
+        "resolving_runs": [
+          "V3-EXQ-972"
+        ],
+        "state": "alive",
+        "why_not_eliminated": "A single-arm descriptive measurement with no comparator cannot meet the elimination bar in either direction, and its PASS is explicitly a measurement-validity gate. The measurement nonetheless makes this the best-supported leg of the four."
+      }
+    ],
+    "decision_block_patch": {
+      "distance_phrase": "0 of 4 legs adjudicated after the full portfolio ran; the binding constraint is now the INSTRUMENT.",
+      "live_gate": "Instrument redesign, not another leg.",
+      "decidable": false
+    }
+  },
+  "confirmed_utc": "2026-09-03T05:04:52Z",
+  "confirmed_by": "user (interactive Step 8 gate, 4 AskUserQuestion decisions logged to the recommendation-agreement ledger)"
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-03T04:15:52Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_591h_isef005_phase01_gate_live_20260903T024528Z_v3",
+      "queue_id": "V3-EXQ-591h",
+      "claim_ids": [
+        "ARC-019"
+      ],
+      "self_route_label": "crossing_count_gate_discriminates_live_closed_loop",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- ARC-019 is tagged here for the first and only time in the whole evidence tree; the lineage's own predecessors (591d/e/f/g) are claim-free and say they bear on ARC-046 / infant_substrate:GAP-14, and GAP-14's bears_on list does not include ARC-019",
+        "biological_reference": "clear -- staged developmental curricula with competence-gated transitions are well-evidenced; the biology is not what is at issue",
+        "prerequisites": "PRESENT in the substrate, NOT WIRED by the driver -- the scheduler exposes two phase-varying interfaces with live ree_core consumers (env_kwargs() -> harm_gradient_enabled at causal_grid_world.py:2617 and transient_benefit_enabled at :3077; config_overrides() -> offline_integration_frequency 10->20 at agent.py:12070). The 591b-591h driver family applies NEITHER, wiring only the third key, novelty_bonus_weight, which has no consumer.",
+        "implementation": "stub AS WIRED BY THIS DRIVER -- the only channel it applies (config.e3.novelty_bonus_weight, 0.5->0.7) had its consuming branch deleted 2026-05-25 as dead-by-construction (a uniform scalar shift is argmin-invariant). The driver states the omission and its rationale explicitly at :153-162; the substrate itself is not missing the capability.",
+        "environment": "adequate",
+        "measurement": "misleading -- oracle and gate are two thresholds on the same signal (Pearson r = 0.883), the partition is already fixed by episodes 0-99 before the gate window opens at episode 100, and the discriminative delta over the control arm is exactly one seed",
+        "integration": "isolated -- the two arms are behaviourally identical",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED: an EXPERIMENT-DESIGN failure (the driver wired the one dead phase channel and not the two live ones) compounded by MEASURES defects (circular oracle, partition fixed before the decision window, a one-seed discriminative delta). NOT a substrate gap and NOT chargeable to REE. This is emphatically not an ARC-019 result."
+      },
+      "biological_reference": {
+        "closest_mechanism": "developmental stage transitions gated on demonstrated competence (critical-period / readiness gating)",
+        "dependencies": [
+          "a curriculum stage that actually changes what the organism does or experiences"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at the claim layer -- the divergence is that REE's curriculum stage currently changes nothing",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure mode is measurement_test_design_defect over a competence_implementation_gap (dead feedback channel). ARC-019's stored epistemic_category is ALREADY standard and does not move; the change this autopsy asks governance to apply is the adjudication flag plus the note.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-591h PASSED with 5/5 seed agreement and all five preconditions met, but its self-route 'crossing_count_gate_discriminates_live_closed_loop' is NOT supported, because the loop it is named for was never closed IN THIS DRIVER. The only phase->agent channel the driver applies is config.e3.novelty_bonus_weight moving 0.5 -> 0.7 on advance (:369-371); nothing reads that field -- the consuming MECH-111 broadcast branch was deleted on 2026-05-25 as dead-by-construction (a uniform scalar shift over candidates is argmin-invariant; e3_selector.py:1364-1371), leaving only the dataclass field, its setter, a docstring and a comment. The run's own data confirm zero feedback: per_episode_h_pos is BIT-IDENTICAL between ARM_SPIKE and ARM_CROSSING on all 5 seeds (0 differing episodes, max |diff| 0.0) even though the arms sat in different phases for 6-24 episodes on four seeds, and offline replay of ARM_SPIKE's series reproduces the live ARM_CROSSING advance episode on 5/5. The failure mode the experiment was built to detect -- a self-defeating gate holding a genuine explorer in Phase 0 -- is therefore unreachable by construction. CRUCIALLY, THIS IS A DRIVER-WIRING DEFECT, NOT A MISSING SUBSTRATE CAPABILITY: the scheduler exposes two OTHER phase-varying interfaces that DO have live consumers -- env_kwargs() (harm_gradient_enabled -> causal_grid_world.py:2617; transient_benefit_enabled -> :3077, both False in Phase 0 and True in Phase 1) and config_overrides()' offline_integration_frequency (10 -> 20, consumed at agent.py:12070) -- and the ORIGINAL V3-EXQ-591 curriculum-vs-flat run applied env_kwargs. The 591b-591h family does not, and 591h documents the omission and its rationale at :153-162 (Phase-0 env_kwargs equal the constructor defaults, and phases never retreat, so applying them could not change a Phase 0->1 decision). That reasoning is correct for the DECISION, and it is precisely why the design cannot produce arm divergence at all: pre-advance both arms are Phase 0 with identical environments, and post-advance the single wired channel is inert. Three further defects bound the discrimination even on its own terms: oracle (h_pos_mean_full_run) and gate (post_ep_min_crossings) are two thresholds on the identical per_episode_h_pos array (Pearson r = 0.8826, recomputed), with crossing thresholds T in {3,4,5,6} and oracle floors F in {0.105 ... 0.318} all reproducing the same partition; the partition is already fixed by episodes 0-99, before the gate window opens at episode 100 (n_pre_ep_min_crossings >= 3, i.e. [25,8,28,2,0], reproduces the oracle exactly); and the discriminative delta over the legacy SPIKE control is exactly one seed (SPIKE 4/5, crossing 5/5), that seed being the sole live_false_advancer at zero precondition margin. For completeness in the other direction, constant predictors do NOT pass -- the conjunctive combination rule rejects both 'always advance' (3/5) and 'never advance' (2/5) -- so the 60% majority base rate is not itself the problem. This run contributes nothing to ARC-019 in either direction.",
+      "per_claim_recommendation": {
+        "ARC-019": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "ARC-019's status (provisional) and epistemic_category (standard) both STAND -- this run moves neither, and the claim's only evidence channel remains literature (epistemic_overlay channel: lit). What must be applied is the adjudication of this diagnostic plus a quality note recording that the curriculum's one wired phase channel is inert; ARC-019 currently carries NO such field at all, so set -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_diagnostic_evidence_adjudicated": true,
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "read_across_not_adjudicated": [
+        {
+          "subject": "ARC-046 / infant_substrate:GAP-14",
+          "note": "591d/591e/591f/591g all carry claim_ids: [] and their own prose says they bear on ARC-046 / GAP-14. 591h is the first in the lineage to tag a claim, and it tags ARC-019, which GAP-14's bears_on list does not include. THIS AUTOPSY RECOMMENDS GOVERNANCE REMOVE THE TAG (see recommended_claim_tag_change; user decision at the Step 8 gate). Whether ARC-046 / GAP-14 is the correct tag instead is NOT adjudicated here -- the run did not test that either."
+        },
+        {
+          "subject": "The dead-channel class (F-C2)",
+          "note": "novelty_bonus_weight joins the eleven default-ON flags measured inert on 2026-08-22 (WORKSPACE_STATE, authority-to-action trace part 2) and the same argmin-invariance mechanism catalogued as F-C2 in the 2026-07-09 audit. The general question -- how many declared control channels have no cross-candidate spread and therefore no authority -- is bigger than this run and is NOT adjudicated here."
+        }
+      ],
+      "learning_extracted": [
+        "A manipulation whose only WIRED channel to behaviour was deleted as dead-by-construction can still produce a clean PASS with unanimous seed agreement, because every downstream statistic is computed from trajectories that never differed. An arms-differ precondition reading only the DERIVED decision (reached_phase1 / phase_01_at) cannot catch this; a precondition asserting the two arms' TRAJECTORIES differ somewhere would have caught it in one line, before 4.8 hours of compute.",
+        "A driver can be internally self-consistent and still vacuous for its stated question. 591h correctly argues that applying env_kwargs could not change a Phase 0->1 DECISION -- and that same argument is why the design cannot produce arm divergence at all. When a rationale for omitting a channel also implies the experiment's manipulation is inert, the rationale is a stop signal, not a justification.",
+        "When the oracle and the criterion under test are two thresholds on the same array, agreement measures threshold monotonicity, not criterion validity. Require the oracle to be computed from a signal the gate does not read.",
+        "A partition already determined before the decision window opens cannot be evidence about a decision rule applied inside that window."
+      ],
+      "routing": "queue-experiment",
+      "recommended_claim_tag_change": {
+        "action": "remove_tag",
+        "claim_id": "ARC-019",
+        "rationale": "RECOMMENDED BY THIS AUTOPSY (user decision at the Step 8 gate, 2026-09-03). V3-EXQ-591h is the only manifest in the entire evidence tree tagged ARC-019, while its own lineage predecessors 591d/591e/591f all carry claim_ids: [] and their prose says they bear on ARC-046 / infant_substrate:GAP-14 -- whose bears_on list does not include ARC-019. The run tested a gate criterion under a manipulation that was inert (its two arms' trajectories are bit-identical on 5/5 seeds), so it bears on ARC-019 in neither direction. The tag is what placed an untested claim into pending_review.md as though it had been tested, and ARC-019's evidence channel is otherwise literature-only. Governance should remove it. evidence_direction non_contributory and diagnostic_evidence_adjudicated: true apply either way."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "basis": "granularity_debt_cluster.py ARC-019 returns 0 tagging targets across 0 files; this is the first autopsy target ever to name ARC-019. No prior ceiling reading exists to count.",
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "route_to": "queue-experiment",
+    "upstream_substrate": null
+  },
+  "fanout_recommendation": {
+    "is_discrimination": false,
+    "note": "Not a discrimination. The bottleneck is one unambiguous build: give the curriculum phase a behavioural channel. Fanning out over gate criteria before that exists would reproduce this run."
+  },
+  "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "infant_substrate:GAP-14",
+    "implementation_hint": "V3-EXQ-591h (2026-09-03) is VACUOUS for its stated question and no substrate build is owed. The curriculum's phase DOES reach behaviour through two live channels -- env_kwargs() (harm_gradient_enabled -> causal_grid_world.py:2617; transient_benefit_enabled -> :3077) and config_overrides()' offline_integration_frequency (10 -> 20 -> agent.py:12070) -- but the 591b-591h driver family wires only novelty_bonus_weight, whose consumer was deleted 2026-05-25 as dead-by-construction. Result: per_episode_h_pos bit-identical across arms on 5/5 seeds. ANY successor must (a) apply env_kwargs() and offline_integration_frequency, not novelty_bonus_weight, (b) carry a precondition asserting the two arms' trajectories diverge somewhere before the verdict is computed, and (c) take a NEW EXQ number, per infant_gap14_redesign_staged_20260827.md's standing instruction, rather than another 591 letter. Note also that ree-v3/tests/contracts/test_infant_curriculum_gap9.py:262-264 currently pins the dead novelty_bonus_weight key > 0 and must be updated by any such change. This is experiment-design debt recorded against the existing GAP-14 node; it is NOT a new substrate entry, and the earlier draft of this autopsy that proposed one (infant-curriculum-phase-has-no-behavioural-consumer) is WITHDRAWN on red-team measurement.",
+    "unblocks_claims": [
+      "ARC-019",
+      "ARC-046"
+    ],
+    "depends_on_unresolved": [],
+    "priority_suggested": 2,
+    "severity": "corrupting",
+    "substrate_paths": [
+      "experiments/infant_curriculum.py",
+      "experiments/v3_exq_591h_isef005_phase01_gate_live_v3.py",
+      "tests/contracts/test_infant_curriculum_gap9.py"
+    ],
+    "failure_record_entry": {
+      "run_id": "v3_exq_591h_isef005_phase01_gate_live_20260903T024528Z_v3",
+      "experiment_type": "isef005_phase01_gate_live",
+      "metric": "per_episode_h_pos bit-identical between ARM_SPIKE and ARM_CROSSING on 5/5 seeds (0 differing episodes, max |diff| 0.0) despite arms sitting in different phases for 6-24 episodes on four seeds; offline replay reproduces the live advance episode 5/5",
+      "target": "any measurable behavioural divergence between arms differing in curriculum phase -- achievable today by wiring env_kwargs() and offline_integration_frequency instead of novelty_bonus_weight",
+      "resolved": "open"
+    },
+    "resolves_prior_failure_record": []
+  },
+  "step_7b_result": "fire_count 1 -- C7, naming h_pos_mean_full_run, n_pre_ep_min_crossings and post_ep_min_crossings as bit-identical across arms in every seed. ACTED ON, not dismissed: independent mechanical confirmation of the inert-channel finding, reached without reading the substrate. C1/C2/C3 applied (the target is claim-tagged) and did not fire; C5 inapplicable (no sibling .md at check time).",
+  "step_7c_result": "CONTESTED (red-team run on Fable, a different model from the drafter). The central factual finding was CONFIRMED -- the channel really is dead (whole-tree grep; deletion commit ree-v3 099743e) and the trajectories really are bit-identical (0 differing episodes, max |diff| 0.0 on 5/5, with the seeding objection tested and rejected). But the ATTRIBUTION and therefore the ROUTING were wrong: the scheduler exposes two OTHER phase channels with live ree_core consumers that this driver family simply does not wire. ACCEPTED IN FULL after the drafter independently verified the consumers (harm_gradient_enabled causal_grid_world.py:2617, transient_benefit_enabled :3077, offline_integration_frequency agent.py:12070) and confirmed ree_core/environment/infant_curriculum.py does not exist. Consequences applied: routing implement-substrate -> queue-experiment; substrate action create -> amend on infant_substrate:GAP-14; the proposed new entry infant-curriculum-phase-has-no-behavioural-consumer WITHDRAWN; substrate_paths corrected to the real files; the ARC-019 80%-precondition claim softened (the claim says 'e.g.', and it gates the staged-vs-unstaged OUTCOME comparison that this run's scope_limitation puts out of scope). Hygiene accepted: the dead-key contract pin at test_infant_curriculum_gap9.py:262-264 is now named in the amend. Verdict-neutral correction: Spearman is 0.975/0.959, not 0.9.",
+  "confirmed_utc": "2026-09-03T05:04:52Z",
+  "confirmed_by": "user (interactive Step 8 gate, 4 AskUserQuestion decisions logged to the recommendation-agreement ledger)"
+}
