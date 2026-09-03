@@ -1790,6 +1790,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0124",
+      "claim_ids": [
+        "EXT-004",
+        "EXT-002",
+        "ARC-013",
+        "INV-008"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "EXT-004's ree_mechanism list glosses ARC-013 as 'commit boundary: authority transition for irreversible actions' and INV-008 as 'residue couples into selection across episodes', but ARC-013's registered title is 'Residue is persistent latent-space curvature; hippocampal paths form a cognitive map' and INV-008's is 'Precision is routed and depth-specific, not global' -- neither gloss matches the claim it annotates, and the same INV-008 mis-gloss appears on EXT-002 ('residue couples to selection -- not just logged'), so this is drift across the EXT-* block rather than a typo. Commit-boundary content lives elsewhere in the registry (ARC-003 / MECH-061 are the visible candidates). Found during the IGW-244 EXT-004 literature pull (REE_assembly 3a3e9ce69b); claims.yaml deliberately NOT edited from a lit-pull -- governance should decide whether to re-map the mechanism lists or correct the glosses. Second, separable finding in the same pull: EXT-004's asserted CAUSE is now contradicted by the literature -- Abdel Sadek et al. (RLC 2025) prove goal misgeneralization is possible under maximum-expected-value but not minimax-expected-regret training, Langosco et al. (ICML 2022) repair CoinRun with 2 percent training-distribution diversity, and Shah et al.'s never-ending Tree Gridworld misgeneralizes with no episode boundary at all, which directly counterexamples EXT-004's 'each episode starts from a clean slate'. The phenomenon stands; the explanation and the 'moral_amnesia' failure-mode analog need review.",
+      "raised_by_session": "igw-244-literature-proposal-for-ext-004",
+      "raised_at": "2026-09-03T09:08:56Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
