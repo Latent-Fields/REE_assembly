@@ -468,7 +468,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "SD-020",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "harm_stream.dynamic_precision",
     "title": "harm_precision_weighting",
@@ -1304,6 +1304,14 @@
     "type": "governance_rule",
     "what_would_answer": "This is a governance_rule/process proposal, not an empirical hypothesis about REE's substrate -- its \"falsification\" is procedural: does formalising this into a skill and applying it to >=1 real organism-level behavioural claim change the adjudication outcome (or the confidence in it) relative to the ad hoc pre-specified-metric approach it replaces? Per GOV-HELDOUT-1's own discipline, do not treat drafting the skill as evidence it works -- promote only after real use, and record whether it changed anything.\n"
   },
+  "GOV-BRIDGE-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.version_transition.bridge_organism_preservation",
+    "title": "Bridge-organism preservation: when a version-boundary substrate expansion bundles more than one boundary capacity together, checkpoint and retain intermediate 'bridge' organism states -- each adding one boundary capacity, or one coherent capacity cluster, on top of the prior generation -- as first-class comparison artefacts, not merely as engineering scaffolding discarded once the full expansion lands. Bridge organisms need not become public release numbers; their purpose is causal isolation, so that a downstream behavioural or substrate phenotype observed after a multi-capacity transition can still be attributed to the specific capacity that produced it, the way a knock-in or mutant strain isolates one genetic change in model-organism research.",
+    "type": "governance_rule"
+  },
   "GOV-CALIB-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1449,6 +1457,14 @@
     "status": "candidate",
     "subject": "governance.justice.false_exclusion",
     "title": "Justice / power / false exclusion: guard against excluding unfamiliar, disabled, non-linguistic, animal-like, artificial, or culturally unfamiliar minds from moral caution; and explicitly ask who bears risk, who benefits, and whose model of mind is being treated as the default.",
+    "type": "governance_rule"
+  },
+  "GOV-LOWPREP-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.lowest_capacity_preparation_rule",
+    "title": "Lowest-capacity preparation rule: for a given scientific question, prefer running the experiment on the lowest-capacity retained organism preparation (a canonical reference organism, a bridge organism, or a full version generation) that still contains the phenomenon the question requires, over a higher-capacity preparation that would also work. This is a precautionary Replacement-specific refinement of SENT-2's replacement/reduction/refinement welfare budget, applied to the choice of WHICH organism preparation to instantiate for an experiment rather than only to caps on within-experiment negative-valence exposure -- motivated by higher capacities (social attribution, language) introducing compound explanatory confounds (reputation, imitation, reciprocity, strategic impression management, rationalisation, cultural inheritance) alongside their added behavioural capability, which can make the causal origin of an observed phenomenon harder to identify even as the organism becomes easier to interrogate.",
     "type": "governance_rule"
   },
   "GOV-META-1": {
@@ -8683,6 +8699,14 @@
     "title": "ARC-064 extracts cross-episode behavioural regularities, compressed patterns, and rule-state abstractions from an observed-behaviour stream (hippocampal CLS bi-pathway / dorsolateral striatum chunking / OFC cognitive-map analog). Under ARC-092, that observed-behaviour stream could in principle be either real waking behaviour or imagined/simulated (e.g. E3 counterfactual) trajectories. Are rules extracted from IMAGINED trajectories architecturally EQUIVALENT to rules extracted from WAKING trajectories -- i.e. does ARC-064's extraction mechanism operate identically regardless of source, with licitness enforced only at a separate downstream commit/write-gate step (MECH-094-style) -- or does rule extraction ITSELF need a provenance-aware carve-out (e.g. imagined-trajectory-derived rules held as lower-confidence/provisional/prior-only until corroborated by real execution, per MECH-322's template), because letting an unvalidated imagined trajectory silently seed the same rule-state abstraction a validated waking trajectory would is itself a FORBIDDEN-adjacent risk (confabulated RULES, not merely confabulated episodic facts)?",
     "type": "question",
     "what_would_answer": "Adjudicated by an architectural/code audit of ARC-064's extraction pathway (hippocampal CLS\nbi-pathway, striatal chunking, OFC cognitive-map analog) asking whether it reads a\nhypothesis_tag / committed_vs_imagined field on its input stream at all, and if so, whether\nthat field changes extraction behavior (confidence, admission, or downstream write target) or\nis merely passed through unused.\n\nCONFIRMING (equivalent, carve-out unnecessary): ARC-064's extraction mechanism has no\nprovenance-sensitive branch, AND a downstream MECH-094-style write-gate already prevents any\nrule extracted purely from imagined content from reaching durable rule storage until\ncorroborated by real execution -- i.e. licitness is fully enforced downstream, so extraction\nitself can safely be source-agnostic (Botvinick & Plaut 2004's recurrent-connectionist schema\ncomputation is content-agnostic in exactly this way: the same mechanism processes any input\nsequence, with no privileged real/imagined channel).\n\nFALSIFYING (VIOLATED BY / NOT EQUIVALENT): a rule extracted primarily or solely from imagined/\nsimulated trajectories reaches the same durable rule-state abstraction store as waking-derived\nrules, with no distinguishing provenance tag and no corroboration requirement before it carries\nequal weight in later behaviour -- a confabulated-rule failure mode structurally analogous to\nSchnider's (2003) confabulated-fact failure mode, but one level up (at the rule/schema level\nrather than the episodic-fact level). This would mean ARC-064 needs its own MECH-322-style\ncarve-out, not merely inheriting MECH-094's existing gate.\n\nNON-DEGENERACY PRECONDITION: requires ARC-064's extraction pathway to actually receive imagined/\nsimulated trajectories as input at all (as opposed to only ever running over real waking\nbehaviour today); if V3's current ARC-064 instantiation never sees simulated input, the question\nis open but not yet auditable, mirroring ARC-092's own \"PARTIAL AUDIT AVAILABLE TODAY\" framing.\n"
+  },
+  "Q-101": {
+    "assembly_state": "deferred_future",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "governance.version_transition.ontogenetic_vs_architectural_ancestry",
+    "title": "Does a later-capable REE architecture's eventual social- and language-mind outcomes depend on which solitary (V3-like) and enduring-individual (V4-like) developmental regime it actually passed through before other minds became cognitively meaningful -- i.e. does ONTOGENETIC ancestry (the developmental regime actually lived through) shape later social-mind development independent of ARCHITECTURAL ancestry (which mechanisms were inherited into the larger architecture) -- such that retained lower-version developmental regimes would become machinery required to build later organisms coherently, rather than merely historical artefacts kept for comparison?",
+    "type": "open_question"
   },
   "RA-001": {
     "assembly_state": "remaining",

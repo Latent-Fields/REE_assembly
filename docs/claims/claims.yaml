@@ -93039,3 +93039,198 @@
     as a working placeholder -- taken at registration time by this same pass's F1 claim, so
     MECH-532 was allocated instead per the live max. User approval: RECOMMENDATION_LOG.jsonl
     2026-09-01, "Staged claims" decision lane, both F1 and F2 options selected.
+
+- id: GOV-BRIDGE-1
+  title: 'Bridge-organism preservation: when a version-boundary substrate expansion bundles more than
+    one boundary capacity together, checkpoint and retain intermediate ''bridge'' organism states -- each
+    adding one boundary capacity, or one coherent capacity cluster, on top of the prior generation --
+    as first-class comparison artefacts, not merely as engineering scaffolding discarded once the full
+    expansion lands. Bridge organisms need not become public release numbers; their purpose is causal
+    isolation, so that a downstream behavioural or substrate phenotype observed after a multi-capacity
+    transition can still be attributed to the specific capacity that produced it, the way a knock-in or
+    mutant strain isolates one genetic change in model-organism research.'
+  claim_type: governance_rule
+  subject: governance.version_transition.bridge_organism_preservation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-09-03'
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: full_lineage
+  registered_utc: '2026-09-03'
+  source_thought: docs/thoughts/2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  source:
+  - docs/thoughts/2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  - evidence/planning/thought_intake_2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  depends_on:
+  - GOV-V4CUT-1
+  - GOV-V3FREEZE-1
+  - GOV-SUBIMG-2
+  - ARC-124
+  - SD-096
+  location: docs/architecture/bridge_organism_lineage.md#gov-bridge-1
+  notes: 'From thought 2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md (intake
+    evidence/planning/thought_intake_2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md).
+    The genuinely-new content is narrow: GOV-V4CUT-1 already states the reference-organism / development-organism
+    coexistence this thought''s core idea proposes, and the checkpoint / branch / provenance MECHANICS
+    already exist as a built governance cluster (ARC-124, ARC-125, INV-098, SD-096, SENT-16, GOV-SUBIMG-2).
+    What is missing is the PROGRAMMATIC COMMITMENT to checkpoint and KEEP intermediate, non-terminal capacity-knock-in
+    states as first-class retained artefacts -- rather than treating them as disposable scaffolding on
+    the way to the next named generation. Distinguished from GOV-V3FREEZE-1: that claim freezes ONE artefact
+    (the completed terminal generation); this claim covers MANY artefacts captured DURING construction,
+    specifically so a bundled multi-capacity expansion does not destroy the ability to attribute a phenotype
+    to one capacity. Distinguished from GOV-UMPIRE-1: that claim detects WHEN a reference organism has
+    emerged; this claim governs WHAT gets preserved along the way, independent of readiness detection.
+    Distinguished from the continuity/branching/SENT-16 cluster: those claims are IDENTITY AND OBLIGATION
+    ethics for a single continuing entity across pause/copy/branch/reset; this claim is a SCIENTIFIC RETENTION
+    practice across a LINEAGE of deliberately distinct preparations, reusing the same checkpoint/branch/provenance
+    mechanics for a different purpose. version_relevance full_lineage (not v3_v4 alone, unlike GOV-V4CUT-1)
+    because the policy re-applies identically at every future bundled boundary -- v4->v5, v5->v6 -- not
+    only the next one; it must be adopted BEFORE the V3->V4 expansion begins for the first instance to
+    have any effect. governance_rule: no EXQ should be minted against this claim; it advances by the programme''s
+    own retention practice (which bridge organisms get checkpointed and kept) plus a future implementation
+    doc, not by experiment. Deliverables this claim implies but does NOT itself register as separate claims
+    (per the raw thought''s own "candidate enduring deliverables" list): a canonical V3 reference organism
+    + checkpoints, a panel of mechanistic lesions and developmental variants, an ecological passport per
+    retained preparation, and an ecology-adapter contract for bounded external simulations -- these are
+    engineering/documentation deliverables that follow FROM adopting this rule, not additional governance
+    commitments; see the companion intake''s Next Steps for the chip-worthy follow-on. The `location`
+    stub file does not yet exist on disk; drafting it is part of landing this claim, not part of this
+    intake pass.
+
+    '
+  evidence: []
+- id: GOV-LOWPREP-1
+  title: 'Lowest-capacity preparation rule: for a given scientific question, prefer running the experiment
+    on the lowest-capacity retained organism preparation (a canonical reference organism, a bridge organism,
+    or a full version generation) that still contains the phenomenon the question requires, over a higher-capacity
+    preparation that would also work. This is a precautionary Replacement-specific refinement of SENT-2''s
+    replacement/reduction/refinement welfare budget, applied to the choice of WHICH organism preparation
+    to instantiate for an experiment rather than only to caps on within-experiment negative-valence exposure
+    -- motivated by higher capacities (social attribution, language) introducing compound explanatory
+    confounds (reputation, imitation, reciprocity, strategic impression management, rationalisation, cultural
+    inheritance) alongside their added behavioural capability, which can make the causal origin of an
+    observed phenomenon harder to identify even as the organism becomes easier to interrogate.'
+  claim_type: governance_rule
+  subject: governance.welfare.lowest_capacity_preparation_rule
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-09-03'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v4_v5
+  binds_at_version: v4
+  blocks_v3_green_board: false
+  registered_utc: '2026-09-03'
+  source_thought: docs/thoughts/2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  source:
+  - docs/thoughts/2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  - evidence/planning/thought_intake_2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  depends_on:
+  - SENT-2
+  - GOV-HEALTH-1
+  - GOV-BRIDGE-1
+  functional_restatement: 'Given a scientific question, do not default to the newest/most-capable retained
+    organism preparation. Check whether a lower-capacity retained preparation (per GOV-BRIDGE-1) already
+    contains the phenomenon under test; if so, prefer it. This reduces both unnecessary welfare ambiguity
+    (SENT-2''s Reduction leg: avoid unnecessary populations of organisms with greater welfare ambiguity
+    than the question requires) and confound load (a higher-capacity organism''s additional behavioural
+    repertoire competes with the phenomenon of interest as an alternative explanation).
+
+    '
+  notes: 'From thought 2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md (intake
+    evidence/planning/thought_intake_2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md).
+    Distinguished from SENT-2: SENT-2 caps sustained negative-valence exposure, inescapability, and distress-accumulator
+    persistence WITHIN a given experiment on a given organism; this claim is about WHICH organism to run
+    the experiment on in the first place, upstream of SENT-2''s caps applying at all. The two compose
+    rather than duplicate: GOV-LOWPREP-1 first selects the lowest-adequate preparation, then SENT-2 still
+    governs how that chosen preparation may be used. Cross-checked against SENT-0''s "V3 is not claimed
+    to be sentient... pre-ethical substrate work, a maintained claim not a permanent fact" and the raw
+    thought''s own explicit hedge ("this does not establish that V3 has no welfare relevance; it explicitly
+    avoids requiring that conclusion") -- no tension found; this claim does not assert or require any
+    particular welfare status for any preparation, lower or higher-capacity. The raw thought''s confound-structure
+    argument (higher capacities add reputation / imitation / reciprocity / rationalisation / cultural-inheritance
+    as competing explanations for an observed behaviour) is folded into this claim''s own title/functional_restatement
+    as its justification rather than given a separate claim, matching the 2026-08-25 persistence intake''s
+    practice of folding a closely-adjacent thread into the claim it motivates instead of minting a fourth
+    claim. version_relevance v4_v5 (not v3 today): V3 currently constitutes a single organism generation
+    plus a nascent per-phase lesion-harness pattern (SD-068/SD-071/SD-072/SD-073, scoped to sleep consolidation
+    only) -- not yet the stocked, deliberately-varied comparative library GOV-BRIDGE-1 would produce,
+    so there is little for this rule to choose AMONG until that library exists, beginning at the V3->V4
+    boundary. binds_at_version v4 mirrors SENT-2''s own sibling field convention (SENT claims use binds_at_version/blocks_v3_green_board
+    rather than implementation_phase/version_relevance; both field sets are carried here so the claim
+    reads correctly under either convention). governance_rule: no EXQ should be minted against this claim;
+    it advances by being consulted at experiment-design time once a retained library exists, and by a
+    future edit to docs/governance/sentience_welfare_risk_register.md adding a one-line cross-reference
+    under SENT-2 (not done in this intake pass -- the register is a STUB document out of scope for a thought-intake
+    edit).
+
+    '
+  evidence: []
+- id: Q-101
+  title: Does a later-capable REE architecture's eventual social- and language-mind outcomes depend on
+    which solitary (V3-like) and enduring-individual (V4-like) developmental regime it actually passed
+    through before other minds became cognitively meaningful -- i.e. does ONTOGENETIC ancestry (the developmental
+    regime actually lived through) shape later social-mind development independent of ARCHITECTURAL ancestry
+    (which mechanisms were inherited into the larger architecture) -- such that retained lower-version
+    developmental regimes would become machinery required to build later organisms coherently, rather
+    than merely historical artefacts kept for comparison?
+  claim_type: open_question
+  subject: governance.version_transition.ontogenetic_vs_architectural_ancestry
+  polarity: asks
+  status: candidate
+  live_status:
+    reading: open
+    as_of: '2026-09-03'
+    needs_review: false
+  epistemic_category: answer_state
+  claim_level: architectural
+  implementation_phase: v5
+  version_relevance: v5_v6
+  registered_utc: '2026-09-03'
+  source_thought: docs/thoughts/2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  source:
+  - docs/thoughts/2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  - evidence/planning/thought_intake_2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+  depends_on:
+  - ARC-059
+  - GOV-V4CUT-1
+  - GOV-BRIDGE-1
+  notes: 'From thought 2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md (intake
+    evidence/planning/thought_intake_2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md).
+    Checked against INV-094 (social-coupling-before-play-before-language ordering WITHIN one lineage),
+    ARC-042/INV-041 (staged developmental phases WITHIN V3''s own construction), and INV-064 (maturational-sequence
+    necessity) -- none of these compares whether an IDENTICAL later architecture''s outcomes depend on
+    WHICH earlier developmental regime it actually passed through; they order phases within a single lineage''s
+    construction, not across a counterfactual developmental HISTORY holding the later architecture fixed.
+    That cross-history comparison is the genuinely new content here. Registered as an open_question (not
+    an architectural_commitment or mechanism_hypothesis) because the raw thought itself poses this as
+    one of eight explicit "open questions," not as a proposal, and because it is honestly untestable before
+    V5 exists -- epistemic_category answer_state correctly exempts it from promote/demote and exp_conf
+    gating. implementation_phase v5 / version_relevance v5_v6 (deliberately NOT pulled forward to v3/v4):
+    no cheap non-degenerate V3-only or V4-only test is available -- the question is specifically about
+    a V5 social-mind ENDPOINT compared across differing PRE-V5 histories, so nothing short of a working
+    V5 social substrate can pose it non-vacuously. DO NOT build in V3 or V4; DO NOT queue an experiment
+    ahead of V5 substrate existing. DIGESTION SEED (not a what_would_answer; /thought-digestion owns that
+    field): NON-DEGENERACY PRECONDITION: a V5 social substrate must exist and be instantiable from more
+    than one distinct prior developmental history -- at minimum a V3-like solitary-only history and a
+    V4-like enduring-individual history, both leading into the SAME V5 social machinery -- which in turn
+    presupposes GOV-BRIDGE-1''s retained bridge/library organisms as the differently-staged starting points.
+    CONFIRMING: matched V5 organisms that differ ONLY in which V3-like/V4-like developmental regime they
+    passed through (same V5 architecture, same social-training ecology, same seeds) show measurably different
+    social-mind outcomes (e.g. otherhood attribution calibration, relational-harm sensitivity, cooperation/rupture-repair
+    dynamics) traceable to the developmental-history difference rather than to architectural differences.
+    FALSIFYING: outcomes converge to statistical indistinguishability once the same V5 architecture and
+    social ecology are held fixed, regardless of developmental-history difference -- i.e. only ARCHITECTURAL
+    ancestry matters, and ontogenetic ancestry is safely treated as a historical artefact rather than
+    as machinery later organisms require.'
+  evidence: []

@@ -1,6 +1,10 @@
 Thought Intake: Versioned Organisms — Capacity Boundaries, Retained Lineages, and Practical Niches
 
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md
+Claims registered: GOV-BRIDGE-1, GOV-LOWPREP-1, Q-101
+
+Original status line: unprocessed
 
 Date: 2026-09-02
 Source: voice discussion following V3/V4 boundary review
