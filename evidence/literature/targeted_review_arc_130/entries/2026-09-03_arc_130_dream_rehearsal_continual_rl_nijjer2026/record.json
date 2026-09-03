@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_130",
+  "entry_id": "2026-09-03_arc_130_dream_rehearsal_continual_rl_nijjer2026",
+  "timestamp_utc": "2026-09-03T19:28:01Z",
+  "claim_ids_tested": ["ARC-130", "ARC-131"],
+  "source": {
+    "title": "The World Model Remembers, the Actor Forgets: Dream Rehearsal for Continual Model-Based Reinforcement Learning",
+    "authors": ["Gurp Nijjer"],
+    "year": 2026,
+    "venue": "arXiv preprint (cs.LG)",
+    "arxiv_id": "2607.19749",
+    "url": "https://arxiv.org/abs/2607.19749"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "A clean pre-registered component dissociation -- the world model retains essentially everything measurable about old tasks while the actor's committed behaviour collapses, and a frozen-world-model + imagination-RL intervention fails to recover the lost skill in every seed -- locates the failure downstream of representation retention, which is exactly ARC-130's ladder structure (existence/representation is not committed throughput). n=3 seeds throughout is thin, and the successful remedy (supervised self-imitation on the world model's own generated trajectories) sits in real tension with MECH-094's strict simulation/real separation, which the mapping_caveat states explicitly rather than treating as free confirmation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "n=3 seeds throughout -- component-level probes and all headline retention/recovery ratios are reported over only three random seeds.",
+    "With the world model frozen and identical imagined rollouts, reinforcement learning in imagination fails to recover a lost skill (0/3 seeds) -- the naive imagination-RL remedy does not work at all; only supervised self-imitation on graded dreams does.",
+    "The dream-grading step is load-bearing: we characterize two scoring failure modes... that caught both before they contaminated results -- the remedy is fragile without a specific grading safeguard the authors had to design in response to observed failures."
+  ],
+  "tags": ["arc_130", "arc_131", "causal_reach_ladder", "competence_retention", "world_model_actor_dissociation", "dream_rehearsal", "installability"],
+  "mapping": {
+    "source_claim_statement": "In DreamerV3-family agents trained on task sequences with an unbounded replay buffer, forgetting is a channel problem, not a memory problem: component-level probes show the world model retains reward discrimination, value estimates, and termination structure at retention ratio ~1.0 for old tasks, while the actor's behaviour collapses. With the world model frozen, RL in imagination fails to recover a lost skill in 0/3 seeds; supervised self-imitation on the world model's own graded ('dreamed') trajectories recovers it in 3/3 seeds with zero environment interaction, and interleaving this graded dream rehearsal during training yields perfect retention across 4- and 8-task chains where plain replay retains 0/3.",
+    "ree_translation": "ARC-130 asserts that organism-level mechanism status is stage-qualified along a ladder (existence, representation, endogenous recruitment, local operation, competitive authority, committed throughput, ecological consequence, retention/generalisation) -- authority or fidelity at one stage does not establish that a mechanism's influence reaches committed behaviour. This paper is a clean, independently-derived instance of exactly that structure in a different substrate: the world model (existence + accurate representation, arguably even competitive/local-operation fidelity, since its reward/value/termination structure for the old task is intact) demonstrably does NOT translate into committed behavioural throughput (the actor's policy collapses regardless). The intervention experiment -- frozen world model, imagination-RL alone cannot recover the skill -- is a causal demonstration that the blockage sits downstream of representation, in the pathway from representation to committed action, which is the exact stage ARC-130's ladder isolates. It is a secondary, weaker instance of ARC-131 (installability): the actor's competence, once demonstrated on an earlier task, fails to remain expressed once later tasks change the operating conditions (interference from subsequent training) -- closer to ARC-131's cousin claim (competence retention, MECH-459) than to ARC-131's own compositional-installability framing, but the same family of 'a competence that worked once does not automatically keep reaching committed behaviour.'",
+    "mapping_caveat": "The successful remedy -- supervised self-imitation where the world model's own generated ('dreamed') trajectories are used as literal training targets for the actor -- sits in real tension with MECH-094 (REE's strict default that simulation-mode content must not accumulate in the viability map as committed experience, on pain of confabulation). This paper's own domain (a classifier/policy learning setting with no analogue of REE's committed-experience/confabulation distinction) has no reason to respect that boundary, and its positive result should not be read as license to let REE write model-generated rollouts into anything resembling committed experience without the MECH-322-style carve-out conditions REE already requires for such paths. The n=3 seeds throughout is also a real statistical-power limitation; 'complete seed separation' is reported but the seed count is small. ARC-131's own compositional/installability framing (does a competence appear AT ALL once the rest of the organism is turned on) is only loosely matched here -- the paper's phenomenon is closer to competence retention (MECH-459) than to ARC-131's simultaneous-composition axis, and is recorded as secondary evidence accordingly.",
+    "source_context": "DreamerV3-family model-based RL agents; sequential task training (4- and 8-task chains) with an unbounded replay buffer; pre-registered protocols, n=3 seeds."
+  },
+  "confidence_components": {
+    "source_quality": 0.58,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.55,
+    "notes": "Source quality benefits from unusually strong methodological transparency (pre-registration, all refuted hypotheses reported, an explicit failure-mode characterization for the remedy) but is capped for preprint status and n=3 seeds. Mapping fidelity is solid for ARC-130 (a clean representation-vs-throughput dissociation) and weaker for ARC-131 (closer to retention than to compositional installability). Transfer risk reflects the domain gap (DreamerV3 RL, not REE's own architecture) and, separately, the MECH-094 tension in the remedy mechanism, which limits how directly this evidence should be read as endorsing dream-rehearsal as a REE design pattern."
+  }
+}

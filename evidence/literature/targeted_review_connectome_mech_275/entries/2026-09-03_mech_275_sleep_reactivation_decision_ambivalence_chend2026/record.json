@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_275",
+  "entry_id": "2026-09-03_mech_275_sleep_reactivation_decision_ambivalence_chend2026",
+  "timestamp_utc": "2026-09-03T19:28:01Z",
+  "claim_ids_tested": ["MECH-275", "MECH-273"],
+  "source": {
+    "title": "Reactivating Conflicting Evaluative Memories during Sleep Reduces Decision Ambivalence",
+    "authors": ["Danni Chen", "Tao Xia", "Jing Liu", "Yuqi Zhang", "Xibo Zuo", "Haiyan Wu", "Cora S.W. Lai", "Xiaoqing Hu"],
+    "year": 2026,
+    "venue": "bioRxiv preprint",
+    "doi": "10.64898/2026.03.11.710434",
+    "url": "https://doi.org/10.64898/2026.03.11.710434"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "NREM-sleep reactivation of one side of a learned valence conflict causally reduces next-day decision ambivalence, and does so specifically for cues that were integrated (not merely re-presented) during sleep -- language suggesting genuine reconciliation rather than blunt suppression of one side, which is the mechanism MECH-275 requires. The effect is markedly asymmetric (strong for negative-to-positive reversals, weak/absent for positive-to-negative) and the study measures ambivalence via mouse-tracking curvature rather than any direct confidence/calibration metric, so it cannot rule out that some of the effect is attractor-collapse (confident but poorly calibrated) rather than calibrated Bayesian integration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cueing reduced decision ambivalence, especially in the negative-to-positive condition -- the effect is directionally asymmetric, not observed with comparable strength for positive-to-negative reversals.",
+    "Cueing-induced ambivalence reduction was evident only for items that were integrated after sleep -- the benefit is conditional on a further, only partially-controlled process (successful integration), not a guaranteed consequence of reactivation."
+  ],
+  "tags": ["mech_275", "mech_273", "sleep_reactivation", "evaluative_memory", "decision_ambivalence", "conflict_integration", "nrem"],
+  "mapping": {
+    "source_claim_statement": "In a valence-reversal learning paradigm across three days, participants first learned cue-outcome associations of one valence, then learned opposite-valence associations for the same cues; during subsequent NREM sleep, half the cues were re-presented to reactivate the associated memories. Cueing reduced next-day decision ambivalence (measured via mouse-tracking trajectory curvature), especially in the negative-to-positive condition, and promoted integration of the conflicting evaluative memories; ambivalence reduction was evident only for items that were integrated after sleep, and stronger cue-elicited delta power during NREM predicted next-day ambivalence reduction.",
+    "ree_translation": "MECH-275 asserts that sleep-phase full-Bayesian aggregation is a general mechanism across attribution domains: given waking-phase structured evidence, sleep aggregates across episodes, correcting for systematic biases, with self-attribution (MECH-273) as one specialisation. This study directly instantiates the general mechanism in a distinct, non-self-attribution domain -- reconciliation of conflicting EVALUATIVE (valence) memories about an external cue -- via NREM reactivation. The paper's own language ('promoted the integration of conflicting evaluative memories,' with ambivalence reduction conditional on successful integration rather than automatic) is suggestive of genuine reconciliation into a revised, durable representation rather than one side simply being erased, which is what MECH-275's schema-revision framing (not noise-fit, not simple deletion) requires. It offers weaker, more indirect support for MECH-273 specifically, since that claim is about self-attribution rather than external-cue valence, but both draw on the same underlying sleep-phase aggregation-of-conflicting-evidence mechanism.",
+    "mapping_caveat": "The crucial REE-specific caveat is confidence versus calibration. MECH-275 requires genuine BAYESIAN aggregation -- schema revision that corrects for bias, not a collapse toward one side regardless of accuracy. This study's own language ('integration') is a positive sign, and the finding that ambivalence reduction tracks successful integration (rather than reactivation alone) somewhat supports a reconciliation account over a pure suppression account. But the measured outcome is decision ambivalence via mouse-tracking curvature, not a direct test of whether the post-sleep evaluative belief is better CALIBRATED against ground truth -- the study cannot rule out that some of the ambivalence reduction is ordinary attractor collapse (more confident, not necessarily more correct) rather than calibrated integration. The strong directional asymmetry (effect concentrated in the negative-to-positive condition, weak or absent for positive-to-negative) further limits how far this generalises to a valence-symmetric REE mechanism.",
+    "source_context": "Human participants; three-day valence-reversal learning design (Day 1 A-B associations, Day 2 A-C reversed-valence associations, Day 2 night NREM sleep with cue reactivation for half the items, Day 3 post-sleep evaluation and memory tests); mouse-tracking and EEG (delta power, spindle activity)."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Source quality at the preprint ceiling: a genuine causal within-subjects TMR-style manipulation (NREM cue reactivation) with converging behavioural (mouse-tracking) and electrophysiological (delta power, spindle) measures, but unreviewed and with a directionally asymmetric result. Mapping fidelity is capped at 0.5 because the study cannot distinguish calibrated Bayesian integration from confident-but-uncalibrated attractor collapse, which is the exact distinction MECH-275's full-Bayesian framing turns on. Transfer risk reflects the valence asymmetry and the human evaluative-learning paradigm's distance from REE's own attribution/aggregation architecture."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_deferred_reorganisation",
+  "entry_id": "2026-09-03_mech_529_sleep_reactivation_structure_abstraction_solomon2026",
+  "timestamp_utc": "2026-09-03T19:28:01Z",
+  "claim_ids_tested": ["MECH-529", "ARC-011"],
+  "source": {
+    "title": "Memory Reactivation during Sleep Promotes Structure Abstraction",
+    "authors": ["Sarah H. Solomon", "Sirisha Krishnamurthy", "Elizabeth M. Siefert", "Claudia M. Gonciulea", "Anna C. Schapiro"],
+    "year": 2026,
+    "venue": "bioRxiv preprint",
+    "doi": "10.64898/2026.04.10.717748",
+    "url": "https://doi.org/10.64898/2026.04.10.717748"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "A two-experiment, causally-manipulated (targeted memory reactivation) human study shows structure knowledge stays tied to superficial features when learning is immediate, but transfers across feature-disjoint categories -- scaling with cue count -- when a nap with reactivation of the prior category intervenes. This is close to the dependent variable a rebucketing/schema-change claim should predict, but the categories' graph structure was experimenter-defined and exogenously labelled, not derived non-oracularly from consequential divergence the way MECH-529 specifies, and no index-continuity or object-correction/generalisation dissociation was tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In Experiment 1, when two categories were learned in immediate succession, participants showed no transfer benefit, suggesting that structure understanding remained tied to the original features -- offline reprocessing, not mere exposure, is doing the work.",
+    "Structure was defined by explicit graph relationships taught to participants during category learning, rather than discovered from accumulated consequential-divergence evidence -- an oracular, experimenter-supplied structure, not the non-oracular reorganisation MECH-529 requires."
+  ],
+  "tags": ["mech_529", "arc_011", "rebucketing", "structure_abstraction", "targeted_memory_reactivation", "slow_wave_sleep", "schema_transfer"],
+  "mapping": {
+    "source_claim_statement": "Participants learned novel categories whose feature covariation followed different graph structures, then learned a new, feature-disjoint category with structure either congruent or incongruent with the first. Immediate succession produced no transfer benefit. When learning phases were separated by 3 hours with a nap in between, and the first category was targeted for memory reactivation (TMR) during slow-wave sleep, transfer benefits emerged only for structurally congruent categories, and scaled with the number of reactivation cues presented during slow-wave sleep.",
+    "ree_translation": "MECH-529 predicts that replay of non-contiguous episodes under a common evaluative frame, occurring preferentially in a decoupled/sleep phase, drives split/merge/feature-reweighting/abstraction-change over E1's equivalence classes -- and that this reorganisation should be measurable as improved decision-relevant generalisation that survives the sleep phase. This study's dependent variable -- surface-feature-independent structural transfer that appears only after sleep-phase targeted reactivation, and scales with reactivation dose (cue count) -- is close to what a rebucketing/schema-change mechanism should predict: structural knowledge is abstracted away from the features it was encoded with, and that abstraction is causally gated by offline reactivation rather than by mere elapsed time or exposure (Experiment 1's null result rules out the exposure account). It is the cleanest existing human evidence tying sleep-phase reactivation dose to abstraction strength.",
+    "mapping_caveat": "MECH-529 is registered substrate_conditional / implementation_phase v4, gated on a corrigible representational grain (the ARC-134 P0 merge/split operator) that does not yet exist in V3 -- this entry is banked evidence for a not-yet-built mechanism. More importantly, the mapping is structural but not mechanistic: this study's category structures were explicit graphs taught to participants (exogenous, experimenter-supplied structure), not equivalence classes revised from accumulated consequential-divergence evidence the way MECH-529 requires (typed insufficiency signals from decision outcomes, never category labels). The study also does not test MECH-529's non-oracularity requirement, does not dissociate object correction from object generalisation, and does not test index continuity (whether episodic traces remain addressable after the abstraction). It is evidence that sleep-phase reactivation CAN drive surface-independent structural transfer, not evidence about the specific consequential-divergence-driven, non-oracular mechanism MECH-529 proposes.",
+    "source_context": "Human category learning; Experiment 1 immediate-succession control, Experiment 2 3-hour-spaced learning phases with a nap and targeted memory reactivation (TMR) of cues during slow-wave sleep."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Source quality at the preprint ceiling: a well-controlled two-experiment causal design (TMR is a gold-standard sleep-manipulation technique) with a dose-response result (cue count), but unreviewed. Mapping fidelity is moderate -- the dependent variable (surface-independent structural transfer, sleep-gated) matches well, but the structure itself is oracular/experimenter-supplied rather than consequence-derived, which is the load-bearing distinction in MECH-529's own wording. Transfer risk reflects the domain gap (human declarative category learning vs. REE's E1 equivalence-class/replay architecture) and the absence of any test of MECH-529's non-oracularity or index-continuity requirements."
+  }
+}

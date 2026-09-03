@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-09-03_arc_011_sleep_replay_catastrophic_forgetting_bazhenov2026",
+  "timestamp_utc": "2026-09-03T19:28:01Z",
+  "claim_ids_tested": ["ARC-011", "MECH-092"],
+  "source": {
+    "title": "Not Just After One: Sleep-Inspired Replay Prevents Catastrophic Forgetting After Sequential Tasks",
+    "authors": ["Anthony Bazhenov", "Jean Erik Delanois", "Giri P. Krishnan"],
+    "year": 2026,
+    "venue": "arXiv preprint (cs.NE)",
+    "arxiv_id": "2606.08447",
+    "url": "https://arxiv.org/abs/2606.08447"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "An existence result: training multiple tasks sequentially without any offline phase produces interference/forgetting, and a single unsupervised sleep-like replay phase applied after several tasks partially restores prior performance across all of them. This supports ARC-011's instability-without-offline-integration claim at the existence level, but 'partially restores' and 'gradually decays with additional tasks' both show a bounded, capacity-limited effect rather than a full guarantee of stability -- read as support for a deferred, capacity-bounded consolidation window, not for a compulsory sleep pass after every episode.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Task-specific knowledge resists new training interference but gradually decays as the network encounters additional tasks -- the protective/restorative effect is bounded, not unlimited.",
+    "An unsupervised sleep-like replay phase is applied to partially restore performance across all previously learned tasks -- restoration is partial, not complete."
+  ],
+  "tags": ["arc_011", "mech_092", "sleep_replay", "catastrophic_forgetting", "offline_consolidation", "continual_learning"],
+  "mapping": {
+    "source_claim_statement": "Artificial neural networks trained sequentially on multiple tasks suffer catastrophic interference with previously learned information. Rather than protecting old memories during or immediately after each task (the standard continual-learning approach), the authors show that multiple new tasks can be trained sequentially first, and a single unsupervised sleep-like replay phase applied afterward partially restores performance across all previously learned tasks; task-specific knowledge resists interference from the next task but gradually decays as further tasks are added without an intervening replay phase.",
+    "ree_translation": "ARC-011 asserts offline integration (sleep) is required for stability, mediated through ARC-007 (hippocampal replay) and ARC-005 (control plane); its own operationalisation names representation drift, policy/diversity erosion, and residue-field runaway as the failure modes offline integration prevents. This paper is a computational existence proof of the same causal shape at a coarser grain: omitting any offline replay phase across a sequence of tasks produces the instability (catastrophic interference); inserting one sleep-like replay phase, even deferred until after several tasks have accumulated, substantially and causally restores stability across all of them. For MECH-092 (quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability-map consolidation), the mechanism is directly analogous in function -- an offline replay phase consolidating previously-learned structure against interference from newly-acquired experience -- though this paper's replay is a scheduled training-phase intervention across discrete tasks, not an intrinsic quiescent-cycle-triggered process within a single continuously-operating agent.",
+    "mapping_caveat": "The restoration is explicitly PARTIAL, and task-specific knowledge is shown to gradually decay as more tasks are added without further replay -- this is evidence for a deferred consolidation window with a real capacity boundary, not for the stronger claim that a single offline pass unconditionally guarantees stability, and it should not be read as license to relax sleep cadence in REE without acknowledging a capacity limit. The replay mechanism here is a scheduled, externally-triggered training-phase intervention over discrete labelled tasks, not an intrinsic, quiescence-triggered process the agent enters on its own -- MECH-092's specific claim (that quiescent E3 cycles themselves trigger the replay) is not tested by a paradigm where replay timing is an experimenter-chosen training-schedule parameter. Spiking/rate-coded neural-network substrate, not REE's own E1/E3/hippocampal-module architecture.",
+    "source_context": "Spiking or rate-based artificial neural network; sequential supervised task training with an unsupervised sleep-like replay phase inserted after multiple tasks; continual-learning benchmark."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Source quality reflects an established sleep-replay computational-modeling lineage (Krishnan) applying a controlled sequential-task benchmark, capped for preprint status. Mapping fidelity is decent for ARC-011 at the existence level (offline replay prevents interference-driven instability) but weaker for the specific stability operationalisations ARC-011 names (representation drift, diversity erosion, residue runaway), none of which this paper measures directly. Transfer risk is moderate: the mechanism is a scheduled training intervention rather than an intrinsic quiescence-triggered process, which is the specific gap for MECH-092."
+  }
+}

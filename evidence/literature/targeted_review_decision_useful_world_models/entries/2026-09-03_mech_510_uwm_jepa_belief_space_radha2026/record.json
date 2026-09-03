@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_decision_useful_world_models",
+  "entry_id": "2026-09-03_mech_510_uwm_jepa_belief_space_radha2026",
+  "timestamp_utc": "2026-09-03T19:28:01Z",
+  "claim_ids_tested": ["MECH-510", "ARC-002"],
+  "source": {
+    "title": "UWM-JEPA: Predictive World Models That Imagine in Belief Space",
+    "authors": ["Santosh Kumar Radha", "Oktay Goktas"],
+    "year": 2026,
+    "venue": "arXiv preprint (cs.LG)",
+    "arxiv_id": "2605.25313",
+    "url": "https://arxiv.org/abs/2605.25313"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.47,
+  "confidence_rationale": "The paper's controlled ablation isolates predictor DYNAMICS (whether rollout preserves or dissipates represented uncertainty/belief) as a quantity that varies independently of encoder quality, which stayed matched across conditions. That is a clean empirical instance of MECH-510's core claim -- that generative/interpretive precision is a separable control-plane axis from other precision-like quantities -- but in a different substrate (a density-matrix JEPA world model) with no analogue of REE's E3 error-trust precision channel. MECH-510 itself is explicitly substrate_conditional/v4 with no REE channel built yet, so this is prospective literature banking, not evidence about a built REE mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Evaluated on a single hidden-velocity indicator task requiring five-step forward simulation with the target observation masked -- one narrow synthetic benchmark, not a general-purpose or embodied task suite.",
+    "Action sensitivity itself requires training against counterfactual rather than teacher-forced targets -- a training-objective dependency, not a property of the architecture alone, that must be replicated for the result to hold."
+  ],
+  "tags": ["mech_510", "arc_002", "precision_control", "belief_preservation", "jepa", "predictor_geometry"],
+  "mapping": {
+    "source_claim_statement": "A JEPA world model with a density-matrix latent and a learned unitary predictor preserves the joint system-environment spectrum exactly during blind rollout, so the predictor cannot dissipate represented uncertainty; on a hidden-velocity task it reaches 0.77 accuracy with monotonic degradation under action perturbation, while a parameter-matched LSTM-JEPA under the same counterfactual-target objective collapses to majority-class accuracy. Both architectures tie on a held-out context probe, locating the separation in the predictor's dynamics rather than the encoder's representational capacity, and action sensitivity specifically requires counterfactual (not teacher-forced) training targets.",
+    "ree_translation": "MECH-510 proposes that prediction PRECISION (how strongly a generative attractor constrains interpretation) and prediction-error precision/salience (how much a discrepancy is trusted to drive correction) are separable, independently-routable control-plane quantities, distinct from both MECH-043's unsigned-error channel and MECH-054's signed valence split. This paper's finding -- that encoder quality can be held constant while predictor dynamics alone determine whether action-conditioned belief is preserved or dissipated under blind rollout -- is a clean demonstration, in a different formalism, that 'how tightly a generative rollout constrains the space of interpretations it produces' is a quantity dissociable from representational/encoding quality. That is functionally adjacent to what MECH-510 calls generative/interpretive precision. The finding that ordinary teacher-forced training lets the action-conditioned term collapse (echoing SD-056's own failure mode) is the transferable empirical content; the density-matrix/unitary-predictor construction itself is one implementation choice among many and has no privileged status for REE.",
+    "mapping_caveat": "MECH-510 is registered as substrate_conditional / implementation_phase v4 with an explicit instruction not to build or queue a V3 experiment for it -- no generative-precision channel distinct from MECH-043's current_precision exists in ree_core today. This entry is therefore banked evidence for a not-yet-built REE mechanism, not a test of one. The quantum-inspired density-matrix/unitary formalism has no counterpart in REE's architecture and should not be read as suggesting one; only the abstract finding (predictor dynamics, not encoder capacity, determines belief preservation under rollout) transfers. Single narrow synthetic task; no REE-relevant reward or action-space structure.",
+    "source_context": "Partially observed synthetic hidden-velocity indicator task; five-step blind forward rollout under a fixed action sequence with the target observation masked."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.6,
+    "notes": "Source quality mid-range: a genuinely controlled ablation (encoder matched, predictor varied) with a clear ceiling-vs-baseline comparison, but a single narrow benchmark and an unreviewed preprint. Mapping fidelity is capped at 0.5 because MECH-510's own architecture (generative precision as a control-plane channel alongside MECH-043/MECH-054) has no built analogue this paper's belief-preservation finding can be checked against; the correspondence is conceptual. Transfer risk is high (0.6): the density-matrix formalism has no privileged status for REE per the source thought's own framing, and MECH-510 has zero built substrate to receive this evidence against."
+  }
+}

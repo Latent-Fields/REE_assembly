@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_decision_useful_world_models",
+  "entry_id": "2026-09-03_sd_056_counterfactual_quotient_models_chenj2026",
+  "timestamp_utc": "2026-09-03T19:28:01Z",
+  "claim_ids_tested": ["SD-056", "ARC-002"],
+  "source": {
+    "title": "Counterfactual Quotient Models: Learning What Actions Change, Not What the World Does",
+    "authors": ["Junlin Chen", "Ruijie Wang", "Jianxin Li"],
+    "year": 2026,
+    "venue": "arXiv preprint (cs.LG)",
+    "arxiv_id": "2608.22092",
+    "url": "https://arxiv.org/abs/2608.22092"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.54,
+  "confidence_rationale": "Independent ML-theory confirmation that absolute-future prediction lets an action-conditioned component get swamped by a shared, action-independent component -- the same failure geometry SD-056's contrastive fix targets -- but in a different implemented mechanism (canonical centered/quotient representation vs. InfoNCE-style contrastive loss) and under a stronger data-access assumption (synchronized counterfactual rollouts) than REE's production rollouts typically supply. Capped below 0.6 as an unreviewed preprint tested only in physics-toy domains; literature evidence stays subordinate to REE's own experimental confirmation of SD-056's contrastive lever.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Evaluation limited to controlled experiments in physics-based environments -- no embodied RL agent or partially-observed task tested.",
+    "The implemented model learns action-dependent effects directly from synchronized counterfactual rollouts, so shared stochastic dynamics cancel before function approximation -- this requires paired/matched-noise branches from a common state, a stronger supervision signal than an agent normally has outside of planning-time CEM candidate generation."
+  ],
+  "tags": ["sd_056", "arc_002", "action_conditioned_prediction", "contrastive_representation", "counterfactual_supervision", "world_model"],
+  "mapping": {
+    "source_claim_statement": "Reinforcement-learning models that predict complete future states waste capacity on action-independent variation; a Counterfactual Quotient Model instead learns a canonical centered representation that cancels the action-independent (common) component and preserves only pairwise action-comparison content, learned from synchronized counterfactual rollouts sharing a starting state.",
+    "ree_translation": "SD-056 diagnosed the identical failure mode inside E2.world_forward: with world_dim=32 and action_dim=4, reconstruction-shaped training collapses the action term to zero because it is a small fraction of predicted dimensionality (cand_world_pairwise_dist = 0.0000). SD-056's chosen fix -- an auxiliary InfoNCE-style contrastive loss over K sibling CEM candidates sharing z_world_0 but differing in first action -- is architecturally distinct from this paper's quotient/centering construction, but both are instances of the same underlying strategy: supervise directly on the action-conditioned CONTRAST rather than on the absolute predicted state, so the shared component cannot dominate the loss. This paper's controlled result (direct effect learning suppresses action-independent variation and improves action ranking) is convergent, independently-derived support that the strategy class SD-056 committed to is sound, not evidence that REE's specific contrastive implementation works.",
+    "mapping_caveat": "The paper's positive results depend on synchronized counterfactual rollouts with shared stochastic dynamics across sibling branches -- effectively privileged, matched-noise supervision. REE's production E2 training data is not normally structured this way; SD-056's own sibling-CEM-candidate negatives are the closest analog (in-batch, shared z_world_0) but do not guarantee matched environment noise across the branches the way this paper's synchronized rollouts do. The domain (physics-based toy environments) and representation (canonical centered/quotient space vs. contrastive embedding) both differ from REE's E2FastPredictor, so this is convergent theoretical/empirical support for the strategy, not a transfer of the specific mechanism.",
+    "source_context": "Physics-based simulated environments; controlled offline RL setting with access to synchronized counterfactual action branches from shared states."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "Source quality capped for unreviewed preprint status despite a solid theoretical treatment (decision sufficiency, identifiability, common-mode invariance formally established). Mapping fidelity is fairly high because the diagnosed failure mode (absolute-future prediction lets the action-conditioned term collapse) is essentially the same claim SD-056 makes about E2, independently arrived at. Transfer risk is elevated by the synchronized-rollout supervision assumption and the physics-toy domain, neither of which is guaranteed to hold for REE's production E2 training loop."
+  }
+}
