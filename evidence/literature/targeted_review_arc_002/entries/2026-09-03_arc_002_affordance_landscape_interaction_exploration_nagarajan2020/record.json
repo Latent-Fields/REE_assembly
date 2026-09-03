@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_002",
+  "entry_id": "2026-09-03_arc_002_affordance_landscape_interaction_exploration_nagarajan2020",
+  "timestamp_utc": "2026-09-03T07:08:43Z",
+  "claim_ids_tested": [
+    "ARC-002"
+  ],
+  "source": {
+    "title": "Learning Affordance Landscapes for Interaction Exploration in 3D Environments",
+    "authors": [
+      "Tushar Nagarajan",
+      "Kristen Grauman"
+    ],
+    "year": 2020,
+    "venue": "Advances in Neural Information Processing Systems 33 (NeurIPS 2020)",
+    "arxiv_id": "2008.09241",
+    "doi": null,
+    "pmid": null,
+    "url": "https://papers.nips.cc/paper/2020/hash/15825aee15eb335cc13f9b559f166ee8-Abstract.html"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Logged as mixed because it cuts both ways on ARC-002 and the two directions are of similar weight. It supports the FORM of the claim -- a per-state viability map over an action space is learnable, useful, and transfers to new environments -- making it the closest existing engineering analogue to ARC-002's confirming readout. It bears against the claim's mechanism, because the affordance model was trained by an explicit interaction-success signal harvested through active exploration and implemented as a perceptual segmentation over egocentric RGB-D, bypassing any forward model. Confidence is held at 0.55: strong venue and a clean design, but the mapping is to an architecture ARC-002 does not assert, and no quantitative results were verifiable from the sources retrieved, so the entry rests on design rather than effect size.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The affordance map was learned from an explicit interaction-success reward, not from action-conditioned outcome prediction -- so a system whose only objective is next-state prediction has not been shown to acquire this structure.",
+    "Affordance was represented as a perceptual segmentation over the observation, bypassing the forward model entirely; the architecture that works here is not the architecture ARC-002 asserts.",
+    "Discovering the affordance landscape required a dedicated exploration policy rewarded for successful interaction, which is evidence that viability structure does not come free with passive experience of the dynamics."
+  ],
+  "tags": [
+    "arc-002",
+    "affordances",
+    "embodied-agents",
+    "interaction-exploration",
+    "viability-readout",
+    "e2",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "An embodied agent in unmapped 3D home environments (AI2-iTHOR) is trained with reinforcement learning to maximise successful interactions while simultaneously training an image-based affordance segmentation model that maps image regions to the likelihood that each action succeeds there. The affordance model densifies the exploration reward, and the resulting policy prepares the agent for downstream interaction tasks such as retrieving an object and placing it, in environments it has not seen.",
+    "ree_translation": "This is the closest existing engineering analogue to ARC-002's confirming test: a learned readout that predicts, per state, which actions are viable, scored against ground-truth interaction success. In that respect it supports the claim -- the object ARC-002 says E2 should produce is a real, learnable, useful thing rather than a notional one. But the way it was obtained bears against the claim's mechanism, and this is why the entry is mixed. The affordance model here is trained by an explicit interaction-success signal harvested through active exploration; it does not fall out of passive action-conditioned dynamics prediction. Read against ARC-002, that suggests the affordance structure E2 is claimed to carry may need a viability-specific training signal rather than emerging from world-forward or contrastive objectives alone (SD-056's cand_world_pairwise_dist and world_forward_contrastive_loss). ARC-002's falsifying branch -- E2 behaving as a generic dynamics predictor indexed by action, with no distinct 'what can I do here' structure -- is the outcome this paper's design implicitly anticipates and engineers around.",
+    "mapping_caveat": "The affordance model is a visual segmentation network over egocentric RGB-D, not a readout over a forward model's predicted next state, so it is evidence about affordance LEARNABILITY rather than about whether forward prediction carries affordance structure. The setting is a photorealistic simulated home with a discrete high-level action space where the simulator's interaction API supplies clean viability labels -- considerably cleaner supervision than REE's environments afford. No quantitative figures are recorded in this entry because none were verifiable from the abstract and metadata pages retrieved on 2026-09-03; the assessment therefore rests on the paper's design and stated conclusions rather than on effect sizes, and should be revisited if the full text is read.",
+    "source_context": "AI2-iTHOR simulated 3D kitchens and homes; egocentric RGB-D observations; discrete high-level interaction actions; downstream tasks such as finding an object and placing it."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Source quality good: NeurIPS main conference with released code, discounted because the quantitative results were not verified at pull time. Mapping fidelity is the weak point -- the paper's affordance predictor sits over perception, not over a forward model, so it is adjacent to ARC-002's mechanism rather than on it. Transfer risk moderate: a simulated home with API-defined interaction success to REE's latent agent substrate."
+  }
+}

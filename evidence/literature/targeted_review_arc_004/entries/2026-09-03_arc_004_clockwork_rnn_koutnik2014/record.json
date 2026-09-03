@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_004",
+  "entry_id": "2026-09-03_arc_004_clockwork_rnn_koutnik2014",
+  "timestamp_utc": "2026-09-03T07:11:12Z",
+  "claim_ids_tested": [
+    "ARC-004"
+  ],
+  "source": {
+    "title": "A Clockwork RNN",
+    "authors": [
+      "Jan Koutnik",
+      "Klaus Greff",
+      "Faustino Gomez",
+      "Jurgen Schmidhuber"
+    ],
+    "year": 2014,
+    "venue": "Proceedings of the 31st International Conference on Machine Learning (ICML), PMLR 32",
+    "arxiv_id": "1402.3511",
+    "doi": null,
+    "pmid": null,
+    "url": "https://proceedings.mlr.press/v32/koutnik14.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Mixed because ARC-004 has two separable assertions and this paper cuts opposite ways on them. It supports LAYERED + DIFFERENTIATED: explicitly stratifying a recurrent state by temporal granularity is functionally worth doing, reducing parameters and outperforming both RNN and LSTM on the tasks tested. It bears against the TIMESCALE assertion as the claim's precondition frames it: the stratification was obtained by PRESCRIBING exponentially spaced update rates, which is the built-in rate split the precondition explicitly disclaims. Confidence is held at 0.58 because the paper ran no shared-rate control, so its silence on emergence is weak evidence -- it shows prescribing rates is sufficient, not that emergence fails.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Multi-timescale behaviour was obtained by hard-coding exponentially spaced update rates (module i updates every 2^(i-1)-th step), the built-in rate split ARC-004's non-degeneracy precondition explicitly disclaims.",
+    "No shared-rate control was run, so the paper cannot distinguish 'prescribed rates are necessary' from 'prescribed rates are sufficient'.",
+    "Hard gating of module updates is structurally different from exponential moving average smoothing, so 'setting a timescale' means something different in the two architectures and the comparison is not between matched systems."
+  ],
+  "tags": [
+    "arc-004",
+    "multi-timescale",
+    "recurrent-networks",
+    "clockwork-rnn",
+    "l-space",
+    "latent-stack",
+    "rate-split",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "The Clockwork RNN partitions the hidden layer into separate modules, each processing inputs at its own temporal granularity and computing only at its prescribed clock rate -- module i updating every 2^(i-1)-th time step, an explicit, hand-set exponential spacing rather than a learned one. Relative to a standard RNN the modification reduces the number of parameters, speeds up network evaluation, and improved performance significantly on the two tasks tested, audio signal generation and TIMIT spoken-word classification, where it outperformed both RNN and LSTM.",
+    "ree_translation": "ARC-004 carries two separable assertions: that L-space is LAYERED and DIFFERENTIATED, and that the differentiation is by TIMESCALE. The Clockwork RNN bears on both, in opposite directions, which is why this is logged as mixed. It supports the first -- explicitly stratifying a recurrent state by temporal granularity is functionally worth doing, buying both performance and parameter efficiency, which is a design-level argument for why a multi-timescale latent stack is a sensible architectural commitment in the first place. It bears against the second as the claim's precondition frames it: CW-RNN obtained its multi-timescale behaviour by PRESCRIBING the rates, exactly the built-in rate split ARC-004 disclaims, and it offers no evidence that comparable stratification arises from architecture alone at a shared rate. Set beside Chaudhuri et al. (identical time constants, graded connectivity, serial hierarchy, emergent hierarchy), the pair brackets the open question: prescribing rates is a sufficient route and is not the only one, and a shared-rate PARALLEL stack is on neither route.",
+    "mapping_caveat": "CW-RNN is a supervised sequence model from 2014 evaluated on audio generation and TIMIT word classification; nothing here concerns latent world-models, unsupervised representation stacks, or the autocorrelation-persistence measure ARC-004 specifies. Updating a module every 2^(i-1) steps is a hard gating of updates, structurally unlike an exponential moving average with a smoothing constant, so the two architectures mean different things by 'setting a timescale' and the comparison is between routes rather than between matched systems. The absence of an emergence demonstration is weak evidence about emergence generally: the paper never ran a shared-rate control, so it establishes that prescribing rates WORKS, not that emergence FAILS. Reading it as a negative result about emergence would overstate it.",
+    "source_context": "Supervised sequence learning: sequence generation of audio signals and TIMIT spoken-word classification, compared against standard RNN and LSTM baselines."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Source quality good: ICML main track and a well-known architecture, though the empirical evaluation is two tasks and the baselines are of its era. Mapping fidelity moderate -- the paper speaks to the claim's precondition (must rates be built in?) but through an architecture with no forward-model or latent-stack analogue. Transfer risk high-ish: a 2014 supervised sequence model to an unsupervised latent stack inside an agent, with a different smoothing mechanism and a different measure of persistence."
+  }
+}

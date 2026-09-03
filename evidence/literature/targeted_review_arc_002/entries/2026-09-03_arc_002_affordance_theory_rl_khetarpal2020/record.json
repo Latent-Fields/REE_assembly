@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_002",
+  "entry_id": "2026-09-03_arc_002_affordance_theory_rl_khetarpal2020",
+  "timestamp_utc": "2026-09-03T07:08:43Z",
+  "claim_ids_tested": [
+    "ARC-002"
+  ],
+  "source": {
+    "title": "What can I do here? A Theory of Affordances in Reinforcement Learning",
+    "authors": [
+      "Khimya Khetarpal",
+      "Zafarali Ahmed",
+      "Gheorghe Comanici",
+      "David Abel",
+      "Doina Precup"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 37th International Conference on Machine Learning (ICML), PMLR 119",
+    "arxiv_id": "2006.15085",
+    "doi": null,
+    "pmid": null,
+    "url": "https://proceedings.mlr.press/v119/khetarpal20a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the entry that makes ARC-002's central distinction well-posed rather than merely asserted. The paper defines an affordance THROUGH the forward model -- the set of (state, action) pairs whose predicted outcome matches an intent to within epsilon -- so 'forward predictor' and 'predictor of affordances' stop being competing descriptions and become a base and a readout over it, which is exactly the confirming form ARC-002's what_would_answer specifies. Theorem 2 adds a design-level argument (affordance-restricted model classes have a smaller log-cardinality term, so fewer samples for the same model error). Held at 0.72 rather than higher because the affordance relation is intent-relative and ARC-002 names no intent set, and because the bounds are stated over finite MDPs with a discrete affordance relation, which E2's continuous latent readout is not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Affordance structure is only defined relative to a chosen intent set; with no intent fixed, 'predictor of affordances' does not pick out a unique relation over the same dynamics.",
+    "The sample-complexity gain of Theorem 2 is a bias-variance trade-off, not a free win: shrinking the affordance relation reduces the estimation term but raises the intent-satisfaction error epsilon, and in the small-data regime (n = 25-200 trajectories) the minimum planning loss was found at intermediate affordance size kappa, not at the smallest affordance set.",
+    "The theorems bound planning loss for a GIVEN affordance relation; the paper's procedure for LEARNING affordances is a separate heuristic that the bounds do not cover."
+  ],
+  "tags": [
+    "arc-002",
+    "affordances",
+    "forward-model",
+    "action-conditioned-prediction",
+    "e2",
+    "reinforcement-learning",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Standard RL assumes every action is available in every state. The paper formalises affordances for agents planning in MDPs: an intent is a map from states to desired next-state distributions, satisfied to degree epsilon at s when the total-variation distance between the intent distribution and P(.|s,a) is at most epsilon; an affordance is then the relation AF_I, a subset of S x A containing exactly the pairs where the intent is satisfied to that degree. Theorem 1 bounds the value loss of planning in the intent-induced MDP by 2*epsilon*gamma*R_max/(1-gamma)^2. Theorem 2 bounds planning loss when the restricted transition model is LEARNED from n samples, with the estimation term scaling as sqrt((1/2n) log(2|AF_I||Pi_I|/delta)) -- so restricting the model class to the affordance relation shrinks the term. Empirically, in gridworlds from 7x7 to 25x25, planning was significantly quicker with an affordance-aware model as grid size increased; in the small-data regime the minimum planning loss occurred at intermediate affordance size kappa; and affordance-aware models predicted reasonable distributions for out-of-distribution actions where baseline models failed.",
+    "ree_translation": "ARC-002 asserts that E2 is the fast forward predictor OF AFFORDANCES -- that its action-conditioned predictions carry 'what am I able to do here' as structure distinct from generic transition dynamics. The claim's own falsifying branch worries that E2 might turn out to be a generic world-dynamics predictor that merely happens to be indexed by action. This paper supplies the formal object that dissolves the apparent tension: an affordance is not a separate quantity bolted onto a forward model, it is DEFINED through one, as the subset of state-action pairs whose predicted outcome matches an intent within epsilon. On that reading E2 being a forward predictor and E2 being an affordance predictor are the same fact described at two levels, and ARC-002's confirming test (a readout over predicted world-effect that correlates with ground-truth action viability, generalising e2_escape_affordance_linker.py's per-action-class viability index) is the natural way to measure it. Theorem 2 goes further and says the affordance-structured version is the EASIER thing to learn, which is a design-level argument for ARC-002's architecture rather than only a semantic one.",
+    "mapping_caveat": "The paper's affordances are intent-relative: the relation is defined only once a set of intents is fixed, and different intent sets carve different affordance relations over identical dynamics. ARC-002 names no intent set -- REE's nearest analogues would be E3's selection objectives or the narrow threat/escape viability index already built in ree_core/pfc/e2_escape_affordance_linker.py -- so until one is fixed, 'affordances' in ARC-002 is under-determined in precisely the way this formalism exposes. The theorems also assume a finite affordance relation with countable cardinality entering a log term, which a continuous latent readout over E2 does not straightforwardly have, and the demonstrations are small tabular and 2D-continuous gridworlds rather than a learned latent substrate with representations shared across streams.",
+    "source_context": "Theory over discrete and continuous MDPs, with illustrative experiments in a 2D continuous world with walls and gridworld navigation tasks from 7x7 to 25x25; value iteration planning and learned transition models."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: ICML main track, proofs plus demonstrations, widely cited; the empirical scale is deliberately illustrative rather than a benchmark result, which is why it is not higher. Mapping fidelity good -- the formal object matches ARC-002's structure closely and even reproduces its confirming-test shape -- discounted for intent-relativity. Transfer risk moderate: finite-MDP theory moving to a learned continuous latent world-model."
+  }
+}

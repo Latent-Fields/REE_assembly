@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-03T06:00:13.472706Z`
+Generated: `2026-09-03T07:12:45.635953Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -10,6 +10,8 @@ Generated: `2026-09-03T06:00:13.472706Z`
 | `targeted_review_actor_critic_action_learning` | [`2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018`](targeted_review_actor_critic_action_learning/entries/2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018/record.json) | 10 | [`summary`](targeted_review_actor_critic_action_learning/entries/2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018/summary.md) |
 | `targeted_review_affect_stream_relief_safety_soothing` | [`2026-06-05_soothing_social_buffering_hpa_review_hostinar2014`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/record.json) | 5 | [`summary`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/summary.md) |
 | `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
+| `targeted_review_arc_002` | [`2026-09-03_arc_002_affordance_theory_rl_khetarpal2020`](targeted_review_arc_002/entries/2026-09-03_arc_002_affordance_theory_rl_khetarpal2020/record.json) | 3 | [`summary`](targeted_review_arc_002/entries/2026-09-03_arc_002_affordance_theory_rl_khetarpal2020/summary.md) |
+| `targeted_review_arc_004` | [`2026-09-03_arc_004_intrinsic_timescale_hierarchy_murray2014`](targeted_review_arc_004/entries/2026-09-03_arc_004_intrinsic_timescale_hierarchy_murray2014/record.json) | 3 | [`summary`](targeted_review_arc_004/entries/2026-09-03_arc_004_intrinsic_timescale_hierarchy_murray2014/summary.md) |
 | `targeted_review_arc_005` | [`2026-08-07_arc_005_uncertainty_neuromodulation_yu2005`](targeted_review_arc_005/entries/2026-08-07_arc_005_uncertainty_neuromodulation_yu2005/record.json) | 4 | [`summary`](targeted_review_arc_005/entries/2026-08-07_arc_005_uncertainty_neuromodulation_yu2005/summary.md) |
 | `targeted_review_arc_014` | [`2026-04-05_arc014_rangel_camerer_montague_2008`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/record.json) | 3 | [`summary`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/summary.md) |
 | `targeted_review_arc_019` | [`2026-09-01_arc_019_starting_small_refutation_rohde1999`](targeted_review_arc_019/entries/2026-09-01_arc_019_starting_small_refutation_rohde1999/record.json) | 5 | [`summary`](targeted_review_arc_019/entries/2026-09-01_arc_019_starting_small_refutation_rohde1999/summary.md) |

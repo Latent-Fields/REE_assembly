@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_004",
+  "entry_id": "2026-09-03_arc_004_intrinsic_timescale_hierarchy_murray2014",
+  "timestamp_utc": "2026-09-03T07:11:12Z",
+  "claim_ids_tested": [
+    "ARC-004"
+  ],
+  "source": {
+    "title": "A hierarchy of intrinsic timescales across primate cortex",
+    "authors": [
+      "John D Murray",
+      "Alberto Bernacchia",
+      "David J Freedman",
+      "Ranulfo Romo",
+      "Jonathan D Wallis",
+      "Xinying Cai",
+      "Camillo Padoa-Schioppa",
+      "Tatiana Pasternak",
+      "Hyojung Seo",
+      "Daeyeol Lee",
+      "Xiao-Jing Wang"
+    ],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3862",
+    "pmid": "25383900",
+    "pmc": null,
+    "volume": "17",
+    "issue": "12",
+    "pages": "1661-1663"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Supports ARC-004's FRAMING AND METHOD rather than REE's substrate. It establishes that a hierarchy stratified by intrinsic timescale is a real, measurable property of a biological hierarchy, and that exponential decay of the spiking autocorrelation is an adequate estimator of it -- which is precisely the measurement ARC-004 proposes per latent layer, and precisely the monotonic-ordering shape of its PASS criterion. Held at 0.68 because the ordering is across anatomically distinct cortical AREAS in a directed hierarchy, not across layers of a single latent stack, and because as of 2026-09-01 the registry records that REE's stack cannot express the property as built. Cross-laboratory pooling adds a further discount.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The measured ordering is across anatomically distinct cortical areas connected in a directed feedforward/feedback hierarchy; it is not evidence that parallel filters over a shared input can be stratified by timescale.",
+    "Cross-laboratory pooling means the hierarchy is a between-dataset regularity, so a failure of the ordering within an individual animal would not have been visible.",
+    "Intrinsic timescale is measured on task-independent fluctuations, so it constrains the persistence of spontaneous dynamics rather than the temporal aggregation of task-relevant information that ARC-004's layers are supposed to perform."
+  ],
+  "tags": [
+    "arc-004",
+    "timescale-hierarchy",
+    "intrinsic-timescale",
+    "autocorrelation",
+    "l-space",
+    "latent-stack",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Specialization and hierarchy are organizing principles for primate cortex, yet there is little direct evidence for how cortical areas are specialized in the temporal domain. The authors measured timescales of intrinsic fluctuations in spiking activity across areas, by fitting exponential decay to the spike-count autocorrelation across time lags, and found a hierarchical ordering, with sensory areas exhibiting shorter timescales and prefrontal areas longer ones. They suggest intrinsic timescales reflect areal specialization for task-relevant computations over multiple temporal ranges.",
+    "ree_translation": "ARC-004's own MEASUREMENT section proposes exactly this technique -- per-layer lag-k autocorrelation and persistence half-life over z_beta, z_theta and z_delta -- and its PASS criterion is exactly this result's shape: a monotonic ordering of effective persistence along the stack, z_delta slowest. Murray et al. is therefore the empirical precedent for both halves of ARC-004's test design. It establishes that 'the levels of a hierarchy are stratified by intrinsic timescale' is a real, measurable property of a hierarchical system rather than a modelling convenience, and that autocorrelation decay suffices to detect it. What it supports is the claim's framing and its method; it is not and cannot be evidence about REE's stack.",
+    "mapping_caveat": "This measures cortical AREAS, not layers of a single latent stack, and the ordering runs along an anatomical hierarchy established independently of the timescale data. Nothing here speaks to whether z_beta/z_theta/z_delta constitute a hierarchy of the relevant kind -- and the registry's own 2026-09-01 finding is that as built they do not: three parallel first-order filters sharing alpha_shared = 0.3, applied to within-tick functions of the same input. This entry must therefore not be read as evidence that the current stack is multi-timescale; it supports the target property while being silent on whether the substrate can express it. The recordings are also pooled across laboratories, tasks and preparations, making the ordering a cross-dataset regularity rather than a within-animal controlled comparison.",
+    "source_context": "Single-unit spiking recordings from macaque cortical areas spanning sensory through parietal to prefrontal cortex, pooled across several laboratories; timescales estimated from intrinsic (task-independent) fluctuations."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: Nature Neuroscience, a clean and much-replicated measurement that founded a literature. Mapping fidelity moderate -- the method transfers exactly, the object measured (cortical areas in a directed hierarchy) does not. Transfer risk moderate: macaque spiking dynamics to EMA-smoothed latent variables in an artificial agent, where the mechanisms generating persistence are unrelated."
+  }
+}

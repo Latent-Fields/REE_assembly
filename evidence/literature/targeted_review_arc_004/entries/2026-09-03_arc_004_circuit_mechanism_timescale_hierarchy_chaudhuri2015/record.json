@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_004",
+  "entry_id": "2026-09-03_arc_004_circuit_mechanism_timescale_hierarchy_chaudhuri2015",
+  "timestamp_utc": "2026-09-03T07:11:12Z",
+  "claim_ids_tested": [
+    "ARC-004"
+  ],
+  "source": {
+    "title": "A Large-Scale Circuit Mechanism for Hierarchical Dynamical Processing in the Primate Cortex",
+    "authors": [
+      "Rishidev Chaudhuri",
+      "Kenneth Knoblauch",
+      "Marie-Alice Gariel",
+      "Henry Kennedy",
+      "Xiao-Jing Wang"
+    ],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.09.008",
+    "pmid": "26439530",
+    "pmc": "PMC4630024",
+    "volume": "88",
+    "issue": "2",
+    "pages": "419-431"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The sharpest external evidence in this pull, and it converges with what the registry measured internally on 2026-09-01. It is an existence proof for the possibility ARC-004's non-degeneracy precondition depends on: units with IDENTICAL time constants (tau_E = 20 ms, tau_I = 10 ms, same coupling parameters, canonical local microcircuit) can still produce a monotonic hierarchy of effective persistence, provided the levels are coupled in a directed hierarchy and differentiated by a graded structural parameter. It simultaneously specifies what REE's as-built stack lacks on both counts. Held at 0.74 rather than higher because the mapping from a spine-count gradient over recurrent population dynamics to anything in a three-EMA latent stack is an analogy, not an identification.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The emergent hierarchy required BOTH a directed inter-areal hierarchy and a graded structural parameter (excitatory connection strength per neuron); identical local circuits with no gradient produce no timescale ordering.",
+    "Parallel filters applied to the same input with a single shared time constant have neither ingredient, so a null result from the as-built LatentStack would be a fact about the wiring rather than a finding about the claim.",
+    "The model's persistence arises from recurrent excitatory-inhibitory population dynamics; a first-order exponential moving average has no mechanism by which a connectivity gradient could produce an analogous effect, so the existence proof does not transfer parameter-for-parameter."
+  ],
+  "tags": [
+    "arc-004",
+    "timescale-hierarchy",
+    "temporal-receptive-window",
+    "connectivity-gradient",
+    "l-space",
+    "latent-stack",
+    "serial-cascade",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "A large-scale dynamical model of macaque neocortex, built on directed and weighted tract-tracing connectivity and incorporating inter-areal heterogeneity. The local microcircuit is 'qualitatively canonical, i.e. the same across areas, but ... quantitative inter-areal differences are crucial'; every area uses identical threshold-linear dynamics with fixed time constants tau_E = 20 ms and tau_I = 10 ms and identical coupling parameters. What varies is a gradient of excitatory connection strength per neuron along the cortical hierarchy, indexed by the number of basal dendritic spines on layer-3 pyramidal neurons, which 'increases sharply from primary sensory to prefrontal areas'. A hierarchy of timescales emerges: sensory areas show brief transient responses while association areas integrate inputs over time and show persistent activity, in prefrontal areas on the order of several seconds. The model displays multiple temporal hierarchies (contrasting visual and somatosensory stimulation), and slower prefrontal and temporal areas exert disproportionate influence on global dynamics. The authors note that Murray et al. (2014) found autocorrelation traces well described by exponentials, with measured timescales close to the intrinsic time constants of areas in the model.",
+    "ree_translation": "This cuts directly at the question ARC-004 now awaits substrate for, and it converges with what the registry already measured internally. ARC-004's non-degeneracy precondition argues the claim is not vacuously true because timescale differentiation must EMERGE from the recursive top-down architecture rather than from a built-in rate split. Chaudhuri et al. is the existence proof that such emergence is possible: identical local time constants throughout, and a monotonic hierarchy of effective persistence nonetheless -- but only because the areas are coupled in a DIRECTED hierarchy and differentiated by a GRADED structural parameter. Read against LatentStack.encode as built (three parallel first-order filters, one shared alpha_shared = 0.3, applied to within-tick functions of the same input), it says the current configuration has neither ingredient and therefore cannot express the property, which is exactly the degeneracy recorded in ARC-004's 2026-09-01 evidence_quality_note. It also raises something the claim does not yet address: the internal serial-smoothing probe reached ARC-004's own PASS bar on wiring alone (z_delta - z_beta half-life delta = +4.342 against a 0.510 bar, 10/10 seeds, untrained encoders), whereas the biological existence proof needed a graded parameter as well -- so a REE stack that clears the bar by serial wiring with one shared constant is a weaker instantiation of the property than the system this model describes.",
+    "mapping_caveat": "This is a simulation of macaque cortex fitted to tract-tracing connectivity, not evidence about latent-variable stacks in artificial agents. 'Areas' are not 'layers of a latent state vector', and the emergent persistence arises through recurrent excitatory-inhibitory population dynamics that REE's exponential moving averages simply do not have. The mapping from a gradient of excitatory connection strength to any REE parameter is a loose analogy rather than an identification: REE has no spine-count analogue, and its nearest available knob -- a per-layer alpha -- is precisely the built-in rate split ARC-004's precondition disclaims. What this entry licenses is two conditional statements: identical time constants do not preclude a timescale hierarchy, and parallel filters over a shared input do preclude one. It licenses no quantitative prediction about REE's stack.",
+    "source_context": "Large-scale dynamical model of macaque cortical areas built on directed, weighted tract-tracing (retrograde injection) connectivity data, with an anatomical hierarchy gradient derived from layer-3 pyramidal basal dendritic spine counts; threshold-linear excitatory and inhibitory local circuits."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality very high: Neuron, anatomically grounded in tract-tracing data, and the founding circuit-level account of temporal receptive windows. Mapping fidelity is good for a cross-domain entry because the paper isolates exactly the variable ARC-004's precondition turns on -- whether differential rates must be built in -- and answers no, with the conditions stated. Transfer risk moderate: the mechanism generating persistence in the model has no counterpart in a first-order EMA, so the conclusion transfers as a possibility argument rather than as a mechanism."
+  }
+}

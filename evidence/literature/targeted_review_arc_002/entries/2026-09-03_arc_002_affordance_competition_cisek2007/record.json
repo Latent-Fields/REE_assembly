@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_002",
+  "entry_id": "2026-09-03_arc_002_affordance_competition_cisek2007",
+  "timestamp_utc": "2026-09-03T07:08:43Z",
+  "claim_ids_tested": [
+    "ARC-002"
+  ],
+  "source": {
+    "title": "Cortical mechanisms of action selection: the affordance competition hypothesis",
+    "authors": [
+      "Paul Cisek"
+    ],
+    "year": 2007,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2007.2054",
+    "pmid": "17428779",
+    "pmc": "PMC2440773",
+    "volume": "362",
+    "issue": "1485",
+    "pages": "1585-1599"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Support for ARC-002's ARCHITECTURAL BET rather than for its predictive mechanism. Cisek's hypothesis places the specification of currently-available actions in the fast dorsal fronto-parietal pathway, in parallel over candidates, with value-based biasing arriving separately from prefrontal cortex and basal ganglia -- which is the neural shape of REE's division of labour (E2 specifies what is doable, E3 selects among it) and of ARC-002's per-action-class viability readout. Held at 0.6 because of a mismatch that is substantive, not cosmetic: the dorsal stream is characterised as SPECIFYING actions, never as PREDICTING their outcomes, so identifying it with E2's action-conditioned forward prediction is REE's inference and not the paper's. Review-level and largely correlational support compounds the discount.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dorsal stream is characterised as specifying available actions, not as predicting their outcomes; evidence for parallel affordance specification is therefore not evidence that a forward predictor is what computes affordances.",
+    "Affordance in the supporting neurophysiology means a spatially-defined reach target, which carries no context-dependent viability structure of the kind ARC-002's non-degeneracy precondition demands.",
+    "A sensorimotor transformation that maps states directly to available actions would satisfy every result cited here without any forward model at all -- the paper does not adjudicate between that account and a prediction-based one."
+  ],
+  "tags": [
+    "arc-002",
+    "affordances",
+    "dorsal-stream",
+    "fronto-parietal",
+    "action-selection",
+    "e2",
+    "e3",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The brain does not first build a representation of the world and then compute an action plan. Sensory information is processed to specify, in parallel, several potential actions that are currently available; these compete against each other within fronto-parietal cortex while biasing information accumulates from prefrontal regions and the basal ganglia until a single response is selected. The dorsal visual system is the specifier of currently-available actions. A computational model of this competition reproduces qualitative features of the neurophysiological data and several behavioural phenomena.",
+    "ree_translation": "ARC-002 places affordance prediction in E2, the FAST forward stream, rather than in a deliberative evaluator, and REE's wider architecture assumes E2 offers viable actions while E3 selects among them. Cisek's hypothesis is the neural form of both bets at once: the fast dorsal pathway's job is specifying what is currently doable, over several candidates simultaneously, with value-based biasing supplied separately by prefrontal cortex and the basal ganglia. The parallelism is the part that matters most for ARC-002's measurement. It says the substrate represents a SET of currently-viable actions at the same time, which is exactly the shape the claim's confirming readout assumes -- a per-action-class viability pattern over predicted world-effect, of the kind already built for the narrow threat/escape domain in ree_core/pfc/e2_escape_affordance_linker.py and which ARC-002 proposes generalising.",
+    "mapping_caveat": "This is a hypothesis-and-model paper rather than a decisive experiment, and the neurophysiology it marshals is largely correlational and drawn from macaque reaching tasks, where 'affordance' means a small set of spatially-defined reach targets -- a far thinner notion than ARC-002's context-dependent action viability. The decisive gap is that Cisek's dorsal stream SPECIFIES actions and is nowhere characterised as a forward PREDICTOR, so the identification with E2's action-conditioned prediction is REE's inference. Nothing here shows that affordance specification is performed by predicting action outcomes rather than by a direct sensorimotor transformation, and that is precisely the substantive content ARC-002 adds beyond 'the fast stream represents available actions'.",
+    "source_context": "Macaque and human fronto-parietal neurophysiology and psychophysics, chiefly reaching and reach-decision tasks, together with a computational model of parietal-premotor competition."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high for its type -- canonical, heavily cited review plus model in a strong venue -- but review-level and correlational rather than an experiment that isolates the variable. Mapping fidelity is the binding constraint: specification is not prediction, and that difference is the whole of what ARC-002 asserts beyond its neighbours. Transfer risk moderate-to-high: macaque reaching to a latent-space agent architecture."
+  }
+}
