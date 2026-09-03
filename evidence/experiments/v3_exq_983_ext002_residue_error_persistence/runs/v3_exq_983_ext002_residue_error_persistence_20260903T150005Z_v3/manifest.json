@@ -1,0 +1,199 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_983_ext002_residue_error_persistence",
+  "run_id": "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-03T15:00:05Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "EXT-002"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "ext002_residue_persistent_error_record_not_supported",
+    "text": "EXT-002 WEAKENED: with the residue field intact, the repeat-error rate did not decline materially more than under the residue-frozen control (decline_gap -0.4pp < 15pp, or effect/consistency/data-quality criteria unmet). Residue accumulation is live on this substrate but is not shown here to create the structural pressure against repeat errors ARC-005/INV-006/INV-008 assert.",
+    "preconditions": [
+      {
+        "name": "A0_INTACT::residue_structure_live",
+        "precondition": "residue_structure_live",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "cross-center variance of active residue RBF weights after training -- a flat field means no persistent trace was ever written, and any decline-rate difference from A1 would be a comparison against nothing",
+        "control": "active centers accumulated over the full training phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0001049101774697192,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::candidate_score_range",
+        "precondition": "candidate_score_range",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "cross-candidate RANGE of residue trajectory scores on a post-training positive-control probe -- the SAME statistic the E3 argmin routes on (V3-EXQ-643 rule)",
+        "control": "CEM candidates that genuinely differ, probed after training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.3049049377441406,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::e1_prediction_error_floor",
+        "precondition": "e1_prediction_error_floor",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "E3.post_action_update's world-model prediction-error metric on a genuine hazard collision, measured on a throwaway agent isolated from both scored arms -- confirms the substrate's error signal is non-degenerate before a later null repeat-rate result is trusted",
+        "control": "throwaway agent forced through hazard collisions",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.005120825953781605,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::revisit_denominator",
+        "precondition": "revisit_denominator",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "minimum number of (cell,action) revisit events observed in the EARLY training half only (DECOUPLED from C4's stricter both-halves verdict floor -- red-team Family 4 fix: the old floor equalled C4's, which is tautological and self-defeatingly routed a WORKING residue effect, few late revisits by construction, to substrate_not_ready_requeue) -- the early-half repeat rate itself is undefined/noisy below this",
+        "control": "revisits of a previously-erred (cell,action) key during the early half",
+        "direction": "lower",
+        "applies": true,
+        "measured": 135.0,
+        "threshold": 5.0,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::harm_rate_not_saturated",
+        "precondition": "harm_rate_not_saturated",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "per-arm training harm_rate must stay below a ceiling -- a rate near 1.0 is the mechanical signature of a harm source independent of true hazards (e.g. the contamination-spread self-harm trap fixed by this script's contamination_spread=0.0) and pins repeat_rate_early/late near 1.0 in BOTH arms regardless of any true residue effect, making C1 unreachable under any true effect -- a general degeneracy guard, not tied to one named confound",
+        "control": "hazard_harm=0.02 + proximity_harm_scale=0.05, contamination_spread=0.0",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.7426963860636225,
+        "threshold": 0.9,
+        "met": true
+      },
+      {
+        "name": "A1_RESIDUE_FROZEN::candidate_score_range",
+        "precondition": "candidate_score_range",
+        "arm": "A1_RESIDUE_FROZEN",
+        "kind": "readiness",
+        "description": "cross-candidate RANGE of residue trajectory scores on a post-training positive-control probe -- the SAME statistic the E3 argmin routes on (V3-EXQ-643 rule)",
+        "control": "CEM candidates that genuinely differ, probed after training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0043833255767822266,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A1_RESIDUE_FROZEN::e1_prediction_error_floor",
+        "precondition": "e1_prediction_error_floor",
+        "arm": "A1_RESIDUE_FROZEN",
+        "kind": "readiness",
+        "description": "E3.post_action_update's world-model prediction-error metric on a genuine hazard collision, measured on a throwaway agent isolated from both scored arms -- confirms the substrate's error signal is non-degenerate before a later null repeat-rate result is trusted",
+        "control": "throwaway agent forced through hazard collisions",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.005120825953781605,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "A1_RESIDUE_FROZEN::revisit_denominator",
+        "precondition": "revisit_denominator",
+        "arm": "A1_RESIDUE_FROZEN",
+        "kind": "readiness",
+        "description": "minimum number of (cell,action) revisit events observed in the EARLY training half only (DECOUPLED from C4's stricter both-halves verdict floor -- red-team Family 4 fix: the old floor equalled C4's, which is tautological and self-defeatingly routed a WORKING residue effect, few late revisits by construction, to substrate_not_ready_requeue) -- the early-half repeat rate itself is undefined/noisy below this",
+        "control": "revisits of a previously-erred (cell,action) key during the early half",
+        "direction": "lower",
+        "applies": true,
+        "measured": 150.0,
+        "threshold": 5.0,
+        "met": true
+      },
+      {
+        "name": "A1_RESIDUE_FROZEN::harm_rate_not_saturated",
+        "precondition": "harm_rate_not_saturated",
+        "arm": "A1_RESIDUE_FROZEN",
+        "kind": "readiness",
+        "description": "per-arm training harm_rate must stay below a ceiling -- a rate near 1.0 is the mechanical signature of a harm source independent of true hazards (e.g. the contamination-spread self-harm trap fixed by this script's contamination_spread=0.0) and pins repeat_rate_early/late near 1.0 in BOTH arms regardless of any true residue effect, making C1 unreachable under any true effect -- a general degeneracy guard, not tied to one named confound",
+        "control": "hazard_harm=0.02 + proximity_harm_scale=0.05, contamination_spread=0.0",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.7517884240190765,
+        "threshold": 0.9,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_decline_gap": true,
+      "C2_effect_sd": true,
+      "C3_seed_consistency": true,
+      "C4_data_quality": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3020335a15347ade5b7f948984c5268eb53325d6dd1b56fa5f49cd38839357b4",
+  "substrate_commit": {
+    "commit": "2f2b2acaa147a1d3ead031ff2aa54f974c4927d8",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
