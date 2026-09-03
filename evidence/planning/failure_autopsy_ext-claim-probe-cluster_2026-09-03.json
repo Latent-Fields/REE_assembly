@@ -1,0 +1,362 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-03T19:00:24Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3",
+      "queue_id": "V3-EXQ-983",
+      "claim_ids": [
+        "EXT-002"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- EXT-002 asserts a property of transformer LLMs (subject llm.hallucination, polarity asserts); no REE grid-world run can bear on it. What this run measured is the ree_mechanism rider (ARC-005/INV-006/INV-008). The recorded `weakens` is therefore mis-targeted and must not stand.",
+        "biological_reference": "partial -- persistent error trace shaping future action is well-evidenced (hippocampal/striatal eligibility traces); REE's residue field is a plausible translation. Not the failure locus here.",
+        "prerequisites": "present -- residue confirmed populated (32/32 centers, coverage 1.0) in A0 and confirmed empty in A1; manipulation reached behaviour (action-stream divergence 0.186-0.295).",
+        "implementation": "complete -- clean within-agent ablation with a positive control (P3 passed at 51x margin).",
+        "environment": "unknown -- an earlier draft asserted the DV was pinned BY CONSTRUCTION by grid geometry (size=6 -> 4x4 interior; minimum single-hazard field 1/(1+0.5*6)=0.25 above the 0.15 proximity threshold, so h_active true at every playable cell). The geometry arithmetic is correct but the INFERENCE is REFUTED by this run's own cells: seed 456 ran 57,900 steps at harm_rate_train 0.0236, against 0.7295 and 0.7427 for seeds 42 and 123 -- a 31x spread. Harm is demonstrably avoidable on this board, so geometry is not the binding constraint.",
+        "measurement": "misleading -- the DV is decline_gap, whose realised range across all six cells is 0.0468 against a C1 threshold of 0.15 (3.2x short). Underlying repeat_rate readings are high but NOT pinned: 8 of 12 exceed 0.95 and 6 exceed 0.985, with an observed range of 0.864 to 0.993. Combined with the training heterogeneity above, decline has little room to move and what movement there is tracks how long a seed survived.",
+        "integration": "isolated -- not the locus.",
+        "scale": "likely insufficient, and this is the DOMINANT defect. steps_realized_frac is 0.077 / 0.085 / 0.965 across seeds 42 / 123 / 456 -- a ~12x difference in realised training -- recorded in the manifest and gated by NOTHING, so all three seeds enter the means at equal weight. The two barely-trained seeds carry harm_rate_train 0.73-0.75 and repeat_rate 0.958-0.993; the fully-trained seed carries 0.0236 and 0.864-0.910. The arms are being compared across a population that is not one population."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal/striatal eligibility trace + aversive conditioning",
+        "dependencies": [
+          "persistent trace write",
+          "trace-modulated action selection",
+          "an environment where action choice changes harm outcome"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified -- the failure is bed geometry, not translation fidelity.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "`standard` per the red-team correction recorded in cluster_pattern. The earlier `out_of_domain` recommendation is WITHDRAWN: it would have blocked the experimental evidence channel the user ruled on 2026-09-03 that these claims wait on. EXT-002 keeps full v3 experiment lanes.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-983 (2026-09-03) CORRECTED from `weakens` to `non_contributory` -- on MEASUREMENT and SEED-POPULATION grounds, not on a claim-layer argument (see cluster_pattern.red_team_correction; the earlier claim-layer reasoning is withdrawn). All nine preconditions passed, the residue manipulation was clean (32/32 active centres and coverage 1.0 in A0, confirmed empty in A1) and reached behaviour (action-stream divergence 0.186-0.295), and the positive control passed at 51x. What defeats the run is the DV and the seed population. (1) DV HEADROOM: decline_gap's realised range across all six cells is 0.0468 against a C1 threshold of 0.15 -- 3.2x short -- so no true effect of the registered size could have been observed. Underlying repeat_rate is high but not pinned (8 of 12 readings > 0.95, 6 > 0.985, observed range 0.864-0.993). (2) SEED POPULATION: steps_realized_frac is 0.077 / 0.085 / 0.965 on seeds 42 / 123 / 456, a ~12x spread in realised training that is recorded and gated by nothing; the two barely-trained seeds sit at harm_rate_train 0.73-0.75 while the fully-trained seed sits at 0.0236. Equal-weight pooling across that population is what produces the -0.4pp decline_gap. NOTE, because an earlier draft of this autopsy asserted the opposite: harm is NOT unavoidable by grid geometry. The geometry arithmetic (min field 0.25 > threshold 0.15) is right, but seed 456's 57,900 steps at 2.4% harm refutes the inference drawn from it. Separately and still standing: the run's guard P5 names this DV-pinning signature in its own description yet measures harm_rate_train (0.743/0.752 vs a 0.90 ceiling) rather than repeat_rate, so nothing in the gate watches the quantity P5 was written to protect.",
+      "per_claim_recommendation": {
+        "EXT-002": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "WITHDRAW the recorded `weakens`: the DV's realised range is 3.2x short of its own threshold and the three seeds differ ~12x in realised training, so no effect of the registered size could have been seen. EXT-002 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The bed-geometry defect is registered once, from the V3-EXQ-993 target of this same cluster, as a single `create` covering all four probes. Not duplicated here."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES dominant, plus an ungated seed-population defect) -- not chargeable to REE."
+      },
+      "learning_extracted": [
+        "A ~12x spread in realised training steps across seeds (steps_realized_frac 0.077/0.085/0.965) was recorded in the manifest and gated by nothing, so three structurally different agents entered the arm means at equal weight. This is the dominant defect and it is invisible to every precondition the run carries.",
+        "A guard can name the exact failure signature it exists to catch and still miss it by measuring a different quantity: P5 names repeat_rate pinning and measures harm_rate_train.",
+        "Grid geometry making a hazard field non-zero everywhere does NOT entail that harm is unavoidable -- seed 456 achieved 2.4% harm over 57,900 steps on the same board. An earlier draft of this autopsy made exactly that inference and it is recorded here as withdrawn."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty_20260903T122245Z_v3",
+      "queue_id": "V3-EXQ-991",
+      "claim_ids": [
+        "EXT-004"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- EXT-004 asserts a property of LLMs and standard RL agents (subject llm.goal_misgeneralization). The recorded `does_not_support` is mis-targeted. The driver's own attribution_caveat additionally records that the design does not isolate ARC-013's residue field from other persistent cross-episode state (ARC-108 w_chan/V-hat_t, MECH-165 exploration buffer).",
+        "biological_reference": "partial -- cross-context transfer of aversive consequence is well-evidenced; not the failure locus.",
+        "prerequisites": "present -- manipulation confirmed real on both sides (NAIVE Context A: 0 harm events, 0.0 residue, all five seeds).",
+        "implementation": "partial -- no positive control, and the manipulation changes the ENTIRE Context-A experience stream rather than the residue channel alone.",
+        "environment": "too sparse -- Context B size=8 gives a 6x6 interior; minimum hazard field 0.1667, still above the 0.15 proximity threshold, so the same occupancy confound applies.",
+        "measurement": "misleading -- DV (harm_rate in held-out Context B) varies 59x across cells and is NOT pinned, but it measures mean hazard-field occupancy rather than action-level suppression. The `non_contributory` branch was structurally unreachable: naive_control_clean is a constant-TRUE detector by construction, and both other floors cleared by 2143x-23800x and 4.2x-60.2x.",
+        "integration": "partially coupled -- uncontrolled carriers per the author's own caveat.",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "context-general aversive generalisation",
+        "dependencies": [
+          "persistent cross-context trace",
+          "a DV sensitive to action choice rather than position"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "`standard` per the red-team correction recorded in cluster_pattern. The earlier `out_of_domain` recommendation is WITHDRAWN: it would have blocked the experimental evidence channel the user ruled on 2026-09-03 that these claims wait on. EXT-004 keeps full v3 experiment lanes.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-991 (2026-09-03) CORRECTED from `does_not_support` to `non_contributory`. (1) CLAIM LAYER: EXT-004 asserts a property of LLMs / standard RL; a REE run cannot bear on it. (2) CONSTRUCT VALIDITY: Context B (size=8, 6x6 interior, 2 hazards) has minimum hazard field 0.1667 > the 0.15 proximity threshold, so harm_rate measures mean hazard-field occupancy, not the action-level suppression EXT-004's rider names. (3) ATTRIBUTION: the driver's own attribution_caveat records that the design does not isolate ARC-013's residue field from ARC-108 w_chan/V-hat_t or MECH-165's exploration buffer; the manipulation replaces the whole Context-A experience stream. (4) The `non_contributory` self-route branch was unreachable: naive_control_clean is constant-TRUE by construction. No positive control was run.",
+      "per_claim_recommendation": {
+        "EXT-004": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "WITHDRAW the recorded `does_not_support`; claim subject is llm.*, the DV measures occupancy not action choice, and the driver's own caveat says residue is not isolated. EXT-004 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Bed-geometry defect registered once from the V3-EXQ-993 target."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT) -- not chargeable to REE."
+      },
+      "learning_extracted": [
+        "A DV can vary freely (59x) and still be construct-invalid: variation in harm_rate here is variation in where the agent stood, not in what it chose.",
+        "A self-route branch guarded by a constant-TRUE detector cannot fire; naive_control_clean is unreachable-as-negative by construction."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3",
+      "queue_id": "V3-EXQ-993",
+      "claim_ids": [
+        "ARC-021",
+        "EXT-003",
+        "MECH-069"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested for all three -- the SEPARATED (unablated) control arm produced no signal, so the ablation had nothing to remove. EXT-003 is additionally an llm.reward_hacking claim a REE run cannot bear on.",
+        "biological_reference": "clear -- three-loop channel separation (ARC-021/MECH-069) has a strong cortico-striatal existence proof. Not the failure locus.",
+        "prerequisites": "present -- both named preconditions passed with large headroom (forward-head action sensitivity 0.0893 vs floor 0.005 = 17.9x; P1 harm events 1208 vs floor 10 = 120.8x).",
+        "implementation": "partial -- the forward head IS action-sensitive (0.089-0.137), but the harm head maps two well-separated predicted latents onto near-identical sigmoids, so causal_sig occupies ~0.2% of its [-1,+1] range.",
+        "environment": "unknown -- not the dominant locus here.",
+        "measurement": "under-instrumented -- DECISIVE. calibration_gap in the SEPARATED baseline arm read -0.00065 (DENSE) and -0.00022 (SPARSE), NEGATIVE in 4 of 6 baseline cells. The largest |calibration_gap| in any of 12 cells, either arm, is 0.00152 against SEPARATED_SIGNAL_FLOOR = 0.02 -- 13.13x. C1/C2 were unreachable regardless: largest paired diff 0.00233 vs MARGIN = 0.01 (4.29x), and all three DENSE diffs were the wrong sign.",
+        "integration": "coupled but unstable -- signal is lost between the forward head and the harm head's sigmoid.",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "segregated cortico-basal-ganglia-thalamic loops with distinct teaching signals",
+        "dependencies": [
+          "a readout whose dynamic range preserves the separation the loops carry"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "ARC-021": "standard",
+        "MECH-069": "standard",
+        "EXT-003": "standard"
+      },
+      "recommended_epistemic_category_note": "All three `standard`. EXT-003's earlier `out_of_domain` recommendation is WITHDRAWN per cluster_pattern.red_team_correction -- EXT-003's own note carries the 2026-09-03 user ruling that it waits on EXPERIMENTAL evidence, and out_of_domain would foreclose that channel. ARC-021 and MECH-069 were already `standard`: a readout dynamic-range ceiling is measurement debt, not a substrate ceiling on the claims.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-021": "non_contributory",
+        "MECH-069": "non_contributory",
+        "EXT-003": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-993 (2026-09-03) adjudicated NON-CONTRIBUTORY for all three claims (recorded direction was `unknown`). Both named preconditions passed with large headroom, but an unnamed non-degeneracy gate inside _condition_verdict() -- SEPARATED_SIGNAL_FLOOR = 0.02 -- was not met in EITHER condition: the unablated control arm's calibration_gap read -0.00065 (DENSE) and -0.00022 (SPARSE), negative in 4 of 6 baseline cells, with the largest |calibration_gap| anywhere in the 12 cells being 0.00152 (13.13x below floor). An ablation of a signal the control arm never produced discriminates nothing. Mechanically the flatness is DOWNSTREAM of the forward head, which is action-sensitive (0.089-0.137): the harm head compresses two well-separated predicted latents onto near-identical sigmoids so causal_sig occupies ~0.2% of its [-1,+1] range. The author's red-team pass-2 note N3 predicted this regime and declined to lower the floor -- that judgement was correct and the floor should NOT be lowered; the readout compression is the thing to fix.",
+      "per_claim_recommendation": {
+        "ARC-021": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "No claim-layer movement -- the control arm produced no signal, so nothing was tested. ARC-021 already stores epistemic_category standard; record instead that a re-test is owed once the harm-head readout compression is fixed -> set pending_retest_after_substrate true",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional"
+        },
+        "MECH-069": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "No movement; MECH-069 is stable and a readout ceiling must not demote it. MECH-069 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays stable"
+        },
+        "EXT-003": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Control arm produced no signal in EITHER condition, so nothing was tested; this is the run EXT-003's own 2026-09-03 governance note already flags as scoring_excluded degenerate and 'not evidence either way'. EXT-003 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "dv-dynamic-range-precondition-class",
+        "title": "DV-headroom precondition class: gate an experiment on the DEPENDENT variable's achievable range against its own registered threshold, not only on whether the intervention was applied",
+        "implementation_hint": "Every readiness gate in this corpus certifies the INTERVENTION (was the channel perturbed, did the head train, were there enough samples) and none certifies that the DV had room to move. Across the seven 2026-09-03 pending-review runs, six passed all preconditions and still could not discriminate, because the registered pass threshold lay outside the range the configuration could produce: V3-EXQ-981 C1 threshold 1.154 on a DV bounded in [0,1]; V3-EXQ-981 precision-margin elevation ceiling 0.000195 vs floor 0.01 (51x); V3-EXQ-951c gate_caused with zero possible ticks; V3-EXQ-983 repeat_rate range 0.0468 vs 0.15 (3.2x); V3-EXQ-993 calibration_gap max 0.00152 vs 0.02 (13.1x); V3-EXQ-994 retention spread 0.00078 vs 0.02 (25.6x); V3-EXQ-978 arm-mean difference one third of the DV's 0.05 quantum. BUILD: extend ree-v3/validate_experiments.py with a `criterion_exceeds_achievable_range` check in the same WARN-only family as the existing `dry_run_unreachable_criterion` lint, plus a runtime `dv_headroom` precondition kind in experiments/_metrics.py p0_readiness_gate() that measures the control arm's realised DV range and routes to substrate_not_ready_requeue when the registered threshold exceeds it. Two specific sub-cases the lint must catch: a multiplicative threshold on a bounded DV (981's 2x on [0,1]), and a threshold above the arithmetic ceiling implied by a saturated baseline (981's 0.01 floor against 0.000195 available).",
+        "unblocks_claims": [
+          "ARC-021",
+          "MECH-069",
+          "MECH-027",
+          "MECH-320",
+          "INV-088",
+          "MECH-457",
+          "EXT-002",
+          "EXT-003",
+          "EXT-004",
+          "EXT-007"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "substrate_paths": [
+          "validate_experiments.py",
+          "experiments/_metrics.py::p0_readiness_gate",
+          "ree_core/environment/causal_grid_world.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3",
+          "experiment_type": "v3_exq_993_ext003_arc021_merged_channel_ablation",
+          "metric": "SEPARATED (control) arm calibration_gap -0.00065 DENSE / -0.00022 SPARSE, negative in 4 of 6 baseline cells; largest |calibration_gap| in any of 12 cells 0.00152 against SEPARATED_SIGNAL_FLOOR 0.02",
+          "target": "a control-arm signal at or above the registered 0.02 floor, established BEFORE the ablation arm is run",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES -- the readout compresses the separation the loops carry; the loops themselves were never tested."
+      },
+      "learning_extracted": [
+        "The three-loop separation signal is lost DOWNSTREAM of the forward head: the forward head is action-sensitive (0.089-0.137) while causal_sig occupies ~0.2% of its [-1,+1] range. The harm head's sigmoid is the compression point.",
+        "A non-degeneracy gate living inside _condition_verdict() rather than in interpretation.preconditions is invisible to the readiness report and to every downstream reader.",
+        "Declining to lower a floor that the data misses by 13x was the correct call and should be recorded as such, so a later session does not 'fix' the run by relaxing it."
+      ],
+      "routing": "implement-substrate",
+      "pre_routing_check_disposition": {
+        "C1": "FIRED and ACTED ON. Three drivers for this claim family already exist on disk and have NEVER produced a manifest -- verified: ree-v3/experiments/v3_exq_004_arc021_incommensurability.py, v3_exq_005_mech069_error_scale.py and v3_spark_arc021_three_loop_scale.py each return zero manifests under REE_assembly/evidence/experiments/. (A legacy run_id v3_exq_004_arc021_incommensurability_20260316T232412Z_v3 is cited in the grandfathered 2026-08-08 closure-sweep autopsies, but no manifest for it survives on disk, so the check's 'never scored' reading is correct as to current state.) CONSEQUENCE FOR ROUTING: this target routes to implement-substrate, not queue-experiment, so the fire does not change its routing -- but it does change what the eventual re-test should do. Whoever re-poses the three-loop separation question must FIRST evaluate whether these three existing drivers already cover it, rather than authoring a fourth. Recorded here so that evaluation is owed rather than optional."
+      },
+      "read_across_note": "Three unrun ARC-021/MECH-069 drivers exist on disk (v3_exq_004, v3_exq_005, v3_spark_arc021_three_loop_scale). Evaluating them for reuse is a precondition of any re-test, not a separate task."
+    },
+    {
+      "run_id": "v3_exq_994_claim_probe_ext_007_consolidation_retention_20260903T053351Z_v3",
+      "queue_id": "V3-EXQ-994",
+      "claim_ids": [
+        "EXT-007"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- EXT-007 asserts a property of LLMs (subject llm.context_amnesia). Both preconditions honestly read met:false and criteria_non_degenerate.C1_retention_score is false, so the run correctly declares itself degenerate.",
+        "biological_reference": "clear -- offline consolidation via SWR replay is strongly evidenced. This is where the substrate gap bites.",
+        "prerequisites": "MISSING for the replay pathway, on the registered source evidence rather than on this run's numbers. EXT-007's ree_mechanism names ARC-007 and MECH-092; the substrate_queue entry `mech092-replay-consumer-missing` records, verified 2026-09-01 against source, that Agent._do_replay computes replay trajectories and returns None with no reader anywhere in ree_core. THIS RUN DOES NOT CORROBORATE THAT ENTRY -- an earlier draft claimed it did, on the bit-identical residue readouts, and the claim is WITHDRAWN because the consolidation arm demonstrably moved ContextMemory instead. Residue is simply not the channel this driver's sleep step writes to.",
+        "implementation": "stub -- for the consolidation-benefit pathway specifically.",
+        "environment": "wrong pressures -- the INTERFERE phase produced no measurable disturbance: retention was at ceiling in BOTH arms (all six cells >= 0.9992), total spread 0.00078 against a required 0.02 excursion (25.6x).",
+        "measurement": "under-instrumented. Within each seed the only fields differing between WITH_CONSOLIDATION and WITHOUT_CONSOLIDATION are the two retention cosines; end_encode_residue, test_residue, residue_delta, encode_writes and all slot/episode counts are bit-identical across arms to 16 significant figures. CORRECTED READING (red-team): that is NOT 'no mechanistic footprint'. memory_matrix_retention_score reads 0.99792 WITH against 0.9999983 WITHOUT on seeds 42 and 49 -- the consolidation arm's ContextMemory matrix moved roughly 1000x further from unity than the control's -- and the driver docstring states that sleep writes B-content into ContextMemory. Consolidation therefore DID act, via ContextMemory; what shows nothing is the RESIDUE readout specifically. Addressing is separately degenerate on 2 of 3 seeds (n_encode_written_slots 1, 1, 16) under the default contextmemory_write_selection=argmin, but that is CONTRIBUTORY, NOT SUFFICIENT: seed 56 wrote all 16 slots and retention was still pinned (0.99924 vs 0.99924).",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal SWR replay driving neocortical consolidation",
+        "dependencies": [
+          "a replay consumer that writes into the viability map",
+          "a retrieval path whose read is sensitive to what was written"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified -- the translation is right; the consumer is unbuilt.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "`standard` per the red-team correction recorded in cluster_pattern. The earlier `out_of_domain` recommendation is WITHDRAWN: it would have blocked the experimental evidence channel the user ruled on 2026-09-03 that these claims wait on. EXT-007 keeps full v3 experiment lanes.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-994 (2026-09-03) NON-CONTRIBUTORY, as the run itself self-declares (both preconditions met:false, criteria_non_degenerate.C1_retention_score false). (1) THE CONTROL ARM COULD NOT BE DISTURBED: retention was at ceiling in BOTH arms (all six cells >= 0.9992; total spread 0.00078 against a required 0.02 excursion, 25.6x short), so there was nothing for consolidation to protect. (2) ADDRESSING is degenerate on 2 of 3 seeds (n_encode_written_slots 1, 1, 16) under the default contextmemory_write_selection=argmin -- the signature of the REGISTERED corrupting-severity defect `contextmemory-write-path-addressing-degeneracy`, which this run neither guarded against nor mentions. It is CONTRIBUTORY but NOT SUFFICIENT: seed 56 wrote all 16 slots and retention was still pinned, so the interference manipulation is itself too weak to move the DV. (3) CONSOLIDATION DID ACT, contrary to an earlier draft of this autopsy: memory_matrix_retention_score is 0.99792 WITH against 0.9999983 WITHOUT on seeds 42 and 49, so the consolidation arm's ContextMemory matrix moved ~1000x further than the control's, consistent with the driver's statement that sleep writes B-content into ContextMemory. The residue readouts are bit-identical across arms, but residue is not the channel this sleep step writes to, so that identity is NOT evidence about MECH-092's missing replay consumer and the earlier claim to that effect is withdrawn. (4) The EXT-007 rider does remain blocked on that unbuilt consumer on the SOURCE evidence already registered -- but this run does not add to it. Category `standard`, not out_of_domain: see cluster_pattern.red_team_correction.",
+      "per_claim_recommendation": {
+        "EXT-007": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Run self-declares degenerate; claim subject is llm.* and its REE rider is blocked on an unbuilt replay consumer. EXT-007 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "contextmemory-write-path-addressing-degeneracy",
+        "note": "AMEND `contextmemory-write-path-addressing-degeneracy` with the failure_record item below -- a fresh independent hit taken WITHOUT the fix knob enabled, which is what makes the Step 2.5c substrate-defect gate protect the next experiment. Do NOT also amend `mech092-replay-consumer-missing`: an earlier draft proposed that on the bit-identical residue readouts and the red-team pass showed the consolidation arm moved ContextMemory instead, so this run does not evidence that entry.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_994_claim_probe_ext_007_consolidation_retention_20260903T053351Z_v3",
+          "experiment_type": "v3_exq_994_claim_probe_ext_007_consolidation_retention",
+          "metric": "n_encode_written_slots = 1, 1, 16 across three seeds under default contextmemory_write_selection=argmin; retention pinned at ceiling in both arms (all six cells >= 0.9992, total spread 0.00078) so the INTERFERE manipulation could not disturb the control arm",
+          "target": ">= 2 distinct written slots on every seed, and a control-arm retention excursion of at least the registered 0.02, before any consolidation-protection contrast is scored",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT) -- not chargeable to REE."
+      },
+      "learning_extracted": [
+        "Seed 56 is the internal control that separates the two candidate causes: with healthy addressing (16/16 slots) retention was STILL pinned, so the registered addressing defect cannot be the whole explanation and the interference manipulation is itself too weak to move the DV.",
+        "A registered corrupting-severity substrate defect did not reach the author of a new experiment that ran straight into it: contextmemory_write_selection was left at its defaulting-to-broken `argmin`.",
+        "slot_overlap_frac = 1.0 looks like a healthy interference confirmation and is compatible with only ONE slot ever being written; overlap fraction is the wrong statistic when the denominator can be 1.",
+        "WITHDRAWN INFERENCE, recorded because it was tested: bit-identical residue readouts across a consolidation arm and its control looked like a behavioural signature of the missing MECH-092 replay consumer. It is not -- the same cells show the ContextMemory matrix moving ~1000x more in the consolidation arm. Before reading an arm-invariant metric as 'the mechanism did nothing', check which channel the mechanism actually writes to."
+      ],
+      "routing": "implement-substrate",
+      "pre_routing_check_disposition": {
+        "C7": "FIRED and ACTED ON. The check flagged n_encode_written_slots as arm-invariant. Investigating showed eleven of thirteen recorded fields are arm-invariant on every seed. n_encode_written_slots being arm-invariant is expected (the ENCODE phase precedes the manipulation). An earlier draft went further and read the arm-invariant RESIDUE fields as evidence that consolidation did nothing; the cross-model red-team pass refuted that using the same arm_results block (memory_matrix_retention_score 0.99792 WITH vs 0.9999983 WITHOUT), and the inference is withdrawn above. The check earned its keep by pointing at the family; the erroneous inference drawn from it was caught by the 7c pass, which is the intended division of labour between the two layers."
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Four claim-probe runs against four structurally different EXT-* claims, all four failing to adjudicate for the same two independent reasons: the claim tagged is not a claim a REE run can bear on, AND the registered pass threshold lay outside the dynamic range the configuration could produce (13.1x for 993, 25.6x for 994, 3.2x for 983, construct-invalid for 991).",
+    "is_independent_bugs": false,
+    "structural_property": "ONE structural property, after the red-team pass withdrew the second. DV DYNAMIC-RANGE FAILURE: in all four runs the load-bearing comparison was never adjudicated because a control-arm or DV property fell outside the range the configuration could produce -- 993's baseline-signal floor (largest |calibration_gap| anywhere 0.00152 vs floor 0.02, 13.13x), 994's disturbance ceiling (retention spread 0.00078 vs required 0.02, 25.6x), 983's decline DV (realised range 0.0468 vs C1 threshold 0.15, 3.2x), and 991's DV measuring hazard-field occupancy rather than the action-level suppression its claim's rider names. This property is NOT confined to the EXT battery -- it recurs in V3-EXQ-981, V3-EXQ-951c and V3-EXQ-978 in the same pending-review batch -- which is why the substrate entry recommended from the 993 target is scoped to the experiment programme rather than to these four runs. THE WITHDRAWN SECOND PROPERTY: an earlier draft asserted a claim-layer mis-targeting property (EXT-* are llm.*-subject claims no REE run can bear on). See red_team_correction: that reading contradicts a same-day user ruling and the standing dispatch convention, and is withdrawn as a basis for any category or direction. It survives only as a note on how these probes should be CONSTRUCTED.",
+    "readings": [
+      "dv_dynamic_range_below_registered_threshold"
+    ],
+    "red_team_correction": "RED-TEAM CORRECTION (Fable, cross-model adversarial pass, 2026-09-03): the earlier draft of this artifact recommended epistemic_category `out_of_domain` for EXT-002/003/004/007 on the grounds that a claim whose `subject` is llm.* cannot be borne on by a REE run. THAT RECOMMENDATION IS WITHDRAWN. EXT-003's own evidence_quality_note records a USER RULING made at the /governance Step 3 gate on 2026-09-03 -- the same day -- stating verbatim: 'What this claim actually waits on is EXPERIMENTAL evidence, the load-bearing channel. Status stays candidate for THAT reason, not for conflict resolution.' `out_of_domain` is a member of _UNTESTABLE_EPISTEMIC (generate_inter_governance_workset.py:988-991), so the stamp would make the claim structurally unable to receive the very evidence channel the user ruled it is waiting on. All four probes were moreover dispatched from experiment_proposals.v1.json as proposal_type `experimental` rows against the EXT ids themselves, so the project's standing convention already treats these claims as experimentally testable through their ree_mechanism riders. The category is therefore `standard` for all four. The observation that an EXT claim's assertion is about transformer systems while the run measures the rider is RETAINED as a note on experiment CONSTRUCTION -- it explains why these probes must be built to test the rider explicitly -- but it does not drive a category and it is not a reason to withhold experimental evidence.",
+    "withdrawn_readings": [
+      {
+        "reading": "claim_layer_mis_targeting_out_of_domain",
+        "withdrawn_utc": "2026-09-03T19:00:24Z",
+        "reason": "RED-TEAM CORRECTION (Fable, cross-model adversarial pass, 2026-09-03): the earlier draft of this artifact recommended epistemic_category `out_of_domain` for EXT-002/003/004/007 on the grounds that a claim whose `subject` is llm.* cannot be borne on by a REE run. THAT RECOMMENDATION IS WITHDRAWN. EXT-003's own evidence_quality_note records a USER RULING made at the /governance Step 3 gate on 2026-09-03 -- the same day -- stating verbatim: 'What this claim actually waits on is EXPERIMENTAL evidence, the load-bearing channel. Status stays candidate for THAT reason, not for conflict resolution.' `out_of_domain` is a member of _UNTESTABLE_EPISTEMIC (generate_inter_governance_workset.py:988-991), so the stamp would make the claim structurally unable to receive the very evidence channel the user ruled it is waiting on. All four probes were moreover dispatched from experiment_proposals.v1.json as proposal_type `experimental` rows against the EXT ids themselves, so the project's standing convention already treats these claims as experimentally testable through their ree_mechanism riders. The category is therefore `standard` for all four. The observation that an EXT claim's assertion is about transformer systems while the run measures the rider is RETAINED as a note on experiment CONSTRUCTION -- it explains why these probes must be built to test the rider explicitly -- but it does not drive a category and it is not a reason to withhold experimental evidence.",
+        "note": "Recorded rather than deleted, per the skill's instruction that an argument checked and dropped is a signal to the next session that the reading was tested and did not hold. A further boundary case found while checking it and worth keeping: `external_failure_mode` is not a uniform class -- EXT-009's subject is `ree.similarity_gated_care_collapse`, an explicitly REFLEXIVE failure mode of REE itself, and EXT-008's is `meta_agent.*`. Any future rule keyed to this claim_type would give the wrong answer on those two."
+      }
+    ]
+  },
+  "read_across_not_adjudicated": [
+    "ARC-005 appears as the ree_mechanism rider for BOTH EXT-002 and EXT-007 and is the natural re-tag target for 983's evidence. It already has an open hypothesis-space question (`arc005_precision_channel_measurement_resolution`, 1 alive leg). Not adjudicated here -- flagged so governance can decide whether the EXT battery's evidence should be re-tagged onto the rider claims rather than discarded.",
+    "ARC-013 is EXT-004's rider and carries the residue-field content 991 actually manipulated. Same re-tag question."
+  ],
+  "confirmed_utc": "2026-09-03T20:04:14Z",
+  "confirmed_by": "user, /failure-autopsy Step 8 interactive gate 2026-09-03",
+  "red_team_pass": {
+    "ran": true,
+    "model": "fable (cross-model; different model from the drafting session)",
+    "set_verdict": "CONTESTED",
+    "per_artifact_verdict": {
+      "failure_autopsy_ext-claim-probe-cluster_2026-09-03": "CONTESTED -- 3 defects, all accepted and corrected",
+      "failure_autopsy_V3-EXQ-978_2026-09-03": "CONFIRMED (revised draft); 4 hygiene items corrected",
+      "failure_autopsy_V3-EXQ-951c_2026-09-03": "CONTESTED on characterisation only; routing/brake/amend survived unchanged",
+      "failure_autopsy_V3-EXQ-981_2026-09-03": "CONFIRMED; 1 line-number correction"
+    },
+    "defects_accepted": [
+      "out_of_domain on EXT-002/003/004/007 contradicted a same-day user ruling recorded on EXT-003 that the claim waits on EXPERIMENTAL evidence, and out_of_domain is in _UNTESTABLE_EPISTEMIC -- recommendation WITHDRAWN, category is standard",
+      "994's 'no mechanistic footprint / first corroboration of mech092-replay-consumer-missing' misread its own cells: memory_matrix_retention_score 0.99792 WITH vs 0.9999983 WITHOUT -- claim WITHDRAWN and the proposed mech092 amend dropped",
+      "983's 'repeat_rate pinned by construction' refuted by seed 456 (57,900 steps at harm_rate 0.0236); counts corrected to 8/12 >0.95 and 6/12 >0.985 -- replaced with a seed-heterogeneity diagnosis",
+      "951c's 'VACUOUS' characterisation softened to 'correct but non-discriminating', and the calmed-bed causal story dropped: 951's UNCALMED bed shows gate_product_mean 1.0 in all 18 occurrences"
+    ],
+    "verified_independently_by_the_drafting_session": true,
+    "note": "Every accepted defect was re-verified from source or manifest cells by the drafting session before acceptance, not taken on the reviewer's word."
+  }
+}

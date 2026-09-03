@@ -1,0 +1,129 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-03T19:00:24Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3",
+      "queue_id": "V3-EXQ-951c",
+      "claim_ids": [
+        "MECH-320"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- the diagnostic's self-routed answer is CORRECT BUT NON-DISCRIMINATING. Given the MEASURED gate state, only one of its two classification outcomes was reachable, so the reported 0/25787 gate-caused split restates the measured fact rather than adjudicating a contest between two live causes. It is not vacuous in the sense of measuring nothing -- it measures, correctly, that the gates never engage -- but it cannot bear the weight of 'we determined the floor is raw-driven rather than gate-driven', because gate-driven was not on the table.",
+        "biological_reference": "clear -- average-reward-rate opportunity-cost regulation of vigor (Niv 2007) is well grounded and is not the failure locus.",
+        "prerequisites": "present -- both preconditions met with wide margins (reached_p2_alive 1.0 vs 0.6667; sufficient_floor_hit_sample 25787 vs 30).",
+        "implementation": "complete but pinned -- ree_core/policy/tonic_vigor.py:366-369 computes v_t = max(v_t_floor, max(0.0, v_raw) * gate_e * gate_d * gate_p). In all 9 P2 cells (27,000 ticks) gate_energy, gate_drive and gate_pe each read mean == min == max == 1.0 EXACTLY. With the gate product at 1.0, `v_t == floor` ENTAILS `max(0,v_raw) <= floor`, which is precisely the probe's raw_caused branch condition.",
+        "environment": "wrong pressures, but NOT because of this run's bed change -- an earlier draft asserted that and it is REFUTED. The gates key on drive > 0.7, energy < 0.2 and pe > 1.0, and all three read exactly 1.0 across 27,000 P2 ticks here. But the PREDECESSOR V3-EXQ-951, on the UNCALMED bed, already shows gate_product_mean = 1.0 in all 18 occurrences in its own manifest. So the gates are pinned open on BOTH beds, and this run's calming (num_hazards 4->0, proximity_harm_scale 0.1->0.0, hfa_guard 0.3->0.0) is not what caused it. The finding is stronger than the bed story it replaces: these gate thresholds are never met by this substrate's dynamics at all.",
+        "measurement": "misleading -- criteria_non_degenerate has exactly ONE key, gate_caused_classification, defined as bool(sufficient_sample and gc_frac is not None). It tests sample size and a non-null denominator only. Nothing in the gate tests whether both classification outcomes were reachable, so the PASS verdict reduces to 'there were at least 30 floor-hit ticks'.",
+        "integration": "isolated",
+        "scale": "adequate -- 25,787 pooled floor-hit ticks is a large sample of an unreachable contrast."
+      },
+      "biological_reference": {
+        "closest_mechanism": "tonic dopaminergic vigor / average-reward-rate opportunity cost (Niv 2007; Beierholm 2013)",
+        "dependencies": [
+          "a bed with depletion or harm pressure sufficient to engage the internal-state gates",
+          "an action-rate DV with headroom above saturation"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Measurement/test-design defect, not a substrate ceiling on the claim. Stamped `standard` deliberately so MECH-320 is not suppressed from v3 experiment lanes by a vacuous diagnostic. The re-derive brake below fires on the EXISTING five ceiling readings, independently of this stamp.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-951c (2026-09-03) NON-CONTRIBUTORY -- the diagnostic PASSED and its answer is CORRECT BUT NON-DISCRIMINATING. In all 9 P2 cells (27,000 ticks) gate_energy, gate_drive and gate_pe each read mean == min == max == 1.0 exactly. Since tonic_vigor.py computes v_t = max(v_t_floor, max(0,v_raw) * gE * gD * gP), a gate product of 1.0 makes `v_t == floor` ENTAIL `max(0,v_raw) <= floor` -- the probe's raw_caused branch condition -- so gate_caused had zero reachable ticks at any sample size and the reported 0/25787 restates the measured gate state. The gate state is MEASURED, not assumed, so the run is not empty; what it cannot support is the framing that it adjudicated raw-versus-gate causation. The branch is not dead in general: in P1 training (instrumented but EXCLUDED from the pool) gate_caused fired on 2 of 6348 floor-hits on seed 43. The run's single non-degeneracy key, gate_caused_classification, is bool(sufficient_sample and gc_frac is not None) -- sample size and a non-null denominator only -- so nothing in the gate tests outcome reachability, and the post-fix --dry-run produced the IDENTICAL label. THE SUBSTANTIVE, NON-DEGENERATE FINDINGS: (1) on seeds 42 and 45, v_raw max is EXACTLY 0.0 in all six cells (means -14.26 and -22.97) -- the ungated EWMA is negative on every tick, so v_t is pinned at the floor before any gate is consulted; (2) action_density reads 1.0 in all 9 cells, leaving a vigor bias no headroom to raise action rate; (3) the internal-state gates are pinned open on the UNCALMED predecessor bed too (V3-EXQ-951, gate_product_mean 1.0 in all 18 occurrences), so their thresholds are never met by this substrate's dynamics on either bed. MECH-320's stated re-check condition -- 'a re-posed successor with a DV that can move' -- is therefore NOT met. PROCESS NOTE for governance: V3-EXQ-951's third precondition baseline_no_op_opportunity, the check that made 951 a FAIL, is absent from 951c, whose driver declassifies it as 'not this script's DV', while action_density remains 1.0 in all nine of 951c's own cells. Whether a successor on a different DV may drop a predecessor's blocking precondition while the condition it detected persists is a governance question, not an autopsy verdict.",
+      "recommended_diagnostic_evidence_adjudicated": true,
+      "per_claim_recommendation": {
+        "MECH-320": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Diagnostic adjudicated: the classification is correct but NON-DISCRIMINATING (gate_caused was unreachable in P2 given the measured gate state), so it does not settle raw-versus-gate causation. MECH-320's stated re-check condition ('a re-posed successor with a DV that can move') is NOT met -- action_density is still 1.0 in all nine cells. Mark the diagnostic adjudicated so the zero is recorded as expected rather than as an evidence gap -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH-320",
+        "note": "The existing MECH-320 entry's sole failure_record item already records the same gap from V3-EXQ-571 ('bias channel present in substrate but not propagating to E3 selection'). This run adds the mechanism for WHY: the ungated EWMA v_raw is persistently negative, so max(0, v_raw) is 0 and v_t is pinned at v_t_floor before any gate is consulted. Governance should also SET severity and substrate_paths on this entry, which currently carries neither -- the defect makes every MECH-320 behavioural measurement a measurement of a pinned scalar that looks valid, which is the `corrupting` definition.",
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/policy/tonic_vigor.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3",
+          "experiment_type": "v3_exq_951c_mech320_vt_floor_diagnostic_sd054",
+          "metric": "v_raw max EXACTLY 0.0 in all six cells on seeds 42 and 45 (means -14.26, -22.97), so max(0,v_raw)=0 and v_t is pinned at v_t_floor independently of the gates; separately all three internal-state gates read mean==min==max==1.0 across 27,000 P2 ticks; action_density 1.0 in all 9 cells",
+          "target": "a non-negative v_raw on a majority of ticks on every seed, AND an action_density below saturation, so the vigor scalar has both a source and headroom to move selection",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_604a-624a-630_2026-06-03",
+          "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30",
+          "failure_autopsy_EXQ-572-573_2026-05-17",
+          "failure_autopsy_V3-EXQ-603g-624c-651a_2026-06-07",
+          "failure_autopsy_V3-EXQ-624b_2026-06-07"
+        ],
+        "prior_hit_count": 5,
+        "literal_count_meets_threshold": true,
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "MECH-320",
+        "note": "MECH-320 has FIVE prior non-contributory ceiling readings and the vigor scalar has never once moved E3 selection in any of them. 951c is the second consecutive re-pose that did not deliver a DV that can move. A sixth same-claim behavioural re-test is REFUSED; the build owed first is the tonic_vigor v_raw pinning recorded above. A redesign testing a DIFFERENT mechanism under a new EXQ number remains permitted. (An earlier draft said 951c 'evaded rather than cleared' the predecessor's blocking precondition; that is stronger than the evidence supports for a diagnostic scoped to a different DV, and the neutral statement of the facts now sits in the evidence_quality_note as a process note for governance.)"
+      },
+      "learning_extracted": [
+        "A non-degeneracy flag can certify a diagnostic while being blind to the diagnostic's actual limitation: gate_caused_classification tests sample size and a non-null denominator, never outcome reachability.",
+        "A smoke test cannot catch this class -- the post-fix --dry-run produced the identical label, because the emitted label is reachable and only the ALTERNATIVE label is not.",
+        "The internal-state gates are pinned fully open on BOTH the calmed and uncalmed beds, so the gate thresholds (drive > 0.7, energy < 0.2, pe > 1.0) are simply never met by this substrate's dynamics. An earlier draft attributed the pinning to this run's bed calming; the predecessor's own manifest refutes that and the stronger reading replaces it.",
+        "ANCHOR_REACHABILITY_EXEMPT is defined at driver lines 193-202 but never referenced and never emitted, and its text argues reachability of the two PRECONDITIONS, not of the two classification OUTCOMES -- a reachability guard aimed at the wrong object.",
+        "This driver carries no '=== HYPOTHESES UNDER TEST ===' / '=== INTERPRETATION GRID ===' block, unlike ten other drivers in the corpus."
+      ],
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT) -- not chargeable to REE. The mechanism was never placed in a condition where it could act."
+      },
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "read_across_not_adjudicated": [
+    "The DV-headroom structural finding registered on the V3-EXQ-993 target of failure_autopsy_ext-claim-probe-cluster_2026-09-03 covers this run: gate_caused is the most extreme instance in the batch, with zero reachable ticks rather than a finite shortfall.",
+    "The dropped baseline_no_op_opportunity precondition is a governance-process question (may a successor declassify the precondition that failed its predecessor, while the underlying condition persists?) rather than a claim disposition. Recommend a governance_flag; not adjudicated here."
+  ],
+  "confirmed_utc": "2026-09-03T20:04:14Z",
+  "confirmed_by": "user, /failure-autopsy Step 8 interactive gate 2026-09-03",
+  "red_team_pass": {
+    "ran": true,
+    "model": "fable (cross-model; different model from the drafting session)",
+    "set_verdict": "CONTESTED",
+    "per_artifact_verdict": {
+      "failure_autopsy_ext-claim-probe-cluster_2026-09-03": "CONTESTED -- 3 defects, all accepted and corrected",
+      "failure_autopsy_V3-EXQ-978_2026-09-03": "CONFIRMED (revised draft); 4 hygiene items corrected",
+      "failure_autopsy_V3-EXQ-951c_2026-09-03": "CONTESTED on characterisation only; routing/brake/amend survived unchanged",
+      "failure_autopsy_V3-EXQ-981_2026-09-03": "CONFIRMED; 1 line-number correction"
+    },
+    "defects_accepted": [
+      "out_of_domain on EXT-002/003/004/007 contradicted a same-day user ruling recorded on EXT-003 that the claim waits on EXPERIMENTAL evidence, and out_of_domain is in _UNTESTABLE_EPISTEMIC -- recommendation WITHDRAWN, category is standard",
+      "994's 'no mechanistic footprint / first corroboration of mech092-replay-consumer-missing' misread its own cells: memory_matrix_retention_score 0.99792 WITH vs 0.9999983 WITHOUT -- claim WITHDRAWN and the proposed mech092 amend dropped",
+      "983's 'repeat_rate pinned by construction' refuted by seed 456 (57,900 steps at harm_rate 0.0236); counts corrected to 8/12 >0.95 and 6/12 >0.985 -- replaced with a seed-heterogeneity diagnosis",
+      "951c's 'VACUOUS' characterisation softened to 'correct but non-discriminating', and the calmed-bed causal story dropped: 951's UNCALMED bed shows gate_product_mean 1.0 in all 18 occurrences"
+    ],
+    "verified_independently_by_the_drafting_session": true,
+    "note": "Every accepted defect was re-verified from source or manifest cells by the drafting session before acceptance, not taken on the reviewer's word."
+  }
+}

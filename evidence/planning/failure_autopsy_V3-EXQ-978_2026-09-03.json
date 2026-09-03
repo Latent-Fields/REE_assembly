@@ -1,0 +1,170 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-03T19:00:24Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3",
+      "queue_id": "V3-EXQ-978",
+      "claim_ids": [
+        "INV-088",
+        "MECH-457"
+      ],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested for both tagged claims -- this run is the owed VALIDATION of the SD-018 amend (ree-v3 028a625e09, 2026-09-02), not a test of MECH-457's actor-critic substrate or of INV-088's evaluator-bounded-by-z_world relation. MECH-457 and ARC-065 appear in SD-018's unblocks_claims, so the tags are downstream-beneficiary tags. INV-088's own re-check condition is gated on a DIFFERENT substrate route (SD-e1-rollout-consistency-training ITEM 2), not this one.",
+        "biological_reference": "clear -- auxiliary supervision forcing a sensory encoder to retain a task-relevant gradient has a strong analogue. Not the failure locus.",
+        "prerequisites": "present -- all 8 preconditions PASSED, gate fully green, no red or vacuous arms. field_loss_off::zworld_encoder_trained_in_p0 measured 0.28158509731292725 vs threshold 1e-06.",
+        "implementation": "complete -- used_resource_field_head true on 3/3 seeds at weight 0.5; P0a held-out field r2 0.678/0.627/0.653; n_latent_stack_changed 7 (OFF) -> 9 (ON), the +2 being the head's own parameters. The loss was applied and demonstrably trained.",
+        "environment": "too sparse -- BOTH trained arms score at or below the random-walk anchor on every seed. Per-cell foraging_competence is OFF 0.0 / 0.25 / 0.55 and ON 0.3 / 0.3 / 0.25 (seeds 42/43/44) against an anchor of 0.85-1.05. An agent foraging no better than a random walk is not a bed on which a foraging-improvement contrast can be read.",
+        "measurement": "under-instrumented -- the behavioural DV is quantised at 0.05 per resource event, cells produced 0-11 events, and the entire arm-mean difference (+0.0167) is one third of a single event. The decode readout itself was fine (r2 measurable and non-degenerate).",
+        "integration": "coupled but unstable, AND THE LOCUS IS NOT YET IDENTIFIED. The head trains, z_world carries the field to a linear probe (OFF-arm r2 0.710 sense / 0.858 encoder), and behaviour stays at or below a random walk. That rules OUT the simplest information-loss story but does NOT say whether the downstream consumer merely failed to learn the mapping (B) or whether the information sits in a geometry the consumer cannot use under the actual learning dynamics (C). Linear decodability is NOT usability.",
+        "scale": "likely insufficient on two of three seeds -- ON-arm survival_horizon is 25.35 / 200.0 / 97.15 with death_rate 0.95 / 0.0 / 0.55, so seed 42 dies almost every episode while seed 43 never dies. The arm means are taken across that heterogeneity."
+      },
+      "biological_reference": {
+        "closest_mechanism": "auxiliary supervised head shaping a shared sensory representation (analogous to top-down task supervision of sensory cortex)",
+        "dependencies": [
+          "a downstream consumer that reads the supervised dimension",
+          "a bed where foraging competence is above chance"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified -- the translation is sound; the run refutes the PREMISE that supervision was the missing ingredient.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-088": "standard",
+        "MECH-457": "standard"
+      },
+      "recommended_epistemic_category_note": "PERIPHERAL CO-TAG. This run exercised neither claim's own mechanism -- it validated SD-018's encoder supervision. Both stay `standard`; neither should take a substrate_ceiling stamp from this run, and per the re-derive brake's per-claim rule this target must not be counted as a ceiling hit for either claim.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-088": "non_contributory",
+        "MECH-457": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-978 (2026-09-03) NON-CONTRIBUTORY for both tagged claims (recorded direction was `mixed`). The run is the owed validation of the SD-018 directional-field amend and does not exercise MECH-457's actor-critic substrate or INV-088's evaluator/z_world relation; both tags are downstream-beneficiary tags from SD-018's unblocks_claims. THE SUBSTANTIVE RESULT, which belongs on SD-018 rather than on either claim: the directional auxiliary loss was applied and demonstrably trained (used_resource_field_head 3/3, weight 0.5, P0a held-out field r2 0.678/0.627/0.653) and z_world did NOT move -- delta sense-path decode r2 -0.00063, delta encoder-path r2 +0.00038, delta participation-ratio +0.0029, all two to three orders below the within-arm seed spread (~0.099 r2, ~1.61 PR) and sign-inconsistent across seeds. C_on_clears_floor (load-bearing) failed 0/3 seeds (0.30/0.30/0.25 vs a 1.0 floor); C_off_subfloor_replication passed; C_decode_lift failed on margin only (-0.00063 vs +0.05) while its absolute conjunct r_on > 0 passed at 0.7093. CRITICAL ROUTING FINDING: the driver's own pre-registered null table says to read the OFF arm's ABSOLUTE r2 first -- if OFF already decodes well, the null points at the CONSUMER (shape b); only if BOTH arms decode poorly is the result a statement about the P0a training recipe. Measured OFF r2 is 0.710 sense-path and 0.858 encoder-path: both arms decode the resource field WELL. By the author's own conditional this is shape (b) -- i.e. NOT the P0a training recipe. IMPORTANT LIMIT ON THAT INFERENCE: 'not the encoder recipe' is not the same as 'the consumer'. A linear probe recovering the field at r2 0.71-0.86 shows the information is PRESENT; it does not show it is in a geometry a policy can use under the actual learning dynamics. This run therefore does NOT separate a consumer/readout learning failure from a representational mismatch, and any routing that presupposes one of the two is running ahead of the evidence. The emitted label nonetheless reads `Re-run at another weight before concluding`, because the code's label ladder never consults r_off -- the label contradicts the driver's own pre-registration and must not drive the routing. SD-018's implementation_log[0] already names the correct next step: 'Shape (b) (raw field as side-channel past z_world) is the fallback if (a) nulls.' Corroborating and NOT in the manifest: in the fishtank log the ON-arm head's argmax varies across 17 of 25 cells on the encoder path (9.28% match to truth vs 4.0% uniform / 23.71% majority-cell) but is constant at cell 6 across all 97 sense-time steps, with the OFF arm constant on both paths -- the red-team F7 signature the author said would route a null to shape (b) rather than back to the P0a recipe (seed 42 only, unequal samples). HYPOTHESIS-SPACE READING (added after reading the user's own 2026-09-03 thought documents, which were written against this run): docs/thoughts/2026-09-03_temporary_coordinated_representational_transformations.md enumerates three readings this run leaves open -- A information loss (WEAKENED by the OFF-arm decode), B consumer/readout/learning failure, C representational mismatch (information recoverable, geometry not accessible to the decision computation) -- and states at section 8, verbatim, that 'V3-EXQ-978 does not distinguish B from C.' That is the live question, and the document records that B 'should be tested before introducing richer architecture.'",
+      "per_claim_recommendation": {
+        "INV-088": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Peripheral co-tag on an SD-018 substrate validation; INV-088's evaluator/z_world relation was not exercised and its own re-check is gated on SD-e1 ITEM 2, a different route. No storable field moves -- record the disposition by citation -> stamp failure_autopsy_V3-EXQ-978_2026-09-03",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-457": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Peripheral co-tag; the actor-critic substrate was not exercised. Must NOT count as a substrate_ceiling hit for the re-derive brake -> stamp failure_autopsy_V3-EXQ-978_2026-09-03",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate/v3_pending"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-018",
+        "note": "SD-018 is `amend_implemented_pending_validation` with amend_status 'AWAITING VALIDATION'. This run IS that validation and shape (a) nulled cleanly on a fully green 8/8 gate, so governance should record the failure_record item and move amend_status off 'AWAITING VALIDATION' to validated-negative-for-shape-(a). DO NOT, however, promote shape (b) to the next build on this result alone -- see failure_record_entry.target and the fanout_recommendation: shape (b) presupposes H-B over H-C, and this run does not separate them. Severity and substrate_paths are unchanged from the existing entry.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3",
+          "experiment_type": "v3_exq_978_sd018_directional_field_fishtank",
+          "metric": "SD-018 shape (a) NULL on a fully green 8/8 precondition gate: directional head trained (P0a held-out field r2 0.678/0.627/0.653) yet delta z_world decode r2 -0.00063 sense / +0.00038 encoder, 2-3 orders below the within-arm seed spread. OFF-arm ABSOLUTE decode r2 0.710 sense / 0.858 encoder -- z_world already carries the field, so by the driver's own null table the deficit is in the CONSUMER, not the encoder recipe.",
+          "target": "DISCRIMINATE FIRST, then build. The pre-declared shape (b) (raw field side-channelled past z_world) presupposes that the consumer, not the geometry, is the constraint. Owed before that build: a frozen-latent SUPERVISED oracle adapter that either reproduces local_view_greedy actions from the frozen z_world (-> H-B, shape (b) is the right build) or cannot (-> H-C, shape (b) would raise the score without addressing the constraint).",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_746c-756_2026-07-16",
+          "failure_autopsy_MECH-457-fanout-751-750_2026-07-14",
+          "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15",
+          "failure_autopsy_MECH-457-fanout-755_2026-07-15"
+        ],
+        "prior_hit_count_mech457": 13,
+        "prior_hit_count_inv088": 2,
+        "literal_count_meets_threshold": true,
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-018",
+        "note": "MECH-457 carries 13 prior ceiling readings and INV-088 carries 2, both at or past the threshold of 2. A same-claim lettered re-run -- exactly what this run's own emitted label ('Re-run at another weight before concluding') proposes -- is REFUSED, and that refusal is independently corroborated by the driver's own pre-registered null table. WHERE THIS DIFFERS FROM THE BRAKE'S DEFAULT ROUTING: the brake normally routes a fired case to /implement-substrate on the named upstream substrate, and that is right when the bottleneck is ONE unambiguous build. Here it is not. The open question is a DISCRIMINATION between H-B and H-C (see fanout_recommendation), and SD-018's pre-declared shape (b) build presupposes H-B. Per GOV-FANOUT-1 the correct route is the discriminating probe first, under a NEW EXQ number testing a DIFFERENT question (representational usability, not encoder supervision), which the brake explicitly permits. The refusal of another weight sweep on the same directional head stands unchanged. NOTE for the counter: this target's per-claim epistemic_category is `standard`, not substrate_ceiling, so it must NOT itself increment either claim's hit count -- the brake fires on the EXISTING counts, and this run is a peripheral co-tag.",
+        "route_to_note": "Schema value kept as `implement-substrate` for the counter's vocabulary, but the OPERATIVE routing for this target is `queue-experiment` -- the discriminating probe in fanout_recommendation -- and the target's own `routing` field says so. The brake's refusal (no further weight sweep on the same directional head) is unchanged; what differs is that the bottleneck is a discrimination rather than one unambiguous build, so per GOV-FANOUT-1 the probe precedes any build.",
+        "prior_substrate_ceiling_autopsies_note": "The slug list above is a PARTIAL sample, not the full set: the skill's counting recipe returns 13 qualifying hits for MECH-457 across 9 distinct artifacts and 2 for INV-088. The count, not the list, is what the brake turns on; the list is illustrative and should not be read as exhaustive."
+      },
+      "learning_extracted": [
+        "z_world ALREADY encodes the resource field to a linear probe (OFF-arm decode r2 0.710 sense / 0.858 encoder). Read together with V3-EXQ-948's behavioural finding, the distinction that survives is decodable-versus-USABLE: the information is present and competent behaviour does not follow. That refines the stated project front -- the binding constraint at this node is NOT the encoder -- but it does not localise the constraint to the consumer, because decodability by a probe and usability by a policy are different properties.",
+        "A driver can carry a correct pre-registered conditional in its docstring and a label ladder in its code that never evaluates that conditional. Here the docstring routes to shape (b) and the label says 're-run at another weight'. The label is what a downstream reader sees.",
+        "The manipulation was a ~1.5x REWEIGHTING, not supervision-vs-none: reconstruction_weight 10.0 already supervises the field at 10/250 per element and the ON leg adds 0.5/25. A null under a 1.5x reweighting is weak evidence about supervision in general, which is exactly why the absolute OFF-arm r2 is the load-bearing read.",
+        "Both trained arms scoring below the random-walk anchor (0.25-0.55 vs 0.85-1.05) is itself a finding about the bed, independent of the arm contrast."
+      ],
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT, with MECHANISM only partially established) -- explicitly NOT chargeable to REE. The directional head is complete and trained, but the behavioural DV was sub-quantum for the observed effect and both arms foraged below a random walk, so neither the measurement nor the environment independently reads adequate."
+      },
+      "routing": "queue-experiment",
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-B consumer/readout/learning failure: the information in z_world is in an adequately usable form and the downstream consumer has simply failed to learn the mapping from representation to action.",
+          "H-C representational mismatch: the information is technically recoverable but the current geometry does not make the relationships required by action selection accessible under the actual learning dynamics."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-B / H-C (single discriminating probe)",
+            "axis": "readout",
+            "sketch": "Frozen-latent SUPERVISED oracle adapter. Freeze z_world exactly as this run left it and behaviour-clone the local_view_greedy oracle policy (which scores 45.75 on this same field) from the frozen latent. Declared null: the adapter cannot reproduce oracle actions above the pre-registered floor. CANNOT reproduce -> H-C (geometry unusable, the information is there and a simple supervised reader cannot exploit it). CAN reproduce -> H-B (the representation is usable and the deficit is in the RL consumer's learning, not the geometry). This is the user's own 'Experiment 1' from the 2026-09-03 thought document."
+          },
+          {
+            "hypothesis": "H-C corroborator (queue only if the adapter FAILS)",
+            "axis": "representation",
+            "sketch": "Geometry change without information gain: apply a transformation that approximately preserves recoverable information while rotating/reweighting the geometry, and test whether competence tracks decision-relevant separability rather than global decode score. Declared null: competence is flat under a separability-improving, information-preserving rotation."
+          }
+        ],
+        "note": "GOV-FANOUT-1. The load-bearing point is WHY this is not a single build. SD-018's pre-declared fallback -- shape (b), routing the raw resource field as a side-channel PAST z_world -- PRESUPPOSES H-B: it is only the right build if the representation, not its usability, is the problem. If H-C holds, shape (b) may well raise the score while telling us nothing about the actual constraint, and would bank a confident-but-wrong localisation. The supervised adapter is strictly cheaper than shape (b) (no substrate change at all, one frozen-latent training run) and, unlike it, DISCRIMINATES. Note that the frozen-latent reader has already been run TWICE with a PPO reader and failed both times (V3-EXQ-948 ppo_ree_latent 0.5, V3-EXQ-978 OFF 0.267, both 0/3 against floor) -- but PPO is an RL learner, so those failures are confounded with RL credit-assignment difficulty. A SUPERVISED behaviour-clone removes exactly that confound, which is what makes it the discriminator rather than a third repetition."
+      },
+      "claim_rotation_observation": {
+        "asked_by": "REE_assembly/docs/thoughts/2026-09-03_claim_rotation_dual_view_claim_matrix.md, section 9 falsifiable question: 'Does rotating a stalled claim produce a clearer, smaller or more discriminating next experiment?'",
+        "recorded_for": "GOV-ROTATE-1 (candidate; registration is NOT performed by this autopsy and no claim was touched)",
+        "architectural_framing_next_step": "SD-018 shape (b) -- build a side-channel routing the raw resource field past z_world to the consumer. A substrate BUILD; presupposes H-B; does not discriminate.",
+        "transformation_framing_next_step": "Freeze z_world and behaviour-clone the local_view_greedy oracle (scores 45.75) from the frozen latent. A PROBE; no substrate change; discriminates H-B from H-C on its declared null.",
+        "verdict": "YES on all three counts, for this one case. The rotated framing produced a next experiment that is SMALLER (a single frozen-latent supervised training run versus a substrate build plus its own validation), CHEAPER (no ree_core change, so no contract-gate exposure), and MORE DISCRIMINATING (the build presupposes the answer to the live question; the probe settles it). It also converted the node from `complicated (buildable)` to `complex (probe-gated)`, which is the direction CLAUDE.md's debt vocabulary says to prefer.",
+        "caveat": "N=1, and it is not blind: the same thought document supplied both the rotation and the probe, so this trial cannot separate 'rotation helps' from 'this author's next idea was good'. Recorded as one held-out data point, not as support for the general rule.",
+        "provenance": "Which representation generated the experiment is recorded here per that document's own section-9 item 7."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "read_across_not_adjudicated": [
+    "GOVERNANCE DISCREPANCY, not adjudicated here: claims.yaml records SD-e1-rollout-consistency-training ITEM 2 as PENDING (it is INV-088's stated re-check gate), while V3-EXQ-978's queue note reports ree-v3/CLAUDE.md recording that same item as IMPLEMENTED 2026-09-01. One of the two is stale. This matters because INV-088's re-check condition is keyed to it. Recommend a governance_flag rather than an autopsy verdict.",
+    "The DV-headroom structural finding recorded on the V3-EXQ-993 target of failure_autopsy_ext-claim-probe-cluster_2026-09-03 covers this run too: the arm-mean difference here is one third of the DV's 0.05 quantum. Registered once there, not duplicated.",
+    "The user's three 2026-09-03 thought documents (temporary_coordinated_representational_transformations, ree_as_predictive_sensorimotor_transformation, claim_rotation_dual_view_claim_matrix) were written against this run and are cited above. Marking them processed is the thought-routing session's task, not this autopsy's; this artifact is the target they should point at."
+  ],
+  "confirmed_utc": "2026-09-03T20:04:14Z",
+  "confirmed_by": "user, /failure-autopsy Step 8 interactive gate 2026-09-03",
+  "red_team_pass": {
+    "ran": true,
+    "model": "fable (cross-model; different model from the drafting session)",
+    "set_verdict": "CONTESTED",
+    "per_artifact_verdict": {
+      "failure_autopsy_ext-claim-probe-cluster_2026-09-03": "CONTESTED -- 3 defects, all accepted and corrected",
+      "failure_autopsy_V3-EXQ-978_2026-09-03": "CONFIRMED (revised draft); 4 hygiene items corrected",
+      "failure_autopsy_V3-EXQ-951c_2026-09-03": "CONTESTED on characterisation only; routing/brake/amend survived unchanged",
+      "failure_autopsy_V3-EXQ-981_2026-09-03": "CONFIRMED; 1 line-number correction"
+    },
+    "defects_accepted": [
+      "out_of_domain on EXT-002/003/004/007 contradicted a same-day user ruling recorded on EXT-003 that the claim waits on EXPERIMENTAL evidence, and out_of_domain is in _UNTESTABLE_EPISTEMIC -- recommendation WITHDRAWN, category is standard",
+      "994's 'no mechanistic footprint / first corroboration of mech092-replay-consumer-missing' misread its own cells: memory_matrix_retention_score 0.99792 WITH vs 0.9999983 WITHOUT -- claim WITHDRAWN and the proposed mech092 amend dropped",
+      "983's 'repeat_rate pinned by construction' refuted by seed 456 (57,900 steps at harm_rate 0.0236); counts corrected to 8/12 >0.95 and 6/12 >0.985 -- replaced with a seed-heterogeneity diagnosis",
+      "951c's 'VACUOUS' characterisation softened to 'correct but non-discriminating', and the calmed-bed causal story dropped: 951's UNCALMED bed shows gate_product_mean 1.0 in all 18 occurrences"
+    ],
+    "verified_independently_by_the_drafting_session": true,
+    "note": "Every accepted defect was re-verified from source or manifest cells by the drafting session before acceptance, not taken on the reviewer's word."
+  }
+}

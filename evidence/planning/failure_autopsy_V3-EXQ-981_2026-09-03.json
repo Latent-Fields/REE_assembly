@@ -1,0 +1,98 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-03T19:00:24Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_981_mech027_control_plane_pathological_modes_20260903T053044Z_v3",
+      "queue_id": "V3-EXQ-981",
+      "claim_ids": [
+        "MECH-027"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- MECH-027 ('Pathological modes reflect mis-tuned control-plane regimes') never got a fair test. FOUR of eleven readiness preconditions failed and the run self-routed substrate_not_ready_requeue, which is CORRECT. This is the first run ever to tag MECH-027 (GOV-REUSE-1: 0/973 manifests at authoring time).",
+        "biological_reference": "clear -- hypervigilance as elevated precision / shortened horizon / suppressed consolidation is a well-motivated control-plane translation. Not the failure locus.",
+        "prerequisites": "MISSING -- the replay channel was structurally dead. mech285_n_draws read 0 on all 75 firings per block in the BASELINE arm where it was supposed to be UNSUPPRESSED, so replay_channel_baseline_reachable failed (0.0 vs >= 1.0).",
+        "implementation": "partial -- Build 1 (precision-scaled commit temperature) and Build 2 (eval-boundary sleep interleave) both engaged: precision_scaled_commit engaged on 75.4% of selections and the sleep cycle fired 25 times per block on every seed. The replay POOL, not the sampler, was empty.",
+        "environment": "wrong pressures -- the positive control FAILED WITH REVERSED SIGN: baseline avoidant-action rate in the HIGH hazard band minus the SAFE band measured -0.4307 against a +0.05 floor, on all three seeds (-0.026, -0.476, -0.789). Baseline agents were markedly MORE avoidant in the safe band. The DV/env pairing is not hazard-sensitive, which invalidates anything built on top of it.",
+        "measurement": "misleading -- three criteria were unreachable by construction. (a) C1_false_alarm_elevation set a threshold of 2 x 0.5771 = 1.1542 on a DV BOUNDED IN [0,1] -- unattainable by any value once the pooled baseline exceeded 0.5, which it did on all three seeds. (b) precision_margin_norm_elevated_under_hv: the baseline pooled margin is 0.99980, so the arithmetic ceiling on the elevation is 0.000195 against a floor of 0.01 -- 51x larger; the measured 0.000194 is 99.4% of ALL available headroom. (c) commit_temperature_reduced_under_hv is ALGEBRAICALLY THE SAME QUANTITY read through a different sample filter (T_eff = 1.0 + alpha*(1 - margin) with alpha = 1.0), so it is not an independent check and is equally unreachable.",
+        "integration": "partially coupled -- the anchor pool's only producer was off, so a downstream consumer chain ran on an empty set.",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "noradrenergic/cholinergic control-plane regime shift: elevated sensory precision, shortened planning horizon, suppressed offline consolidation",
+        "dependencies": [
+          "a live anchor pool for replay",
+          "an environment in which hazard proximity actually modulates avoidant action"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified -- the translation is sound and was never exercised.",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Readiness/test-design failure. MECH-027 currently carries NO epistemic_category at all; `standard` is the correct stamp -- it asserts no epistemic suppression, which is exactly right for a claim that has simply never been tested, and keeps it in v3 experiment lanes.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-981 (2026-09-03) NON-CONTRIBUTORY. The run's self-route to substrate_not_ready_requeue is CORRECT and is confirmed here; four of eleven readiness preconditions failed. (1) REPLAY CHANNEL STRUCTURALLY DEAD, and the root cause is precise: mech285_n_draws read 0 on every one of 75 firings per block in the BASELINE arm, where replay was supposed to be unsuppressed. The sampler existed and ran -- a missing sampler would have recorded the driver's -1 sentinel, not 0 -- and drew 50 times per firing, receiving None each time because AnchorSet.all_with_dual_trace() was always empty. The only live anchor-install path is consume_boundary_events -> write_anchor, which runs only when sense() emits BoundaryEvents, which requires hippocampal.use_event_segmenter -- default False at ree_core/utils/config.py:2761, and the driver never sets it. The driver sets latent.use_event_classifier, a different flag on a different sub-config. THE THREE-FLAG RECIPE IS INCOMPLETE: V3-EXQ-909, cited as the reachability precedent, inherited use_event_segmenter=True from V3-EXQ-906b's config, and 909's own precondition measured the CONFIGURED knob (draws_per_cycle 50.0, 'structural, all seeds'), not measured draws. use_anchor_sets + use_mech285_sampler + use_mech272_routing are necessary but not sufficient; use_event_segmenter is the missing fourth. (2) POSITIVE CONTROL FAILED WITH REVERSED SIGN (-0.4307 vs +0.05 floor, all three seeds) -- the DV/env pairing is not hazard-sensitive, so no criterion built on avoidant-action rate is trustworthy here. (3) THREE CRITERIA WERE UNREACHABLE BY CONSTRUCTION: C1 set 2x a pooled baseline of 0.5771 = 1.1542 as a threshold on a DV bounded in [0,1]; the precision-margin elevation had an arithmetic ceiling of 0.000195 against a 0.01 floor (51x) and the measured value used 99.4% of it; and commit_temperature_reduced_under_hv is algebraically the same quantity, not an independent check. (4) C2 'PASSED' ON A RATIO OF TWO NEGATIVES (-0.04355 / -0.05198 = 0.8377): HV was BELOW baseline, so there was no elevation to revert. Red-team F6 moved C2 from per-seed to pooled to stop sign-flips; the pooled form has the identical pathology when the pooled elevation is negative. Also noted: replay_channel_non_degenerate 'passed' vacuously at measured == threshold == 0.0 -- p0_readiness_gate applies the inclusive `m <= t` when no comparator key is present, and the measured quantity is a non-negative count pinned at 0 by construction, so it could not have failed; only its paired reachability check carried information.",
+      "per_claim_recommendation": {
+        "MECH-027": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "First-ever run tagging MECH-027; readiness failed on four of eleven preconditions so the claim was never tested and takes no weight. MECH-027 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Deliberately `none`. The replay fix is a CONFIG correction, not a build -- use_event_segmenter already exists and defaults False; the correction belongs in the re-queued driver and in the recipe's documentation, and substrate_queue has no entry covering the empty-anchor-pool gap because there is no missing substrate (MECH-285/288/272 are all implemented with empty failure_records). The SATURATION half of this run's failure IS already covered by the existing MECH465-COMMIT-GATE-HEADROOM entry (pending_implementation, ready, one open failure_record recording 25-48x below threshold) -- registered against MECH-465 rather than MECH-027, and now independently re-hit here at 51x. Governance may wish to add this run to THAT entry's failure_record; the generalised lint is recommended once, from the V3-EXQ-993 target of failure_autopsy_ext-claim-probe-cluster_2026-09-03."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The V3-EXQ-909 'three-flag replay recipe' (use_anchor_sets + use_mech285_sampler + use_mech272_routing) is INCOMPLETE and has now propagated into a second driver. It needs a fourth flag, hippocampal.use_event_segmenter, whose default is False. 909 itself never demonstrated measured draws -- its precondition read the configured knob.",
+        "A precondition that measures a CONFIGURED knob is not a reachability check. 909's precondition read draws_per_cycle = 50; 981's read measured draws = 0 under the same nominal configuration.",
+        "A readiness check whose measured quantity is a non-negative count with threshold 0 and inclusive direction `upper` cannot fail. It is informative only when paired with a reachability check on the same instrument, as it was here.",
+        "A multiplicative pass threshold (2x baseline) on a DV bounded in [0,1] is unattainable whenever the baseline exceeds 0.5 -- a purely arithmetic error that no amount of running can overcome, and one a static lint could catch.",
+        "Two preconditions can be algebraically the same quantity wearing different names (precision margin and commit temperature, via T_eff = 1.0 + alpha*(1 - margin)), giving false reassurance of independent confirmation."
+      ],
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM-not-exercised + MEASURES + ENVIRONMENT) -- emphatically not chargeable to REE. MECH-027 has never been tested."
+      },
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "read_across_not_adjudicated": [
+    "This run supplies the two most extreme instances of the DV-headroom structural finding registered on the V3-EXQ-993 target of failure_autopsy_ext-claim-probe-cluster_2026-09-03: a threshold outside a bounded DV's range, and a 51x shortfall against an arithmetic ceiling set by a saturated baseline.",
+    "MECH465-COMMIT-GATE-HEADROOM already records this saturation class against MECH-465 at 25-48x. Whether that entry should be generalised, or the new lint should subsume it, is a governance decision -- not adjudicated here."
+  ],
+  "confirmed_utc": "2026-09-03T20:04:14Z",
+  "confirmed_by": "user, /failure-autopsy Step 8 interactive gate 2026-09-03",
+  "red_team_pass": {
+    "ran": true,
+    "model": "fable (cross-model; different model from the drafting session)",
+    "set_verdict": "CONTESTED",
+    "per_artifact_verdict": {
+      "failure_autopsy_ext-claim-probe-cluster_2026-09-03": "CONTESTED -- 3 defects, all accepted and corrected",
+      "failure_autopsy_V3-EXQ-978_2026-09-03": "CONFIRMED (revised draft); 4 hygiene items corrected",
+      "failure_autopsy_V3-EXQ-951c_2026-09-03": "CONTESTED on characterisation only; routing/brake/amend survived unchanged",
+      "failure_autopsy_V3-EXQ-981_2026-09-03": "CONFIRMED; 1 line-number correction"
+    },
+    "defects_accepted": [
+      "out_of_domain on EXT-002/003/004/007 contradicted a same-day user ruling recorded on EXT-003 that the claim waits on EXPERIMENTAL evidence, and out_of_domain is in _UNTESTABLE_EPISTEMIC -- recommendation WITHDRAWN, category is standard",
+      "994's 'no mechanistic footprint / first corroboration of mech092-replay-consumer-missing' misread its own cells: memory_matrix_retention_score 0.99792 WITH vs 0.9999983 WITHOUT -- claim WITHDRAWN and the proposed mech092 amend dropped",
+      "983's 'repeat_rate pinned by construction' refuted by seed 456 (57,900 steps at harm_rate 0.0236); counts corrected to 8/12 >0.95 and 6/12 >0.985 -- replaced with a seed-heterogeneity diagnosis",
+      "951c's 'VACUOUS' characterisation softened to 'correct but non-discriminating', and the calmed-bed causal story dropped: 951's UNCALMED bed shows gate_product_mean 1.0 in all 18 occurrences"
+    ],
+    "verified_independently_by_the_drafting_session": true,
+    "note": "Every accepted defect was re-verified from source or manifest cells by the drafting session before acceptance, not taken on the reviewer's word."
+  }
+}
