@@ -1,0 +1,187 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_981_mech027_control_plane_pathological_modes",
+  "run_id": "v3_exq_981_mech027_control_plane_pathological_modes_20260903T053044Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-03T05:30:44Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-027"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "precision_channel_non_degenerate",
+        "measured": 8.271034454296567,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "pooled EVAL_HYPERVIGILANT precision mean / EVAL_BASELINE precision mean, must clear 5.0x -- confirms the forced precision perturbation actually elevated the channel.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "horizon_channel_non_degenerate",
+        "measured": 0.20098671231760007,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "structural effective_horizon under MODE_HV / effective_horizon under MODE_BASE, must clear (be below) 0.5 -- confirms the SD-MECH267-HORIZON-DEPTH scoring window actually shortened under the hypervigilant regime.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_channel_non_degenerate",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "MEASURED mech285_n_draws (from force_sleep_cycle_at_eval_boundary()'s own return, not the configured draws_per_cycle) across every EVAL_HYPERVIGILANT sleep-cycle firing, on every seed, must be <= 0 -- confirms replay suppression was exercised by a REAL firing sleep cycle, not merely a configured knob nothing during eval ever reads (MECH-027 Build 2).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_channel_baseline_reachable",
+        "measured": 0.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "MEASURED mech285_n_draws across every EVAL_BASELINE sleep-cycle firing, on every seed, must be >= 1 (the V3-EXQ-909 three-flag recipe -- use_anchor_sets + use_mech285_sampler + use_mech272_routing -- actually reached a live, non-zero draw count on a REAL firing, not just a configured value).",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "sleep_cycle_fires_during_eval",
+        "measured": 25.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "the smallest per-seed, per-block count of non-None agent.force_sleep_cycle_at_eval_boundary() returns -- confirms the eval-boundary sleep-cycle interleave (MECH-027 Build 2) actually fired in every block, on every seed, rather than silently no-op'ing (e.g. use_sleep_loop unreachable).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "precision_scaled_commit_temperature_engaged",
+        "measured": 0.7541706011960969,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "fraction (across EVAL_BASELINE + EVAL_HYPERVIGILANT, all seeds) of real E3 selections where last_score_diagnostics['precision_scaled_commit_active'] was True -- confirms the standalone committed branch (the only branch use_precision_scaled_commit_temperature is wired at) engaged on a MEANINGFUL share of selections, not just once (MECH-027 Build 1; a raw count>=1 floor is a liveness check, not a reach check -- red-team F3, chip-20260902-mech027-precision-replay-eval-substrate, verified 2026-09-02). Raw engaged/total counts are in metrics.precision_scaled_commit_engaged_total / metrics.e3_selection_total.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "precision_margin_norm_elevated_under_hv",
+        "measured": 0.00019436267223293946,
+        "threshold": 0.01,
+        "direction": "lower",
+        "control": "pooled mean precision_margin_norm under EVAL_HYPERVIGILANT minus pooled mean under EVAL_BASELINE -- confirms the forced precision perturbation genuinely moved the graded-consumer's input, not just the raw _running_variance number (guards against a baseline already saturated near precision_margin_norm~1, leaving HV no room to differ; MECH-027 Build 1).",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "commit_temperature_reduced_under_hv",
+        "measured": 0.00019070260730069677,
+        "threshold": 0.01,
+        "direction": "lower",
+        "control": "pooled mean precision_scaled_commit_temperature_eff under EVAL_BASELINE minus pooled mean under EVAL_HYPERVIGILANT -- confirms HV's elevated precision genuinely produced a COLDER (more rigid) commit temperature than baseline, the mechanism MECH-027 Build 1 predicts drives the hypervigilance direction.",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "positive_control_hazard_sensitivity",
+        "measured": -0.4307225426313018,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "EVAL_BASELINE avoidant-action rate in the HIGH hazard band minus the SAFE band -- confirms the DV/env pairing is hazard-sensitive at all before trusting anything built on top of it.",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "hazard_bin_sample_coverage",
+        "measured": 10.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "the smallest (block, hazard-bin) pooled step count across every seed/block/bin combination -- every bin must be genuinely populated, not a near-empty-sample artifact.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "no_fatal_action_selection_errors",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "total count of _agent_tick exceptions across every seed/block -- each one substitutes a RANDOM action into the DV stream (_run_eval_block's except clause) -- must be 0. A partial- failure run injects near-chance avoidant-rate noise into exactly one block without tripping any other readiness gate, silently corrupting C1/C2 (red-team F1, chip-20260902-mech027-precision-replay-eval-substrate, verified 2026-09-02).",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_false_alarm_elevation": true,
+      "C2_reversion_recovery": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4958d9462c1e084c888943bbc9bec1edde0c7fe028cce340d1140193769d0f75",
+  "substrate_commit": {
+    "commit": "677276244a5bb18dade25680e9935500702101a2",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "latent.use_event_classifier": true,
+    "e3.goal_weight": 1.0,
+    "e3.use_precision_scaled_commit_temperature": true,
+    "hippocampal.mode_conditioning_enabled": true,
+    "hippocampal.use_anchor_sets": true,
+    "heartbeat.breath_period": 50,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_sleep_loop": true,
+    "use_mech285_sampler": true,
+    "use_mech272_routing": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 57834,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 3,
+    "goal_state_present": false
+  }
+}

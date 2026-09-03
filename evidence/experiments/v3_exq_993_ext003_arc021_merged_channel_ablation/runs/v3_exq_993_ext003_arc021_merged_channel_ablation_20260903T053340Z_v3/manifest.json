@@ -1,0 +1,130 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_993_ext003_arc021_merged_channel_ablation",
+  "run_id": "v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-03T05:33:40Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-021",
+    "EXT-003",
+    "MECH-069"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "ARC-021": "unknown",
+    "EXT-003": "unknown",
+    "MECH-069": "unknown"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "separated_baseline_signal_absent_both_conditions",
+    "preconditions": [
+      {
+        "name": "forward_head_action_sensitivity_present",
+        "description": "Worst-cell mean |predict_forward(z,a1)-predict_forward(z,a2)| over a fixed probe batch and two distinct movement actions, measured after P1 training. A below-floor reading means the forward head is action-blind in at least one cell, which would make its causal-signature reading structurally uninformative regardless of arm.",
+        "measured": 0.08930451422929764,
+        "threshold": 0.005,
+        "direction": "lower",
+        "control": "16-sample probe batch, actions 0 vs 1, worst cell across all 12 cells",
+        "met": true
+      },
+      {
+        "name": "p1_harm_events_observed_per_condition",
+        "description": "MIN(total P1 harm events summed over arms+seeds) across the two hazard-density conditions -- red-team fix F7: a pooled floor let SPARSE's harm head train on near-zero labeled data while DENSE's volume masked it. Taking the min across conditions requires BOTH to have real coverage.",
+        "measured": 1208.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "control": "dense=1208, sparse=1414 (each summed over 2 arms x 3 seeds)",
+        "met": true
+      }
+    ],
+    "combination_rule": "PASS iff C1_dense AND C2_sparse when BOTH conditions clear non-degeneracy; if only one condition clears it, outcome is that condition's criterion alone (label prefixed single_condition_only_partial_evidence); if neither clears it, unknown/non_degenerate=false. Each criterion additionally requires ALL 3 seeds to show MERGED<=SEPARATED (sign-consistency), not just a pooled mean margin.",
+    "criteria": [
+      {
+        "name": "C1_dense_merged_degrades_vs_separated",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_sparse_merged_degrades_vs_separated",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_dense_merged_degrades_vs_separated": false,
+      "C2_sparse_merged_degrades_vs_separated": false
+    },
+    "condition_detail": {
+      "DENSE": {
+        "condition": "DENSE",
+        "mean_gap_separated": -0.0006510889197757488,
+        "mean_gap_merged": 0.0005986594003894663,
+        "n_seed_pairs": 3,
+        "per_seed_diffs": [
+          0.0009183980413495601,
+          0.0004991402793731874,
+          0.0023317066397728976
+        ],
+        "non_degenerate": false,
+        "criterion_passed": false
+      },
+      "SPARSE": {
+        "condition": "SPARSE",
+        "mean_gap_separated": -0.00022161530788832064,
+        "mean_gap_merged": -0.000215271822233648,
+        "n_seed_pairs": 3,
+        "per_seed_diffs": [
+          0.0003172529064017931,
+          0.000362968998329013,
+          -0.0006611914477667883
+        ],
+        "non_degenerate": false,
+        "criterion_passed": false
+      }
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "94b646d21166e1071b75297551fcc09006bea71cd9f8f5fbfe9a431d20080527",
+  "substrate_commit": {
+    "commit": "677276244a5bb18dade25680e9935500702101a2",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  }
+}

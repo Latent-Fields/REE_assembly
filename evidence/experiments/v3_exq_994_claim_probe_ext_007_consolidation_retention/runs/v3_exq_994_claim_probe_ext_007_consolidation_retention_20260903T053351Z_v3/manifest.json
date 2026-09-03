@@ -1,0 +1,99 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_994_claim_probe_ext_007_consolidation_retention",
+  "run_id": "v3_exq_994_claim_probe_ext_007_consolidation_retention_20260903T053351Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-03T05:33:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "EXT-007"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "preconditions": [
+      {
+        "name": "context_memory_write_path_engaged",
+        "description": "Shared sd016 online write path fired on >= 50% of ENCODE ticks in every cell (positive control on the mechanism both arms share).",
+        "measured": 0.4486111111111111,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "sd016_writepath_mode=sense_only set identically in both arms",
+        "met": false
+      },
+      {
+        "name": "interference_disturbance_confirmed",
+        "description": "WITHOUT_CONSOLIDATION arm's mean retention_score is below 0.98 -- INTERFERE genuinely competed for ContextMemory slots.",
+        "measured": 0.9997450709342957,
+        "threshold": 0.98,
+        "direction": "upper",
+        "control": "WITHOUT_CONSOLIDATION arm (no sleep to protect the slot)",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_retention_score": false
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5800e1160b86e1adcb27e31c34387ec0fc6b57ab4c5809d1832ab0d14a2dc15e",
+  "substrate_commit": {
+    "commit": "677276244a5bb18dade25680e9935500702101a2",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.sd016_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "shy_enabled": true,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_sleep_loop": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
