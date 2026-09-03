@@ -1,12 +1,18 @@
 # ree-v3 orphaned `autostash` stash triage
 
-**Repo:** `/Users/dgolden/REE_Working/ree-v3`
-**Entries triaged:** 6 (all labelled `autostash`), across **two rounds**:
+**Repo:** `/Users/dgolden/REE_Working/ree-v3` (rounds 1-2). **Round 3 is a different repo on
+a different box** -- `~/REE_Working/REE_assembly` on `ree-cloud-3` -- and a different stash
+label (`runner-prepull-untracked`, not `autostash`). It is recorded here because the defect,
+the method and the archive-tag doctrine are identical; read the round-3 heading for what
+does *not* carry over.
+
+**Entries triaged:** 7, across **three rounds**:
 
 | Round | When | Session | Trunk at triage time | Entries |
 |---|---|---|---|---|
 | 1 | 2026-07-28T05:21Z | `dazzling-solomon-8a0090` | `origin/main` = `04435e0` (`docs: nightly /update-docs 2026-07-28`) | 5 |
 | 2 | 2026-07-29T17:13Z | `cranky-blackburn-d11b32` | `origin/main` = `42ab95f` (`SD-083: offline policy-consolidation window`) | 1 |
+| 3 | 2026-09-03T05:20Z | `cool-sutherland-9d984d` | `REE_assembly origin/master` = `e892538458` | 1 |
 
 **The stash list was cleared to empty at the end of round 1 and was non-empty again the next
 day** -- which is the honest summary of what this defect does. Round 2 exists because the
@@ -349,13 +355,90 @@ below, working as intended, on its first live catch of a new entry.
   stash list read empty at the time. They were recoverable throughout; the loss report was
   wrong, harmlessly, since `7b27b1a` already carried a superset.
 
+### Round 3 -- 2026-09-02 17:50 -- `b6c09a3fc0` -- V3-EXQ-571c manifest (REE_assembly on ree-cloud-3) -- ALREADY-LANDED (proven)
+
+**Not a `ree-v3` entry and not an `autostash` entry.** One `runner-prepull-untracked` stash
+in `~/REE_Working/REE_assembly` on `ree-cloud-3`, holding exactly **one untracked file**:
+`evidence/experiments/v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3.json`
+(397,083 bytes, valid JSON, `outcome: FAIL` -- complete, not a partial write).
+
+Surfaced by the 2026-09-03 morning digest via `runner_git_health.py`, graded **AT_RISK**
+("hold content proven nowhere else -- DO NOT drop"). That grade was a **false positive**; see
+the defect note at the end of this entry.
+
+- **The file is in the third parent, not the stash commit.** `git rev-parse 'stash@{0}:<path>'`
+  fails with *"exists on disk, but not in `stash@{0}`"*, which reads like the content is
+  missing. It is not: a `runner-prepull-untracked` entry parks **untracked** files, so they
+  live in `stash@{0}^3`. Parents were `baf49416` / `dcbd7613` / `01735142` -- trap 1 above, in
+  its untracked-file form. Use `<ref>^3:<path>`.
+- **Containment chain, proven key-by-key** (blob shas, all on `ree-cloud-3`):
+
+  | Version | Blob | Delta from the stash copy |
+  |---|---|---|
+  | stash (`^3`) | `df903679` | -- the runner's raw local write |
+  | `ee59667eeb` *phase3 writer* | `47584359` | **+`queue_id` only. Zero stash-only keys, zero differing shared values.** |
+  | `0ade914d46` *governance* | `cb87ba1a` (= `origin/master`) | +`evidence_direction_note`; `evidence_direction` `diagnostic` -> `non_contributory` |
+
+  So every key **and value** of the stash blob is present verbatim on `origin/master` except
+  the one field governance deliberately rewrote. This is whole-value containment of every
+  key, which is *stronger* than test 4's line-level check.
+- **The content never needed rescuing, because it never travelled by git in the first place.**
+  Under Phase 3 a result manifest reaches origin through the coordinator spool
+  (`POST /result` -> `phase3_git_writer`), which is what `ee59667eeb` is. The stashed file was
+  only ever the runner's **local artifact** of that same write. Worth stating plainly: on a
+  Phase-3 worker, a stashed evidence manifest is a *copy*, not a *strand*, unless the spool
+  route can be shown to have failed.
+- **Restoring it would have been actively harmful.** The single differing field is a
+  governance ratification landed 2026-09-02 from confirmed
+  `failure_autopsy_V3-EXQ-571c_2026-09-02.json` (`b98e2ccd45`, verified reachable from
+  `origin/master`). Applying the stash would revert `non_contributory` back to `diagnostic`.
+  This is the round-2 INTENTIONALLY-DEAD hazard in a new dress: the delta is not staleness,
+  it is a decision.
+- Worktree state was clean for that path throughout -- the on-disk file hashed to `cb87ba1a`,
+  identical to `origin/master`. Nothing on the box was at risk.
+- **Archive tag:** `stash-archive/20260902-b6c09a3f` -> `b6c09a3fc0920216e751bc4c41cd3883bc31b5dd`,
+  local-only on `ree-cloud-3`, 8-char form per the convention below. Verified to resolve
+  *before* the drop and re-verified *after* it (`df903679`, md5 `2676692d...`, 397,083 bytes,
+  still parsing as JSON) -- the post-drop check is the one that proves survival.
+- **Dropped on explicit user authorisation** (2026-09-03, "Drop it"), consistent with the
+  two-pass split above: mechanically proven, but the drop happens on a *shared box a session
+  does not own*, so it was put to the owner rather than actioned unilaterally.
+
+**Defect found in the grader itself, and it is the reusable finding here.**
+`_path_contained` in `runner_git_health.py` (inside the `UNTRACKED_PY` string constant, so
+its functions are **not** module attributes -- `import runner_git_health; h.is_superset`
+raises `AttributeError`) documents that it tolerates "a reviewer note / changed
+`evidence_direction`". Its predicate does not:
+
+```python
+def is_superset(origin, local):
+    for k, v in local.items():
+        if k not in origin or origin[k] != v:
+            return False
+    return True
+```
+
+An **added** key passes; a **changed** shared key fails. Governance rewrites
+`evidence_direction` in place, so the docstring's own stated case is the case the code fails
+-- confirmed empirically on this pair (`is_superset(origin, stash) -> False`, sole breaking
+key `evidence_direction`). Every governance-ratified run whose direction was *changed* rather
+than merely annotated therefore grades AT_RISK indefinitely, which is the dangerous direction
+for a false positive: it tells the reader not to drop, on every digest, until a real AT_RISK
+entry reads as more noise. Routed as `chip-20260903-prepull-grader-changed-field`, which also
+asks whether the sibling `_json_content_contained`
+(`ree-v3/experiment_runner.py:880`, used by the runner's own pop-time reaper) shares it --
+that one *acts* rather than reports, so its error direction must be checked before touching it.
+
+---
+
 ---
 
 ## Actions taken
 
 **All six dropped. The ree-v3 stash list is EMPTY as of 2026-07-29T17:13Z** (re-verified:
 `git stash list` returns 0 entries). Every one was archive-tagged first (see below), so no
-content was destroyed.
+content was destroyed. Round 3 (2026-09-03) adds a seventh entry in a *different repo on a
+different box*; it did not change ree-v3's state.
 
 ### Round 1 (2026-07-28) -- five entries
 
@@ -402,6 +485,28 @@ A duplicate 8-character tag created in this round was deleted, leaving one tag p
 **No edit was made to `validate_experiments.py`** -- `task_claim.py open` returned exit 3 on
 it (`keen-elion-70debb` held the earlier claim for unrelated `dead_z_goal_stream` work), and
 the verdict required no write to it, so the claim was re-scoped to `ree-v3/.git/refs`.
+
+### Round 3 (2026-09-03) -- one entry, `REE_assembly` on `ree-cloud-3`
+
+`b6c09a3fc0920216e751bc4c41cd3883bc31b5dd` archive-tagged as
+`stash-archive/20260902-b6c09a3f` (local-only on that box), then dropped **on explicit user
+authorisation**. `git stash list` on `ree-cloud-3`'s `REE_assembly` is empty as of
+2026-09-03T05:22Z, and `runner_git_health.py --host ree-cloud-3` no longer reports the entry.
+
+Three things this round adds that rounds 1-2 could not:
+
+1. **The two-pass split needs a third input: whose box is it.** The entry was mechanically
+   proven (whole-value containment, stronger than round 2's pass-1 grade), so by the round-1
+   rule it was a pass-1 drop needing no permission. It was still put to the owner, because
+   the drop mutates a **shared worker** rather than the Mac. Proof strength decides whether a
+   drop is *defensible*; ownership of the box decides whether it is *yours to make*.
+2. **On a Phase-3 worker, a stashed evidence manifest is a copy, not a strand.** Manifests
+   travel by the coordinator spool, so the git-side file is a local artifact of a write that
+   already reached origin by another route. Check the spool route *before* treating such an
+   entry as a rescue.
+3. **The grader can be wrong in the DO-NOT-DROP direction**, and that is the direction that
+   rots quietly -- it never loses data, it just trains the reader to skim past AT_RISK. See
+   the `is_superset` defect at the end of the round-3 entry above.
 
 ### Archive tags
 
