@@ -1,27 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-09-03T20:20:42Z`  
-Last review: `2026-09-03T07:23:52Z`  
-Pending: **9** item(s) -- 3 PASS, 6 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-09-03T20:49:24Z`  
+Last review: `2026-09-03T20:44:11Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_981_mech027_control_plane_pathological_modes_20260903T053044Z_v3` | 2026-09-03T05:30 | MECH-027 | — |
-| `v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3` | 2026-09-03T05:33 | ARC-021, EXT-003, MECH-069 | — |
-| `v3_exq_994_claim_probe_ext_007_consolidation_retention_20260903T053351Z_v3` | 2026-09-03T05:33 | EXT-007 | — |
-| `v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3` | 2026-09-03T11:17 | INV-088, MECH-457 | — |
-| `v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty_20260903T122245Z_v3` | 2026-09-03T12:22 | EXT-004 | — |
-| `v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3` | 2026-09-03T15:00 | EXT-002 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_977_arc052_harm_stream_conditional_precision_20260903T112134Z_v3` | 2026-09-03T11:21 | ARC-052 |
-| `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` | 2026-09-03T14:05 | MECH-320 |
-| `v3_exq_995_claim_probe_ext_005_causal_signature_20260903T194456Z_v3` | 2026-09-03T19:44 | EXT-005 |
+All experiments reviewed. Nothing pending.
 
 ---
 
