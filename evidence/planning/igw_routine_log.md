@@ -2509,3 +2509,7 @@ One line per hourly tick. ASCII only.
 2026-09-03T15:09:03Z reaped TASK_CLAIMS igw-auto-igw-241-literature-proposal-for-ext-008-20260903T140543Z (ledger IGW-20260903-241 -> completed_resumable)
 2026-09-03T15:09:03Z GC keep igw-241-literature-proposal-for-ext-008 (ledger IGW-20260903-241 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-09-03T15:08:21Z SPAWN IGW-20260903-242 skill=/queue-experiment prio=40 uuid=593dde27-ef80-47ea-a8bc-158236f485b6 pid=99708 worktree=igw-242-proposal-for-ext-009
+2026-09-03T16:11:54Z workset committed (regen -- 255 items, 34 ready, 0 in flight)
+2026-09-03T16:12:09Z auto-defer IGW-20260903-242 hash=0758bcfd8f0e for 48h (reaped -> completed_resumable)
+2026-09-03T16:12:09Z reaped TASK_CLAIMS igw-auto-igw-242-proposal-for-ext-009-20260903T150922Z (ledger IGW-20260903-242 -> completed_resumable)
+2026-09-03T16:12:11Z GC removed worktree igw-242-proposal-for-ext-009 post-reap (ledger IGW-20260903-242 -> completed_resumable; removed; branch deleted)
