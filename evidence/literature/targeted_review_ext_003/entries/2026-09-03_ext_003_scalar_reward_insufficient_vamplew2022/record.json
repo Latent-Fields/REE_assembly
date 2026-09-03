@@ -1,0 +1,66 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_003",
+  "entry_id": "2026-09-03_ext_003_scalar_reward_insufficient_vamplew2022",
+  "timestamp_utc": "2026-09-03T05:49:04Z",
+  "claim_ids_tested": [
+    "EXT-003"
+  ],
+  "source": {
+    "title": "Scalar reward is not enough: a response to Silver, Singh, Precup and Sutton (2021)",
+    "authors": [
+      "Peter Vamplew",
+      "Benjamin J. Smith",
+      "Johan Kallstrom",
+      "Gabriel de Oliveira Ramos",
+      "Roxana Radulescu",
+      "Diederik M. Roijers",
+      "Conor F. Hayes",
+      "Fredrik Heintz",
+      "Patrick Mannion",
+      "Pieter J. K. Libin",
+      "Richard Dazeley",
+      "Cameron Foale"
+    ],
+    "year": 2022,
+    "venue": "Autonomous Agents and Multi-Agent Systems",
+    "doi": "10.1007/s10458-022-09575-5",
+    "arxiv_id": "2112.15422",
+    "volume": "36",
+    "issue": "2",
+    "pages": "41"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "This is the closest thing in the literature to a direct statement of EXT-003's premise, and it is peer-reviewed rather than a preprint. The paper's own thesis -- that reward maximisation may be the right frame but scalar-valued reward is not, because an intelligence's objectives are irreducibly plural -- is EXT-003's first half almost verbatim. Section 4.3 is the load-bearing part for REE: the authors anticipate and defeat the obvious reply that a single global reward-prediction-error signal (dopamine) proves biological RL is single-objective, arguing that such a signal is better read as 'hard-coded to achieve multiple objectives' than as evidence of one. That is exactly the move MECH-069 needs, since REE's E1/E2/E3 separation is not a claim about how many error-carrying substances exist but about how many distinct credit-assignment channels the errors index. Confidence is held at 0.75, not higher, for two reasons that are about form rather than content. First, it is an argument paper: it proves nothing and runs no experiment, so it establishes that the position is defensible and defended, not that it is true. Second, and more important for mapping, its decomposition of objectives is not REE's -- it partitions along homeostatic drives, moral values and life goals, whereas MECH-069 partitions along the epistemic type of the error (world-model fidelity, motor-model fidelity, ethical/purposive fidelity). Those two decompositions are compatible but they are not the same claim, and this entry cannot be cited as evidence for REE's particular three-way cut.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A scalar reward cannot express solutions lying in concave regions of the Pareto front: for such trade-offs between objectives, no linear weighting exists that will favour them, so they are unreachable by scalarised optimisation regardless of how the weights are tuned.",
+    "Multi-policy learning -- holding a set of policies optimal under different utilities and switching rapidly when goals or utility change -- 'cannot readily be achieved by an agent observing only a scalar reward'.",
+    "Reward misspecification and reward hacking already produce surprising and undesirable behaviour in trivial systems, and the potential for misspecification increases significantly in more complex systems with more general agents.",
+    "There is no plausible single neurochemical or neuroanatomical objective function in mammals; even for a single critical nutrient (salt) multiple biological objectives operate at multiple levels -- taste receptors, interoceptive ingestion signals, and blood osmolality detectors -- and humans hold multiple 'irreducible and irreconcilable' moral and life objectives."
+  ],
+  "tags": [
+    "ext-003",
+    "mech-069",
+    "arc-021",
+    "reward-hacking",
+    "scalar-reward",
+    "multi-objective-rl",
+    "incommensurability",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Silver et al. are right that intelligence can be understood as reward maximisation but wrong that the reward can be scalar-valued. Scalar rewards are insufficient to account for aspects of both biological and computational intelligence; explicitly multi-objective models of reward maximisation are required. Even where a scalar reward can trigger intelligent behaviour in specific cases, it is insufficient for human-aligned AGI 'due to unacceptable risks of unsafe or unethical behaviour'.",
+    "ree_translation": "EXT-003 asserts that collapsing incommensurable error signals into one scalar reward is what permits reward hacking, and that REE's three separate BG-like learning channels (ARC-021) are the structural answer. Vamplew et al. supply the general form of the premise and, crucially, the counter-argument REE needs against the strongest objection to MECH-069. That objection is empirical: mammals do appear to have one dominant reward-prediction-error carrier, so why should REE need three channels? Section 4.3 answers it -- a single RPE-carrying neurotransmitter is 'properly thought of as hard-coded to achieve multiple objectives', not as evidence that mammalian RL is single-objective. Translated into REE's terms: the number of error-carrying signals is not the same quantity as the number of credit-assignment channels, and MECH-069 is a claim about the latter. The concave-Pareto-front result is the sharper technical import: it says there exist optimal trade-offs between objectives that NO scalarisation can select, which is a stronger statement than 'scalarisation is lossy' and is the formal shape of what 'incommensurable' has to mean if MECH-069 is to be more than a preference.",
+    "mapping_caveat": "Two boundaries. (1) The paper's objective decomposition is drive- and value-based (hunger, thirst, social bonding, harm avoidance, benevolence, autonomy), while MECH-069's is error-type-based (sensory prediction error, motor-sensory error on z_gamma, harm/goal error). These are different partitions of a system, and the paper's support for multi-objectivity in general does not carry over automatically to REE's specific three-way cut -- that cut still needs its own evidence. (2) EXT-003's subject field is llm.reward_hacking, but this paper is about RL and AGI generally and says nothing about transformer LLMs or RLHF specifically; the LLM-specific instantiation of the failure mode is evidenced by other entries in this pull (Gao 2023), not by this one.",
+    "source_context": "Peer-reviewed position/argument paper in Autonomous Agents and Multi-Agent Systems (accepted 2 July 2022, published online 16 July 2022), twelve authors drawn from the multi-objective RL community, written as a direct response to Silver et al. (2021). Draws on evolutionary biology, neurochemistry, moral psychology and multi-objective RL theory; contains no new experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Source quality 0.80: peer-reviewed journal, twelve authors with standing in the relevant subfield, and it engages its target directly rather than at a distance -- but it is argument, not measurement, and a position paper's venue prestige does not convert into empirical weight. Mapping fidelity 0.82 is the highest in this pull and is what carries the entry: the paper's thesis and EXT-003's premise are close to co-extensive, with the concave-Pareto-front point supplying a formal reading of 'incommensurable'. It is not higher because the objective partition differs from MECH-069's. Transfer risk 0.30: the biological arguments transfer to REE with the usual caution, and the multi-objective RL theory transfers cleanly since REE is a computational architecture; the residual risk is that the paper argues about AGI and RL agents generally where EXT-003 is scoped to LLM reward hacking."
+  }
+}

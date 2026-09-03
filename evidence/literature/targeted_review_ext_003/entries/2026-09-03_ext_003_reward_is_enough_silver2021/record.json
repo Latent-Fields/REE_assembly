@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_003",
+  "entry_id": "2026-09-03_ext_003_reward_is_enough_silver2021",
+  "timestamp_utc": "2026-09-03T05:49:04Z",
+  "claim_ids_tested": [
+    "EXT-003"
+  ],
+  "source": {
+    "title": "Reward is enough",
+    "authors": [
+      "David Silver",
+      "Satinder Singh",
+      "Doina Precup",
+      "Richard S. Sutton"
+    ],
+    "year": 2021,
+    "venue": "Artificial Intelligence",
+    "doi": "10.1016/j.artint.2021.103535",
+    "volume": "299",
+    "pages": "103535"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.50,
+  "confidence_rationale": "Included deliberately as the counterweight, because EXT-003's premise has an authoritative live opponent and a pull that omitted it would misrepresent the state of the field. Silver, Singh, Precup and Sutton hypothesise that intelligence and its associated abilities -- knowledge, learning, perception, social intelligence, language, generalisation, imitation -- 'can be understood as subserving the maximisation of reward', explicitly contrasted with 'the view that specialised problem formulations are needed for each ability, based on other signals or objectives'. That contrast is close to a direct denial of MECH-069 and ARC-021: REE's three-loop separation IS a specialised problem formulation per ability, grounded in the incommensurability of the underlying signals. The mapping is therefore unusually clean for a weakening entry (0.78) -- the two positions genuinely contradict rather than talk past each other. Confidence is nonetheless capped at 0.50, and the cap reflects evidentiary FORM rather than mapping ambiguity, which is a distinction worth making explicit because the calibration band would otherwise read as though the mapping were weak. The paper is a hypothesis paper: it advances a conjecture, argues for its plausibility across abilities, and reports no experiment or proof. It also does not directly defend the scalar-valued assumption that EXT-003 attacks -- it assumes it, which is precisely the gap Vamplew et al. (2022, this pull) identified in their reply. So this entry establishes that a serious opposing position exists and is held by principals of the field; it does not supply evidence that the position is correct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the reward-is-enough hypothesis holds, ARC-021's three separate learning channels would be an unnecessary architectural commitment: the abilities REE assigns to E1, E2 and E3 would emerge from maximising a single reward, and the separation would be optimisation overhead rather than a requirement for correct credit assignment.",
+    "The paper's stated contrast is with 'the view that specialised problem formulations are needed for each ability, based on other signals or objectives' -- REE's per-loop error signals are exactly such specialised formulations, so REE is a named target of the argument rather than an unconsidered case.",
+    "The authors' claim that a sufficiently powerful RL agent maximising reward could constitute a solution to AGI implies that observed reward hacking is a reward-design failure to be engineered away, not evidence of a structural limit -- which if true would reclassify EXT-003 from failure mode to implementation defect."
+  ],
+  "tags": [
+    "ext-003",
+    "mech-069",
+    "arc-021",
+    "reward-hypothesis",
+    "scalar-reward",
+    "counterweight",
+    "weakens"
+  ],
+  "mapping": {
+    "source_claim_statement": "Intelligence, and its associated abilities, can be understood as subserving the maximisation of reward. Reward is enough to drive behaviour exhibiting abilities studied in natural and artificial intelligence, including knowledge, learning, perception, social intelligence, language, generalisation and imitation. This is contrasted with the view that specialised problem formulations are needed for each ability, based on other signals or objectives. Agents that learn through trial and error to maximise reward could learn behaviour exhibiting most if not all of these abilities, so powerful reinforcement learning agents could constitute a solution to artificial general intelligence.",
+    "ree_translation": "Read against EXT-003 this is the opposing hypothesis, and its opposition is structural rather than incidental. EXT-003 holds that collapsing incommensurable error signals into one scalar is what permits reward hacking, and ARC-021 answers with three separate learning channels. Silver et al.'s explicit contrast case -- 'specialised problem formulations for each ability, based on other signals or objectives' -- is a description of exactly that answer. If they are right, ARC-021's separation is optimisation overhead rather than a requirement for correct credit assignment, MECH-069's incommensurability is a claim about convenience rather than about information, and observed reward hacking is a reward-design problem to be engineered away rather than a structural limit of scalarisation. That is the falsifier this entry registers. It is worth noting what the paper does NOT do, because it bears on how much force the opposition carries: it does not argue for the scalar-valued assumption, it assumes it -- which is the precise gap Vamplew et al. built their reply around, and the reason the two papers in this pull are best read as a pair rather than as independent votes.",
+    "mapping_caveat": "This is an argument, not evidence, and the entry must not be read as a measurement weighing against EXT-003. The paper advances a hypothesis and defends its plausibility ability by ability; it reports no experiment and proves no theorem, and it is explicitly framed by its authors as a hypothesis. Its weakening force on EXT-003 is therefore the force of a credible unrefuted conjecture held by principals of the field, which is real but bounded. A second and more specific limit: the paper's target is the sufficiency of REWARD MAXIMISATION, and the scalar-valuedness of that reward is an auxiliary assumption it never separately defends. EXT-003 attacks only the auxiliary assumption. So the two positions are not exact contradictories -- one could accept the reward-is-enough framing and still hold, with Vamplew et al., that the reward must be vector-valued, in which case this paper would not weaken EXT-003 at all. The entry is scored as weakening on the reading Silver et al. actually intend and Vamplew et al. attribute to them; that reading is defensible but is an interpretation, not a quotation.",
+    "source_context": "Artificial Intelligence 299:103535 (2021), a position/hypothesis paper by four principals of the reinforcement learning field. No experiments; the argument proceeds by considering, ability by ability, how reward maximisation could give rise to knowledge, learning, perception, social intelligence, language, generalisation and imitation. Widely cited and widely replied to -- Vamplew et al. (2022), also in this pull, is one of several published responses."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.85 reflects venue and authorship, not evidential weight: Artificial Intelligence is a leading journal and the four authors are principals of the field, but the paper contains no experiment or proof, so the number certifies that the position is serious rather than that it is supported. Mapping fidelity 0.78 -- unusually high for a weakening entry, because the paper's own stated contrast case is a description of REE's architecture, so the two positions genuinely contradict rather than glance off each other; it is held below 0.85 by the fact that the scalar-valuedness EXT-003 attacks is an auxiliary assumption in this paper rather than its thesis. Transfer risk 0.35: the argument is about intelligence in general, natural and artificial, and applying it to REE's specific three-channel commitment requires an interpretive step. The aggregate 0.50 is set BELOW the components' tenor on purpose -- the standard calibration band puts <0.5 at 'weak or ambiguous mapping', which is not the situation here; the mapping is clean and the evidentiary form is what is weak. Recorded explicitly so a later reader does not correct 0.50 upward on the mistaken view that it was scored for mapping ambiguity."
+  }
+}

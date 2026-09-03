@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_003",
+  "entry_id": "2026-09-03_ext_003_rlhf_proxy_overoptimization_gao2023",
+  "timestamp_utc": "2026-09-03T05:49:04Z",
+  "claim_ids_tested": [
+    "EXT-003"
+  ],
+  "source": {
+    "title": "Scaling Laws for Reward Model Overoptimization",
+    "authors": [
+      "Leo Gao",
+      "John Schulman",
+      "Jacob Hilton"
+    ],
+    "year": 2023,
+    "venue": "Proceedings of the 40th International Conference on Machine Learning (ICML 2023), PMLR",
+    "arxiv_id": "2210.10760",
+    "doi": null,
+    "volume": "202",
+    "pages": "10835-10866",
+    "url": "https://proceedings.mlr.press/v202/gao23h.html"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the only entry that operates in the setting EXT-003's subject field actually names -- RLHF on language models -- and it is the one that quantifies the failure rather than demonstrating or proving it. Using a synthetic setup where a fixed 'gold-standard' reward model stands in for human labellers, the authors measure how gold reward changes as a policy is optimised against a proxy reward model trained on that gold model's labels, and recover clean empirical functional forms: for best-of-n sampling R_bon(d) = d(alpha_bon - beta_bon*d), and for RL R_RL(d) = d(alpha_RL - beta_RL*log d), where d := sqrt(D_KL(pi || pi_init)). Both are non-monotone -- gold reward rises, peaks, and then falls as optimisation pressure increases -- so the LLM case shows the same qualitative signature EXT-003 predicts, now with a measured shape and coefficients that scale smoothly with reward model size. Confidence is held at 0.68, the lowest of the four supporting entries, and the reason is a mapping problem rather than a quality problem: both the proxy AND the gold reward in this study are scalars. The paper therefore isolates a proxy-approximation failure, not an incommensurability failure, and it is entirely consistent with the position EXT-003 denies -- that a correct scalar exists and the trouble is only that we cannot learn it exactly. It evidences the consequence in the right domain while being structurally silent on, and mildly in tension with, the premise.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Optimising a learned scalar proxy reward past a certain point reliably DECREASES ground-truth reward: the gold-reward curves are non-monotone in optimisation pressure, rising to a peak and then falling.",
+    "The overoptimization relationship takes different functional forms by optimisation method -- R_bon(d) = d(alpha_bon - beta_bon*d) for best-of-n and R_RL(d) = d(alpha_RL - beta_RL*log d) for RL, with d := sqrt(KL divergence from the initial policy) -- so the failure is a systematic law rather than an occasional accident.",
+    "The coefficients scale smoothly with the number of reward model parameters, meaning a larger reward model shifts the peak but does not remove it: scaling the proxy is a mitigation, not a fix.",
+    "The KL penalty added to the RL reward does not eliminate the effect; it is one more knob trading optimisation pressure against divergence, not a solution to the underlying proxy gap."
+  ],
+  "tags": [
+    "ext-003",
+    "mech-069",
+    "arc-021",
+    "reward-hacking",
+    "rlhf",
+    "llm",
+    "reward-model",
+    "overoptimization",
+    "goodharts-law",
+    "scaling-laws",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "In RLHF it is common to optimise against a reward model trained to predict human preferences. Because that reward model is an imperfect proxy, optimising its value too much hinders ground-truth performance, in accordance with Goodhart's law. Measured in a synthetic setup where a fixed gold-standard reward model plays the role of humans, the gold reward score as a function of KL distance from the initial policy follows R_bon(d) = d(alpha_bon - beta_bon*d) for best-of-n sampling and R_RL(d) = d(alpha_RL - beta_RL*log d) for reinforcement learning, with d := sqrt(D_KL(pi || pi_init)); in both cases the coefficients scale smoothly with reward model size.",
+    "ree_translation": "EXT-003 is registered as an external failure mode with subject llm.reward_hacking, and this is the entry that puts the failure mode in that domain with numbers attached. The non-monotone gold-reward curve is the observable signature of exactly what EXT-003 describes: past the peak, the policy is still improving on the signal it was given and is getting worse at what was actually wanted. For REE the useful part is what does NOT fix it. Scaling the reward model shifts the peak and leaves the shape intact; the KL penalty trades pressure against divergence without closing the gap. Both are attempts to make the single scalar channel better rather than to stop collapsing onto one channel, and neither works. That is the negative result ARC-021's three-loop separation is the positive proposal against: REE's answer is not a more accurate scalar but three learning channels that are never summed, so no policy improvement on one is expressible as a licence to regress on another.",
+    "mapping_caveat": "This is the sharpest caveat in the pull and it should not be softened. Both the proxy reward model and the gold reward model in this study are SCALARS. What the paper isolates is therefore an approximation failure -- we cannot learn the true scalar exactly, and optimising the learned stand-in past a point diverges from it. That is fully compatible with the view EXT-003 denies, namely that a correct scalar objective exists and the only difficulty is estimating it. Nothing in this study requires or supports incommensurability; a reader who took the paper on its own terms would conclude the fix is better reward modelling, which is the opposite of ARC-021's conclusion. The entry therefore evidences EXT-003's consequence in the right domain while being structurally silent on its premise and mildly in tension with it. Second caveat: the gold reward model is itself a model, not human judgement, so the study measures divergence between two learned scalars rather than divergence from what people actually want -- the authors adopt this synthetic design deliberately, for cost reasons, and are explicit about it, but it means the absolute numbers are about the setup rather than about human preference.",
+    "source_context": "ICML 2023 (PMLR 202:10835-10866), OpenAI. Synthetic RLHF setup: a fixed gold-standard reward model supplies preference labels used to train a proxy reward model; policies are optimised against the proxy via either reinforcement learning or best-of-n sampling. Sweeps cover reward-model dataset size, reward-model and policy parameter counts, and the RL KL-penalty coefficient. Language-model domain throughout."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.32,
+    "notes": "Source quality 0.88: ICML 2023, careful and well-powered parameter sweeps, and the recovered functional forms have held up as a reference point in subsequent overoptimization work. Mapping fidelity 0.55 is the lowest in the pull and is the whole reason confidence sits at 0.68 despite the strong source and the on-target domain -- a scalar-proxy-approximates-scalar-gold study cannot evidence incommensurability, and taken alone it points toward better reward modelling rather than channel separation. Transfer risk 0.32: the domain is right (LLMs under RLHF, which is EXT-003's stated subject), so there is no cross-domain leap; the residual risk is the synthetic gold model standing in for human judgement, which makes the measured coefficients properties of the setup rather than of human preference."
+  }
+}

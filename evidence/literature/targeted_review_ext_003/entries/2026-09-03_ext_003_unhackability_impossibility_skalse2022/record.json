@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_003",
+  "entry_id": "2026-09-03_ext_003_unhackability_impossibility_skalse2022",
+  "timestamp_utc": "2026-09-03T05:49:04Z",
+  "claim_ids_tested": [
+    "EXT-003"
+  ],
+  "source": {
+    "title": "Defining and Characterizing Reward Gaming",
+    "authors": [
+      "Joar Skalse",
+      "Nikolaus H. R. Howe",
+      "Dmitrii Krasheninnikov",
+      "David Krueger"
+    ],
+    "year": 2022,
+    "venue": "Advances in Neural Information Processing Systems 35 (NeurIPS 2022), Main Conference Track",
+    "arxiv_id": "2209.13085",
+    "doi": null,
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/3d719fee332caa23d5038b8a90e81796-Abstract-Conference.html"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the strongest evidentiary FORM in the pull -- a theorem, not an argument or a simulation -- and it establishes the sharpest available version of EXT-003's second half. The authors define a proxy as 'unhackable' when increasing expected proxy return can never decrease expected true return, and then prove that over the set of all stochastic policies two reward functions can only be unhackable if one of them is constant. Read plainly: for any non-degenerate pair, optimising the proxy can drive the true objective down. That is not a warning about careless reward design; it is a statement that safe scalar proxies essentially do not exist in the general case, which is a strictly stronger claim than EXT-003 needs. The key mechanism the authors identify -- 'the linearity of reward (in state-action visit counts) makes unhackability a very strong condition' -- is also the right mechanism for REE's purposes, because linear aggregation is exactly what collapsing three error channels into one scalar performs. Confidence is 0.78 rather than higher because the theorem's subject is a proxy/true reward PAIR rather than the incommensurability of distinct error channels: it proves that scalarised optimisation is unsafe, not that the three specific signals MECH-069 names cannot be derived from one another. The result is therefore load-bearing for the consequence EXT-003 asserts and silent on its premise. Confidence is not lower because the result needs no domain transfer at all -- it is a mathematical fact about MDPs, and REE's learning channels are optimised objects in that sense.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Over the set of all stochastic policies, two reward functions can be unhackable only if one of them is constant -- so for any non-trivial proxy/true pair there exist policy improvements under the proxy that decrease true return.",
+    "The intuitive mitigations fail: making a reward function 'narrower' by leaving terms out, or overlooking fine-grained distinctions between roughly equivalent outcomes, do not in general produce an unhackable proxy.",
+    "The linearity of reward in state-action visit counts is what makes unhackability so strong a condition -- i.e. the very additive aggregation used to combine objectives into one scalar is the source of the problem.",
+    "There is a structural tension between using reward functions to specify narrow tasks and using them to align systems with human values; the two uses pull in opposite directions."
+  ],
+  "tags": [
+    "ext-003",
+    "mech-069",
+    "arc-021",
+    "reward-hacking",
+    "reward-gaming",
+    "unhackability",
+    "formal-result",
+    "scalar-reward",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reward hacking is formally defined as the phenomenon where optimising an imperfect proxy reward function leads to poor performance according to the true reward function; a proxy is 'unhackable' if increasing expected proxy return can never decrease expected true return. Because reward is linear in state-action visit counts, unhackability is a very strong condition: over the set of all stochastic policies, two reward functions can only be unhackable if one of them is constant. Non-trivial unhackable pairs exist only once one restricts to deterministic policies or finite sets of stochastic policies. The results reveal a tension between using reward functions to specify narrow tasks and aligning AI systems with human values.",
+    "ree_translation": "EXT-003 has two halves: a premise (the three error signals are incommensurable) and a consequence (collapsing them into one scalar permits credit misattribution, so an agent can satisfy the reward by optimising one channel at the expense of the others). This paper is the formal backing for the consequence, and it makes it stronger than EXT-003 states it. EXT-003 says collapsing 'permits' hacking; Skalse et al. prove that in the general stochastic-policy case a non-constant scalar proxy is essentially always hackable -- permission is the wrong modality, near-inevitability is closer. The mechanism identified is the one that matters for REE: unhackability is hard because reward is LINEAR in state-action visit counts, and linear aggregation is precisely the operation that a single scalar reward performs on multiple objectives. ARC-021's three separate learning channels, each with its own error signal and its own optimiser, are a refusal to perform that aggregation at all -- the architecture never forms the scalar whose optimisation the theorem indicts. The paper does not say this, but it supplies the reason why not forming it is the right move rather than merely a tidier one.",
+    "mapping_caveat": "The theorem is about a proxy/true reward PAIR in an MDP. It does not establish, and cannot be cited for, MECH-069's premise that sensory prediction error, motor-sensory error and harm/goal error are mutually underivable -- that is a claim about the informational content of three specific signals, and no result here speaks to it. A second boundary: the paper's own framing assumes there IS a well-defined true reward function that the proxy approximates imperfectly. EXT-003's stronger reading is that no true SCALAR exists to be approximated, because the objectives are incommensurable. This paper is therefore an ally on the consequence while quietly presupposing something EXT-003 denies, and that tension should be stated rather than smoothed over. Third: the negative result is proved over all stochastic policies; the authors are explicit that non-trivial unhackable pairs DO exist for deterministic policies and finite policy sets, so the result must not be quoted as an unconditional impossibility.",
+    "source_context": "Theoretical paper with formal definitions, theorems and proofs over Markov decision processes; no experiments, no species or task transfer involved. NeurIPS 2022 main conference track. Note the published proceedings title is 'Defining and Characterizing Reward Gaming' while the arXiv version (2209.13085) is titled 'Defining and Characterizing Reward Hacking' -- same paper, same authors."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.22,
+    "notes": "Source quality 0.90: NeurIPS main track, formal results with proofs, and the definitional framework has been widely adopted since. Mapping fidelity 0.66 is the limiting term and the reason confidence sits at 0.78 rather than in the 0.85+ band: the theorem targets EXT-003's consequence squarely and its premise not at all, and it additionally presupposes a well-defined true scalar reward, which is in tension with the strongest reading of EXT-003. Transfer risk 0.22, the lowest in this pull -- there is no animal-to-human or lab-to-deployment step to worry about, since the result is a mathematical property of MDPs; the residual risk is only that REE's three-channel learning is not straightforwardly a single MDP with one reward, so the theorem applies to the architecture REE rejects rather than to REE itself."
+  }
+}
