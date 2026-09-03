@@ -1816,9 +1816,9 @@
       "summary": "EXT-005's registered wording ('LLMs can produce fluent causal language without ANY internal mechanism that computes a genuine causal signature') is contradicted as written by Kiciman et al. 2024 (TMLR), which reports GPT-3.5/4 at 97% pairwise causal discovery, 92% counterfactual reasoning and 86% on necessary-and-sufficient-cause vignettes, with robustness checks showing the results survive on post-training-cutoff datasets -- recorded as the 'weakens' entry in the new targeted_review_ext_005 pull (REE_assembly 6dbbb15509, 5 entries, lit_confidence 0 -> 0.772). The narrowed claim that DOES survive the pull, and that REE's SD-029/ARC-037 cluster actually answers, is the absence of a FIRST-PERSON, RUN-TIME causal signature over the agent's own interventions: Kiciman's own stated qualifier is that LLMs 'operate on the text metadata' and 'ignore the actual data', and no task in that paper (or in Zecevic 2023 or Jin 2024) tests agent-caused vs world-caused attribution at all. Recommend governance re-word EXT-005 to the narrowed form rather than leave a blanket-absence claim standing against contrary measurement.",
       "raised_by_session": "igw-239-literature-proposal-for-ext-005",
       "raised_at": "2026-09-03T11:14:02Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-03T20:49:01Z",
+      "resolution_note": "Applied by governance-20260903T2013 after V3-EXQ-995 PASS: claims.yaml EXT-005 -- title narrowed to a first-person, run-time causal-signature mechanism over the agent own interventions (the reading Kiciman 2024 leaves untested and the one 995 measured); Kiciman weakens entry stands against the OLD wording, lit-only conflict non-gating per the 2026-09-03 user ruling. Commit: this cycle's governance commit on REE_assembly master."
     },
     {
       "flag_id": "GFLAG-0126",
