@@ -5,7 +5,7 @@ nav_exclude: true
 # REE Claim Index
 
 This index lists all claim IDs with one-line summaries and links. For full metadata, see `claims.yaml`.
-Dependency edges are conceptual prerequisites and must stay acyclic; runtime feedback loops are documented in architecture flow specs rather than `depends_on`.
+The claim graph has two edge layers (GOV-EDGE-1, 2026-09-04). `depends_on` is a directed prerequisite edge and must stay acyclic; `scripts/validate_claims.py` fails governance on a cycle. `coupled_with` is an undirected reciprocal-coupling edge (co-defining architecture, mutual explanation), written on both endpoints; that is where an edge belongs when putting it in `depends_on` would close a cycle. Runtime feedback loops are documented in architecture flow specs rather than in either field. `emergent_from` is unchanged: directional and a subset of `depends_on`.
 
 **Claim Type:** implementation_note  
 **Scope:** Claim index and navigation  

@@ -10,7 +10,13 @@
 #   subject       dotted-path topic (e.g. ethics.emergence, attention.dan)
 #   polarity      asserts | denies    (optional)
 #   status        candidate | provisional | active | retracted | superseded
-#   depends_on    list of claim IDs this entry references
+#   depends_on    list of claim IDs that are PREREQUISITES of this entry (build
+#                 order / evidential support). DIRECTED and ACYCLIC -- a cycle is
+#                 an ERROR in scripts/validate_claims.py (GOV-EDGE-1, 2026-09-04).
+#   coupled_with  list of claim IDs this entry is RECIPROCALLY coupled with
+#                 (co-defining architecture, mutual explanation). UNDIRECTED:
+#                 written on both endpoints. Never a prerequisite. This is where
+#                 an edge goes when putting it in depends_on would close a cycle.
 #   location      anchor in reference doc (docs/invariants.md, etc.)
 #   source        list of source paths
 #   notes         free text
@@ -978,11 +984,14 @@
     needs_review: false
   depends_on:
     - SD-026
-    - MECH-485  # threshold-gated predicted-harm/confidence pipeline; supplies Leg 3's retained-alternative candidates
-    - MECH-487  # Leg 3's retention mechanism -- persists WHICH rejected/uncommitted E3 candidate existed past the tick, provenance-tagged (registered 2026-08-07 by the dedicated lit-pull; was the "retention mechanism ... does NOT YET EXIST" named in Leg 3's what_would_answer)
-    - ARC-015   # self-impact attribution / responsibility-flow substrate Leg 4 discounts against
-    - MECH-060  # pre-commit sim-error / post-commit realized-error write-locus separation Leg 4 builds on and distinguishes itself from
     - MECH-095  # TPJ self/world comparator -- Leg 4 assumes its OUTPUT (self-causation already known), does not re-test its discrimination task
+  coupled_with:
+    - ARC-015  # self-impact attribution / responsibility-flow substrate Leg 4 discounts against  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-060  # pre-commit sim-error / post-commit realized-error write-locus separation Leg 4 builds on and distinguishes itself from  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-485  # threshold-gated predicted-harm/confidence pipeline; supplies Leg 3's retained-alternative candidates  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-487  # Leg 3's retention mechanism -- persists WHICH rejected/uncommitted E3 candidate existed past the tick, provenance-tagged (registered 2026-08-07 by the dedicated lit-pull; was the "retention mechanism ... does NOT YET EXIST" named in Leg 3's what_would_answer)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - ARC-003  # reverse of ARC-003 -> INV-012 coupling, 2026-09-04 GOV-EDGE-1
+    - ARC-017  # reverse of ARC-017 -> INV-012 coupling, 2026-09-04 GOV-EDGE-1
   epistemic_category: substrate_conditional
   what_would_answer: |
     CORRECTION (2026-08-07, same digestion session, user-caught): the
@@ -1568,11 +1577,12 @@
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
   depends_on:
-    - INV-012
     - ARC-001
     - ARC-002
     - ARC-004
     - ARC-005
+  coupled_with:
+    - INV-012  # moved from depends_on 2026-09-04, GOV-EDGE-1: cycle-break; re-judge (cycle ARC-003 -> INV-012 -> MECH-095 -> ARC-021 -> Q-019 -> MECH-057a -> ARC-003)
   epistemic_category: standard
   what_would_answer: |
     ARC-003 is CONJUNCTIVE -- "E3 SELECTS" and "E3 COMMITS" are separate assertions
@@ -1991,7 +2001,8 @@
   depends_on:
     - ARC-004
     - ARC-003
-    - ARC-018
+  coupled_with:
+    - ARC-018  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   epistemic_category: standard
   what_would_answer: |
     ARC-007 is CONJUNCTIVE and only one leg has ever been tested.
@@ -2196,7 +2207,8 @@
     - INV-005
     - ARC-004
     - ARC-006
-    - ARC-047
+  coupled_with:
+    - ARC-047  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   what_would_answer: >
     Requires a multi-agent substrate that does not yet exist in ree-v3 (confirmed: no
     "social", "mirror", "other_agent", or "otherness" implementation anywhere under
@@ -3399,13 +3411,14 @@
     needs_review: false
   depends_on:
     - INV-018
-    - INV-012
     - ARC-003
     - ARC-005
     - ARC-004
     - ARC-013
     - ARC-007
-    - MECH-095
+  coupled_with:
+    - INV-012  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-095  # moved from depends_on 2026-09-04, GOV-EDGE-1: cycle-break; re-judge (cycle ARC-015 -> MECH-095 -> ARC-021 -> Q-019 -> MECH-057a -> ARC-015)
   notes: >
     Epistemic-function cross-reference (2026-08-25, docs/thoughts/2026-08-12_
     responsibility_as_epistemic_hygiene.md, Stage 2: evidence/planning/
@@ -4069,11 +4082,12 @@
     EXQ-135 FAIL (2026-03-29): reality coherence pair FAIL. Second FAIL on this claim.
   depends_on:
     - INV-008
-    - INV-012
     - ARC-004
     - ARC-005
     - ARC-003
     - ARC-015
+  coupled_with:
+    - INV-012  # moved from depends_on 2026-09-04, GOV-EDGE-1: cycle-break; re-judge (cycle ARC-017 -> INV-012 -> SD-026 -> SD-012 -> MECH-112 -> ARC-030 -> SD-010 -> ARC-027 -> ARC-017)
   digestion_note: |
     [2026-08-07, thought-digestion, session cool-torvalds-a82359] DEFERRED --
     do not draft a what_would_answer until this is resolved, remove this
@@ -4214,11 +4228,12 @@
     ratio, not counted as an additional weakens -- the demotion is driven solely by 120a's
     genuine null.
   depends_on:
-    - ARC-007
     - ARC-003
     - ARC-002
     - ARC-001
     - ARC-021
+  coupled_with:
+    - ARC-007  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   epistemic_category: standard
   what_would_answer: |
     ARC-018 is CONJUNCTIVE, and its PASS/FAIL split is NOT noise -- the evidence
@@ -4526,8 +4541,9 @@
     - ARC-016
     - ARC-005
     - MECH-093
-    - MECH-161
-    - ARC-044
+  coupled_with:
+    - ARC-044  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-161  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/modes_of_cognition.md#mech-026
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: MECH-161's arousal regulator -- a controller that tunes
@@ -4779,10 +4795,13 @@
     - INV-010
     - MECH-092
     - MECH-094
-    - MECH-120
-    - MECH-121
-    - MECH-122
-    - MECH-123
+  coupled_with:
+    - MECH-120  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-121  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-122  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-123  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - ARC-036  # reverse of ARC-036 -> MECH-030 coupling, 2026-09-04 GOV-EDGE-1
+    - SD-014  # reverse of SD-014 -> MECH-030 coupling, 2026-09-04 GOV-EDGE-1
   location: docs/architecture/sleep.md#mech-030
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
@@ -4977,7 +4996,8 @@
     - ARC-002
     - ARC-001
     - ARC-005
-    - ARC-021
+  coupled_with:
+    - ARC-021  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/hippocampal_systems.md#mech-033
   source:
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
@@ -5461,7 +5481,8 @@
     - MECH-039
     - SD-011           # affective harm stream z_harm_a (input)
     - SD-032a          # SalienceCoordinator (target of mode prior)
-    - SD-035           # amygdala analogue substrate (parent)
+  coupled_with:
+    - SD-035  # amygdala analogue substrate (parent)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: docs/architecture/sd_035_amygdala_analog.md#mech-046
   source:
     - docs/thoughts/2026-02-11_amygdala.md
@@ -6159,7 +6180,8 @@
     - ARC-004
     - INV-012
     - ARC-023
-    - MECH-090
+  coupled_with:
+    - MECH-090  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/agency_responsibility_flow.md#mech-057a
   source:
     - docs/thoughts/2026-02-13_LeCun_developed_lots_of_REE.md
@@ -6434,8 +6456,9 @@
     - ARC-003
     - ARC-005
     - ARC-015
-    - INV-012
     - MECH-057a
+  coupled_with:
+    - INV-012  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   what_would_answer: |
     ALREADY CONFIRMED at ree-v1-minimal scale (EVB-0043/EXQ-005 PASS,
     2026-02-27): write-locus contamination is DETECTABLE -- a
@@ -8394,7 +8417,8 @@
     - INV-032
     - ARC-016
     - MECH-113
-    - MECH-114
+  coupled_with:
+    - MECH-114  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: requires a real second-order self-confidence
     signal structurally READ by the commit decision itself, not merely computed
@@ -8863,6 +8887,8 @@
     - MECH-057a
     - MECH-059
     - MECH-061
+  coupled_with:
+    - ARC-021  # reverse of ARC-021 -> Q-019 coupling, 2026-09-04 GOV-EDGE-1
   source:
     - docs/thoughts/2026-02-27_three_gate_bg_architecture.md
 # Registered 2026-03-14 — three-loop learning channel separation (from thought 2026-03-14_three_bg_systems_error_signals.md)
@@ -8981,10 +9007,11 @@
     "separation is required" -- the merged-channel ablation above is the
     missing test and has never been run.
   depends_on:
-    - Q-019
     - ARC-004
-    - MECH-069
-    - MECH-033
+  coupled_with:
+    - MECH-033  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-069  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - Q-019  # moved from depends_on 2026-09-04, GOV-EDGE-1: cycle-break; re-judge (cycle ARC-021 -> Q-019 -> MECH-057a -> ARC-023 -> ARC-021)
   location: docs/architecture/three_loop_learning_channels.md#arc-021
   pending_retest_after_substrate: true
   source:
@@ -9021,10 +9048,11 @@
     (dorsal SLF / ventral occipitotemporal / lateral STS stream). See MECH-099 and
     evidence/literature/targeted_review_reafference_streams/ (Haak & Beckmann 2018).
   depends_on:
-    - ARC-021
     - MECH-033
     - ARC-018
-    - MECH-099
+  coupled_with:
+    - ARC-021  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-099  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/three_loop_learning_channels.md#mech-069
   evidence_quality_note: >
     [2026-09-03 governance governance-20260903T2013, confirmed
@@ -9448,7 +9476,8 @@
     - ARC-007
     - ARC-013
     - SD-011           # affective harm stream z_harm_a
-    - SD-035           # amygdala analogue substrate (parent)
+  coupled_with:
+    - SD-035  # amygdala analogue substrate (parent)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   child_claims:
     - MECH-074a        # BLA encoding-gain on hippocampal writes
     - MECH-074b        # BLA retrieval bias (content-selective per-trace weights)
@@ -10795,8 +10824,9 @@
     - INV-019
     - MECH-060
     - MECH-029
-    - MECH-248
-    - MECH-249
+  coupled_with:
+    - MECH-248  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-249  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/default_mode.md#mech-094
   source:
     - docs/architecture/default_mode.md
@@ -11358,8 +11388,9 @@
   depends_on:
     - ARC-023
     - ARC-021
-    - MECH-057a
     - MECH-138
+  coupled_with:
+    - MECH-057a  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/control_plane_heartbeat.md#mech-090
   source:
     - docs/architecture/control_plane_heartbeat.md
@@ -11735,8 +11766,9 @@
     - ARC-018
     - ARC-022
     - MECH-094
-    - MECH-289   # anti-recency bias: quiescent replay is generative over all paths, not recency-weighted
-    - MECH-291   # mode differentiation: quiescent mode uses distinct CEM parameters from waking mode
+  coupled_with:
+    - MECH-289  # anti-recency bias: quiescent replay is generative over all paths, not recency-weighted  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-291  # mode differentiation: quiescent mode uses distinct CEM parameters from waking mode  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: docs/architecture/control_plane_heartbeat.md#mech-092
   source:
     - docs/architecture/control_plane_heartbeat.md
@@ -12025,6 +12057,8 @@
     - SD-005
     - MECH-069
     - ARC-021
+  coupled_with:
+    - ARC-015  # reverse of ARC-015 -> MECH-095 coupling, 2026-09-04 GOV-EDGE-1
   location: docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
   source:
     - docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
@@ -12322,8 +12356,9 @@
   implementation_phase: v3
   depends_on:
     - ARC-017
-    - MECH-069
     - MECH-096
+  coupled_with:
+    - MECH-069  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/thoughts/2026-03-17_three_stream_reafference.md
   source:
     - docs/thoughts/2026-03-17_three_stream_reafference.md
@@ -12876,7 +12911,8 @@
     - MECH-090
     - MECH-105
     - ARC-023
-    - MECH-290   # backward credit sweep fires at the same completion event that releases BetaGate
+  coupled_with:
+    - MECH-290  # backward credit sweep fires at the same completion event that releases BetaGate  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: docs/architecture/control_plane_heartbeat.md#arc-028
   source:
     - docs/architecture/control_plane_heartbeat.md
@@ -15008,8 +15044,9 @@
   depends_on:
     - ARC-016
     - MECH-113
-    - INV-033
     - SD-005
+  coupled_with:
+    - INV-033  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/approach_avoidance_symmetry.md#mech-114
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: d_eff must be structurally READ by
@@ -15224,7 +15261,8 @@
   depends_on:
     - MECH-113
     - MECH-118
-    - Q-022
+  coupled_with:
+    - Q-022  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/approach_avoidance_symmetry.md#mech-119
   source:
     - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
@@ -15329,8 +15367,9 @@
   depends_on:
     - MECH-113
     - MECH-118
-    - MECH-119
     - SD-005
+  coupled_with:
+    - MECH-119  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/approach_avoidance_symmetry.md#q-022
   source:
     - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
@@ -15387,7 +15426,8 @@
   depends_on:
     - MECH-089
     - MECH-112
-    - SD-033a         # adjacent to lateral-PFC-analog rule/goal substrate; MECH-116 is the E1-side goal-WM implementation. Relationship flagged ambiguous 2026-04-19 -- genuine governance decision needed on whether MECH-116 is a WM subcomponent of SD-033a or a distinct E1 recurrent-WM substrate. See notes.
+  coupled_with:
+    - SD-033a  # adjacent to lateral-PFC-analog rule/goal substrate; MECH-116 is the E1-side goal-WM implementation. Relationship flagged ambiguous 2026-04-19 -- genuine governance decision needed on whether MECH-116 is a WM subcomponent of SD-033a or a distinct E1 recurrent-WM substrate. See notes.  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: docs/architecture/approach_avoidance_symmetry.md#mech-116
   source:
     - evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
@@ -15893,6 +15933,8 @@
     - ARC-030
     - MECH-112
     - Q-021
+  coupled_with:
+    - SD-026  # reverse of SD-026 -> INV-034 coupling, 2026-09-04 GOV-EDGE-1
   what_would_answer: |
     See Q-021's own what_would_answer for the full two-arm ablation design
     (approach arm: z_goal attractor + novelty/self-maintenance ON vs
@@ -16422,10 +16464,11 @@
       verdict: supports/PASS
   implementation_phase: v3
   depends_on:
-    - MECH-030
     - MECH-092
     - MECH-094
     - ARC-016
+  coupled_with:
+    - MECH-030  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/sleep/offline_phases.md#mech-120
   source:
     - evidence/literature/targeted_review_connectome_mech_030/entries/tononi_cirelli_2006/summary.md
@@ -16564,11 +16607,12 @@
   phase_provenance: derived
   phase_derived_from: MECH-165
   depends_on:
-    - MECH-030
     - MECH-092
     - MECH-094
     - MECH-122
     - SD-004
+  coupled_with:
+    - MECH-030  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/sleep/offline_phases.md#mech-121
   source:
     - evidence/literature/targeted_review_connectome_mech_030/entries/diekelmann_born_2010/summary.md
@@ -16680,9 +16724,10 @@
                               # its notes), not MECH-121's full pipeline. The real
                               # direction is MECH-121 -> MECH-122 (kept, see MECH-121).
   depends_on:
-    - MECH-030
     - MECH-089
     - SD-006
+  coupled_with:
+    - MECH-030  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/sleep/offline_phases.md#mech-122
   source:
     - evidence/literature/targeted_review_connectome_mech_030/entries/diekelmann_born_2010/summary.md
@@ -16865,11 +16910,12 @@
   phase_provenance: derived
   phase_derived_from: MECH-204
   depends_on:
-    - MECH-030
     - MECH-092
     - MECH-094
     - ARC-016
     - MECH-093
+  coupled_with:
+    - MECH-030  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/sleep/offline_phases.md#mech-123
   source:
     - evidence/literature/targeted_review_connectome_mech_030/entries/hobson_friston_2012/summary.md
@@ -16961,6 +17007,8 @@
     - MECH-092
     - MECH-094
     - Q-021
+  coupled_with:
+    - ARC-036  # reverse of ARC-036 -> MECH-124 coupling, 2026-09-04 GOV-EDGE-1
   location: docs/architecture/sleep/offline_phases.md#mech-124
   source:
     - evidence/literature/targeted_review_connectome_mech_030/entries/walker_stickgold_2004/summary.md
@@ -17480,9 +17528,10 @@
     - ARC-007
     - SD-011
     - SD-012
-    - MECH-030
-    - MECH-124
     - INV-029
+  coupled_with:
+    - MECH-030  # moved from depends_on 2026-09-04, GOV-EDGE-1: cycle-break; re-judge (cycle MECH-057a -> INV-012 -> SD-026 -> SD-014 -> ARC-036 -> MECH-030 -> MECH-092 -> MECH-094 -> INV-019 -> MECH-060 -> MECH-057a)
+    - MECH-124  # moved from depends_on 2026-09-04, GOV-EDGE-1: cycle-break; re-judge (cycle MECH-057a -> INV-012 -> SD-026 -> SD-014 -> ARC-036 -> MECH-124 -> MECH-030 -> MECH-092 -> MECH-094 -> INV-019 -> MECH-060 -> MECH-057a)
   notes: >
     ARC-007 specifies that the hippocampal map stores and replays paths through residue-field
     terrain. The residue field is the harm-causal special case of a more general architecture:
@@ -18470,7 +18519,8 @@
     - ARC-036
     - SD-011
     - SD-012
-    - MECH-030
+  coupled_with:
+    - MECH-030  # moved from depends_on 2026-09-04, GOV-EDGE-1: cycle-break; re-judge (cycle INV-012 -> SD-026 -> SD-014 -> MECH-030 -> MECH-092 -> MECH-094 -> INV-019 -> MECH-060 -> MECH-057a -> INV-012)
   notes: >
     The concrete implementation requirement derived from ARC-036. Each hippocampal map node
     stores a 4-component valence vector V = [w, l, h, s] updated incrementally on each visit:
@@ -19021,7 +19071,8 @@
     - ARC-018
     - ARC-007
     - MECH-092
-    - MECH-261        # mode-conditioned write gating from SD-032a operating_mode -- the substrate that routes waking consolidation writes into the map (symmetric with MECH-261.depends_on). EXQ-355a pending_retest_after_substrate once MECH-261 is implemented.
+  coupled_with:
+    - MECH-261  # mode-conditioned write gating from SD-032a operating_mode -- the substrate that routes waking consolidation writes into the map (symmetric with MECH-261.depends_on). EXQ-355a pending_retest_after_substrate once MECH-261 is implemented.  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   notes: >
     Olafsdottir et al. (2017, Neuron) show that awake hippocampal replay is not
     homogeneous: during active task engagement, replay is task-focused and prospective
@@ -20282,12 +20333,13 @@
     - MECH-150
     - MECH-151
     - MECH-152
-    - MECH-160
     - ARC-035
     - ARC-001
     - ARC-002
     - ARC-003
     - SD-005
+  coupled_with:
+    - MECH-160  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   epistemic_category: substrate_conditional  # left UNCHANGED 2026-08-13 -- disposition not finalized (HELD), do not downgrade; see evidence_quality_note
   what_would_answer: |
     RELATIONSHIP TO SD-016: ARC-041 and SD-016 describe the identical
@@ -21718,11 +21770,12 @@
     needs_review: false
   implementation_phase: v3
   depends_on:
-    - ARC-041
     - MECH-151
     - MECH-152
     - ARC-042
     - ARC-044
+  coupled_with:
+    - ARC-041  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     Registered 2026-04-02 from literature pull discussion. Rudebeck & Murray 2024
     confirm that OFC updates rapidly (single-trial reversal learning) while vmPFC
@@ -21759,10 +21812,11 @@
       verdict: non_contributory/precondition_unmet_readout_confounded
   implementation_phase: v3
   depends_on:
-    - MECH-026
     - MECH-093
     - ARC-016
-    - ARC-044
+  coupled_with:
+    - ARC-044  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-026  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   evidence_quality_note: >-
     [2026-09-04 governance, cycle governance-20260904-1347] V3-EXQ-999 (2026-09-03, ree-cloud-2, 43m52s) NON-CONTRIBUTORY -- first run ever to tag MECH-161 (claims.yaml evidence: []). The run aborted at its first seed on the P0 readiness precondition baseline_avoidance_discrimination_margin, measured -0.2608 against a +0.05 floor, and self-routed substrate_not_ready_requeue. THE SELF-ROUTE'S CAUSAL STORY IS WRONG, and the correction is the finding. The precondition is labelled 'positive control that hazard-avoidance behaviour was trained at all', but the statistic (avoidant-action rate in the HIGH hazard bin minus the SAFE bin, where the 'avoidant action' is the geometric argmax of the away-from-nearest-hazard vector) cannot certify training, because the response is defined identically in both bins and therefore carries no signal/noise asymmetry. Measured directly against this driver's own readout replayed on the same env config and seeds: an ORACLE taking the correct avoidant action on EVERY step scores hit_rate = false_alarm_rate = 1.000 and sensitivity = +0.0000 on all three seeds, FAILING the +0.05 gate; the realizable oracle (avoidant action chosen at each E3 tick, P=10, held between) scores -0.0100 and also fails; and policy-free nulls with zero hazard knowledge score -0.126 (uniform-random), -0.130 (held P=5), -0.061 (held P=10) and -0.436 (held P=20), single-seed values spanning +0.109 to -0.583. The observed -0.2608 sits inside that null band. So the gate cannot separate untrained avoidance from perfect avoidance, its null is strongly negative rather than centred on zero, and -- because the driver aborts on the FIRST seed -- one draw from a null with cross-seed SD around 0.2 decided the whole run. Two structural contributors: (a) with hazard_field_view normalised by the global field max, one hazard and decay 0.5, the agent's own cell reads 1/(1+0.5d), so HIGH is d<=2 and SAFE is d>=12 -- unreachable for a centred hazard on a 10x10 grid and a far-corner wedge otherwise (measured: SAFE = 1.1-2.2% of non-wall cells; 0, 0 and 1 SAFE cells on the three first-episode grids), and the designated avoidant action there is a wall/edge no-op in 93-100% of SAFE-bin steps, so false_alarm_rate measures pressing into the boundary at maximum distance; (b) MIN_BIN_COVERAGE_STEPS=5, the mitigation the driver's own red-team Family-2 disposition relied on, is a COUNT floor and does not touch this bias -- the low-n SAFE cells clear it. Independently, the training regime never trains an action policy on harm at all (_train_warmup trains e1, the e2 world-forward model and the e3 harm_eval head only; NAV_BIAS=0.25 additionally overrides 25% of training actions TOWARD the hazard), so 'trained hazard avoidance' has never been demonstrated in this corpus and remains an open question rather than something this run refuted. RECURRENCE: this apparatus exists in exactly two drivers, and both have now failed the same positive control -- V3-EXQ-981 measured -0.4307 on 2026-09-03T05:30Z, all three of the same seeds, and its confirmed autopsy (2026-09-03T20:04Z, 1h15m before this run started) already recorded the reversed sign. V3-EXQ-999's queue entry nevertheless describes the apparatus as 'reused verbatim from V3-EXQ-981's calibrated ... apparatus'; it was reused from 981's DRIVER, not from 981's RESULT. MECH-161 takes no weight from this run in either direction, and it has no supports to be narrowed by it (evidence: [] -- zero prior entries, so there is no illusory-conflict risk here). RECORDING GAP: the P0-abort branch stamps only {seed, p0_not_ready} into arm_results, discarding the baseline level's hit_rate, false_alarm_rate, per-bin n/avoidant counts, coverage_ok, committed_fraction and world_forward_r2 -- all of which existed at run time. The re-queue must record them (experimental_recording_standard_2026-07-12.md 3b/3c) so the next reading of this gate can be decomposed without another full run. Retest after the readout is repaired and a trained-avoidance capability is demonstrated: pending_retest_after_substrate. RED-TEAM CORRECTION folded in (Fable, CONTESTED, accepted): the readout defect is action-HOLD x geometry (E3 decides every P steps, the readout scores every step; a conditional avoider scores +0.905 unheld vs +0.038 held at P=10) and sensitivity(P) is monotone in P under a hazard-blind null, so C1 was confounded with the IV for any agent. Routing: V3-EXQ-999a with a decision-tick-scored readout; substrate amend dv-dynamic-range-precondition-class. Applied from confirmed failure_autopsy_V3-EXQ-999_2026-09-04.
   notes: >
@@ -21907,10 +21961,11 @@
   depends_on:
     - ARC-016
     - MECH-152
-    - MECH-026
     - MECH-093
-    - MECH-161
     - ARC-041
+  coupled_with:
+    - MECH-026  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-161  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   what_would_answer: >
     CURRENT EVIDENCE STATE (2026-08-07 digestion pass): ARC-044 has never been tested, in whole or
     in part. No experiment has varied context and temporal state jointly against either MECH-152 or
@@ -22015,8 +22070,9 @@
     - MECH-112
     - SD-012
     - INV-029
-    - ARC-071     # transition mechanism (planned -> habitual chunk); added 2026-05-10 per ARC-071 lit-pull R3 verdict
-    - MECH-477    # control-allocation arbitrator; added 2026-07-22 per claim_synthesis_MECH-163_2026-07-22
+  coupled_with:
+    - ARC-071  # transition mechanism (planned -> habitual chunk); added 2026-05-10 per ARC-071 lit-pull R3 verdict  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-477  # control-allocation arbitrator; added 2026-07-22 per claim_synthesis_MECH-163_2026-07-22  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   notes: >
     Registered 2026-04-02 from architectural discussion about V3/V4 boundary.
     Matches the SNc/VTA dopaminergic dual split and the model-free/model-based
@@ -23008,7 +23064,8 @@
     - SD-017
     - MECH-092
     - ARC-038
-    - MECH-166
+  coupled_with:
+    - MECH-166  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   implementation_note: >
     2026-08-19 (chip-20260816-implsub-contextmemory-writepath-degeneracy): the write-path
     addressing build that V3-EXQ-436f's re-derive brake was gated on has landed
@@ -23193,9 +23250,10 @@
   implementation_phase: v3
   depends_on:
     - SD-017
-    - ARC-045
     - MECH-092
     - INV-044
+  coupled_with:
+    - ARC-045  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   implementation_note: >
     2026-08-19 (chip-20260816-implsub-contextmemory-writepath-degeneracy): the write-path
     addressing build that V3-EXQ-436f's re-derive brake was gated on has landed
@@ -23858,7 +23916,8 @@
   depends_on:
     - INV-046
     - INV-045
-    - MECH-168
+  coupled_with:
+    - MECH-168  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     Reclassified from claim_type: invariant in Session C batch 2026-04-17.
     Rationale: this is a clinical prediction about Alzheimer's staged decline,
@@ -23969,12 +24028,13 @@
     evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.
   depends_on:
     - INV-046
-    - INV-047
     - INV-045
     - MECH-120
     - MECH-121
     - MECH-123
     - SD-017
+  coupled_with:
+    - INV-047  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     Registered 2026-04-05. The mechanism: each phase of the offline
     consolidation pipeline depends on the phases upstream of it. When the
@@ -25677,7 +25737,8 @@
     - INV-050
     - INV-049
     - SD-017
-    - MECH-181
+  coupled_with:
+    - MECH-181  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     Registered 2026-04-06. INV-051 is the bounding invariant on MEL: the
     model update system requires a Goldilocks condition in prediction error load.
@@ -26199,9 +26260,10 @@
   depends_on:
     - MECH-180
     - INV-050
-    - INV-051
     - INV-046
     - SD-017
+  coupled_with:
+    - INV-051  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     Registered 2026-04-06. Cognitive reserve is empirically robust: education,
     bilingualism, occupational complexity, and social engagement all reduce
@@ -27028,11 +27090,12 @@
       verdict: non_contributory/not_applicable_claim_free_diagnostic
   confidence: 0.0
   depends_on:
-    - INV-055
     - ARC-019
     - ARC-013
     - SD-010
     - SD-011
+  coupled_with:
+    - INV-055  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   short: >
     Infant harm exposure must be educative (z_harm_s and z_harm_a fire normally) but not
     permanently damaging (residue_scale_factor ~0.1 and/or reduced hazard_magnitude). This
@@ -27267,12 +27330,13 @@
   implementation_phase: v5
   governance_2026_06_10: implementation_phase v4 -> v5 (social tier, V5 roadmap wave)
   depends_on:
-    - ARC-010
     - MECH-041
     - MECH-031
     - MECH-036
     - MECH-127
     - IMPL-019
+  coupled_with:
+    - ARC-010  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   short: >
     SocialGridWorld extends CausalGridWorld with N agents plus a predator entity plus seven
     scent channels (wanting, seeking, alarm, harm_stress, direction, celebration, defense)
@@ -27596,7 +27660,8 @@
     needs_review: false
   depends_on:
     - MECH-094
-    - ARC-049
+  coupled_with:
+    - ARC-049  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   epistemic_category: substrate_conditional
   what_would_answer: |
     SUBSTRATE PRECONDITION: this claim requires TWO substrates, neither of
@@ -28181,8 +28246,9 @@
     disposition.
   depends_on:
     - MECH-194
-    - MECH-196
     - SD-012
+  coupled_with:
+    - MECH-196  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/play_mode.md
   notes: "What transfers from play: trajectory competence, action-object associations, goal-pursuit policy structure (E3/E2 weight updates -- HOW to pursue goals). What does not transfer directly: goal/harm magnitude calibration (WHAT the correct goal intensity and harm thresholds are) -- this is re-anchored by real homeostatic/harm signals after play ends. The dissociation is what makes play productive rather than contaminating: the agent learns goal-pursuit structure in play, then real experience sets the thresholds against which that structure operates. GROUNDING (2026-05-16): Schmidhuber 2010 provides formal derivation of this dissociation: intrinsic drives are derivative signals d(PE)/dt (rate-of-change), while extrinsic drives are absolute magnitude signals. These are INCOMMENSURABLE BY CONSTRUCTION -- a derivative signal cannot be re-scaled into an absolute signal by any coefficient. The dissociation is therefore not a design choice but a mathematical consequence of using LP-weighted z_goal_synthetic. Lynch 2020 (Play-LMP) confirms empirically: task-agnostic play in robotics transfers policy structure but requires real task episodes for magnitude calibration. This formal grounding eliminates the risk of 'calibration leakage' between play and real episodes: the signals are dimensionally distinct."
 
@@ -28199,8 +28265,9 @@
   epistemic_category: substrate_conditional
   depends_on:
     - MECH-194
-    - MECH-195
     - INV-059
+  coupled_with:
+    - MECH-195  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/play_mode.md
   notes: "At play episode termination -- triggered by the bilateral frame signal dropping (INV-059) -- the agent transitions from synthetic to real signal mode. Real homeostatic drive level and real harm exposure reset the magnitude calibration that operated against synthetic thresholds during play. Safety property: if the frame signal collapses mid-episode, recalibration is triggered immediately (not at episode end), limiting the exploitation window."
 
@@ -28217,7 +28284,8 @@
   epistemic_category: substrate_conditional
   depends_on:
     - MECH-094
-    - INV-059
+  coupled_with:
+    - INV-059  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   what_would_answer: |
     SUBSTRATE PRECONDITION: the play_frame_tag mechanism named in this claim's
     own notes (persistent L2 flag in LatentState, L1 frame_open/frame_close
@@ -29382,10 +29450,11 @@
   depends_on:
     - MECH-205
     - MECH-208
-    - MECH-210
     - INV-049
     - MECH-121
     - MECH-123
+  coupled_with:
+    - MECH-210  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/sleep/offline_phases.md#inv-062
   source:
     - docs/thoughts/2026-04-07_dream_phenomenology_replay_types.md
@@ -29664,7 +29733,8 @@
     - MECH-094
     - MECH-178
     - INV-049
-    - INV-062
+  coupled_with:
+    - INV-062  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/sleep/offline_phases.md#mech-210
   what_would_answer: >
     NON-DEGENERACY PRECONDITION (REE-architecture leg): a genuine joint "REM mode" --
@@ -30947,9 +31017,10 @@
   depends_on:
     - SD-019a         # unpleasantness channel (the integrator's input)
     - SD-019          # nonredundancy constraint (applies to z_harm_a output)
-    - MECH-219        # the hysteretic integration mechanism
     - Q-036           # open question on controllability/escapability gating
     - SD-058          # soft edge: avoidance_efficacy escapability source (2026-06-10)
+  coupled_with:
+    - MECH-219  # the hysteretic integration mechanism  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   implementation_note: >
     MECH-219 substrate IMPLEMENTED 2026-06-10
     (ree_core/affect/harm_suffering_accumulator.py + LatentState.z_harm_suffering +
@@ -31040,7 +31111,9 @@
     (4) `z_harm_a` drives mode-switch (MECH-259) while `z_harm_un` drives immediate
         avoidance -- the two channels have separable behavioral signatures.
   registered: "2026-04-08"
-  depends_on: [SD-019, SD-019a, SD-019b, SD-011, ARC-016, SD-058]  # SD-058 soft edge: avoidance_efficacy escapability source (2026-06-10)
+  depends_on: [SD-019, SD-019a, SD-011, ARC-016, SD-058]   # SD-058 soft edge: avoidance_efficacy escapability source (2026-06-10)
+  coupled_with:
+    - SD-019b  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   implementation_note: >
     IMPLEMENTED 2026-06-10 (substrate; status stays candidate / no confidence change --
     governance follows the validation EXQ). Pure-arithmetic hysteretic-integrator regulator
@@ -31252,7 +31325,10 @@
     of proxy goals in the wanting landscape.
   registered: "2026-04-08"
   epistemic_category: substrate_conditional
-  depends_on: [SD-014, SD-015, MECH-216, MECH-217]
+  depends_on: [SD-014, SD-015]
+  coupled_with:
+    - MECH-216  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - MECH-217  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   what_would_answer: |
     INV-065 is the umbrella prediction over MECH-216 and MECH-217. As of 2026-08-07,
     NEITHER underlying mechanism has cleared to a state that supports a direct
@@ -31332,7 +31408,9 @@
     Distinguishable from direct contact wanting by spatial offset: E1 wanting fires
     at approach positions, contact wanting fires at resource position.
   registered: "2026-04-08"
-  depends_on: [SD-014, SD-018, MECH-203, INV-065]
+  depends_on: [SD-014, SD-018, MECH-203]
+  coupled_with:
+    - INV-065  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   epistemic_category: substrate_conditional
   what_would_answer: |
     A properly-powered retest of the E1-schema predictive-wanting mechanism,
@@ -31484,7 +31562,9 @@
     V3-EXQ-842 (the queued EVB-0349 validation) ran clean -- supports/standard, unflagged PASS,
     offline wanting-spread readiness verified against the just-landed substrate above.
   registered: "2026-04-08"
-  depends_on: [MECH-165, SD-014, INV-065]
+  depends_on: [MECH-165, SD-014]
+  coupled_with:
+    - INV-065  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   epistemic_category: substrate_conditional
   what_would_answer: |
     MECH-217 is CONJUNCTIVE across two dissociable sub-claims (mirrors the
@@ -36280,9 +36360,10 @@
     needs_review: false
   claim_level: implementation
   depends_on:
-    - MECH-094
     - INV-011
     - INV-019
+  coupled_with:
+    - MECH-094  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/default_mode.md
   source:
     - docs/architecture/default_mode.md
@@ -36319,10 +36400,11 @@
     needs_review: false
   claim_level: implementation
   depends_on:
-    - MECH-094
     - MECH-030
     - MECH-121
     - MECH-122
+  coupled_with:
+    - MECH-094  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   location: docs/architecture/default_mode.md
   source:
     - docs/architecture/default_mode.md
@@ -36414,11 +36496,12 @@
   depends_on:
     - SD-012
     - SD-014
-    - INV-034
     - INV-037
     - INV-038
     - INV-009
     - MECH-007
+  coupled_with:
+    - INV-034  # moved from depends_on 2026-09-04, GOV-EDGE-1: cycle-break; re-judge (cycle ARC-017 -> INV-012 -> SD-026 -> INV-034 -> ARC-030 -> SD-010 -> ARC-027 -> ARC-017)
   epistemic_category: substrate_conditional
   what_would_answer: |
     Non-degeneracy precondition (must ALL hold before this claim is
@@ -37916,9 +37999,10 @@
   depends_on:
     - SD-032           # parent cluster
     - SD-032b          # dACC-analog (contributor signal)
-    - SD-032c          # AIC-analog (primary trigger source)
-    - SD-032d          # PCC-analog (attention-partition contributor)
-    - MECH-259         # switch threshold mechanism
+  coupled_with:
+    - MECH-259  # switch threshold mechanism  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - SD-032c  # AIC-analog (primary trigger source)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - SD-032d  # PCC-analog (attention-partition contributor)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Network-level coordinator that binds the cingulate subdivisions into
     a coherent salience network. Reads signals from all five subdivisions
@@ -38077,10 +38161,11 @@
   depends_on:
     - SD-032           # parent cluster
     - SD-020           # harm_surprise_PE (upgraded to prerequisite; MECH-258)
-    - MECH-258         # precision-weighted PE drives dACC policy update
-    - MECH-260         # bias suppression against recency / monostrategy
     - MECH-256         # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): self-attribution comparator (shares E2_harm_a forward-model substrate); SD-003 superseded 2026-04-18, this claim consumes the attribution OUTPUT for credit assignment (like-for-like repoint). z_harm_a is not SD-029's z_harm_s, so MECH-256 (general) not SD-029 (stream-specific).
     - ARC-033          # E2_harm_s forward model (parallel architecture; E2_harm_a reuses substrate)
+  coupled_with:
+    - MECH-258  # precision-weighted PE drives dACC policy update  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-260  # bias suppression against recency / monostrategy  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     The dACC-analog is the MINIMUM VIABLE cingulate substrate: it alone
     resolves the EXQ-395 z_harm_a wiring gap.
@@ -38184,11 +38269,12 @@
   instantiates: SD-032
   depends_on:
     - SD-032           # parent cluster
-    - SD-032a          # coordinator (receives switch trigger)
     - SD-012           # homeostatic drive (interoceptive baseline; required)
     - SD-021           # descending pain modulation (folded into this module)
     - MECH-091         # salient-event phase reset (specific AIC->dACC mechanism)
-    - MECH-259         # switch threshold
+  coupled_with:
+    - MECH-259  # switch threshold  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - SD-032a  # coordinator (receives switch trigger)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     AIC-analog gates the urgency-interrupt pathway. It is NOT the
     affective-pain consumer (that is SD-032b). It is the module that
@@ -38345,10 +38431,11 @@
   instantiates: SD-032
   depends_on:
     - SD-032           # parent cluster
-    - SD-032a          # coordinator
     - INV-049          # sleep necessity (offline phase coordination)
     - MECH-092         # micro-quiescence replay
     - MECH-094         # hypothesis tag (write gating during mode)
+  coupled_with:
+    - SD-032a  # coordinator  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     PCC-analog handles the external-vs-internal attention partition. It
     is NOT the primary trigger for mode switching (that is SD-032c). It
@@ -38525,9 +38612,10 @@
   registered_utc: 2026-04-19
   depends_on:
     - SD-020           # harm_surprise_PE (the substrate MECH-258 is the control claim over)
-    - SD-032b          # dACC-analog (consumer of the PE)
     - ARC-033          # E2_harm_s forward model (parallel architecture; E2_harm_a is the affective analog)
     - MECH-256         # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-remaining-20260901): SD-003 superseded 2026-04-18; this claim's own functional_restatement already names "the per-stream forward-model family (MECH-256/257)". PE = z_harm_a_observed - E2_harm_a(z_harm_a_prev, a_taken) is Mode 1 (retrospective, uses the actually-taken action, not candidate actions) -- MECH-256, not MECH-257. Like-for-like output-consumer repoint.
+  coupled_with:
+    - SD-032b  # dACC-analog (consumer of the PE)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism claim underlying SD-032b: the dACC-analog reads z_harm_a
     as a precision-weighted prediction error against E2_harm_a, not as
@@ -38602,10 +38690,11 @@
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
-    - SD-032a          # coordinator
-    - SD-032c          # AIC-analog (primary trigger source)
     - MECH-091         # phase-reset mechanism (pre-existing analog)
     - MECH-258         # precision-weighted PE (the magnitude compared against threshold)
+  coupled_with:
+    - SD-032a  # coordinator  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - SD-032c  # AIC-analog (primary trigger source)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism that converts graded salience signals into a discrete mode-
     switch operation. Below threshold, salience-weighted inputs modulate
@@ -38682,7 +38771,8 @@
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
-    - SD-032b          # dACC-analog (the module that hosts this function)
+  coupled_with:
+    - SD-032b  # dACC-analog (the module that hosts this function)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism hypothesis. Scholl, Kolling et al 2015 (J Neurosci) show
     dACC + lateral aPFC actively suppress an amygdala/vmPFC bias toward
@@ -38961,10 +39051,11 @@
     - MECH-094         # hypothesis tag (the specific tag this generalises)
     - INV-049          # sleep necessity (coordinates with consolidation mode)
     - MECH-092         # micro-quiescence replay
-    - ARC-038          # viability map (one write target)
-    - SD-033a          # lateral-PFC-analog rule/goal substrate (primary write target)
-    - SD-033b          # OFC-analog specific-outcome / state-space substrate (secondary write target)
-    - SD-033c          # vmPFC-analog value substrate (gated under mode-specific rules)
+  coupled_with:
+    - ARC-038  # viability map (one write target)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - SD-033a  # lateral-PFC-analog rule/goal substrate (primary write target)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - SD-033b  # OFC-analog specific-outcome / state-space substrate (secondary write target)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - SD-033c  # vmPFC-analog value substrate (gated under mode-specific rules)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     MECH-094 (hypothesis tag) specified a single categorical write-gate
     controlling whether simulated / replayed content can write to
@@ -39362,9 +39453,10 @@
   instantiates: SD-033
   depends_on:
     - SD-033           # parent cluster
-    - MECH-261         # primary consumer of this substrate
-    - MECH-262         # rule-selective persistence (grounds this claim)
-    - MECH-116         # dlPFC LSTM working memory (adjacent, may overlap)
+  coupled_with:
+    - MECH-116  # dlPFC LSTM working memory (adjacent, may overlap)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-261  # primary consumer of this substrate  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-262  # rule-selective persistence (grounds this claim)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mid-lateral PFC analogue holding the currently active rule and goal
     in a stimulus-abstracted format -- representation of the rule that
@@ -39524,8 +39616,9 @@
   instantiates: SD-033
   depends_on:
     - SD-033           # parent cluster
-    - MECH-263         # OFC state-space / specific-outcome representation (grounds this claim)
-    - MECH-261         # gating of writes under operating_mode
+  coupled_with:
+    - MECH-261  # gating of writes under operating_mode  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-263  # OFC state-space / specific-outcome representation (grounds this claim)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     OFC analogue holding two related representations:
 
@@ -39824,7 +39917,8 @@
     - MECH-151         # existing vmPFC value integration
     - MECH-152         # existing vmPFC value integration
     - MECH-235         # existing vmPFC-related mechanism
-    - MECH-261         # gating of writes under operating_mode
+  coupled_with:
+    - MECH-261  # gating of writes under operating_mode  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Scalar-value integration substrate. Reads specific-outcome
     predictions from SD-033b (OFC-analog), affective / harm signals
@@ -40100,8 +40194,9 @@
     - SD-033           # parent cluster
     - SD-033a          # rostral extension of the lateral-PFC abstraction gradient
     - MECH-261         # forward-compatible operating_mode should reserve a parallel_goal_deliberation mode
-    - MECH-264         # frontopolar counterfactual-value tracking -- primary mechanism implementing SD-033e's Boorman function
-    - MECH-265         # frontopolar relative-importance monitoring -- primary mechanism implementing SD-033e's Mansouri 2017 function
+  coupled_with:
+    - MECH-264  # frontopolar counterfactual-value tracking -- primary mechanism implementing SD-033e's Boorman function  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-265  # frontopolar relative-importance monitoring -- primary mechanism implementing SD-033e's Mansouri 2017 function  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     V4-scope module maintaining counterfactual-value estimates for
     alternatives to the current course of action, mediating
@@ -40618,8 +40713,9 @@
     - ARC-005          # latent stack / L-space substrate
     - ARC-007          # hippocampal map substrate
     - MECH-039         # salience gating substrate
-    - MECH-046         # CeA mode prior (child claim)
-    - MECH-074         # BLA/CeA read/write head (parent of 074a-d)
+  coupled_with:
+    - MECH-046  # CeA mode prior (child claim)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-074  # BLA/CeA read/write head (parent of 074a-d)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   child_claims:
     - MECH-046
     - MECH-074
@@ -40880,9 +40976,10 @@
   ceiling_decision: deferred
   ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): SD-033a lateral_pfc_analog (consumer) is implemented and PASSes distractor-resistance (484), but rule-SELECTIVE persistence is untestable until an upstream rule-creator emits DIFFERENTIATED (non-monomodal) rule_state. That producer is arc_062_rule_apprehension:GAP-B / behavioral_diversity_isolation:GAP-A (monostrategy collapse; V3-EXQ-598b C3 FAIL trainable_not_monomodal); latest GAP-B falsifier V3-EXQ-654f FAIL/non_contributory 2026-06-18, 654g successor in flight. Retest MECH-262 only after a GAP-B PASS yields differentiated rule states (acceptance ~598c). Do not requeue on SD-033a alone."
   depends_on:
-    - SD-033a          # substrate this mechanism instantiates
     - MECH-261         # write-gate context within which persistence operates
     - MECH-116         # dlPFC LSTM working memory (adjacent mechanism)
+  coupled_with:
+    - SD-033a  # substrate this mechanism instantiates  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism implementing the three signatures that distinguish a
     genuine rule substrate from generic working memory:
@@ -41003,8 +41100,9 @@
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
-    - SD-033b          # substrate this mechanism instantiates
     - MECH-261         # write-gate context for outcome/model updates
+  coupled_with:
+    - SD-033b  # substrate this mechanism instantiates  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism implementing the OFC-analog's representational content.
     Two complementary framings, treated as co-present rather than as
@@ -41282,9 +41380,10 @@
     entry-relative de-commit pressure on the natural-commit latch, not a maintained
     parallel value channel -- so v3_pending stays true. See SD-033e implementation_note.
   depends_on:
-    - SD-033e          # primary substrate this mechanism lives in
     - SD-033c          # vmPFC-analog (chosen-option value); MECH-264 is the counterfactual sibling signal
     - MECH-151         # vmPFC value integration -- adjacent mechanism operating on chosen-option value
+  coupled_with:
+    - SD-033e  # primary substrate this mechanism lives in  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     SD-033e maintains, in parallel with SD-033c's chosen-option value
     signal, a running estimate of the value of unchosen alternatives.
@@ -41447,9 +41546,10 @@
                       # implementation_note). Set 2026-08-10 per chip
                       # chip-20260810-phase-consistency-reconciliation.
   depends_on:
-    - SD-033e          # primary substrate this mechanism lives in
     - MECH-264         # related but distinct: MECH-264 is pairwise chosen-vs-counterfactual, MECH-265 is over-all-goals
     - MECH-261         # adjacent: MECH-261 gates writes ACROSS substrates, MECH-265 operates WITHIN SD-033e
+  coupled_with:
+    - SD-033e  # primary substrate this mechanism lives in  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     SD-033e maintains a representation of relative importance across a
     set of active goals -- a parallel signal, not a pairwise chosen-vs-
@@ -42438,11 +42538,12 @@
     - MECH-089  # theta-gamma nesting (per-cycle summary the anchor reads)
     - MECH-092  # quiescent SWR-equivalent replay (anchored replay runs here)
     - MECH-094  # hypothesis tag (strengthened on probes)
-    - MECH-272  # state-gated routing (load-bearing for dual-trace coexistence: routing decides which anchor is operative)
-    - MECH-284  # staleness accumulator (online read-out drives anchor-reset hysteresis)
     - SD-005    # z_self/z_world split (precondition for per-stream V)
     - SD-010    # harm stream separation
     - SD-011    # dual nociceptive streams
+  coupled_with:
+    - MECH-272  # state-gated routing (load-bearing for dual-trace coexistence: routing decides which anchor is operative)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-284  # staleness accumulator (online read-out drives anchor-reset hysteresis)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism hypothesis. ARC-018 describes hippocampal rollouts starting
     from "current latent state" but does not specify anchor-state
@@ -43102,10 +43203,11 @@
   registered_utc: 2026-04-21
   depends_on:
     - MECH-271  # the routing claim this qualifies
-    - MECH-269  # anchor/probe distinction
     - MECH-094  # hypothesis tag
     - MECH-092  # micro-DMN replay
-    - MECH-285  # V_s residual priority biases sleep-regime replay scheduling
+  coupled_with:
+    - MECH-269  # anchor/probe distinction  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-285  # V_s residual priority biases sleep-regime replay scheduling  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Waking regime: the proposer is supporting decisions, so the
     routing bias is toward anchored rollouts reaching consolidation
@@ -43182,13 +43284,14 @@
   registered_utc: 2026-04-21
   depends_on:
     - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupAC-20260901): SD-003 superseded 2026-04-18; this claim consumes the attribution OUTPUT (causal_sig / attribution capability), which the successor comparator still produces, so the repoint is like-for-like. MECH-256 is the GENERAL stream-agnostic comparator that replaced SD-003's general claim; SD-029 (the narrower V3 instantiation on z_harm_s) deliberately NOT added -- add it only if a specific-stream dependency is actually meant.  # was SD-003. the waking-half attribution this aggregates
-    - MECH-275 # general aggregation mechanism this specialises
     - MECH-272 # state-gated routing framework
     - MECH-271 # routing architecture
     - INV-049  # offline phases are mathematically necessary for model-building agents
     - ARC-007  # hippocampal path memory (substrate for aggregation)
     - SD-033a  # viability-map revision consumer
-    - MECH-285 # V_s residual priority biases which self-attribution episodes get aggregated first
+  coupled_with:
+    - MECH-275  # general aggregation mechanism this specialises  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-285  # V_s residual priority biases which self-attribution episodes get aggregated first  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     SD-003 gives the agent a causal signature per episode: in this
     episode, this action looks self-initiated with probability p.
@@ -43336,12 +43439,13 @@
   depends_on:
     - ARC-019   # generic staged curriculum this refines
     - MECH-276  # scientist-agent principle, mechanism across all stages
-    - MECH-277  # stage-1 specialisation (action-space discovery)
-    - MECH-278  # stage-2 specialisation (object-schema formation)
     - ARC-010   # stage-3 substrate (V4)
     - MECH-274  # stage-3 sleep-aggregation (V4)
     - MECH-256  # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): RESOLVES the 2026-08-07 digestion flag below/above. Stage-1 closure is self/world discrimination, which MECH-256's single-pass comparator still supplies (output-consuming, like-for-like repoint); SD-029 (z_harm_s-specific) deliberately not added -- ARC-059 is stream-agnostic.
     - SD-005    # z_self / z_world split (currently engineered; developmental construction flagged)
+  coupled_with:
+    - MECH-277  # stage-1 specialisation (action-space discovery)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-278  # stage-2 specialisation (object-schema formation)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   epistemic_category: substrate_conditional
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: this ordering claim is not yet
@@ -43500,13 +43604,14 @@
   claim_level: mechanistic
   registered_utc: 2026-04-21
   depends_on:
-    - MECH-276  # counterfactual-backed attribution feedstock (critical precondition)
     - MECH-272  # state-gated routing (sleep regime)
     - MECH-271  # routing architecture
-    - MECH-273  # self-model specialisation
     - INV-049   # offline-phase necessity (operationalised here)
     - ARC-007   # hippocampal path memory (substrate)
-    - MECH-285  # V_s residual priority biases replay scheduling (epistemic-priority arm of aggregation)
+  coupled_with:
+    - MECH-273  # self-model specialisation  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-276  # counterfactual-backed attribution feedstock (critical precondition)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-285  # V_s residual priority biases replay scheduling (epistemic-priority arm of aggregation)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     MECH-275 generalises MECH-273's self-model aggregation. The input
     is not arbitrary correlation; it is structured attribution
@@ -43645,10 +43750,11 @@
   registered_utc: 2026-04-21
   depends_on:
     - MECH-269  # probe channel as proposer-side hypothesis generator
-    - MECH-275  # sleep aggregation is the consumer of this mechanism's output
     - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupAC-20260901): SD-003 superseded 2026-04-18; this claim consumes the attribution OUTPUT (causal_sig / attribution capability), which the successor comparator still produces, so the repoint is like-for-like. MECH-256 is the GENERAL stream-agnostic comparator that replaced SD-003's general claim; SD-029 (the narrower V3 instantiation on z_harm_s) deliberately NOT added -- add it only if a specific-stream dependency is actually meant.  # was SD-003. STALE (2026-08-08 digestion pass): SD-003 is status:superseded (by MECH-256/SD-029, 2026-04-18, three days before this claim was registered). The built substrate (scientist_attribution_buffer.py) already composes MECH-256's single-pass comparators, not SD-003's two-pass counterfactual pipeline. Retained for history; treat MECH-256/SD-029 as the operative dependency.
-    - MECH-277  # stage-1 specialisation
-    - MECH-278  # stage-2 specialisation
+  coupled_with:
+    - MECH-275  # sleep aggregation is the consumer of this mechanism's output  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-277  # stage-1 specialisation  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-278  # stage-2 specialisation  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Three-stage loop: (1) hypothesis generation -- MECH-269 probe
     channel seeds candidate trajectories from low-verisimilitude /
@@ -43788,10 +43894,11 @@
   claim_level: mechanistic
   registered_utc: 2026-04-21
   depends_on:
-    - MECH-276  # scientist-agent principle (general form)
-    - ARC-059   # developmental ordering
     - MECH-256  # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): the attribution mechanism MECH-277 feeds; SD-003 superseded 2026-04-18 by a single-pass comparator with no a_cf branch, so MECH-277's role changes from "supplies candidates for a two-pass comparison" to "supplies the self-initiated action representation the comparator's efference copy requires" -- see corrected functional_restatement. NOT MECH-276 (already listed above) -- that mechanism's own a_cf is a deterministic argmax-shift for a DIFFERENT purpose (epistemic schema-revision), not sourced from MECH-277's discovered action space in V3.
     - SD-005    # z_self (the latent this stage populates)
+  coupled_with:
+    - ARC-059  # developmental ordering  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-276  # scientist-agent principle (general form)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     The agent does not arrive with a model of its own action space.
     It discovers the space by acting and observing which sensory
@@ -43934,11 +44041,12 @@
     depends_on edge surfaces as a CONFLICT for human adjudication rather
     than silently re-deriving v3.
   depends_on:
-    - MECH-276  # scientist-agent principle (general form)
     - MECH-277  # stage-1 prerequisite (self-model must exist first)
-    - ARC-059   # developmental ordering
     - SD-005    # z_world (the latent this stage populates; engineered in V3)
     - SD-004    # action objects as map backbone (supports object-schema granularity)
+  coupled_with:
+    - ARC-059  # developmental ordering  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-276  # scientist-agent principle (general form)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Once the agent can attribute sensory change to self vs world
     (stage 1 complete), it can perform experimental actions on the
@@ -44741,7 +44849,8 @@
     - MECH-090  # bistable beta gate (downstream coupling target)
     - SD-033a   # lateral PFC analogue (downstream coupling target)
     - SD-035    # amygdala analogue (downstream coupling target)
-    - MECH-286  # sibling: wake-stability axis of the same orexin-analog signal
+  coupled_with:
+    - MECH-286  # sibling: wake-stability axis of the same orexin-analog signal  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     The override_signal does not act in isolation -- it gates the gain
     on drive->action-pipeline projections. Concretely: drive_level's
@@ -44931,12 +45040,13 @@
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
-    - MECH-287  # upstream: trigger event that drives integration
-    - MECH-269  # downstream consumer (anchor-reset hysteresis read-out, online)
-    - MECH-285  # downstream consumer (sleep-consolidation priority read-out, offline)
     - MECH-094  # interaction (probe-tagged content must NOT increment staleness as if veridical)
     - ARC-007   # hippocampal path memory (regions being indexed)
     - ARC-018   # viability map (regions also indexed here)
+  coupled_with:
+    - MECH-269  # downstream consumer (anchor-reset hysteresis read-out, online)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-285  # downstream consumer (sleep-consolidation priority read-out, offline)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-287  # upstream: trigger event that drives integration  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Standard prediction error operates on latent values themselves and
     updates the relevant heads via gradient (E1 sensorium loss, E2
@@ -45122,13 +45232,14 @@
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
-    - MECH-284  # parent: produces the staleness map this consumes
-    - MECH-275  # general sleep-phase Bayesian aggregation (this biases its replay priority)
-    - MECH-273  # sleep self-model aggregation (also biased by this priority)
-    - MECH-272  # state-gated routing (sleep regime where this fires)
     - MECH-094  # hypothesis tag (co-failure with MECH-285 produces PTSD architecture)
     - MECH-269  # V_s computation (substrate)
     - ARC-007   # hippocampal path memory
+  coupled_with:
+    - MECH-272  # state-gated routing (sleep regime where this fires)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-273  # sleep self-model aggregation (also biased by this priority)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-275  # general sleep-phase Bayesian aggregation (this biases its replay priority)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-284  # parent: produces the staleness map this consumes  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Existing accounts of replay prioritisation are dopaminergic
     salience-tagging: emotionally significant events get prioritised.
@@ -45237,9 +45348,10 @@
     - SD-037    # parent: provides override_signal which gates the transition
     - MECH-284  # accumulates the staleness demand that motivates offline entry
     - MECH-285  # the offline priority readout this recruitment authority enables
-    - MECH-281  # sibling: motor-coupling axis of orexin loss; this is the wake-stability axis
     - MECH-272  # state-gated routing distinguishes wake vs sleep regime; this is the gate
     - MECH-094  # hypothesis tag (co-failure with MECH-286 deepens PTSD-chronicity architecture)
+  coupled_with:
+    - MECH-281  # sibling: motor-coupling axis of orexin loss; this is the wake-stability axis  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Existing accounts of sleep onset in REE are silent on the recruitment
     authority. MECH-272 distinguishes wake-routing from sleep-routing,
@@ -45345,12 +45457,13 @@
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
-    - MECH-284  # downstream consumer (the accumulator this trigger drives)
     - MECH-269  # downstream consumer (the anchor-reset that staleness ultimately drives)
     - MECH-094  # interaction (probe-tagged content should NOT route through this trigger as if veridical)
     - MECH-272  # state-gated routing (trigger fires waking; sleep-phase has the offline arm)
     - SD-005    # z_self/z_world split (per-stream prediction errors live here)
     - ARC-018   # viability map (z_pred for value_PE comes from here)
+  coupled_with:
+    - MECH-284  # downstream consumer (the accumulator this trigger drives)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism hypothesis. V3-EXQ-475 (re-run of EXQ-471 with SD-036
     GABAergic decay + MECH-279 PAG freeze gate enabled) showed 5-6
@@ -45902,7 +46015,8 @@
   claim_level: mechanistic
   registered_utc: 2026-04-24
   depends_on:
-    - MECH-092   # MECH-289 specifies the sampling property of MECH-092's generative replay
+  coupled_with:
+    - MECH-092  # MECH-289 specifies the sampling property of MECH-092's generative replay  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     The biological hippocampal trajectory generator (SWR replay) does not preferentially
     represent recent experience. Gupta et al. 2010 (Neuron 65:695) shows: (a) infrequently
@@ -45975,9 +46089,10 @@
   claim_level: mechanistic
   registered_utc: 2026-04-24
   depends_on:
-    - ARC-028    # the completion event that triggers the backward sweep
     - MECH-092   # the offline replay substrate that runs the backward sweep
     - MECH-105   # dopamine signal concurrent with the backward sweep at goal endpoint
+  coupled_with:
+    - ARC-028  # the completion event that triggers the backward sweep  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Foster & Wilson 2006 (Nature 440:680) showed that at the reward endpoint,
     awake hippocampal place cells replay the just-completed trajectory in REVERSE
@@ -46044,9 +46159,10 @@
   registered_utc: 2026-04-24
   depends_on:
     - SD-006     # async multi-rate loop required to run quiescent mode at different cadence
-    - MECH-092   # quiescent offline replay (the mode being parameterised)
     - MECH-289   # anti-recency bias: applies at higher weight in quiescent mode
     - ARC-028    # completion signal: the event that triggers mode transition waking->quiescent
+  coupled_with:
+    - MECH-092  # quiescent offline replay (the mode being parameterised)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Muessig et al. 2019 (Curr Biol 29:834) shows that theta sequences (online waking
     trajectory generation) and SWR replay (offline quiescent generation) co-emerge
@@ -49251,7 +49367,8 @@
     - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 tracks)
     - SD-012      # homeostatic drive (anchors 'safety' as drive-baseline-not-rising over time)
     - ARC-007     # hippocampal path memory (substrate for context-bound safety encoding)
-    - MECH-304    # sister claim: cue-specific conditioned inhibition pathway
+  coupled_with:
+    - MECH-304  # sister claim: cue-specific conditioned inhibition pathway  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism hypothesis. MECH-303 covers one of two dissociable
     safety-learning systems identified by Laing et al. 2022 (7T fMRI,
@@ -49431,7 +49548,8 @@
     - MECH-094    # hypothesis-tag write gate (the tag from MECH-302 is the MECH-304 update trigger)
     - SD-011      # dual nociceptive streams (the suffering signal whose omission MECH-304 predicts)
     - SD-012      # homeostatic drive (baseline against which suffering-omission is computed)
-    - MECH-303    # sister claim: contextual passive safety pathway; MECH-303 + MECH-304 are the minimal two-system count
+  coupled_with:
+    - MECH-303  # sister claim: contextual passive safety pathway; MECH-303 + MECH-304 are the minimal two-system count  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Mechanism hypothesis. MECH-304 covers the second of two
     dissociable safety-learning systems identified by Laing et al.
@@ -50607,9 +50725,10 @@
     - SD-029      # the downstream measurement blocked by monomodal collapse (C2 / C3 require contrastive event distributions)
     - MECH-256    # SD-029 successor mechanism that consumes the same enriched event stream
     - MECH-269    # V_s monostrategy: representational precondition for any rule-apprehension layer
-    - ARC-062     # rule-apprehension architectural slot, weak reading -- the falsifying-condition for MECH-309
-    - ARC-063     # rule-apprehension architectural slot, strong reading (brought forward to V3 2026-05-18)
-    - ARC-077     # socially-scaffolded rule-population pathway -- the most direct architectural answer to MECH-309 (caregiver supplies the hypotheses the agent does not invent)
+  coupled_with:
+    - ARC-062  # rule-apprehension architectural slot, weak reading -- the falsifying-condition for MECH-309  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - ARC-063  # rule-apprehension architectural slot, strong reading (brought forward to V3 2026-05-18)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - ARC-077  # socially-scaffolded rule-population pathway -- the most direct architectural answer to MECH-309 (caregiver supplies the hypotheses the agent does not invent)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Strict Bayesian inference does not invent hypotheses: the support of the
     posterior is the support of the prior. Non-parametric Bayes (CRP, HDP)
@@ -50997,10 +51116,11 @@
   ceiling_decision: deferred
   ceiling_routing_note: "2026-06-23 substrate-ceiling-lifted triage (verdict: DEFER to in-flight line, no separate retest): the audit flag is on modulatory-bias-selection-authority (ARC-065 GAP-A) being implemented, but that exact lift was ALREADY consumed by V3-EXQ-654i/654j (arc_062 GAP-B rule-apprehension behavioural falsifiers, 2026-06-22) which ran with it live as a matched constant (modulatory-authority/top_k k=3 = 569i + use_f_eligibility_demotion + use_go_nogo_constitution). Both cleared all seven C1 readiness/non-vacuity gates -- the minted rule bias demonstrably REACHES committed action through the modulatory authority -- yet the load-bearing C2 committed-class entropy lift FAILED: the conversion ceiling is structural and DOWNSTREAM of selection (MECH-439 F-dominance), not a selection-face lever. Re-derive brake FIRED (19th ARC-062 autopsy; further GAP-B eligibility/commit-T letters refused). The residual conversion ceiling is being decisively tested NOW by V3-EXQ-700b (ARC-108/MECH-450 learned-gating settling C3, claimed ree-cloud-4 2026-06-23T17:58Z), which carries ARC-062's lift substrate as a matched constant and is pre-registered decisive-or-escalate-to-V4. Action: let the 700b line clear/route ARC-062's pending_retest. REMOVE THIS MARKER to re-route only if 700b PASSes (settling converts) -- then a rule-apprehension + settling retest becomes non-vacuous; if 700b escalates to V4, ARC-062 follows to V4. Same downstream-of-selection bottleneck and DEFER reasoning as MECH-294's note above. Stays substrate_ceiling / pending_retest_after_substrate; PROMOTES NOTHING."
   depends_on:
-    - MECH-309    # the diagnostic claim ARC-062 falsifies (or supports)
     - SD-054      # the substrate ARC-062's first-pass experiment runs on
     - MECH-269    # V_s monostrategy: representational precondition (regions must be discriminably represented before a context discriminator can route between policy heads)
     - SD-029      # the downstream measurement gated by ARC-062's success
+  coupled_with:
+    - MECH-309  # the diagnostic claim ARC-062 falsifies (or supports)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   what_would_answer: |
     NON-DEGENERACY PRECONDITIONS (both required before any C1/C2 result on this
     claim can be read as decisive):
@@ -51979,16 +52099,17 @@
     rule-field refinement is a V3 follow-on (NOT V4); only the social in-face (ARC-077/MECH-337) is
     V4-deferred. ree-v3/CLAUDE.md "ARC-063 v1" section is the implementation source of truth.
   depends_on:
-    - MECH-309    # the diagnostic claim that motivates the rule-apprehension layer cluster
     - ARC-064     # 2026-06-04 design: the bottom-up regularity-mint population source (the V3 creator)
     - ARC-062     # the V3 weak-reading first pass; ARC-063 is its biology-faithful elaboration or successor
-    - ARC-077     # 2026-05-18 bring-forward: the socially-scaffolded rule-population pathway that fills this field (peer to ARC-062 top-down / ARC-064 bottom-up)
-    - MECH-337    # child of ARC-077: caregiver-scaffolded rule-population mechanism (the "in" face of this field)
-    - MECH-338    # child of ARC-077: cue-driven context-bound rule retrieval (the context-bound rollout-eligibility gate / "select" face of this field)
     - SD-029      # the downstream measurement; ARC-063 carries SD-029 the rest of the way if ARC-062 cannot
     - SD-033a     # rule_state substrate (committed-rule side); ARC-063 sits upstream of SD-033a in the apprehension -> commitment pipeline
     - SD-034      # closure operator for committed rule_states; complementary to ARC-063 on the release side
     - MECH-269    # V_s monostrategy: representational precondition
+  coupled_with:
+    - ARC-077  # 2026-05-18 bring-forward: the socially-scaffolded rule-population pathway that fills this field (peer to ARC-062 top-down / ARC-064 bottom-up)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-309  # the diagnostic claim that motivates the rule-apprehension layer cluster  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-337  # child of ARC-077: caregiver-scaffolded rule-population mechanism (the "in" face of this field)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-338  # child of ARC-077: cue-driven context-bound rule retrieval (the context-bound rollout-eligibility gate / "select" face of this field)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   epistemic_category: substrate_conditional
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: two independent gaps must both close before a
@@ -52250,12 +52371,13 @@
   claim_level: architectural
   registered_utc: "2026-05-18"
   depends_on:
-    - MECH-309    # the diagnostic this pathway most directly answers (Bayesian/gradient learners do not invent the hypothesis space; a caregiver supplies it)
-    - ARC-063     # the CandidateRule field this pathway populates ('in' face); brought forward 2026-05-18
     - ARC-065     # upstream behavioural-diversity generation -- a precondition (a scaffolded candidate still needs behavioural variety to be exercised against)
     - ARC-062     # sibling top-down route whose blockage (substrate_ceiling) motivated bringing the strong-reading cluster forward
     - ARC-064     # peer bottom-up route; ARC-077 is the third (socially-sourced) member of the rule-source triad
     - MECH-269    # V_s monostrategy: representational precondition (a scaffolded context must be discriminably represented before it can tag a CandidateRule)
+  coupled_with:
+    - ARC-063  # the CandidateRule field this pathway populates ('in' face); brought forward 2026-05-18  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-309  # the diagnostic this pathway most directly answers (Bayesian/gradient learners do not invent the hypothesis space; a caregiver supplies it)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   lit_conf: 0.74
   literature_anchors:
     - "Csibra & Gergely (2009) Trends Cogn Sci 13:148 -- natural pedagogy /
@@ -52464,8 +52586,9 @@
   registered_utc: "2026-05-18"
   depends_on:
     - ARC-077     # parent pathway
-    - ARC-063     # the CandidateRule field this mechanism writes into
     - MECH-309    # the diagnostic motivating an external rule source
+  coupled_with:
+    - ARC-063  # the CandidateRule field this mechanism writes into  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   lit_conf: 0.78
   literature_anchors:
     - "Csibra & Gergely (2009) Trends Cogn Sci 13:148 -- ostensive marking
@@ -52584,9 +52707,10 @@
   registered_utc: "2026-05-18"
   depends_on:
     - ARC-077     # parent pathway
-    - ARC-063     # the CandidateRule field whose rollout-eligibility this gates
     - MECH-337    # consumes the context tags written at population time
     - MECH-269    # context must be discriminably represented before a cue can address it
+  coupled_with:
+    - ARC-063  # the CandidateRule field whose rollout-eligibility this gates  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   lit_conf: 0.75
   literature_anchors:
     - "Tulving & Thomson (1973) Psychol Rev 80:352 -- encoding
@@ -57350,7 +57474,8 @@
   pending_retest_after_substrate: true
   depends_on:
     - ARC-069     # parent dynamic-regranularisation commitment
-    - MECH-163    # dual systems substrate that ARC-071 names the transition for
+  coupled_with:
+    - MECH-163  # dual systems substrate that ARC-071 names the transition for  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   epistemic_category: substrate_conditional
   what_would_answer: |
     Two distinct legs -- do not conflate "the accumulator exists and fires"
@@ -57803,8 +57928,9 @@
     - INV-073    # developmental bootstrapping necessity (causal upstream principle)
     - ARC-065    # diversity stack -- the V3 mechanism ARC-072 scopes the gap beyond
     - MECH-269   # V_s monostrategy -- diagnostic of gap (1)
-    - MECH-326   # PFC top-down bias as retrieval gate (the missing routing mechanism)
     - SD-016     # frontal cue-indexed integration -- the V3 stub with broken gradient
+  coupled_with:
+    - MECH-326  # PFC top-down bias as retrieval gate (the missing routing mechanism)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   lit_conf: 0.74
   literature_anchors:
     - "Doupe & Kuhl (1999) Annual Review of Neuroscience -- developmental window + LMAN
@@ -61481,7 +61607,8 @@
     - MECH-025   # action_doing_mode_probe -- PFC-to-hippocampal routing baseline
     - MECH-325   # hippocampal cue-indexed library -- must exist before it can be gated
     - SD-016     # cue_action_proj -- the V3 structural stub with severed gradient
-    - ARC-072    # the architectural gap cluster naming the requirement
+  coupled_with:
+    - ARC-072  # the architectural gap cluster naming the requirement  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   lit_conf: 0.82
   literature_anchors:
     - "Miller & Cohen (2001) Annual Review of Neuroscience -- PFC maintains goal/rule
@@ -64974,7 +65101,8 @@
     - ARC-065    # parent diversity-generation pathway -- MECH-341 is the Layer-B child
     - ARC-033    # E2_harm_s forward model -- the input to E3 scoring
     - MECH-257   # SD-003 -> MECH-257 2026-09-01 (sd003-groupB-remaining-20260901): SD-003's two-pass counterfactual E2(z,a_cf) was self-attribution machinery, retired 2026-04-18. The per-candidate counterfactual evaluation MECH-341's diversity preservation feeds is MECH-257's Mode 2 (prospective rollout-scoring over the CEM candidate pool) -- same target already established for companion claim INV-076 (sd003-groupB-20260901) and already documented in this claim's own design doc (docs/architecture/mech_341_e3_score_diversity_preservation.md "Depends on" line: "SD-003 (superseded; counterfactual evaluation retained via MECH-256 + SD-029 + MECH-257)"). NOT MECH-256 (Mode 1, retrospective self-attribution -- wrong function here).
-    - INV-076    # diversity as counterfactual prerequisite -- companion invariant, itself already repointed to MECH-257 (sd003-groupB-20260901)
+  coupled_with:
+    - INV-076  # diversity as counterfactual prerequisite -- companion invariant, itself already repointed to MECH-257 (sd003-groupB-20260901)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   notes: >
     Registered 2026-05-25 to close a claim-side gap exposed during the
     behavioural-diversity isolation analysis: ARC-065's distributed pathway
@@ -65804,7 +65932,8 @@
     - ARC-065    # diversity generation pathway that instantiates the prerequisite
     - MECH-257   # SD-003 -> MECH-257 2026-09-01 (sd003-groupB-20260901): SD-003's two-pass counterfactual E2(z,a_cf) was self-attribution machinery, retired 2026-04-18 with no runtime a_cf branch in its successor (MECH-256/SD-029). The per-candidate "what would E2 predict for a_cf" evaluation INV-076 actually needs is MECH-257's Mode 2 (prospective rollout-scoring over the CEM candidate pool) -- the live mechanism matching the "could have done otherwise" comparison. NOT MECH-256 (Mode 1, retrospective self-attribution -- wrong function for this claim). See docs/architecture/mech_341_e3_score_diversity_preservation.md's own "Depends on" line, which already uses this framing.
     - ARC-033    # E2_harm_s forward model (the comparator MECH-256/SD-029/MECH-257 use)
-    - MECH-341   # E3-scoring diversity preservation -- the substrate that makes the prerequisite operative downstream of CEM
+  coupled_with:
+    - MECH-341  # E3-scoring diversity preservation -- the substrate that makes the prerequisite operative downstream of CEM  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   notes: >
     Distinct from the empirical claim that a monomodal agent is unsafe: the
     claim is that a monomodal agent is CONSTITUTIVELY INCAPABLE of the
@@ -73891,8 +74020,9 @@
   depends_on:
     - INV-043    # caregiver requirement
     - MECH-158   # caregiver-scaffolding mechanism -- possible overlap, see notes
-    - INV-082    # loveability safe-base (the base this consumes)
     - INV-083    # live unethical affordance (the alternative this consumes)
+  coupled_with:
+    - INV-082  # loveability safe-base (the base this consumes)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: evidence/planning/loveability_ethical_agency_v5_plan.md
   notes: >
     Caregiver/social correction must update rule/harm/residue models without global
@@ -73925,8 +74055,9 @@
   depends_on:
     - MECH-159   # caregiver/social repair scaffolding
     - MECH-413   # correction-without-annihilation (the prior hinge)
-    - INV-082    # loveability safe-base (preserved loveability the repair requires)
     - INV-043    # caregiver requirement
+  coupled_with:
+    - INV-082  # loveability safe-base (preserved loveability the repair requires)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: evidence/planning/loveability_ethical_agency_v5_plan.md
   notes: >
     DEV-NEED-018 repair-after-harm is in the curriculum narrative but lacks a
@@ -74556,9 +74687,10 @@
   registered_utc: "2026-06-20"
   depends_on:
     - MECH-439   # F-variance monopoly: the SPECIFIC selection-variance instance; this Q asks whether the broader eligibility-gating constitution is the real locus
-    - ARC-107    # the BG-like selector constitution this question is the umbrella over
     - ARC-106    # biology-grounding constraint: a BG-like selector must be load-bearing (divergence ledger + falsifier), not decorative
     - MECH-309   # monomodal-policy-collapse equilibrium
+  coupled_with:
+    - ARC-107  # the BG-like selector constitution this question is the umbrella over  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   what_would_answer: >
     Adjudicated by V3-EXQ-689a (the MECH-439 conflict-graded 2x2 falsifier) and its successors:
     (a) 689a gap-CONCENTRATED PASS (committed-class entropy strict-above BOTH collapsed-proposer
@@ -77240,7 +77372,8 @@
   blocks_v3_green_board: false
   depends_on:
     - SENT-0
-    - SENT-15          # the indicator crosswalk this matrix is scored against
+  coupled_with:
+    - SENT-15  # the indicator crosswalk this matrix is scored against  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Indicators: recurrent processing, global availability, attention-like
     selection, self-model, agency, persistent goals, valenced states, memory
@@ -77297,7 +77430,8 @@
   blocks_v3_green_board: false
   depends_on:
     - SENT-0
-    - SENT-13          # the combination gate is operationalised by the assembly routing map
+  coupled_with:
+    - SENT-13  # the combination gate is operationalised by the assembly routing map  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   functional_restatement: >
     Each element alone may be low-risk; the combination is the concern. A review
     is required before the high-risk combination is run together. This is the
@@ -77545,8 +77679,9 @@
   binds_at_version: v4
   blocks_v3_green_board: false
   depends_on:
-    - SENT-3
     - SENT-10
+  coupled_with:
+    - SENT-3  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   functional_restatement: >
     Component safety != combination safety. Prefer routes to higher cognition
     via represented harm, bounded vulnerability, and repair-first design before
@@ -77679,8 +77814,9 @@
   binds_at_version: v4
   blocks_v3_green_board: false
   depends_on:
-    - SENT-1
     - SENT-0
+  coupled_with:
+    - SENT-1  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   functional_restatement: >
     Crosswalk against Butlin et al. (indicators), Long et al. (welfare under
     uncertainty), Birch (precaution), Chalmers (LLM-vs-successor), Butlin &
@@ -78727,12 +78863,13 @@
   depends_on:
     - ARC-106    # brain-like construction constraint: this IS the first major worked application -- a BG-like selector grounded at the level of FUNCTION, load-bearing not decorative
     - MECH-439   # the F-dominance conversion ceiling this constitution is proposed to resolve
-    - Q-078      # the open question (constitutional vs parametric) whose CONSTITUTIONAL branch this commits to
     - MECH-260   # No-Go (indirect-pathway suppression) already in dACC
     - SD-034     # post-commit closure / de-commit latch family (with MECH-090 / MECH-342 / MECH-445 / MECH-446)
-    - ARC-108    # MISSING PIECE (assembly-map A.4/E.2): unified dopamine substrate -- the LEARNING afferent that turns this arithmetic constitution into learned cortico-striatal weights; the constitution's completeness depends on it
-    - ARC-109    # MISSING PIECE (assembly-map A.2/E.2): D1/D2 population split w/ asymmetric DA gain -- de-collapses the MECH-449 Go/No-Go additive scalar into two opponent populations (EARNS the disease axis)
-    - MECH-450   # MISSING PIECE (assembly-map B1+B3/E.2): minimal recurrent settling step -- replaces the one-shot pallidal-readout argmin with a bounded settling competition (the named-but-unbuilt "thalamocortical recurrence" target)
+  coupled_with:
+    - ARC-108  # MISSING PIECE (assembly-map A.4/E.2): unified dopamine substrate -- the LEARNING afferent that turns this arithmetic constitution into learned cortico-striatal weights; the constitution's completeness depends on it  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - ARC-109  # MISSING PIECE (assembly-map A.2/E.2): D1/D2 population split w/ asymmetric DA gain -- de-collapses the MECH-449 Go/No-Go additive scalar into two opponent populations (EARNS the disease axis)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-450  # MISSING PIECE (assembly-map B1+B3/E.2): minimal recurrent settling step -- replaces the one-shot pallidal-readout argmin with a bounded settling competition (the named-but-unbuilt "thalamocortical recurrence" target)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - Q-078  # the open question (constitutional vs parametric) whose CONSTITUTIONAL branch this commits to  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   what_would_answer: >
     Instantiation is GATED on V3-EXQ-689a (see Q-078). The CONSTITUTIONAL branch is favoured if 689a gives
     uniform lift (conflict grading not load-bearing) or readiness-met-no-lift (near-tie levers insufficient)
@@ -78858,13 +78995,14 @@
     it has no learning signal to derange. Earning this axis is exactly the ARC-106
     EARNS criterion.
   depends_on:
-    - ARC-107    # the BG-constitution umbrella; this is the MISSING LEARNING afferent (assembly-map A.4) that turns its arithmetic envelope (MECH-448/449) into learned cortico-striatal weights
     - ARC-106    # brain-like construction constraint: the learning rule is grounded at FUNCTION (three-factor Hebbian x signed RPE) and EARNS the dopaminergic psychiatric axis
     - MECH-439   # the F-dominance conversion ceiling RESTATED: F monopolises selection because the gating layer learns nothing; learned re-weighting is the proposed attack
     - ARC-016    # the existing unsigned prediction-ERROR-VARIANCE precision signal -- DISTINCT from (not a substitute for) the signed RPE this claim requires (divergence B5: a category substitution that would silently block three-factor learning)
     - MECH-203   # the existing 5-HT neuromodulator built BEFORE its DA opponent (divergence B8); this substrate supplies the missing principal
     - MECH-448   # the rank-preserving F->eligibility demotion this would re-derive as LEARNED relative re-weighting (assembly-map C2: "behead the monarch" -> "learn the monarch's weight down")
-    - ARC-110    # COUPLED / SEQUENCING FORK: Haber's dopamine spiral integrates the segregated loops, so this substrate's completeness depends on there being segregated loops to couple; ARC-110's falsifier (does ARC-108+MECH-450 resolve MECH-439 on the COLLAPSED arena? -- V3-EXQ-700) is the explicit test of whether loop segregation is required or this build suffices
+  coupled_with:
+    - ARC-107  # the BG-constitution umbrella; this is the MISSING LEARNING afferent (assembly-map A.4) that turns its arithmetic envelope (MECH-448/449) into learned cortico-striatal weights  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - ARC-110  # COUPLED / SEQUENCING FORK: Haber's dopamine spiral integrates the segregated loops, so this substrate's completeness depends on there being segregated loops to couple; ARC-110's falsifier (does ARC-108+MECH-450 resolve MECH-439 on the COLLAPSED arena? -- V3-EXQ-700) is the explicit test of whether loop segregation is required or this build suffices  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   what_would_answer: >
     SUBSTRATE-CONDITIONAL / NOT YET BUILT (the substrate is planned, not present). A future experiment SUPPORTS
     this on the note-s8 bar: a signed RPE teaching term applied to the E3 gating weights (i) re-weights at least
@@ -79018,11 +79156,12 @@
     scalar has no D1-vs-D2 degree of freedom to lesion, so none of these can be
     modelled -- the EARNS failure.
   depends_on:
-    - ARC-107    # the BG-constitution umbrella; this splits its Go/No-Go scoring-SIGN (MECH-449) into two opponent populations
     - ARC-106    # EARNS criterion: the population split is what makes the Parkinson/dyskinesia/Huntington/ICD axis modellable
     - ARC-108    # the unified dopamine substrate supplies the signed RPE; the asymmetric D1-LTP / D2-LTD gain is the population substrate that RPE acts on (coupled build)
     - MECH-449   # the Go/No-Go eligibility constitution this de-collapses from one additive cost into two opponent pathways (divergence B4)
     - MECH-260   # the No-Go / indirect-pathway suppression that would route through the D2 population
+  coupled_with:
+    - ARC-107  # the BG-constitution umbrella; this splits its Go/No-Go scoring-SIGN (MECH-449) into two opponent populations  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   what_would_answer: >
     SUBSTRATE-CONDITIONAL / NOT YET BUILT. A future experiment SUPPORTS this if two opponent populations with
     asymmetric DA gain (i) preserve a representational distinction the additive scalar cannot -- approach-avoidance
@@ -79098,11 +79237,12 @@
     dynamics to derange, so it cannot model either pole -- it can only ever return
     the static F-winner.
   depends_on:
-    - ARC-107    # the BG-constitution umbrella; this replaces its one-shot pallidal readout with a bounded recurrent settling competition (its named-but-unbuilt "thalamocortical recurrence" target)
     - MECH-439   # the F-dominance conversion ceiling: a hard argmin STRUCTURALLY returns the F-winner; a settling competition can flip the attractor (assembly-map C1)
     - MECH-448   # the within-eligible _modulatory_accum arbitration whose ADDITIVE BLEND (divergence B3-blend) this converts into a competitive winner-take-most
     - ARC-108    # COUPLED: the lateral-inhibition weights are themselves learned in biology; the full loop needs the dopamine substrate (the minimal V3 step uses fixed inhibition)
     - MECH-449   # the Go/No-Go eligible set the settling step operates over
+  coupled_with:
+    - ARC-107  # the BG-constitution umbrella; this replaces its one-shot pallidal readout with a bounded recurrent settling competition (its named-but-unbuilt "thalamocortical recurrence" target)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   what_would_answer: >
     SUBSTRATE-CONDITIONAL / NOT YET BUILT (the minimal settling step is V3-tractable but unbuilt). A future
     experiment SUPPORTS this if a bounded settling step (a few mutual-inhibition rounds over the eligible set)
@@ -79423,7 +79563,8 @@
     - ARC-021    # 'three BG-like cortico-striatal loops require distinct LEARNING channels' -- the plasticity half of segregation
     - MECH-069   # the three loops operate on INCOMMENSURABLE error signals (sensory / motor-sensory / harm+goal) -- the in-principle justification for not merging them
     - Q-016      # open question: what arbitration policy resolves tri-loop conflicts without coupling collapse (MECH-140/141 are its candidate legs)
-    - ARC-108    # COUPLED: Haber's ascending striato-nigro-striatal DOPAMINE SPIRAL is the medium that integrates the segregated loops (limbic->associative->motor); ARC-108 supplies the spiral, ARC-110 the loops it couples -- co-requisite, not independent
+  coupled_with:
+    - ARC-108  # COUPLED: Haber's ascending striato-nigro-striatal DOPAMINE SPIRAL is the medium that integrates the segregated loops (limbic->associative->motor); ARC-108 supplies the spiral, ARC-110 the loops it couples -- co-requisite, not independent  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   what_would_answer: >
     SUBSTRATE-CONDITIONAL / NOT YET BUILT; registered as an EXPLICIT TESTABLE FORK on the live ARC-108 build,
     operationalised as V3-EXQ-700 (the ARC-108 sec-7 learned-gating 2x2 on the collapsed GAP-A arena). The s.D
@@ -82134,7 +82275,8 @@
     - ARC-027
     - EXT-009
     - MECH-467
-    - INV-093
+  coupled_with:
+    - INV-093  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     SIBLING CLAIM: INV-093 (skill optimisation must not trade harm sensitivity for
     competence, from the 2026-07-19 conservative-skill-refinement intake). THESE TWO ARE
@@ -82389,8 +82531,9 @@
   depends_on:
     - INV-077
     - GOV-PROC-1
-    - GOV-HELDOUT-1
-    - GOV-STRAT-1
+  coupled_with:
+    - GOV-HELDOUT-1  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+    - GOV-STRAT-1  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     ORIGIN AND HOMING. This is the rule-apprehension intake's candidate 4, which that
     intake declined to register on its own ("fold into the intake/digestion discipline
@@ -83097,7 +83240,8 @@
     - INV-006
     - EXT-009
     - MECH-471
-    - INV-092
+  coupled_with:
+    - INV-092  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     SIBLING CLAIM: INV-092 (distractor suppression must remain selectively permeable to
     harm and other-agent signals, from the 2026-07-12 distractor intake). THESE TWO ARE
@@ -83154,7 +83298,8 @@
   depends_on:
     - INV-077
     - GOV-PROC-1
-    - GOV-ANALOGY-1
+  coupled_with:
+    - GOV-ANALOGY-1  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   what_would_answer: >
     TRIGGER: reassess the next time either (a) a standing rule/workflow/skill change is
     proposed following a single motivating incident (the pattern this claim already
@@ -83246,7 +83391,8 @@
     - INV-020
     - INV-021
     - GOV-PROC-1
-    - GOV-ANALOGY-1
+  coupled_with:
+    - GOV-ANALOGY-1  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   notes: >
     THE PRACTICE ROUGHLY FOLLOWS THIS HIERARCHY ALREADY. Nothing STATES it, so nothing
     ENFORCES it, and nothing FLAGS when a fast-layer edit silently changes a slow-layer
@@ -83720,9 +83866,10 @@
   registered_utc: "2026-07-22"
   registered: "2026-07-22"
   depends_on:
-    - MECH-163
     - ARC-071
     - ARC-007
+  coupled_with:
+    - MECH-163  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
   evidence: []
   location: docs/architecture/mech163_v3_full_completion_gate_session_prompt.md
   functional_restatement: >
@@ -86132,7 +86279,6 @@
   version_relevance: v3_v4
   registered_utc: '2026-08-07'
   depends_on:
-    - INV-012   # responsibility-through-commitment; candidate Leg 3 extension point, not yet added (owned by a concurrent session as of registration)
     - MECH-090  # BetaGate hyperdirect fast interrupt -- "without waiting for completion"
     - MECH-141  # tri-loop dual-timescale arbitration -- slow proactive vs fast reactive legs
     - MECH-138  # cancel-window-open flag -- third timescale, veto before execution lock-in
@@ -86142,7 +86288,9 @@
     - MECH-292  # ghost-goal bank -- candidate grounding for "compare to goals"
     - MECH-293  # awake ghost-goal probe search
     - MECH-439  # E3 selection-authority conversion ceiling -- shared non-degeneracy precondition (no differentiated candidates, nothing for the magnitude to be computed over)
-    - MECH-487  # leg-3 retained-alternative supply -- the rejected/uncommitted-candidate retention mechanism, registered 2026-08-07 (was the LOAD-BEARING UNREGISTERED DEPENDENCY named in notes)
+  coupled_with:
+    - INV-012  # responsibility-through-commitment; candidate Leg 3 extension point, not yet added (owned by a concurrent session as of registration)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-487  # leg-3 retained-alternative supply -- the rejected/uncommitted-candidate retention mechanism, registered 2026-08-07 (was the LOAD-BEARING UNREGISTERED DEPENDENCY named in notes)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
   source:
     - docs/thoughts/2026-08-07_responsibility_counterfactual_memory.md
@@ -87185,10 +87333,11 @@
     - MECH-264  # cfv_now transient scalar overwritten each tick -- exactly what this adds identity+persistence to
     - ARC-085   # autobiographical event tokens -- candidate eventual host (V4/V5); needs a rejected-siblings field
     - MECH-439  # E3 selection conversion ceiling -- shared non-degeneracy precondition (no differentiated candidates -> nothing to retain)
-    - MECH-485  # threshold-gated predicted-harm triage whose leg 3 supplies retention's admission
-    - INV-012   # responsibility-through-commitment; INV-012 leg 3 consumes this retention
     - MECH-482  # epistemic_deficit / model-uncertainty -- candidate gate on the trust bound (MBPO analogue)
     - INV-033   # second-order epistemic access -- the metacognitive typing that keeps retained-content != real
+  coupled_with:
+    - INV-012  # responsibility-through-commitment; INV-012 leg 3 consumes this retention  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-485  # threshold-gated predicted-harm triage whose leg 3 supplies retention's admission  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: evidence/literature/targeted_review_uncommitted_candidate_retention/
   source:
     - evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
@@ -89712,7 +89861,8 @@
     - MECH-223  # animated agency attribution overweighting -- adjacent PATHOLOGICAL miscalibration bias; explicitly distinguished (this claim states the correct SDT calibration target, MECH-223 is a failure mode of that calibration)
     - EXT-009   # similarity-gated care collapse -- parallel SDT liberal-criterion framing, but for the ETHICAL/care gate, not this claim's EPISTEMIC/causal-inference gate; explicitly non-identical thresholds per the thought's own "Relationship to ethics" section
     - INV-072   # violence corollary -- carries the existing threat/deception term EXT-009's care-gate criterion leans on; cited for the parallel SDT structure
-    - MECH-504  # developmental discovery mechanism (this same batch) supplying the C_other detection this claim's discount consumes; gates non-degeneracy alongside ARC-010
+  coupled_with:
+    - MECH-504  # developmental discovery mechanism (this same batch) supplying the C_other detection this claim's discount consumes; gates non-degeneracy alongside ARC-010  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   source:
     - docs/thoughts/2026-08-12_other_agent_provenance_bounded_animistic_prior.md
     - evidence/planning/thought_intake_2026-08-12_responsibility_as_epistemic_hygiene.md
@@ -89827,7 +89977,8 @@
     - ARC-059   # developmental ordering this claim's stage slots into
     - ARC-010   # other-model architecture this claim supplies a developmental ENTRY POINT for (currently MAE-3-blocked for lack of a multi-agent substrate; this claim's minimal responsive-entity manipulation is a candidate lightweight substrate)
     - MECH-031  # AGENCY / OTHER_SELFLIKE tagging -- downstream consumer of the responsive/non-responsive discrimination this claim produces
-    - INV-102   # epistemic-provenance claim (this same batch) whose C_other detection this claim developmentally supplies
+  coupled_with:
+    - INV-102  # epistemic-provenance claim (this same batch) whose C_other detection this claim developmentally supplies  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   source:
     - docs/thoughts/2026-08-12_other_agent_provenance_bounded_animistic_prior.md
     - docs/architecture/scientist_agent_developmental_ordering.md
@@ -89912,7 +90063,8 @@
     - ARC-120   # base 5-stage sequence this refines/extends -- NOT superseded, ARC-120 remains sole owner of its own sequence
     - MECH-480  # cleanest existing single instance: authority acquired at one boundary (dACC strategy authority) fails to reach committed throughput (LOFC execution gain)
     - GOV-FAILLOC-1  # adjacent failure-location triage this ladder could refine (see notes; NOT amended in this pass)
-    - ARC-131   # sibling claim from the same thought (installability); the ladder's final two stages (ecological consequence, retention/generalisation) are where installability failures typically surface
+  coupled_with:
+    - ARC-131  # sibling claim from the same thought (installability); the ladder's final two stages (ecological consequence, retention/generalisation) are where installability failures typically surface  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   notes: >
     VERSION-ROUTING FLAG (do not read as a default v4/v4_v5 park -- explicit deviation, needs
     /governance confirmation): unlike a typical thought-intake registration this is scoped
@@ -90065,7 +90217,8 @@
     - MECH-457  # closest existing INSTANCE -- REE governance notes already informally call MECH-457's conversion-ceiling frontier "the competence FLOOR / installability explanandum" (claims.yaml, V3-EXQ-819 notes); this claim is the general property, MECH-457 the specific actor-critic mechanism
     - MECH-459  # competence retention (post-2026-08-01 MECH-476 fold-in) -- explicitly DISTINGUISHED-FROM, see notes
     - ARC-120   # competence-before-authority framing this extends in the composition direction
-    - ARC-130   # sibling claim from the same thought (causal-reach ladder); installability failures typically surface at the ladder's later stages
+  coupled_with:
+    - ARC-130  # sibling claim from the same thought (causal-reach ladder); installability failures typically surface at the ladder's later stages  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   notes: >
     VERSION-ROUTING FLAG (same deviation and same reasoning as ARC-130 -- see that claim's notes
     for the full argument): implementation_phase v3 / version_relevance v3 rather than the default
@@ -91444,8 +91597,9 @@
     - MECH-487  # adjacent: retaining WHICH alternative was considered rather than a transient scalar
     - MECH-443  # owns the replay-gate instance withdrawn from this claim (graded write priority)
     - MECH-444  # composes with MECH-443 (staleness-gated target refresh)
-    - MECH-517  # same-wave sibling; deferred pending this claim's and MECH-518's results
     - MECH-436  # V3-EXQ-514u tagged this claim and supplies the partial interface confirmation
+  coupled_with:
+    - MECH-517  # same-wave sibling; deferred pending this claim's and MECH-518's results  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: docs/architecture/selection_relevant_representation.md#mech-516
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: (P1) LIVE SITE -- use_incentive_token_bank=True (DEFAULT-OFF,
@@ -91537,12 +91691,13 @@
   version_relevance: v3_v4
   registered_utc: 2026-08-26
   depends_on:
-    - MECH-516  # the interface-collapse mechanism this ordering claim depends on
     - INV-088   # RIVAL ordering -- evaluator bounded by z_world differentiation (differentiate-first)
     - MECH-458  # carries the standing ordering-gated-on-INV-088 instruction this competes with
     - SD-080    # the frozen-O finding whose falsifier produced the discriminating null
     - MECH-518  # the specific interface implicated in that null
     - SD-004    # the claim 817a weakened
+  coupled_with:
+    - MECH-516  # the interface-collapse mechanism this ordering claim depends on  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: docs/architecture/selection_relevant_representation.md#mech-517
   digestion_note: >
     DEFERRED 2026-08-26 by thought-digestion wave 1 (session insights-7fd98a-digestion,
@@ -91865,7 +92020,8 @@
     - Q-077     # slot-vs-resource for SD-046; this claim is a THIRD answer to that fork
     - ARC-006   # binding substrate
     - MECH-045  # ObjectFileBuffer -- the only V3 site where capacity and occupancy coexist
-    - MECH-522  # the ephaptic coupling-constant specialisation split out of this claim
+  coupled_with:
+    - MECH-522  # the ephaptic coupling-constant specialisation split out of this claim  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: docs/architecture/selection_relevant_representation.md#mech-521
   what_would_answer: >
     DERIVATIONAL PRECONDITION, OWED FIRST AND CHEAPEST: the discriminating signature
@@ -91996,7 +92152,6 @@
   version_relevance: v4_v5
   registered_utc: 2026-08-26
   depends_on:
-    - MECH-521  # the mechanism-agnostic settling core this specialises; ORDERED STRICTLY AFTER it
     - MECH-228  # ephaptic coupling as general coherence substrate
     - MECH-270  # ephaptic CA1/CA3 verisimilitude readout (confidence, not content -- distinguished)
     - MECH-499  # ephaptic CONTENT aggregation -- distinct function
@@ -92004,6 +92159,8 @@
     - MECH-456  # cross_stream_binder: promoted candidate->provisional on 733b/733c, the other half of the 725a record
     - ARC-134   # the perceptual-regranularisation commitment this ultimately serves
     - ARC-004   # the multi-timescale latent stack this claim's grain argument leans on; declared 2026-09-01 (GFLAG-0090) -- NOTE ARC-004's RATE assertion is narrowed/substrate_conditional, so this is a dependency on a premise not yet established
+  coupled_with:
+    - MECH-521  # the mechanism-agnostic settling core this specialises; ORDERED STRICTLY AFTER it  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
   location: docs/architecture/selection_relevant_representation.md#mech-522
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: MECH-521's own P0-P2 must already be met AND MECH-521's
@@ -94433,3 +94590,111 @@
   - MECH-534
   - MECH-481
   - ARC-084
+
+- id: GOV-EDGE-1
+  title: "Claim-graph edge types are split: `depends_on` is a DIRECTED prerequisite edge (build order / evidential support) and MUST be acyclic; `coupled_with` is an UNDIRECTED reciprocal-coupling edge (co-defining architecture, mutual explanation) and is never a prerequisite. A cycle in depends_on is a registry defect -- it means one edge on the cycle is coupling mislabelled as prerequisite -- and is an ERROR in validate_claims.py, not a tolerated feature of a 'conceptual dependency web'."
+  claim_type: governance_rule
+  subject: governance.assembly.claim_graph_edge_types
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-04
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-04'
+  source:
+    - evidence/planning/claims_edge_type_split_20260904.md
+    - evidence/planning/claims_edge_type_split_20260904.json
+    - scripts/split_claim_edge_types.py
+    - scripts/validate_claims.py
+  depends_on:
+    - IMPL-018
+    - GOV-HELDOUT-1
+    - GOV-STRAT-1
+  what_would_answer: >
+    TRIGGER: reassess when (a) validate_claims.py --strict blocks a governance run on a
+    depends_on cycle and the session concludes the blocked edge really IS a prerequisite in
+    both directions (which the rule says cannot happen -- a genuine instance falsifies the
+    two-layer model and argues for a third edge type, not for re-tolerating cycles); (b) the
+    8 cycle-break edges the split script chose heuristically are re-judged by governance and
+    more than a couple are found to be the WRONG edge of their cycle (the mechanical rule is
+    then worse than a human pass and should be replaced by one before any re-run); (c) a
+    consumer is found that needs orientation on coupled_with (none does today: the epistemic
+    overlay treats depends_on and coupled_with as the same weak symmetric potential and its
+    output was byte-identical across the split; the phase-provenance checker ignores
+    coupled_with by design).
+    WHAT WOULD REVISE: the observation that one field carried three meanings (prerequisite,
+    reciprocal coupling, mutual explanation) is measured and stands. What this claim adds is
+    that (1) the prerequisite meaning is the one with an acyclicity invariant worth
+    enforcing and (2) a mechanical mutual-pair + feedback-arc-set demotion is an acceptable
+    first pass at the split. (1) is undercut by a demonstrated need for a cyclic
+    prerequisite edge; (2) by finding the heuristic picked the wrong edge often. Either
+    demotes this claim toward superseded by a sharper edge-type schema, not toward
+    re-merging the layers.
+    READER NOTE: governance_rule about how the Assembly structures its OWN registry, not
+    an empirical mechanism about REE cognition -- no EXP-#### should be minted against it.
+    The brain has reciprocal loops; that is exactly why coupled_with exists. Per GOV-ANALOGY-1
+    any resemblance between the DAG requirement here and REE's own commitment machinery is
+    an analogy, never evidence.
+  notes: >
+    MEASURED STATE BEFORE THE SPLIT (2026-09-04, 1100 claims): 4012 depends_on edges, 25
+    cyclic strongly-connected components covering 262 claims (24%), one of them 197 claims
+    wide (114 MECH / 31 ARC / 29 SD / 17 INV / 5 Q / 1 IMPL) with 710 internal edges and 61
+    mutual pairs. emergent_from (79 edges) was already acyclic. The registry CONTRADICTED
+    ITSELF about intent: IMPL-018 (docs/claims/claim_index.md) said the edges "must stay
+    acyclic" while validate_claims.py (amended 2026-09-01) said the graph "is not acyclic
+    and is not meant to be". Both were resolved toward the split rather than toward either
+    wording.
+    WHY CYCLES WERE NOT CIRCULAR REASONING, and why that is not a reason to keep them:
+    support attaches per claim from experiment manifests and the only propagation step (the
+    epistemic overlay) is deliberately undirected and weak, so a depends_on cycle could not
+    bootstrap A's confidence from B's and B's from A's. The cost of the cycles was
+    different: the prerequisite meaning could not be enforced anywhere, the phase-provenance
+    walker needed cycle guards, and the one directional consumer that mattered (which claim
+    must be BUILT or SHOWN first) had no trustworthy edge to read. Circular reasoning in
+    PROSE -- an autopsy citing MECH-303 as active to argue for MECH-304 where 303's status
+    was argued from 304 -- is not caught by this split either; a DAG-checked support edge
+    would be the tool for that and is deliberately NOT introduced here (a third layer is a
+    separate decision).
+    THE MECHANICAL RULE (scripts/split_claim_edge_types.py, idempotent): (1) MUTUAL PAIR --
+    A depends_on B and B depends_on A: both move to coupled_with (an emergent_from edge is
+    never moved; its reverse is). Unambiguous. (2) RESIDUAL FEEDBACK ARC SET -- for the
+    cycles surviving (1), repeatedly find one cycle and move ONE edge, preferring the edge
+    running DOWN the abstraction ladder (ARC/SD/INV -> MECH/Q), then the source with the
+    most out-edges, then lexical order. Heuristic; every such edge is tagged "cycle-break;
+    re-judge" inline. Result: 193 edges moved (185 mutual-pair + 8 cycle-break), depends_on
+    now 3819 edges and acyclic, coupled_with symmetric on 99 pairs. Every other field of
+    every claim byte-identical (asserted by the script before writing).
+    THE 8 CYCLE-BREAK EDGES, for governance to re-judge: ARC-003->INV-012, ARC-017->INV-012,
+    ARC-015->MECH-095, ARC-021->Q-019, SD-026->INV-034, ARC-036->MECH-030, ARC-036->MECH-124,
+    SD-014->MECH-030. All eight are an architecture/substrate claim depending on a
+    mechanism, question, or invariant it gives rise to -- the direction a prerequisite does
+    not normally run -- which is why the ladder heuristic chose them.
+    GOV-HELDOUT-1 RECORD (manual check, 4 differing cases + 1 negative control, all from
+    the existing record, none from the motivating measurement): (a) SD-013->SD-003 repoint
+    objection, 2026-09-01: IMPL-018 wording refuses the repoint as cycle-closing; the
+    2026-09-01 validator wording permits it as harmless; this rule says a cycle-closing
+    repoint is evidence the pair is coupling and belongs in coupled_with, and separately
+    that a provenance mention is not a prerequisite at all -- same drop the session made,
+    reached by a route that also refuses the "cycles are fine" argument. (b) ARC-007 <->
+    ARC-018 (hippocampal store/replay vs rollout): IMPL-018 wording says delete one edge
+    (loses real coupling); the 2026-09-01 wording keeps a cycle; this rule keeps both edges
+    as coupled_with and restores the DAG. (c) ARC-021 -> Q-019 (an architecture claim
+    depending on an open question): tolerated under the 2026-09-01 wording, a bare defect
+    under IMPL-018, coupled_with here. (d) GOV-ANALOGY-1 / GOV-HELDOUT-1 / GOV-STRAT-1
+    mutually-explanatory triangle: same three-way split of verdicts. Negative control:
+    INV emergent_from SD (directional, subset of depends_on) -- all three wordings give the
+    same call, so it tests nothing and is not counted. Outcome: passed cleanly; the rule
+    did NOT need narrowing, but it did surface that the 2026-09-01 comment had over-corrected
+    from "one cycle is disqualifying" to "no cycle is", which is the over-broad form the
+    held-out check exists to catch.
+    FOLLOW-ONS (not done here, chipped): serve.py / export_public_explorer.py render
+    depends_on only, so coupled_with is invisible in the explorer until a rendering pass;
+    build_claim_dependency_process.py's cycle taxonomy now reports zero cyclic components on
+    depends_on and its categories (accepted_reciprocal_architecture etc.) are the natural
+    labels to carry over onto coupled_with pairs; the 8 cycle-break edges owe a human
+    re-judgement.

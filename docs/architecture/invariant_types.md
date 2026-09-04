@@ -86,7 +86,8 @@ All invariants carry an `invariant_type` field. Emergent invariants additionally
   emergent_from: []                  # required and non-empty when invariant_type: emergent
   candidate_emergent_from: []        # optional, grey_zone only
   pending_substrate_reconfirmation: false   # flag, see "Governance Cycle" below
-  depends_on: [...]
+  depends_on: [...]                  # DIRECTED prerequisites; acyclic (GOV-EDGE-1)
+  coupled_with: [...]                # UNDIRECTED reciprocal coupling; never a prerequisite
 ```
 
 Rules enforced by `scripts/validate_claims.py`:
@@ -94,6 +95,7 @@ Rules enforced by `scripts/validate_claims.py`:
 - `invariant_type` is mandatory on all invariants.
 - `invariant_type: emergent` requires non-empty `emergent_from`.
 - `emergent_from` must be a subset of `depends_on`.
+- `depends_on` (all claim types) is a directed prerequisite DAG; a cycle is an ERROR. A reciprocal pair goes in `coupled_with`, on both endpoints (asymmetry is a WARN). See GOV-EDGE-1 and `evidence/planning/claims_edge_type_split_20260904.md`.
 - `emergent_from` must be absent or empty on `universal` invariants.
 - `grey_zone` entries are permissive — they pass validation regardless of `emergent_from` content.
 

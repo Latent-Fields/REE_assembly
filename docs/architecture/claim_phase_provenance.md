@@ -147,6 +147,7 @@ be built before the need):
 | `depends_on` | **yes** | a build prerequisite. |
 | `emergent_from` | **yes, STRONGER** | the dependent invariant's *subject* is ill-formed without the substrate (invariant_types.md). A `v3` emergent invariant whose `emergent_from` substrate is `v4` is a hard leak. `emergent_from` is a subset of `depends_on`; the checker de-duplicates and marks the candidate `strength: strong`. |
 | `instantiates` | **no** | a parent-cluster *registration* relation, not a build prerequisite, in **either** direction. The `instantiates` target is removed from the `depends_on` edge set. This is what keeps SD-033e from being over-pulled and keeps a `v3` child that instantiates a `v3` parent from spuriously "needing the parent built first." |
+| `coupled_with` | **no** | undirected reciprocal coupling (GOV-EDGE-1, 2026-09-04): co-defining architecture (ARC-007 <-> ARC-018) or a question and the mechanism that explains it. Neither endpoint is a prerequisite of the other, so it propagates no phase pressure in either direction. Since the split, `depends_on` is an enforced DAG, so the per-seed `visited` guard in 3.3 is defence in depth rather than load-bearing. |
 
 ### 3.3 Driver gating -- which claims may *force* a reclassification
 
@@ -199,8 +200,10 @@ The checker instead separates:
   pulling edge; universal invariants carry no `emergent_from` and so never pull;
   grey_zone invariants pull only via whatever `depends_on` they declare (no
   special casing -- their uncertainty is about classification, not dependency).
-- **cycles** -- each walk carries a per-seed `visited` set; cyclic `depends_on`
-  terminates.
+- **cycles** -- each walk carries a per-seed `visited` set. Since GOV-EDGE-1
+  (2026-09-04) `depends_on` is validated acyclic, so this guard should never
+  fire; it stays as defence in depth against a registry edited past a failing
+  `validate_claims.py --strict`.
 - **dangling deps** -- a `depends_on` id with no matching claim is reported under
   "Dangling dependency references" (hygiene), never silently dropped.
 - **registration obligation** -- never read as a phase signal (Section 2).

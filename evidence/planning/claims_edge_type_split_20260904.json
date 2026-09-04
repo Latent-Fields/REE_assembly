@@ -1,0 +1,2017 @@
+{
+  "rule": "GOV-EDGE-1",
+  "date": "2026-09-04",
+  "before": {
+    "claims": 1100,
+    "depends_on_edges": 4012,
+    "cyclic_sccs": 25,
+    "claims_in_cycles": 262,
+    "scc_sizes": [
+      197,
+      9,
+      6,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "after": {
+    "depends_on_edges": 3819,
+    "cyclic_sccs": 0
+  },
+  "moves": [
+    {
+      "src": "ARC-007",
+      "dst": "ARC-018",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-007",
+        "ARC-018",
+        "ARC-007"
+      ]
+    },
+    {
+      "src": "ARC-018",
+      "dst": "ARC-007",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-018",
+        "ARC-007",
+        "ARC-018"
+      ]
+    },
+    {
+      "src": "ARC-010",
+      "dst": "ARC-047",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-010",
+        "ARC-047",
+        "ARC-010"
+      ]
+    },
+    {
+      "src": "ARC-047",
+      "dst": "ARC-010",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-047",
+        "ARC-010",
+        "ARC-047"
+      ]
+    },
+    {
+      "src": "ARC-015",
+      "dst": "INV-012",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-015",
+        "INV-012",
+        "ARC-015"
+      ]
+    },
+    {
+      "src": "INV-012",
+      "dst": "ARC-015",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-012",
+        "ARC-015",
+        "INV-012"
+      ]
+    },
+    {
+      "src": "ARC-021",
+      "dst": "MECH-033",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-021",
+        "MECH-033",
+        "ARC-021"
+      ]
+    },
+    {
+      "src": "MECH-033",
+      "dst": "ARC-021",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-033",
+        "ARC-021",
+        "MECH-033"
+      ]
+    },
+    {
+      "src": "ARC-021",
+      "dst": "MECH-069",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-021",
+        "MECH-069",
+        "ARC-021"
+      ]
+    },
+    {
+      "src": "MECH-069",
+      "dst": "ARC-021",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-069",
+        "ARC-021",
+        "MECH-069"
+      ]
+    },
+    {
+      "src": "ARC-028",
+      "dst": "MECH-290",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-028",
+        "MECH-290",
+        "ARC-028"
+      ]
+    },
+    {
+      "src": "MECH-290",
+      "dst": "ARC-028",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-290",
+        "ARC-028",
+        "MECH-290"
+      ]
+    },
+    {
+      "src": "ARC-038",
+      "dst": "MECH-261",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-038",
+        "MECH-261",
+        "ARC-038"
+      ]
+    },
+    {
+      "src": "MECH-261",
+      "dst": "ARC-038",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-261",
+        "ARC-038",
+        "MECH-261"
+      ]
+    },
+    {
+      "src": "ARC-041",
+      "dst": "MECH-160",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-041",
+        "MECH-160",
+        "ARC-041"
+      ]
+    },
+    {
+      "src": "MECH-160",
+      "dst": "ARC-041",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-160",
+        "ARC-041",
+        "MECH-160"
+      ]
+    },
+    {
+      "src": "ARC-044",
+      "dst": "MECH-026",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-044",
+        "MECH-026",
+        "ARC-044"
+      ]
+    },
+    {
+      "src": "MECH-026",
+      "dst": "ARC-044",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-026",
+        "ARC-044",
+        "MECH-026"
+      ]
+    },
+    {
+      "src": "ARC-044",
+      "dst": "MECH-161",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-044",
+        "MECH-161",
+        "ARC-044"
+      ]
+    },
+    {
+      "src": "MECH-161",
+      "dst": "ARC-044",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-161",
+        "ARC-044",
+        "MECH-161"
+      ]
+    },
+    {
+      "src": "ARC-045",
+      "dst": "MECH-166",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-045",
+        "MECH-166",
+        "ARC-045"
+      ]
+    },
+    {
+      "src": "MECH-166",
+      "dst": "ARC-045",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-166",
+        "ARC-045",
+        "MECH-166"
+      ]
+    },
+    {
+      "src": "ARC-046",
+      "dst": "INV-055",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-046",
+        "INV-055",
+        "ARC-046"
+      ]
+    },
+    {
+      "src": "ARC-049",
+      "dst": "INV-059",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-049",
+        "INV-059",
+        "ARC-049"
+      ]
+    },
+    {
+      "src": "INV-059",
+      "dst": "ARC-049",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-059",
+        "ARC-049",
+        "INV-059"
+      ]
+    },
+    {
+      "src": "ARC-059",
+      "dst": "MECH-277",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-059",
+        "MECH-277",
+        "ARC-059"
+      ]
+    },
+    {
+      "src": "MECH-277",
+      "dst": "ARC-059",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-277",
+        "ARC-059",
+        "MECH-277"
+      ]
+    },
+    {
+      "src": "ARC-059",
+      "dst": "MECH-278",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-059",
+        "MECH-278",
+        "ARC-059"
+      ]
+    },
+    {
+      "src": "MECH-278",
+      "dst": "ARC-059",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-278",
+        "ARC-059",
+        "MECH-278"
+      ]
+    },
+    {
+      "src": "ARC-062",
+      "dst": "MECH-309",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-062",
+        "MECH-309",
+        "ARC-062"
+      ]
+    },
+    {
+      "src": "MECH-309",
+      "dst": "ARC-062",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-309",
+        "ARC-062",
+        "MECH-309"
+      ]
+    },
+    {
+      "src": "ARC-063",
+      "dst": "ARC-077",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-063",
+        "ARC-077",
+        "ARC-063"
+      ]
+    },
+    {
+      "src": "ARC-077",
+      "dst": "ARC-063",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-077",
+        "ARC-063",
+        "ARC-077"
+      ]
+    },
+    {
+      "src": "ARC-063",
+      "dst": "MECH-309",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-063",
+        "MECH-309",
+        "ARC-063"
+      ]
+    },
+    {
+      "src": "MECH-309",
+      "dst": "ARC-063",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-309",
+        "ARC-063",
+        "MECH-309"
+      ]
+    },
+    {
+      "src": "ARC-063",
+      "dst": "MECH-337",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-063",
+        "MECH-337",
+        "ARC-063"
+      ]
+    },
+    {
+      "src": "MECH-337",
+      "dst": "ARC-063",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-337",
+        "ARC-063",
+        "MECH-337"
+      ]
+    },
+    {
+      "src": "ARC-063",
+      "dst": "MECH-338",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-063",
+        "MECH-338",
+        "ARC-063"
+      ]
+    },
+    {
+      "src": "MECH-338",
+      "dst": "ARC-063",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-338",
+        "ARC-063",
+        "MECH-338"
+      ]
+    },
+    {
+      "src": "ARC-071",
+      "dst": "MECH-163",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-071",
+        "MECH-163",
+        "ARC-071"
+      ]
+    },
+    {
+      "src": "MECH-163",
+      "dst": "ARC-071",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-163",
+        "ARC-071",
+        "MECH-163"
+      ]
+    },
+    {
+      "src": "ARC-072",
+      "dst": "MECH-326",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-072",
+        "MECH-326",
+        "ARC-072"
+      ]
+    },
+    {
+      "src": "MECH-326",
+      "dst": "ARC-072",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-326",
+        "ARC-072",
+        "MECH-326"
+      ]
+    },
+    {
+      "src": "ARC-077",
+      "dst": "MECH-309",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-077",
+        "MECH-309",
+        "ARC-077"
+      ]
+    },
+    {
+      "src": "MECH-309",
+      "dst": "ARC-077",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-309",
+        "ARC-077",
+        "MECH-309"
+      ]
+    },
+    {
+      "src": "ARC-107",
+      "dst": "ARC-108",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-107",
+        "ARC-108",
+        "ARC-107"
+      ]
+    },
+    {
+      "src": "ARC-108",
+      "dst": "ARC-107",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-108",
+        "ARC-107",
+        "ARC-108"
+      ]
+    },
+    {
+      "src": "ARC-107",
+      "dst": "ARC-109",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-107",
+        "ARC-109",
+        "ARC-107"
+      ]
+    },
+    {
+      "src": "ARC-109",
+      "dst": "ARC-107",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-109",
+        "ARC-107",
+        "ARC-109"
+      ]
+    },
+    {
+      "src": "ARC-107",
+      "dst": "MECH-450",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-107",
+        "MECH-450",
+        "ARC-107"
+      ]
+    },
+    {
+      "src": "MECH-450",
+      "dst": "ARC-107",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-450",
+        "ARC-107",
+        "MECH-450"
+      ]
+    },
+    {
+      "src": "ARC-107",
+      "dst": "Q-078",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-107",
+        "Q-078",
+        "ARC-107"
+      ]
+    },
+    {
+      "src": "Q-078",
+      "dst": "ARC-107",
+      "rule": "mutual-pair",
+      "cycle": [
+        "Q-078",
+        "ARC-107",
+        "Q-078"
+      ]
+    },
+    {
+      "src": "ARC-108",
+      "dst": "ARC-110",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-108",
+        "ARC-110",
+        "ARC-108"
+      ]
+    },
+    {
+      "src": "ARC-110",
+      "dst": "ARC-108",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-110",
+        "ARC-108",
+        "ARC-110"
+      ]
+    },
+    {
+      "src": "ARC-130",
+      "dst": "ARC-131",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-130",
+        "ARC-131",
+        "ARC-130"
+      ]
+    },
+    {
+      "src": "ARC-131",
+      "dst": "ARC-130",
+      "rule": "mutual-pair",
+      "cycle": [
+        "ARC-131",
+        "ARC-130",
+        "ARC-131"
+      ]
+    },
+    {
+      "src": "GOV-ANALOGY-1",
+      "dst": "GOV-HELDOUT-1",
+      "rule": "mutual-pair",
+      "cycle": [
+        "GOV-ANALOGY-1",
+        "GOV-HELDOUT-1",
+        "GOV-ANALOGY-1"
+      ]
+    },
+    {
+      "src": "GOV-HELDOUT-1",
+      "dst": "GOV-ANALOGY-1",
+      "rule": "mutual-pair",
+      "cycle": [
+        "GOV-HELDOUT-1",
+        "GOV-ANALOGY-1",
+        "GOV-HELDOUT-1"
+      ]
+    },
+    {
+      "src": "GOV-ANALOGY-1",
+      "dst": "GOV-STRAT-1",
+      "rule": "mutual-pair",
+      "cycle": [
+        "GOV-ANALOGY-1",
+        "GOV-STRAT-1",
+        "GOV-ANALOGY-1"
+      ]
+    },
+    {
+      "src": "GOV-STRAT-1",
+      "dst": "GOV-ANALOGY-1",
+      "rule": "mutual-pair",
+      "cycle": [
+        "GOV-STRAT-1",
+        "GOV-ANALOGY-1",
+        "GOV-STRAT-1"
+      ]
+    },
+    {
+      "src": "INV-012",
+      "dst": "MECH-060",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-012",
+        "MECH-060",
+        "INV-012"
+      ]
+    },
+    {
+      "src": "MECH-060",
+      "dst": "INV-012",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-060",
+        "INV-012",
+        "MECH-060"
+      ]
+    },
+    {
+      "src": "INV-012",
+      "dst": "MECH-485",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-012",
+        "MECH-485",
+        "INV-012"
+      ]
+    },
+    {
+      "src": "MECH-485",
+      "dst": "INV-012",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-485",
+        "INV-012",
+        "MECH-485"
+      ]
+    },
+    {
+      "src": "INV-012",
+      "dst": "MECH-487",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-012",
+        "MECH-487",
+        "INV-012"
+      ]
+    },
+    {
+      "src": "MECH-487",
+      "dst": "INV-012",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-487",
+        "INV-012",
+        "MECH-487"
+      ]
+    },
+    {
+      "src": "INV-033",
+      "dst": "MECH-114",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-033",
+        "MECH-114",
+        "INV-033"
+      ]
+    },
+    {
+      "src": "MECH-114",
+      "dst": "INV-033",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-114",
+        "INV-033",
+        "MECH-114"
+      ]
+    },
+    {
+      "src": "INV-047",
+      "dst": "MECH-168",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-047",
+        "MECH-168",
+        "INV-047"
+      ]
+    },
+    {
+      "src": "MECH-168",
+      "dst": "INV-047",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-168",
+        "INV-047",
+        "MECH-168"
+      ]
+    },
+    {
+      "src": "INV-051",
+      "dst": "MECH-181",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-051",
+        "MECH-181",
+        "INV-051"
+      ]
+    },
+    {
+      "src": "MECH-181",
+      "dst": "INV-051",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-181",
+        "INV-051",
+        "MECH-181"
+      ]
+    },
+    {
+      "src": "INV-062",
+      "dst": "MECH-210",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-062",
+        "MECH-210",
+        "INV-062"
+      ]
+    },
+    {
+      "src": "MECH-210",
+      "dst": "INV-062",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-210",
+        "INV-062",
+        "MECH-210"
+      ]
+    },
+    {
+      "src": "INV-065",
+      "dst": "MECH-216",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-065",
+        "MECH-216",
+        "INV-065"
+      ]
+    },
+    {
+      "src": "MECH-216",
+      "dst": "INV-065",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-216",
+        "INV-065",
+        "MECH-216"
+      ]
+    },
+    {
+      "src": "INV-065",
+      "dst": "MECH-217",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-065",
+        "MECH-217",
+        "INV-065"
+      ]
+    },
+    {
+      "src": "MECH-217",
+      "dst": "INV-065",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-217",
+        "INV-065",
+        "MECH-217"
+      ]
+    },
+    {
+      "src": "INV-076",
+      "dst": "MECH-341",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-076",
+        "MECH-341",
+        "INV-076"
+      ]
+    },
+    {
+      "src": "MECH-341",
+      "dst": "INV-076",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-341",
+        "INV-076",
+        "MECH-341"
+      ]
+    },
+    {
+      "src": "MECH-413",
+      "dst": "INV-082",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-413",
+        "INV-082",
+        "MECH-413"
+      ]
+    },
+    {
+      "src": "MECH-414",
+      "dst": "INV-082",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-414",
+        "INV-082",
+        "MECH-414"
+      ]
+    },
+    {
+      "src": "INV-092",
+      "dst": "INV-093",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-092",
+        "INV-093",
+        "INV-092"
+      ]
+    },
+    {
+      "src": "INV-093",
+      "dst": "INV-092",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-093",
+        "INV-092",
+        "INV-093"
+      ]
+    },
+    {
+      "src": "INV-102",
+      "dst": "MECH-504",
+      "rule": "mutual-pair",
+      "cycle": [
+        "INV-102",
+        "MECH-504",
+        "INV-102"
+      ]
+    },
+    {
+      "src": "MECH-504",
+      "dst": "INV-102",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-504",
+        "INV-102",
+        "MECH-504"
+      ]
+    },
+    {
+      "src": "MECH-026",
+      "dst": "MECH-161",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-026",
+        "MECH-161",
+        "MECH-026"
+      ]
+    },
+    {
+      "src": "MECH-161",
+      "dst": "MECH-026",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-161",
+        "MECH-026",
+        "MECH-161"
+      ]
+    },
+    {
+      "src": "MECH-030",
+      "dst": "MECH-120",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-030",
+        "MECH-120",
+        "MECH-030"
+      ]
+    },
+    {
+      "src": "MECH-120",
+      "dst": "MECH-030",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-120",
+        "MECH-030",
+        "MECH-120"
+      ]
+    },
+    {
+      "src": "MECH-030",
+      "dst": "MECH-121",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-030",
+        "MECH-121",
+        "MECH-030"
+      ]
+    },
+    {
+      "src": "MECH-121",
+      "dst": "MECH-030",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-121",
+        "MECH-030",
+        "MECH-121"
+      ]
+    },
+    {
+      "src": "MECH-030",
+      "dst": "MECH-122",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-030",
+        "MECH-122",
+        "MECH-030"
+      ]
+    },
+    {
+      "src": "MECH-122",
+      "dst": "MECH-030",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-122",
+        "MECH-030",
+        "MECH-122"
+      ]
+    },
+    {
+      "src": "MECH-030",
+      "dst": "MECH-123",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-030",
+        "MECH-123",
+        "MECH-030"
+      ]
+    },
+    {
+      "src": "MECH-123",
+      "dst": "MECH-030",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-123",
+        "MECH-030",
+        "MECH-123"
+      ]
+    },
+    {
+      "src": "MECH-046",
+      "dst": "SD-035",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-046",
+        "SD-035",
+        "MECH-046"
+      ]
+    },
+    {
+      "src": "SD-035",
+      "dst": "MECH-046",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-035",
+        "MECH-046",
+        "SD-035"
+      ]
+    },
+    {
+      "src": "MECH-057a",
+      "dst": "MECH-090",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-057a",
+        "MECH-090",
+        "MECH-057a"
+      ]
+    },
+    {
+      "src": "MECH-090",
+      "dst": "MECH-057a",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-090",
+        "MECH-057a",
+        "MECH-090"
+      ]
+    },
+    {
+      "src": "MECH-069",
+      "dst": "MECH-099",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-069",
+        "MECH-099",
+        "MECH-069"
+      ]
+    },
+    {
+      "src": "MECH-099",
+      "dst": "MECH-069",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-099",
+        "MECH-069",
+        "MECH-099"
+      ]
+    },
+    {
+      "src": "MECH-074",
+      "dst": "SD-035",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-074",
+        "SD-035",
+        "MECH-074"
+      ]
+    },
+    {
+      "src": "SD-035",
+      "dst": "MECH-074",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-035",
+        "MECH-074",
+        "SD-035"
+      ]
+    },
+    {
+      "src": "MECH-092",
+      "dst": "MECH-289",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-092",
+        "MECH-289",
+        "MECH-092"
+      ]
+    },
+    {
+      "src": "MECH-289",
+      "dst": "MECH-092",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-289",
+        "MECH-092",
+        "MECH-289"
+      ]
+    },
+    {
+      "src": "MECH-092",
+      "dst": "MECH-291",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-092",
+        "MECH-291",
+        "MECH-092"
+      ]
+    },
+    {
+      "src": "MECH-291",
+      "dst": "MECH-092",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-291",
+        "MECH-092",
+        "MECH-291"
+      ]
+    },
+    {
+      "src": "MECH-094",
+      "dst": "MECH-248",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-094",
+        "MECH-248",
+        "MECH-094"
+      ]
+    },
+    {
+      "src": "MECH-248",
+      "dst": "MECH-094",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-248",
+        "MECH-094",
+        "MECH-248"
+      ]
+    },
+    {
+      "src": "MECH-094",
+      "dst": "MECH-249",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-094",
+        "MECH-249",
+        "MECH-094"
+      ]
+    },
+    {
+      "src": "MECH-249",
+      "dst": "MECH-094",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-249",
+        "MECH-094",
+        "MECH-249"
+      ]
+    },
+    {
+      "src": "MECH-116",
+      "dst": "SD-033a",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-116",
+        "SD-033a",
+        "MECH-116"
+      ]
+    },
+    {
+      "src": "SD-033a",
+      "dst": "MECH-116",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-033a",
+        "MECH-116",
+        "SD-033a"
+      ]
+    },
+    {
+      "src": "MECH-119",
+      "dst": "Q-022",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-119",
+        "Q-022",
+        "MECH-119"
+      ]
+    },
+    {
+      "src": "Q-022",
+      "dst": "MECH-119",
+      "rule": "mutual-pair",
+      "cycle": [
+        "Q-022",
+        "MECH-119",
+        "Q-022"
+      ]
+    },
+    {
+      "src": "MECH-163",
+      "dst": "MECH-477",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-163",
+        "MECH-477",
+        "MECH-163"
+      ]
+    },
+    {
+      "src": "MECH-477",
+      "dst": "MECH-163",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-477",
+        "MECH-163",
+        "MECH-477"
+      ]
+    },
+    {
+      "src": "MECH-195",
+      "dst": "MECH-196",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-195",
+        "MECH-196",
+        "MECH-195"
+      ]
+    },
+    {
+      "src": "MECH-196",
+      "dst": "MECH-195",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-196",
+        "MECH-195",
+        "MECH-196"
+      ]
+    },
+    {
+      "src": "MECH-219",
+      "dst": "SD-019b",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-219",
+        "SD-019b",
+        "MECH-219"
+      ]
+    },
+    {
+      "src": "SD-019b",
+      "dst": "MECH-219",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-019b",
+        "MECH-219",
+        "SD-019b"
+      ]
+    },
+    {
+      "src": "MECH-258",
+      "dst": "SD-032b",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-258",
+        "SD-032b",
+        "MECH-258"
+      ]
+    },
+    {
+      "src": "SD-032b",
+      "dst": "MECH-258",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-032b",
+        "MECH-258",
+        "SD-032b"
+      ]
+    },
+    {
+      "src": "MECH-259",
+      "dst": "SD-032a",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-259",
+        "SD-032a",
+        "MECH-259"
+      ]
+    },
+    {
+      "src": "SD-032a",
+      "dst": "MECH-259",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-032a",
+        "MECH-259",
+        "SD-032a"
+      ]
+    },
+    {
+      "src": "MECH-259",
+      "dst": "SD-032c",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-259",
+        "SD-032c",
+        "MECH-259"
+      ]
+    },
+    {
+      "src": "SD-032c",
+      "dst": "MECH-259",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-032c",
+        "MECH-259",
+        "SD-032c"
+      ]
+    },
+    {
+      "src": "MECH-260",
+      "dst": "SD-032b",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-260",
+        "SD-032b",
+        "MECH-260"
+      ]
+    },
+    {
+      "src": "SD-032b",
+      "dst": "MECH-260",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-032b",
+        "MECH-260",
+        "SD-032b"
+      ]
+    },
+    {
+      "src": "MECH-261",
+      "dst": "SD-033a",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-261",
+        "SD-033a",
+        "MECH-261"
+      ]
+    },
+    {
+      "src": "SD-033a",
+      "dst": "MECH-261",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-033a",
+        "MECH-261",
+        "SD-033a"
+      ]
+    },
+    {
+      "src": "MECH-261",
+      "dst": "SD-033b",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-261",
+        "SD-033b",
+        "MECH-261"
+      ]
+    },
+    {
+      "src": "SD-033b",
+      "dst": "MECH-261",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-033b",
+        "MECH-261",
+        "SD-033b"
+      ]
+    },
+    {
+      "src": "MECH-261",
+      "dst": "SD-033c",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-261",
+        "SD-033c",
+        "MECH-261"
+      ]
+    },
+    {
+      "src": "SD-033c",
+      "dst": "MECH-261",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-033c",
+        "MECH-261",
+        "SD-033c"
+      ]
+    },
+    {
+      "src": "MECH-262",
+      "dst": "SD-033a",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-262",
+        "SD-033a",
+        "MECH-262"
+      ]
+    },
+    {
+      "src": "SD-033a",
+      "dst": "MECH-262",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-033a",
+        "MECH-262",
+        "SD-033a"
+      ]
+    },
+    {
+      "src": "MECH-263",
+      "dst": "SD-033b",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-263",
+        "SD-033b",
+        "MECH-263"
+      ]
+    },
+    {
+      "src": "SD-033b",
+      "dst": "MECH-263",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-033b",
+        "MECH-263",
+        "SD-033b"
+      ]
+    },
+    {
+      "src": "MECH-264",
+      "dst": "SD-033e",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-264",
+        "SD-033e",
+        "MECH-264"
+      ]
+    },
+    {
+      "src": "SD-033e",
+      "dst": "MECH-264",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-033e",
+        "MECH-264",
+        "SD-033e"
+      ]
+    },
+    {
+      "src": "MECH-265",
+      "dst": "SD-033e",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-265",
+        "SD-033e",
+        "MECH-265"
+      ]
+    },
+    {
+      "src": "SD-033e",
+      "dst": "MECH-265",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-033e",
+        "MECH-265",
+        "SD-033e"
+      ]
+    },
+    {
+      "src": "MECH-269",
+      "dst": "MECH-272",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-269",
+        "MECH-272",
+        "MECH-269"
+      ]
+    },
+    {
+      "src": "MECH-272",
+      "dst": "MECH-269",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-272",
+        "MECH-269",
+        "MECH-272"
+      ]
+    },
+    {
+      "src": "MECH-269",
+      "dst": "MECH-284",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-269",
+        "MECH-284",
+        "MECH-269"
+      ]
+    },
+    {
+      "src": "MECH-284",
+      "dst": "MECH-269",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-284",
+        "MECH-269",
+        "MECH-284"
+      ]
+    },
+    {
+      "src": "MECH-272",
+      "dst": "MECH-285",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-272",
+        "MECH-285",
+        "MECH-272"
+      ]
+    },
+    {
+      "src": "MECH-285",
+      "dst": "MECH-272",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-285",
+        "MECH-272",
+        "MECH-285"
+      ]
+    },
+    {
+      "src": "MECH-273",
+      "dst": "MECH-275",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-273",
+        "MECH-275",
+        "MECH-273"
+      ]
+    },
+    {
+      "src": "MECH-275",
+      "dst": "MECH-273",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-275",
+        "MECH-273",
+        "MECH-275"
+      ]
+    },
+    {
+      "src": "MECH-273",
+      "dst": "MECH-285",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-273",
+        "MECH-285",
+        "MECH-273"
+      ]
+    },
+    {
+      "src": "MECH-285",
+      "dst": "MECH-273",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-285",
+        "MECH-273",
+        "MECH-285"
+      ]
+    },
+    {
+      "src": "MECH-275",
+      "dst": "MECH-276",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-275",
+        "MECH-276",
+        "MECH-275"
+      ]
+    },
+    {
+      "src": "MECH-276",
+      "dst": "MECH-275",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-276",
+        "MECH-275",
+        "MECH-276"
+      ]
+    },
+    {
+      "src": "MECH-275",
+      "dst": "MECH-285",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-275",
+        "MECH-285",
+        "MECH-275"
+      ]
+    },
+    {
+      "src": "MECH-285",
+      "dst": "MECH-275",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-285",
+        "MECH-275",
+        "MECH-285"
+      ]
+    },
+    {
+      "src": "MECH-276",
+      "dst": "MECH-277",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-276",
+        "MECH-277",
+        "MECH-276"
+      ]
+    },
+    {
+      "src": "MECH-277",
+      "dst": "MECH-276",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-277",
+        "MECH-276",
+        "MECH-277"
+      ]
+    },
+    {
+      "src": "MECH-276",
+      "dst": "MECH-278",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-276",
+        "MECH-278",
+        "MECH-276"
+      ]
+    },
+    {
+      "src": "MECH-278",
+      "dst": "MECH-276",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-278",
+        "MECH-276",
+        "MECH-278"
+      ]
+    },
+    {
+      "src": "MECH-281",
+      "dst": "MECH-286",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-281",
+        "MECH-286",
+        "MECH-281"
+      ]
+    },
+    {
+      "src": "MECH-286",
+      "dst": "MECH-281",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-286",
+        "MECH-281",
+        "MECH-286"
+      ]
+    },
+    {
+      "src": "MECH-284",
+      "dst": "MECH-285",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-284",
+        "MECH-285",
+        "MECH-284"
+      ]
+    },
+    {
+      "src": "MECH-285",
+      "dst": "MECH-284",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-285",
+        "MECH-284",
+        "MECH-285"
+      ]
+    },
+    {
+      "src": "MECH-284",
+      "dst": "MECH-287",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-284",
+        "MECH-287",
+        "MECH-284"
+      ]
+    },
+    {
+      "src": "MECH-287",
+      "dst": "MECH-284",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-287",
+        "MECH-284",
+        "MECH-287"
+      ]
+    },
+    {
+      "src": "MECH-303",
+      "dst": "MECH-304",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-303",
+        "MECH-304",
+        "MECH-303"
+      ]
+    },
+    {
+      "src": "MECH-304",
+      "dst": "MECH-303",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-304",
+        "MECH-303",
+        "MECH-304"
+      ]
+    },
+    {
+      "src": "MECH-485",
+      "dst": "MECH-487",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-485",
+        "MECH-487",
+        "MECH-485"
+      ]
+    },
+    {
+      "src": "MECH-487",
+      "dst": "MECH-485",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-487",
+        "MECH-485",
+        "MECH-487"
+      ]
+    },
+    {
+      "src": "MECH-516",
+      "dst": "MECH-517",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-516",
+        "MECH-517",
+        "MECH-516"
+      ]
+    },
+    {
+      "src": "MECH-517",
+      "dst": "MECH-516",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-517",
+        "MECH-516",
+        "MECH-517"
+      ]
+    },
+    {
+      "src": "MECH-521",
+      "dst": "MECH-522",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-521",
+        "MECH-522",
+        "MECH-521"
+      ]
+    },
+    {
+      "src": "MECH-522",
+      "dst": "MECH-521",
+      "rule": "mutual-pair",
+      "cycle": [
+        "MECH-522",
+        "MECH-521",
+        "MECH-522"
+      ]
+    },
+    {
+      "src": "SD-032a",
+      "dst": "SD-032c",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-032a",
+        "SD-032c",
+        "SD-032a"
+      ]
+    },
+    {
+      "src": "SD-032c",
+      "dst": "SD-032a",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-032c",
+        "SD-032a",
+        "SD-032c"
+      ]
+    },
+    {
+      "src": "SD-032a",
+      "dst": "SD-032d",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-032a",
+        "SD-032d",
+        "SD-032a"
+      ]
+    },
+    {
+      "src": "SD-032d",
+      "dst": "SD-032a",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SD-032d",
+        "SD-032a",
+        "SD-032d"
+      ]
+    },
+    {
+      "src": "SENT-1",
+      "dst": "SENT-15",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SENT-1",
+        "SENT-15",
+        "SENT-1"
+      ]
+    },
+    {
+      "src": "SENT-15",
+      "dst": "SENT-1",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SENT-15",
+        "SENT-1",
+        "SENT-15"
+      ]
+    },
+    {
+      "src": "SENT-13",
+      "dst": "SENT-3",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SENT-13",
+        "SENT-3",
+        "SENT-13"
+      ]
+    },
+    {
+      "src": "SENT-3",
+      "dst": "SENT-13",
+      "rule": "mutual-pair",
+      "cycle": [
+        "SENT-3",
+        "SENT-13",
+        "SENT-3"
+      ]
+    },
+    {
+      "src": "ARC-003",
+      "dst": "INV-012",
+      "rule": "cycle-break",
+      "cycle": [
+        "ARC-003",
+        "INV-012",
+        "MECH-095",
+        "ARC-021",
+        "Q-019",
+        "MECH-057a",
+        "ARC-003"
+      ]
+    },
+    {
+      "src": "ARC-015",
+      "dst": "MECH-095",
+      "rule": "cycle-break",
+      "cycle": [
+        "ARC-015",
+        "MECH-095",
+        "ARC-021",
+        "Q-019",
+        "MECH-057a",
+        "ARC-015"
+      ]
+    },
+    {
+      "src": "ARC-021",
+      "dst": "Q-019",
+      "rule": "cycle-break",
+      "cycle": [
+        "ARC-021",
+        "Q-019",
+        "MECH-057a",
+        "ARC-023",
+        "ARC-021"
+      ]
+    },
+    {
+      "src": "SD-026",
+      "dst": "INV-034",
+      "rule": "cycle-break",
+      "cycle": [
+        "ARC-017",
+        "INV-012",
+        "SD-026",
+        "INV-034",
+        "ARC-030",
+        "SD-010",
+        "ARC-027",
+        "ARC-017"
+      ]
+    },
+    {
+      "src": "ARC-017",
+      "dst": "INV-012",
+      "rule": "cycle-break",
+      "cycle": [
+        "ARC-017",
+        "INV-012",
+        "SD-026",
+        "SD-012",
+        "MECH-112",
+        "ARC-030",
+        "SD-010",
+        "ARC-027",
+        "ARC-017"
+      ]
+    },
+    {
+      "src": "ARC-036",
+      "dst": "MECH-030",
+      "rule": "cycle-break",
+      "cycle": [
+        "MECH-057a",
+        "INV-012",
+        "SD-026",
+        "SD-014",
+        "ARC-036",
+        "MECH-030",
+        "MECH-092",
+        "MECH-094",
+        "INV-019",
+        "MECH-060",
+        "MECH-057a"
+      ]
+    },
+    {
+      "src": "ARC-036",
+      "dst": "MECH-124",
+      "rule": "cycle-break",
+      "cycle": [
+        "MECH-057a",
+        "INV-012",
+        "SD-026",
+        "SD-014",
+        "ARC-036",
+        "MECH-124",
+        "MECH-030",
+        "MECH-092",
+        "MECH-094",
+        "INV-019",
+        "MECH-060",
+        "MECH-057a"
+      ]
+    },
+    {
+      "src": "SD-014",
+      "dst": "MECH-030",
+      "rule": "cycle-break",
+      "cycle": [
+        "INV-012",
+        "SD-026",
+        "SD-014",
+        "MECH-030",
+        "MECH-092",
+        "MECH-094",
+        "INV-019",
+        "MECH-060",
+        "MECH-057a",
+        "INV-012"
+      ]
+    }
+  ]
+}

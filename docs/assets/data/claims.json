@@ -1402,6 +1402,15 @@
     "title": "Dry-run adjudication leak rule: a governance verdict must never rest on a --dry-run smoke, so confirmed autopsies and substrate_queue entries are scanned for citations of dry manifests carrying an ASSERTING evidence stamp.",
     "type": "governance_rule"
   },
+  "GOV-EDGE-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.assembly.claim_graph_edge_types",
+    "title": "Claim-graph edge types are split: `depends_on` is a DIRECTED prerequisite edge (build order / evidential support) and MUST be acyclic; `coupled_with` is an UNDIRECTED reciprocal-coupling edge (co-defining architecture, mutual explanation) and is never a prerequisite. A cycle in depends_on is a registry defect -- it means one edge on the cycle is coupling mislabelled as prerequisite -- and is an ERROR in validate_claims.py, not a tolerated feature of a 'conceptual dependency web'.",
+    "type": "governance_rule",
+    "what_would_answer": "TRIGGER: reassess when (a) validate_claims.py --strict blocks a governance run on a depends_on cycle and the session concludes the blocked edge really IS a prerequisite in both directions (which the rule says cannot happen -- a genuine instance falsifies the two-layer model and argues for a third edge type, not for re-tolerating cycles); (b) the 8 cycle-break edges the split script chose heuristically are re-judged by governance and more than a couple are found to be the WRONG edge of their cycle (the mechanical rule is then worse than a human pass and should be replaced by one before any re-run); (c) a consumer is found that needs orientation on coupled_with (none does today: the epistemic overlay treats depends_on and coupled_with as the same weak symmetric potential and its output was byte-identical across the split; the phase-provenance checker ignores coupled_with by design). WHAT WOULD REVISE: the observation that one field carried three meanings (prerequisite, reciprocal coupling, mutual explanation) is measured and stands. What this claim adds is that (1) the prerequisite meaning is the one with an acyclicity invariant worth enforcing and (2) a mechanical mutual-pair + feedback-arc-set demotion is an acceptable first pass at the split. (1) is undercut by a demonstrated need for a cyclic prerequisite edge; (2) by finding the heuristic picked the wrong edge often. Either demotes this claim toward superseded by a sharper edge-type schema, not toward re-merging the layers. READER NOTE: governance_rule about how the Assembly structures its OWN registry, not an empirical mechanism about REE cognition -- no EXP-#### should be minted against it. The brain has reciprocal loops; that is exactly why coupled_with exists. Per GOV-ANALOGY-1 any resemblance between the DAG requirement here and REE's own commitment machinery is an analogy, never evidence.\n"
+  },
   "GOV-EXT-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",

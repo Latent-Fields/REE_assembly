@@ -87,18 +87,26 @@ def _build_graph(claims):
                 continue
             edge_map[frozenset((cid, parent))] = ("emergent_from", cid)
 
-    # depends_on: symmetric, weak; skip any pair already carrying emergent_from.
-    for c in claims:
-        cid = c.get("id")
-        if not cid:
-            continue
-        for parent in (c.get("depends_on") or []):
-            if parent == cid or parent not in id_set:
+    # depends_on + coupled_with: symmetric, weak; skip any pair already carrying
+    # emergent_from. Since the 2026-09-04 edge-type split (GOV-EDGE-1,
+    # scripts/split_claim_edge_types.py) `depends_on` is the DAG prerequisite
+    # layer and `coupled_with` the undirected reciprocal-architecture layer. The
+    # MRF never used orientation, so BOTH feed the same weak associative
+    # potential and the overlay is byte-identical before and after the split
+    # (verified 2026-09-04). Do not weight them differently without re-running
+    # that parity check.
+    for field in ("depends_on", "coupled_with"):
+        for c in claims:
+            cid = c.get("id")
+            if not cid:
                 continue
-            key = frozenset((cid, parent))
-            if key in edge_map:
-                continue
-            edge_map[key] = ("depends_on", None)
+            for parent in (c.get(field) or []):
+                if parent == cid or parent not in id_set:
+                    continue
+                key = frozenset((cid, parent))
+                if key in edge_map:
+                    continue
+                edge_map[key] = (field, None)
 
     edges = []
     for key, (kind, child) in edge_map.items():
@@ -115,7 +123,7 @@ def _pairwise_from_i(kind, child, i, w):
         single incoherent corner (C=supported, P=unsupported). Base matrix is in
         (x_C, x_P) order; if i is the parent we transpose."""
     import math
-    if kind == "depends_on":
+    if kind in ("depends_on", "coupled_with"):
         a = math.exp(w)
         d = math.exp(-w)
         return [[a, d], [d, a]]
@@ -140,7 +148,7 @@ def _edge_weights(node_ids, edges):
     dep_deg = {nid: 0 for nid in node_ids}
     ef_deg = {nid: 0 for nid in node_ids}
     for (a, b, kind, _child) in edges:
-        if kind == "depends_on":
+        if kind in ("depends_on", "coupled_with"):
             dep_deg[a] += 1
             dep_deg[b] += 1
         else:
@@ -148,7 +156,7 @@ def _edge_weights(node_ids, edges):
             ef_deg[b] += 1
     weights = []
     for (a, b, kind, _child) in edges:
-        if kind == "depends_on":
+        if kind in ("depends_on", "coupled_with"):
             denom = math.sqrt(max(1, dep_deg[a]) * max(1, dep_deg[b]))
             weights.append(W_DEPENDS / denom)
         else:
@@ -505,6 +513,7 @@ def main():
 
     n_emergent_edges = sum(1 for e in edges if e[2] == "emergent_from")
     n_depends_edges = sum(1 for e in edges if e[2] == "depends_on")
+    n_coupled_edges = sum(1 for e in edges if e[2] == "coupled_with")
     mrf_block = {
         "model": "pairwise-mrf-loopy-bp",
         "pairwise": {
@@ -533,6 +542,7 @@ def main():
         "graph": {
             "nodes": len(node_ids),
             "depends_on_edges": n_depends_edges,
+            "coupled_with_edges": n_coupled_edges,
             "emergent_from_edges": n_emergent_edges,
         },
         "movers": movers,
@@ -578,7 +588,7 @@ def main():
           f"untested_foundation={n_untested}")
     print(f"  posterior_gate disagreements vs heuristic: {n_gate_disagree}")
     print(f"  MRF graph: {len(node_ids)} nodes, {n_depends_edges} depends_on + "
-          f"{n_emergent_edges} emergent_from edges")
+          f"{n_coupled_edges} coupled_with + {n_emergent_edges} emergent_from edges")
     print(f"  BP exp: converged={exp_report['converged']} iters={exp_report['iterations']} "
           f"max_delta={exp_report['final_max_delta']} oscillating={exp_report['oscillating']} "
           f"beliefs_moved={n_moved_exp}")

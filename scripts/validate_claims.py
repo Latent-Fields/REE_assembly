@@ -310,21 +310,23 @@ def validate_terminal_dependencies(claims):
     # an ERROR here would block governance.sh --strict for everyone on a backlog this
     # check exists to surface, not to gate. Elevate once the count reaches 0.
     #
-    # NOT A MECHANICAL REPOINT -- but NOT for the reason first shipped. The original
-    # wording of this comment said the obvious fix (point the edge at superseded_by) was
-    # wrong because SD-013 -> SD-003 would create a cycle. CORRECTED 2026-09-01, same
-    # day: that objection is largely void. This claims graph ALREADY CONTAINS 153 CYCLES
-    # over 3915 depends_on edges, including a DIRECT 2-hop one (ARC-007 <-> ARC-018), and
-    # the indexer's loopy belief propagation converges over it (converged=True, 21 iters).
-    # It is a conceptual dependency web, not a build DAG, so "this would introduce a
-    # cycle" is not a disqualifying argument here and should not be used as one.
-    # Measured on the SD-003 fan-in: of its 16 dependants, repointing would close a cycle
-    # for 7 -- but only ONE of those (SD-013) is direct; the other six are 9-12 hop paths
-    # through a single long shared chain, i.e. indistinguishable from the 153 already
-    # tolerated.
-    # The real reason this stays WARN rather than becoming an auto-fix is SEMANTIC: whether
-    # a given successor is actually what the dependant depends on is a per-claim judgement
-    # the registry cannot infer. Hence a named successor list and a human.
+    # NOT A MECHANICAL REPOINT. The reason is SEMANTIC: whether a given successor is
+    # actually what the dependant depends on is a per-claim judgement the registry
+    # cannot infer. Hence a named successor list and a human.
+    #
+    # HISTORY OF THE CYCLE ARGUMENT, because it flipped twice. The first wording said a
+    # repoint was wrong when it would create a cycle (SD-013 -> SD-003). On 2026-09-01
+    # that was overturned: the graph then held 153 cycles over 3915 depends_on edges
+    # (ARC-007 <-> ARC-018 direct), loopy BP converged over them, and the comment
+    # declared it "a conceptual dependency web, not a build DAG". On 2026-09-04
+    # (GOV-EDGE-1, scripts/split_claim_edge_types.py) the field was SPLIT instead:
+    # `depends_on` is once again a directed prerequisite DAG -- enforced as an ERROR by
+    # validate_edge_types() below -- and the reciprocal/co-defining pairs that made
+    # the cycles moved to the new undirected `coupled_with`. So the cycle argument is
+    # back, in its correct form: a repoint that would close a cycle is evidence the
+    # pair is COUPLING, not prerequisite, and belongs in coupled_with -- it is not a
+    # reason to leave a stale terminal edge in place, and not a reason to keep a
+    # cycle either.
     TERMINAL_CLAIM_STATUSES = {"superseded", "retired", "legacy", "rejected"}
 
     def _status_of(claim):
@@ -351,17 +353,176 @@ def validate_terminal_dependencies(claims):
             if cid in succ:
                 continue  # exclusion (b): successor provenance
             hint = (f" -- successors are {', '.join(succ)}; repoint or DROP the edge. "
-                    "Judge this SEMANTICALLY (is the successor actually what this claim "
-                    "depends on?), not structurally: a successor already depending on this "
-                    "claim does NOT disqualify a repoint, because this graph is not acyclic "
-                    "and is not meant to be -- 153 cycles already exist in it, including a "
-                    "direct 2-hop one, and the indexer's loopy BP converges over them"
+                    "Judge this SEMANTICALLY (is the successor actually a PREREQUISITE of "
+                    "this claim?). Since GOV-EDGE-1 (2026-09-04) depends_on is a DAG: if the "
+                    "repoint would close a cycle, the pair is reciprocal, not prerequisite "
+                    "-- put it in coupled_with instead"
                     if succ else
                     " -- no superseded_by recorded on the target, so decide whether to "
                     "drop the edge or name a successor")
             issues.append((
                 "WARN",
                 f"{cid} depends_on {dep}, which is status: {tstatus}{hint}"))
+    return issues
+
+
+def validate_edge_types(claims):
+    """GOV-EDGE-1 (2026-09-04): the two claim-graph edge layers.
+
+      depends_on   -- DIRECTED prerequisite (build order / evidential support).
+                      MUST be acyclic. A cycle is an ERROR: it means one of the
+                      edges on it is coupling, not prerequisite, and belongs in
+                      coupled_with. The message names the cycle so the fix is a
+                      one-line move, not a hunt.
+      coupled_with -- UNDIRECTED reciprocal coupling (co-defining architecture
+                      such as ARC-007 <-> ARC-018, or a question and the mechanism
+                      that explains it). Written symmetric; asymmetry is a WARN.
+                      A pair that is in BOTH layers is a WARN (redundant).
+      emergent_from -- unchanged: directional, and a subset of depends_on
+                      (validate_invariant enforces the subset).
+
+    Why ERROR from day one rather than the usual stabilise-then-elevate: the
+    split script left depends_on at ZERO cycles, so the count the elevation rule
+    waits for ("elevate once it reaches 0") was met in the same commit. Cycles
+    were tolerated for six months precisely because nothing could enforce the
+    invariant while one field carried three meanings; the field split is what
+    makes enforcement possible, and an unenforced DAG re-accretes cycles at the
+    2026-09-01 measured rate (153 cycles / 3915 edges).
+
+    Audit of the 2026-09-04 move (193 edges, 185 mutual-pair + 8 cycle-break):
+    evidence/planning/claims_edge_type_split_20260904.{md,json}."""
+    issues = []
+    by_id = {c.get("id"): c for c in claims if c.get("id")}
+    graph = {}
+    for c in claims:
+        cid = c.get("id")
+        if not cid:
+            continue
+        deps = c.get("depends_on") or []
+        if not isinstance(deps, list):
+            continue
+        graph[cid] = [d for d in deps if isinstance(d, str) and d in by_id and d != cid]
+        if any(d == cid for d in deps):
+            issues.append(("ERROR", f"{cid} depends_on itself"))
+
+    # Tarjan SCC, iterative (the registry is >1000 nodes; recursion is fragile).
+    index = {}
+    low = {}
+    on_stack = set()
+    stack = []
+    counter = 0
+    cyclic = []
+    for root in graph:
+        if root in index:
+            continue
+        work = [(root, iter(graph.get(root, [])))]
+        index[root] = low[root] = counter
+        counter += 1
+        stack.append(root)
+        on_stack.add(root)
+        while work:
+            v, it = work[-1]
+            advanced = False
+            for w in it:
+                if w not in index:
+                    index[w] = low[w] = counter
+                    counter += 1
+                    stack.append(w)
+                    on_stack.add(w)
+                    work.append((w, iter(graph.get(w, []))))
+                    advanced = True
+                    break
+                elif w in on_stack:
+                    low[v] = min(low[v], index[w])
+            if advanced:
+                continue
+            work.pop()
+            if work:
+                parent = work[-1][0]
+                low[parent] = min(low[parent], low[v])
+            if low[v] == index[v]:
+                comp = []
+                while True:
+                    w = stack.pop()
+                    on_stack.discard(w)
+                    comp.append(w)
+                    if w == v:
+                        break
+                if len(comp) > 1:
+                    cyclic.append(sorted(comp))
+
+    def _one_cycle(comp):
+        cs = set(comp)
+        start = comp[0]
+        path, onp = [start], {start}
+        work = [(start, iter(sorted(graph.get(start, []))))]
+        while work:
+            v, it = work[-1]
+            advanced = False
+            for w in it:
+                if w not in cs:
+                    continue
+                if w in onp:
+                    return path[path.index(w):] + [w]
+                onp.add(w)
+                path.append(w)
+                work.append((w, iter(sorted(graph.get(w, [])))))
+                advanced = True
+                break
+            if not advanced:
+                work.pop()
+                onp.discard(path.pop())
+        return comp + [comp[0]]
+
+    for comp in cyclic:
+        cyc = _one_cycle(comp)
+        issues.append((
+            "ERROR",
+            f"depends_on cycle through {len(comp)} claim(s): {' -> '.join(cyc)} "
+            "-- depends_on is a prerequisite DAG (GOV-EDGE-1). One edge on this cycle "
+            "is reciprocal coupling, not a prerequisite: move it to `coupled_with` on "
+            "both endpoints (scripts/split_claim_edge_types.py --apply does this "
+            "mechanically; prefer a hand judgement of WHICH edge)."))
+
+    # coupled_with hygiene (warn-only).
+    for c in claims:
+        cid = c.get("id")
+        if not cid:
+            continue
+        cw = c.get("coupled_with") or []
+        if not isinstance(cw, list):
+            issues.append(("WARN", f"{cid}: coupled_with must be a list"))
+            continue
+        deps = set(graph.get(cid, []))
+        for other in cw:
+            if not isinstance(other, str):
+                continue
+            if other == cid:
+                issues.append(("WARN", f"{cid}: coupled_with itself"))
+                continue
+            tgt = by_id.get(other)
+            if tgt is None:
+                issues.append(("WARN", f"{cid}: coupled_with {other} -- no such claim"))
+                continue
+            if other in deps:
+                issues.append(("WARN",
+                               f"{cid}: {other} is in BOTH depends_on and coupled_with "
+                               "-- pick one layer"))
+            # Reciprocated by EITHER layer on the far side. The mixed shape is
+            # legitimate and exists in the corpus: INV-055 is emergent_from
+            # ARC-046 (a directional prerequisite that stays in depends_on),
+            # while ARC-046's reverse edge is coupling. ARC-046.coupled_with
+            # [INV-055] is then mirrored by INV-055.depends_on [ARC-046], and
+            # asking INV-055 to ALSO list ARC-046 in coupled_with would trip
+            # the both-layers warning above on the same pair.
+            back_cw = tgt.get("coupled_with") or []
+            back_dep = tgt.get("depends_on") or []
+            reciprocated = ((isinstance(back_cw, list) and cid in back_cw)
+                            or (isinstance(back_dep, list) and cid in back_dep))
+            if not reciprocated:
+                issues.append(("WARN",
+                               f"{cid}: coupled_with {other} is not reciprocated "
+                               f"(add {cid} to {other}.coupled_with)"))
     return issues
 
 
@@ -586,6 +747,7 @@ def main():
                 "finding is confirmed into the claim's narrative, not on its own"))
 
     all_issues.extend(validate_terminal_dependencies(claims))
+    all_issues.extend(validate_edge_types(claims))
 
     errors = [msg for lvl, msg in all_issues if lvl == "ERROR"]
     warnings = [msg for lvl, msg in all_issues if lvl == "WARN"]
