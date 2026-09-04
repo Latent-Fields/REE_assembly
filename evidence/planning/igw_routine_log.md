@@ -2552,3 +2552,4 @@ One line per hourly tick. ASCII only.
 2026-09-04T16:01:03Z skip: paused (.igw_routine_pause present)
 2026-09-04T17:01:04Z skip: paused (.igw_routine_pause present)
 2026-09-04T17:44:10Z auto-defer igw-222-substrate-ready-dv-dynamic-range hash=e7bd60ded7a2 for 48h (complete)
+2026-09-04T17:44:19Z complete igw-222-substrate-ready-dv-dynamic-range staged->completed outcome=USEFUL_LANDED: built dv_headroom precondition kind + criterion_exceeds_achievable_range lint; l
