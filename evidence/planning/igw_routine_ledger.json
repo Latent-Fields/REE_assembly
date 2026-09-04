@@ -4056,7 +4056,11 @@
       "task_claim_session_id": "igw-auto-igw-245-literature-proposal-for-impl-008-20260904T035850Z",
       "task_claim_claimed_at": "2026-09-04T03:58:50Z",
       "assigned_at": "2026-09-04T03:58:14Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-04T04:10:39Z",
+      "completion_summary": "No lit pulled: IMPL-008 records our own programme phases/repo roles, no external referent. LIT-0613 -> skipped (REE_assembly 6e378b696a); chipped the missing lit-lane evidenceability gate.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "No lit pulled: IMPL-008 records our own programme phases/repo roles, no external referent. LIT-0613 -> skipped (REE_assembly 6e378b696a); chipped the missing lit-lane evidenceability gate."
     }
   ],
   "dispositions": [
@@ -5636,6 +5640,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-03T17:14:37Z",
       "re_eligible_after": "2026-09-05T17:14:36Z"
+    },
+    {
+      "stable_hash": "e84017ec9ec6",
+      "igw_id_at_disposition": "IGW-20260904-245",
+      "owner_exq": null,
+      "claim_ids": [
+        "IMPL-008"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for IMPL-008",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-04T04:10:41Z",
+      "re_eligible_after": "2026-09-06T04:10:41Z"
     }
   ]
 }
