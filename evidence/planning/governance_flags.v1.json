@@ -1885,6 +1885,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0131",
+      "claim_ids": [
+        "INV-088",
+        "MECH-457"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-978 (SD-018 directional-field validation, FAIL, autopsy failure_autopsy_V3-EXQ-978_2026-09-03 ratified non_contributory) carries an eval-protocol confound inside its competence DV that the autopsy did not record. The fishtank episode log (seed 42, 6 OFF + 6 ON episodes, frozen policies) shows the greedy-argmax eval reader (x737 LatentPPOEvalPolicy) falling into a deterministic two-cell limit cycle in 9 of 12 episodes; the causal-footprint contamination rule (+0.5 per visit, cell retyped contaminated at 2.0, 0.4 health per contaminated step) then kills the agent at step 11-23 in a hazard-free D3 env, so every dithering episode ends health_depleted with ~11 steps of foraging opportunity against 200. The other 3 episodes are a fixed-point wall-press (198/200 stationary). PPO trains by sampling and never experiences its own argmax cycle, which is why the reader scores 0.27 res/ep BELOW the random_walk anchor (1.05, survives ~48 steps). Consequences: (1) the arm contrast is compressed toward zero by episode truncation regardless of what z_world carries, so the OFF/ON null is weaker evidence than the manifest reads; (2) the chip-20260903-exq978-oracle-adapter-discriminator follow-on (H-B/H-C, zworld_actor_adequacy_locus) should pre-register a stochastic or contamination-off eval, or a survival-normalised DV, else the same truncation will mask the adapter contrast. Not a re-test request; INV-088/MECH-457 dispositions stand. Evidence: per-step pos/health/transition_type in the 978 episode log companion (Mac + hub copies, placemarker on origin).",
+      "raised_by_session": "exq978-fishtank-eval-confound-20260904",
+      "raised_at": "2026-09-04T09:40:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
