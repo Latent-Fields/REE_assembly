@@ -1,0 +1,211 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1001_ext005_sd031_attribution_causal_shift",
+  "run_id": "v3_exq_1001_ext005_sd031_attribution_causal_shift_20260904T032948Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-04T03:29:48Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-031",
+    "ARC-037",
+    "MECH-095",
+    "EXT-005"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-031": "weakens",
+    "ARC-037": "non_contributory",
+    "MECH-095": "non_contributory",
+    "EXT-005": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "causal_signature_ood_fragile_no_readaptation_recovery",
+    "preconditions": [
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.37136900424957275,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "n_latent_stack_tensors": 49,
+        "n_latent_stack_changed": 5,
+        "p0_episodes": 250,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "context": "V3-EXQ-1001 worst seed 48",
+        "offending_cell": "seed=48"
+      },
+      {
+        "name": "zworld_encodes_exogenous_change",
+        "kind": "readiness",
+        "description": "bare ||z_obs - z_prev|| AUROC for hazard-moved vs not, STAY stratum, measured pre- AND post-shift",
+        "control": "positive control -- agent cannot have caused the change",
+        "measured": 0.9954277801769936,
+        "threshold": 0.8,
+        "direction": "lower",
+        "offending_cell": "seed=46/POST",
+        "met": true
+      },
+      {
+        "name": "move_ok_confound_absent",
+        "kind": "readiness",
+        "description": "bare ||z_obs - z_prev|| AUROC in MOVE_OK near chance, pre- AND post-shift (the shift never touches raw change magnitude by construction -- this confirms it empirically too)",
+        "control": "negative control",
+        "measured": 0.42953876726570545,
+        "threshold_low": 0.4,
+        "threshold_high": 0.6,
+        "direction": "interval",
+        "offending_cell": "seed=45/PRE",
+        "met": true
+      },
+      {
+        "name": "causal_class_events_sufficient",
+        "kind": "readiness",
+        "description": "min(n_drift, n_no_drift) in the POST-shift held-out MOVE_OK stratum (the verdict-scoring set)",
+        "control": "the exact precondition V3-EXQ-783 failed on",
+        "measured": 6132.0,
+        "threshold": 500.0,
+        "direction": "lower",
+        "offending_cell": "seed=45/POST_heldout",
+        "met": true
+      },
+      {
+        "name": "e2world_action_pathway_live",
+        "kind": "readiness",
+        "description": "mean ||f(z,a_i) - f(z,a_j)|| AT INITIALISATION (PRE_BASE arm only -- POST arms start from PRE_BASE's already-live weights)",
+        "control": "wiring check, before any training",
+        "measured": 0.28334611654281616,
+        "threshold": 0.0001,
+        "comparator": ">",
+        "direction": "lower",
+        "offending_cell": "seed=45 PRE_BASE-init",
+        "met": true
+      },
+      {
+        "name": "action_map_genuinely_rewired",
+        "kind": "readiness",
+        "description": "count of the 4 movement actions whose post-shift displacement differs from its pre-shift (canonical) displacement",
+        "control": "sanity check that the single 4-cycle rotation is not an accidental no-op -- guaranteed by construction (no fixed points), verified per seed",
+        "measured": 4.0,
+        "threshold": 4.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "offending_cell": "seed=43",
+        "met": true
+      },
+      {
+        "name": "surface_statistics_preserved",
+        "kind": "readiness",
+        "description": "max absolute deviation between pre- and post-shift STAY / MOVE_OK / MOVE_BLOCKED / drift-event fractions",
+        "control": "the load-bearing design claim -- a permutation of interchangeable movement actions under a uniformly-random policy holds these marginals fixed in expectation; this measures the finite-sample deviation",
+        "measured": 0.00789999999999999,
+        "threshold": 0.05,
+        "direction": "upper",
+        "offending_cell": "seed=43",
+        "met": true
+      },
+      {
+        "name": "pre_base_in_distribution_signature",
+        "kind": "readiness",
+        "description": "PRE_BASE (in-distribution) comparator must itself be informative: mean(auroc_move_ok_pre) - 0.5 >= max(0.050, sd) AND mean(auroc_move_ok_pre - auroc_bare_move_ok_pre) >= max(0.050, sd)",
+        "control": "mirrors 995's own C1+C2 combined, on PRE_BASE only -- a failing in-distribution fit makes any post-shift D1/D2 FAIL uninterpretable (is it the shift, or was PRE_BASE never a real signature?)",
+        "measured_chance_gap": 0.1436596368381651,
+        "measured_chance_gap_requirement": 0.05,
+        "measured_bare_gap": 0.20355847640732633,
+        "measured_bare_gap_requirement": 0.05,
+        "measured": 0.0936596368381651,
+        "threshold": 0.0,
+        "direction": "lower",
+        "offending_cell": "PRE_BASE across seeds",
+        "met": true
+      },
+      {
+        "name": "shift_degrades_frozen_forward_fit",
+        "kind": "readiness",
+        "description": "frozen model's post-shift held-out forward MSE minus its own PRE_BASE held-out forward MSE (same weights) -- must be positive in every seed, confirming the action-map rewiring actually degraded the frozen model's predictions (the manipulation reached the DV) rather than being invisible to it",
+        "control": "manipulation-check, not a claim criterion",
+        "measured": 0.0322602279484272,
+        "threshold": 0.0,
+        "comparator": ">",
+        "direction": "lower",
+        "offending_cell": "seed=45",
+        "met": true
+      },
+      {
+        "name": "readapt_does_not_regress_frozen_fit",
+        "kind": "readiness",
+        "description": "frozen held-out forward MSE minus readapt's held-out forward MSE (same held-out post-shift data), minus max(1e-05, 5% of the shift-induced degradation frozen_mse-pre_mse) -- must be positive in every seed, i.e. the 120-optimizer-step readapt pass measurably reduced forward error, scaled to how much there was to recover, not merely a non-negative (possibly zero) delta",
+        "control": "readapt-budget non-vacuity check, not a full positive control (no scratch-model / unshifted-env ceiling -- documented residual limitation, see module docstring)",
+        "measured": 0.011827796418219804,
+        "threshold": 0.0,
+        "comparator": ">",
+        "direction": "lower",
+        "offending_cell": "seed=47",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "D1_frozen_beats_bare_post_shift": true,
+      "D2_readapted_beats_bare_post_shift": true
+    },
+    "gate_green": true
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "27f96ce96c597508dd8c8921f38807522d0ab675dc7febe2f1516409a66c71d1",
+  "substrate_commit": {
+    "commit": "1a82903ab38acc83f10a7b003cf54e5a39697a1f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 5,
+    "goal_state_present": false
+  }
+}
