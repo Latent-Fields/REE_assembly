@@ -9265,6 +9265,23 @@
       "added_utc": "2026-09-04T18:56:25Z",
       "last_seen_session": "governance-20260904-1347",
       "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+    },
+    {
+      "sd_id": "MECH054-SIGNED-HARM-BENEFIT-PE-PRECISION",
+      "title": "MECH-054 signed harm/benefit prediction-error precision: separate pi_H/pi_B channels replacing the single unsigned precision scalar",
+      "node_class": "complicated (buildable)",
+      "status": "proposed",
+      "ready": false,
+      "design_doc": "REE_assembly/docs/architecture/precision_control.md#signed-harmbenefit-pe-precision-implementation-sketch",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-054"
+      ],
+      "failure_record": [],
+      "implementation_hint": "MECH-054 (docs/architecture/control_plane.md#mech-054) asserts separate precision channels for harm- vs benefit-related prediction error (pi_H, pi_B) rather than one collapsed valence scalar. Confirmed 2026-09-04: zero occurrences of pi_H/pi_B/lambda_H/lambda_B or any harm/benefit-split precision channel anywhere in ree-v3/ree_core (grep). The only existing precision machinery is the single unsigned running-variance term in e3_selector.py (update_running_variance: prediction_error.pow(2).mean(), verified live-invoked from the real step loop at e3_selector.py:4151) -- this is what EXP-0793/LIT-0794 (claim MECH-043) found is invariant to a gain sweep and cannot serve as MECH-054's signed dissociation control. docs/architecture/precision_control.md already carries an 'Implementation Sketch' (not yet built) with the concrete update rule: e_H = harm-related PE (from HARM/HOMEOSTASIS streams), e_B = benefit-related PE (from VALENCE/reward-proxy streams); pi_H(t+1) = (1-alpha_H)*pi_H(t) + alpha_H*f(|e_H(t)|, context), pi_B(t+1) analogous with its own alpha_B, f bounded/saturating; learning uses pi_H*e_H + pi_B*e_B applied PER CHANNEL (not collapsed to a scalar); commitment gating: pi_H*|e_H| exceeding a threshold feeds the aversive gate (MECH-053) to suppress/delay commitment. Build: (1) add e_H/e_B extraction from the existing HARM/HOMEOSTASIS and VALENCE streams already live in ree_core (HARM is the one live per-candidate stream per the MECH-035 substrate probe), (2) add pi_H/pi_B state + the two EMA update rules above as new REEConfig-gated fields (default-off, matching the codebase's existing pattern for new control channels), (3) wire pi_H*e_H + pi_B*e_B into the learning-update path alongside (not replacing) the existing unsigned term, (4) wire the pi_H*|e_H| threshold into the MECH-053 aversive/commitment gate. No open design question -- the sketch already specifies the update rule and the two consumers; this is scoping + implementation, not new theory. Named by two blocked proposals: EXP-0793 and LIT-0794 (both claim_id MECH-043), whose falsifier (iv) needs MECH-054 as the dissociation control and self-routes substrate_not_ready without it. NOTE: MECH-054 also depends_on ARC-017 (per control_plane.md), which is itself the vector-VALENCE stream-tagging build already covered by open chip chip-20260901-mech035-vector-valence-substrate (MECH-035) -- the e_B (benefit/VALENCE) extraction in step (1) above may be able to reuse whatever that chip lands rather than duplicating stream work; check its outcome before implementing step (1).",
+      "priority": 2,
+      "added_session": "campaign-c3-20260904 (drafted; not yet applied -- awaiting governance lock release)",
+      "last_seen_session": "campaign-c3-20260904"
     }
   ],
   "schema_version": "substrate_queue/v2",
