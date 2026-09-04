@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-04T22:06:50Z",
+  "generated_at": "2026-09-04T22:25:34Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -9626,6 +9626,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "session_uuid=a1219ba7-ce46-4630-ac1f-2522ba074753 branch=claude/igw-214-retest-after-substrate-arc-019",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-019",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-019"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260904T222534Z-6217c74b-claude_local",
+      "stable_hash": "6217c74ba0b9",
+      "igw_id_at_assign": "IGW-20260904-214",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-04T22:25:34Z",
+      "released_at": "2026-09-04T22:25:34Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "complete: igw-214-retest-after-substrate-arc-019 -> completed (outcome=USEFUL_LANDED)",
+      "released_event_for": "asn-20260904T220526Z-6217c74b-claude_local",
       "note": "session_uuid=a1219ba7-ce46-4630-ac1f-2522ba074753 branch=claude/igw-214-retest-after-substrate-arc-019",
       "item_snapshot": {
         "skill": "/queue-experiment",

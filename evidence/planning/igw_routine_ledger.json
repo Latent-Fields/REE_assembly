@@ -4109,7 +4109,11 @@
       "task_claim_session_id": "igw-auto-igw-214-retest-after-substrate-arc-019-20260904T220627Z",
       "task_claim_claimed_at": "2026-09-04T22:06:27Z",
       "assigned_at": "2026-09-04T22:05:26Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-04T22:25:34Z",
+      "completion_summary": "No experiment queued: marked ARC-019 proposal (EVB-1189) blocked_substrate -- all 3 blocking criteria of the 7-criterion gate degenerate (z_goal 0.0-9.2e-12 vs 0.4 bar; H_pos bar 3.23 vs observed max 1.08; residue_coverage saturates). REE_assembly dcfa8ddc24. Chipped ARC-046 reachability probe as the unblock.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "No experiment queued: marked ARC-019 proposal (EVB-1189) blocked_substrate -- all 3 blocking criteria of the 7-criterion gate degenerate (z_goal 0.0-9.2e-12 vs 0.4 bar; H_pos bar 3.23 vs observed max 1.08; residue_coverage saturates). REE_assembly dcfa8ddc24. Chipped ARC-046 reachability probe as the unblock."
     }
   ],
   "dispositions": [
@@ -5356,7 +5360,7 @@
     },
     {
       "stable_hash": "6217c74ba0b9",
-      "igw_id_at_disposition": "IGW-20260902-238",
+      "igw_id_at_disposition": "IGW-20260904-214",
       "owner_exq": null,
       "claim_ids": [
         "ARC-019"
@@ -5365,8 +5369,8 @@
       "title": "Proposal for ARC-019",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-09-02T14:29:46Z",
-      "re_eligible_after": "2026-09-04T14:29:46Z"
+      "noted_at": "2026-09-04T22:25:34Z",
+      "re_eligible_after": "2026-09-06T22:25:34Z"
     },
     {
       "stable_hash": "1bbffd85f0fe",
