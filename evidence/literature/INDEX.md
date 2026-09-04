@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-04T06:12:32.289969Z`
+Generated: `2026-09-04T14:23:53.418631Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -90,6 +90,7 @@ Generated: `2026-09-04T06:12:32.289969Z`
 | `targeted_review_connectome_mech_057b` | [`2026-04-27_mech_057b_theta_seq_goals_wikenheiser_redish2015`](targeted_review_connectome_mech_057b/entries/2026-04-27_mech_057b_theta_seq_goals_wikenheiser_redish2015/record.json) | 4 | [`summary`](targeted_review_connectome_mech_057b/entries/2026-04-27_mech_057b_theta_seq_goals_wikenheiser_redish2015/summary.md) |
 | `targeted_review_connectome_mech_058` | [`2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022`](targeted_review_connectome_mech_058/entries/2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022/record.json) | 4 | [`summary`](targeted_review_connectome_mech_058/entries/2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022/summary.md) |
 | `targeted_review_connectome_mech_060` | [`2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025`](targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025/record.json) | 4 | [`summary`](targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025/summary.md) |
+| `targeted_review_connectome_mech_069` | [`2026-09-04_mech_069_specialized_dopamine_coding_engelhard2019`](targeted_review_connectome_mech_069/entries/2026-09-04_mech_069_specialized_dopamine_coding_engelhard2019/record.json) | 5 | [`summary`](targeted_review_connectome_mech_069/entries/2026-09-04_mech_069_specialized_dopamine_coding_engelhard2019/summary.md) |
 | `targeted_review_connectome_mech_070` | [`2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017`](targeted_review_connectome_mech_070/entries/2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017/record.json) | 3 | [`summary`](targeted_review_connectome_mech_070/entries/2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017/summary.md) |
 | `targeted_review_connectome_mech_071` | [`2026-03-29_mech_071_threat_imminence_gradient_mobbs2007`](targeted_review_connectome_mech_071/entries/2026-03-29_mech_071_threat_imminence_gradient_mobbs2007/record.json) | 4 | [`summary`](targeted_review_connectome_mech_071/entries/2026-03-29_mech_071_threat_imminence_gradient_mobbs2007/summary.md) |
 | `targeted_review_connectome_mech_072` | [`2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009`](targeted_review_connectome_mech_072/entries/2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009/record.json) | 6 | [`summary`](targeted_review_connectome_mech_072/entries/2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009/summary.md) |

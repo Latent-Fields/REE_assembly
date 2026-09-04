@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_069",
+  "entry_id": "2026-09-04_mech_069_specialized_dopamine_coding_engelhard2019",
+  "timestamp_utc": "2026-09-04T14:18:40Z",
+  "claim_ids_tested": ["MECH-069"],
+  "source": {
+    "title": "Specialized coding of sensory, motor and cognitive variables in VTA dopamine neurons",
+    "authors": ["Engelhard, Ben", "Finkelstein, Joel", "Cox, Jeremiah", "Fleming, Weston", "Jang, Hee Jae", "Ornelas, Sharon", "Koay, Sue Ann", "Thiberge, Stephan Y.", "Daw, Nathaniel D.", "Tank, David W.", "Witten, Ilana B."],
+    "year": 2019,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-019-1261-9",
+    "pmid": "31142844",
+    "pmc": "PMC7147811",
+    "volume": "570",
+    "issue": "7762",
+    "pages": "509-513"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the direct measurement the crux question calls for: two-photon imaging of >300 individual VTA dopamine neurons during a complex virtual-reality decision task, resolving population structure rather than assuming it. The finding is genuinely mixed with respect to MECH-069's strong reading. Against a pure uniform-scalar-RPE null, the paper finds functional specialization -- subpopulations of dopamine neurons preferentially transmit sensory, motor, or cognitive/choice-related variables, and these functional clusters are spatially organized and aligned with projection topography, which is exactly the kind of anatomically-grounded channel separation MECH-069 needs. Against MECH-069's specific three-way partition, the paper's own framing is multiplexing, not a clean E1/E2/E3-shaped trichotomy: most individual neurons carry mixtures of variables rather than one pure error type, and the recorded variables (position, velocity, choice, reward, cue identity) don't map one-to-one onto REE's E1 (sensory prediction)/E2 (motor-sensory on z_gamma)/E3 (harm/goal) partition -- there is no dedicated 'harm' variable in this reward-only task at all, so the paper cannot speak to E3's separateness. Confidence is moderate: strong source quality and a genuine measurement of the crux (heterogeneity vs. uniform broadcast), but mapping fidelity to the SPECIFIC three-way epistemic-type cut is only partial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Individual dopamine neurons in this dataset are frequently mixed-selectivity (multiplexing several variables), not cleanly single-channel -- a strong single-error-type reading of MECH-069 (one neuron, one error type) is not what was measured; the paper's unit of separation is functional CLUSTERS of neurons, not single-neuron purity.",
+    "The task has no genuine harm/punishment dimension (it is a reward-seeking VR navigation task), so this paper offers no direct evidence for or against E3 (harm/goal error) being a distinct channel from E1/E2 -- it only speaks to the E1-vs-E2-vs-cognitive-variable side of the partition."
+  ],
+  "tags": ["mech_069", "dopamine", "vta", "population_coding", "heterogeneity", "connectome", "electrophysiology"],
+  "mapping": {
+    "source_claim_statement": "VTA dopamine neurons are not a homogeneous population emitting one scalar reward-prediction-error signal; they show functionally specialized, spatially clustered, anatomically-topographic coding of distinct sensory, motor and cognitive variables in addition to reward.",
+    "ree_translation": "MECH-069 asserts REE's three error channels (E1 sensory-prediction, E2 motor-sensory, E3 harm/goal) are incommensurable and must remain structurally separate. Engelhard et al. supply the general form of evidence MECH-069 needs -- a demonstrated departure from the classical single-scalar-RPE dopamine model toward genuine, anatomically-organized functional specialization -- without supplying the specific three-way epistemic-type partition. It is evidence that SOME structured channel separation exists in the brain's actual reward/prediction-error machinery, which is the necessary precondition for MECH-069's stronger claim, but not itself confirmation of the E1/E2/E3 split specifically.",
+    "mapping_caveat": "The paper's 'specialization' is at the level of neuronal subpopulations carrying weighted combinations of task variables, not a clean partition into non-overlapping error TYPES; and the task offers no harm/aversive dimension, so E3 is untested here. Treat this as supporting the general plausibility of heterogeneous, structured DA coding -- not as direct confirmation of REE's specific trichotomy.",
+    "source_context": "Mouse, head-fixed virtual-reality accumulation-of-evidence navigation task; two-photon calcium imaging of VTA dopamine neurons; reward-only paradigm (no punishment/harm condition)."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Landmark, high-N single-unit imaging study in a top venue; the crux measurement (heterogeneity vs. uniform broadcast) is exactly on point. Mapping fidelity is capped in the middle because the paper's functional clusters are multiplexed rather than a clean three-way epistemic-type split, and the task cannot speak to the E3/harm arm of MECH-069 at all."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_069",
+  "entry_id": "2026-09-04_arc_021_heterogeneous_striatal_dopamine_engel2024",
+  "timestamp_utc": "2026-09-04T14:18:40Z",
+  "claim_ids_tested": ["ARC-021"],
+  "source": {
+    "title": "Dopamine neurons drive spatiotemporally heterogeneous striatal dopamine signals during learning",
+    "authors": ["Engel, Lauren", "Wolff, Amanda R.", "Blake, Madison", "Collins, Vanessa L.", "Sinha, Shreya", "Saunders, Benjamin T."],
+    "year": 2024,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2024.05.069",
+    "pmid": "38925117",
+    "pmc": "PMC11279555",
+    "volume": "34",
+    "issue": "14",
+    "pages": "3086-3101.e4"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is a direct measurement of the crux question for ARC-021's loop-segregation claim: does one dopaminergic teaching signal reach distinct striatal territories uniformly (a single broadcast, differentially gated) or do the territories receive genuinely different signals during learning? The authors optogenetically drove VTA or SNc dopamine neurons and used fluorescent dopamine biosensors to simultaneously monitor nucleus accumbens core/shell, dorsomedial striatum (DMS), and dorsolateral striatum (DLS) across Pavlovian conditioning. The result is a clean dissociation, not a uniform readout: predictive-cue dopamine recruitment moved from NAc core early in training to DMS late in training; negative prediction-error dopamine signals appeared in NAc core and DMS but never emerged in DLS -- even under direct SNc dopamine neuron optogenetic activation, which should have been the strongest possible test of whether DLS COULD carry such a signal if given maximal drive. This is strong, direct support for ARC-021's segregated-loop architecture: the sensorimotor-associated territory (DLS) is dopaminergically silent for prediction-error information under conditions where the more medial/limbic territories are not, even when the same upstream dopamine source is driven directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation shown is between VTA-driven and SNc-driven pathways feeding different striatal subregions, which is compatible with either 'three genuinely distinct information channels' (ARC-021's strong reading) or 'one prediction-error-computing circuit whose output is anatomically gated to reach only some downstream targets' -- the paper does not resolve which interpretation is correct, only that the readout differs by target region.",
+    "The reward-only paradigm again means no harm/aversive-error condition is tested, so this speaks to territorial segregation of a prediction-error-shaped signal, not to whether the SPECIFIC error TYPE differs (sensory vs. motor vs. harm) as MECH-069 requires."
+  ],
+  "tags": ["arc_021", "mech_069", "striatum", "dopamine", "dls", "dms", "nucleus_accumbens", "heterogeneity", "connectome"],
+  "mapping": {
+    "source_claim_statement": "Optogenetically-evoked and cue/reward-driven dopamine dynamics differ dramatically across striatal subregions during Pavlovian learning: NAc core and DMS develop negative-prediction-error dopamine signals over training, while DLS never develops such signals even under direct dopamine-neuron activation.",
+    "ree_translation": "ARC-021 asserts REE's three cortico-striatal-like loops (sensorimotor, associative, limbic) require distinct learning channels because their functional roles differ. Engel et al. supply anatomically-resolved, causally-manipulated measurement evidence that striatal SUBREGIONS genuinely differ in what dopaminergic information they receive and use during learning -- the sensorimotor-associated DLS is functionally walled off from prediction-error dopamine even when the source is directly driven, which is a strong form of territorial segregation. This directly supports ARC-021's core claim that the loops are not interchangeable readout points of one homogeneous signal.",
+    "mapping_caveat": "This paper evidences ARC-021 (segregation exists and is measurable) more directly than MECH-069 (the error signals carry distinct EPISTEMIC TYPES). It shows WHERE dopamine information differs by target, not WHAT KIND of error information the divergent signal represents -- it cannot by itself establish that DMS's teaching signal is 'motor-model fidelity' vs. NAc's 'sensory prediction' vs. a hypothetical harm channel. Do not over-read this as confirming MECH-069's specific epistemic-type partition.",
+    "source_context": "Mouse, Pavlovian conditioned approach with optogenetic VTA/SNc dopamine neuron stimulation plus fluorescent dopamine biosensor (GRAB-DA) recording across four striatal subregions simultaneously; reward-only paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Strong causal-manipulation design (optogenetic driving plus simultaneous multi-region biosensor readout) directly measures the ARC-021 crux -- do striatal territories receive the same or different dopaminergic teaching signals. Mapping fidelity is high for ARC-021 (segregation) and correspondingly lower for MECH-069 (epistemic type), which is why this entry is tagged to ARC-021 only, per the chip's instruction not to conflate loop-anatomy evidence with incommensurability evidence."
+  }
+}

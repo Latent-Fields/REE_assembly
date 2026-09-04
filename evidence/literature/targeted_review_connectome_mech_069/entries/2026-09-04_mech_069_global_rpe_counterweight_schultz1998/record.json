@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_069",
+  "entry_id": "2026-09-04_mech_069_global_rpe_counterweight_schultz1998",
+  "timestamp_utc": "2026-09-04T14:18:40Z",
+  "claim_ids_tested": ["MECH-069"],
+  "source": {
+    "title": "Predictive reward signal of dopamine neurons",
+    "authors": ["Schultz, Wolfram"],
+    "year": 1998,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.1998.80.1.1",
+    "pmid": "9658025",
+    "volume": "80",
+    "issue": "1",
+    "pages": "1-27"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.60,
+  "confidence_rationale": "This is the classical, still-influential formulation MECH-069's strong incommensurability claim has to argue against: dopamine neurons emit a single, largely non-discriminating global reinforcement signal, explicitly described as 'failing to discriminate between different rewards' and 'broadcasting a rather global reinforcement signal to postsynaptic neurons,' with specific reward information instead handled downstream by striatum, frontal cortex, and amygdala rather than by a differentiated set of upstream error channels. This is direct textual support for the 'one broadcast, differentially gated/read-out downstream' alternative that the EXT-003 pull's Vamplew et al. caveat already flagged as compatible with plural objectives -- i.e., the position MECH-069 must displace, not confirm. It is tagged weakens because, taken at face value, it argues AGAINST channel-level incommensurability at the dopamine-signal source and locates the real differentiation downstream instead -- though it is worth noting Schultz also observes dopamine responds to 'only a few phasic activations' after aversive stimuli, which is itself a small piece of evidence for an E3-like asymmetry, so the paper is not uniformly hostile to MECH-069.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Schultz explicitly states dopamine neurons 'fail to discriminate between different rewards' and emit 'a rather global reinforcement signal' -- if this remains the operative model, MECH-069's claim that E1/E2/E3 are separately computed and taught (rather than one signal gated differently downstream) loses its strongest form of support at the level of the dopamine signal itself.",
+    "The paper also notes cerebellar climbing fibers signal 'errors in motor performance OR errors in the prediction of aversive events' -- explicitly overlapping E2-like (motor) and E3-like (aversive) content in a single fiber type, which is a direct textual complication for treating E2 and E3 as cleanly separable channels, and should be read alongside the Wolpert et al. 1998 entry in this same directory, which shares this same paper's era and raises a parallel caveat."
+  ],
+  "tags": ["mech_069", "dopamine", "reward_prediction_error", "counterweight", "connectome", "classical_model"],
+  "mapping": {
+    "source_claim_statement": "Dopamine neurons emit a single, transferable reward-prediction-error signal that fails to discriminate between different types or magnitudes of reward, functioning as a global, broadcast teaching signal; specific/discriminating reward information is instead carried by downstream structures (striatum, frontal cortex, amygdala) that receive but do not themselves generate the global RPE signal. Dopamine responds only weakly to aversive stimuli, and cerebellar climbing fibers (a separate system) carry motor-performance-error and aversive-event-prediction-error signals together.",
+    "ree_translation": "This is the canonical single-channel null hypothesis against which MECH-069's incommensurability claim must be evaluated: if the brain's actual teaching-signal architecture is 'one broadcast dopamine RPE, differentially interpreted downstream,' then E1/E2/E3 could in principle be implemented as one shared error computation with downstream routing, rather than as three structurally separate, incommensurable channels. The more recent measurement papers in this same directory (Engelhard 2019, Engel 2024, Groessl 2018) push back against the strong form of this 1998 model by showing genuine upstream heterogeneity and dedicated modules -- but Schultz's foundational framing is still the position those newer findings are departing from, and it remains influential.",
+    "mapping_caveat": "This is a 27-year-old review synthesizing an earlier generation of single-unit recording data; the field's picture has moved substantially toward heterogeneity since (see the other four entries in this directory, all of which cite or build on departures from this exact model). Treat this as the historically dominant counterweight position, not as a claim that current evidence still favors uniform broadcast over heterogeneity -- the balance of newer evidence in this same pull leans toward MECH-069, not away from it.",
+    "source_context": "Primate (macaque) single-unit electrophysiology synthesis, plus lesion, self-stimulation, and pharmacology literature; foundational reinforcement-learning-theory framing of dopamine function."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Extremely high source quality as the foundational, canonical statement of the dopamine-RPE model -- one of the most cited papers in behavioral neuroscience. Confidence and mapping fidelity are capped in the moderate range because its role here is as a HISTORICAL counterweight/null-hypothesis anchor rather than current best evidence; the newer papers in this directory represent the field's departure from this exact framing."
+  }
+}

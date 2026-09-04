@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_069",
+  "entry_id": "2026-09-04_mech_069_pag_dopamine_fear_gate_groessl2018",
+  "timestamp_utc": "2026-09-04T14:18:40Z",
+  "claim_ids_tested": ["MECH-069"],
+  "source": {
+    "title": "Dorsal tegmental dopamine neurons gate associative learning of fear",
+    "authors": ["Groessl, Florian", "Munsch, Thomas", "Meis, Susanne", "Griessner, Johannes", "Kaczanowska, Joanna", "Pliota, Pinelopi", "Kargl, Dominic", "Badurek, Stephan", "Kraitsy, Klara", "Rassoulpour, Arash", "Zuber, Johannes", "Lessmann, Volkmar", "Haubensak, Wulf"],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0174-5",
+    "pmid": "29950668",
+    "pmc": "PMC6166775",
+    "volume": "21",
+    "issue": "7",
+    "pages": "952-962"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This paper identifies a dopaminergic circuit -- ventral periaqueductal gray / dorsal raphe neurons projecting to central amygdala -- that is functionally and anatomically distinct from the canonical VTA reward-coding dopamine population, and shows it encodes a positive prediction error specifically for UNPREDICTED AVERSIVE events (shocks), gating fear-learning plasticity in the amygdala via dopamine-dependent LTP. This is close to direct measurement evidence for MECH-069's E3 (harm/goal error) being carried by a channel dissociable from reward-coding dopamine circuits, rather than the same RPE machinery merely being read out differently downstream -- the aversive-event teaching signal here has its own dedicated anatomical module (PAG/DR->CeA), separate from VTA->striatum. Confidence is moderate-high: strong causal circuit-mapping evidence for a distinct harm/threat channel, but it is a single dopaminergic subpopulation study in mice and does not itself address the E1-vs-E2 side of MECH-069's partition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The mechanism reported (positive prediction error for unpredicted shock, dopamine-dependent LTP in amygdala) is itself a prediction-error / reinforcement-learning-shaped signal -- structurally similar in FORM to VTA reward-coding dopamine, even though it is anatomically separate and carries opposite-valence content. A reader could argue this shows the brain reuses one general-purpose dopaminergic prediction-error COMPUTATION across multiple distinct anatomical modules, rather than showing that harm error is a fundamentally different KIND of computation from reward error -- which would weaken MECH-069's incommensurability framing even while supporting its channel-SEPARATION framing.",
+    "This is a fear-conditioning (shock) paradigm in mice, not REE's harm/goal-error construct (E3 + residue field, gated by trajectory commitment) -- the mapping from 'aversive Pavlovian US prediction error' to REE's outcome-level, trajectory-gated harm/goal error is not one-to-one."
+  ],
+  "tags": ["mech_069", "amygdala", "periaqueductal_gray", "dopamine", "fear_learning", "aversive_prediction_error", "connectome"],
+  "mapping": {
+    "source_claim_statement": "A dopaminergic circuit distinct from canonical VTA reward-coding dopamine neurons -- originating in ventral periaqueductal gray/dorsal raphe and projecting to central amygdala -- encodes positive prediction errors specifically for unpredicted aversive (shock) events, and this signal gates associative fear learning via dopamine-dependent synaptic plasticity in the amygdala, with negative feedback from central amygdala limiting reinforcement once the aversive event becomes predicted.",
+    "ree_translation": "MECH-069 claims the harm/goal-error channel (E3 + residue) is incommensurable with sensory (E1) and motor (E2) error and indexes a fundamentally different kind of fidelity -- ethical/purposive rather than world- or motor-model fidelity. Groessl et al. supply anatomical and causal evidence for a genuinely separate neuromodulatory module dedicated to aversive-outcome prediction error, distinct from the canonical reward-coding dopamine system that E1/E2-adjacent literature (Engelhard 2019, Engel 2024, this directory) concerns. This directly supports the existence of a dissociable harm/threat-specific teaching-signal channel, which is the E3 arm of MECH-069's three-way partition.",
+    "mapping_caveat": "The signal reported is still prediction-error-shaped (a positive PE for unpredicted shock) and dopamine-carried, so this is better read as evidence for anatomical/functional MODULE separation (a distinct harm-signaling circuit exists) than as evidence that harm error is COMPUTATIONALLY incommensurable with reward-error in the strong sense MECH-069's text uses ('cannot be derived from or collapsed into another without loss'). It is also a Pavlovian fear-conditioning paradigm, not REE's trajectory-gated, outcome-level E3+residue construct.",
+    "source_context": "Mouse; optogenetic/electrophysiological circuit mapping of PAG/DR dopaminergic projections to central amygdala; Pavlovian fear conditioning with unpredicted foot-shock US."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "High-quality causal circuit-mapping study in a strong venue, directly on point for the 'is there a dedicated harm/threat teaching-signal channel' question. Mapping fidelity moderate: strong for the anatomical-separation claim, weaker for the strict incommensurability claim, since the underlying computation is still prediction-error-shaped."
+  }
+}
