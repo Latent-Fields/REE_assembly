@@ -4134,7 +4134,11 @@
       "task_claim_session_id": "igw-auto-igw-215-retest-after-substrate-arc-021-20260904T230845Z",
       "task_claim_claimed_at": "2026-09-04T23:08:45Z",
       "assigned_at": "2026-09-04T23:07:46Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-04T23:18:05Z",
+      "completion_summary": "No queue: ARC-021 retest already executed as V3-EXQ-993a (FAIL, weakens, non_degenerate, flat+pack, supersedes 993, pre-sigmoid harm-logit readout, dv_headroom preconditions met). Raised GFLAG-0137 (stale_note) asking governance to clear pending_retest_after_substrate; REE_assembly 9b667b5c17.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "No queue: ARC-021 retest already executed as V3-EXQ-993a (FAIL, weakens, non_degenerate, flat+pack, supersedes 993, pre-sigmoid harm-logit readout, dv_headroom preconditions met). Raised GFLAG-0137 (stale_note) asking governance to clear pending_retest_after_substrate; REE_assembly 9b667b5c17."
     }
   ],
   "dispositions": [
@@ -5747,6 +5751,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-04T17:44:10Z",
       "re_eligible_after": "2026-09-06T17:44:10Z"
+    },
+    {
+      "stable_hash": "f0efd41b7e34",
+      "igw_id_at_disposition": "IGW-20260904-215",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-021"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Retest after substrate: ARC-021",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-04T23:18:06Z",
+      "re_eligible_after": "2026-09-06T23:18:06Z"
     }
   ]
 }
