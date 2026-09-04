@@ -5748,6 +5748,192 @@ def _proposal_lane(item: dict[str, Any]) -> str:
     return _t or "?"
 
 
+# ---------------------------------------------------------------------------
+# Stable proposal-id allocation
+# ---------------------------------------------------------------------------
+#
+# WHY THIS EXISTS. Auto proposal_ids (EXP-/LIT-NNNN) used to be handed out by a
+# bare monotonic counter walking `backlog_items` in sort order, so the id was
+# POSITIONAL: adding or retiring a single proposal renumbered every proposal
+# after it. Measured 2026-09-02 at REE_assembly 275bc8d0b4 (a lit-pull regen
+# that legitimately dropped exactly ONE proposal): 718 of 916 backlog_ids had
+# their proposal_id change, with zero backlog_ids added or removed. Measured
+# again 2026-09-03 (REE_assembly 64cf65ce3e): +359/-360 ids churned in one
+# rebuild.
+#
+# EXP-/LIT- ids are referenced from OUTSIDE these two files -- igw_routine_
+# ledger.json, igw_assignments.json, TASK_CHIPS.json (496 references),
+# failure-autopsy artifacts, structure_review dossiers, planning prose -- so
+# every renumber silently re-points those at a DIFFERENT proposal. Measured
+# 2026-09-04 over the 181 open chip-proposal-exp-* chips minted 2026-09-02:
+# 122 named an EXP id that no longer existed at all and 50 named an id whose
+# claim had moved. All 172 were withdrawn.
+#
+# THE FIX IS CARRY-FORWARD, NOT RE-DERIVATION. A content-derived id (hash of
+# the proposal body) would renumber the ENTIRE corpus exactly once, breaking
+# all ~570 external references in a single step -- strictly worse than the
+# drift it cures. Instead the allocation is PERSISTED and keyed on the stable
+# identity `(backlog_id, lane)`: backlog_id is minted once and carried forward
+# by claim_id (see the "Persistent ID assignment" block in main()), and lane
+# separates the EXP/LIT twins that legitimately share one backlog_id (see
+# _proposal_lane). An id, once assigned to a key, is NEVER reassigned to a
+# different key and NEVER recycled after retirement -- so a retired proposal
+# that later returns gets its original id back, and no stale external
+# reference can ever come to mean something else. Only genuinely new keys
+# consume a fresh index.
+#
+# The sidecar is APPEND-ONLY and self-seeding: on a tree that has never had
+# one, the map is seeded from the ids already in experiment_proposals.v1.json,
+# which freezes the current allocation in place. That is the migration -- no
+# rewrite of the proposals file, and no external reference invalidated.
+_PROPOSAL_ID_ALLOC_FILENAME = "proposal_id_allocations.v1.json"
+
+
+def _proposal_alloc_key(backlog_id: Any, lane: Any) -> str:
+    """The stable allocation key for a proposal: "<backlog_id>|<lane>".
+
+    Both halves are load-bearing. `backlog_id` alone is stable but NOT unique
+    (one EVB legitimately backs an experimental proposal and its literature
+    twin), so keying on it alone would hand both twins the same id. `lane` is
+    the normalised proposal_type from _proposal_lane -- normalised, so a manual
+    proposal spelled `literature` and a generated one spelled
+    `literature_review` resolve to the same key rather than drifting apart.
+    """
+    return f"{str(backlog_id or '').strip()}|{str(lane or '').strip()}"
+
+
+def _parse_proposal_idx(proposal_id: Any) -> int | None:
+    """The numeric index of an EXP-/LIT-NNNN proposal id, or None."""
+    m = re.match(r"^(?:EXP|LIT)-(\d+)$", str(proposal_id or "").strip())
+    return int(m.group(1)) if m else None
+
+
+class ProposalIdAllocator:
+    """Hands out EXP-/LIT- numeric indices that are STABLE across regens.
+
+    Module-level (rather than a closure over main()) so the stability property
+    has a direct regression test -- the defect survived precisely because
+    nothing audited it. See scripts/test_proposal_id_stability.py.
+
+    Contract:
+      * the same (backlog_id, lane) always gets the same index, forever;
+      * an index, once handed out, is never handed to a different key, even
+        after the proposal it belonged to is retired;
+      * a key never seen before gets the lowest index not yet used by anyone.
+
+    Together those give the property the caller actually needs: a regen over an
+    unchanged proposal set is byte-identical on ids, and a regen that adds or
+    retires proposals leaves every OTHER id untouched.
+    """
+
+    def __init__(
+        self,
+        allocations: dict[str, int] | None = None,
+        *,
+        reserved_idx: set[int] | None = None,
+    ) -> None:
+        self.allocations: dict[str, int] = dict(allocations or {})
+        # Indices that exist but are not ours to hand out -- the hand-assigned
+        # manual_proposals.v1.json ids. Kept separate from `allocations` so a
+        # manual id is blocked without being adoptable as an auto allocation.
+        self.reserved_idx: set[int] = set(reserved_idx or set())
+        self._counter = 1
+        self._served: set[str] = set()
+
+    @property
+    def used_idx(self) -> set[int]:
+        """Every index spoken for: reserved, or already allocated to some key."""
+        return self.reserved_idx | set(self.allocations.values())
+
+    def seed_from_items(
+        self,
+        existing_items: list[dict[str, Any]],
+        *,
+        exclude_ids: set[str] | None = None,
+    ) -> None:
+        """Adopt the ids already on disk for any key not already allocated.
+
+        Existing allocations WIN over the on-disk proposals file: the sidecar is
+        the durable record of what this allocator handed out, and a proposals
+        file can have been hand-edited or partially regenerated. This is what
+        makes the first run on a tree with no sidecar a lossless migration --
+        every id currently in experiment_proposals.v1.json is adopted verbatim,
+        so no external reference to an EXP-/LIT- id is invalidated -- while
+        every later run leaves the sidecar authoritative.
+
+        `exclude_ids` is the set of proposal_ids owned by
+        manual_proposals.v1.json. Those are hand-assigned and deliberately never
+        rewritten by this script (see the manual-merge block in main()), so they
+        must not be adopted as the AUTO allocation for their key: if the same
+        (backlog_id, lane) later generated an auto proposal it would be stamped
+        with the manual id, producing a duplicate. Their indices are reserved
+        separately, so they still cannot be handed out to anyone else.
+        """
+        excl = exclude_ids or set()
+        for item in existing_items or []:
+            if not isinstance(item, dict):
+                continue
+            pid = str(item.get("proposal_id") or "").strip()
+            if not pid or pid in excl:
+                continue
+            idx = _parse_proposal_idx(pid)
+            if idx is None:
+                continue
+            bid = str(item.get("backlog_id") or "").strip()
+            if not bid:
+                continue  # no stable key -- nothing to carry forward on
+            self.allocations.setdefault(_proposal_alloc_key(bid, _proposal_lane(item)), idx)
+
+    def assign(self, backlog_id: Any, lane: str) -> int:
+        """The stable index for (backlog_id, lane), allocating one if new."""
+        key = _proposal_alloc_key(backlog_id, lane)
+        # A key must not be served twice in one regen -- that would mint two
+        # proposals sharing an id. backlog_items yields each backlog_id once and
+        # each mints at most one proposal per lane, so this cannot fire today;
+        # it is a guard against a future caller, not a live case.
+        if key in self.allocations and key not in self._served:
+            self._served.add(key)
+            return self.allocations[key]
+        used = self.used_idx
+        while self._counter in used:
+            self._counter += 1
+        idx = self._counter
+        self._counter += 1
+        if key not in self._served:
+            self.allocations[key] = idx
+            self._served.add(key)
+        else:
+            self.reserved_idx.add(idx)  # duplicate key: burn the index, do not remap
+        return idx
+
+
+def load_proposal_id_allocations(planning_root: Path) -> dict[str, int]:
+    """The persisted allocation map, or {} when absent/malformed.
+
+    Fails soft on a malformed sidecar rather than raising: the seed step below
+    then re-derives the allocation from the live proposals file, which is the
+    same content the sidecar was written from. A missing sidecar must never
+    block a regen.
+    """
+    path = Path(planning_root) / _PROPOSAL_ID_ALLOC_FILENAME
+    if not path.exists():
+        return {}
+    try:
+        doc = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    raw = doc.get("allocations") if isinstance(doc, dict) else None
+    if not isinstance(raw, dict):
+        return {}
+    out: dict[str, int] = {}
+    for key, value in raw.items():
+        try:
+            out[str(key)] = int(value)
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
 def lookup_existing_proposal_status(
     item: dict[str, Any],
     status_map: dict[tuple[str, str], dict],
@@ -7067,7 +7253,6 @@ def _write_planning_outputs(
         item["gap_id"] = f"AGR-{idx:04d}"
 
     proposals: list[dict[str, Any]] = []
-    proposal_counter = 1
 
     # Existing (pre-regen) resolved proposals, loaded early so their proposal_id
     # indices can be reserved below BEFORE the auto counter runs -- see the
@@ -7138,27 +7323,34 @@ def _write_planning_outputs(
             if _m:
                 _manual_reserved_idx.add(int(_m.group(1)))
     _manual_ids_path = planning_root / "manual_proposals.v1.json"
+    _manual_proposal_ids: set[str] = set()
     if _manual_ids_path.exists():
         try:
             _manual_ids_doc = json.loads(_manual_ids_path.read_text(encoding="utf-8"))
             for _mp_item in _manual_ids_doc.get("items", []):
-                _mp_match = re.match(
-                    r"^(?:EXP|LIT)-(\d+)$",
-                    str((_mp_item or {}).get("proposal_id") or ""),
-                )
+                _mp_pid = str((_mp_item or {}).get("proposal_id") or "").strip()
+                _mp_match = re.match(r"^(?:EXP|LIT)-(\d+)$", _mp_pid)
                 if _mp_match:
                     _manual_reserved_idx.add(int(_mp_match.group(1)))
+                    _manual_proposal_ids.add(_mp_pid)
         except Exception:
             pass  # malformed manual file -- no reservations (skip silently)
 
-    def _alloc_proposal_idx() -> int:
-        """Next auto proposal index, skipping any manual-reserved numeric id."""
-        nonlocal proposal_counter
-        while proposal_counter in _manual_reserved_idx:
-            proposal_counter += 1
-        idx = proposal_counter
-        proposal_counter += 1
-        return idx
+    # STABLE PROPOSAL-ID ALLOCATION (see the block above _proposal_alloc_key for
+    # the measurement and the reasoning). The persisted sidecar is authoritative;
+    # any id in the current proposals file whose key it does not yet know is
+    # adopted verbatim, which makes the first run on a tree without a sidecar a
+    # lossless in-place migration rather than a renumber.
+    _proposal_allocator = ProposalIdAllocator(
+        load_proposal_id_allocations(planning_root),
+        reserved_idx=_manual_reserved_idx,
+    )
+    if _existing_proposals_doc is not None:
+        _proposal_allocator.seed_from_items(
+            _existing_proposals_doc.get("items", []),
+            exclude_ids=_manual_proposal_ids,
+        )
+    _assign_proposal_idx = _proposal_allocator.assign
 
     for item in backlog_items:
         claim_id = str(item["claim_id"])
@@ -7322,7 +7514,7 @@ def _write_planning_outputs(
                     proposal_patch = proposal_patch_candidate
 
             acceptance_checks = _dedupe_preserve_order(acceptance_checks)
-            proposal_id = f"EXP-{_alloc_proposal_idx():04d}"
+            proposal_id = f"EXP-{_assign_proposal_idx(item['backlog_id'], 'experimental'):04d}"
             proposal: dict[str, Any] = {
                 "proposal_id": proposal_id,
                 "backlog_id": item["backlog_id"],
@@ -7399,7 +7591,7 @@ def _write_planning_outputs(
                 lit_acceptance_checks.append(
                     "Complete adjudication-ready literature brief" + deadline_suffix + "."
                 )
-            proposal_id = f"LIT-{_alloc_proposal_idx():04d}"
+            proposal_id = f"LIT-{_assign_proposal_idx(item['backlog_id'], 'literature'):04d}"
             proposals.append(
                 {
                     "proposal_id": proposal_id,
@@ -7704,6 +7896,32 @@ def _write_planning_outputs(
         planning_root / "experiment_proposals.v1.json",
         json.dumps(proposals_doc, indent=2, sort_keys=True) + "\n",
     )
+    # Persist the stable proposal-id allocation, but ONLY when it actually
+    # changed. Rewriting it unconditionally would put a churning file with a
+    # fresh `generated` stamp into every regen's diff for no information -- the
+    # same history-bloat objection that retired the heartbeat liveness tick. The
+    # map is append-only, so "changed" means new keys were allocated this cycle.
+    if _proposal_allocator.allocations != load_proposal_id_allocations(planning_root):
+        _atomic_write_text(
+            planning_root / _PROPOSAL_ID_ALLOC_FILENAME,
+            json.dumps(
+                {
+                    "schema": "proposal_id_allocations/v1",
+                    "note": (
+                        "Append-only map from a proposal's stable identity "
+                        "'<backlog_id>|<lane>' to its numeric EXP-/LIT- index. "
+                        "Written by build_experiment_indexes.py. An entry is "
+                        "never changed or removed: ids must stay stable across "
+                        "regens because EXP-/LIT- ids are referenced from chips, "
+                        "the IGW ledger and planning prose. Do not hand-edit."
+                    ),
+                    "allocations": _proposal_allocator.allocations,
+                },
+                indent=2,
+                sort_keys=True,
+            )
+            + "\n",
+        )
     _atomic_write_text(
         planning_root / "experiment_proposals_index.v1.json",
         json.dumps(_index_doc, indent=2, sort_keys=True) + "\n",
