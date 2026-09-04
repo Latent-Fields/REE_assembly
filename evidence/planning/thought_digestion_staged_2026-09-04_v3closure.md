@@ -49,12 +49,13 @@ Claims with a drafted disposition: **47 of 47** -- complete.
 
 | disposition | count |
 |---|---|
-| (?) | 32 |
-| (a) | 6 |
-| (c) | 6 |
-| (c2) | 1 |
-| (f) | 1 |
-| (g) | 1 |
+| (?) | 16 |
+| (a) | 22 |
+| (b) | 2 |
+| (c) | 13 |
+| (c2) | 2 |
+| (f) | 5 |
+| (g) | 3 |
 
 ### Per-claim dispositions
 
