@@ -62,7 +62,9 @@ launchd saw success; this time it exits 2 and **nothing reads the exit code**, s
 equally silent. The frozen snapshot's `idle_risk: true, claimable_backlog: 0` happens to be
 correct today — by coincidence, not by measurement.
 
-A repair chip has been spawned.
+**Already chipped — no new chip spawned:** `chip-20260902-fleetidle-syntax-error`
+(`task_eaaf8fc5`, open since 2026-09-02) covers exactly this. It has been open two days
+while the watcher stayed dead, so it is worth prioritising rather than re-raising.
 
 ---
 
@@ -311,6 +313,47 @@ All three live claims are IGW-routine sessions under 1.5h old.
 
 ---
 
+## Follow-on Work — coverage check (Phase 3)
+
+Every actionable item this digest surfaced was cross-checked against the open chip ledger.
+**No new chips were spawned: everything is already in flight, or is `/governance` /
+`/failure-autopsy` work that is reported here rather than chipped.**
+
+Already covered by an open chip (do not duplicate):
+
+| Finding | Existing chip |
+|---|---|
+| `ree_fleet_idle.sh` broken since 2026-08-30 | `chip-20260902-fleetidle-syntax-error` (`task_eaaf8fc5`) |
+| Queue starvation / effectively-empty queue | `chip-queuefloor-fleet-g6` — **generation 6**, routed to `/metaworker-learning` for a root-cause pass rather than another instance fix |
+| `V3-EXQ-981` MECH-027 re-queue | `chip-20260903-exq981a-mech027-requeue` (`task_8185b7eb`) |
+| `V3-EXQ-983` EXT-002 redesign | `chip-20260903-exq983-redesign-headroom-bar` (`task_bcd92d4a`) |
+| `V3-EXQ-991` EXT-004 redesign | `chip-20260903-exq991-redesign-action-level-dv` (`task_db20034f`) |
+| `V3-EXQ-993` ARC-021/MECH-069 redesign | `chip-20260903-exq993-redesign-harm-readout` (`task_1c4aa79d`) |
+| `V3-EXQ-978` SD-018 discriminator | `chip-20260903-exq978-oracle-adapter-discriminator` (`task_08bf34bb`) |
+| Divergent manifests on `ree-cloud-4` (862a, 869a) | `chip-20260902-cloud4-divergent-manifests-862a-869a` (`task_6dcf0c69`) |
+| Fleet stale-state repair bundle | `chip-20260902-campaign-fleethygiene-cloud4-staterepair` (`task_d46a9c02`) |
+
+Reported inline, deliberately **not** chipped (`/failure-autopsy` work — it re-derives its own worklist):
+
+- **`V3-EXQ-999` (MECH-161, `vigilance_inverted_u_heartbeat`) has no autopsy yet** — it is the
+  one overnight FAIL with no confirmed autopsy artifact and no open chip. Its readiness
+  precondition failed hard: `baseline_avoidance_discrimination_margin` measured **−0.261**
+  against a **≥0.05** threshold. That control asks whether hazard-avoidance behaviour was
+  trained *at all*, and a negative margin means the agent discriminated in the **wrong
+  direction** — so the `substrate_not_ready_requeue` label may be understating the problem.
+  Its sibling `V3-EXQ-981` (same label) already has a confirmed autopsy
+  (`failure_autopsy_V3-EXQ-981_2026-09-03`) and a re-queue chip; **999 has neither.**
+  → Run `/failure-autopsy` on `V3-EXQ-999`.
+- The four `pending_user` governance rows (EXT-002/004/005, SD-056) — `/governance` work.
+- The 49 P1 granularity recurrences and the 12 P1 epistemic-category rows — list-only by rule.
+
+One note on the ledger itself: `chip-pausepressure-dlaptop-g5` is at **generation 5** and
+`chip-queuefloor-fleet-g6` at **generation 6**, both explicitly saying the symptom fixes are not
+holding and both routing to `/metaworker-learning`. Today's queue finding is another instance of
+the g6 class.
+
+---
+
 ## Blocked Items
 
 - **`governance.sh` was skipped** (Tier 2 contention — three live IGW claims, one of which
@@ -321,4 +364,5 @@ All three live claims are IGW-routine sessions under 1.5h old.
   live session holds that file, and a whole-file read-modify-write would adopt its uncommitted
   edits). This agenda is the record of the run.
 - **`ree_fleet_idle.sh` is broken** and will stay broken until repaired — the hourly launchd
-  loop will keep failing at parse time. Chip spawned.
+  loop will keep failing at parse time. Covered by the existing open chip
+  `chip-20260902-fleetidle-syntax-error` (`task_eaaf8fc5`) -- not re-chipped.
