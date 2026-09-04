@@ -1,0 +1,333 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-04T10:14:05Z",
+ "scope": "single",
+ "status": "awaiting_human_confirmation",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "session_id": "failure-autopsy-v3-exq-1000-20260904",
+ "targets": [
+  {
+   "run_id": "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3",
+   "queue_id": "V3-EXQ-1000",
+   "experiment_purpose": "diagnostic",
+   "claim_ids": [],
+   "unblocks_claims": [
+    "MECH-135",
+    "INV-088"
+   ],
+   "self_route_label": "rollout_endpoint_contrastive_lifts_cr_ratio_h1",
+   "indexer_adjudication": "vacuous_pass",
+   "adjudication_verdict": "label ACCURATE under the driver's rule; vacuous_pass is a manifest-grammar hit (status PASS assigned unconditionally on readiness, driver:1761, while C2_rsd_absolute_bars is tagged load_bearing:true and passed:false). The discrimination the PASS reports (C1) is real, robust and control-passed, and survives a centroid-shrink correction at majority level (0.115/0.081/0.080/0.167/0.138/0.103 vs 0.1 on seeds 42/123/7/2024/17/31). The PASS token does not certify the h=1 evaluator bar and must not be read as substrate readiness for MECH-135/INV-088.",
+   "failed_criterion": "absolute -- C2_rsd_absolute_bars (both evaluator bars at h=1 on >=4/6 seeds) 0/6: the cr_ratio(h=1) >= 0.1 bar is cleared 6/6 (7.7x-18x) but e1coe_score_var(h=1) >= 0.002 is missed 6/6 (36x-1700x short). C3 (any cell, any arm, both bars) 0/24 AT h=1 -- the code tests h=1 only (driver:1620-1627) though its statement does not say so; at h=10/20/30 ARM_RSD seed2024 clears both. C1 discrimination PASSED 6/6.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim_ids: [] by deliberate design (validates the SUBSTRATE, not MECH-135/INV-088; both keep pending_retest_after_substrate: true and diagnostic_evidence_adjudicated: true). The run bears on both claims only through the SD entry it validates.",
+    "biological_reference": "partial -- the rollout-endpoint InfoNCE is a formal ML import (contrastive discrimination among candidate futures), not a biological translation; the commissioned lit-pull (targeted_review_e1_forward_model_rollout_consistency, 2026-08-03) grounds the ARCHITECTURE (Hassabis 2007: constructive simulation is a separable system; Addis & Schacter 2008: recruitment scales with simulated remoteness) and explicitly finds NO paper making contrastive objectives a fix for long-horizon rollout collapse. The observed failure signature -- shrunk-norm, under-dispersed endpoints at h=1 that become over-dispersed at depth on 4/6 seeds (divergence detached from fidelity) -- is the mirror image of the collapse signature ITEM 2 exhibited and is closer to the hippocampal-amnesia FRAGMENTATION signature the synthesis contrasted with E1's earlier convergence. Biology implies simulation that is BOTH divergent across options AND anchored to world structure; a pure discrimination pressure with no reconstruction anchor is not what hippocampal-cortical simulation does. No new lit-pull owed: the divergence is characterised, and it points at the repair (accuracy + divergence jointly), not at a missing citation.",
+    "prerequisites": "present -- ITEM 1 (action-conditioned transition) ON in every arm and validated by V3-EXQ-965; ITEM 3 substrate (df551f38fe) present in the executed tree; all 8 readiness preconditions met on every seed, recomputed by the indexer's (3a) path.",
+    "implementation": "complete for the objective as designed -- rollout_sequence_divergence_loss engaged on 100% of training ticks (rsd_n_engaged 2587-2732 per seed; n_e1_grad_steps 2588-2733, one buffer-starved tick each; 0 degenerate), action-sensitivity control ratio 1.32-1.52 on every seed (floor 1.05), gradient reaches the shared trunk (contract). The objective as BUILT carries no accuracy term that survives once the K-way ordering is confident (tau 0.1): InfoNCE with squared-L2 logits is a classification loss, satisfied by shrunk predictions as long as each row is nearer its own target than the K-1 others. The h=1 signature is exactly that: centroid norm 0.54-0.81 vs 1.41-2.17 for the same-start incumbents (and 1.39-1.89 for the different-reset real samples), with spread 0.15-0.24 = 0.33-0.62x real spread on 6/6 seeds -- shrunk AND under-dispersed at the evaluated horizon; over-dispersion (spread 1.1-3.7x real) appears only from h>=5 on seeds 123/2024/17/31. Training loss 1.71-1.86 (first fifth) -> 1.18-1.39 (last fifth) against log(8)=2.08 uniform: still falling, dose not converged. WITHDRAWN after red-team: the first draft's 'over-dispersed at h=1' reading and its '~9x E2's 2.8e-2 reference' comparison (that reference is E2's z_SELF per-action divergence, a different latent and module; not a z_world dispersion reference).",
+    "environment": "adequate -- CausalGridWorldV2 under a random policy supplies a healthy real-endpoint denominator (CR_real(h=1) 0.18-0.27, n=40 every cell) and real per-action structure; no pressure this DV needs is missing.",
+    "measurement": "partial in three specific ways. (i) Manifest grammar: status PASS is unconditional on readiness while C2 is tagged load_bearing:true -> the indexer's vacuous_pass fires by construction (the defect failure_autopsy_V3-EXQ-980 recorded as a learning); the label composition has no branch for 'one of two absolute bars cleared'; C3's statement ('any cell reaches both bars') omits that the code tests h=1 only, and at h=10/20/30 ARM_RSD seed2024 does clear both (var 2.4e-03..2.9e-03, cr 2.75-3.51, centroid in the real band). (ii) RECORDING GAP: the goal_proximity variance over the 40 REAL endpoint samples per horizon (Phase 4b collects them; only their contrast ratio is written) has never been recorded anywhere in the lineage -- 108b wrote real proximity MEANS (0.64-0.81) only -- so whether the 0.002 bar is reachable at REAL spread (the seed2024 depth cells reach it at 3-3.7x real spread) is unknown. (iii) MEASUREMENT GAP: no endpoint-fidelity readout (distance of the RSD endpoint from the observed endpoint for the same start+sequence) and no centroid-norm band exists as a scored quantity; the 'real' comparison in this lineage is 40 one-start rollouts against 40 different-reset trajectories (driver:1049-1071), a lineage-inherited convention, not a manifold test -- the same-start incumbents are the stronger centroid comparison. The var/spread^2 contrast the first draft asserted as mechanism is a ratio of near-zero incumbent quantities (3/18 incumbent cells fall below RSD's maximum) and is confounded with the readout's slope at the centroid's goal distance; it is retained only as a hypothesis basis.",
+    "integration": "partially coupled -- the hybrid E1/E2 evaluator and the E1-alone readout disagree in SIGN on the RSD arm at h=30 (hybrid lower on seeds 42/7/17: 0.022 vs 0.67, 0.49 vs 4.69, 1.34 vs 5.75; higher on 123/2024/31), and seed 42's hybrid rollout collapses from h=10 (0.136 -> 0.017 -> 0.022) while E1-alone holds 0.67. V3-EXQ-980's uniform 'hybrid reads higher' held on accuracy arms only; its sign-extrapolation to a divergence-preserving objective does not hold uniformly.",
+    "scale": "adequate for the h=1 verdict (n=6, 6/6 unanimous, sign p=0.0156); dose NOT converged for the RSD objective (loss still falling). Direction of more dose is open: at h=1 the endpoints are under-dispersed (more spread would help the var bar) while at depth 4/6 seeds are already over-dispersed."
+   },
+   "biological_reference": {
+    "closest_mechanism": "hippocampal-prefrontal constructive simulation of alternative futures (episodic future thinking): endpoints of imagined action sequences must be discriminable across options AND faithful to world structure",
+    "dependencies": [
+     "a trained world/transition model with an action channel (ITEM 1)",
+     "reconstruction / accuracy pressure anchoring imagined content to real structure (episodic memory)",
+     "depth-scaling machinery (Addis & Schacter 2008: recruitment scales with remoteness)"
+    ],
+    "is_formal_import": true,
+    "divergence": "InfoNCE endpoint discrimination is a pure classification pressure with no accuracy term that survives a confident K-way ordering; biology's simulation is generative-and-anchored. The measured signature (shrunk, under-dispersed endpoints at h=1; over-dispersed at depth on 4/6 seeds; goal-readout variance reached only at depth on one seed) is divergence detached from fidelity, the inverse of ITEM 2's collapse. Load-bearing for the next build: divergence and accuracy must be trained jointly, not sequentially.",
+    "lit_status": "present for the rollout-consistency family (targeted_review_e1_forward_model_rollout_consistency, 2026-08-03: 4 ML anchors + 2 biology entries); ABSENT specifically for an endpoint-contrastive as a long-horizon-collapse fix (the synthesis says so explicitly). No new commission: the gap is characterised by this run's own data, not by a missing citation."
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "Claim-free diagnostic; 'standard' asserts no epistemic suppression, which is the verdict. MECH-135 / INV-088 already carry epistemic_category: standard, pending_retest_after_substrate: true and diagnostic_evidence_adjudicated: true; nothing here moves any of the three (the evaluator DV E3 consumes, e1coe_score_var, has not moved).",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-1000 (SD-e1 ITEM 3 validation; diagnostic, claim-free, unblocks MECH-135/INV-088; autopsy failure_autopsy_V3-EXQ-1000_2026-09-04): self-route rollout_endpoint_contrastive_lifts_cr_ratio_h1 RETAINED as accurate under the driver's pre-registered rule. The rollout-endpoint InfoNCE (ARM_RSD) lifts cr_ratio(h=1) over the depth-0 incumbent on 6/6 seeds by 56x-2714x (0.771/0.995/0.846/1.66/1.41/1.81 vs 1.1e-03/5.4e-04/1.5e-02/1.9e-02/9.7e-04/6.7e-04; sign p=0.0156), clearing the 0.1 cr_ratio evaluator bar on every seed by 7.7x-18x -- the first ARM in the lineage to clear it at majority-seed level (one prior CELL, ARM_ANCHOR seed2024 at 0.18, also clears it in this run). e1coe_score_var(h=1) stays 36x-1700x SHORT of 0.002 on 6/6 seeds (1.2e-06..5.5e-05), so C2 (both bars, h=1) is 0/6 and no cell of any arm reaches both AT h=1. The indexer's vacuous_pass is a manifest-grammar hit (status PASS assigned unconditionally on readiness while C2 is tagged load_bearing:true), not scientific vacuity. READ THE h=1 SIGNATURE CAREFULLY (red-team corrected): the RSD endpoints have a SHRUNK centroid (norm 0.54-0.81 vs 1.41-2.17 for the same-start incumbents and 1.39-1.89 for the different-reset real samples) and are UNDER-dispersed relative to real (spread 0.15-0.24 = 0.33-0.62x real spread, 6/6); the ratio >= 0.77 is spread/shrunk-centroid. Dividing the same spread by the REAL centroid norm gives 0.115/0.081/0.080/0.167/0.138/0.103 -- still >= 0.1 on 4/6 seeds, so the bar clear survives the shrink correction at majority level and misses narrowly (0.080/0.081) on seeds 123/7. Over-dispersion appears only at depth (h>=5 on seeds 123/2024/17/31; seeds 42/7 stay below real at every h). AT DEPTH THE VAR BAR IS REACHED: ARM_RSD seed2024 h=10/20/30 has var 2.4e-03/2.7e-03/2.9e-03 with cr 2.75/3.51/3.13 and centroid_norm 1.70-1.75 inside the real band (1.60-1.64), at spread 1.25-1.55 vs real 0.42-0.46 (3-3.7x over-dispersed); seed17 h=10 is a near miss (1.9e-03). So the var bar is reachable through a bounded 1/(1+||z-z_goal||^2) readout, but the run cannot say whether it is reachable at REAL spread -- real-endpoint goal_proximity variance has never been recorded in the lineage (108b wrote means only). Readiness clean (8/8 incl. rsd_objective_engaged 100% of ticks, action-sensitivity ratio 1.32-1.52 vs floor 1.05, grad steps matched, gap 0), dry-run clean, always-core complete. substrate_stable_across_run:false is a per-cell hash-cardinality trip (process_snapshot_drift: []; ON arms fold the driver, OFF does not -- the pattern failure_autopsy_V3-EXQ-976 already recorded), reuse-ineligible, not confounded. Non-contributory to any claim; MECH-135 / INV-088 stay pending_retest_after_substrate: the evaluator DV E3 consumes (e1coe_score_var) has not moved at h=1.",
+   "per_claim_recommendation": {
+    "MECH-135": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "status_change": "none -- stays candidate",
+     "change": "STANDS",
+     "rationale": "not in claim_ids; already standard / pending_retest_after_substrate true / diagnostic_evidence_adjudicated true. The substrate is NOT yet retest-ready: cr_ratio bar cleared, e1coe_score_var bar (the E3-consumer DV) untouched. Disposition lands on the SD entry (amend), not on the claim."
+    },
+    "INV-088": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "status_change": "none -- stays candidate",
+     "change": "STANDS",
+     "rationale": "as MECH-135; INV-088's antecedent (z_world differentiation) is untouched by an E1-objective change and its test-bed remains routed via the MECH-457 competence portfolio."
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-e1-rollout-consistency-training",
+    "title": "E1 forward-model multi-step rollout-consistency training objective",
+    "implementation_hint": "ITEM 3 VALIDATED 2026-09-04 by V3-EXQ-1000 (autopsy failure_autopsy_V3-EXQ-1000_2026-09-04, awaiting confirmation): the rollout-endpoint contrastive CLEARS the cr_ratio(h=1) >= 0.1 evaluator bar on 6/6 seeds (0.77-1.81, 7.7x-18x over the bar; 56x-2714x over the depth-0 incumbent; 22x-2072x at the trained horizon h=5) -- the first ARM in the lineage to clear it at majority level -- and leaves e1coe_score_var(h=1) 36x-1700x SHORT of 0.002 on 6/6 seeds. The two bars are now SEPARATED by evidence: the cr_ratio crush was the objective class (H-objective-class-divergence confirmed). Read the h=1 cells carefully: RSD's centroid norm is SHRUNK (0.54-0.81 vs 1.41-2.17 same-start incumbents, 1.39-1.89 real) and its spread is 0.33-0.62x the real spread -- the ratio clear is spread/shrunk-centroid; against the real centroid norm the corrected ratio is 0.115/0.081/0.080/0.167/0.138/0.103 (>=0.1 on 4/6). At depth (h=10/20/30) ARM_RSD seed2024 reaches BOTH bars (var 2.4e-03..2.9e-03, cr 2.75-3.51) with centroid inside the real band but spread 3-3.7x real; seed17 h=10 is a near miss. So the var bar IS reachable through the bounded readout, at over-dispersed spread; whether it is reachable at REAL spread is unmeasured (real-endpoint goal_proximity variance never recorded in the lineage). Status string -> item3_validated_cr_bar_cleared_var_bar_open_at_h1; status_phase stays validation_owed. NEXT STEP IS PROBE-GATED, NOT A BUILD: (a) record real-endpoint goal_proximity/goal_distance variance per horizon (recording gap) to learn what the 0.002 bar demands relative to real spread; (b) a fidelity-anchored divergence objective (ITEM 3 InfoNCE + an endpoint-accuracy term: ITEM 2's rollout_consistency_loss or a plain endpoint MSE, both landed -- a driver-level composition, no new substrate) is the candidate repair for the centroid shrink, run as an arm of the same portfolio. Route: /queue-experiment portfolio per the fanout_recommendation (new EXQ; arms OFF / RSD / RSD+anchor; readouts: real-endpoint prox variance, centroid-norm band, endpoint fidelity, goal-axis projection, both bars read at EVERY horizon). Do NOT re-queue a lettered iteration of 1000 on the same bars at h=1. severity / substrate_paths / priority / unblocks_claims unchanged.",
+    "unblocks_claims": [
+     "INV-088",
+     "MECH-135"
+    ],
+    "depends_on_unresolved": [],
+    "priority_suggested": 2,
+    "severity_note": "unchanged (corrupting; e1_deep.py::forward, ::predict_long_horizon) -- this occurrence does not change the classification: the contrastive adds a loss method and does not alter the listed paths.",
+    "failure_record_entry": {
+     "run_id": "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3",
+     "experiment_type": "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation",
+     "metric": "ARM_RSD cr_ratio(h=1) 0.771/0.995/0.846/1.66/1.41/1.81 (bar 0.1 CLEARED 6/6, 7.7x-18x; lift over depth-0 OFF 56x-2714x; centroid-corrected 0.115/0.081/0.080/0.167/0.138/0.103, 4/6 >= 0.1) but e1coe_score_var(h=1) 3.4e-06/1.2e-06/4.4e-06/5.5e-05/8.2e-06/3.1e-05 vs 0.002 (36x-1700x short, 0/6). h=1 endpoints shrunk (centroid_norm 0.54-0.81 vs incumbents 1.41-2.17, real 1.39-1.89) and under-dispersed (spread 0.33-0.62x real); over-dispersed from h>=5 on 4/6 seeds. Both bars reached only at h=10/20/30 on seed2024 (var 2.4e-03..2.9e-03) at 3-3.7x real spread.",
+     "target": "e1coe_score_var(h=1) >= 0.002 WITH cr_ratio(h=1) >= 0.1 retained, on endpoints inside the real centroid-norm band at real-scale spread (fidelity-anchored divergence); real-endpoint variance recorded alongside",
+     "resolved": "open"
+    },
+    "resolves_prior_failure_record": [],
+    "prior_failure_record_note": "The 108b, 965 and 976 items conjoin both bars in their `target`; ITEM 3 resolves their cr_ratio half only, so all three stay `open` -- say so in their notes rather than marking resolved/superseded."
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "failure_location": {
+    "mechanism": "partial",
+    "measures": "partial",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MIXED -- MECHANISM-design (the objective works as built but has no fidelity anchor; the class hypothesis is CONFIRMED for cr_ratio) + MEASURES (bounded goal_proximity readout flat off-manifold; real-endpoint variance never recorded; no fidelity readout). Not chargeable to REE; this is a diagnostic PASS validating a substrate item, and no observation here is evidence REE itself failed."
+   },
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [],
+    "counts_for_unblocked_claims": {
+     "MECH-135": [
+      "failure_autopsy_V3-EXQ-108a_2026-08-02 | v3_exq_108a_mech135_discriminative_pair_stepharness_20260802T035458Z_v3"
+     ],
+     "INV-088": [
+      "failure_autopsy_MECH-457-fanout-751-750_2026-07-14 | v3_exq_750",
+      "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15 | v3_exq_754"
+     ]
+    },
+    "note": "claim_ids [] -> this target counts toward no claim under R1-R3. The lineage's diagnostics (954/965/968/976/980/1000) are all claim-free and each routed a DIFFERENT, now-landed substrate step; this is the substrate-genuinely-enriched case the brake does not apply to. INV-088's 2 hits are from the unrelated MECH-457 competence portfolio.",
+    "refused_requeue": true,
+    "refused_requeue_note": "REFUSED: another lettered iteration of 1000 on the same two bars against the same objective. Allowed: a NEW EXQ posing the var-bar reachability/fidelity discrimination (different question, added readouts, RSD+anchor arm).",
+    "route_to": "queue-experiment",
+    "upstream_substrate": "SD-e1-rollout-consistency-training"
+   },
+   "fanout_recommendation": {
+    "is_discrimination": true,
+    "question_qid": "sd_e1_var_bar_readout_crush",
+    "question_title": "After ITEM 3 cleared the cr_ratio bar (V3-EXQ-1000), why does per-action endpoint divergence at the E1 output not reach the goal-proximity readout -- e1coe_score_var(h=1) still 36x-1700x short of 0.002?",
+    "live_hypotheses": [
+     "H-fidelity-anchor (LEAD): the RSD endpoints have a shrunk centroid (norm 0.54-0.81 vs 1.41-2.17 same-start incumbents) and are under-dispersed at h=1 (0.33-0.62x real spread) because InfoNCE carries no accuracy term that survives a confident K-way ordering; a fidelity-anchored divergence objective (ITEM 3 + an endpoint-accuracy term) restores the centroid to the real band with real-scale spread, and the goal-proximity variance follows.",
+     "H-readout-saturation (MEASURE): the 0.002 var bar, through the bounded 1/(1+||z-z_goal||^2) readout, may demand ~3-4x over-dispersion relative to real spread -- it is reached in this run only by seed2024 at h=10/20/30 at spread 1.25-1.55 vs real 0.42-0.46. Real-endpoint goal_proximity variance has never been recorded (108b: means only). If real endpoints' own variance is < 0.002, the bar as registered is an instrument target to re-register, not a substrate target.",
+     "H-goal-orthogonal-dispersion (REPRESENTATION): the dispersion RSD induces projects weakly onto the goal axis (var/spread^2 5e-05..9e-04 at h=1, below most incumbent cells -- a fragile ratio, retained as basis only), so a goal-blind objective moves the readout only by brute over-dispersion (the seed2024 depth cells); a goal-axis-aware objective or a full-endpoint readout is needed at real spread."
+    ],
+    "suggested_probes": [
+     {
+      "hypothesis": "H-fidelity-anchor",
+      "axis": "learning-signal",
+      "sketch": "ARM_RSD_ANCHOR = rollout_sequence_divergence_loss + w * endpoint-accuracy term (rollout_consistency_loss at H=5 decay 0.5, or plain endpoint MSE), matched grad steps vs ARM_OFF and ARM_RSD; readouts at EVERY horizon: centroid-norm band vs real and vs same-start incumbents, spread ratio vs real, endpoint-fidelity MSE for the same (start, sequence) via copy.deepcopy(env) branching at EVAL only, cr_ratio(h), e1coe_score_var(h), both bars per horizon. Declared null: ARM_RSD_ANCHOR's centroid_norm stays outside the real band on a majority of seeds at h=1 OR its e1coe_score_var(h=1) is within 2x of ARM_RSD's."
+     },
+     {
+      "hypothesis": "H-readout-saturation",
+      "axis": "measurement",
+      "sketch": "RECORD goal_proximity variance AND goal_distance variance over the 40 REAL endpoint samples per horizon (Phase 4b already collects the samples), per seed, alongside the rollout values; also each arm's endpoint mean goal_distance and spread ratio vs real per horizon. Declared null: real-endpoint goal_proximity variance >= 0.002 on a majority of seeds (bar reachable at real spread; hypothesis eliminated)."
+     },
+     {
+      "hypothesis": "H-goal-orthogonal-dispersion",
+      "axis": "representation",
+      "sketch": "project each arm's endpoint deviations (endpoint - centroid) onto the unit goal axis (z_goal - centroid) and report the fraction of spread variance along it, for real endpoints and each arm. Declared null: ARM_RSD's goal-axis fraction is within 2x of the real endpoints' (dispersion is not goal-orthogonal; hypothesis eliminated)."
+     }
+    ],
+    "note": "GOV-FANOUT-1: one new EXQ carrying all three legs (arms OFF / RSD / RSD+anchor; readouts added and both bars read at every horizon) -- a portfolio, not a sequential letter. H-readout-saturation is the cheapest leg and still gates the objective work, in its narrowed form: if real endpoints' own variance is below 0.002 the bar is re-registered before any objective is licensed. Attach to a NEW question rather than growing sd_e1_residual_crush_locus on the different-statistic ground: that question's title names cr_ratio (25-37x short of 0.1), which this run answers; e1coe_score_var has a different readout and denominator. (The first draft cited the 965 registration precedent; withdrawn after red-team -- that precedent was for a FULLY-resolved parent, and this parent keeps 3 alive legs. The lead leg here shares the learning-signal family with the parent's alive H-training-objective; that overlap is stated, not hidden.)"
+   },
+   "read_across_not_adjudicated": [
+    {
+     "qid": "sd_e1_residual_crush_locus",
+     "hid": "H-readout-regime",
+     "bears_on": "980 eliminated H-readout-regime on trajectory-ACCURACY arms and extrapolated the sign to a divergence-preserving objective. On the RSD arm the hybrid-vs-E1-alone sign at h=30 is MIXED (hybrid lower on seeds 42/7/17, higher on 123/2024/31) and seed 42's hybrid rollout collapses from h=10 while E1-alone holds. This does NOT reopen the leg (980's elimination stands on its own arms and its own margin) but the extrapolation clause is no longer safe; record on the leg's basis, not its state."
+    },
+    {
+     "qid": "sd_e1_residual_crush_locus",
+     "hid": "H-objective-horizon-budget",
+     "bears_on": "untested by this run (no accuracy-objective dose arm); unchanged."
+    }
+   ],
+   "provenance_notes": {
+    "substrate_hashes": "two per-cell substrate hashes by construction: ARM_OFF cells hash the substrate globs only (5a198a8e8ccf = origin/main@5f88f7f27c, reproduced in a throwaway worktree, = the manifest's top-level hash, drifted_since_resolved:false); ON-arm cells fold the driver script (include_driver_script_in_hash=(arm != OFF_ARM), driver:1374) giving d7fe936d33f0 = the same tree + driver@7859730 (reproduced exactly). The only ree_core commit in the run window (2b34521, offline_integration cat-dim fix, 20:45Z) is INSIDE the tree both keys hashed and touches a path this driver never calls.",
+    "substrate_stable_across_run_false": "a per-cell HASH-CARDINALITY trip, not drift (red-team corrected): the manifest's substrate_stability_detail stamps per_cell_hashes_disagree: true and process_snapshot_drift: [] (nothing moved on disk; the drift list IS stamped), and manifest_core.py:1182 sets stable = report.stable AND NOT cells_disagree. The two hashes exist because ON arms fold the driver and the minted OFF arm does not -- the exact pattern failure_autopsy_V3-EXQ-976 learning #6 recorded ('compare like scopes, or have the manifest say which it was'), repeated by this driver after it was recorded. Consequence: arm_reuse refuses this run's OFF arm (cost only). Not a scientific confound: executed code is import-frozen at process start and both hashes reproduce from origin/main@5f88f7f27c.",
+    "recording_validator": "validate_recording.py OK: always-core complete (recording_schema rec/v1, substrate_hash, machine/machine_class, elapsed_seconds 904s, config, seeds).",
+    "dry_run_lint": "validate_experiments.py --checks dry_run_unreachable_criterion: no finding for this driver; no dry manifest in scope.",
+    "stale_hypothesis_space_qid": "the manifest's hypothesis_space_qid stamp is inv088_evaluator_degeneracy_cause (fully resolved; lineage template inheritance, same as 976 noted); no script joins on it; the ledger edits below attach to sd_e1_residual_crush_locus and the new question."
+   },
+   "learning_extracted": [
+    "A 'lifts' label composed from a conjunctive absolute bar hides a cleared bar; separate the bars in the label rule when one clears by an order of magnitude and the other misses by three -- and read both bars at every horizon, not only h=1, or a depth cell that clears both (seed2024 h>=10) is invisible to every criterion.",
+    "PASS assigned unconditionally on readiness plus a fail-able load_bearing:true criterion is a guaranteed vacuous_pass (980's learning, repeated); tag classifying criteria load_bearing:false or declare criteria_aggregation, and let interpretation.label carry the outcome.",
+    "A contrastive endpoint objective with squared-L2 logits and no accuracy term that survives a confident ordering is satisfied by shrunk predictions: at h=1 the centroid collapses to 0.3-0.5x the incumbents' norm while spread stays below real; at depth the same objective over-disperses on 4/6 seeds. Divergence detached from fidelity, the inverse of ITEM 2's collapse. Train divergence and fidelity jointly.",
+    "cr_ratio = spread / centroid_norm is scale-free by design and cannot see a shrunk centroid: dividing the same spread by the real centroid norm turns 0.77-1.81 into 0.08-0.17. The bar clear survives that correction on 4/6 seeds, but report the corrected figure beside the raw one whenever the objective is not accuracy-anchored, and pair the ratio with a centroid-norm band.",
+    "After six experiments the lineage has never recorded the goal-proximity variance of its own real endpoints; the 0.002 bar is reached in this run only at 3-3.7x real spread, so whether it demands over-dispersion by construction is unknown. Record the denominator-side reference before chasing the bar with objectives (Experimental Recording Standard, family-keyed payload).",
+    "The mint-as-you-go convention (include_driver_script_in_hash=(arm != OFF_ARM)) trips substrate_stable_across_run on every run that uses it -- 976 recorded this and 1000 repeated it. The fix is in arm_fingerprint/manifest_core (compare like scopes, or name the cause in the flag), not in each driver; until then read substrate_stability_detail.process_snapshot_drift, not the bool.",
+    "A first-draft mechanism reading built on a cross-module reference (E2's z_self per-action divergence as a z_world dispersion reference) and on a ratio of near-zero quantities (var/spread^2 over incumbent spreads of 2e-04) did not survive a same-manifest recompute. Withdrawn, recorded here: the red-team's spread-vs-real check is the one to run before writing 'over-dispersed'.",
+    "980's sign-extrapolation ('hybrid reads higher than E1-alone') to a divergence-preserving objective does not hold uniformly; read-across from accuracy arms to contrastive arms is not free."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "hypothesis_space_ledger_pending": {
+  "note": "DRAFTED ONLY (Step 8 gate not yet held; the registry is a live dashboard input). The confirming session re-reads hypothesis_space_registry.v1.json immediately before editing, applies the blocks below, then runs build_hypothesis_space.py + check_hypothesis_space_integrity.py and clears any (a)-(d) flag before committing.",
+  "growth_restriction_check": "sd_e1_residual_crush_locus carried NO growth_restriction field at draft time (re-read 2026-09-04T09:58:45Z). Mode B below is a RESOLUTION of an already-registered leg, not growth. The new legs go to a NEW question (Mode A, new qid), so invariant 3 is not engaged on the existing question.",
+  "mode_b_resolve": [
+   {
+    "qid": "sd_e1_residual_crush_locus",
+    "hid": "H-objective-class-divergence",
+    "action": "set state confirmed; fill resolution",
+    "resolution_patch": {
+     "state": "confirmed",
+     "resolving_runs": [
+      "V3-EXQ-1000"
+     ],
+     "evidence_direction": "non_contributory",
+     "epistemic_category": "standard",
+     "self_route_label": "rollout_endpoint_contrastive_lifts_cr_ratio_h1",
+     "control_passed": true,
+     "non_degenerate": true,
+     "met_elimination_bar": true,
+     "resolved_utc": "2026-09-03T21:36:59Z",
+     "basis": "V3-EXQ-1000 (2026-09-03) CONFIRMED this leg: its declared null ('a contrastive-trained ON arm within the 3.0 paired-lift band of a depth-0 single-step incumbent at h=1 AND with depth growth no larger than the incumbent's, n>=6') is rejected on the first clause by 1-3 orders of magnitude -- ARM_RSD cr_ratio(h=1) lift over ARM_OFF 693/1838/56/88/1457/2714 on seeds 42/123/7/2024/17/31 (6/6 >= 3.0, sign p=0.0156), absolute 0.771-1.81 clearing the 0.1 bar 6/6 by 7.7x-18x, the statistic this question's title names. Control passed (8/8 readiness incl. rsd_objective_engaged 100% and action-sensitivity ratio 1.32-1.52 vs floor 1.05, grad steps matched gap 0), non_degenerate true. The second clause (depth growth) is moot: RSD sits at cr_ratio ~1 from h=1 so its multiplicative growth (0.83-2.68) is below OFF's (2.5-5.5) while its absolute h=5 values (0.64-4.41) exceed OFF's (0.002-0.10) by 22x-2070x. The lift is real at the spread level (RSD 0.15-0.24 vs OFF 2e-04..8e-03), not only in the ratio; the ratio is inflated by a centroid shrink (norm 0.54-0.81 vs incumbents 1.41-2.17) and the centroid-corrected h=1 ratio 0.115/0.081/0.080/0.167/0.138/0.103 still clears 0.1 on 4/6 seeds. What this run does NOT settle: the goal-proximity readout (e1coe_score_var, 36x-1700x short) -- a different statistic, registered as the new question sd_e1_var_bar_readout_crush. Adjudicated by failure_autopsy_V3-EXQ-1000_2026-09-04."
+    }
+   },
+   {
+    "qid": "sd_e1_residual_crush_locus",
+    "hid": "H-training-objective",
+    "action": "leave state alive; append resolving run; append to basis",
+    "basis_append": "V3-EXQ-1000 (2026-09-03) bears on this leg by read-across: the OBJECTIVE is confirmed as the locus of the cr_ratio crush, but in its divergence-preserving form (sibling H-objective-class-divergence, confirmed), not in this leg's multi-step ACCURACY form (ITEM 2 arm re-run here as ARM_RC_DECAY: mixed again, 2/6 exceed 1/6 below, h1->h5 growth 0.83-1.50 vs OFF 2.5-5.5 -- damping replicated at n=6). Leg left alive as the accuracy-form residual; H-objective-horizon-budget remains its untested refinement.",
+    "resolving_runs_append": [
+     "V3-EXQ-1000"
+    ]
+   },
+   {
+    "qid": "sd_e1_residual_crush_locus",
+    "hid": "H-readout-regime",
+    "action": "state UNCHANGED (eliminated); append a bears-on sentence to basis",
+    "basis_append": "Read-across from V3-EXQ-1000 (2026-09-03): on the divergence-preserving ARM_RSD the hybrid-vs-E1-alone sign at h=30 is MIXED (hybrid 0.022/5.69/0.49/3.13/1.34/3.94 vs E1-alone 0.67/3.47/4.69/2.98/5.75/3.44 on seeds 42/123/7/2024/17/31) and seed 42's hybrid rollout collapses from h=10. 980's elimination stands on its own arms; its sign-extrapolation clause to contrastive objectives does not."
+   }
+  ],
+  "decision_patch": {
+   "qid": "sd_e1_residual_crush_locus",
+   "decidable": false,
+   "live_gate": "H-objective-class-divergence CONFIRMED by V3-EXQ-1000 (cr_ratio bar cleared 6/6). The question's own statistic is answered; the SD's closure now turns on the goal-proximity var bar, registered separately as sd_e1_var_bar_readout_crush. decidable stays false while H-outputproj-parameterisation, H-training-objective and H-objective-horizon-budget remain alive (red-team F5).",
+   "distance_phrase": "3 of 6 legs resolved: H-interface-action-channel eliminated (965), H-readout-regime eliminated (980), H-objective-class-divergence CONFIRMED (1000, cr_ratio bar cleared 6/6 by 7.7x-18x, 4/6 after centroid-shrink correction). H-outputproj-parameterisation alive (968 threshold artifact); H-training-objective alive as the accuracy-form residual (976, replicated 1000); H-objective-horizon-budget untested."
+  },
+  "mode_a_new_question": {
+   "qid": "sd_e1_var_bar_readout_crush",
+   "title": "After ITEM 3 cleared the cr_ratio bar (V3-EXQ-1000), why does per-action endpoint divergence at the E1 output not reach the goal-proximity readout -- e1coe_score_var(h=1) still 36x-1700x short of 0.002?",
+   "short_title": "E1 var-bar readout crush (post-ITEM-3)",
+   "claims": [
+    "INV-088",
+    "MECH-135"
+   ],
+   "registered_utc": "2026-09-04T09:58:45Z",
+   "fanout_sources": [
+    "failure_autopsy_V3-EXQ-1000_2026-09-04.json"
+   ],
+   "is_hero": false,
+   "initial_frozen_count": 3,
+   "initial_frozen_count_at_registration": 3,
+   "hypotheses": [
+    {
+     "hid": "H-fidelity-anchor",
+     "label": "shrunk centroid and under-dispersed h=1 endpoints: InfoNCE carries no surviving accuracy term",
+     "desc": "RSD endpoints sit at centroid_norm 0.54-0.81 vs 1.41-2.17 for the same-start incumbents and are 0.33-0.62x real spread at h=1; the goal-proximity readout is flat there. A fidelity-anchored divergence objective (ITEM 3 InfoNCE + an endpoint-accuracy term) restores the centroid to the real band with real-scale spread and the readout variance follows.",
+     "axis": "learning-signal",
+     "basis": "V3-EXQ-1000 cells: centroid-norm shrink; spread 0.33-0.62x real at h=1; both bars reached only at h>=10 on seed2024 at 3-3.7x real spread. Declared null: ARM_RSD+anchor's centroid_norm stays outside the real band on a majority of seeds at h=1 OR its e1coe_score_var(h=1) is within 2x of ARM_RSD's.",
+     "pre_registered_utc": "2026-09-04T09:58:45Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
+     "adjudicating_runs": [],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "resolved_utc": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false
+     }
+    },
+    {
+     "hid": "H-readout-saturation",
+     "label": "the 0.002 var bar, through the bounded 1/(1+d^2) readout, demands over-dispersion relative to real spread",
+     "desc": "goal_proximity is bounded and flat for goal-distant states; in V3-EXQ-1000 the bar is reached only at spread 3-3.7x real (seed2024 h=10/20/30). The lineage never measured the readout's variance over its own REAL endpoint samples (108b: means 0.64-0.81 only). If real endpoints' variance is < 0.002, the bar is an instrument target to re-register, not a substrate target.",
+     "axis": "measurement",
+     "basis": "Recording gap identified by failure_autopsy_V3-EXQ-1000_2026-09-04: Phase 4b collects 40 real endpoints per horizon and writes only their contrast ratio. Declared null: real-endpoint goal_proximity variance >= 0.002 on a majority of seeds.",
+     "pre_registered_utc": "2026-09-04T09:58:45Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
+     "adjudicating_runs": [],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "resolved_utc": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false
+     }
+    },
+    {
+     "hid": "H-goal-orthogonal-dispersion",
+     "label": "RSD's divergence lies in a subspace nearly orthogonal to the goal axis",
+     "desc": "Even on-manifold, the induced endpoint dispersion does not project onto (z_goal - centroid); a goal-blind objective cannot move a goal-projected readout.",
+     "axis": "representation",
+     "basis": "V3-EXQ-1000: var/spread^2 for ARM_RSD 5e-05..9e-04 at h=1, below most (15/18) incumbent cells -- a fragile ratio of near-zero quantities, confounded with the readout slope at the centroid's goal distance (red-team F3); retained as basis only. Declared null: ARM_RSD's goal-axis fraction of spread variance is within 2x of the real endpoints'.",
+     "pre_registered_utc": "2026-09-04T09:58:45Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
+     "adjudicating_runs": [],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "resolved_utc": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false
+     }
+    }
+   ],
+   "synthesis": null,
+   "decision": {
+    "decision_question": "Is the e1coe_score_var bar a substrate target (fidelity-anchored divergence objective), a goal-axis representation problem, or an instrument defect of the bounded proximity readout?",
+    "live_gate": "H-readout-saturation (narrowed: reachable at REAL spread?) is the cheapest leg and gates the objective work: measure real-endpoint goal_proximity variance before licensing any objective.",
+    "decidable": false,
+    "observation_bottleneck": "real-endpoint goal_proximity variance never recorded (recording gap)",
+    "decision_log_ref": null,
+    "distance_phrase": "0 of 3 legs resolved; portfolio not yet queued."
+   },
+   "registration_note": "Registered by failure_autopsy_V3-EXQ-1000_2026-09-04 (pending user confirmation at the Step 8 gate). NEW question rather than growth on sd_e1_residual_crush_locus on the different-statistic ground: that question's title names cr_ratio (25-37x short of 0.1), which V3-EXQ-1000 answers; e1coe_score_var has a different readout (bounded goal proximity) and denominator. The parent keeps 3 alive legs, so the 965 'fully-resolved parent' precedent does NOT apply and is not claimed; H-fidelity-anchor shares the learning-signal family with the parent's alive H-training-objective, stated here so the overlap is auditable. All three legs share one git witness: this artifact's landing commit, which pre-dates the portfolio run."
+  },
+  "axis_families_check": "axes used: learning-signal, measurement, representation -- all already present in axis_families.map (verified 2026-09-04T09:58:45Z); no new axis row needed."
+ },
+ "cluster_pattern": null,
+ "red_team": {
+  "model": "Fable 5.1 (claude-fable-5-1), separate agent, reasoning withheld, JSON-first read order",
+  "verdict": "CONTESTED",
+  "disposition": "contest ACCEPTED; artifact revised 2026-09-04T10:14:05Z; withdrawn readings recorded in four_layer_diagnosis.implementation, learning #7 and fanout note",
+  "findings_accepted": [
+   "F1 over-dispersed-at-h=1 false (RSD/real spread 0.33-0.62x, 6/6); cr_ratio>1 is the centroid shrink; E2 2.8e-2 is a z_self reference, dropped",
+   "F2 both bars reached at h=10/20/30 on ARM_RSD seed2024 inside the real centroid band at 3-3.7x real spread; C3 tests h=1 only; H-readout-saturation narrowed to 'reachable at real spread?'",
+   "F3 var/spread^2 downgraded from asserted mechanism to hypothesis basis",
+   "F4 stability flag = per_cell_hashes_disagree with process_snapshot_drift [] (976 learning #6); provenance note and learning rewritten",
+   "F5 965 precedent withdrawn; parent decidable left false; stale hypothesis_space_qid noted",
+   "minor: 22x min at h=5, 0.22-0.36 pairwise range, arm-level qualifier on 'first', C3 h=1 qualifier, accuracy-term wording"
+  ],
+  "confirmers_run": [
+   "RSD/real spread ratio per h (0/6 >1 at h=1; 4/6 at h>=5)",
+   "scan of all (arm,seed,h) cells for var>=0.002 & cr>=0.1: 3 cells, all ARM_RSD seed2024 h10/20/30; near misses seed2024 h5 1.09e-03, seed17 h10 1.88e-03",
+   "manifest substrate_stability_detail read",
+   "976 learning #6 text read",
+   "ANCHOR seed2024 h1 cr 0.180"
+  ],
+  "what_survived": "central adjudication (label accurate; C1 real and control-passed; C2 fails on the var bar at h=1; vacuous_pass = grammar), routing shape (portfolio + amend, lettered re-run refused), and the ledger confirmation of H-objective-class-divergence"
+ }
+}
