@@ -1,0 +1,113 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_997_mech162_zresource_zworld_planning_reconvergence",
+  "run_id": "v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-04T03:22:12Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-162"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech162_zresource_no_discrimination_advantage_over_zworld",
+    "preconditions": [
+      {
+        "name": "ARM_ZRESOURCE_R1_type_coverage_seed_fraction",
+        "measured": 0.8,
+        "threshold": 0.8,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_ZRESOURCE_R2_engagement_seed_fraction",
+        "measured": 0.8,
+        "threshold": 0.8,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_ZWORLD_R1_type_coverage_seed_fraction",
+        "measured": 0.8,
+        "threshold": 0.8,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_ZWORLD_R2_engagement_seed_fraction",
+        "measured": 0.8,
+        "threshold": 0.8,
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_discrimination_delta": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "c364bd4382f9e10fbc3df624414fafb6d71bab3f093f70671463613742cddbf7",
+  "substrate_commit": {
+    "commit": "ba5e63b91791a4a544b3b2bf07ea74d62e12fead",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "latent.use_resource_encoder": true,
+    "e3.benefit_eval_enabled": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_event_segmenter": true,
+    "hippocampal.use_invalidation_trigger": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.anchor_set.use_sd039_anchor_payload": true,
+    "hippocampal.anchor_set.goal_cue_centering": true,
+    "hippocampal.use_mech292_ghost_bank": true,
+    "hippocampal.ghost_goal_bank_config.include_active": true,
+    "hippocampal.use_mech293_ghost_probes": true,
+    "goal.z_goal_enabled": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 14190,
+    "ticks_active": 13928,
+    "writer_calls": 581,
+    "active_frac": 0.9815362931642001,
+    "writer_defect": false,
+    "n_agents": 10,
+    "goal_state_present": true
+  }
+}
