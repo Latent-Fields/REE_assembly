@@ -2568,3 +2568,4 @@ One line per hourly tick. ASCII only.
 2026-09-04T23:07:49Z GC removed worktree igw-214-retest-after-substrate-arc-019 (removed; branch deleted)
 2026-09-04T23:07:46Z GC sweep removed 1 orphan worktree(s), kept 13
 2026-09-04T23:08:28Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
+2026-09-04T23:07:46Z SPAWN IGW-20260904-215 skill=/queue-experiment prio=28 uuid=ee7ed3a8-3d38-499f-a238-71c0f2fd9935 pid=45788 worktree=igw-215-retest-after-substrate-arc-021
