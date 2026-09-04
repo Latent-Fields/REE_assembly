@@ -1,0 +1,250 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_996_isef005_phase_gate_live_channels",
+  "run_id": "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-04T06:21:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "crossing_count_gate_discriminates_live_closed_loop",
+    "preconditions": [
+      {
+        "name": "raw_trajectory_divergence_present",
+        "description": "COUNT of episodes across ALL seeds where ARM_SPIKE and ARM_CROSSING's RAW per-episode h_pos sequences differ by more than float noise. This is the LOAD-BEARING non-vacuity guard the V3-EXQ-591h autopsy named (governance_2026_09_03): a 591h-style run whose two arms' behavioural trajectories are bit-identical -- even if their ADVANCE DECISIONS differ -- means the manipulation never reached behaviour, and this run self-routes to substrate_not_ready_requeue rather than any substrate-verdict label. Below floor -> the redesigned live channels (env_kwargs / offline_integration_frequency) still failed to close the loop.",
+        "measured": 135,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "pointwise comparison of the two arms' own per_episode_h_pos, all seeds",
+        "met": true
+      },
+      {
+        "name": "spike_arm_reproduces_advance",
+        "description": "COUNT of ARM_SPIKE seeds reaching Phase 1. Below floor means the lineage basis did not reproduce, so nothing here is a verdict.",
+        "measured": 4,
+        "threshold": 2,
+        "direction": "lower",
+        "control": "ARM_SPIKE = the legacy single-episode spike gate (591c reproduction)",
+        "met": true
+      },
+      {
+        "name": "crossing_counts_reach_gate_minimum",
+        "description": "MAX over seeds of ARM_CROSSING's own LIVE scheduler_crossing_count -- the SAME COUNT statistic the crossing-count gate itself computes and routes on (phase_summary()['phase01_crossing_count']), read directly rather than post-hoc-recomputed from a different arm's trajectory (CHANGED from 591h/the first draft: Step 4.5 red-team F2 -- a post-hoc recount off ARM_SPIKE's h_pos values is contaminated once ARM_SPIKE's own post-advance dynamics are also live). Below floor, the gate could admit NO seed under any outcome, so C_live_gate_discriminates would be STARVED rather than falsified.",
+        "measured": 3,
+        "threshold": 3,
+        "direction": "lower",
+        "control": "best-crossing seed in ARM_CROSSING (seed 42)",
+        "offending_cell": "seed 42",
+        "met": true
+      },
+      {
+        "name": "oracle_genuine_explorers_present",
+        "description": "COUNT of seeds the level oracle (full-run h_pos_mean on ARM_SPIKE) labels genuine. Below floor -> no positive class to admit.",
+        "measured": 3,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "full-run h_pos_mean measured on ARM_SPIKE (the control arm)",
+        "met": true
+      },
+      {
+        "name": "oracle_non_explorers_present",
+        "description": "COUNT of seeds the oracle labels NON-genuine. Below floor -> no negative class to reject, so 'discriminates' is untestable on this seed draw.",
+        "measured": 2,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "full-run h_pos_mean measured on ARM_SPIKE (the control arm)",
+        "met": true
+      },
+      {
+        "name": "live_false_advancer_present",
+        "description": "COUNT of seeds that are oracle-non-genuine AND were admitted by the legacy spike gate in ARM_SPIKE -- i.e. a live false advancer for the crossing gate to REJECT. Below floor, the reject leg is never challenged.",
+        "measured": 1,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "ARM_SPIKE advance decisions x the oracle label (591f: seed 45)",
+        "offending_cell": "live false advancers: [45]",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_live_gate_discriminates": true,
+      "C_arms_differ_decision_level": true,
+      "C_raw_trajectories_diverge": true
+    },
+    "criteria": [
+      {
+        "name": "C_live_gate_discriminates",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_arms_differ_decision_level",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C_raw_trajectories_diverge",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "readiness_anchors": [
+      {
+        "anchor_name": "spike_arm_reproduces_advance",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.4,
+        "margin_cells": 0,
+        "required_score": 0.4,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 4,
+        "reference_score": 0.8,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ]
+      },
+      {
+        "anchor_name": "crossing_counts_reach_gate_minimum",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.2,
+        "margin_cells": 0,
+        "required_score": 0.2,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 3,
+        "reference_score": 0.6,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "anchor_name": "oracle_genuine_explorers_present",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.2,
+        "margin_cells": 0,
+        "required_score": 0.2,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 3,
+        "reference_score": 0.6,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "anchor_name": "oracle_non_explorers_present",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.2,
+        "margin_cells": 0,
+        "required_score": 0.2,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 2,
+        "reference_score": 0.4,
+        "per_cell_scored": [
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "anchor_name": "live_false_advancer_present",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3.per_seed_criteria",
+        "threshold": 0.2,
+        "margin_cells": 0,
+        "required_score": 0.2,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 1,
+        "reference_score": 0.2,
+        "per_cell_scored": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5a198a8e8ccf68df736449e35996b112794c73d00c8b3025608251b1785fbafe",
+  "substrate_commit": {
+    "commit": "8f88b89935d6738b0bf1c4a9b0f642270eb73be6",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.novelty_bonus_weight": 0.5,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_noise_floor": true,
+    "use_structured_curiosity": true,
+    "use_sleep_loop": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 320000,
+    "ticks_active": 23848,
+    "writer_calls": 320000,
+    "active_frac": 0.074525,
+    "writer_defect": false,
+    "n_agents": 10,
+    "goal_state_present": true
+  }
+}
