@@ -92859,7 +92859,7 @@
     log_prob, urgency) and the live last_score_diagnostics dict populated across e3_selector.py
     (go_nogo_*, gap_scaled_commit_*, loop_*, d1d2_conflict, etc.) are exclusively
     tensor/float/bool/int-typed; a repo-wide grep for category_label/oracular across ree_core
-    and docs/ returned zero hits. No category-label-shaped field exists anywhere on E3's current
+    and docs/ returned zero hits [CORRECTION 2026-09-04, governance-20260904-1347, GFLAG-0121: the contract test now pinning this claim (ree-v3 tests/contracts/test_e3_non_oracular_output_typing.py, bc63b0e2fd) found that last_score_diagnostics DOES carry three pre-existing string-valued fields -- commit_gate_mode, modulatory_shortlist_mode, modulatory_authority_normalize_basis -- all internal algorithm/formula-mode selectors rather than semantic content-class labels, which the test allowlists; so the accurate statement is 'zero content-class label fields', not 'zero string-typed fields']. No category-label-shaped field exists anywhere on E3's current
     output surface -- the contract holds today without any new build. FALSIFYING: an existing or
     newly-added E3 output field is found to encode a semantic category (an object- or
     context-class label) rather than a typed magnitude; or a future rebucketing consumer is found

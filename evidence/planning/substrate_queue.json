@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "sd018-directional-field-amend-ba5834ed",
-  "last_updated_utc": "2026-09-04T14:16:48Z",
+  "last_updated_utc": "2026-09-04T14:22:57Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -894,7 +894,7 @@
       "implementation_hint": "Registered pre-implementation. Biological grounding via SD-019 targeted reviews (Price 2000, Rainville 1997, Woolf & Salter 2000, Craig 2003, Berthier 1988). Loffler et al. 2018 (targeted_review_q_036) specifically supports the controllability non-dependence of unpleasantness. Lit pull specific to S",
       "implementation_status": "implemented",
       "implemented_session": "implement-sd019a-2026-05-04",
-      "last_seen_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-20260904-1347",
       "post_implementation_note": "2026-05-04: Implemented as non-trainable EMA buffer (alpha=0.2) on z_harm_s. LatentStackConfig.use_harm_un=False default. AIC and E3 urgency-signal consumers redirect to z_harm_un when enabled. Controllability parity confirmed (UC3 PASS): SD-021 descending mod does not touch z_harm_un. V3-EXQ-518 queued as substrate-readiness diagnostic (9-criterion dry-run PASS).",
       "priority": 2,
       "ready": false,
@@ -904,7 +904,9 @@
         "SD-019b",
         "MECH-219"
       ],
-      "validation_experiment": "V3-EXQ-518"
+      "validation_experiment": "V3-EXQ-518",
+      "status": "implemented",
+      "governance_2026_09_04": "status backfilled to implemented (6a-iii: sd_id is listed IMPLEMENTED in ree-v3/CLAUDE.md; entry status was unset). ready set false. Entry retained for history."
     },
     {
       "added_session": "governance-2026-04-24T08:10",
@@ -915,14 +917,16 @@
       "design_doc": null,
       "failure_record": [],
       "implementation_hint": "Registered pre-implementation. Q-036 targeted_review (2026-04-20, 3 entries, mean conf=0.72) directly supports the controllability-gating requirement. Salomons et al. 2004 (JNeurosci) confirms neural substrate of controllability effect on ACC/insula suffering circuit. De Ridder et al. 2021 grounds t",
-      "last_seen_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-20260904-1347",
       "priority": 2,
       "ready": false,
       "sd_id": "SD-019b",
       "title": "harm_stream.suffering_accumulator",
       "unblocks_claims": [
         "MECH-219"
-      ]
+      ],
+      "status": "implemented",
+      "governance_2026_09_04": "status backfilled to implemented (6a-iii: sd_id is listed IMPLEMENTED in ree-v3/CLAUDE.md; entry status was unset). ready set false. Entry retained for history."
     },
     {
       "added_session": "governance-2026-04-24T08:10",
@@ -1153,7 +1157,7 @@
       "implementation_status": "implemented",
       "implemented_session": "implement-sd033b-2026-04-26",
       "implemented_utc": "2026-04-26T00:00:00Z",
-      "last_seen_session": "governance-cycle-20260619T2013Z",
+      "last_seen_session": "governance-20260904-1347",
       "metric_trajectory": {
         "direction": "context_dependent",
         "observations": [
@@ -1171,14 +1175,16 @@
         "target": "UC1-UC5 all PASS"
       },
       "priority": 2,
-      "ready": true,
+      "ready": false,
       "sd_id": "SD-033b",
       "title": "pfc.ofc_analog_outcome_structure",
       "unblocks_claims": [
         "MECH-261",
         "MECH-263"
       ],
-      "validation_experiment": "V3-EXQ-485"
+      "validation_experiment": "V3-EXQ-485",
+      "status": "implemented",
+      "governance_2026_09_04": "status backfilled to implemented (6a-iii: sd_id is listed IMPLEMENTED in ree-v3/CLAUDE.md; entry status was unset). ready set false. Entry retained for history."
     },
     {
       "added_session": "governance-2026-04-24T08:10",
@@ -1231,7 +1237,7 @@
       "design_doc": "docs/architecture/sd_033_pfc_subdivision_architecture.md",
       "failure_record": [],
       "implementation_hint": "Registered pre-implementation. Seven literature entries from Prong C (Koechlin & Summerfield 2007) and Prong D (Burgess 2000, Burgess 2007, Boorman 2009, Christoff 2009, Mansouri 2015, Mansouri 2017) support the V4 scoping. The Mansouri 2017 Nature Reviews synthesis is the load-bearing integrative a",
-      "last_seen_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-20260904-1347",
       "priority": 2,
       "ready": false,
       "sd_id": "SD-033e",
@@ -1239,7 +1245,9 @@
       "unblocks_claims": [
         "MECH-264",
         "MECH-265"
-      ]
+      ],
+      "status": "implemented",
+      "governance_2026_09_04": "status backfilled to implemented (6a-iii: sd_id is listed IMPLEMENTED in ree-v3/CLAUDE.md; entry status was unset). ready set false. Entry retained for history."
     },
     {
       "added_session": "governance-2026-04-24T08:10",
@@ -1894,7 +1902,7 @@
       "implementation_status": "implemented",
       "implemented_session": "implement-sd035-amygdala-2026-04-21",
       "implemented_utc": "2026-04-21T00:00:00Z",
-      "last_seen_session": "sd-016-h3-algorithm-3370cd",
+      "last_seen_session": "governance-20260904-1347",
       "metric_trajectory": {
         "current_blocker": null,
         "direction": "higher_is_better",
@@ -1933,7 +1941,9 @@
         "ree_core/amygdala/bla.py"
       ],
       "status_note_addendum_20260808": "V3-EXQ-894/894a (2 independent experiments) show BLAAnalog's attribution gate does not respond to PE-threshold recalibration -- next build owed is a trainable/learnable attribution head (see failure_record). Recommended by failure_autopsy_V3-EXQ-894a_2026-08-08.",
-      "status_note_addendum_20260809": "BUILT 2026-08-09: the trainable attribution head MECH-074d deferred is landed as ree_core/amygdala/attribution_head.BLAAttributionHead (ree-v3 25e04cf5f5 + d2c8d6f2f0), off by default via bla_attribution_head='contribution_threshold' so trunk is bit-identical. Validation V3-EXQ-894b queued (ree-v3 3470eb16b6 + cb3dafe3d9), same C1/C2 instrument as 894/894a, smoke PASS. failure_record entry moved open -> built_pending_retest; it is NOT resolved until governance reads 894b's result. Two measured constraints worth knowing before touching the head: cosine scoring is load-bearing (a raw dot product over ContextMemory's 0.01 slot init gives EXACTLY uniform attention), and the prediction loss must be normalised by the running target variance (raw MSE was ~100x below the entropy term). Instrument precondition: the legacy ContextMemory write path homogenises the slot bank to off-diagonal cosine 1.0000 within ~24 episodes, which defeats ANY attribution rule -- validation must restore a differentiated store per episode (894a's harness does) or set contextmemory_gated_content_write=True. STILL OWED: the MECH-074d implementation_note in claims.yaml was NOT written -- session mech-322/sd009-897-followon held the claims.yaml claim and the arbitration verdict was binding; see docs/architecture/sd_035_amygdala_analog.md 'Second pass: trainable attribution head' for the full record in the meantime."
+      "status_note_addendum_20260809": "BUILT 2026-08-09: the trainable attribution head MECH-074d deferred is landed as ree_core/amygdala/attribution_head.BLAAttributionHead (ree-v3 25e04cf5f5 + d2c8d6f2f0), off by default via bla_attribution_head='contribution_threshold' so trunk is bit-identical. Validation V3-EXQ-894b queued (ree-v3 3470eb16b6 + cb3dafe3d9), same C1/C2 instrument as 894/894a, smoke PASS. failure_record entry moved open -> built_pending_retest; it is NOT resolved until governance reads 894b's result. Two measured constraints worth knowing before touching the head: cosine scoring is load-bearing (a raw dot product over ContextMemory's 0.01 slot init gives EXACTLY uniform attention), and the prediction loss must be normalised by the running target variance (raw MSE was ~100x below the entropy term). Instrument precondition: the legacy ContextMemory write path homogenises the slot bank to off-diagonal cosine 1.0000 within ~24 episodes, which defeats ANY attribution rule -- validation must restore a differentiated store per episode (894a's harness does) or set contextmemory_gated_content_write=True. STILL OWED: the MECH-074d implementation_note in claims.yaml was NOT written -- session mech-322/sd009-897-followon held the claims.yaml claim and the arbitration verdict was binding; see docs/architecture/sd_035_amygdala_analog.md 'Second pass: trainable attribution head' for the full record in the meantime.",
+      "added_utc": "2026-04-27T22:46:23Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly b5bd6f964c, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
@@ -2086,7 +2096,7 @@
       "implementation_status": "implemented",
       "implemented_session": "v3-wiring-audit-2026-04-07",
       "implemented_utc": "2026-04-07T00:00:00Z",
-      "last_seen_session": "governance-20260903T2013",
+      "last_seen_session": "governance-20260904-1347",
       "metric_trajectory": {
         "current_blocker": "Downstream consumer wiring (ARC-030 / MECH-117 sibling), AND (per V3-EXQ-948, 2026-08-25) the existing scalar proximity signal (max(resource_field_view)) is insufficient for downstream competence even where consumer wiring is not the issue -- a full 25-dim directional field is what restores foraging competence in 948's probe. 2026-08-25 (chip-20260825-sd018-missing-validation): the r2>0.5 validation was NOT actually missing -- V3-EXQ-257 (2026-04-06) directly tested use_resource_proximity_head=True and its outcome was simply never copied into this observations array. It was already reviewed and formally autopsied (failure_autopsy_grandfathered-sd003-mech112-dacc-cluster_2026-08-08.json, target v3_exq_257...): recommended_epistemic_category=precondition_unmet, recommended_evidence_direction=non_contributory, recommended_substrate_queue_entry.action=none (folded into the existing SD-012/MECH-229-230 seeding-quality gap, no new entry needed). The bar itself therefore remains genuinely UNTESTED cleanly -- EXQ-257's C1 criterion failed in 2/3 seeds via numerical blowup caused by z_goal_norm collapsing to ~1e-10 (insufficient seeding curriculum in that run's config, not a defect in SD-018's own head/loss), while the 1 seed that seeded properly (seed 3) scored r2=0.9984 (clears the >0.5 bar). No new experiment queued for this chip: governance already dispositioned EXQ-257 on 2026-08-08 as needing no new substrate_queue action, and a clean re-test would need to guarantee non-degenerate z_goal seeding first (MECH-229/230 family territory) rather than re-deriving the same confound.",
         "direction": "higher_is_better",
@@ -2144,7 +2154,9 @@
           "validation": "OWED, not queued here per the routing chip: 948-shape diagnostic, shared P0 with resource_field_weight > 0 on the ON arm, arms field-head OFF vs ON (scalar head on in both, x734-family base config), PPO reader of z_world alone, DV res/ep vs the 1.0 D3 floor on a strict seed majority + held-out linear decode of resource_field_view from z_world; claims INV-088 + MECH-457 read-across."
         }
       ],
-      "amend_status": "VALIDATED-NEGATIVE for shape (a) by V3-EXQ-978 (2026-09-03; confirmed failure_autopsy_V3-EXQ-978_2026-09-03, REE_assembly af8d2cabde): directional head trained, z_world already decodes the field (OFF r2 0.71 sense / 0.86 encoder), behaviour at or below random walk in both arms. Shape (b) NOT promoted to the next build -- discriminate H-B (consumer) vs H-C (geometry) first via the capacity-matched frozen-latent oracle-adapter probe (GOV-FANOUT-1). Previous value: 'AWAITING VALIDATION'."
+      "amend_status": "VALIDATED-NEGATIVE for shape (a) by V3-EXQ-978 (2026-09-03; confirmed failure_autopsy_V3-EXQ-978_2026-09-03, REE_assembly af8d2cabde): directional head trained, z_world already decodes the field (OFF r2 0.71 sense / 0.86 encoder), behaviour at or below random walk in both arms. Shape (b) NOT promoted to the next build -- discriminate H-B (consumer) vs H-C (geometry) first via the capacity-matched frozen-latent oracle-adapter probe (GOV-FANOUT-1). Previous value: 'AWAITING VALIDATION'.",
+      "added_utc": "2026-05-08T21:41:40Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 6621790028, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
@@ -3774,7 +3786,7 @@
       ],
       "implementation_hint": "MECH-320 substrate landed 2026-05-10 (commit ecccf2f). V3-EXQ-547 substrate-readiness PASS 2026-05-10T20:56Z (UC1-UC6: instantiation, master OFF no-op, EWMA arithmetic, select_action wiring, MECH-094 sim gate, additive-vs-multiplicative R3 discriminability). Behavioural validation (3-arm discriminative pair baseline / additive / multiplicative on well-fed-safe-familiar substrate) queued AFTER substrate landing.",
       "implementation_status": "substrate_landed_pending_behavioural_validation",
-      "last_seen_session": "governance-20260903T2013",
+      "last_seen_session": "governance-20260904-1347",
       "priority": 2,
       "ready": false,
       "sd_id": "MECH-320",
@@ -3789,7 +3801,9 @@
       ],
       "node_class": "complicated (buildable)",
       "status_phase": "build_owed",
-      "amend_note_2026_09_03": "Governance governance-20260903T2013 applied confirmed failure_autopsy_V3-EXQ-951c_2026-09-03 (REE_assembly af8d2cabde): severity corrupting + substrate_paths set (entry carried neither). Mechanism for the 571-era gap: ungated EWMA v_raw is persistently negative (max exactly 0.0 on seeds 42/45, means -14/-23), so max(0,v_raw)=0 and v_t is pinned at v_t_floor BEFORE any gate is consulted; all three gates read 1.0 across 27,000 P2 ticks on BOTH the calmed and uncalmed beds. Brake fired: 6th same-claim behavioural retest REFUSED. Existing build chip chip-20260902-mech320-implement-noop-margin-dv is scoped to DV headroom only and does not address the negative-v_raw source; its scope is amended this cycle."
+      "amend_note_2026_09_03": "Governance governance-20260903T2013 applied confirmed failure_autopsy_V3-EXQ-951c_2026-09-03 (REE_assembly af8d2cabde): severity corrupting + substrate_paths set (entry carried neither). Mechanism for the 571-era gap: ungated EWMA v_raw is persistently negative (max exactly 0.0 on seeds 42/45, means -14/-23), so max(0,v_raw)=0 and v_t is pinned at v_t_floor BEFORE any gate is consulted; all three gates read 1.0 across 27,000 P2 ticks on BOTH the calmed and uncalmed beds. Brake fired: 6th same-claim behavioural retest REFUSED. Existing build chip chip-20260902-mech320-implement-noop-margin-dv is scoped to DV headroom only and does not address the negative-v_raw source; its scope is amended this cycle.",
+      "added_utc": "2026-05-11T17:24:22Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly d72741c9e0 (the governance 2026-05-11T17:13Z cycle that created this entry; added_session governance-2026-05-11T1713Z). Reason: GOV-SUBPATH-1 (check_substrate_path_overlap.py) skipped this severity=corrupting entry entirely because it had substrate_paths but no parseable added_utc. Runs completed before this date are not gated by it, which is the correct reading."
     },
     {
       "added_session": "governance-2026-05-11T1713Z",
@@ -3828,7 +3842,7 @@
       "implementation_status": "implemented",
       "implemented_session": "sd-diff-cem-approx-2026-05-15T202939Z",
       "implemented_utc": "2026-05-15T20:54:00Z",
-      "last_seen_session": "igw-sd055-substrate-ready-20260521T134850Z",
+      "last_seen_session": "governance-20260904-1347",
       "metric_trajectory": {
         "current_blocker": "Behavioural validation: trained-policy cue-conditioned candidate divergence on goal-rich env (not substrate-readiness scope).",
         "direction": "higher_is_better",
@@ -3854,7 +3868,9 @@
         "ARC-072",
         "MECH-326"
       ],
-      "validation_experiment": "V3-EXQ-568"
+      "validation_experiment": "V3-EXQ-568",
+      "status": "implemented",
+      "governance_2026_09_04": "status backfilled to implemented (6a-iii: sd_id is listed IMPLEMENTED in ree-v3/CLAUDE.md; entry status was unset). ready set false. Entry retained for history."
     },
     {
       "added_session": "infant-substrate-expansion-2026-05-16T111412Z",
@@ -4113,11 +4129,7 @@
         "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04",
         "evidence/planning/failure_autopsy_V3-EXQ-603m_2026-06-10.json"
       ],
-      "depends_on_unresolved": [
-        "SD-054 [implemented 2026-05-04; bipartite-extension 2026-05-11; substrate-readiness V3-EXQ-521/522 PASS]",
-        "MECH-307 [substrate-landed 2026-05-11; default-value recalibration 2026-05-12; behavioural validation pending]",
-        "MECH-295 [implemented 2026-04-26; default-value recalibration 2026-05-12]"
-      ],
+      "depends_on_unresolved": [],
       "design_doc": "evidence/planning/sd_054_scaffolded_onboarding_substrate_design.md",
       "failure_record": [
         {
@@ -4451,7 +4463,7 @@
           "detail": "V3-EXQ-603k (claim_ids=[], diagnostic, non_contributory; reviewed 2026-06-09) is a clean NON-VACUOUS PASS validating the 2026-06-09 harm-pathway training amend: ARM_HARM_ON_NAV harm pathway trained 6242 optimizer steps; harm_eval(z_world) range lifted to 0.133 (vs the flat ~0.002 603i defect); ARM_HARM_OFF_NAV (the 603i nav positive control) still dies (G_H frac 0.0); load-bearing ARM_HARM_ON_NAV_G_H clears 2/3; criteria_non_degenerate all true. This resolves the 603i PRIMARY nav/survival-competence ceiling AT THE HARM-PATHWAY LEVEL and, with V3-EXQ-603j PASS (safety-half trained-signal ready), unblocks the full SD-059/MECH-358 escape-affordance-bridge behavioural retest (queued via chip) + the GAP-2 survival-leg cohort. READY STAYS FALSE: 603k is a narrow harm-pathway-survival readiness probe (ARM_HARM_ON/OFF spawn-in-reef with nav-control), NOT the full scaffolded curriculum gate (G1 foraging >=2/3 AND G2 survival >=2/3 AND G3 ecological >=2/3 in one run, per the entry's ready criterion). The survival leg that was the sole remaining GAP-2 blocker is now strongly de-risked, but the full three-leg gate re-validation with scaffold_train_harm_pathway ON is owed before ready flips."
         }
       ],
-      "last_seen_session": "governance-cycle-20260615T1618Z",
+      "last_seen_session": "governance-20260904-1347",
       "priority": 1,
       "ready": true,
       "readiness_flip_2026_06_11": "READY=TRUE flipped 2026-06-11 (session substrate-reconcile-603n-readiness-flip). V3-EXQ-603n PASS (ree-cloud-2 2026-06-10T20:14:27Z; supersedes 603m; claim_ids=[], non_contributory, reviewed 2026-06-11): substrate_gate_passed_full_four=true, overall_pass=true -- the corrected-G0 re-validation routed by failure_autopsy_V3-EXQ-603m_2026-06-10. Per the autopsy 'retime, don't loosen' steer, G0 was recalibrated to a Stage-0 positive-control floor of 0.3 (GoalState is zero-init pre-feed, so peak>0.3 is a materially-above-baseline lift at the least-mature developmental stage) while the load-bearing ECOLOGICAL gate G3 stayed at 0.4. All four legs cleared each >=2/3: G0 3/3 (recalibrated floor), G1 P1 survival 2/3, G2 P2 contact, G3 P2 ecological consumption-gated z_goal>0.4. Non-vacuity MET (harm_eval range 0.011>0.005; G_H survival 3/3; reached-P2-alive). Manifest self-route=substrate_ready_flip_scaffolded_sd054_onboarding. UNBLOCKS goal_pipeline:GAP-2 Stage B -- the SD-049 Phase-2 behavioural validation (V3-EXQ-514l successor, MECH-229/MECH-230-tagged, foraging-contact guard) is now queueable via /queue-experiment.",
@@ -4559,7 +4571,13 @@
           "vs_603p_full_budget_OFF": "[0.166 PASS, 0.0057 FAIL, 0.0 FAIL] = 1/3; the amend flipped seeds 43+44 FAIL->PASS at LOWER budget",
           "note": "decisive: 3/3 clear the 0.02 floor with strong proximity correlations even at reduced budget; the full-scale >=2/3 establishment is V3-EXQ-603q's first self-routing precondition on cloud"
         }
-      }
+      },
+      "depends_on_resolved_2026_09_04": [
+        "SD-054 [implemented 2026-05-04; bipartite-extension 2026-05-11; substrate-readiness V3-EXQ-521/522 PASS]",
+        "MECH-307 [substrate-landed 2026-05-11; default-value recalibration 2026-05-12; behavioural validation pending]",
+        "MECH-295 [implemented 2026-04-26; default-value recalibration 2026-05-12]"
+      ],
+      "governance_2026_09_04": "depends_on_unresolved cleared to [] (6a reconcile): every named dependency's own annotation reads implemented/landed and ready:true already reflected that; prior list preserved in depends_on_resolved_2026_09_04."
     },
     {
       "added_session": "governance-20260531T112511Z",
@@ -4609,7 +4627,7 @@
         }
       ],
       "implementation_hint": "The rollout-stability guard is BUILT and VALIDATED; the residual gap is that it is default-OFF and silently omitted. Add a WARN-only corpus lint `validate_experiments.py --checks sd056_training_without_rollout_clamp` flagging any driver that calls world_forward_contrastive_loss with no reachable e2_rollout_output_norm_clamp_enabled setting (in the driver or an imported experiments/_lib/baselines module). Measured 2026-08-18: 20 of 117 such drivers, of which 5 (v3_exq_569a-e) legitimately predate the 2026-05-31 amend and 1 (613) is the pre-amend readiness probe. Follow the repo's existing advisory-lint convention: always exit 0, name the driver and the missing flag, offer an explicit exemption constant. Do NOT flip the config default to True -- that changes bit-identity for every run relying on the default, including completed runs being reproduced (user decision, Step 8 gate 2026-08-18); register the default flip separately if governance wants it.",
-      "last_seen_session": "gov-cycle-20260901",
+      "last_seen_session": "governance-20260904-1347",
       "priority": 1,
       "ready": false,
       "sd_id": "SD-056",
@@ -4627,7 +4645,9 @@
         "ree_core/predictors/e3_selector.py::compute_reality_cost",
         "ree_core/utils/config.py"
       ],
-      "severity_note": "Severity and paths LEFT AS GOVERNANCE ALREADY HAS THEM. This run does not change the classification -- the clamp is the fix, not the defect. The amendment adds one observation about the fix's side-effect."
+      "severity_note": "Severity and paths LEFT AS GOVERNANCE ALREADY HAS THEM. This run does not change the classification -- the clamp is the fix, not the defect. The amendment adds one observation about the fix's side-effect.",
+      "added_utc": "2026-05-31T11:49:31Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 3042ea189b, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "added_session": "governance-cycle-20260601T165823Z",
@@ -4870,7 +4890,7 @@
       "implementation_hint": "Modulatory/secondary score-bias channels (MECH-314 curiosity bonus, MECH-320 vigor no-op penalty) are added to candidate scores at e3.select but are dominated by the primary harm/goal score term, so they never change argmax (604a bias=0.0 even ON, 624a v_t=0.05 both ON==OFF). Give modulatory biases competitive selection authority -- score normalization before bias addition, relative scaling of the bias to the candidate score gap, or a separate arbitration/gating channel -- so an enabled modulatory mechanism can change selection. Mirrors the z_goal-vs-harm salience gap (603e/626a/622) and the monostrategy 'diversity must act at/after E3 scoring' finding. [2026-06-03 update] V3-EXQ-614d adds a THIRD convergent instance: MECH-341's within-class sampling temperature also fires but leaves committed-class entropy invariant. The redesign should UNIFY the committed-action authority fix across all three scoring-layer levers (MECH-314 curiosity, MECH-320 vigor, MECH-341 within-class temperature/stratified-select) -- they share one bottleneck: scoring-layer signals do not reach the committed argmax. Build the arbitration/authority channel once, exercise it with all three. [2026-06-10 AMEND per failure_autopsy_569f-661-654a: a THIRD cluster -- 569f (ARC-065 world-summary spread 0.196), 661 (MECH-294 coherence 1.0/0.25/0.0), 654a (ARC-062/MECH-309 minted rule_state) -- shows upstream-channel cross-candidate RANGE is PRESENT but committed action does not move (selected-action entropy / committed-dist TV / within-arm counterfactual all ~0). Necessary-but-not-sufficient extends one link beyond V3-EXQ-643: range must be ROUTED into the per-candidate modulatory bias the authority rescales, not merely exist in the representation. ADD a P0 readiness gate asserting the modulatory bias itself carries cross-candidate range derived from the channel under test BEFORE scoring any behavioural falsifier. 654a additionally needs re-queue at a longer CRF maturation budget (frac_active 0.137<0.3). xref MECH-341.]  [2026-08-16 governance amend, V3-EXQ-931] EXTEND the authority fix UPSTREAM of E3.select to HippocampalModule._score_trajectory's elite selection, and -- separately and more importantly -- give that stage behavioural THROUGHPUT. V3-EXQ-931 shows the two are independent failures: (a) AUTHORITY -- wanting_authority_ratio ~= 0.0037 means the wanting term is ~270x too small to move the CEM argmin at the documented operating weight (first flips w~50, 5/5 seeds w~500); (b) THROUGHPUT -- even at w=5000 with 80% of argmins flipped, mean_resource_proximity is BIT-IDENTICAL to ablation, because REEAgent.select_action (agent.py:5815) re-scores the pool with self.e3.last_scores independently of the CEM's elite pick. Fixing (a) alone buys flipped picks and no behavioural change. The build must either propagate the CEM elite pick into E3's committed selection, or document the CEM elite stage as advisory-only so no future experiment reads a behavioural DV off it. Add a standing readiness assertion generalising the 2026-06-10 amendment by one step: a scoring-layer lever must report the ratio of its own cross-candidate spread to the dominant term's, and that ratio must be COMPETITIVE (not merely nonzero) before any behavioural falsifier is queued.",
       "priority": 1,
       "added_session": "governance-cycle-20260603T063324Z",
-      "last_seen_session": "governance-cycle-20260828",
+      "last_seen_session": "governance-20260904-1347",
       "depends_on_resolved_note": "ARC-065 (same E3.select arbitration layer) coordination gate CLEARED 2026-06-03: the MECH-341 E3-diversity validation the gate was waiting on landed (V3-EXQ-614d, diagnostic) and confirms MECH-341's within-class-temperature lever shares this exact committed-action-authority gap -- so they are addressed together, not serialized. MECH-341 substrate already implemented 2026-05-27; SD-056 landed + falsifiers passed (569d/617).",
       "implementation_log": [
         {
@@ -4941,7 +4961,9 @@
       ],
       "governance_amend_2026_08_16": "Amended by /governance cycle cranky-driscoll-126a36 from confirmed failure_autopsy_931-932-wanting-authority-cluster_2026-08-16 (V3-EXQ-931). BUILT 2026-08-19 by chip-20260819-modulatory-authority-cem-throughput-build (/implement-substrate); see implementation_log tail. severity 'corrupting' and substrate_paths were settled by that governance cycle's human gate and are UNCHANGED here -- a build does not re-adjudicate its own gate question.",
       "status_phase": "validation_pending",
-      "status_phase_note": "Set 2026-08-19 by chip-20260819-modulatory-authority-cem-throughput-build. The V3-EXQ-931 amend's build is DONE (authority + throughput + readiness assertion, all no-op default); what is owed is a readiness/validation diagnostic showing the spread ratio is competitive at a usable operating weight and that a flipped elite argmin now moves a behavioural DV. Was null before this, which the schema's default_reading resolves conservatively rather than as 'closed'."
+      "status_phase_note": "Set 2026-08-19 by chip-20260819-modulatory-authority-cem-throughput-build. The V3-EXQ-931 amend's build is DONE (authority + throughput + readiness assertion, all no-op default); what is owed is a readiness/validation diagnostic showing the spread ratio is competitive at a usable operating weight and that a flipped elite argmin now moves a behavioural DV. Was null before this, which the schema's default_reading resolves conservatively rather than as 'closed'.",
+      "added_utc": "2026-06-03T06:48:52Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 0de956c449, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "sd_id": "cross_stream_binding_substrate",
@@ -5449,7 +5471,7 @@
       "priority_note": "Bumped to priority 1 per user (governance 2026-06-13); autopsy suggested 2 -- blocks 2 provisional claims (MECH-266/SD-032a) with fresh failure records + holds the MECH-266 demotion.",
       "autopsy_ref": "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
       "added_session": "governance-cycle-20260613T0858Z",
-      "last_seen_session": "cranky-driscoll-126a36",
+      "last_seen_session": "governance-20260904-1347",
       "implementation_log": {
         "landed_utc": "2026-06-13T09:45:43Z",
         "session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
@@ -5496,7 +5518,9 @@
       ],
       "implementation_hint_update_2026_08_13": "SUPERSEDES the existing hint's direction. 'Supply an external-task pressure that produces genuine external_task occupancy' is DONE and works (occupancy 0.0 -> 1.0 via salience_affinity_input_cap, ree-v3 9bcde4cb63, + the _clone_for_arm GoalState fix). The open problem is the opposite: the drive now dominates absolutely and no cap value is yet known to admit a mixed regime. Next work is (a) determine whether a mixed regime exists at any cap (H1) or the discrete argmax register is structurally bang-bang (H2), and (b) restate the readiness gate per-arm/regime-conditioned rather than min-across-a-swept-range.",
       "implementation_hint_update_2026_08_13b": "RESOLVES both (a) and (b) above (see implementation_log.cap_calibration_probe_2026_08_13). (a): H1 (cap miscalibration) is the better-supported reading -- a synthetic probe against the real SalienceCoordinator shows genuinely mixed/dynamic occupancy at cap~1.0-1.5, and reproduces the observed 464e/467e step-function shape at cap=2.0 -- but a second, cap-INDEPENDENT discreteness source was also found (external_task_drive's engagement formula saturates to exactly 1.0 whenever the boolean beta_gate.is_elevated commitment latch is on, agent.py:6890), so H1 and H2 are not mutually exclusive as originally framed; no substrate code change was needed for this half. (b): DONE -- ree-v3/experiments/_lib/regime_occupancy_gate.py (+ tests/contracts/test_regime_occupancy_gate.py, 8 tests, replays the confirmed 464e/467e cell data) replaces the min()-across-arms/ratios non-vacuity check with a per-cell, any-reachable, regime-shape-conditioned gate (unreachable / saturated_bimodal / graded) so a future experiment's route_reason is truthful instead of the false 'external_task_mode_not_occupied' this severity=corrupting entry was opened for. NOT applied retroactively to the landed v3_exq_464e_*.py / v3_exq_467e_*.py driver scripts (CLAUDE.md Experiment Scripts policy -- any driver-script edit needs a new letter via /queue-experiment, not a hand-edit); it is the primitive the next lettered experiment (464f/467f-equivalent, or a fresh EXQ under the H1 cap-sweep) should import instead of re-deriving min(). Remaining open work (a real cap-sweep experiment on the actual curriculum, informed by the recommended cap band [0.75, 1.75]) is /queue-experiment scope, flagged as follow-on, not performed here.",
-      "governance_amend_2026_08_16": "Amended by /governance cycle cranky-driscoll-126a36 from confirmed failure_autopsy_V3-EXQ-934_2026-08-16 (V3-EXQ-934)."
+      "governance_amend_2026_08_16": "Amended by /governance cycle cranky-driscoll-126a36 from confirmed failure_autopsy_V3-EXQ-934_2026-08-16 (V3-EXQ-934).",
+      "added_utc": "2026-06-13T09:23:18Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 860514c765, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "sd_id": "SD-061",
@@ -6101,7 +6125,9 @@
         "ree_core/residue/field.py::RBFLayer.forward"
       ],
       "amend_note_2026_09_02": "Changed from CREATE to AMEND after the cross-model red-team pass. The entry's implementation_hint already carries the divisive-normalisation rung ('rank-preserving renormalisation vs the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439'), which is the operator this run's finding calls for -- so a new SD-E3-CHANNEL-COMMENSURABILITY entry would have duplicated live work. What this run contributes is (i) evidence that the rung's target should be the JOINT channel scale rather than F specifically, and (ii) removal of that rung's standing tractability blocker. Severity and paths otherwise LEFT AS GOVERNANCE HAS THEM; this amendment adds the residue write/read path (add_residue writes self.weights with an unbounded +=; RBFLayer.forward is what compute_residue_cost sums) because it is the channel that monopolises in every fed cell and it was not previously named on this entry. NOTE for whoever implements: field.py::update_valence is NOT this path -- SD-RESIDUE-VALENCE-BOUND clamps valence_vecs, a different accumulator, and arming it would not move this DV.",
-      "governance_2026_09_04": "Applied user decision 3 of science_wave_campaign_plan_20260904 (d58b700204): rung 3 E3 channel-scale normalisation is V3-required -> third depends_on_unresolved item re-worded from open disposition to a complicated (buildable) dependency owned by chip-20260902-e3-channel-commensurability. Second item re-worded: ITEM 2 (976) and ITEM 3 (1000) validations have RUN; the live SD-e1 dependency is now the var-bar portfolio. First item (SD-018 amend) unchanged. PROMOTES NOTHING."
+      "governance_2026_09_04": "Applied user decision 3 of science_wave_campaign_plan_20260904 (d58b700204): rung 3 E3 channel-scale normalisation is V3-required -> third depends_on_unresolved item re-worded from open disposition to a complicated (buildable) dependency owned by chip-20260902-e3-channel-commensurability. Second item re-worded: ITEM 2 (976) and ITEM 3 (1000) validations have RUN; the live SD-e1 dependency is now the var-bar portfolio. First item (SD-018 amend) unchanged. PROMOTES NOTHING.",
+      "added_utc": "2026-06-19T22:06:10Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 88b13aaf3a, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "sd_id": "v4_loop_segregation",
@@ -6756,9 +6782,7 @@
       "status": "implemented",
       "ready": true,
       "design_doc": "docs/architecture/sd_075_phasic_ema_episode_continuity.md",
-      "depends_on_unresolved": [
-        "SD-069 (IMPLEMENTED -- capability present, this is a baseline-continuity defect on top of it)"
-      ],
+      "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-063"
       ],
@@ -6777,12 +6801,16 @@
       "implementation_hint": "PhasicSurpriseBurst.reset() clears the surprise-EMA at every episode boundary, giving a ~10-tick warmup (PHASIC_EMA_DECAY 0.1) against episodes as short as 7 steps, so short-episode seeds structurally under-report n_event_ticks and no step-budget increase can compensate. Build BOTH legs: (a) carry or warm the EMA baseline across episode boundaries so the baseline reflects the agent's surprise distribution rather than the current episode's first tick; (b) gate event-tick counting until the baseline has converged, so a cell reports honestly (or declares itself uninformative) instead of returning a near-zero count that a MIN-across-cells precondition then treats as a real measurement.",
       "priority": 1,
       "added_session": "silly-jepsen-926d36",
-      "last_seen_session": "governance-20260829-1546",
+      "last_seen_session": "governance-20260904-1347",
       "source_autopsy": "failure_autopsy_V3-EXQ-779b_2026-07-19.json",
       "blast_radius_note": "affects every consumer of phasic_surprise_burst, not only the MECH-063 probe family; the RolloutBudget audit (ree-v3 6ac2a0d) already flagged _lib/probe_warmup.py WarmupRecipe (probe_max_episodes 40 vs probe_max_env_steps 4000) as the worst live short-episode exposure, consumed by V3-EXQ-784",
       "sd_claim_id": "SD-075",
       "implemented_utc": "2026-07-19T16:05:31Z",
-      "implementation_note": "IMPLEMENTED as SD-075 2026-07-19. ree-v3 4a5139838b (origin/main): phasic_burst_baseline_continuity (\"reset\" default | \"carry\") + phasic_burst_warmup_ticks (0 OFF | -1 DERIVE ceil(3/decay)=30 | positive verbatim; below -1 raises). Both no-op by default -> all existing consumers bit-identical. The convergence gate is ACCOUNTING ONLY and deliberately does not suppress the burst (user-gated: suppression would confound the MECH-063 (ii) retest with a second mechanism change). REE_assembly fdf68fa854 (origin/master): claims.yaml SD-075 (candidate) + architecture doc. 22 contracts D1-D9; full ree-v3 suite 1772 passed. LIVE SMOKE: \"reset\" reproduces the 779b failed precondition exactly at 6 events; \"carry\" lifts the same exposure to 12, clearing MIN_EVENT_TICKS 10; but with the gate ON n_events_converged is 0 in BOTH modes because every event on an untrained agent lands in the first 30 ticks. The legs therefore DISAGREE about this cell and the build deliberately does not choose -- the autopsy target sentence admits both readings and choosing is a retest-design decision. Consumers must read n_events_converged over n_converged_ticks. BLAST RADIUS resolved no-action: the probe_warmup WarmupRecipe probe_max_episodes 40-vs-4000 exposure was ALREADY fixed by ree-v3 6ac2a0d (probe_max_episodes 0 = DERIVE), and SD-075 changes no WarmupRecipe field so the cache-key decision does not arise (though _warmup_key hashes the whole substrate, so any ree_core edit busts warmup caches regardless -- deliberate and benign). RETEST BRAKE: MECH-063 (ii) stays pending_retest_after_substrate; NO V3-EXQ-779c may be queued (re-derive brake fired both halves, 3rd MECH-063 autopsy). A new-number redesign of a DIFFERENT mechanism remains permitted."
+      "implementation_note": "IMPLEMENTED as SD-075 2026-07-19. ree-v3 4a5139838b (origin/main): phasic_burst_baseline_continuity (\"reset\" default | \"carry\") + phasic_burst_warmup_ticks (0 OFF | -1 DERIVE ceil(3/decay)=30 | positive verbatim; below -1 raises). Both no-op by default -> all existing consumers bit-identical. The convergence gate is ACCOUNTING ONLY and deliberately does not suppress the burst (user-gated: suppression would confound the MECH-063 (ii) retest with a second mechanism change). REE_assembly fdf68fa854 (origin/master): claims.yaml SD-075 (candidate) + architecture doc. 22 contracts D1-D9; full ree-v3 suite 1772 passed. LIVE SMOKE: \"reset\" reproduces the 779b failed precondition exactly at 6 events; \"carry\" lifts the same exposure to 12, clearing MIN_EVENT_TICKS 10; but with the gate ON n_events_converged is 0 in BOTH modes because every event on an untrained agent lands in the first 30 ticks. The legs therefore DISAGREE about this cell and the build deliberately does not choose -- the autopsy target sentence admits both readings and choosing is a retest-design decision. Consumers must read n_events_converged over n_converged_ticks. BLAST RADIUS resolved no-action: the probe_warmup WarmupRecipe probe_max_episodes 40-vs-4000 exposure was ALREADY fixed by ree-v3 6ac2a0d (probe_max_episodes 0 = DERIVE), and SD-075 changes no WarmupRecipe field so the cache-key decision does not arise (though _warmup_key hashes the whole substrate, so any ree_core edit busts warmup caches regardless -- deliberate and benign). RETEST BRAKE: MECH-063 (ii) stays pending_retest_after_substrate; NO V3-EXQ-779c may be queued (re-derive brake fired both halves, 3rd MECH-063 autopsy). A new-number redesign of a DIFFERENT mechanism remains permitted.",
+      "depends_on_resolved_2026_09_04": [
+        "SD-069 (IMPLEMENTED -- capability present, this is a baseline-continuity defect on top of it)"
+      ],
+      "governance_2026_09_04": "depends_on_unresolved cleared to [] (6a reconcile): every named dependency's own annotation reads implemented/landed and ready:true already reflected that; prior list preserved in depends_on_resolved_2026_09_04."
     },
     {
       "node_class": "complicated (buildable)",
@@ -7085,7 +7113,7 @@
       "added_session": "gracious-villani-1d1ac4",
       "implemented_session": "gracious-villani-1d1ac4",
       "implemented_utc": "2026-07-26T13:27:50Z",
-      "last_seen_session": "governance-20260830-1549",
+      "last_seen_session": "governance-20260904-1347",
       "priority": 1,
       "ready": false,
       "design_doc": "docs/architecture/sd_082_rule_selection_action_consumer.md",
@@ -7158,7 +7186,9 @@
       ],
       "node_class": "complicated (buildable)",
       "status_phase": "validation_pending",
-      "governance_2026_08_30": "V3-EXQ-822d, the designated validation_experiment, RAN. The per-candidate-summary AMEND is CONFIRMED ENGAGED (post-centering spread ratio 2.70e-3 vs 2.2e-9 legacy; 0 fallbacks, 0 degenerate ticks) -- the build is not in question. The DV is: prop_delta is an ablation MAGNITUDE and cannot answer SD-082's cross-candidate SPREAD question, and C1 is an ON-arm-only absolute floor the negative control clears MORE strongly (0.001912 vs 0.001556). What is owed is an 822e with a spread-valued DV, not another magnitude test. SD-078/SD-082 pending_retest_after_substrate cleared in claims.yaml this cycle."
+      "governance_2026_08_30": "V3-EXQ-822d, the designated validation_experiment, RAN. The per-candidate-summary AMEND is CONFIRMED ENGAGED (post-centering spread ratio 2.70e-3 vs 2.2e-9 legacy; 0 fallbacks, 0 degenerate ticks) -- the build is not in question. The DV is: prop_delta is an ablation MAGNITUDE and cannot answer SD-082's cross-candidate SPREAD question, and C1 is an ON-arm-only absolute floor the negative control clears MORE strongly (0.001912 vs 0.001556). What is owed is an 822e with a spread-valued DV, not another magnitude test. SD-078/SD-082 pending_retest_after_substrate cleared in claims.yaml this cycle.",
+      "added_utc": "2026-07-26T13:28:35Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly d36fd8ba2f, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "sd_id": "mech324-reacquisition-window-isolation",
@@ -7607,7 +7637,7 @@
       "implementation_hint": "ThetaBuffer.consolidation_summary() and set_consolidation_mode() (ree_core/latent/theta_buffer.py:146,159) already implement a V3 proxy for spindle-mediated content packaging but are never called from the sleep pipeline (run_sws_schema_pass()/force_cycle() in ree_core/agent.py write sampled prototype vectors via plain EMA-blend with no selection step). Wiring this in is the direct candidate explanation for why V3-EXQ-845/861's spindle_density DV (mean_sws_new_slot_diversity / whole-bank cosine diversity) fails to track novelty/MEL while sws_power and replay_rate (which don't depend on content selection) succeed. Distinct from the sibling MECH122-SENSORY-GATING-OFFLINE-PROTECTION entry above (added same day, session igw-loop-mech122-gap), which covers the OTHER half of MECH-122 (blocking external sensory input during offline windows) and was separately found not-yet-established as load-bearing given the current strictly-sequential (non-interleaved) wake/sleep harness design. This entry's content-packaging half IS directly implicated by a real V3 experimental result (V3-EXQ-861 DV3) and existing code (unwired, not absent), so node_class is complicated (buildable), not complex (probe-gated). MECH-122's implementation_phase: v3 field is correct (its own registration-era 'V4 scope' prose was the stale artifact, corrected in claims.yaml the same session per feedback_phase_label_follows_dependency).",
       "priority": 1,
       "added_session": "nostalgic-chatelet-c25a78",
-      "last_seen_session": "cranky-driscoll-126a36",
+      "last_seen_session": "governance-20260904-1347",
       "validation_experiment": "861a novelty-reference bug FIXED 2026-08-14 (ree-v3 6aa97ca, the mech122_novelty_reference_mode='mel_pe' re-source). Awaiting a new-letter re-run of the 861-family driver (flag ON, DV3 re-enabled) to confirm mean_sws_new_slot_diversity now tracks MEL. The separate V3-EXQ-436c write_gate write-path defect (third failure_record entry) remains an independent open follow-up before its own slot_cosine_sim DV can pass.",
       "severity": "corrupting",
       "severity_note": "Classified `corrupting` because the defect produces evidence that LOOKS valid but is not: a clamped gate that is dead or saturated yields a clean-looking 0/3 criterion failure indistinguishable from a real negative result. Any future experiment consuming relative_novelty can silently produce vacuous arms unless it pre-registers an operating-point check. Paths are scoped to the two functions rather than whole files to bound the Step 2.5c gate.",
@@ -7616,7 +7646,9 @@
         "ree_core/agent.py::run_sws_schema_pass"
       ],
       "governance_amend_2026_08_16": "Amended by /governance cycle cranky-driscoll-126a36 from confirmed failure_autopsy_861c-861d-mech180-cluster_2026-08-16 (V3-EXQ-861d).",
-      "queue_accuracy_correction_2026_08_25": "queue_accuracy_correction_2026_08_25 (session f-dominance-regime-retest-ddbe10, cross-checked against TASK_CHIPS.json/chip_archive + evidence manifests): ThetaBuffer wiring LANDED 2026-08-01 (chip-20260801-mech122-content-packaging-build, done). First validation V3-EXQ-861a (chip-20260802-mech122-spindle-validation, done) was smoke-only; a subsequent fix to the novelty-reference mode (mech122_novelty_reference_mode=mel_pe, commit 6aa97ca) required a REVALIDATION, V3-EXQ-861d (chip-20260814-mech122-dv3-revalidation-861d, done), which superseded 861a. Checked the actual manifest directly: v3_exq_861d_..._20260815T005853Z_v3.json records outcome=FAIL, evidence_direction=non_contributory, claim_ids=[MECH-180, MECH-122]. So the build is landed and the intended revalidation DID run to completion -- it did not come back supporting the claim. Status corrected from the stale 'implemented_pending_validation' (the validation has in fact run and concluded non_contributory, not merely pending)."
+      "queue_accuracy_correction_2026_08_25": "queue_accuracy_correction_2026_08_25 (session f-dominance-regime-retest-ddbe10, cross-checked against TASK_CHIPS.json/chip_archive + evidence manifests): ThetaBuffer wiring LANDED 2026-08-01 (chip-20260801-mech122-content-packaging-build, done). First validation V3-EXQ-861a (chip-20260802-mech122-spindle-validation, done) was smoke-only; a subsequent fix to the novelty-reference mode (mech122_novelty_reference_mode=mel_pe, commit 6aa97ca) required a REVALIDATION, V3-EXQ-861d (chip-20260814-mech122-dv3-revalidation-861d, done), which superseded 861a. Checked the actual manifest directly: v3_exq_861d_..._20260815T005853Z_v3.json records outcome=FAIL, evidence_direction=non_contributory, claim_ids=[MECH-180, MECH-122]. So the build is landed and the intended revalidation DID run to completion -- it did not come back supporting the claim. Status corrected from the stale 'implemented_pending_validation' (the validation has in fact run and concluded non_contributory, not merely pending).",
+      "added_utc": "2026-08-01T22:19:47Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 7cd432683a, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "sd_id": "SD-091",
@@ -8155,11 +8187,13 @@
         "ree_core/agent.py::update_schema_wanting"
       ],
       "added_session": "queue-depth-low-ops-aac785",
-      "last_seen_session": "sd-016-h3-algorithm-3370cd",
+      "last_seen_session": "governance-20260904-1347",
       "validating_runs": [
         "v3_exq_918a_sd_residue_valence_bound_validation_20260812T044049Z_v3"
       ],
-      "validation_note_2026_08_12": "VALIDATED by V3-EXQ-918a (confirmed failure_autopsy_V3-EXQ-918a_2026-08-12, evidence_direction=supports). Unit-level reproduction of BOTH the original unbounded-accumulator bug (OFF arm, bit-identical to the pre-fix +=) and the fix (ON arm, clamped to exactly valence_clamp_abs), across 3 channels x 3 seeds, with a met readiness precondition ruling out a silent-no-op false-bounded reading. status implemented_pending_validation -> implemented."
+      "validation_note_2026_08_12": "VALIDATED by V3-EXQ-918a (confirmed failure_autopsy_V3-EXQ-918a_2026-08-12, evidence_direction=supports). Unit-level reproduction of BOTH the original unbounded-accumulator bug (OFF arm, bit-identical to the pre-fix +=) and the fix (ON arm, clamped to exactly valence_clamp_abs), across 3 channels x 3 seeds, with a met readiness precondition ruling out a silent-no-op false-bounded reading. status implemented_pending_validation -> implemented.",
+      "added_utc": "2026-08-10T15:32:33Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 896e86d8f1, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "sd_id": "theta-buffer-phase-aware-summary",
@@ -8194,7 +8228,9 @@
         "ree_core/agent.py"
       ],
       "added_session": "queue-depth-low-ops-aac785",
-      "last_seen_session": "sd-016-h3-algorithm-3370cd"
+      "last_seen_session": "governance-20260904-1347",
+      "added_utc": "2026-08-10T15:32:33Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 896e86d8f1, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "sd_id": "mech357-freeze-incompatible-pressure-mechanism",
@@ -8257,11 +8293,13 @@
         "ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py"
       ],
       "added_session": "queue-depth-low-ops-aac785",
-      "last_seen_session": "cranky-driscoll-126a36",
+      "last_seen_session": "governance-20260904-1347",
       "implementation_status": "implemented_pending_validation",
       "implementation_note": "IMPLEMENTED 2026-08-14 (session intelligent-elgamal-222d2b, /implement-substrate). Threaded the already-built hazard_agent_pursuit env param (ree-v3 39b5ca8) through Stage-H _build_env of scaffolded_sd054_onboarding.py via new config field scaffold_hazard_stage_hazard_agent_pursuit (no-op default 0.0, bit-identical for all existing callers; smoke-verified). Validation V3-EXQ-603u queued + POSTed to coordinator (ree-v3 origin/main 34b8c8d): 603u = 603s + directedness (mobile drift interval=1/prob=0.6 + hazard_agent_pursuit=0.9). This is the 6th and final pressure-mechanism candidate; clears the MECH-357 re-derive brake (603s 2026-08-10 + 603t 2026-08-13 -- the 603t autopsy's recommended_substrate_queue_entry names this exact build). Status flips to implemented_validated on a 603u PASS (G_H_INTACT>=2/3 AND G_H_INTACT>G_H_LESION). Design doc: REE_assembly/evidence/planning/mech357_agent_pursuit_build_2026-08-14.md. The eligibility-trace leak:learn imbalance flagged in this node's implementation_hint is split out as the SEPARATE entry mech357-avoidance-efficacy-eligibility-trace-imbalance.",
       "governance_amend_2026_08_16": "Amended by /governance cycle cranky-driscoll-126a36 from confirmed failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16 (V3-EXQ-603u).",
-      "status_note": "2026-08-16 governance: implemented_pending_validation -> validated_negative. V3-EXQ-603u WAS the validation for this entry and the probe-gated answer is NEGATIVE: agent-directed hazard pursuit did not reintroduce the Pavlovian-instrumental conflict (G_H_LESION_frac = 1.0, so G_H_INTACT_beats_LESION could not pass). All four named pressure designs (static field, undirected mobile drift, scheduled discrete adjacency, agent-directed pursuit) are now exhausted. Do NOT open a fifth pressure MECHANISM without first running the zero-compute reanalysis of the already-recorded 603s/603t/603u per-episode trajectories."
+      "status_note": "2026-08-16 governance: implemented_pending_validation -> validated_negative. V3-EXQ-603u WAS the validation for this entry and the probe-gated answer is NEGATIVE: agent-directed hazard pursuit did not reintroduce the Pavlovian-instrumental conflict (G_H_LESION_frac = 1.0, so G_H_INTACT_beats_LESION could not pass). All four named pressure designs (static field, undirected mobile drift, scheduled discrete adjacency, agent-directed pursuit) are now exhausted. Do NOT open a fifth pressure MECHANISM without first running the zero-compute reanalysis of the already-recorded 603s/603t/603u per-episode trajectories.",
+      "added_utc": "2026-08-10T15:32:33Z",
+      "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 896e86d8f1, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc)."
     },
     {
       "sd_id": "SD-ORIENTING-DECISION-SCALE",
@@ -8659,10 +8697,7 @@
       "status_phase": null,
       "ready": true,
       "design_doc": null,
-      "depends_on_unresolved": [
-        "MECH-286 sleep-onset gate re-shaping (synthesis Section 5.3 step 2 -- currently OFF because its threat term reads a chance-level place-safety signal per V3-EXQ-917)",
-        "GAP-5b ecological MEL producer (parked -- CausalGridWorldV2 MEL is noise-level, so any ecological validation of this build is gated on it)"
-      ],
+      "depends_on_unresolved": [],
       "unblocks_claims": [],
       "failure_record": [
         {
@@ -8679,7 +8714,7 @@
       "implementation_hint": "The GAP-9 need arm (design (b)) currently fires on MELConsumer.need_crossed(), which thresholds current_mel() == accumulator.mean() -- a deliberately time-invariant statistic built for GAP-5b DURATION scaling, where scale-freeness is correct. Reused for ENTRY TIMING it inverts the intended dynamic: constant sub-threshold demand never crosses however long the agent stays awake (V3-EXQ-933 NEED_SUB: 0 need-arm fires in 120 steps), while supra-threshold demand crosses on step 1 and on every step thereafter (NEED_HIGH: 120/120 fires, no refractory). Build two things, keeping the duration statistic untouched: (i) a SEPARATE time-integrating sleep-pressure term for the entry decision (Borbely Process S -- grows with time awake, discharged by on_cycle_complete), leaving current_mel() as the duration input; (ii) a post-fire refractory / hysteresis so the bistable switch cannot chatter. The 2026-08-14 lit synthesis already names the preferred shape for the graded half (Section 5.3: route the term into MELConsumer.scale_steps()'s continuous duration factor rather than a boolean permit, degrading to current behaviour at factor 1.0). Both are `complicated (buildable)` -- no open question, no spike needed.",
       "priority": 2,
       "added_session": "cranky-driscoll-126a36",
-      "last_seen_session": "governance-cycle-20260828",
+      "last_seen_session": "governance-20260904-1347",
       "added_utc": "2026-08-16T19:11:21Z",
       "created_by": "governance 2026-08-16T19:11:21Z (cranky-driscoll-126a36) from confirmed failure_autopsy_929-933-sleep-gap9-cluster_2026-08-16 / V3-EXQ-933",
       "severity": "degrading",
@@ -8696,7 +8731,12 @@
       "implemented_session": "metaworker-chip-20260825-sleep-entry-pressure-build",
       "implemented_utc": "2026-08-26T07:27:08Z",
       "implementation_note_update": "Implemented 2026-08-26 (ree-v3 63e70d622c): a SEPARATE time-integrating (Borbely Process-S) entry-pressure term (EntryPressureAccumulator, a running SUM -- MELConsumer.current_mel()/need_crossed() left completely untouched) plus a steps_since_sleep refractory floor (within_life_entry_pressure_refractory_steps, default 2) in SleepLoopManager.notify_waking_step(), gated behind a new default-False use_entry_pressure flag. Fixes both V3-EXQ-933 failure modes: sustained sub-threshold demand now crosses in bounded time via the running SUM (was 0/120 fires under need_crossed()s time-invariant MEAN), and sustained supra-threshold demand is bounded strictly below 1 fire/step by the refractory floor (was 120/120 fires, no refractory). Contracts: tests/contracts/test_sleep_within_life_trigger_gap9.py G15-G19 (19/19 pass). Validation: V3-EXQ-933a (diagnostic, PASS, 3 seeds) reproduces V3-EXQ-933s exact NEED_SUB/NEED_HIGH injected-demand levels and threshold against the new mechanism -- run directly rather than queued, since the manifest is the decisive readout and re-queuing would duplicate compute (GOV-REUSE-1). depends_on_unresolved (MECH-286, GAP-5b) were never prerequisites for this build per the queue_accuracy_correction_2026_08_25 note already on this entry -- left as-is, still adjacent open items for the same plan area. See ree-v3/CLAUDE.md SD-SLEEP-ENTRY-PRESSURE entry for full data-flow + config detail.",
-      "validation_experiment": "V3-EXQ-933a"
+      "validation_experiment": "V3-EXQ-933a",
+      "depends_on_resolved_2026_09_04": [
+        "MECH-286 sleep-onset gate re-shaping (synthesis Section 5.3 step 2 -- currently OFF because its threat term reads a chance-level place-safety signal per V3-EXQ-917)",
+        "GAP-5b ecological MEL producer (parked -- CausalGridWorldV2 MEL is noise-level, so any ecological validation of this build is gated on it)"
+      ],
+      "governance_2026_09_04": "depends_on_unresolved cleared to [] (6a reconcile): every named dependency's own annotation reads implemented/landed and ready:true already reflected that; prior list preserved in depends_on_resolved_2026_09_04."
     },
     {
       "sd_id": "MECH091-SALIENT-EVENT-TRIGGER-WIRING",
