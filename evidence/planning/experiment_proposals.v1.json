@@ -22605,14 +22605,25 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_160",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-041",
+        "MECH-151",
+        "MECH-152",
+        "SD-016"
+      ],
+      "blocked_note": "MECH-160 (E2 action_bias vs E3 terrain_weight differential UPDATE-RATE claim) presupposes ARC-041's dual-pathway circuit is a functioning, cue-conditioned baseline whose two outputs can be reversal-trained and timed against each other. ARC-041 is itself HELD (claims.yaml, as_of 2026-08-13): its own what_would_answer explicitly flags MECH-160 as 'its own un-evidenced candidate claim... proposing a REVISION to ARC-041's current design' and OUT OF SCOPE of ARC-041's own falsification -- i.e. claims.yaml's own editors already recorded that MECH-160 is not yet testable ahead of ARC-041 clearing. MECH-152 (terrain_weight/vmPFC leg): failure_autopsy_V3-EXQ-922a_2026-08-16 (2026-08-16 governance-ratified re-adjudication) found terrain_weight's output std runs 2-6 orders of magnitude below the 0.6 swing MECH-152's own threshold requires, across ALL THREE tested selection configs (legacy/A0_OFF, hard-Gumbel/A1_PRODUCTION, soft-selection/A2_SOFTSEL) -- evidence_direction downgraded to non_contributory; Pearson r cannot adjudicate a magnitude claim on a near-constant series. This session's own throwaway Step 2.5a probe (contextmemory_write_usage_balancing=True, 16/16 slots occupied) independently reproduced this: terrain_l2_divergence 0.0003, terrain_within_safe_std 0.0028 (SAFE vs DANGEROUS env cues). MECH-151 (action_bias/OFC leg): its V3-EXQ-922 'supports' reading was WITHDRAWN to non_contributory by failure_autopsy_V3-EXQ-936_2026-08-18 on three grounds -- (1) underpowered: a single sign-test criterion, 2/3 seeds, no effect-size threshold, arm means overlap (A0 0.0305 vs A1 0.0509), seed 42 inverts; (2) GFLAG-0043 confirmed e3_selector.py has ZERO action_object/action_bias references -- the pathway has NO ranking site, so MECH-151's asserted elevate/suppress mechanism is structurally unimplemented (a new opt-in E3 ranking channel, GFLAG-0051, was built 2026-09-01 but is default-off and explicitly documented as 'STILL OPEN, NOT DONE HERE... untested'); (3) V3-EXQ-922's own driver ran with sd016_writepath_mode='off' in BOTH arms, so ContextMemory.write() never fired -- the run did not actually test retrieval over a populated memory bank at all. SD-016 (the shared ContextMemory cue-indexed-retrieval substrate both pathways read from) carries status 'implemented' but its own substrate_queue entry title reads 'validation gated on env entropy precondition' and its failure_record lists 9 post-build experiments (418d/e/f/g/h, 898, 907, 908, 922) without a clean pass on the shared retrieval-selectivity + downstream-behavioural-divergence signature.",
+      "gated_at_utc": "2026-09-03T19:25:58Z",
+      "gated_by_session": "daily-20260903-exq998-mech160",
+      "gating_reason": "complex (probe-gated) -- substrate_ceiling trending: >=6 post-build discriminative-retrieval experiments (V3-EXQ-418g/h, 898, 907, 908, 922, 922a) plus 2 governance-ratified re-adjudications (failure_autopsy_V3-EXQ-936_2026-08-18, failure_autopsy_V3-EXQ-922a_2026-08-16) have already targeted exactly the 'do the two SD-016 cue-indexed pathways discriminate/diverge by cue' question MECH-160 needs answered as its own precondition, without landing a clean, non-degenerate, both-pathways-live result. This is not a single named missing build (complicated (buildable)) -- GOV-FANOUT-1's own portfolio (H1 ctxdiv-aux-loss, H3 hard-Gumbel selection) already ran and did not clear MECH-152's magnitude ceiling, and the newest E3-ranking-channel build for MECH-151 (GFLAG-0051, 2026-09-01) is untested.",
+      "release_condition": "Re-evaluate MECH-160 only after BOTH: (a) ARC-041's own pre-registered confirming signature clears (SD-016 leg A retrieval-selectivity + SD-055/cue_action_proj consumer-wiring, now also GFLAG-0051's E3 ranking channel, land and are behaviourally validated -- i.e. ARC-041 moves off HELD), AND (b) MECH-152's terrain_weight magnitude ceiling is independently resolved by a NAMED substrate fix (not yet designed as of this session) that widens terrain_weight's effective dynamic range by the 2-6 orders of magnitude the 922a autopsy measured as missing -- e.g. output-scale/loss-weighting rework, not another selection-mechanism ablation (soft/hard/off has already been swept 3-ways with no rescue). Only once a SHARED config exists under which BOTH action_bias and terrain_weight independently show non-degenerate, cue-conditioned discrimination does an update-RATE comparison (MECH-160's actual question) become well-posed rather than vacuous."
     },
     {
       "acceptance_checks": [
@@ -38862,14 +38873,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_161",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf",
         "missing_literature_evidence"
-      ]
+      ],
+      "executed_by": "V3-EXQ-999",
+      "executed_queue_id": "V3-EXQ-999"
     },
     {
       "acceptance_checks": [
@@ -38948,14 +38961,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_162",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf",
         "missing_literature_evidence"
-      ]
+      ],
+      "executed_by": "V3-EXQ-997",
+      "executed_queue_id": "V3-EXQ-997"
     },
     {
       "acceptance_checks": [

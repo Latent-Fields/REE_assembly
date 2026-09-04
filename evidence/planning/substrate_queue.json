@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "sd018-directional-field-amend-ba5834ed",
-  "last_updated_utc": "2026-09-04T14:12:31Z",
+  "last_updated_utc": "2026-09-04T14:16:48Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -5583,8 +5583,8 @@
       ],
       "depends_on_unresolved": [
         "SD-018 directional-field amend (routed /implement-substrate 2026-08-25, user-confirmed; no build item/chip/owner)",
-        "SD-e1-rollout-consistency-training ITEM 2 validation run (owed, unminted; IGW-20260831-222 staged /implement-substrate but stalled)",
-        "E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-required? DISPOSITION OWED, GFLAG-0116 + GFLAG-0051"
+        "SD-e1-rollout-consistency-training var-bar portfolio (sd_e1_var_bar_readout_crush; unqueued as of 2026-09-04). ITEM 2 validation RAN: V3-EXQ-976 (2026-09-02, confirmed, mixed/damping). ITEM 3 validation RAN: V3-EXQ-1000 (2026-09-03, confirmed 2026-09-04): cr_ratio(h=1) bar CLEARED 6/6, e1coe_score_var bar still 36x-1700x short -- MECH-135/INV-088 not yet retest-ready",
+        "E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved by governance-20260904-1347): complicated (buildable), build owner chip-20260902-e3-channel-commensurability (science_wave_campaign_plan_20260904 C3 item 4); the refusal on 936-family / 654h-class conversion falsifiers lifts only once that build lands and validates"
       ],
       "unblocks_claims": [
         "ARC-062",
@@ -5965,7 +5965,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-20260903T2013",
+      "last_seen_session": "governance-20260904-1347",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -6100,7 +6100,8 @@
         "ree_core/residue/field.py::add_residue",
         "ree_core/residue/field.py::RBFLayer.forward"
       ],
-      "amend_note_2026_09_02": "Changed from CREATE to AMEND after the cross-model red-team pass. The entry's implementation_hint already carries the divisive-normalisation rung ('rank-preserving renormalisation vs the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439'), which is the operator this run's finding calls for -- so a new SD-E3-CHANNEL-COMMENSURABILITY entry would have duplicated live work. What this run contributes is (i) evidence that the rung's target should be the JOINT channel scale rather than F specifically, and (ii) removal of that rung's standing tractability blocker. Severity and paths otherwise LEFT AS GOVERNANCE HAS THEM; this amendment adds the residue write/read path (add_residue writes self.weights with an unbounded +=; RBFLayer.forward is what compute_residue_cost sums) because it is the channel that monopolises in every fed cell and it was not previously named on this entry. NOTE for whoever implements: field.py::update_valence is NOT this path -- SD-RESIDUE-VALENCE-BOUND clamps valence_vecs, a different accumulator, and arming it would not move this DV."
+      "amend_note_2026_09_02": "Changed from CREATE to AMEND after the cross-model red-team pass. The entry's implementation_hint already carries the divisive-normalisation rung ('rank-preserving renormalisation vs the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439'), which is the operator this run's finding calls for -- so a new SD-E3-CHANNEL-COMMENSURABILITY entry would have duplicated live work. What this run contributes is (i) evidence that the rung's target should be the JOINT channel scale rather than F specifically, and (ii) removal of that rung's standing tractability blocker. Severity and paths otherwise LEFT AS GOVERNANCE HAS THEM; this amendment adds the residue write/read path (add_residue writes self.weights with an unbounded +=; RBFLayer.forward is what compute_residue_cost sums) because it is the channel that monopolises in every fed cell and it was not previously named on this entry. NOTE for whoever implements: field.py::update_valence is NOT this path -- SD-RESIDUE-VALENCE-BOUND clamps valence_vecs, a different accumulator, and arming it would not move this DV.",
+      "governance_2026_09_04": "Applied user decision 3 of science_wave_campaign_plan_20260904 (d58b700204): rung 3 E3 channel-scale normalisation is V3-required -> third depends_on_unresolved item re-worded from open disposition to a complicated (buildable) dependency owned by chip-20260902-e3-channel-commensurability. Second item re-worded: ITEM 2 (976) and ITEM 3 (1000) validations have RUN; the live SD-e1 dependency is now the var-bar portfolio. First item (SD-018 amend) unchanged. PROMOTES NOTHING."
     },
     {
       "sd_id": "v4_loop_segregation",
