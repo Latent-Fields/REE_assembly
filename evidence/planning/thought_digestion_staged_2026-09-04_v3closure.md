@@ -4321,3 +4321,1462 @@ MECH-449 Go/No-Go (V3-EXQ-689g PASS, 2026-06-22, four days after registration), 
 `ceiling_decision: deferred` remain correct and should be kept.
 
 > **Orchestrator correction (2026-09-04T21:18:57Z):** the G5 dispatch prompt said ARC-120/ARC-121 were registered from the 2026-08-27 developmental-integration intake; the G5 agent verified they were registered 2026-08-06 from `docs/thoughts/2026-08-06_scientific_evolution_of_ree.md`. The grouping edge (same namespace + title overlap) stands; the source attribution in the prompt was wrong.
+
+---
+
+<!-- G8 appended 2026-09-04T21:22:55Z -->
+## G8 -- dopamine / RBF density / curiosity drive  (agent report)
+
+### Group preamble
+
+- **Why these are together (restate, then my own view):** the assigned rationale is the
+  `depends_on` lattice plus shared hippocampal-module namespace (SD-024 <-> SD-025 = 7.25;
+  ARC-057 <-> SD-025 = 6.00). That is correct but understates the relation. These three are
+  **one mechanism cut at three levels**: SD-024 is the PRODUCER (DA writes extra RBF centres into
+  `benefit_rbf_field`), SD-025 is the CONSUMER (CEM trajectory scoring reads
+  `density * (1 - familiarity)` off that same field), and ARC-057 is the assertion that the
+  PRODUCT of those two -- and only the product -- yields approach behaviour, with no valence
+  gradient anywhere. They are not the same claim (the 768a single-drive arms separate them
+  cleanly: SD-024-alone margin 0.0, SD-025-alone-on-a-flat-map -0.01, both-on 14.53), but they
+  share a single failure surface: **if the producer writes nothing, all three read zero, and no
+  amount of consumer-side tuning can tell you so.** That is not hypothetical -- it is the
+  confirmed 2026-07-20 defect, and (finding 8 below) it is live again right now in the entire
+  fishtank experiment family.
+
+- **(i) same-claim / merge candidates:** **No merge recommended, in-group or out.** Justification,
+  since the merge pressure is real enough to need one:
+  - *SD-024 vs SD-025* are producer/consumer and are experimentally dissociable: V3-EXQ-768a's 2x2
+    already measured each alone at ~0 and only the conjunction at 14.53, and V3-EXQ-900 tested
+    SD-024's allocation mechanism with **no CEM/selection step anywhere in the design** (its own
+    `dv_symmetry_note`). Two claims that a run has already dissociated must not be merged.
+  - *ARC-057 vs {SD-024, SD-025}* is a level distinction, not a granularity duplicate: ARC-057's
+    content is the *super-additivity* plus the negative ("no explicit approach gradient is
+    required"), which is exactly what the C4 weight-zeroing control in 768a and the L2c control in
+    766 test and which neither design_decision asserts.
+  - *External merge pressure checked and REJECTED: MECH-314a (structured-curiosity striatal
+    novelty).* This is the closest already-BUILT sibling and it looked like a duplicate on the
+    name. It is not. Verified in `ree-v3/ree_core/policy/structured_curiosity.py:829-870`:
+    MECH-314a reads `residue_field.rbf_field` (the **harm/main** field) and scores
+    *minimum distance to the nearest active centre* -- an inverse-distance NOVELTY term, integrated
+    into E3's `dacc_score_bias` in `select_action()`. SD-025 reads `benefit_rbf_field` via
+    `compute_representational_density` and scores **density**, integrated into the hippocampal
+    `_score_trajectory` CEM path. Different field, opposite polarity on "density", different
+    integration site. Merging them would destroy a real dissociation.
+    **But this pair deserves a governance note in its own right** (flagged below): REE now carries
+    two independently-flagged curiosity channels reading two different RBF fields at two different
+    scoring sites, and nothing in the registry states how they compose or whether they double-count.
+    That question is unowned.
+
+- **(ii) contradictions / undercut premises:** one real contradiction, internal to SD-025.
+  SD-025's `notes` assert two functional properties that **MECH-458 (registered 2026-07-17, the
+  curiosity=exploitation-amplifier reframe) has since measured to be substantially weaker than the
+  text claims**:
+  1. *"The familiarity component (visit-count EMA) prevents the agent from endlessly circling
+     already-explored regions"* -- MECH-458's force decomposition of the identical V3-EXQ-767a data
+     puts the familiarity discount at its **ceiling** (after 12 forced visits) at 20.4 against a
+     density-attraction force of 39.3 (1.93x weaker), and at **exactly 0.00 at the decision
+     point**, because familiarity starts at zero. So the brake is not "prevents"; it is a lagging,
+     reactive, roughly-half-strength discount that contributes nothing to the first move.
+  2. The title's *"information-seeking bias"* framing. MECH-458 establishes the drive has
+     **zero proactive pull toward unshaped / under-represented regions** and is 100% parasitic on
+     prior DA shaping (768a flat-map arm = 0). In the Bellemare-2016 sense of information-seeking
+     (bonus HIGH for low-count states) SD-025's polarity is **inverted**. The mechanism is
+     accurately described by the rest of SD-025's text ("favors regions of higher representational
+     density"); it is the word *information-seeking*, and the anti-perseveration sentence, that are
+     now known to over-claim.
+  ARC-057 is **not** contradicted by MECH-458 -- MECH-458 explicitly scopes itself to the diversity
+  side and says ARC-057 (approach side) is correct there. But ARC-057's `notes` inherit the same
+  framing ("The curiosity/exploration drive seeks information gain (novel or unexplored
+  representational structure)"), which is the sentence MECH-458 refutes. Recommended as a
+  `stale_note`, not a demotion: nothing about the *approach* result changes.
+
+- **(iii) shared falsifier:** yes, and it is the single most useful output of this pass.
+  **All three claims share one non-degeneracy precondition, and it is currently the binding
+  constraint on the whole group: the SD-024 live producer must be ON and the resulting
+  curiosity bonus must vary ACROSS CANDIDATES.** Concretely:
+  `residue.benefit_terrain_live_producer = True` AND `hippocampal.curiosity_weight > 0` AND a
+  per-run `curiosity_bonus_range` (max-min across CEM candidates, not the mean) strictly greater
+  than zero. `agent.py:11570` is the **sole** caller of `ResidueField.accumulate_benefit` anywhere
+  in `ree_core/` (verified by grep this session), it is gated on that flag, and the flag defaults
+  to `False`. With it off, `compute_local_density` early-returns zeros on an empty active mask,
+  `_curiosity_bonus` returns exactly 0.0, and every arm of every ablation is bit-identical.
+  SD-025's and ARC-057's drafts below **cross-reference SD-024's precondition text rather than
+  re-deriving it**, per brief rule 6.
+
+- **(iv) cross-cutting finding (the mutual confound):** **the group's entire positive evidence base
+  is IN VITRO, and the two live-path runs that exist show the SD-024 -> SD-025 handoff is roughly
+  three orders of magnitude weaker in vivo than in the diagnostic geometry.** Measured, not
+  inferred:
+  - V3-EXQ-795 (live, `benefit_terrain_live_producer=True`, `curiosity_weight=0.5`,
+    `da_allocation_scale=4.0`): the argmin-relevant statistic, cross-candidate range of the
+    curiosity bonus, `curiosity_bonus_range_mean_on = 0.01767` (per-seed 0.01361 / 0.02503 /
+    0.01438; SD 0.00521). The run's **own hand-built positive control**, on the same statistic and
+    the same weight, read **13.83**. Ratio ~780x. 795 PASSed because its floor `L4A_RANGE_FLOOR`
+    is `1e-9` -- it asked "is this non-zero", not "is this big enough to move a selection".
+  - V3-EXQ-900 (live, `benefit_terrain_live_producer=True`, `da_allocation_scale=40.0` -- ten times
+    795's): only **6 of 57** live benefit events allocated a cluster of size >= 2;
+    `mean_cluster_size = 1.316`. And `mean_benefit_magnitude` was essentially identical at
+    cluster>=2 (0.5577) and cluster==1 (0.5582), so the discriminator in vivo is **`drive_level`,
+    not benefit magnitude** -- the DA signal is `benefit_exposure * drive_level` and drive_level is
+    what rarely gets high enough.
+  The confound this creates is symmetric and must be stated on every proposal in this group:
+  **a null on ARC-057's live-path interaction is uninterpretable unless SD-024's live expansion
+  RATE is pinned in the same run**, because "no interaction" and "the producer only fired 6 times
+  in 57 opportunities" are indistinguishable from the outcome metric alone. Conversely a live
+  SD-025 null is uninterpretable without the cross-candidate range. Every draft below therefore
+  makes the *rate* and the *range* preconditions, not findings.
+
+- **Currency findings (all verified this session; each names the file checked):**
+  1. **STALE / already done.** SD-024's `implementation_note` says *"substrate_queue.json SD-024
+     depends_on_unresolved should drop SD-004 (implemented) and MECH-232"*. Checked
+     `REE_assembly/evidence/planning/substrate_queue.json`: SD-024's entry now reads
+     `"depends_on_unresolved": []`. Note can be retired.
+  2. **STALE / already done.** SD-025's `implementation_note` says *"substrate_queue.json SD-025
+     depends_on_unresolved still lists SD-024 (now implemented) -- drop it"*. Checked: SD-025's
+     entry now reads `["ARC-057", "MECH-111", "INV-051"]` -- SD-024 already dropped.
+  3. **STALE.** SD-024's `implementation_note` calls the `depends_on: MECH-232` *"a circular/stale
+     gate (MECH-232 is candidate...)"*. `docs/assets/data/claims.json`: **MECH-232 is now
+     `status: stable`, `epistemic_stance: shown`, `assembly_state: mature`.** The dependency is
+     resolved, not circular; the sentence describes a state that no longer obtains.
+  4. **STALE, and materially so.** `substrate_queue.json` SD-024 carries
+     `"validation_experiment": "PENDING -- live-path efficacy (producer ON vs OFF), not yet
+     queued"`. It **ran**: `v3_exq_795_sd024_benefit_terrain_live_path_efficacy_20260720T235007Z_v3`
+     -- outcome PASS, `evidence_direction: supports`, `experiment_purpose: diagnostic`,
+     `non_degenerate: true`, machine `ree-cloud-2`, 3 seeds, and it **is** in
+     `review_tracker.json.reviewed_run_ids`. The queue entry has been wrong since 2026-07-20.
+  5. **STALE by ~9 hours.** SD-025's 2026-07-20 SUBSTRATE note says *"What they do not establish --
+     and what nothing yet establishes -- is LIVE-PATH efficacy"*. V3-EXQ-795 started
+     2026-07-20T23:45Z, i.e. the same day, and establishes exactly that (in the weak "non-zero"
+     sense; see the (iv) caveat, which is the sentence that should replace it).
+  6. **PROMOTION CANDIDATE, unflagged.** `v3_exq_900_sd024_da_cluster_allocation_representational_functional_20260808T103846Z_v3`
+     is `experiment_purpose: **evidence**` (not diagnostic), PASS, supports, reviewed, and is
+     SD-024's *first confidence-bearing experimental result*. `claim_evidence.v1.json` now gives
+     SD-024 `experimental_confidence 0.715`, `evidence_quadrant confirmed_established`,
+     `genuine_exp_count 1`, `pass_runs 1`, `fail_runs 0`; `claims.json` already carries
+     `epistemic_stance: shown`. **SD-024's `status` is still `candidate` and its `live_status.as_of`
+     is still `2026-07-11`** -- i.e. the live_status predates both live runs. Flagged below.
+  7. **STALE.** `docs/assets/data/claims.json` SD-025 carries `"awaiting": "SD-024"`. SD-024 has
+     been implemented since 2026-07-16 and live-wired since 2026-07-20.
+  8. **NEW DEFECT, same class as the one that was fixed.** Ten fishtank-family manifests
+     (`v3_exq_906/906a/906b/906c/909/911/912/913/920 x2`) set `use_da_modulated_rbf_density: true`
+     **and** `curiosity_weight: 0.05`, and **none of them sets `benefit_terrain_live_producer`**
+     (grep count 0 in every manifest, and 0 in all **16** fishtank driver scripts under
+     `ree-v3/experiments/*fishtank*.py`). None of those drivers calls `accumulate_benefit`
+     directly either. Since `agent.py:11570` is the sole producer and the flag defaults `False`,
+     **the SD-025 curiosity bonus is identically 0.0 in every fishtank run from 2026-08-09 through
+     at least 2026-08-14**, despite the config reading as though curiosity is on. Flagged below.
+  9. **PARTIALLY done.** `arc_057_ecological_env_decision_2026-07-16.md` sec 7 asks that
+     `substrate_queue.json` SD-025 gain `status: implemented` / `node_class` (**done** -- both now
+     present) and that its `depends_on_unresolved` be *annotated* as an env/claim gate on the
+     ecological Test C rather than a gate on the built substrate (**not done** -- the list is
+     still bare).
+  10. **No duplication.** `ree-v3/experiment_queue.json` currently holds **3** items, none touching
+      this group. `TASK_CHIPS.json` (3023 chips) contains only two SD-025 hits, both `done`
+      telemetry chips from 2026-08-10. `governance_flags.v1.json` (8 flags) contains **no** flag
+      for ARC-057 / SD-024 / SD-025 / MECH-458. Every proposal and flag below is new.
+
+---
+
+### ARC-057 -- Approach behavior toward reward locations emerges from the interaction of DA-mediated re...
+
+**Recommended disposition:** **(a) testable now** -- the ecological form is correctly V4-deferred,
+but the *live-path* form of the 2x2 interaction is buildable today on flags that already exist and
+have already been demonstrated to work (795, 900), and it is the one arm that would convert
+ARC-057's provisional reading from an in-vitro geometry result into an in-vivo one.
+
+**Extracted from:** the claim's own `notes` -- the paragraph beginning *"Testable: ablate DA
+modulation of hippocampal resolution while preserving the curiosity drive... Neither alone
+sufficient"* -- re-operationalised onto the statistic V3-EXQ-768a already validated (continuous CEM
+score-margin, replacing the saturating argmin gate that made V3-EXQ-768 vacuous), and onto the live
+path V3-EXQ-795 opened. Sub-prediction (3) in the same `notes` (extinction when DA modulation
+ceases) supplies the second arm. Nothing here is invented from a blank page.
+
+**Currency check:**
+- V3-EXQ-768a manifest (`..._20260717T064620Z_v3.json`) confirmed present and in
+  `review_tracker.json.reviewed_run_ids`; it is the run that moved ARC-057 candidate -> provisional.
+- `claim_evidence.v1.json` ARC-057: `experimental_confidence 0.0`, `genuine_exp_count 0`,
+  `pass_runs 0`, `evidence_quadrant plausible_unproven`, `literature_confidence 0.732` from 3
+  `lit:computational_model` entries. **ARC-057's `provisional` rests on a diagnostic-purpose run
+  (excluded from confidence scoring by design) plus literature -- it carries zero experimental
+  confidence.** That is not an error; it is the documented consequence of "the promotion is the
+  gate-clearing action, not a confidence increment". It is worth stating because it bounds how much
+  the current status can be leaned on.
+- Ecological Test C: `arc_057_ecological_env_decision_2026-07-16.md` sec 6 -- DECISION RECORDED,
+  deferred to V4, co-blocked on the conversion / F-dominance ceiling. **Still current**; nothing in
+  `substrate_queue.json` or the queue has re-opened it.
+- Both mechanisms verified BUILT and DEFAULT-OFF in `ree-v3/ree_core/`:
+  `utils/config.py:3041 use_da_modulated_rbf_density = False`, `:3045 da_allocation_scale = 0.0`,
+  `:3002 benefit_terrain_live_producer = False`, `:2521 curiosity_weight = 0.0`. So the brief's
+  "check whether they are BUILT and default-on" resolves to **built, all four knobs default-off** --
+  the claim's non-degeneracy precondition is a config assertion, not an assumption.
+
+**epistemic_category (proposed):** `substrate_coherence` (keep the value inferred from
+`claim_type: architectural_commitment`; do not set an explicit override).
+*Why not `substrate_ceiling`:* per the sharpened discriminator in `REE_assembly/CLAUDE.md`, a
+ceiling requires the mechanism to have been *exercised repeatedly under non-degenerate conditions*
+with a downstream mechanism absorbing the signal. The live-path 2x2 has been run **zero** times;
+768a/767a/766 all populate the terrain from the driver script. There is no absorption evidence, so
+"ceiling" would be a guess. *Why not `substrate_conditional`:* the code exists and works
+(795 L1a/L2a/L3a/L4a all green, 900 C1/C2/C4 all green), which is exactly what
+`substrate_conditional` denies. The env-constrained **ecological** leg (Test C) *is*
+substrate-conditional, but it is a scoped sub-claim, not ARC-057 entire -- flagged in the draft
+rather than re-categorising the claim.
+
+**Draft `what_would_answer`:**
+
+> NON-DEGENERACY PRECONDITION (three parts; the run is vacuous without all three).
+> (1) **Live producer, not driver-populated terrain.** `residue.benefit_terrain_live_producer=True`
+> and the driver must NEVER call `ResidueField.accumulate_benefit` outside a declared positive
+> control. This is the precondition SD-024's own `what_would_answer` states; see it and do not
+> re-derive. Every prior ARC-057 run (766 / 767 / 767a / 768 / 768a) populated the terrain from the
+> driver and therefore tested the mechanism, not the agent.
+> (2) **Producer actually fired at a measurable rate.** Report `n_benefit_events`,
+> `n_expansion_events` (cluster_size >= 2) and `mean_cluster_size` per arm. Floor:
+> `n_expansion_events >= 5` pooled (V3-EXQ-900's own floor, met there at 6). Below that floor the
+> both-ON arm is not distinguishable from the SD-025-alone arm and the 2x2 is uninterpretable --
+> this is the group's mutual confound, and it must be a gate, not a post-hoc note.
+> (3) **The selection statistic varies across candidates and across seeds.** The load-bearing
+> statistic is the CONTINUOUS CEM score-margin (768a's re-operationalisation; the binary argmin
+> gate that saturated at exactly 1.0 with zero cross-seed variance is what made V3-EXQ-768 vacuous
+> and MUST NOT be reintroduced). Require non-zero cross-seed variance on the both-ON margin and a
+> non-zero cross-candidate range on the curiosity bonus (V3-EXQ-795's L4a statistic).
+>
+> CONFIRMING. A 2x2 ablation (both-OFF / DA-ON+curiosity-OFF / DA-OFF+curiosity-ON /
+> both-ON) run end-to-end through `REEAgent` on a real `CausalGridWorldV2` episode loop with the
+> live producer, at >= 8 seeds, supports ARC-057 iff **all four** hold:
+> - **C1 (super-additivity, the claim itself):** `margin(both-ON) - margin(DA-only) -
+>   margin(curiosity-only) + margin(both-OFF)` exceeds `max(3 x SD_seed(that contrast), 1.0)`, where
+>   `SD_seed` is the cross-seed SD of the interaction contrast. The absolute floor of 1.0 is
+>   inherited from 768a's C1 (which measured 14.37 in vitro); the SD-scaled term is what makes the
+>   gate meaningful at the far smaller in-vivo effect sizes measured in 795.
+> - **C2 (neither alone):** each single-drive arm's margin is within `1 x SD_seed` of the both-OFF
+>   arm. In vitro 768a read 0.0 and -0.01; a live run reading materially above zero on a single arm
+>   is itself informative and must not be waved through.
+> - **C3 (no valence gradient -- ARC-057's negative half):** repeat the both-ON arm with all benefit
+>   WEIGHTS zeroed while leaving centre POSITIONS intact (768a's C4 weight-zeroing control, and 766's
+>   L2c). The margin must be statistically indistinguishable from the unzeroed both-ON arm. If
+>   zeroing the value collapses the margin, approach was riding value, not density, and ARC-057's
+>   central negative claim fails regardless of C1.
+> - **C4 (extinction, ARC-057 notes sub-prediction 3):** after a maintained both-ON phase, remove
+>   the reward contingency (DA modulation ceases; FIFO centre lifecycle overwrites the cluster) and
+>   show the approach margin decays toward the both-OFF level over a bounded number of episodes.
+>   This is the arm that discriminates *"there is more map"* from *"a gradient was installed"*: a
+>   gradient account predicts persistence, the expansion account predicts decay.
+>
+> FALSIFYING. Any of:
+> (a) the interaction contrast fails C1 **while precondition (2) is met at a healthy expansion
+> rate** -- i.e. the producer demonstrably fired and the conjunction still bought nothing over the
+> single arms. This is the direct refutation.
+> (b) C3 fails -- weight-zeroing collapses the margin -- which refutes "no explicit approach
+> gradient is required" even if C1 passes.
+> (c) a single-drive arm alone produces the full margin (C2 fails), which would make ARC-057 an
+> additive claim about one drive, not an interaction claim.
+> **NOT falsifying, and this is the trap this claim has already fallen into twice:** a null with
+> `n_expansion_events < 5`, a null with zero cross-seed variance on the load-bearing statistic, or a
+> null read off a driver-populated terrain. Those are `measurement_degeneracy` (the V3-EXQ-768 and
+> V3-EXQ-767 verdict), not evidence, and must route to re-operationalisation rather than to
+> ARC-057's confidence.
+>
+> SCOPE BOUND, stated so a future reader does not over-read a PASS. This falsifier addresses the
+> INTERNAL (SD-024-workaround) form of ARC-057 on the live path. It does **not** address the
+> ECOLOGICAL form -- approach emerging where the *environment itself* carries location-dependent
+> information density -- which `arc_057_ecological_env_decision_2026-07-16.md` sec 6 defers to V4,
+> co-blocked on conversion-ceiling closure. That leg alone is `substrate_conditional`. It also does
+> not bear on strategy-diversity GENERATION, which MECH-458 scopes out explicitly.
+
+**Proposal sketch:**
+- **title:** `ARC-057 live-path DA-expansion x curiosity interaction: does the 768a super-additivity
+  survive when the benefit terrain is built by the agent's own reward contacts?`
+- **related_claims:** `ARC-057` (primary), `SD-024`, `SD-025`, `MECH-232`, `ARC-007`
+  (weight-independence / no-valence-gradient), `MECH-094` (replay must not expand),
+  `MECH-233` (harm asymmetry, C4 control in 900).
+- **acceptance_checks:** `benefit_terrain_live_producer=True` and driver contains no bare
+  `accumulate_benefit` call outside the declared positive control; `n_expansion_events >= 5` pooled;
+  load-bearing statistic is the continuous CEM score-margin with non-zero cross-seed variance and
+  non-zero cross-candidate range; >= 8 seeds; all four arms of the 2x2 present plus the C3
+  weight-zeroed replicate and the C4 extinction phase; cloud machine class
+  (`linux-x86_64-py3.10-torch2.12.0+cpu`) -- per the cross-machine multinomial-divergence rule the
+  DV must be asserted upstream of any discrete quantizer, which the continuous margin already is;
+  `experiment_purpose: evidence` (not `diagnostic`) if the intent is to move ARC-057's currently-zero
+  experimental confidence rather than only to clear a gate.
+- **Sequencing note:** should run AFTER, or jointly with, SD-024's live-expansion-rate proposal
+  below. Running it first risks a null that precondition (2) cannot adjudicate. A single driver
+  emitting both readouts is the cheaper resolution and is what I would recommend.
+
+**depends_on additions:** none. Current `[MECH-232, ARC-007, SD-004]` is correct and now fully
+resolved upstream (MECH-232 stable, ARC-007 provisional/shown, SD-004 implemented). Note that
+**SD-024 and SD-025 are named in the title but are NOT in `depends_on`** -- ARC-057 depends on
+MECH-232 (the mechanism) rather than SD-024 (the design decision implementing it). That is defensible
+and I do not recommend changing it, but a reader tracing the lattice will not find SD-024/SD-025 from
+ARC-057; SD-025 -> ARC-057 exists in the reverse direction only.
+
+**GOVERNANCE FLAG:** `stale_note` -- ARC-057's `notes` open with *"The curiosity/exploration drive
+seeks information gain (novel or unexplored representational structure)"*. MECH-458 (candidate,
+registered 2026-07-17, anchored on 767a + 768a) establishes the drive has **zero** proactive pull
+toward unexplored/unshaped structure and is 100% parasitic on prior DA shaping. The ARC-057 *result*
+is untouched (MECH-458 says so in terms), but this sentence in ARC-057's own notes now states the
+opposite of a measured finding registered in the same registry. Recommend a one-line amendment
+pointing at MECH-458, not a status change.
+
+---
+
+### SD-024 -- DA-modulated RBF center density: dopaminergic signal at reward encounters allocates m...
+
+**Recommended disposition:** **(a) testable now** -- and note that the *core* falsifier has already
+been run and passed (V3-EXQ-900, evidence-purpose); what remains testable-now is the quantitative
+residual that the live runs surfaced (the expansion RATE), which is also ARC-057's blocking
+precondition. This claim is closer to promotion than its `candidate` status suggests -- see the flag.
+
+**Extracted from:** the claim's own `notes` (the parameter list `da_allocation_scale`,
+`da_jitter_radius`, `num_centers`; the MECH-233 harm-asymmetry constraint; the MECH-094 replay gate;
+the three named informative failure modes craving / anhedonia / perseveration) **plus** the criteria
+V3-EXQ-900 actually instantiated (C1 `rho(da, cluster_size)`, C2 `rho(cluster_size, density)`,
+C4 harm-never-clusters). The draft below turns the already-run design into the standing falsifier and
+adds the one gate 900 did not have.
+
+**Currency check:**
+- `substrate_queue.json` SD-024: `status: implemented_pending_validation`,
+  `depends_on_unresolved: []`, `node_class: complicated (buildable)`,
+  `validation_experiment: "PENDING -- live-path efficacy (producer ON vs OFF), not yet queued"`.
+  **That last field is stale** -- V3-EXQ-795 ran 2026-07-20 and is reviewed (currency finding 4).
+- `claim_evidence.v1.json` SD-024: `experimental_confidence 0.715`,
+  `evidence_quadrant confirmed_established`, `genuine_exp_count 1`, `pass_runs 1`, `fail_runs 0`,
+  `latest_run_id v3_exq_900_...20260808T103846Z_v3`, `literature_confidence 0.694` over 5 lit
+  entries (4 electrophysiology, 1 computational; direction counts 3 supports / 2 mixed / 1 weakens).
+- `claims.json` SD-024: `epistemic_stance: shown`, `status: candidate`,
+  `assembly_state: remaining`.
+- Code verified: `residue/field.py:466-469` reads `use_da_modulated_rbf_density` (default False) and
+  `da_allocation_scale` (default 0.0); `field.py:709-736` is `add_residue_cluster`;
+  `agent.py:11560-11576` is the sole live producer, gated on `benefit_terrain_live_producer`
+  (default False) with `benefit_live_producer_threshold` 0.1, passing
+  `dopamine_signal = benefit_exposure * drive_level`, and deliberately placed BEFORE the
+  `goal_state` guard.
+- Lit caveat worth carrying: the Retailleau & Morris 2018 entry in `claim_evidence.v1.json`
+  (conf 0.75, supports) records that the perseveration phenotype there arises from **D1
+  blockade**, whereas SD-024's `notes` predict perseveration from **DA locked high** -- the entry
+  itself says *"The claim's failure-mode taxonomy may have the sign inverted"*. That is a live,
+  unresolved discrepancy inside SD-024's own evidence set and it is reflected in the draft below.
+
+**epistemic_category (proposed):** `standard` (the value inferred from
+`claim_type: design_decision`; no explicit override needed). It is V3-tractable, the substrate is
+built, and it has a green evidence-purpose run -- exactly the `standard` dispatch.
+
+**Draft `what_would_answer`:**
+
+> NON-DEGENERACY PRECONDITION. The DA -> cluster-size relation must be measured through the **real
+> substrate call path**, not by constructing clusters in the test, and the live sample must carry
+> rank information:
+> (1) A P0 readiness sweep over a well-separated `DA_SWEEP` (e.g. 0.0 -> 1.0 in 0.2 steps) at
+> synthetic locations must yield `rho(da, cluster_size) >= 0.9` and
+> `rho(cluster_size, density) >= 0.9`. This certifies the instrument before any live claim is read.
+> (2) The LIVE sample must contain `n_expansion_events` (events allocating cluster_size >= 2)
+> `>= 5` pooled across seeds. **A live sample in which every event allocated the same cluster size
+> carries no rank information and a correlation over it is vacuous** -- this is the precondition,
+> and V3-EXQ-900 met it only barely (6 events out of 57 benefit events, at
+> `da_allocation_scale=40.0`).
+> (3) `benefit_terrain_live_producer=True` with no direct `accumulate_benefit` call in the driver
+> outside a declared control -- `agent.py:11570` must be the writer. This is the shared group
+> precondition; ARC-057's and SD-025's falsifiers point here rather than restating it.
+>
+> CONFIRMING (mechanism -- **already satisfied by V3-EXQ-900, 2026-08-08, PASS/supports**; retained
+> as the standing falsifier).
+> - **C1:** over live benefit events, `rho(dopamine_signal, allocated cluster_size) >= 0.3`.
+>   *(measured 0.533)*
+> - **C2:** `rho(cluster_size, weight-independent density readout) >= 0.3`. *(measured 0.517)*
+> - **C4 (MECH-233 asymmetry):** across **every** live harm event, zero cluster allocations on the
+>   harm/threat terrain. *(measured: 0 of 1403)*
+> - **C5 (MECH-094 gate):** a replay/simulation-tagged event allocates zero expansion. Enforced in
+>   code at `field.py:665` and asserted at the `agent.py` call site; must be re-asserted in any run
+>   that exercises replay.
+>
+> CONFIRMING (the RESIDUAL, not yet tested, and the part that matters downstream). SD-024 as written
+> asserts expansion happens *"at reward encounters"* -- unqualified. The live data says it happens
+> at a **small minority** of them. A dose-response arm sweeping `da_allocation_scale` and, separately,
+> `drive_level`, supports the claim in its downstream-usable form iff the **expansion FRACTION**
+> (`n_expansion_events / n_benefit_events`) rises monotonically with DA and reaches a regime where
+> the resulting cross-candidate curiosity-bonus range exceeds `max(3 x SD_seed, 0.05)` -- where
+> `SD_seed = 0.0052` and the observed live range was `0.0177` in V3-EXQ-795 against a
+> same-statistic positive control of `13.83`. Pin `drive_level` explicitly: V3-EXQ-900 measured
+> `mean_benefit_magnitude` at cluster>=2 (0.5577) and at cluster==1 (0.5582) as effectively
+> identical, so **benefit magnitude is not the discriminator in vivo and `drive_level` is the
+> untested lever**.
+>
+> FALSIFYING.
+> - `rho(da, cluster_size)` at or below zero on a live sample meeting precondition (2) -- the
+>   allocation rule does not track DA in the live agent.
+> - Any live harm event allocating a cluster (refutes the MECH-233 asymmetry the claim explicitly
+>   preserves, and would invalidate the SD-024 workaround's central selectivity argument).
+> - A replay-tagged event allocating expansion (refutes the MECH-094 gate).
+> - **Residual-specific:** the expansion fraction stays flat, or the achievable cross-candidate
+>   range stays at the ~0.018 order, across the full sweep of `da_allocation_scale` and
+>   `drive_level`. That would not refute SD-024's *mechanism* -- C1/C2 would still hold -- but it
+>   would establish that the mechanism cannot reach a magnitude the downstream consumer can use,
+>   and **that finding would convert the SD-024 -> SD-025 handoff to `substrate_ceiling`**
+>   (built, exercised, non-degenerate, signal absorbed downstream), which is precisely the
+>   discriminator `REE_assembly/CLAUDE.md` sets out. Say so in the run's interpretation rather than
+>   recording a bare PASS on C1/C2.
+> - **Lit-side counterexample to watch (does not by itself refute):** SD-024's `notes` predict
+>   perseveration from DA locked HIGH; the Retailleau & Morris 2018 entry in
+>   `claim_evidence.v1.json` records perseveration from D1 **blockade**. Per the lit/exp decoupling
+>   rule this is non-load-bearing for the claim's status, but the failure-mode taxonomy in `notes`
+>   should be reconciled or explicitly scoped rather than left carrying a possible sign inversion.
+
+**Proposal sketch:**
+- **title:** `SD-024 live DA-expansion dose-response: does expansion FRACTION and the resulting
+  cross-candidate curiosity range scale with da_allocation_scale and drive_level?`
+- **related_claims:** `SD-024` (primary), `MECH-232`, `SD-025` (the consumer whose range is the
+  downstream DV), `ARC-057` (whose precondition (2) this discharges), `MECH-233`, `MECH-094`,
+  `SD-012` (the phasic-DA scaling rule `benefit_magnitude * drive_level`).
+- **acceptance_checks:** P0 sweep `rho >= 0.9` on both legs; `n_expansion_events >= 5` per sweep
+  cell (not just pooled -- 900's pooled-only floor is what makes its 6/57 hard to read);
+  `benefit_terrain_live_producer=True` and no driver-side `accumulate_benefit`; report expansion
+  FRACTION per cell, not only counts; report `curiosity_bonus_range` (max-min across candidates) as
+  a co-primary DV; `drive_level` swept as an independent axis from `da_allocation_scale`;
+  `experiment_purpose: evidence`; cloud machine class; >= 3 seeds per cell (900 used 3; more if the
+  fraction is noisy).
+- **Reuse note:** V3-EXQ-900's OFF/low-DA cells are the natural baseline; its arms were fingerprinted
+  (`arm_fp/v1`, `substrate_hash` recorded). Check
+  `reanalysis_query.py --claim SD-024` before queueing -- 900's own `notes` record that at
+  2026-08-08 the only prior manifest was 795 and reanalysis was not possible, but 900 itself is now
+  bankable and the dose axis may be partly recoverable from its `readiness_sweep`.
+
+**depends_on additions:** none required. Current `[SD-004, SD-014, MECH-232]` is now fully resolved
+(SD-004 implemented, MECH-232 **stable**, SD-014 candidate/gated_v3). The `implementation_note`
+sentence calling MECH-232 a "circular/stale gate" should be retired -- see currency finding 3.
+
+**GOVERNANCE FLAG (two, separable):**
+1. `promotion_review` -- **SD-024 is `status: candidate` while carrying
+   `experimental_confidence 0.715`, `evidence_quadrant confirmed_established`,
+   `epistemic_stance: shown`, one reviewed evidence-purpose PASS (V3-EXQ-900, 2026-08-08) and one
+   reviewed diagnostic PASS (V3-EXQ-795), zero conflicting runs.** Its `live_status.as_of` is
+   `2026-07-11`, i.e. it predates both live runs and the whole implementation. This is a promotion
+   candidate that has never been put in front of a governance cycle. Recommend `/governance` read
+   V3-EXQ-900 against SD-024 and either promote or record why not; digestion does not promote.
+2. `stale_note` -- `substrate_queue.json` SD-024
+   `validation_experiment: "PENDING -- live-path efficacy (producer ON vs OFF), not yet queued"` is
+   contradicted by a landed, reviewed, PASSing run (V3-EXQ-795, 2026-07-20). Same field's
+   `status: implemented_pending_validation` should be re-read in light of V3-EXQ-900 being
+   evidence-purpose. Also in this bucket: SD-024's `implementation_note` MECH-232-is-circular
+   sentence (MECH-232 is now `stable`), and the two "NOTE for governance ... depends_on_unresolved
+   should drop" instructions in SD-024 and SD-025, both of which have **already been carried out**
+   in `substrate_queue.json` and now read as outstanding work that isn't.
+
+---
+
+### SD-025 -- Curiosity drive: information-seeking bias in hippocampal trajectory scoring that favo...
+
+**Recommended disposition:** **(a) testable now** -- the drive's *propagation* is validated in vitro
+(767a) and its *live non-zero-ness* is validated (795), but **the question SD-025 has never been
+asked is whether the live bonus is large enough to change a committed action**, and that is
+V3-tractable today on existing flags. I considered (f) defer-with-digestion_note and reject it: the
+blocking fact is measured, the instrument exists, and the run is cheap.
+
+**Extracted from:** SD-025's own `notes` final line -- *"Test: ARC-057 requires BOTH SD-024 and
+SD-025 active. Neither alone should produce significant approach behavior (interaction effect, not
+additive)"* -- which is ARC-057's test, not SD-025's; and from the drive-mechanism criteria
+V3-EXQ-767a already instantiated (L1a propagation margin, L1c weight-independence, L2a familiarity
+anti-perseveration, L2b MECH-094 replay control). Per brief rule 6, the interaction half is
+**cross-referenced to ARC-057's draft above and deliberately not re-derived here**; what follows is
+the SD-025-specific residual: consequentiality of the drive on the live path.
+
+**Currency check:**
+- **SD-025 has ZERO confidence-bearing experimental evidence.** `claim_evidence.v1.json`:
+  `experimental_confidence 0.0`, `genuine_exp_count 0`, `pass_runs 0`,
+  `evidence_quadrant plausible_unproven`, `literature_confidence 0.782` over 3 lit entries
+  (fmri_connectivity, mouse_behavior_calcium_imaging, theoretical_review), latest entry
+  `2026-08-01_sd_025_mouse_ofc_information_value_bussell2026`. V3-EXQ-767 / 767a / 795 are all
+  `experiment_purpose: diagnostic` and excluded from confidence scoring by design.
+- The 2026-07-20 SUBSTRATE note's closing sentence -- *"what nothing yet establishes -- is LIVE-PATH
+  efficacy"* -- is **superseded the same day** by V3-EXQ-795 (PASS, L3a live bonus non-zero, L4a
+  cross-candidate range non-zero). It should be amended rather than left standing.
+- **But 795 establishes far less than "efficacy" reads.** Its floors are
+  `L3A_BONUS_FLOOR = 1e-9` and `L4A_RANGE_FLOOR = 1e-9`. The measured live cross-candidate range was
+  `0.01767` (SD 0.00521 over 3 seeds) against the run's own same-statistic positive control of
+  `13.83`. **"Live-path efficacious" in that manifest means "not identically zero", and should not
+  be read as "moves selection".**
+- `claims.json` SD-025 carries `"awaiting": "SD-024"` -- stale since 2026-07-16/20.
+- `substrate_queue.json` SD-025: `status: implemented`, `node_class: complicated (buildable)`,
+  `ready: false`, `design_doc: null`, `depends_on_unresolved: ["ARC-057","MECH-111","INV-051"]`.
+  The `design_doc: null` is wrong -- the design lives at
+  `docs/architecture/sd_024_da_modulated_rbf_density.md#curiosity-drive`, which is exactly SD-025's
+  own `location`. And per `arc_057_ecological_env_decision_2026-07-16.md` sec 7 the
+  `depends_on_unresolved` list should be annotated as a gate on the ecological **Test C**, not on
+  the built substrate -- still not done.
+- Code verified: `hippocampal/module.py:140` builds `FamiliarityTracker` only when
+  `curiosity_weight > 0.0`; `:1704-1731` `_curiosity_bonus` computes
+  `cw * mean(density * (1 - familiarity))`; `utils/config.py:2521 curiosity_weight = 0.0`,
+  `:2541 familiarity_bandwidth = 0.20` (the 1.0 -> 0.20 move recorded in the notes **has landed**).
+- **New defect, currency finding 8:** ten fishtank manifests and sixteen fishtank drivers set
+  `curiosity_weight: 0.05` and `use_da_modulated_rbf_density: true` but never
+  `benefit_terrain_live_producer`. `agent.py:11570` is the sole producer in `ree_core/` (grep-verified
+  this session) and the flag defaults False, so **the SD-025 bonus is identically 0.0 across the
+  entire 906/909/911/912/913/920 family** -- a config that reads as "curiosity on" and is not.
+
+**epistemic_category (proposed):** `standard` (inferred from `claim_type: design_decision`; no
+explicit override). *Why not `substrate_ceiling` yet:* the mechanism is built and has been exercised,
+but only once on the live path and never with an outcome/behavioural DV downstream of it -- so
+"something downstream absorbs the signal" is currently a hypothesis, not a repeated observation.
+The proposal below is precisely the run that would license the `substrate_ceiling` re-tag; see its
+FALSIFYING clause.
+
+**Draft `what_would_answer`:**
+
+> NON-DEGENERACY PRECONDITION. **See SD-024's `what_would_answer` precondition -- do not
+> re-derive it.** SD-025 is the consumer of SD-024's product and inherits its preconditions
+> wholesale: live producer on, driver never calls `accumulate_benefit`, `n_expansion_events >= 5`.
+> Two SD-025-specific additions:
+> (1) `curiosity_weight > 0` AND the `FamiliarityTracker` actually constructed
+> (`module.py:140` -- at `curiosity_weight = 0.0` the tracker is never built and every ablation is
+> bit-identical, which is a silent no-op, not a null).
+> (2) **The argmin-relevant statistic must be the cross-candidate RANGE of the bonus, never its
+> mean.** `_curiosity_bonus` returns a scalar per candidate trajectory; a component common to all
+> candidates is inert in the CEM selection and cancels. Report `max-min across candidates` per
+> decision and require it strictly non-zero. V3-EXQ-795 already routes on this statistic (its L4a,
+> and the V3-EXQ-643 correction it cites); a design that reports only
+> `curiosity_bonus_abs_mean` reproduces the V3-EXQ-604c broadcast-scalar failure mode.
+> (3) **Do not let a saturating binary preference gate be load-bearing.** V3-EXQ-767's single
+> load-bearing gate `L1a_pref_A_on` pinned at exactly 1.0 on all 8 seeds and the run was adjudicated
+> vacuous; 767a's continuous CEM score-margin is the sanctioned replacement. Any SD-025 gate must
+> carry non-zero cross-seed variance.
+>
+> CONFIRMING (mechanism -- **already satisfied in vitro by V3-EXQ-767a, 2026-07-17,
+> adjudicated REAL/non-vacuous**; retained as the standing falsifier).
+> - **L1a propagation:** the curiosity term produces a non-zero continuous CEM score-margin
+>   `min(sparse) - min(dense)` favouring the denser region. *(measured 39.26, range 26.95-45.61
+>   over 8 seeds)*
+> - **L1c weight-independence (ARC-007-strict):** zeroing the benefit VALUE while leaving centre
+>   positions intact leaves the margin unchanged (`<= 0.1`). *(measured 0.0)* This is what makes it a
+>   representational-density drive rather than a disguised value gradient, and it is SD-025's single
+>   most distinctive property.
+> - **L2a familiarity anti-perseveration** and **L2b MECH-094 replay control** (replay must not raise
+>   familiarity). *(measured 20.05 and 0.0)*
+>
+> CONFIRMING (the RESIDUAL, and the actual open question). SD-025 supports its downstream role iff,
+> on a LIVE run with a behavioural outcome DV, the curiosity term **changes committed action**:
+> a same-seed, same-substrate `curiosity_weight` ON/OFF contrast must yield a non-zero
+> **committed-action divergence rate** (fraction of decisions where the selected candidate differs
+> between arms) exceeding `max(3 x SD_seed, 0.02)`, with the cross-candidate bonus range reported
+> alongside as the mechanistic explanation of whatever is observed. Anchor for calibration: the live
+> range measured in V3-EXQ-795 is `0.0177` (SD `0.0052`, n=3 seeds) against a hand-built positive
+> control of `13.83` on the same statistic -- so the design must sweep `curiosity_weight` and
+> `da_allocation_scale` far enough to establish whether ANY reachable setting produces divergence,
+> not merely test the 795 operating point.
+>
+> FALSIFYING.
+> - L1c fails (zeroing benefit weights collapses the margin): SD-025 is a value-follower, not a
+>   density-follower, and its distinguishing property is refuted.
+> - L2b fails (replay raises familiarity): the MECH-094 gate the drive depends on is broken.
+> - **Residual-specific:** the committed-action divergence rate is indistinguishable from zero
+>   across the full reachable `curiosity_weight` x `da_allocation_scale` sweep **while the
+>   preconditions are green** (producer on, expansion events >= 5, cross-candidate range strictly
+>   positive). That is the `substrate_ceiling` signature by the discriminator in
+>   `REE_assembly/CLAUDE.md`: built, exercised, non-degenerate, and the signal absorbed downstream
+>   before it reaches committed action. On that outcome, re-tag SD-025
+>   `epistemic_category: substrate_ceiling` naming the absorbing mechanism, and stop re-running the
+>   existing design.
+> - **NOT falsifying:** any null from a run with `benefit_terrain_live_producer` unset. That is the
+>   fishtank-family configuration and it makes the bonus identically 0.0 regardless of
+>   `curiosity_weight` -- a no-op, not a result.
+>
+> SCOPE BOUND. This falsifier addresses the DRIVE and its live consequentiality only. It does not
+> address the SD-024 x SD-025 INTERACTION (that is ARC-057's `what_would_answer`; see it), and it
+> does not address strategy-diversity GENERATION -- MECH-458 establishes that this drive is a
+> reward-conditional exploitation amplifier with zero proactive pull toward under-represented
+> regions, so a diversity null here supports MECH-458 and says nothing against SD-025.
+
+**Proposal sketch:**
+- **title:** `SD-025 live-path consequentiality: does the curiosity bonus change committed action, or
+  only exist?`
+- **related_claims:** `SD-025` (primary), `SD-024` (producer, supplies the preconditions),
+  `ARC-057` (the interaction this deliberately does NOT test), `ARC-007` (weight-independence),
+  `MECH-094` (replay gate), `MECH-111` (the broken broadcast-novelty -> E3 path 767 was scoped
+  against), `MECH-458` (the polarity claim that bounds how a diversity null is read).
+- **acceptance_checks:** `benefit_terrain_live_producer=True`, driver makes no direct
+  `accumulate_benefit` call outside a declared positive control; `FamiliarityTracker` constructed
+  (assert `curiosity_weight > 0` reaches `module.py:140`); primary DV = committed-action divergence
+  rate between same-seed ON/OFF arms; co-reported mechanistic DV = cross-candidate bonus range
+  (max-min), never the mean; `curiosity_weight` and `da_allocation_scale` swept, not fixed at 795's
+  operating point; no binary saturating gate load-bearing; >= 8 seeds; cloud machine class;
+  `experiment_purpose: evidence` -- SD-025 currently has `genuine_exp_count 0`, so a further
+  `diagnostic` run leaves its experimental confidence at 0.0 whatever it finds.
+- **Reuse note:** V3-EXQ-795's ARM_OFF/ARM_ON are fingerprinted (`arm_fp/v1`,
+  `driver_script_in_substrate_hash: false`, `reuse_eligible: true`, substrate_hash `402e3f5a...`) but
+  the substrate has moved on since 2026-07-20, so treat 795 as a calibration anchor rather than a
+  reusable arm.
+
+**depends_on additions:** none. But recommend `/governance` **annotate rather than change**
+`depends_on: [SD-024, SD-004, ARC-057, MECH-111, INV-051]`: SD-004 and SD-024 are implemented, while
+ARC-057 / MECH-111 / INV-051 gate the **ecological Test C**, not the built substrate. This is
+`arc_057_ecological_env_decision_2026-07-16.md` sec 7's outstanding follow-up and it is still open in
+`substrate_queue.json` (currency finding 9). Also worth a one-line fix there:
+`design_doc: null` should be `docs/architecture/sd_024_da_modulated_rbf_density.md#curiosity-drive`.
+
+**GOVERNANCE FLAG (three, separable):**
+1. `evidence_discrepancy` -- **the entire fishtank experiment family runs with the SD-025 curiosity
+   channel dead while its config reads as though curiosity is on.** Ten manifests
+   (`v3_exq_906_20260809T003857Z`, `906a_20260809T081031Z`, `906b_20260809T163034Z`,
+   `906c_20260810T014711Z`, `909_20260810T011652Z`, `911_20260809T201208Z`, `912_20260810T190239Z`,
+   `913_20260810T213204Z`, `920_20260811T210906Z`, `920_20260814T223432Z`) set
+   `curiosity_weight: 0.05` and `use_da_modulated_rbf_density: true`; **zero** of them, and zero of
+   the sixteen `ree-v3/experiments/*fishtank*.py` drivers, set `benefit_terrain_live_producer`, and
+   none calls `accumulate_benefit` directly. Since `agent.py:11570` is the sole producer and the flag
+   defaults `False`, `_curiosity_bonus` returns exactly 0.0 in every one of those runs. This is the
+   **same defect class** as the 2026-07-20 no-producer incident, re-armed by a flag that was added
+   default-off and never adopted by the drivers that would need it. Any fishtank reading, telemetry
+   or narrative that treats curiosity as an active channel in those runs is unsupported.
+   Note the `chip-20260810-fishtank-sd025-novelty-telemetry` chip (status `done`) surfaced
+   `last_novelty_score` into exactly this family -- that telemetry would have been reading zero.
+   Worth a targeted check of whatever consumed it.
+2. `stale_note` -- SD-025's 2026-07-20 SUBSTRATE note (*"what nothing yet establishes -- is
+   LIVE-PATH efficacy"*) was superseded the same day by V3-EXQ-795. Recommended amendment is not a
+   simple deletion: replace it with the *quantified* reading -- live-path efficacy is established in
+   the weak sense (non-zero, floors at 1e-9) and the cross-candidate range is `0.0177` against a
+   `13.83` same-statistic positive control. Also in this bucket: `claims.json`
+   `"awaiting": "SD-024"`, and `substrate_queue.json` `design_doc: null`.
+3. `contested_disposition` -- **SD-025's own text contradicts MECH-458, which is registered in the
+   same registry and anchored on SD-025's own runs.** Specifically: the title's *"information-seeking
+   bias"* (MECH-458: the polarity is inverted relative to Bellemare-2016 information-seeking; the
+   drive is reward-conditional exploitation) and the `notes` sentence *"The familiarity component
+   ... prevents the agent from endlessly circling already-explored regions"* (MECH-458: the brake is
+   1.93x weaker than the force it opposes at its own ceiling, and exactly 0.00 at the decision
+   point). MECH-458 is `candidate/v3_pending`, so this is not a settled fact that mandates a
+   rewrite -- it is a genuine contested disposition that `/governance` should adjudicate rather than
+   a digestion pass silently resolving. If MECH-458 is upheld, SD-025's `notes` need the
+   anti-perseveration sentence scoped and the title's "information-seeking" qualified.
+
+---
+
+### Group-level note not attributable to a single claim
+
+**`contested_disposition` (unowned question, raised for routing, no draft attached):** REE now has
+**two independently-flagged curiosity channels** and no registry statement of how they compose.
+SD-025 reads *density* off `benefit_rbf_field` and biases the hippocampal CEM `_score_trajectory`;
+MECH-314a reads *minimum distance to the nearest active centre* off `residue_field.rbf_field` (a
+different field, opposite polarity on the same word "density") and biases E3's `dacc_score_bias` in
+`select_action()` -- verified in `ree-v3/ree_core/policy/structured_curiosity.py:829-870` and
+`ree_core/hippocampal/module.py:1704-1731`. `module.py:157` even names both gates in one comment
+(`curiosity_weight (SD-025) or use_structured_curiosity (MECH-314)`), which is where the composition
+question becomes visible in the code. They are separately gated, so today they are simply never both
+characterised together; nothing establishes whether enabling both double-counts, cancels, or
+composes. This is **not** a merge candidate (see preamble (i)) -- it is an unasked design question
+that will bite the first run that turns both on, and the
+`curiosity_budget_split_eligibility_design_2026-08-22.md` ratification (Design B, build-gated on its
+section 11 probe) covers allocation *among* the MECH-314 sub-flavours only, not the
+SD-025 / MECH-314 seam.
+
+---
+
+<!-- G9 appended 2026-09-04T21:22:55Z -->
+## G9 -- structural mint / stuckness escape pair  (agent report)
+
+### Group preamble
+
+- **Why these are together (restated, then my view).** The grouping hypothesis was that MECH-349
+  and MECH-527 are two instances of one "triggered structural event" pattern -- a detector crosses
+  a threshold, a non-gradient structural change fires, and the falsifier template is shared
+  (non-degeneracy = detector demonstrably fires; confirming = post-trigger state differs from a
+  no-trigger control; falsifying = no difference, or the detector never fires).
+  **My view: the pattern is real but THIN, and it holds at exactly one layer -- the non-degeneracy
+  precondition -- not at the confirming/falsifying legs.** The two claims' post-trigger states are
+  measured in incommensurable units (MECH-349: a persistent structural population, measured in
+  slot-occupancy and pairwise direction distance, entirely inside the substrate; MECH-527: a
+  transient organism-level behavioural escape, measured in escape probability and discovery
+  latency against an ecology that does not exist). They share no arm, no DV, no ecology and no
+  substrate module. They are also at different maturity: MECH-349's mechanism is BUILT and has
+  been EXERCISED five times; MECH-527's is half-built and its built half has already returned
+  an adverse prior. They are NOT merge candidates with each other.
+  What they *do* share is a specific, non-obvious degeneracy shape which I found empirically in
+  MECH-349 and which structurally threatens MECH-527 -- see (iii) below. That shared precondition
+  is worth writing once and cross-referencing, and it is the real yield of the grouping.
+
+- **(i) same-claim / merge candidates.** *Not with each other* -- see above; no shared subject,
+  substrate module, config namespace or DV. `subject:` fields are `policy.candidate_rule_field.mint`
+  vs `policy.stuckness_triggered_attractor_escape`; the only overlap is the leading `policy.`
+  segment, which is why the lexical grouping metric (4.25 on "candidate / action / bottom-up
+  above-threshold") fired. The overlap is vocabulary, not mechanism.
+  **But each has a live out-of-group merge pressure, and one of them is decisive:**
+  - **MECH-527 <-> MECH-343 / SD-061 (STRONG, disposition (g)).** MECH-343
+    (`difficulty_gated_proposal_entropy`) asserts: when goal progress stalls with goal salience
+    preserved, transiently increase proposal-generation entropy UPSTREAM of action selection
+    (wider hippocampal/CEM candidate set + higher within-class temperature), then decay once a
+    workable candidate is found. That is MECH-527's mechanism, one channel deep, with the same
+    trigger shape and the same decay clause. SD-061 BUILT it
+    (`ree-v3/ree_core/cingulate/stuck_state_detector.py` +
+    `ree-v3/ree_core/policy/difficulty_gated_proposal_entropy.py`), and V3-EXQ-694 already
+    EXERCISED it. MECH-527's `depends_on` names MECH-440/313/482/314b/314c and does not mention
+    MECH-343 or SD-061 anywhere. This is partial absorption, not supersession: MECH-527 has a
+    genuine residual (escalation ACROSS channels above the trajectory layer; the false-bottom
+    ecology; the failure-not-uncertainty trigger selectivity). Proposal in the MECH-527 section.
+  - **MECH-349 <-> nothing.** It is already the narrowest face of ARC-063 (CREATE), with
+    MECH-350 (REPRESENT) / MECH-351 (GATE) / MECH-352 (CREDIT) as distinct, non-overlapping
+    faces of the same module. No merge indicated.
+
+- **(ii) contradictions / undercut premises.** No contradiction *between* the two claims. But
+  **MECH-527's own premise is contradicted by the substrate, and its own nominated trigger is
+  contradicted by a lit-pull that landed the day it was registered:**
+  1. MECH-527 `notes`: "the above-action-level perturbation channels ... do not [exist] -- DO NOT
+     queue an experiment against this until both exist". **False for channel 1.** SD-061 is
+     `implemented_pending_validation` in `substrate_queue.json` and both halves are in `ree_core`.
+     The regulator's own docstring states its purpose in MECH-527's exact terms: it "lifts
+     PROPOSAL-layer entropy ... only when stuck", explicitly NOT the action-selection softmax,
+     with decay carried by the detector's asymmetric EMA. Of MECH-527's five named channels
+     (candidate trajectories / strategy proposals / retrieved attractors / goal decompositions /
+     precision-authority of the dominant attractor), **the first is built; the other four are not.**
+  2. MECH-527 nominates MECH-482's `epistemic_deficit` as the trigger. The 2026-09-01 targeted
+     lit-pull (`evidence/literature/targeted_review_connectome_mech_440/SYNTHESIS_2026-09-01_mech440_mech527.md`
+     s.5 rec.3) establishes that the landed SD-102 accumulator is fed by candidate-specific
+     predictive *uncertainty*, *persistent realized prediction error*, and predictive-system
+     *disagreement* -- and that in MECH-527's paradigm case (a settled, confident, persistently
+     failing attractor) two of those three inputs are *suppressed* exactly when the trigger should
+     fire. The claim's premise that MECH-482 is a "natural trigger substrate" is undercut by its
+     own commissioned literature.
+  3. **My own addition, not in the synthesis:** the better-fitting built detector is SD-061's
+     `StuckStateDetector`, and it too is only a partial fit -- and in an instructive way. Its four
+     axes are goal-progress stall, E3 score margin, committed-action-class diversity, and dACC
+     choice difficulty. Axes 1 and 3 (stall, lock-in) are exactly MECH-527's trigger. Axes 2 and 4
+     are *near-tie / ambiguity* axes -- low score margin and small EV spread -- which MECH-527
+     explicitly names as the case that must produce NO exploration ("two well-understood, similarly
+     -good actions warrant NO exploration"). With `combine_mode="mean"` (the default), the built
+     detector therefore carries **50% wrong-signed evidence for MECH-527's trigger**. That is not
+     a refutation; it is a precisely-specifiable non-degeneracy requirement (below) and a cheap
+     substrate amendment (a MECH-527-scoped `combine_mode` / axis mask).
+  4. MECH-349's `notes` claim "Validation V3-EXQ-639". V3-EXQ-639 is `outcome: PASS` but
+     `evidence_direction: non_contributory` with `claim_ids: []`, and `claim_evidence.v1.json`
+     has **no entry at all for MECH-349** (nor MECH-350/351/352). The real CRF data lives under
+     SD-078/ARC-063 attribution. Not a contradiction, but the claim's own text points at the
+     wrong artifact.
+
+- **(iii) shared falsifier.** There IS one shared, reusable artifact, and it is narrower and
+  better than the one the grouping hypothesised. Both claims' triggers can fail non-vacuity in
+  **two opposite directions**, and a falsifier that guards only one of them is defeated by the
+  other. I name it here once so both drafts can cross-reference rather than re-derive:
+
+  > **TRIGGERED-STRUCTURAL-EVENT PRECONDITION (G9).** A run testing a threshold-triggered
+  > structural event is non-vacuous only if the trigger is shown to be a TRIGGER -- i.e. it fires,
+  > and it also does NOT fire -- across the measured window, and if the discriminating input is
+  > shown to be what carried the firing.
+  > **(A) NEVER-FIRES pole:** the detector must exceed its threshold on >= 2/3 seeds from
+  > naturally-arising conditions, not only from an experimenter-induced impasse or a warm-started
+  > pool. A run in which the event count is 0, or in which every event occurs inside a scripted
+  > induction window, measures nothing.
+  > **(B) ALWAYS-FIRES / SATURATE pole (the one usually missed):** the detector must also be BELOW
+  > threshold for a non-trivial fraction of the window, and the structural resource the event
+  > consumes must not be exhausted early. If the trigger is pinned high, or the resource saturates
+  > and the event becomes structurally impossible thereafter, then the ON-vs-OFF contrast is a
+  > DOSE difference, not a TIMING difference, and any post-trigger delta is uninterpretable as
+  > evidence for a *triggered* mechanism. Report the duty cycle (fraction of ticks above
+  > threshold) and the event-count time course, not just the total.
+  > **(C) SELECTIVITY:** where the detector aggregates several inputs, report each input's
+  > separate contribution. A claim whose distinctive assertion is *which* condition triggers the
+  > event cannot be tested by a detector that fires on a correlated always-on channel.
+
+  Empirical warrant for (B): it is not hypothetical -- it is the *measured* state of MECH-349's
+  substrate in both of its configurations (see that section). For MECH-527 it is a live structural
+  risk: `StuckStateDetector`'s EMA is deliberately asymmetric (`ema_alpha_rise` 0.3 vs
+  `ema_alpha_fall` 0.05, a 6:1 hysteresis), which is exactly the shape that pins a score high once
+  raised.
+
+- **(iv) cross-cutting finding.** **Both claims' `notes` are stale in the same direction and by the
+  same mechanism: the claim's own prose is being used as the record of substrate state, and the
+  substrate has moved underneath it in both cases -- in opposite directions.** MECH-349's notes
+  under-report (they cite a non-contributory readiness run as "validation" and are silent on the
+  SD-078 centering fix, the availability-maintenance amend, and V3-EXQ-806/822, all of which
+  post-date the `live_status.as_of` of 2026-07-11). MECH-527's notes over-report a blocker (they
+  declare a channel unbuilt that is built and exercised, and a lit-pull owed that has already
+  landed -- on the *same day* the claim was registered, 2026-09-01). Neither claim can be safely
+  routed from its own text. This is the group's most transferable finding: for any claim whose
+  notes assert a build status, the `notes` are a *hypothesis about the substrate*, and the
+  substrate_queue entry plus a `ree_core` grep is the check.
+
+- **Currency findings (explicit, one line each).**
+  1. **SD-061 is BUILT.** `substrate_queue.json` -> `SD-061`, status `implemented_pending_validation`,
+     priority 5. Modules: `ree-v3/ree_core/cingulate/stuck_state_detector.py` (detector) and
+     `ree-v3/ree_core/policy/difficulty_gated_proposal_entropy.py` (regulator). Config knob
+     `use_difficulty_gated_proposal_entropy: bool = False` (`ree_core/utils/config.py:4945`) --
+     built, wired, default-OFF. **Contradicts MECH-527's "channels do not exist".**
+  2. **SD-061 has been EXERCISED, with an adverse prior.** V3-EXQ-694
+     (`v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness_20260619T224714Z_v3.json`,
+     PASS, `claim_ids: []`, reviewed): the stuck arm widened the candidate set 32 -> 40, and
+     `first_action_entropy` FELL on 3/3 seeds (-0.0812 / -0.0734 / -0.0953) while the
+     no-widening control drifted mixed in sign (-0.0224 / +0.0139 / +0.0914). Count-widening
+     without entropy-widening. MECH-343's `what_would_answer` already carries this as a
+     "PRIOR TO CARRY IN". **MECH-527 must power against it, not rediscover it.**
+  3. **The MECH-527 lit-pull HAS LANDED.** `chip-20260830-mech440-targeted-lit-pull` ran
+     2026-09-01 (session `c1-lit-pull-mech440-20260901`), widened to MECH-527 as the claim asked.
+     Entries at `evidence/literature/targeted_review_connectome_mech_527/` (Karlsson/Tervo/Karpova
+     2012 supports; Neuringer/Kornell/Olufs 2001 mixed; Mladenovic & Hansen 1997 supports,
+     formal precedent only); joint synthesis at
+     `targeted_review_connectome_mech_440/SYNTHESIS_2026-09-01_mech440_mech527.md`.
+     `claim_evidence.v1.json` shows MECH-527 with 4 lit entries, `lit_conf 0.89`, quadrant
+     `plausible_unproven`. **MECH-527's `notes` still say the pull "SHOULD widen its target"
+     (future tense) and its `evidence:` list is `[]`.** Three named revisions are owed
+     (rename toward Variable Neighborhood Search; soften "attractor escape" -- Neuringer found
+     variability rising *around a preserved dominant response*, i.e. added variation, not
+     relocation; and fix the trigger-substrate mismatch). **Escalating breadth is recorded by
+     that synthesis as biologically UNSUPPORTED** -- only an algorithmic precedent exists, which
+     under the biology-before-formal-definitions invariant is not grounding.
+  4. **MECH-482's own `what_would_answer` is stale.** It says the target-bound uncertainty
+     substrate is "not yet built in V3"; SD-102 landed 2026-08-29 (ree-v3 `b69a1b8`) and
+     `substrate_queue.json` -> `sd_epistemic_deficit_multitarget_readiness` is
+     `implemented_pending_validation`. Out of group; reported because MECH-527 leans on it.
+  5. **MECH-349's substrate is complete and its blocker is cleared.** `substrate_queue.json` ->
+     `crf-availability-maintenance` reads "This substrate entry is complete; no further CRF
+     amend owed" (2026-06-19). ARC-063's own `what_would_answer` states "CREATE/REPRESENT/GATE/
+     CREDIT (MECH-349-352) landed". `use_candidate_rule_field: bool = False`
+     (`config.py:4063`) -- built, default-OFF.
+  6. **MECH-349 has landed, unattributed evidence.** V3-EXQ-806
+     (`..._sd078_centered_rule_field_context_key_20260725T191042Z_v3.json`, PASS / **supports**,
+     `claim_ids: ['SD-078']`, reviewed) and V3-EXQ-822
+     (`..._sd078_rule_selection_consumer_20260726T112152Z_v3.json`, **FAIL**,
+     `evidence_direction: unknown`, `claim_ids: ['SD-078']`) both carry full mint diagnostics.
+     Neither names MECH-349. `claim_evidence.v1.json` has no MECH-349 entry.
+  7. **The project-memory "escape-forward reuse" lead is a NAME COLLISION -- checked and
+     excluded.** `ree-v3/ree_core/pfc/e2_escape_affordance_linker.py` is the post-603i SD-059 /
+     MECH-358 relief/safety **threat**-escape affordance readout ("where out is under threat"),
+     with `escape_affordance_bridge.py` and `trainable_escape_affordance_learner.py`. It is
+     physical escape from a threat, not escape from a policy attractor. It is **not** the built
+     mechanism MECH-527 describes and should not be cited as such.
+  8. **No false-bottom ecology exists** (`grep -rin "detour|delayed.return|false.bottom|
+     suboptimal loop" ree-v3/ree_core ree-v3/experiments/_lib` -> zero hits), confirming the
+     intake's own gap row. **But one is documented in the record and is cheaper to build than
+     the claim assumes** -- see the MECH-527 proposal sketch (MECH-457 / V3-EXQ-769 D3 passive-
+     survival optimum).
+  9. **MECH-080 is complementary, not overlapping.** MECH-080's OCD leg is "attractor lock-in
+     (abnormally deep basin, MECH-076, **normal signals cannot trigger basin exit**)". MECH-527
+     is a candidate identity for those normal signals. MECH-080 is the pathological *absence* of
+     MECH-527, which makes it a falsifier route (lesion the escalation, reproduce the signature),
+     not a duplicate.
+ 10. **MECH-497 / MECH-498 do NOT duplicate MECH-527** (the brief flagged this as possible
+     disposition-(g) territory; I checked and it does not hold). MECH-497 is self-referential
+     *measurement* corruption of a stopping variable (checking degrades the confidence that
+     gates termination). MECH-498 is progress-gated *disengagement* (MVT: stop investing). Neither
+     injects variation, and neither is triggered-then-decaying. The four claims form a clean
+     taxonomy under ARC-128 rather than a duplication: MECH-343 = try harder (widen), MECH-527 =
+     try differently (escalate above the action level), MECH-498 = give up, MECH-497 = fail to
+     stop. **MECH-527 does not `depends_on` ARC-128 and should.**
+
+---
+
+### MECH-349 -- CandidateRule mint (ARC-063 CREATE face): a non-gradient structural event mints...
+
+**Recommended disposition:** **(a) testable now** -- the module is built, default-OFF but armable,
+the mint fires non-degenerately in the current SD-078-centered configuration, and the claim's own
+assertion is measurable entirely UPSTREAM of the MECH-439 F-dominance conversion ceiling that
+blocks its parent ARC-063, so it does not inherit that blocker.
+
+**Extracted from:** the claim's own `notes` (the three-clause mint predicate: recurrence >=
+`crf_mint_recurrence_threshold`, no existing `context_tag` cosine >= match threshold, free slot
+exists) verified line-by-line against
+`ree-v3/ree_core/policy/candidate_rule_field.py::_maybe_mint` (lines 432-502); plus the sibling
+ARC-063 `what_would_answer` (for what is explicitly NOT owed here); plus measured mint diagnostics
+from V3-EXQ-666c, V3-EXQ-806 and V3-EXQ-822. Not drafted fresh.
+
+**Currency check:**
+- `_maybe_mint` implements the asserted predicate exactly, including the optional ARC-062 seed
+  (`seed_from_arc062: bool = True`, `candidate_rule_field.py:154`; `init_avail = min(1.0,
+  tolerance_floor + 0.5 * |gating_weight - 0.5| * 2)`).
+- `crf-availability-maintenance` (substrate_queue) is **complete, ready flipped True 2026-06-19**;
+  the notes' implied "awaiting V3-EXQ-639 validation" framing is stale by ~3 months.
+- V3-EXQ-639 is PASS but `non_contributory` with `claim_ids: []` -- it is a readiness diagnostic,
+  not a validation of MECH-349.
+- **The mint is demonstrably LIVE.** V3-EXQ-806 `baseline_allocated=True` arm:
+  `crf_n_minted` 3 / 10 / 10, `crf_max_pairwise_rule_dist` 1.598 / 1.701 / 1.701,
+  `crf_n_retired` 0, `crf_frac_active` 0.518 / 0.706 / 0.490 across seeds 101/202/303.
+  V3-EXQ-822: `crf_n_minted` 16 / 16 / 16, `crf_max_pairwise_rule_dist` 1.711 on all three seeds.
+- **And it is degenerate in BOTH available configurations, in opposite ways** -- this is the
+  central finding and the reason the falsifier below is shaped as it is:
+  - *Churn pole (legacy / uncentered).* V3-EXQ-666c `ARM_0_OFF`: `crf_n_minted_total`
+    302 / 257 / 239 with `crf_n_retired_total` 302 / 257 / 239 and
+    `crf_max_pairwise_rule_dist` **0.0** on all three seeds. Hundreds of mints, one slot, zero
+    differentiation -- mint-retire thrash, the novelty clause failing because the uncentered
+    context key is common-mode dominated (the SD-078 fault, `1 bucket raw vs 20 centered`).
+    Same signature in V3-EXQ-806's `baseline_allocated=False` arm: 1 minted, dist 0.0.
+  - *Saturate-and-freeze pole (mature + maintenance -- the CURRENT config).* `n_slots: int = 16`
+    (`candidate_rule_field.py:145`). V3-EXQ-822 minted **16 of 16** with
+    `crf_live_rules_final: 16` and no retirements. Mechanism: `availability_maintenance` floors
+    every rule's availability at `maintenance_floor = 0.45`, while the mature retirement floor is
+    `mature_retire_floor = 0.05`, so **no rule can ever fall below the retire floor** and clause
+    (c) of the mint predicate ("a free slot exists") becomes permanently unsatisfiable once the
+    pool fills. The field mints its 16 rules in an early burst and then **structurally cannot
+    mint again for the rest of the run.** MECH-349 asserts an *ongoing*, regularity-contingent
+    structural creator; what the substrate currently exhibits is a one-shot fill.
+- **A second, independent vacuity in the ARC-062-seed leg.** `init_avail` from the seed spans
+  [0.30, 0.80] (`tolerance_floor = 0.3`, plus `0.5 * confidence`). It is then overwritten by
+  `max(init_avail, 0.45)` under `availability_maintenance`. So whenever the ARC-062 discriminator's
+  `gating_weight` lies in **(0.35, 0.65)** -- confidence < 0.30 -- the seed contributes **exactly
+  nothing**, in the very configuration every recent CRF run uses. Only one manifest in the whole
+  evidence tree even records `seed_from_arc062`
+  (`v3_exq_876a_mech025_doing_mode_convergence_redesign_...`), so this leg is effectively untested.
+
+**epistemic_category (proposed):** `standard`.
+Explicitly **not** `substrate_conditional` -- the code exists and has been exercised five times
+(639, 666a, 666b, 666c, 806, 822), which is the discriminator the REE_assembly CLAUDE.md note
+gives ("the mechanism has genuinely never been exercised"). Explicitly **not** `substrate_ceiling`
+-- the F-dominance ceiling absorbs the *committed-action* signal downstream of MECH-351/352 and
+SD-033a; it does not touch MECH-349's own DVs, which are mint counts, retirement counts and
+pairwise rule-direction distance inside the field. ARC-063's parent falsifier is blocked by that
+ceiling; MECH-349's is not, and conflating them is what has kept this claim parked.
+
+**Draft `what_would_answer`:**
+
+> NON-DEGENERACY PRECONDITION. Apply TRIGGERED-STRUCTURAL-EVENT PRECONDITION (G9) in full; this
+> claim is the one the (B) pole was written from. Concretely, and all four must hold in the same
+> run before any verdict is admissible:
+> (a) *Mint fires.* `crf_n_minted >= 2` and `crf_live_rules_final >= 2` on >= 2/3 seeds. A run with
+> 0 or 1 live rules measures nothing (V3-EXQ-806's `baseline_allocated=False` arm and every
+> uncentered-key arm fail here).
+> (b) *Mints are DISTINCT, not churn.* `crf_max_pairwise_rule_dist > 0` -- ideally at the pinned-
+> direction scale ~1.6-1.7 -- AND `crf_n_retired_total / crf_n_minted_total <= 0.25`. The
+> V3-EXQ-666c `ARM_0_OFF` signature (302 minted, 302 retired, dist 0.0) is the canonical
+> vacuous-positive: a large mint count that is evidence of nothing.
+> (c) *The pool does NOT saturate inside the measurement window.* Report `crf_live_rules_final /
+> crf_n_slots` and the **mint time course** (mints per 10% of the episode). At least one mint must
+> occur in the final third of the window, and `crf_live_rules_final < crf_n_slots` at the end. A
+> run that fills 16/16 slots in an early burst and then freezes has converted the asserted
+> *triggered creator* into a *one-shot initialiser*, and its ON-vs-OFF delta is a dose contrast,
+> not a trigger contrast. With `crf_availability_maintenance=True` and `crf_maintenance_floor
+> (0.45) > crf_mature_retire_floor (0.05)` this failure is the DEFAULT, so the run must either
+> lower `maintenance_floor` below the retire floor for a subset of rules, raise `crf_n_slots`
+> above the number of distinguishable regimes the ecology affords, or extend the window until
+> mints demonstrably become regularity-limited rather than slot-limited.
+> (d) *The seed leg is separately non-vacuous, or is explicitly not under test.* If the ARC-062
+> top-down leg is claimed, report the distribution of `|arc062_gating_weight - 0.5|` at mint
+> events. Under `availability_maintenance` any mint with confidence < 0.30 has its seed
+> contribution entirely overwritten by `maintenance_floor`. If 100% of mints fall below that,
+> the seed leg is UNTESTED regardless of outcome and must be reported as such, not as a null.
+>
+> CONFIRMING. On the SD-078-centered context key with the mature-pool + maintenance stack, in an
+> ecology presenting >= 3 separable (context-regime -> action-object) regularities:
+> (1) *Recurrence-gating is real.* Mint events occur only after the keyed regularity has recurred
+> `>= crf_mint_recurrence_threshold` (3) times: the measured recurrence count at mint is >= 3 on
+> 100% of mint events, and a matched control arm with the threshold raised (e.g. 3 -> 12) shows
+> mint count falling monotonically, with the surviving mints still distinct (dist unchanged within
+> noise). If raising the threshold does not reduce mints, the counter is not what is gating.
+> (2) *Novelty-gating is real.* Mints track the number of *distinct* regularities the ecology
+> offers, not elapsed time or tick count. Across a 3-regime vs a 1-regime variant of the same
+> ecology, `crf_live_rules_final` in the 3-regime variant exceeds the 1-regime variant by
+> >= 2 rules on >= 2/3 seeds, with the 1-regime variant holding at 1-2. Additionally, a matched
+> control that lowers `mature_mint_block_threshold` (0.8 -> 0.5) must produce FEWER mints (a
+> stricter novelty gate blocks more), establishing the block is load-bearing rather than inert.
+> (3) *The minted population is distinct by construction.* `crf_max_pairwise_rule_dist >= 1.5`
+> (against the observed pinned-direction scale of 1.598-1.711) on >= 2/3 seeds -- this is
+> MECH-350's assertion and is reported here only as the CREATE face's output being well-formed;
+> do not re-derive it, cross-reference MECH-350.
+> PASS gate scaling: the between-variant rule-count delta in (2) must exceed max(2 rules,
+> 2 x SD of the within-variant per-seed rule count), with the 2-rule absolute floor binding.
+>
+> FALSIFYING.
+> (1) Mint count is insensitive to the recurrence threshold across a >= 4x sweep while the
+> preconditions hold -- the asserted "recurs above threshold" trigger is not the mechanism;
+> minting is driven by context-key drift, tick count, or slot availability instead.
+> (2) Mint count is insensitive to the number of distinct regularities the ecology presents
+> (1-regime and 3-regime variants produce statistically indistinguishable
+> `crf_live_rules_final`) -- the novelty clause is inert and the "creator" is a timer.
+> (3) The 666c signature reappears on the SD-078-centered key with maintenance ON -- high
+> `crf_n_minted_total` with `crf_n_retired_total` of comparable magnitude and
+> `crf_max_pairwise_rule_dist` at or near 0 -- i.e. the centering fix does not generalise beyond
+> the ecology 806 was run in. This falsifies the CREATE face as a *structural* creator: it mints
+> tokens, not slots.
+> NOT FALSIFYING. A null on any downstream committed-action or behavioural DV. That is the shared
+> MECH-439 F-dominance conversion ceiling, which sits below MECH-351/352 and SD-033a and is
+> owned by ARC-063's own `what_would_answer` precondition (2) and by the `f_dominance_conversion_
+> ceiling` substrate line. MECH-349 asserts that a distinct slot is MINTED, not that minting
+> changes behaviour. Routing such a null to MECH-349 would repeat the ARC-062 GAP-B
+> C1-holds/C2-fails misattribution 21 autopsies have already recorded.
+
+**Proposal sketch (disposition (a)):**
+- **Title:** `MECH-349 CREATE-face mint predicate falsifier: recurrence-gating x novelty-gating x
+  non-saturating pool`
+- **Related claims:** MECH-349 (primary), MECH-350 (REPRESENT -- cross-referenced for the
+  distinctness readout, not re-derived), ARC-064 (bottom-up regularity source), ARC-062
+  (seed leg, arm-able separately), ARC-063 (parent; explicitly NOT under test here).
+- **Design:** 2x2x(regime-count) on the SD-078-centered + mature-pool + maintenance stack.
+  Factor 1 `crf_mint_recurrence_threshold` in {3, 12}; factor 2 `crf_mature_mint_block_threshold`
+  in {0.8, 0.5}; factor 3 ecology regime count in {1, 3}. Slot pressure relieved
+  (`crf_n_slots` raised above the regime count, or `crf_maintenance_floor` lowered below
+  `crf_mature_retire_floor`) so precondition (c) can be met -- **this is the one substrate
+  parameter change the experiment requires, and it is a config-only change, no build.**
+  Optional 5th arm arming `crf_seed_from_arc062` with the gating-weight distribution recorded.
+- **Acceptance checks:**
+  - C0 (non-vacuity, self-routing): preconditions (a)-(c) above met on >= 2/3 seeds in the
+    reference arm; else `substrate_not_ready_requeue`, no verdict.
+  - C1 (recurrence-gating, load-bearing): mint count at threshold 12 strictly below threshold 3
+    on >= 2/3 seeds, with `crf_max_pairwise_rule_dist` preserved within noise.
+  - C2 (novelty-gating, load-bearing): `crf_live_rules_final` 3-regime minus 1-regime >= 2 on
+    >= 2/3 seeds; AND mint count at block-threshold 0.5 strictly below 0.8.
+  - C3 (diagnostic only, not a gate): mint time course shows >= 1 mint in the final third.
+  - C4 (negative control): OFF arm (`use_candidate_rule_field=False`) bit-identical to the
+    pre-CRF baseline.
+  - **Explicitly excluded from the gate:** any committed-action-class or behavioural DV. Record
+    them as diagnostics; a null there routes to `f_dominance_conversion_ceiling`, not to MECH-349.
+
+**depends_on additions:** none required. (Optional, low value: SD-078 as the context-key fix the
+mint now depends on for non-degeneracy -- currently invisible from MECH-349's block, which is
+part of why its evidence is unattributed.)
+
+**GOVERNANCE FLAG:** `evidence_discrepancy` -- MECH-349 has zero entries in
+`claim_evidence.v1.json` while three landed, reviewed runs carry its headline diagnostics under
+SD-078/ARC-063 attribution: V3-EXQ-806 (PASS/supports, `crf_n_minted` 3-10, dist 1.598-1.701),
+V3-EXQ-822 (**FAIL**, `evidence_direction: unknown`, 16/16 slots minted, dist 1.711) and
+V3-EXQ-666c (`ARM_0_OFF` 302 minted / 302 retired / dist 0.0). The same gap affects MECH-350,
+MECH-351 and MECH-352 (all four `NOT FOUND` in the index). Requested action: attribute the
+existing manifests to the CREATE/REPRESENT faces (or record explicitly why they cannot be), and
+adjudicate V3-EXQ-822's `unknown` direction -- a FAIL whose mint and representation diagnostics
+are healthy (16 minted, dist 1.711, `crf_frac_active_p2` 0.87-0.89) but whose consumer leg failed
+is exactly the kind of run that is silently read as evidence against the wrong face.
+
+**GOVERNANCE FLAG:** `stale_note` -- MECH-349's `notes` end "Validation V3-EXQ-639", but 639 is
+`non_contributory` with `claim_ids: []`, and the notes predate and omit the SD-078 centering fix
+(2026-07-25), the completed `crf-availability-maintenance` amend (ready 2026-06-19), and
+V3-EXQ-806/822. `live_status.as_of` is 2026-07-11. Suggested amendment: replace the validation
+pointer with SD-078 + the 806/822 pair, and record the saturate-and-freeze interaction
+(`maintenance_floor 0.45 > mature_retire_floor 0.05` -> retirement can never fire -> the mint
+predicate's free-slot clause becomes permanently blocking at 16/16) as a known non-degeneracy
+constraint on any future CRF run, since it silently affects MECH-350/351/352 as well.
+
+---
+
+### MECH-527 -- Stuckness-triggered attractor-escape exploration: a triggered, organism-level...
+
+**Recommended disposition:** **(g) merge with sibling -- PROPOSE ONLY** (partial absorption into
+MECH-343/SD-061, which already owns and has BUILT the trajectory-proposal channel), leaving a
+**narrowed residual** that stays **(f) deferred / substrate_conditional** with three named,
+resolvable blockers -- because the claim as currently written straddles a built-and-exercised leg
+and an unbuilt leg, and its `notes` misreport which is which.
+
+**Extracted from:** the claim's own `notes` falsifier sketch (false-bottom ecology; >= 3 arms
+no-perturbation / low-level action noise / stuckness-triggered strategy perturbation; organism-level
+DVs escape probability, discovery latency, basin quality, post-resolution decay,
+no-unnecessary-exploration control) -- these are good and are preserved verbatim below; PLUS the
+commissioned lit synthesis
+`evidence/literature/targeted_review_connectome_mech_440/SYNTHESIS_2026-09-01_mech440_mech527.md`
+s.5 (three owed revisions, and the trigger-substrate mismatch that becomes the precondition);
+PLUS MECH-343's already-drafted `what_would_answer`, which is substantively the falsifier for
+MECH-527's built channel. Not drafted fresh.
+
+**Currency check:**
+- **Channel 1 of 5 is BUILT and default-OFF.** `substrate_queue.json` -> `SD-061`
+  `implemented_pending_validation`; `ree-v3/ree_core/cingulate/stuck_state_detector.py` (graded
+  `stuck_score` in [0,1] from goal-progress stall + E3 score margin + committed-class diversity +
+  dACC choice difficulty, gated by goal salience, asymmetric EMA rise 0.3 / fall 0.05) and
+  `ree-v3/ree_core/policy/difficulty_gated_proposal_entropy.py` (`extra_candidates =
+  round(candidate_widen_max * s)`, `temperature_gain = 1 + temperature_gain_max * s`, applied to
+  `HippocampalModule.propose_trajectories` and the differentiable-CEM within-class temperature).
+  Knob `use_difficulty_gated_proposal_entropy: bool = False` (`config.py:4945`).
+  **The claim's "the above-action-level perturbation channels ... do not [exist]" is wrong for
+  this channel and right for the other four** (strategy proposals, retrieved attractors, goal
+  decompositions, precision/authority of the dominant attractor -- no `ree_core` analogue found).
+- **Channel 1 has been EXERCISED with an adverse result** -- V3-EXQ-694, detail in preamble
+  currency finding 2. Count widened 32->40; first-action entropy fell 3/3.
+- **The lit-pull the notes request has already landed** (preamble currency finding 3), including
+  the finding that **escalating breadth -- MECH-527's most distinctive commitment -- has NO
+  biological support**, only the algorithmic Variable Neighborhood Search precedent, which the
+  biology-before-formal-definitions invariant does not accept as grounding.
+- **The nominated trigger substrate does not fit.** MECH-482's SD-102 accumulator
+  (`ree-v3/ree_core/policy/epistemic_deficit.py`, landed 2026-08-29 `b69a1b8`) is fed by
+  predictive uncertainty + persistent realized prediction error + inter-predictor disagreement;
+  MECH-527's paradigm case (confident, settled, persistently failing) suppresses the first and
+  third. Only the persistent-PE channel matches. MECH-482 additionally has its own open
+  readiness debt (`sd_epistemic_deficit_multitarget_readiness`,
+  `implemented_pending_validation`; V3-EXQ-964 was structurally unsatisfiable per its own
+  `evidence_quality_note`), so it is not a substrate one can lean on today.
+- **The better-fitting built detector is SD-061's, and it is 50% wrong-signed** (preamble (ii)(3)).
+  This is a *cheaper* blocker than it looks: `StuckStateDetector` treats each axis as Optional and
+  inert when `None`, so a MECH-527-scoped trigger is a config/wiring change (stall + committed-
+  diversity only, `combine_mode` mean over the two), not a build.
+- **No false-bottom ecology exists** -- confirmed by grep across `ree_core` and
+  `experiments/_lib`. **But one is already documented.** `failure_autopsy_V3-EXQ-769_2026-07-17`
+  (via `ree-v3/experiments/_lib/mech457_probe_envs.py`) records that on the D3_hazard_free rung
+  the trained ON arm learned a locally stable, high-survival, **persistently inadequate** policy
+  -- keep moving to avoid self-contamination, survive all 200 steps, death 0, forage ~0 -- while
+  the better strategy (forage) went undiscovered. That is a false bottom by MECH-527's own
+  definition ("a locally stable but persistently inadequate basin"), it arose naturally rather
+  than by construction, and `MetabolicForageWrapper` is the already-written switch that dissolves
+  it. The ecology blocker is therefore `complicated (buildable)` at the experiment layer (an env
+  wrapper, the established `_lib` probe-scaffold pattern), not `complex (probe-gated)`.
+- **Taxonomy check requested by the brief: MECH-527 does NOT duplicate MECH-497/498** -- preamble
+  currency finding 10. It does not duplicate MECH-080 either; MECH-080 is its pathological absence
+  (finding 9).
+
+**epistemic_category (proposed):** `substrate_conditional` -- **unchanged, but only for the
+narrowed residual defined below.** The current value is right for the wrong reason: it is
+justified today by "channels do not exist", which is false for channel 1; it remains justified for
+the residual (channels 2-5 genuinely do not exist, the escalation ladder does not exist, and no
+false-bottom ecology exists). If the merge below is NOT accepted and the claim keeps the
+trajectory-widening leg, then the honest category for that leg is whatever MECH-343 carries
+(currently `substrate_ceiling`), and the claim would be split-category -- which is itself the
+argument for the merge.
+
+**Draft `what_would_answer`:**
+
+> SCOPE NOTE. This claim's trajectory-proposal-widening leg is MECH-343/SD-061's question, already
+> built (`ree_core/policy/difficulty_gated_proposal_entropy.py`) and already partially measured
+> (V3-EXQ-694). **See MECH-343's own `what_would_answer` -- in particular its
+> SHARED-CONVERSION-PRECONDITION (G4) reference, its "DECLARE WHICH TEMPERATURE the entropy DV
+> reads" clause (SD-061's CEM proposal-layer knob vs the SD-069/MECH-313 E3 select() softmax --
+> different knobs; a run that conflates them cannot attribute its result), and its "PRIOR TO
+> CARRY IN" record that V3-EXQ-694's ON arm entropy FELL on 3/3 seeds. Do not re-derive any of
+> it.** What follows tests only what is left after that: escalation ACROSS channels, and the
+> trigger's selectivity.
+>
+> NON-DEGENERACY PRECONDITION. Apply TRIGGERED-STRUCTURAL-EVENT PRECONDITION (G9) in full, plus
+> three requirements specific to this claim, all of which must be reported before any verdict:
+> (a) *A genuine false bottom must be demonstrated to EXIST in the ecology, by a control that has
+> nothing to do with this claim.* Show that a competent-by-other-means agent (an oracle, a shaped-
+> reward arm, or a hand-coded policy) attains materially better basin quality than the no-
+> perturbation arm converges to, and that the no-perturbation arm's policy is STABLE (low
+> committed-class turnover) and CONFIDENT (high score margin) while it sits there. Without that
+> control, a null on escape is indistinguishable from "there was nothing to escape to". The
+> MECH-457 / V3-EXQ-769 D3_hazard_free passive-survival optimum is a documented instance and the
+> `MetabolicForageWrapper` in `experiments/_lib/mech457_probe_envs.py` is the dissolving control.
+> (b) *The trigger must be selective, and the near-tie axes must be shown NOT to be carrying it.*
+> This claim's load-bearing distinction is that unresolvedness triggers and uncertainty does not.
+> SD-061's `StuckStateDetector` combines four axes, of which two (E3 score margin, dACC choice
+> difficulty) are near-tie/ambiguity axes that this claim asserts should trigger NOTHING. Report
+> each axis's separate contribution to `stuck_score` at every firing. CONFIRMING requires that
+> the stall and committed-diversity axes carry the firing in the false-bottom condition; if the
+> two near-tie axes carry it, the run has tested MECH-440's trigger, not this one, and must
+> self-route rather than report a verdict.
+> (c) *The trigger must fire from naturally-arising blockage, and must also NOT fire.* Detector
+> peak must exceed threshold and then decay on >= 2/3 seeds from ecological stuckness, not from
+> an experimenter-induced impasse (V3-EXQ-694 induced its impasse; that route is already spent).
+> Report the duty cycle: with `ema_alpha_rise` 0.3 vs `ema_alpha_fall` 0.05, a pinned-high score
+> is the expected failure and turns every arm contrast into a dose contrast. Duty cycle must lie
+> strictly inside (0.05, 0.80).
+> (d) *If MECH-482's `epistemic_deficit` is used as the trigger, the persistent-PE channel must
+> be isolated.* Per the 2026-09-01 synthesis, the uncertainty and disagreement inputs are
+> suppressed exactly in the confident-but-failing case, so an unmodified `epistemic_deficit` that
+> fails to rise is a substrate artifact, not evidence against the claim. Either consume the
+> persistent-PE channel only, or use the SD-061 stall + committed-diversity axes, and say which.
+>
+> CONFIRMING (the claim's own registered design, preserved). A >= 3-arm run in a demonstrated
+> false-bottom ecology -- (1) no perturbation; (2) low-level ACTION noise (MECH-313/MECH-440
+> class); (3) stuckness-triggered perturbation ABOVE the action level -- on organism-level DVs:
+> arm 3 strictly beats BOTH arm 1 and arm 2 on escape probability and discovery latency, with
+> basin quality after escape strictly better than the false bottom's, AND perturbation magnitude
+> decays after resolution, AND the no-unnecessary-exploration negative control holds (a matched
+> near-tie condition with two well-understood, similarly-good options produces NO perturbation
+> above arm 1's baseline). Effect-size gate: the arm-3-minus-arm-1 escape-probability delta must
+> exceed max(2 x SD of the per-seed delta, an absolute floor of 0.20 escape probability), on
+> >= 2/3 seeds.
+> ESCALATION LEG (separately gated, and currently the claim's weakest commitment). Under CONTINUED
+> stuckness the perturbation must broaden across channels, not merely intensify within one: at
+> least one channel beyond candidate trajectories must be shown to engage, later than channel 1,
+> and only after channel 1 has failed to resolve. **Recorded as a KNOWN GAP rather than an
+> asserted property**: the 2026-09-01 synthesis found no biological support for graded escalation
+> (Karlsson 2012 gives the destabilise-then-decay, nothing gives the ladder), and the only
+> precedent is algorithmic. Do not gate the claim's verdict on this leg until it has grounding.
+>
+> FALSIFYING.
+> (1) With the preconditions met, arm 3 does not beat arm 2 -- low-level action noise escapes the
+> false bottom as often and as fast as above-action-level perturbation. This is the claim's own
+> load-bearing distinction from MECH-440/MECH-313 and its failure is the cleanest refutation.
+> (2) The no-unnecessary-exploration control fails: arm 3 perturbs in the matched near-tie
+> condition as much as in the false-bottom condition. The trigger is uncertainty after all, and
+> the claim collapses into the operationalisation V3-EXQ-959 already weakened.
+> (3) Perturbation rises under stuckness and never decays after resolution -- falsifies the
+> annealing/triggered half, leaving a tonic floor (which MECH-313 already owns and V3-EXQ-687
+> found non-propagating).
+> (4) Variation rises but the policy does not RELOCATE: the dominant response stays dominant with
+> rare variants beneath it, and basin quality is unchanged. This is Neuringer, Kornell & Olufs
+> (2001, PMID 11199517) under extinction, flagged by the 2026-09-01 synthesis as the specific
+> reason "attractor escape" is over-claimed. It falsifies the ESCAPE framing while leaving a
+> weaker "variability injection under stuckness" reading standing -- **record it as a narrowing,
+> not a demotion**, and rename accordingly.
+> NOT FALSIFYING. A null on channel 1 (candidate-trajectory widening) alone. V3-EXQ-694 already
+> established that count-widening does not lift first-action entropy; that is MECH-343's owed
+> question and its `what_would_answer` routes such a null to the conversion-ceiling line, not to
+> a weakening.
+
+**Merge proposal, disposition (g) -- PROPOSE ONLY, for /governance to accept or reject:**
+- **Surviving id:** MECH-343 (with SD-061 as its design decision) absorbs the
+  trajectory-proposal-widening leg. MECH-527 **survives, narrowed** -- this is partial absorption,
+  not supersession.
+- **Absorbed id / text that moves:** from MECH-527's title and notes, the clause "transiently
+  injects variation ABOVE the immediate-action level -- perturbing candidate trajectories" (the
+  first named channel only) and the post-resolution decay clause as it applies to that channel.
+  Both are already asserted by MECH-343 and BUILT by SD-061; MECH-527 restates them without
+  citing either.
+- **What MECH-527 RETAINS (the residual, and it is substantial):** (1) escalation ACROSS channels
+  2-5 under continued stuckness -- unbuilt, and biologically unsupported per the 2026-09-01
+  synthesis, so it should be carried as a known gap; (2) the false-bottom ECOLOGY requirement and
+  its organism-level DVs, which MECH-343's proposal-entropy framing does not supply; (3) the
+  trigger-selectivity assertion (unresolvedness, not near-tie uncertainty), which is precisely
+  where SD-061's built detector does NOT match and which is the sharpest new content in the claim.
+- **Reverse-deps needing repointing:** I checked `grep -n "MECH-527" claims.yaml` -- **none.**
+  MECH-527 is 4 days old (registered 2026-09-01) and nothing depends on it, so the merge is
+  cheap now and gets more expensive with every week it waits. `depends_on` edges pointing OUT of
+  MECH-527 (MECH-440/313/482/314b/314c) are all "distinguished-from" annotations and are unaffected.
+- **Also owed regardless of the merge decision** (all three from the commissioned synthesis, none
+  yet applied): rename toward Variable Neighborhood Search framing; soften "attractor escape" to
+  "variability injection under stuckness" pending evidence; and resolve the MECH-482 trigger
+  mismatch. The synthesis calls the third "cheap and [it] should happen before any falsifier is
+  designed".
+
+**depends_on additions:**
+- `MECH-343` -- the widening-under-stall claim this restates one channel of. **Required**; without
+  it the duplication is invisible from either block.
+- `SD-061` -- the built detector + regulator that is MECH-527's channel-1 substrate and its
+  best-fitting (though 50% wrong-signed) trigger.
+- `ARC-128` -- the termination-taxonomy umbrella MECH-497/498 both instantiate; MECH-527 is the
+  escalate-before-disengaging member and is currently the only one of the four not attached to it.
+- `MECH-080` -- the pathological absence of this mechanism (OCD attractor lock-in, "normal signals
+  cannot trigger basin exit"), which supplies an independent clinical falsifier route.
+- `Q-080` -- the MVT/foraging effort-dissociation environment (built 2026-07-09), cited by
+  MECH-498 as an existing asset and a candidate host for a delayed-return false bottom.
+
+**GOVERNANCE FLAG:** `stale_note` -- MECH-527's `notes` state "the above-action-level perturbation
+channels and the false-bottom ecology do not [exist] -- DO NOT queue an experiment against this
+until both exist" and that the lit-pull "SHOULD widen its target". Both are out of date. SD-061
+(detector + proposal-entropy regulator) is `implemented_pending_validation` and was exercised by
+V3-EXQ-694 on 2026-06-19; the widened lit-pull ran 2026-09-01 (the day the claim was registered)
+and delivered three named revisions plus a finding that escalating breadth is biologically
+unsupported. `evidence: []` in the claim block while `claim_evidence.v1.json` shows 4 lit entries
+at `lit_conf 0.89`. The DO-NOT-QUEUE instruction is still substantially correct for the residual
+(channels 2-5, the ecology) but is being justified by a premise that no longer holds, which is
+how a claim gets parked for the wrong reason.
+
+**GOVERNANCE FLAG:** `contested_disposition` -- MECH-527 partially duplicates MECH-343/SD-061 with
+no cross-reference in either direction, and is currently `substrate_conditional` on a premise the
+substrate contradicts for its built leg. Requested decision: accept or reject the partial-absorption
+proposal above, and apply the three revisions the commissioned 2026-09-01 synthesis owes this claim
+(rename toward VNS; soften "attractor escape" per Neuringer 2001, where variability rose while the
+rank ordering of responses was PRESERVED -- added variation, not relocation; and resolve the
+MECH-482 trigger mismatch, which the synthesis calls cheap and pre-falsifier). Raising this now is
+deliberate: the claim has zero reverse-deps at 4 days old, and the merge cost only rises.
+
+**GOVERNANCE FLAG:** `promotion_review` (low priority, informational) -- V3-EXQ-694
+(`v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness_20260619T224714Z_v3.json`) is
+`outcome: PASS`, is in `reviewed_run_ids`, and carries `claim_ids: []`. It is the only exercise of
+the SD-061 substrate and its entropy result (ON-arm `first_action_entropy` fell -0.0812/-0.0734/
+-0.0953 on 3/3 seeds while control drift was mixed in sign) is load-bearing for MECH-343 and now
+for MECH-527. It is currently attributable to neither. MECH-343's `what_would_answer` already
+carries the numbers by hand as a "PRIOR TO CARRY IN" -- which works, but means the index shows
+MECH-343 with 0 experimental entries while a directly relevant measured prior exists.
+
+## SOLO REPORTS (appended as they land; verbatim agent output)
+
+---
+
+<!-- S_MECH-485 appended 2026-09-04T21:22:55Z -->
+## G14 -- MECH-485 predicted-harm/confidence threshold-gated triage  (agent report)
+
+### Group preamble
+- **Solo note:** this claim had no group-mate because its only natural partner, `Q-090`, was drafted alongside it in the same 2026-08-07 staging file and *its* draft WAS applied on 2026-08-09 -- `Q-090` already carries a `what_would_answer` in live `claims.yaml`, so it is out of the campaign's "currently lacking `what_would_answer`" population. MECH-485 is the orphaned half of that pair. The cross-claim mandate therefore reduces to one cross-reference, handled inline below: MECH-485's falsifier must not re-derive Q-090's, and Q-090's live text already points back at MECH-485 for its inherited precondition -- which is currently a **dangling pointer**, because the text it points at does not exist. Fixing MECH-485 repairs Q-090 too.
+- **`human_review_note` in the loop-branch copy:** **none present.** The loop-branch copy at `prior/MECH-485_loopbranch.yaml` is field-for-field the same block as live `claims.yaml` (id/title/claim_type/subject/polarity/status/live_status/epistemic_category/implementation_phase/version_relevance/registered_utc/depends_on/location/source/notes/evidence) -- no `human_review_note`, no `what_would_answer`, nothing to quote.
+
+---
+
+### MECH-485 -- "A single predicted-harm/success magnitude with an associated confidence (epistemic_deficit) term, computed from E2/E3 forward rollouts, is threshold-gated into three distinct consumers..."
+
+**Recommended disposition:** **(c) substrate-blocked -- `substrate_conditional`**, unchanged. The mechanism has never been exercised because three of its five preconditions still have no substrate at all; the one that *has* landed since (the confidence half) landed default-off and with its own validation still owed, which strengthens rather than weakens the blocked reading.
+
+**Extracted from:** the 2026-08-07 staged draft recovered at `prior/MECH-485_staged_20260807.md` ("DRAFT 1 -- `MECH-485`"), which itself extracted from the claim's own `notes` (Addendum 5 synthesis; the "DO NOT build ahead of (a)/(b)/(c)" paragraph) and from `INV-012`'s `what_would_answer` LEG 0 / LEG 3. **Not re-invented.** Every structural element below -- the (A)/(B) split, the five inherited preconditions, the sixth magnitude-x-confidence dissociability guard, the three confirming signatures, the three named falsification routes with distinct remedies, and the "order of attack" tail -- is the 2026-08-07 text. What changed is listed under Currency check and is marked inline in the draft with `[updated 2026-09-04]`.
+
+**Currency check** (every substrate/run reference in the 2026-08-07 text re-verified against live trees today; `REE_assembly` at `dc14195bf`, `ree-v3` at `f22d65c`):
+
+| Precondition / reference | 2026-08-07 said | Verified 2026-09-04 | Delta |
+|---|---|---|---|
+| (1) Leg 0 / `MECH-439` conversion ceiling | `ceiling_decision: exhausted`, no differentiated E3 candidates | still `ceiling_decision: exhausted`, `status: candidate`, `epistemic_category: standard`, `assembly_status: in_progress`, `live_status` re-stamped `as_of 2026-09-01` | **unchanged -- still unmet** |
+| (2) magnitude half: `predicted_harm_delta` | declared line 111, assigned line 665, **zero readers** | still exactly 2 sites in the canonical tree (`ree_core/pfc/e2_escape_affordance_linker.py:111` and `:665`); `/usr/bin/grep -rn predicted_harm_delta --include="*.py"` over `ree_core/`, `tests/`, `experiments/` returns **no reader**. (The other 6 repo hits are stale copies inside `ree-v3/.claude/worktrees/{keen-elion-70debb,zen-jang-c29713,focused-ishizaka-c3cba9}`, not the canonical tree.) | **unchanged -- still write-only.** But see the NUANCE below, which is new and was NOT in the 2026-08-07 finding |
+| (2, nuance) the `harm_delta` *head* | not separately examined | the head IS trained (targets built at `:594-598`) and IS read -- but only at `:448-449`, inside the relief readout, as `clamp01((predict_head("harm_delta") + predict_head("threat_termination")) / 2)`. So a predicted-harm quantity reaches a consumer **only after being averaged with an unrelated head and clamped to [0,1]**. No consumer anywhere sees a standalone predicted-harm magnitude. | **NEW, and it sharpens the precondition rather than clearing it** |
+| (3) confidence half: `epistemic_deficit` | "zero hits anywhere in `ree_core/`"; MECH-482/483 unbuilt | **BUILT.** `ree_core/policy/epistemic_deficit.py` exists (SD-102, wired 2026-08-29 ree-v3 `b69a1b8`, readiness rebuild `bd58ab6` 2026-09-01); 125 hits in `ree_core/`; contract suites `tests/contracts/test_mech_482_epistemic_deficit_accumulator.py` and `test_sd_epistemic_deficit_multitarget_readiness.py` (23); driver `experiments/v3_exq_964_mech482_epistemic_deficit_validation.py` | **CHANGED -- the single biggest currency finding of this pass** |
+| (3, knob) | n/a | **default-off**: `curiosity_learning_progress_source: Literal["broadcast","epistemic_deficit"] = "broadcast"` (`ree_core/utils/config.py:4576-4578`); `"broadcast"` is documented bit-identical | built != armed |
+| (3, validation) | n/a | `V3-EXQ-964` (`..._20260829T215030Z_v3.json`) ran **FAIL**, `evidence_direction: non_contributory` -- governance `governance-20260830-0630` ratified the autopsy: C2 was **structurally unsatisfiable** (per-episode `reset()` keeps `n_targets == 1`, all 32 candidates match it, readout is a CONSTANT vector that cannot move an argmax). Readiness rebuild landed 2026-09-01 (`substrate_queue.json` `sd_epistemic_deficit_multitarget_readiness`, status `implemented_pending_validation`, `ready: false`) behind six no-op-default knobs; it measured FOUR causes of the collapse, two of which the autopsy never named (R3 update/readout frame mismatch, R4 hard-threshold saturation). Its own `validation_owed` field says a NEW-letter 964 successor is required and was **not queued** -- confirmed: `ree-v3/experiment_queue.json` holds only `V3-EXQ-1002`, `V3-EXQ-983a`, `V3-EXQ-993a`. | **confidence half is built-but-unvalidated; MECH-482 itself is still `candidate/v3_pending/substrate_conditional`** |
+| (4) leg-1 target pathways | BetaGate takes no harm term; `cancel_window`/`veto_window` zero hits | `ree_core/heartbeat/beta_gate.py`: the string `harm` appears in **no** method signature or body (checked against the full `def` inventory: `is_elevated`, `refractory_remaining`, `committed_run_length`, `apply_refractory`, `note_closure_coupled_elevation`, `note_closure_commit_intent`, `elevate`, `release`, `propagate`, `should_admit_elevation`, `receive_hippocampal_completion`, `get_held_state`, `get_state`, `reset`). `cancel_window` / `veto_window` / `cancel_open`: **0 hits each** in `ree_core/` | **unchanged -- still unmet** |
+| (5) leg-3 retention mechanism | "does not exist in any form; deliberately NOT registered pending lit-pull" | **REGISTERED** as `MECH-487` (title: bounded, provenance-tagged retention buffer for rejected/uncommitted E3 candidates, riding on the MECH-094 gate under the MECH-322 template), already in this claim's `depends_on` with an explanatory comment, and carrying its own `what_would_answer`. Still `candidate` / `substrate_conditional`. **Still unbuilt**: `retained_alternative`, `retain_candidate`, `rejected_candidate`, `counterfactual_retention`, `candidate_retention` -- 0 hits each in `ree_core/`; `MECH-487` appears in no `ree_core/`, `experiments/` or `tests/` file. | **PARTIALLY CHANGED -- registered, not built. The claim's own `notes` are now internally inconsistent**: the "LOAD-BEARING UNREGISTERED DEPENDENCY" paragraph still says the mechanism is deliberately unregistered, while `depends_on` already carries MECH-487 saying it was registered on the same day |
+| `INV-012` LEG 0 / LEG 3 cross-reference targets | LEG 3 "added later same day" | both still live in `INV-012.what_would_answer` (LEG 0 at "CURRENTLY UNMET"; LEG 3 present, with its own four-part non-degeneracy precondition and its confabulation-bound). `INV-012` is `status: active`, `epistemic_category: substrate_conditional`, and `depends_on` now carries BOTH `MECH-485` and `MECH-487` | **cross-references still valid; LEG 3 is now better served by MECH-487 directly** |
+| Reverse deps (fan-in 3) | n/a | confirmed exactly three: `INV-012` (active/substrate_conditional), `Q-090` (candidate/substrate_conditional), `MECH-487` (candidate/substrate_conditional) | confirmed |
+| Own evidence | n/a | `evidence: []`; no manifest under `evidence/experiments/` references MECH-485 | never run |
+
+**Net currency verdict:** one of the five preconditions moved (the confidence half went from "does not exist" to "built, default-off, validation owed"); one moved halfway (leg-3 retention went from "unregistered" to "registered as MECH-487, still unbuilt"); three are byte-for-byte unchanged. The disposition does not move: **the claim is still untestable by construction, not merely unfavoured.**
+
+**epistemic_category (proposed):** `substrate_conditional` -- **no change.** This is `substrate_conditional` and not `substrate_ceiling` on the ARC-062/ARC-063 test: the mechanism has never been exercised at all (leg-1 wiring and leg-3 retention have no code), so there is no built-and-exercised pipeline whose signal a downstream mechanism could be absorbing. The existing `live_status.reading: candidate/v3_pending/substrate_conditional` marker is consistent and should be re-stamped `as_of: '2026-09-04'` with the precondition-(3) movement noted.
+
+**Draft `what_would_answer`:**
+
+> Answered by ABLATING THE FAN-OUT, once the substrate exists: does routing
+> one magnitude+confidence signal to three regime-specific consumers do
+> anything a single graded response would not?
+>
+> Two separable assertions, which can fail independently:
+> (A) SHARED SOURCE -- the three legs are driven by the SAME predicted
+> magnitude + confidence pair, not by three independently-computed triggers
+> that merely co-vary. This is Addendum 5's synthesis; Addendum 2's own
+> earlier reading (three "functionally distinct consumers" of shared
+> representational substrate) is the competing hypothesis, not a strawman.
+> (B) DIFFERENTIATED RESPONSE -- the fan-out is genuinely regime-gated, not
+> one uniform response whose intensity happens to scale with magnitude.
+>
+> NON-DEGENERACY PRECONDITION (five parts; as of 2026-09-04 ONE is partially
+> met and FOUR are unmet -- this claim is untestable by construction, not
+> merely unfavored):
+> (1) Leg 0 cleared -- E3 must select among genuinely graded, differentiated
+> candidates, or there is nothing for a magnitude to be computed OVER. See
+> INV-012's own what_would_answer LEG 0 for the full statement and the
+> MECH-439 `ceiling_decision: exhausted` evidence; do NOT re-derive it here.
+> Re-verified 2026-09-04: MECH-439 is still `exhausted`, `live_status`
+> re-stamped 2026-09-01. UNMET.
+> (2) The magnitude half must exist AND be consumed AS A MAGNITUDE.
+> `predicted_harm_delta` (ree_core/pfc/e2_escape_affordance_linker.py:111,
+> assigned :665) is the nearest existing forward-rollout predicted-harm
+> quantity, and a grep over ree_core/, tests/ and experiments/ still finds
+> ZERO readers of that field (re-verified 2026-09-04; unchanged since
+> 2026-08-07). [updated 2026-09-04] The underlying `harm_delta` HEAD is not
+> dead -- it is trained (:594-598) and read at :448-449 -- but only inside
+> `clamp01((harm_delta + threat_termination) / 2)`, so the one path by which
+> a predicted-harm prediction reaches any consumer destroys its identity by
+> averaging it with an unrelated head and clamping it to [0,1]. A signal
+> that is only ever consumed pre-averaged cannot gate three regimes at two
+> cut-points, and a magnitude nothing consumes cannot gate anything at all.
+> UNMET -- and note the remedy is now narrower than "wire it up": the field
+> needs a consumer that sees it UNAVERAGED.
+> (3) The confidence half must exist. [updated 2026-09-04 -- this is the one
+> precondition that has MOVED since the original draft.] It now does:
+> MECH-482's EpistemicDeficitAccumulator is BUILT and wired
+> (ree_core/policy/epistemic_deficit.py, SD-102, ree-v3 b69a1b8 2026-08-29;
+> multi-target readiness rebuild bd58ab6 2026-09-01), with 23 contracts. But
+> it is NOT USABLE for this claim yet, for two independent reasons that must
+> both be discharged before any MECH-485 run is scored: (a) it is DEFAULT-OFF
+> -- `curiosity_learning_progress_source` defaults to `"broadcast"`, which is
+> documented bit-identical, so an experiment that does not explicitly arm
+> `"epistemic_deficit"` is testing nothing; (b) its own validation is OWED
+> and its first attempt was structurally void -- V3-EXQ-964 (2026-08-29) is
+> FAIL / non_contributory because the per-episode reset kept `n_targets == 1`
+> and the per-candidate readout was a CONSTANT vector that cannot move an
+> argmax, and the 2026-09-01 readiness build found four causes of that
+> collapse (two of them not named by the autopsy) and explicitly recorded
+> that a new-letter successor is required and was not queued. So the
+> confidence term exists as code and does NOT yet exist as a discriminating
+> quantity. Any MECH-485 run must gate on the readiness statistics that build
+> exposed -- `n_targets >= 2`, `last_readout_deficit_range > 0`,
+> `last_lp_dev_range > 0` -- BEFORE reading a verdict, or it will silently
+> reproduce 964's vacuity one level up. PARTIALLY MET.
+> (4) The leg-1 target pathways must accept a predicted-harm input.
+> BetaGate (ree_core/heartbeat/beta_gate.py) exists but takes no harm or
+> predicted-harm term in any method signature or body (re-verified against
+> its full `def` inventory, 2026-09-04); MECH-138's cancel-window has no
+> substrate presence at all (`cancel_window`/`veto_window`/`cancel_open`:
+> zero hits in ree_core/). So leg 1 is still a claim about a wire that does
+> not exist, between an endpoint that exists and one that does not. UNMET.
+> (5) Leg 3's retention mechanism must exist. [updated 2026-09-04] It is now
+> REGISTERED -- MECH-487, the bounded provenance-tagged retention buffer for
+> rejected/uncommitted E3 candidates, riding on the MECH-094 imagination/
+> reality write gate under the MECH-322 audited-exception template -- and is
+> already in this claim's depends_on. It is NOT BUILT: no retention or
+> persistence of losing E3 candidates exists in ree_core/ (five distinct
+> name-shapes checked, zero hits each; MECH-487 appears in no substrate,
+> experiment or test file). Cross-reference MECH-487's own what_would_answer
+> and INV-012's LEG 3 for what the mechanism must do and for the
+> confabulation bound it must respect; do NOT re-derive either here. UNMET.
+> NOTE for whoever next edits this claim's `notes`: the "LOAD-BEARING
+> UNREGISTERED DEPENDENCY" paragraph there is now stale -- it says the
+> retention mechanism is deliberately unregistered pending a lit-pull, which
+> that same lit-pull discharged on 2026-08-07 by registering MECH-487.
+>
+> PLUS one non-degeneracy guard specific to THIS claim rather than
+> inherited: (6) MAGNITUDE AND CONFIDENCE MUST BE MEASURABLY DISSOCIABLE in
+> the test distribution. The claim asserts a two-dimensional gate
+> (magnitude x confidence) fanning into three regimes. If confidence is in
+> practice a monotone function of magnitude -- confidently-predicted harms
+> are also large ones -- the gate collapses to one dimension, only two
+> regimes are ever occupied, and leg 2 (orient/survey) is never entered.
+> A run under those conditions would report "no three-way structure" for a
+> reason that has nothing to do with whether the claim is true. Require a
+> reported joint distribution over (magnitude, confidence) with populated
+> off-diagonal cells -- specifically high-magnitude/low-confidence, which
+> is the ONLY cell that distinguishes leg 2 from leg 1 -- before any
+> verdict is read. [updated 2026-09-04] This guard is now the DIRECT
+> generalisation of V3-EXQ-964's confirmed failure, not a hypothetical: 964
+> was void precisely because the confidence-side readout was constant across
+> candidates. A constant confidence term populates exactly one column of this
+> joint distribution, so precondition (6) and precondition (3b) are the same
+> failure at two scales and must be reported together.
+>
+> CONFIRMING signature (all three, not any one):
+> (i) FAN-OUT IS LOAD-BEARING -- collapsing the three consumers into a
+> single graded response (interrupt probability scaled by magnitude, no
+> orient/survey regime, no retention) degrades performance on at least two
+> of the three legs' own outcome metrics relative to the intact pipeline.
+> Scale the PASS gate on the SD of the paired per-seed delta (>= 2 SD) with
+> an absolute floor, not on a raw difference.
+> (ii) DOUBLE DISSOCIATION OF CUT-POINTS -- sweeping the interrupt
+> threshold moves the leg-1/leg-3 boundary WITHOUT moving the leg-2
+> boundary, and sweeping the epistemic_deficit threshold moves the leg-2
+> boundary WITHOUT moving the leg-1/leg-3 boundary. This is what separates
+> "one signal, independently-placed cut-points" from "three signals": three
+> independent triggers would not show each sweep confined to its own
+> boundary.
+> (iii) SHARED SOURCE IS SUFFICIENT -- substituting a leg-specific,
+> independently-computed trigger for the shared signal in any single leg
+> yields no improvement over the shared signal on that leg's own metric.
+>
+> FALSIFYING, in three distinct ways with three distinct remedies:
+> -- THREE-SIGNAL reading: the shared signal underperforms a leg-specific
+> trigger in at least one leg by a margin that survives the other legs
+> being held intact. Then the legs need different COMPUTATIONS, not
+> different thresholds on one, and Addendum 2's pre-synthesis reading was
+> right. Remedy: demote MECH-485 from a unity claim to "three mechanisms
+> sharing E2/E3 forward-prediction substrate" and keep each leg. NOTE this
+> is a partial falsification -- MECH-485 can fail AS A UNITY CLAIM while
+> every individual leg survives, and that outcome must not be recorded as
+> refuting the legs.
+> -- DECORATIVE FAN-OUT: a single graded response reproduces the intact
+> pipeline's benefit on all three legs' metrics. Then threshold-gating is
+> a description of the response curve, not a mechanism, and (B) is false
+> even if (A) holds. Remedy: retire the three-consumer structure, keep the
+> shared-signal claim.
+> -- OVER-CONSTRAINED SCALE: no placement of the two cut-points leaves all
+> three legs simultaneously non-degenerate -- every setting at which leg 1
+> fires usefully starves leg 3 of retainable candidates, or vice versa.
+> This is Q-090's independent-criterion reading generalized to the whole
+> pipeline, and it falsifies the "one scale partitioned at two cut-points"
+> architecture specifically. Remedy: give the legs independent admission
+> criteria, which is exactly what Q-090 asks about for leg 3 -- see Q-090's
+> own what_would_answer, which is already written and which inherits this
+> precondition block rather than restating it.
+>
+> ORDER OF ATTACK, if this is ever built. [updated 2026-09-04 -- the
+> ordering has CHANGED, because precondition (3) moved.] Precondition (2) is
+> still the cheapest and is still independently useful: giving
+> `predicted_harm_delta` a consumer that reads it UNAVERAGED is a smaller
+> step than anything else here, and its result is informative regardless of
+> MECH-485's fate. Precondition (3) is now second rather than blocked --
+> what it needs is not a build but the OWED V3-EXQ-964 successor (new
+> letter, readiness config armed on both arms, gated on n_targets >= 2 and a
+> non-constant per-candidate readout before C2 is scored), which the
+> 2026-09-01 readiness build recorded as required and did not queue.
+> Preconditions (4) and (5) remain the expensive ones and are unchanged. Do
+> not treat the whole pipeline as one indivisible build.
+
+**Proposal sketch:** none -- disposition (c) does not mint. Four of the six preconditions are unmet and the fifth is only partially met, so any `EXP-####` would describe a run nothing can execute. (The one runnable adjacent item -- the V3-EXQ-964 successor -- belongs to MECH-482 / `sd_epistemic_deficit_multitarget_readiness`, not to MECH-485, and is flagged separately below rather than minted here.)
+
+**depends_on additions (if any):** carry forward the 2026-08-07 proposal, unchanged and still valid --
+1. **Add `MECH-094`** -- `MECH-094  # imagination/reality write gate -- leg 3's retained content must stay provenance-distinguishable`
+2. **Add `MECH-322`** -- `MECH-322  # the one bounded, audited exception through MECH-094 -- template shape any leg-3 retention must follow`
+Both are named as load-bearing by `INV-012` LEG 3, and MECH-487's own title now explicitly rides on the MECH-094 gate under the MECH-322 template, which makes the edge more clearly warranted today than it was on 2026-08-07. **Not proposed:** a reverse edge to `INV-012` (it already depends on MECH-485; the reverse would make the graph cyclic) -- cross-reference in text instead.
+
+---
+
+**GOVERNANCE FLAG (1 of 2):** `evidence_discrepancy`
+
+> **The 2026-08-09 governance note records an application that never happened, and the same commit destroyed the source text.**
+>
+> `MECH-485.notes` ends with: *"[2026-08-09 governance, GFLAG-0009 resolution]: applying the what_would_answer drafted 2026-08-07 (evidence/planning/thought_digestion_staged_2026-08-07_mech485_q090.md, staged but never applied) verbatim..."*
+>
+> That application did not occur. Verified:
+> - **`REE_assembly` `d8ccbce59eab574d76b747d060abdf1bbc4edc19`** ("governance: cycle 2026-08-09 -- resolve 8 open governance flags (GFLAG-0004/0005/0008/0009/0014/0015/0018)", 2026-08-09T06:26Z, author `nooarche`). Reading `git show d8ccbce59e:docs/claims/claims.yaml`, the MECH-485 block at that commit has fields `title, claim_type, subject, polarity, status, live_status, epistemic_category, implementation_phase, version_relevance, registered_utc, depends_on, location, source, notes, evidence` -- **no `what_would_answer`**. The note asserting the application is itself one of that commit's insertions.
+> - **The field is still absent today** at `REE_assembly` `dc14195bf` (verified by loading `claims.yaml` and checking the parsed block's keys). `evidence: []`.
+> - **The same commit DELETED the source.** `d8ccbce59e` removed `evidence/planning/thought_digestion_staged_2026-08-07_mech485_q090.md` (322 lines), which had been added by `4d0371304c` ("thought-digestion: STAGE what_would_answer drafts for MECH-485 + Q-090 (headless chip, not applied)"). So the staging file was destroyed in the same commit that claimed to have consumed it, leaving no in-tree copy of the drafted text.
+> - **The sibling from the same staging file WAS applied.** `Q-090` carries a live `what_would_answer` whose opening is the staged Draft-2 text (with a lit-pull revision visible at "THE READINGS ... this claim's targeted lit-pull"). So this is not a wholesale non-application of GFLAG-0009: **one of the two drafts landed and the other was silently dropped**, which is exactly why nothing downstream caught it.
+> - **Consequential, not cosmetic.** `Q-090`'s live falsifier says *"(1) INHERITED -- everything MECH-485's own what_would_answer requires ... Do NOT re-derive it here; see MECH-485."* That is a pointer into a field that does not exist -- Q-090's non-degeneracy precondition is currently unresolvable as written. Applying the draft above repairs Q-090 as a side effect.
+>
+> **Requested action:** raise as `evidence_discrepancy` (`stale_note` would understate it -- the note asserts a completed governance action, not merely an out-of-date fact). Resolution should (a) apply the re-derived `what_would_answer` above, (b) correct the 2026-08-09 notes paragraph to record that the application was recorded but not performed and was completed on the resolution date, naming `d8ccbce59e`, and (c) re-stamp `live_status.as_of` to the resolution date.
+
+**GOVERNANCE FLAG (2 of 2):** `stale_note`
+
+> **The `predicted_harm_delta` dead-readout callout, carried in MECH-485's own notes since 2026-08-09, is still true but is now stated too weakly -- and it belongs to SD-059/MECH-358, not here.**
+>
+> The 2026-08-09 note says `predicted_harm_delta` "is computed and never consumed anywhere in ree_core -- benign-by-design or worth a substrate check, not adjudicated here." Re-verified 2026-09-04 at `ree-v3` `f22d65c`: the **field** still has exactly one write and zero reads in the canonical tree. But this pass additionally established that the **head** behind it is trained (`e2_escape_affordance_linker.py:594-598`) and IS read at `:448-449` -- only ever as `clamp01((harm_delta + threat_termination) / 2)`. So the accurate statement is not "a trained output nothing has ever checked" but "a predicted-harm prediction that no consumer can see unaveraged". That distinction changes the remedy: the fix is not merely "wire `predicted_harm_delta` to something" but "expose it to a consumer that does not pre-average it", and it is the cheapest single step toward MECH-485 precondition (2). Recommend routing to a substrate check against `SD-059`/`MECH-358` (the escape-affordance linker's own claims), where it has an owner, rather than leaving it as an unadjudicated aside in MECH-485's notes.
+>
+> **Second, separable item, surfaced by the same pass and stated here so it is not lost:** `substrate_queue.json` `sd_epistemic_deficit_multitarget_readiness` is `implemented_pending_validation` / `ready: false`, and its 2026-09-01 `implementation_log` entry records `validation_owed`: a **new-letter V3-EXQ-964 successor** arming the readiness config on both arms and gating on `n_targets >= 2` plus a non-constant per-candidate readout before C2 is scored -- explicitly "NOT queued by this build session". Confirmed still not queued: `ree-v3/experiment_queue.json` contains only `V3-EXQ-1002`, `V3-EXQ-983a`, `V3-EXQ-993a`. This is MECH-482's owed work, not MECH-485's, but MECH-485's precondition (3) cannot clear until it runs, so it is the binding item on this claim's critical path. Route to `/queue-experiment` under MECH-482 / SD-102.
