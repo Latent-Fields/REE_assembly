@@ -491,3 +491,21 @@ suppressions:
     added: "2026-09-01"
     added_by: "falsestmt-fix-20260901"
     review_after: "2026-12-01"
+
+  - finding_id: "D-006:GFLAG-0126"
+    reason: >-
+      GFLAG-0126 and GFLAG-0127 share claim set (EXT-005), flag_type
+      (stale_note) and date (2026-09-03), which is what D-006 keys on -- and
+      here they genuinely ARE one finding: GFLAG-0127 was raised as the
+      explicit corrected successor ("SUPERSEDES GFLAG-0126 (same finding,
+      corrected successor)") because 0126 named SD-029 where the live
+      successor to the retired SD-003 is SD-031. GFLAG-0126 already carries
+      status superseded, and GFLAG-0127 was APPLIED and resolved by governance
+      on 2026-09-03 (governance-20260903T2013: EXT-005 ree_mechanism SD-003 ->
+      SD-031, notes rewritten). Nothing remains to adjudicate; the group is
+      one flag with a corrected re-issue, both now closed. Recorded disposition,
+      not a mute -- if a THIRD stale_note flag lands on EXT-005, re-read rather
+      than assuming this entry covers it.
+    added: "2026-09-04"
+    added_by: "governance-20260903T2013"
+    review_after: "2026-12-01"
