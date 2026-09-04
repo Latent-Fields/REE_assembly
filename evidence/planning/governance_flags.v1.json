@@ -1928,6 +1928,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0134",
+      "claim_ids": [
+        "ARC-130"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "ARC-130's own claims.yaml notes record its per-stage causal-reach instrumentation schema as an UNBUILT instrumentation proposal, 'not authorised' -- so the blocker EXP-1344 names (ARC-130-reach-stage-instrumentation-unauthorised) cannot be adopted as an ordinary substrate_queue build without a governance authorisation decision first. Meanwhile EXP-1344's own blocked_note says the claim's testable core is ALREADY demonstrated by the confirmed V3-EXQ-931 autopsy plus three prior convergent instances, so the owed action there is /claim-synthesis evidence tagging rather than a new experiment. Needs a decision between: (a) authorise the reach-stage instrumentation build (which then also owes a substrate_queue entry -- deliberately not drafted, since drafting one would pre-empt the authorisation), or (b) confirm ARC-130 closes on the existing convergent evidence via claim-synthesis alone, with no new instrumentation. Note no open chip was found for that claim-synthesis tagging pass specifically, so it is at risk of being lost either way. Surfaced by the campaign C3 unowned-blocked-proposal audit.",
+      "raised_by_session": "campaign-c3-20260904",
+      "raised_at": "2026-09-04T14:44:56Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
