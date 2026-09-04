@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_009",
+  "entry_id": "2026-09-04_arc_009_learning_to_communicate_foerster2016",
+  "timestamp_utc": "2026-09-04T06:05:29Z",
+  "claim_ids_tested": ["ARC-009"],
+  "source": {
+    "title": "Learning to Communicate with Deep Multi-Agent Reinforcement Learning",
+    "authors": ["Jakob N. Foerster", "Yannis M. Assael", "Nando de Freitas", "Shimon Whiteson"],
+    "year": 2016,
+    "venue": "Advances in Neural Information Processing Systems 29 (NIPS 2016)",
+    "arxiv_id": "1605.06676",
+    "pages": "2137-2145",
+    "doi": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "This is the canonical existence proof for ARC-009's operational core: agents with no pre-specified protocol, placed in a partially-observable task with information asymmetry, learn to use a discrete channel and thereby coordinate. It is the paradigm ARC-009's own what_would_answer names. Source quality is high (NIPS 2016, heavily replicated and extended). Mapping fidelity is good for the coordination half of the claim but weak for the 'symbolic mediation' half -- the learned protocols are task-specific codes, and the paper makes no claim that they mediate representation the way ARC-009's language layer is meant to.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The strongest results (DIAL) depend on backpropagating gradients THROUGH the communication channel during centralised training -- a channel that is differentiable at learning time and discrete only at execution time. A genuinely discrete, non-differentiable channel between two independently-trained REE instances is the harder case, and RIAL (the discrete-throughout variant) performs worse.",
+    "Protocols are learned per-task and per-agent-pair; nothing here shows a protocol that transfers to a new partner or a new task, which is what a 'coordination layer' in ARC-009's sense would require.",
+    "Success is demonstrated on small, hand-constructed riddle environments with tiny message spaces; the paper reports engineering innovations were essential, indicating the result is not robust to naive implementation."
+  ],
+  "tags": ["arc-009", "emergent_communication", "multi_agent", "symbolic_channel", "coordination"],
+  "mapping": {
+    "source_claim_statement": "Multiple agents sensing and acting in partially-observable environments with shared utility can learn communication protocols end-to-end, via either Reinforced Inter-Agent Learning (deep Q-learning over discrete messages) or Differentiable Inter-Agent Learning (backpropagating error derivatives through a noisy channel, centralised learning with decentralised execution).",
+    "ree_translation": "ARC-009 asserts that language is a symbolic mediation and coordination layer. Its own what_would_answer specifies the test: two or more agents, a shared environment, information asymmetry, a discrete symbol channel, and a demonstration that channel access improves coordination over a no-communication baseline. Foerster et al. is that experiment run in a non-REE substrate, and it comes out positive -- establishing that the coordination benefit ARC-009 predicts is achievable in principle by learned agents with no built-in language.",
+    "mapping_caveat": "The claim has two halves and this paper evidences only one. 'Coordination layer' is well supported: a channel demonstrably buys task performance under information asymmetry. 'Symbolic MEDIATION' is not -- the learned protocols are opaque task-specific codes, and nothing establishes that they mediate or restructure the agents' internal representations, which is the stronger and more REE-specific reading of ARC-009. There is also a substrate gap that no external paper can close: ARC-009 is epistemic_category substrate_conditional, and neither the multi-agent environment (ARC-047, unbuilt) nor a real symbol channel (MECH-014, prose sketch only) exists in ree-v3, so this evidence bears on the claim's PLAUSIBILITY, not on any REE measurement.",
+    "source_context": "Deep multi-agent reinforcement learning; hand-constructed partially-observable riddle environments (switch riddle, MNIST games) with small discrete message vocabularies; simulated agents only."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.30,
+    "notes": "Transfer risk is unusually LOW for a lit-pull entry because the source domain and the target domain are the same kind of thing -- artificial learning agents in simulation, not biology being carried across a species gap. The binding constraint is mapping fidelity: the paper answers criterion (1) of ARC-009's own three-part test and is silent on criteria (2) and (3)."
+  }
+}

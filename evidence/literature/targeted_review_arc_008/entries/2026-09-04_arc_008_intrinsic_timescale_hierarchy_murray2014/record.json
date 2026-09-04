@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_008",
+  "entry_id": "2026-09-04_arc_008_intrinsic_timescale_hierarchy_murray2014",
+  "timestamp_utc": "2026-09-04T06:05:29Z",
+  "claim_ids_tested": ["ARC-008"],
+  "source": {
+    "title": "A hierarchy of intrinsic timescales across primate cortex",
+    "authors": ["John D. Murray", "Alberto Bernacchia", "David J. Freedman", "Ranulfo Romo", "Jonathan D. Wallis", "Xinying Cai", "Camillo Padoa-Schioppa", "Tatiana Pasternak", "Hyojung Seo", "Daeyeol Lee", "Xiao-Jing Wang"],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3862",
+    "pmid": "25383900",
+    "pmc": "PMC4241138",
+    "volume": "17",
+    "issue": "12",
+    "pages": "1661-3"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "Strong, widely-replicated evidence that temporal depth is a real graded organising axis of cortex, which supports ARC-008's tau-depth coordinate. But the same result cuts against the claim's framing of tau and rho as ORTHOGONAL coordinates: the timescale ordering tracks the anatomical/abstraction hierarchy, so in cortex tau and rho are strongly correlated rather than independent. Direction recorded as mixed for that reason. Source quality is high (multi-laboratory pooled single-unit macaque data, Nature Neuroscience, heavily replicated since); mapping fidelity is moderate because the paper measures intrinsic autocorrelation timescales, not prediction horizons or commitment eligibility.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Intrinsic timescale co-varies with position in the cortical hierarchy (sensory areas short, prefrontal areas long), so an architecture treating temporal depth (tau) and representational depth (rho) as orthogonal coordinates is not recovering the biological arrangement, in which the two axes are strongly coupled.",
+    "Timescales are reported as a graded continuum across areas, not as discrete bands; ARC-008's canonical four-band tau taxonomy (gamma/beta/theta/delta) imposes a discretisation the data do not themselves supply.",
+    "The measured quantity is the decay of intrinsic spiking autocorrelation during a task, which is an integration-window proxy -- it does not establish that an area's PREDICTIONS extend over that horizon, nor that mixing across timescales is prohibited."
+  ],
+  "tags": ["arc-008", "tau_depth", "rho_depth", "temporal_hierarchy", "orthogonality"],
+  "mapping": {
+    "source_claim_statement": "Timescales of intrinsic fluctuations in spiking activity, measured across seven macaque cortical areas, are hierarchically ordered: sensory areas exhibit short intrinsic timescales and prefrontal areas long ones. The authors suggest intrinsic timescales reflect areal specialisation for task-relevant computations over multiple temporal ranges.",
+    "ree_translation": "This is empirical support for ARC-008's tau-depth axis as a genuine organising dimension: a system does in fact specialise its subunits by the time horizon over which they integrate, exactly as the architecture's canonical tau bands assume, and the resulting hierarchy is systematic rather than incidental. It also bears directly on ARC-008's stated architectural invariant that predictions, errors and confidence must not be mixed across tau bands without an explicit projection operator -- an area-wise timescale hierarchy is what makes such an invariant meaningful rather than vacuous.",
+    "mapping_caveat": "The claim's opening framing -- 'three ORTHOGONAL coordinates' -- is the part this paper strains. Murray et al. find timescale ordered ALONG the anatomical hierarchy, which is also the abstraction hierarchy REE calls rho-depth; the two axes are empirically entangled in cortex, not independent. REE may still be right to factor them for architectural reasons (a design choice can legitimately separate what biology confounds), but it cannot cite this literature as evidence that they are separable. Additionally, 'intrinsic timescale' here is an autocorrelation decay constant, which is an integration-window measure and only indirectly a prediction-horizon measure -- the quantity ARC-008 actually defines tau as.",
+    "source_context": "Single-unit recordings pooled across seven cortical areas in macaque monkeys performing cognitive tasks; timescales estimated from spike-count autocorrelation during pre-stimulus baseline periods."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "Confidence held at 0.71 rather than higher because the strongest thing this paper does for ARC-008 -- establishing tau as real and graded -- comes bundled with the strongest thing it does against it: showing tau and rho co-vary. Mapping_fidelity dominates the aggregate here, per the architectural-claim weighting rule."
+  }
+}

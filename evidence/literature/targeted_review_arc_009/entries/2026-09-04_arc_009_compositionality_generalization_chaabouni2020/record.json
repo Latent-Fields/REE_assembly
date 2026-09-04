@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_009",
+  "entry_id": "2026-09-04_arc_009_compositionality_generalization_chaabouni2020",
+  "timestamp_utc": "2026-09-04T06:05:29Z",
+  "claim_ids_tested": ["ARC-009"],
+  "source": {
+    "title": "Compositionality and Generalization In Emergent Languages",
+    "authors": ["Rahma Chaabouni", "Eugene Kharitonov", "Diane Bouchacourt", "Emmanuel Dupoux", "Marco Baroni"],
+    "year": 2020,
+    "venue": "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL 2020)",
+    "doi": "10.18653/v1/2020.acl-main.407",
+    "pages": "4427-4442",
+    "arxiv_id": "2004.09124"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "The most directly load-bearing entry for what ARC-009 should EXPECT if the layer is built. It supports the claim's coordination/mediation framing in one respect (emergent languages do generalize to novel composite concepts given large enough input spaces) while decoupling the mechanism ARC-009's phrase 'symbolic mediation' most naturally implies: compositionality and generalization are found to be UNCORRELATED. Source quality high (ACL 2020 main conference, rigorous new metrics adapted from disentanglement literature, systematic sweeps rather than single demonstrations). Recorded as mixed and scored above the Lazaridou entry because its negative result is cleaner and better measured than that entry's positive one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "There is NO correlation between how compositional an emergent language is and how well it generalizes -- so a REE symbol layer could pass a generalization test while being wholly non-compositional, and an architecture that treats compositional structure as the mechanism of symbolic mediation would be reading a property the evidence says is not doing the work.",
+    "Compositionality does not arise from generalization pressure alone; it has to chance upon it. An architecture that assumes a symbol channel plus a coordination task will yield structured symbols is assuming something the systematic sweeps here contradict.",
+    "The demonstrated advantage of compositionality is in TRANSMISSION -- ease of acquisition by new learners, including architecturally different ones -- not in the emitting agents' own task performance. This relocates the payoff of structured symbols away from where ARC-009 implicitly places it."
+  ],
+  "tags": ["arc-009", "emergent_communication", "compositionality", "generalization", "language_transmission"],
+  "mapping": {
+    "source_claim_statement": "Using new measures of compositionality adapted from disentanglement in representation learning, three results are established: given sufficiently large input spaces emergent languages naturally develop the ability to refer to novel composite concepts; there is no correlation between an emergent language's degree of compositionality and its ability to generalize; and while compositionality is not necessary for generalization it confers an advantage in language TRANSMISSION -- more compositional languages are more easily acquired by new learners, even ones differing in architecture from the original agents.",
+    "ree_translation": "ARC-009 calls language a symbolic mediation and coordination layer. This paper is the sharpest available external constraint on what that layer could actually be doing. Result one supports the claim: symbol systems really do extend to novel combinations, so a REE language layer could plausibly carry compositional content. Result two removes the most natural mechanistic story -- if compositionality and generalization are uncorrelated, then whatever makes a symbol layer useful is not its compositional structure. Result three is the constructive finding and the one most relevant to REE's multi-agent ambitions: the payoff of structured symbols is in TRANSMISSION across agents, including architecturally heterogeneous ones. That is a coordination-layer benefit at the population level rather than the dyad level, and it is arguably a better fit to what ARC-009 means by a mediation LAYER than anything in the two dyadic papers filed alongside it.",
+    "mapping_caveat": "This is simulation work on reconstruction/referential games with attribute-value inputs -- structured synthetic stimuli, not agents with rich world models, and certainly not REE latent states. The compositionality metrics (positional disentanglement and relatives) are new instruments whose construct validity is still under discussion in the field, so the headline null result rests on measures that are themselves contested. And the whole entry bears on what a built layer would DO, not on whether REE's version would behave the same way: ARC-009 remains substrate_conditional with neither ARC-047's environment nor MECH-014's channel implemented in ree-v3.",
+    "source_context": "Systematic simulation sweeps over sender/receiver games with synthetic attribute-value input spaces of varying size; multiple agent architectures; emergent-language compositionality quantified with disentanglement-derived metrics."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Scored slightly above the Lazaridou entry despite being a mixed rather than supporting result, because a well-measured null over systematic sweeps is stronger evidence than a positive demonstration on a single engineered setup. For an architectural claim, being told which mechanism is NOT doing the work is worth more than another existence proof."
+  }
+}

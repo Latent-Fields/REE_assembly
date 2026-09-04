@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_009",
+  "entry_id": "2026-09-04_arc_009_referential_game_lazaridou2017",
+  "timestamp_utc": "2026-09-04T06:05:29Z",
+  "claim_ids_tested": ["ARC-009"],
+  "source": {
+    "title": "Multi-Agent Cooperation and the Emergence of (Natural) Language",
+    "authors": ["Angeliki Lazaridou", "Alexander Peysakhovich", "Marco Baroni"],
+    "year": 2017,
+    "venue": "5th International Conference on Learning Representations (ICLR 2017)",
+    "arxiv_id": "1612.07182",
+    "url": "https://openreview.net/forum?id=Hk8N3Sclg",
+    "doi": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Addresses the second of ARC-009's three stated evidence criteria -- that emergent symbols carry recoverable meaning -- which the Foerster entry leaves untouched. Sender/receiver referential games over image pairs produce symbols whose induced 'word meanings' can be pushed toward intuitive semantic properties of the referents, and the authors demonstrate a strategy for grounding the emergent code into natural language. Source quality is high (ICLR 2017, foundational and heavily cited). Confidence held below the Foerster entry because the semantic-interpretability result is the paper's most contested contribution: the symbols align with high-level image categories more readily than with anything compositional, and later work (see the Chaabouni entry) complicates it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Left to themselves, agents converge on codes that track low-level or incidental image regularities rather than the semantic properties a human would name -- the authors have to CHANGE THE GAME ENVIRONMENT to push meanings toward intuitive semantics, so interpretability is an engineered outcome, not an emergent one.",
+    "The referential game supplies information asymmetry but no genuine coordination-under-action: the receiver's only act is to identify a target image, so the paradigm tests reference, not the action-coupled coordination ARC-009's substrate would need.",
+    "Grounding the emergent code into natural language required an explicit supervised strategy; the emergent symbols are not natural-language-like on their own."
+  ],
+  "tags": ["arc-009", "emergent_communication", "referential_game", "symbol_grounding", "interpretability"],
+  "mapping": {
+    "source_claim_statement": "In referential games where a sender sees a target image and sends a message from a fixed arbitrary vocabulary to a receiver who must identify that target, two networks with simple configurations learn to coordinate. Changes to the game environment can cause the induced word meanings to better reflect intuitive semantic properties of the images, and a simple strategy grounds the agents' code into natural language.",
+    "ree_translation": "This bears on ARC-009's second evidence criterion: that the symbols carry recoverable meaning -- probe accuracy predicting the sender's underlying latent state from the emitted symbol above chance. Lazaridou et al. show the emergent code is not arbitrary noise: it is systematically related to the sender's input representation, and that relation can be read out and even aligned with human semantics. For ARC-009's 'symbolic MEDIATION' half -- the part the Foerster entry cannot speak to -- this is the closest available external evidence that emitted symbols index internal state rather than merely serving as coordination tokens.",
+    "mapping_caveat": "Two gaps. First, the sender's 'latent state' here is a convolutional image embedding, not anything resembling REE's z_theta/z_delta slices or residue flags; the probe result establishes that SOME internal representation is recoverable from symbols, not that REE's would be. Second, and more important for honest scoring: interpretability in this paper is substantially ENGINEERED. The authors modify the game to make meanings intuitive, and use a supervised strategy to ground the code in natural language. ARC-009 as written implies symbolic mediation is something language DOES; this paper suggests it is something an experimenter must arrange for. Same substrate gap as the Foerster entry applies -- no multi-agent environment and no symbol channel exist in ree-v3.",
+    "source_context": "Sender/receiver referential games over pairs of natural images (ImageNet-derived); simple feedforward agent architectures; fixed arbitrary vocabulary; simulated agents only."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.32,
+    "notes": "Mapping fidelity is the constraint again. The paradigm answers criterion (2) in form but with a referent (image identity) far simpler than the latent-state readout ARC-009 contemplates, and the positive interpretability result depends on environment design choices that the claim does not anticipate needing."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_008",
+  "entry_id": "2026-09-04_arc_008_perceptual_decoupling_smallwood2015",
+  "timestamp_utc": "2026-09-04T06:05:29Z",
+  "claim_ids_tested": ["ARC-008"],
+  "source": {
+    "title": "The science of mind wandering: empirically navigating the stream of consciousness",
+    "authors": ["Jonathan Smallwood", "Jonathan W. Schooler"],
+    "year": 2015,
+    "venue": "Annual Review of Psychology",
+    "doi": "10.1146/annurev-psych-010814-015331",
+    "pmid": "25293689",
+    "volume": "66",
+    "pages": "487-518"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.63,
+  "confidence_rationale": "Supports the existence of ARC-008's phi = DMN regime as a real, separately-identifiable control state characterised by perceptual decoupling from the environment. But it materially weakens the claim's safety-critical invariant as written: in humans the DMN-like regime does NOT reliably disable action coupling -- mind-wandering coexists with ongoing task performance and its principal documented cost is precisely the errors that leak through. Confidence is moderate: this is a high-quality review in a top venue, but it is a review of a heterogeneous behavioural and neuroimaging literature with contested constructs, and the mapping onto an eligibility matrix is loose.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In humans the DMN-like regime is LEAKY with respect to action: mind-wandering occurs concurrently with task execution and its best-documented consequence is task error, so a phi = DMN state does not in fact disable the commitment edge the way ARC-008's invariant requires.",
+    "Phase occupancy is not externally clocked or reliably self-reported -- meta-awareness of being in the mind-wandering state is frequently absent, so the system often cannot tell which phi regime it is in, which would defeat any gating function that takes phi as a trusted input.",
+    "The state carries documented BENEFITS (creativity, future planning) as well as costs, so an architecture that hard-disables commitment during phi = DMN forecloses the functional payoff that makes the regime worth having."
+  ],
+  "tags": ["arc-008", "phi_regime", "dmn", "perceptual_decoupling", "commitment_eligibility"],
+  "mapping": {
+    "source_claim_statement": "Mind-wandering is a state in which attention switches from a current task to unrelated thoughts and feelings. It involves perceptual decoupling to escape the constraints of the moment, its content arises from episodic and affective processes, its regulation relies on executive control, and it carries a complex balance of costs (various kinds of error) and benefits (creativity, future planning).",
+    "ree_translation": "Perceptual decoupling is the functional signature ARC-008 assigns to phi = DMN: 'internal generative simulation', content sourced from the latent stack rather than from the sensorium. The review supports treating this as a genuine, dissociable control regime with its own signature rather than as mere inattention -- which is what ARC-008 needs in order for phi to be a real routing key rather than a label. It also supplies the architecture's missing account of WHY the regime exists: episodic simulation and future planning are the payoff.",
+    "mapping_caveat": "This is the entry that should temper confidence in ARC-008's safety invariant, and it should not be filed as straightforward support. ARC-008 states that under phi = DMN, action coupling is 'prohibited'. The human data say otherwise: mind-wandering routinely co-occurs with ongoing action, and the literature's central empirical hook is the error rate that results. Biology implements a graded, failure-prone attentional shift, not a hard eligibility gate. Two further gaps: 'mind-wandering' is a contested construct measured largely by thought-probe self-report, and meta-awareness of the state is often absent -- so phi is not reliably observable to the system occupying it, which is a problem for any design that feeds phi into a gating function as a trusted signal.",
+    "source_context": "Narrative review of human behavioural (thought-probe, SART, reading-comprehension) and fMRI literature on self-generated thought; healthy adult participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Transfer risk is set high: self-reported human phenomenology is being mapped onto a machine control-plane primitive, and the construct itself is contested. Mapping fidelity is the binding constraint -- the paper describes a graded attentional state, ARC-008 specifies a discrete routing key, and the difference is exactly where the safety invariant lives."
+  }
+}

@@ -1,0 +1,23 @@
+# REM atonia as a biological phase gate on commitment (Peever 2011)
+
+## What the paper did
+
+Peever reviews a decade of work from his own laboratory on why the skeletal motor system goes quiet during REM sleep. The framing he opens with is the one that matters for ARC-008: motor control during REM is *paradoxical* because overall brain activity is maximal while motor output is minimal. The mechanism is not that nothing is being computed — it is that somatic motoneurons are powerfully and actively inactivated. The review assembles three lines of evidence: pharmacological dissection showing that both GABA-B and combined GABA-A/glycine inhibition of motoneurons are required to generate REM atonia; a transgenic mouse model in which impairing GABA and glycine neurotransmission reproduces the cardinal features of REM sleep behaviour disorder; and evidence that cataplexy in narcoleptic mice is driven at least partly by loss of an excitatory noradrenergic drive onto motoneurons rather than by the same inhibitory mechanism.
+
+## Why this speaks to ARC-008
+
+ARC-008 asserts that commitment eligibility is gated by tau, rho and phi, and carries a safety-critical invariant: *no commitment or motor coupling may occur unless phi explicitly permits it*. This paper is about as direct a biological instantiation of that invariant as one could ask for. REM is a phi regime in which the generative machinery runs at full tilt — the architecture's phi = OFFLINE / DMN-like case — and the commitment edge is affirmatively switched off. The gating is implemented as active inhibition at the output, not as an absence of content. That distinction is precisely what ARC-008 encodes when it says that tokens outside the eligibility region M_phi "may be computed or simulated" but are ineligible for E3 commitment. The architecture is claiming that eligibility is a separate control-plane fact from computability, and the brain appears to agree.
+
+The clinical failure modes are, if anything, more informative than the healthy case, because they are the falsifiers. RBD is what a broken phase gate looks like from the outside: content generated in a simulation regime reaches the motor plant and is enacted, sometimes injuriously. Cataplexy is the complementary failure — the gate closing in the wrong phase, disabling action coupling while the agent is externally anchored and needs to act. A REE substrate that implemented phi-gating badly would be expected to show one or the other signature, and it is worth noting that these are behaviourally *visible* failures. That gives the claim a testable surface it would not otherwise have.
+
+## Limitations and where the mapping strains
+
+The honest caveat is one of level. Peever's gate sits at the motoneuron — the final common path — whereas ARC-008 places eligibility gating on (tau, rho)-tagged tokens well upstream of E3 selection. So this paper evidences that *a phase-indexed commitment gate exists and is dissociable from content generation*; it does not evidence the three-axis eligibility matrix M_phi, and it says nothing at all about whether tau-depth and rho-depth are the right coordinates to be gating. Read strictly, it supports perhaps one of ARC-008's three axes. That is why the confidence sits at 0.82 rather than higher.
+
+There is a second caveat worth stating plainly, because it cuts against the tidiness of the architectural spec. Peever reports that atonia requires *both* GABA-B and GABA-A/glycine mediated inhibition — the gate is redundantly implemented, and partial impairment yields intermediate, leaky states rather than a clean binary flip. ARC-008's M_phi is written as a crisp set membership test. Biology suggests that a real commitment gate is graded and multiply-implemented, and that the interesting engineering question is what happens in the partial-gating regime, which the architecture currently does not specify.
+
+Finally, the transfer risk is real and should not be waved away: this is brainstem and spinal physiology in rodents plus human clinical phenomenology, being carried across to a control-plane primitive in an artificial agent. The structural argument transfers; the mechanism does not, and no claim is being made that REE should implement glycinergic inhibition. What the paper licenses is the architectural assertion that separating "may be computed" from "may be committed" is a real and load-bearing distinction in a system that generates rich internal content — not that REE's particular way of drawing that line is correct.
+
+## Provenance
+
+Retrieved via PubMed (PMID 22205591). DOI: https://doi.org/10.4449/aib.v149i4.1257

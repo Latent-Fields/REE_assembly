@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_008",
+  "entry_id": "2026-09-04_arc_008_rem_atonia_phase_gate_peever2011",
+  "timestamp_utc": "2026-09-04T06:05:29Z",
+  "claim_ids_tested": ["ARC-008"],
+  "source": {
+    "title": "Control of motoneuron function and muscle tone during REM sleep, REM sleep behavior disorder and cataplexy/narcolepsy",
+    "authors": ["John Peever"],
+    "year": 2011,
+    "venue": "Archives Italiennes de Biologie",
+    "doi": "10.4449/aib.v149i4.1257",
+    "pmid": "22205591",
+    "volume": "149",
+    "issue": "4",
+    "pages": "454-66"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct mechanistic evidence for the safety-critical half of ARC-008: a phase variable (REM vs wake) gates motor commitment through a dedicated inhibitory pathway that is separable from the content being computed. Source quality is high (review of the author's own transgenic-mouse and electrophysiology work, converging rodent and human clinical data, well replicated). Mapping fidelity is good but not perfect -- the paper is about motor OUTPUT gating at the motoneuron, which is the commitment EDGE, not about eligibility of (tau, rho) tokens upstream. Confidence weighted down from source quality accordingly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When GABA-A/GABA-B/glycine inhibition of motoneurons is impaired, REM-generated content is enacted as movement (REM sleep behaviour disorder, dream enactment, patient injury) -- i.e. simulation-phase tokens reach the commitment edge and are executed.",
+    "The gate can also fire in the WRONG phase: cataplexy is REM-like atonia intruding into wakefulness, disabling commitment while the agent is externally anchored and action is required.",
+    "Atonia is not implemented by a single mechanism -- Peever reports that BOTH GABA-B and GABA-A/glycine mediated inhibition are required, so a single-channel gate is insufficient and partial gating produces intermediate, leaky states rather than a clean binary."
+  ],
+  "tags": ["arc-008", "phase_gating", "commitment_eligibility", "rem_atonia", "rbd", "cataplexy"],
+  "mapping": {
+    "source_claim_statement": "REM sleep triggers a potent, actively-generated suppression of postural muscle tone via GABAergic and glycinergic inhibition of somatic motoneurons; brain activity is maximal while motor output is minimal. Breakdown of this inhibition produces RBD (dream enactment); its inappropriate activation during wake produces cataplexy.",
+    "ree_translation": "This is biological instantiation of ARC-008's safety-critical invariant -- 'no commitment or motor coupling may occur unless phi explicitly permits it'. REM is a phi = OFFLINE/DMN-like regime in which rich content is generated across the latent stack (brain activity maximal) while the E3 commitment edge is affirmatively disabled. Critically for REE, the gate is ACTIVE inhibition at the commitment edge, not absence of content -- matching the architecture's claim that tokens outside M_phi 'may be computed or simulated' but are ineligible for commitment.",
+    "mapping_caveat": "The paper's gate operates at the motoneuron -- the final motor common path -- whereas ARC-008 places eligibility gating on (tau, rho) tokens upstream of E3 selection. The biology therefore evidences that a phase-indexed commitment gate exists and is dissociable from content generation; it does NOT evidence the specific three-axis eligibility matrix M_phi, nor that tau and rho are the coordinates being gated. Transfer risk is elevated because this is a brainstem/spinal mechanism in rodents and clinical human populations, being mapped onto an architectural control-plane primitive in an artificial agent.",
+    "source_context": "Review; rodent (transgenic mouse, rat) in-vivo electrophysiology and pharmacology, plus human clinical phenomenology of RBD and narcolepsy/cataplexy."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because ARC-008 is an architectural claim: what matters is whether the phase-gating ARCHITECTURE transfers, not whether the rodent result replicates. The dissociation (max content, min output) is the load-bearing structural fact and it is robust; the specific coordinates being gated are not evidenced here."
+  }
+}

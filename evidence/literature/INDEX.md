@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-03T19:49:40.921231Z`
+Generated: `2026-09-04T06:12:32.289969Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -13,6 +13,8 @@ Generated: `2026-09-03T19:49:40.921231Z`
 | `targeted_review_arc_002` | [`2026-09-03_arc_002_affordance_theory_rl_khetarpal2020`](targeted_review_arc_002/entries/2026-09-03_arc_002_affordance_theory_rl_khetarpal2020/record.json) | 3 | [`summary`](targeted_review_arc_002/entries/2026-09-03_arc_002_affordance_theory_rl_khetarpal2020/summary.md) |
 | `targeted_review_arc_004` | [`2026-09-03_arc_004_intrinsic_timescale_hierarchy_murray2014`](targeted_review_arc_004/entries/2026-09-03_arc_004_intrinsic_timescale_hierarchy_murray2014/record.json) | 3 | [`summary`](targeted_review_arc_004/entries/2026-09-03_arc_004_intrinsic_timescale_hierarchy_murray2014/summary.md) |
 | `targeted_review_arc_005` | [`2026-08-07_arc_005_uncertainty_neuromodulation_yu2005`](targeted_review_arc_005/entries/2026-08-07_arc_005_uncertainty_neuromodulation_yu2005/record.json) | 4 | [`summary`](targeted_review_arc_005/entries/2026-08-07_arc_005_uncertainty_neuromodulation_yu2005/summary.md) |
+| `targeted_review_arc_008` | [`2026-09-04_arc_008_rem_atonia_phase_gate_peever2011`](targeted_review_arc_008/entries/2026-09-04_arc_008_rem_atonia_phase_gate_peever2011/record.json) | 3 | [`summary`](targeted_review_arc_008/entries/2026-09-04_arc_008_rem_atonia_phase_gate_peever2011/summary.md) |
+| `targeted_review_arc_009` | [`2026-09-04_arc_009_referential_game_lazaridou2017`](targeted_review_arc_009/entries/2026-09-04_arc_009_referential_game_lazaridou2017/record.json) | 3 | [`summary`](targeted_review_arc_009/entries/2026-09-04_arc_009_referential_game_lazaridou2017/summary.md) |
 | `targeted_review_arc_014` | [`2026-04-05_arc014_rangel_camerer_montague_2008`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/record.json) | 3 | [`summary`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/summary.md) |
 | `targeted_review_arc_019` | [`2026-09-01_arc_019_starting_small_refutation_rohde1999`](targeted_review_arc_019/entries/2026-09-01_arc_019_starting_small_refutation_rohde1999/record.json) | 5 | [`summary`](targeted_review_arc_019/entries/2026-09-01_arc_019_starting_small_refutation_rohde1999/summary.md) |
 | `targeted_review_arc_022` | [`2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/record.json) | 6 | [`summary`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/summary.md) |
