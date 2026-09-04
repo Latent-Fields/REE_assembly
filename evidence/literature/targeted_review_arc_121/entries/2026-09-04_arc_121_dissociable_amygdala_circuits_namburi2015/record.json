@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_121",
+  "entry_id": "2026-09-04_arc_121_dissociable_amygdala_circuits_namburi2015",
+  "timestamp_utc": "2026-09-04T14:28:13Z",
+  "claim_ids_tested": ["ARC-121"],
+  "source": {
+    "title": "A circuit mechanism for differentiating positive and negative associations",
+    "authors": ["Namburi, Praneeth", "Beyeler, Anna", "Yorozu, Suzuko", "Calhoon, Gwendolyn G.", "Halbert, Sarah A.", "Wichmann, Romy", "Holden, Stephanie S.", "Mertens, Kathryn L.", "Anahtar, Melody", "Felix-Ortiz, Ada C.", "Wickersham, Ian R.", "Gray, Jesse M.", "Tye, Kay M."],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature14366",
+    "pmid": "25925480",
+    "pmc": "PMC4418228",
+    "volume": "520",
+    "issue": "7549",
+    "pages": "675-678"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "This is a direct measurement of the ARC-121 crux from the opposing (dissociable-systems) side. Rather than showing that harm and reward evaluation share a common representation, Namburi et al. demonstrate that within a single anatomical structure (basolateral amygdala) positive (reward) and negative (fear) associations are computed by ANATOMICALLY and SYNAPTICALLY dissociable, opposing projection-defined circuits: neurons projecting to nucleus accumbens (NAc) undergo plasticity supporting positive reinforcement, while a distinct population projecting to centromedial amygdala (CeM) undergoes opposing plasticity supporting negative (fear) reinforcement, and these are CAUSALLY separable -- photostimulating one drives reward-like behavior, photostimulating the other drives fear-like behavior, and inhibiting the fear-coding population both impairs fear conditioning AND enhances reward conditioning (a genuine double dissociation with a competitive interaction, not mere independence). This directly weakens a strong reading of ARC-121: harm/threat evaluation and reward valuation, even when co-located in the same gross anatomical region, are implemented by structurally distinct, competing circuits rather than reading a single shared state.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation shown is WITHIN the amygdala's input stage (BLA projection populations), which is upstream of the vmPFC/ventral-striatum 'common currency' hub that the supporting entries in this directory (Bartra 2013, Shenhav 2010, Koenigs 2007) implicate -- it is possible both readings are simultaneously true at different stages of processing: dissociable circuits COMPUTE positive vs. negative associations at the amygdala input stage, but a shared representation is then FORMED downstream at vmPFC/ventral striatum for integration into decisions (including moral ones). This entry does not resolve that staged-architecture possibility, and a future pull specifically on amygdala-to-vmPFC convergence would be needed to adjudicate it.",
+    "This study is rodent Pavlovian fear/reward conditioning, not human harm/ethics moral judgment -- the transfer from 'BLA circuit-level dissociation between simple fear and reward conditioning' to REE's E3/harm-goal-error and moral-evaluation construct is substantial and should not be over-read as a direct refutation of ARC-121's specific claim."
+  ],
+  "tags": ["arc_121", "amygdala", "basolateral_amygdala", "dissociable_circuits", "fear", "reward", "double_dissociation", "counterweight"],
+  "mapping": {
+    "source_claim_statement": "Within the basolateral amygdala, two projection-defined neuronal populations -- those projecting to nucleus accumbens (NAc) and those projecting to centromedial amygdala (CeM) -- undergo opposing synaptic plasticity following fear versus reward conditioning, and are causally and competitively dissociable: activating NAc-projectors supports positive reinforcement, activating CeM-projectors supports negative reinforcement, and inhibiting CeM-projectors both impairs fear learning and enhances reward learning.",
+    "ree_translation": "ARC-121 claims harm/ethics evaluation converges on the SAME shared epistemic-state object that prediction, replay, planning and learning consume, rather than maintaining its own private, mechanism-specific stream. Namburi et al. supply a genuine counterweight: at least at the amygdala's input stage, positive (reward-adjacent) and negative (harm/threat-adjacent) evaluation are computed by anatomically and synaptically SEPARATE, mutually competitive circuits -- exactly the 'dissociable systems' alternative the chip's brief explicitly asked to be searched for, not merely a shared-state readout gated differently downstream.",
+    "mapping_caveat": "This is upstream, subcortical, rodent Pavlovian circuitry (BLA input-stage dissociation between simple fear and reward conditioning), not human moral/ethics judgment and not necessarily the same processing stage as the vmPFC/ventral-striatum hub the supporting entries in this directory implicate. A staged-architecture reconciliation (dissociable at BLA input, convergent at vmPFC integration) is plausible but untested by this paper alone -- treat this as a genuine complication for ARC-121's strong reading, not a refutation of the whole claim.",
+    "source_context": "Mouse; optogenetic circuit-specific manipulation combined with ex vivo electrophysiology and Pavlovian fear/reward conditioning; projection-defined BLA neuron populations (NAc-projecting vs. CeM-projecting)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High source quality: landmark Nature paper with strong causal (optogenetic) circuit dissection, widely cited as foundational for valence-specific amygdala circuitry. Mapping fidelity moderate: it directly measures dissociable positive/negative circuits at the amygdala input stage, which is the right kind of measurement for the ARC-121 crux question, but the anatomical level (BLA input, rodent, simple conditioning) is one stage removed from the vmPFC/ventral-striatum integration hub and from human moral judgment specifically."
+  }
+}

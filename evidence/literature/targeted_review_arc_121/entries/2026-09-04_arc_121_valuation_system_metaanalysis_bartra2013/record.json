@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_121",
+  "entry_id": "2026-09-04_arc_121_valuation_system_metaanalysis_bartra2013",
+  "timestamp_utc": "2026-09-04T14:28:13Z",
+  "claim_ids_tested": ["ARC-121"],
+  "source": {
+    "title": "The valuation system: a coordinate-based meta-analysis of BOLD fMRI experiments examining neural correlates of subjective value",
+    "authors": ["Bartra, Oscar", "McGuire, Joseph T.", "Kable, Joseph W."],
+    "year": 2013,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2013.02.063",
+    "pmid": "23507394",
+    "pmc": "PMC3756836",
+    "volume": "76",
+    "pages": "412-427"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This is a large coordinate-based meta-analysis (206 fMRI studies) establishing that a specific set of regions -- ventromedial prefrontal cortex and anterior ventral striatum foremost -- carry a domain-general subjective-value (SV) signal across monetary and primary rewards, both at choice and at outcome. It is the strongest available quantitative case for a shared, domain-general 'common currency' valuation hub, which is the general form of evidence ARC-121 needs for its claim that prediction/replay/planning/learning converge on one shared epistemic-state-adjacent object. The meta-analysis does NOT itself include harm/ethics/moral evaluation as one of its input study domains, so it establishes the SHARED-HUB precondition without directly testing whether harm/ethics evaluation specifically taps into it -- that link is supplied by the Shenhav & Greene (2010) entry in this same directory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The meta-analysis's input studies are drawn from reward/value decision-making paradigms (monetary and primary rewards), not from moral/harm/ethics judgment paradigms directly -- it establishes that a domain-general valuation hub EXISTS across reward types, not that harm/ethics evaluation specifically routes through it. Treat this as necessary but not sufficient evidence for ARC-121's harm/ethics consumer claim on its own.",
+    "The paper also identifies a SECOND set of regions (anterior insula, dorsomedial PFC, dorsal/posterior striatum) with a different signal pattern (both positive and negative SV effects, suggestive of a salience/arousal signal rather than a value signal) -- a reminder that not all affect-adjacent circuitry is part of the same 'common currency' hub, which is a caution against over-generalizing 'shared valuation state' to every affective/evaluative process."
+  ],
+  "tags": ["arc_121", "valuation", "vmpfc", "ventral_striatum", "common_currency", "meta_analysis", "epistemic_state"],
+  "mapping": {
+    "source_claim_statement": "A coordinate-based meta-analysis of 206 fMRI studies identifies a domain-general 'valuation system' -- centered on ventromedial prefrontal cortex and anterior ventral striatum -- that carries a subjective-value signal across both monetary and primary rewards, at both decision and outcome, distinguishable from a second, salience/arousal-coding set of regions (anterior insula, dmPFC, dorsal/posterior striatum) showing a different (U-shaped, both-signed) response pattern.",
+    "ree_translation": "ARC-121 claims REE's mechanisms (prediction, replay, harm/ethics evaluation, planning, learning) increasingly converge on maintaining and consuming ONE shared epistemic-state-adjacent object rather than independent local state. Bartra, McGuire & Kable supply the general biological precondition for this architectural intuition: the brain does demonstrably implement a domain-general valuation hub rather than domain-specific, walled-off valuation circuits for each reward type. This is the base rate ARC-121's harm/ethics consumer claim needs to be plausible at all -- if even ordinary reward valuation were domain-specific, there would be little reason to expect harm/ethics evaluation to share state with it.",
+    "mapping_caveat": "This meta-analysis is scoped to REWARD valuation (monetary, primary), not harm/ethics/moral evaluation -- it cannot itself confirm that the harm/ethics consumer specifically taps the vmPFC/vStriatum hub it identifies. That inferential step is supplied by Shenhav & Greene (2010) in this same directory, which directly studies moral judgment and finds it recruits this same domain-general valuation circuitry.",
+    "source_context": "Human fMRI meta-analysis; 206 published studies spanning decision-making, reward-processing, and valuation paradigms; no direct moral/harm judgment studies included in the meta-analytic corpus itself."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality: large, well-powered, widely-cited quantitative meta-analysis, the standard reference for the 'common currency' valuation-hub hypothesis. Mapping fidelity is moderate because it establishes the general valuation-hub precondition rather than testing harm/ethics evaluation directly -- paired here with Shenhav & Greene (2010), which closes that gap."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-04T14:23:53.418631Z`
+Generated: `2026-09-04T14:31:44.344503Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -48,7 +48,7 @@ Generated: `2026-09-04T14:23:53.418631Z`
 | `targeted_review_arc_112` | [`2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/record.json) | 3 | [`summary`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/summary.md) |
 | `targeted_review_arc_113` | [`2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/record.json) | 5 | [`summary`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/summary.md) |
 | `targeted_review_arc_120` | [`2026-09-02_arc_120_uncertainty_arbitration_daw2005`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/record.json) | 5 | [`summary`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/summary.md) |
-| `targeted_review_arc_121` | [`2026-09-02_arc_121_uncertainty_distinct_systems_bach2012`](targeted_review_arc_121/entries/2026-09-02_arc_121_uncertainty_distinct_systems_bach2012/record.json) | 5 | [`summary`](targeted_review_arc_121/entries/2026-09-02_arc_121_uncertainty_distinct_systems_bach2012/summary.md) |
+| `targeted_review_arc_121` | [`2026-09-04_arc_121_vmpfc_lesion_moral_judgment_koenigs2007`](targeted_review_arc_121/entries/2026-09-04_arc_121_vmpfc_lesion_moral_judgment_koenigs2007/record.json) | 9 | [`summary`](targeted_review_arc_121/entries/2026-09-04_arc_121_vmpfc_lesion_moral_judgment_koenigs2007/summary.md) |
 | `targeted_review_arc_130` | [`2026-09-03_arc_130_dream_rehearsal_continual_rl_nijjer2026`](targeted_review_arc_130/entries/2026-09-03_arc_130_dream_rehearsal_continual_rl_nijjer2026/record.json) | 3 | [`summary`](targeted_review_arc_130/entries/2026-09-03_arc_130_dream_rehearsal_continual_rl_nijjer2026/summary.md) |
 | `targeted_review_arc_131` | [`2026-09-02_arc_131_specialize_without_reuse_csordas2021`](targeted_review_arc_131/entries/2026-09-02_arc_131_specialize_without_reuse_csordas2021/record.json) | 5 | [`summary`](targeted_review_arc_131/entries/2026-09-02_arc_131_specialize_without_reuse_csordas2021/summary.md) |
 | `targeted_review_arc_132` | [`2026-08-26_arc132_circular_inference_jardri2013`](targeted_review_arc_132/entries/2026-08-26_arc132_circular_inference_jardri2013/record.json) | 1 | [`summary`](targeted_review_arc_132/entries/2026-08-26_arc132_circular_inference_jardri2013/summary.md) |

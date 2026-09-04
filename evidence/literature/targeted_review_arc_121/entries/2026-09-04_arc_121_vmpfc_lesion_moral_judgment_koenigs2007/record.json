@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_121",
+  "entry_id": "2026-09-04_arc_121_vmpfc_lesion_moral_judgment_koenigs2007",
+  "timestamp_utc": "2026-09-04T14:28:13Z",
+  "claim_ids_tested": ["ARC-121"],
+  "source": {
+    "title": "Damage to the prefrontal cortex increases utilitarian moral judgements",
+    "authors": ["Koenigs, Michael", "Young, Liane", "Adolphs, Ralph", "Tranel, Daniel", "Cushman, Fiery", "Hauser, Marc", "Damasio, Antonio"],
+    "year": 2007,
+    "venue": "Nature",
+    "doi": "10.1038/nature05631",
+    "pmid": "17377536",
+    "pmc": "PMC2244801",
+    "volume": "446",
+    "issue": "7138",
+    "pages": "908-911"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This is a causal (lesion) complement to the correlational fMRI evidence in this same directory (Shenhav & Greene 2010, Bartra et al. 2013). Six patients with focal bilateral damage to ventromedial prefrontal cortex -- the same region identified as the domain-general valuation hub -- showed a selectively abnormal, more utilitarian pattern of moral judgment on emotionally aversive high-conflict dilemmas, while judgments on other classes of moral dilemma were normal. This supports ARC-121's claim that harm/ethics evaluation depends on shared circuitry (here, causally, not just correlationally) rather than a separable, independently-implemented moral module -- damage to the shared valuation/emotion hub selectively disrupts a specific class of moral judgment, exactly as would be predicted if that hub is a genuine SHARED dependency rather than incidental co-activation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The authors frame VMPC as 'necessary for the normal generation of emotions, and, in particular, social emotions' -- the paper's own interpretation emphasizes VMPC's EMOTIONAL role rather than a generic VALUATION role, which leaves open a competing reading: VMPC damage could disrupt moral judgment via a specific emotional-generation deficit rather than via disruption of a shared epistemic/valuation STATE object as ARC-121 frames it. The causal mechanism (emotion vs. shared-value-state) is under-determined by this study alone.",
+    "The effect is SELECTIVE (normal judgments on other classes of moral dilemma, only abnormal on high-conflict, aggregate-welfare-vs-emotionally-aversive-behavior dilemmas) -- a caution against reading this as evidence that ALL harm/ethics evaluation routes through this one hub; it may be specifically the emotionally-loaded conflict cases that recruit it."
+  ],
+  "tags": ["arc_121", "vmpfc", "lesion", "moral_judgment", "utilitarian", "clinical_case", "epistemic_state"],
+  "mapping": {
+    "source_claim_statement": "Six patients with focal bilateral ventromedial prefrontal cortex (VMPC) damage produce an abnormally utilitarian pattern of judgment specifically on high-conflict moral dilemmas that pit aggregate welfare against emotionally aversive behaviors (e.g. sacrificing one life to save several), while their judgments on other classes of moral dilemma remain normal -- indicating VMPC is causally necessary for normal judgment on this selective set of dilemmas.",
+    "ree_translation": "Where Shenhav & Greene (2010, this directory) show CORRELATIONAL evidence that moral judgment recruits the same regions as general valuation, Koenigs et al. supply CAUSAL evidence: damaging that shared hub selectively disrupts a class of moral judgment. This strengthens ARC-121's claim that harm/ethics evaluation genuinely DEPENDS ON the shared valuation/emotion substrate rather than merely co-activating it incidentally -- a lesion to the shared resource produces the predicted selective deficit.",
+    "mapping_caveat": "The paper's own framing emphasizes VMPC's role in generating EMOTIONS (especially social emotions) rather than a generic domain-general VALUE signal -- this is a related but not identical claim to ARC-121's 'shared epistemic-state object' framing, and the selective (not global) nature of the deficit means this evidence should not be over-read as showing ALL harm/ethics evaluation depends on this one shared hub.",
+    "source_context": "Human clinical lesion study; six patients with focal bilateral adult-onset VMPC damage, compared against brain-damaged and normal control groups, on a battery of moral dilemma vignettes varying in emotional salience and personal-force structure."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Classic, highly-cited causal lesion study providing a necessary complement to the correlational fMRI evidence in this pull. Mapping fidelity is moderate: the paper's own emotion-generation framing is a related-but-distinct account from ARC-121's shared-epistemic-state framing, and the selective (not global) nature of the deficit limits how far the finding generalizes."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_121",
+  "entry_id": "2026-09-04_arc_121_moral_judgment_domaingeneral_valuation_shenhav2010",
+  "timestamp_utc": "2026-09-04T14:28:13Z",
+  "claim_ids_tested": ["ARC-121"],
+  "source": {
+    "title": "Moral judgments recruit domain-general valuation mechanisms to integrate representations of probability and magnitude",
+    "authors": ["Shenhav, Amitai", "Greene, Joshua D."],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.07.020",
+    "pmid": "20797542",
+    "volume": "67",
+    "issue": "4",
+    "pages": "667-677"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "This is the most direct available test of ARC-121's harm/ethics-evaluation-shares-the-hub claim: an fMRI study in which subjects made explicit moral judgments (whether to sacrifice one life to save a variable-sized group at variable probability) structured to be computationally isomorphic to an economic expected-value decision. The result is a clean structural match to the general valuation system: vmPFC and ventral striatum -- the same regions identified as the domain-general 'common currency' hub in Bartra et al. (2013), this same directory -- tracked the 'expected moral value' (expected lives lost/saved) of the choice, while a separate region (right anterior insula) tracked outcome probability specifically. This directly supports ARC-121: harm/ethics evaluation in this paradigm is not implemented by dedicated, walled-off moral circuitry, but by reusing the same domain-general valuation machinery recruited for ordinary material-reward decisions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This paradigm studies a specific, structured class of moral judgment (utilitarian trade-off dilemmas with explicit probability and magnitude, engineered to be isomorphic to economic decisions) -- it is the moral-judgment case MOST likely to recruit domain-general valuation circuitry by design. It does not establish that all forms of harm/ethics evaluation (e.g. rapid, intuitive, non-quantified moral reactions to a single harmful act) route through the same shared hub; those may recruit more amygdala/insula-dominant circuitry that this study was not designed to probe.",
+    "The authors themselves frame the finding as showing moral decisions 'depend on neural circuitry adapted for more basic, self-interested decision making' -- i.e. moral evaluation borrows an ANCESTRALLY reward-oriented substrate rather than the substrate being neutral/general-purpose from the outset. This is compatible with ARC-121's shared-object framing but adds an evolutionary-repurposing nuance worth carrying into governance discussion."
+  ],
+  "tags": ["arc_121", "moral_judgment", "vmpfc", "ventral_striatum", "valuation", "expected_value", "epistemic_state"],
+  "mapping": {
+    "source_claim_statement": "In an fMRI study of utilitarian moral dilemmas engineered to be structurally isomorphic to economic expected-value decisions, ventromedial prefrontal cortex and ventral striatum tracked the 'expected moral value' (expected number of lives lost/saved) of actions, while right anterior insula tracked outcome probability specifically -- the same functional division of labor seen in ordinary economic decision making.",
+    "ree_translation": "ARC-121 names harm/ethics evaluation explicitly as one of the converging consumers of REE's shared epistemic-state object, alongside prediction, replay, planning and learning. Shenhav & Greene provide direct human-neuroscience evidence that a structured form of harm/ethics evaluation (life-and-death utilitarian judgment) is computed by REUSING the same domain-general valuation machinery (vmPFC/ventral striatum) implicated in ordinary reward-based decision making, rather than by dedicated, isolated moral-specific circuitry. This is close to a direct confirmation of ARC-121's specific claim about the harm/ethics consumer.",
+    "mapping_caveat": "The moral judgments studied here are explicitly probabilistic, quantified, and structurally isomorphic to economic decisions by experimental design -- this is likely the BEST-CASE scenario for finding shared valuation circuitry, and may not generalize to more intuitive, rapid, non-quantified moral reactions (a single clearly harmful act with no probability/magnitude structure), which other literature (e.g. dual-process moral cognition accounts) suggests may recruit more amygdala-dominant, less deliberative circuitry.",
+    "source_context": "Human fMRI; healthy adult subjects; forced-choice utilitarian trolley-style dilemmas with explicit probability and magnitude manipulation, directly paralleled against an economic decision-making paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Strong, well-cited, directly-on-point empirical study -- this is as close as the literature gets to a direct test of ARC-121's harm/ethics-shares-the-hub claim. Mapping fidelity is high because the finding (same regions, same functional division of labor as ordinary valuation) is exactly the shape of evidence the claim needs; transfer risk moderate because the paradigm is optimized to elicit shared-circuitry findings and may not generalize to less structured moral cognition."
+  }
+}
