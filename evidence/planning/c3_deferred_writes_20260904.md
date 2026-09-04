@@ -203,3 +203,67 @@ returned 1 failed / 5596 passed / 28 skipped / 215 subtests in 26m57s. The failu
 and unrelated to this session's change. It means an arm that looks ablated may be identical
 to its control, so it carries a possible evidence-validity consequence for MECH-162.
 Chipped as `chip-20260904-fromdims-drop-wantingweight-997`.
+
+---
+
+## C2 build — DV-headroom precondition class: landed, one registry write deferred
+
+**Session:** `campaign-c2-build-20260904` (campaign C2 item 1, chips
+`chip-20260904-campaign-c2-dv-headroom` / `chip-20260903-dv-headroom-precondition-build`).
+Appended here by a *different* campaign from the C3 items above, because the same
+`governance-20260904-1347` exact-file pause lock on `substrate_queue.json` blocks both.
+
+Code, contracts and documentation **landed** on `ree-v3` `main` as `8e133d26ed`, verified
+present on `origin/main`. `claims.yaml` write: **none owed** — this is a harness lint plus a
+precondition kind, not an SD, and it does not resolve any dependency of the ten claims the
+entry lists under `unblocks_claims` (it makes their future experiments *honest*, which is a
+governance judgement to record, not a mechanical flag flip).
+
+**Deferred:** the `substrate_queue.json` update for `dv-dynamic-range-precondition-class`.
+Drafted as a runnable, idempotent, narrow structural read-modify-write and schema-checked
+against the live file (`--dry-run` clean):
+`REE_assembly/evidence/planning/_deferred/c2_dv_headroom_substrate_queue_edit.py`, committed
+alongside this note so it survives the scratchpad. It re-reads the live file at apply time,
+refuses on anything other than exactly one matching entry, and no-ops if the entry is
+already marked implemented. Fields it sets:
+
+- `status`: `pending_implementation` -> `implemented_pending_validation`
+- `status_phase`: `build_owed` -> `validation_owed`
+- `implementation_status`: `implemented` · `implemented_utc`: `2026-09-04T16:44:00Z`
+- `implemented_session`: `campaign-c2-build-20260904` · `implemented_commit_ree_v3`: `8e133d26ed`
+- `implementation_note`: the long-form record (both halves, the boundary held, the gates run)
+
+**One trap the applier must not undo.** The file's canonical serialization is
+`json.dumps(doc, indent=2, ensure_ascii=True) + "\n"` — verified byte-identical on a
+round-trip of the untouched file. Writing it with `ensure_ascii=False` reformats **5
+unrelated entries** (escapes such as `§` become literal `§`), which would land other
+sessions' lines in your commit as a diff they never wrote. The script pins this; do not
+"improve" it.
+
+**What landed, in one paragraph.** Two halves of one feature. Runtime (opt-in):
+`experiments/_metrics.py` `dv_achievable()` + `dv_headroom_check()` feeding
+`p0_readiness_gate()` under a new precondition kind **`dv_headroom`**, which certifies that
+the DEPENDENT VARIABLE can reach its own registered threshold — `measured` = what the DV can
+achieve, `threshold` = what the criterion requires, floor — so an unmet entry raises
+`P0NotReady` and self-routes to `substrate_not_ready_requeue`. **No indexer change was
+needed**: the REE_assembly indexer recomputes `met` from (measured, threshold, direction) and
+is kind-agnostic, so an unmet entry adjudicates as `precondition_unmet` on its own. Static
+(WARN-only): `validate_experiments.py --checks criterion_exceeds_achievable_range`, catching
+a multiplicative threshold on a unit-interval DV and an absolute floor on a derived-range
+statistic, on load-bearing criteria **and** on readiness preconditions — 981's own instance
+of the second sub-case is a precondition, so a criteria-only scan would have missed the very
+run the entry was written from. It reproduces every autopsy number: 983 3.2x, 993 13.2x, 994
+25.6x, 981 precision-margin 51.3x, 981 C1 achievable 1.0 against required 1.154.
+
+**Governance boundary held.** `substrate_paths` stay `validate_experiments.py` +
+`experiments/_metrics.py::p0_readiness_gate`; `ree_core/environment` was NOT added and
+severity stays `degrading`, so the 1,201 drivers importing `causal_grid_world` are untouched
+and Step 2.5c does not block. Byte-identical for every driver that does not opt in, pinned by
+two contracts.
+
+**Validation is not owed as a separate job.** Campaign C2 items 2-5 are six headroom-derived
+redesign queues, each of which declares the `dv_headroom` precondition; they are the
+validation. Those sessions are unblocked now that `8e133d26ed` is on `origin/main`.
+
+Lock polled at 5-minute intervals from 16:49Z to 17:41Z (11 attempts, all exit 3) — the
+full ~60-minute budget after the landing — and never cleared. Never forced.
