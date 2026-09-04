@@ -1,6 +1,6 @@
 # Thought Intake Audit Report
 
-Generated: `2026-09-01T04:14:52.441353Z`
+Generated: `2026-09-04T20:53:43.405172Z`
 
 Ground-truth cross-check of both thought-intake paths against `docs/claims/claims.yaml` -- not a keyword/marker check. See `docs/thoughts/README.md` for what the two paths are and `docs/thoughts/scripts/thought_intake_audit.py` module docstring for the method.
 
@@ -14,15 +14,16 @@ A thought marked `processed` that points at a claim ID no longer in `claims.yaml
 
 | metric | count |
 |---|---|
-| total structured intakes | 105 |
-| orphaned / explicitly unregistered | 1 |
-| candidate section present, no IDs named or a sibling candidate is un-ID'd (needs a human read) | 49 |
-| all named candidate IDs registered | 28 |
+| total structured intakes | 120 |
+| orphaned / explicitly unregistered | 2 |
+| candidate section present, no IDs named or a sibling candidate is un-ID'd (needs a human read) | 51 |
+| all named candidate IDs registered | 40 |
 | no candidate-claims section (nothing to check) | 27 |
 
 ### Orphaned / unregistered -- action needed
 
 - `thought_intake_2026-08-07_dynamic_goal_structure_relational_possibility_topology.md` -- explicit "not registered" prose, no concrete IDs named yet
+- `thought_intake_2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md` -- named ['ARC-002', 'ARC-020', 'ARC-130', 'ARC-131', 'IMPL-022', 'MECH-033', 'MECH-059', 'MECH-094', 'MECH-385', 'MECH-510', 'MECH-NEW-1', 'Q-102', 'SD-056', 'SD-063'], MISSING from claims.yaml: ['MECH-NEW-1']
 
 ### Needs a human read -- candidate section present, no ID to check
 
@@ -75,5 +76,7 @@ A thought marked `processed` that points at a claim ID no longer in `claims.yaml
 - `thought_intake_2026-08-10_ree_as_a_single_understandable_cognifold.md`
 - `thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md` -- section resolves via ['ARC-047', 'ARC-127', 'INV-050', 'MECH-491', 'SD-017', 'SD-100'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
 - `thought_intake_2026-08-27_developmental_integration_and_readiness_programme.md` -- section resolves via ['ARC-019', 'ARC-120', 'ARC-130', 'ARC-131', 'ARC-135', 'GOV-CAPCONTRACT-1', 'GOV-DIAG-1', 'GOV-FAILLOC-1', 'GOV-HELDOUT-1', 'GOV-INTERVENE-1', 'GOV-PATHVALID-1', 'MECH-511'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
+- `thought_intake_2026-08-29_MILESTONE_viable_minimal_working_intelligence_achieved.md`
+- `thought_intake_2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md` -- section resolves via ['ARC-137', 'MECH-094', 'MECH-533', 'Q-102'], but at least one sibling candidate in the same list carries no ID of its own (may be a genuine unregistered candidate, or already-settled prose -- check by hand)
 
 Caveat: this audit only catches candidates that were given a claim-shaped ID (real or placeholder). A file with no 'Candidate claims'-style header at all is assumed to have nothing pending (per the README, some intakes are folded directly into canonical docs with no separate candidate list) -- that assumption is not independently verified here.
