@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-03T20:22:23Z",
+  "generated_at": "2026-09-04T13:47:34Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 167,
-      "built_modules": 137,
-      "fraction_built": 0.8204,
+      "total_modules": 169,
+      "built_modules": 138,
+      "fraction_built": 0.8166,
       "state_counts": {
-        "proposed": 30,
+        "proposed": 31,
         "implemented": 93,
         "implemented_pending_validation": 20,
-        "validated": 24
+        "validated": 25
       },
       "build_proof_gap": 113,
-      "build_proof_gap_note": "137 modules built, 113 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap_note": "138 modules built, 113 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,212 +31,212 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 79,
-      "total_initial": 146,
-      "total_initial_at_registration": 119,
+      "total_surviving": 81,
+      "total_initial": 149,
+      "total_initial_at_registration": 122,
       "total_fanout_added": 27,
       "total_resolved_out": 56,
-      "total_confirmed": 34,
+      "total_confirmed": 35,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 38.4,
+      "reduction_pct_vs_current": 37.6,
       "net_narrowing_pct": 33.6,
       "convergence_classes": {
         "narrowing": 20,
-        "static": 17,
+        "static": 18,
         "circling": 4,
         "refining": 2,
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "79 alive against 119 originally enumerated, and against 146 including 27 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 44
+      "honest_pair_note": "81 alive against 122 originally enumerated, and against 149 including 27 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 45
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 19,
-      "open_questions": 44
+      "open_questions": 45
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 145,
+      "surviving": 148,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-11",
-      "surviving": 144,
+      "surviving": 147,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-13",
-      "surviving": 142,
+      "surviving": 145,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-15",
-      "surviving": 138,
+      "surviving": 141,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-16",
-      "surviving": 137,
+      "surviving": 140,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-17",
-      "surviving": 134,
+      "surviving": 137,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-18",
-      "surviving": 128,
+      "surviving": 131,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-19",
-      "surviving": 124,
+      "surviving": 127,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-20",
-      "surviving": 123,
+      "surviving": 126,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-24",
-      "surviving": 122,
+      "surviving": 125,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-27",
-      "surviving": 120,
+      "surviving": 123,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-29",
-      "surviving": 119,
+      "surviving": 122,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-31",
-      "surviving": 118,
+      "surviving": 121,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-01",
-      "surviving": 116,
+      "surviving": 119,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-02",
-      "surviving": 110,
+      "surviving": 113,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-04",
-      "surviving": 109,
+      "surviving": 112,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-06",
-      "surviving": 108,
+      "surviving": 111,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-08",
-      "surviving": 106,
+      "surviving": 109,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-09",
-      "surviving": 104,
+      "surviving": 107,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-10",
-      "surviving": 103,
+      "surviving": 106,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-11",
-      "surviving": 102,
+      "surviving": 105,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-12",
-      "surviving": 101,
+      "surviving": 104,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-14",
-      "surviving": 99,
+      "surviving": 102,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-17",
-      "surviving": 98,
+      "surviving": 101,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-20",
-      "surviving": 97,
+      "surviving": 100,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-24",
-      "surviving": 96,
+      "surviving": 99,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-29",
-      "surviving": 93,
+      "surviving": 96,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-30",
-      "surviving": 91,
+      "surviving": 94,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
       "date": "2026-09-02",
-      "surviving": 90,
+      "surviving": 93,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     },
     {
-      "date": "2026-09-03",
-      "surviving": 79,
+      "date": "2026-09-04",
+      "surviving": 81,
       "closure_pct": 73.0,
-      "build_pct": 82.0
+      "build_pct": 81.7
     }
   ],
   "questions": [
@@ -4678,8 +4678,8 @@
         }
       ],
       "fanout_growth_note": "This question has grown once (3 -> 6) and has not converged: report its reduction ratio against initial_frozen_count_at_registration = 3 as well as against the current denominator. Two of the three added legs are on the learning-signal family, which already held H-training-objective -- read the convergence_class before treating the growth as refinement.",
-      "net_narrowing_ratio": -0.3333,
-      "bits_removed_vs_registration": -0.42,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
       "convergence": {
         "convergence_class": "mixed",
         "reason": "growth partly re-entered already-eliminated families",
@@ -4729,14 +4729,14 @@
           }
         ]
       },
-      "surviving": 4,
-      "alive": 4,
+      "surviving": 3,
+      "alive": 3,
       "resolved_out": 2,
-      "confirmed": 0,
+      "confirmed": 1,
       "superseded": 0,
       "reduction_numerator": 2,
       "reduction_ratio": 0.3333,
-      "bits_removed": 0.58,
+      "bits_removed": 1.0,
       "synthesis": null,
       "hypotheses": [
         {
@@ -4772,9 +4772,10 @@
           "axis": "learning-signal",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-976"
+            "V3-EXQ-976",
+            "V3-EXQ-1000"
           ],
-          "basis": "PRE-REGISTRATION (retained verbatim): Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation.\n\nV3-EXQ-976 RESULT (2026-09-02) -- LEG STAYS ALIVE, NARROWED AND WEAKENED. Candidate 1 itself (rollout_consistency_loss, H=5, flat and decay-0.5 forms, genuinely trained) was run directly, skipping DaD. Self-route rollout_consistency_mixed_across_seeds, accurate: rc_flat cr_ratio(h=1) lift over the depth-0 incumbent 0.88/5.75/3.35/1.87 (2 of 4 >= 3.0, 0 below; sign p=0.31), rc_decay 1.17/2.77/4.14/0.30; no cell within 7.9x of the 0.1 bar. At depth the objective DAMPS per-action divergence growth (8/8 ON cells grow less than OFF). Non-discriminating non_contributory: neither eliminated (a weak h=1 positive is consistent with it) nor confirmed (no bar progress); the damping is evidence against its trajectory-ACCURACY form and for the divergence-class sibling H-objective-class-divergence. Applied 2026-09-03 from the hypothesis_space_ledger_pending block of failure_autopsy_V3-EXQ-976_2026-09-02, which drafted it under the staging rule and could not write the registry.",
+          "basis": "PRE-REGISTRATION (retained verbatim): Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation.\n\nV3-EXQ-976 RESULT (2026-09-02) -- LEG STAYS ALIVE, NARROWED AND WEAKENED. Candidate 1 itself (rollout_consistency_loss, H=5, flat and decay-0.5 forms, genuinely trained) was run directly, skipping DaD. Self-route rollout_consistency_mixed_across_seeds, accurate: rc_flat cr_ratio(h=1) lift over the depth-0 incumbent 0.88/5.75/3.35/1.87 (2 of 4 >= 3.0, 0 below; sign p=0.31), rc_decay 1.17/2.77/4.14/0.30; no cell within 7.9x of the 0.1 bar. At depth the objective DAMPS per-action divergence growth (8/8 ON cells grow less than OFF). Non-discriminating non_contributory: neither eliminated (a weak h=1 positive is consistent with it) nor confirmed (no bar progress); the damping is evidence against its trajectory-ACCURACY form and for the divergence-class sibling H-objective-class-divergence. Applied 2026-09-03 from the hypothesis_space_ledger_pending block of failure_autopsy_V3-EXQ-976_2026-09-02, which drafted it under the staging rule and could not write the registry.\n\nV3-EXQ-1000 (2026-09-03) bears on this leg by read-across: the OBJECTIVE is confirmed as the locus of the cr_ratio crush, but in its divergence-preserving form (sibling H-objective-class-divergence, confirmed), not in this leg's multi-step ACCURACY form (ITEM 2 arm re-run here as ARM_RC_DECAY: mixed again, 2/6 exceed 1/6 below, h1->h5 growth 0.83-1.50 vs OFF 2.5-5.5 -- damping replicated at n=6). Leg left alive as the accuracy-form residual; H-objective-horizon-budget remains its untested refinement.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -4783,11 +4784,13 @@
           "label": "no trajectory-ACCURACY objective un-crushes; a divergence-preserving SEQUENCE objective is required",
           "desc": "The LSTM+output_proj crush is a property that trajectory-accuracy losses (single-step or multi-step, flat or discounted) are indifferent-to-hostile to: they pull the rollout toward ONE observed trajectory and so damp divergence across candidate action sequences. Only an objective that directly rewards endpoint divergence across candidate sequences (the withheld e1_rollout_sequence_divergence_* contrastive) moves cr_ratio(h). Distinct from H-training-objective by the accuracy-vs-divergence split the substrate entry's why_not_contrastive draws.",
           "axis": "learning-signal",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1000"
+          ],
+          "basis": "V3-EXQ-1000 (2026-09-03) CONFIRMED this leg: its declared null ('a contrastive-trained ON arm within the 3.0 paired-lift band of a depth-0 single-step incumbent at h=1 AND with depth growth no larger than the incumbent's, n>=6') is rejected on the first clause by 1-3 orders of magnitude -- ARM_RSD cr_ratio(h=1) lift over ARM_OFF 693/1838/56/88/1457/2714 on seeds 42/123/7/2024/17/31 (6/6 >= 3.0, sign p=0.0156), absolute 0.771-1.81 clearing the 0.1 bar 6/6 by 7.7x-18x, the statistic this question's title names. Control passed (8/8 readiness incl. rsd_objective_engaged 100% and action-sensitivity ratio 1.32-1.52 vs floor 1.05, grad steps matched gap 0), non_degenerate true. The second clause (depth growth) is moot: RSD sits at cr_ratio ~1 from h=1 so its multiplicative growth (0.83-2.68) is below OFF's (2.5-5.5) while its absolute h=5 values (0.64-4.41) exceed OFF's (0.002-0.10) by 22x-2070x. The lift is real at the spread level (RSD 0.15-0.24 vs OFF 2e-04..8e-03), not only in the ratio; the ratio is inflated by a centroid shrink (norm 0.54-0.81 vs incumbents 1.41-2.17) and the centroid-corrected h=1 ratio 0.115/0.081/0.080/0.167/0.138/0.103 still clears 0.1 on 4/6 seeds. What this run does NOT settle: the goal-proximity readout (e1coe_score_var, 36x-1700x short) -- a different statistic, registered as the new question sd_e1_var_bar_readout_crush. Adjudicated by failure_autopsy_V3-EXQ-1000_2026-09-04.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-readout-regime",
@@ -4798,7 +4801,7 @@
           "evidence_runs": [
             "V3-EXQ-980"
           ],
-          "basis": "V3-EXQ-980 (2026-09-02) ELIMINATED this leg: its declared null held with a real margin. Because the hybrid and E1-alone readouts are bit-identical at h=1 on all 16 cells, growth_e1alone(h) = growth_hybrid(h) x r(h) exactly; a flip to 'not damped' required r_ON/r_OFF in 1.828-7.975 and the measured ratio was 0.4922-0.9200 on every one of the 16 decision cells -- the E1-alone readout moved every cell 2.52x-10.99x FURTHER into damped. Verdict 8/8 damped under both readouts on both ON arms, on a healthy substrate (2,614-2,705 grad steps per cell, gap 0 every seed; grad_cos_samples 262-271; cr_real_h1 0.20-0.27 against a 1e-4 floor; zero missing action calls). The evaluator's hybrid regime is therefore NOT what suppresses E1-side divergence at depth. Bounded by three disclosed caveats: the run's PASS token is assigned unconditionally on readiness; its hybrid half is a byte-identical re-emission of V3-EXQ-976 rather than an independent sample; and a 109x readout discrepancy in the discriminating direction sits on ARM_single_step_stateful seed2024, an anchor arm no criterion reads and which the 976 autopsy had already flagged as ~100x action-insensitive. Adjudicated by confirmed autopsy failure_autopsy_V3-EXQ-980_2026-09-03.",
+          "basis": "V3-EXQ-980 (2026-09-02) ELIMINATED this leg: its declared null held with a real margin. Because the hybrid and E1-alone readouts are bit-identical at h=1 on all 16 cells, growth_e1alone(h) = growth_hybrid(h) x r(h) exactly; a flip to 'not damped' required r_ON/r_OFF in 1.828-7.975 and the measured ratio was 0.4922-0.9200 on every one of the 16 decision cells -- the E1-alone readout moved every cell 2.52x-10.99x FURTHER into damped. Verdict 8/8 damped under both readouts on both ON arms, on a healthy substrate (2,614-2,705 grad steps per cell, gap 0 every seed; grad_cos_samples 262-271; cr_real_h1 0.20-0.27 against a 1e-4 floor; zero missing action calls). The evaluator's hybrid regime is therefore NOT what suppresses E1-side divergence at depth. Bounded by three disclosed caveats: the run's PASS token is assigned unconditionally on readiness; its hybrid half is a byte-identical re-emission of V3-EXQ-976 rather than an independent sample; and a 109x readout discrepancy in the discriminating direction sits on ARM_single_step_stateful seed2024, an anchor arm no criterion reads and which the 976 autopsy had already flagged as ~100x action-insensitive. Adjudicated by confirmed autopsy failure_autopsy_V3-EXQ-980_2026-09-03.\n\nRead-across from V3-EXQ-1000 (2026-09-03): on the divergence-preserving ARM_RSD the hybrid-vs-E1-alone sign at h=30 is MIXED (hybrid 0.022/5.69/0.49/3.13/1.34/3.94 vs E1-alone 0.67/3.47/4.69/2.98/5.75/3.44 on seeds 42/123/7/2024/17/31) and seed 42's hybrid rollout collapses from h=10. 980's elimination stands on its own arms; its sign-extrapolation clause to contrastive objectives does not.",
           "children": [],
           "met_elimination_bar": true
         },
@@ -4818,8 +4821,8 @@
         "readiness_state": "discriminative_ready",
         "evidence_decile": 7,
         "decision_question": "Which locus should SD-e1 ITEM 2 actually target -- the absolute-vs-residual output parameterisation, or the multi-step training objective -- given that ITEM 1's interface fix lifted per-action signal by 6455x-9775x yet left the evaluator statistic 25-37x short of its bar?",
-        "distance_phrase": "2 of 6 legs eliminated: H-interface-action-channel (necessary, not sufficient -- V3-EXQ-965) and H-readout-regime (the hybrid evaluator regime does not explain the residual crush -- V3-EXQ-980). H-outputproj-parameterisation alive after 968 (threshold artifact); H-training-objective alive-narrowed-weakened after 976; H-objective-class-divergence is the lead build; H-objective-horizon-budget untested.",
-        "live_gate": "H-objective-class-divergence (the rollout-endpoint contrastive, ITEM 3) is the lead and is already LICENSED by the substrate entry's status string. The cheap sibling probe is now spent.",
+        "distance_phrase": "3 of 6 legs resolved: H-interface-action-channel eliminated (965), H-readout-regime eliminated (980), H-objective-class-divergence CONFIRMED (1000, cr_ratio bar cleared 6/6 by 7.7x-18x, 4/6 after centroid-shrink correction). H-outputproj-parameterisation alive (968 threshold artifact); H-training-objective alive as the accuracy-form residual (976, replicated 1000); H-objective-horizon-budget untested.",
+        "live_gate": "H-objective-class-divergence CONFIRMED by V3-EXQ-1000 (cr_ratio bar cleared 6/6). The question's own statistic is answered; the SD's closure now turns on the goal-proximity var bar, registered separately as sd_e1_var_bar_readout_crush. decidable stays false while H-outputproj-parameterisation, H-training-objective and H-objective-horizon-budget remain alive (red-team F5).",
         "observation_bottleneck": null
       }
     },
@@ -4895,6 +4898,88 @@
         "live_gate": "A frozen-latent SUPERVISED oracle adapter: freeze z_world exactly as V3-EXQ-978 left it and behaviour-clone the local_view_greedy oracle policy (which scores 45.75 on this same field). Declared null: the adapter cannot reproduce oracle actions above a pre-registered floor. CANNOT reproduce -> H-C; CAN reproduce -> H-B. NOT YET QUEUED. Deliberately SUPERVISED, not RL: the frozen-latent reader has already been run twice with a PPO reader (V3-EXQ-948 ppo_ree_latent 0.5; V3-EXQ-978 OFF arm 0.267, both 0/3 against floor) and both failures are confounded with RL credit-assignment difficulty, which is exactly what a behaviour-clone removes.",
         "observation_bottleneck": "Both existing frozen-latent readings used an RL learner, so the confirmed parent finding (conversion_ceiling_root H-observation-interface) cannot separate 'the representation is unusable' from 'the RL consumer did not learn'. Removing that confound is the whole point of the supervised probe."
       }
+    },
+    {
+      "qid": "sd_e1_var_bar_readout_crush",
+      "title": "After ITEM 3 cleared the cr_ratio bar (V3-EXQ-1000), why does per-action endpoint divergence at the E1 output not reach the goal-proximity readout -- e1coe_score_var(h=1) still 36x-1700x short of 0.002?",
+      "short_title": "E1 var-bar readout crush (post-ITEM-3)",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "constitution",
+          "instrumentation",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-fidelity-anchor",
+          "label": "shrunk centroid and under-dispersed h=1 endpoints: InfoNCE carries no surviving accuracy term",
+          "desc": "RSD endpoints sit at centroid_norm 0.54-0.81 vs 1.41-2.17 for the same-start incumbents and are 0.33-0.62x real spread at h=1; the goal-proximity readout is flat there. A fidelity-anchored divergence objective (ITEM 3 InfoNCE + an endpoint-accuracy term) restores the centroid to the real band with real-scale spread and the readout variance follows.",
+          "axis": "learning-signal",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-readout-saturation",
+          "label": "the 0.002 var bar, through the bounded 1/(1+d^2) readout, demands over-dispersion relative to real spread",
+          "desc": "goal_proximity is bounded and flat for goal-distant states; in V3-EXQ-1000 the bar is reached only at spread 3-3.7x real (seed2024 h=10/20/30). The lineage never measured the readout's variance over its own REAL endpoint samples (108b: means 0.64-0.81 only). If real endpoints' variance is < 0.002, the bar is an instrument target to re-register, not a substrate target.",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-goal-orthogonal-dispersion",
+          "label": "RSD's divergence lies in a subspace nearly orthogonal to the goal axis",
+          "desc": "Even on-manifold, the induced endpoint dispersion does not project onto (z_goal - centroid); a goal-blind objective cannot move a goal-projected readout.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Is the e1coe_score_var bar a substrate target (fidelity-anchored divergence objective), a goal-axis representation problem, or an instrument defect of the bounded proximity readout?",
+        "distance_phrase": "0 of 3 legs resolved; portfolio not yet queued.",
+        "live_gate": "H-readout-saturation (narrowed: reachable at REAL spread?) is the cheapest leg and gates the objective work: measure real-endpoint goal_proximity variance before licensing any objective.",
+        "observation_bottleneck": "real-endpoint goal_proximity variance never recorded (recording gap)"
+      }
     }
   ],
   "momentum": [
@@ -4909,7 +4994,7 @@
         "INV-088",
         "MECH-135"
       ],
-      "moved": "V3-EXQ-980 (2026-09-02) ELIMINATED this leg: its declared null held with a real margin. Because the hybrid and E1-alone readouts are bit-identical at h=1 on all 16 cells, growth_e1alone(h) = growth_hybrid(h) x r(h) exactly; a flip to 'not damped' required r_ON/r_OFF in 1.828-7.975 and the measured ratio was 0.4922-0.9200 on every one of the 16 decision cells -- the E1-alone readout moved every cell 2.52x-10.99x FURTHER into damped. Verdict 8/8 damped under both readouts on both ON arms, on a healthy substrate (2,614-2,705 grad steps per cell, gap 0 every seed; grad_cos_samples 262-271; cr_real_h1 0.20-0.27 against a 1e-4 floor; zero missing action calls). The evaluator's hybrid regime is therefore NOT what suppresses E1-side divergence at depth. Bounded by three disclosed caveats: the run's PASS token is assigned unconditionally on readiness; its hybrid half is a byte-identical re-emission of V3-EXQ-976 rather than an independent sample; and a 109x readout discrepancy in the discriminating direction sits on ARM_single_step_stateful seed2024, an anchor arm no criterion reads and which the 976 autopsy had already flagged as ~100x action-insensitive. Adjudicated by confirmed autopsy failure_autopsy_V3-EXQ-980_2026-09-03.",
+      "moved": "V3-EXQ-980 (2026-09-02) ELIMINATED this leg: its declared null held with a real margin. Because the hybrid and E1-alone readouts are bit-identical at h=1 on all 16 cells, growth_e1alone(h) = growth_hybrid(h) x r(h) exactly; a flip to 'not damped' required r_ON/r_OFF in 1.828-7.975 and the measured ratio was 0.4922-0.9200 on every one of the 16 decision cells -- the E1-alone readout moved every cell 2.52x-10.99x FURTHER into damped. Verdict 8/8 damped under both readouts on both ON arms, on a healthy substrate (2,614-2,705 grad steps per cell, gap 0 every seed; grad_cos_samples 262-271; cr_real_h1 0.20-0.27 against a 1e-4 floor; zero missing action calls). The evaluator's hybrid regime is therefore NOT what suppresses E1-side divergence at depth. Bounded by three disclosed caveats: the run's PASS token is assigned unconditionally on readiness; its hybrid half is a byte-identical re-emission of V3-EXQ-976 rather than an independent sample; and a 109x readout discrepancy in the discriminating direction sits on ARM_single_step_stateful seed2024, an anchor arm no criterion reads and which the 976 autopsy had already flagged as ~100x action-insensitive. Adjudicated by confirmed autopsy failure_autopsy_V3-EXQ-980_2026-09-03.\n\nRead-across from V3-EXQ-1000 (2026-09-03): on the divergence-preserving ARM_RSD the hybrid-vs-E1-alone sign at h=30 is MIXED (hybrid 0.022/5.69/0.49/3.13/1.34/3.94 vs E1-alone 0.67/3.47/4.69/2.98/5.75/3.44 on seeds 42/123/7/2024/17/31) and seed 42's hybrid rollout collapses from h=10. 980's elimination stands on its own arms; its sign-extrapolation clause to contrastive objectives does not.",
       "resolved_utc": "2026-09-02T21:23:00Z",
       "evidence_direction": "non_contributory"
     },
@@ -6100,21 +6185,6 @@
       "evidence_direction": "supports"
     },
     {
-      "run": "V3-EXQ-976",
-      "all_runs": [
-        "V3-EXQ-976"
-      ],
-      "momentum_class": "hypothesis_narrowed",
-      "qid": "sd_e1_residual_crush_locus",
-      "claims": [
-        "INV-088",
-        "MECH-135"
-      ],
-      "moved": "PRE-REGISTRATION (retained verbatim): Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation.\n\nV3-EXQ-976 RESULT (2026-09-02) -- LEG STAYS ALIVE, NARROWED AND WEAKENED. Candidate 1 itself (rollout_consistency_loss, H=5, flat and decay-0.5 forms, genuinely trained) was run directly, skipping DaD. Self-route rollout_consistency_mixed_across_seeds, accurate: rc_flat cr_ratio(h=1) lift over the depth-0 incumbent 0.88/5.75/3.35/1.87 (2 of 4 >= 3.0, 0 below; sign p=0.31), rc_decay 1.17/2.77/4.14/0.30; no cell within 7.9x of the 0.1 bar. At depth the objective DAMPS per-action divergence growth (8/8 ON cells grow less than OFF). Non-discriminating non_contributory: neither eliminated (a weak h=1 positive is consistent with it) nor confirmed (no bar progress); the damping is evidence against its trajectory-ACCURACY form and for the divergence-class sibling H-objective-class-divergence. Applied 2026-09-03 from the hypothesis_space_ledger_pending block of failure_autopsy_V3-EXQ-976_2026-09-02, which drafted it under the staging rule and could not write the registry.",
-      "resolved_utc": null,
-      "evidence_direction": "non_contributory"
-    },
-    {
       "run": "V3-EXQ-972",
       "all_runs": [
         "V3-EXQ-972"
@@ -6311,6 +6381,22 @@
         "SD-069"
       ],
       "moved": "777a narrowed nothing, but for a NEW reason. Sampling is genuinely repaired (all 56 cells reached 250 fresh E3 selections, zero starved cells) and all six preconditions were MET, so control_passed and non_degenerate are true for the first time. C1 still failed -- NOT on collinearity: mean_sin_angle 0.5454 EXCEEDS the 0.500 margin and c1_seed_count PASSED (3 of 4 informative seeds, required 3). The sole failing bar, c1_robust, is defined as mean minus POPULATION SD (statistics.pstdev, script line 541/697) and so cannot be met at any n; repaired to standard-error form it needs ~51 informative seeds against an observed 28.6% informative yield (~177 raw seeds, ~31 h). That yield is substrate-gated: corr(D-saturation-distance, norm_v_score) = 0.884 with 9 of 14 seeds saturated, a property of an untrained agent's degenerate action-value distribution that barely moved from 777's starved run. Hypothesis stays ALIVE -- a substrate-ceiling non_contributory discriminates nothing. Note the surviving evidence points TOWARD this leg, not away: within the informative pool the angle does not track score-axis magnitude (corr 0.028) and the best-conditioned seed 17 gives sin_angle 0.9883. Re-derive brake FIRED; pending SD-PROBE-WARMUP, not a further lettered iteration.",
+      "resolved_utc": null,
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-1000",
+      "all_runs": [
+        "V3-EXQ-976",
+        "V3-EXQ-1000"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "sd_e1_residual_crush_locus",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "moved": "PRE-REGISTRATION (retained verbatim): Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation.\n\nV3-EXQ-976 RESULT (2026-09-02) -- LEG STAYS ALIVE, NARROWED AND WEAKENED. Candidate 1 itself (rollout_consistency_loss, H=5, flat and decay-0.5 forms, genuinely trained) was run directly, skipping DaD. Self-route rollout_consistency_mixed_across_seeds, accurate: rc_flat cr_ratio(h=1) lift over the depth-0 incumbent 0.88/5.75/3.35/1.87 (2 of 4 >= 3.0, 0 below; sign p=0.31), rc_decay 1.17/2.77/4.14/0.30; no cell within 7.9x of the 0.1 bar. At depth the objective DAMPS per-action divergence growth (8/8 ON cells grow less than OFF). Non-discriminating non_contributory: neither eliminated (a weak h=1 positive is consistent with it) nor confirmed (no bar progress); the damping is evidence against its trajectory-ACCURACY form and for the divergence-class sibling H-objective-class-divergence. Applied 2026-09-03 from the hypothesis_space_ledger_pending block of failure_autopsy_V3-EXQ-976_2026-09-02, which drafted it under the staging rule and could not write the registry.\n\nV3-EXQ-1000 (2026-09-03) bears on this leg by read-across: the OBJECTIVE is confirmed as the locus of the cr_ratio crush, but in its divergence-preserving form (sibling H-objective-class-divergence, confirmed), not in this leg's multi-step ACCURACY form (ITEM 2 arm re-run here as ARM_RC_DECAY: mixed again, 2/6 exceed 1/6 below, h1->h5 growth 0.83-1.50 vs OFF 2.5-5.5 -- damping replicated at n=6). Leg left alive as the accuracy-form residual; H-objective-horizon-budget remains its untested refinement.",
       "resolved_utc": null,
       "evidence_direction": "non_contributory"
     },

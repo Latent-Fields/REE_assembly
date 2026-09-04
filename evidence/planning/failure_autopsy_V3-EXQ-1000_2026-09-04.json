@@ -2,7 +2,7 @@
  "schema_version": "failure_autopsy/v1",
  "generated_utc": "2026-09-04T10:14:05Z",
  "scope": "single",
- "status": "awaiting_human_confirmation",
+ "status": "confirmed",
  "dry_run_checked": true,
  "excluded_dry_run_ids": [],
  "session_id": "failure-autopsy-v3-exq-1000-20260904",
@@ -173,11 +173,12 @@
     "A first-draft mechanism reading built on a cross-module reference (E2's z_self per-action divergence as a z_world dispersion reference) and on a ratio of near-zero quantities (var/spread^2 over incumbent spreads of 2e-04) did not survive a same-manifest recompute. Withdrawn, recorded here: the red-team's spread-vs-real check is the one to run before writing 'over-dispersed'.",
     "980's sign-extrapolation ('hybrid reads higher than E1-alone') to a divergence-preserving objective does not hold uniformly; read-across from accuracy arms to contrastive arms is not free."
    ],
-   "routing": "queue-experiment"
+   "routing": "queue-experiment",
+   "routing_confirmed": "queue-experiment (portfolio, new EXQ; fidelity-anchor leg leads) + substrate_queue amend of SD-e1-rollout-consistency-training -- user-confirmed 2026-09-04T13:48:34Z. Governance chips the follow-on (CLAUDE.md Session Land Protocol step 6); this session spawns nothing."
   }
  ],
  "hypothesis_space_ledger_pending": {
-  "note": "DRAFTED ONLY (Step 8 gate not yet held; the registry is a live dashboard input). The confirming session re-reads hypothesis_space_registry.v1.json immediately before editing, applies the blocks below, then runs build_hypothesis_space.py + check_hypothesis_space_integrity.py and clears any (a)-(d) flag before committing.",
+  "note": "APPLIED 2026-09-04T13:48:34Z by the drafting session after the Step 8 gate (user-confirmed): registry re-read immediately before editing; growth_restriction absent on sd_e1_residual_crush_locus at write time; Mode B (H-objective-class-divergence confirmed; H-training-objective / H-readout-regime basis annotations; decision patch, decidable false) and Mode A (new question sd_e1_var_bar_readout_crush, 3 legs, initial_frozen_count 3) written; build_hypothesis_space.py + check_hypothesis_space_integrity.py run: (a)-(d) all 0, new legs witnessed (pre_registration_source = this artifact, committed at REE_assembly 34fd92e301 before any adjudicating run). Original draft-only text retained below for the record.",
   "growth_restriction_check": "sd_e1_residual_crush_locus carried NO growth_restriction field at draft time (re-read 2026-09-04T09:58:45Z). Mode B below is a RESOLUTION of an already-registered leg, not growth. The new legs go to a NEW question (Mode A, new qid), so invariant 3 is not engaged on the existing question.",
   "mode_b_resolve": [
    {
@@ -306,7 +307,10 @@
    },
    "registration_note": "Registered by failure_autopsy_V3-EXQ-1000_2026-09-04 (pending user confirmation at the Step 8 gate). NEW question rather than growth on sd_e1_residual_crush_locus on the different-statistic ground: that question's title names cr_ratio (25-37x short of 0.1), which V3-EXQ-1000 answers; e1coe_score_var has a different readout (bounded goal proximity) and denominator. The parent keeps 3 alive legs, so the 965 'fully-resolved parent' precedent does NOT apply and is not claimed; H-fidelity-anchor shares the learning-signal family with the parent's alive H-training-objective, stated here so the overlap is auditable. All three legs share one git witness: this artifact's landing commit, which pre-dates the portfolio run."
   },
-  "axis_families_check": "axes used: learning-signal, measurement, representation -- all already present in axis_families.map (verified 2026-09-04T09:58:45Z); no new axis row needed."
+  "axis_families_check": "axes used: learning-signal, measurement, representation -- all already present in axis_families.map (verified 2026-09-04T09:58:45Z); no new axis row needed.",
+  "applied": true,
+  "registry_written": true,
+  "applied_utc": "2026-09-04T13:48:34Z"
  },
  "cluster_pattern": null,
  "red_team": {
@@ -329,5 +333,14 @@
    "ANCHOR seed2024 h1 cr 0.180"
   ],
   "what_survived": "central adjudication (label accurate; C1 real and control-passed; C2 fails on the var bar at h=1; vacuous_pass = grammar), routing shape (portfolio + amend, lettered re-run refused), and the ledger confirmation of H-objective-class-divergence"
+ },
+ "confirmed_utc": "2026-09-04T13:48:34Z",
+ "user_decisions_2026_09_04": {
+  "gate_held_utc": "2026-09-04T13:48:34Z",
+  "Q1_adjudication": "Accept -- label accurate; vacuous_pass = manifest grammar; cr bar cleared, var bar open at h=1",
+  "Q2_routing": "Accept portfolio + amend -- one new EXQ (arms OFF / RSD / RSD+anchor, three readouts, both bars at every horizon); SD entry amended; lettered re-run refused",
+  "Q3_ledger": "Apply as drafted -- H-objective-class-divergence confirmed, parent decidable false, new question sd_e1_var_bar_readout_crush registered",
+  "Q4_lead_leg": "Fidelity anchor leads the portfolio design; readout-saturation recorded alongside and gates any objective licence",
+  "recommendation_agreement": "all four recommended options selected; logged via record_recommendation_outcome.py (umbrella 83755a3d9d)"
  }
 }

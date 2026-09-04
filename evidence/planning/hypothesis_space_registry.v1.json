@@ -5047,7 +5047,8 @@
       "fanout_sources": [
         "failure_autopsy_V3-EXQ-965_2026-08-30.json",
         "failure_autopsy_V3-EXQ-976_2026-09-02.json",
-        "failure_autopsy_V3-EXQ-980_2026-09-03.json"
+        "failure_autopsy_V3-EXQ-980_2026-09-03.json",
+        "failure_autopsy_V3-EXQ-1000_2026-09-04.json"
       ],
       "is_hero": false,
       "initial_frozen_count": 6,
@@ -5110,14 +5111,15 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "V3-EXQ-976"
+              "V3-EXQ-976",
+              "V3-EXQ-1000"
             ],
             "evidence_direction": "non_contributory",
             "resolved_utc": null,
             "control_passed": true,
             "non_degenerate": true,
             "met_elimination_bar": false,
-            "basis": "PRE-REGISTRATION (retained verbatim): Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation.\n\nV3-EXQ-976 RESULT (2026-09-02) -- LEG STAYS ALIVE, NARROWED AND WEAKENED. Candidate 1 itself (rollout_consistency_loss, H=5, flat and decay-0.5 forms, genuinely trained) was run directly, skipping DaD. Self-route rollout_consistency_mixed_across_seeds, accurate: rc_flat cr_ratio(h=1) lift over the depth-0 incumbent 0.88/5.75/3.35/1.87 (2 of 4 >= 3.0, 0 below; sign p=0.31), rc_decay 1.17/2.77/4.14/0.30; no cell within 7.9x of the 0.1 bar. At depth the objective DAMPS per-action divergence growth (8/8 ON cells grow less than OFF). Non-discriminating non_contributory: neither eliminated (a weak h=1 positive is consistent with it) nor confirmed (no bar progress); the damping is evidence against its trajectory-ACCURACY form and for the divergence-class sibling H-objective-class-divergence. Applied 2026-09-03 from the hypothesis_space_ledger_pending block of failure_autopsy_V3-EXQ-976_2026-09-02, which drafted it under the staging rule and could not write the registry.",
+            "basis": "PRE-REGISTRATION (retained verbatim): Live. Cheapest probe is scheduled multi-step unrolling (DaD, no architecture change). Declared null: DaD alone leaves cr_ratio(h) flat -- which the design doc already predicts ('not expected to move C3 alone') and which would promote candidate 1 (TD-MPC-style multi-step latent consistency). Same absolute gating bars as H-outputproj-parameterisation.\n\nV3-EXQ-976 RESULT (2026-09-02) -- LEG STAYS ALIVE, NARROWED AND WEAKENED. Candidate 1 itself (rollout_consistency_loss, H=5, flat and decay-0.5 forms, genuinely trained) was run directly, skipping DaD. Self-route rollout_consistency_mixed_across_seeds, accurate: rc_flat cr_ratio(h=1) lift over the depth-0 incumbent 0.88/5.75/3.35/1.87 (2 of 4 >= 3.0, 0 below; sign p=0.31), rc_decay 1.17/2.77/4.14/0.30; no cell within 7.9x of the 0.1 bar. At depth the objective DAMPS per-action divergence growth (8/8 ON cells grow less than OFF). Non-discriminating non_contributory: neither eliminated (a weak h=1 positive is consistent with it) nor confirmed (no bar progress); the damping is evidence against its trajectory-ACCURACY form and for the divergence-class sibling H-objective-class-divergence. Applied 2026-09-03 from the hypothesis_space_ledger_pending block of failure_autopsy_V3-EXQ-976_2026-09-02, which drafted it under the staging rule and could not write the registry.\n\nV3-EXQ-1000 (2026-09-03) bears on this leg by read-across: the OBJECTIVE is confirmed as the locus of the cr_ratio crush, but in its divergence-preserving form (sibling H-objective-class-divergence, confirmed), not in this leg's multi-step ACCURACY form (ITEM 2 arm re-run here as ARM_RC_DECAY: mixed again, 2/6 exceed 1/6 below, h1->h5 growth 0.83-1.50 vs OFF 2.5-5.5 -- damping replicated at n=6). Leg left alive as the accuracy-form residual; H-objective-horizon-budget remains its untested refinement.",
             "epistemic_category": "standard",
             "self_route_label": "rollout_consistency_mixed_across_seeds"
           }
@@ -5131,13 +5133,18 @@
           "pre_registered_utc": "2026-09-02T14:09:21Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-976_2026-09-02.json",
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-1000"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "rollout_endpoint_contrastive_lifts_cr_ratio_h1",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-09-03T21:36:59Z",
+            "basis": "V3-EXQ-1000 (2026-09-03) CONFIRMED this leg: its declared null ('a contrastive-trained ON arm within the 3.0 paired-lift band of a depth-0 single-step incumbent at h=1 AND with depth growth no larger than the incumbent's, n>=6') is rejected on the first clause by 1-3 orders of magnitude -- ARM_RSD cr_ratio(h=1) lift over ARM_OFF 693/1838/56/88/1457/2714 on seeds 42/123/7/2024/17/31 (6/6 >= 3.0, sign p=0.0156), absolute 0.771-1.81 clearing the 0.1 bar 6/6 by 7.7x-18x, the statistic this question's title names. Control passed (8/8 readiness incl. rsd_objective_engaged 100% and action-sensitivity ratio 1.32-1.52 vs floor 1.05, grad steps matched gap 0), non_degenerate true. The second clause (depth growth) is moot: RSD sits at cr_ratio ~1 from h=1 so its multiplicative growth (0.83-2.68) is below OFF's (2.5-5.5) while its absolute h=5 values (0.64-4.41) exceed OFF's (0.002-0.10) by 22x-2070x. The lift is real at the spread level (RSD 0.15-0.24 vs OFF 2e-04..8e-03), not only in the ratio; the ratio is inflated by a centroid shrink (norm 0.54-0.81 vs incumbents 1.41-2.17) and the centroid-corrected h=1 ratio 0.115/0.081/0.080/0.167/0.138/0.103 still clears 0.1 on 4/6 seeds. What this run does NOT settle: the goal-proximity readout (e1coe_score_var, 36x-1700x short) -- a different statistic, registered as the new question sd_e1_var_bar_readout_crush. Adjudicated by failure_autopsy_V3-EXQ-1000_2026-09-04."
           }
         },
         {
@@ -5160,7 +5167,7 @@
             "non_degenerate": true,
             "met_elimination_bar": true,
             "resolved_utc": "2026-09-02T21:23:00Z",
-            "basis": "V3-EXQ-980 (2026-09-02) ELIMINATED this leg: its declared null held with a real margin. Because the hybrid and E1-alone readouts are bit-identical at h=1 on all 16 cells, growth_e1alone(h) = growth_hybrid(h) x r(h) exactly; a flip to 'not damped' required r_ON/r_OFF in 1.828-7.975 and the measured ratio was 0.4922-0.9200 on every one of the 16 decision cells -- the E1-alone readout moved every cell 2.52x-10.99x FURTHER into damped. Verdict 8/8 damped under both readouts on both ON arms, on a healthy substrate (2,614-2,705 grad steps per cell, gap 0 every seed; grad_cos_samples 262-271; cr_real_h1 0.20-0.27 against a 1e-4 floor; zero missing action calls). The evaluator's hybrid regime is therefore NOT what suppresses E1-side divergence at depth. Bounded by three disclosed caveats: the run's PASS token is assigned unconditionally on readiness; its hybrid half is a byte-identical re-emission of V3-EXQ-976 rather than an independent sample; and a 109x readout discrepancy in the discriminating direction sits on ARM_single_step_stateful seed2024, an anchor arm no criterion reads and which the 976 autopsy had already flagged as ~100x action-insensitive. Adjudicated by confirmed autopsy failure_autopsy_V3-EXQ-980_2026-09-03."
+            "basis": "V3-EXQ-980 (2026-09-02) ELIMINATED this leg: its declared null held with a real margin. Because the hybrid and E1-alone readouts are bit-identical at h=1 on all 16 cells, growth_e1alone(h) = growth_hybrid(h) x r(h) exactly; a flip to 'not damped' required r_ON/r_OFF in 1.828-7.975 and the measured ratio was 0.4922-0.9200 on every one of the 16 decision cells -- the E1-alone readout moved every cell 2.52x-10.99x FURTHER into damped. Verdict 8/8 damped under both readouts on both ON arms, on a healthy substrate (2,614-2,705 grad steps per cell, gap 0 every seed; grad_cos_samples 262-271; cr_real_h1 0.20-0.27 against a 1e-4 floor; zero missing action calls). The evaluator's hybrid regime is therefore NOT what suppresses E1-side divergence at depth. Bounded by three disclosed caveats: the run's PASS token is assigned unconditionally on readiness; its hybrid half is a byte-identical re-emission of V3-EXQ-976 rather than an independent sample; and a 109x readout discrepancy in the discriminating direction sits on ARM_single_step_stateful seed2024, an anchor arm no criterion reads and which the 976 autopsy had already flagged as ~100x action-insensitive. Adjudicated by confirmed autopsy failure_autopsy_V3-EXQ-980_2026-09-03.\n\nRead-across from V3-EXQ-1000 (2026-09-03): on the divergence-preserving ARM_RSD the hybrid-vs-E1-alone sign at h=30 is MIXED (hybrid 0.022/5.69/0.49/3.13/1.34/3.94 vs E1-alone 0.67/3.47/4.69/2.98/5.75/3.44 on seeds 42/123/7/2024/17/31) and seed 42's hybrid rollout collapses from h=10. 980's elimination stands on its own arms; its sign-extrapolation clause to contrastive objectives does not."
           }
         },
         {
@@ -5185,11 +5192,11 @@
       "synthesis": null,
       "decision": {
         "decision_question": "Which locus should SD-e1 ITEM 2 actually target -- the absolute-vs-residual output parameterisation, or the multi-step training objective -- given that ITEM 1's interface fix lifted per-action signal by 6455x-9775x yet left the evaluator statistic 25-37x short of its bar?",
-        "live_gate": "H-objective-class-divergence (the rollout-endpoint contrastive, ITEM 3) is the lead and is already LICENSED by the substrate entry's status string. The cheap sibling probe is now spent.",
+        "live_gate": "H-objective-class-divergence CONFIRMED by V3-EXQ-1000 (cr_ratio bar cleared 6/6). The question's own statistic is answered; the SD's closure now turns on the goal-proximity var bar, registered separately as sd_e1_var_bar_readout_crush. decidable stays false while H-outputproj-parameterisation, H-training-objective and H-objective-horizon-budget remain alive (red-team F5).",
         "decidable": false,
         "observation_bottleneck": null,
         "decision_log_ref": null,
-        "distance_phrase": "2 of 6 legs eliminated: H-interface-action-channel (necessary, not sufficient -- V3-EXQ-965) and H-readout-regime (the hybrid evaluator regime does not explain the residual crush -- V3-EXQ-980). H-outputproj-parameterisation alive after 968 (threshold artifact); H-training-objective alive-narrowed-weakened after 976; H-objective-class-divergence is the lead build; H-objective-horizon-budget untested."
+        "distance_phrase": "3 of 6 legs resolved: H-interface-action-channel eliminated (965), H-readout-regime eliminated (980), H-objective-class-divergence CONFIRMED (1000, cr_ratio bar cleared 6/6 by 7.7x-18x, 4/6 after centroid-shrink correction). H-outputproj-parameterisation alive (968 threshold artifact); H-training-objective alive as the accuracy-form residual (976, replicated 1000); H-objective-horizon-budget untested."
       },
       "registration_note": "Registered by failure_autopsy_V3-EXQ-965_2026-08-30 (user-confirmed at the Step 8 gate). Deliberately a NEW question rather than growth on inv088_evaluator_degeneracy_cause: that question asks about the CAUSE of evaluator degeneracy, is fully resolved (5 legs, 0 alive, decidable), and V3-EXQ-965 bears on the REMEDY -- attaching here would conflate two questions and would be growth on an already-adjudicated one. As a new question, no growth_restriction applies and invariant 3 is not engaged. All three legs share one git witness (commit 1f8870d290, 2026-08-29T21:18:48Z), which enumerates the interface item, the five ranked objective candidates, and the output_proj suspect, and pre-dates the run (2026-08-30T14:59:08Z) by ~17.7 hours.",
       "fanout_growth_events": [
@@ -5206,7 +5213,8 @@
           "note": "Portfolio opened by the candidate-1 validation returning mixed at h=1 with depth damping: the remaining question is a discrimination among objective class, readout regime and dose. Drafted by that artifact under the staging rule and applied here by the confirming interactive session (2026-09-03), together with V3-EXQ-980's resolution of H-readout-regime. Git witness: the pre-registering artifact was added at REE_assembly 985c619de5, committer date 2026-09-02T14:09:21Z, and CONFIRMED at baf4941661 15:26:50Z; V3-EXQ-980 ran at 21:23Z, so pre-registration precedes adjudication. initial_frozen_count 3 -> 6; initial_frozen_count_at_registration stays 3."
         }
       ],
-      "fanout_growth_note": "This question has grown once (3 -> 6) and has not converged: report its reduction ratio against initial_frozen_count_at_registration = 3 as well as against the current denominator. Two of the three added legs are on the learning-signal family, which already held H-training-objective -- read the convergence_class before treating the growth as refinement."
+      "fanout_growth_note": "This question has grown once (3 -> 6) and has not converged: report its reduction ratio against initial_frozen_count_at_registration = 3 as well as against the current denominator. Two of the three added legs are on the learning-signal family, which already held H-training-objective -- read the convergence_class before treating the growth as refinement.",
+      "resolution_note_2026_09_04": "H-objective-class-divergence confirmed by V3-EXQ-1000 (user-confirmed at the Step 8 gate, 2026-09-04T13:47:34Z). No growth here; the var-bar successor question is sd_e1_var_bar_readout_crush."
     },
     {
       "qid": "zworld_actor_adequacy_locus",
@@ -5279,6 +5287,88 @@
         "distance_phrase": "One probe away. The discriminating experiment is designed and unqueued; no substrate change is required to run it.",
         "observation_bottleneck": "Both existing frozen-latent readings used an RL learner, so the confirmed parent finding (conversion_ceiling_root H-observation-interface) cannot separate 'the representation is unusable' from 'the RL consumer did not learn'. Removing that confound is the whole point of the supervised probe."
       }
+    },
+    {
+      "qid": "sd_e1_var_bar_readout_crush",
+      "title": "After ITEM 3 cleared the cr_ratio bar (V3-EXQ-1000), why does per-action endpoint divergence at the E1 output not reach the goal-proximity readout -- e1coe_score_var(h=1) still 36x-1700x short of 0.002?",
+      "short_title": "E1 var-bar readout crush (post-ITEM-3)",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "registered_utc": "2026-09-04T13:47:34Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1000_2026-09-04.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "hypotheses": [
+        {
+          "hid": "H-fidelity-anchor",
+          "label": "shrunk centroid and under-dispersed h=1 endpoints: InfoNCE carries no surviving accuracy term",
+          "desc": "RSD endpoints sit at centroid_norm 0.54-0.81 vs 1.41-2.17 for the same-start incumbents and are 0.33-0.62x real spread at h=1; the goal-proximity readout is flat there. A fidelity-anchored divergence objective (ITEM 3 InfoNCE + an endpoint-accuracy term) restores the centroid to the real band with real-scale spread and the readout variance follows.",
+          "axis": "learning-signal",
+          "basis": "V3-EXQ-1000 cells: centroid-norm shrink; spread 0.33-0.62x real at h=1; both bars reached only at h>=10 on seed2024 at 3-3.7x real spread. Declared null: ARM_RSD+anchor's centroid_norm stays outside the real band on a majority of seeds at h=1 OR its e1coe_score_var(h=1) is within 2x of ARM_RSD's.",
+          "pre_registered_utc": "2026-09-04T13:47:34Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-readout-saturation",
+          "label": "the 0.002 var bar, through the bounded 1/(1+d^2) readout, demands over-dispersion relative to real spread",
+          "desc": "goal_proximity is bounded and flat for goal-distant states; in V3-EXQ-1000 the bar is reached only at spread 3-3.7x real (seed2024 h=10/20/30). The lineage never measured the readout's variance over its own REAL endpoint samples (108b: means 0.64-0.81 only). If real endpoints' variance is < 0.002, the bar is an instrument target to re-register, not a substrate target.",
+          "axis": "measurement",
+          "basis": "Recording gap identified by failure_autopsy_V3-EXQ-1000_2026-09-04: Phase 4b collects 40 real endpoints per horizon and writes only their contrast ratio. Declared null: real-endpoint goal_proximity variance >= 0.002 on a majority of seeds.",
+          "pre_registered_utc": "2026-09-04T13:47:34Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-goal-orthogonal-dispersion",
+          "label": "RSD's divergence lies in a subspace nearly orthogonal to the goal axis",
+          "desc": "Even on-manifold, the induced endpoint dispersion does not project onto (z_goal - centroid); a goal-blind objective cannot move a goal-projected readout.",
+          "axis": "representation",
+          "basis": "V3-EXQ-1000: var/spread^2 for ARM_RSD 5e-05..9e-04 at h=1, below most (15/18) incumbent cells -- a fragile ratio of near-zero quantities, confounded with the readout slope at the centroid's goal distance (red-team F3); retained as basis only. Declared null: ARM_RSD's goal-axis fraction of spread variance is within 2x of the real endpoints'.",
+          "pre_registered_utc": "2026-09-04T13:47:34Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is the e1coe_score_var bar a substrate target (fidelity-anchored divergence objective), a goal-axis representation problem, or an instrument defect of the bounded proximity readout?",
+        "live_gate": "H-readout-saturation (narrowed: reachable at REAL spread?) is the cheapest leg and gates the objective work: measure real-endpoint goal_proximity variance before licensing any objective.",
+        "decidable": false,
+        "observation_bottleneck": "real-endpoint goal_proximity variance never recorded (recording gap)",
+        "decision_log_ref": null,
+        "distance_phrase": "0 of 3 legs resolved; portfolio not yet queued."
+      },
+      "registration_note": "Registered by failure_autopsy_V3-EXQ-1000_2026-09-04 (user-confirmed at the Step 8 gate 2026-09-04T13:47:34Z; drafted in that artifact, git-witnessed at REE_assembly 34fd92e301 before any adjudicating run). NEW question rather than growth on sd_e1_residual_crush_locus on the different-statistic ground: that question's title names cr_ratio (25-37x short of 0.1), which V3-EXQ-1000 answers; e1coe_score_var has a different readout (bounded goal proximity) and denominator. The parent keeps 3 alive legs, so the 965 'fully-resolved parent' precedent does NOT apply and is not claimed; H-fidelity-anchor shares the learning-signal family with the parent's alive H-training-objective, stated here so the overlap is auditable. All three legs share one git witness: this artifact's landing commit, which pre-dates the portfolio run."
     }
   ]
 }

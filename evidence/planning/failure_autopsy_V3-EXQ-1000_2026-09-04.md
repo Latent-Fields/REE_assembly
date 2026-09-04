@@ -1,6 +1,6 @@
 # Failure autopsy -- V3-EXQ-1000 (SD-e1 ITEM 3 validation: rollout-endpoint contrastive)
 
-**Status:** awaiting_human_confirmation (drafted 2026-09-04 by session `failure-autopsy-v3-exq-1000-20260904`; red-team CONTESTED and accepted, artifact revised; Step 8 gate owed).
+**Status:** **confirmed** (2026-09-04T13:48:34Z, user answered all four Step 8 questions with the recommended option: adjudication accepted; routing = queue-experiment portfolio + SD amend, lettered re-run refused; ledger applied as drafted; fidelity-anchor leg leads). Drafted 2026-09-04 by session `failure-autopsy-v3-exq-1000-20260904`; red-team (Fable) CONTESTED and accepted before the gate.
 **Scope:** single. **Trigger:** `experiment_purpose: diagnostic` PASS, indexer-flagged `vacuous_pass`.
 **Run:** `v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3` (queue V3-EXQ-1000; ree-cloud-2; 904 s; 6 seeds x 4 arms; claim_ids `[]`; unblocks MECH-135 / INV-088).
 **Machine-readable twin:** `failure_autopsy_V3-EXQ-1000_2026-09-04.json`.
@@ -83,7 +83,7 @@ The closest mechanism is hippocampal-prefrontal constructive simulation of alter
 
 **Routing: `queue-experiment`** (the portfolio above, new EXQ number). **Substrate hand-off: `amend` `SD-e1-rollout-consistency-training`** -- ITEM 3 validated as *cr bar cleared at h=1 (4/6 after centroid correction), var bar open at h=1, both bars reached at depth on one seed at 3-3.7x real spread*; failure record appended; status string `item3_validated_cr_bar_cleared_var_bar_open_at_h1`; `status_phase` stays `validation_owed`; severity / paths / priority / unblocks unchanged; the 108b, 965 and 976 records stay `open` (their targets conjoin both bars). **Refused:** any lettered iteration of 1000 on the same two bars at h=1 against the same objective.
 
-**Draft `evidence_quality_note`** (for the SD entry's validation record; MECH-135 / INV-088 notes unchanged): see `recommended_evidence_quality_note` in the JSON twin.
+**`evidence_quality_note` for governance to write** (SD entry validation record; MECH-135 / INV-088 notes unchanged): see `recommended_evidence_quality_note` in the JSON twin. Follow-on (the portfolio EXQ, the SD amend) is NOT chipped by this session -- `/governance` Step 2b ratifies and chips it.
 
 ## 7. Mechanical checks (Steps 7b, 7c)
 
@@ -91,11 +91,11 @@ The closest mechanism is hippocampal-prefrontal constructive simulation of alter
 
 **7c red-team (Fable 5.1, separate agent, reasoning withheld, JSON-first): CONTESTED, contest ACCEPTED.** All headline numbers recomputed and matched. Five findings, all confirmed by the drafter's own cheap confirmers and applied: F1 "over-dispersed at h=1" was false (RSD spread 0.33-0.62x real, 6/6; the >1 ratio is the centroid shrink; the E2 2.8e-02 figure is z_self, not a z_world reference) -- corrected throughout; F2 the both-bars target IS reached at h=10/20/30 on seed 2024 inside the real centroid band (C3 tests h=1 only) -- absolute withdrawn, H-readout-saturation narrowed to "reachable at real spread?"; F3 var/spread^2 downgraded from mechanism to hypothesis basis; F4 the stability flag is a per-cell cardinality trip with `process_snapshot_drift: []`, already 976's learning -- provenance and learning rewritten; F5 the 965 "fully-resolved parent" precedent withdrawn, parent `decidable` left false, stale `hypothesis_space_qid` noted. What survived: the central adjudication, the routing shape, and the ledger confirmation of `H-objective-class-divergence` (the lift is real at the spread level, not only in the ratio). Full report: `red_team` block in the JSON.
 
-## 8. Ledger (Step 9b) -- DRAFTED ONLY
+## 8. Ledger (Step 9b) -- APPLIED 2026-09-04T13:48:34Z
 
-See `hypothesis_space_ledger_pending` in the JSON: Mode B resolves `H-objective-class-divergence` (confirmed) and annotates `H-training-objective` / `H-readout-regime` on `sd_e1_residual_crush_locus` (no `growth_restriction` present at draft time; `decidable` stays false with 3 legs alive); Mode A registers the new question `sd_e1_var_bar_readout_crush` with three pre-registered legs (different-statistic ground; the parent is not fully resolved, so the 965 precedent is not claimed; the lead leg's learning-signal overlap with the parent is stated). Nothing is written to the registry until the gate is held.
+See `hypothesis_space_ledger_pending` in the JSON: Mode B resolves `H-objective-class-divergence` (confirmed) and annotates `H-training-objective` / `H-readout-regime` on `sd_e1_residual_crush_locus` (no `growth_restriction` present at draft time; `decidable` stays false with 3 legs alive); Mode A registers the new question `sd_e1_var_bar_readout_crush` with three pre-registered legs (different-statistic ground; the parent is not fully resolved, so the 965 precedent is not claimed; the lead leg's learning-signal overlap with the parent is stated). Applied after the gate: registry re-read fresh, no `growth_restriction` on the parent, edits written, `build_hypothesis_space.py` + `check_hypothesis_space_integrity.py` run with (a)-(d) all 0 and the three new legs git-witnessed by this artifact's draft commit (REE_assembly 34fd92e301). Derived rollup: parent `alive 3`, `convergence_class: mixed`; new question `alive 3`, `static`.
 
-## 9. Questions for the Step 8 gate
+## 9. Step 8 gate -- answered 2026-09-04T13:48:34Z (all four: recommended option)
 
 1. Accept the adjudication: label accurate, `vacuous_pass` = grammar, C2 fail at h=1 = the substantive finding (cr bar cleared 6/6 raw, 4/6 centroid-corrected; var bar untouched at h=1, reached at depth on one seed at 3-3.7x real spread)?
 2. Accept routing `queue-experiment` portfolio (fidelity anchor / readout demand / goal-orthogonal) with the SD amend, and the refusal of a lettered re-run?
