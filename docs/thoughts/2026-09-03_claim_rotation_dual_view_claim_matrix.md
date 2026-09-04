@@ -3,6 +3,7 @@
 Status: processed
 Intake: evidence/planning/thought_intake_2026-09-03_claim_rotation_dual_view_claim_matrix.md
 Claims registered: GOV-ROTATE-1
+First held-out trial (2026-09-04): POSITIVE at N=1, not blind -- the V3-EXQ-978 autopsy (evidence/planning/failure_autopsy_V3-EXQ-978_2026-09-03.md section 9) rotated INV-088 into transformation coordinates and produced a smaller, cheaper, more discriminating next step (frozen-z_world oracle behaviour-clone probe, queued as V3-EXQ-1002) than the architectural framing's substrate build; recorded as a dated note on GOV-ROTATE-1, no status change.
 
 Original status line: epistemic/governance tooling thought — not a new scientific claim and not a second independent evidence ledger
 
