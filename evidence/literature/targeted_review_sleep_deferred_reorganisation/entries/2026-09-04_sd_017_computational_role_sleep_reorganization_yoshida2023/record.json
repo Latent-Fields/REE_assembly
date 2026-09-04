@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_deferred_reorganisation",
+  "entry_id": "2026-09-04_sd_017_computational_role_sleep_reorganization_yoshida2023",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["SD-017", "ARC-137", "MECH-462"],
+  "source": {
+    "title": "Computational role of sleep in memory reorganization",
+    "authors": ["Yoshida, Kensuke", "Toyoizumi, Taro"],
+    "year": 2023,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2023.102799",
+    "pmid": "37844426",
+    "volume": "83",
+    "pages": "102799"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "This review directly surveys and endorses the computational split SD-017 and ARC-137 depend on -- NREM sleep selectively CONSOLIDATES memory (via slow-wave sequential firing and up/down states) while REM sleep REORGANIZES memory representations (via dream-related developing neuronal representations) -- and explicitly frames this as an asymmetry worth taking seriously computationally. It is tagged mixed rather than a clean supports because the review itself is candid that the REM-reorganization side is theoretically far less developed and empirically thinner than the NREM-consolidation side, which is precisely the evidential asymmetry ARC-137 and the parent thought ask REE to preserve rather than paper over -- a phase name is not proof of a distinct computation, and this review says so in its own terms. It also bears on MECH-462's first-order/second-order consolidation-readout distinction: the review's NREM output (memory selection via slow-wave firing) is a first-order, content-bearing quantity, while its REM output (representational reorganization via dream-related representation development) is closer to a second-order quantity computed OVER representations -- exactly the type distinction MECH-462 draws between content-scorable and content-free-by-type consolidation phases.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review's own framing is candid that theoretical models for REM's reorganizing role are comparatively underdeveloped relative to NREM's consolidating role -- if future work fails to substantiate a REM-specific reorganization computation distinct from what NREM already does, SD-017's SWS/REM functional split would lose its REM-side grounding specifically, while the NREM-consolidation side would remain supported.",
+    "This is a THEORY review connecting computational models to neuroscience findings, not a new empirical measurement -- it synthesizes and interprets existing computational and experimental literature rather than reporting new data that could independently confirm or disconfirm the split."
+  ],
+  "tags": ["sd_017", "arc_137", "nrem", "rem", "memory_reorganization", "computational_review", "sleep_stage_specialization"],
+  "mapping": {
+    "source_claim_statement": "A theoretical review proposing that NREM sleep selectively consolidates memory (via slow-wave sequential firing patterns and cortical up/down states supporting memory selection) while REM sleep reorganizes the representations of memories (via dreaming-related development of neuronal representations); the review connects these ideas to machine learning and calls for further theoretical development, particularly on the REM/reorganization side.",
+    "ree_translation": "SD-017 is REE's SWS/REM functional-specialization claim; ARC-137 is REE's typed offline-transformation taxonomy, which distinguishes retention/interference repair from representational reorganisation as separate offline OUTCOMES; MECH-462 distinguishes consolidation phases whose output is a first-order, content-bearing quantity from phases whose output is a second-order quantity computed over representations. Yoshida & Toyoizumi's review directly endorses this general shape -- a phase-specific division of labor between consolidation (NREM) and reorganization (REM) -- and is therefore supporting literature for SD-017's split, for ARC-137's insistence that reorganisation is a distinct offline outcome from mere retention, and for MECH-462's order-of-quantity distinction (NREM's memory-selection output is first-order; REM's representation-reorganization output is second-order in exactly MECH-462's sense). Critically, the review's own candor about the REM-reorganization side being theoretically underdeveloped is itself evidence FOR the parent thought's caution: a phase label (REM vs. NREM) is not by itself proof of a distinct computation, and the field's own literature agrees the REM-reorganization mechanism is the less-established half of the split -- which is also exactly MECH-462's point that second-order phases are harder to score directly.",
+    "mapping_caveat": "This is a review/synthesis article, not new empirical data -- it reports the state of theoretical modeling in the field rather than testing SD-017 or ARC-137 directly. Its endorsement of the NREM/REM asymmetry should be read as a literature-level convergence signal, and its candor about REM-reorganization's weaker theoretical grounding should be carried forward into how confidently SD-017's REM half specifically is asserted.",
+    "source_context": "Theoretical/computational neuroscience review; synthesizes computational modeling literature (slow-wave sequential firing, up/down states) and experimental sleep neuroscience findings; explicitly connects to machine learning framings."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Solid, recent, well-targeted review in a respected venue, directly on the SD-017/ARC-137 topic. Confidence held at a moderate level and tagged mixed because the review's own honesty about REM-reorganization's weaker theoretical grounding is a genuine complication for SD-017's REM-side claim, not merely a caveat to note in passing -- it is core to what the review says."
+  }
+}

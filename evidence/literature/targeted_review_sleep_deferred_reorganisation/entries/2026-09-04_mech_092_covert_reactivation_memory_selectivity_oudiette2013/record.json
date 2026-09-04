@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_deferred_reorganisation",
+  "entry_id": "2026-09-04_mech_092_covert_reactivation_memory_selectivity_oudiette2013",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["MECH-092", "MECH-272"],
+  "source": {
+    "title": "The role of memory reactivation during wakefulness and sleep in determining which memories endure",
+    "authors": ["Oudiette, Delphine", "Antony, James W.", "Creery, Jessica D.", "Paller, Ken A."],
+    "year": 2013,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5497-12.2013",
+    "pmid": "23575863",
+    "pmc": "PMC3677604",
+    "volume": "33",
+    "issue": "15",
+    "pages": "6672-6678"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This study directly grounds the thought's refusal to equate replay with sleep, and by extension MECH-092's real-vs-simulated hypothesis-tag distinction: covert memory reactivation via targeted cueing was causally effective at rescuing low-value memories from forgetting during BOTH wakefulness and sleep, but with qualitatively different scope -- waking reactivation rescued only the specifically cued item, while sleep reactivation rescued the ENTIRE category of related low-value memories via associative spreading. This is a clean, causally-manipulated demonstration that REE's architectural distinction between waking quiescent replay and sleep-phase replay (both licit reactivation channels, per MECH-092/REE's existing permission for waking quiescent replay) is not an arbitrary implementation choice -- the two channels have measurably different computational scope in the biological system REE is modeling.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's central manipulation is REWARD VALUE (participants were told which associations were worth more points), and it is this value signal -- not an explicit hypothesis-tag / provenance marker -- that determines baseline forgetting and reactivation rescue; MECH-092's specific real-vs-simulated TAG mechanism is not directly tested here, only the broader principle that covert reactivation determines what survives.",
+    "This is healthy young-adult declarative memory (object-location associations with monetary/point value), a domain gap from REE's operational hypothesis-tagged trajectory replay; the wake/sleep scope difference (single item vs. category-wide spreading) is measured behaviorally, not traced to a specific underlying computational mechanism that would map cleanly onto REE's architecture."
+  ],
+  "tags": ["mech_092", "mech_272", "covert_reactivation", "wake_replay", "sleep_replay", "targeted_memory_reactivation", "value_dependent_forgetting"],
+  "mapping": {
+    "source_claim_statement": "Recall accuracy for low-reward-value object-location associations declines more than for high-value associations after either a 90-minute nap or 90-minute wake interval; targeted memory reactivation (cueing) during either wakefulness or sleep can rescue low-value associations from this forgetting, but with different scope -- reactivation during WAKEFULNESS rescues only the specifically cued association, while reactivation during SLEEP rescues the entire set of related low-value associations, extending beyond the directly cued item via associative spreading.",
+    "ree_translation": "REE already permits waking quiescent replay as a licit reactivation channel alongside sleep-phase replay (per MECH-092's provenance framework); the parent thought's guiding principle is that replay is a transport/sampling operation shared across contexts, not itself a sufficient description of a transformation, and that wake and sleep reactivation are not interchangeable. Oudiette et al. supply direct causal, human behavioral evidence for exactly this non-equivalence: both channels can rescue memories via covert reactivation, but sleep reactivation has a qualitatively broader, associative-network-wide scope that waking reactivation lacks. This grounds MECH-092's channel distinction empirically rather than as an architectural assumption, and is relevant to MECH-272's mechanism for how reactivation determines memory persistence.",
+    "mapping_caveat": "The value signal driving differential forgetting/rescue here is an explicit REWARD VALUE (points), not REE's hypothesis-tag/provenance marker (real vs. simulated) that MECH-092 specifically concerns -- this paper evidences the WAKE-VS-SLEEP SCOPE distinction cleanly, but does not test the provenance-tagging mechanism itself. Treat this as strong support for keeping wake and sleep replay architecturally distinct, not as a direct test of the hypothesis-tag mechanism.",
+    "source_context": "Human behavioral study; young healthy adults; object-location paired-associate learning with sound cues and value (point) manipulation; targeted memory reactivation delivered during either a wake interval or a nap, recall accuracy as the readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "High-quality, well-cited, causally-manipulated (TMR in both wake and sleep conditions, a direct comparison design) peer-reviewed study. Mapping fidelity good for the wake-vs-sleep architectural distinction MECH-092 already encodes; capped from higher because the value signal tested (reward points) differs from REE's specific hypothesis-tag/provenance construct."
+  }
+}

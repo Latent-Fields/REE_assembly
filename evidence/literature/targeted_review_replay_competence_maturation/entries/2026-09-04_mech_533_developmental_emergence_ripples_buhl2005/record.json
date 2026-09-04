@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_competence_maturation",
+  "entry_id": "2026-09-04_mech_533_developmental_emergence_ripples_buhl2005",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["MECH-533"],
+  "source": {
+    "title": "Developmental emergence of hippocampal fast-field \"ripple\" oscillations in the behaving rat pup",
+    "authors": ["Buhl, Derek L.", "Buzsaki, Gyorgy"],
+    "year": 2005,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2005.05.030",
+    "pmid": "16039793",
+    "pmc": "PMC1851000",
+    "volume": "134",
+    "issue": "4",
+    "pages": "1423-1430"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This is the original, classical demonstration that hippocampal ripple oscillations -- the fast-field signature associated with replay -- are ABSENT during the first postnatal week despite sharp waves themselves being present, and only begin to emerge at the end of the second postnatal week (day 12-20), tracking the developmental GABA-A switch from excitatory to inhibitory signaling. This is the founding empirical result behind DEV-NEED-029 ('replay hardware maturation gate') and the direct historical ancestor of the more recent, more mechanistically detailed Pochinok (2024) and Noguchi (2023) papers in this same directory -- it establishes the phenomenon those later causal/intracellular studies go on to explain mechanistically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is freely-behaving-rat-pup extracellular recording without causal manipulation -- it is a purely observational/correlational demonstration of the developmental timeline (ripples absent early, present later, tracking GABA switch timing), not a causal test of the inhibition-maturation mechanism; that causal test is supplied by the companion Pochinok (2024) entry.",
+    "The paper notes the developmental timeline 'may also reflect hitherto unidentified emergence of neuronal gap junctions' -- the authors themselves flag GABA-switch timing as A candidate explanation, not a proven sole cause, at the time of writing (later confirmed more directly causal by Pochinok 2024)."
+  ],
+  "tags": ["mech_533", "sharp_wave_ripples", "developmental_maturation", "gaba_switch", "hippocampus", "classical_study", "replay_hardware"],
+  "mapping": {
+    "source_claim_statement": "Recording from freely behaving rat pups aged postnatal day 12-20 (with wire tetrodes) and head-fixed pups (with silicon probes), the authors show that while sharp-wave-associated hippocampal unit bursts are present from the first postnatal week, the fast-field RIPPLE oscillation component does not begin to emerge until the end of the second postnatal week, increasing gradually until around day 18, after which the intra-ripple frequency reaches adult values. This developmental timeline parallels the GABA-A receptor-mediated signaling switch from excitatory to inhibitory.",
+    "ree_translation": "MECH-533 requires that offline-processing competence, including the basic capacity to generate replay-supporting ripple events, has its own developmental trajectory distinct from mere offline-window occurrence. Buhl & Buzsaki is the classical, founding demonstration of exactly this: ripples -- as opposed to the cruder sharp-wave events that precede them -- are simply ABSENT for the first postnatal week and emerge gradually over the second, tracking a specific developmental switch in inhibitory signaling. This is the historical anchor for DEV-NEED-029's 'replay hardware maturation gate,' later given a causal mechanistic account by Pochinok et al. (2024, this same directory) and a finer-grained sequence-fidelity extension by Noguchi et al. (2023, this same directory).",
+    "mapping_caveat": "This is purely observational (no causal manipulation of the inhibitory mechanism), so while it establishes the developmental timeline and correlates it with GABA-switch timing, it does not itself prove inhibition maturation CAUSES ripple emergence -- that causal step is supplied by the companion Pochinok (2024) entry, which post-dates this paper by nearly two decades and uses optogenetic/chemogenetic tools unavailable in 2005.",
+    "source_context": "Rat; postnatal days 12-20; wire tetrode recording in freely behaving pups and silicon-probe recording in head-fixed pups; extracellular local field potential and multi-unit recording, no causal manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "High source quality: the classical, foundational, widely-cited demonstration of ripple developmental emergence, co-authored by a leading figure in hippocampal oscillation research. Mapping fidelity moderate-good: directly establishes the phenomenon MECH-533's hardware-maturation sub-claim needs, though the causal mechanism (vs. correlation with GABA-switch timing) is only established by the later Pochinok (2024) work in this same directory."
+  }
+}

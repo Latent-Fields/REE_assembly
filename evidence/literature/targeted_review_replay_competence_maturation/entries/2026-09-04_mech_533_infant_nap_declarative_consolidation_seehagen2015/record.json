@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_competence_maturation",
+  "entry_id": "2026-09-04_mech_533_infant_nap_declarative_consolidation_seehagen2015",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["MECH-533", "DEV-NEED-007"],
+  "source": {
+    "title": "Timely sleep facilitates declarative memory consolidation in infants",
+    "authors": ["Seehagen, Sabine", "Konrad, Carolin", "Herbert, Jane S.", "Schneider, Silvia"],
+    "year": 2015,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1414000112",
+    "pmid": "25583469",
+    "pmc": "PMC4321279",
+    "volume": "112",
+    "issue": "5",
+    "pages": "1625-1629"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the first experimental (not merely correlational) causal demonstration that offline consolidation benefit in human infants (6- and 12-month-olds) is TIME-SENSITIVE -- a nap within 4 hours of learning was necessary for retention at both 4h and 24h delays, and a single nap of at least 30 minutes was sufficient. This directly supports MECH-533's frequency-half of the joint claim (DEV-NEED-007): frequent, well-timed offline windows matter causally, not just correlationally, in infancy specifically -- and the requirement for TIMELY placement (not just occurrence) of an offline window is itself evidence that infant offline-processing capacity is a scarce, time-window-limited resource, consistent with a system whose offline competence is still developing rather than uniformly available.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This paper demonstrates the FREQUENCY/TIMING half of MECH-533's joint claim (offline windows must be timely and sufficiently long) but does not itself measure offline-processing COMPETENCE separately -- it cannot by itself establish the CONDITIONAL/CROSSED relationship MECH-533 requires (that frequency benefit depends on competence level), only that frequency/timing matters at all in infancy.",
+    "The task is deferred imitation (a simple declarative/procedural hybrid memory task testing whether infants reproduce a modeled action sequence after a delay), a much simpler memory demand than REE's cross-episode replay-dependent reorganisation or generalisation -- the transfer from 'infants need a timely nap to retain a modeled action sequence' to REE's offline-competence architecture is substantial."
+  ],
+  "tags": ["mech_533", "dev_need_007", "infant_development", "nap", "declarative_memory", "consolidation", "causal_demonstration", "time_window"],
+  "mapping": {
+    "source_claim_statement": "Infants aged 6 and 12 months who napped within 4 hours of learning a modeled action sequence (deferred imitation task) retained the learned sequence at both 4-hour and 24-hour delays; infants who did not nap within that window failed to retain it. A single nap of at least 30 minutes was sufficient to produce the retention benefit. This is presented as the first experimental causal demonstration of offline consolidation's time-sensitivity in year-one infants.",
+    "ree_translation": "MECH-533's joint/conditional claim states that offline frequency and offline COMPETENCE co-mature -- frequent early offline windows are needed because early traces are fragile, and DEV-NEED-007 (frequent offline integration during early development) already names the frequency half. Seehagen et al. provide a causal (not merely observational) demonstration that infant memory retention genuinely depends on offline-window TIMING and occurrence, strengthening the empirical basis for DEV-NEED-007's frequency claim specifically. This constrains WHEN offline processing must be triggered relative to experience -- directly relevant to any REE implementation of a developmental offline-window scheduler.",
+    "mapping_caveat": "This paper evidences the frequency/timing-matters half of MECH-533's joint claim; it does not itself measure or manipulate offline-processing COMPETENCE as a separate variable, so it cannot alone establish the CROSSED (frequency benefit conditional on competence) relationship that is MECH-533's distinguishing claim over a pure frequency account. It should be read as one half of the joint claim's evidential basis, paired with the competence-maturation evidence in the companion Pochinok (2024) and Noguchi (2023) entries in this same directory.",
+    "source_context": "Human infants aged 6 and 12 months; deferred imitation task (modeled action sequence on novel objects); nap timing (within vs. after a 4-hour window) as the natural/quasi-experimental manipulation; retention tested at 4-hour and 24-hour delays."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "High source quality: the first genuinely causal (not just correlational) demonstration of offline consolidation time-sensitivity in year-one human infants, in a top general-science venue. Mapping fidelity moderate: strongly grounds MECH-533's frequency/timing half (DEV-NEED-007) but does not itself test the competence half or the crossed relationship, which is why it is banked alongside the competence-focused Pochinok and Noguchi entries in this same directory."
+  }
+}

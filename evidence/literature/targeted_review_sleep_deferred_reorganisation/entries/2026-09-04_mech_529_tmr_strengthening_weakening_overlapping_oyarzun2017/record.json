@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_deferred_reorganisation",
+  "entry_id": "2026-09-04_mech_529_tmr_strengthening_weakening_overlapping_oyarzun2017",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["MECH-529", "MECH-285", "ARC-137"],
+  "source": {
+    "title": "Targeted Memory Reactivation during Sleep Adaptively Promotes the Strengthening or Weakening of Overlapping Memories",
+    "authors": ["Oyarzun, Juan P.", "Moris, Joan", "Luque, David", "de Diego-Balaguer, Ruth", "Fuentemilla, Lluis"],
+    "year": 2017,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3537-16.2017",
+    "pmid": "28694337",
+    "pmc": "PMC6596642",
+    "volume": "37",
+    "issue": "32",
+    "pages": "7748-7758"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This is close to the strongest single piece of support in this pull for MECH-529's core empirical signature -- that offline reorganisation is SELECTIVE and RELATIONAL (differentially strengthening or weakening specific overlapping memories based on their associative structure) rather than a uniform consolidation multiplier applied indiscriminately. The study causally reactivates one memory during sleep and shows the ADAPTIVE, bidirectional (strengthen-or-weaken) regulation of associated overlapping memories as a function of their relative associative strength with the shared element -- exactly the split/merge/reweighting signature MECH-529 predicts, in a causally-manipulated (not merely correlational) human sleep paradigm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The overlapping-memory structure here is experimenter-defined via explicit shared elements in an associative-learning task (paired-associate learning with deliberately overlapping cues), not discovered from accumulated consequential-divergence evidence the way MECH-529 requires -- the same oracular-structure caveat that applies to the Solomon 2026 entry already in this directory.",
+    "The paradigm measures memory strength (recall accuracy) as the readout, not object equivalence-class membership, index continuity, or generalisation behaviour specifically -- MECH-529's non-oracularity and index-continuity requirements are untested here."
+  ],
+  "tags": ["mech_529", "mech_285", "tmr", "overlapping_memories", "selective_strengthening", "selective_weakening", "adaptive_consolidation"],
+  "mapping": {
+    "source_claim_statement": "Using targeted memory reactivation during sleep to selectively reactivate one memory from a network of associatively overlapping memories, the associated (non-cued) memories are adaptively either strengthened or pruned/weakened depending on their relative associative strength with the shared element -- demonstrating that sleep-dependent memory reorganisation is a regulated, bidirectional process over a memory network's relational structure, not a uniform strengthening signal applied to everything reactivated.",
+    "ree_translation": "MECH-529 predicts that offline replay of non-contiguous episodes under a common evaluative frame drives SPLIT/MERGE/reweighting operations over equivalence classes -- reorganisation that can go in either direction (strengthen a valid grouping, weaken/split an invalid one) depending on the accumulated relational evidence, not a monotonic consolidation booster. Oyarzun et al. demonstrate exactly this bidirectionality in human sleep: reactivating one memory during sleep causes associated overlapping memories to be selectively strengthened OR weakened, adaptively, based on associative structure -- this is the clearest existing behavioral evidence that offline reorganisation is a genuinely RELATIONAL, bidirectional operation rather than uniform amplification, which is the core empirical signature MECH-529's split/merge framing needs. It equally supports ARC-137's taxonomy: bidirectional, adaptive restructuring of a memory network is a REORGANIZATION outcome, categorically distinct from simple retention/interference repair (uniform strengthening against decay) -- ARC-137's central claim that these are different offline OUTCOMES requiring different readouts is exactly what this paper's bidirectional signature (as opposed to a monotonic strengthening result) demonstrates.",
+    "mapping_caveat": "The associative overlap structure here is explicitly taught via a paired-associate learning task with deliberately shared cue elements (an oracular, experimenter-supplied relational structure), not derived non-oracularly from accumulated consequential-divergence evidence the way MECH-529's mechanism specifies. This paper shows the FUNCTIONAL SIGNATURE (bidirectional, relationally-adaptive reorganisation) MECH-529 needs, without testing the specific non-oracular DERIVATION MECH-529 proposes for how that structure gets discovered in the first place.",
+    "source_context": "Human behavioral study; healthy adult participants; paired-associate learning task with deliberately overlapping memory networks, targeted memory reactivation (TMR) during a nap as the causal manipulation, recall accuracy as the primary readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "High-quality, well-cited, causally-manipulated (TMR) peer-reviewed study in a strong venue -- this is the cleanest existing behavioral demonstration of bidirectional, relationally-adaptive offline memory reorganisation. Mapping fidelity is good for the functional signature (selective strengthen-or-weaken) MECH-529 needs; capped from higher by the oracular-structure gap shared with the Solomon 2026 entry in this same directory."
+  }
+}

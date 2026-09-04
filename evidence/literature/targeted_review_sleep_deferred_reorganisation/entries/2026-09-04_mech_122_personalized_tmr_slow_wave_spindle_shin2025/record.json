@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_deferred_reorganisation",
+  "entry_id": "2026-09-04_mech_122_personalized_tmr_slow_wave_spindle_shin2025",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["MECH-122", "MECH-285"],
+  "source": {
+    "title": "Personalized targeted memory reactivation enhances consolidation of challenging memories via slow wave and spindle dynamics",
+    "authors": ["Shin, Gyu Hyun", "Kweon, Yong Sang", "Oh, Seungchan", "Lee, Sang Wan"],
+    "year": 2025,
+    "venue": "npj Science of Learning",
+    "doi": "10.1038/s41539-025-00340-3",
+    "pmid": "40691439",
+    "pmc": "PMC12280145",
+    "volume": "10",
+    "issue": "1",
+    "pages": "47"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "A causally-manipulated (targeted memory reactivation, TMR) human sleep study directly tests whether cueing difficulty-adjusted, individually-tailored reactivation during sleep improves consolidation for the hardest-to-retain memories, and finds EEG-measurable slow-wave/spindle synchronization tracking behavioral improvement specifically for challenging items. This is direct evidence for MECH-122's packaging-during-slow-wave-sleep framing (spindles as a packaging/consolidation-selection signal) and offers a priority-weighted analogue to MECH-285's staleness/priority mechanism: reactivation frequency adaptively allocated by retrieval difficulty is close to a priority-weighted replay policy operating during the offline phase.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 'personalization' here is adaptive STIMULATION FREQUENCY based on behavioral retrieval performance and task difficulty during a word-pair task -- a much narrower, more externally-cued form of priority allocation than MECH-285's staleness-driven internal replay-priority mechanism, which operates without external cueing at all. Treat this as an analogy for the FUNCTION (priority-weighted consolidation), not a mechanistic test of MECH-285's specific staleness signal.",
+    "This is a declarative word-pair memory task in healthy young adults with explicit external audio cueing during sleep -- a substantially more externally-scaffolded paradigm than REE's autonomous internal replay architecture; the causal lever here (cue presentation) has no direct REE analogue."
+  ],
+  "tags": ["mech_122", "mech_285", "tmr", "slow_wave_sleep", "spindles", "consolidation", "personalized_reactivation", "priority"],
+  "mapping": {
+    "source_claim_statement": "A personalized targeted-memory-reactivation (TMR) protocol that adjusts cueing frequency during sleep based on an individual's retrieval performance and task difficulty significantly reduces memory decay and improves error correction for challenging-to-recall word-pair associations, relative to standard TMR and no-TMR controls; EEG shows enhanced slow-wave/spindle synchronization specifically correlated with behavioral improvement on the challenging items.",
+    "ree_translation": "MECH-122 frames sleep spindles as a packaging signal for offline consolidation; MECH-285 is REE's staleness/priority mechanism for replay scheduling. Shin et al. supply behavioral and EEG evidence that (a) slow-wave/spindle dynamics causally track successful offline consolidation, supporting MECH-122's packaging framing, and (b) allocating more reactivation resource to harder-to-retain items produces better consolidation than uniform reactivation, which is a human behavioral analogue to a priority-weighted replay policy (MECH-285's functional role), even though the specific priority signal here is external difficulty-cueing rather than REE's internal staleness metric.",
+    "mapping_caveat": "The priority signal in this study is EXTERNALLY imposed (experimenter-adjusted cue frequency based on measured retrieval difficulty), not an internally-computed staleness or error signal the way MECH-285 specifies -- this is evidence for the general VALUE of priority-weighted offline consolidation over uniform consolidation, not a direct test of MECH-285's specific staleness-driven mechanism. Similarly, MECH-122's packaging framing is supported at the level of 'spindle dynamics correlate with successful consolidation,' not at the level of a specific packaging algorithm.",
+    "source_context": "Human EEG study; healthy young adults; word-pair declarative memory task with audio-cued targeted memory reactivation during a nap, difficulty-adaptive cueing frequency as the experimental manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Solid peer-reviewed human EEG/behavioral study with a clean causal manipulation (TMR) and a dose/difficulty-adaptive design. Mapping fidelity moderate: supports the general packaging/priority FUNCTIONS MECH-122/MECH-285 propose, but the specific mechanisms (externally-cued difficulty-adaptive reactivation) differ substantially from REE's internally-computed staleness-driven replay scheduling."
+  }
+}

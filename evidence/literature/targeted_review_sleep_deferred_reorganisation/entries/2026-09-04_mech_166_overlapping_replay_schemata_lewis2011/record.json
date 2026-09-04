@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_deferred_reorganisation",
+  "entry_id": "2026-09-04_mech_166_overlapping_replay_schemata_lewis2011",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["MECH-166", "ARC-045", "MECH-529"],
+  "source": {
+    "title": "Overlapping memory replay during sleep builds cognitive schemata",
+    "authors": ["Lewis, Penelope A.", "Durrant, Simon J."],
+    "year": 2011,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2011.06.004",
+    "pmid": "21764357",
+    "volume": "15",
+    "issue": "8",
+    "pages": "343-351"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "This is the classical, foundational theoretical anchor for the slot-formation reading MECH-166/ARC-045 need: the model proposes that overlapping replay of related memories during sleep selectively strengthens their SHARED elements, and that repeated reactivation in different combinations progressively builds abstract schematic representations of the relationships between stimuli -- i.e. slot/schema formation is a cumulative, dose-dependent product of overlapping replay across many episodes, not a one-shot event. This is precisely the mechanism MECH-166's slot-formation-before-slot-filling framing and MECH-529's schema-abstraction claim require a theoretical grounding for, and it predates and anticipates the empirical confirmations in Solomon (2026) and Oyarzun (2017), both already/newly in this directory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is a 2011 theoretical review, not a fresh empirical measurement -- it proposes and motivates the overlapping-replay-builds-schemata model but does not itself test it; the empirical confirmation comes from later work (Oyarzun 2017's bidirectional strengthening/weakening finding, Solomon 2026's TMR-dose-response finding, both in this directory).",
+    "The model as originally proposed does not itself specify a bidirectional (strengthen-OR-weaken) mechanism -- it emphasizes selective STRENGTHENING of shared elements through overlapping replay, which is a narrower claim than MECH-529's full split/merge/reweighting framing; the bidirectional half is supplied empirically by the later Oyarzun (2017) work, not by this theoretical paper."
+  ],
+  "tags": ["mech_166", "arc_045", "mech_529", "schema_formation", "overlapping_replay", "slot_formation", "theoretical_review", "classical_anchor"],
+  "mapping": {
+    "source_claim_statement": "A theoretical model proposing that the overlapping replay of related memories during sleep selectively strengthens elements shared across those memories, and that repeated reactivation of memories in different combinations progressively builds abstract schematic representations of the relationships between stimuli -- this selective strengthening is proposed as the basis of cognitive abstraction, and is used to explain both insight (novel solutions emerging from schema completion) and false-memory formation (over-generalization from shared-element strengthening).",
+    "ree_translation": "MECH-166/ARC-045 propose that slot FORMATION must precede slot FILLING -- an abstract relational structure has to be built before specific content can be organized within it, with bidirectional flow between the two. MECH-529 proposes offline replay drives split/merge/reweighting over equivalence classes. Lewis & Durrant's overlapping-replay model is the classical theoretical anchor for exactly this: schema (slot) structure is built up cumulatively from overlapping replay across many related episodes during sleep, not read out fully-formed from any single experience -- this is the theoretical seed that the later empirical work (Oyarzun 2017, Solomon 2026, this same directory) goes on to test and partially confirm.",
+    "mapping_caveat": "As a 2011 theoretical model, this paper does not itself provide new empirical data testing MECH-166, ARC-045, or MECH-529 -- its evidentiary value here is as the classical grounding these claims can cite, now substantially strengthened by the later empirical confirmations (Oyarzun 2017, Solomon 2026) sitting alongside it in this same directory. Its original formulation also emphasizes selective strengthening more than bidirectional strengthen-or-weaken regulation, which is the fuller shape MECH-529 requires and which the empirical follow-up work supplies.",
+    "source_context": "Theoretical/computational neuroscience review; synthesizes sleep neuroscience and cognitive schema-formation literature; proposes a specific overlapping-replay mechanism and connects it to insight and false-memory phenomena."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality as the classical, highly-cited foundational statement of the overlapping-replay-builds-schemata model in cognitive neuroscience. Mapping fidelity moderate because it is a theoretical proposal rather than new data, and its original strengthening-only framing is narrower than MECH-529's full bidirectional split/merge claim -- which is why it is best read together with the empirical Oyarzun (2017) and Solomon (2026) entries in this same directory."
+  }
+}

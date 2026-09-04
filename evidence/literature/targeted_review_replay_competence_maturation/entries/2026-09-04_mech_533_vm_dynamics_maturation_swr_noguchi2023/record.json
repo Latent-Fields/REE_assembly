@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_competence_maturation",
+  "entry_id": "2026-09-04_mech_533_vm_dynamics_maturation_swr_noguchi2023",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["MECH-533"],
+  "source": {
+    "title": "Postnatal Maturation of Membrane Potential Dynamics during in Vivo Hippocampal Ripples",
+    "authors": ["Noguchi, Akihiro", "Matsumoto, Nobuyoshi", "Ikegaya, Yuji"],
+    "year": 2023,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0125-23.2023",
+    "pmid": "37400254",
+    "pmc": "PMC10476637",
+    "volume": "43",
+    "issue": "35",
+    "pages": "6126-6140"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is direct intracellular measurement evidence for the FINER-GRAINED half of MECH-533's competence claim: even after sharp-wave ripples begin occurring (per the companion Pochinok 2024 entry in this same directory), the intracellular membrane-potential dynamics that allow CA1 pyramidal cells to fire temporally PRECISE, well-organized spike sequences during those ripples do not reach adult-like form until approximately postnatal day 30 -- a full developmental stage later than ripple onset itself (~day 10-18). Early ripples are accompanied by prolonged, poorly-flanked depolarizations that would produce noisy, poorly-compressed spike sequences -- exactly the 'early replay may be noisy and poorly compressed, a distinct infant property rather than a failure' signature MECH-533 needs distinguished from mere absence of replay.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is anesthetized-mouse intracellular electrophysiology, a substantially more invasive and lower-throughput technique than the extracellular/optogenetic approach in the companion Pochinok (2024) entry -- the causal manipulation is more limited (correlational tracking of Vm maturation alongside inhibitory input development, not a direct causal intervention on sequence fidelity specifically).",
+    "The measure here is intracellular membrane-potential dynamics AROUND ripple events (pre/post-ripple hyperpolarization shape), which is a proxy for spike-sequence organization capability rather than a direct behavioral or sequence-replay-fidelity readout -- the paper does not itself demonstrate degraded BEHAVIORAL replay-dependent learning at the immature stage, only the underlying cellular substrate for it."
+  ],
+  "tags": ["mech_533", "sharp_wave_ripples", "membrane_potential", "developmental_maturation", "sequence_fidelity", "hippocampus", "intracellular_recording"],
+  "mapping": {
+    "source_claim_statement": "Using simultaneous intracellular membrane-potential (Vm) recording and hippocampal LFP recording in anesthetized immature mice, the authors show that on postnatal days 16-17 (shortly after ripples first become detectable), CA1 pyramidal cell Vm dynamics around ripples are premature -- prolonged depolarizations lacking the pre- and post-ripple hyperpolarizations characteristic of adult-like ripple-relevant Vm. This adult-like biphasic hyperpolarization pattern, which restricts the temporal window for pyramidal cell spikes and enables organized spike sequences, does not fully form until approximately postnatal day 30, and its maturation tracks the developmental increase of ripple-associated inhibitory input.",
+    "ree_translation": "MECH-533's joint/conditional claim requires that offline processing COMPETENCE -- specifically including replay SEQUENCE FIDELITY -- has its own maturational timeline distinct from mere offline-window frequency or even from the onset of ripple events themselves. Noguchi et al. supply exactly this: even after ripples begin occurring (companion Pochinok 2024 entry, ~day 10), the cellular machinery required for TEMPORALLY PRECISE spike sequences during those ripples continues maturing for roughly another two to three weeks (to ~day 30). This directly supports the specific developmental sub-claim named in the thought's own formulation -- 'early replay may be noisy and poorly compressed, a distinct infant property, not a failure' -- with a cellular mechanism (immature inhibitory flanking of Vm) rather than leaving it as an unexplained behavioral observation.",
+    "mapping_caveat": "This paper measures the INTRACELLULAR SUBSTRATE for organized spike sequences, not the sequences themselves or downstream behavioral consequences (e.g. impaired transfer or generalisation from noisy early replay) -- it establishes plausibility and mechanism for MECH-533's sequence-fidelity sub-claim rather than a direct behavioral demonstration of degraded replay-dependent learning in immature animals.",
+    "source_context": "Mouse; anesthetized immature animals, postnatal days 16-17 versus later maturation to ~day 30; simultaneous intracellular (whole-cell patch) and extracellular (LFP) recording of CA1 pyramidal neurons during spontaneous sharp-wave ripples."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.45,
+    "notes": "High-quality, technically demanding intracellular study directly measuring the cellular basis of sequence-organization maturation. Mapping fidelity good: this is close to a direct cellular-level test of the 'replay sequence fidelity as a developmental metric' claim the source analysis document (replay_development_analysis.md) already flagged as missing from the registry. Transfer risk reflects the anesthetized-rodent-to-REE-agent domain gap and the absence of a direct behavioral readout."
+  }
+}

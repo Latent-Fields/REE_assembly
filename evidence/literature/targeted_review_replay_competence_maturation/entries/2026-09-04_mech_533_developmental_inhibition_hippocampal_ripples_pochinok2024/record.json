@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_competence_maturation",
+  "entry_id": "2026-09-04_mech_533_developmental_inhibition_hippocampal_ripples_pochinok2024",
+  "timestamp_utc": "2026-09-04T14:36:16Z",
+  "claim_ids_tested": ["MECH-533", "DEV-NEED-029"],
+  "source": {
+    "title": "A developmental increase of inhibition promotes the emergence of hippocampal ripples",
+    "authors": ["Pochinok, Irina", "Stober, Tristan M.", "Triesch, Jochen", "Chini, Marco", "Hanganu-Opatz, Ileana L."],
+    "year": 2024,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-024-44983-z",
+    "pmid": "38272901",
+    "pmc": "PMC10810866",
+    "volume": "15",
+    "issue": "1",
+    "pages": "738"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is a causal (optogenetic/chemogenetic), mechanistic demonstration that hippocampal sharp-wave ripples -- the substrate of replay -- do not simply appear at birth but require a specific developmental prerequisite (maturation of CA1 inhibitory circuitry) to emerge, and that manipulating that prerequisite directly (silencing interneurons) reduces ripple rate. This is close to direct mechanistic support for MECH-533's joint/conditional claim: offline replay competence is not available from the start and depends on a maturational process distinct from mere exposure or frequency of offline windows, which is precisely the 'replay hardware maturation gate' DEV-NEED-029 names.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is rodent (mouse) electrophysiology at very early postnatal ages (4-12 days) using optogenetic/chemogenetic causal manipulation of inhibitory interneurons directly -- the causal lever (silencing CA1 interneurons) has no direct REE analogue; REE's replay-competence maturation would need its own substrate-level account of what plays the inhibition-maturation role.",
+    "The study measures RIPPLE EMERGENCE (whether the oscillatory event occurs at all) rather than replay SEQUENCE FIDELITY or reorganisation competence specifically -- it grounds the coarser 'replay-capable hardware exists yet' half of MECH-533's joint claim, complementary to the finer-grained sequence-fidelity maturation shown in the Noguchi (2023) entry in this same directory."
+  ],
+  "tags": ["mech_533", "dev_need_029", "sharp_wave_ripples", "developmental_maturation", "inhibition", "hippocampus", "replay_hardware", "causal_manipulation"],
+  "mapping": {
+    "source_claim_statement": "Using in vivo electrophysiology combined with optogenetic and chemogenetic manipulation in 4-12-day-old mice, the authors show that hippocampal sharp-wave ripples -- previously undetectable -- can be robustly induced by light stimulation of CA1 pyramidal neurons only from postnatal day 10 onward, and that this emergence is mechanistically linked to the maturation of inhibitory input: chemogenetically silencing CA1 interneurons reduces ripple rate, and a spiking neural network model mechanistically connects inhibition maturation to ripple emergence.",
+    "ree_translation": "MECH-533 claims offline frequency and offline COMPETENCE co-mature -- frequent early offline windows are needed because traces are fragile while the offline-processing machinery itself (replay selection, sequence fidelity, cross-episode aggregation, re-indexing) is still immature, so any benefit of offline-window frequency is conditional on competence, and the two must be crossed rather than treated as independent factors. Pochinok et al. provide a causal, mechanistic grounding for the COMPETENCE half of this claim at its most basic level: the neural hardware capable of generating replay-supporting ripple events does not exist from birth, but emerges via a specific, experimentally-manipulable maturational process (inhibitory circuit development). This is strong support for treating replay competence as something that must mature rather than being assumed present whenever an offline window occurs.",
+    "mapping_caveat": "This paper establishes that ripple-GENERATING hardware matures -- the coarsest possible reading of 'replay competence.' It does not itself measure whether the CONTENT of ripples (spike sequence fidelity, cross-episode aggregation) is competent once ripples begin occurring -- that finer-grained maturation is the subject of the companion Noguchi (2023) entry in this same directory. Read together, the two papers jointly ground MECH-533's competence axis at two different levels of the offline-processing pipeline.",
+    "source_context": "Mouse; postnatal days 4-12; in vivo electrophysiology combined with optogenetic (channelrhodopsin-2) and chemogenetic manipulation of CA1 pyramidal neurons and interneurons; spiking neural network modeling for mechanistic interpretation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Very high source quality: a causal (not merely correlational) mechanistic study in a strong venue, directly establishing that replay-supporting neural hardware matures rather than being present from birth. Mapping fidelity moderate: grounds the coarsest reading of MECH-533's competence axis (hardware exists yet vs. not) rather than the finer content-fidelity reading, which the companion Noguchi entry addresses; transfer risk reflects the early-postnatal-rodent-to-REE-agent domain gap."
+  }
+}
