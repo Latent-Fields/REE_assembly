@@ -43,7 +43,158 @@ REE_assembly 25c05dbd6e) is already applied and therefore excluded.
 
 ## GOVERNANCE FLAGS (collected across waves -- read these FIRST)
 
-_(appended as waves land)_
+**Rollup generated 2026-09-04T21:29:11Z by the orchestrator from the agent reports below (mechanical extraction; read the per-claim sections for the full text).**
+
+Claims with a drafted disposition: **47 of 47** -- complete.
+
+| disposition | count |
+|---|---|
+| (?) | 32 |
+| (a) | 6 |
+| (c) | 6 |
+| (c2) | 1 |
+| (f) | 1 |
+| (g) | 1 |
+
+### Per-claim dispositions
+
+| claim | report | recommended disposition (first 150 chars) |
+|---|---|---|
+| ARC-029 | G11 | **(a) testable now** -- the blocker is instrument design, not |
+| ARC-037 | S_ARC-037 | **(c) substrate-blocked -> `substrate_conditional`**, carrying (g) partial merge |
+| ARC-048 | G4 | (c) substrate-blocked, `substrate_conditional` -- the falsifiable |
+| ARC-057 | G8 | **(a) testable now** -- the ecological form is correctly V4-deferred, |
+| ARC-061 | G10 | **(c) substrate-blocked -- `substrate_conditional`** (NOT `substrate_ceiling`): the family claim's distinctive content is the *cross-level* shared sig |
+| ARC-113 | S_ARC-113 | **(f) defer with a durable `digestion_note`** -- the pilot's call stands, but for a *different and narrower* reason than the pilot gave: the stage-imp |
+| ARC-120 | G5 | **(b) derivational** -- its falsification condition is a standing |
+| ARC-121 | G5 | **(b) derivational** -- ARC-121's own stated falsifier is about REE's |
+| INV-057 | G4 | (c2) `out_of_domain` -- this is a **fused** claim whose evidential leg |
+| INV-063 | S_INV-063 | (a) testable now -- the intake ladder (SD-MEL-PRODUCER `world_rule_shift`, |
+| INV-104 | S_INV-104 | **(a) testable now**, narrowed to a **class-1 pilot with class 2 as the |
+| MECH-025b | G11 | **(a) testable now** -- the mechanism is live, both positive |
+| MECH-074 | G2 | (a) testable now -- the parent is **not** a pure index: it owns the two-route-separability assertion, 888 confirmed it on the replay-sampling path at  |
+| MECH-074a | G2 | (a) testable now -- the claim's own registered falsifier has a **two-sided** form ("threat-context recall improves ... OR neutral recall is harmed") a |
+| MECH-074b | G2 | (a) testable now, on a **narrowed** residual -- 888 already answered the "the address route has independent authority and is not scalar-equivalent" le |
+| MECH-074c | G2 | (c) substrate-blocked -- **`substrate_conditional`**, blocking substrate = the **SD-011 AffectiveHarmEncoder magnitude regime** (`//LowFreq(z_harm_a)/ |
+| MECH-074d | G2 | (c) substrate-blocked -- **`substrate_conditional`**, blocking substrate = **MECH-153's supervised context-labeling objective** (unbuilt) over the SD- |
+| MECH-104 | G3 | **(a) testable now** -- the *endogenous* half of the claim is |
+| MECH-106 | G3 | **(c) substrate-blocked -- `substrate_conditional`**, blocking substrate |
+| MECH-181 | G1 | **(c2) out_of_domain -- the claim is FUSED, and should be SPLIT**; the |
+| MECH-182 | G4 | (c) substrate-blocked, `substrate_conditional` -- but with the most |
+| MECH-192 | G4 | (g) **merge with sibling -- PROPOSE ONLY: PARTIAL absorption into |
+| MECH-206 | G7 | **(c) substrate-blocked -- `substrate_conditional`** (not |
+| MECH-234 | G3 | **(c) substrate-blocked -- `substrate_conditional`**, reframed onto the |
+| MECH-250 | G3 | **(g) merge with sibling -- PROPOSE ONLY: partial absorption into |
+| MECH-258 | S_MECH-258 | (c) substrate-blocked, **`substrate_ceiling`** -- the mechanism is BUILT and has been EXERCISED repeatedly under gates that pass cleanly (597b C0 3/3  |
+| MECH-273 | S_MECH-273 | **(a) testable now** -- the sleep half is BUILT, EXERCISED, and confirmed non-degenerate with a genuine zero-movement OFF arm (V3-EXQ-702), yet neithe |
+| MECH-288 | G7 | **(a) testable now** -- the substrate is built, live in-agent, and |
+| MECH-294 | G6 | **(a) testable now** -- the V3 leg has a validated driver and a landed |
+| MECH-332 | S_MECH-332 | (a) testable now -- both pathways are BUILT in `ree_core/` and the 2x2 falsifier is already pre-registered in `experiments/v3_exq_878_mech332_efferenc |
+| MECH-341 | G6 | **(a) testable now** -- the claim is ratified `provisional` at a scope |
+| MECH-349 | G9 | **(a) testable now** -- the module is built, default-OFF but armable, |
+| MECH-353 | G1 | **(a) testable now** -- the substrate is built, calibrated and |
+| MECH-354 | G1 | **(c) substrate-blocked, `substrate_conditional`** -- the two-bound |
+| MECH-442 | G6 | **(f) defer, with a durable `digestion_note`** -- the claim's mechanism |
+| MECH-474 | S_MECH-474 | (f) defer with a durable `digestion_note` -- the claim's own registered four-regime menu contains one regime ("counterfactual simulation") that has no |
+| MECH-485 | S_MECH-485 | **(c) substrate-blocked -- `substrate_conditional`**, unchanged. The mechanism has never been exercised because three of its five preconditions still  |
+| MECH-527 | G9 | **(g) merge with sibling -- PROPOSE ONLY** (partial absorption into |
+| SD-017 | G1 | (c) substrate-blocked, **`substrate_ceiling` -- UNCHANGED and correct** |
+| SD-024 | G8 | **(a) testable now** -- and note that the *core* falsifier has already |
+| SD-025 | G8 | **(a) testable now** -- the drive's *propagation* is validated in vitro |
+| SD-034 | G5 | **(a) testable now** -- the umbrella's OWN primary falsifier (is closure |
+| SD-047 | G10 | **(f) defer -- with a durable `digestion_note`, and specifically NOT a new experiment.** The falsifier does not need drafting or running: SD-047 pre-r |
+| SD-063 | S_SD-063 | (a) testable now -- the head is BUILT, trainable, demonstrably live (relative |
+| SD-083 | G1 | **(a) testable now -- and legs (i)-(iii) are ALREADY ANSWERED CONFIRMING by |
+| SD-084 | G7 | **(a) testable now** -- with the important qualification that the |
+| SD-105 | G3 | **(f) defer with a durable `digestion_note`** -- the claim was |
+
+### Governance flags extracted (74 lines; some reports list several per claim)
+
+| report | claim | flag |
+|---|---|---|
+| G1 | SD-017 | `stale_note` -- SD-017's `evidence_quality_note` closes on 2026-08-30 with |
+| G1 | MECH-181 | `stale_note` -- the standing "INV-050 / MECH-180 MEL producer is parked / blocked" |
+| G1 | MECH-353 | `evidence_discrepancy` -- V3-EXQ-642b's own manifest already contains the deciding |
+| G1 | MECH-354 | `contested_disposition` -- MECH-354 is registered `candidate` with |
+| G1 | SD-083 |  |
+| G10 | ARC-061 | `stale_note` -- see GOVERNANCE FLAG 3 and GOVERNANCE FLAG 5 below. |
+| G10 | SD-047 | the block records a supports/PASS while the index scores a weakens, and the two have disagreed in sign since 2026-05-04.** |
+| G11 | ARC-029 | `evidence_discrepancy` -- **ARC-029's `provisional` status rests |
+| G11 | ARC-029 | `stale_note` -- **two routing notes in ARC-029's own |
+| G11 | ARC-029 | `contested_disposition` -- **ARC-029 has no explicit |
+| G11 | MECH-025b | `evidence_discrepancy` -- **the 2026-08-03 `weakens/standard` |
+| G11 | MECH-025b | `evidence_discrepancy` (minor, registry/index disagreement) -- |
+| G2 | MECH-074 | `stale_note` -- MECH-074 still carries `v3_pending: true` and a `live_status.evidence` of `decision:...@2026-04-25 hold_pending_v3_substrate/applied`, while its two stated release conditions (substrate lands; EXQ-A/B-equ |
+| G2 | MECH-074a | `stale_note` -- the `evidence_quality_note` asserts "this is the first [experimental entry]" and `exp_conf now 0.775`; there are now two entries (659, 888) and `exp_conf` is 0.755. The promotion gate is still unmet so st |
+| G2 | MECH-074b |  |
+| G2 | MECH-074c |  |
+| G2 | MECH-074d |  |
+| G3 | MECH-104 | `stale_note` -- MECH-104's `status_note` stops at EXQ-365 (2026-04-14) and omits |
+| G3 | MECH-104 | `evidence_discrepancy` -- MECH-104's `active` status rests on a conjunction |
+| G3 | MECH-106 | `evidence_discrepancy` -- MECH-106 is `provisional` on a single non-excluded |
+| G3 | MECH-106 | `contested_disposition` -- MECH-106 and SD-011 (`status: stable`) make |
+| G3 | MECH-234 | `contested_disposition` -- MECH-234 has sat at `candidate` since 2026-04-15 with |
+| G3 | MECH-250 | `stale_note` (concerns MECH-108, surfaced via MECH-250's dependency) -- |
+| G3 | SD-105 | `contested_disposition` -- SD-105 was registered 2026-09-04 asserting the |
+| G3 | SD-105 | `stale_note` -- `evidence/planning/substrate_queue.json`, |
+| G4 | - | The 2026-04-05/06 "Steve" cohort (MECH-182, MECH-192, |
+| G4 | - | `fast_empathy_v5_plan.md`'s 2026-06-10 decision-log entry |
+| G4 | - | The 2026-04-06 intake's Next Step 4 (social.md stubs for |
+| G4 | ARC-048 | `stale_note` -- ARC-048 is registered as the pre-linguistic bridge to INV-003 |
+| G4 | INV-057 | `contested_disposition` -- INV-057 is `claim_type: invariant` / |
+| G4 | MECH-182 | `stale_note` -- MECH-182's registered mechanism ("this cross-modal |
+| G4 | MECH-192 | `contested_disposition` -- MECH-192 as registered is near-analytic and its |
+| G5 | SD-034 | `evidence_discrepancy` -- **V3-EXQ-466e (PASS, `{SD-034: supports}`, |
+| G5 | SD-034 | `stale_note` -- SD-034's `implementation_note` records "616 LOC" and two |
+| G5 | SD-034 | `stale_note` -- two flags on this claim are now decidable and should be closed |
+| G5 | ARC-120 | `promotion_review` -- **ARC-120 carries `exp_count 0` while pre-existing, |
+| G5 | ARC-120 | `stale_note` -- ARC-120 acquired a 5-entry literature pull on **2026-09-02** |
+| G5 | ARC-121 | `contested_disposition` -- **ARC-121 is a FUSED claim and its literature pull is |
+| G5 | ARC-121 | `evidence_discrepancy` -- ARC-121 declares MECH-482 as a dependency and as an |
+| G6 | MECH-294 | `evidence_discrepancy` -- **V3-EXQ-840b, MECH-294's sole genuine experimental |
+| G6 | MECH-294 | `stale_note` -- `evidence/planning/substrate_queue.json` entry |
+| G6 | MECH-341 | `stale_note` -- `evidence/planning/substrate_queue.json` entry `sd_id: MECH-341` |
+| G6 | MECH-442 | `contested_disposition` -- **PARTIAL-ABSORPTION PROPOSAL (proposal only; no id |
+| G6 | MECH-442 | `stale_note` -- MECH-442's `notes` assert *"substrate_conditional on a |
+| G7 | MECH-206 | `contested_disposition` -- **MECH-206's functional slot has an incumbent |
+| G7 | MECH-288 | `stale_note` -- **MECH-288's promotion bar is half-satisfied and the |
+| G7 | MECH-288 | `evidence_discrepancy` -- **the shipped fast-scale trigger is not the |
+| G7 | MECH-288 | `promotion_review` -- **evidence attribution gap.** MECH-288 sits at |
+| G7 | SD-084 | `stale_note` -- **SD-084's 2026-08-10 routing block directs work that had |
+| G7 | SD-084 | `promotion_review` -- **a validated design decision reads as evidence-free.** |
+| G8 | ARC-057 | `stale_note` -- ARC-057's `notes` open with *"The curiosity/exploration drive |
+| G8 | SD-024 |  |
+| G8 | SD-025 |  |
+| G9 | MECH-349 | `evidence_discrepancy` -- MECH-349 has zero entries in |
+| G9 | MECH-349 | `stale_note` -- MECH-349's `notes` end "Validation V3-EXQ-639", but 639 is |
+| G9 | MECH-527 | `stale_note` -- MECH-527's `notes` state "the above-action-level perturbation |
+| G9 | MECH-527 | `contested_disposition` -- MECH-527 partially duplicates MECH-343/SD-061 with |
+| G9 | MECH-527 | `promotion_review` (low priority, informational) -- V3-EXQ-694 |
+| S_INV-063 | INV-063 | MECH-205's `what_would_answer` non-degeneracy precondition |
+| S_INV-063 | INV-063 | INV-063 is a FUSED claim (testable REE leg + |
+| S_INV-063 | INV-063 | the run designed above would supply, as a by-product, |
+| S_INV-063 | INV-063 | two coverage gaps found in the sleep plan-of-record. |
+| S_INV-104 | INV-104 | `REE_assembly/evidence/planning/substrate_queue.json`, |
+| S_INV-104 | INV-104 | INV-104's own `notes` cite "MECH-100 / SD-009 (event-type CE |
+| S_INV-104 | INV-104 | INV-104 carries a single |
+| S_MECH-258 | MECH-258 | `stale_note` -- MECH-258's `evidence_quality_note` and `live_status.evidence` are two adjudications behind. They record only "[2026-05-08 governance]: EXQ-445h supports (C1 wins=2/3 seeds) ... First clean supporting evid |
+| S_MECH-258 | MECH-258 | `contested_disposition` -- V3-EXQ-597c was routed by a **confirmed** failure autopsy on 2026-05-24 (`/queue-experiment -> V3-EXQ-597c`, with a two-fix redesign spec: raise `dacc_bias_max_abs` to 20.0; per-component telem |
+| S_MECH-258 | MECH-258 | `evidence_discrepancy` -- the "harm_a forward R2 = 0.94-0.99 / 0.91-0.94" figure is cited on MECH-258 (and in the 445h substrate_queue metric) as supporting evidence, but on a target measured to be range-degenerate (SD-0 |
+| S_MECH-258 | MECH-258 | `contested_disposition` (low priority) -- MECH-259 is `stable` on `genuine_exp_count: 1` (V3-EXQ-455, exp_conf 0.575) while the `depends_on` edge it declares to MECH-258 ("the magnitude compared against threshold") has n |
+| S_MECH-485 | MECH-485 | `evidence_discrepancy` |
+| S_MECH-485 | MECH-485 | `stale_note` |
+| S_SD-063 | SD-063 | `evidence_discrepancy` -- **SD-063 was promoted to `provisional` on evidence that |
+| S_SD-063 | SD-063 | `evidence_discrepancy` -- **fresh, reviewed, unrouted calibration evidence.** |
+| S_SD-063 | SD-063 | `stale_note` -- **`evidence/planning/substrate_queue.json` SD-063 entry (line 6317) |
+
+**Cross-cutting findings the orchestrator wants the reviewer to see first:**
+
+1. **Reviewed evidence that never propagated into the registry** recurs in G1 (SD-083 telemetry), G5 (V3-EXQ-466e absent), G8 (SD-024 promotion), G10 (SD-047's own falsifier fired 2026-05-04), S_MECH-485 (2026-08-09 governance note claims an application that never happened; Q-090's live falsifier dangles), S_MECH-332 (GAP-11 done since May).
+2. **Dead ablation axes / knobs that are live but not efficacious**: S_MECH-332 (`harm_descending_mod_enabled` silently swallowed by `from_dims`, ARM_BOTH bit-identical to ARM_E2_ONLY), G8 (fishtank family sets `curiosity_weight` but never `benefit_terrain_live_producer`, so SD-025's bonus is identically 0.0), G1 (SD-083 retention flat across a 14x penalty), G6 (all MECH-294/341 nulls measured at the 2-of-5 class clamp), G7 (`agent.py:5448` passes `pe_dict=None`, so MECH-288's observation path runs the fallback detector).
+3. **Merge proposals (g), propose-only, route to /governance**: MECH-192 -> MECH-191/183 (G4); MECH-250 -> MECH-108 (G3); MECH-527 -> MECH-343/SD-061 (G9); MECH-354 slow leg -> SD-SLEEP-ENTRY-PRESSURE (G1); MECH-474 -> MECH-261 SalienceCoordinator (S_MECH-474); ARC-120 ladder -> ARC-130 (G5); MECH-442 partial absorption (G6); ARC-037 legs -> MECH-256/MECH-072 (S_ARC-037).
+4. **Standing project-memory corrections**: the MEL producer is validated (V3-EXQ-798a, 2026-07-30), not parked (G1, S_INV-063); ARC-120/ARC-121 originate from the 2026-08-06 thought, not the 2026-08-27 intake (G5).
+5. **Never arm together**: SD-105 couples to MECH-104/106/234/250 through `last_precommit_probs` (G3); SD-105 manufactures the DV that MECH-294/341/442 read out (G6).
+
 
 ---
 
@@ -7401,3 +7552,892 @@ claims have no plan-of-record node and are invisible to the plan's own resume/ga
 `SD-SLEEP-ENTRY-PRESSURE.unblocks_claims` is `[]`; INV-063 is the natural third consumer of the
 producer knob and appears in neither, which is why nothing has ever surfaced it as buildable. Both are
 narrow single-field corrections, not a regen.
+
+---
+
+<!-- G11 appended 2026-09-04T21:29:11Z -->
+## G11 -- committed vs uncommitted operating modes  (agent report)
+
+### Group preamble
+
+- **Why these are together (restated, then my own view).** The grouping rationale was
+  namespace adjacency: both sit under `subject: cognitive_modes.*`, both use the word
+  "committed", and MECH-025b is a lettered child whose parent (MECH-025, read-only context
+  here) rides along. **My own view is much stronger than namespace adjacency, and it is the
+  central finding of this pass: in the ree-v3 substrate the two claims are contrasts on the
+  SAME SCALAR, at different granularity.** `ree_core/predictors/e3_selector.py:3674`
+  computes `committed = commit_variance < effective_threshold` where `commit_variance` is
+  `self._running_variance` on the default path, and `current_precision` (line 771-773) is
+  `1.0 / (self._running_variance + 1e-6)`. So **"committed" is exactly the event "precision
+  above `1/effective_threshold`"** -- a monotone threshold on the same quantity MECH-025b
+  calls "the precision level at which the action was committed". Governance has already
+  recorded this empirically without drawing the G11 consequence: ARC-016's 2026-07-25
+  promotion-to-`stable` verdict reads "mean_rho_rv_vs_commit -0.955; commit-rate tracks
+  E3-derived precision monotonically ... Structural only (no harm DV); **the ARC-029
+  behavioural consequence layer is separate**". That sentence is the cleanest available
+  statement of what each G11 claim owes: ARC-016 owns the structural precision->commitment
+  circuit (now `stable`); **ARC-029 owes its behavioural (harm-DV) consequence, and MECH-025b
+  owes its accountability-weight consequence -- both of the same circuit.**
+
+- **(i) same-claim / merge candidates.** **No merge, in either direction, and I recommend
+  against (g) for both.** They share a substrate variable but not a dependent variable:
+  ARC-029's DV is harm-per-step across the threshold (a between-regime contrast); MECH-025b's
+  DV is residue accumulated per unit harm as a function of precision *within* the committed
+  regime (a within-regime gradient). One can pass while the other fails, in both directions.
+  On the specific merge pressure the task named -- **MECH-025b vs MECH-487 / MECH-485 leg 3 /
+  Q-090 (the 2026-08-07 responsibility-counterfactual-memory cluster) -- I checked all three
+  live blocks and MECH-025b is NOT a duplicate reading of MECH-487.** MECH-487 is a *retention
+  buffer*: it persists WHICH rejected E3 candidate existed past the tick it was rejected on
+  (its own `what_would_answer` says the novel content is "identity + persistence", over and
+  above MECH-264's transient `cfv_now` scalar). MECH-025b asserts a *weighting function*:
+  that the precision at commit time scales the residue/accountability attached to the action
+  actually taken. MECH-487 is about the counterfactual arm; MECH-025b is about the taken arm.
+  They meet only at INV-012 (both are consumed by it -- MECH-487 by Leg 3, MECH-025b's content
+  by the Leg 1/Leg 3 "could have done otherwise" premise), and INV-012 already carries both
+  without conflating them. **No merge proposed; no absorbed id; no reverse-dep repointing.**
+
+- **(ii) contradictions / undercut premises.** No direct contradiction, but there is a real
+  **one-directional premise undercut, and it runs from ARC-029's territory into MECH-025b**.
+  MECH-025b's stated rationale (its own 2026-04-02 notes) is that "actions committed at higher
+  precision carry higher residue weight **because the agent was in a state where it could have
+  done otherwise with finer discrimination**". That "could have done otherwise" premise is
+  exactly INV-012 **Leg 0**, which INV-012's own live `what_would_answer` records as
+  **CURRENTLY UNMET**: MECH-439 carries `ceiling_decision: exhausted` (still, as of its latest
+  entry `failure_autopsy_V3-EXQ-571b_2026-09-01`), i.e. E3 has not been shown to select among
+  genuinely differentiated candidates. Consequence, and it cuts both ways so it must be stated
+  carefully: **the 671b operationalization does not DEPEND on Leg 0** (it correlates E3's own
+  precision against residue, both independently confirmed live that run -- the 2026-08-03
+  autopsy says so explicitly and it is correct), **but the RESPONSIBILITY READING of a PASS
+  would**. So a future MECH-025b PASS licenses "precision scales residue weight" and does NOT
+  licence "precision scales *accountability*" until Leg 0 clears. That asymmetry belongs in the
+  falsifier and is written into the draft below.
+  Second, milder undercut, running the other way: ARC-029 asserts two *operating modes*, which
+  presupposes sustained occupancy of each. The substrate record says the default does not
+  provide it (see (iv)). If ARC-029's mode premise fails, MECH-025b is unaffected -- its DV is
+  a within-committed gradient and needs only spread, not sustained occupancy. **MECH-025b is
+  therefore the CHEAPER of the two to run, and is not gated on ARC-029.**
+
+- **(iii) shared falsifier.** Yes, and it is a *precondition*, not a whole falsifier. Both
+  claims' non-degeneracy precondition is a statement about **one distribution: the within-run
+  distribution of `commit_variance` relative to `effective_threshold`**. ARC-029 needs BOTH
+  SIDES of that threshold occupied within a single run; MECH-025b needs GRADED SPREAD on the
+  committed side. Since 2026-09-02 (ree-v3 `48f85f0`, "MECH-027: precision-scaled commit
+  temperature") there is a single always-set per-tick diagnostic for exactly this quantity --
+  `last_score_diagnostics["precision_margin_norm"]`, `0` at the threshold, `1` as
+  `commit_variance -> 0`, computed unconditionally on every world-variance-mode tick and
+  deliberately NOT gated on any flag ("mirrors `conflict_gap_norm`'s always-set convention").
+  **MECH-025b's draft below cross-references ARC-029's precondition text rather than
+  re-deriving it, and both drafts name `precision_margin_norm` as the shared instrument.**
+
+- **(iv) cross-cutting finding (the mutual confound -- the reason this is a group).**
+  Because committed-ness and precision are the same scalar, **any manipulation that moves one
+  moves the other, and neither claim's existing test controls for this.** Concretely:
+  - **ARC-029's only supporting run does its ablation by pinning precision.** V3-EXQ-063a's
+    own summary states the method: "force `agent.e3._running_variance = commit_threshold +
+    0.1` and `agent.e3._committed_trajectory = None` before each SELECT step". With
+    `commitment_threshold = 0.40` (variance space; `ree_core/utils/config.py:1022`) that pins
+    the ablated arm at `rv = 0.50`, i.e. `current_precision = 2.0`, against a gate-active arm
+    whose operating point in this substrate family has been measured as low as `rv = 0.005420`
+    (V3-EXQ-794, quoted in `config.py`'s SD-076 block) -- **a precision difference of up to
+    ~90x between arms.** `current_precision` / `_running_variance` is read by at least: dACC
+    (`cingulate/dacc.py:373`, `precision_norm = min(current_precision/500, 3.0)`), the
+    serotonin REM entry point (`agent.py:12250`), the harm-nonredundancy penalty scale
+    (`config.py:3484`), the MECH-204 sleep writeback (`sleep/phase_manager.py:603`), and the
+    heartbeat/BreathOscillator sweep logic. `config.py:1049-1052` states the coupling in its
+    own words: unbounded downward rv drift "would both pin the agent permanently 'committed'
+    and explode precision". **So V3-EXQ-063a is not a commitment-gate ablation; it is a global
+    precision manipulation, and its harm gap is unattributable between the two.** This is the
+    same confound class the 2026-06-03 autopsy already caught on V3-EXQ-630 in the other
+    direction ("SD-022 limb-damage degrade drives commitment via running_variance") -- nobody
+    has yet applied that finding backwards to 063a, which is the run ARC-029's `provisional`
+    status rests on.
+  - **MECH-025b's DV is a range-restricted slice of ARC-029's contrast.** 671b samples only
+    committed steps, i.e. only the `rv < 0.40` tail. Restriction of range attenuates a Pearson
+    correlation, and **the C1 bar of `> 0.15` was never derived from an expected effect size
+    under that restriction** -- it is inherited unchanged from 671 and 671a. A null against an
+    underived bar is weak evidence in either direction.
+  - **Therefore: a null on either claim is uninterpretable unless the other's variable is
+    pinned.** The correct ablation for ARC-029 is one that moves the **THRESHOLD**, leaving
+    `rv` (and every precision consumer) untouched -- which the substrate already provides, via
+    the MECH-108 BreathOscillator (`ree_core/heartbeat/clock.py:20-31`,
+    `effective_threshold = base_threshold * (1.0 - sweep_amplitude)`). That is the single
+    most actionable output of this pass and it is written into ARC-029's proposal below.
+
+- **Currency findings (stale notes, landed blockers, unreviewed results).**
+  1. **ARC-029, STALE (2026-06-03, ~3 months).** `evidence_quality_note` says of V3-EXQ-630:
+     "Redesign queued (confound-isolation arm)." **It was never queued and never ran.** The
+     live `ree-v3/experiment_queue.json` holds 3 items, none referencing ARC-029; there is no
+     630-successor manifest anywhere under `REE_assembly/evidence/experiments/`; there is no
+     `substrate_queue.json` row for ARC-029; and there is no open chip or IGW assignment for it.
+  2. **ARC-029, STALE (2026-04-05, ~5 months).** "EXQ-125a redesign (num_hazards=8,
+     hazard_harm=0.05, 5 seeds, harm_obs passed to sense()) is the correct follow-up."
+     **V3-EXQ-125a never ran** -- no manifest, no queue row. (Its stated purpose was partly
+     served incidentally: 063a's operating point of ~-0.055 harm/step shows the ~100x
+     harm-floor collapse EXQ-227 diagnosed is not binding at 063a's env parameters.)
+  3. **ARC-029, currency POSITIVE.** Its `depends_on` claims have both moved since the last
+     ARC-029 run: **ARC-016 is now `stable`** (promoted 2026-07-25, verdict quoted above),
+     and MECH-090 is `active` (latest 2026-08-03, `non_contributory/competence_implementation_gap`).
+     ARC-029 is the named remaining behavioural layer of a now-stable structural claim.
+  4. **MECH-025b, currency POSITIVE and decisive for the redesign.** A materially better
+     instrument landed **32 days after 671b ran**: `precision_margin_norm` (ree-v3 `48f85f0`,
+     2026-09-02 18:36:45Z), a normalized, always-set, per-tick graded precision margin at the
+     commit boundary. 671b (2026-08-03) had to use raw `current_precision`, whose per-seed
+     scale varies by ~37x in that very run (see the flag below). `precision_margin_norm` is
+     scale-free by construction and is exactly the regressor this claim's DV wants.
+  5. **MECH-025b, the substrate does NOT have a discrete precision mode.** I grepped
+     `ree_core/` for `precision_mode`, `high_precision`, `action_precision`: **no such knob
+     exists.** Precision is a continuous scalar throughout, which is what MECH-025's own
+     `what_would_answer` already says the literature requires ("Friston 2013 records precision
+     as continuous, not a discrete mode switch"). The claim's title phrase "high-precision
+     action MODE" has no substrate referent as a mode; it does have one as a *level*. The
+     falsifier below is written at the level, not the mode, and that is a deliberate narrowing.
+  6. **Commitment-sustainment (the precondition the task asked me to pin down).** Answer from
+     the substrate, not from inference: **at default settings a natural commit lasts ~1 tick.**
+     `ree_core/utils/config.py:5053-5074` records V3-EXQ-460i's finding verbatim: "the active
+     SD-034 de-commit control-plane **fragments the latch to ~1-tick blips even with the lever
+     OFF**, so there was no sustained occupancy to shorten", and the earlier 460h "sustained
+     ~2400-step monolithic natural-commit hold did not reproduce". Independently,
+     `_committed_trajectory` is torn down every tick by the last statement of
+     `post_action_update` (`config.py:5345-5356`), which is why the MECH-321 R4 mid-execution
+     hook had **never executed in any experiment** (`decomp_n_evaluated_midexec = 0` in all 10
+     V3-EXQ-830 cells). This is the mechanical basis of memory
+     `feedback_dont_queue_commitment_dependent_behavioural`, and it is confirmed.
+  7. **BUT the sustainment levers now exist and ARE reachable (checked, not assumed).** Five
+     default-`False` knobs bear on occupancy: `use_natural_commit_latch_hold`,
+     `use_persistent_committed_program_handle`, `use_e3_reselection_shortcircuit`,
+     `use_closure_commit_entry`, `closure_exclusive_decommit_eval`. Because of the MECH-307
+     `from_dims`-unreachability precedent I verified reachability by AST rather than by
+     eyeballing: `REEConfig.from_dims` (968 parameters) **has all five in its signature and
+     assigns all five in its body.** So this is "built, reachable, and never exercised in any
+     ARC-029 or MECH-025b run" -- not "code does not exist". That distinction is what sets
+     ARC-029's disposition below.
+  8. **Sole ARC-029 support is non-degenerate only vacuously.** V3-EXQ-063a's C3 gate reads
+     "committed cond has more committed than uncommitted steps: **1156 vs 0**", and
+     `n_uncommitted_active_stable = 0.0`. The gate-active arm was committed on 100% of eval
+     steps. **The "committed vs uncommitted operating modes" contrast the claim's title asserts
+     has never been observed within a single run.** 063a measured gated-vs-ablated agents, not
+     modes.
+
+---
+
+### ARC-029 -- Committed and uncommitted operating modes produce measurably distinct harm out...
+
+**Recommended disposition:** **(a) testable now** -- the blocker is instrument design, not
+missing substrate: the commit gate is built and heavily exercised, the mode-alternation driver
+(MECH-108 BreathOscillator threshold modulation) and the occupancy levers are all built and
+`from_dims`-reachable, and what has never been done is a *precision-invariant* ablation with
+both regimes occupied inside one run.
+
+**Extracted from:** the claim's own `notes` block (the EXP-0085 gate-ablation design, the
+stable/volatile second dimension, and the 2026-04-05 Humphries-2012 hazard-density interaction
+prediction -- all three carried through into the draft below), **plus** ARC-016's 2026-07-25
+promotion verdict, which names ARC-029 as its own separate behavioural-consequence layer.
+Not drafted fresh.
+
+**Currency check:** verified against `ree-v3/experiment_queue.json` (3 items, no ARC-029 row),
+`REE_assembly/evidence/planning/substrate_queue.json` (no row), the full manifest set under
+`REE_assembly/evidence/experiments/` (41 files mention ARC-029; latest genuine run is
+`v3_exq_063a_..._20260602T172531Z_v3`, PASS 5/5, `evidence_direction: supports`), `TASK_CHIPS.json`
+and `igw_assignments.json` (no open work). Both routing notes in the claim's own text
+("Redesign queued", "EXQ-125a ... correct follow-up") are stale -- neither ever ran. Code checked:
+`e3_selector.py:265-274, 771-773, 3653-3690`, `config.py:1010-1032, 5053-5074, 5345-5356`,
+`heartbeat/clock.py:20-31`; `from_dims` reachability of all five occupancy levers confirmed by AST.
+
+**epistemic_category (proposed):** `standard` -- **explicit, and this is a correction, flagged
+below.** ARC-029 currently carries NO explicit `epistemic_category`, so the indexer infers
+`substrate_coherence` from `claim_type: architectural_commitment` (per REE_assembly/CLAUDE.md's
+dispatch table), which suppresses promote/demote. That inference is wrong for this claim: it
+makes an empirical behavioural prediction with a harm DV, it has been experiment-gated
+throughout (EXQ-063, 125 x3, 227, 063a, 630), and it was promoted candidate -> provisional on
+experimental confidence (`conf=0.774`). It is not `substrate_ceiling` (its readiness gates have
+NOT passed non-degenerately -- see finding 8) and not `substrate_conditional` (the code exists
+and evidence is banked both ways). `standard` is the honest value.
+
+**Draft `what_would_answer`:**
+
+> **NON-DEGENERACY PRECONDITION (three parts; all three must hold before C1 is read as
+> evidence -- this claim's entire experimental record fails at least one of them).**
+> **(P1) BOTH REGIMES MUST BE OCCUPIED WITHIN A SINGLE RUN.** The claim asserts two operating
+> *modes*, which is a within-agent contrast, not a between-arm one. Every prior test measured a
+> gated agent against a differently-configured agent: V3-EXQ-063a's gate-active arm recorded
+> `n_committed_active_stable = 1155.5` against `n_uncommitted_active_stable = 0.0`, so its C3
+> "non-degeneracy" gate (1156 vs 0) passed vacuously and the two-mode contrast was never
+> realised. Require, per seed, in the alternating arm: `committed_step_fraction` in [0.15, 0.85]
+> AND mean committed-run length >= 3 consecutive ticks, on >= 4/5 seeds. The run-length half is
+> load-bearing and not a formality: V3-EXQ-460i established that "the active SD-034 de-commit
+> control-plane fragments the latch to ~1-tick blips even with the lever OFF" and that 460h's
+> sustained ~2400-step hold did not reproduce, so a 50/50 committed/uncommitted split composed
+> of 1-tick alternations is NOT two operating modes and must fail this gate. If P1 cannot be met
+> at default settings, it is met by arming `use_natural_commit_latch_hold` (and, for macro
+> programs, `use_persistent_committed_program_handle` + `use_e3_reselection_shortcircuit`) --
+> all three are default-`False`, all three are in `REEConfig.from_dims`, and none has ever been
+> armed in an ARC-029 run. **If P1 still fails with those armed, ARC-029 converts to
+> `substrate_conditional` on commitment-occupancy sustainment and this falsifier is not readable.**
+> **(P2) THE MODE MANIPULATION MUST NOT MOVE PRECISION.** In ree-v3, `committed` is
+> `commit_variance < effective_threshold` (`e3_selector.py:3674`) and
+> `current_precision = 1/(running_variance + 1e-6)` (`:771`), so commitment and precision are
+> the same scalar; ARC-016's own promotion verdict measures `mean_rho_rv_vs_commit = -0.955`.
+> An ablation that forces `running_variance` -- as V3-EXQ-063a's does, to
+> `commit_threshold + 0.1 = 0.50`, i.e. `precision = 2.0`, against an operating point measured
+> as low as `rv = 0.005420` (V3-EXQ-794) -- simultaneously perturbs dACC precision gating
+> (`dacc.py:373`), the harm-nonredundancy scale, serotonin REM entry, the MECH-204 sleep
+> writeback, and the heartbeat sweep. Its harm gap is therefore unattributable between "the
+> commitment gate did work" and "the agent's precision was crushed" -- structurally the same
+> confound the 2026-06-03 autopsy used to retag V3-EXQ-630 `non_contributory` ("SD-022
+> limb-damage degrade drives commitment via running_variance"). Require instead that the mode
+> driver act on the **THRESHOLD**: MECH-108's BreathOscillator already does exactly this
+> (`clock.py:20-31`, `effective_threshold = base_threshold * (1.0 - sweep_amplitude)`), leaving
+> `running_variance` and every precision consumer untouched. Gate on it: the distribution of
+> `current_precision` must be statistically indistinguishable between the alternating arm and a
+> static control arm (paired per-seed mean and SD difference below a pre-registered floor). Set
+> `sweep_amplitude` from the run's own measured `rv` distribution, not from a guess -- with
+> `commitment_threshold = 0.40`, pushing an agent operating at `rv ~= 0.33` uncommitted needs
+> `sweep_amplitude > 0.18`, while one operating at `rv ~= 0.0054` needs `> 0.986`. This is why
+> EXQ-199's earlier BreathOscillator attempt recorded `committed_step_count = 0` on both seeds:
+> the amplitude was not calibrated to the lineage's own operating point.
+> **(P3) THE HARM DV MUST BE OFF THE FLOOR.** EXQ-227 diagnosed that SD-010/011/012 cut harm
+> rates ~100x, making any gate signal undetectable at the original `num_hazards=4,
+> hazard_harm=0.02` parameters. Require a per-seed harm rate at least an order of magnitude
+> above the measurement floor; V3-EXQ-063a's ~-0.055 harm/step is a demonstrated workable
+> operating point, so this is a calibration requirement, not an open problem.
+>
+> **CONFIRMING.** With P1-P3 met, within the SAME agent and seed: mean harm-per-step during
+> committed windows is lower than during uncommitted windows in the STABLE environment, with a
+> paired per-seed delta exceeding `max(0.5 * SD(per-seed paired delta), 0.002 harm/step)` and
+> the same sign on >= 4/5 seeds; AND the gap NARROWS in the volatile environment
+> (`gap_volatile < gap_stable`, >= 4/5 seeds) -- the context-dependence half, which is the part
+> that distinguishes ARC-029 from a generic "commitment is good" claim; AND, as the sharper
+> version of the same prediction already written into this claim's own notes from the
+> Humphries 2012 pull, the advantage is strongest at LOW hazard density (2-3 hazards) and
+> weakest or reversed at HIGH density (6-8), i.e. a significant density x mode interaction
+> rather than only a main effect.
+>
+> **FALSIFYING.** With P1-P3 all met and the precision-invariance gate P2 clean, the committed
+> and uncommitted windows show no harm difference (paired delta within the noise band on a
+> majority of seeds), or a difference in the wrong direction in the STABLE condition. Because
+> the manipulation is threshold-side, such a null CANNOT be explained away as a precision
+> artifact, which is the one exemption every prior ARC-029 test has been able to claim. This
+> would be a genuine falsification: the commitment gate would be shown to be structurally real
+> (ARC-016, `stable`) but behaviourally inert on harm, and ARC-029 should be narrowed to the
+> structural claim or retired in favour of ARC-016. Distinguish this from "still an instrument
+> problem" strictly by P1/P2: if occupancy or precision-invariance fails to gate cleanly, the
+> run is `non_contributory`, not evidence.
+
+**Proposal sketch (a):**
+- **title:** `V3-EXQ-063b -- ARC-029 within-run committed/uncommitted harm contrast under threshold-modulated mode alternation (precision-invariant ablation)`
+- **related_claims:** `ARC-029` (primary), `ARC-016` (the now-`stable` structural circuit this
+  is the behavioural layer of), `MECH-090` (the beta gate), `MECH-108` (the BreathOscillator
+  supplying threshold-side mode alternation), `MECH-025b` (shares P1/P2; a joint run can emit
+  both DVs from one rollout -- see the cross-claim note)
+- **acceptance_checks:**
+  - `G0_occupancy` (GATING): per seed, `committed_step_fraction` in [0.15, 0.85] AND mean
+    committed-run length >= 3 ticks, on >= 4/5 seeds. Report the full run-length histogram, not
+    just the mean -- a 1-tick-blip distribution with a long tail can hit a mean of 3.
+  - `G1_precision_invariance` (GATING): paired per-seed difference in `current_precision` mean
+    and SD between ARM_ALTERNATE and ARM_STATIC below a pre-registered floor; `running_variance`
+    is never written by the driver (assert no direct assignment to `e3._running_variance`
+    anywhere in the driver -- this is a source-level check, and it is the one V3-EXQ-063a would
+    have failed).
+  - `G2_harm_floor` (GATING): per-seed harm rate >= 10x the measurement floor.
+  - `C1_harm_gap_stable`: paired committed-vs-uncommitted harm delta > `max(0.5*SD(delta), 0.002)`,
+    same sign >= 4/5 seeds.
+  - `C2_context_dependence`: `gap_volatile < gap_stable` on >= 4/5 seeds.
+  - `C3_density_interaction`: significant hazard-density (2-3 vs 6-8) x mode interaction, gap
+    largest at low density.
+  - `C4`: no fatal errors; >= 5 seeds.
+- **Route note for the queue entry:** this is `/queue-experiment` work, not a re-run of an
+  existing script -- 063a's driver must not be copied, because its ablation method is the defect.
+
+**depends_on additions (if any):** add **`MECH-108`** (the BreathOscillator is the only built
+mechanism that can drive within-run mode alternation threshold-side; ARC-029's testability now
+rests on it). Optionally note `ARC-016`'s promotion to `stable` in `status_note` -- the existing
+`depends_on: [ARC-016, MECH-090]` is otherwise correct and needs no change.
+
+**GOVERNANCE FLAG (1 of 3):** `evidence_discrepancy` -- **ARC-029's `provisional` status rests
+on a run whose ablation is confounded and whose non-degeneracy gate passed vacuously.**
+V3-EXQ-063a (2026-06-02, PASS 5/5, the sole `supports` entry in `claim_evidence.v1.json`;
+`exp_conf = 0.4`, 1 support / 1 weaken) ablates the commitment gate by forcing
+`e3._running_variance = commit_threshold + 0.1`, which is a global precision manipulation
+affecting dACC gating, harm-nonredundancy scaling, serotonin REM entry, MECH-204 sleep
+writeback and the heartbeat sweep -- structurally the same confound the 2026-06-03 autopsy used
+to retag V3-EXQ-630 `non_contributory`, never applied backwards to 063a. Separately, its C3
+non-degeneracy criterion reads `1156 committed vs 0 uncommitted`, so the two-mode contrast the
+claim asserts was never realised. Recommend governance consider retagging 063a
+`non_contributory / measurement_test_design_defect` (which would leave ARC-029 with zero
+non-confounded experimental support and make the `provisional` reading itself reviewable), or
+at minimum record the confound on the claim so the next reader does not treat 063a as settled.
+
+**GOVERNANCE FLAG (2 of 3):** `stale_note` -- **two routing notes in ARC-029's own
+`evidence_quality_note` promise follow-ups that never happened.** (a) 2026-06-03: "Redesign
+queued (confound-isolation arm)" -- not in `experiment_queue.json`, no manifest, no
+`substrate_queue.json` row, no chip, no IGW assignment; ~3 months stale. (b) 2026-04-05:
+"EXQ-125a redesign (num_hazards=8, hazard_harm=0.05, 5 seeds, harm_obs passed to sense()) is
+the correct follow-up" -- V3-EXQ-125a never ran; ~5 months stale. Both should be corrected to
+say the work was never queued, so the claim stops reading as though a fix is in flight.
+
+**GOVERNANCE FLAG (3 of 3):** `contested_disposition` -- **ARC-029 has no explicit
+`epistemic_category`, so it infers `substrate_coherence` from `claim_type:
+architectural_commitment`, which suppresses promote/demote gating -- while the claim is in fact
+managed as experiment-gated** (promoted on `conf=0.774` from EXQ-063; five experimental
+entries; `exp_conf` tracked in `claim_evidence.v1.json`). Setting `epistemic_category: standard`
+explicitly would align the dispatch with how the claim is actually governed, but it *un-suppresses*
+promote/demote and so is a governance decision, not a digestion edit. Flagged for ratification,
+not applied.
+
+---
+
+### MECH-025b -- High-precision action mode carries responsibility attribution: the precision...
+
+**Recommended disposition:** **(a) testable now** -- the mechanism is live, both positive
+controls already clear on this substrate, the only fair test to date used a pooled estimator
+that is confounded by seed, and a strictly better scale-free regressor (`precision_margin_norm`)
+landed 32 days after that test.
+
+**Extracted from:** the claim's own `evidence_quality_note` (the V3-EXQ-671 -> 671a -> 671b
+gate-hardening sequence: residue-accumulation positive control added at 671a, precision-variance
+positive control added at 671b, both clearing at 671b), plus the 671b driver's own docstring
+(`ree-v3/experiments/v3_exq_671b_mech025b_precision_responsibility.py:52-90`), from which the
+central defect below is taken verbatim. Not drafted fresh.
+
+**Currency check:** live block re-read (its `depends_on` already carries the 2026-09-01
+SD-003 -> MECH-256 repoint, so that chip is landed and no longer pending). Run record verified:
+`v3_exq_671b_..._20260803T022036Z_v3.json`, FAIL 4/6, `n_samples = 179`, `n_seeds = 4`,
+`pooled_precision_spread = 160658`, both positive-control gates clear
+(residue 14.76 vs 1e-6 floor; precision spread 160658 vs floor 1). No successor queued: no
+`671c` in `experiment_queue.json`, no `substrate_queue.json` row, no open chip (the only
+`TASK_CHIPS.json` hits are the completed SD-003 repoint chips). Substrate re-checked: **no
+`precision_mode` / `high_precision` / `action_precision` knob exists in `ree_core/`** --
+precision is continuous only. `precision_margin_norm` confirmed live and unconditional
+(`e3_selector.py:3676-3690`, pre-seeded at `:3402`, dict assigned unconditionally at `:3323`);
+landed ree-v3 `48f85f0`, 2026-09-02.
+
+**epistemic_category (proposed):** `standard` -- **unchanged.** It is already `standard` and
+that is correct: the mechanism is built, exercised, and both positive controls clear, so it is
+neither `substrate_conditional` nor `substrate_ceiling`. (Note against the obvious objection:
+INV-012 Leg 0 being unmet does NOT make this claim substrate-blocked, because the 671 lineage's
+DV does not require differentiated candidates -- it gates the *interpretation*, not the
+*measurement*. See preamble (ii).)
+
+**Draft `what_would_answer`:**
+
+> **NON-DEGENERACY PRECONDITION.** Four parts. The first two are already implemented and
+> already clearing -- keep them. The third and fourth are new and are what 671b lacked.
+> **(P1) RESIDUE MUST ACCUMULATE UNDER COMMITTED HARM**, per seed, above a floor -- the gate
+> added at 671a after V3-EXQ-671 measured C1 and C2 as exactly 0.0 across 778 committed
+> harm-events because `ResidueField.total_residue` never moved (671b: 14.76 vs a 1e-6 floor).
+> **(P2) PRECISION MUST VARY WITHIN EACH SEED'S OWN COMMITTED-STEP POPULATION**, checked
+> GROUPED BY SEED rather than pooled -- the gate added at 671b, whose own docstring gives the
+> reason: "a flat/pooled spread check can pass purely from BETWEEN-seed differences in average
+> precision ... while precision is still pinned WITHIN every individual seed's own
+> committed-step population". Keep this exactly as built.
+> **(P3) THE ESTIMATOR ITSELF MUST BE WITHIN-SEED, AND THIS IS THE PART 671b GOT WRONG.**
+> 671b applies P2's own reasoning to the independent variable's *spread* and then computes the
+> DEPENDENT statistics by pooling raw `current_precision` across seeds
+> (`pooled_precision.extend(r["precision_samples"])`, then one Pearson r and one median split
+> over the pooled list). Per-seed precision spread in that run differs by ~37x
+> (seed 0: 160611.76; seed 1: 5674.23; seed 2: 4300.25; seed 3: 0.00 at n=1), so the pooled
+> median split is close to a seed-identity split. The consequence is visible in the run's own
+> per-seed table: every seed's correlation is non-negative (+0.0505, +0.1017, +0.0651, 0.0000)
+> while the POOLED correlation is NEGATIVE (-0.0446), and 2 of the 3 non-degenerate seeds have
+> ratios above the 1.1 bar (1.1327, 1.1471) while the pooled ratio is 1.0618. That is a
+> between-group confound inverting the sign of every within-group constituent, and the driver's
+> own docstring already identifies the correct frame -- "the claim under test is about a
+> within-run relationship" -- immediately before pooling across runs. Require: the primary
+> statistic is a per-seed correlation (Fisher-z averaged across seeds), the median split is
+> taken WITHIN each seed, the regressor is scale-free (`precision_margin_norm`, or per-seed
+> z-scored `current_precision`), and any seed with fewer than 20 committed harm-events is
+> excluded from the primary estimator and reported separately -- 671b's seed 3 contributed
+> n=1 with a fill-value correlation of 0.0 and a ratio of 0.0 into a pooled n of 179.
+> If a pooled statistic is reported at all it is a diagnostic, and pre-registration must say
+> that a sign disagreement between pooled and within-seed estimates resolves in favour of the
+> within-seed one.
+> **(P4) THE PASS BAR MUST BE DERIVED, NOT INHERITED.** `C1 > 0.15` has been carried unchanged
+> from 671 through 671a to 671b and was never derived from an expected effect size. Because the
+> sample is restricted to committed steps -- i.e. to the `commit_variance < effective_threshold`
+> tail of the same scalar the commit gate thresholds on -- the correlation is range-restricted
+> by construction and attenuated relative to any unrestricted estimate. Pre-register the bar
+> from a measured range-restriction correction or from a stated minimum practically-relevant
+> effect, and state it before the run.
+>
+> **CONFIRMING.** With P1-P4 met: the within-seed correlation between commit-time precision
+> (`precision_margin_norm`) and residue accumulated per unit harm is positive, the Fisher-z
+> averaged estimate exceeds the pre-registered bar with a 95% CI excluding 0, and the
+> within-seed high/low median-split ratio exceeds its bar on >= 4/5 seeds with >= 20 events each.
+> **Scope limit on what a PASS licenses, and it is not decorative:** this would confirm that
+> precision SCALES RESIDUE WEIGHT. It would NOT yet confirm the claim's stated rationale, that
+> higher precision implies higher ETHICAL ACCOUNTABILITY "because the agent ... could have done
+> otherwise with finer discrimination" -- that premise is INV-012 Leg 0, recorded in INV-012's
+> own `what_would_answer` as CURRENTLY UNMET (MECH-439, `ceiling_decision: exhausted`, latest
+> entry `failure_autopsy_V3-EXQ-571b_2026-09-01`). Do not re-derive Leg 0 here: see INV-012's
+> own `what_would_answer`, Leg 0. A PASS therefore promotes the mechanistic half and leaves the
+> accountability bridge explicitly gated.
+>
+> **FALSIFYING.** With P1-P4 met and >= 5 seeds each carrying >= 20 committed harm-events, the
+> within-seed correlation is null or negative and the within-seed ratio does not clear its bar
+> on a majority of seeds. This IS real claim pressure -- unlike 671 (degenerate), 671a
+> (single-seed, missing precision-variance control) and 671b (confounded estimator), none of
+> which is. The philosophical bridge would then be unsupported on its own chosen
+> operationalization, and MECH-025b should be narrowed to the mechanistic reading (precision
+> co-varies with residue) or retired in favour of MECH-025 plus MECH-256, with INV-012's Leg 1/3
+> carrying the responsibility content instead. Note there is no biological reference to check a
+> null against: by the claim's own 2026-04-02 decomposition note it is a philosophical
+> construct, not a translated neuroscience finding, so literature cannot rescue a null here.
+>
+> **INSTRUMENT NOTE (currency).** `precision_margin_norm` -- normalized 0 at the commit
+> threshold to 1 at maximal confidence, set on every world-variance-mode tick and deliberately
+> ungated ("mirrors `conflict_gap_norm`'s always-set convention") -- landed in ree-v3 `48f85f0`
+> on 2026-09-02, 32 days AFTER 671b ran. It is scale-free across seeds by construction and is
+> the correct regressor for P3. Also note the substrate has no discrete precision MODE
+> (`ree_core/` has no `precision_mode` / `high_precision` / `action_precision` knob); the
+> claim's title phrase "high-precision action mode" is testable only as a LEVEL, which is how
+> this falsifier is written and is consistent with MECH-025's own literature finding that
+> Friston 2013 records precision as continuous rather than as a discrete mode switch.
+
+**Proposal sketch (a):**
+- **title:** `V3-EXQ-671c -- MECH-025b precision-margin x residue within-seed regression (per-seed estimator, MECH-027 precision_margin_norm, 5 seeds)`
+- **related_claims:** `MECH-025b` (primary), `MECH-025` (parent; supplies the "precision is
+  continuous, not a mode" constraint), `ARC-016` (the precision->commitment circuit, `stable`),
+  `MECH-256` (the self-attribution half the responsibility reading needs), `INV-012` (Leg 0
+  gates the accountability interpretation of a PASS)
+- **acceptance_checks:**
+  - `G1_residue_accumulates` (GATING, per seed): unchanged from 671a/671b.
+  - `G2_precision_spread_grouped_by_seed` (GATING): unchanged from 671b -- keep the GROUP-mode
+    `check_degeneracy`, do not revert it to a flat/pooled check.
+  - `G3_per_seed_power` (GATING): >= 5 seeds, each with >= 20 committed agent-owned harm-events;
+    seeds below 20 excluded from the primary estimator and reported separately.
+  - `G4_estimator_is_within_seed` (GATING, source-level): the primary C1/C2 statistics are
+    computed per seed and aggregated (Fisher-z for r; per-seed median split for the ratio); no
+    cross-seed pooling feeds a gating criterion.
+  - `C1_within_seed_correlation`: Fisher-z averaged per-seed r(`precision_margin_norm`,
+    residue-per-unit-harm) exceeds the pre-registered bar, 95% CI excluding 0.
+  - `C2_within_seed_ratio`: per-seed high/low median-split ratio > bar on >= 4/5 qualifying seeds.
+  - `C3_world_forward_r2 > 0.05`, `C4_harm_pred_std > 0.01` (retained from 671b), `C5` no fatal errors.
+  - **Reported, non-gating:** the pooled statistics, alongside the between-seed variance
+    component, so the 671b confound is visible rather than silently repeated.
+- **Efficiency note for the orchestrator:** G1/G2 here and G0/G1 in ARC-029's proposal read the
+  same `precision_margin_norm` stream from the same rollout. If both are queued, a single driver
+  emitting both DVs is cheaper and makes the mutual confound in preamble (iv) directly
+  measurable in one run rather than inferred across two.
+
+**depends_on additions (if any):** none required. `depends_on: [MECH-025, ARC-016, INV-012,
+MECH-256]` is correct and current (the SD-003 -> MECH-256 repoint landed 2026-09-01). I
+considered adding `MECH-487` and rejected it -- see preamble (i): MECH-487 concerns the
+retained counterfactual arm, MECH-025b the weighting of the taken arm; they are siblings under
+INV-012, not dependencies.
+
+**GOVERNANCE FLAG (1 of 2):** `evidence_discrepancy` -- **the 2026-08-03 `weakens/standard`
+verdict on MECH-025b rests on a pooled estimator that is confounded by seed and whose sign
+inverts every one of its constituents.** V3-EXQ-671b computes its gating C1/C2 on samples
+pooled across 4 seeds whose per-seed precision spreads differ by ~37x (160611.76 / 5674.23 /
+4300.25 / 0.00), so the pooled median split approximates a seed-identity split. Per-seed
+correlations: +0.0505, +0.1017, +0.0651, 0.0000 -- **all non-negative.** Pooled correlation:
+**-0.0446.** Per-seed ratios: 0.9214, 1.1327, 1.1471, 0.0000 -- **2 of 3 non-degenerate seeds
+clear the 1.1 bar.** Pooled ratio: 1.0618. Seed 3 contributed n=1 with fill-value statistics
+(r = 0.0, ratio = 0.0) into the pooled n = 179. The driver's own docstring identifies exactly
+this failure class for the positive control ("cross-seed variance masks within-seed pinning")
+and then commits it on the DV, having stated one line earlier that "the claim under test is
+about a within-run relationship". Recommend re-adjudicating 671b from
+`weakens/standard` to `non_contributory / measurement_test_design_defect` (or `inconclusive /
+measurement_gap`), routing to V3-EXQ-671c above. **This does not amount to confirming the
+claim** -- every per-seed correlation is still well below the 0.15 bar -- but it removes the
+only recorded claim pressure against MECH-025b, so the disposition is materially affected.
+
+**GOVERNANCE FLAG (2 of 2):** `evidence_discrepancy` (minor, registry/index disagreement) --
+the 671b manifest carries `evidence_direction: "mixed"` and `claim_evidence.v1.json` scores it
+accordingly (`genuine_exp_direction_counts: {mixed: 1, weakens: 0}`), while the claim's
+`live_status.evidence.verdict` records `weakens/standard`. The registry and the indexed
+evidence disagree about the direction of the single genuine experimental entry for this claim.
+Whichever way flag 1 above is resolved, the two should be made to agree (this is the
+`supersedes`-class silent-loss pattern the CLAUDE.md EXQ-versioning section warns about: a
+governance verdict applied to `live_status` without a corresponding manifest direction change
+never reaches the indexer).
+
+---
+
+<!-- S_SD-063 appended 2026-09-04T21:29:11Z -->
+## G21 -- SD-063 E2 conditional predictive-uncertainty head  (agent report)
+
+### Solo note
+Single-claim group: no cross-claim mandate applies. The cross-claim work that *is* load-bearing here is
+vertical rather than lateral -- SD-063's head is the producer for three downstream consumers built after
+its promotion (MECH-314b per-candidate curiosity, MECH-482/SD-102 epistemic-deficit accumulator, and the
+never-exercised E3 commit gate the claim's own title names). Findings on those consumers are reported
+under Currency check and in the three GOVERNANCE FLAG blocks, not as a group preamble.
+
+---
+
+### SD-063 -- E2 world-forward carries a conditional predictive-uncertainty head (distribution-free quantile form) feeding E3 commitment gating
+
+**Recommended disposition:** (a) testable now -- the head is BUILT, trainable, demonstrably live (relative
+pvar spread 1.31-3.20 on trained arms), and the calibration falsifier can be scored with an instrument that
+already exists and already ran three days ago (V3-EXQ-977's `coverage_80` / `coverage_err_80`), so the
+missing `what_would_answer` is a write-down, not a design problem.
+
+**Extracted from:** four sources, none invented. (1) The head module's own docstring P2 plan
+(`/Users/dgolden/REE_Working/ree-v3/ree_core/predictors/e2_world_uncertainty.py:58` -- "P2: evaluate
+held-out CRPS, precision_error_corr, and -- the SD-063 falsifier -- that the E2WorldForward agency residual
+is unchanged") and the design doc's Validation section
+(`/Users/dgolden/REE_Working/REE_assembly/docs/architecture/sd_063_e2_conditional_uncertainty_head.md:112-115`).
+(2) V3-EXQ-716a's own pre-registered thresholds, reused verbatim as the confirming bars
+(`crps_improve_frac` 0.02, `corr_floor` 0.15, `c3_preserve_frac` 0.75, `readiness_norm_residual_floor` 0.05).
+(3) SD-063's OWN literature evidence, which already states the calibration gap as its central open risk:
+`2026-07-08_sd_063_beyond_pinball_loss_calibration_chung2021` (direction `mixed`, conf 0.6) whose third
+failure signature reads, verbatim from `claim_evidence.v1.json`: "The paper's calibration metric (ECE over
+quantile levels) is not what V3-EXQ-712 measured (CRPS + precision_error_corr); a head that wins on CRPS
+can still be miscalibrated in the Chung sense, so SD-063's diagnostic PASS does not certify calibration."
+The falsifier below is that sentence turned into a scored criterion. (4) The coverage instrument itself,
+already implemented and run in `v3_exq_977_arc052_harm_stream_conditional_precision.py` (per-arm
+`coverage_80`, `coverage_err_80` over the same 9 quantile levels).
+
+**Currency check:** eleven items verified; six are stale-note or unrouted-evidence findings.
+
+1. *Block currency.* The block handed to me is byte-equivalent in content to the live
+   `claims.yaml` (lines 70745-70854); only YAML scalar style differs. No drift. SD-063 has NO
+   `what_would_answer`, NO `epistemic_category`, NO `digestion_note`; `status: provisional`,
+   `v3_pending: false`, `depends_on: [MECH-059, SD-031]`.
+2. *Reverse-deps: ZERO.* No claim in `claims.yaml` lists SD-063 in `depends_on` (checked by loading the
+   whole registry, not by grep). MECH-482 references the head only in prose notes. So the fan-in 0 in the
+   task header is matched by fan-out 0 in the registry, despite three real code-level consumers. See
+   GOVERNANCE FLAG 2.
+3. *The head is BUILT.* `ree-v3/ree_core/predictors/e2_world_uncertainty.py` -- `E2WorldUncertaintyHead`
+   + `E2WorldUncertaintyConfig`, 9 fixed levels 0.1..0.9, pinball loss, `predictive_variance` =
+   monotone-rearranged (`torch.sort`) `[q0.1,q0.9]` IQR / `IQR_TO_STD_10_90=2.5631`, squared, meaned over
+   dims, under `no_grad`. **`[q0.1, q0.9]` is explicitly documented as "the nominal-80% predictive
+   interval" (line 89)** -- so nominal coverage is well-defined for this head without any new design work.
+4. *It is DEFAULT-OFF, on three independent flags,* all `False` in
+   `ree-v3/ree_core/utils/config.py`: `LatentStackConfig.use_e2_world_uncertainty` (323),
+   `LatentStackConfig.use_e2_world_uncertainty_online_training` (339),
+   `E3Config.use_conditional_precision_gate` (1114). Instantiation is agent-level
+   (`agent.py:584-623`); training is `agent.py:_train_e2_world_uncertainty` (4379+), gated on
+   `train_online` AND `self.training` AND not `hypothesis_tag`.
+5. *It IS consumed -- but not by the consumer the claim's title names.* Live consumers found in
+   `ree_core/`: (i) MECH-314b per-candidate curiosity via `curiosity_uncertainty_source=
+   "e2_predictive_variance"` (`policy/structured_curiosity.py:403`, `agent._curiosity_per_candidate_
+   uncertainty`); (ii) MECH-482/SD-102 `policy/epistemic_deficit.py` (uses the head's pvar AND its median
+   vs `e2.world_forward`'s point prediction as a disagreement signal); (iii) the E3 commit gate,
+   `e3_selector.py:3667-3675`.
+6. *The E3 commit gate has NEVER been exercised.* `use_conditional_precision_gate` is set `True` in
+   **zero** experiment drivers -- a whole-tree grep finds it only in `ree_core/`, in two contract test
+   files (`tests/contracts/test_sd063_conditional_uncertainty_head.py`,
+   `test_from_dims_flag_reachability.py`), in `tests/test_flag_inertness.py`, and in **docstring prose**
+   inside `v3_exq_716.py` / `v3_exq_716a.py`. No driver ever passes `conditional_predictive_variance` into
+   `E3.select()`. See GOVERNANCE FLAG 1.
+7. *What 716a actually scored.* `v3_exq_716a_..._20260709T193517Z_v3.json` (PASS, `evidence`,
+   `claim_ids:[SD-063]`, `supports`, 3/3 seeds) measures C1 `crps_quantile` 0.0886 vs `crps_point` 0.0981,
+   C2 `precision_error_corr_quantile` 0.385 vs `precision_error_corr_point` 0.0, C3 `cf_gap` 1.452
+   preserved. All three are **offline predictor-quality metrics on held-out transitions.** No coverage,
+   no calibration, and no selection-level or commitment-level DV anywhere in the manifest.
+8. *Fresh, decisive, unrouted coverage evidence (2026-09-03).* `v3_exq_977_arc052_harm_stream_conditional_
+   precision_20260903T112134Z_v3.json` (PASS, `claim_ids:[ARC-052]`, reviewed 2026-09-03 by
+   `governance-20260903T2013`) runs the SAME head class at the SAME 9 levels across three streams x
+   {point, quantile} x 5 seeds and records `coverage_80` per arm. On **z_world -- SD-063's own stream** the
+   trained quantile head under-covers its nominal 80% band on **5/5 seeds**: 0.7186 / 0.7346 / 0.7119 /
+   0.7015 / 0.7104, mean 0.7154, mean `coverage_err_80` 0.0846. Same direction on z_harm_s (mean 0.7076);
+   z_harm_a is close to nominal (mean 0.7781). `precision_error_corr` beats its permutation null 5/5 on
+   every quantile arm (0.22-0.75), and `pvar_relative_spread` is 1.31-3.20, so the head is LIVE, not
+   random-init. **Scope caveat, stated rather than glossed: 977 ran with `encoders_trained: False`**, i.e.
+   an untrained z_world encoder -- the exact P0 condition SD-063's own phased protocol requires and 716a
+   supplied. So this is strong, seed-consistent evidence that the *form* under-covers, measured on a
+   weaker latent than SD-063's validated config; it is NOT yet a verdict on SD-063's own configuration.
+   That is precisely why the falsifier below is worth queueing rather than declaring already-answered.
+9. *The claim's title-half about magnitude is contradicted at selection level by V3-EXQ-949 (PASS,
+   2026-08-25, MECH-314b, reviewed).* With the head trained and consumed per-candidate
+   (`head_latched_pvar_relative_spread` 1.341, `pcv_relative_spread_mean` 0.639, `n_pcv_nonnull_ticks` 320),
+   the head's per-candidate deviation is `last_uncertainty_dev_range_mean` **1.52e-05** against a
+   `raw_score_range_mean` of **277.3** -- seven orders of magnitude down -- and `yoked_divergence_frac` is
+   **0.0** over 320 ticks. It becomes behaviourally consequential (`yoked_divergence_frac` 0.35) ONLY in
+   `ARM_B314_ON_AUTH_ON`, i.e. only when `use_modulatory_selection_authority` rescales it. The head's
+   output carries no native authority at its natural scale.
+10. *Same pattern one layer down.* `v3_exq_964_mech482_epistemic_deficit_validation_20260829T215030Z_v3`
+    is a **FAIL** whose interpretation label is literally
+    `accumulator_live_but_never_changes_committed_action` -- the SD-102 accumulator that eats SD-063's head
+    output is live and inert. This is the same shape the MECH-485 agent is checking for
+    `predicted_harm_delta`, arriving twice independently downstream of this head.
+11. *substrate_queue.json is STALE on SD-063* (`evidence/planning/substrate_queue.json:6317-6333`):
+    `"ready": false`, `"unblocks_claims": []`, `"validation_experiment"` still points at V3-EXQ-716 (the
+    non_contributory diagnostic) rather than 716a (the scoring confirmation that promoted the claim), and
+    `"last_seen_session": "substrate-queue-reconcile-20260708T2009Z"` -- 2026-07-08, one day BEFORE the
+    716a promotion and seven weeks before the three consumers landed. See GOVERNANCE FLAG 3.
+12. *IMPL-022 already requires the metric that is missing.*
+    `docs/architecture/jepa_e1e2_integration_contract.md:193` requires
+    `latent_uncertainty_calibration_error` "(if uncertainty head present)". SD-063 is the only uncertainty
+    head in `ree_core/`. A whole-tree grep of `ree-v3` for `latent_uncertainty_calibration_error` returns
+    **nothing** -- the contract field is declared and never emitted.
+
+**epistemic_category (proposed):** `standard`. Not `substrate_ceiling` and not `substrate_conditional`:
+the head exists, has been trained and exercised non-degenerately in at least three independent runs (716a,
+949, 977), and the falsifier's blocking condition is an unqueued experiment, not missing code or an
+absorbing downstream mechanism. (The *consumer* half -- the E3 commit gate -- is built-but-unexercised,
+which is an unqueued-test condition, not a ceiling.)
+
+**Draft `what_would_answer`:**
+
+> NON-DEGENERACY PRECONDITION (all four must hold in the scored run, or the run self-routes
+> `substrate_not_ready` rather than reporting a verdict):
+> (i) ENCODER TRAINED -- the P0 warmup ran (`encoders_trained: true`); an untrained z_world encoder yields
+> a near-invariant latent and a trivially-fittable spread (the MECH-353 / V3-EXQ-642 vacuity lesson, and
+> the reason V3-EXQ-977's `encoders_trained: false` coverage reading is indicative rather than decisive).
+> (ii) HEAD TRAINED, NOT RANDOM-INIT -- `e2_world_uncertainty_last_pvar_relative_spread >= 1.0` evaluated
+> across all action classes at a fixed z_world. RELATIVE spread, never absolute range: per
+> `e2_world_uncertainty.py`'s measured note, an UNTRAINED head has the LARGER absolute range (8.63e-04 vs
+> 7.14e-04) and passes any absolute-range gate, so `last_uncertainty_dev_range > 0` is necessary but NOT
+> sufficient (this is the corrected ARC-065 section-5 gate; V3-EXQ-949 used `HEAD_REL_SPREAD_FLOOR = 1.0`).
+> (iii) TRANSITIONS NON-DETERMINISTIC ENOUGH FOR AN INTERVAL TO MEAN ANYTHING -- this arm's own normalised
+> held-out residual `norm_residual = point_rmse / target_std >= 0.05` (716a's
+> `readiness_norm_residual_floor`; 977 measured 0.087-0.155 and 716a 0.414). A deterministic transition set
+> makes the nominal-80% band trivially wide-or-empty and the coverage test vacuous.
+> (iv) SUFFICIENT HELD-OUT MASS -- `n_test >= 200` held-out transitions per arm per seed (977's floor;
+> 716a banked 714 eval / 2142).
+>
+> CONFIRMING (all three, majority of >= 3 seeds, with the SD-031 guard held):
+> (C1) CALIBRATION -- empirical coverage of the monotone-rearranged `[q0.1, q0.9]` band on held-out
+> `(z_world_t, a_t) -> z_world_{t+1}` transitions matches its nominal 0.80:
+> `|coverage_80 - 0.80| <= max(0.03, 2 x SD(coverage_80) across seeds)`. The absolute floor of 0.03 is
+> what stops a high-variance run from passing by being noisy.
+> (C2) THE WIDTH CARRIES INFORMATION BEYOND A CONSTANT -- (a) `pvar_relative_spread > 0` and
+> (b) `precision_error_corr >= 0.15` (716a's `corr_floor`) AND above its own permutation-null p95 (977's
+> instrument; measured p95 ~0.055 there). Both legs are required: (a) alone is passed by a head whose
+> width varies arbitrarily, (b) alone is undefined for a constant-width band.
+> (C3) IT BEATS THE NULL IT CLAIMS TO REPLACE -- CRPS improvement over the matched point head
+> >= 2% (716a's `crps_improve_frac`), and `precision_error_corr` strictly above E3's running-variance EMA
+> null, which is 0.0 by construction.
+> (C4, the consumer half the title asserts) WITH `E3Config.use_conditional_precision_gate = True` and the
+> head supplying `conditional_predictive_variance`, a YOKED comparison against the EMA fallback (identical
+> seeds, identical candidate sets, gate the only difference) shows `yoked_divergence_frac > 0` on
+> >= 300 candidate ticks -- i.e. the per-input spread changes at least some commit/hold decisions.
+>
+> FALSIFYING (any one):
+> (F1) COVERAGE SYSTEMATICALLY OFF -- `|coverage_err_80| > 0.05` with the SAME SIGN on >= 4 of 5 seeds.
+> This is the Chung-2021 failure mode already carried as `mixed` literature on this claim, and it is
+> exactly what V3-EXQ-977 measures on z_world at 5/5 seeds under-covering (0.7015-0.7346, mean err 0.0846)
+> with an untrained encoder. A pinball head can win CRPS and still be miscalibrated; if C1 fails while C3
+> passes, SD-063's per-prediction spread is a good RANKING signal and a bad PROBABILITY, and the claim
+> must be narrowed to the ranking reading (which is what the E3 commit gate, a threshold comparison in
+> variance space, actually needs) rather than kept as stated.
+> (F2) THE INTERVAL WIDTH CARRIES NO INFORMATION BEYOND A CONSTANT -- `precision_error_corr` fails to beat
+> its permutation null, or `pvar_relative_spread` is at floor while precondition (ii) passes. The head is
+> then an expensive constant band and the EMA null is not beaten.
+> (F3) CONSUMER INERTNESS -- C4's `yoked_divergence_frac == 0.0` with all four preconditions met. The head
+> is computed and never consumed at the commit gate; SD-063's "feeding E3 commitment gating" clause is
+> then false as stated, independently of C1-C3. Precedent that this is a real risk, not a formality:
+> V3-EXQ-949's `ARM_B314_ON_AUTH_OFF` (`yoked_divergence_frac` 0.0, per-candidate deviation 1.5e-05 vs a
+> score range of 277) and V3-EXQ-964's FAIL label `accumulator_live_but_never_changes_committed_action`.
+> (F4) SD-031 GUARD BREACHED -- the E2WorldForward agency residual (`cf_gap`) drops below 0.75 of its
+> head-OFF value under joint training (716a's `c3_preserve_frac`). Structurally defended (separate module,
+> detached inputs and target) but still empirically required on every scoring run.
+
+**Proposal sketch (disposition a):**
+- *title:* "V3-EXQ-XXX -- SD-063 conditional-uncertainty head: nominal-interval calibration and E3
+  commit-gate consumption" (two-part: a calibration arm reusing 716a's phased P0/P1/P2 protocol with
+  `encoders_trained: true`, and a yoked commit-gate arm that is the first ever exercise of
+  `use_conditional_precision_gate`).
+- *related_claims:* SD-063 (primary), MECH-059 (the confidence channel this realizes), SD-031 (the agency
+  residual guard, F4), IMPL-022 (the contract field `latent_uncertainty_calibration_error` this run would
+  be the first to emit). Report-only cross-references, no claim_ids beyond SD-063 unless the driver
+  genuinely scores them.
+- *acceptance_checks:* preconditions (i)-(iv) above as gating readiness checks; C1/C2/C3 as the
+  calibration arm's scored criteria (per-seed majority of 5); C4 as the commit-gate arm's scored criterion
+  with F3 pre-registered as its own off-ramp label (`head_computed_never_consumed_at_commit_gate`), so an
+  inert result is a recorded finding rather than an ambiguous FAIL; F4 as a hard guard on both arms.
+  Emit `coverage_80` / `coverage_err_80` per arm per seed (lift the instrument verbatim from
+  `v3_exq_977_arc052_harm_stream_conditional_precision.py`) and `latent_uncertainty_calibration_error`
+  under IMPL-022's stable key.
+- *cheap first move, before queueing anything:* re-run 977's coverage instrument over 716a's already-banked
+  configuration. If the deficit survives a trained encoder, F1 fires on existing evidence and the
+  calibration arm can be skipped in favour of a narrowing.
+
+**depends_on additions (if any):** none on SD-063 itself -- `[MECH-059, SD-031]` is correct and complete.
+On the CONSUMER side, MECH-482 (and SD-102's registry surface) should list SD-063 in `depends_on`: three of
+its inputs read this head, its own notes say so in prose, and the registry currently has zero reverse-deps
+on SD-063. Proposed, not applied; raised as GOVERNANCE FLAG 2.
+
+---
+
+### The 2026-09-02 intake question: does "uncertainty non-dissipation across a blind rollout horizon" belong in SD-063's own `what_would_answer`?
+
+**No -- and it does not need its own claim either. The intake's routing (an `IMPL-022` contract-field
+addition, deliberately not `MECH-NEW-1`) is correct, and I would additionally decline to fold it into
+SD-063.** Read in full:
+`/Users/dgolden/REE_Working/REE_assembly/evidence/planning/thought_intake_2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md`
+(novelty table row 8; section 2 "Proposed IMPL-022 contract-field addition"; the "No MECH-NEW-1 was minted,
+deliberately" paragraph).
+
+Three reasons, in order of weight:
+
+1. **DIFFERENT OBJECT.** SD-063's head is a strictly ONE-STEP conditional readout: `forward(z_world_t,
+   a_t) -> [B, D, Q]` over the single transition to `z_world_{t+1}`, and nothing in `ree_core/` iterates
+   it. `latent_uncertainty_horizon_dissipation_rate` is a property of a MULTI-STEP BLIND ROLLOUT -- the
+   per-step signed change in the predictor's own uncertainty with no observation ingested after step 0.
+   Folding it into SD-063's falsifier would make SD-063 refutable by the behaviour of an iteration path it
+   does not assert, does not implement, and whose consumer is elsewhere (ARC-018 / MECH-033 hippocampal
+   rollouts; MECH-385/ARC-091 belief-state, both v4). That is category error, and it would make an
+   otherwise-clean V3-tractable falsifier v4-blocked.
+
+2. **THE INTAKE'S OWN NON-DEGENERACY CLAUSE RULES IT OUT IN V3 TODAY.** The proposed check reads: "the
+   check is vacuous unless the environment supplies genuinely ambiguous histories (one observation history
+   compatible with several hidden continuations); a fully observable domain self-routes
+   `substrate_not_ready` rather than reporting a PASS." REE's V3 test bed is CausalGridWorldV2. So a claim
+   minted now would be born `substrate_conditional` with zero possible evidence -- and SD-063, whose own
+   falsifier is scoreable this week, would inherit that block if the measurable were folded into its
+   `what_would_answer`.
+
+3. **BUT THE PRODUCER LINK IS REAL AND SHOULD BE RECORDED, JUST NOT AS A FALSIFIER CLAUSE.** The intake is
+   right that SD-063 is "the existing REE component that could emit the per-step series; nothing else
+   currently does". The correct home for that is the producer-side note on the IMPL-022 field (already
+   drafted in the intake) plus a one-line cross-reference in SD-063's `notes`/`implementation_note` -- not
+   a clause in `what_would_answer`, which is the claim's refutation condition and must stay scoreable.
+
+**What DOES resolve SD-063's placeholder is the calibration falsifier above, not the horizon measurable** --
+and the two are close enough to be confused, so the boundary is worth stating: calibration is coverage
+AT A POINT (does the nominal-80% band contain 80% of realized next-states?); dissipation is the TRAJECTORY
+of that estimate across a blind horizon. The intake makes exactly this distinction in its own novelty table
+("`latent_uncertainty_calibration_error` measures calibration at a point, not its trajectory across a blind
+horizon"). SD-063 owns the first; it does not own the second.
+
+**One qualification for the parent.** If `/governance` decides the *requirement* (not merely the metric) is
+claim-worthy, the intake already names the right shape -- a `mechanism_hypothesis` at
+`docs/architecture/precision_control.md` with `depends_on: [MECH-510, MECH-059, SD-063, MECH-385]`. I do
+not recommend minting it now: the thought proposes no mechanism for producing non-dissipation, explicitly
+denies the density-matrix construction any privileged status, and the V3 substrate cannot make it
+non-vacuous. Defer until a partially-observable test bed with verified multi-modal hidden continuations
+exists.
+
+---
+
+**GOVERNANCE FLAG 1:** `evidence_discrepancy` -- **SD-063 was promoted to `provisional` on evidence that
+never tested the half of the claim its title asserts.** The title says the head feeds "E3 commitment
+gating"; the promoting run V3-EXQ-716a scores only offline predictor quality (CRPS, precision_error_corr,
+agency-residual preservation) on held-out transitions. `E3Config.use_conditional_precision_gate` has never
+been `True` in any experiment driver in the repo (verified by whole-tree grep: matches occur only in
+`ree_core/`, three test files, and two experiment DOCSTRINGS). Two independent downstream runs show the
+head's output going nowhere at the decision level: V3-EXQ-949 `ARM_B314_ON_AUTH_OFF` (`yoked_divergence_frac`
+0.0 over 320 ticks; per-candidate deviation 1.52e-05 against a 277.3 score range; non-zero only under the
+authority rescale, at 0.35) and V3-EXQ-964 FAIL labelled `accumulator_live_but_never_changes_committed_action`.
+Recommended: do not demote -- the producer-side evidence is genuine -- but record that SD-063's provisional
+standing covers the PRODUCER clause only, and gate any further promotion on the C4/F3 commit-gate arm above.
+This is the same "computed and never consumed" shape being checked for `predicted_harm_delta` under
+MECH-485.
+
+**GOVERNANCE FLAG 2:** `evidence_discrepancy` -- **fresh, reviewed, unrouted calibration evidence.**
+`v3_exq_977_arc052_harm_stream_conditional_precision_20260903T112134Z_v3` (PASS, reviewed 2026-09-03 by
+`governance-20260903T2013`, whose Step-2b PASS skim recorded "NOTHING FOUND" against ARC-052's own
+criteria) carries per-arm `coverage_80` telemetry showing the SD-063 head form under-covering its nominal
+80% interval on z_world at 5/5 seeds (mean 0.7154, mean `coverage_err_80` 0.0846) and on z_harm_s (mean
+0.7076). SD-063 is not among that run's `claim_ids`, so this deposits no SD-063 evidence and nothing routed
+it. It is nonetheless the first empirical instance of the exact failure mode SD-063's own `mixed`
+literature entry (Chung 2021) predicted, and it is measured on the same head class at the same nine
+quantile levels. Caveat that must travel with the flag: `encoders_trained: false` in 977, so this is
+indicative of the FORM, not yet a verdict on SD-063's own P0-trained configuration. Recommended: route it
+as a recorded finding on SD-063 and let the C1 arm settle it. Sub-item, registry hygiene: SD-063 has ZERO
+reverse-`depends_on` in `claims.yaml` despite three live code consumers -- MECH-482 at minimum should list
+it.
+
+**GOVERNANCE FLAG 3:** `stale_note` -- **`evidence/planning/substrate_queue.json` SD-063 entry (line 6317)
+is fourteen months of drift behind in miniature.** It carries `"ready": false` and `"unblocks_claims": []`
+with `"validation_experiment"` pointing at V3-EXQ-716 (the `non_contributory` diagnostic) rather than
+V3-EXQ-716a (the scoring confirmation that actually promoted the claim on 2026-07-09), and
+`"last_seen_session": "substrate-queue-reconcile-20260708T2009Z"` -- one day before that promotion and
+seven weeks before MECH-314b (2026-08-08, ree-v3 c0e0ce8), SD-102/MECH-482 (2026-08-29) and ARC-052's
+V3-EXQ-977 (2026-09-03) all landed as consumers of this head. A session reading the queue today would
+conclude SD-063 is an unvalidated build that unblocks nothing. Recommended: `ready: true`,
+`validation_experiment` -> the 716a run_id, `unblocks_claims: [MECH-314b, MECH-482, ARC-052]`, and a
+`last_seen_session` refresh. Secondary: IMPL-022's required metric `latent_uncertainty_calibration_error`
+(`docs/architecture/jepa_e1e2_integration_contract.md:193`, "if uncertainty head present") is declared and
+emitted nowhere in `ree-v3` -- an unmet contract requirement whose only possible producer is this head.
+
+---
+
+<!-- S_MECH-332 appended 2026-09-04T21:29:11Z -->
+## G19 -- MECH-332 nociceptive-attenuation dual-pathway dissociation  (agent report)
+
+**Solo note:** single-claim assignment, so the four cross-claim questions reduce to cross-referencing the already-digested neighbours: MECH-332's D1 leg is SD-021's falsifier, its D2 leg is SD-029's C2 falsifier, and its non-degeneracy floor is inherited from MECH-090 (commit gate live) + SD-011 (harm-channel regime declared) + MECH-219 (z_harm dynamic range). The draft below points at those rather than re-deriving them. The one genuinely new finding is a measured harness defect that invalidates the two existing runs' recorded blocker.
+
+---
+
+### MECH-332 -- Nociceptive attenuation on z_harm_s is implemented by two mechanistically dissociable parallel pathways...
+
+**Recommended disposition:** (a) testable now -- both pathways are BUILT in `ree_core/` and the 2x2 falsifier is already pre-registered in `experiments/v3_exq_878_mech332_efference_aic_dissociation.py`; the only thing standing between the claim and a verdict is a ~4-line driver plumbing repair (the identical repair already applied to the sibling v3_exq_325 family on 2026-08-22), NOT a substrate gap. Reframe to the REE leg per the FUSED pattern: the anatomical/pharmacological leg is `out_of_domain` and already answered.
+
+**Extracted from:** (1) the claim's own `functional_restatement` D1/D2/D3 dissociation predictions; (2) their operationalisation and pre-registered thresholds in `/Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_878_mech332_efference_aic_dissociation.py` (lines ~119-160, 279-283) and in the manifest's `pre_registered_thresholds`; (3) that driver's mandatory `custom_information.d3_operationalization_note`, which is the correct reading of "additive" on this substrate and is carried into the draft verbatim in substance; (4) sibling falsifiers SD-021 / SD-029 / MECH-090 / SD-011 / MECH-219 `what_would_answer` for the inherited preconditions. Nothing here is drafted from a blank page.
+
+**Currency check:** five findings, four of them stale-note or discrepancy class.
+
+1. **MEASURED TODAY (2026-09-04, ree-v3 trunk, read-only execution of `REEConfig.from_dims`): the Pathway-2 factor was NEVER ARMED in either V3-EXQ-878 or V3-EXQ-878a.** Both drivers build their config as `REEConfig.from_dims(..., heartbeat=HeartbeatConfig(beta_gate_bistable=True), **agent_kwargs)` where `agent_kwargs` carries `harm_descending_mod_enabled=True` (`experiments/v3_exq_878a_mech332_commitment_calibration.py:240-248`; `experiments/_lib/baselines/exq878_mech332_efference_aic_baseline.py:107-112`). Executing that exact call on trunk today returns:
+   - `use_aic_analog -> True` (lands; AIC module is constructed and ticking)
+   - `harm_descending_mod_enabled -> False` (**dropped** -- not a declared `from_dims` parameter; swallowed by the `**kwargs` catch-all)
+   - `heartbeat.beta_gate_bistable -> False` (**dropped** -- whole sub-config object swallowed)
+   - `latent.use_e2_harm_s_forward -> True` (lands; Pathway 1 was armed)
+   The `agent.sense()` consumer is gated `if harm_descending_mod_enabled and new_latent.z_harm is not None:` (`ree_core/agent.py:5326-5335`), so that block was **never entered in any arm of any 878-family run**. Pathway 2 was not merely un-triggered -- it was not wired.
+2. **The manifest carries the proof and nobody read it.** In `v3_exq_878_..._20260803T023041Z_v3.json`, `ARM_BOTH` and `ARM_E2_ONLY` are **bit-identical on every metric at every seed** (`self_other_discrimination_ratio` 1.223990714993279 / 2.4471959317738206 / 181733.03020497164; `z_harm_s_ratio` 1.0; identical event counts) despite differing only in the two Pathway-2 flags -- and `ARM_AIC_ONLY` is likewise indistinguishable from `ARM_NEITHER`. The 2x2 collapsed to a 1x2 on the E factor. This is the same signature as the EXQ-325a "DESCENDING == CONTROL bit-identical" failure that the 2026-08-22 correction traced to exactly this cause. Note also that the manifest's per-arm `harm_descending_mod_enabled: true` field records the driver's **intended** flags dict, not the realised config -- so the manifest actively asserts an arming that did not happen.
+3. **The 2026-08-22 `from_dims` correction never reached this claim.** SD-021 and SD-032c both carry a long `[2026-08-22 correction, chip-20260822-exq325-family-evidence-disposition]` block in their `evidence_quality_note`. MECH-332's note stops at 2026-08-08 and has no equivalent. The repair itself (`chip-20260822-fromdims-exq325-dead-ablation-axis`) was **325-family-scoped**: `experiments/v3_exq_325a_sd021_descending_pain_modulation.py:130-133` now sets both flags by attribute assignment with an explicit "from_dims() silently drops unknown kwargs" comment, while `v3_exq_878` and `v3_exq_878a` still route them through `from_dims` on trunk today. `tests/contracts/test_from_dims_flag_reachability.py` lists both 878 drivers in `USAGE_DRIVEN_SUBCONFIG_DROP_SITES["heartbeat"]` and explicitly defers the evidence question ("Whether this invalidates any of these drivers' recorded evidence is a /governance + /failure-autopsy question, deliberately NOT adjudicated here").
+   *Honest counterweight, stated so this is not over-read:* the `beta_gate_bistable` drop is **not by itself** sufficient to explain `n_committed_steps=0`, because V3-EXQ-325a suffered the same drop and still recorded `n_committed_steps=6000`. The `harm_descending_mod_enabled` drop **is** decisive and sufficient for the ARM_BOTH == ARM_E2_ONLY collapse, i.e. for D1 and D3 being structurally unevaluable.
+4. **`commitment_closure_plan.md` GAP-11 is DONE and has been since 2026-05-17** (that plan's status table, row GAP-11: "DONE 2026-05-17: committed_mode_curriculum.py harness helper IMPLEMENTED; P0/P1/P2/clone_trained_agent API; smoke PASS"). MECH-332's `evidence_quality_note` still says both dissociation arms are "blocked until full substrate stack lands (MECH-256 + SD-021 jointly requiring committed-mode substrate -- see commitment_closure_plan.md GAP-11)". That sentence was already stale on the day it was written and is four months stale now. Neither 878 driver uses `committed_mode_curriculum` either.
+5. **The v3_pending gate flagged by the run's own manifest was never lifted.** `custom_information.v3_pending_gate_stale_note` (2026-08-03) says: "claims.yaml MECH-332 still carries v3_pending=true / hold_pending_v3_substrate dated 2026-05-19, predating (or missing) the ARC-033 (e2_harm_s.py) + SD-032c (aic_analog.py) substrate mapping confirmed by this experiment's own code review. Flagged for governance to lift as a companion action." As of today the block still reads `v3_pending: true`, `live_status.reading: candidate/v3_pending`, `as_of: 2026-07-11`, `verdict: hold_pending_v3_substrate/applied`. The companion action never ran.
+
+*Substrate confirmations (positive):* Pathway 2 is fully built -- `ree_core/cingulate/aic_analog.py` computes `harm_s_gain = 1.0 - base_attenuation * mode_weight * drive_protect` and `ree_core/agent.py:5307-5335` multiplies `z_harm` by it (z_harm_a deliberately untouched). Pathway 1's forward model is built -- `ree_core/predictors/e2_harm_s.py` (`E2HarmSForward`, action-conditioned residual-delta, SD-013 interventional/contrastive training). Neither needs a new build. **But Pathway 1 is not an attenuator on this substrate**: `ree_core/utils/config.py:162` states "z_harm bypasses reafference correction by construction", and the E2_harm_s residual is consumed by the MECH-276 ScientistAttributionBuffer / SD-003 attribution pipeline, never subtracted from sensed z_harm_s. `substrate_queue.json` (sd_id MECH-256) confirms the comparator side: "Mechanism is wired end-to-end (E2_harm_s ARC-033 + interventional training SD-013 + balanced-hazard curriculum SD-029)".
+
+**epistemic_category (proposed):** `standard`.
+Explicitly **not** `substrate_ceiling`: the ceiling test requires the mechanism to have been "built AND exercised, repeatedly, under genuinely non-degenerate conditions" -- Pathway 2 has been exercised **zero** times, and both 878-family runs self-recorded `non_degenerate: false` / `n_committed_steps=0`. The 2026-08-08 note in this claim's own text proposes routing a 5th re-queue "through /failure-autopsy for a ceiling read"; on finding 1 that ceiling read would be taken on evidence from a dead ablation axis and would stamp a ceiling the substrate has never been given a chance to hit.
+Explicitly **not** `substrate_conditional` either: the operational discriminator for that category is that "the code it needs does not exist yet", and here both modules exist and are independently wireable. The blocker is a driver plumbing defect, which is `complicated (buildable)`, not `complex (probe-gated)`.
+
+**FUSED-claim reframe (rule c2).** MECH-332 fuses two legs and only one is a REE question.
+- **out_of_domain leg (already answered, no REE run bears on it):** that the two attenuation mechanisms are anatomically and pharmacologically distinct in mammals -- spinal dorsal-horn / S1-insula efference-copy subtraction versus pgACC -> PAG -> RVM opioid-tone-modulated behavioural-state gating; and the clinical mapping (D1 failure = phantom-limb-class pain, D2 failure = impaired stress-induced analgesia). This leg is carried by De Preter & Heinricher 2024 (PMID 38749825, PAG/RVM as behavioural-state gating, NOT efference-copy), Hofbauer 2001 (S1-vs-ACC double dissociation), Lalouni 2020 (~40% self/other threshold shift), and SD-021's 8-entry corpus at `literature_confidence: 0.852`. A counterexample would be a study showing PAG/RVM performing per-step motor-prediction cancellation, or showing efference-copy nociceptive suppression that is abolished by naloxone (i.e. one pathway, opioid-mediated, wearing two faces). No V3 run can bear on it and none should be scored against it. *Adjacent, but not the source:* `docs/thoughts/2026-02-11_opioid_receptors.md` (mu-opioid as commitment stabiliser rather than pleasure generator) is marked `Status: processed` into `docs/architecture/control_plane.md` (MECH-048), not into MECH-332; it supplies the opioid-tone framing behind Pathway 2's ON/OFF-cell gating but is not this claim's provenance (which is the 2026-05-17 self_attribution:GAP-4 lit-pull synthesis). `pharmacological_predictions.v1.json` has no MECH-332 or SD-021 entry -- registering the naloxone-reversal prediction there would be the clean home for this leg.
+- **REE leg (the testable claim, and the one the draft below falsifies):** does the V3 substrate need **two** attenuation pathways to reproduce the z_harm_s attenuation signature, or does one suffice? Concretely: are the two implemented modules' signature effects **independent and non-interfering** -- each surviving undegraded when the other is co-active -- or does one crowd out / subsume the other?
+
+**Claim-text defect to fix alongside (this is why "additive" cannot stand as written).** The title asserts "their attenuation effects are additive". On this substrate there is no combined-gain number to sum: Pathway 2 multiplies `z_harm` in `sense()`; Pathway 1 emits a prediction residual consumed by a different subsystem. The 878 driver already declared the honest reading and it should be promoted into the claim text: *not "the numbers sum", but "neither pathway crowds out or overwrites the other's effect when both are wired in"*. Recommend amending the title/`functional_restatement` D3 clause from ADDITIVITY to INDEPENDENCE / NON-INTERFERENCE.
+
+**Draft `what_would_answer`:**
+
+> **NON-DEGENERACY PRECONDITION (four gates; all four must be recorded in the manifest as MEASURED values, and the first is the one both prior runs silently failed).**
+>
+> (P0) **REALISED-CONFIG PROOF, not declared flags.** V3-EXQ-878 and 878a both recorded `harm_descending_mod_enabled: true` per arm while the live config held `False`, because `REEConfig.from_dims()` silently drops undeclared kwargs and whole sub-config objects. Any run scored against this claim MUST (i) set both Pathway-2 knobs by **attribute assignment on the returned config** (`config.harm_descending_mod_enabled = True`, `config.heartbeat.beta_gate_bistable = True`) -- the idiom `v3_exq_325a_sd021_descending_pain_modulation.py:130-133` already uses -- and (ii) **read the values back off the constructed config** and emit those read-back values, not the intended flags dict. Additionally: `ARM_BOTH` and `ARM_E2_ONLY` must **differ** on at least one Pathway-2-sensitive quantity (e.g. `z_harm_s_mean_uncommitted`). A bit-identical ARM_BOTH/ARM_E2_ONLY pair is not a null result -- it is proof the A factor is inert, and it self-routes `substrate_not_ready`.
+>
+> (P1) **COMMITMENT LIVE (inherited -- see MECH-090's own `what_would_answer` for the persistent-handle / object-identity precondition; do not re-derive).** `n_committed_steps >= 8` in every A=ON arm on at least 2 of 3 seeds, AND `z_harm_s_mean_committed > 0`. In V3-EXQ-878 the reported `z_harm_s_ratio = 1.0` in every arm was a fabricated 0/0 (`z_harm_s_mean_committed = 0.0`, `n_committed_steps = 0`), not a measured null.
+>
+> (P2) **EVENT BALANCE, ENFORCED AS A GATE (inherited -- this is SD-029's C0/C2 precondition; see SD-029's own `what_would_answer` for why it has been the binding constraint for 13+ runs, and do not re-derive it).** Per seed, per E=ON arm: `n_agent_caused_trials >= 6` AND `n_env_caused_trials >= 6`, AND `residual_agent_caused_mean > 1e-3`. This must **gate** `d2_pass`, not merely be recorded beside it: V3-EXQ-878 seed 13 had `n_agent_caused_trials = 0`, whose `self_other_discrimination_ratio = residual_env / max(1e-6, residual_agent)` evaluated to 1.8e5 and trivially cleared the 1.15 floor, scoring `d2_pass: true` vacuously.
+>
+> (P3) **HARM CHANNEL LIVE AND NON-SATURATED (the precondition shared across the z_harm_s / z_harm_a family; see MECH-219's `what_would_answer` for the dynamic-range wording and SD-011's for the regime-declaration requirement).** The run must declare `harm_history_len`, `use_gabaergic_decay`, and `limb_damage_enabled`, and z_harm_s must show nonzero variance across both the committed/uncommitted partition and the agent-caused/env-caused partition. A flat or saturated z_harm_s makes both `z_harm_s_ratio` and `self_other_discrimination_ratio` fabricated quantities regardless of how the flags landed.
+>
+> **CONFIRMING** (thresholds pre-registered in V3-EXQ-878; PASS on >= 2 of 3 seeds). Four-arm 2x2 on Factor E (`use_e2_harm_s_forward`) x Factor A (`use_aic_analog` + `harm_descending_mod_enabled`), arms ARM_BOTH / ARM_E2_ONLY / ARM_AIC_ONLY / ARM_NEITHER, identical arena and curriculum across arms:
+> - **D1 (Pathway 2 works without Pathway 1):** `|z_harm_s_ratio[AIC_ONLY] - z_harm_s_ratio[BOTH]| <= 0.20` AND both `<= z_harm_s_ratio[NEITHER] - 0.03`. That is: commitment-gated attenuation of z_harm_s appears whether or not the efference-copy forward model is trained, and is near-equal in magnitude with and without it.
+> - **D2 (Pathway 1 works without Pathway 2):** `|self_other[E2_ONLY] - self_other[BOTH]| <= 0.60` AND both `>= 1.15`. That is: the residual `z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual)` is measurably smaller on agent-caused than on externally-caused hazard transitions, with the descending pathway entirely absent -- and the Shergill-2003 **partial**, graded pattern, not binary abolition (this is the same discriminator SD-029's CONFIRMING clause states; a near-total attenuation falsifies there and here).
+> - **D3 (independence / non-interference, NOT literal additivity):** `z_harm_s_ratio[BOTH] <= z_harm_s_ratio[AIC_ONLY] + 0.15` AND `self_other[BOTH] >= self_other[E2_ONLY] - 0.15`. That is: each pathway's own signature metric survives undegraded when the other is co-active. No summed-gain number is claimed or measured, because Pathway 1 is not a gain on z_harm_s at all -- it is a prediction residual consumed by the MECH-276 attribution buffer, while only Pathway 2 multiplies z_harm in `agent.sense()`.
+> - **SELECTIVITY (from SD-021's already-drafted falsifier, cross-referenced not re-derived):** z_harm_a must remain unattenuated in every A=ON arm. Attenuating both streams is the Hofbauer-2001 violation SD-021 already names.
+>
+> **FALSIFYING** (any one, with P0-P3 all met -- otherwise the run is non_contributory, not a refutation):
+> - **D1 fails:** with Pathway 1 ablated, z_harm_s attenuation during committed traversal collapses to the ARM_NEITHER level (`z_harm_s_ratio[AIC_ONLY] > z_harm_s_ratio[NEITHER] - 0.03`). Pathway 2 is then not independent -- it requires the forward model, and there is one pathway with two triggers, not two pathways.
+> - **D2 fails:** with Pathway 2 ablated, `self_other[E2_ONLY] < 1.15` on a seed whose event counts clear P2. Self/other discrimination on z_harm_s then depends on descending modulation, again collapsing the two pathways into one.
+> - **D3 fails:** either signature metric degrades by more than 0.15 when the other pathway is co-active -- one pathway crowds out or overwrites the other, refuting independence directly (this is the falsification most likely to be informative, since it is the only one of the three that cannot be produced by a mis-wired ablation).
+> - **SELECTIVITY fails:** z_harm_a is also attenuated in A=ON arms.
+>
+> **NOT falsifying, and this is the load-bearing exclusion:** a bit-identical or near-identical pair of arms that differ only in flags proven un-landed at P0. Both existing MECH-332 runs (V3-EXQ-878 2026-08-03, V3-EXQ-878a 2026-08-08) fail P0 on measurement and are `non_contributory` for that reason, over and above the `n_committed_steps = 0` reason their autopsies recorded.
+
+**Proposal sketch (disposition a):**
+- **Title:** `V3-EXQ-878b -- MECH-332 dual-pathway dissociation, 2x2 with realised-config arming proof (supersedes V3-EXQ-878/878a)`
+- **related_claims:** `MECH-332` (primary), `SD-021`, `SD-032c`, `SD-029`, `MECH-256`, `MECH-090`, `SD-011`
+- **Pre-work (blocking, and it is a driver repair, not a substrate build):** port the `chip-20260822-fromdims-exq325-dead-ablation-axis` idiom into `experiments/v3_exq_878_mech332_efference_aic_dissociation.py` and `experiments/_lib/baselines/exq878_mech332_efference_aic_baseline.py` -- set `harm_descending_mod_enabled`, `descending_attenuation_factor`, and `heartbeat.beta_gate_bistable` by attribute assignment on the returned config, then read them back and record the read-back values per arm. Route through `/queue-experiment` under a **new letter**; do not re-use an 878/878a id. Note that the `heartbeat` sub-config drop is registered but NOT yet repaired anywhere in the repo (`test_from_dims_flag_reachability.py` `USAGE_DRIVEN_SUBCONFIG_DROP_SITES`), so this run would be the first to arm `beta_gate_bistable` for real in either the 321, 325 or 878 lineage.
+- **acceptance_checks:**
+  - `C0a` (arming): per arm, read-back `harm_descending_mod_enabled` and `heartbeat.beta_gate_bistable` equal the intended values; ARM_BOTH and ARM_E2_ONLY differ on `z_harm_s_mean_uncommitted`. Hard gate -- fail routes `substrate_not_ready`, not a verdict.
+  - `C0b` (commitment): `n_committed_steps >= 8` and `z_harm_s_mean_committed > 0` in both A=ON arms, >= 2/3 seeds.
+  - `C0c` (event balance): `n_agent_caused_trials >= 6` and `n_env_caused_trials >= 6` per seed per E=ON arm; gates C2 rather than sitting beside it.
+  - `C0d` (channel live): z_harm_s variance > 0 across both partitions; regime fields (`harm_history_len`, `use_gabaergic_decay`, `limb_damage_enabled`) declared in the manifest.
+  - `C1` = D1, `C2` = D2, `C3` = D3, `C4` = z_harm_a selectivity, thresholds exactly as pre-registered above; `PASS_MIN_SEEDS = 2`.
+  - Arena/curriculum held at the 878 configuration (SD-022 `limb_damage_enabled=True` + SD-029 balanced-event curriculum with the EXQ-479 calibrated params), which demonstrably produced 12 agent-caused / 12 env-caused trials on 2 of 3 seeds -- keep it, and add a seed-selection or seed-count bump so 3 of 3 clear C0c.
+- **Cost note:** 878a already established that training budget is not the lever for the commitment gate; C0b's outcome under a genuinely-armed bistable gate is the open empirical question, so run at the S0_baseline budget (180 eps) rather than repeating the 3x sweep.
+
+**depends_on additions (if any):**
+- `SD-032c` -- the AIC-analog IS the live Pathway-2 implementation (the raw beta-gate path is legacy/backward-compat only) and it is co-tagged on both existing runs, yet it is absent from `depends_on`.
+- `MECH-090` -- Pathway 2's trigger is E3 commitment; MECH-090's `what_would_answer` carries the persistent-handle precondition this claim's P1 inherits.
+- `MECH-276` (or `SD-003`) -- the actual consumer of the Pathway-1 residual. Recording it is what makes the "Pathway 1 is not a gain" fact structural in the registry rather than buried in a driver docstring.
+
+---
+
+### GOVERNANCE FLAGS
+
+**FLAG 1 -- `evidence_discrepancy` (MECH-332, SD-021, SD-032c).** Both experiments ever run against MECH-332 (V3-EXQ-878, V3-EXQ-878a) had the Pathway-2 ablation axis **dead**: `harm_descending_mod_enabled=True` and `heartbeat=HeartbeatConfig(beta_gate_bistable=True)` are passed to `REEConfig.from_dims()` and silently dropped -- measured by direct execution on trunk 2026-09-04 (`harm_descending_mod_enabled -> False`, `heartbeat.beta_gate_bistable -> False`, while `use_aic_analog -> True` and `latent.use_e2_harm_s_forward -> True`). The corroborating evidence is already inside the 878 manifest: ARM_BOTH and ARM_E2_ONLY are bit-identical on every metric at every seed. Consequence: the 2026-08-03 and 2026-08-08 governance notes' shared conclusion -- "Pathway 2's claim-intrinsic trigger never had a chance to fire", "budget is NOT the lever" -- is confounded, and the 2026-08-08 note's proposed remedy ("route a 5th same-mechanism re-queue through /failure-autopsy for a ceiling read") would stamp `substrate_ceiling` on a mechanism that has never once been armed. **Recommend: do not take the ceiling read; re-tag both runs' `evidence_direction_note` with the arming defect; queue the repaired 878b.** This is the same defect class as, and directly parallel to, the `chip-20260822-exq325-family-evidence-disposition` correction that SD-021 and SD-032c already carry -- that repair was 325-family-scoped and the 878 family was left unrepaired on trunk.
+
+**FLAG 2 -- `stale_note` (MECH-332).** Three stale items in this claim's own text, none of which required an experiment to detect: (i) the `evidence_quality_note` says both dissociation arms are "blocked until full substrate stack lands ... see commitment_closure_plan.md GAP-11" -- **GAP-11 has been `done` since 2026-05-17** per that plan's own status table, i.e. it was already stale when written; (ii) the note carries no equivalent of the `[2026-08-22 correction]` block that both SD-021 and SD-032c carry, despite the correction bearing directly on this claim's only two runs; (iii) the V3-EXQ-878 manifest's `custom_information.v3_pending_gate_stale_note` (2026-08-03) explicitly asked governance to lift the `v3_pending` gate as a companion action, on the ground that `hold_pending_v3_substrate` dated 2026-05-19 predates the ARC-033 + SD-032c substrate mapping -- the block still reads `v3_pending: true` / `hold_pending_v3_substrate/applied` today. Both modules are built; the hold has no remaining referent.
+
+**FLAG 3 -- `evidence_discrepancy` (SD-029, and by inheritance MECH-256).** SD-029's `what_would_answer` (digested 2026-08-07) states that C2 "has never once been evaluable, because training/eval produces near-single-class agent-caused vs env-caused hazard-event distributions". V3-EXQ-878 ran four days earlier (2026-08-03) on the SD-029 balanced-event curriculum with the EXQ-479 calibrated params and recorded **12 agent-caused and 12 env-caused trials on 2 of 3 seeds**, with `self_other_discrimination_ratio` = 1.224 (seed 42) and 2.447 (seed 7) -- i.e. the graded, partial self/other attenuation pattern SD-029's CONFIRMING clause asks for, at values clearing its own 1.15 discrimination floor. That is not a promotion case (the run is non_contributory overall, the ratio was measured in a MECH-332 driver, and seed 13 degenerated) but it is a live counterexample to "never once evaluable" and it identifies a curriculum configuration that demonstrably produces the balance SD-029 has been waiting 13+ runs for. **Recommend: reconcile SD-029's precondition text against the 878 arena config, and consider it as the arena for SD-029's own retest.**
+
+**FLAG 4 -- `contested_disposition` (MECH-332 / instrumentation).** V3-EXQ-878's `analysis.per_seed` records `d2_pass: true` on **all three** seeds including seed 13, which had `n_agent_caused_trials = 0`. `self_other_discrimination_ratio` is computed as `residual_env / max(1e-6, residual_agent)`, so a zero-event seed yields 1.8e5 and clears the 1.15 floor by five orders of magnitude. The run's own `pre_registered_thresholds` include `n_event_floor: 6`, but it evidently did not gate `d2_pass`. Any D2 verdict carried forward from this family is therefore vacuous on that seed. **Recommend: the event floor must gate the criterion, not sit beside it** -- folded into the draft `what_would_answer` P2 above.
