@@ -2564,3 +2564,4 @@ One line per hourly tick. ASCII only.
 2026-09-04T21:30:46Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
 2026-09-04T22:06:10Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
 2026-09-04T22:05:26Z SPAWN IGW-20260904-214 skill=/queue-experiment prio=28 uuid=a1219ba7-ce46-4630-ac1f-2522ba074753 pid=18587 worktree=igw-214-retest-after-substrate-arc-019
+2026-09-04T22:25:49Z complete igw-214-retest-after-substrate-arc-019 spawned->completed outcome=USEFUL_LANDED: No experiment queued: marked ARC-019 proposal (EVB-1189) blocked_substrate -- al
