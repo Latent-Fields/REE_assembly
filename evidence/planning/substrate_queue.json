@@ -9027,14 +9027,14 @@
       "sd_id": "sd_phasic_burst_decay_and_warmup_headroom",
       "title": "Phasic burst must decay on a warmed agent, and warmup must leave sustained-entropy headroom",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "build_owed",
-      "ready": false,
-      "design_doc": null,
-      "depends_on_unresolved": [
-        "SD-074",
-        "SD-075"
+      "status": "implemented_pending_validation",
+      "status_phase": "validation_owed",
+      "ready": true,
+      "design_doc": [
+        "REE_assembly/docs/architecture/sd_104_phasic_burst_refractory_duty_bound.md",
+        "REE_assembly/docs/architecture/sd_105_selection_entropy_headroom_floor.md"
       ],
+      "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-063",
         "SD-069"
@@ -9052,15 +9052,35 @@
       "priority": 1,
       "severity": "degrading",
       "substrate_paths": [
-        "ree_core/utils/config.py",
-        "ree_core/agent.py"
+        "ree_core/regulators/phasic_surprise_burst.py",
+        "ree_core/regulators/selection_entropy_floor.py"
       ],
       "severity_change_note": "Autopsy recommended 'corrupting'; governance governance-20260903T2013 set DEGRADING on a user-ratified red-team finding: substrate_paths name ree_core/utils/config.py and ree_core/agent.py, which every driver exercises, so a corrupting mark would make /queue-experiment Step 2.5c BLOCK every new experiment fleet-wide. The defect is real and regulator-side (burst duty cycle 0.39-0.88 on a warmed agent; R5 headroom pinned at the 0.02 floor) but it corrupts only measurements that read the phasic/tonic regulator, and 'degrading' still WARNS every driver touching these paths. Re-assess to corrupting only if the paths can be narrowed to the regulator modules.",
       "created_by": "governance governance-20260903T2013 from confirmed failure_autopsy_V3-EXQ-963a_2026-09-02 (REE_assembly af8d2cabde)",
       "artifact_inconsistency_note": "The source artifact's recommended_substrate_queue_entry.action reads 'create' while its own c2_disposition says 'Action stays none because the fix is a driver/config change'. Governance created the entry (user decision governance-20260903T2013): the re-derive brake in that artifact REFUSES a 963b without a build and no other entry owns the burst-decay/warmup-headroom constraint, so an owner is needed.",
       "added_session": "governance-20260903T2013",
-      "last_seen_session": "governance-20260903T2013",
-      "added_utc": "2026-09-03T20:45:22Z"
+      "last_seen_session": "campaign-c2c-20260904",
+      "added_utc": "2026-09-03T20:45:22Z",
+      "depends_on_resolved_note": "SD-074 and SD-075 were BOTH already resolved when this entry was created; the depends_on_unresolved list (and hence ready:false) was stale. SD-074 is implemented_validated in this same file; SD-075 is 'IMPLEMENTED 2026-07-19' in ree-v3/CLAUDE.md and carries no open entry here. Verified 2026-09-04 by campaign-c2c-20260904 before starting the build.",
+      "substrate_paths_narrowing_note": "NARROWED 2026-09-04 from ['ree_core/utils/config.py','ree_core/agent.py'] to the two regulator modules, per this entry's own severity_change_note ('Re-assess ... if the paths can be narrowed to the regulator modules'). The defect is regulator behaviour: only a driver that enables use_phasic_burst, or reads the E3 selection-entropy baseline on a warmed agent, is affected. config.py and agent.py carry ONLY default-off knob declarations and a default-off application site (bit-identical when off, verified differentially against origin/main), so listing them made /queue-experiment Step 2.5c warn on every driver in the fleet for a defect none of them could hit. SEVERITY DELIBERATELY LEFT AT 'degrading' -- re-assessment to 'corrupting' is a governance decision and is NOT taken here.",
+      "implementation_log": [
+        {
+          "session": "campaign-c2c-20260904",
+          "utc": "2026-09-04T19:20:00Z",
+          "sd_ids_minted": [
+            "SD-104",
+            "SD-105"
+          ],
+          "summary": "Both legs built. LEG (a) SD-104 phasic.burst_refractory_duty_bound (ree_core/regulators/phasic_surprise_burst.py): phasic_burst_refractory_ticks suppresses event FIRING for N ticks after an event while the envelope keeps decaying (carry-mode decay); phasic_burst_extinction_level snaps a decayed envelope to exactly 0.0 so 'active' is a regulator-side predicate rather than a floor each consumer picks. Together the realised burst duty cycle is bounded BY CONSTRUCTION -- A = 1 + floor(ln(extinction)/ln(1-decay)); duty <= min(1, A/(refractory+1)) -- and get_state() reports burst_duty_cycle_bound / realised_burst_duty_cycle / burst_duty_cycle_within_bound (None, never True, when no finite bound exists). LEG (b) SD-105 control_plane.selection_entropy_headroom_floor (NEW ree_core/regulators/selection_entropy_floor.py): a ONE-SIDED integral controller in log-temperature holding realised E3 selection entropy at a floor, applied on the TONIC side (after MECH-313, before the SD-069 phasic delta) so the phasic contribution stays an ADDITIVE delta on a lifted baseline and dS_tonic is preserved rather than compressed. Both no-op by default.",
+          "warmup_vs_r5_branch": "The autopsy left 'either the warmup must leave headroom or R5's band must be re-derived; state which and why' open. TOOK THE FIRST BRANCH. Re-deriving R5 is REJECTED because (1) it would let the gate pass while the dynamic-range condition it exists to detect is untouched -- converting an artifact into a citable result (the warning experiments/_lib/precondition_gate.py already carries, and the same failure the dv-dynamic-range-precondition-class harness gate catches from the criterion side); and (2) the entropy collapse is a property of ANY sufficiently trained policy, not of one warmup recipe, so a probe_warmup fix is a per-experiment band-aid the next lineage rediscovers. The headroom belongs where the temperature is set.",
+          "measured": "Broad heavy-firing surprise stream (1000 ticks, uniform(0,10)): realised burst duty 0.788 with the knobs at defaults vs 0.109 at refractory_ticks=29 + extinction_level=0.05 -- the OFF configuration reproduces the 963a regime (0.390-0.884) and the ON configuration lands inside 779a's healthy band (0.007-0.136). CAUTION recorded because it cost this build a red contract: a CONSTANT spike stream is the WRONG adversary -- its EMA converges to the spike so firing stops on the TRIGGER test within ~30 ticks (measured duty 0.016) and the refractory is never exercised.",
+          "refractory_is_lifetime": "Found by the build's own smoke test, not by reasoning: with the refractory counter cleared at reset(), a refractory of 29 + extinction 0.05 (bound 0.167) produced a realised duty of 0.311 over 61 lifetime ticks of short episodes -- every episode boundary re-armed immediate firing, so duty was again a function of episode LENGTH (the V3-EXQ-779b confound SD-075 exists to close, on a new axis) and the lifetime bound was false. The counter is now LIFETIME and CARRIES across reset(); the envelope is still cleared, so no in-flight burst leaks across the boundary.",
+          "backward_compat": "Bit-identical OFF, verified DIFFERENTIALLY rather than asserted: a seeded 150-tick action / temperature-lift / burst-level trace across {phasic OFF, phasic ON} x seeds {11, 23} is IDENTICAL to a throwaway worktree at origin/main 8e133d2.",
+          "contracts": "ree-v3/tests/contracts/test_sd104_sd105_burst_decay_and_entropy_headroom.py, A1-A11 + B1-B10 (21). A6 is the POSITIVE CONTROL and is load-bearing -- it fails if the OFF configuration stops reproducing the 963a regime, so the suite cannot pass on a regulator that simply never fires. 71 green on the hub alongside SD-069 / SD-075 / MECH-313, all unchanged.",
+          "governance": "PROMOTES NOTHING. MECH-063 and SD-069 stay pending_retest_after_substrate -- the autopsy's re-derive brake requires BOTH legs SHOWN fixed by the retest, not merely built, so failure_record[0].resolved stays 'open' until V3-EXQ-963b scores."
+        }
+      ],
+      "validation_experiment": "V3-EXQ-963b -- MECH-063 (ii) tonic/phasic dissociation retest on the repaired regulator (supersedes V3-EXQ-963a), queued by campaign-c2c-20260904 with the dv_headroom precondition class (ree-v3 8e133d26ed) declared for each load-bearing criterion."
     },
     {
       "sd_id": "dv-dynamic-range-precondition-class",
