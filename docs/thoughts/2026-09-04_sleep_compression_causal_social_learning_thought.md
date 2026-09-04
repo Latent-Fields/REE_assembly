@@ -1,7 +1,10 @@
 # From episodic traces to causally usable social schemas
 
 **Date:** 2026-09-04  
-**Status:** Research-bounded thought intake  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_causal_compression_grounded_development.md
+Claims registered: none from this file alone; its counterfactual-handle requirement is class 4 of INV-104 (registered in the sibling regulation-first intake); confounded two-agent environment recorded as ARC-047's first experiment design, not chipped (substrate unbuilt)
+Original status line: Research-bounded thought intake
 **Scope:** Waking-versus-sleep updating; E1/E2/hippocampal memory; later social attribution and counterfactual learning  
 **Sources:**  
 - Jiang et al. (2026), [*Compressed representations underpin knowledge awareness in sequence learning*](https://www.biorxiv.org/content/10.64898/2026.08.22.746376v1) (preprint; posted 2026-08-26).  

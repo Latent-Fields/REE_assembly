@@ -1,6 +1,9 @@
 # z_world Regulatory Anchoring: Minimal Discriminating Experiment Specification
 
-Status: experiment proposal / hypothesis test  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_regulation_first_organizing_subjective_experience.md
+Claims registered: GOV-MATCHAUX-1 (source_documents); the four-arm design is second-stage only, per the file's own 'Minimal first experiment'
+Original status line: experiment proposal / hypothesis test
 Date: 2026-09-04  
 Related thought: `2026-09-04_from_regulation_to_knowledge_organizing_subjective_experience.md`
 

@@ -1,6 +1,9 @@
 # From Regulation to Knowledge: Organizing Subjective Experience
 
-Status: thought / organising hypothesis  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_regulation_first_organizing_subjective_experience.md
+Claims registered: ARC-138, INV-104, GOV-MATCHAUX-1
+Original status line: thought / organising hypothesis
 Date: 2026-09-04
 
 ## Core question

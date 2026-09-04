@@ -1,6 +1,9 @@
 # `z_world` Representation Contract: Preserve What the Organism Needs to Know
 
-Status: design thought / falsifiable architecture hypothesis  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_regulation_first_organizing_subjective_experience.md
+Claims registered: INV-104 (registered once for the cluster; this file is a source_documents entry)
+Original status line: design thought / falsifiable architecture hypothesis
 Date: 2026-09-04  
 Parent thought: `2026-09-04_from_regulation_to_knowledge_organizing_subjective_experience.md`
 

@@ -1,6 +1,9 @@
 # Temporary Coordinated Representational Transformations
 
-Status: thought / hypothesis  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_authority_field_analog_cognition.md
+Claims registered: none; precursor of the processed 2026-09-03 thought of the same title (intake thought_intake_2026-09-03_temporary_coordinated_representational_transformations.md, no claims) -- its 'authority field' section grew into the 2026-09-04 authority-field document, whose intake this file is also marked against
+Original status line: thought / hypothesis
 Date: 2026-09-02  
 Related: V3-EXQ-978 (hypothesis-generating case, not proof)
 

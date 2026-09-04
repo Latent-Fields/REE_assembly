@@ -1,6 +1,9 @@
 # Agency as an Organizing Axis
 
-Status: thought / experiment-generating hypothesis  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_regulation_first_organizing_subjective_experience.md
+Claims registered: none (already owned by MECH-256 / SD-029-031 / ARC-037 / MECH-277 / MECH-223 / INV-102 / SD-056; the three-way rival is recorded as INV-104's class-2 adjudication frame)
+Original status line: thought / experiment-generating hypothesis
 Date: 2026-09-04  
 Related thought: `2026-09-04_from_regulation_to_knowledge_organizing_subjective_experience.md`
 

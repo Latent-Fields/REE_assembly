@@ -1,13 +1,13 @@
 # Thought Sweep Report
 
-Generated: `2026-09-01T04:23:36.549018Z`
+Generated: `2026-09-04T20:46:48.486236Z`
 
 | metric | count |
 |---|---|
-| total thought files | 212 |
-| processed | 211 |
+| total thought files | 233 |
+| processed | 232 |
 | unprocessed | 1 |
-| processed missing `Processed in` links | 32 |
+| processed missing `Processed in` links | 53 |
 
 ## Unprocessed Queue
 
@@ -46,6 +46,27 @@ Generated: `2026-09-01T04:23:36.549018Z`
 - `2026-08-31_canonical_readiness_umpire.md`
 - `2026-08-31_play_as_developmental_information_hunger.md`
 - `2026-08-31_replay_rebucketing_decision_relevance.md`
+- `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md`
+- `2026-09-02_developmental_ecology_assays_programme_seed.md`
+- `2026-09-02_developmental_ecology_novelty_scan.md`
+- `2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md`
+- `2026-09-02_temporary_coordinated_representational_transformations.md`
+- `2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md`
+- `2026-09-03_claim_rotation_dual_view_claim_matrix.md`
+- `2026-09-03_ree_as_predictive_sensorimotor_transformation.md`
+- `2026-09-03_temporary_coordinated_representational_transformations.md`
+- `2026-09-04_agency_as_an_organizing_axis.md`
+- `2026-09-04_authority_field_analog_cognition_ephaptic_coupling.md`
+- `2026-09-04_developmental_ontology_and_replay.md`
+- `2026-09-04_from_regulation_to_knowledge_organizing_subjective_experience.md`
+- `2026-09-04_grounded_developmental_world_models_thought.md`
+- `2026-09-04_regulation_first_fanout_index.md`
+- `2026-09-04_regulatory_anchoring_discriminating_experiment.md`
+- `2026-09-04_research_fanout_causal_compression_grounded_development.md`
+- `2026-09-04_selective_incorporation_and_the_write_boundary.md`
+- `2026-09-04_sleep_compression_causal_social_learning_thought.md`
+- `2026-09-04_z_world_regulatory_anchoring_experiment_spec.md`
+- `2026-09-04_z_world_representation_contract.md`
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md`
 
 ## Processed Snapshot
@@ -258,6 +279,27 @@ Generated: `2026-09-01T04:23:36.549018Z`
 - `2026-08-31_canonical_readiness_umpire.md` (0 link(s) in `Processed in`)
 - `2026-08-31_play_as_developmental_information_hunger.md` (0 link(s) in `Processed in`)
 - `2026-08-31_replay_rebucketing_decision_relevance.md` (0 link(s) in `Processed in`)
+- `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty.md` (0 link(s) in `Processed in`)
+- `2026-09-02_developmental_ecology_assays_programme_seed.md` (0 link(s) in `Processed in`)
+- `2026-09-02_developmental_ecology_novelty_scan.md` (0 link(s) in `Processed in`)
+- `2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md` (0 link(s) in `Processed in`)
+- `2026-09-02_temporary_coordinated_representational_transformations.md` (0 link(s) in `Processed in`)
+- `2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md` (0 link(s) in `Processed in`)
+- `2026-09-03_claim_rotation_dual_view_claim_matrix.md` (0 link(s) in `Processed in`)
+- `2026-09-03_ree_as_predictive_sensorimotor_transformation.md` (0 link(s) in `Processed in`)
+- `2026-09-03_temporary_coordinated_representational_transformations.md` (0 link(s) in `Processed in`)
+- `2026-09-04_agency_as_an_organizing_axis.md` (0 link(s) in `Processed in`)
+- `2026-09-04_authority_field_analog_cognition_ephaptic_coupling.md` (0 link(s) in `Processed in`)
+- `2026-09-04_developmental_ontology_and_replay.md` (0 link(s) in `Processed in`)
+- `2026-09-04_from_regulation_to_knowledge_organizing_subjective_experience.md` (0 link(s) in `Processed in`)
+- `2026-09-04_grounded_developmental_world_models_thought.md` (0 link(s) in `Processed in`)
+- `2026-09-04_regulation_first_fanout_index.md` (0 link(s) in `Processed in`)
+- `2026-09-04_regulatory_anchoring_discriminating_experiment.md` (0 link(s) in `Processed in`)
+- `2026-09-04_research_fanout_causal_compression_grounded_development.md` (0 link(s) in `Processed in`)
+- `2026-09-04_selective_incorporation_and_the_write_boundary.md` (0 link(s) in `Processed in`)
+- `2026-09-04_sleep_compression_causal_social_learning_thought.md` (0 link(s) in `Processed in`)
+- `2026-09-04_z_world_regulatory_anchoring_experiment_spec.md` (0 link(s) in `Processed in`)
+- `2026-09-04_z_world_representation_contract.md` (0 link(s) in `Processed in`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (0 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

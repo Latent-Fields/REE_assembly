@@ -2,7 +2,10 @@
 
 ## Spatiotemporal analogue coordination as a mechanism hypothesis for the Reflective–Ethical Engine (REE)
 
-**Status:** research-bounded thought intake; requires architectural ingestion and digestion before implementation  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_authority_field_analog_cognition.md
+Claims registered: MECH-534, Q-103 (research-bounded; DO NOT build in V3; bibliography unverified -> chip-20260904-litpull-grounded-compression-authority-field)
+Original status line: research-bounded thought intake; requires architectural ingestion and digestion before implementation
 **Date:** 2 September 2026; revised 4 September 2026  
 **Lineage scope:** full REE versioned lineage. No version placement is asserted here. Digestion should determine whether this is already implicit in existing claims, refines an existing mechanism, or creates a genuinely new requirement.
 

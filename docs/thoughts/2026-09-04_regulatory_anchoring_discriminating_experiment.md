@@ -1,6 +1,9 @@
 # Regulatory Anchoring: Minimal Discriminating Experiment
 
-Status: experiment specification / hypothesis test  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_regulation_first_organizing_subjective_experience.md
+Claims registered: GOV-MATCHAUX-1 (the matched-control / scaffold-removal rule); the experiment itself is NOT queued -- gated chip chip-20260904-regulatory-anchoring-matched-aux, sequenced after V3-EXQ-1002
+Original status line: experiment specification / hypothesis test
 Date: 2026-09-04  
 Parent thoughts: `2026-09-04_from_regulation_to_knowledge_organizing_subjective_experience.md`, `2026-09-04_z_world_representation_contract.md`
 

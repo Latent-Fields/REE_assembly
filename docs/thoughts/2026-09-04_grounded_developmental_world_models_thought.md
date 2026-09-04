@@ -1,7 +1,10 @@
 # Grounding development in organismic constraints before abstract world models
 
 **Date:** 2026-09-04  
-**Status:** Research-bounded thought intake  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_causal_compression_grounded_development.md
+Claims registered: none from this file alone; its preservation invariants are class 5 of INV-104 and its ordering rationale is ARC-138 (both registered in the sibling regulation-first intake, this file listed in source_documents); Pezzulo 2026 routed to chip-20260904-litpull-grounded-compression-authority-field
+Original status line: Research-bounded thought intake
 **Scope:** Developmental learning, grounded world models, self/world distinction, affordances, intrinsic information seeking  
 **Source:** Pezzulo et al. (2026), [*Grounded world models in biological organisms and future artificial intelligence*](https://arxiv.org/abs/2607.13560) (perspective article; July 2026).
 

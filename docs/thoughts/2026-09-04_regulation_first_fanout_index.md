@@ -1,5 +1,9 @@
 # Regulation-First Fan-Out Index
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_regulation_first_organizing_subjective_experience.md
+Claims registered: ARC-138, INV-104, GOV-MATCHAUX-1 (cluster total); 'inspect ree-v3 before assigning ids' honoured -- no EXQ id assigned, gated chip instead
+
 Date: 2026-09-04
 
 This note links the current cluster of thoughts and tests around the hypothesis that organism constraints precede and organise knowledge acquisition.

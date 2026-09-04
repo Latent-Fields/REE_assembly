@@ -1,7 +1,10 @@
 # Research fan-out: causal memory compression and grounded development
 
 **Date:** 2026-09-04  
-**Status:** Intake-routing note; no architectural commitment  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_causal_compression_grounded_development.md
+Claims registered: Gates A and C registered as GOV-MATCHAUX-1 (sibling intake); Gates B and D are precondition checks on MECH-430 / ARC-085 and ARC-059 stage 3, not claims
+Original status line: Intake-routing note; no architectural commitment
 **Upstream thoughts:**  
 - `2026-09-04_sleep_compression_causal_social_learning_thought.md`  
 - `2026-09-04_grounded_developmental_world_models_thought.md`

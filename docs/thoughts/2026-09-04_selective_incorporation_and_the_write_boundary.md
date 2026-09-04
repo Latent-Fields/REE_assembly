@@ -1,6 +1,9 @@
 # Selective Incorporation and the Write Boundary
 
-Status: thought / organising hypothesis  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_regulation_first_organizing_subjective_experience.md
+Claims registered: none (already owned by ARC-020 / MECH-068 / MECH-205 / MECH-443 / MECH-165 / MECH-514 / MECH-513 / MECH-529 / MECH-533; 'the write rule itself develops' left for digestion against MECH-496)
+Original status line: thought / organising hypothesis
 Date: 2026-09-04  
 Related thought: `2026-09-04_from_regulation_to_knowledge_organizing_subjective_experience.md`
 

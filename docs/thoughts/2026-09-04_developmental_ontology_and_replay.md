@@ -1,6 +1,9 @@
 # Developmental Ontology and Replay
 
-Status: thought / organising hypothesis  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-04_regulation_first_organizing_subjective_experience.md
+Claims registered: none (already owned by MECH-166 / ARC-137 / MECH-529 / MECH-513; the replay-induced-recoding readout handed to digestion on ARC-137 / MECH-529)
+Original status line: thought / organising hypothesis
 Date: 2026-09-04  
 Related thought: `2026-09-04_from_regulation_to_knowledge_organizing_subjective_experience.md`
 
