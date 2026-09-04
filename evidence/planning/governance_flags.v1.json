@@ -1899,6 +1899,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0132",
+      "claim_ids": [
+        "ARC-045",
+        "SD-017",
+        "MECH-166"
+      ],
+      "flag_type": "stale_note",
+      "summary": "substrate_queue entry contextmemory-write-path-addressing-degeneracy has a STALE validation_experiment field: it still reads 'PENDING for BOTH mechanisms (conscience bias AND refractory) -- diagnostic-purpose ablation (flag ON vs OFF, n_occupied_slots ...) not yet queued', but that exact ablation DID run as V3-EXQ-943 (2026-08-20, run_role=validation, autopsied failure_autopsy_V3-EXQ-943_2026-08-21) and MET the registered floor -- BIAS 16/16 occupied on 5/5 seeds, REFRACTORY >=2 on 5/5, LEGACY/OFF 2/5 -- and was independently re-confirmed downstream by V3-EXQ-436g (2026-08-30, 16/16 on 5/5 with the bias_occupancy_confirms_fix P0 gate), which the same entry's own validation_record_943 and governance_2026_08_30 fields already record. The stale field caused the 2026-09-04 science-wave campaign plan (C3 item 1) to commission a duplicate of V3-EXQ-943; session campaign-c3-20260904 stopped rather than queue it. TWO THINGS ARE OWED, neither done here: (1) correct the validation_experiment field to name V3-EXQ-943 + V3-EXQ-436g; (2) the HUMAN CALL that validation_record_943 explicitly defers -- 'leave the 436f failure_record resolved:open until a human decides whether that occupancy result closes the corrupting 1-slot-bank defect' -- which is what actually gates status implemented_pending_validation -> implemented_validated and the release of IGW-20260904-226/227 and GFLAG-0044. SEPARATE LIVE FINDING: the validated fix is default-off and non-contextmemory drivers still hit the defect -- V3-EXQ-994 (2026-09-03, EXT-007 claim probe) measured n_encode_written_slots = 1, 1, 16 across three seeds under the default contextmemory_write_selection=argmin.",
+      "raised_by_session": "campaign-c3-20260904",
+      "raised_at": "2026-09-04T14:30:19Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
