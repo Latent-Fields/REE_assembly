@@ -4274,10 +4274,18 @@
   subject: developmental.curriculum_stages
   polarity: asserts
   status: provisional
+  diagnostic_evidence_adjudicated: true
+  pending_retest_after_substrate: true
+  evidence_quality_note: >-
+    [2026-09-04 governance, cycle governance-20260904-1347; applying confirmed failure_autopsy_V3-EXQ-591h_2026-09-03 (confirmed 2026-09-03T05:04:52Z, REE_assembly d51fc6aaa5), surfaced by GOV-APPLY-1 as the one genuinely unapplied disposition] V3-EXQ-591h (diagnostic, PASS 5/5 seeds, all preconditions met; evidence_direction non_contributory) contributes NOTHING to ARC-019 in either direction: its self-route 'crossing_count_gate_discriminates_live_closed_loop' is NOT supported because the loop was never closed in that driver -- the only phase->agent channel it applied (config.e3.novelty_bonus_weight 0.5 -> 0.7 on advance) has no consumer (the MECH-111 broadcast branch was deleted 2026-05-25 as argmin-invariant), and per_episode_h_pos is BIT-IDENTICAL between ARM_SPIKE and ARM_CROSSING on all 5 seeds. This is a DRIVER-WIRING defect, not a missing substrate capability: the scheduler exposes two phase-varying interfaces with live consumers (env_kwargs() harm_gradient_enabled/transient_benefit_enabled; config_overrides() offline_integration_frequency), which the 591b-591h family did not apply. Oracle and gate were two thresholds on the identical per-episode array (r = 0.88), the partition fixed before the gate window opened, and the discriminative delta over the legacy spike control was exactly one seed. Status provisional and epistemic_category standard STAND; the claim's only evidence channel remains literature. The curriculum's one wired phase channel was inert through 591b-591h; the live-channel redesign V3-EXQ-996 (2026-09-04) is the successor and is adjudicated separately.
   live_status:
     reading: provisional
-    as_of: 2026-07-11
+    as_of: 2026-09-04
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-591h_2026-09-03
+      as_of: 2026-09-03
+      verdict: non_contributory/diagnostic_evidence_adjudicated
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: A staged-vs-unstaged comparison is only informative if
     the staged arm can actually traverse its stages under the tested budget -- i.e. the

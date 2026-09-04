@@ -21,7 +21,7 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -39,5 +39,7 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "machine": "ree-cloud-2"
+  "machine": "ree-cloud-2",
+  "evidence_direction_note": "[2026-09-04T14:12:15Z governance, cycle governance-20260904-1347] Superseded by V3-EXQ-591h (v3_exq_591h_isef005_phase01_gate_live_20260903T024528Z_v3, landed 2026-09-03, reviewed, confirmed failure_autopsy_V3-EXQ-591h_2026-09-03). Applied per GFLAG-0122 (raised by /diagnose-errors 2026-09-02): V3-EXQ-591g crashed before any manifest was written (UnboundLocalError in aggregation -- the F4 telemetry-dropout guard defined dropout_bypassed below the expression consuming it); 591h is a statement-reordering-only successor with no DV/criterion/threshold change. Scoring-neutral before and after: this synthetic ERROR record carries no claim tags. Direction non_contributory -> superseded.",
+  "superseded_by": "V3-EXQ-591h"
 }

@@ -1,1 +1,25 @@
-{"run_id": "v3_v3_exq_591g_runner_error_20260902T201744Z_v3", "queue_id": "V3-EXQ-591g", "experiment_type": "v3_exq_591g_isef005_phase01_gate_live_v3", "machine": "ree-cloud-2", "outcome": "ERROR", "result": "ERROR", "evidence_direction": "non_contributory", "evidence_direction_note": "Synthetic runner ERROR record for a crash-before-manifest (script exited non-zero with no sentinel and no manifest). Scoring-neutral; routes to /diagnose-errors.", "claim_ids": [], "experiment_purpose": "diagnostic", "architecture_epoch": "ree_hybrid_guardrails_v1", "dry_run": false, "error_record": true, "crash_before_manifest": true, "exit_code": 1, "has_sentinel": false, "result_summary": "Non-zero exit code 1; no runner sentinel (stdout-derived 'FAIL' not trusted on crash)", "started_at": "2026-09-02T14:31:06.597843+00:00", "completed_at": "2026-09-02T20:17:44.764868+00:00", "timestamp_utc": "2026-09-02T20:17:44Z", "script": "experiments/v3_exq_591g_isef005_phase01_gate_live_v3.py", "title": "ARC-019 precondition: LIVE closed-loop validation of the 591f crossing-count Phase 0->1 curriculum gate (crossing-count vs legacy spike, matched seeds)"}
+{
+  "run_id": "v3_v3_exq_591g_runner_error_20260902T201744Z_v3",
+  "queue_id": "V3-EXQ-591g",
+  "experiment_type": "v3_exq_591g_isef005_phase01_gate_live_v3",
+  "machine": "ree-cloud-2",
+  "outcome": "ERROR",
+  "result": "ERROR",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "[2026-09-04T14:12:15Z governance, cycle governance-20260904-1347] Superseded by V3-EXQ-591h (v3_exq_591h_isef005_phase01_gate_live_20260903T024528Z_v3, landed 2026-09-03, reviewed, confirmed failure_autopsy_V3-EXQ-591h_2026-09-03). Applied per GFLAG-0122 (raised by /diagnose-errors 2026-09-02): V3-EXQ-591g crashed before any manifest was written (UnboundLocalError in aggregation -- the F4 telemetry-dropout guard defined dropout_bypassed below the expression consuming it); 591h is a statement-reordering-only successor with no DV/criterion/threshold change. Scoring-neutral before and after: this synthetic ERROR record carries no claim tags. Direction non_contributory -> superseded.",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "dry_run": false,
+  "error_record": true,
+  "crash_before_manifest": true,
+  "exit_code": 1,
+  "has_sentinel": false,
+  "result_summary": "Non-zero exit code 1; no runner sentinel (stdout-derived 'FAIL' not trusted on crash)",
+  "started_at": "2026-09-02T14:31:06.597843+00:00",
+  "completed_at": "2026-09-02T20:17:44.764868+00:00",
+  "timestamp_utc": "2026-09-02T20:17:44Z",
+  "script": "experiments/v3_exq_591g_isef005_phase01_gate_live_v3.py",
+  "title": "ARC-019 precondition: LIVE closed-loop validation of the 591f crossing-count Phase 0->1 curriculum gate (crossing-count vs legacy spike, matched seeds)",
+  "superseded_by": "V3-EXQ-591h"
+}
