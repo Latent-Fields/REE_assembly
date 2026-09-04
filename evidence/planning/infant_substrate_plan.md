@@ -3,7 +3,7 @@ closure_plan:
   id: infant_substrate
   title: "Infant Substrate Expansion"
   registered: 2026-05-16
-  last_updated: 2026-07-21
+  last_updated: 2026-09-03
   scope_claims: [INV-055, INV-073, ARC-046, ARC-065, DEV-NEED-001, DEV-NEED-002, DEV-NEED-003, DEV-NEED-004, DEV-NEED-005, DEV-NEED-006, DEV-NEED-007, DEV-NEED-008, MECH-189, MECH-313, MECH-314]
   nodes:
     - id: "infant_substrate:GAP-1"
