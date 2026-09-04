@@ -4035,7 +4035,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-09-04T02:52:11Z",
       "staged_at": "2026-09-04T02:52:11Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-09-04T17:44:10Z",
+      "completion_summary": "built dv_headroom precondition kind + criterion_exceeds_achievable_range lint; landed ree-v3 8e133d26ed; substrate_queue write deferred behind governance lock",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "built dv_headroom precondition kind + criterion_exceeds_achievable_range lint; landed ree-v3 8e133d26ed; substrate_queue write deferred behind governance lock"
     },
     {
       "igw_id": "IGW-20260904-245",
@@ -5654,6 +5658,25 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-04T04:10:41Z",
       "re_eligible_after": "2026-09-06T04:10:41Z"
+    },
+    {
+      "stable_hash": "e7bd60ded7a2",
+      "igw_id_at_disposition": "IGW-20260904-222",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-021",
+        "MECH-069",
+        "MECH-027",
+        "MECH-320",
+        "INV-088",
+        "MECH-457"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: dv-dynamic-range-precondition-class",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-04T17:44:10Z",
+      "re_eligible_after": "2026-09-06T17:44:10Z"
     }
   ]
 }
