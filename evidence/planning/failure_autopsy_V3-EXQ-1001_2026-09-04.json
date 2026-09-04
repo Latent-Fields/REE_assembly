@@ -1,0 +1,366 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-04T14:11:17Z",
+  "session_id": "governance-20260904-1347",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1001_ext005_sd031_attribution_causal_shift_20260904T032948Z_v3",
+      "queue_id": "V3-EXQ-1001",
+      "claim_ids": [
+        "SD-031",
+        "ARC-037",
+        "MECH-095",
+        "EXT-005"
+      ],
+      "self_route_label": "causal_signature_ood_fragile_no_readaptation_recovery",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "Both load-bearing criteria (D1_frozen_beats_bare_post_shift, D2_readapted_beats_bare_post_shift) are DISCRIMINATION criteria and both failed. Every absolute / negative-control / readiness gate passed (10 of 10 preconditions met, gate_green true, criteria_non_degenerate true for both), including the in-distribution positive anchor pre_base_in_distribution_signature. The surface shape is therefore the classic substrate-ceiling fingerprint; the autopsy declines that reading because the decisive clause has no positive-control anchor and the other clause is analytically undecidable in this environment.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- a real negative signal on SD-031's ACTION-CONDITIONED component (readapted advantage over its own action-shuffled control recovers to only 9.8% of its pre-shift value, 0.0117 vs 0.1194), but confounded two ways: D1 is analytically undecidable in a 4-entry action->displacement lookup world (the driver's own SCOPE LIMITATION concedes no model, causal or correlational, can be zero-shot invariant to a relabelled lookup table), and D2's 0.05 absolute floor has no positive-control ceiling anchor while the readapt budget is 1.82% of the original fit in optimizer steps (120 vs 6600). SD-031's own registered falsifier is in-distribution discrimination, which this run's PRE_BASE arm reproduces bit-identically from V3-EXQ-995.",
+        "biological_reference": "partial -- the comparator itself is a faithful translation (corollary discharge / parietal outcome prediction, Sommer & Wurtz; rSMG attribution preference, Ohata 2020), but the OOD-robustness CRITERION is a formal import (Richens & Everitt's regret-bound theorem, ICLR 2024). Ohata 2020's own design lesson -- separate attribution-specific from action-specific variance rather than reading a single residual magnitude -- is exactly what the shuffled-action control does, so the control is biologically warranted; what is NOT biologically calibrated is the 120-gradient-step re-adaptation budget against a sensorimotor-remapping analogue (prism / visuomotor-rotation adaptation) that recalibrates over hundreds of trials.",
+        "prerequisites": "REGISTERED PRECONDITION NOT FORMALLY MET, functionally substituted. SD-031's what_would_answer carries a two-part non-degeneracy precondition -- (1) world_dim >= 128 (met) and (2) ARC-065 behavioural diversity active in the main agent path (NOT met) -- and a STANDING PROHIBITION: 'do not queue the discriminative arm until GAP-6's two-part gate clears' (self_attribution_plan.md GAP-6: 'Do NOT queue before both halves hold ... the run would be vacuous'). This run, like V3-EXQ-995, substitutes for (2) by construction: a RandomPolicy collection with balanced agent-caused vs externally-caused events (6132 minimum-class events) scored offline, which removes the F-dominance confound the gate exists to guard against. That substitution is a reasonable argument but it is NOT recorded anywhere in the registry, so the successor portfolio collides with a live prohibition. DISPOSITION OWED AT THE GATE (see apply_checklist_additions).",
+        "implementation": "complete -- E2WorldForward's action pathway is live and trained (wiring 0.283-0.399 at init, 2.15-2.40 trained), comparator_residual exercised on every arm, substrate_hash present and stable across the run.",
+        "environment": "too sparse -- CausalGridWorldV2's action->effect structure IS a 4-entry lookup table, so the Richens & Everitt shift class (a causal-structure shift under which a GENUINE causal model can hold accuracy while a shortcut cannot) is not instantiable here. The driver states this itself. A permutation of a 4-entry table is equally re-fittable by either kind of model, so the environment cannot carry the discrimination the criterion asks for.",
+        "measurement": "under-instrumented -- three specific gaps. (1) No unshifted-env / scratch-model ceiling arm, so a sub-floor D2 recovery cannot be separated from budget insufficiency (the driver names this as its OPEN RESIDUAL LIMITATION and deliberately did not fix it). (2) The 0.05 absolute floor is pre-registered and legitimate but arbitrary with respect to what a 120-step budget SHOULD achieve. (3) The manipulation is n=1: all five seeds apply the identical rotation_offset=1 4-cycle; 23 of the 24 permutations are unsampled, so seed variance measures env/init noise, not shift-instance variance.",
+        "integration": "isolated -- the agent is constructed but never driven; transitions come from RandomPolicy and the comparator is scored offline. ARC-065-style behavioural diversity in the main agent path and ARC-037's E3/E1 routing are both outside the loop.",
+        "scale": "adequate for PRE_BASE (6600 optimizer steps over 28000 transitions), likely insufficient for POST_READAPT (120 optimizer steps = 1.82% of the pre fit; the manifest's '~13% of the original epoch budget' framing is epoch-based and overstates the gradient budget 7.3x, because a post-shift epoch is 15 batches against the pre fit's 110)."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT) -- not chargeable to REE, and not to SD-031's mechanism on this evidence. Semantics used: 'established' = that layer independently reads adequate/complete and so cannot excuse the failure (the GOV-FAILLOC-1 sentence 'reach REE FAILED only when Implementation, Measurement and Environment each independently read adequate/complete'). Implementation reads complete, so MECHANISM is established; Measurement reads under-instrumented and Environment reads too-sparse, so neither is established and REE FAILED is not reachable."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Corollary-discharge / efference-copy comparator on the world-consequence stream: posterior-parietal and MD-thalamus/colliculus outcome-prediction loops (Sommer & Wurtz), with right supramarginal gyrus showing a decoding PREFERENCE for self-other attribution over sensorimotor information (Ohata et al. 2020, Cereb Cortex).",
+        "dependencies": [
+          "a trained forward model of action consequences",
+          "balanced exposure to agent-caused and externally-caused world change",
+          "a re-calibration pathway with a plasticity budget matched to the perturbation (prism / visuomotor-rotation adaptation timescales)",
+          "a readout that separates attribution-specific from action-specific variance"
+        ],
+        "is_formal_import": true,
+        "divergence": "Two-layer. The comparator MECHANISM is a biological translation and is not the formal import. The failing CRITERION is: Richens & Everitt's theorem is a statement about a regret-bounded agent facing a decision problem, and it converts 'has a causal model' into 'is robust under distributional shift'. Importing that criterion into a 4-entry-lookup gridworld imports the philosophy and loses the mechanism -- there is no compositional causal structure for a genuine model to be robust ABOUT, which is why D1 is undecidable here and why D2's floor is unanchored. This is the SD-003 pattern (formal-definition import producing repeated uninterpretable FAILs) appearing at the level of the TEST rather than the mechanism, and it is worth naming as such before another letter is queued. Second, smaller divergence: biological re-calibration to a sensorimotor remapping takes hundreds of trials of error-driven plasticity; this run supplied a biologically plausible DATA budget (3600 post-shift transitions) with an implausibly small OPTIMISATION budget (120 gradient steps).",
+        "lit_status": "present for SD-031 (targeted_review_sd_031, 3 entries: Ohata 2020, Wen 2023, Christensen 2018; plus 2 SD-031-naming entries in targeted_review_connectome_mech_256) and present for EXT-005 (targeted_review_ext_005, 5 entries including Richens & Everitt 2024, the paper that motivated this design) and present for MECH-095 (targeted_review_connectome_mech_095, 14 entries); ABSENT for ARC-037, which has no dedicated targeted review and appears only incidentally inside 3 EXT-005 entries."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "The finding is measurement/test-design family: this run could not settle the question it posed, because one load-bearing criterion is analytically undecidable in this environment and the other has no positive-control anchor. Per the skill's mapping that is `standard` -- NOT substrate_ceiling. Declining substrate_ceiling is deliberate and load-bearing: the surface fingerprint is present (all controls pass, both discrimination criteria fail) but a ceiling reading would assert that SD-031's answer is gated on substrate work, would put SD-031 in _EPI_SUPPRESS_PROPOSAL and make it not-v3-testable, and would start a re-derive-brake tally on a claim currently at 0 hits -- all on evidence that has an identified, cheap, non-substrate repair (add the ceiling arm and the budget ladder). Failure-mode label for the note fields, not the category: `criterion_unanchored_absolute_floor` + `environment_cannot_instantiate_shift_class`.",
+      "recommended_epistemic_category_per_claim": {
+        "SD-031": "standard",
+        "ARC-037": "standard",
+        "EXT-005": "standard",
+        "MECH-095": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "MECH-095 is a PERIPHERAL co-tag this run did not exercise (no TPJ agency comparator is instantiated; the comparator scored is SD-031's z_world residual). Per the skill's peripheral-co-tag rule it is DECLARED 'standard' per-claim so the R1-R3 counter's per-claim branch returns False regardless of the blanket direction -- the red-team (F6) showed that omitting it protected MECH-095 only through the blanket 'mixed', and a later blanket of non_contributory would have minted a silent 13th ceiling hit. MECH-095's stored substrate_ceiling / parked status is untouched by this declaration: it is a statement about THIS target's bearing, not about the claim.",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "[V3-EXQ-1001, 2026-09-04, autopsy failure_autopsy_V3-EXQ-1001_2026-09-04] OOD sequel to V3-EXQ-995. The SD-031 comparator residual was scored post-shift after a one-time 4-cycle rotation of CausalGridWorldV2's instance-level _action_map that holds surface statistics fixed (max class-fraction deviation 0.0079 against a 0.05 tolerance). FAIL, 0/2 load-bearing criteria, 5 seeds, all 10 readiness preconditions met. Frozen: MOVE_OK AUROC 0.5198, i.e. +0.0198 over chance and -0.0040 against its OWN action-shuffled control -- zero-shot, the action-conditioned component contributes nothing. Readapted (8 epochs on 15% of post-shift data): 0.5408, +0.0408 over chance and +0.0117 over shuffled, both consistent in sign across 5/5 seeds and 10x / 2.5x their own SDs, both roughly 4x BELOW the pre-registered 0.05 absolute floor -- so the FAIL is decided by the absolute floor, not by noise. THREE READING CONSTRAINTS, all from the run's own record. (i) The gap-vs-bare clause both criteria PASS is hollow: post-shift bare sits at 0.4442, below chance in 5/5 seeds, so beating it by 0.078-0.099 certifies nothing; the operative clauses are chance and shuffled-action, exactly as the 2026-09-03 red-team fix intended. (ii) D1 is analytically undecidable here -- the driver's own SCOPE LIMITATION concedes that no model, causal or correlational, can be zero-shot invariant to a relabelled 4-entry lookup table, so D1's FAIL is predicted equally by both hypotheses and carries no discriminating information. (iii) D2's FAIL is budget-unanchored: the run has no unshifted-env or scratch-model ceiling (the driver's own OPEN RESIDUAL LIMITATION, deliberately out of scope), and the readapt budget is 1.82% of the original fit in optimizer steps (120 vs 6600) -- the manifest's '~13% of the epoch budget' framing is epoch-based and overstates the gradient budget 7.3x. The run's genuine, non-confounded negative signal is a DISSOCIATION, consistent in 5/5 seeds: the 120-step pass recovered 44.2% of the shift-induced forward-MSE degradation but only 17.0% of the AUROC degradation (per-seed MSE 0.39-0.52 vs AUROC 0.13-0.20), so the residual's discriminative content does not track its forward-prediction quality under re-derivation. That is a real finding about the comparator and it is what makes the direction `mixed` rather than `non_contributory`; it is not sufficient for `weakens` because the ceiling arm that would price it is missing. Note also that this run's PRE_BASE arm REPRODUCES V3-EXQ-995's BASE arm bit-identically (AUROC 0.64365963683816507 in both, gap-vs-bare identical to 1 ulp) across a substrate-commit change e82e328 -> 1a82903: that is a determinism and substrate-stability confirmation, NOT independent corroboration, and must not be counted as a second supporting run for 995's in-distribution result. Manipulation coverage is n=1: all five seeds apply the identical rotation_offset=1 permutation, so seed variance is env/init noise only. [CORRECTIONS at the red-team pass, 2026-09-04: (F2) SD-031's genuine experimental record is V3-EXQ-1001 ALONE -- V3-EXQ-995 tagged EXT-005 only, so there is no prior SD-031 support and 1001's PRE_BASE arm reproducing 995's BASE arm bit-identically is a determinism datum, not a second support; a 'weakens' stamp would make this single run the whole record. (F4) The two operative clauses miss the pre-registered floor by different margins: D2 gap_vs_chance 0.0408 vs 0.05 (1.23x below), D2 gap_vs_shuffled 0.0117 vs 0.05 (4.3x below); ~75% of the readapt AUROC gain is action-conditioned (gap_vs_shuffled -0.004 -> +0.012), which is the better basis for 'mixed' than the MSE/AUROC recovery dissociation (44.2% vs 17.0%), itself a shortcut-consistent pattern. H2 (starved re-derivation) is a HYPOTHESIS, not an established reading. (F5) The shuffled-action control is a single permutation draw per arm; the 995-vs-1001 PRE_BASE shuffled deltas reach 0.0103 per seed, the same order as D2's 0.0117, so '5/5 seeds, 2.5x sd' overstates its precision.]",
+      "per_claim_recommendation": {
+        "SD-031": {
+          "recommended_evidence_direction": "mixed",
+          "recommended_epistemic_category": "standard",
+          "change": "The manifest's evidence_direction_per_claim already reads `weakens` for SD-031 and `non_contributory` for the other three, which is correct as far as it goes; this autopsy narrows SD-031 from weakens to mixed, because one load-bearing criterion (D1) is analytically undecidable in a 4-entry-lookup world and the other (D2) is decided by an absolute floor with no positive-control anchor against a 1.82%-of-original gradient budget, while the run's own 5/5-seed MSE-vs-AUROC recovery dissociation (44.2% vs 17.0%) is a real negative signal that keeps it off non_contributory. epistemic_category stays `standard` and must NOT move to substrate_ceiling. Append the recommended_evidence_quality_note text, and move live_status.evidence off the 2026-07-18 V3-EXQ-783 citation onto this adjudication -> stamp failure_autopsy_V3-EXQ-1001_2026-09-04",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        },
+        "ARC-037": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "ARC-037 asserts an anterior-insula-analogue ROUTING circuit that classifies prediction errors and gates them into E3 vs E1; this run instantiates no routing at all -- the agent is constructed and never driven, and the comparator is scored offline on RandomPolicy transitions, which the manifest's own claim_scope.what_this_run_measures states verbatim ('ARC-037's own E3/E1 routing/gating is NOT exercised here'). Direction non_contributory, and the claim carries no epistemic_category field at all today, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-095": {
+          "recommended_evidence_direction": "non_contributory",
+          "change": "STANDS",
+          "status_change": "none -- stays candidate"
+        },
+        "EXT-005": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "EXT-005's subject is llm.causal_attribution and no V3 run observes an LLM, so this run is non_contributory to it regardless of outcome -- the manifest's own attribution_caveat says a FAIL 'does not weaken the LLM-side assertion'. But the claim's evidence_quality_note currently ends on V3-EXQ-995 as the FIRST experimental support and does not record that the Richens-criterion OOD sequel governance itself asked for has now run and returned sub-floor on the REE side; append that, and open a live_status.evidence citation where none exists today -> stamp failure_autopsy_V3-EXQ-1001_2026-09-04",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No substrate build is owed. SD-031's substrate_queue entry already exists and reads `implemented` (self_attribution.comparator_z_world, unblocks MECH-256 + zworld-granularity-retest), the E2WorldForward implementation is complete and verified live in this run, and every readiness precondition passed. The repair is an EXPERIMENT redesign (a positive-control ceiling arm plus a budget ladder), not a substrate build, so governance's standard Step 6a sweep needs no new or amended entry from this autopsy. Recorded explicitly rather than left blank so the IGW workset's _retest_blockers does not read an omission as an unfilled entry. If the H3 leg (richer causal structure) is later confirmed as the binding constraint, THAT would be the substrate entry -- environment enrichment toward compositional / state-dependent action->effect structure -- but it is a live hypothesis today, not a diagnosed gap, and creating an entry now would pre-commit the fan-out's answer. Existing-entry check done explicitly (C2): the one substrate_queue entry that unblocks any of this target's claims is `agency_comparator_testbed_sd047` [priority 2, severity unset, status implemented] -- 'Agency-comparator (MECH-095) valid test-bed on SD-047: non-saturating training label + pre-registered ...'. It unblocks MECH-095 / MECH-098 / MECH-099, not SD-031, it addresses the 047l/047m label-saturation instrument defect rather than anything this run touched, and it is already implemented -- so it is neither an amend target nor a duplicate of anything this autopsy would create. SD-031's own entry (`SD-031 | implemented | self_attribution.comparator_z_world`) is likewise already correct. Hence action `none`."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "counts_measured": {
+          "SD-031": 0,
+          "ARC-037": 0,
+          "EXT-005": 0,
+          "MECH-095": 12
+        },
+        "refused_requeue": false,
+        "note": "R1-R3 recipe run verbatim from /Users/dgolden/REE_Working over confirmed-status artifacts. SD-031 / ARC-037 / EXT-005 all read 0 ceiling hits against a threshold of 2, so the brake does not fire and a redesign re-queue is permitted. MECH-095 reads 12 hits -- far past both this threshold and GOV-CEIL-1's N=3 -- but MECH-095 is a peripheral co-tag this run never exercises, and THIS target contributes no hit to it (verified: with blanket category `standard` and blanket direction `mixed`, counts() returns False for every claim on this target). The MECH-095 figure is surfaced as a read-across, not adjudicated here."
+      },
+      "read_across_not_adjudicated": [
+        {
+          "claim": "MECH-095",
+          "observation": "MECH-095 stands at 12 re-derive-brake ceiling hits under R1-R3 (047m, 741, and 10 grandfathered cluster targets), with a stored epistemic_category `substrate_ceiling`, `pending_retest_after_substrate: true`, implementation_phase v5, and a granularity-debt cluster of 17 tagging targets whose alignment distribution is other=6 / weakened=4 / unclear=3 / intact=2 / n-a=2 -- i.e. at least one `weakened` target IS present, so the GOV-GRAN-1 granularity-debt trigger is live for MECH-095 subject to a structural-signature check. Its evidence_quality_note also records an OWED retest ('queue the agency-detection retest on the SD-047 multi-source substrate') whose two attempts (047l, 047m) both died of measurement degeneracy, so the owed positive-discrimination retest has still never validly run.",
+          "why_not_adjudicated_here": "V3-EXQ-1001 does not exercise MECH-095 in any respect. This autopsy therefore records the state and declines to move it. It belongs in front of the user at a /governance walk as its own item -- either a GOV-CEIL-1 exhaustion question or a /claim-synthesis granularity-debt referral -- not folded into a comparator-robustness adjudication."
+        },
+        {
+          "claim": "EXT-005",
+          "observation": "Governance's 2026-09-03 note on EXT-005 already flagged that 995's bare reference sat at 0.43, below chance, so part of the C2 gap was the bare reference anti-discriminating. This run confirms that effect persists post-shift and is if anything stronger: post-shift bare is 0.4442, below chance in 5/5 seeds and 5/5 arms. The gap-vs-bare clause is hollow in this measurement family and should not be treated as load-bearing in any successor design; the chance and shuffled-action clauses are the real bars. Worth carrying into EXT-005's note as a standing measurement caveat rather than a per-run observation."
+        }
+      ],
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: the SD-031 residual's in-distribution discrimination IS a correlational shortcut riding the training-time action->effect mapping -- it does not re-derive to a genuine action-conditioned signature at ANY budget under relabelling.",
+          "H2: the re-derivation is real but was starved -- 120 optimizer steps is 1.82% of the original fit, and the 0.05 absolute floor has no ceiling anchor, so the sub-floor recovery reflects the budget rather than the architecture.",
+          "H3: the environment cannot instantiate the criterion -- a 4-entry action->displacement lookup table has no compositional causal structure for a genuine model to be robust ABOUT, so no version of this test in CausalGridWorldV2 can discriminate H1 from H2."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1",
+            "axis": "measurement",
+            "sketch": "Scratch-initialised model given the IDENTICAL post-shift readapt budget (120 optimizer steps on the same 3600 post-shift transitions, same seeds) as the discriminating control; keep the unshifted-env arm only as the asymptote row (its gap-vs-shuffled is PRE_BASE's own ~0.119, which this run already holds). Declared null: readapt-from-PRE_BASE gap-vs-shuffled <= scratch-at-same-budget gap-vs-shuffled + 1 sd (no positive transfer from the pre-shift weights) -> H1 (memorised lookup / correlational shortcut) STANDS; readapt >> scratch (positive transfer) -> H1 refuted and H2 (starved re-derivation of a real model) gains. Also record the shuffled control over >= 5 permutation draws per arm (F5) so the gap-vs-shuffled sd is a permutation sd, not a single-draw artefact."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "curriculum",
+            "sketch": "Budget ladder on the readapt pass: cross {2, 8, 30, 60} epochs x {5%, 15%, 50%, 100%} of the post-shift transitions, DV = gap-vs-shuffled and gap-vs-chance as a function of realised optimizer steps. Declared null: gap-vs-shuffled is FLAT in budget (slope indistinguishable from zero across a 100x step range), which would refute H2 and leave H1 standing. A monotone rise crossing 0.05 refutes H1.",
+            "declared_null": "d(gap-vs-shuffled)/d(log optimizer steps) indistinguishable from zero over a 100x range"
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "environment",
+            "sketch": "Repeat the frozen/readapt contrast in an environment whose action->effect mapping is STATE-DEPENDENT or compositional (e.g. displacement conditioned on terrain or on an agent-carried state variable), and shift only a SUBSET of the structure so a model that has learned the composition CAN hold accuracy on the unshifted subset while a lookup-memoriser cannot. Declared null: the frozen arm's gap-vs-shuffled on the UNSHIFTED subset is at parity with its gap on the shifted subset -- i.e. the comparator is a flat lookup even where composition was available.",
+            "declared_null": "frozen gap-vs-shuffled on the unshifted structural subset == gap on the shifted subset, within 1 sd"
+          }
+        ],
+        "note": "GOV-FANOUT-1. Three distinct axis families (instrumentation via `measurement`, process via `curriculum`, world via `environment`) -- no family is re-entered, so this is opening fresh territory rather than circling. Do NOT queue a straight power-bump of the braked design (more seeds of the same rotation at the same budget): it would inherit both the missing ceiling and the undecidable D1. Design-audit the three legs for coverage and verdict-aliasing before queuing; H1 and H2 share the readapt machinery and could be run as one driver with the control arm and the ladder as separate arm sets, which is cheaper and keeps them paired on the same seeds -- if so, keep their declared nulls distinct in the manifest so the legs resolve independently.",
+        "revision_note_2026_09_04": "Red-team F1 accepted: the original H1 leg's declared null (shifted-readapt >= unshifted-control - 1 sd) was already falsified ~10x by this run's cells because the unshifted arm has nothing to recover; the scratch-at-same-budget arm (the driver's own OPEN RESIDUAL LIMITATION option 1) is the one that separates H1 from H2."
+      },
+      "learning_extracted": [
+        "MEASUREMENT GAP (primary): an absolute PASS floor on a recovery-under-shift DV is uninterpretable without a same-budget positive-control ceiling. The driver named this as its OPEN RESIDUAL LIMITATION and shipped anyway; the run then failed exactly on that clause. The two cheap non-vacuity gates it substituted (shift_degrades_frozen_forward_fit, readapt_does_not_regress_frozen_fit) rule out the degenerate zero-recovery case and nothing more -- they cannot price a sub-floor recovery, and both passed while the criterion they were standing in for failed.",
+        "MEASUREMENT GAP (secondary): a budget described in EPOCHS is not a budget. 8/60 epochs reads as 13%; in optimizer steps it is 120/6600 = 1.82%, because a post-shift epoch is 15 batches against the pre fit's 110. Any future re-derivability criterion should be pre-registered in optimizer steps or gradient-sample-count, never epochs across differently-sized datasets.",
+        "ENVIRONMENT GAP: the Richens & Everitt robustness criterion needs an environment with causal structure to be robust ABOUT. In a 4-entry action->displacement lookup table the criterion degenerates -- a permutation is equally re-fittable by a genuine model and by a memoriser, and zero-shot invariance is impossible for both. The driver diagnosed this correctly in its SCOPE LIMITATION and narrowed the claimed interpretation, but a narrowed interpretation does not restore the criterion's discriminating power; it only prevents over-reading a PASS. The same honesty should have been applied to reading a FAIL.",
+        "BIOLOGY DIVERGENCE, load-bearing: this is the SD-003 pattern relocated. SD-003 imported a formal definition (Pearl two-pass counterfactual) into a mechanism and burned 28 FAILs before supersession. Here the mechanism is a faithful biological translation and the FORMAL IMPORT IS IN THE TEST -- a regret-bound theorem about decision-problem agents, applied to an offline residual-AUROC probe in a lookup-table world. Formal imports get the philosophy right and the mechanism wrong at whatever level they enter; the test level is not exempt.",
+        "GENUINE POSITIVE SIGNAL WORTH KEEPING: the 120-step pass recovered 44.2% of the shift-induced forward-MSE degradation but only 17.0% of the AUROC degradation, 5/5 seeds, MSE > AUROC in every seed. The comparator's discriminative content does not track its forward-prediction quality under re-derivation. That dissociation is the run's most durable output, it is not explained by budget starvation alone (the budget was large enough to move MSE substantially), and it should be a RECORDED READOUT in the successor rather than a derived endpoint comparison.",
+        "MEASUREMENT CAVEAT for the whole family: post-shift AND pre-shift bare change-magnitude sits BELOW chance in the MOVE_OK stratum (0.4295-0.4550 across all 15 arm rows). The gap-vs-bare clause therefore certifies nothing on its own -- an uninformative comparator at AUROC 0.5 clears a 0.05 gap-vs-bare floor against a 0.44 reference automatically. The 2026-09-03 red-team fix caught this prospectively; the lesson generalises to any successor in the 995/1001 family, and to the EXT-005 evidence note.",
+        "RECORDING GAP, minor: the run-pack metrics.json is an empty values map. Adjudication was not blocked (the pack manifest carries evidence_direction and evidence_direction_per_claim), but no headline metric is exposed in the pack's metrics channel. Cite the Experimental Recording Standard and populate it in the successor.",
+        "DESIGN COVERAGE: five seeds of the SAME permutation is n=1 on the manipulation axis. Seed variance here measures env/init noise, not shift-instance variance. The successor should sample several permutations (and, per H3, several structural subsets).",
+        "PROVENANCE: a same-driver reproduction of a predecessor's arm is not corroboration. 1001's PRE_BASE arm reproduces 995's BASE arm bit-identically (AUROC identical to 17 significant figures) across a substrate-commit change. That is a valuable substrate-stability datum and it must not be counted as a second independent support for 995's in-distribution result."
+      ],
+      "routing": "queue-experiment",
+      "routing_debt_token": "complex (probe-gated) / puzzle (known rules)",
+      "routing_note": "The frame is well-posed and a FACT is missing -- what recovery a same-budget re-derivation SHOULD achieve, and whether recovery scales with budget. That is a puzzle (known rules), not a build: no substrate is unbuilt, no dependency is immature, and every readiness gate passed. Route to /queue-experiment as a NEW EXQ number (a new scientific question: what does the recovery-vs-budget curve look like against a same-budget ceiling), NOT an alphabetic 1001a, because a 1001a would re-pose the same undecidable D1 in the same lookup-table environment. The re-derive brake does not fire for SD-031 (0 hits vs a threshold of 2), so a re-queue is permitted; a fan-out portfolio is nevertheless preferred over a single re-pose because the open question is a discrimination among three live hypotheses, per GOV-FANOUT-1.",
+      "pre_routing_checks": {
+        "tool": "scripts/autopsy_pre_routing_checks.py --artifact <this file> --json",
+        "as_of": "2026-09-04T14:11:17Z",
+        "fire_count_first_pass": 5,
+        "dispositions": [
+          {
+            "check": "C1",
+            "names": [
+              "v3_exq_011_mech095_tpj_proxy",
+              "v4_sd031_e2_world_forward_stub"
+            ],
+            "disposition": "DISMISS, both, with reasons read off the files themselves.",
+            "reason": "`experiments/v4_sd031_e2_world_forward_stub.py` is an explicit non-runnable DESIGN STUB -- its own docstring says 'THIS IS NOT A RUNNABLE V3 EXPERIMENT', 'DO NOT QUEUE THIS SCRIPT', and it raises NotImplementedError at the substrate-construction step. It was written in April 2026 as a V4 placeholder before E2WorldForward existed; the substrate it was waiting for landed 2026-06-06 and V3-EXQ-995/1001 are the real drivers. It never scored because it cannot run, and it implements none of the three recommended probes. `experiments/v3_exq_011_mech095_tpj_proxy.py` is MECH-095's z_self efference-copy proxy (its Condition B is explicitly that z_self does NOT discriminate causal origin, so z_world routing is necessary) -- a different mechanism on a different stream from anything recommended here; note also that a run_id v3_exq_011_mech095_tpj_proxy_20260317T204144Z_v3 DOES appear as a MECH-095 cluster target, so the check's 'never scored' clause is about run_id shape, not about the driver being unexercised. Neither is a driver for the recommended H1 / H2 / H3 probes, all three of which need arms this repo has no code for (an unshifted-env same-budget control, a readapt budget ladder, a state-dependent action->effect environment)."
+          },
+          {
+            "check": "C2",
+            "names": [
+              "agency_comparator_testbed_sd047"
+            ],
+            "disposition": "ACT -- entry now named and dispositioned in recommended_substrate_queue_entry.note.",
+            "reason": "The pointer was correct: an entry unblocking one of this target's claims existed and the artifact did not mention it. It is a MECH-095 test-bed for the 047l/047m label-saturation defect, already `implemented`, and unrelated to SD-031's comparator. It does not change the `none` action, but the check was right that the artifact owed the reader that check."
+          },
+          {
+            "check": "C3",
+            "names": [
+              "targeted_review_sd_031 (3 entries)",
+              "targeted_review_connectome_mech_095 (14 entries)",
+              "targeted_review_ext_005 (5 entries)"
+            ],
+            "disposition": "DISMISS, all three fires -- known scope-blindness, documented in the skill.",
+            "reason": "C3 matches the literal token ABSENT anywhere in `lit_status` and cannot read scope. This artifact's lit_status declares literature PRESENT for exactly the three claims C3 names (SD-031, MECH-095, EXT-005, with the entry counts 3 / 14 / 5 the check itself reports) and ABSENT only for ARC-037 -- which has no dedicated targeted review and appears only incidentally inside three EXT-005 entries, verified by grep over evidence/literature/. So all three fires are against a correctly-scoped declaration, and the one claim genuinely declared absent is not among them. The skill names this exact case as the reason C3's disposition is carried to the human gate rather than settled mechanically; it is carried there here. NOT dismissed as noise: the fires were re-checked against the filesystem before dismissal, and had ARC-037 turned out to have a review this would have been an ACT."
+          },
+          {
+            "check": "C5",
+            "names": [],
+            "disposition": "Re-run after the .md landed: C5 is now applicable and does NOT fire. (First pass reported it inapplicable only because the prose file did not exist yet.)",
+            "reason": "Recorded because `inapplicable` is not `no fire`: a structurally-blind check means Step 7c carries that load, not that the artifact is clean there."
+          },
+          {
+            "check": "C6-narrow",
+            "names": [],
+            "disposition": "no fire, and hand-checked anyway for the mirror case the check cannot see.",
+            "reason": "C6-narrow looks for a metric that agrees across arms in most seeds and dissents in a minority against a prose absolute. Its blind mirror image -- a metric CONSTANT where the design requires it to vary -- was tested by hand: MOVE_BLOCKED bare-delta AUROC is exactly 1.0000 in all 15 arm rows (structurally saturated) and STAY bare-delta is 0.9954-0.9972, but both strata are non-verdict-bearing by design and neither enters any criterion. The verdict-bearing MOVE_OK metrics all vary across seeds (comparator sd 0.0036-0.0096) and every criterion's sd is strictly positive, which is what criteria_non_degenerate tests. One genuine minority-dissent found and reported in the prose: POST_FROZEN's gap-vs-shuffled is positive in seed 43 (+0.0054) and negative in the other four -- the artifact states the mean as -0.0040 and does not claim a uniform sign."
+          }
+        ],
+        "fire_count_second_pass": 3,
+        "second_pass_note": "Re-run after the sibling .md landed: C1 and C2 CLEARED (both were fixed by naming and dispositioning the state they pointed at). Remaining 3 fires are all C3, all dismissed above as the documented scope-blindness, and all carried to the Step 8 gate. C5 is now applicable and does NOT fire. inapplicable list is empty on the second pass, so no check is structurally blind on this artifact."
+      },
+      "apply_checklist_additions_2026_09_04": [
+        {
+          "item": "SD-031 standing prohibition vs construction-balanced designs",
+          "decision_owed": "EITHER (a) amend SD-031 what_would_answer and self_attribution_plan.md GAP-6 resume_condition to record that a construction-balanced (RandomPolicy, offline-scored) comparator-only design clears the ARC-065 diversity half for the readout question (V3-EXQ-995 and 1001 both used it), so the fan-out portfolio may be queued under that reading; OR (b) rule the substitute inadequate, in which case 1001 is precondition-unmet for SD-031 -> non_contributory (category standard) and the portfolio waits on GAP-6.",
+          "recommended": "(a) -- the substitution is the same argument 995 made and governance accepted 995 as EXT-005 support on 2026-09-03; the plan prose should say so rather than leave the prohibition and the mixed stamp both standing."
+        }
+      ],
+      "withdrawn_readings_2026_09_04": {
+        "recommended_epistemic_category_per_claim_original": {
+          "SD-031": "standard",
+          "ARC-037": "standard",
+          "EXT-005": "standard"
+        },
+        "fanout_probe_H1_original": {
+          "hypothesis": "H1",
+          "axis": "measurement",
+          "sketch": "Add an UNSHIFTED-ENV control arm: same PRE_BASE weights, same 15%/8-epoch continued-training pass, but on post-collection data from an UNMODIFIED _action_map. That arm's gap-vs-shuffled is the same-budget CEILING. Declared null: the shifted readapt arm's gap-vs-shuffled reaches the unshifted ceiling within 1 sd, i.e. the shift costs nothing the budget does not also cost -- which would refute H1. Also emit the AUROC-vs-MSE recovery curve per epoch so the 44%/17% dissociation is measured rather than inferred from endpoints.",
+          "declared_null": "shifted-readapt gap-vs-shuffled >= unshifted-control gap-vs-shuffled - 1 sd"
+        },
+        "prerequisites_original": "present -- P0a warmup ran and moved 4/4 world-encoder tensors (zworld_world_encoder_trained 0.371 at the worst seed, post-SD-070); E2WorldForward implemented 2026-06-06 and live; world_dim 128 satisfies its hard assert; causal-class balance 6132 min-class in the scored stratum."
+      },
+      "routing_confirmed": "queue-experiment -- user-confirmed 2026-09-04T18:55:13Z at the /governance Step 8 gate (governance-20260904-1347). Governance chips the follow-on."
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "mode": "A (pre-register) + B (resolve, same edit, NEW question)",
+    "draft_only_reason": "Staging mode -- Step 9b is draft-only; hypothesis_space_registry.v1.json is NOT written by this session. The confirming interactive session or the next /governance walk applies the blocks below.",
+    "growth_restriction_check": "NOT APPLICABLE. This registers a NEW questions[] entry, and a question being opened in the same edit cannot carry a growth_restriction. The nearest existing question, `zworld_underdifferentiation_cause` (claims Q-002 + SD-031, 2 hypotheses, both resolved, synthesis written, growth_restriction absent), is a DIFFERENT question -- why the z_world manifold is under-differentiated, resolved in favour of an untrained encoder by V3-EXQ-783. It must not be grown with these legs; the shortcut-vs-causal-model question is not a refinement of it. No other registered question names SD-031 or EXT-005.",
+    "proposed_question": {
+      "qid": "sd031_causal_signature_shortcut_vs_model",
+      "title": "Is SD-031's comparator residual a genuine action-conditioned causal signature, or a correlational shortcut riding the training-time action->effect mapping -- and can the current test bed tell?",
+      "short_title": "SD-031 shortcut vs causal model",
+      "claims": [
+        "SD-031",
+        "EXT-005"
+      ],
+      "registered_utc": "<date -u at apply time>",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1001_2026-09-04.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does REE's SD-031 comparator satisfy the Richens & Everitt robustness-under-shift criterion for possessing an approximate causal model of its own action effects?",
+        "live_gate": "a post-shift readapted gap-vs-own-shuffled-action that reaches a same-budget unshifted-env ceiling within noise",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "blocked on a missing same-budget positive control; one fan-out portfolio away from decidable",
+        "observation_bottleneck": "CausalGridWorldV2's action->effect structure is a 4-entry lookup table, so the criterion may be uninstantiable in the current test bed regardless of budget (H3)."
+      },
+      "hypotheses": [
+        {
+          "hid": "H-shortcut",
+          "label": "the residual's discrimination is a correlational shortcut riding the training-time action->effect map",
+          "desc": "The in-distribution AUROC 0.644 signature is memorised action->effect association, not a re-derivable action-conditioned model; it does not recover to a same-budget ceiling under relabelling at any budget.",
+          "axis": "measurement",
+          "pre_registered_utc": "<apply-time date, Mode A: now>",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1001_2026-09-04.json",
+          "adjudicating_runs": [
+            "<H1 probe queue_id, not yet queued>"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-1001 is consistent with this leg but cannot establish it: the run had no same-budget ceiling arm, so a sub-floor recovery is not separable from H-budget."
+          }
+        },
+        {
+          "hid": "H-budget",
+          "label": "the re-derivation is real but the readapt budget was starved",
+          "desc": "120 optimizer steps is 1.82% of the original 6600-step fit; the observed +0.0117 gap-vs-shuffled and +0.0408 gap-vs-chance are the budget's output, and recovery scales with budget toward the pre-shift 0.1194.",
+          "axis": "curriculum",
+          "pre_registered_utc": "<apply-time date, Mode A: now>",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1001_2026-09-04.json",
+          "adjudicating_runs": [
+            "<H2 probe queue_id, not yet queued>"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-1001 is consistent with this leg too: the same 120-step pass recovered 44.2% of the forward-MSE degradation, so the budget was demonstrably non-trivial and the AUROC recovery of 17.0% has no ceiling to be judged against."
+          }
+        },
+        {
+          "hid": "H-testbed-degenerate",
+          "label": "the environment cannot instantiate the Richens criterion at all",
+          "desc": "A 4-entry action->displacement lookup table has no compositional causal structure to be robust about; a permutation of it is equally re-fittable by a genuine model and by a memoriser, and zero-shot invariance is impossible for both. If this holds, no budget or control arm in CausalGridWorldV2 discriminates H-shortcut from H-budget.",
+          "axis": "environment",
+          "pre_registered_utc": "<apply-time date, Mode A: now>",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1001_2026-09-04.json",
+          "adjudicating_runs": [
+            "<H3 probe queue_id, not yet queued>"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "Asserted by the V3-EXQ-1001 driver's own SCOPE LIMITATION and confirmed by D1's structure: D1's FAIL is predicted identically by H-shortcut and H-budget, so at least one criterion in this test bed is already known to be undecidable."
+          }
+        }
+      ]
+    },
+    "axis_family_map_delta": "NONE REQUIRED. All three axes are already in axis_families.map: `measurement` -> instrumentation, `curriculum` -> process, `environment` -> world. Three distinct families, no family re-entered (the question is new and has no eliminated legs), so convergence_class is well-defined and this is not `circling`.",
+    "invariant_check": "initial_frozen_count 3 == len(hypotheses) 3 (invariant 1). No leg is resolved in this edit, so invariant 2 (pre_registered_utc <= resolved_utc) is trivially satisfied and no elimination bar is claimed (invariant 4). initial_frozen_count_at_registration set and frozen at 3 (invariant 3c). New question, so invariant 3's growth clauses do not apply (invariant 6, route 1). decision.decidable false and decision_log_ref null -- human owns `decided` (invariant 7).",
+    "applied": true,
+    "registry_written": true,
+    "applied_utc": "2026-09-04T19:00:56Z",
+    "applied_by_session": "governance-20260904-1347",
+    "applied_qid": "sd031_causal_signature_shortcut_vs_model",
+    "applied_note": "Registered as a NEW questions[] entry (Mode A/B as drafted; placeholders filled with the apply timestamp; adjudicating-run placeholders moved to adjudicating_runs_note). build_hypothesis_space.py + check_hypothesis_space_integrity.py run after the append: flags (a)-(d) all 0."
+  },
+  "cluster_pattern": null,
+  "red_team": {
+    "model": "Fable 5.1 (claude-fable-5-1), separate agent, reasoning withheld, JSON-first read order",
+    "verdict": "CONTESTED",
+    "disposition": "contest ACCEPTED on all six findings; artifact revised 2026-09-04T14:48:02Z by governance-20260904-1347 (drafting session was a staging-mode subagent)",
+    "findings_accepted": [
+      "F1 H1 probe: unshifted-env arm cannot refute H1 (its null already falsified ~10x by this run); replaced by scratch-init same-budget control (driver OPEN RESIDUAL LIMITATION option 1)",
+      "F2 SD-031 experimental record is 1001 alone; 995 tagged EXT-005 only; PRE_BASE bit-identity is not a support",
+      "F3 SD-031 STANDING PROHIBITION (GAP-6 two-part gate) not carried into the JSON; apply item added, disposition owed at the gate",
+      "F4 gap_vs_chance is 1.23x below floor not ~4x; ~75% of readapt gain is action-conditioned; H2 restated as hypothesis",
+      "F5 shuffled control is one permutation draw per arm (per-seed draw noise up to 0.0103); precision claim softened; >=5 draws required in the portfolio",
+      "F6 MECH-095 protection was the blanket mixed, not the omission; per-claim standard now declared"
+    ],
+    "what_survived": "FAIL on both load-bearing discrimination criteria; all recomputed cells (1.82% readapt budget, 44.2%/17.0% recovery, 9.8% ratio, post-shift bare below chance 5/5, MECH-095 = 12 hits, floors pre-registered, D1 undecidable by construction); category standard; action none; mixed remains defensible and weakens equally so on the pre-registered falsifier -- decided at the gate"
+  },
+  "revised_utc": "2026-09-04T14:48:02Z",
+  "confirmed_utc": "2026-09-04T18:55:13Z",
+  "confirming_session": "governance-20260904-1347 (inline, /governance Step 1.5 route A; drafted by a staging-mode subagent, red-teamed on Fable, revised, gate held with the user)",
+  "user_decisions_2026_09_04": {
+    "Q1": "Apply all four as revised",
+    "Q2_SD031_gate": "Amend SD-031 what_would_answer + self_attribution GAP-6 to accept construction-balanced (RandomPolicy, offline-scored) comparator-only designs for the ARC-065 diversity half",
+    "Q3": "Add 6 buildable v3 substrate stubs",
+    "Q4": "Apply the three August staging-autopsy ledger blocks now",
+    "recommendation_agreement": "3 of 4 recommended options selected (Q4 against); logged via record_recommendation_outcome.py"
+  }
+}

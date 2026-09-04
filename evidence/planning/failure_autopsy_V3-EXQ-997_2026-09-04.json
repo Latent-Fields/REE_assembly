@@ -1,0 +1,368 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-04T14:23:32Z",
+  "session_id": "governance-20260904-1347",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3",
+      "queue_id": "V3-EXQ-997",
+      "claim_ids": [
+        "MECH-162"
+      ],
+      "experiment_purpose": "evidence",
+      "self_route_label": "mech162_zresource_no_discrimination_advantage_over_zworld",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C1_discrimination_delta_floor (load_bearing). Its MEAN half PASSED (measured_mean_delta 0.06359 >= threshold 0.02); its SEED-CONSISTENCY half FAILED (measured_seed_fraction 0.40 < seed_fraction_threshold 0.60). All four readiness preconditions read met:true at measured 0.8 / threshold 0.8, so the run did not self-route substrate_not_ready_requeue; criteria_non_degenerate.C1_discrimination_delta true.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the test did not cleanly let the claim express itself, but for MEASUREMENT reasons first and design reasons second (corrected 2026-09-04 after red-team F1). MECH-162's own notes name three permutations (z_resource alone, z_world alone, both fused); the run built the two single-seed arms and omitted an explicit fused arm. Because the retrieval-form fusion (module.py:2658) was live in BOTH arms, the contrast measured 'which stream seeds the goal cue' under an always-on identity->spatial retrieval, which is a legitimate but partial probe of re-convergence -- not two negative conditions as the draft first read it. Compounded by the readiness-failed seed inside the C1 denominator, equal weighting across 3-177 qualifying ticks, an untrained ResourceEncoder (P1 without P0), and a verdict that inverts under the manifest's own entry-weighted contrast. H0 (a fused input adds nothing over either stream alone) is therefore ALIVE, not eliminated on structure.",
+        "biological_reference": "clear, and it is an existence proof for the claim rather than against it. Kim et al. 2015 (dentate-gyrus disruption, delayed-non-match-to-place) gives causal lesion-style evidence that DG binds the internally-generated spatial map with externally-derived object/event information -- the targeted_review_q_030 entry says in terms that this 'supports MECH-162'. Staresina, Duncan & Davachi 2011 (PrC/PhC double dissociation with perceptual input equated) 'directly supports' SD-015 and MECH-162: separate encoders feeding a shared associative locus. Lee et al. 2021 (GIST, aggregate confidence 0.82) places the hippocampus as the convergence point 'consistent with MECH-162 and ARC-007'. The gap the literature itself names is the binding OPERATOR, not the convergence: Lee 2021's entry states 'the convergence locus is named but the binding mechanism (concatenation, multiplicative gating, cross-attention, factor-graph product) is not specified'.",
+        "prerequisites": "missing. (i) ree_core/latent/stack.py:288-291 documents ResourceEncoder's phased protocol -- 'P0: Train ResourceEncoder on benefit_exposure supervision (aux head). P1: Activate goal seeding from z_resource in update_z_goal()'. This run activated P1 with no P0 and no gradient training of any kind (grep of the driver for optim/backward/.train()/requires_grad/use_identity_classifier returns nothing), so z_resource is an untrained two-layer MLP on world_obs and z_world is a different untrained projection of the same observation. SD-015's own what_would_answer records the size of that gap: goal_resource_r 0.93-0.96 trained (V3-EXQ-514o under SD-057 on scaffolded_sd054_onboarding) 'up from the EXQ-085g baseline of 0.066-0.087' untrained. (ii) MECH-162's direct dependency SD-015 itself carries epistemic_category substrate_ceiling and pending_retest_after_substrate true. (iii) SD-015's stated non-degeneracy preconditions (a)-(d) are unmet here: no SD-057 incentive token bank, no scaffolded curriculum, no MECH-306 drive floor, and proximity_benefit_scale 0.05 against its stated >= 0.18.",
+        "implementation": "partial for the mechanism the claim names -- CORRECTED after the red-team pass (Fable, 2026-09-04). The draft's absolute 'no operator anywhere fuses z_resource with z_world at the planning stage' was FALSE: HippocampalModule._propose_ghost_seeded (ree_core/hippocampal/module.py:2576-2706) ranks MECH-292 bank anchors by goal_match against the z_resource-derived current_z_goal and then seeds each ghost probe's CEM init and E2 rollout at anchor.z_world (module.py:2658, :2676-2680). That is an identity-cue -> spatial-content RETRIEVAL operator at trajectory proposal, and it was LIVE in this run (use_mech293_ghost_probes on; mech293_n_ghost_admitted_nonzero_frac 0.50-0.965). What remains true: update_z_goal seeds z_goal from z_resource XOR z_world (agent.py ~11504) and GhostGoalBank.rank() itself never reads z_world, so there is no JOINT-REPRESENTATION operator (concatenation / gating / cross-attention over the two streams) -- the binding-operator gap the literature names (Lee 2021 entry) is real, but the claim's positive condition is NOT unobservable on this substrate: the retrieval form is one candidate instantiation of 're-converge at the planning stage', and the run's two arms differ in which stream SEEDS the cue that drives that retrieval, not in whether convergence is possible.",
+        "environment": "partial. CausalGridWorldV2 at 20% resource density delivered abundant dual-type contact on 4 of 5 seeds (13-126 contacts per cell) but seed 43 obtained 1 and 0 contacts across a 3750-step budget in the two arms, and ARM_ZRESOURCE seed 46 sustained only 300 total steps (~12 steps/episode) against ARM_ZWORLD's 2952 on the same seed. With num_hazards=0 this early termination is not hazard death. The observation window is therefore not comparable across cells, which is the substrate of the confound recorded below. proximity_benefit_scale 0.05 also sits well under the >= 0.18 that SD-015's own retest preconditions name.",
+        "measurement": "under-instrumented, and decisively so. (1) The C1 denominator includes the readiness-failed seed: run_experiment computes C1 over all 5 seeds, not over the seeds that cleared R1/R2, and _run_cell returns a hardcoded 0.0 when discrim_samples is empty -- so seed 43 contributes d = 0.0-0.0 = 0.0 to the mean and, because the seed test is a strict `zr > zw`, `0.0 > 0.0` is False, making it structurally impossible for that seed to enter the numerator while it permanently occupies a denominator slot. Maximum attainable seed fraction is 0.8, and the 0.6 bar therefore demands 3 of the 4 informative seeds (75%), not 60%. (2) Per-seed estimates are equally weighted across qualifying-tick counts spanning 3 to 177 (59x); ARM_ZRESOURCE seed 46, one of the two seeds that decide the FAIL, rests on 3 ticks and clears ENGAGEMENT_FLOOR 0.10 at 0.200. (3) The verdict is not robust to aggregation: recomputing C1 from the entry-weighted contrast already recorded in the same manifest (mean_same_type_goal_match - mean_diff_type_goal_match) gives mean 0.10317 and seed fraction 0.60, i.e. C1 PASSES both halves. The per-tick and pooled forms disagree in SIGN on two ARM_ZWORLD cells (seed 42: pooled -0.00460 vs per-tick +0.07273; seed 47: pooled -0.01282 vs per-tick +0.02141). (4) Leave-one-out: dropping seed 47 alone takes the as-run mean to +0.00920, below the 0.02 floor. (5) Sign test on the 4 informative seeds is 2 positive / 2 negative, two-sided p = 1.000; t(3) = 1.008; mean/SD = 0.504 against a per-seed sign bar that needs a ratio near 1 to be reached reliably, and no dispersion estimate was recorded to check that against. (6) No manipulation check: nothing in the manifest establishes that ARM_ZRESOURCE's cue carried any resource-identity content at all.",
+        "integration": "partially coupled. The manipulated flag changes agent behaviour, and the DV is computed over an anchor pool that accumulates only within an episode (agent.reset() wipes the SD-039 anchor set at every episode boundary), so episode length feeds the DV path. Within-pair, the arm with more total_steps had the higher discrimination delta in 4 of 4 informative seed pairs (42: ZR 2173 vs 1642; 45: ZW 874 vs 2957; 46: ZW 300 vs 2952; 47: ZR 2218 vs 708); across the 8 informative cells Spearman(total_steps, delta) = 0.50 and Spearman(n_qualifying_ticks, delta) = 0.48. The driver's DV-SYMMETRY declaration considers and dismisses exactly one confound -- type-clustered spatial resource placement -- and does not mention this one.",
+        "scale": "likely insufficient. Untrained predictors throughout; 5 seeds of which 4 are informative; the decisive statistic estimated from as few as 3 ticks in one cell; and the R0 mechanism-off sanity leg observed a single E3 tick with zero no_z_goal reasons recorded (all_no_z_goal false), so the negative control did not in fact demonstrate what it was written to demonstrate."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED -- MECHANISM not established (the convergence operator MECH-162 asserts does not exist anywhere in the substrate: update_z_goal is a strict XOR and GhostGoalBank.rank never reads z_world), MEASURES not established (readiness-failed seed inside the C1 denominator with a hardcoded 0.0 that can never enter the numerator; 59x unequal per-seed n weighted equally; the verdict inverts under the entry-weighted contrast recorded in the same manifest; no manipulation check), ENVIRONMENT partial (one starved seed and a 10x within-pair episode-length asymmetry). NOT chargeable to REE, and REE FAILED is neither reached nor asserted."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Dentate gyrus / hippocampal binding of an internally-generated spatial map with externally-derived object identity, fed by the parallel lateral (object/item) and medial (spatial) entorhinal streams originating in perirhinal and parahippocampal/postrhinal cortex.",
+        "dependencies": [
+          "perirhinal object-identity encoding (ventral/IT untangling)",
+          "parahippocampal/postrhinal spatial-scene encoding",
+          "lateral and medial entorhinal routing, goal-conditioned per Lee 2021 GIST stage 2",
+          "dentate-gyrus sparse pattern separation as the binding locus (Kim 2015)",
+          "CA3/CA1 for downstream retrieval and goal update"
+        ],
+        "is_formal_import": false,
+        "divergence": "REE's translation is incomplete rather than divergent. The separation half (SD-015's z_resource vs z_world) is a faithful translation of the PrC/PhC dissociation and is built. The convergence half -- the DG-analog operator that takes both streams and produces a bound episodic/planning representation -- has no counterpart in the substrate at all. The failure signature is exactly what the biology predicts if the binding locus were removed and only one afferent stream were allowed through to the planner at a time. Under the skill's core principle this is a discovered prerequisite, not a falsification. The one genuinely open biological question is the FORM of the operator, which Lee 2021's own review names as unspecified (concatenation / multiplicative gating / cross-attention / factor-graph product) -- that is Q-030 axis 3 and is the reason the build below is a smallest-step, not a settled design.",
+        "lit_status": "present",
+        "lit_status_scope": "PRESENT for the convergence claim itself -- 11 entries across targeted_review_q_030 (5, three of which name MECH-162 explicitly; Kim 2015 causal lesion evidence, Staresina 2011 double dissociation, Lee 2021 GIST at confidence 0.82) and targeted_review_sd_015 (6, including Whittington 2022, the Tolman-Eichenbaum source the claim's own notes cite). ABSENT for the binding OPERATOR -- which fusion computation the planner should perform -- named as an explicit gap by the strongest single anchor. Neither review directory carries a SYNTHESIS.md, only entries/, so there is no roll-up to cite. No /lit-pull is owed on the existence of the convergence; a narrow one on the operator would serve the build below and is the same gap Q-030 axis 3 already tracks."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "standard, not substrate_ceiling (revised at the red-team pass): the draft's ground for a ceiling reading -- that the claim's positive condition is unobservable on this substrate -- lost its premise once the live retrieval-form fusion at module.py:2658 was found. The run told us little about MECH-162 because of instrument/precondition defects (measurement-primary), which per SKILL.md maps to standard with the failure mode in the notes. A ceiling reading would also have contradicted Q-030's standing 2026-05-02 note ('hippocampal fusion ... no substrate enrichment required') without engaging it. This target therefore does NOT count toward the MECH-162 re-derive brake (R3 clause 2: instrument category owing no build).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-09-04 (failure autopsy V3-EXQ-997, staging draft awaiting confirmation): V3-EXQ-997 self-declared FAIL / weakens. NOT SCORED as weakens -- the run tested a SUBSTITUTION, not the CONVERGENCE MECH-162 asserts, and its own decisive statistic is not robust. (1) SCOPE: MECH-162 asserts z_resource and z_world must re-converge at the hippocampal planning stage, and the claim's notes name three permutations ('z_resource alone, z_world alone, and both fused'). The run built the two 'alone' arms only. Code read confirms this is a substrate absence, not a design choice: ree_core/agent.py::update_z_goal (~11504) seeds z_goal from z_resource OR z_world via a strict XOR, and ree_core/hippocampal/ghost_goal_bank.py::GhostGoalBank.rank never reads z_world (four live terms: wanting, goal_match, staleness, recoverability). Both arms therefore instantiate the claim's negative condition; a contrast between them cannot weaken a claim about the positive one. (2) PRECONDITION: ResourceEncoder's documented phased protocol (ree_core/latent/stack.py:288-291) requires P0 supervised training before P1 goal seeding. This run activated P1 with no training of any kind, so z_resource was an untrained projection; SD-015's own record measures untrained identity content at goal_resource_r 0.066-0.087 against 0.93-0.96 trained (V3-EXQ-514o under SD-057). No manipulation check was recorded, so it is not established that ARM_ZRESOURCE's cue carried identity information at all. (3) ROBUSTNESS: C1's mean half passed (0.0636 >= 0.02) but its seed half failed (0.40 < 0.60), and the seed statistic does not survive scrutiny -- the readiness-failed seed 43 sits inside the denominator with a hardcoded 0.0 that makes 'zr > zw' structurally False, capping the attainable fraction at 0.8 and raising the effective bar to 3 of 4 informative seeds; per-seed estimates are equally weighted across qualifying-tick counts spanning 3 to 177; the sign split on the 4 informative seeds is 2/2 (two-sided p = 1.000, t(3) = 1.008, mean/SD = 0.504); dropping seed 47 alone puts the mean below the 0.02 floor (+0.0092); and recomputing C1 from the entry-weighted contrast already present in the same manifest gives mean 0.1032 and seed fraction 0.60, i.e. C1 PASSES. A verdict that inverts on an undeclared aggregation choice is not a weakens. (4) CONFOUND: the arm with more total_steps had the higher discrimination delta in 4 of 4 informative seed pairs (Spearman(steps, delta) = 0.50 over the 8 informative cells); because agent.reset() wipes the SD-039 anchor set every episode, episode length feeds the DV path, and the driver's DV-symmetry declaration does not consider it. WHAT THE RUN DOES ESTABLISH, recorded as read-across not scored here: the MECH-292/293 waking ghost-goal retrieval channel is live and carries a genuine positive same-type-over-different-type discrimination from BOTH seed latents on every informative cell (per-tick 0.021 to 0.303; ghost admission nonzero on 0.50-0.965 of E3 ticks; z_goal_stream active_frac 0.9815, no writer defect). That is evidence about MECH-236/292/293, which are not tagged on this run. STATE AFTER THIS DISPOSITION, stated plainly: MECH-162 returns to ZERO scoring experimental entries and rests on literature alone (11 entries across targeted_review_q_030 and targeted_review_sd_015, including Kim 2015's causal DG-lesion evidence and Staresina 2011's double dissociation, both of which the reviews record as supporting MECH-162). There is no illusory-conflict risk in the narrow sense -- there were no prior supports to leave standing -- but the claim is now explicitly lit-only, which is the honest reading and not a demotion. ROUTE: implement-substrate. Build a joint z_resource + z_world planning input so the three-permutation test the claim's own notes specify becomes runnable; retest MECH-162 only with a third fused arm AND a P0-trained ResourceEncoder AND a recorded per-arm manipulation check. Do not re-issue a two-arm lettered variant of V3-EXQ-997.",
+      "per_claim_recommendation": {
+        "MECH-162": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Do NOT score V3-EXQ-997's self-declared weakens: the run compared two single-SEED arms under an always-on retrieval-form fusion (module.py:2658), omitted the explicit fused arm its own notes name, ran ResourceEncoder P1 without its documented P0, and its C1 seed statistic (readiness-failed seed inside the denominator, 3-177 tick weighting) inverts to PASS under the entry-weighted contrast recorded in the same manifest. Write the drafted evidence_quality_note, set pending_retest_after_substrate true, and because MECH-162 currently carries NO epistemic_category field at all, set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Withdrawn from create at the red-team pass: a joint-representation operator MAY be owed (Q-030 axis 3, binding operator unspecified per Lee 2021), but minting a corrupting-free create from a verdict whose structural premise just failed would be a substrate entry ahead of its evidence. Route: the redesign below first runs the explicit three-permutation test WITH the retrieval form on and the instrument defects fixed; if the fused arm cannot be instantiated without a new operator, THAT run's autopsy mints the entry (sd_id_suggested zresource-zworld-planning-fusion retained in withdrawn_readings for reuse)."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "read_across_not_adjudicated": [
+        {
+          "claims": [
+            "MECH-236",
+            "MECH-292",
+            "MECH-293",
+            "SD-039"
+          ],
+          "observation": "All 8 informative arm-cells show a positive same-type-over-different-type goal_match discrimination in the waking ghost-goal retrieval path (per-tick 0.021 to 0.303), with mech293_n_ghost_admitted_nonzero_frac 0.50-0.965 and z_goal_stream active_frac 0.9815 / writer_defect false. That is a non-vacuous positive for the existence and content-sensitivity of the current_z_goal -> propose_trajectories -> MECH-293 -> MECH-292 channel.",
+          "why_not_adjudicated": "None of these claims is tagged on this run (claim_ids is ['MECH-162'] only, deliberately per the driver's claim_ids-accuracy note), and this autopsy must not re-tag a run it is adjudicating. Recorded so governance can decide whether a separate, properly-tagged read is worth minting; it is NOT a supports entry for anything as it stands."
+        },
+        {
+          "claims": [
+            "SD-015"
+          ],
+          "observation": "This run activated SD-015's P1 (use_resource_encoder=True) without its documented P0 training and recorded no goal_resource_r or equivalent identity readout. It therefore adds nothing to either of SD-015's two sub-claims and must not be read as bearing on SD-015's own substrate_ceiling.",
+          "why_not_adjudicated": "SD-015 is not tagged on this run. Noted because MECH-162 depends_on SD-015 and a reader could otherwise take the null as a second strike against the encoder."
+        }
+      ],
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "counting_note": "R1-R3 recipe run from /Users/dgolden/REE_Working with CLAIM=MECH-162: 0 prior ceiling hits. granularity_debt_cluster.py MECH-162 reports 0 targets across 0 files, so the granularity-debt trigger does not fire and the claim_alignment distribution is empty. This target is hit 1 of 2 under the convention (genuine substrate_ceiling category with an owed build, so it counts at predicate step 1). The brake does NOT fire this cycle; a second same-claim ceiling reading would fire it. No same-claim re-queue is refused on brake grounds, but the routing independently refuses a two-arm lettered re-issue on scope grounds.",
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "zresource-zworld-planning-fusion (proposed; no existing substrate_queue entry covers a fused planning input)"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: untrained-substrate artifact -- z_resource carried no identity content because ResourceEncoder's documented P0 training was never run, so the arm contrast was between two untrained projections of the same observation.",
+          "H2: aggregation artifact -- the pre-registered per-tick statistic weights every qualifying tick equally regardless of anchor-pool size and is dominated by small-pool early-episode ticks; the entry-weighted contrast on the same recorded data gives C1 PASS.",
+          "H3: scope error -- MECH-162 asserts fusion, so no two-arm substitution design can decide it; a third fused arm is structurally required and the substrate cannot currently provide one.",
+          "H4: survival/engagement confound -- the DV tracks episode length and anchor-pool accumulation rather than the identity of the seed latent (the longer-running arm won 4 of 4 informative seed pairs)."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1",
+            "axis": "representation",
+            "sketch": "Re-run the existing two-arm design on a P0-trained ResourceEncoder in SD-015's own measured configuration (SD-057 incentive bank on scaffolded_sd054_onboarding, MECH-306 drive floor, proximity_benefit_scale >= 0.18), and record a per-arm manipulation check (goal_resource_r or a linear identity probe on the z_goal seed) as a load-bearing precondition. Declared null: the trained ARM_ZRESOURCE's cue-identity readout is indistinguishable from the untrained one, i.e. training does not change what the cue carries."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "instrumentation",
+            "sketch": "Pure re-analysis plus a recording fix -- no new science budget. Record per-tick pool sizes (n_same, n_diff) and per-seed dispersion, then pre-declare ONE decisive aggregation (n-weighted per-tick, or pooled entry-level) and report the other as a sensitivity. Declared null: the per-tick and entry-weighted forms agree in sign on at least 4 of 5 seeds, i.e. the aggregation choice is not load-bearing."
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "world",
+            "sketch": "After the fused-input build lands, run three arms (ZRESOURCE / ZWORLD / FUSED) at the same schedule. Declared null: the FUSED arm's per-seed discrimination does not exceed the maximum of the two single-stream arms by more than the cross-seed SD of that delta on a majority of seeds -- which would be the first genuine pressure on MECH-162's convergence assertion."
+          },
+          {
+            "hypothesis": "H4",
+            "axis": "process",
+            "sketch": "Hold the observation window fixed rather than letting the policy set it: truncate every cell to a common step budget and a common qualifying-tick count (or subsample ticks to the smaller arm's n within each seed), and report total_steps and pool size as covariates. Declared null: with episode length and tick count matched within seed, the arm contrast and its seed split are unchanged from the as-run values."
+          }
+        ],
+        "note": "GOV-FANOUT-1: the open question here is a discrimination among four structurally different explanations of one uninformative null, each on a different design axis, not a single already-named build. H3's probe is gated on the recommended_substrate_queue_entry landing; H2 needs no new run at all and should go first on cost grounds; H1 and H4 are independent and can run in parallel. Design-audit for coverage and verdict-aliasing before queuing -- in particular H1 and H4 can alias (a trained encoder may also survive longer), so the H1 probe must carry H4's step/tick matching.",
+        "revision_note_2026_09_04": "Red-team F1 accepted: H0 ('a fused planning input adds nothing over either single stream') is ALIVE, not eliminated on structure -- the retrieval-form fusion exists and was live. The first leg of the next portfolio is the explicit three-permutation MECH-162 retest (z_resource-seeded / z_world-seeded / explicit joint cue) with the retrieval form ON, the C1 denominator restricted to readiness-passing seeds, tick-count weighting or a pre-registered minimum-ticks floor, a trained ResourceEncoder (P0 before P1, manipulation check goal_resource_r recorded), and matched or covaried episode length (F2: early termination is starvation, a mediator not an exogenous confound). A same-claim re-issue is LEGITIMATE here (brake count 0; instrument category)."
+      },
+      "learning_extracted": [
+        "A criterion computed over ALL seeds while its readiness gate is evaluated as a run-level seed FRACTION lets a readiness-failed seed sit permanently in the denominator. Here _run_cell's `fmean(samples) if samples else 0.0` fallback made seed 43's contribution a hardcoded 0.0, and because the seed test is a strict `zr > zw`, `0.0 > 0.0` is False -- so that seed could never enter the numerator, silently raising the effective bar from 60% to 75% of informative seeds. Aggregate over the seeds that cleared readiness, or make the readiness gate per-seed-exclusionary.",
+        "Pre-registering a DV FORMULA is not the same as pre-registering a ROBUST one. The per-tick unweighted contrast and the entry-weighted contrast are both recorded in this manifest, differ in sign on two cells, and invert the run's PASS/FAIL verdict. A driver that computes both owes a declaration of which is decisive and a reported sensitivity on the other.",
+        "Recording gap, cheap to close and decision-blocking: when the manipulation IS 'which latent seeds the cue', a per-arm manipulation check on the cue's content is owed. Nothing in this manifest establishes that ARM_ZRESOURCE's cue carried resource-identity information, and SD-015's own record puts the untrained baseline at goal_resource_r 0.066-0.087 against 0.93-0.96 trained. Per the Experimental Recording Standard, the repair is recording the readout in the re-run, not re-running blind.",
+        "Activating a module's phase P1 while skipping the P0 its own source documents (ree_core/latent/stack.py:288-291) is a precondition violation, not a scoping choice, whenever the DV is about the CONTENT the module encodes rather than the existence of its wiring. The 'untrained predictors are the correct substrate state' argument, sound for an architectural-coupling probe, does not transfer to a representational-content probe.",
+        "A claim asserting CONVERGENCE of two streams is not tested by a SUBSTITUTION contrast between them. MECH-162's own notes enumerate three permutations ('z_resource alone, z_world alone, and both fused'); the run built two and omitted the one that carries the claim. Reading the claim's notes for its own named design space is the cheapest available guard against this class of scope error.",
+        "When the manipulated flag changes behaviour and the DV accumulates within an episode, episode length becomes a nuisance variable ON the DV path. Here the longer-running arm won 4 of 4 informative seed pairs. The DV-symmetry declaration should enumerate behaviour-mediated confounds, not only stimulus-side ones -- this driver considered and dismissed spatial type-clustering and did not consider survival.",
+        "A negative-control leg that observes a single tick has not run. The R0 mechanism-off sanity leg recorded n_e3_ticks_observed 1, n_no_z_goal_reason 0, all_no_z_goal false -- it is vacuous as executed, and nothing gated on it, so its vacuity was invisible in the verdict."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Node classification (work_graph_debt_vocabulary): the fused-input smallest step is `complicated (buildable)` -- a named build with no open question, so build it rather than spiking to re-confirm it. The OPERATOR choice beyond the smallest step (concatenation vs multiplicative gating vs cross-attention vs factor-graph product, the four Lee 2021's review names as unspecified) is `complex (probe-gated) / puzzle (known rules)` and belongs to Q-030 axis 3. The aggregation question (H2) is `mystery (known data)` -- the data to settle it is already in this manifest and no new run is needed. REFUSED explicitly: a two-arm lettered re-issue of V3-EXQ-997 against the same substrate. Not on re-derive-brake grounds (the brake does not fire, this is hit 1 of 2) but on scope grounds -- no two-arm substitution design can reach MECH-162's assertion, so another letter would burn compute on a question the apparatus cannot ask. A re-run of the two-arm design is only worth queuing as the H1 probe, i.e. as an SD-015-precondition test explicitly NOT tagged as MECH-162 evidence.",
+      "follow_on_for_governance_to_chip": [
+        "H2 re-analysis probe (instrumentation axis) -- no new compute; settles whether the aggregation choice is load-bearing using data already recorded.",
+        "H1 representation probe -- two-arm design on a P0-trained ResourceEncoder in SD-015's measured configuration, carrying H4's step/tick matching, tagged to SD-015 rather than MECH-162.",
+        "The fused-input build itself, via the recommended_substrate_queue_entry above, once governance ratifies this routing.",
+        "Optional narrow /lit-pull on the binding OPERATOR (Q-030 axis 3): the reviews establish the convergence locus and explicitly do not specify the computation."
+      ],
+      "withdrawn_readings_2026_09_04": {
+        "implementation_original": "absent for the mechanism the claim names; complete for the channel actually exercised. The MECH-292/293 ghost-goal retrieval channel is built, live and demonstrably firing (mech293_n_ghost_admitted_nonzero_frac 0.50-0.965 across cells, z_goal_stream active_frac 0.9815, writer_defect false, writer_calls 581). But no operator anywhere in the substrate fuses z_resource with z_world at the planning stage: update_z_goal is XOR; GhostGoalBank.rank's four live terms are wanting (weight 0.0 this run), goal_match (cosine of the single seeded latent against the stored z_goal_snapshot), staleness and recoverability; the anchors the driver writes do carry z_world and it is never consulted. The one composite-cue channel that exists, MECH-339 use_composite_cue_outshining, defaults False with context_weight 0.0 (config.py:2364-2366), is absent from this run's enabled_default_off_flags, and even switched on derives its context term from payload.arousal_tag (ghost_goal_bank.py:437), explicitly not from spatial context -- so it is not a re-convergence path either.",
+        "claim_alignment_original": "unclear -- the test did not let the claim express itself. MECH-162 asserts that z_resource and z_world must RE-CONVERGE at the hippocampal planning stage; its own notes name three permutations ('z_resource alone, z_world alone, and both fused'). This run built the two 'alone' arms and omitted the fused one. Code read confirms the omission is not an oversight but a substrate absence: ree_core/agent.py::update_z_goal (~11504) seeds z_goal from z_resource OR z_world via a strict XOR with no both-streams path, and GhostGoalBank.rank() never reads z_world at all (one commented mention, zero code references). Both arms are single-stream, i.e. both instantiate the claim's NEGATIVE condition; a contrast between two negative conditions cannot weaken a claim about the positive one.",
+        "recommended_epistemic_category_original": "substrate_ceiling",
+        "routing_original": "implement-substrate",
+        "recommended_substrate_queue_entry_original": {
+          "action": "create",
+          "sd_id_suggested": "zresource-zworld-planning-fusion",
+          "title": "Joint z_resource + z_world input at the hippocampal planning stage (fused goal/retrieval cue), so the three-permutation MECH-162 / Q-030 test becomes runnable",
+          "implementation_hint": "Today the planning-stage goal cue is single-stream by construction in two independent places, and no config flag reaches a both-streams condition. (a) ree_core/agent.py::update_z_goal (~11504) chooses seed_latent = z_resource if use_resource_encoder else z_world -- a strict XOR. (b) ree_core/hippocampal/ghost_goal_bank.py::GhostGoalBank.rank scores anchors on wanting + goal_match + staleness + recoverability and never reads z_world, even though every anchor stores one; the only composite channel, MECH-339 use_composite_cue_outshining, is default-off (config.py:2364-2366) and derives its context term from payload.arousal_tag (ghost_goal_bank.py:437), not from spatial context. Smallest step: add a third, explicitly-flagged goal-seeding mode that forms z_goal from BOTH latents (start with the concatenation/projection form, the cheapest of the four operators Lee 2021's review names as unspecified), AND a spatially-sourced context channel in the ghost cue -- most cheaply by generalising _context_salience_for_anchor to an optional z_world-similarity term reusing MECH-339's existing outshining gate rather than adding a parallel mechanism. Keep both single-stream modes intact so the resulting design is three arms, not a replacement. The operator choice beyond the smallest step is Q-030 axis 3 and should be probed, not assumed.",
+          "unblocks_claims": [
+            "MECH-162",
+            "Q-030"
+          ],
+          "depends_on_unresolved": [
+            "SD-015 (epistemic_category substrate_ceiling, pending_retest_after_substrate true -- its trained-ResourceEncoder configuration is what makes a z_resource arm carry identity content at all; the fused arm inherits that precondition)",
+            "MECH-339 (composite retrieval cue -- the existing gate this build would extend; candidate, v3_pending)"
+          ],
+          "priority_suggested": 1,
+          "substrate_paths": [
+            "ree_core/agent.py::update_z_goal",
+            "ree_core/hippocampal/ghost_goal_bank.py::GhostGoalBank.rank",
+            "ree_core/hippocampal/ghost_goal_bank.py::_context_salience_for_anchor",
+            "ree_core/utils/config.py::GhostGoalBankConfig"
+          ],
+          "severity_note": "severity deliberately LEFT UNSET. Per the skill's own rule, severity is for a defect that has already been exercised; this is an ABSENT capability, not a corrupting or degrading one. Nothing in the corpus produces wrong evidence because of it -- V3-EXQ-997 is the first run whose question required it, and the harm was a scope error in the experiment, not corrupted metrics. Leaving it unset is what keeps the /queue-experiment Step 2.5c gate from blocking unrelated experiments that touch agent.py or ghost_goal_bank.py, which would be the wrong outcome here.",
+          "failure_record_entry": {
+            "run_id": "v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3",
+            "experiment_type": "v3_exq_997_mech162_zresource_zworld_planning_reconvergence",
+            "metric": "MECH-162's asserted condition (both streams reaching the planner) could not be instantiated: the substrate offers z_resource XOR z_world, so the run could only compare the two single-stream conditions. C1_discrimination_delta_floor FAILED on its seed half (measured_seed_fraction 0.40 vs threshold 0.60) while its mean half passed (0.06359 vs 0.02); the seed split on the 4 informative seeds is 2/2 (sign-test p = 1.000) and inverts to 3/1 with C1 PASSING under the entry-weighted contrast recorded in the same manifest.",
+            "target": "A working fused-input implementation must let a three-arm test run (ZRESOURCE / ZWORLD / FUSED) and must show the FUSED arm's per-seed discrimination exceeding the maximum of the two single-stream arms by more than the cross-seed SD of that delta on a majority of seeds, with a recorded per-arm manipulation check establishing that each arm's cue carries the content its name asserts.",
+            "resolved": "open"
+          }
+        },
+        "per_claim_change_original": "Do NOT score V3-EXQ-997's self-declared weakens: the run compared two single-stream arms (z_resource alone vs z_world alone) while MECH-162 asserts the two streams must RE-CONVERGE, and the substrate has no fused path at all (update_z_goal XOR, agent.py ~11504; GhostGoalBank.rank never reads z_world) -- compounded by an untrained ResourceEncoder (P1 activated without its documented P0) and a C1 seed statistic that inverts to PASS under the entry-weighted contrast already recorded in the same manifest. Write the drafted evidence_quality_note, set pending_retest_after_substrate true, and because MECH-162 currently carries NO epistemic_category field at all, set one -> epistemic_category: substrate_ceiling"
+      },
+      "routing_confirmed": "queue-experiment -- user-confirmed 2026-09-04T18:55:13Z at the /governance Step 8 gate (governance-20260904-1347). Governance chips the follow-on."
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "draft_only": true,
+    "reason": "Staging mode -- hypothesis_space_registry.v1.json must NOT be written by this session. The blocks below are what the confirming interactive session (or the next /governance walk) should apply.",
+    "growth_restriction_check": "Mode A targets a NEW questions[] entry (see below), so per Step 9b the growth-restriction check does not apply -- a question being registered in this edit cannot carry a restriction. If the confirming session instead attaches these legs to an existing qid, it MUST read that question's top-level growth_restriction first and carry it verbatim into the interactive gate.",
+    "mode": "A (pre-register a NEW question; no Mode B resolve -- H0 stays alive after the red-team correction)",
+    "question_to_register": {
+      "qid": "zresource-zworld-planning-convergence",
+      "title": "Must z_resource and z_world re-converge at the hippocampal planning stage for goal-directed navigation, and what is the binding operator?",
+      "short_title": "z_resource/z_world planning convergence",
+      "claims": [
+        "MECH-162",
+        "Q-030",
+        "SD-015"
+      ],
+      "registered_utc": "2026-09-04T14:23:32Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-997_2026-09-04.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "note_on_count": "5 = the 4 fan-out legs H1-H4 plus H0 below, which this autopsy resolves in the same edit. initial_frozen_count_at_registration is set to 5 at registration and never moves thereafter.",
+      "hypotheses": [
+        {
+          "hid": "H0",
+          "label": "two-arm substitution decides MECH-162",
+          "desc": "A contrast between z_resource-seeded and z_world-seeded planning cues is sufficient to adjudicate MECH-162's re-convergence assertion.",
+          "axis": "world",
+          "basis": "The design premise V3-EXQ-997 was built on; ALIVE after the red-team correction (the retrieval-form fusion exists and was live, so the positive condition is observable and this run did not discriminate it).",
+          "pre_registered_utc": "2026-09-04T03:22:12Z",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-997"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "mech162_zresource_no_discrimination_advantage_over_zworld",
+            "control_passed": false,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "V3-EXQ-997 (2026-09-04) does NOT discriminate this leg: its two arms differ in which stream SEEDS the goal cue under an always-on retrieval-form fusion (HippocampalModule._propose_ghost_seeded seeds rollouts at anchor.z_world, module.py:2658), the explicit fused arm was never built, the C1 statistic inverts under the manifest's own entry-weighted contrast, and the R0 negative-control leg was structurally unpassable. Red-team (Fable) F1 withdrew the draft's 'eliminated on structure' reading; leg stays alive as the design premise the next three-permutation retest tests directly."
+          }
+        },
+        {
+          "hid": "H1",
+          "label": "untrained-encoder artifact",
+          "desc": "The null arises because ResourceEncoder's documented P0 training was never run, so z_resource carried no identity content.",
+          "axis": "representation",
+          "basis": "SD-015's own record: goal_resource_r 0.066-0.087 untrained vs 0.93-0.96 trained; ree_core/latent/stack.py documents P0 as a precondition of P1. No manipulation check was recorded on this run.",
+          "pre_registered_utc": "2026-09-04T14:23:32Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H2",
+          "label": "aggregation artifact",
+          "desc": "The null is an artifact of the unweighted per-tick statistic; the entry-weighted contrast on the same data gives C1 PASS.",
+          "axis": "instrumentation",
+          "basis": "Recomputed from this manifest: per-tick mean 0.0636 / seed fraction 0.40 (FAIL) vs entry-weighted mean 0.1032 / seed fraction 0.60 (PASS); the two forms differ in sign on two ARM_ZWORLD cells.",
+          "pre_registered_utc": "2026-09-04T14:23:32Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H3",
+          "label": "fusion required, not substitution",
+          "desc": "MECH-162 can only be tested with a third fused arm; the substrate must be built before the question is askable.",
+          "axis": "world",
+          "basis": "The claim's own notes name three permutations; the substrate provides two. The retrieval-form fusion (module.py:2658) exists; what is missing is an explicit JOINT-representation arm -- this leg asks whether that form, not retrieval seeding, is what the claim needs. Co-live with H0 after the red-team correction.",
+          "pre_registered_utc": "2026-09-04T14:23:32Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H4",
+          "label": "survival/engagement confound",
+          "desc": "The DV tracks episode length and anchor-pool accumulation rather than the seed latent's identity.",
+          "axis": "process",
+          "basis": "The longer-running arm won 4 of 4 informative seed pairs; Spearman(total_steps, delta) = 0.50 across the 8 informative cells; agent.reset() wipes the anchor set every episode so pool size is episode-length-bound.",
+          "pre_registered_utc": "2026-09-04T14:23:32Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does the hippocampal planner require BOTH z_resource and z_world, and if so under which binding operator?",
+        "live_gate": "A three-arm (ZRESOURCE / ZWORLD / FUSED) run on a P0-trained encoder with a recorded per-arm manipulation check.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "One substrate build (fused planning input) and one three-arm run away; H2 is settleable today from data already recorded.",
+        "observation_bottleneck": "No substrate path supplies both latents to the planning-stage retrieval cue, so the claim's positive condition is currently unobservable."
+      }
+    },
+    "axis_family_map_rows_needed": [
+      {
+        "axis": "representation",
+        "family": "representation"
+      },
+      {
+        "axis": "instrumentation",
+        "family": "instrumentation"
+      },
+      {
+        "axis": "world",
+        "family": "world"
+      },
+      {
+        "axis": "process",
+        "family": "process"
+      }
+    ],
+    "invariant_checks_expected": "initial_frozen_count 5 == len(hypotheses) 5; all five legs alive (H0 carries resolving_runs [V3-EXQ-997] with evidence_direction non_contributory and met_elimination_bar false, i.e. recorded but not narrowed); no growth event needed (new questions[] entry).",
+    "applied": true,
+    "registry_written": true,
+    "applied_utc": "2026-09-04T19:00:56Z",
+    "applied_by_session": "governance-20260904-1347",
+    "applied_qid": "zresource-zworld-planning-convergence",
+    "applied_note": "Registered as a NEW questions[] entry (Mode A/B as drafted; placeholders filled with the apply timestamp; adjudicating-run placeholders moved to adjudicating_runs_note). build_hypothesis_space.py + check_hypothesis_space_integrity.py run after the append: flags (a)-(d) all 0."
+  },
+  "cluster_pattern": null,
+  "red_team": {
+    "model": "Fable 5.1 (claude-fable-5-1), separate agent, reasoning withheld, JSON-first read order",
+    "verdict": "CONTESTED",
+    "disposition": "contest ACCEPTED; artifact revised 2026-09-04T14:40:25Z by governance-20260904-1347 (drafting session was a staging-mode subagent)",
+    "findings_accepted": [
+      "F1: HippocampalModule._propose_ghost_seeded seeds CEM init + E2 rollout at anchor.z_world after goal_match ranking (module.py:2576-2706, :2658) -- a live identity-cue->spatial retrieval operator; the draft grepped z_world inside rank() only. Category substrate_ceiling -> standard; H0 alive; create withdrawn; same-claim retest un-refused.",
+      "F2: with num_hazards=0, done = health_depleted or step cap, so early termination is starvation (mediator), not an exogenous confound; H4 reframed.",
+      "F3 (strengthens): R0 leg structurally unpassable -- use_mech293_ghost_probes off disables every mech293_reason emit site.",
+      "F4: the entry-weighted inversion to PASS is carried by ARM_ZRESOURCE seed 46 (3 ticks) and lands exactly on the 0.60 bar; non-robustness survives, PASS rhetoric softened."
+    ],
+    "confirmers_run": [
+      "sed module.py 2586-2592, 2656-2662, 2676-2680 by the confirming session",
+      "Q-030 evidence_quality_note read"
+    ],
+    "what_survived": "non_contributory over weakens (measurement grounds); all recomputed numbers; untrained-encoder premise; lit citations; no duplicate registry question; no existing fused-input substrate entry"
+  },
+  "revised_utc": "2026-09-04T14:40:25Z",
+  "confirmed_utc": "2026-09-04T18:55:13Z",
+  "confirming_session": "governance-20260904-1347 (inline, /governance Step 1.5 route A; drafted by a staging-mode subagent, red-teamed on Fable, revised, gate held with the user)",
+  "user_decisions_2026_09_04": {
+    "Q1": "Apply all four as revised",
+    "Q2_SD031_gate": "Amend SD-031 what_would_answer + self_attribution GAP-6 to accept construction-balanced (RandomPolicy, offline-scored) comparator-only designs for the ARC-065 diversity half",
+    "Q3": "Add 6 buildable v3 substrate stubs",
+    "Q4": "Apply the three August staging-autopsy ledger blocks now",
+    "recommendation_agreement": "3 of 4 recommended options selected (Q4 against); logged via record_recommendation_outcome.py"
+  }
+}

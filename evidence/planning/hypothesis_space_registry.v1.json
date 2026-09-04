@@ -5369,6 +5369,486 @@
         "distance_phrase": "0 of 3 legs resolved; portfolio not yet queued."
       },
       "registration_note": "Registered by failure_autopsy_V3-EXQ-1000_2026-09-04 (user-confirmed at the Step 8 gate 2026-09-04T13:47:34Z; drafted in that artifact, git-witnessed at REE_assembly 34fd92e301 before any adjudicating run). NEW question rather than growth on sd_e1_residual_crush_locus on the different-statistic ground: that question's title names cr_ratio (25-37x short of 0.1), which V3-EXQ-1000 answers; e1coe_score_var has a different readout (bounded goal proximity) and denominator. The parent keeps 3 alive legs, so the 965 'fully-resolved parent' precedent does NOT apply and is not claimed; H-fidelity-anchor shares the learning-signal family with the parent's alive H-training-objective, stated here so the overlap is auditable. All three legs share one git witness: this artifact's landing commit, which pre-dates the portfolio run."
+    },
+    {
+      "qid": "mech161_vigilance_arousal_shape_vs_readout",
+      "title": "Is hazard-detection sensitivity an interior-optimum function of the E3 heartbeat rate, and is any avoidance readout in CausalGridWorldV2 capable of showing it?",
+      "short_title": "MECH-161 vigilance inverted-U",
+      "claims": [
+        "MECH-161",
+        "MECH-026",
+        "MECH-093"
+      ],
+      "registered_utc": "2026-09-04T14:22:46Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-999_2026-09-04.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-readout-invalid",
+          "label": "The avoidance readout cannot express the contrast",
+          "desc": "avoidant-rate(HIGH) - avoidant-rate(SAFE) with the response defined as the away-from-hazard geometric argmax has no signal/noise asymmetry; a measured perfect avoider scores +0.0000 and policy-free nulls score -0.06 to -0.44, so the statistic cannot certify avoidance at any threshold above zero.",
+          "axis": "measurement",
+          "basis": "Oracle and null probes run for this autopsy against the driver's own readout, same env config and seeds (facts_V3-EXQ-999.md sections 8b/8c). Live because the decisive question -- does a VALID readout reveal avoidance in the same agents -- is unrun.",
+          "pre_registered_utc": "2026-09-04T14:22:46Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-999_2026-09-04.json",
+          "adjudicating_runs": [
+            "V3-EXQ-999a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-avoidance-untrained",
+          "label": "Hazard-avoidant behaviour is genuinely absent",
+          "desc": "_train_warmup trains e1, the e2 world-forward model and the e3 harm_eval head and no action policy on harm; NAV_BIAS=0.25 overrides a quarter of training actions toward the hazard. There may be no avoidance for any readout to find.",
+          "axis": "learning-signal",
+          "basis": "Direct read of the driver's training loop; no run in the corpus has ever demonstrated trained hazard avoidance on this bed. Live and untested.",
+          "pre_registered_utc": "2026-09-04T14:22:46Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-999_2026-09-04.json",
+          "adjudicating_runs": [
+            "V3-EXQ-999a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-env-band-absent",
+          "label": "The environment provides no usable low-hazard contrast band",
+          "desc": "With hazard_field_view normalised by the global max, one hazard and decay 0.5, SAFE (<0.15) means Manhattan d>=12 -- unreachable for a centred hazard on a 10x10 grid and a far-corner wedge otherwise (measured 1.1-2.2% of non-wall cells), where the designated avoidant action is a wall no-op in 93-100% of steps.",
+          "axis": "environment",
+          "basis": "Field arithmetic plus a 40-reset census run for this autopsy (facts_V3-EXQ-999.md section 8a). Live because it is a separate, independently repairable cause from the readout definition.",
+          "pre_registered_utc": "2026-09-04T14:22:46Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-999_2026-09-04.json",
+          "adjudicating_runs": [
+            "V3-EXQ-999a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        }
+      ],
+      "decision": {
+        "decision_question": "Does MECH-161's inverted-U shape premise hold on the E3 heartbeat-rate axis, or is the rate axis simply not the arousal parameter?",
+        "live_gate": "A hazard-sensitivity readout on which a measured oracle avoider separates from a measured policy-free null; until that exists no answer on the rate axis is interpretable.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "one instrument repair away from a first interpretable reading; the shape question itself is untouched",
+        "observation_bottleneck": "The P0 positive control is unpassable by a perfect avoider (+0.0000 vs a +0.05 floor), so no run on this bed can currently reach the discriminating criterion."
+      },
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "registered_by_session": "governance-20260904-1347",
+      "registered_from_pending_block": "failure_autopsy_V3-EXQ-999_2026-09-04.json"
+    },
+    {
+      "qid": "zresource-zworld-planning-convergence",
+      "title": "Must z_resource and z_world re-converge at the hippocampal planning stage for goal-directed navigation, and what is the binding operator?",
+      "short_title": "z_resource/z_world planning convergence",
+      "claims": [
+        "MECH-162",
+        "Q-030",
+        "SD-015"
+      ],
+      "registered_utc": "2026-09-04T14:23:32Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-997_2026-09-04.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "note_on_count": "5 = the 4 fan-out legs H1-H4 plus H0 below, which this autopsy resolves in the same edit. initial_frozen_count_at_registration is set to 5 at registration and never moves thereafter.",
+      "hypotheses": [
+        {
+          "hid": "H0",
+          "label": "two-arm substitution decides MECH-162",
+          "desc": "A contrast between z_resource-seeded and z_world-seeded planning cues is sufficient to adjudicate MECH-162's re-convergence assertion.",
+          "axis": "world",
+          "basis": "The design premise V3-EXQ-997 was built on; ALIVE after the red-team correction (the retrieval-form fusion exists and was live, so the positive condition is observable and this run did not discriminate it).",
+          "pre_registered_utc": "2026-09-04T03:22:12Z",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-997"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "mech162_zresource_no_discrimination_advantage_over_zworld",
+            "control_passed": false,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "V3-EXQ-997 (2026-09-04) does NOT discriminate this leg: its two arms differ in which stream SEEDS the goal cue under an always-on retrieval-form fusion (HippocampalModule._propose_ghost_seeded seeds rollouts at anchor.z_world, module.py:2658), the explicit fused arm was never built, the C1 statistic inverts under the manifest's own entry-weighted contrast, and the R0 negative-control leg was structurally unpassable. Red-team (Fable) F1 withdrew the draft's 'eliminated on structure' reading; leg stays alive as the design premise the next three-permutation retest tests directly."
+          },
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json"
+        },
+        {
+          "hid": "H1",
+          "label": "untrained-encoder artifact",
+          "desc": "The null arises because ResourceEncoder's documented P0 training was never run, so z_resource carried no identity content.",
+          "axis": "representation",
+          "basis": "SD-015's own record: goal_resource_r 0.066-0.087 untrained vs 0.93-0.96 trained; ree_core/latent/stack.py documents P0 as a precondition of P1. No manipulation check was recorded on this run.",
+          "pre_registered_utc": "2026-09-04T14:23:32Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H2",
+          "label": "aggregation artifact",
+          "desc": "The null is an artifact of the unweighted per-tick statistic; the entry-weighted contrast on the same data gives C1 PASS.",
+          "axis": "instrumentation",
+          "basis": "Recomputed from this manifest: per-tick mean 0.0636 / seed fraction 0.40 (FAIL) vs entry-weighted mean 0.1032 / seed fraction 0.60 (PASS); the two forms differ in sign on two ARM_ZWORLD cells.",
+          "pre_registered_utc": "2026-09-04T14:23:32Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H3",
+          "label": "fusion required, not substitution",
+          "desc": "MECH-162 can only be tested with a third fused arm; the substrate must be built before the question is askable.",
+          "axis": "world",
+          "basis": "The claim's own notes name three permutations; the substrate provides two. The retrieval-form fusion (module.py:2658) exists; what is missing is an explicit JOINT-representation arm -- this leg asks whether that form, not retrieval seeding, is what the claim needs. Co-live with H0 after the red-team correction.",
+          "pre_registered_utc": "2026-09-04T14:23:32Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H4",
+          "label": "survival/engagement confound",
+          "desc": "The DV tracks episode length and anchor-pool accumulation rather than the seed latent's identity.",
+          "axis": "process",
+          "basis": "The longer-running arm won 4 of 4 informative seed pairs; Spearman(total_steps, delta) = 0.50 across the 8 informative cells; agent.reset() wipes the anchor set every episode so pool size is episode-length-bound.",
+          "pre_registered_utc": "2026-09-04T14:23:32Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-997_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does the hippocampal planner require BOTH z_resource and z_world, and if so under which binding operator?",
+        "live_gate": "A three-arm (ZRESOURCE / ZWORLD / FUSED) run on a P0-trained encoder with a recorded per-arm manipulation check.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "One substrate build (fused planning input) and one three-arm run away; H2 is settleable today from data already recorded.",
+        "observation_bottleneck": "No substrate path supplies both latents to the planning-stage retrieval cue, so the claim's positive condition is currently unobservable."
+      },
+      "initial_frozen_count_at_registration": 5,
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "registered_by_session": "governance-20260904-1347",
+      "registered_from_pending_block": "failure_autopsy_V3-EXQ-997_2026-09-04.json"
+    },
+    {
+      "qid": "sd031_causal_signature_shortcut_vs_model",
+      "title": "Is SD-031's comparator residual a genuine action-conditioned causal signature, or a correlational shortcut riding the training-time action->effect mapping -- and can the current test bed tell?",
+      "short_title": "SD-031 shortcut vs causal model",
+      "claims": [
+        "SD-031",
+        "EXT-005"
+      ],
+      "registered_utc": "2026-09-04T19:00:16Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1001_2026-09-04.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does REE's SD-031 comparator satisfy the Richens & Everitt robustness-under-shift criterion for possessing an approximate causal model of its own action effects?",
+        "live_gate": "a post-shift readapted gap-vs-own-shuffled-action that reaches a same-budget unshifted-env ceiling within noise",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "blocked on a missing same-budget positive control; one fan-out portfolio away from decidable",
+        "observation_bottleneck": "CausalGridWorldV2's action->effect structure is a 4-entry lookup table, so the criterion may be uninstantiable in the current test bed regardless of budget (H3)."
+      },
+      "hypotheses": [
+        {
+          "hid": "H-shortcut",
+          "label": "the residual's discrimination is a correlational shortcut riding the training-time action->effect map",
+          "desc": "The in-distribution AUROC 0.644 signature is memorised action->effect association, not a re-derivable action-conditioned model; it does not recover to a same-budget ceiling under relabelling at any budget.",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-09-04T19:00:16Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1001_2026-09-04.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-1001 is consistent with this leg but cannot establish it: the run had no same-budget ceiling arm, so a sub-floor recovery is not separable from H-budget."
+          },
+          "adjudicating_runs_note": "H1 probe queue_id, not yet queued"
+        },
+        {
+          "hid": "H-budget",
+          "label": "the re-derivation is real but the readapt budget was starved",
+          "desc": "120 optimizer steps is 1.82% of the original 6600-step fit; the observed +0.0117 gap-vs-shuffled and +0.0408 gap-vs-chance are the budget's output, and recovery scales with budget toward the pre-shift 0.1194.",
+          "axis": "curriculum",
+          "pre_registered_utc": "2026-09-04T19:00:16Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1001_2026-09-04.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-1001 is consistent with this leg too: the same 120-step pass recovered 44.2% of the forward-MSE degradation, so the budget was demonstrably non-trivial and the AUROC recovery of 17.0% has no ceiling to be judged against."
+          },
+          "adjudicating_runs_note": "H2 probe queue_id, not yet queued"
+        },
+        {
+          "hid": "H-testbed-degenerate",
+          "label": "the environment cannot instantiate the Richens criterion at all",
+          "desc": "A 4-entry action->displacement lookup table has no compositional causal structure to be robust about; a permutation of it is equally re-fittable by a genuine model and by a memoriser, and zero-shot invariance is impossible for both. If this holds, no budget or control arm in CausalGridWorldV2 discriminates H-shortcut from H-budget.",
+          "axis": "environment",
+          "pre_registered_utc": "2026-09-04T19:00:16Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1001_2026-09-04.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "Asserted by the V3-EXQ-1001 driver's own SCOPE LIMITATION and confirmed by D1's structure: D1's FAIL is predicted identically by H-shortcut and H-budget, so at least one criterion in this test bed is already known to be undecidable."
+          },
+          "adjudicating_runs_note": "H3 probe queue_id, not yet queued"
+        }
+      ],
+      "registered_by_session": "governance-20260904-1347",
+      "registered_from_pending_block": "failure_autopsy_V3-EXQ-1001_2026-09-04.json"
+    },
+    {
+      "qid": "curriculum_phase_gate_live_loop",
+      "title": "Does the infant-curriculum Phase 0->1 crossing-count gate genuinely DISCRIMINATE genuine explorers from false advancers in a live closed loop, or is it only strictly more conservative than the legacy spike gate?",
+      "short_title": "Curriculum phase-gate live-loop discrimination",
+      "claims": [
+        "ARC-046",
+        "ARC-019"
+      ],
+      "registered_utc": "2026-09-04T06:21:28Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-996_2026-09-04.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is the crossing-count criterion the right Phase 0->1 gate for EXQ-ISEF-005, or is its apparent advantage over the spike gate an artefact of a non-independent oracle on a 5-seed draw with one discriminating cell?",
+        "live_gate": "an oracle computed from a signal the gate does not read (foraging / benefit-contact competence rather than h_pos), and power on the DISCRIMINATING cells rather than the total seed count",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "not on the critical path -- infant_substrate:GAP-14-c2 is already closed and its successor is refused; revive only if EXQ-ISEF-005 is unblocked by c-1 and the gate choice is re-opened",
+        "observation_bottleneck": "the competence oracle and the gate criterion are two thresholds on one signal (h_pos), so agreement measures threshold monotonicity on a stable per-seed property"
+      },
+      "hypotheses": [
+        {
+          "hid": "H-live-channel-closes-591h-vacuity",
+          "label": "The env_kwargs() channel closes the 591h vacuity",
+          "desc": "Applying InfantCurriculumScheduler.env_kwargs() to the env constructor each episode makes the curriculum phase reach behaviour, so the two arms' raw per-episode h_pos trajectories diverge and a gate comparison is interpretable at all.",
+          "axis": "instrumentation",
+          "basis": "V3-EXQ-591h's two arms were bit-identical on 5/5 seeds because the only wired channel had no consumer; the 591h autopsy prescribed env_kwargs plus a trajectory-divergence precondition.",
+          "pre_registered_utc": "2026-09-04T06:21:28Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-996_2026-09-04.json",
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-996"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "crossing_count_gate_discriminates_live_closed_loop",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-04T06:21:28Z",
+            "basis": "135 diverging episodes across 4/5 seeds (591h: 0 across 5/5); independently confirmed by probe -- phase-0 vs phase-1 env under an identical 200-action stream differs on 166-185 of 200 ticks with identical initial layouts. Confirmed rather than eliminated: it is a positive readiness result, not the elimination of a rival."
+          }
+        },
+        {
+          "hid": "H-crossing-gate-discriminates-vs-more-conservative",
+          "label": "The crossing-count gate DISCRIMINATES, rather than merely being more conservative",
+          "desc": "The crossing-count gate's 5/5 oracle agreement reflects genuine competence discrimination, not a monotone shift that happens to drop one borderline seed on this draw.",
+          "axis": "process",
+          "basis": "The admitted sets are strictly nested and the crossing gate advances later on every co-admitted seed, so the delta over the control is one seed at zero precondition margin -- consistent with both readings.",
+          "pre_registered_utc": "2026-09-04T06:21:28Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-996_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-996"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "V3-EXQ-996 does not discriminate the two readings: the oracle partition is reproduced exactly by a pre-window crossing count on the same signal, and the discriminative delta is one seed decided by one crossing. Left ALIVE rather than eliminated -- an uninformative run narrows nothing. Its adjudicating run is REFUSED as off the critical path, which is recorded here rather than papered over."
+          }
+        }
+      ],
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "registered_by_session": "governance-20260904-1347",
+      "registered_from_pending_block": "failure_autopsy_V3-EXQ-996_2026-09-04.json"
+    },
+    {
+      "qid": "mech357_stageh_discrimination_bottleneck",
+      "title": "Why does the MECH-357 Stage-H INTACT-vs-LESION comparison fail to discriminate across six consecutive runs?",
+      "short_title": "MECH-357 Stage-H discrimination",
+      "claims": [
+        "MECH-357"
+      ],
+      "registered_utc": "2026-09-04T19:00:16Z",
+      "fanout_sources": [
+        "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is the MECH-357 ilPFC freeze-suppression gate's survival benefit measurable in the Stage-H test bed at all?",
+        "live_gate": "G_H_INTACT_frac > G_H_LESION_frac on a graded, non-saturating, scoring-window-scoped survival DV, with G_H_LESION below and G_H_POSCTRL above the floor",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "blocked on two independent repairs -- the eligibility-trace credit/decay fix (in flight) and a graded scoring-window-scoped DV",
+        "observation_bottleneck": "The current DV (median of last 10 episode lengths >= 75, against a 200-step cap on a bimodal distribution) saturates at 1.0 for all three arms, and the gate's efficacy underflows to ~1e-120 inside the scoring window. Two independent observation bottlenecks, either sufficient alone to make the comparison uninformative."
+      },
+      "hypotheses": [
+        {
+          "hid": "H-pressure-magnitude",
+          "label": "Pressure insufficient in magnitude",
+          "desc": "All four pressure MECHANISMS are exhausted; only scale (num_hazards, proximity_harm_scale) remains untried, and no operating point of the current Stage-H env yields two-sided headroom.",
+          "axis": "world",
+          "basis": "603u's LESION arm survived to the 200-step cap in 3/3 seeds under the strongest pressure mechanism available (pursuit 0.9 + every-step drift at p=0.6).",
+          "pre_registered_utc": "2026-09-04T19:00:16Z",
+          "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          },
+          "adjudicating_runs_note": "future queue_id -- LESION-only graded titration sweep"
+        },
+        {
+          "hid": "H-dv-saturation",
+          "label": "Survival DV saturates and hides an existing discrimination",
+          "desc": "median(last 10 episode lengths) >= 75 against a 200-step cap on a bimodal (200 or 3-6) distribution is pegged at 1.0 for every arm; a graded DV over the ALREADY-RECORDED 603s/603t/603u trajectories may separate INTACT from LESION.",
+          "axis": "measurement",
+          "basis": "7 of 9 arm-seeds read exactly 200.0 (the cap) in 603u; the per-episode distribution is strongly bimodal, so a median-of-10 discards nearly all available information.",
+          "pre_registered_utc": "2026-09-04T19:00:16Z",
+          "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          },
+          "adjudicating_runs_note": "reanalysis -- zero new compute"
+        },
+        {
+          "hid": "H-gate-extinct-in-window",
+          "label": "Gate numerically extinct in the scoring window",
+          "desc": "avoidance_efficacy underflows to ~1e-120 once scaffold_floor anneals to 0, so the INTACT arm is functionally lesioned where the DV measures it, regardless of pressure.",
+          "axis": "instrumentation",
+          "basis": "Measured in 603u: decay:credit 70:1 to 188:1 over 31,000-35,000 updates; efficacy below 1e-17 by episodes 36-39 of 40; n_freeze_suppressed saturating mid-run.",
+          "pre_registered_utc": "2026-09-04T19:00:16Z",
+          "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          },
+          "adjudicating_runs_note": "future queue_id -- 603u re-run unchanged after the in-flight credit-eligibility windowing fix"
+        }
+      ],
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "registered_by_session": "governance-20260904-1347",
+      "registered_from_pending_block": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json"
     }
   ]
 }

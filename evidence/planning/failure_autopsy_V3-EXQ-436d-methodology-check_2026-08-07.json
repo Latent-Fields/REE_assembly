@@ -1,211 +1,253 @@
 {
- "schema_version": "failure_autopsy/v1",
- "generated_utc": "2026-08-07T20:32:48Z",
- "scope": "single",
- "status": "confirmed",
- "confirmed_by": "cool-torvalds-a82359 (/governance session-land, user-approved 2026-08-07)",
- "confirmed_utc": "2026-08-07T21:15:00Z",
- "staging_mode": true,
- "staging_mode_note": "Headless metaworker chip (chip-20260807-436d-slotcosinesim-methodology-check). Steps run in staging mode per .claude/skills/failure-autopsy/SKILL.md: routing is PROPOSED, not finalised; hypothesis_space_registry.v1.json NOT written; claims.yaml NOT edited (it is also under an active foreign claim -- see contention_note). The next /governance cycle owns application.",
- "contention_note": "task_claim.py open --resources REE_assembly/docs/claims/claims.yaml returned exit 3: OWNER is metaworker-chip-20260807-sd014-decouple-wanting-liking (2026-08-07T20:02:46Z), with an additional governance-pause hold by cool-torvalds-a82359. This session is NOT the owner, so it deliberately did not edit claims.yaml and routed its finding to this artifact instead -- which the chip prompt explicitly sanctions as the alternative output path. The coordination-plane autopsy-pause claim was also NOT opened: a governance-pause claim is already in force, this check is read-only apart from writing this artifact pair, and it queues/runs nothing on the plane.",
- "claim_resource_path_note": "The TASK_CLAIMS entry for this session named the artifact under evidence/experiments/ before the evidence/planning/ convention was confirmed from the skill. The artifacts actually written are the two evidence/planning/ paths listed in artifacts_written.",
- "artifacts_written": [
-  "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07.json",
-  "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07.md"
- ],
- "dry_run_checked": true,
- "excluded_dry_run_ids": [],
- "autopsy_kind": "methodology_check",
- "autopsy_kind_note": "This is NOT a fresh autopsy of V3-EXQ-436d's scientific content. It is the targeted methodology check that the 2026-08-07 /governance cycle explicitly HELD the V3-EXQ-436d FAIL pending (failure_autopsy_2026-08-05_pending_review_batch.json target #5). Question asked: is the C1 primary DV (slot_cosine_sim) a sound measure of the differentiation SD-017/ARC-045/MECH-166 predict, given that the WAKING_ONLY baseline ranged 0.0009-0.47 across seeds instead of clustering near 1.0 as ARC-045's own architectural prediction requires, and that one seed showed sleep INCREASING similarity?",
-
- "targets": [
-  {
-   "run_id": "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3",
-   "queue_id": "V3-EXQ-436d",
-   "supersedes": "V3-EXQ-436c",
-   "claim_ids": ["SD-017", "ARC-045", "MECH-166"],
-   "manifest": "REE_assembly/evidence/experiments/v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3.json",
-   "outcome_as_recorded": "FAIL",
-   "non_degenerate_as_recorded": true,
-   "failed_criterion": "C1_primary_slot_cosine_sim_directional -- slot_cosine_sim(SWS_THEN_REM) < slot_cosine_sim(WAKING_ONLY) in >= 3/5 seeds; measured 2/5",
-
-   "verdict": "CONFIRMED METRIC CONFOUND -- the C1 primary DV does not measure context differentiation, and its baseline arm contains no context at all. The 2/5 result is NOT an interpretable null.",
-   "confidence": "high",
-   "confidence_basis": "Findings F1, F2, F3, F5 and F7 are code facts plus direct reproductions on the real ree-v3 substrate (ContextMemory imported from ree_core.predictors.e1_deep), not inferences from the manifest. F4 and F6 are arithmetic consequences of F1-F3 and were also demonstrated numerically. The one thing NOT established is what a corrected metric would report for 436d -- that requires a re-run (see recommended_substrate_queue_entry).",
-
-   "findings": [
-    {
-     "id": "F1",
-     "severity": "fatal_to_C1",
-     "title": "The WAKING_ONLY arm performs ZERO ContextMemory writes. Its 'baseline' bank holds no context content whatsoever.",
-     "evidence": "ContextMemory.write() has exactly three reachable call sites in the substrate, and 436d's config closes all three for the waking arm. (a) ree_core/agent.py:4605 inside sense() -- gated on `_wp_mode in ('sense_only','both')`; 436d sets sd016_writepath_mode='off'. (b) ree_core/predictors/e1_deep.py:552 inside E1.update_from_observation(), reached only from agent.py:9426 -- gated on `_wp_mode in ('train_only','both')`; same 'off'. (c) ree_core/agent.py:10780 inside run_sws_schema_pass() -- sleep-only, and the WAKING_ONLY arm records sleep_passes=0. Manifest corroborates independently: sleep_cycle_sws_n_writes_total = 0.0 for all five WAKING_ONLY arms, 160.0 for all five SWS_THEN_REM arms.",
-     "consequence": "C1 is not 'sleep-differentiated context vs waking-undifferentiated context'. It is 'a bank with 160 content writes vs a bank with none'. The comparison has no shared referent."
-    },
-    {
-     "id": "F2",
-     "severity": "fatal_to_C1",
-     "title": "The metric averages over never-written slots, so an untouched bank reads ~0, not ~1.0 -- and ARC-045's near-1.0 premise is unreachable under the repaired write path.",
-     "evidence": "_compute_slot_cosine_sim (driver line 435) takes the mean off-diagonal cosine over ALL 16 slots of context_memory.memory, with no occupancy mask. Slots initialise to `nn.Parameter(torch.randn(16,128) * 0.01)` (e1_deep.py:47), i.e. mutually near-orthogonal. Measured null over 2000 random inits: mean +0.000145, sd 0.008121, range [-0.022895, +0.029442], P(metric > 0.20) = 0.0000. ARC-045's prediction that an undifferentiated bank reads near 1.0 is only realisable when all 16 slots hold near-identical content -- which is exactly the legacy write_gate-as-payload pathology (every write blended the slot toward 0.5*ones(128); 436c measured whole-bank cosine 0.9999-1.0 in 4/5 seeds). V3-EXQ-436d REPAIRED that pathology via contextmemory_gated_content_write=true.",
-     "consequence": "The near-1.0 baseline the C1 criterion presupposes was an artifact of the very defect 436d fixed. Under the repaired substrate that baseline state cannot occur, so C1 was inherited from a substrate that no longer exists."
-    },
-    {
-     "id": "F3",
-     "severity": "fatal_to_C1",
-     "title": "The metric is a PRODUCT of content-similarity and slot occupancy -- it conflates 'how similar' with 'how many'.",
-     "evidence": "With k slots written at mutual cosine c and (16-k) at init, the whole-bank statistic tracks c*k(k-1)/(n(n-1)) closely. Measured (c=0.90): k=8 -> 0.2487 (predicted 0.2100); k=12 -> 0.5199 (0.4950); k=16 -> 0.9017 (0.9000). At c=0.50: k=8 -> 0.1475 (0.1167); k=12 -> 0.3003 (0.2750); k=16 -> 0.5049 (0.5000). Control: with written content held mutually ORTHOGONAL, the metric stays at ~0 (|value| <= 0.013) for every k from 0 to 16 -- confirming occupancy alone does not move it, only occupancy x similarity does.",
-     "consequence": "Two banks with identical differentiation but different occupancy read differently. The arms differ in occupancy by construction (F1, F4), so the statistic is not comparable across them."
-    },
-    {
-     "id": "F4",
-     "severity": "direction_reversing",
-     "title": "C1 PENALISES sleep for recruiting slots -- the exact behaviour SD-017/ARC-045/MECH-166 predict it should produce.",
-     "evidence": "Manifest slot_visit_safe_count shows the WAKING_ONLY arm activating exactly ONE slot in all five seeds (seed 7 -> slot 1; seed 13 -> slot 8; seed 42 -> slot 8; seed 100 -> slot 7; seed 200 -> slot 14), while SWS_THEN_REM activates 2-6. Simulated on the real metric: WAKING_ONLY at k=1 reads +0.0092. SWS_THEN_REM recruiting k=12 slots at occupied-only cosine +0.113 -- i.e. near-orthogonal, excellent differentiation -- reads +0.0763, EIGHT TIMES HIGHER, and C1 scores it FAIL. Same at k=4 (occupied-cos 0.321) -> 0.0305 FAIL, k=6 (0.207) -> 0.0432 FAIL, k=8 (0.173) -> 0.0542 FAIL.",
-     "consequence": "An arm that spreads context across more slots at better mutual separation is scored WORSE by C1 than an arm that uses one slot. The criterion is anti-correlated with the mechanism it was written to detect."
-    },
-    {
-     "id": "F5",
-     "severity": "fatal_to_C1",
-     "title": "The WAKING_ONLY baseline value is set by an UNCONTROLLED nuisance term -- Adam drift of an nn.Parameter that received no writes.",
-     "evidence": "context_memory.memory is an nn.Parameter, and the driver's optimiser takes `standard_params = [p for n,p in agent.named_parameters() if 'harm_eval_head' not in n]` at lr=1e-3 (driver lines 697-700), which INCLUDES it. Gradient reaches it through ContextMemory.read()'s shared softmax attention. Reproduced on the real ContextMemory(gated_content_write=True) with ZERO write() calls, Adam lr=1e-3, at the five experiment seeds: metric moves from ~0.00 at init to 0.2459-0.3631 by step 200, then decays non-monotonically to 0.0531-0.1954 by step 30000. Per seed at 200/1000/5000/30000 steps -- 42: 0.307/0.304/0.134/0.112; 7: 0.363/0.248/0.053/0.065; 13: 0.246/0.312/0.092/0.070; 100: 0.257/0.185/0.107/0.195; 200: 0.283/0.370/0.133/0.114.",
-     "consequence": "This reproduces the ENTIRE observed WAKING_ONLY range (0.000878-0.470201) with no context writes at all. The baseline therefore measures optimiser drift, and its value at readout is an arbitrary function of seed and of where training happened to stop. It is a nuisance parameter, not a control condition. This is also the direct answer to the chip's question about the 0.0009-0.47 spread: the spread is Adam drift, not context content."
-    },
-    {
-     "id": "F6",
-     "severity": "invalidates_denominator",
-     "title": "C1 is structurally unsatisfiable on 2 of the 5 seeds, so the '2/5 vs required 3/5' arithmetic is not a null.",
-     "evidence": "Seeds 13 (0.009946) and 200 (0.000878) have WAKING_ONLY baselines INSIDE the untouched-bank null distribution from F2 (mean 0.000145, sd 0.008121): z = +1.21 and +0.09 respectively. For those seeds C1 asks whether the sleep arm can drive the statistic BELOW the metric's own zero-point while simultaneously writing 160 content vectors into the bank -- but by F3 any write to k>=2 slots with non-orthogonal content can only RAISE it.",
-     "consequence": "C1 cannot pass on seeds 13 and 200 regardless of what sleep does. The effective denominator is at most 3, and 2 of those 3 passed, against a threshold registered as 3/5. The recorded FAIL is an artifact of counting unachievable seeds in the denominator."
-    },
-    {
-     "id": "F7",
-     "severity": "reporting_defect_only",
-     "title": "Two secondary reporting defects found in passing; neither is a differential confound.",
-     "evidence": "(a) The manifest config advertises sd016_diversification_weight: 0.5, but the diversification loss is gated on `_div_w > 0.0 AND self.e1.config.sd016_enabled` (agent.py:9437-9439); sd016_enabled defaults False (config.py:384) and the 436d driver never sets it. The advertised orthogonality pressure was INACTIVE for the whole run. (b) sleep_cycle_sws_slot_diversity_last is not an independent readout: run_sws_schema_pass computes `diversity = mean(1 - off_diag_cosine)` over the same whole bank with the same mask, so it is exactly 1 - slot_cosine_sim. Verified to 6 dp on all five sleep arms (e.g. seed 42: 1 - 0.5676 = 0.4324 = 0.432449).",
-     "consequence": "(a) means the config field misdescribes the run and should not be cited as a substrate condition. (b) means these two fields must not be read as mutually corroborating -- they are one number reported twice."
-    }
-   ],
-
-   "per_seed_data": [
-    {"seed": 42,  "waking_only": 0.390728, "sws_then_rem": 0.432449, "C1_pass": false, "waking_within_untouched_null": false, "waking_null_z": 48.1, "sws_n_writes": 160.0, "waking_slots_activated": 1, "sws_slots_activated": 6},
-    {"seed": 7,   "waking_only": 0.470201, "sws_then_rem": 0.156510, "C1_pass": true,  "waking_within_untouched_null": false, "waking_null_z": 57.9, "sws_n_writes": 160.0, "waking_slots_activated": 2, "sws_slots_activated": 1},
-    {"seed": 13,  "waking_only": 0.009946, "sws_then_rem": 0.085408, "C1_pass": false, "waking_within_untouched_null": true,  "waking_null_z": 1.21, "sws_n_writes": 160.0, "waking_slots_activated": 1, "sws_slots_activated": 2},
-    {"seed": 100, "waking_only": 0.208183, "sws_then_rem": 0.107311, "C1_pass": true,  "waking_within_untouched_null": false, "waking_null_z": 25.6, "sws_n_writes": 160.0, "waking_slots_activated": 2, "sws_slots_activated": 2},
-    {"seed": 200, "waking_only": 0.000878, "sws_then_rem": 0.487948, "C1_pass": false, "waking_within_untouched_null": true,  "waking_null_z": 0.09, "sws_n_writes": 160.0, "waking_slots_activated": 1, "sws_slots_activated": 3}
-   ],
-   "per_seed_data_note": "waking_null_z is against the measured untouched-bank null (mean 0.000145, sd 0.008121, n=2000 random inits). slots_activated counts non-zero entries in the manifest's slot_visit_safe_count vector (read-side argmax occupancy, the only occupancy signal the manifest carries; the write-side argmin index is not recorded -- see measurement_gaps).",
-
-   "answers_to_the_chip_questions": {
-    "q1_does_the_computation_include_empty_unwritten_slots": "YES, and this is decisive. _compute_slot_cosine_sim masks only the diagonal; it applies no occupancy mask. Never-written slots retain randn*0.01 initialisation and are mutually near-orthogonal, contributing ~0. See F2.",
-    "q2_does_that_bias_away_from_the_predicted_near_1_0_baseline": "YES. A near-1.0 reading requires ALL 16 slots to hold near-identical content. That state was reachable only under the legacy write_gate-as-payload defect (436c: 0.9999-1.0), which 436d repaired. ARC-045's near-1.0 premise therefore describes the BROKEN substrate, not the repaired one. See F2.",
-    "q3_is_there_a_content_diversity_confound": "YES, two of them, and they compound. (i) Occupancy: the metric is a product of content-similarity and slot-occupancy fraction, so it moves when the number of written slots changes even at constant differentiation -- and it moves in the direction that penalises sleep (F3, F4). (ii) Optimiser drift: memory is an optimised nn.Parameter, so the statistic moves without any write at all (F5).",
-    "q4_what_drove_the_0_0009_to_0_47_waking_spread": "Adam drift, reproduced directly. With ZERO write() calls the metric spans 0.05-0.37 across these seeds and training lengths, covering the observed range. There is no context content in the WAKING_ONLY bank to have produced it (F1, F5).",
-    "q5_is_the_reversed_direction_seed_200_a_real_confound_or_noise": "A real confound, not noise. Seed 200's WAKING_ONLY value of 0.000878 sits at z=+0.09 in the untouched-bank null -- the metric's exact zero-point. The 'increase' to 0.487948 is the sleep arm writing 160 content vectors into 3 recruited slots, which by F3 can only raise a statistic starting at zero. Nothing could have produced a decrease there. Same for seed 13.",
-    "q6_overall": "The 0.0009-0.47 baseline spread and the reversed-direction seed are BOTH manifestations of one measurement defect, not a noisy null. Confidence: high."
-   },
-
-   "four_layer_diagnosis": {
-    "claim_alignment": "UNTESTED. C1 as registered does not measure the quantity SD-017/ARC-045/MECH-166 predict, so the run yields no evidence for or against slot differentiation. Note this is narrower than 'the claims are unsupported' -- it is that this instrument cannot speak to them.",
-    "biological_reference": "not reached -- the check terminated at the measurement layer before any translation question arose.",
-    "prerequisites": "PRESENT and genuinely cleared. P0 (writes fire, non_degenerate=true) is real: sws_n_writes_total=160 per sleep seed. 436d IS the first clean run of the lineage on that axis, exactly as governance recorded. That finding survives this check intact.",
-    "implementation": "REPAIRED and working. contextmemory_gated_content_write=true fixed the 436c write_gate-as-payload homogenisation. The confound is downstream of the repair, in the readout -- and is partly CAUSED by it, since the repair removed the near-1.0 baseline C1 was calibrated against.",
-    "environment": "adequate; not implicated.",
-    "measurement": "DEFECTIVE -- this is the whole finding. Whole-bank statistic with no occupancy mask (F2), conflating similarity with occupancy (F3), direction-reversing against the predicted mechanism (F4), baseline contaminated by optimiser drift on an unwritten parameter (F5), and structurally unsatisfiable on 2/5 seeds (F6).",
-    "integration": "the metric reads a parameter that three separate processes write -- ContextMemory.write(), Adam, and (when enabled, though not here) the diversification loss. It cannot attribute a change to any one of them.",
-    "scale": "not the limiting factor. Adding seeds would tighten the estimate of a quantity that is measuring the wrong thing."
-   },
-
-   "biological_reference": {
-    "closest_mechanism": "not applicable -- this is a measurement-validity finding, not a biology-translation finding",
-    "dependencies": [],
-    "is_formal_import": false,
-    "divergence": null,
-    "lit_status": "not_applicable"
-   },
-
-   "recommended_epistemic_category": "measurement_test_design_defect",
-   "recommended_evidence_direction": "non_contributory",
-   "recommended_evidence_direction_change": "weakens -> non_contributory (PROPOSED; requires /governance ratification -- this session did not apply it)",
-
-   "recommended_evidence_quality_note": "[2026-08-07 methodology check, awaiting governance confirmation: the V3-EXQ-436d C1 FAIL is NOT an interpretable null and the held caveat resolves AGAINST the metric. slot_cosine_sim is a whole-bank mean off-diagonal cosine with no occupancy mask, and the WAKING_ONLY arm executes ZERO ContextMemory writes (all three write sites closed by sd016_writepath_mode='off' plus sleep_passes=0; manifest sws_n_writes_total=0.0), so the baseline holds no context content. Its 0.0009-0.47 spread is Adam drift of context_memory.memory, an nn.Parameter carried in the driver's optimiser -- reproduced on the real substrate with zero writes at 0.05-0.37 across these seeds. The metric also tracks content-similarity x occupancy-fraction, so it scores an arm that recruits 12 well-separated slots (whole-bank 0.076) WORSE than one that uses a single slot (0.009), i.e. it is anti-correlated with the differentiation SD-017/ARC-045/MECH-166 predict. Seeds 13 and 200 sit inside the untouched-bank null (z=+1.21, +0.09), making C1 unsatisfiable there by construction, so the effective denominator is <=3 (2 of 3 passed) rather than 5. ARC-045's near-1.0 undifferentiated-baseline premise is reachable only under the legacy write_gate-as-payload defect that 436d itself repaired. P0 clearance is unaffected and stands: 436d remains the first lineage run with a working write path. Recommend evidence_direction weakens -> non_contributory, epistemic_category measurement_test_design_defect, and a 436e re-run on a corrected DV before any demotion weighting.]",
-
-   "recommended_substrate_queue_entry": {
-    "action": "propose_experiment",
-    "target": "V3-EXQ-436e",
-    "rationale": "The SD-017/ARC-045/MECH-166 slot-differentiation question is still open and now testable for the first time -- 436d cleared P0, so the write path works. What it needs is a DV that measures differentiation rather than occupancy-weighted whole-bank drift.",
-    "required_changes": [
-     "Compute the cosine statistic over OCCUPIED slots only. Track write-target indices (ContextMemory.write's `min_idx`) explicitly rather than inferring occupancy from read-side argmax, which the manifest currently conflates.",
-     "Report occupancy k alongside the similarity c, and pre-register on c. Never on the c*k(k-1)/(n(n-1)) product.",
-     "Give the WAKING_ONLY arm a real write path so it is a control rather than an empty bank -- e.g. sd016_writepath_mode='sense_only' -- and equalise or explicitly report per-arm write counts.",
-     "Neutralise the Adam-drift nuisance: exclude context_memory.memory from the optimiser for this measurement, or measure and report the drift as a covariate, or snapshot the metric at a fixed step rather than at end-of-run.",
-     "Re-derive the predicted baseline against the REPAIRED write path. Do not re-use ARC-045's near-1.0 figure -- F2 shows it describes the broken substrate.",
-     "Add a negative control: an arm with writes disabled entirely, whose metric should be indistinguishable from the untouched-bank null (mean ~0.0001, sd ~0.008)."
-    ]
-   },
-
-   "pending_retest_after_substrate": true,
-   "pending_retest_note": "PROPOSED CHANGE to what governance recorded: the retest gate should be re-scoped from 'after substrate' to 'after DV repair'. The substrate is not the blocker -- the write path already works. The instrument is.",
-   "narrow_supports_flag": false,
-
-   "re_derive_brake": {
-    "fired": false,
-    "prior_substrate_ceiling_autopsies": [],
-    "note": "Not a substrate-ceiling finding. The 436 lineage's prior autopsies (436b instrumentation gap, 436c write-path defect) were all upstream defects; this is the first one located in the readout."
-   },
-
-   "measurement_gaps": [
-    "The manifest records no write-target occupancy. slot_visit_safe_count / slot_visit_dang_count are READ-side argmax counts; ContextMemory.write() selects by argmin of query.memory, a different index. Occupancy in per_seed_data is therefore indicative, not exact, and 436e should record the write index directly.",
-    "No per-slot memory snapshot is persisted, so the occupied-only statistic cannot be recomputed retrospectively from the 436d manifest. This is why the finding is 'the metric is confounded' and NOT 'the corrected metric would have said X' -- establishing the latter requires the 436e re-run."
-   ],
-
-   "what_this_check_did_NOT_establish": [
-    "Whether SD-017/ARC-045/MECH-166's slot-differentiation prediction is true. The check invalidates the instrument, not the hypothesis.",
-    "What a corrected DV would have reported for 436d. Not recoverable from the persisted manifest (see measurement_gaps).",
-    "Whether the other 436d criteria (C2-C4 and the P0 gate) are affected. Only C1's DV was examined; P0 was spot-checked and is sound."
-   ],
-
-   "fanout_recommendation": {
-    "is_discrimination": false,
-    "note": "Single-target measurement-validity finding. But two fan-out checks are worth governance's attention, because the defective statistic is not local to this driver: (a) run_sws_schema_pass's sws_slot_diversity is the same whole-bank formula (F7b) and is emitted by EVERY driver that calls a sleep pass, so any pre-registered criterion elsewhere reading sws_slot_diversity inherits the same occupancy confound; (b) the same _compute_slot_cosine_sim shape appears in v3_exq_242, v3_exq_243, v3_exq_245/245a/245b, v3_exq_246 and the earlier 436-family drivers -- worth a grep-level sweep for any other criterion pre-registered on a whole-bank cosine."
-   }
-  }
- ],
-
- "hypothesis_space_ledger_pending": {
-  "note": "Staging mode -- NOT written to hypothesis_space_registry.v1.json. The confirming interactive session or the next /governance walk applies this.",
-  "proposed_resolutions": [
-   {
-    "question": "sd017_arc045_slot_differentiation",
-    "hypothesis": "H-436d-c1-is-a-genuine-null",
-    "proposed_state": "eliminated",
-    "basis": "C1's DV does not measure differentiation and is unsatisfiable on 2/5 seeds by construction (F2, F3, F4, F6)."
-   },
-   {
-    "question": "sd017_arc045_slot_differentiation",
-    "hypothesis": "H-436d-c1-baseline-is-a-metric-artifact",
-    "proposed_state": "confirmed",
-    "basis": "WAKING_ONLY performs zero writes (F1); its 0.0009-0.47 spread is reproduced by Adam drift alone with zero writes (F5)."
-   }
-  ]
- },
-
- "provenance": {
-  "session_id": "metaworker-chip-20260807-436d-slotcosinesim-methodology-check",
-  "chip_ref": "chip-20260807-436d-slotcosinesim-methodology-check",
-  "substrate_read_at": "ree-v3 working tree, 2026-08-07",
-  "code_sites_examined": [
-   "ree-v3/experiments/v3_exq_436d_sd017_mech166_writepath_retest.py:435 (_compute_slot_cosine_sim)",
-   "ree-v3/experiments/v3_exq_436d_sd017_mech166_writepath_retest.py:697-700 (optimiser param set)",
-   "ree-v3/ree_core/predictors/e1_deep.py:36-158 (ContextMemory: init, read, write, compute_diversification_loss)",
-   "ree-v3/ree_core/predictors/e1_deep.py:546-556 (update_from_observation)",
-   "ree-v3/ree_core/agent.py:4582-4605 (sense() write hook and its gate)",
-   "ree-v3/ree_core/agent.py:9437-9439 (diversification loss gate)",
-   "ree-v3/ree_core/agent.py:10604-10812 (run_sws_schema_pass, write site and sws_slot_diversity)"
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-07T20:32:48Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_by": "cool-torvalds-a82359 (/governance session-land, user-approved 2026-08-07)",
+  "confirmed_utc": "2026-08-07T21:15:00Z",
+  "staging_mode": true,
+  "staging_mode_note": "Headless metaworker chip (chip-20260807-436d-slotcosinesim-methodology-check). Steps run in staging mode per .claude/skills/failure-autopsy/SKILL.md: routing is PROPOSED, not finalised; hypothesis_space_registry.v1.json NOT written; claims.yaml NOT edited (it is also under an active foreign claim -- see contention_note). The next /governance cycle owns application.",
+  "contention_note": "task_claim.py open --resources REE_assembly/docs/claims/claims.yaml returned exit 3: OWNER is metaworker-chip-20260807-sd014-decouple-wanting-liking (2026-08-07T20:02:46Z), with an additional governance-pause hold by cool-torvalds-a82359. This session is NOT the owner, so it deliberately did not edit claims.yaml and routed its finding to this artifact instead -- which the chip prompt explicitly sanctions as the alternative output path. The coordination-plane autopsy-pause claim was also NOT opened: a governance-pause claim is already in force, this check is read-only apart from writing this artifact pair, and it queues/runs nothing on the plane.",
+  "claim_resource_path_note": "The TASK_CLAIMS entry for this session named the artifact under evidence/experiments/ before the evidence/planning/ convention was confirmed from the skill. The artifacts actually written are the two evidence/planning/ paths listed in artifacts_written.",
+  "artifacts_written": [
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07.json",
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07.md"
   ],
-  "probes_run": [
-   "Untouched-bank null: 2000 random inits of randn(16,128)*0.01 through the exact metric.",
-   "Occupancy sweep: metric vs k written slots at mutually orthogonal content (control) and at fixed mutual cosine c in {0.90, 0.50}.",
-   "Direction-reversal demonstration: k=1 baseline vs k in {4,6,8,12} at progressively better occupied-only differentiation.",
-   "Adam-drift reproduction: real ContextMemory(gated_content_write=True), Adam lr=1e-3, ZERO write() calls, 30000 steps, at the five experiment seeds."
-  ]
- }
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "autopsy_kind": "methodology_check",
+  "autopsy_kind_note": "This is NOT a fresh autopsy of V3-EXQ-436d's scientific content. It is the targeted methodology check that the 2026-08-07 /governance cycle explicitly HELD the V3-EXQ-436d FAIL pending (failure_autopsy_2026-08-05_pending_review_batch.json target #5). Question asked: is the C1 primary DV (slot_cosine_sim) a sound measure of the differentiation SD-017/ARC-045/MECH-166 predict, given that the WAKING_ONLY baseline ranged 0.0009-0.47 across seeds instead of clustering near 1.0 as ARC-045's own architectural prediction requires, and that one seed showed sleep INCREASING similarity?",
+  "targets": [
+    {
+      "run_id": "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3",
+      "queue_id": "V3-EXQ-436d",
+      "supersedes": "V3-EXQ-436c",
+      "claim_ids": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "manifest": "REE_assembly/evidence/experiments/v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3.json",
+      "outcome_as_recorded": "FAIL",
+      "non_degenerate_as_recorded": true,
+      "failed_criterion": "C1_primary_slot_cosine_sim_directional -- slot_cosine_sim(SWS_THEN_REM) < slot_cosine_sim(WAKING_ONLY) in >= 3/5 seeds; measured 2/5",
+      "verdict": "CONFIRMED METRIC CONFOUND -- the C1 primary DV does not measure context differentiation, and its baseline arm contains no context at all. The 2/5 result is NOT an interpretable null.",
+      "confidence": "high",
+      "confidence_basis": "Findings F1, F2, F3, F5 and F7 are code facts plus direct reproductions on the real ree-v3 substrate (ContextMemory imported from ree_core.predictors.e1_deep), not inferences from the manifest. F4 and F6 are arithmetic consequences of F1-F3 and were also demonstrated numerically. The one thing NOT established is what a corrected metric would report for 436d -- that requires a re-run (see recommended_substrate_queue_entry).",
+      "findings": [
+        {
+          "id": "F1",
+          "severity": "fatal_to_C1",
+          "title": "The WAKING_ONLY arm performs ZERO ContextMemory writes. Its 'baseline' bank holds no context content whatsoever.",
+          "evidence": "ContextMemory.write() has exactly three reachable call sites in the substrate, and 436d's config closes all three for the waking arm. (a) ree_core/agent.py:4605 inside sense() -- gated on `_wp_mode in ('sense_only','both')`; 436d sets sd016_writepath_mode='off'. (b) ree_core/predictors/e1_deep.py:552 inside E1.update_from_observation(), reached only from agent.py:9426 -- gated on `_wp_mode in ('train_only','both')`; same 'off'. (c) ree_core/agent.py:10780 inside run_sws_schema_pass() -- sleep-only, and the WAKING_ONLY arm records sleep_passes=0. Manifest corroborates independently: sleep_cycle_sws_n_writes_total = 0.0 for all five WAKING_ONLY arms, 160.0 for all five SWS_THEN_REM arms.",
+          "consequence": "C1 is not 'sleep-differentiated context vs waking-undifferentiated context'. It is 'a bank with 160 content writes vs a bank with none'. The comparison has no shared referent."
+        },
+        {
+          "id": "F2",
+          "severity": "fatal_to_C1",
+          "title": "The metric averages over never-written slots, so an untouched bank reads ~0, not ~1.0 -- and ARC-045's near-1.0 premise is unreachable under the repaired write path.",
+          "evidence": "_compute_slot_cosine_sim (driver line 435) takes the mean off-diagonal cosine over ALL 16 slots of context_memory.memory, with no occupancy mask. Slots initialise to `nn.Parameter(torch.randn(16,128) * 0.01)` (e1_deep.py:47), i.e. mutually near-orthogonal. Measured null over 2000 random inits: mean +0.000145, sd 0.008121, range [-0.022895, +0.029442], P(metric > 0.20) = 0.0000. ARC-045's prediction that an undifferentiated bank reads near 1.0 is only realisable when all 16 slots hold near-identical content -- which is exactly the legacy write_gate-as-payload pathology (every write blended the slot toward 0.5*ones(128); 436c measured whole-bank cosine 0.9999-1.0 in 4/5 seeds). V3-EXQ-436d REPAIRED that pathology via contextmemory_gated_content_write=true.",
+          "consequence": "The near-1.0 baseline the C1 criterion presupposes was an artifact of the very defect 436d fixed. Under the repaired substrate that baseline state cannot occur, so C1 was inherited from a substrate that no longer exists."
+        },
+        {
+          "id": "F3",
+          "severity": "fatal_to_C1",
+          "title": "The metric is a PRODUCT of content-similarity and slot occupancy -- it conflates 'how similar' with 'how many'.",
+          "evidence": "With k slots written at mutual cosine c and (16-k) at init, the whole-bank statistic tracks c*k(k-1)/(n(n-1)) closely. Measured (c=0.90): k=8 -> 0.2487 (predicted 0.2100); k=12 -> 0.5199 (0.4950); k=16 -> 0.9017 (0.9000). At c=0.50: k=8 -> 0.1475 (0.1167); k=12 -> 0.3003 (0.2750); k=16 -> 0.5049 (0.5000). Control: with written content held mutually ORTHOGONAL, the metric stays at ~0 (|value| <= 0.013) for every k from 0 to 16 -- confirming occupancy alone does not move it, only occupancy x similarity does.",
+          "consequence": "Two banks with identical differentiation but different occupancy read differently. The arms differ in occupancy by construction (F1, F4), so the statistic is not comparable across them."
+        },
+        {
+          "id": "F4",
+          "severity": "direction_reversing",
+          "title": "C1 PENALISES sleep for recruiting slots -- the exact behaviour SD-017/ARC-045/MECH-166 predict it should produce.",
+          "evidence": "Manifest slot_visit_safe_count shows the WAKING_ONLY arm activating exactly ONE slot in all five seeds (seed 7 -> slot 1; seed 13 -> slot 8; seed 42 -> slot 8; seed 100 -> slot 7; seed 200 -> slot 14), while SWS_THEN_REM activates 2-6. Simulated on the real metric: WAKING_ONLY at k=1 reads +0.0092. SWS_THEN_REM recruiting k=12 slots at occupied-only cosine +0.113 -- i.e. near-orthogonal, excellent differentiation -- reads +0.0763, EIGHT TIMES HIGHER, and C1 scores it FAIL. Same at k=4 (occupied-cos 0.321) -> 0.0305 FAIL, k=6 (0.207) -> 0.0432 FAIL, k=8 (0.173) -> 0.0542 FAIL.",
+          "consequence": "An arm that spreads context across more slots at better mutual separation is scored WORSE by C1 than an arm that uses one slot. The criterion is anti-correlated with the mechanism it was written to detect."
+        },
+        {
+          "id": "F5",
+          "severity": "fatal_to_C1",
+          "title": "The WAKING_ONLY baseline value is set by an UNCONTROLLED nuisance term -- Adam drift of an nn.Parameter that received no writes.",
+          "evidence": "context_memory.memory is an nn.Parameter, and the driver's optimiser takes `standard_params = [p for n,p in agent.named_parameters() if 'harm_eval_head' not in n]` at lr=1e-3 (driver lines 697-700), which INCLUDES it. Gradient reaches it through ContextMemory.read()'s shared softmax attention. Reproduced on the real ContextMemory(gated_content_write=True) with ZERO write() calls, Adam lr=1e-3, at the five experiment seeds: metric moves from ~0.00 at init to 0.2459-0.3631 by step 200, then decays non-monotonically to 0.0531-0.1954 by step 30000. Per seed at 200/1000/5000/30000 steps -- 42: 0.307/0.304/0.134/0.112; 7: 0.363/0.248/0.053/0.065; 13: 0.246/0.312/0.092/0.070; 100: 0.257/0.185/0.107/0.195; 200: 0.283/0.370/0.133/0.114.",
+          "consequence": "This reproduces the ENTIRE observed WAKING_ONLY range (0.000878-0.470201) with no context writes at all. The baseline therefore measures optimiser drift, and its value at readout is an arbitrary function of seed and of where training happened to stop. It is a nuisance parameter, not a control condition. This is also the direct answer to the chip's question about the 0.0009-0.47 spread: the spread is Adam drift, not context content."
+        },
+        {
+          "id": "F6",
+          "severity": "invalidates_denominator",
+          "title": "C1 is structurally unsatisfiable on 2 of the 5 seeds, so the '2/5 vs required 3/5' arithmetic is not a null.",
+          "evidence": "Seeds 13 (0.009946) and 200 (0.000878) have WAKING_ONLY baselines INSIDE the untouched-bank null distribution from F2 (mean 0.000145, sd 0.008121): z = +1.21 and +0.09 respectively. For those seeds C1 asks whether the sleep arm can drive the statistic BELOW the metric's own zero-point while simultaneously writing 160 content vectors into the bank -- but by F3 any write to k>=2 slots with non-orthogonal content can only RAISE it.",
+          "consequence": "C1 cannot pass on seeds 13 and 200 regardless of what sleep does. The effective denominator is at most 3, and 2 of those 3 passed, against a threshold registered as 3/5. The recorded FAIL is an artifact of counting unachievable seeds in the denominator."
+        },
+        {
+          "id": "F7",
+          "severity": "reporting_defect_only",
+          "title": "Two secondary reporting defects found in passing; neither is a differential confound.",
+          "evidence": "(a) The manifest config advertises sd016_diversification_weight: 0.5, but the diversification loss is gated on `_div_w > 0.0 AND self.e1.config.sd016_enabled` (agent.py:9437-9439); sd016_enabled defaults False (config.py:384) and the 436d driver never sets it. The advertised orthogonality pressure was INACTIVE for the whole run. (b) sleep_cycle_sws_slot_diversity_last is not an independent readout: run_sws_schema_pass computes `diversity = mean(1 - off_diag_cosine)` over the same whole bank with the same mask, so it is exactly 1 - slot_cosine_sim. Verified to 6 dp on all five sleep arms (e.g. seed 42: 1 - 0.5676 = 0.4324 = 0.432449).",
+          "consequence": "(a) means the config field misdescribes the run and should not be cited as a substrate condition. (b) means these two fields must not be read as mutually corroborating -- they are one number reported twice."
+        }
+      ],
+      "per_seed_data": [
+        {
+          "seed": 42,
+          "waking_only": 0.390728,
+          "sws_then_rem": 0.432449,
+          "C1_pass": false,
+          "waking_within_untouched_null": false,
+          "waking_null_z": 48.1,
+          "sws_n_writes": 160.0,
+          "waking_slots_activated": 1,
+          "sws_slots_activated": 6
+        },
+        {
+          "seed": 7,
+          "waking_only": 0.470201,
+          "sws_then_rem": 0.15651,
+          "C1_pass": true,
+          "waking_within_untouched_null": false,
+          "waking_null_z": 57.9,
+          "sws_n_writes": 160.0,
+          "waking_slots_activated": 2,
+          "sws_slots_activated": 1
+        },
+        {
+          "seed": 13,
+          "waking_only": 0.009946,
+          "sws_then_rem": 0.085408,
+          "C1_pass": false,
+          "waking_within_untouched_null": true,
+          "waking_null_z": 1.21,
+          "sws_n_writes": 160.0,
+          "waking_slots_activated": 1,
+          "sws_slots_activated": 2
+        },
+        {
+          "seed": 100,
+          "waking_only": 0.208183,
+          "sws_then_rem": 0.107311,
+          "C1_pass": true,
+          "waking_within_untouched_null": false,
+          "waking_null_z": 25.6,
+          "sws_n_writes": 160.0,
+          "waking_slots_activated": 2,
+          "sws_slots_activated": 2
+        },
+        {
+          "seed": 200,
+          "waking_only": 0.000878,
+          "sws_then_rem": 0.487948,
+          "C1_pass": false,
+          "waking_within_untouched_null": true,
+          "waking_null_z": 0.09,
+          "sws_n_writes": 160.0,
+          "waking_slots_activated": 1,
+          "sws_slots_activated": 3
+        }
+      ],
+      "per_seed_data_note": "waking_null_z is against the measured untouched-bank null (mean 0.000145, sd 0.008121, n=2000 random inits). slots_activated counts non-zero entries in the manifest's slot_visit_safe_count vector (read-side argmax occupancy, the only occupancy signal the manifest carries; the write-side argmin index is not recorded -- see measurement_gaps).",
+      "answers_to_the_chip_questions": {
+        "q1_does_the_computation_include_empty_unwritten_slots": "YES, and this is decisive. _compute_slot_cosine_sim masks only the diagonal; it applies no occupancy mask. Never-written slots retain randn*0.01 initialisation and are mutually near-orthogonal, contributing ~0. See F2.",
+        "q2_does_that_bias_away_from_the_predicted_near_1_0_baseline": "YES. A near-1.0 reading requires ALL 16 slots to hold near-identical content. That state was reachable only under the legacy write_gate-as-payload defect (436c: 0.9999-1.0), which 436d repaired. ARC-045's near-1.0 premise therefore describes the BROKEN substrate, not the repaired one. See F2.",
+        "q3_is_there_a_content_diversity_confound": "YES, two of them, and they compound. (i) Occupancy: the metric is a product of content-similarity and slot-occupancy fraction, so it moves when the number of written slots changes even at constant differentiation -- and it moves in the direction that penalises sleep (F3, F4). (ii) Optimiser drift: memory is an optimised nn.Parameter, so the statistic moves without any write at all (F5).",
+        "q4_what_drove_the_0_0009_to_0_47_waking_spread": "Adam drift, reproduced directly. With ZERO write() calls the metric spans 0.05-0.37 across these seeds and training lengths, covering the observed range. There is no context content in the WAKING_ONLY bank to have produced it (F1, F5).",
+        "q5_is_the_reversed_direction_seed_200_a_real_confound_or_noise": "A real confound, not noise. Seed 200's WAKING_ONLY value of 0.000878 sits at z=+0.09 in the untouched-bank null -- the metric's exact zero-point. The 'increase' to 0.487948 is the sleep arm writing 160 content vectors into 3 recruited slots, which by F3 can only raise a statistic starting at zero. Nothing could have produced a decrease there. Same for seed 13.",
+        "q6_overall": "The 0.0009-0.47 baseline spread and the reversed-direction seed are BOTH manifestations of one measurement defect, not a noisy null. Confidence: high."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "UNTESTED. C1 as registered does not measure the quantity SD-017/ARC-045/MECH-166 predict, so the run yields no evidence for or against slot differentiation. Note this is narrower than 'the claims are unsupported' -- it is that this instrument cannot speak to them.",
+        "biological_reference": "not reached -- the check terminated at the measurement layer before any translation question arose.",
+        "prerequisites": "PRESENT and genuinely cleared. P0 (writes fire, non_degenerate=true) is real: sws_n_writes_total=160 per sleep seed. 436d IS the first clean run of the lineage on that axis, exactly as governance recorded. That finding survives this check intact.",
+        "implementation": "REPAIRED and working. contextmemory_gated_content_write=true fixed the 436c write_gate-as-payload homogenisation. The confound is downstream of the repair, in the readout -- and is partly CAUSED by it, since the repair removed the near-1.0 baseline C1 was calibrated against.",
+        "environment": "adequate; not implicated.",
+        "measurement": "DEFECTIVE -- this is the whole finding. Whole-bank statistic with no occupancy mask (F2), conflating similarity with occupancy (F3), direction-reversing against the predicted mechanism (F4), baseline contaminated by optimiser drift on an unwritten parameter (F5), and structurally unsatisfiable on 2/5 seeds (F6).",
+        "integration": "the metric reads a parameter that three separate processes write -- ContextMemory.write(), Adam, and (when enabled, though not here) the diversification loss. It cannot attribute a change to any one of them.",
+        "scale": "not the limiting factor. Adding seeds would tighten the estimate of a quantity that is measuring the wrong thing."
+      },
+      "biological_reference": {
+        "closest_mechanism": "not applicable -- this is a measurement-validity finding, not a biology-translation finding",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "not_applicable"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_change": "weakens -> non_contributory (PROPOSED; requires /governance ratification -- this session did not apply it)",
+      "recommended_evidence_quality_note": "[2026-08-07 methodology check, awaiting governance confirmation: the V3-EXQ-436d C1 FAIL is NOT an interpretable null and the held caveat resolves AGAINST the metric. slot_cosine_sim is a whole-bank mean off-diagonal cosine with no occupancy mask, and the WAKING_ONLY arm executes ZERO ContextMemory writes (all three write sites closed by sd016_writepath_mode='off' plus sleep_passes=0; manifest sws_n_writes_total=0.0), so the baseline holds no context content. Its 0.0009-0.47 spread is Adam drift of context_memory.memory, an nn.Parameter carried in the driver's optimiser -- reproduced on the real substrate with zero writes at 0.05-0.37 across these seeds. The metric also tracks content-similarity x occupancy-fraction, so it scores an arm that recruits 12 well-separated slots (whole-bank 0.076) WORSE than one that uses a single slot (0.009), i.e. it is anti-correlated with the differentiation SD-017/ARC-045/MECH-166 predict. Seeds 13 and 200 sit inside the untouched-bank null (z=+1.21, +0.09), making C1 unsatisfiable there by construction, so the effective denominator is <=3 (2 of 3 passed) rather than 5. ARC-045's near-1.0 undifferentiated-baseline premise is reachable only under the legacy write_gate-as-payload defect that 436d itself repaired. P0 clearance is unaffected and stands: 436d remains the first lineage run with a working write path. Recommend evidence_direction weakens -> non_contributory, epistemic_category measurement_test_design_defect, and a 436e re-run on a corrected DV before any demotion weighting.]",
+      "recommended_substrate_queue_entry": {
+        "action": "propose_experiment",
+        "target": "V3-EXQ-436e",
+        "rationale": "The SD-017/ARC-045/MECH-166 slot-differentiation question is still open and now testable for the first time -- 436d cleared P0, so the write path works. What it needs is a DV that measures differentiation rather than occupancy-weighted whole-bank drift.",
+        "required_changes": [
+          "Compute the cosine statistic over OCCUPIED slots only. Track write-target indices (ContextMemory.write's `min_idx`) explicitly rather than inferring occupancy from read-side argmax, which the manifest currently conflates.",
+          "Report occupancy k alongside the similarity c, and pre-register on c. Never on the c*k(k-1)/(n(n-1)) product.",
+          "Give the WAKING_ONLY arm a real write path so it is a control rather than an empty bank -- e.g. sd016_writepath_mode='sense_only' -- and equalise or explicitly report per-arm write counts.",
+          "Neutralise the Adam-drift nuisance: exclude context_memory.memory from the optimiser for this measurement, or measure and report the drift as a covariate, or snapshot the metric at a fixed step rather than at end-of-run.",
+          "Re-derive the predicted baseline against the REPAIRED write path. Do not re-use ARC-045's near-1.0 figure -- F2 shows it describes the broken substrate.",
+          "Add a negative control: an arm with writes disabled entirely, whose metric should be indistinguishable from the untouched-bank null (mean ~0.0001, sd ~0.008)."
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_note": "PROPOSED CHANGE to what governance recorded: the retest gate should be re-scoped from 'after substrate' to 'after DV repair'. The substrate is not the blocker -- the write path already works. The instrument is.",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "Not a substrate-ceiling finding. The 436 lineage's prior autopsies (436b instrumentation gap, 436c write-path defect) were all upstream defects; this is the first one located in the readout."
+      },
+      "measurement_gaps": [
+        "The manifest records no write-target occupancy. slot_visit_safe_count / slot_visit_dang_count are READ-side argmax counts; ContextMemory.write() selects by argmin of query.memory, a different index. Occupancy in per_seed_data is therefore indicative, not exact, and 436e should record the write index directly.",
+        "No per-slot memory snapshot is persisted, so the occupied-only statistic cannot be recomputed retrospectively from the 436d manifest. This is why the finding is 'the metric is confounded' and NOT 'the corrected metric would have said X' -- establishing the latter requires the 436e re-run."
+      ],
+      "what_this_check_did_NOT_establish": [
+        "Whether SD-017/ARC-045/MECH-166's slot-differentiation prediction is true. The check invalidates the instrument, not the hypothesis.",
+        "What a corrected DV would have reported for 436d. Not recoverable from the persisted manifest (see measurement_gaps).",
+        "Whether the other 436d criteria (C2-C4 and the P0 gate) are affected. Only C1's DV was examined; P0 was spot-checked and is sound."
+      ],
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "Single-target measurement-validity finding. But two fan-out checks are worth governance's attention, because the defective statistic is not local to this driver: (a) run_sws_schema_pass's sws_slot_diversity is the same whole-bank formula (F7b) and is emitted by EVERY driver that calls a sleep pass, so any pre-registered criterion elsewhere reading sws_slot_diversity inherits the same occupancy confound; (b) the same _compute_slot_cosine_sim shape appears in v3_exq_242, v3_exq_243, v3_exq_245/245a/245b, v3_exq_246 and the earlier 436-family drivers -- worth a grep-level sweep for any other criterion pre-registered on a whole-bank cosine."
+      }
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "note": "Staging mode -- NOT written to hypothesis_space_registry.v1.json. The confirming interactive session or the next /governance walk applies this.",
+    "proposed_resolutions": [
+      {
+        "question": "sd017_arc045_slot_differentiation",
+        "hypothesis": "H-436d-c1-is-a-genuine-null",
+        "proposed_state": "eliminated",
+        "basis": "C1's DV does not measure differentiation and is unsatisfiable on 2/5 seeds by construction (F2, F3, F4, F6)."
+      },
+      {
+        "question": "sd017_arc045_slot_differentiation",
+        "hypothesis": "H-436d-c1-baseline-is-a-metric-artifact",
+        "proposed_state": "confirmed",
+        "basis": "WAKING_ONLY performs zero writes (F1); its 0.0009-0.47 spread is reproduced by Adam drift alone with zero writes (F5)."
+      }
+    ],
+    "applied": false,
+    "superseded_by": "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30",
+    "disposition_utc": "2026-09-04T19:00:56Z",
+    "disposition_by_session": "governance-20260904-1347",
+    "disposition_note": "The question this block names (sd017_arc045_slot_differentiation) was never registered; the SD-017/ARC-045/MECH-166 work-stream was registered as sd017_arc045_mech166_slot_differentiation_sleep by the 2026-08-05 batch and restructured by the 2026-08-30 966-436g-951-959-822d cluster autopsy, whose leg H-sleep-differentiates-context-slots already lists V3-EXQ-436d among its resolving runs. The two drafted legs are methodology findings about 436d's C1 statistic (recorded in the artifact's four-layer diagnosis and applied to the claims on 2026-08-07), not rival mechanisms for slot differentiation; appending them now would be unlabelled growth of an adjudicated question. Disposition recorded by governance-20260904-1347 (user decision: dispose of all three August blocks this cycle)."
+  },
+  "provenance": {
+    "session_id": "metaworker-chip-20260807-436d-slotcosinesim-methodology-check",
+    "chip_ref": "chip-20260807-436d-slotcosinesim-methodology-check",
+    "substrate_read_at": "ree-v3 working tree, 2026-08-07",
+    "code_sites_examined": [
+      "ree-v3/experiments/v3_exq_436d_sd017_mech166_writepath_retest.py:435 (_compute_slot_cosine_sim)",
+      "ree-v3/experiments/v3_exq_436d_sd017_mech166_writepath_retest.py:697-700 (optimiser param set)",
+      "ree-v3/ree_core/predictors/e1_deep.py:36-158 (ContextMemory: init, read, write, compute_diversification_loss)",
+      "ree-v3/ree_core/predictors/e1_deep.py:546-556 (update_from_observation)",
+      "ree-v3/ree_core/agent.py:4582-4605 (sense() write hook and its gate)",
+      "ree-v3/ree_core/agent.py:9437-9439 (diversification loss gate)",
+      "ree-v3/ree_core/agent.py:10604-10812 (run_sws_schema_pass, write site and sws_slot_diversity)"
+    ],
+    "probes_run": [
+      "Untouched-bank null: 2000 random inits of randn(16,128)*0.01 through the exact metric.",
+      "Occupancy sweep: metric vs k written slots at mutually orthogonal content (control) and at fixed mutual cosine c in {0.90, 0.50}.",
+      "Direction-reversal demonstration: k=1 baseline vs k in {4,6,8,12} at progressively better occupied-only differentiation.",
+      "Adam-drift reproduction: real ContextMemory(gated_content_write=True), Adam lr=1e-3, ZERO write() calls, 30000 steps, at the five experiment seeds."
+    ]
+  }
 }

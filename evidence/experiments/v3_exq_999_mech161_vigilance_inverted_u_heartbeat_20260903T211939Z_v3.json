@@ -1,1 +1,130 @@
-{"run_id": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3", "experiment_type": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat", "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["MECH-161"], "claim_ids_tested": ["MECH-161"], "experiment_purpose": "evidence", "queue_id": "V3-EXQ-999", "arm_results": [{"seed": 11, "p0_not_ready": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "b63839ae0c870aaed7a7753f3fc3aefc14206d6e5ac7220c9a2110c005e6541f", "substrate_hash": "4de172267704c6a2d8d422bc0ddc55eee71af56c65fe01593fa493ff72f03d71", "substrate_n_files": 204, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 11, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "cb6ddc671f20a6743c2fc73fb2ba88e2a6cf27cb2d4b6660be58d2d60a8a439e", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-03T21:19:39Z"}}], "heartbeat_levels": [5, 8, 10, 15, 20], "train_heartbeat_steps": 10, "positive_control_margin": 0.05, "dv_movement_floor": 0.03, "margin_abs_floor": 0.03, "margin_sd_mult": 1.0, "outcome": "FAIL", "evidence_class": "experimental", "evidence_direction": "non_contributory", "interpretation": {"label": "substrate_not_ready_requeue", "preconditions": [{"name": "baseline_avoidance_discrimination_margin", "measured": -0.260797342192691, "threshold": 0.05, "direction": "lower", "control": "trained agent evaluated at the training heartbeat rate (P=10); positive control that hazard-avoidance behaviour was trained at all", "met": false, "kind": "readiness"}], "criteria_non_degenerate": {"C1_interior_max_margin": false}}, "non_degenerate": false, "degeneracy_reason": "P0 readiness unmet at seed 11: P0 readiness unmet: baseline_avoidance_discrimination_margin", "recording_schema": "rec/v1", "substrate_hash": "4de172267704c6a2d8d422bc0ddc55eee71af56c65fe01593fa493ff72f03d71", "substrate_commit": {"commit": "7d896c94765c7cfb8053dc20fe51449edff27e3a", "dirty": false, "branch": "main"}, "substrate_stable_across_run": true, "substrate_identity": {"source": "per_cell_fingerprint_hoist", "resolved_at_utc": "2026-09-03T21:19:39Z", "commit_source": "manifest_write_disk_read", "commit_resolved_at_utc": "2026-09-03T21:19:39Z", "stamped_at_utc": "2026-09-03T21:19:39Z", "lag_seconds": 0, "stability_snapshots": 1, "drifted_since_resolved": false}, "enabled_default_off_flags": {"latent.reafference_action_dim": 5, "latent.use_event_classifier": true, "e3.goal_weight": 1.0, "heartbeat.breath_period": 50}, "enabled_default_off_flags_source": "process_observed_config", "machine": "ree-cloud-2", "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "elapsed_seconds": 2632.242771478, "config": {"env": "CausalGridWorldV2", "env_size": 10, "num_hazards": 1, "num_resources": 2, "hazard_harm": 0.05, "hazard_field_decay": 0.5, "world_dim": 32, "self_dim": 32, "warmup_episodes": 150, "steps_per_episode": 100, "train_heartbeat_steps": 10, "heartbeat_levels": [5, 8, 10, 15, 20], "eval_episodes_per_level": 20, "hazard_safe_max": 0.15, "hazard_high_min": 0.5}, "seeds": [11, 23, 37]}
+{
+  "run_id": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
+  "experiment_type": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-161"
+  ],
+  "claim_ids_tested": [
+    "MECH-161"
+  ],
+  "experiment_purpose": "evidence",
+  "queue_id": "V3-EXQ-999",
+  "arm_results": [
+    {
+      "seed": 11,
+      "p0_not_ready": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "b63839ae0c870aaed7a7753f3fc3aefc14206d6e5ac7220c9a2110c005e6541f",
+        "substrate_hash": "4de172267704c6a2d8d422bc0ddc55eee71af56c65fe01593fa493ff72f03d71",
+        "substrate_n_files": 204,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cb6ddc671f20a6743c2fc73fb2ba88e2a6cf27cb2d4b6660be58d2d60a8a439e",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-03T21:19:39Z"
+      }
+    }
+  ],
+  "heartbeat_levels": [
+    5,
+    8,
+    10,
+    15,
+    20
+  ],
+  "train_heartbeat_steps": 10,
+  "positive_control_margin": 0.05,
+  "dv_movement_floor": 0.03,
+  "margin_abs_floor": 0.03,
+  "margin_sd_mult": 1.0,
+  "outcome": "FAIL",
+  "evidence_class": "experimental",
+  "evidence_direction": "non_contributory",
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "baseline_avoidance_discrimination_margin",
+        "measured": -0.260797342192691,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "trained agent evaluated at the training heartbeat rate (P=10); positive control that hazard-avoidance behaviour was trained at all",
+        "met": false,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_interior_max_margin": false
+    }
+  },
+  "non_degenerate": false,
+  "degeneracy_reason": "P0 readiness unmet at seed 11: P0 readiness unmet: baseline_avoidance_discrimination_margin",
+  "recording_schema": "rec/v1",
+  "substrate_hash": "4de172267704c6a2d8d422bc0ddc55eee71af56c65fe01593fa493ff72f03d71",
+  "substrate_commit": {
+    "commit": "7d896c94765c7cfb8053dc20fe51449edff27e3a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "substrate_stable_across_run": true,
+  "substrate_identity": {
+    "source": "per_cell_fingerprint_hoist",
+    "resolved_at_utc": "2026-09-03T21:19:39Z",
+    "commit_source": "manifest_write_disk_read",
+    "commit_resolved_at_utc": "2026-09-03T21:19:39Z",
+    "stamped_at_utc": "2026-09-03T21:19:39Z",
+    "lag_seconds": 0,
+    "stability_snapshots": 1,
+    "drifted_since_resolved": false
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "latent.use_event_classifier": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "enabled_default_off_flags_source": "process_observed_config",
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "elapsed_seconds": 2632.242771478,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "env_size": 10,
+    "num_hazards": 1,
+    "num_resources": 2,
+    "hazard_harm": 0.05,
+    "hazard_field_decay": 0.5,
+    "world_dim": 32,
+    "self_dim": 32,
+    "warmup_episodes": 150,
+    "steps_per_episode": 100,
+    "train_heartbeat_steps": 10,
+    "heartbeat_levels": [
+      5,
+      8,
+      10,
+      15,
+      20
+    ],
+    "eval_episodes_per_level": 20,
+    "hazard_safe_max": 0.15,
+    "hazard_high_min": 0.5
+  },
+  "seeds": [
+    11,
+    23,
+    37
+  ],
+  "evidence_direction_note": "[2026-09-04T18:55:42Z governance, cycle governance-20260904-1347] Applied from confirmed failure_autopsy_V3-EXQ-999_2026-09-04 (inline route-A autopsy, red-teamed on Fable -- CONTESTED, accepted and revised -- user-confirmed at the Step 8 gate 2026-09-04T18:55:42Z). evidence_direction -> non_contributory; epistemic_category standard. V3-EXQ-999 (2026-09-03, ree-cloud-2, 43m52s) NON-CONTRIBUTORY -- first run ever to tag MECH-161 (claims.yaml evidence: []). The run aborted at its first seed on the P0 readiness precondition baseline_avoidance_discrimination_margin, measured -0.2608 against a +0.05 floor, and self-routed substrate_not_ready_requeue. THE SELF-ROUTE'S CAUSAL STORY IS WRONG, and the correction is the finding. The precondition is labelled 'positive control that hazard-avoidance behaviour was trained at all', but the statistic (avoidant-action rate in the HIGH hazard bin minus the SAFE bin, where the 'avoidant action' is the geometric argmax of the away-from-nearest-hazard vector) cannot certify training, because the response is defined identically in both bins and therefore carries no signal/noise asymmetry. Measured directly against this driver's own readout replayed on the same env config and seeds: an ORACLE taking the correct avoidant action on EVERY step scores hit_rate = false_alarm_rate = 1.000 and sensitivity = +0.0000 on all three seeds, FAILING the +0.05 gate; the realizable oracle (avoidant action chosen at each E3 tick, P=10, held between) scores -0.0100 and also fails; and policy-free nulls with zero hazard knowledge score -0.126 (uniform-random), -0.130 (held P=5), -0.061 (held P=10) and -0.436 (held P=20), single-seed values spanning +0.109 to -0.583. The observed -0.2608 sits inside that null band. So the gate cannot separate untrained avoidance from perfect avoidance, its null is strongly negative rather than centred on zero, and -- because the driver aborts on the FIRST seed -",
+  "epistemic_category": "standard"
+}

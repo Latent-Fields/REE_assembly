@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-03T20:44:11Z",
+  "last_review_utc": "2026-09-04T18:56:41Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1262,7 +1262,12 @@
     "v3_exq_994_claim_probe_ext_007_consolidation_retention",
     "v3_exq_978_sd018_directional_field_fishtank",
     "v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty",
-    "v3_exq_983_ext002_residue_error_persistence"
+    "v3_exq_983_ext002_residue_error_persistence",
+    "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation",
+    "v3_exq_999_mech161_vigilance_inverted_u_heartbeat",
+    "v3_exq_997_mech162_zresource_zworld_planning_reconvergence",
+    "v3_exq_1001_ext005_sd031_attribution_causal_shift",
+    "v3_exq_996_isef005_phase_gate_live_channels"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4187,7 +4192,12 @@
     "v3_exq_994_claim_probe_ext_007_consolidation_retention_20260903T053351Z_v3",
     "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3",
     "v3_exq_991_claim_probe_ext_004_residue_cross_context_penalty_20260903T122245Z_v3",
-    "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3"
+    "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3",
+    "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3",
+    "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
+    "v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3",
+    "v3_exq_1001_ext005_sd031_attribution_causal_shift_20260904T032948Z_v3",
+    "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6803,6 +6813,18 @@
         "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3"
       ],
       "notes": "2026-09-03 governance cycle (governance-20260903T2013), user present. 9 pending adjudicated, 0 left. AUTOPSY-COVERED (7, all confirmed + dry_run_checked:true, landed REE_assembly af8d2cabde by session autopsy-outstanding-20260903, cross-model Fable red-team CONTESTED with corrections applied; a second red-team by this cycle applied further amendments the user ratified): V3-EXQ-951c (MECH-320 diagnostic PASS: classification correct but NON-DISCRIMINATING, gates pinned at 1.0 on both beds, v_raw max 0.0 so v_t sits at floor before any gate is consulted; MECH-320 entry amended severity corrupting / tonic_vigor.py; brake refuses a 6th behavioural retest); V3-EXQ-978 (INV-088/MECH-457, mixed -> non_contributory; SD-018 shape (a) validated-negative on a green gate; OFF arm already decodes the field r2 0.71/0.86; fan-out to a capacity-matched frozen-latent oracle-adapter discriminator); V3-EXQ-981 (MECH-027 untested, 4/11 preconditions unmet, C1 bar 1.154 on a [0,1] DV; positive control reversed -0.43 on all seeds -- 981a must check band assignment before redesigning the env; pending_retest_after_substrate deliberately NOT set since no substrate is missing; run added to MECH465-COMMIT-GATE-HEADROOM failure_record); V3-EXQ-983 (EXT-002 weakens -> non_contributory, DV range 0.047 vs bar 0.15; weak-null residual recorded); V3-EXQ-991 (EXT-004 does_not_support -> non_contributory on construct validity; weak-null residual recorded, DV not pinned); V3-EXQ-993 (ARC-021/EXT-003/MECH-069 unknown -> non_contributory, indexer had scored weakens; control arm no signal 13.1x under floor; the harm head that compresses is DRIVER-LOCAL, so NO substrate entry -- folded into the redesign; dv-dynamic-range-precondition-class CREATED at severity degrading with harness-only paths, NOT corrupting on causal_grid_world.py which 1201 drivers import and would have blocked Step 2.5c fleet-wide); V3-EXQ-994 (EXT-007 non_contributory already; contextmemory entry +1 record). MANIFEST WRITES flat+pack with evidence_direction_note: 978, 983, 991, 993 (REE_assembly 635d6c2fc9). MANDATORY STEP 2b PASS SKIMS (2 claim-tagged evidence PASSes), threshold arithmetic read against measured baselines: V3-EXQ-977 (ARC-052 supports) -- SKIM: NOTHING FOUND. Genuine AND of R2 positive control + C1 + C2 with per-seed majority; C1 floor 0.10 plus permutation null (p95 ~0.055) vs measured 0.22-0.41; C2 bar -0.10 plus null (p05 ~-0.05) vs measured -0.26/-0.32/-0.14/-0.30/-0.08 -- seed 47 FAILS C2, so the bar is attainable in both directions. First experimental support for ARC-052 (genuine_exp 0 -> 1). V3-EXQ-995 (EXT-005 supports) -- SKIM: NOTHING FOUND, one qualification logged: C1 mean AUROC 0.644 vs 0.55 bar, C2 comparator-minus-bare 0.204 vs 0.05, but the bare reference sits at 0.43 (below chance) so ~0.07 of the C2 gap is the bare delta anti-discriminating; C2 still clears at 0.14 if bare were at chance. Makes GFLAG-0125/0127 live (applied this cycle). DRY-RUN CHECK: all 9 manifests clean (check_dry_run_citations.py, 9 clean / 0 dry)."
+    },
+    {
+      "reviewed_utc": "2026-09-04T18:56:41Z",
+      "session": "governance-20260904-1347",
+      "run_ids": [
+        "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3",
+        "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
+        "v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3",
+        "v3_exq_1001_ext005_sd031_attribution_causal_shift_20260904T032948Z_v3",
+        "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3"
+      ],
+      "note": "Cycle governance-20260904-1347 (user present). V3-EXQ-1000 (diagnostic PASS, vacuous_pass flag): confirmed autopsy by the failure-autopsy session (red-teamed Fable CONTESTED->accepted), label accurate, non_contributory/standard, SD-e1 amend, portfolio chipped. V3-EXQ-999 / 997 / 1001 (FAILs) and 996 (diagnostic PASS): autopsied INLINE (route A) by staging-mode subagents, each red-teamed on Fable (all four CONTESTED, all contests accepted and folded in), gate held. 999: precondition/readout confounded with the hold IV -> non_contributory/standard, 999a + amend dv-dynamic-range-precondition-class. 997: weakens -> non_contributory/standard (retrieval-form fusion exists at module.py:2658; instrument defects; C1 inverts under entry weighting), three-permutation retest, no create. 1001: SD-031 weakens -> mixed (user), co-tags non_contributory, standard; SD-031 gate amended to accept construction-balanced designs; portfolio with scratch-init control. 996: PASS real, label overstates (n=1); harm_gradient inert at default V2 params (pinned by contract since May; first measured by 587) -> INF-ENV-001 amend, degrading. No claim-tagged evidence PASS this cycle, so no driver skim owed. DRY-RUN CHECK: all 5 manifests clean (check_dry_run_citations.py)."
     }
   ]
 }

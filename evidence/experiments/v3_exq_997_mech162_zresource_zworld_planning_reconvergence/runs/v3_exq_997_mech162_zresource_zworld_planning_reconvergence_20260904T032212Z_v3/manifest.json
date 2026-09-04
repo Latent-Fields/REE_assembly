@@ -23,7 +23,7 @@
     "MECH-162"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -109,5 +109,7 @@
     "writer_defect": false,
     "n_agents": 10,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-09-04T18:55:42Z governance, cycle governance-20260904-1347] Applied from confirmed failure_autopsy_V3-EXQ-997_2026-09-04 (inline route-A autopsy, red-teamed on Fable -- CONTESTED, accepted and revised -- user-confirmed at the Step 8 gate 2026-09-04T18:55:42Z). evidence_direction -> non_contributory; epistemic_category standard. 2026-09-04 (failure autopsy V3-EXQ-997, staging draft awaiting confirmation): V3-EXQ-997 self-declared FAIL / weakens. NOT SCORED as weakens -- the run tested a SUBSTITUTION, not the CONVERGENCE MECH-162 asserts, and its own decisive statistic is not robust. (1) SCOPE: MECH-162 asserts z_resource and z_world must re-converge at the hippocampal planning stage, and the claim's notes name three permutations ('z_resource alone, z_world alone, and both fused'). The run built the two 'alone' arms only. Code read confirms this is a substrate absence, not a design choice: ree_core/agent.py::update_z_goal (~11504) seeds z_goal from z_resource OR z_world via a strict XOR, and ree_core/hippocampal/ghost_goal_bank.py::GhostGoalBank.rank never reads z_world (four live terms: wanting, goal_match, staleness, recoverability). Both arms therefore instantiate the claim's negative condition; a contrast between them cannot weaken a claim about the positive one. (2) PRECONDITION: ResourceEncoder's documented phased protocol (ree_core/latent/stack.py:288-291) requires P0 supervised training before P1 goal seeding. This run activated P1 with no training of any kind, so z_resource was an untrained projection; SD-015's own record measures untrained identity content at goal_resource_r 0.066-0.087 against 0.93-0.96 trained (V3-EXQ-514o under SD-057). No manipulation check was recorded, so it is not established that ARM_ZRESOURCE's cue carried identity information at all. (3) ROBUSTNESS: C1's mean half passed (0.0636 >= 0.02) but its seed half failed (0.40 < 0.60), and the seed statistic does not surv",
+  "epistemic_category": "standard"
 }

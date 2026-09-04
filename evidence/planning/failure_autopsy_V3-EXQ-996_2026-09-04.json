@@ -1,0 +1,269 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-04T14:20:27Z",
+  "session_id": "governance-20260904-1347",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3",
+      "queue_id": "V3-EXQ-996",
+      "claim_ids": [],
+      "bears_on": [
+        "ARC-046",
+        "infant_substrate:GAP-14"
+      ],
+      "self_route_label": "crossing_count_gate_discriminates_live_closed_loop",
+      "failed_criterion": "none -- diagnostic PASS; the adjudicated criterion is C_live_gate_discriminates (a discrimination criterion)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids is [] by design. The lineage's ARC-019 tag was removed from V3-EXQ-591h by governance-20260904-1347; 996 correctly carries no claim. It bears on ARC-046 / infant_substrate:GAP-14.",
+        "biological_reference": "clear -- competence-gated developmental stage transitions are well-evidenced and are not what is at issue; the question here is instrumental, not biological",
+        "prerequisites": "PARTIAL -- env_kwargs() is applied as the 591h autopsy required, but only ONE of its two sub-channels is operative. Measured: transient_benefit_enabled alone reproduces the ENTIRE phase-0-vs-phase-1 divergence exactly (same first divergent tick, same differing-tick count on 2 independent seeds), while harm_gradient_enabled alone produces ZERO divergence over 200 ticks. The second required channel (offline_integration_frequency) is deliberately unwired for documented and defensible reasons (two recorded substrate defects).",
+        "implementation": "PARTIAL -- harm_gradient_enabled is structurally inert under CausalGridWorldV2 (proxy-field) mode: the harm-gradient branch (causal_grid_world.py:2617) is gated on transition_type == 'none', and the hazard_approach branch (:2592, gated on use_proxy_fields and transition_type == 'none') consumes exactly the near-hazard ticks first. Measured 0 harm_gradient ticks in ALL TEN cells of the run and 0/600 ticks in an independent random-policy probe under phase-1 kwargs. Its own validating experiment V3-EXQ-576 ran with use_proxy_fields=False, the only mode in which the branch is reachable, so this interaction was never exercised.",
+        "environment": "adequate -- the env produced a real seed spread (pre-window mean h_pos 0.045 to 0.633), a genuine positive class, a genuine negative class, and 135 diverging episodes; the initial layouts are identical across arms at the same seed, so the divergence is dynamics, not an RNG/layout shift",
+        "measurement": "under-instrumented AND partly misleading. (a) The oracle is NOT independent of the signal the gate reads: the oracle partition (pre-ep_min mean h_pos >= 0.20) is reproduced EXACTLY by a pre-window crossing count (n_pre_ep_min_crossings >= 3 gives [T,T,T,F,F] on the same vector [25,8,28,2,0]) -- the identical finding the confirmed 591h autopsy recorded, unfixed by moving the oracle's WINDOW while leaving its SIGNAL unchanged. (b) The discriminative delta over the control arm is exactly ONE seed (SPIKE agrees with the oracle 4/5, CROSSING 5/5), at ZERO precondition margin (P5 measured 1, threshold 1), turning on a ONE-crossing difference (crossing-arm count 2 vs threshold 3, with the spike arm at exactly 3 on the same seed). (c) P2 (crossing_counts_reach_gate_minimum) is arithmetically pinned: scheduler_crossing_count stops incrementing at advance, so an advancing seed reads EXACTLY 3 and the precondition is logically equivalent to 'at least one ARM_CROSSING seed advanced'. (d) The run's own F3 channel-liveness diagnostic (n_harm_gradient_ticks) reads 0 in all ten cells and is structurally unable to fire in this env mode; nothing in the run flagged it.",
+        "integration": "coupled -- the arms genuinely interact with the environment differently once their phases diverge (135 diverging episodes, 4/5 seeds), which is the specific defect 591h had and this run fixed",
+        "scale": "likely insufficient for the discrimination claim -- 5 seeds, of which 4 are cells where the CONTROL gate also agrees with the oracle; the effective n for the discrimination is 1"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM + MEASURES). NOT chargeable to REE and NOT a substrate ceiling. The environment is adequate and did its job; the implementation is partial (one of two env_kwargs sub-channels inert; the second required channel unwired); the measures do not establish the discrimination the self-route label asserts (oracle non-independent of the gate's signal, effective n = 1, zero precondition margin). This run is nonetheless a genuine ADVANCE over V3-EXQ-591h: the vacuity that made 591h uninterpretable is closed and measured."
+      },
+      "biological_reference": {
+        "closest_mechanism": "developmental stage transition gated on demonstrated competence (readiness / critical-period gating)",
+        "dependencies": [
+          "a curriculum stage that changes what the organism does or experiences",
+          "a competence read-out independent of the gate's own decision signal"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at the biological layer. The divergence is instrumental: REE's competence oracle and its gate criterion are two read-outs of one signal (h_pos), so their agreement measures threshold monotonicity on a stable per-seed property rather than the gate's competence to discriminate.",
+        "lit_status": "partial -- targeted_review_arc_019/ and targeted_review_arc_046/ both exist but contain only entries/ with NO synthesis file, and no SYNTHESIS.md anywhere in the corpus mentions ARC-019 or ARC-046. PRESENT for the biology of competence-gated staged curricula (recorded by the confirmed 591h autopsy, and not what is at issue here); ABSENT as a written synthesis for either claim."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic: 'standard' asserts no epistemic suppression, which is the correct verdict. The failure mode is measurement_test_design_defect (non-independent oracle, effective n = 1, zero-margin precondition) over a competence_implementation_gap (one env_kwargs sub-channel structurally inert). NOT substrate_ceiling: the environment cleared every readiness anchor and the manipulation reached behaviour.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-996 (diagnostic, claim-free, PASS, all six preconditions met) is a GENUINE ADVANCE on V3-EXQ-591h and its self-route label nonetheless OVERSTATES what it shows. WHAT IT ESTABLISHES: the 591h vacuity is CLOSED -- 591h's two arms were bit-identical on per_episode_h_pos across 5/5 seeds, whereas 996 measures 135 diverging episodes on 4/5 seeds, and independent probing confirms the divergence is caused by the curriculum's own env_kwargs (phase-0 vs phase-1 env under an IDENTICAL 200-action stream differs on 166-185 of 200 ticks; initial layouts are identical, so it is dynamics, not an RNG/layout shift). WHAT IT DOES NOT ESTABLISH: (1) THE ORACLE IS NOT INDEPENDENT OF THE GATE'S SIGNAL. The oracle moved WINDOW (pre-ep_min mean h_pos) but not SIGNAL -- it is still h_pos -- and the oracle partition [T,T,T,F,F] is reproduced EXACTLY by a pre-window crossing count on the same vector [25,8,28,2,0]. The confirmed 591h autopsy already recorded this exact reproduction and its own learning #3 asked for an oracle 'computed from a signal the gate does not read'; that was not done. (2) THE DISCRIMINATIVE DELTA IS ONE SEED. The admitted sets are strictly nested (SPIKE {42,43,44,45}, CROSSING {42,43,44}); the crossing gate never admits a seed the spike gate refuses and advances LATER on every co-admitted seed (104->116, 114->138, 100->106). SPIKE agrees with the oracle 4/5, CROSSING 5/5, so 5/5 agreement rests on seed 45 alone, at ZERO precondition margin (P5 = 1 vs threshold 1) and a ONE-crossing decision (crossing arm 2 vs threshold 3; the spike arm reads exactly 3 on the same seed). (3) THE HARM-GRADIENT HALF OF THE LIVE CHANNEL IS INERT. n_harm_gradient_ticks is 0 in ALL TEN cells, including ARM_SPIKE seeds that spent 55/45/59/22 episodes in Phase 1 with harm_gradient_enabled=True. This is STRUCTURAL, not policy-dependent: harm_gradient (causal_grid_world.py:2617) is gated on transition_type == 'none' and the hazard_approach branch (:2592, active whenever use_proxy_fields is set -- which the CausalGridWorldV2 factory always sets) consumes those ticks first; an independent random-policy probe measured 0/600 harm_gradient ticks and 502/600 hazard_approach ticks under phase-1 kwargs, and harm_gradient_enabled ALONE produced exactly ZERO behavioural divergence over 200 ticks while transient_benefit_enabled ALONE reproduced the full phase-1 divergence. So the ARC-046 mechanistic path the driver docstring and the queue entry foreground (harm_gradient -> update_residue -> ResidueField.accumulate -> ARC-046 hazard-avoidance term in E3 scoring) was NOT exercised; the queue entry's claim that the channel was 'verified firing live in the final script via a diagnostic tick counter' is not supported by the run's own manifest. THE HONEST READING is 'the crossing-count gate is strictly MORE CONSERVATIVE than the legacy spike gate in a live closed loop, and on this 5-seed draw the single seed it additionally withholds is the one the oracle calls non-genuine (n = 1, margin 1 crossing)' -- not 'discriminates'. NO DECISION FLIPS: infant_substrate:GAP-14-c2 (gate over-permissiveness) has been status `done` since 2026-06-23 (criterion identified by V3-EXQ-591f, wired into InfantCurriculumScheduler 2026-06-19), so this run re-validates an ALREADY-CLOSED node in a live loop rather than clearing anything; the parent GAP-14 gate is c-1 (seed-46 exploration-strength collapse, repointed 2026-07-21 to the behavioural-competence wall of V3-EXQ-724), and 996's seed 46 (h_pos_max 0.741 below the 0.994 bar, 0 crossings, 0 diverging episodes) CONFIRMS c-1 is still open. EXQ-ISEF-005 stays blocked. Two recording-accuracy defects to note: metrics.max_post_ep_min_crossings_spike is computed from ARM_CROSSING's scheduler_crossing_count, not ARM_SPIKE (a mislabel inherited from 591h), and two precondition `control` strings still describe the superseded full-run oracle this run replaced.",
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "EMPTY BY DESIGN -- V3-EXQ-996 is claim-free (claim_ids: []), so there is no claim disposition for GOV-APPLY-1 to apply and none is manufactured. NOTE for the confirming session: ARC-019 already carries diagnostic_evidence_adjudicated: true (set by governance-20260904-1347 applying the 591h autopsy), so a `-> diagnostic_evidence_adjudicated: true` change tail on ARC-019 would be ALREADY TRUE and would self-clear its GOV-APPLY-1 row spuriously. Do not emit one.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "INF-ENV-001",
+        "title": "harm_gradient_enabled is structurally inert under CausalGridWorldV2 default parameters (proxy-field mode): hazard_approach pre-empts the transition_type == 'none' gate -- known-by-contract since 2026-05-16, first measured by V3-EXQ-587, re-measured by V3-EXQ-996",
+        "implementation_hint": "CORRECTED after the red-team pass (Fable, 2026-09-04). At DEFAULT V2 parameters (proximity_approach_threshold 0.15, hazard_field_decay 0.5, harm_gradient_outer_radius 3.0) the harm_gradient branch cannot fire: any tick within Euclid <= 3.0 of a hazard has proximity field >= 1/(1+2) = 0.333 > 0.15, so hazard_approach (or benefit_approach under the MECH-203 tie-break) claims the tick first and transition_type is never 'none' inside the gradient band (0/4000 random-policy ticks in the red-team probe; 0/10 cells in V3-EXQ-996). It is REACHABLE, not impossible: raising proximity_approach_threshold above 1/(1 + decay * ceil(r_out*sqrt(2))) (~0.33) re-opens it (threshold 0.9 -> 24/2000 ticks). This pre-emption is ALREADY PINNED by contract: tests/contracts/test_harm_gradient_gap1.py::test_c3_suppressed_by_proxy_approach (use_proxy_fields=True, landed 2026-05-16 with the feature) asserts the gradient stays zero when proxy approach fires -- so the inertness was designed in, not a regression, and repair option 'let harm_gradient fire under proxy mode' would BREAK a pinned contract and needs a design decision, not a bug fix. FIRST MEASURED by V3-EXQ-587 (ISEF-001, V2 mode, 2026-05-19: C1 0/5, ratios ~1.0) and read then as a 'null on geometry'; infant_substrate:GAP-10 was stamped done at queue time -- a plan reconcile is OWED (GAP-10 prose should say the channel is inert at default params). What this entry now asks for is NOT a build: (1) record on INF-ENV-001 that the shipped channel is inert at defaults, (2) require any consumer enabling harm_gradient_enabled to run with a raised approach threshold or proxy fields off AND to record a per-cell fire count, treating zero as a readiness failure, (3) reconcile GAP-10 and re-read 587's null accordingly. node_class: complicated (buildable) for the recording/readiness guard; the design question (should the gradient pre-empt approach?) is a decision, owed to the user, not a spike.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "severity_note": "DEGRADING, not corrupting. Nothing measured so far is invalidated: 996's DVs are sound (divergence real, sourced from transient_benefit); 576 validated the feature with use_proxy_fields=False, the mode where it is live; 587's null stands as measured but its GEOMETRY reading is owed a re-read (the channel was inert, so 587 measured nothing about geometry). What is degraded is ATTRIBUTION -- any future experiment crediting harm_gradient_enabled for a behavioural effect at default params is crediting a dead channel.",
+        "substrate_paths": [
+          "ree_core/environment/causal_grid_world.py::step",
+          "tests/contracts/test_harm_gradient_gap1.py"
+        ],
+        "standing_instruction_for_consumers": "Any experiment enabling harm_gradient_enabled MUST record a per-cell fire count (info['transition_type'] == 'harm_gradient' or a nonzero info['harm_gradient_reward_this_tick']) and MUST treat a zero count as a readiness failure, not as a measurement. V3-EXQ-996 added exactly this counter as a red-team fix and then read 0 in all ten cells without flagging it.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3",
+          "experiment_type": "v3_exq_996_isef005_phase_gate_live_channels",
+          "metric": "n_harm_gradient_ticks = 0 in all 10 (arm x seed) cells with harm_gradient_enabled=True across the Phase-1 episodes x 200 steps -- structural at default V2 parameters (approach band Manhattan <= 11 strictly contains the gradient band Euclid <= 3, so hazard_approach always pre-empts the 'none' gate); pinned by test_c3_suppressed_by_proxy_approach since 2026-05-16; first measured by V3-EXQ-587 (2026-05-19).",
+          "target": "A consumer enabling harm_gradient_enabled records a nonzero per-cell fire count (raised proximity_approach_threshold or use_proxy_fields=False) before any DV is read; zero fires = readiness failure. Plus the GAP-10 / 587 plan reconcile.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_note": "No claim is tagged and no claim disposition moves, so there is nothing to retest after substrate. The INF-ENV-001 amend above is a substrate repair whose own validation is a V3-EXQ-576-style fire-count diagnostic in V2 mode, NOT a re-run of this experiment.",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "basis": "Claim-free target (claim_ids: []), so the R1-R3 per-claim ceiling count is inapplicable and no substrate_ceiling reading is recommended here. The applicable recurrence instrument for a pure-diagnostic no-verdict chain is GOV-DIAG-1, run from REE_assembly 2026-09-04: diag_recurrence_n 3, n_work_streams_seen 22, recurrence_flagged [] (empty), malformed_markers []. Relevant all_counts: ARC-046 = 1, infant_substrate:GAP-14 = 1, 'ARC-046 / infant_substrate:GAP-14 prereq (c-2)' = 1. Adopting the 591d list-form bears_on token here takes ARC-046 -> 2 and infant_substrate:GAP-14 -> 2, both still BELOW the N=3 overlay threshold.",
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "refused_requeue_note": "A V3-EXQ-996 SUCCESSOR IS REFUSED, and this refusal is the load-bearing routing decision. The two residual measurement weaknesses (non-independent oracle; effective n = 1) are real, and fixing them would cost roughly 10 machine-hours to strengthen a node that has been status `done` since 2026-06-23. infant_substrate:GAP-14-c2 is CLOSED; the parent GAP-14 gate is c-1 (behavioural-competence wall), which is a different work-stream with its own tracking. Nothing downstream waits on a sharper answer to 'does the crossing gate discriminate'. If the question is ever revived, the successor must (a) compute the oracle from a signal the gate does not read -- foraging/benefit-contact competence, not h_pos -- (b) power the DISCRIMINATING cells rather than the total seed count (a 5-seed draw with 4 trivially-agreeing cells has an effective n of 1), and (c) verify a nonzero harm_gradient fire count or drop that sub-channel from its account.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "INF-ENV-001"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "NOT a discrimination portfolio. Two readings of the result are live ('discriminates' vs 'strictly more conservative, n = 1'), but they are settled by re-reading this run's own cells -- which this autopsy does -- not by running more arms. The one actionable bottleneck is a single unambiguous build (the INF-ENV-001 amend), and the successor that would arbitrate the discrimination reading is explicitly REFUSED above as off the critical path. Emitting a fanout here would license a portfolio this autopsy is declining."
+      },
+      "learning_extracted": [
+        "A precondition computed on the SAME statistic the outcome routes on can be arithmetically pinned rather than informative. crossing_counts_reach_gate_minimum reads MAX over seeds of ARM_CROSSING's own scheduler_crossing_count, which stops incrementing at advance -- so an advancing seed reads EXACTLY the threshold and the precondition reduces to 'at least one seed advanced'. It also cannot distinguish 'the gate is starved' from 'the gate is maximally conservative and correctly rejected everything': both read below floor and both self-route substrate_not_ready_requeue.",
+        "Moving an oracle's WINDOW is not the same as moving its SIGNAL. The 591h autopsy asked for an oracle 'computed from a signal the gate does not read'; 996 moved the oracle from full-run to pre-ep_min h_pos, which makes the windows disjoint but leaves both read-outs as thresholds on one persistent per-seed property -- and the pre-window crossing count still reproduces the oracle partition exactly, on the identical vector the earlier autopsy named.",
+        "When one gate's admitted set is a strict SUBSET of the other's, 'agrees with the oracle on 5/5' can carry an effective n of 1. Report the DELTA over the control arm and the per-seed decision margin, not the total agreement count: here SPIKE 4/5 vs CROSSING 5/5 rests on one seed, decided by a one-crossing difference at zero precondition margin.",
+        "A channel-liveness counter added by a red-team pass is only as good as somebody reading it. n_harm_gradient_ticks was added specifically to confirm the channel engaged rather than merely being wired, then read 0 in all ten cells while the queue entry recorded the channel as 'verified firing live'. A liveness counter needs a REGISTERED FLOOR that self-routes on zero, exactly as the trajectory-divergence precondition does.",
+        "A feature validated in one env mode can be structurally inert in another, and the validating experiment can be the reason nobody noticed. V3-EXQ-576 validated harm_gradient with use_proxy_fields=False -- the only mode in which the branch is reachable -- so the pre-emption by hazard_approach in the CausalGridWorldV2 factory's proxy-field mode went unexercised for four months while the substrate_queue title advertised the feature as being 'in CausalGridWorldV2'."
+      ],
+      "read_across_not_adjudicated": [
+        {
+          "subject": "ARC-019 evidence_quality_note",
+          "note": "ARC-019's note (applied 2026-09-04 from the confirmed 591h autopsy) records that the curriculum's ONE wired phase channel was inert. V3-EXQ-996 UPDATES that state of affairs without testing ARC-019: the curriculum phase now does reach behaviour (135 diverging episodes), but via transient_benefit_enabled only -- the harm_gradient half remains inert, for a NEW and different reason (proxy-mode pre-emption, not a deleted consumer). Governance may wish to append that update when it next touches ARC-019. NO disposition change is recommended and none is claimed: 996 is claim-free and bears on ARC-019 in neither direction. ARC-019 already carries diagnostic_evidence_adjudicated: true, so no change tail is emitted."
+        },
+        {
+          "subject": "ARC-046 / infant_substrate:GAP-14 c-1",
+          "note": "996's seed 46 reproduces the c-1 exploration-strength collapse exactly (h_pos_max_full_run 0.741 against the 0.994 spike bar, 0 crossings, 0 diverging episodes, both gates correctly rejecting). This CONFIRMS c-1 is open and that EXQ-ISEF-005 stays blocked; it does not adjudicate c-1, whose gate was repointed 2026-07-21 to the behavioural-competence wall (V3-EXQ-724 competence_deficit_diffuse). Not adjudicated here."
+        },
+        {
+          "subject": "ResidueField.integrate() trains nothing (substrate_defect_found[1])",
+          "note": "The run records that ResidueField.integrate() has no .backward(), no optimiser and no in-place write, so its only observable effect is 10 torch.randn_like draws per call advancing the global torch RNG. That is a real finding about a second substrate component, recorded by the run and NOT adjudicated by this autopsy. It is separate from GFLAG-0130 (substrate_defect_found[0], the offline_integration torch.cat dim=0 bug), which is ALREADY FIXED in ree-v3 2b345217c7 with contract tests/contracts/test_offline_integration_cat_dim.py -- do NOT open a new substrate entry for that one."
+        },
+        {
+          "subject": "The lineage's bears_on token is fragmented three ways",
+          "note": "591d used the list ['ARC-046', 'infant_substrate:GAP-14']; 591e used the single string 'ARC-046 / infant_substrate:GAP-14 prereq (c-2)'; 591f passed without an autopsy; 591h was claim-tagged and carried none. GOV-DIAG-1 therefore counts three tokens at 1 each for one work-stream. This artifact adopts the 591d list form to consolidate. Retro-normalising 591e's token is a corpus-hygiene question for /governance, not adjudicated here."
+        }
+      ],
+      "routing": "implement-substrate",
+      "routing_note": "implement-substrate on the INF-ENV-001 amend -- a `complicated (buildable)` node: a named repair with no open question (either make the gradient branch composable with hazard_approach, or refuse/warn on the inert combination). Deliberately NOT queue-experiment: the successor that would sharpen the discrimination reading is refused above, because the node it would serve (infant_substrate:GAP-14-c2) has been closed since 2026-06-23 and nothing downstream waits on it. Deliberately NOT governance-demotion: no claim is tagged and the run's own DVs are sound. Deliberately NOT lit-pull: the biology of competence-gated staged curricula is not what is at issue; the missing syntheses for ARC-019/ARC-046 are recorded in lit_status as an honest scope note, not as this run's blocker.",
+      "experiment_purpose": "diagnostic",
+      "adjudication_verdict": "label OVERSTATES, PASS real. The 591h vacuity is closed (135 diverging episodes on 4/5 seeds, divergence sourced from the curriculum's own env_kwargs, not RNG/layout). But the admitted sets are strictly nested (SPIKE {42,43,44,45} superset of CROSSING {42,43,44}), the crossing gate advances LATER on every co-admitted seed, and the 5/5 oracle agreement over SPIKE's 4/5 rests on ONE seed (45) decided by one crossing at zero P5 margin; the oracle is still a threshold on the same per-episode h_pos signal (pre-window crossings >= 3 on [25,8,28,2,0] reproduce its partition exactly). Honest reading: the crossing-count gate is strictly more conservative than the spike gate, discrimination n = 1. Not substrate readiness for anything; no decision flips (GAP-14-c2 already done 2026-06-23; c-1 still open, confirmed by seed 46).",
+      "bears_on_note_gap10": "V3-EXQ-587 (ISEF-001) measured this inertness on 2026-05-19 and was read as a null on geometry; infant_substrate:GAP-10 carries status done stamped at queue time. Governance owes a plan reconcile of GAP-10's prose (channel inert at default params; 587's null is about a dead channel, not geometry). Reported, not chipped by this artifact.",
+      "withdrawn_readings_2026_09_04": {
+        "recommended_substrate_queue_entry_original": {
+          "action": "amend",
+          "target_sd_id": "INF-ENV-001",
+          "title": "harm_gradient_enabled is structurally inert under CausalGridWorldV2 (proxy-field) mode -- hazard_approach pre-empts the transition_type == 'none' gate",
+          "implementation_hint": "INF-ENV-001 (status implemented, ready false, failure_record []) ships harm_gradient_enabled and its title says 'in CausalGridWorldV2' -- but in that mode the branch cannot fire. causal_grid_world.py:2617 gates the harm-gradient reward on `self.harm_gradient_enabled and transition_type == 'none' and self.hazards`; the proxy-field approach branch immediately above (:2592, gated on `self.use_proxy_fields and transition_type == 'none'`) sets transition_type = 'hazard_approach' whenever the hazard proximity FIELD at the agent's cell clears proximity_approach_threshold -- i.e. on exactly the near-hazard ticks the gradient branch exists for. The CausalGridWorldV2 factory (causal_grid_world.py:5373) always sets use_proxy_fields=True, so every V2 consumer is affected. Its validating experiment V3-EXQ-576 passed with use_proxy_fields=False EXPLICITLY (838/5895, 814/5823, 691/5987 gradient fires) -- the feature works, and this interaction was simply never exercised. Measured 2026-09-04: 0 harm_gradient ticks in all 10 cells of V3-EXQ-996 (>11,000 Phase-1 steps in ARM_SPIKE/42 alone); an independent random-policy probe under phase-1 env_kwargs gives transition_type counts {none: 61, hazard_approach: 502, resource: 16, agent_caused_hazard: 9, env_caused_hazard: 12} with harm_gradient 0/600 and harm_gradient_reward_this_tick nonzero on 0/600; and harm_gradient_enabled ALONE causes exactly ZERO behavioural divergence from phase-0 over 200 ticks on 2 seeds, while transient_benefit_enabled ALONE reproduces the full phase-1 divergence. Two candidate repairs, both `complicated (buildable)`: (a) make the gradient branch additive rather than 'none'-gated, so it composes with hazard_approach instead of being consumed by it -- note this changes reward magnitudes for any existing V2 consumer and must be flag-gated no-op-default; (b) if the pre-emption is intended, document harm_gradient as non-functional in proxy-field mode and have the constructor REFUSE or WARN on harm_gradient_enabled=True with use_proxy_fields=True, so a driver cannot silently believe it enabled a live channel. Whichever is chosen, add a contract pinning the V2-mode behaviour -- tests/contracts/test_harm_gradient_gap1.py currently covers the use_proxy_fields=False path only.",
+          "unblocks_claims": [],
+          "depends_on_unresolved": [],
+          "priority_suggested": 2,
+          "severity": "degrading",
+          "severity_note": "DEGRADING, not corrupting, and the reasoning is deliberate. Nothing measured so far is invalidated: V3-EXQ-996's own DVs are sound (its divergence is real and sourced from transient_benefit), and V3-EXQ-576's PASS stands in the mode it tested. What the defect degrades is ATTRIBUTION -- a future experiment enabling harm_gradient in V2 mode and reading an effect would get a silent structural zero. Classifying it `corrupting` would arm the /queue-experiment Step 2.5c gate against every new experiment touching causal_grid_world.py, which is most of the corpus, for a defect that has invalidated nothing. The proportionate mitigation is the WARN plus the standing instruction below.",
+          "substrate_paths": [
+            "ree_core/environment/causal_grid_world.py::step",
+            "tests/contracts/test_harm_gradient_gap1.py"
+          ],
+          "standing_instruction_for_consumers": "Any experiment enabling harm_gradient_enabled MUST record a per-cell fire count (info['transition_type'] == 'harm_gradient' or a nonzero info['harm_gradient_reward_this_tick']) and MUST treat a zero count as a readiness failure, not as a measurement. V3-EXQ-996 added exactly this counter as a red-team fix and then read 0 in all ten cells without flagging it.",
+          "failure_record_entry": {
+            "run_id": "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3",
+            "experiment_type": "v3_exq_996_isef005_phase_gate_live_channels",
+            "metric": "n_harm_gradient_ticks = 0 in all 10 (arm x seed) cells despite harm_gradient_enabled=True across 55/45/59/22 Phase-1 episodes x 200 steps in ARM_SPIKE seeds 42/43/44/45; independently reproduced at 0/600 ticks by random-policy probe under the same phase-1 env_kwargs, with harm_gradient_enabled alone producing 0/200 differing ticks vs phase-0",
+            "target": "a nonzero harm_gradient fire count under CausalGridWorldV2 (use_proxy_fields=True) when harm_gradient_enabled=True and hazards are within harm_gradient_outer_radius -- OR an explicit constructor refusal/warning making the inertness impossible to enable silently",
+            "resolved": "open"
+          },
+          "resolves_prior_failure_record": []
+        }
+      },
+      "routing_confirmed": "implement-substrate -- user-confirmed 2026-09-04T18:55:13Z at the /governance Step 8 gate (governance-20260904-1347). Governance chips the follow-on."
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "mode": "B (register-and-resolve a NEW question in one edit)",
+    "rationale": "No existing questions[] entry in hypothesis_space_registry.v1.json covers the infant-curriculum phase-gate / GAP-14 / ARC-046 work-stream (checked all 45 qids on 2026-09-04). This autopsy adjudicates a leg (it carries a recommended_evidence_direction) and emits no fanout_recommendation, so Mode B applies to a NEW question. The growth-restriction check does NOT apply -- a question being opened in this edit cannot carry a restriction.",
+    "intended_questions_entry": {
+      "qid": "curriculum_phase_gate_live_loop",
+      "title": "Does the infant-curriculum Phase 0->1 crossing-count gate genuinely DISCRIMINATE genuine explorers from false advancers in a live closed loop, or is it only strictly more conservative than the legacy spike gate?",
+      "short_title": "Curriculum phase-gate live-loop discrimination",
+      "claims": [
+        "ARC-046",
+        "ARC-019"
+      ],
+      "registered_utc": "20260904T062128Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-996_2026-09-04.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is the crossing-count criterion the right Phase 0->1 gate for EXQ-ISEF-005, or is its apparent advantage over the spike gate an artefact of a non-independent oracle on a 5-seed draw with one discriminating cell?",
+        "live_gate": "an oracle computed from a signal the gate does not read (foraging / benefit-contact competence rather than h_pos), and power on the DISCRIMINATING cells rather than the total seed count",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "not on the critical path -- infant_substrate:GAP-14-c2 is already closed and its successor is refused; revive only if EXQ-ISEF-005 is unblocked by c-1 and the gate choice is re-opened",
+        "observation_bottleneck": "the competence oracle and the gate criterion are two thresholds on one signal (h_pos), so agreement measures threshold monotonicity on a stable per-seed property"
+      },
+      "hypotheses": [
+        {
+          "hid": "H-live-channel-closes-591h-vacuity",
+          "label": "The env_kwargs() channel closes the 591h vacuity",
+          "desc": "Applying InfantCurriculumScheduler.env_kwargs() to the env constructor each episode makes the curriculum phase reach behaviour, so the two arms' raw per-episode h_pos trajectories diverge and a gate comparison is interpretable at all.",
+          "axis": "instrumentation",
+          "basis": "V3-EXQ-591h's two arms were bit-identical on 5/5 seeds because the only wired channel had no consumer; the 591h autopsy prescribed env_kwargs plus a trajectory-divergence precondition.",
+          "pre_registered_utc": "20260904T062128Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-996_2026-09-04.json",
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-996"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "crossing_count_gate_discriminates_live_closed_loop",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "20260904T062128Z",
+            "basis": "135 diverging episodes across 4/5 seeds (591h: 0 across 5/5); independently confirmed by probe -- phase-0 vs phase-1 env under an identical 200-action stream differs on 166-185 of 200 ticks with identical initial layouts. Confirmed rather than eliminated: it is a positive readiness result, not the elimination of a rival."
+          }
+        },
+        {
+          "hid": "H-crossing-gate-discriminates-vs-more-conservative",
+          "label": "The crossing-count gate DISCRIMINATES, rather than merely being more conservative",
+          "desc": "The crossing-count gate's 5/5 oracle agreement reflects genuine competence discrimination, not a monotone shift that happens to drop one borderline seed on this draw.",
+          "axis": "process",
+          "basis": "The admitted sets are strictly nested and the crossing gate advances later on every co-admitted seed, so the delta over the control is one seed at zero precondition margin -- consistent with both readings.",
+          "pre_registered_utc": "20260904T062128Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-996_2026-09-04.json",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-996"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "V3-EXQ-996 does not discriminate the two readings: the oracle partition is reproduced exactly by a pre-window crossing count on the same signal, and the discriminative delta is one seed decided by one crossing. Left ALIVE rather than eliminated -- an uninformative run narrows nothing. Its adjudicating run is REFUSED as off the critical path, which is recorded here rather than papered over."
+          }
+        }
+      ]
+    },
+    "axis_family_note": "The confirming session MUST check that the axis labels 'instrumentation' and 'process' both appear in the registry's human-owned axis_families.map before appending; an unmapped axis forces the question's convergence_class to indeterminate.",
+    "invariants_checked_by_this_draft": [
+      "1 -- initial_frozen_count (2) == len(hypotheses) (2)",
+      "2 -- pre_registered_utc == resolved_utc == the run's own completion timestamp for the resolved leg; the alive leg has resolved_utc null",
+      "3 -- not applicable: this is a NEW questions[] entry, not growth of an adjudicated one",
+      "4 -- neither leg is marked eliminated or split, so the full elimination bar is not asserted",
+      "5 -- the confirmed leg carries control_passed: true",
+      "7 -- decision.decidable false and decision_log_ref null (human-owned)"
+    ],
+    "applied": true,
+    "registry_written": true,
+    "applied_utc": "2026-09-04T19:00:56Z",
+    "applied_by_session": "governance-20260904-1347",
+    "applied_qid": "curriculum_phase_gate_live_loop",
+    "applied_note": "Registered as a NEW questions[] entry (Mode A/B as drafted; placeholders filled with the apply timestamp; adjudicating-run placeholders moved to adjudicating_runs_note). build_hypothesis_space.py + check_hypothesis_space_integrity.py run after the append: flags (a)-(d) all 0."
+  },
+  "red_team": {
+    "model": "Fable 5.1 (claude-fable-5-1), separate agent, reasoning withheld, JSON-first read order",
+    "verdict": "CONTESTED",
+    "disposition": "contest ACCEPTED (amend facts corrected; routing unchanged); artifact revised 2026-09-04T14:49:17Z by governance-20260904-1347 (drafting session was a staging-mode subagent)",
+    "findings_accepted": [
+      "F1 the pre-emption is pinned by tests/contracts/test_harm_gradient_gap1.py::test_c3_suppressed_by_proxy_approach since 2026-05-16 -- \"contract covers proxy=False only\" and \"never exercised\" withdrawn; repair by letting the gradient fire would break a pinned contract, so it is a design decision, not a bug",
+      "F2 V3-EXQ-587 (ISEF-001, 2026-05-19) first measured the inertness (C1 0/5, ratios ~1.0) and was read as a geometry null; GAP-10 done-stamped at queue time -- reconcile owed",
+      "F3 structural at default V2 params (approach band Manhattan<=11 contains gradient band Euclid<=3; 0/4000 fires) but reachable at proximity_approach_threshold=0.9 (24/2000) -- wording qualified"
+    ],
+    "what_survived": "135 diverging episodes (47/26/59/3/0) and the non-vacuity guard (private env RNG, identical layouts); oracle [T,T,T,F,F] reproduced by pre-window crossings >= 3 on [25,8,28,2,0]; nested admitted sets; delta = seed 45 at zero P5 margin; P2 pinned; 0 harm_gradient ticks 10/10; \"strictly more conservative, n=1\"; INF-ENV-001 as amend target; severity degrading; successor refusal",
+    "hygiene": "draft cited on-disk line numbers (:2592/:5373) where commit 8f88b89 has :2507/:5231; DEV-NEED-004 absent from claims.yaml; stale live: blocks on GAP-10/14 cite an unrelated cluster autopsy"
+  },
+  "revised_utc": "2026-09-04T14:49:17Z",
+  "confirmed_utc": "2026-09-04T18:55:13Z",
+  "confirming_session": "governance-20260904-1347 (inline, /governance Step 1.5 route A; drafted by a staging-mode subagent, red-teamed on Fable, revised, gate held with the user)",
+  "user_decisions_2026_09_04": {
+    "Q1": "Apply all four as revised",
+    "Q2_SD031_gate": "Amend SD-031 what_would_answer + self_attribution GAP-6 to accept construction-balanced (RandomPolicy, offline-scored) comparator-only designs for the ARC-065 diversity half",
+    "Q3": "Add 6 buildable v3 substrate stubs",
+    "Q4": "Apply the three August staging-autopsy ledger blocks now",
+    "recommendation_agreement": "3 of 4 recommended options selected (Q4 against); logged via record_recommendation_outcome.py"
+  }
+}

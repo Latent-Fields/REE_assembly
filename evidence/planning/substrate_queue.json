@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "sd018-directional-field-amend-ba5834ed",
-  "last_updated_utc": "2026-09-04T14:22:57Z",
+  "last_updated_utc": "2026-09-04T18:56:25Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -3877,12 +3877,20 @@
       "closure_plan_gap": "infant_substrate:GAP-1",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/infant_substrate_expansion.md",
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3",
+          "experiment_type": "v3_exq_996_isef005_phase_gate_live_channels",
+          "metric": "n_harm_gradient_ticks = 0 in all 10 (arm x seed) cells with harm_gradient_enabled=True across the Phase-1 episodes x 200 steps -- structural at default V2 parameters (approach band Manhattan <= 11 strictly contains the gradient band Euclid <= 3, so hazard_approach always pre-empts the 'none' gate); pinned by test_c3_suppressed_by_proxy_approach since 2026-05-16; first measured by V3-EXQ-587 (2026-05-19).",
+          "target": "A consumer enabling harm_gradient_enabled records a nonzero per-cell fire count (raised proximity_approach_threshold or use_proxy_fields=False) before any DV is read; zero fires = readiness failure. Plus the GAP-10 / 587 plan reconcile.",
+          "resolved": "open"
+        }
+      ],
       "implementation_hint": "IMPLEMENTED 2026-05-16 in ree_core/environment/causal_grid_world.py (infant_substrate:GAP-1). step(): min Euclidean distance to nearest hazard; when r_in < d <= r_out apply -hazard_harm*(1-d/r_out)^2*scale to harm_signal (transition_type harm_gradient); terminal contact unchanged. Env-only kwargs default OFF. Substrate-readiness V3-EXQ-576 PASS 2026-05-16 (diagnostic, non_contributory). Tier-1 residue-geography evidence: V3-EXQ-587 (GAP-10). contracts test_harm_gradient_gap1.py 10/10.",
       "implementation_status": "implemented",
       "implemented_session": "infant-substrate-gap1-2026-05-16T183739Z",
       "implemented_utc": "2026-05-16T19:11:00Z",
-      "last_seen_session": "igw-inf-env-001-20260521T034429Z",
+      "last_seen_session": "governance-20260904-1347",
       "priority": 2,
       "ready": false,
       "sd_id": "INF-ENV-001",
@@ -3892,7 +3900,16 @@
         "DEV-NEED-004",
         "ARC-013"
       ],
-      "validation_experiment": "V3-EXQ-576"
+      "validation_experiment": "V3-EXQ-576",
+      "severity": "degrading",
+      "severity_note": "DEGRADING, not corrupting. Nothing measured so far is invalidated: 996's DVs are sound (divergence real, sourced from transient_benefit); 576 validated the feature with use_proxy_fields=False, the mode where it is live; 587's null stands as measured but its GEOMETRY reading is owed a re-read (the channel was inert, so 587 measured nothing about geometry). What is degraded is ATTRIBUTION -- any future experiment crediting harm_gradient_enabled for a behavioural effect at default params is crediting a dead channel.",
+      "substrate_paths": [
+        "ree_core/environment/causal_grid_world.py::step",
+        "tests/contracts/test_harm_gradient_gap1.py"
+      ],
+      "standing_instruction_for_consumers": "Any experiment enabling harm_gradient_enabled MUST record a per-cell fire count (info['transition_type'] == 'harm_gradient' or a nonzero info['harm_gradient_reward_this_tick']) and MUST treat a zero count as a readiness failure, not as a measurement. V3-EXQ-996 added exactly this counter as a red-team fix and then read 0 in all ten cells without flagging it.",
+      "governance_2026_09_04": "CORRECTED after the red-team pass (Fable, 2026-09-04). At DEFAULT V2 parameters (proximity_approach_threshold 0.15, hazard_field_decay 0.5, harm_gradient_outer_radius 3.0) the harm_gradient branch cannot fire: any tick within Euclid <= 3.0 of a hazard has proximity field >= 1/(1+2) = 0.333 > 0.15, so hazard_approach (or benefit_approach under the MECH-203 tie-break) claims the tick first and transition_type is never 'none' inside the gradient band (0/4000 random-policy ticks in the red-team probe; 0/10 cells in V3-EXQ-996). It is REACHABLE, not impossible: raising proximity_approach_threshold above 1/(1 + decay * ceil(r_out*sqrt(2))) (~0.33) re-opens it (threshold 0.9 -> 24/2000 ticks). This pre-emption is ALREADY PINNED by contract: tests/contracts/test_harm_gradient_gap1.py::test_c3_suppressed_by_proxy_approach (use_proxy_fields=True, landed 2026-05-16 with the feature) asserts the gradient stays zero when proxy approach fires -- so the inertness was designed in, not a regression, and repair option 'let harm_gradient fire under proxy mode' would BREAK a pinned contract and needs a design decision, not a bug fix. FIRST MEASURED by V3-EXQ-587 (ISEF-001, V2 mode, 2026-05-19: C1 0/5, ratios ~1.0) and read then as a 'null on geometry'; infant_substrate:GAP-10 was stamped done at queue time -- a plan reconcile is OWED (GAP-10 prose should say the channel is inert at default params). What this entry now asks for is NOT a build: (1) record on INF-ENV-001 that the shipped channel is inert at defaults, (2) require any consumer enabling harm_gradient_enabled to run with a raised approach threshold or proxy fields off AND to record a per-cell fire count, treating zero as a readiness failure, (3) reconcile GAP-10 and re-read 587's null accordingly. node_class: complicated (buildable) for the recording/readiness guard; the design question (should the gradient pre-empt approach?) is a decision, owed to the user, not a spike.",
+      "node_class": "complicated (buildable)"
     },
     {
       "added_session": "infant-substrate-expansion-2026-05-16T111412Z",
@@ -9064,7 +9081,8 @@
         "EXT-002",
         "EXT-003",
         "EXT-004",
-        "EXT-007"
+        "EXT-007",
+        "MECH-161"
       ],
       "failure_record": [
         {
@@ -9072,6 +9090,13 @@
           "experiment_type": "v3_exq_993_ext003_arc021_merged_channel_ablation",
           "metric": "SEPARATED (control) arm calibration_gap -0.00065 DENSE / -0.00022 SPARSE, negative in 4 of 6 baseline cells; largest |calibration_gap| in any of 12 cells 0.00152 against SEPARATED_SIGNAL_FLOOR 0.02",
           "target": "a control-arm signal at or above the registered 0.02 floor, established BEFORE the ablation arm is run",
+          "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
+          "experiment_type": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat",
+          "metric": "P0 baseline_avoidance_discrimination_margin -0.2608 vs +0.05 (abort at seed 11 of 3; C1 never evaluated). Readout confounded with the action-hold IV: conditional oracle +0.905 unheld vs +0.038 held at P=10; sensitivity(P) monotone in P under a hazard-blind null.",
+          "target": "A readout scored at E3 decision ticks (hold-invariant) on which a conditional-avoider oracle passes AND a hazard-blind null fails at EVERY P in the sweep, with P0 gated on coverage_ok over all seeds; then MECH-161 C1 (interior maximum over P) becomes testable.",
           "resolved": "open"
         }
       ],
@@ -9085,9 +9110,158 @@
       "severity_change_note": "Autopsy recommended 'corrupting' with substrate_paths including ree_core/environment/causal_grid_world.py. Governance governance-20260903T2013 set DEGRADING and dropped the environment path on a user-ratified red-team finding: 1,201 drivers import causal_grid_world, and Step 2.5c blocks at module level, so the recommendation as written would have blocked every new experiment fleet-wide. This entry is a HARNESS lint/precondition build (validate_experiments.py + p0_readiness_gate), not a substrate defect in the environment; 'degrading' keeps the WARN on the two harness paths.",
       "created_by": "governance governance-20260903T2013 from confirmed failure_autopsy_ext-claim-probe-cluster_2026-09-03 target V3-EXQ-993 (REE_assembly af8d2cabde)",
       "added_session": "governance-20260903T2013",
-      "last_seen_session": "governance-20260903T2013",
-      "added_utc": "2026-09-03T20:45:22Z"
+      "last_seen_session": "governance-20260904-1347",
+      "added_utc": "2026-09-03T20:45:22Z",
+      "governance_2026_09_04": "AMEND (create withdrawn at the red-team pass: a test-bed/readout defect entry whose substrate_paths were experiment DRIVER files could never fire the Step 2.5c gate, which matches on ree_core imports, and 'corrupting' failed the skill's own definition since both uses were caught by P0 and nothing was invalidated). The existing dv-dynamic-range-precondition-class entry (pending, degrading, MECH-027, cites V3-EXQ-981) already owns this failure class. Add the 999 instance: the hazard-avoidance SDT readout of the 981/999 driver family is confounded with the E3 action-hold period -- a per-step response readout on a held walker reads geometry, not decision -- so any driver reusing _avoidant_action/_hazard_bin MUST score at E3 decision ticks only (or use an IV-independent DV) and must gate P0 on coverage_ok across all seeds. severity stays degrading; substrate_paths unchanged (this is a driver-family readout class, recorded here so the IGW workset's _retest_blockers sees MECH-161 alongside MECH-027)."
+    },
+    {
+      "sd_id": "SD-064",
+      "title": "REE instantiates a global-workspace-like access channel: a capacity-limited selection-for-broadcast bottleneck (SD-027 boundary gate + MECH-089 theta-gamma packaging + E3 broadcast, riding the MECH-287 / SD-037 broadcast",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-027",
+        "MECH-007",
+        "MECH-089",
+        "MECH-287",
+        "SD-037"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "Capacity-limited selection-for-broadcast bottleneck over SD-027 candidates (global-workspace-like access channel); design the winner-take-K broadcast and its consumers before any evidence run. Gate decision: global_workspace_jlens:GATE-B (see V3-EXQ-723 diagnostic).",
+      "priority": 3,
+      "added_session": "governance-20260904-1347",
+      "added_utc": "2026-09-04T18:56:25Z",
+      "last_seen_session": "governance-20260904-1347",
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+    },
+    {
+      "sd_id": "SD-067",
+      "title": "Dedicated safety-terrain RBF bandwidth: an opt-in, tighter bandwidth for the MECH-303 contextual-safety-terrain RBF read, separate from the shared kernel_bandwidth (1.0). The shared bandwidth is ~15x too wide for the z_w",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_067_safety_terrain_bandwidth.md",
+      "depends_on_unresolved": [
+        "MECH-303",
+        "SD-008"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "Opt-in tighter RBF bandwidth for the MECH-303 contextual-safety-terrain readout, separate from the residue-field bandwidth; default-off knob plus a contract that OFF is bit-identical.",
+      "priority": 3,
+      "added_session": "governance-20260904-1347",
+      "added_utc": "2026-09-04T18:56:25Z",
+      "last_seen_session": "governance-20260904-1347",
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+    },
+    {
+      "sd_id": "SD-080",
+      "title": "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O that SD-004's hippocampal map backbone navigates is a frozen random projection fixed at initialisation, not the lear",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-004",
+        "ARC-018",
+        "SD-056"
+      ],
+      "unblocks_claims": [
+        "MECH-516",
+        "MECH-517",
+        "MECH-518",
+        "MECH-523",
+        "MECH-532"
+      ],
+      "failure_record": [],
+      "implementation_hint": "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O is untrained; wire a training signal (SD-056 contrastive or a consequence-grounding loss) so downstream MECH-516/517/518/523/532 become testable.",
+      "priority": 3,
+      "added_session": "governance-20260904-1347",
+      "added_utc": "2026-09-04T18:56:25Z",
+      "last_seen_session": "governance-20260904-1347",
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+    },
+    {
+      "sd_id": "SD-086",
+      "title": "z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximate",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-011",
+        "SD-019",
+        "SD-020"
+      ],
+      "unblocks_claims": [
+        "Q-086"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Replace the z_harm_a latent-norm readout with a calibrated scalar valuation (trained/calibrated against harm outcomes) so the affective readout is not conflated with latent magnitude; unblocks Q-086.",
+      "priority": 3,
+      "added_session": "governance-20260904-1347",
+      "added_utc": "2026-09-04T18:56:25Z",
+      "last_seen_session": "governance-20260904-1347",
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+    },
+    {
+      "sd_id": "SD-097",
+      "title": "REE requires a general, typed, multi-relation possibility topology -- not merely the existing parent/subgoal edge -- in which represented possibilities/goals are connected by explicit relation types (requires, enables, i",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-004",
+        "SD-039",
+        "MECH-292",
+        "MECH-293",
+        "MECH-189",
+        "SD-092",
+        "MECH-427",
+        "MECH-428"
+      ],
+      "unblocks_claims": [
+        "SD-098"
+      ],
+      "failure_record": [],
+      "implementation_hint": "General typed multi-relation possibility topology over goals/anchors (beyond parent/subgoal): relation types, storage, and read-time traversal; prerequisite for SD-098.",
+      "priority": 3,
+      "added_session": "governance-20260904-1347",
+      "added_utc": "2026-09-04T18:56:25Z",
+      "last_seen_session": "governance-20260904-1347",
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+    },
+    {
+      "sd_id": "SD-098",
+      "title": "Goal-ness and subgoal-ness are relational properties computed at read-time from the conjunction of an agent's current state, its active commitments, its currently privileged destination, and the trajectory under consider",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-097",
+        "MECH-236"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "Compute goal-ness/subgoal-ness as relational properties at read-time from the current state x topology (SD-097), instead of storing node types; consumer-side change in the goal pipeline and MECH-236 hippocampal z_goal path.",
+      "priority": 3,
+      "added_session": "governance-20260904-1347",
+      "added_utc": "2026-09-04T18:56:25Z",
+      "last_seen_session": "governance-20260904-1347",
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
     }
   ],
-  "schema_version": "substrate_queue/v2"
+  "schema_version": "substrate_queue/v2",
+  "reconcile_note_2026_09_04": "6a-i reconcile (governance-20260904-1347): 29 pending design-decision claims had no entry; 6 buildable v3 stubs added (SD-064, SD-067, SD-080, SD-086, SD-097, SD-098). DELIBERATELY NOT ADDED, with reason: v4/v6-phase (SD-040..046, SD-060, Q-071, ARC-102, SD-095, SD-096, SD-101 -- phase follows dependency, not substrate-queue material yet); registry/governance-plane (SD-062, SD-088, SD-089, SD-090); instrument-validity or staging assertions rather than builds (SD-071, SD-072, SD-073, SD-087); MECH-384 (has chip-proposal-exp-1045-paced); MECH-530 (already pinned by contract, verified property)."
 }

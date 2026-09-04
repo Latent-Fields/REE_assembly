@@ -1,39 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-09-04T13:53:29Z`  
-Last review: `2026-09-03T20:44:11Z`  
-Pending: **5** item(s) -- 2 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
+Generated: `2026-09-04T18:57:45Z`  
+Last review: `2026-09-04T18:56:41Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3` | 2026-09-03T21:19 | MECH-161 | — |
-| `v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3` | 2026-09-04T03:22 | MECH-162 | — |
-| `v3_exq_1001_ext005_sd031_attribution_causal_shift_20260904T032948Z_v3` | 2026-09-04T03:29 | ARC-037, EXT-005, MECH-095, SD-031 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3` | 2026-09-03T21:36 | (no claim tags) |
-| `v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3` | 2026-09-04T06:21 | (no claim tags) |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3` | PASS | rollout_endpoint_contrastive_lifts_cr_ratio_h1 | **vacuous_pass** |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3` | PASS | crossing_count_gate_discriminates_live_closed_loop |
+All experiments reviewed. Nothing pending.
 
 ---
 

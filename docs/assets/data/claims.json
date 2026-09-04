@@ -4511,6 +4511,8 @@
   },
   "MECH-161": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "dv-dynamic-range-precondition-class",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "cognitive_modes.vigilance_arousal_regulator",
@@ -5422,8 +5424,8 @@
   },
   "MECH-264": {
     "assembly_state": "awaiting_substrate",
-    "assembly_status": "queued",
-    "awaiting": "SD-033c",
+    "assembly_status": "built",
+    "awaiting": "SD-033e",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "pfc.frontopolar_counterfactual_value_tracking",
@@ -5433,7 +5435,7 @@
   },
   "MECH-265": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-033e",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -7686,6 +7688,8 @@
   },
   "MECH-516": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-080",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "selection.graded_value_categorical_interface",
@@ -7695,6 +7699,8 @@
   },
   "MECH-517": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-080",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "methodology.interface_before_representation_ordering",
@@ -7703,6 +7709,8 @@
   },
   "MECH-518": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-080",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "hippocampal.action_object_dual_role_variance_contention",
@@ -7746,6 +7754,8 @@
   },
   "MECH-523": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-080",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "representation.untrained_compression_sites",
@@ -7811,7 +7821,7 @@
     "subject": "e3.non_oracular_output_typing",
     "title": "E3's decision-outcome signals to any downstream consumer (including a future rebucketing mechanism such as MECH-529) are typed, continuous insufficiency measures -- prediction/consequence mismatch, harm/goal cost, veto/conflict magnitude and count, commit/threshold state -- never semantic category labels. This is an interface contract on E3's EXISTING output surface (SelectionResult, harm_eval/benefit_eval, last_score_diagnostics), holding independently of whether a rebucketing consumer is ever built: E3 already emits only continuous/boolean/count-typed diagnostics keyed by descriptive strings, and preserving that property is what MECH-529's non-oracularity requirement needs to continue holding as more downstream consumers are added.",
     "type": "design_decision",
-    "what_would_answer": "NON-DEGENERACY PRECONDITION: E3's selection/commitment pathway (ree-v3 ree_core/predictors/e3_selector.py) is live and its decision-outcome diagnostic surface (SelectionResult, harm_eval/benefit_eval, last_score_diagnostics) is inspectable -- met today. CONFIRMING: every field of E3's decision-outcome output surface is a continuous, boolean, or count-typed value, and none is a semantic category-label string or enum naming a content class. Verified by direct inspection 2026-09-01: SelectionResult's fields (selected_trajectory, selected_index, selected_action, scores, precision, committed, log_prob, urgency) and the live last_score_diagnostics dict populated across e3_selector.py (go_nogo_*, gap_scaled_commit_*, loop_*, d1d2_conflict, etc.) are exclusively tensor/float/bool/int-typed; a repo-wide grep for category_label/oracular across ree_core and docs/ returned zero hits. No category-label-shaped field exists anywhere on E3's current output surface -- the contract holds today without any new build. FALSIFYING: an existing or newly-added E3 output field is found to encode a semantic category (an object- or context-class label) rather than a typed magnitude; or a future rebucketing consumer is found to require E3 to supply such a label in order to function.\n"
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: E3's selection/commitment pathway (ree-v3 ree_core/predictors/e3_selector.py) is live and its decision-outcome diagnostic surface (SelectionResult, harm_eval/benefit_eval, last_score_diagnostics) is inspectable -- met today. CONFIRMING: every field of E3's decision-outcome output surface is a continuous, boolean, or count-typed value, and none is a semantic category-label string or enum naming a content class. Verified by direct inspection 2026-09-01: SelectionResult's fields (selected_trajectory, selected_index, selected_action, scores, precision, committed, log_prob, urgency) and the live last_score_diagnostics dict populated across e3_selector.py (go_nogo_*, gap_scaled_commit_*, loop_*, d1d2_conflict, etc.) are exclusively tensor/float/bool/int-typed; a repo-wide grep for category_label/oracular across ree_core and docs/ returned zero hits [CORRECTION 2026-09-04, governance-20260904-1347, GFLAG-0121: the contract test now pinning this claim (ree-v3 tests/contracts/test_e3_non_oracular_output_typing.py, bc63b0e2fd) found that last_score_diagnostics DOES carry three pre-existing string-valued fields -- commit_gate_mode, modulatory_shortlist_mode, modulatory_authority_normalize_basis -- all internal algorithm/formula-mode selectors rather than semantic content-class labels, which the test allowlists; so the accurate statement is 'zero content-class label fields', not 'zero string-typed fields']. No category-label-shaped field exists anywhere on E3's current output surface -- the contract holds today without any new build. FALSIFYING: an existing or newly-added E3 output field is found to encode a semantic category (an object- or context-class label) rather than a typed magnitude; or a future rebucketing consumer is found to require E3 to supply such a label in order to function.\n"
   },
   "MECH-531": {
     "assembly_state": "awaiting_substrate",
@@ -7824,6 +7834,8 @@
   },
   "MECH-532": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-080",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "representation.compression_site_decompression_pairing",
@@ -8606,6 +8618,8 @@
   },
   "Q-086": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-086",
     "epistemic_stance": "asked",
     "status": "candidate",
     "subject": "harm_stream.saturation_ecological_vs_representational",
@@ -9089,7 +9103,7 @@
     "subject": "self_attribution.comparator_z_world",
     "title": "Single-pass agency attribution on the z_world (causal-footprint) reafferent stream: residual = z_world_observed - E2_world(z_world_{t-1}, a_actual).",
     "type": "design_decision",
-    "what_would_answer": "SD-031 (single-pass z_world comparator: residual_world = z_world_observed - E2_world(z_world_{t-1}, a_actual)) is falsified if, once both non-degeneracy preconditions below are met, the comparator does not discriminate self-caused from externally-caused world events -- residual magnitude for self-caused events is not measurably smaller than for externally-caused ones (the Sommer & Wurtz corollary-discharge / parietal outcome-prediction grounding).\nTWO-PART NON-DEGENERACY PRECONDITION (both required): (1) world_dim >= 128 in the validation config (E2WorldForward hard-asserts this) -- ALREADY MET, demonstrated in the 2026-06-06 smoke and the 2026-07-18 V3-EXQ-783 crossing run. (2) ARC-065 behavioural diversity active in the main agent path (balanced agent-caused vs externally-caused world events) -- NOT yet met. This is the same gate blocking SD-029's C2 and MECH-257's C2: self_attribution_plan.md GAP-6 (this claim's dedicated closure node, split out 2026-08-15) is blocked on behavioral_diversity_isolation:GAP-I (MECH-439 F-dominance, in-progress) -> conversion_ceiling_campaign:FULLSTACK (assembling, via ARC-107/MECH-448+449, V3-EXQ-689g pending).\nCONFIRMING: once both preconditions hold, residual_world_self < residual_world_external with adequate SNR (matching the 2026-06-06 smoke's direction -- ~2.0 vs ~22.6 -- but under a genuinely diverse event distribution). FALSIFYING: residual magnitude is agency-blind (self/external ratio ~1.0) even once the diversity confound is removed, or world_forward_r2 degrades below ~0.9 under the balanced-event regime.\nSTANDING PROHIBITION: do not queue the discriminative arm until GAP-6's two-part gate clears.\n[2026-08-27 thought-digestion]: the earlier 'world_dim=32 lacks discriminative granularity' reading (2026-06-06 cluster autopsy) is now REFUTED, not merely retested -- V3-EXQ-783 (2026-07-18) crossed training x dimensionality 2x2 and found training lifts contrast at BOTH dims while dimensionality lifts nothing at either training state. The real fault was an untrained encoder (fixed by SD-070, same day), not dimensionality. See governance flag raised this session.\n"
+    "what_would_answer": "SD-031 (single-pass z_world comparator: residual_world = z_world_observed - E2_world(z_world_{t-1}, a_actual)) is falsified if, once both non-degeneracy preconditions below are met, the comparator does not discriminate self-caused from externally-caused world events -- residual magnitude for self-caused events is not measurably smaller than for externally-caused ones (the Sommer & Wurtz corollary-discharge / parietal outcome-prediction grounding).\nTWO-PART NON-DEGENERACY PRECONDITION (both required): (1) world_dim >= 128 in the validation config (E2WorldForward hard-asserts this) -- ALREADY MET, demonstrated in the 2026-06-06 smoke and the 2026-07-18 V3-EXQ-783 crossing run. (2) ARC-065 behavioural diversity active in the main agent path (balanced agent-caused vs externally-caused world events) -- NOT yet met. This is the same gate blocking SD-029's C2 and MECH-257's C2: self_attribution_plan.md GAP-6 (this claim's dedicated closure node, split out 2026-08-15) is blocked on behavioral_diversity_isolation:GAP-I (MECH-439 F-dominance, in-progress) -> conversion_ceiling_campaign:FULLSTACK (assembling, via ARC-107/MECH-448+449, V3-EXQ-689g pending).\nCONFIRMING: once both preconditions hold, residual_world_self < residual_world_external with adequate SNR (matching the 2026-06-06 smoke's direction -- ~2.0 vs ~22.6 -- but under a genuinely diverse event distribution). FALSIFYING: residual magnitude is agency-blind (self/external ratio ~1.0) even once the diversity confound is removed, or world_forward_r2 degrades below ~0.9 under the balanced-event regime.\nSTANDING PROHIBITION: do not queue the discriminative arm until GAP-6's [2026-09-04 governance amend, user decision, cycle governance-20260904-1347]: precondition (2) is CLEARED FOR THE COMPARATOR-ONLY READOUT by a construction-balanced design -- a RandomPolicy collection with balanced agent-caused vs externally-caused world events, scored offline (as V3-EXQ-995 and V3-EXQ-1001 did; 6132 minimum-class events) -- because it removes the F-dominance confound the gate guards against without needing ARC-065 live in the main agent path. The STANDING PROHIBITION therefore no longer blocks a comparator-only discriminative arm built that way; it still blocks any design that reads the residual from the LIVE agent loop until GAP-6 clears. self_attribution_plan.md GAP-6 resume_condition amended to match. two-part gate clears.\n[2026-08-27 thought-digestion]: the earlier 'world_dim=32 lacks discriminative granularity' reading (2026-06-06 cluster autopsy) is now REFUTED, not merely retested -- V3-EXQ-783 (2026-07-18) crossed training x dimensionality 2x2 and found training lifts contrast at BOTH dims while dimensionality lifts nothing at either training state. The real fault was an untrained encoder (fixed by SD-070, same day), not dimensionality. See governance flag raised this session.\n"
   },
   "SD-032": {
     "assembly_state": "awaiting_substrate",
@@ -9767,6 +9781,8 @@
   },
   "SD-098": {
     "assembly_state": "awaiting_substrate",
+    "assembly_status": "queued",
+    "awaiting": "SD-097",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "goal.relational_role_not_stored_node_type",

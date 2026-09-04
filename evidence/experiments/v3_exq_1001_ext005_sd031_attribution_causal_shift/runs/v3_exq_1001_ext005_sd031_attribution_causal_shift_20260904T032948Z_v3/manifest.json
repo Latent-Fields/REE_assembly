@@ -26,9 +26,9 @@
     "EXT-005"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "mixed",
   "evidence_direction_per_claim": {
-    "SD-031": "weakens",
+    "SD-031": "mixed",
     "ARC-037": "non_contributory",
     "MECH-095": "non_contributory",
     "EXT-005": "non_contributory"
@@ -207,5 +207,7 @@
     "writer_defect": null,
     "n_agents": 5,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "[2026-09-04T18:55:42Z governance, cycle governance-20260904-1347] Applied from confirmed failure_autopsy_V3-EXQ-1001_2026-09-04 (inline route-A autopsy, red-teamed on Fable -- CONTESTED, accepted and revised -- user-confirmed at the Step 8 gate 2026-09-04T18:55:42Z). evidence_direction -> mixed; epistemic_category standard. [V3-EXQ-1001, 2026-09-04, autopsy failure_autopsy_V3-EXQ-1001_2026-09-04] OOD sequel to V3-EXQ-995. The SD-031 comparator residual was scored post-shift after a one-time 4-cycle rotation of CausalGridWorldV2's instance-level _action_map that holds surface statistics fixed (max class-fraction deviation 0.0079 against a 0.05 tolerance). FAIL, 0/2 load-bearing criteria, 5 seeds, all 10 readiness preconditions met. Frozen: MOVE_OK AUROC 0.5198, i.e. +0.0198 over chance and -0.0040 against its OWN action-shuffled control -- zero-shot, the action-conditioned component contributes nothing. Readapted (8 epochs on 15% of post-shift data): 0.5408, +0.0408 over chance and +0.0117 over shuffled, both consistent in sign across 5/5 seeds and 10x / 2.5x their own SDs, both roughly 4x BELOW the pre-registered 0.05 absolute floor -- so the FAIL is decided by the absolute floor, not by noise. THREE READING CONSTRAINTS, all from the run's own record. (i) The gap-vs-bare clause both criteria PASS is hollow: post-shift bare sits at 0.4442, below chance in 5/5 seeds, so beating it by 0.078-0.099 certifies nothing; the operative clauses are chance and shuffled-action, exactly as the 2026-09-03 red-team fix intended. (ii) D1 is analytically undecidable here -- the driver's own SCOPE LIMITATION concedes that no model, causal or correlational, can be zero-shot invariant to a relabelled 4-entry lookup table, so D1's FAIL is predicted equally by both hypotheses and carries no discriminating information. (iii) D2's FAIL is budget-unanchored: the run has no unshifted-env or scratch-model ceiling (the dr",
+  "epistemic_category": "standard"
 }

@@ -175,7 +175,8 @@ closure_plan:
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-004, ARC-013]
       depends_on: ["infant_substrate:GAP-1", "infant_substrate:GAP-5", "infant_substrate:GAP-6"]
-      last_updated: 2026-05-17
+      last_updated: 2026-09-04
+      governance_2026_09_04: "RECONCILE (governance-20260904-1347; confirmed failure_autopsy_V3-EXQ-996_2026-09-04, red-team F2/F3): the harm_gradient_enabled channel this node validated via V3-EXQ-587 is STRUCTURALLY INERT under CausalGridWorldV2 default parameters (proxy-field mode: hazard_approach pre-empts the transition_type == none gate; pinned by tests/contracts/test_harm_gradient_gap1.py::test_c3_suppressed_by_proxy_approach since 2026-05-16; reachable only with proximity_approach_threshold above ~0.33 or use_proxy_fields=False). 587 therefore measured a DEAD channel, not geometry: its C1 0/5 / ratios ~1.0 null is about channel inertness and the 2026-05-19 geometry-null reading is withdrawn. Status stays done (the run happened and V3-EXQ-576 validated the feature in the mode where it is live); INF-ENV-001 amended (severity degrading) with a standing consumer instruction to record a per-cell fire count. No re-run owed by this node."
     - id: "infant_substrate:GAP-11"
       title: "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison"
       status: done

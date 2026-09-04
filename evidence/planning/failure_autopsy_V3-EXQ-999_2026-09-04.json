@@ -1,0 +1,346 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-04T14:22:46Z",
+  "session_id": "governance-20260904-1347",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
+      "queue_id": "V3-EXQ-999",
+      "claim_ids": [
+        "MECH-161"
+      ],
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "absolute",
+      "failed_criterion_note": "The P0 readiness precondition baseline_avoidance_discrimination_margin (an absolute positive-control bar) failed at -0.2608 vs a +0.05 floor, aborting the run at the first seed. The decisive DISCRIMINATION criterion C1_interior_max_margin was never evaluated: the manifest's criteria_non_degenerate.C1_interior_max_margin=false is a hardcoded literal on the P0-abort branch, not a measurement.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- and untestable by this design even had the gate passed. The run aborted before any non-baseline heartbeat level ran, so nothing was measured about the interior-optimum question. Separately, MECH-161 asserts that ready vigilance REQUIRES AN AROUSAL REGULATOR; this driver forces the heartbeat period externally and re-asserts it after every _e1_tick precisely so MECH-093's z_beta regulator CANNOT act, so it tests the claim's background SHAPE premise (does an interior optimum exist on the rate axis), never the regulator assertion. MECH-026's own what_would_answer records that MECH-161's controller is UNBUILT, not merely untested. Claim tag is accurate but the scope must be narrowed in any future disposition.",
+        "biological_reference": "clear -- the LC-NE adaptive-gain inverted-U (Aston-Jones & Cohen 2005; Langner & Eickhoff 2013) is a well-evidenced reference for the SHAPE premise. Not the failure locus. What has no biological warrant in the corpus is the specific translation choice that the arousal parameter carrying the inverted-U is E3 UPDATE PERIOD rather than precision gain -- MECH-161 asserts this and no literature entry addresses it.",
+        "prerequisites": "MIXED. MECH-093's rate channel is implemented and live (clock.py update_e3_rate_from_beta / _current_e3_steps, verified by the driver's own before/after probe). ARC-016's circuit is stable. But MECH-161's own arousal REGULATOR is UNBUILT (MECH-026 what_would_answer, verbatim), and MECH-093 has a prior FAIL (EXQ-097, p1_rate_gap -0.74 vs >= 2.0) showing z_beta does not track harm salience -- so the regulator has no working input signal even if built.",
+        "implementation": "partial -- and specifically the TRAINING REGIME is the partial part. _train_warmup trains e1 prediction, the e2 world-forward model, and the e3 harm_eval head. It trains NO action-selection policy on harm outcomes; avoidance can only appear via E3 scoring hippocampal candidates through harm_eval. On top of that, NAV_BIAS=0.25 forcibly overrides the agent's action toward the nearest hazard on 25% of training steps and writes that override into state.last_action/action_prev. Whether hazard-avoidant BEHAVIOUR is learnable at all under this warmup has never been demonstrated by any run in the corpus.",
+        "environment": "too sparse -- structurally, for this readout. hazard_field_view is normalised by the global field max, so with one hazard and decay 0.5 the agent's own cell reads exactly 1/(1+0.5d). HIGH (>=0.50) is d<=2; SAFE (<0.15) is d>=12. On a 10x10 grid d>=12 is unreachable for a centred hazard and confined to a far-corner wedge otherwise. Measured over 40 resets per seed: SAFE is 1.1-2.2% of non-wall cells (0, 0 and 1 SAFE cells on the three first-episode grids). The false_alarm_rate denominator is therefore a rare boundary artifact, and the designated avoidant action there walks into a wall in 93-100% of SAFE-bin steps.",
+        "measurement": "misleading -- CORRECTED at the red-team pass (Fable, 2026-09-04). The draft's mechanism ('no signal/noise asymmetry; a perfect avoider scores 0') was WRONG: the draft's oracle was an always-respond policy, which scores d'=0 in any SDT task by construction. A CONDITIONAL avoider (flee iff HIGH, else random) scores sensitivity +0.905 per step on the driver's own readout and PASSES the +0.05 gate. The real defect is ACTION HOLD x GEOMETRY: E3 decides every P steps (the heartbeat IV) while the readout scores every step, and SAFE is reachable only by walking away from the hazard while HIGH is reachable only by walking toward it -- so a held walker is scored 'avoidant' in SAFE and 'approaching' in HIGH regardless of what it decided. The conditional oracle HELD at P=10 collapses to +0.038 (fails), and 981's per-bin rates (SAFE 0.87-0.89, HIGH 0.10-0.27) are exactly that signature. Consequence for the claim test: sensitivity(P) is monotone in P under a hazard-blind null (-0.23 -> -0.60) and pure noise under a perfect discriminator (per-seed -0.63..+0.45), so C1 is confounded with the IV for ANY agent; the per-step readout cannot test MECH-161 even with the P0 gate repaired. Also: the draft's headline 'oracle cannot pass' does not reproduce at the driver's 20-episode budget (unconditional oracle +1.0 on seed 23 because SAFE n=0 -> rate 0.0), and P0 never gates on coverage_ok at all.",
+        "integration": "isolated -- the eval harness bypasses agent.step() and drives clock.advance() directly, and force_heartbeat deliberately overwrites MECH-093's output every tick. That is a legitimate operating-point-sweep choice, but it means no integrated regulator loop was exercised.",
+        "scale": "unknown -- 150 warmup episodes x 100 steps was never shown to be sufficient for avoidance because no valid avoidance readout exists yet to show it with. Budget cannot be assessed until the readout is repaired."
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE adaptive gain: tonic/phasic noradrenergic modulation setting an operating point on an inverted-U between missed signals (too little) and hypervigilant false alarms (too much), read out behaviourally as signal-detection sensitivity in a vigilant-attention task",
+        "dependencies": [
+          "an arousal signal that actually tracks threat salience (MECH-093's z_beta does not -- EXQ-097 p1_rate_gap -0.74)",
+          "a closed-loop regulator that MOVES the operating point rather than an externally forced sweep (MECH-161's controller: UNBUILT)",
+          "a task with a genuine signal/noise structure, so hits and false alarms are distinguishable responses rather than the same response scored in two places"
+        ],
+        "is_formal_import": false,
+        "divergence": "The inverted-U itself is faithfully imported. Two translation choices are NOT lit-grounded: (1) that the arousal parameter carrying the inverted-U is E3 UPDATE PERIOD rather than precision/gain -- MECH-161 asserts this and no entry in evidence/literature addresses it; (2) the SDT operationalisation. Nuiten et al. 2026 (targeted_review_sd_069) reads arousal effects off a real yes/no detection task where the response is a report independent of the stimulus geometry; this driver defines the response AS the correct-answer geometry, which is what collapses the oracle to zero.",
+        "lit_status": "partial",
+        "lit_status_note": "PRESENT for the LC-NE inverted-U / vigilant-attention biology: targeted_review_connectome_mech_026 (Langner & Eickhoff 2013, the meta-analysis MECH-161's own notes cite), targeted_review_connectome_mech_313 (Aston-Jones & Cohen 2005 adaptive gain), targeted_review_sd_069 (Nuiten 2026, tonic/phasic dissociation on an explicit SDT+DDM readout), targeted_review_arc_066_tonic_vigor. ABSENT for MECH-161 itself -- there is no targeted_review_mech_161 and MECH-161 appears in no SYNTHESIS.md -- and ABSENT specifically for the rate-vs-gain translation choice and for what a valid vigilance SDT readout looks like in a grid-world."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Measurement / test-design defect: the run told us nothing about MECH-161, which is the behaviour-preserving mapping to `standard` per the skill's enum guidance. Deliberately NOT substrate_ceiling or substrate_conditional: those assert that the claim's answer is gated on substrate work and would suppress MECH-161 from GOV-GRAN-1 surfacing and from v3 experiment lanes, which is exactly wrong for a candidate claim with zero evidence whose instrument has never worked. MECH-161 currently carries no epistemic_category at all, so this is a first stamp, not a change.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-999 (2026-09-03, ree-cloud-2, 43m52s) NON-CONTRIBUTORY -- first run ever to tag MECH-161 (claims.yaml evidence: []). The run aborted at its first seed on the P0 readiness precondition baseline_avoidance_discrimination_margin, measured -0.2608 against a +0.05 floor, and self-routed substrate_not_ready_requeue. THE SELF-ROUTE'S CAUSAL STORY IS WRONG, and the correction is the finding. The precondition is labelled 'positive control that hazard-avoidance behaviour was trained at all', but the statistic (avoidant-action rate in the HIGH hazard bin minus the SAFE bin, where the 'avoidant action' is the geometric argmax of the away-from-nearest-hazard vector) cannot certify training, because the response is defined identically in both bins and therefore carries no signal/noise asymmetry. Measured directly against this driver's own readout replayed on the same env config and seeds: an ORACLE taking the correct avoidant action on EVERY step scores hit_rate = false_alarm_rate = 1.000 and sensitivity = +0.0000 on all three seeds, FAILING the +0.05 gate; the realizable oracle (avoidant action chosen at each E3 tick, P=10, held between) scores -0.0100 and also fails; and policy-free nulls with zero hazard knowledge score -0.126 (uniform-random), -0.130 (held P=5), -0.061 (held P=10) and -0.436 (held P=20), single-seed values spanning +0.109 to -0.583. The observed -0.2608 sits inside that null band. So the gate cannot separate untrained avoidance from perfect avoidance, its null is strongly negative rather than centred on zero, and -- because the driver aborts on the FIRST seed -- one draw from a null with cross-seed SD around 0.2 decided the whole run. Two structural contributors: (a) with hazard_field_view normalised by the global field max, one hazard and decay 0.5, the agent's own cell reads 1/(1+0.5d), so HIGH is d<=2 and SAFE is d>=12 -- unreachable for a centred hazard on a 10x10 grid and a far-corner wedge otherwise (measured: SAFE = 1.1-2.2% of non-wall cells; 0, 0 and 1 SAFE cells on the three first-episode grids), and the designated avoidant action there is a wall/edge no-op in 93-100% of SAFE-bin steps, so false_alarm_rate measures pressing into the boundary at maximum distance; (b) MIN_BIN_COVERAGE_STEPS=5, the mitigation the driver's own red-team Family-2 disposition relied on, is a COUNT floor and does not touch this bias -- the low-n SAFE cells clear it. Independently, the training regime never trains an action policy on harm at all (_train_warmup trains e1, the e2 world-forward model and the e3 harm_eval head only; NAV_BIAS=0.25 additionally overrides 25% of training actions TOWARD the hazard), so 'trained hazard avoidance' has never been demonstrated in this corpus and remains an open question rather than something this run refuted. RECURRENCE: this apparatus exists in exactly two drivers, and both have now failed the same positive control -- V3-EXQ-981 measured -0.4307 on 2026-09-03T05:30Z, all three of the same seeds, and its confirmed autopsy (2026-09-03T20:04Z, 1h15m before this run started) already recorded the reversed sign. V3-EXQ-999's queue entry nevertheless describes the apparatus as 'reused verbatim from V3-EXQ-981's calibrated ... apparatus'; it was reused from 981's DRIVER, not from 981's RESULT. MECH-161 takes no weight from this run in either direction, and it has no supports to be narrowed by it (evidence: [] -- zero prior entries, so there is no illusory-conflict risk here). RECORDING GAP: the P0-abort branch stamps only {seed, p0_not_ready} into arm_results, discarding the baseline level's hit_rate, false_alarm_rate, per-bin n/avoidant counts, coverage_ok, committed_fraction and world_forward_r2 -- all of which existed at run time. The re-queue must record them (experimental_recording_standard_2026-07-12.md 3b/3c) so the next reading of this gate can be decomposed without another full run. Retest after the readout is repaired and a trained-avoidance capability is demonstrated: pending_retest_after_substrate.",
+      "per_claim_recommendation": {
+        "MECH-161": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "First-ever run tagging MECH-161; it aborted on a positive control that a perfect avoider also fails (oracle sensitivity +0.0000 vs a +0.05 floor), so the claim was never tested and takes no weight in either direction. Status stays candidate and evidence stays empty. MECH-161 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "dv-dynamic-range-precondition-class",
+        "title": "DV-headroom precondition class: gate an experiment on the DEPENDENT variable's achievable range against its own registered threshold, not only on whether the intervention was applied",
+        "implementation_hint": "AMEND (create withdrawn at the red-team pass: a test-bed/readout defect entry whose substrate_paths were experiment DRIVER files could never fire the Step 2.5c gate, which matches on ree_core imports, and 'corrupting' failed the skill's own definition since both uses were caught by P0 and nothing was invalidated). The existing dv-dynamic-range-precondition-class entry (pending, degrading, MECH-027, cites V3-EXQ-981) already owns this failure class. Add the 999 instance: the hazard-avoidance SDT readout of the 981/999 driver family is confounded with the E3 action-hold period -- a per-step response readout on a held walker reads geometry, not decision -- so any driver reusing _avoidant_action/_hazard_bin MUST score at E3 decision ticks only (or use an IV-independent DV) and must gate P0 on coverage_ok across all seeds. severity stays degrading; substrate_paths unchanged (this is a driver-family readout class, recorded here so the IGW workset's _retest_blockers sees MECH-161 alongside MECH-027).",
+        "unblocks_claims": [
+          "MECH-027",
+          "MECH-161"
+        ],
+        "severity": "degrading",
+        "failure_record_entry": {
+          "run_id": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
+          "experiment_type": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat",
+          "metric": "P0 baseline_avoidance_discrimination_margin -0.2608 vs +0.05 (abort at seed 11 of 3; C1 never evaluated). Readout confounded with the action-hold IV: conditional oracle +0.905 unheld vs +0.038 held at P=10; sensitivity(P) monotone in P under a hazard-blind null.",
+          "target": "A readout scored at E3 decision ticks (hold-invariant) on which a conditional-avoider oracle passes AND a hazard-blind null fails at EVERY P in the sweep, with P0 gated on coverage_ok over all seeds; then MECH-161 C1 (interior maximum over P) becomes testable.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "MECH-161 has evidence: [] -- zero prior entries of any direction. There are no supports to be narrowed or made illusory by a non_contributory reading, so the paired check required for any substrate-limitation recommendation is satisfied vacuously and honestly.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "R1-R3 count for MECH-161 over confirmed artifacts = 0 (recipe run 2026-09-04; granularity_debt_cluster.py also reports 0 tagging targets). Below the threshold of 2, so the brake does not fire and a same-question re-queue is permitted. FOR THE NEXT SESSION: this target will count as hit 1 under the R1-R3 fallback (step 4, direction non_contributory) even though its diagnosis is an INSTRUMENT defect, because the enum-only category vocabulary has no way to spell 'measurement defect' -- step 2's INSTRUMENT token match can never fire on a compliant category. Do not read a future count of 2 on MECH-161 as evidence of a substrate ceiling without re-reading this artifact: the correct route here is instrument repair, not a substrate build against the claim."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: the readout is invalid -- avoidance may be present but is unmeasurable by avoidant-rate(HIGH) - avoidant-rate(SAFE), because the response is the correct-answer geometry and a perfect avoider scores 0 (STRONGLY SUPPORTED by the oracle/null probes in this artifact; the remaining question is whether a valid readout reveals avoidance in the SAME frozen agents)",
+          "H2: hazard-avoidant behaviour is genuinely absent -- _train_warmup trains no action policy on harm, and NAV_BIAS=0.25 pushes 25% of training actions toward the hazard, so there may be nothing for any readout to find",
+          "H3: the environment cannot express the contrast -- the SAFE band (d>=12 under global-max normalisation) is empty or a far-corner wedge for most hazard placements, so no hazard-proximity contrast is available at the thresholds used"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1",
+            "axis": "measurement",
+            "sketch": "Re-score the SAME frozen trained agents (or a cheap re-train at the same seeds/budget) with a geometry-independent DV -- per-step hazard-field gradient actually descended, and mean time-to-hazard-contact -- alongside a measured oracle arm and a measured uniform-random arm. Declared null: the trained agent is indistinguishable from the random arm on the new DV while the oracle arm separates from both, which would refute H1 and promote H2."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "learning-signal",
+            "sketch": "Add a harm-conditioned action-selection training signal (or set NAV_BIAS=0 and extend warmup) and re-measure avoidance on the H1 DV. Declared null: avoidance does not separate from the random arm even with a direct learning signal, which routes to a substrate build on harm-conditioned selection rather than to another readout iteration."
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "environment",
+            "sketch": "Re-bin on the per-episode hazard-field quantile distribution (or lower hazard_field_decay / enlarge the grid) so a genuinely populated low-hazard band exists away from the walls, and report per-bin n and the wall-clamp fraction of the designated response. Declared null: with a populated, non-boundary low-hazard band the trained agent still shows no contrast, which eliminates H3 as the explanation."
+          }
+        ],
+        "n_seeds_suggested": 3,
+        "note": "GOV-FANOUT-1: emitted deliberately despite the immediate repair (H1) looking like one named build, because a re-queue that fixes ONLY the readout would return non-contributory again if H2 holds, and the corpus contains no evidence either way about whether avoidance is trainable here. The three legs sit on three different design axes (measurement / learning-signal / environment) and each declares its own null. Design-audit the portfolio for coverage and verdict-aliasing before queuing.",
+        "revision_note_2026_09_04": "Red-team F2/F6 accepted: the legs must not all be pre-bound to one run id, and the measurement leg's replacement DV (per-step gradient descended) was itself hold-confounded. H1 (measurement) is now: decision-tick-scored sensitivity with conditional-oracle and hazard-blind-null arms deriving the bar at every P -- this is the 999a letter. H2 (learning-signal: was avoidance trained at all -- _train_warmup trains no action policy on harm, NAV_BIAS=0.25 pushes 25% of training actions toward the hazard) and H3 (environment: SAFE-bin reachability on 10x10 with a centred hazard) are pre-registered as separate legs whose adjudicating runs are assigned when queued, not bound to 999a."
+      },
+      "learning_extracted": [
+        "A positive control must be validated against a measured ORACLE, not only against a null. This gate's null is strongly negative (-0.06 to -0.44) AND its oracle is exactly 0.000 -- so no threshold above zero can pass a perfect avoider, and the failure is invisible to any check that only asks whether the statistic 'moved'.",
+        "An SDT-shaped statistic is only SDT-shaped if the RESPONSE is defined independently of the correct answer. Defining 'avoidant' as matching the away-from-hazard argmax makes hit and false-alarm the same measurement taken in two places, which forces sensitivity to zero for the very behaviour it is meant to detect.",
+        "A per-cell COUNT floor (MIN_BIN_COVERAGE_STEPS) does not mitigate a SELECTION bias. The driver's red-team raised the near-empty SAFE band (Family 2) and dispositioned it on the coverage gate; the biased far-corner cells clear the count floor comfortably, so the mitigation never engaged.",
+        "'Reused verbatim from <prior run>'s calibrated apparatus' is a claim about that run's RESULT, not its source. V3-EXQ-981's positive control on this apparatus had already failed at -0.4307 sixteen hours earlier, and its autopsy was confirmed 75 minutes before V3-EXQ-999 started. A GOV-REUSE-1 / Step 2.5a readiness check that reads the predecessor's DRIVER but not its MANIFEST will re-inherit the predecessor's blocker.",
+        "A normalised proximity field plus fixed global bin thresholds silently makes bin membership a function of entity PLACEMENT. Here hazard_field_view = field / global max gives the agent's cell 1/(1+0.5d) exactly, so SAFE (<0.15) means d>=12 -- structurally unreachable on a 10x10 grid whenever the hazard is not near a corner. Bin thresholds on a normalised field should be checked for reachability against the geometry before being reused.",
+        "RECORDING GAP: an early-abort branch that stamps only {seed, p0_not_ready} destroys the decomposition of the very number that caused the abort. The baseline level's hit_rate, false_alarm_rate, per-bin counts, coverage_ok and committed_fraction all existed at run time; recording them costs nothing and would have made this adjudication decomposable without a re-run (experimental_recording_standard_2026-07-12.md 3b/3c).",
+        "A P0 gate that aborts on the FIRST seed converts a statistic with a large cross-seed null SD (~0.2 here) into a coin flip on one draw. A readiness gate on a noisy statistic should be evaluated on the seed set, not on seed one."
+      ],
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT, MECHANISM never exercised) -- not chargeable to REE. Measurement dominant, now correctly located: the per-step readout is confounded with the action-hold period that IS the independent variable, so the DV cannot separate arousal-regulation from hold length; environment secondary (SAFE bin geometry sparse on 10x10, coverage never gated)."
+      },
+      "routing": "queue-experiment",
+      "routing_note": "PRIMARY: /queue-experiment. Same scientific question (interior optimum vs monotone on the heartbeat-rate axis), implementation fix to the readout -> ALPHABETIC SUFFIX V3-EXQ-999a, not a new number. Work-graph classification: the readout repair is complicated (buildable) -- the defect and its fix are both named; the sub-question 'is hazard-avoidant behaviour learnable under this warmup at all' is complex (probe-gated) / puzzle (known rules), which is why the fanout_recommendation carries an H2 leg on the learning-signal axis rather than assuming the readout fix suffices. The re-queue MUST also close the recording gap (per-bin n/avoidant, hit_rate, false_alarm_rate, coverage_ok, committed_fraction, world_forward_r2 stamped even on the abort path) and MUST evaluate the readiness gate over all seeds rather than aborting on seed one. SECONDARY: the recommended_substrate_queue_entry create is not a ree_core build -- it registers the shared readout defect so /queue-experiment Step 2.5c can protect a THIRD driver from inheriting it, since the apparatus is currently copy-pasted between two drivers with no shared _lib home. Governance may prefer to fold it into the re-queue instead; if so, say so explicitly rather than letting the gap stay unregistered.",
+      "hypothesis_space_ledger_pending": {
+        "mode": "A (pre-register only) -- NOTHING TO RESOLVE under Mode B",
+        "growth_restriction_check": "NOT APPLICABLE. No existing question in hypothesis_space_registry.v1.json (45 questions) names MECH-161, MECH-026, MECH-093, ARC-044 or MECH-027 in its `claims`, so this opens a NEW questions[] entry; a question registered in this same edit cannot carry a growth_restriction. Mode C does not apply either.",
+        "mode_b_note": "This target adjudicated no pre-registered leg. The run aborted before any discriminating level executed and its recommended_evidence_direction is non_contributory that does NOT discriminate (precondition_unmet, non_degenerate false) -- per the Step 9b state-mapping table such a leg stays `alive`. There is no prior leg to fill, because no question for this claim exists yet.",
+        "proposed_new_question": {
+          "qid": "mech161_vigilance_arousal_shape_vs_readout",
+          "title": "Is hazard-detection sensitivity an interior-optimum function of the E3 heartbeat rate, and is any avoidance readout in CausalGridWorldV2 capable of showing it?",
+          "short_title": "MECH-161 vigilance inverted-U",
+          "claims": [
+            "MECH-161",
+            "MECH-026",
+            "MECH-093"
+          ],
+          "registered_utc": "2026-09-04T14:22:46Z",
+          "fanout_sources": [
+            "failure_autopsy_V3-EXQ-999_2026-09-04.json"
+          ],
+          "is_hero": false,
+          "initial_frozen_count": 3,
+          "initial_frozen_count_at_registration": 3,
+          "synthesis": null,
+          "hypotheses": [
+            {
+              "hid": "H-readout-invalid",
+              "label": "The avoidance readout cannot express the contrast",
+              "desc": "avoidant-rate(HIGH) - avoidant-rate(SAFE) with the response defined as the away-from-hazard geometric argmax has no signal/noise asymmetry; a measured perfect avoider scores +0.0000 and policy-free nulls score -0.06 to -0.44, so the statistic cannot certify avoidance at any threshold above zero.",
+              "axis": "measurement",
+              "basis": "Oracle and null probes run for this autopsy against the driver's own readout, same env config and seeds (facts_V3-EXQ-999.md sections 8b/8c). Live because the decisive question -- does a VALID readout reveal avoidance in the same agents -- is unrun.",
+              "pre_registered_utc": "2026-09-04T14:22:46Z",
+              "pre_registration_source": "failure_autopsy_V3-EXQ-999_2026-09-04.json",
+              "adjudicating_runs": [
+                "V3-EXQ-999a"
+              ],
+              "resolution": {
+                "state": "alive",
+                "resolving_runs": [],
+                "evidence_direction": "pending",
+                "resolved_utc": null,
+                "control_passed": false,
+                "non_degenerate": null,
+                "met_elimination_bar": false
+              }
+            },
+            {
+              "hid": "H-avoidance-untrained",
+              "label": "Hazard-avoidant behaviour is genuinely absent",
+              "desc": "_train_warmup trains e1, the e2 world-forward model and the e3 harm_eval head and no action policy on harm; NAV_BIAS=0.25 overrides a quarter of training actions toward the hazard. There may be no avoidance for any readout to find.",
+              "axis": "learning-signal",
+              "basis": "Direct read of the driver's training loop; no run in the corpus has ever demonstrated trained hazard avoidance on this bed. Live and untested.",
+              "pre_registered_utc": "2026-09-04T14:22:46Z",
+              "pre_registration_source": "failure_autopsy_V3-EXQ-999_2026-09-04.json",
+              "adjudicating_runs": [
+                "V3-EXQ-999a"
+              ],
+              "resolution": {
+                "state": "alive",
+                "resolving_runs": [],
+                "evidence_direction": "pending",
+                "resolved_utc": null,
+                "control_passed": false,
+                "non_degenerate": null,
+                "met_elimination_bar": false
+              }
+            },
+            {
+              "hid": "H-env-band-absent",
+              "label": "The environment provides no usable low-hazard contrast band",
+              "desc": "With hazard_field_view normalised by the global max, one hazard and decay 0.5, SAFE (<0.15) means Manhattan d>=12 -- unreachable for a centred hazard on a 10x10 grid and a far-corner wedge otherwise (measured 1.1-2.2% of non-wall cells), where the designated avoidant action is a wall no-op in 93-100% of steps.",
+              "axis": "environment",
+              "basis": "Field arithmetic plus a 40-reset census run for this autopsy (facts_V3-EXQ-999.md section 8a). Live because it is a separate, independently repairable cause from the readout definition.",
+              "pre_registered_utc": "2026-09-04T14:22:46Z",
+              "pre_registration_source": "failure_autopsy_V3-EXQ-999_2026-09-04.json",
+              "adjudicating_runs": [
+                "V3-EXQ-999a"
+              ],
+              "resolution": {
+                "state": "alive",
+                "resolving_runs": [],
+                "evidence_direction": "pending",
+                "resolved_utc": null,
+                "control_passed": false,
+                "non_degenerate": null,
+                "met_elimination_bar": false
+              }
+            }
+          ],
+          "decision": {
+            "decision_question": "Does MECH-161's inverted-U shape premise hold on the E3 heartbeat-rate axis, or is the rate axis simply not the arousal parameter?",
+            "live_gate": "A hazard-sensitivity readout on which a measured oracle avoider separates from a measured policy-free null; until that exists no answer on the rate axis is interpretable.",
+            "decidable": false,
+            "decision_log_ref": null,
+            "distance_phrase": "one instrument repair away from a first interpretable reading; the shape question itself is untouched",
+            "observation_bottleneck": "The P0 positive control is unpassable by a perfect avoider (+0.0000 vs a +0.05 floor), so no run on this bed can currently reach the discriminating criterion."
+          }
+        },
+        "axis_family_map_additions": "NONE REQUIRED -- `measurement` (instrumentation), `learning-signal` (constitution) and `environment` (world) are all already present in axis_families.map.",
+        "applied": true,
+        "registry_written": true,
+        "applied_utc": "2026-09-04T19:00:56Z",
+        "applied_by_session": "governance-20260904-1347",
+        "applied_qid": "mech161_vigilance_arousal_shape_vs_readout",
+        "applied_note": "Registered as a NEW questions[] entry (Mode A/B as drafted; placeholders filled with the apply timestamp; adjudicating-run placeholders moved to adjudicating_runs_note). build_hypothesis_space.py + check_hypothesis_space_integrity.py run after the append: flags (a)-(d) all 0."
+      },
+      "read_across_not_adjudicated": [
+        "V3-EXQ-981's CONFIRMED autopsy (failure_autopsy_V3-EXQ-981_2026-09-03) attributes the same reversed-sign positive control to the ENVIRONMENT: its four-layer environment row reads 'wrong pressures ... The DV/env pairing is not hazard-sensitive, which invalidates anything built on top of it', and its evidence_quality_note repeats it. The oracle and null probes in this artifact locate the reversal in the READOUT rather than the env: a perfect avoider scores +0.0000 on the same statistic, which no property of the environment can explain. That is a correction to 981's attribution of ONE of its four failed preconditions. It is NOT adjudicated here -- 981's overall disposition (non_contributory, standard, never tested, routing queue-experiment) is unaffected, its other three failed preconditions (replay-channel reachability, precision-margin headroom, commit-temperature headroom) are untouched, and re-adjudicating a confirmed artifact is out of this target's scope. Governance may wish to route it as a re-adjudication or simply record it as a bears-on note on MECH-027.",
+        "MECH-026 carries epistemic_category substrate_conditional with a what_would_answer that names MECH-161's arousal regulator as UNBUILT and as its own non-degeneracy precondition. This run does not change that, but it is worth governance noting that the FIRST attempt to probe MECH-161 chose to bypass the regulator entirely (forcing the period externally) rather than to build it -- so MECH-026's stated blocker is untouched by V3-EXQ-999 and by any successor of the V3-EXQ-999a shape.",
+        "The V3-EXQ-999 driver was authored under /metaworker-orchestrate session daily-20260903-exq999-mech161 and its queue-entry DEVIATIONS block records that the script was left untracked and uncommitted in ree-v3, with the queue append deferred to a centralized step. Whether the shipped driver is byte-identical to the reviewed one is not verifiable from the manifest alone (arm_fingerprint driver_script_hash cb6ddc671f20a6743c2fc73fb2ba88e2a6cf27cb2d4b6660be58d2d60a8a439e is recorded, so it CAN be checked against the landed file). Flagged, not investigated -- an infrastructure observation, not a claim-layer finding.",
+        "RED-TEAM F5 (2026-09-04): the 981 read-across is a RELABEL, not a contradiction -- 981's 'environment: wrong pressures' and this artifact's 'readout confounded with hold' describe the same held-walker signature (981 per-bin SAFE 0.87-0.89 / HIGH 0.10-0.27) from two sides; 981's confirmed disposition (non_contributory, standard) stands unchanged, and chip-20260903-exq981a-mech027-requeue should adopt the decision-tick readout."
+      ],
+      "routing_note_2026_09_04": "queue-experiment as V3-EXQ-999a (same question: MECH-161 inverted-U over the heartbeat period; instrument fix, letter retained per the naming convention; brake count 0, instrument category). NON-NEGOTIABLES, corrected: (1) score the avoidance readout at E3 DECISION ticks only, so the DV is invariant to the hold period that is the IV; (2) measured conditional-oracle and hazard-blind-null arms derive the P0 bar at every P in the sweep, replacing the fixed +0.05; (3) P0 evaluated over ALL seeds with coverage_ok gating both bins; (4) per-episode quantile bins for SAFE/HIGH so the SAFE bin is populated on a 10x10 grid; (5) record the hit/false-alarm decomposition on the abort path (recording gap). The 981a re-queue chip (chip-20260903-exq981a-mech027-requeue) shares the driver family and this readout: hand it the same non-negotiables.",
+      "withdrawn_readings_2026_09_04": {
+        "measurement_original": "misleading -- THIS IS THE DOMINANT LAYER. The P0 gate labels itself 'positive control that hazard-avoidance behaviour was trained at all', but the statistic it computes cannot certify that: (a) an ORACLE that takes the geometrically-correct avoidant action on EVERY step scores sensitivity = hit_rate - false_alarm_rate = 1.000 - 1.000 = +0.0000 on all three seeds and FAILS the +0.05 floor, because the 'response' is defined as matching the away-from-hazard argmax, which is well-defined and equally matchable in both bins -- there is no signal/noise asymmetry, so the SDT framing does not hold; (b) the realizable oracle (avoidant action chosen at each E3 tick, P=10, held between) scores -0.0100 mean and also fails; (c) policy-free nulls with zero hazard knowledge score -0.126 (uniform-random), -0.130 (held P=5), -0.061 (held P=10) and -0.436 (held P=20), with single-seed values spanning +0.109 to -0.583. The observed -0.2608 sits inside that null band. The gate has essentially no power to separate 'avoidance untrained' from 'avoidance perfectly trained', and its null is strongly negative rather than centred on zero. Aggravating: the run aborts on the FIRST seed, so one draw from a null with cross-seed SD ~0.2 decides the entire run.",
+        "recommended_substrate_queue_entry_original": {
+          "action": "create",
+          "sd_id_suggested": "HAZARD-AVOIDANCE-READOUT-AND-TESTBED",
+          "title": "Valid hazard-avoidance readout and a demonstrated trained-avoidance test-bed for CausalGridWorldV2",
+          "node_class": "complicated (buildable)",
+          "implementation_hint": "Two coupled defects, both now hit by two independent drivers (V3-EXQ-981 -0.4307, V3-EXQ-999 -0.2608). (1) READOUT: sensitivity = avoidant-rate(HIGH bin) - avoidant-rate(SAFE bin), where the 'avoidant action' is argmax dot(action_delta, away-from-nearest-hazard), has no signal/noise asymmetry -- a perfect avoider scores exactly 0 (measured: hit_rate = false_alarm_rate = 1.000 on seeds 11/23/37) and policy-free nulls score -0.06 to -0.44, so the statistic cannot certify trained avoidance. Replace it with a response defined independently of the correct-answer geometry (e.g. hazard-field gradient actually descended per step, or time-to-hazard-contact, or an explicit alarm/withdraw response category), and re-derive the pass bar from a measured oracle-vs-null separation rather than from a hand-picked +0.05. (2) BIN GEOMETRY: hazard_field_view is normalised by the global field max, so with one hazard and decay 0.5 the agent's own cell reads 1/(1+0.5d); HIGH is d<=2, SAFE is d>=12 -- unreachable for a centred hazard on a 10x10 grid, and 1.1-2.2% of non-wall cells otherwise, with the designated avoidant action a wall no-op in 93-100% of SAFE-bin steps. Either define the bins on the per-episode field distribution (quantiles) rather than fixed global thresholds, lower hazard_field_decay, or enlarge the grid. MIN_BIN_COVERAGE_STEPS=5 does NOT mitigate this -- it is a count floor and the biased cells clear it. SUB-QUESTION, probe-gated, name it but do not assume it: _train_warmup trains e1, the e2 world-forward model and the e3 harm_eval head and NO action policy on harm (and NAV_BIAS=0.25 overrides 25% of training actions toward the hazard), so whether avoidant BEHAVIOUR is learnable under this warmup at all is unestablished -- the corrected readout is what makes that answerable. The apparatus is currently copy-pasted between the two drivers; factor it into experiments/_lib/ so a third driver cannot inherit the defect.",
+          "unblocks_claims": [
+            "MECH-161",
+            "MECH-026",
+            "MECH-027"
+          ],
+          "depends_on_unresolved": [],
+          "priority_suggested": 1,
+          "severity": "corrupting",
+          "severity_note": "corrupting rather than degrading: the statistic is emitted into manifests as a measurement and has already been READ as one -- V3-EXQ-981's confirmed autopsy attributes the reversed sign to the environment ('the DV/env pairing is not hazard-sensitive'), when the probes here show it is a property of the readout. Both uses so far were caught by their own P0 gates; a third driver scoring a criterion on this readout WITHOUT a P0 gate would produce a confident, sign-reversed verdict indistinguishable from a real result. Step 2.5c should block new experiments that score on these paths until the readout is repaired.",
+          "substrate_paths": [
+            "experiments/v3_exq_999_mech161_vigilance_inverted_u_heartbeat.py::_avoidant_action",
+            "experiments/v3_exq_999_mech161_vigilance_inverted_u_heartbeat.py::_hazard_bin",
+            "experiments/v3_exq_981_mech027_control_plane_pathological_modes.py::_avoidant_action",
+            "experiments/v3_exq_981_mech027_control_plane_pathological_modes.py::_hazard_bin"
+          ],
+          "failure_record_entry": {
+            "run_id": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
+            "experiment_type": "v3_exq_999_mech161_vigilance_inverted_u_heartbeat",
+            "metric": "P0 positive control baseline_avoidance_discrimination_margin = -0.2608 vs a +0.05 floor, aborting the run at seed 11 of 3. Measured null for the same statistic with zero hazard knowledge: -0.061 (held P=10) to -0.436 (held P=20); measured ORACLE (perfect avoider): +0.0000, which also fails the floor.",
+            "target": "A hazard-sensitivity readout on which a measured oracle avoider scores at least the pass bar and a policy-free null scores at or below zero, with a bar derived from that measured separation -- so the gate can distinguish trained from untrained avoidance.",
+            "resolved": "open"
+          },
+          "resolves_prior_failure_record": []
+        },
+        "fanout_original": {
+          "is_discrimination": true,
+          "live_hypotheses": [
+            "H1: the readout is invalid -- avoidance may be present but is unmeasurable by avoidant-rate(HIGH) - avoidant-rate(SAFE), because the response is the correct-answer geometry and a perfect avoider scores 0 (STRONGLY SUPPORTED by the oracle/null probes in this artifact; the remaining question is whether a valid readout reveals avoidance in the SAME frozen agents)",
+            "H2: hazard-avoidant behaviour is genuinely absent -- _train_warmup trains no action policy on harm, and NAV_BIAS=0.25 pushes 25% of training actions toward the hazard, so there may be nothing for any readout to find",
+            "H3: the environment cannot express the contrast -- the SAFE band (d>=12 under global-max normalisation) is empty or a far-corner wedge for most hazard placements, so no hazard-proximity contrast is available at the thresholds used"
+          ],
+          "suggested_probes": [
+            {
+              "hypothesis": "H1",
+              "axis": "measurement",
+              "sketch": "Re-score the SAME frozen trained agents (or a cheap re-train at the same seeds/budget) with a geometry-independent DV -- per-step hazard-field gradient actually descended, and mean time-to-hazard-contact -- alongside a measured oracle arm and a measured uniform-random arm. Declared null: the trained agent is indistinguishable from the random arm on the new DV while the oracle arm separates from both, which would refute H1 and promote H2."
+            },
+            {
+              "hypothesis": "H2",
+              "axis": "learning-signal",
+              "sketch": "Add a harm-conditioned action-selection training signal (or set NAV_BIAS=0 and extend warmup) and re-measure avoidance on the H1 DV. Declared null: avoidance does not separate from the random arm even with a direct learning signal, which routes to a substrate build on harm-conditioned selection rather than to another readout iteration."
+            },
+            {
+              "hypothesis": "H3",
+              "axis": "environment",
+              "sketch": "Re-bin on the per-episode hazard-field quantile distribution (or lower hazard_field_decay / enlarge the grid) so a genuinely populated low-hazard band exists away from the walls, and report per-bin n and the wall-clamp fraction of the designated response. Declared null: with a populated, non-boundary low-hazard band the trained agent still shows no contrast, which eliminates H3 as the explanation."
+            }
+          ],
+          "n_seeds_suggested": 3,
+          "note": "GOV-FANOUT-1: emitted deliberately despite the immediate repair (H1) looking like one named build, because a re-queue that fixes ONLY the readout would return non-contributory again if H2 holds, and the corpus contains no evidence either way about whether avoidance is trainable here. The three legs sit on three different design axes (measurement / learning-signal / environment) and each declares its own null. Design-audit the portfolio for coverage and verdict-aliasing before queuing."
+        }
+      },
+      "routing_confirmed": "queue-experiment -- user-confirmed 2026-09-04T18:55:13Z at the /governance Step 8 gate (governance-20260904-1347). Governance chips the follow-on."
+    }
+  ],
+  "cluster_pattern": null,
+  "cluster_pattern_note": "Scope is single (V3-EXQ-999 only, as assigned). But the shape is shared: V3-EXQ-981 and V3-EXQ-999 are the ONLY two drivers using this apparatus and BOTH failed the same +0.05 positive control (-0.4307 and -0.2608) on the same three seeds within 16 hours. That is 2 of 2, i.e. a structural property of the apparatus rather than two independent bugs. Recorded here so a future cluster autopsy has the membership; not adjudicated as a cluster because 981 already has a confirmed single-target artifact.",
+  "pre_routing_checks": {
+    "tool": "scripts/autopsy_pre_routing_checks.py --json",
+    "run_utc": "2026-09-04T14:22:46Z",
+    "fire_count": 0,
+    "fires": [],
+    "inapplicable": [
+      "C6 (no top-level arm_results array of >= 4 rows)",
+      "C7 (no arm/condition array with >= 2 arms and >= 2 seeds)"
+    ],
+    "note": "Run twice -- JSON-only, then again with the sibling .md present so the prose-keyed C5 could evaluate; fire_count 0 both times. C1/C2/C3/C5 quiet, C6/C7 structurally blind because the run aborted after one seed with one arm. `inapplicable` is read as 'could not look', not 'no fire': the manual oracle/null probes, the two-driver recurrence table and the hand sweep of all 169 substrate_queue.json entries carry that load. Dispositions per check are tabulated in the .md section 13."
+  },
+  "red_team_pass": {
+    "ran": false,
+    "note": "Step 7c is the parent /governance session's responsibility per the staging brief; this drafting agent did not run it."
+  },
+  "red_team": {
+    "model": "Fable 5.1 (claude-fable-5-1), separate agent, reasoning withheld, JSON-first read order",
+    "verdict": "CONTESTED",
+    "disposition": "contest ACCEPTED on F1-F6; artifact revised 2026-09-04T14:50:27Z by governance-20260904-1347 (drafting session was a staging-mode subagent)",
+    "findings_accepted": [
+      "F1 mechanism: conditional avoider scores +0.905 and passes; defect is action-HOLD x geometry (E3 decides every P steps, readout scores every step; held conditional oracle +0.038); draft oracle was always-respond (d'=0 by construction)",
+      "F2 unnamed DV-IV confound: sensitivity(P) monotone in P under a hazard-blind null, noise under a perfect discriminator -> C1 confounded for ANY agent; 999a as first specified could not test MECH-161",
+      "F3 headline \"oracle cannot pass\" does not reproduce at the 20-episode budget (seed 23 SAFE n=0 -> +1.0); P0 never gates on coverage_ok",
+      "F4 substrate create incoherent (driver-file substrate_paths cannot match Step 2.5c import gate; corrupting violates the definition); existing dv-dynamic-range-precondition-class covers the target -> amend",
+      "F5 981 read-across is a relabel, not a contradiction",
+      "F6 three fan-out legs were pre-bound to one run id"
+    ],
+    "what_survived": "FAIL on the absolute/precondition criterion; non_contributory + standard; pending_retest_after_substrate true; brake 0; 2-of-2 driver family failing the same control; no action policy trained on harm; letter 999a defensible; driver hash matches the landed file (read-across item 3 closes)"
+  },
+  "revised_utc": "2026-09-04T14:50:27Z",
+  "confirmed_utc": "2026-09-04T18:55:13Z",
+  "confirming_session": "governance-20260904-1347 (inline, /governance Step 1.5 route A; drafted by a staging-mode subagent, red-teamed on Fable, revised, gate held with the user)",
+  "user_decisions_2026_09_04": {
+    "Q1": "Apply all four as revised",
+    "Q2_SD031_gate": "Amend SD-031 what_would_answer + self_attribution GAP-6 to accept construction-balanced (RandomPolicy, offline-scored) comparator-only designs for the ARC-065 diversity half",
+    "Q3": "Add 6 buildable v3 substrate stubs",
+    "Q4": "Apply the three August staging-autopsy ledger blocks now",
+    "recommendation_agreement": "3 of 4 recommended options selected (Q4 against); logged via record_recommendation_outcome.py"
+  }
+}
