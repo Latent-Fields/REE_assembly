@@ -1941,6 +1941,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0135",
+      "claim_ids": [
+        "MECH-343"
+      ],
+      "flag_type": "stale_note",
+      "summary": "FALSE NEGATIVE in the unowned-blocker audit, not a real gap. EXP-0176's blocked_by names the free-prose blocker 'difficulty-gated proposal-entropy regulator -- stuck-state detector + transient CEM temperature/candidate-count gain + decay; not yet designed (no design doc)', and audit_blocked_proposal_unblockers.py reports it UNOWNED. But substrate_queue.json ALREADY carries SD-061 for exactly this mechanism -- title 'Difficulty-gated proposal-entropy regulator (stuck-state detector + transient CEM proposal-widening). Builds MECH-343 substrate_conditional blocker part 2', status implemented_pending_validation, unblocks_claims [MECH-343, Q-056] -- and MECH-343's own what_would_answer text cites it directly. The audit's blocker matcher keys on the leading token before the first ' (' or ' -- ', so it cannot resolve free prose like this to an sd_id. TWO THINGS OWED: (1) correct EXP-0176's blocked_by to cite SD-061 by id so the block stops reading as an unowned gap; (2) decide whether SD-061 at implemented_pending_validation is enough to move EXP-0176 toward proposed -- its OTHER blocker, modulatory-bias-selection-authority, is already status implemented and ready. Do NOT mint a duplicate SD-061-shaped substrate entry; campaign C3 deliberately did not. Worth noting the matcher limitation generally: free-prose blocked_by strings are systematically unresolvable by this audit and will keep reporting as UNOWNED.",
+      "raised_by_session": "campaign-c3-20260904",
+      "raised_at": "2026-09-04T14:45:05Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
