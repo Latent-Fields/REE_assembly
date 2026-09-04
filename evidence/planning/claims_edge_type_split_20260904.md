@@ -96,3 +96,22 @@ Outcome: **passed cleanly**, no narrowing needed. The check did surface that the
 - **No third, DAG-checked `supports` layer.** Circular reasoning in prose (an autopsy citing MECH-303 as active to argue for MECH-304, where 303 was argued from 304) is not caught by this split. A support edge would be the tool for it. That is a separate decision with its own consumers; introducing it here would widen the change past what was asked.
 - **No re-weighting of `coupled_with` in the overlay.** The parity check above is the reason: the split must not silently move beliefs. Weighting the layers differently is a modelling decision for the overlay plan, not a side effect of a schema split.
 - **No hand re-judgement of the 8 cycle-break edges.** They are tagged and listed for governance.
+
+## 8. Supports-layer probe (2026-09-04): NEGATIVE -- do not build a `supported_by` layer on this evidence
+
+Section 7 left open whether a third, DAG-checked claim-to-claim support edge is owed. Measured the same day, before building anything:
+
+| measure | value |
+|---|---|
+| promotion decisions in `evidence/decisions/decision_log.v1.jsonl` | 56 (of 472 decisions) |
+| whose rationale mentions another claim | 16 |
+| whose rationale mentions another claim next to a status word | 9 -- all read by hand: every one is context ("conflict noted, does not block", "precedent", "sibling run", "separate promote-to-active gate"), none is grounds |
+| promotions resting on another claim's STATUS | **0** |
+| registry prose mentions of other claims in a support-keyword window | 1094 edges, 88 mutual pairs, 26 cyclic components |
+| sampled mutual pairs that were genuine circular support | 0 of 6 (shapes found: one experiment tagged to two claims, e.g. EXQ-059c on MECH-102 + SD-010; "distinct from" cross-references; documentation-drift notes) |
+
+Correction to the example in section 7 and in GOV-EDGE-1's notes: MECH-303 and MECH-304 were each promoted on their own pre-registered behavioural falsifier (V3-EXQ-763 for MECH-304; the context-safety falsifier for MECH-303), each with 2 genuine experiments and exp_conf > 0.70. They cite each other only as a sparing-ablation gate. That is not circular reasoning; it was a hypothetical, and the record does not contain an instance of it.
+
+Why the layer is structurally unnecessary today: promotion reads `experimental_confidence`, computed per claim from manifest `claim_ids`; status never derives from another claim's status. The one real shared-support shape (one run tagged to several claims) is governed by the `claim_ids` accuracy rule (REE_assembly/CLAUDE.md), not by an edge.
+
+GOV-HELDOUT-1 verdict on the proposed rule "a claim's support must be declared as a DAG edge": zero held-out cases found where it would give a different call from the current gate. Per the non-degeneracy guard that is the finding -- the rule would be scoped to a hypothetical. Classification: `complex (probe-gated)`, probe run, result negative; it becomes `complicated (buildable)` only if a later governance cycle records a promotion whose grounds are another claim's status. Re-run the two measurements above (decision-log status-citation count; mutual support-context pairs, hand-sampled) before re-proposing.
