@@ -4007,6 +4007,35 @@
       "outcome": "NO_OP",
       "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
       "worktree_gc_at": "2026-09-03T17:14:39Z"
+    },
+    {
+      "igw_id": "IGW-20260904-222",
+      "stable_hash": "e7bd60ded7a2",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "ARC-021",
+        "MECH-069",
+        "MECH-027",
+        "MECH-320",
+        "INV-088",
+        "MECH-457"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: dv-dynamic-range-precondition-class",
+      "worktree": ".claude/worktrees/igw-222-substrate-ready-dv-dynamic-range",
+      "branch": "claude/igw-222-substrate-ready-dv-dynamic-range",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260904-222",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-222-substrate-ready-dv-dynamic-range && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-222-substrate-ready-dv-dynamic-range-20260904T025302Z",
+      "task_claim_claimed_at": "2026-09-04T02:53:02Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-09-04T02:52:11Z",
+      "staged_at": "2026-09-04T02:52:11Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
