@@ -49,7 +49,6 @@ Claims with a drafted disposition: **47 of 47** -- complete.
 
 | disposition | count |
 |---|---|
-| (?) | 16 |
 | (a) | 22 |
 | (b) | 2 |
 | (c) | 13 |
