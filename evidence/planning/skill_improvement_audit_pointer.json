@@ -164,6 +164,84 @@
         "weakens"
       ]
     },
+    "autopsy|failure_autopsy_V3-EXQ-1000_2026-09-04|0|1": {
+      "artifact": "failure_autopsy_V3-EXQ-1000_2026-09-04",
+      "claim_ids": [],
+      "embedded_ids": [
+        "980"
+      ],
+      "flags": [
+        "repeated"
+      ],
+      "item_index": 1,
+      "run_id": "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "PASS assigned unconditionally on readiness plus a fail-able load_bearing:true criterion is a guaranteed vacuous_pass (980's learning, repeated); tag classifying criteria load_bearing:false or declare criteria_aggregation, and let interpretation.label carry the outcome.",
+      "tokens": [
+        "assigned",
+        "carry",
+        "classifying",
+        "criteria",
+        "criteria_aggregation",
+        "criterion",
+        "declare",
+        "fail-able",
+        "false",
+        "guaranteed",
+        "interpretation",
+        "label",
+        "learning",
+        "load_bearing",
+        "outcome",
+        "pass",
+        "plus",
+        "readiness",
+        "true",
+        "unconditionally",
+        "vacuous_pass"
+      ]
+    },
+    "autopsy|failure_autopsy_V3-EXQ-1000_2026-09-04|0|5": {
+      "artifact": "failure_autopsy_V3-EXQ-1000_2026-09-04",
+      "claim_ids": [],
+      "embedded_ids": [
+        "976"
+      ],
+      "flags": [
+        "repeated"
+      ],
+      "item_index": 5,
+      "run_id": "v3_exq_1000_sd_e1_item3_rollout_endpoint_contrastive_validation_20260903T213659Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "The mint-as-you-go convention (include_driver_script_in_hash=(arm != OFF_ARM)) trips substrate_stable_across_run on every run that uses it -- 976 recorded this and 1000 repeated it. The fix is in arm_fingerprint/manifest_core (compare like scopes, or name the cause in the flag), not in each driver; until then read substrate_stability_detail.process_snapshot_drift, not the bool.",
+      "tokens": [
+        "arm_fingerprint",
+        "bool",
+        "cause",
+        "compare",
+        "convention",
+        "driver",
+        "flag",
+        "include_driver_script_in_hash",
+        "like",
+        "manifest_core",
+        "mint-as-you-go",
+        "name",
+        "off_arm",
+        "process_snapshot_drift",
+        "read",
+        "recorded",
+        "scopes",
+        "substrate_stability_detail",
+        "substrate_stable_across_run",
+        "trips",
+        "uses"
+      ]
+    },
     "autopsy|failure_autopsy_V3-EXQ-190a_2026-08-09|0|1": {
       "artifact": "failure_autopsy_V3-EXQ-190a_2026-08-09",
       "claim_ids": [
@@ -2258,7 +2336,7 @@
       ]
     }
   },
-  "last_swept_at": "2026-09-03T20:27:20Z",
+  "last_swept_at": "2026-09-04T13:54:40Z",
   "schema_version": "v1",
   "seen_autopsy_mtimes": {
     "failure_autopsy_2026-07-28-sweep.json": 1785272911.3774624,
@@ -2313,6 +2391,7 @@
     "failure_autopsy_V3-EXQ-047l_2026-07-11.json": 1783797982.564565,
     "failure_autopsy_V3-EXQ-047m_2026-07-11.json": 1783807666.0461442,
     "failure_autopsy_V3-EXQ-059c-533_2026-07-26.json": 1785088570.613919,
+    "failure_autopsy_V3-EXQ-1000_2026-09-04.json": 1788529714.9482567,
     "failure_autopsy_V3-EXQ-108a_2026-08-02.json": 1785668029.7057362,
     "failure_autopsy_V3-EXQ-108b_2026-08-03.json": 1785746715.678587,
     "failure_autopsy_V3-EXQ-190a_2026-08-09.json": 1786254536.6576376,
@@ -2738,5 +2817,5 @@
     "failure_autopsy_v3exq665-cluster_2026-08-09.json": 1786259604.7569785,
     "failure_autopsy_zworld-integration-cluster_2026-06-06.json": 1780751397.9365296
   },
-  "seen_review_tracker_mtime": 1788420232.5325222
+  "seen_review_tracker_mtime": 1788468251.6854486
 }
