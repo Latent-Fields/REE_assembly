@@ -2553,3 +2553,9 @@ One line per hourly tick. ASCII only.
 2026-09-04T17:01:04Z skip: paused (.igw_routine_pause present)
 2026-09-04T17:44:10Z auto-defer igw-222-substrate-ready-dv-dynamic-range hash=e7bd60ded7a2 for 48h (complete)
 2026-09-04T17:44:19Z complete igw-222-substrate-ready-dv-dynamic-range staged->completed outcome=USEFUL_LANDED: built dv_headroom precondition kind + criterion_exceeds_achievable_range lint; l
+2026-09-04T18:01:05Z skip: paused (.igw_routine_pause present)
+2026-09-04T19:01:06Z skip: paused (.igw_routine_pause present)
+2026-09-04T20:01:09Z GC removed worktree igw-222-substrate-ready-dv-dynamic-range (removed; branch deleted)
+2026-09-04T20:01:07Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-04T20:01:59Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-09-04T20:01:07Z no eligible item (skipped 248): IGW-20260904-218:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260904-219:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229; IGW-20260904-222:status=blocked blocked_by=ready=false (no ready_blocked_by detail); SD-070 [no-substrate-entry]: SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
