@@ -1954,6 +1954,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0136",
+      "claim_ids": [
+        "MECH-465"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The 2026-08-27 MECH-465 boundary-regime probe's headline 'P2 dispersion fails 3/3 by 11-19x' was measured on an UNTRAINED z_world (frozen random projection); its release condition sd_zworld_warmup_optimizer_group was read as pending when it had been status: validated since 2026-07-22. A confound-free re-measurement (evidence/planning/mech465_zworld_warmup_dispersion_spike_20260904.md, REE_assembly ac852cdab1) using the validated run_zworld_p0 warmup finds within-seed IQR(rv)/median rises monotonically with warmup budget on 3/3 seeds by 3.2-8.3x: P2 still fails, but by 2.7-5.8x rather than 11-19x, so the recorded failure magnitude is overstated ~3-4x wherever it is cited. Governance decision owed: the gate-rescale route is NOT demonstrably exhausted (the trend has not plateaued), so route a warmup-budget sweep probe (WARM400/800 plus phased P0a->P0b, thresholds recalibrated per arm so P1 becomes readable) rather than either minting the build or closing the route. Note also that IGW auto-discovery staged the now-retired build as IGW-20260904-213 before substrate_queue.json entry MECH465-COMMIT-GATE-HEADROOM was corrected (REE_assembly 0abb9f0006, ready flipped to false); that staged assignment should be withdrawn.",
+      "raised_by_session": "campaign-c1b-20260904",
+      "raised_at": "2026-09-04T21:42:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
