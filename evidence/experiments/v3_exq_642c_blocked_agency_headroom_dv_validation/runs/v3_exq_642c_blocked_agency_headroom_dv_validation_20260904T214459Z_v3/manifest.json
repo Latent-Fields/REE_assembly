@@ -1,0 +1,193 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_642c_blocked_agency_headroom_dv_validation",
+  "run_id": "v3_exq_642c_blocked_agency_headroom_dv_validation_20260904T214459Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-04T21:44:59Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "validated_clear_v3_pending",
+    "preconditions": [
+      {
+        "name": "world_forward_c0_margin_supra_floor",
+        "measured": 0.6241106454497735,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "5-episode blocked+free probe on the P0a+P0b-trained substrate (same statistic C0 routes on)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "measured": 0.2709798216819763,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "world_forward_c0_margin_supra_floor",
+        "measured": 0.5322351089761082,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "5-episode blocked+free probe on the P0a+P0b-trained substrate (same statistic C0 routes on)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "measured": 0.2695159316062927,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "world_forward_c0_margin_supra_floor",
+        "measured": 0.5077474766644832,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "5-episode blocked+free probe on the P0a+P0b-trained substrate (same statistic C0 routes on)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "measured": 0.2685176730155945,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "control": "PRE-REGISTERED, analytic: Z_BLOCK_CAP minus the highest CONTROL z_block_mean V3-EXQ-642b measured (0.1768, seed 43) = 1.3232. This is the room the successor's absolute elevation bar has to work in, computed from the predecessor's own recorded data before this run. The peak DV it replaces had Z_BLOCK_CAP - 1.500 = 0.000 of the same room against a 0.20 bar, on all three seeds.",
+        "name": "c1_mean_elevation_headroom_prior",
+        "kind": "dv_headroom",
+        "measured": 1.3232,
+        "threshold": 0.6,
+        "direction": "lower",
+        "dv_name": "z_block_mean",
+        "achievable_statistic": "explicit",
+        "criterion_threshold": 0.3,
+        "headroom_margin": 2.0,
+        "n_control_values": 0,
+        "headroom_ratio": 2.2053333333333334,
+        "met": true
+      },
+      {
+        "control": "The same quantity measured on THIS run's own ARM_CONTROL arm. Evaluated after the arms run (the DV is the run's output), so it is a feasibility check rather than a P0 abort: unmet routes the run to substrate_not_ready_requeue rather than recording a falsification the DV had no room to express.",
+        "name": "c1_mean_elevation_headroom_measured",
+        "kind": "dv_headroom",
+        "measured": 1.3232086041293303,
+        "threshold": 0.6,
+        "direction": "lower",
+        "dv_name": "z_block_mean",
+        "achievable_statistic": "ceiling_headroom",
+        "criterion_threshold": 0.3,
+        "headroom_margin": 2.0,
+        "n_control_values": 3,
+        "headroom_ratio": 2.205347673548884,
+        "dv_bounds": [
+          0.0,
+          1.5
+        ],
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0": true,
+      "C1": true,
+      "C2": false,
+      "C3": true
+    },
+    "c0_seeds_pass": 3,
+    "c1_seeds_pass": 3,
+    "c2_seeds_pass": 3,
+    "c3_seeds_pass": 3,
+    "seeds_needed": 2,
+    "n_ready_seeds": 3,
+    "n_seeds_skipped_not_ready": 0,
+    "c2_degeneracy_reason": "ENV_KWARGS pins num_hazards=0, so z_harm_a is flat by construction and the measured z_harm_a separation is 0 on every ready seed. C2's subtraction is therefore inert and C2 is C1's separation under a second name -- it is NOT independent confirmation of C1. Recorded rather than silently kept (V3-EXQ-981 autopsy, learning 5).",
+    "n_ready_seeds_effective": 3,
+    "seed_base_sufficient": true
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "52ceaa7ce65b38e5ae56a01d79a3e8f58804246aa796b89a36998832c241cf5a",
+  "substrate_commit": {
+    "commit": "8149d364868defe0333ac832522b2d3d4e41680c",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_blocked_agency": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 14400,
+    "ticks_active": 14400,
+    "writer_calls": 0,
+    "active_frac": 1.0,
+    "writer_defect": null,
+    "n_agents": 3,
+    "goal_state_present": true,
+    "goal_pinned": true
+  }
+}
