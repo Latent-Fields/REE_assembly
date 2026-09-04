@@ -1,0 +1,176 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_993a_arc021_merged_channel_action_conditioned_harm",
+  "run_id": "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-04T21:23:34Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-021",
+    "MECH-069"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-021": "weakens",
+    "MECH-069": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "merged_channel_hypothesis_not_supported",
+    "preconditions": [
+      {
+        "name": "control_arm_coverage_complete",
+        "description": "Every intended SEPARATED (control) cell produced a usable calibration_gap. The dv_headroom checks below are denominated on this same set, so a short control arm must refuse here rather than silently certify headroom over fewer cells than the criteria need.",
+        "kind": "readiness",
+        "measured": 8.0,
+        "threshold": 8.0,
+        "direction": "lower",
+        "control": "intended = len(SEEDS) x len(CONDITIONS) = 8",
+        "met": true
+      },
+      {
+        "name": "harm_head_action_sensitivity_present",
+        "description": "Worst-cell mean |harm_logit(z,a1)-harm_logit(z,a2)| over a fixed probe batch and two distinct movement actions, measured after P1 training. This is the SAME statistic the load-bearing criteria route on (a difference of two harm logits at one state under two actions), not a magnitude proxy on a different component -- 993 asserted the FORWARD head's sensitivity at 17.9x over floor while the readout the criteria actually read was flat. An action-blind harm head makes causal_sig structurally zero in BOTH arms, so below-floor means substrate-not-ready.",
+        "kind": "readiness",
+        "measured": 0.11381933093070984,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "16-sample probe batch, actions 0 vs 1, worst cell across the 8 SEPARATED (control) cells of the full-grid set",
+        "worst_merged_harm_action_sensitivity_diagnostic": 0.23883843421936035,
+        "offending_cell": "DENSE_SEPARATED_seed303",
+        "met": true
+      },
+      {
+        "name": "p1_harm_events_observed_per_condition",
+        "description": "MIN(total P1 harm events summed over arms+seeds) across the two hazard-density conditions -- 993 red-team fix F7: a pooled floor let SPARSE's harm head train on near-zero labeled data while DENSE's volume masked it. Taking the min across conditions requires BOTH to have real coverage.",
+        "kind": "readiness",
+        "measured": 1616.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "control": "dense=1616, sparse=1878 (full-grid cells)",
+        "met": true
+      },
+      {
+        "kind_note": "floor_headroom = min(control calibration_gap) - 0.0 is exactly the room the MERGED arm has to FALL, which is what this suppression-direction criterion consumes. 0.0 is used as the floor because 'no hazard-conditional harm calibration at all' is the meaningful bottom; the logit difference is formally unbounded below, so this UNDERSTATES the available room and is therefore conservative. Design-time probe expectation: ~0.082 measured vs 0.06 required (~1.36x).",
+        "name": "dv_headroom_margin_room_below_control",
+        "kind": "dv_headroom",
+        "measured": 0.2285701633410682,
+        "threshold": 0.15,
+        "direction": "lower",
+        "dv_name": "calibration_gap",
+        "achievable_statistic": "floor_headroom",
+        "criterion_threshold": 0.15,
+        "headroom_margin": 1.0,
+        "n_control_values": 8,
+        "headroom_ratio": 1.5238010889404547,
+        "dv_bounds": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "kind_note": "The 2026-09-03 cluster autopsy's own table pairs 993's max |calibration_gap| (0.00152) against SEPARATED_SIGNAL_FLOOR (0.02) for a 13.1x shortfall, so max_abs is the sanctioned statistic for this non-degeneracy floor. Design-time probe expectation: ~0.215 measured vs 0.08 required (~2.68x).",
+        "name": "dv_headroom_control_signal_floor_reachable",
+        "kind": "dv_headroom",
+        "measured": 0.7154595876455262,
+        "threshold": 0.4,
+        "direction": "lower",
+        "dv_name": "calibration_gap",
+        "achievable_statistic": "max_abs",
+        "criterion_threshold": 0.2,
+        "headroom_margin": 2.0,
+        "n_control_values": 8,
+        "headroom_ratio": 1.7886489691138154
+      }
+    ],
+    "combination_rule": "PASS iff C1_dense AND C2_sparse when BOTH conditions clear non-degeneracy; if only one condition clears it, outcome is that condition's criterion alone (label prefixed single_condition_only_partial_evidence); if neither clears it, unknown/non_degenerate=false. Each criterion additionally requires ALL 4 seeds to show MERGED<=SEPARATED (sign-consistency), not just a pooled mean margin. MARGIN=0.15 and SEPARATED_SIGNAL_FLOOR=0.2 are derived from the control arm's measured range (see the module docstring), and both are additionally gated at runtime by the dv_headroom preconditions H1/H2, which are evaluated over the SEPARATED cells BEFORE any MERGED cell is trained.",
+    "criteria": [
+      {
+        "name": "C1_dense_merged_degrades_vs_separated",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_sparse_merged_degrades_vs_separated",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_dense_merged_degrades_vs_separated": true,
+      "C2_sparse_merged_degrades_vs_separated": true
+    },
+    "condition_detail": {
+      "DENSE": {
+        "condition": "DENSE",
+        "mean_gap_separated": 0.45438312440560974,
+        "mean_gap_merged": 0.44801489423642327,
+        "n_seed_pairs": 4,
+        "per_seed_diffs": [
+          -0.014705318484862562,
+          -0.17843545989463494,
+          0.07356206763991352,
+          0.09410579006283815
+        ],
+        "non_degenerate": true,
+        "criterion_passed": false
+      },
+      "SPARSE": {
+        "condition": "SPARSE",
+        "mean_gap_separated": 0.3986232273376665,
+        "mean_gap_merged": 0.5106084831159714,
+        "n_seed_pairs": 4,
+        "per_seed_diffs": [
+          0.352092295972702,
+          -0.015292181466629834,
+          0.11051857918978247,
+          0.000622329417365175
+        ],
+        "non_degenerate": true,
+        "criterion_passed": false
+      }
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "7cd037830d010c96025060d10764abcf01682b810c15cd6747d736e69371e596",
+  "substrate_commit": {
+    "commit": "c9e81e12af5037a77fcc4f65560b8a295487d98c",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  }
+}
