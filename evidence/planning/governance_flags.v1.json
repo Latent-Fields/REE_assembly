@@ -1760,9 +1760,9 @@
       "summary": "The contract test now pinning MECH-530 (ree-v3 tests/contracts/test_e3_non_oracular_output_typing.py, sha bc63b0e2fd) found the claim's 2026-09-01 verification note ('a repo-wide grep for category_label/oracular ... returned zero hits') is not quite accurate: last_score_diagnostics carries three pre-existing string-valued fields (commit_gate_mode, modulatory_shortlist_mode, modulatory_authority_normalize_basis). All three are internal algorithm/formula-mode selectors, not semantic content-class labels, so the test allowlists them rather than failing on landing -- but the claim's verification note should be corrected to say so explicitly instead of asserting zero string-typed fields exist.",
       "raised_by_session": "metaworker-chip-20260902-mech530-non-oracularity-contract-test",
       "raised_at": "2026-09-02T20:08:41Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-04T14:24:59Z",
+      "resolution_note": "Applied by governance-20260904-1347: MECH-530 what_would_answer verification note corrected in place (claims.yaml) to state that last_score_diagnostics carries three string-valued algorithm/formula-mode selectors (commit_gate_mode, modulatory_shortlist_mode, modulatory_authority_normalize_basis), allowlisted by the contract as non-semantic, so the accurate claim is zero content-class label fields rather than zero string-typed fields. No status/category change."
     },
     {
       "flag_id": "GFLAG-0122",
