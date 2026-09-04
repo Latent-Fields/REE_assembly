@@ -2534,3 +2534,5 @@ One line per hourly tick. ASCII only.
 2026-09-04T03:58:14Z SPAWN IGW-20260904-245 skill=/lit-pull prio=40 uuid=e8468108-c040-4f13-87e4-b9c816808da3 pid=30914 worktree=igw-245-literature-proposal-for-impl-008
 2026-09-04T04:10:41Z auto-defer igw-245-literature-proposal-for-impl-008 hash=e84017ec9ec6 for 48h (complete)
 2026-09-04T04:11:04Z complete igw-245-literature-proposal-for-impl-008 spawned->completed outcome=USEFUL_LANDED: No lit pulled: IMPL-008 records our own programme phases/repo roles, no external
+2026-09-04T05:45:55Z workset committed (regen -- 257 items, 34 ready, 0 in flight)
+2026-09-04T05:37:41Z no eligible item (skipped 257): IGW-20260904-001:skill /governance not allowed; IGW-20260904-002:skill /governance not allowed; IGW-20260904-003:skill /governance not allowed
