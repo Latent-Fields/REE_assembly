@@ -2590,3 +2590,4 @@ One line per hourly tick. ASCII only.
 2026-09-05T02:16:20Z SPAWN IGW-20260905-235 skill=/queue-experiment prio=40 uuid=4da1b7d8-169f-4da4-9feb-db93eaec95ae pid=27409 worktree=igw-235-proposal-for-impl-019
 2026-09-05T02:40:49Z retire-proposal LIT-0627 -> executed (igw-235-proposal-for-impl-019; complete)
 2026-09-05T02:40:50Z auto-defer igw-235-proposal-for-impl-019 hash=eb6a9e3c8ca4 for 48h (complete)
+2026-09-05T02:41:16Z complete igw-235-proposal-for-impl-019 spawned->completed outcome=USEFUL_LANDED: IMPL-019 NOT queued: marked EVB-1306/EXP-0626 blocked_substrate -- no Stage-4 so
