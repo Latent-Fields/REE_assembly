@@ -2576,3 +2576,4 @@ One line per hourly tick. ASCII only.
 2026-09-05T00:11:08Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
 2026-09-05T00:10:22Z SPAWN IGW-20260905-234 skill=/queue-experiment prio=40 uuid=1b864522-0e84-422c-8e9e-c0b76fadcab7 pid=73482 worktree=igw-234-proposal-for-impl-008
 2026-09-05T00:23:31Z auto-defer igw-234-proposal-for-impl-008 hash=b20a11f4a7e6 for 48h (complete)
+2026-09-05T00:23:57Z complete igw-234-proposal-for-impl-008 spawned->completed outcome=USEFUL_LANDED: EVB-1297/experimental (IMPL-008) -> skipped, not V3-testable (implementation_not
