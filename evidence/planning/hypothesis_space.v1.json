@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-05T09:52:19Z",
+  "generated_at": "2026-09-05T11:06:23Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -13,11 +13,11 @@
       "state_counts": {
         "proposed": 34,
         "implemented": 95,
-        "implemented_pending_validation": 23,
-        "validated": 25
+        "implemented_pending_validation": 22,
+        "validated": 26
       },
-      "build_proof_gap": 118,
-      "build_proof_gap_note": "143 modules built, 118 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 117,
+      "build_proof_gap_note": "143 modules built, 117 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,210 +31,210 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 105,
-      "total_initial": 177,
-      "total_initial_at_registration": 148,
+      "total_surviving": 110,
+      "total_initial": 182,
+      "total_initial_at_registration": 153,
       "total_fanout_added": 29,
       "total_resolved_out": 57,
       "total_confirmed": 39,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 32.2,
-      "net_narrowing_pct": 29.1,
+      "reduction_pct_vs_current": 31.3,
+      "net_narrowing_pct": 28.1,
       "convergence_classes": {
-        "static": 25,
+        "static": 26,
         "narrowing": 20,
         "circling": 4,
         "refining": 3,
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "105 alive against 148 originally enumerated, and against 177 including 29 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 53
+      "honest_pair_note": "110 alive against 153 originally enumerated, and against 182 including 29 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 54
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 20,
-      "open_questions": 53
+      "open_questions": 54
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 176,
+      "surviving": 181,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-11",
-      "surviving": 175,
+      "surviving": 180,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-13",
-      "surviving": 173,
+      "surviving": 178,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-15",
-      "surviving": 169,
+      "surviving": 174,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-16",
-      "surviving": 168,
+      "surviving": 173,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-17",
-      "surviving": 165,
+      "surviving": 170,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-18",
-      "surviving": 159,
+      "surviving": 164,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-19",
-      "surviving": 155,
+      "surviving": 160,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-20",
-      "surviving": 154,
+      "surviving": 159,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-24",
-      "surviving": 153,
+      "surviving": 158,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-27",
-      "surviving": 151,
+      "surviving": 156,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-29",
-      "surviving": 150,
+      "surviving": 155,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-31",
-      "surviving": 149,
+      "surviving": 154,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-01",
-      "surviving": 147,
+      "surviving": 152,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-02",
-      "surviving": 141,
+      "surviving": 146,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-04",
-      "surviving": 140,
+      "surviving": 145,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-06",
-      "surviving": 139,
+      "surviving": 144,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-08",
-      "surviving": 137,
+      "surviving": 142,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-09",
-      "surviving": 135,
+      "surviving": 140,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-10",
-      "surviving": 134,
+      "surviving": 139,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-11",
-      "surviving": 133,
+      "surviving": 138,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-12",
-      "surviving": 132,
+      "surviving": 137,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-14",
-      "surviving": 130,
+      "surviving": 135,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-17",
-      "surviving": 129,
+      "surviving": 134,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-20",
-      "surviving": 128,
+      "surviving": 133,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-24",
-      "surviving": 127,
+      "surviving": 132,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-29",
-      "surviving": 124,
+      "surviving": 129,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-30",
-      "surviving": 122,
+      "surviving": 127,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-02",
-      "surviving": 121,
+      "surviving": 126,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-05",
-      "surviving": 105,
+      "surviving": 110,
       "closure_pct": 73.0,
       "build_pct": 80.8
     }
@@ -5749,6 +5749,113 @@
         "distance_phrase": "1 of 4 legs adjudicated (surrogate trunk merge: bounded from above at ~0.20/0.16 degradation, -0.15 not excluded, joint power ~12 percent -> alive/mixed); 3 fan-out legs pre-registered, none queued.",
         "live_gate": "The three-leg portfolio pre-registered here: an encoder-unfrozen merge (drive axis), a real E1/E2/E3-stack merge inside a live REEAgent loop reading BOTH of ARC-021's falsifier DVs (representation axis; start from v3_spark_arc021_three_loop_scale.py only after its six mandatory repairs, esp. the detach/undetach asymmetry), and a >=16-seed sub-margin re-pose with a CI on -0.05 (measurement axis). New EXQ number, not a 993 letter.",
         "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "sd082_candidate_discriminating_readout_locus",
+      "title": "Is SD-082's propagated action bias candidate-DISCRIMINATING because the rule->bias readout was TRAINED to discriminate -- or is the apparent discrimination the INIT STRUCTURE of a random first layer plus ReLU, a tanh artefact, an upstream property of the candidate summaries, or capped by a half-dead head?",
+      "short_title": "SD-082 discriminating-readout locus",
+      "claims": [
+        "SD-082",
+        "SD-078"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "initial_frozen_count_at_registration": 5,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "constitution",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 5,
+      "alive": 5,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H1-trained-discriminating-readout",
+          "label": "The TRAINED rule->bias readout produces a candidate-DISCRIMINATING raw bias",
+          "desc": "SD-082's own assertion: with the per-candidate-summary amend engaged, the TRAINED head converts a differentiated rule_state into a raw pre-tanh action bias whose cross-candidate range is a substantial fraction of its mean-abs, and which is argmax-consequential. Adjudicated by a TRAINED-MINUS-INIT discrimination index exceeding a margin pre-registered off the random-init distribution, on new seeds -- NOT by an absolute index floor. Null: the trained index sits inside the init head's own distribution, i.e. training adds no discrimination.",
+          "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-822f"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-init-structure",
+          "label": "The discrimination is present but is INIT STRUCTURE, not a trained coupling",
+          "desc": "The measured cross-candidate spread is what a randomly-initialised first layer plus ReLU already possesses -- exactly the reading the driver's `bias_head_actually_trained` gate text says it exists to exclude, and exactly the one C1/C2 as designed cannot separate from H1. Adjudicated by the same trained-minus-init measurement as H1, of which this leg is the complement: if the trained index does not exceed the init index by the pre-registered margin, this leg holds and H1 does not. Null: the trained index exceeds the init distribution by that margin.",
+          "axis": "intrinsic-architecture",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-822f"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-uniform-common-mode",
+          "label": "The propagated bias is candidate-UNIFORM; apparent spread is manufactured by the tanh",
+          "desc": "The raw pre-tanh bias is a common-mode shift near-identical across candidates; because the output stage is bias_scale*tanh(raw/bias_scale), a uniform raw shift emerges as a non-uniform post-tanh delta of the same order as the observed post-tanh spread. Such a state preserves argmax order and is invisible to every downstream reader. This is the only state that may WEAKEN SD-082. PROBE SKETCH (not assigned to V3-EXQ-822f, which measures a difference of indices and does not separate uniform from discriminating): decompose the raw stage against the post-tanh stage with the tanh scale swept or bypassed, declaring the null as the index sitting near its analytic 0 (< 0.25) in BOTH arms with zero argmax flips.",
+          "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-upstream-summary-starvation",
+          "label": "Any index is set upstream: the post-action candidate summaries are too similar to flip hidden units",
+          "desc": "The index also reads near zero, and can read spuriously high in a pinned-pool arm, when the hidden ReLU mask is IDENTICAL or near-identical across candidates -- an UPSTREAM property of the centered candidate summaries rather than a property of SD-082's consumer. The driver records this caveat at `reads_uniform` and points at the summary-spread statistic. PROBE SKETCH (not assigned to V3-EXQ-822f): decompose the index against per-candidate hidden-mask heterogeneity -- the leg's own adjudication condition, and one 822f performs nowhere.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H4-dead-head-capacity",
+          "label": "The consumer head's capacity caps the achievable discrimination",
+          "desc": "Over half the head's hidden ReLU units are dead in both arms (`hidden_dead_relu_frac_p2_mean` 0.5140 ON / 0.5127 OFF), so the mapping from rule_state to per-candidate bias runs through roughly half the intended width. On this reading the index is real but systematically depressed, and the pre-registered bars are read against a handicapped head. PROBE SKETCH (not assigned to V3-EXQ-822f): an initialisation or activation-function variation that MOVES the dead fraction, asking whether the index moves with it -- a variation 822f does not perform.",
+          "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does the SD-082 TRAINED rule-to-action readout deliver a candidate-discriminating, argmax-consequential action bias BEYOND what the head's initialisation already provides -- the property that makes the SD-078 differentiated rule pool behaviourally consequential rather than silent?",
+        "distance_phrase": "One DESIGN-CHANGED run away, not one repaired re-run away. The DV, the arm axis and the controls are exercised and stable at full budget, but the load-bearing criterion has to be replaced (init control) and the seeds changed before any run can adjudicate; a same-seed replay is a deterministic re-print of 822d/822e and adjudicates nothing.",
+        "live_gate": "V3-EXQ-822f as specified by failure_autopsy_V3-EXQ-822e_2026-09-05: a TRAINED-MINUS-INIT-HEAD raw discrimination index (the existing `_init_positive_control` snapshot and synthetic probe run through the INIT head as well as the trained one), with the margin pre-registered off the random-init distribution (Monte-Carlo p95 5.41, or an init distribution measured in-run), on NEW seeds (not 101/202/303/404/505), with the trainedness gate re-specified as ||W_p1 - W_init|| per parameter tensor scoped to the treatment arm, and the C4 / SD-078 contrast kept but emitted through the three-valued logic at a seed count its 1.69 variance can support. An ABSOLUTE index floor is explicitly NOT the gate: an untrained head clears 1.0 in 99 percent of trials.",
+        "observation_bottleneck": "TWO, compounding. (1) V3-EXQ-822e's run-level readiness gate `bias_head_actually_trained` compares the SIGNED difference of last-layer weight NORMS (driver L1164-1166) against a 1e-3 LOWER floor over the MINIMUM cell (L1402-1404), so a head that trained inward reads as untrained; ARM_OFF/seed101 read -0.003772 and voided the run, though all ten cells clear the floor on |delta| (min 0.002076). (2) The deeper bottleneck, and the one that survives repairing (1): there is NO INIT-HEAD CONTROL anywhere in the design, so C1 and C2 cannot separate a trained coupling from init structure -- a random-init head of this shape clears C1's floor in 99 percent of Monte-Carlo trials. Until the init control exists this question cannot be adjudicated however well the substrate behaves and however cleanly the readiness gate passes."
       }
     }
   ],

@@ -24,10 +24,10 @@
     "SD-082"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-078": "unknown",
-    "SD-082": "unknown"
+    "SD-078": "non_contributory",
+    "SD-082": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -350,5 +350,9 @@
     "writer_defect": null,
     "n_agents": 10,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "[2026-09-05 governance, confirmed failure_autopsy_V3-EXQ-822e_2026-09-05]: Corrected from the driver-emitted `unknown` (both claims), on TWO independent grounds established by failure_autopsy_V3-EXQ-822e_2026-09-05 and its cross-model Step 7c red team. (1) INSTRUMENT-VOIDED READINESS: the run scored FAIL on one of nineteen readiness preconditions, `bias_head_actually_trained`, whose statistic is a SIGNED difference of last-layer weight NORMS compared against a 1e-3 LOWER floor over the MINIMUM cell -- so a head that trained inward (ARM_OFF/seed101, -0.003772) reads as untrained. All ten cells clear the floor on the absolute delta (min 0.002076) and the driver's own sibling diagnostic `head_untrained_last_layer_static` reads false. No per-claim direction was earned. (2) C1 IS UNCREDITABLE WITHOUT AN INIT CONTROL: the gate's text names a trained-vs-random-structure test, but a 1e-3 movement floor on a 32-parameter last layer is an optimizer-liveness test (one Adam step at lr 5e-4 moves it ~2.8e-3), and a random-init head of this driver's shape clears C1's 1.0 floor in 99 percent of Monte-Carlo trials (median index 3.93, p95 5.41) -- above the measured 1.846. So even a repaired-gate re-score could not attribute C1/C2 to a trained coupling. SD-082's C1/C2 passed and SD-078's C4 failed on its mean clause alone at t-like 0.0714; neither claim is supported and neither is weakened: non_contributory on both. `non_degenerate` stays false. Diagnosis: failure_autopsy_V3-EXQ-822e_2026-09-05.",
+  "epistemic_category": "standard",
+  "governance_override_utc": "2026-09-05T11:07:55Z",
+  "governance_override_from": "unknown"
 }

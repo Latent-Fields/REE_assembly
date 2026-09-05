@@ -1,0 +1,445 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-05T09:56:19Z",
+  "scope": "single",
+  "status": "confirmed",
+  "staging_mode": false,
+  "staging_note": "Drafted headless in STAGING MODE on behalf of governance session governance-20260905, then RED-TEAMED (Step 7c, cross-model, verdict CONTESTED) and CONFIRMED at the Step 8 human gate. Step 1 (claims/pulls) was skipped at draft time and the claim state was read textually. Step 9b registry WRITES and Step 10 remain NOT DONE: the question under hypothesis_space_ledger_pending is a DRAFT for governance to append. No claims.yaml, manifest, review_tracker, substrate_queue, hypothesis-space registry, governance-flag or WORKSPACE_STATE edit was made by this session; nothing was committed and no chip was spawned. The routing recorded here is the one the user ratified at the gate, and it REPLACES the routing the draft proposed (see targets[0].routing_detail.routing_withdrawn).",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "readjudication_of": null,
+  "prior_artifacts_read_in_full": [
+    "failure_autopsy_V3-EXQ-822c_2026-08-29.{md,json}",
+    "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.{md,json} (822d target)",
+    "failure_autopsy_batch-822a-826-817a-827_2026-07-26.json (822a target, skimmed per instruction)",
+    "failure_autopsy_816c-822_2026-07-26.json (822 target, skimmed per instruction)",
+    "ree-v3/experiments/v3_exq_822e_sd082_candidate_discriminating_bias_spread.py (full 822e header + readiness/criteria/direction blocks)"
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3",
+      "queue_id": "V3-EXQ-822e",
+      "claim_ids": [
+        "SD-078",
+        "SD-082"
+      ],
+      "experiment_purpose": "evidence",
+      "supersedes": "V3-EXQ-822d",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "CORRECT AS A ROUTE, WRONG AS A CAUSE, and the word 'substrate' in the label is the misleading part. The label is emitted by driver L1631-1632 (`if not ready: label = 'substrate_not_ready_requeue'`) for ANY unmet readiness precondition, so it cannot distinguish 'the substrate is not ready' from 'one of my own instruments is mis-specified'. Here it is the second: 18 of 19 preconditions are met, the SD-082 substrate is confirmed engaged, and the sole unmet precondition (`bias_head_actually_trained`) is a DRIVER statistic that measures the signed change in a weight NORM and calls it movement. The run does need a re-queue; nothing needs building. No substrate verdict may be read off this label.",
+      "failed_criterion": "precondition (readiness) -- `bias_head_actually_trained`, measured -0.003772 at ARM_OFF/seed101 against a 1e-3 lower floor. NOT a scored criterion. Among the scored criteria both load-bearing ABSOLUTE criteria for SD-082 PASSED (C1, C2) and the one load-bearing FAIL is C4, a DISCRIMINATION criterion belonging to SD-078 alone and deliberately outside the PASS conjunction.",
+      "non_degenerate": false,
+      "non_degenerate_verdict": "KEEP `non_degenerate: false`, and note it is NOT a consequence of any measured degeneracy: `criteria_non_degenerate` is true for C1, C2 and C4 individually, n_prop_ratio_raw_samples is 145-240 in every cell, pooled flip ticks are 1834 against the manifest's 200-tick flip-resolution floor (`flip_ticks_floor` = 200; the 50 quoted in the driver's prose comment is not the gate -- red-team hygiene H1, and 1834 clears both), the negative uniform control reads 0.000 in all ten cells, the positive synthetic control reads 2.46-4.48, and the raw-replica atanh residual is 5.96e-8 at worst. It stays false on TWO grounds after the Step 7c red team: (a) run-level readiness was voided by a mis-specified trainedness precondition, so no per-claim direction was earned; and (b) the load-bearing discrimination criterion C1 is UNCREDITABLE without an init-head control -- a random-init head of this driver's exact shape clears C1's 1.0 floor in 99 percent of Monte-Carlo trials (median index 3.93), above the measured 1.846 -- so even a repaired gate could not attribute the index to a trained coupling. Governance should read this run as instrument-voided AND readout-uncreditable, not as measured-degenerate.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear for both claims. The readiness conjunction voided both per-claim directions to `unknown` before either claim could express itself, and -- established by the Step 7c red team -- the criteria that DID pass cannot be credited to either claim's mechanism: C1 (4/5 seeds, mean_median index 1.846) and C2 (pooled flip fraction 0.0583) are both satisfied by an untrained head of the same shape. SD-078's C4 failed on its mean clause alone with a t-like of 0.0714. Neither claim is supported and neither is weakened.",
+        "biological_reference": "clear -- corticostriatal rule-to-action readout (lateral PFC rule representation biasing basal-ganglia selection among candidate actions), unchanged from 822c/822d. Not implicated by this failure; no lit-pull owed.",
+        "prerequisites": "present -- 18 of 19 readiness preconditions met, including all three dv_headroom gates (headroom ratios 2.24x, 25.0x, 7.78x), the raw-replica atanh cross-check, both in-loop controls, the flip-resolution gate (1834 >= 200, the manifest's flip_ticks_floor; the 50 in the driver's prose comment is not the gate -- red-team hygiene H1) and every SD-082 fix-engagement gate (0 manual fallbacks, 0 degenerate centering ticks, worst summary spread ratio 2.70e-3 against a 1e-3 floor).",
+        "implementation": "complete -- for the substrate. The SD-082 amended path (candidate_summary_source='proposer_post_action') is engaged and behaving; ree_core is not implicated by this FAIL. The incomplete implementation is the DRIVER's trainedness instrument.",
+        "environment": "adequate -- unchanged from 822c/822d; not implicated.",
+        "measurement": "misleading -- and this is the whole finding, on TWO independent grounds after the Step 7c red team. (1) SIGN CONVENTION. `last_layer_weight_delta_init_to_p1` is a SIGNED DIFFERENCE OF NORMS (driver L1164-1166), aggregated by MINIMUM across cells (L1402-1404) and compared with `direction: lower` against LAST_LAYER_WEIGHT_DELTA_FLOOR = 1e-3 (L551), while the precondition it gates is named `bias_head_actually_trained`. Movement is ||W_p1 - W_init||, which the reverse triangle inequality bounds BELOW by |delta-of-norms|, so a negative delta is positive evidence that the parameters moved. All ten cells clear 1e-3 on |delta| (min 0.002076); the offending cell clears it by 3.8x. The driver's own sibling diagnostic uses the absolute form (L1582-1584) and reports `head_untrained_last_layer_static: false` -- though the sibling differs from the gate in TWO respects, absolute-vs-signed AND ON-arm-mean-vs-all-cell-min, so the disagreement is not purely a sign convention (a signed ON-arm mean, +0.004045, would also have passed; red-team hygiene H6). (2) NO MOVEMENT FLOOR CAN DO WHAT THE GATE'S NAME SAYS. WITHDRAWN at the Step 8 gate: the draft's assertion that 'the gate's stated intent is certified in all ten cells'. The gate's text names a trained-vs-random-structure test ('Without it, the cross-candidate structure that a random first layer plus ReLU already possesses could be reported as a trained coupling', L1912-1924), but the last layer is nn.Linear(hidden_dim=32, 1) -- 32 parameters (lateral_pfc_analog.py L155, L254) -- and Adam at LR_LPFC_BIAS=5e-4 with weight_decay 0 (L554, L961-962) displaces that tensor by ~5e-4*sqrt(32) = 2.8e-3 on a SINGLE step, 2.8x the floor, with up to 70 P1 steps available. So the gate is an optimizer-liveness test (the 822b failure mode: post_p1 == init exactly), and repairing its sign makes it a correct liveness test, not the test its description names. Measured consequence: a RANDOM-INIT head of the driver's exact shape clears C1's 1.0 floor in 99 percent of 200 Monte-Carlo trials (median raw index 3.93, p5 1.68, p95 5.41; the driver's own iid reference is 5.15), and 822e's C1 PASS is 1.846 -- BELOW the untrained median. C1 and C2 as designed cannot attribute discrimination to training. (3) Third, independent measurement point: C4's mean clause is under-powered by construction (contrast_sd 1.694, n=5, t-like 0.0714) and cannot falsify SD-078.",
+        "integration": "coupled -- the E2-rollout/PFC-readout contract that failed at 822c is repaired and stable here; nothing at the integration seam is implicated.",
+        "scale": "adequate for C1/C2 -- 5 seeds x 2 arms, 145-240 sampled ticks per cell, 1834 pooled flip ticks. INSUFFICIENT for C4's mean clause: with contrast_sd 1.694 over 5 seeds one outlier cell (ARM_OFF/seed101, -2.879) determines the sign of the mean."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES -- single bucket, and NOT chargeable to REE. Implementation reads `complete` for the substrate and Environment reads `adequate`, but neither bucket is established as a failure location because neither was ever scored: the run's own readiness instrument voided the verdict first. The GOV-FAILLOC-1 precondition for a REE FAILED read is therefore not met, and is not close to met -- Measurement reads `misleading`."
+      },
+      "biological_reference": {
+        "closest_mechanism": "corticostriatal rule-to-action readout: lateral PFC rule representation biasing striatal action selection among competing candidates.",
+        "dependencies": [
+          "a per-candidate evidence channel the readout can discriminate on",
+          "a trained mapping from rule_state to per-candidate action bias"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- an instrument defect in the experiment driver; the biology is untouched.",
+        "lit_status": "present (targeted review already exists for this lineage; nothing further owed)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "SD-078": "standard",
+        "SD-082": "standard"
+      },
+      "recommended_epistemic_category_note": "`standard` for both, deliberately and behaviour-preservingly. The finding is a measurement/instrument defect with a named, bounded, driver-local fix -- not a substrate ceiling and not a substrate-conditional block. Reaching for substrate_ceiling or substrate_conditional here would put both claims into _EPI_SUPPRESS_PROPOSAL and strip their v3-testable lane on the strength of a sign-convention bug. Both claims already store `standard`; this recommendation confirms rather than moves it.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-078": "non_contributory",
+        "SD-082": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-09-05 governance, V3-EXQ-822e non_contributory; failure_autopsy_V3-EXQ-822e_2026-09-05, confirmed at the Step 8 gate after a cross-model Step 7c red team (verdict CONTESTED)] 822e re-posed 822d's question on the DV the ratified cluster autopsy asked for -- `prop_ratio_raw`, the cross-candidate range / mean-abs of the RAW PRE-TANH propagated action bias -- and both of SD-082's load-bearing absolute criteria cleared their pre-registered bars: C1 (ARM_ON per-seed median index >= 1.0 on >= 3/5 seeds) on 4/5 seeds at mean_median 1.846, and C2 (pooled argmax-flip fraction >= 0.02) at 0.0583 (107/1834 ticks). GROUND ONE, the verdict is INSTRUMENT-VOIDED. The run scored FAIL with evidence_direction `unknown` on both claims because ONE of nineteen readiness preconditions failed and readiness is a hard conjunction upstream of every direction (driver L1548; L1634 `if not ready: dir_082 = dir_078 = \"unknown\"`). That precondition, `bias_head_actually_trained`, compares the SIGNED difference of last-layer weight NORMS (L1164-1166) against a 1e-3 floor with `direction: lower` over the MINIMUM cell (L1402-1404), so a head whose last layer trained INWARD fails a gate that names movement. ARM_OFF/seed101 read -0.003772; by the reverse triangle inequality that is a LOWER BOUND of 0.003772 on the true parameter movement, and all ten cells clear the floor on |delta| (min 0.002076). The driver's own sibling diagnostic `head_untrained_last_layer_static` reads false in the same manifest. Two prior CONFIRMED autopsies had already written this defect down -- failure_autopsy_V3-EXQ-822c_2026-08-29 as measurement defect (i), and failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 as carried-forward-and-unfixed, citing this identical value -- and 822e's own Step-4.5 red team then PROMOTED the unrepaired statistic from a diagnostic flag to a gating readiness precondition. GROUND TWO, established by this artifact's Step 7c red team and ratified at the Step 8 gate: C1 and C2 CANNOT CREDIT THE RESULT TO TRAINING, so the run is not merely re-scorable. The gate's own text names a trained-vs-random-structure test, but a 1e-3 movement floor on a 32-parameter last layer (nn.Linear(32, 1)) is an OPTIMIZER-LIVENESS test -- one Adam step at lr 5e-4 with no weight decay moves that tensor by ~2.8e-3, 2.8x the floor. And a RANDOM-INIT head of the driver's exact shape clears C1's 1.0 floor in 99 percent of 200 Monte-Carlo trials (median raw index 3.93, p95 5.41; the driver's own iid reference is 5.15), above 822e's measured 1.846. The draft's read-across -- 'SD-082's substantive result is very likely a PASS this run could not record' -- is therefore WITHDRAWN: on this instrument a PASS would not distinguish a trained rule->bias coupling from the init structure of a random first layer plus ReLU, which is exactly the misreport the gate's author named. SD-082 is neither supported nor weakened: non_contributory, on both grounds. NO SUBSTRATE WORK IS OWED. The SD-082 per-candidate-summary amend is confirmed engaged for a second consecutive run (0 manual fallbacks, 0 degenerate centering ticks, worst summary spread ratio 2.70e-3 against a 1e-3 floor); the defect lives entirely in ree-v3/experiments/v3_exq_822e_sd082_candidate_discriminating_bias_spread.py. ROUTING. A byte-identical re-run was REFUSED at the gate: 822e is a bit-for-bit deterministic replay of 822d (28/28 shared per-cell statistics identical across all ten cells; same seeds, budgets and box), so a same-seed 822f reproduces these numbers exactly and buys no information. The routed successor V3-EXQ-822f is a DESIGN CHANGE: its load-bearing criterion becomes a trained-minus-INIT-head discrimination index with a margin pre-registered off the random-init distribution; it uses NEW seeds; and the trainedness gate is re-specified as ||W_p1 - W_init|| per parameter tensor, scoped to the treatment arm. epistemic_category stays `standard`; pending_retest_after_substrate stays false; status stays `candidate_substrate_landed`. PROMOTES/DEMOTES NOTHING.",
+      "recommended_evidence_quality_note_per_claim": {
+        "SD-078": "[2026-09-05 governance, V3-EXQ-822e non_contributory; failure_autopsy_V3-EXQ-822e_2026-09-05, confirmed at the Step 8 gate after a cross-model Step 7c red team (verdict CONTESTED)] SD-078 is again a CO-TAG, not the subject, exactly as at 822d. Its only criterion here is C4, the ON-minus-OFF contrast on `prop_ratio_raw`. The attribution is correct -- the arm axis IS `crf_cue_centering`, SD-078's own rule-pool knob, and what both arms carry unconditionally is SD-082's fix, not SD-078's -- and C4 sits deliberately outside both the run-level PASS conjunction and run-level readiness (driver L1546-1548). C4 FAILED, and the SHAPE of the failure is the finding: the SEED clause PASSED (4/5 seeds cleared the 0.25 margin: +0.559, +0.775, +1.476, +0.339) and only the MEAN clause failed, at contrast_mean 0.0541, dragged there entirely by seed 101's -2.879. With contrast_sd 1.694 over 5 seeds the driver's own t-like diagnostic is 0.0714 -- a mean indistinguishable from zero at this n. Under the driver's own three-valued logic the honest emission is `inconclusive`, NOT `weakens` (sd078_headroom_ok true, c4 false, c4_negative false; L1644-1651); the manifest recorded `unknown` only because the mis-specified `bias_head_actually_trained` precondition voided the whole run -- see SD-082's note for that mechanism. Three further reasons C4's FAIL must not be read against SD-078. (1) The single dissenting cell, ARM_OFF/seed101, is the SAME cell that failed the trainedness gate, and it carries the highest index in the entire matrix (4.316) in the arm whose rule pool is pinned to one rule (`rule_state_diff` 0.0, `crf_max_live_rules` 1) -- anomalous on two independent statistics at once. (2) C4 is computed on the SD-082 consumer's OWN output, so it is a JOINT test of SD-078's pool and SD-082's readout; after this artifact's Step 7c red team that readout is not merely unvalidated but UNCREDITABLE without an init-head control (a random-init head of the same shape clears C1's floor in 99 percent of Monte-Carlo trials), so a null cannot be attributed to the pool. (3) At contrast_sd 1.69 with n=5 the mean clause was never a test SD-078 could pass reliably -- the successor must PRE-REGISTER the SD-078 contrast at a seed count that variance can support, and emit `inconclusive` rather than a sign read off one outlier. SD-078's own differentiation passed decisively as a readiness precondition once more (ARM_ON 16 rules, max pairwise distance 1.711, `on_rule_state_diff_mean` 0.6502 against ARM_OFF's 3.24e-10). non_contributory; epistemic_category stays `standard`; pending_retest_after_substrate stays false; status stays `candidate_substrate_landed`. PROMOTES/DEMOTES NOTHING.",
+        "SD-082": "[2026-09-05 governance, V3-EXQ-822e non_contributory; failure_autopsy_V3-EXQ-822e_2026-09-05, confirmed at the Step 8 gate after a cross-model Step 7c red team (verdict CONTESTED)] 822e re-posed 822d's question on the DV the ratified cluster autopsy asked for -- `prop_ratio_raw`, the cross-candidate range / mean-abs of the RAW PRE-TANH propagated action bias -- and both of SD-082's load-bearing absolute criteria cleared their pre-registered bars: C1 (ARM_ON per-seed median index >= 1.0 on >= 3/5 seeds) on 4/5 seeds at mean_median 1.846, and C2 (pooled argmax-flip fraction >= 0.02) at 0.0583 (107/1834 ticks). GROUND ONE, the verdict is INSTRUMENT-VOIDED. The run scored FAIL with evidence_direction `unknown` on both claims because ONE of nineteen readiness preconditions failed and readiness is a hard conjunction upstream of every direction (driver L1548; L1634 `if not ready: dir_082 = dir_078 = \"unknown\"`). That precondition, `bias_head_actually_trained`, compares the SIGNED difference of last-layer weight NORMS (L1164-1166) against a 1e-3 floor with `direction: lower` over the MINIMUM cell (L1402-1404), so a head whose last layer trained INWARD fails a gate that names movement. ARM_OFF/seed101 read -0.003772; by the reverse triangle inequality that is a LOWER BOUND of 0.003772 on the true parameter movement, and all ten cells clear the floor on |delta| (min 0.002076). The driver's own sibling diagnostic `head_untrained_last_layer_static` reads false in the same manifest. Two prior CONFIRMED autopsies had already written this defect down -- failure_autopsy_V3-EXQ-822c_2026-08-29 as measurement defect (i), and failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 as carried-forward-and-unfixed, citing this identical value -- and 822e's own Step-4.5 red team then PROMOTED the unrepaired statistic from a diagnostic flag to a gating readiness precondition. GROUND TWO, established by this artifact's Step 7c red team and ratified at the Step 8 gate: C1 and C2 CANNOT CREDIT THE RESULT TO TRAINING, so the run is not merely re-scorable. The gate's own text names a trained-vs-random-structure test, but a 1e-3 movement floor on a 32-parameter last layer (nn.Linear(32, 1)) is an OPTIMIZER-LIVENESS test -- one Adam step at lr 5e-4 with no weight decay moves that tensor by ~2.8e-3, 2.8x the floor. And a RANDOM-INIT head of the driver's exact shape clears C1's 1.0 floor in 99 percent of 200 Monte-Carlo trials (median raw index 3.93, p95 5.41; the driver's own iid reference is 5.15), above 822e's measured 1.846. The draft's read-across -- 'SD-082's substantive result is very likely a PASS this run could not record' -- is therefore WITHDRAWN: on this instrument a PASS would not distinguish a trained rule->bias coupling from the init structure of a random first layer plus ReLU, which is exactly the misreport the gate's author named. SD-082 is neither supported nor weakened: non_contributory, on both grounds. NO SUBSTRATE WORK IS OWED. The SD-082 per-candidate-summary amend is confirmed engaged for a second consecutive run (0 manual fallbacks, 0 degenerate centering ticks, worst summary spread ratio 2.70e-3 against a 1e-3 floor); the defect lives entirely in ree-v3/experiments/v3_exq_822e_sd082_candidate_discriminating_bias_spread.py. ROUTING. A byte-identical re-run was REFUSED at the gate: 822e is a bit-for-bit deterministic replay of 822d (28/28 shared per-cell statistics identical across all ten cells; same seeds, budgets and box), so a same-seed 822f reproduces these numbers exactly and buys no information. The routed successor V3-EXQ-822f is a DESIGN CHANGE: its load-bearing criterion becomes a trained-minus-INIT-head discrimination index with a margin pre-registered off the random-init distribution; it uses NEW seeds; and the trainedness gate is re-specified as ||W_p1 - W_init|| per parameter tensor, scoped to the treatment arm. epistemic_category stays `standard`; pending_retest_after_substrate stays false; status stays `candidate_substrate_landed`. PROMOTES/DEMOTES NOTHING."
+      },
+      "recommended_manifest_disposition": {
+        "evidence_direction": "non_contributory",
+        "evidence_direction_per_claim": {
+          "SD-078": "non_contributory",
+          "SD-082": "non_contributory"
+        },
+        "evidence_direction_note": "Corrected from the driver-emitted `unknown` (both claims), on TWO independent grounds established by failure_autopsy_V3-EXQ-822e_2026-09-05 and its cross-model Step 7c red team. (1) INSTRUMENT-VOIDED READINESS: the run scored FAIL on one of nineteen readiness preconditions, `bias_head_actually_trained`, whose statistic is a SIGNED difference of last-layer weight NORMS compared against a 1e-3 LOWER floor over the MINIMUM cell -- so a head that trained inward (ARM_OFF/seed101, -0.003772) reads as untrained. All ten cells clear the floor on the absolute delta (min 0.002076) and the driver's own sibling diagnostic `head_untrained_last_layer_static` reads false. No per-claim direction was earned. (2) C1 IS UNCREDITABLE WITHOUT AN INIT CONTROL: the gate's text names a trained-vs-random-structure test, but a 1e-3 movement floor on a 32-parameter last layer is an optimizer-liveness test (one Adam step at lr 5e-4 moves it ~2.8e-3), and a random-init head of this driver's shape clears C1's 1.0 floor in 99 percent of Monte-Carlo trials (median index 3.93, p95 5.41) -- above the measured 1.846. So even a repaired-gate re-score could not attribute C1/C2 to a trained coupling. SD-082's C1/C2 passed and SD-078's C4 failed on its mean clause alone at t-like 0.0714; neither claim is supported and neither is weakened: non_contributory on both. `non_degenerate` stays false. Diagnosis: failure_autopsy_V3-EXQ-822e_2026-09-05.",
+        "non_degenerate": false,
+        "degeneracy_reason": "run-level readiness voided by a mis-specified trainedness precondition (signed difference of weight norms gated with direction lower over the minimum cell), AND the load-bearing discrimination criterion C1 uncreditable without an init-head control (a random-init head of this shape clears its 1.0 floor in 99 percent of Monte-Carlo trials); no individual criterion was measured degenerately",
+        "category_enum": "standard",
+        "supersession": "822e's own manifest already carries `supersedes: V3-EXQ-822d`. Do NOT set `evidence_direction: superseded` on 822d's manifest off this run. 822e strictly CONTAINS 822d's measurement (its P0-P2 outputs are bit-identical -- 28/28 shared per-cell statistics), but 822d's own DV (prop_delta) was withdrawn by its own confirmed autopsy, so 822d's `non_contributory` disposition already stands for the right reason and nothing is gained by re-labelling it.",
+        "recommended_manifest_write": {
+          "evidence_direction": "non_contributory",
+          "evidence_direction_per_claim": {
+            "SD-078": "non_contributory",
+            "SD-082": "non_contributory"
+          },
+          "evidence_direction_note": "Corrected from the driver-emitted `unknown` (both claims), on TWO independent grounds established by failure_autopsy_V3-EXQ-822e_2026-09-05 and its cross-model Step 7c red team. (1) INSTRUMENT-VOIDED READINESS: the run scored FAIL on one of nineteen readiness preconditions, `bias_head_actually_trained`, whose statistic is a SIGNED difference of last-layer weight NORMS compared against a 1e-3 LOWER floor over the MINIMUM cell -- so a head that trained inward (ARM_OFF/seed101, -0.003772) reads as untrained. All ten cells clear the floor on the absolute delta (min 0.002076) and the driver's own sibling diagnostic `head_untrained_last_layer_static` reads false. No per-claim direction was earned. (2) C1 IS UNCREDITABLE WITHOUT AN INIT CONTROL: the gate's text names a trained-vs-random-structure test, but a 1e-3 movement floor on a 32-parameter last layer is an optimizer-liveness test (one Adam step at lr 5e-4 moves it ~2.8e-3), and a random-init head of this driver's shape clears C1's 1.0 floor in 99 percent of Monte-Carlo trials (median index 3.93, p95 5.41) -- above the measured 1.846. So even a repaired-gate re-score could not attribute C1/C2 to a trained coupling. SD-082's C1/C2 passed and SD-078's C4 failed on its mean clause alone at t-like 0.0714; neither claim is supported and neither is weakened: non_contributory on both. `non_degenerate` stays false. Diagnosis: failure_autopsy_V3-EXQ-822e_2026-09-05.",
+          "non_degenerate": false,
+          "degeneracy_reason": "run-level readiness voided by a mis-specified trainedness precondition (signed difference of weight norms gated with direction lower over the minimum cell), AND the load-bearing discrimination criterion C1 uncreditable without an init-head control (a random-init head of this shape clears its 1.0 floor in 99 percent of Monte-Carlo trials); no individual criterion was measured degenerately",
+          "write_both_copies": true,
+          "flat_path": "evidence/experiments/v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3.json",
+          "pack_path": "evidence/experiments/v3_exq_822e_sd082_candidate_discriminating_bias_spread/runs/v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3/manifest.json",
+          "why": "The manifest currently carries the driver-emitted `unknown` on both claims, which reads as 'nobody looked' rather than 'the instrument voided the run and the readout is uncreditable'. Because `non_degenerate: false` already excludes the run from confidence and conflict scoring, this write changes NOTHING in the indexer's arithmetic -- it corrects the human-readable record only, under the REE_assembly/CLAUDE.md 'Fallback workaround' path. Write both copies (the indexer scores the runs/ pack; the flat file is what most readers open) and rebuild the index afterwards."
+        }
+      },
+      "per_claim_recommendation": {
+        "SD-078": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "NOTE-ONLY. SD-078 already stores `epistemic_category: standard`, `pending_retest_after_substrate: false` and `status: candidate_substrate_landed`, and this run moves none of them: C4 (SD-078's only criterion) failed on its MEAN clause alone -- 4/5 seeds cleared the 0.25 margin and contrast_mean 0.0541 with sd 1.694 gives t-like 0.0714, which the driver's own three-valued logic maps to `inconclusive`, not `weakens` -- and C4 is in any case a joint test through SD-082's still-uncreditable readout. What governance writes is the evidence_quality_note plus the citation, so the claim's live_status.evidence.from should now point at this diagnosis -> stamp this artifact",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        },
+        "SD-082": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "NOTE-ONLY. SD-082 already stores `epistemic_category: standard`, `pending_retest_after_substrate: false` and `status: candidate_substrate_landed`, and none of them moves: the FAIL is a mis-specified readiness instrument in the DRIVER, not a substrate result, so there is no substrate to wait on and nothing to suppress -- and the criteria that passed (C1 4/5 seeds at 1.846; C2 0.0583) cannot be credited to a trained coupling without an init-head control, so there is nothing to promote either. What governance writes is the evidence_quality_note plus the citation, so the claim's live_status.evidence.from should now point at this diagnosis -> stamp this artifact",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-082",
+        "note": "NO substrate work is owed by this run and no NEW failure_record item should be appended. The defect is entirely inside ree-v3/experiments/v3_exq_822e_sd082_candidate_discriminating_bias_spread.py; the SD-082 per-candidate-summary amend is confirmed engaged for a second consecutive run. Leave the SD-082 entry at `status: implemented_pending_validation` / `ready: false`, leave `severity: corrupting` and `substrate_paths` as governance already has them (they describe the RESOLVED 822c compute_bias defect and are unchanged by this run), and leave the OPEN 822d failure_record item OPEN -- 822e did not resolve it, and after the red team it is clear that no run on this instrument could have. RECOMMENDED bookkeeping for governance's Step 6a sweep: advance the entry's `validation_experiment` from `V3-EXQ-822d` to `V3-EXQ-822f`, and record in the same move that 822f is the DESIGN-CHANGED successor (trained-minus-init discrimination index, new seeds), not the byte-identical replay the draft routed -- otherwise the field will read as if a same-design letter were still the validation path."
+      },
+      "resolves_prior_failure_record": [],
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "literal_count_meets_threshold": true,
+        "threshold": 2,
+        "recount_utc": "2026-09-05T09:56:19Z",
+        "prior_substrate_ceiling_autopsies": {
+          "SD-082": [
+            "failure_autopsy_2026-07-28-sweep | v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3 | cat=competence_implementation_gap | sqe_action=amend | dir=non_contributory",
+            "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3 | cat=standard | sqe_action=amend | dir=non_contributory",
+            "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3 | cat=standard | sqe_action=amend | dir=non_contributory"
+          ],
+          "SD-078": [
+            "failure_autopsy_816c-822_2026-07-26 | v3_exq_822_sd078_rule_selection_consumer_20260726T112152Z_v3 | cat=precondition_unmet | sqe_action=create | dir=non_contributory",
+            "failure_autopsy_batch-822a-826-817a-827_2026-07-26 | v3_exq_822a_sd078_rule_selection_consumer_20260726T145526Z_v3 | cat=competence_implementation_gap | sqe_action=amend | dir=non_contributory",
+            "failure_autopsy_2026-07-28-sweep | v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3 | cat=competence_implementation_gap | sqe_action=amend | dir=non_contributory",
+            "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3 | cat=standard | sqe_action=amend | dir=non_contributory",
+            "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3 | cat=standard | sqe_action=amend | dir=non_contributory"
+          ]
+        },
+        "prior_counted_hits": {
+          "SD-082": 3,
+          "SD-078": 5
+        },
+        "this_target_counts": false,
+        "this_target_counts_basis": "Excluded -- and the MECHANISM matters, because the draft named the wrong one (red-team hygiene H4). In the SKILL's Step-7 recipe the target is dropped on the FIRST test inside `counts()`: `recommended_epistemic_category_per_claim` reads `standard` for both claims, which is non-empty and does not contain `substrate_ceiling`, so the function returns False before any of clauses (1)-(4) runs. The draft's account -- clause 2 does not literally match the word `standard`, so clause 3 carries the release -- describes a path that never executes. `ree-v3/validate_queue.py::_autopsy_counts_toward_brake` reaches the same verdict by a DIFFERENT route: it reads only the blanket `recommended_epistemic_category` (also `standard`), so it passes the first guard on direction `non_contributory`, finds no INSTRUMENT marker at clause 2, and releases at clause 3 on `fired: false` AND `literal_count_meets_threshold: true` with no build owed. The two are therefore NOT byte-identical (red-team hygiene H5): the SKILL recipe honours the per-claim category, validate_queue does not. Both release here; whoever maintains the lockstep rule should reconcile them.",
+        "release_corroboration": "The consumer half releases independently. validate_queue.py::_substrate_is_built clears the brake when the named upstream substrate appears on a ree-v3/CLAUDE.md line carrying IMPLEMENTED or VALIDATED. Both do: 'SD-078: policy.common_mode_invariant_candidate_rule_field_context_key -- IMPLEMENTED 2026-07-22.' (CLAUDE.md L16528) and 'SD-082: pfc.lateral_pfc.rule_selection_action_consumer -- IMPLEMENTED 2026-07-26.' (L16643). So even at the literal prior counts of 3 and 5 the gate would not block an 822f.",
+        "refused_requeue": "byte-identical 822f refused; design-changed 822f licensed",
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "supersedes_autopsy": "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30",
+        "supersedes_autopsy_note": "SUPERSEDES THE 822d TARGET'S ROUTING ONLY, not its disposition. That cluster autopsy commissioned 822e ('re-pose on cross-candidate SPREAD; prop_delta cannot answer this'), and 822e discharged the commission -- but the Step 7c red team then established that the re-posed design cannot adjudicate the question it was commissioned to adjudicate, because its discrimination criterion is satisfied by an untrained head. The successor design specified in routing_detail replaces that routing. The 822d target's own `non_contributory` disposition, and failure_autopsy_V3-EXQ-822c_2026-08-29's dispositions, STAND unchanged; both were read in full per the re-adjudication rule.",
+        "recount_status": "STANDS after the cross-model Step 7c red team, which re-ran the SKILL Step-7 recipe verbatim (confirmed-only, R1/R2/R3) and reproduced SD-082 = 3 and SD-078 = 5 exactly, run for run.",
+        "release_basis": "ONE ground, stated honestly, REPLACING the draft's three. The literal recount is not disputed (SD-082 3, SD-078 5, against N=2). But those counted hits are largely a BOOKKEEPING ARTEFACT of `amend` being used for failure_record appends rather than for substrate builds: of SD-082's three, 822b's own resolved_note says 'Nothing in the substrate was fixed; the read was wrong', and the 822d cluster autopsy's `amend` target is a DV REDESIGN ('cross-candidate SPREAD ... prop_delta cannot answer this') with no code change. The TRUE substrate-ceiling count for this lineage is 1 -- 822c, the shared-initial-state contract defect, which WAS repaired in ree_core. This artifact's own target is instrument-only (`standard` per claim, `recommended_substrate_queue_entry.action: none`, the defect entirely inside the experiment driver), which is R3 clause 2's PRINCIPLE: instrument repair is the correct route, a brake is not. The brake is released on that ground and no other.",
+        "release_grounds_withdrawn": [
+          "WITHDRAWN (red-team Finding 4) -- the IMPLEMENTED-line consumer release. `validate_queue.py::_substrate_is_built` reads the latest counted autopsy's `target_sd_id` (SD-082) and clears the brake when a ree-v3/CLAUDE.md line carries IMPLEMENTED or VALIDATED. That line -- 'SD-082: pfc.lateral_pfc.rule_selection_action_consumer -- IMPLEMENTED 2026-07-26' -- landed in ree-v3 d4f7580 on 2026-07-26, BEFORE all three counted hits (822b 2026-07-27, 822c 2026-08-29, 822d 2026-08-30), and the check is stateless. For this lineage the consumer gate could never have blocked, however many letters circled. Citing it as independent corroboration is citing a check that cannot fail. VACUOUS; removed.",
+          "WITHDRAWN (red-team Finding 4) -- 'no same-granularity re-derivation is being proposed'. That defence was true of 822e-vs-822d and FALSE of the 822f the draft actually routed: same EXQ letter-series, same claim_ids, same substrate, same seeds, same DV, same criteria, which is precisely the shape MOVE-3 refuses. It also mis-described clause 3, which governs whether THIS target counts and says nothing about the prior hits. Removed; the routing it defended has itself been withdrawn."
+        ],
+        "refused_requeue_detail": "822f as now routed is NOT a same-question letter in the MOVE-3 sense, and that is the ONLY reason it is licensed. It changes the LOAD-BEARING CRITERION (a trained-minus-INIT-head discrimination index replaces a bare absolute index that a random-init head also clears), it adds the CONTROL that criterion needs (the init head), and it changes the SEEDS. The draft's byte-identical 822f is refused outright: 822e is a bit-for-bit deterministic replay of 822d -- 28/28 shared per-cell statistics identical across all ten cells, same seeds/budgets/box -- so a same-seed re-run reproduces every number exactly and is a re-print, not evidence."
+      },
+      "read_across_not_adjudicated": [
+        "WITHDRAWN at the Step 8 gate (red-team Finding 2). The draft recorded: 'SD-082's substantive result is very likely a PASS that this run could not record' -- on the reasoning that under the gate's stated intent `ready` would be true, C1 and C2 both pass, `overall` is PASS and `dir_082` is `supports`. That read-across is withdrawn, and the withdrawal is recorded rather than deleted because it was the draft's load-bearing argument for a cheap re-run. Reason: C1's 1.0 floor is cleared by a RANDOM-INIT head of the driver's exact shape in 99 percent of 200 Monte-Carlo trials (median raw index 3.93, p5 1.68, p95 5.41), above 822e's measured 1.846, and C2's argmax flips likewise do not require training. A counterfactual PASS would therefore have recorded `supports` for 'the TRAINED rule->bias readout produces a candidate-DISCRIMINATING raw bias' on criteria an untrained head satisfies -- the exact misreport the gate's own author named.",
+        "Under the same counterfactual `dir_078` would have been `inconclusive`, not `weakens` (sd078_headroom_ok true, c4 false, c4_negative false). Nothing in this run licenses evidence against SD-078. Note this outcome is PREDETERMINED for any same-seed replay: the C4 per-seed contrasts are recorded and a re-run on seeds 101-505 reproduces them exactly, so `inconclusive` is a known 822f output, not something 822f would test.",
+        "`hidden_dead_relu_frac_p2_mean` is 0.5140 (ON) / 0.5127 (OFF) -- over half the consumer head's hidden ReLU units dead in both arms, the same reading 822d recorded. The driver flags it as `dead_relu_partial_contributor` and it did not prevent C1/C2 from clearing, but it caps the achievable index and is worth carrying into 822f's read rather than re-discovering. It is registered as its own hypothesis leg (H4) and is NOT adjudicated by 822f.",
+        "The per-cell `substrate_hash` is identical across all ten cells of this run (db37d602026bc63a0216c1169e0e54d42798d42c278df8404dc7356835ea54fd) but DIFFERS from 822d's (0944cbbe...) even though 822d's and 822e's P0-P2 outputs are bit-identical. The hash folds the driver and config, not `ree_core` alone, so the difference does NOT mean the substrate moved between the two runs -- red-team hygiene H8, recorded so no reader infers a substrate change from a changed hash."
+      ],
+      "learning_extracted": [
+        "QUEUE-TIME CHECK, the one this lineage most needed: WHEN A SUCCESSOR CHANGES ONLY ITS DVs ON THE SAME SEEDS, BUDGETS AND BOX, IT IS A DETERMINISTIC REPLAY -- RE-SCORE THE RECORDED ROWS OFFLINE BEFORE SPENDING COMPUTE. 822e reproduced 822d bit-for-bit: all 28 per-cell statistics the two manifests share are identical in all ten cells (crf_*, hidden_dead_relu_frac_p2_*, last_layer_weight_delta_init_to_p1, n_prop_samples, prop_delta_mean, rule_flip_frac, rule_state_diff, rule_state_norm_p2_median, summary_spread_ratio_p2_*, zworld_cone_min_cosine and every counter), because P0/P1/P2 were unchanged and 822e only ADDED new DVs computed on the same P2 ticks. The consequence is sharp: the offending value -0.003772154450416565 at ARM_OFF/seed101 was ALREADY IN 822d's flat manifest and already quoted in the 822d cluster autopsy, so with the gate quantified as `min >= 1e-3` over all cells the 822e readiness FAIL was ARITHMETICALLY CERTAIN before the queue entry was written. Two hours five minutes of cloud compute bought a number that was on disk. The check is cheap and belongs at /queue-experiment Step 4.5: if the predecessor's rows already contain every input to a new gate, evaluate the gate on them first.",
+        "A MOVEMENT FLOOR IS NOT A TRAINEDNESS TEST, AT ANY SIGN. Repairing this gate's sign convention makes it a correct optimizer-liveness check -- it would catch the 822b failure mode where post_p1 == init exactly -- but it still cannot do what its name and its docstring say. The last layer is nn.Linear(32, 1); Adam at lr 5e-4 displaces a 32-parameter tensor by roughly lr*sqrt(32) = 2.8e-3 on a SINGLE step, 2.8x the 1e-3 floor, with up to 70 steps available. A gate that any live optimizer passes on step one cannot certify that 'the cross-candidate structure a random first layer plus ReLU already possesses' is not being reported as a trained coupling. The general form: when a precondition's NAME asserts a causal property ('actually trained') and its STATISTIC is a magnitude floor, ask what the floor's null distribution is under the property's NEGATION -- here, a random-init head clears the downstream criterion in 99 percent of trials, so the floor discriminates nothing.",
+        "A DISCRIMINATION CRITERION NEEDS AN INIT CONTROL, NOT A TRAINEDNESS GATE UPSTREAM OF IT. The two are not substitutes and the design treated them as if they were. The correct construction is already half-built in this driver: `_init_positive_control` snapshots the head at init (L682) and a synthetic probe is already run through the TRAINED head, so running that same probe through the INIT head and scoring trained-minus-init is a few lines. A criterion of the form 'index >= absolute floor' can only be read as evidence about training when the floor is calibrated against the untrained distribution of the same statistic.",
+        "A documented measurement defect that is never routed to a repair does not stay harmless -- it gets PROMOTED. This exact statistic was named defective by the 822c autopsy (2026-08-29), re-named as carried-forward-and-unfixed by the 822d cluster autopsy (2026-08-30, citing the very value -0.003772), and then elevated from diagnostic flag to GATING readiness precondition by 822e's Step-4.5 red team (2026-09-04) without anyone repairing it. Two confirmed autopsies wrote it down; neither emitted a routable repair item, so the corpus's memory of the defect was prose only.",
+        "A red-team finding of the form 'X should gate rather than sit in `diagnostic_flags`' carries an unstated premise: that X measures what its name says. When the flag being promoted is one a prior autopsy already called mis-specified, the promotion must be paired with the repair -- and, as this case shows, the repair must be checked against the flag's PURPOSE, not only its sign, or a footnote becomes a run-voiding gate that still does not test what it claims.",
+        "Sign convention is a first-class property of a readiness statistic. A difference of NORMS is not a distance; |d(norm)| lower-bounds the true parameter movement, so a `direction: lower` gate on the SIGNED quantity fails precisely the cells that trained inward. The correct statistic is ||W_p1 - W_init|| computed per parameter tensor -- and the driver already contains an ABSOLUTE form in the diagnostic flag `head_untrained_last_layer_static` (L1582-1584), which reads `false` in this same manifest. BUT the 'gate and its sibling diagnostic disagreeing inside one artifact is a cheap, checkable lint' reading is WEAKER than the draft claimed (red-team hygiene H6): the two differ in QUANTIFIER as well as in sign -- the gate takes the MIN over all ten cells, the sibling takes the ON-arm MEAN -- and a signed ON-arm mean (+0.004045) would also have passed. The lint would have fired here, but it does not isolate the sign as the cause.",
+        "Run-level readiness is a hard conjunction and therefore a single point of failure for every claim's direction. 822e's red team correctly moved C4's `dv_headroom` OUT of run-level readiness for exactly this reason ('a genuine SD-078 null would have voided a confirmed SD-082 result as substrate_not_ready_requeue') and then, in the same pass, moved a defective statistic IN. The general lesson is scoping: a precondition should gate only the criteria it actually bears on. `bias_head_actually_trained` is quantified over the MINIMUM of all ten cells including the pool-control arm, so the control arm holds a veto over the treatment arm's absolute criteria.",
+        "`substrate_not_ready_requeue` is a lossy label. The driver emits it for ANY unmet readiness precondition, so it cannot distinguish a substrate gap from a broken instrument, and a governance reader who trusts the label will book substrate debt that is not owed. Drivers in this family would benefit from splitting it (`substrate_not_ready` vs `instrument_not_ready`).",
+        "RECORDING NOTE, not a gap: this run's recording was good enough to diagnose itself, and good enough for a THIRD PARTY to falsify the diagnosis. Because `head_diag_by_phase` carries init and post_p1 norms per cell, the gate's arithmetic could be re-checked from the manifest alone; because `per_seed_rows` carries every readiness input, the red team could re-run the whole conjunction offline; and because both 822d's and 822e's manifests are complete, the replay identity was provable in a 30-second script. 822f should record ||W_p1 - W_init|| directly, and the init-head index alongside the trained one.",
+        "C4's mean clause is an under-powered construction, independent of everything above: a 5-seed mean with sd 1.694 gives t-like 0.0714, so one outlier cell sets the sign. A criterion of the shape '>= margin on >= 4/5 seeds AND mean >= margin' is not two gates -- the mean clause is a one-outlier veto over the seed clause, and here it fired. Pre-register such a contrast at a seed count its own measured variance can support, or emit `inconclusive` by construction."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "node_classification": "complex (probe-gated) / puzzle (known rules)",
+        "node_classification_basis": "A FACT IS MISSING: whether the readout's measured cross-candidate discrimination exceeds what the head's INITIALISATION already provides. Nobody has measured the index on an untrained head of this shape inside this driver, and the Monte-Carlo estimate says an untrained head clears the current bar 99 percent of the time -- so the question is probe-gated, not buildable. It is a `puzzle (known rules)` rather than a `mystery (known data)` because the missing fact is obtainable by a named measurement under rules already in the driver (`_init_positive_control` at L682 plus the existing synthetic probe): get the fact, do not reframe. The draft's `complicated (buildable)` classification was correct only for the sign-convention repair, which is no longer the load-bearing change.",
+        "recommended_action": "/queue-experiment V3-EXQ-822f as a REAL DESIGN CHANGE, not a replay. Five requirements, all ratified at the Step 8 gate:\n(a) LOAD-BEARING CRITERION becomes a TRAINED-vs-INIT discrimination index. Run `_init_positive_control` / the existing synthetic probe through the INIT head as well as the trained head, and gate and score on the trained-MINUS-init index rather than on an absolute floor. Pre-register the margin from the random-init distribution -- either the Monte-Carlo p95 of 5.41 (200 trials, driver-shape head, K=32 centered random summaries, last-layer norm rescaled to the recorded 0.148, rule_state norm 0.19) or, preferably, an init distribution measured in-run across the same seeds. An absolute index >= 1.0 is NOT a criterion: an untrained head clears it 99 percent of the time.\n(b) NEW SEEDS. Not 101/202/303/404/505. 822e is a bit-for-bit replay of 822d on those seeds, so reusing them guarantees the same numbers and buys nothing.\n(c) TRAINEDNESS GATE re-specified as ||W_p1 - W_init|| per parameter tensor (absolute, a real distance), scoped to the TREATMENT arm's cells -- or, if the pool-control arm is to keep a veto, state explicitly in the driver why. Keep it as a liveness check and DESCRIBE it as one; it is no longer load-bearing for the trained-vs-init question, which (a) now owns.\n(d) KEEP the C4 / SD-078 contrast, but read it through the driver's own three-valued logic -- `inconclusive` at t-like 0.07 is the honest emission and must be emitted as such rather than collapsing into a run-level FAIL. Pre-register the SD-078 contrast at a seed count its variance can support: contrast_sd was 1.69 at n=5, so state the detectable effect and the n that delivers it, or declare the contrast diagnostic-only.\n(e) RECORD the offline re-score of 822e's recorded rows (see governance_may_prefer) as provenance, NOT as evidence for SD-082.\nCost: comparable to 822e (~2h05m on a cloud worker) plus the init-head pass, which is cheap (the head is 32 parameters and the probe already exists).",
+        "routing_withdrawn": "WITHDRAWN at the Step 8 gate, recorded rather than deleted (red-team Finding 1). The draft routed 'a SAME-QUESTION alphabetic successor V3-EXQ-822f whose ONLY substantive change is the trainedness instrument ... everything else -- the DV, C1/C2/C4, the arm axis, the controls, the seeds -- byte-identical to 822e'. That is REFUSED for two reasons. First, it is a deterministic replay: 822e reproduced 822d bit-for-bit (28/28 shared per-cell statistics identical in all ten cells) on the same seeds, budgets and box, so a byte-identical 822f would reproduce C1 (4/5, 1.846), C2 (0.0583) and C4 (mean 0.0541, seed 101 -2.879) EXACTLY, plus a passing gate -- the draft's own Section 7 counterfactual IS that run's result, already derivable from disk. Second, and worse, it would then RECORD `supports` for SD-082 on criteria a random-init head also satisfies. The draft's stated rationale ('a counterfactual re-score of a machine-emitted verdict is not evidence; the verdict should be re-earned by 822f') was procedural rather than epistemic: the same computation on the same seeds yields the same numbers, so nothing is earned.",
+        "explicitly_not_recommended": [
+          "a byte-identical or same-seed 822f -- REFUSED; see routing_withdrawn and re_derive_brake.refused_requeue_detail. A re-print is not evidence.",
+          "recording the counterfactual PASS (ready true -> C1/C2 pass -> `supports` for SD-082) by any route, offline re-score included. The criteria cannot distinguish a trained coupling from init structure, so the label would be wrong however it is produced.",
+          "implement-substrate -- nothing in `ree_core` is implicated; the SD-082 amend is confirmed engaged for a second consecutive run.",
+          "lit-pull -- the biology is not in question and a targeted review already exists for this lineage.",
+          "governance-demotion -- neither claim was tested; a demotion off an instrument defect would be the exact error the 822d cluster autopsy withdrew.",
+          "claim-synthesis -- granularity_debt_cluster.py reports alignment distribution unclear=3 (SD-082) and unclear=5 (SD-078) with NO target reading `weakened`, which the reader's own rule classifies as measurement/implementation debt, not granularity debt.",
+          "diagnose-errors -- the run completed; there is no crash."
+        ],
+        "governance_may_prefer": "FOR THE RECORD ONLY, and explicitly NOT evidence for SD-082: governance may re-score 822e's recorded rows offline under the REE_assembly/CLAUDE.md 'Fallback workaround' path. Every input to the readiness conjunction is in the manifest (18 `readiness_*` fields True, `c1_pass`, `c2_pass`, and the ten `head_diag_by_phase` cells), so re-running the conjunction with `abs()` on `last_layer_weight_delta_init_to_p1` costs nothing and documents that the ONLY unmet precondition falls away under the correct statistic. What that re-score establishes is the INSTRUMENT defect, and nothing else -- it does NOT license writing `supports`, `PASS`, or `sd082_candidate_discriminating_bias_confirmed`, because the criteria it would unblock are satisfied by an untrained head. The manifest write this artifact does recommend is the narrow one in `recommended_manifest_disposition.recommended_manifest_write`: `unknown` -> `non_contributory` on both claims with the two-ground note, `non_degenerate` left false."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "basis": "granularity_debt_cluster.py, run 2026-09-05. SD-082: 3 tagging targets across 3 files (failure_autopsy_2026-07-28-sweep / v3_exq_822b, failure_autopsy_V3-EXQ-822c_2026-08-29 / v3_exq_822c, failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 / v3_exq_822d); alignment distribution unclear=3. SD-078: 5 tagging targets across 5 files (adding failure_autopsy_816c-822_2026-07-26 / v3_exq_822 and failure_autopsy_batch-822a-826-817a-827_2026-07-26 / v3_exq_822a); alignment distribution unclear=5. NO target reads `weakened` in either cluster, which the reader's own rule classifies as measurement or implementation debt regardless of count. The signatures also do not differ structurally -- 822/822a/822b are one measurement-starvation shape, 822c is the shared-initial-state contract defect, 822d is the magnitude-DV mis-attribution and 822e is the difference-of-norms gate: four measurement defects in a row on ONE claim, which is instrument debt, not a coarse claim."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1-trained-discriminating-readout: the discrimination measured by C1/C2 is produced by the TRAINED rule->bias coupling -- SD-082's own assertion.",
+          "H-init-structure: the discrimination is real but is the INIT STRUCTURE of a random first layer plus ReLU, not a trained coupling. This is the rival the driver's own gate text names and the one C1/C2 as designed cannot separate from H1 (a random-init head of the driver's shape clears C1's 1.0 floor in 99 percent of 200 Monte-Carlo trials, median index 3.93, above 822e's measured 1.846)."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1-trained-discriminating-readout",
+            "axis": "readout",
+            "sketch": "V3-EXQ-822f. Score the trained head's raw discrimination index MINUS the same index computed on the INIT head over the same P2 candidates, on NEW seeds, with the margin pre-registered off the init distribution. Null: the trained-minus-init index sits within the init distribution's own spread, i.e. training adds no discrimination."
+          },
+          {
+            "hypothesis": "H-init-structure",
+            "axis": "intrinsic-architecture",
+            "sketch": "The SAME run adjudicates this leg -- it is the complement of H1 under one measurement, which is why the two share an adjudicating run and the other three legs do not. Null for this leg: the trained head's index EXCEEDS the init head's by the pre-registered margin, on new seeds."
+          }
+        ],
+        "not_assigned_to_822f": [
+          "H2-uniform-common-mode needs its own probe: 822f measures a DIFFERENCE of indices and does not by itself separate a candidate-uniform raw shift from a discriminating one. The probe is a post-tanh-vs-raw decomposition with the tanh stage bypassed or its scale swept, declaring the uniform null (index near its analytic 0 in BOTH arms with zero argmax flips).",
+          "H3-upstream-summary-starvation needs its own probe: its own desc says it is 'adjudicated by decomposing the index against per-candidate hidden-mask heterogeneity, not by the index alone', and 822f performs no such decomposition. Assigning it to 822f was an internal contradiction in the draft (red-team Finding 3); corrected.",
+          "H4-dead-head-capacity needs its own probe: its own desc says it is 'adjudicated by an initialisation / activation-function variation that moves the dead fraction', and 822f varies neither. Same correction."
+        ],
+        "note": "GOV-FANOUT-1. The bottleneck is a DISCRIMINATION, and after the red team it is a two-way one: H1 vs H-init-structure. 822f adjudicates exactly those two, because the init-head control makes them complementary under a single measurement -- that is a portfolio of one measurement over two legs, not a sequential re-pose of a braked design, and it is emphatically not a power-bump (822e's bars were CLEARED; the defect is that clearing them means nothing). The remaining three legs stay `alive` with EMPTY `adjudicating_runs` and their own probe sketches; do NOT queue them off this artifact, and do NOT let 822f's verdict be read as bearing on them."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "mode": "A (pre-registration) -- NEW question. DRAFT ONLY; the registry was NOT written by this session.",
+    "draft_for_governance": true,
+    "registry_path": "REE_assembly/evidence/planning/hypothesis_space_registry.v1.json",
+    "existing_question_search": "53 questions scanned; no question's `claims` list contains SD-078 or SD-082. The four substring hits (policy_decomposition_discrimination, sd017_arc045_mech166_slot_differentiation_sleep, mech266_mode_arbitration_saturation, mech440_state_conditioning_and_self_annealing) are incidental and none names either claim. Independently re-run and CONFIRMED by the cross-model Step 7c red team (0 of 53), which also confirmed the decision to open a new question -- its objection was to the LEG SET, not to the opening.",
+    "growth_restriction_check": "NOT APPLICABLE. A new `questions[]` entry is being opened, and a question registered in this edit cannot carry a restriction. No existing question is being grown, so no fanout_growth_events / discovery_growth_events entry is owed.",
+    "new_question_warranted": true,
+    "warrant_basis": "The question is live, has >= 2 genuinely rival readings, is the subject of a six-letter experiment lineage (822 / 822a / 822b / 822c / 822d / 822e), and has never had its denominator frozen. Registering it BEFORE the design-changed 822f runs is exactly Mode A's purpose. All five legs are `alive`; two (H1 and H-init-structure) carry `adjudicating_runs: [\"V3-EXQ-822f\"]` and three carry an empty list with a probe sketch.",
+    "changes_from_draft": "Three, all from the cross-model Step 7c red team (Finding 3), ratified at the Step 8 gate. (1) The qid changed from `sd082_candidate_discriminating_action_bias` to `sd082_candidate_discriminating_readout_locus`, because the question is now about WHERE the discrimination comes from, not merely whether it exists. (2) H-init-structure added as a fifth leg -- the rival the driver's own gate text names and the one C1/C2 cannot separate from H1; `initial_frozen_count` 4 -> 5, frozen before any adjudicating run exists, so this is registration and not padding. (3) H2/H3/H4 no longer carry `V3-EXQ-822f` in `adjudicating_runs`: 822f performs neither the hidden-mask decomposition H3's own desc requires nor the initialisation/activation variation H4's own desc requires, and does not separate H2's uniform state -- assigning them was an internal contradiction in the draft. Each keeps a probe sketch in its `desc` and an EMPTY adjudicating_runs list.",
+    "modeB_resolutions_this_cycle": "NONE. 822e adjudicated no leg. Per the Step 9b state-mapping table, a `non_contributory` that does not discriminate -- and a `non_degenerate: false` / precondition-unmet run -- leaves every leg `alive`; what it produces is an OBSERVATION BOTTLENECK, recorded in `decision.observation_bottleneck`. The instrument defect is deliberately NOT registered as a hypothesis: it is a property of the measuring apparatus, not a rival explanation of the substrate. H-init-structure is a different thing and IS registered -- it is a rival explanation of the substrate's measured behaviour, which the instrument merely fails to exclude.",
+    "axis_family_map_check": "All three axes used -- `readout`, `representation`, `intrinsic-architecture` -- are already keys in the registry's `axis_families.map` (-> representation, representation, constitution). No new family row is needed and no `indeterminate` convergence_class is forced. Note the leg set now spans two families rather than one, which is what makes it a discrimination rather than a refinement inside a single family.",
+    "invariants_check": "(1) initial_frozen_count == len(hypotheses) == 5. (2) pre_registered_utc <= resolved_utc holds vacuously: no leg is resolved. (3) No existing question is enlarged, so neither 3a nor 3b applies. (4)/(5) No leg claims `eliminated`, `split` or `confirmed`. (6) total_initial grows by a NEW QUESTION, one of the three legitimate ways. (7) decision.decidable false and decision_log_ref null -- the human owns `decided`.",
+    "apply_instructions": "The next /governance walk should append the `question` object below to hypothesis_space_registry.v1.json's `questions[]` -- re-reading the registry immediately before editing (it is an exposed whole-file read-modify-write target) -- then run scripts/build_hypothesis_space.py and scripts/check_hypothesis_space_integrity.py from REE_assembly/ and confirm no (a)-(d) flag on this qid before committing the registry with its derive-only siblings. A byte-identical copy of the question object alone is staged at /private/tmp/claude-501/-Users-dgolden-REE-Working/2b29825c-bcaa-4275-97dc-f77b3fd5a682/scratchpad/registry_new_q_822e.json.",
+    "question": {
+      "qid": "sd082_candidate_discriminating_readout_locus",
+      "title": "Is SD-082's propagated action bias candidate-DISCRIMINATING because the rule->bias readout was TRAINED to discriminate -- or is the apparent discrimination the INIT STRUCTURE of a random first layer plus ReLU, a tanh artefact, an upstream property of the candidate summaries, or capped by a half-dead head?",
+      "short_title": "SD-082 discriminating-readout locus",
+      "claims": [
+        "SD-082",
+        "SD-078"
+      ],
+      "registered_utc": "2026-09-05T09:56:19Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-822e_2026-09-05.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "initial_frozen_count_at_registration": 5,
+      "note_on_count": "5 = the four legs drafted by failure_autopsy_V3-EXQ-822e_2026-09-05 plus H-init-structure, added at that artifact's Step 7c red team and ratified at its Step 8 gate. Mode A throughout: no leg has been adjudicated, so the denominator is frozen BEFORE the adjudicating run exists. initial_frozen_count_at_registration is set here and never moves.",
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H1-trained-discriminating-readout",
+          "label": "The TRAINED rule->bias readout produces a candidate-DISCRIMINATING raw bias",
+          "desc": "SD-082's own assertion: with the per-candidate-summary amend engaged, the TRAINED head converts a differentiated rule_state into a raw pre-tanh action bias whose cross-candidate range is a substantial fraction of its mean-abs, and which is argmax-consequential. Adjudicated by a TRAINED-MINUS-INIT discrimination index exceeding a margin pre-registered off the random-init distribution, on new seeds -- NOT by an absolute index floor. Null: the trained index sits inside the init head's own distribution, i.e. training adds no discrimination.",
+          "axis": "readout",
+          "basis": "822e measured C1 at 4/5 seeds (mean_median index 1.846) and C2 at 0.0583 (107/1834), both clearing their pre-registered ABSOLUTE bars -- but the run's readiness conjunction voided the verdict, and its Step 7c red team then established that those bars do not separate this leg from H-init-structure. The leg is live and untested as stated here.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [
+            "V3-EXQ-822f"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        },
+        {
+          "hid": "H-init-structure",
+          "label": "The discrimination is present but is INIT STRUCTURE, not a trained coupling",
+          "desc": "The measured cross-candidate spread is what a randomly-initialised first layer plus ReLU already possesses -- exactly the reading the driver's `bias_head_actually_trained` gate text says it exists to exclude, and exactly the one C1/C2 as designed cannot separate from H1. Adjudicated by the same trained-minus-init measurement as H1, of which this leg is the complement: if the trained index does not exceed the init index by the pre-registered margin, this leg holds and H1 does not. Null: the trained index exceeds the init distribution by that margin.",
+          "axis": "intrinsic-architecture",
+          "basis": "Added at failure_autopsy_V3-EXQ-822e_2026-09-05's cross-model Step 7c red team (Finding 2/3) and ratified at its Step 8 gate. Monte-Carlo over 200 trials with a head of the driver's exact shape (K=32 centered random summaries, last-layer norm rescaled to the recorded 0.148, rule_state norm 0.19) gives a RANDOM-INIT raw discrimination index of median 3.93, p5 1.68, p95 5.41, clearing C1's 1.0 floor in 99 percent of trials -- above 822e's measured 1.846, and near the driver's own iid reference of 5.15. The leg is not merely live; on the recorded numbers it is the leg the existing evidence cannot rule out.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [
+            "V3-EXQ-822f"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        },
+        {
+          "hid": "H2-uniform-common-mode",
+          "label": "The propagated bias is candidate-UNIFORM; apparent spread is manufactured by the tanh",
+          "desc": "The raw pre-tanh bias is a common-mode shift near-identical across candidates; because the output stage is bias_scale*tanh(raw/bias_scale), a uniform raw shift emerges as a non-uniform post-tanh delta of the same order as the observed post-tanh spread. Such a state preserves argmax order and is invisible to every downstream reader. This is the only state that may WEAKEN SD-082. PROBE SKETCH (not assigned to V3-EXQ-822f, which measures a difference of indices and does not separate uniform from discriminating): decompose the raw stage against the post-tanh stage with the tanh scale swept or bypassed, declaring the null as the index sitting near its analytic 0 (< 0.25) in BOTH arms with zero argmax flips.",
+          "axis": "readout",
+          "basis": "This is the state the raw-stage DV was constructed to exclude, and it is the driver's own `reads_candidate_uniform` branch. 822e recorded `reads_candidate_uniform: false` and a post-tanh spread (2.15e-3 ON / 2.70e-3 OFF) of exactly the order the driver's header predicts a uniform shift would manufacture, so the leg is not excluded on any adjudicated run.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        },
+        {
+          "hid": "H3-upstream-summary-starvation",
+          "label": "Any index is set upstream: the post-action candidate summaries are too similar to flip hidden units",
+          "desc": "The index also reads near zero, and can read spuriously high in a pinned-pool arm, when the hidden ReLU mask is IDENTICAL or near-identical across candidates -- an UPSTREAM property of the centered candidate summaries rather than a property of SD-082's consumer. The driver records this caveat at `reads_uniform` and points at the summary-spread statistic. PROBE SKETCH (not assigned to V3-EXQ-822f): decompose the index against per-candidate hidden-mask heterogeneity -- the leg's own adjudication condition, and one 822f performs nowhere.",
+          "axis": "representation",
+          "basis": "The `candidate_summary_spread_survives_centering` gate is a FLOOR (worst-cell ratio 2.70e-3 against 1e-3), not a guarantee of mask heterogeneity, and the driver says so in terms. ARM_OFF/seed101 carrying the matrix's highest index (4.316) in a one-rule pinned pool is the kind of observation this leg predicts.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        },
+        {
+          "hid": "H4-dead-head-capacity",
+          "label": "The consumer head's capacity caps the achievable discrimination",
+          "desc": "Over half the head's hidden ReLU units are dead in both arms (`hidden_dead_relu_frac_p2_mean` 0.5140 ON / 0.5127 OFF), so the mapping from rule_state to per-candidate bias runs through roughly half the intended width. On this reading the index is real but systematically depressed, and the pre-registered bars are read against a handicapped head. PROBE SKETCH (not assigned to V3-EXQ-822f): an initialisation or activation-function variation that MOVES the dead fraction, asking whether the index moves with it -- a variation 822f does not perform.",
+          "axis": "readout",
+          "basis": "Measured and unchanged across 822c / 822d / 822e, and flagged by the driver itself as `dead_relu_partial_contributor: true` while `dead_relu_confirmed` stays false. Never isolated as a hypothesis; carried as a caveat only.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does the SD-082 TRAINED rule-to-action readout deliver a candidate-discriminating, argmax-consequential action bias BEYOND what the head's initialisation already provides -- the property that makes the SD-078 differentiated rule pool behaviourally consequential rather than silent?",
+        "live_gate": "V3-EXQ-822f as specified by failure_autopsy_V3-EXQ-822e_2026-09-05: a TRAINED-MINUS-INIT-HEAD raw discrimination index (the existing `_init_positive_control` snapshot and synthetic probe run through the INIT head as well as the trained one), with the margin pre-registered off the random-init distribution (Monte-Carlo p95 5.41, or an init distribution measured in-run), on NEW seeds (not 101/202/303/404/505), with the trainedness gate re-specified as ||W_p1 - W_init|| per parameter tensor scoped to the treatment arm, and the C4 / SD-078 contrast kept but emitted through the three-valued logic at a seed count its 1.69 variance can support. An ABSOLUTE index floor is explicitly NOT the gate: an untrained head clears 1.0 in 99 percent of trials.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "One DESIGN-CHANGED run away, not one repaired re-run away. The DV, the arm axis and the controls are exercised and stable at full budget, but the load-bearing criterion has to be replaced (init control) and the seeds changed before any run can adjudicate; a same-seed replay is a deterministic re-print of 822d/822e and adjudicates nothing.",
+        "observation_bottleneck": "TWO, compounding. (1) V3-EXQ-822e's run-level readiness gate `bias_head_actually_trained` compares the SIGNED difference of last-layer weight NORMS (driver L1164-1166) against a 1e-3 LOWER floor over the MINIMUM cell (L1402-1404), so a head that trained inward reads as untrained; ARM_OFF/seed101 read -0.003772 and voided the run, though all ten cells clear the floor on |delta| (min 0.002076). (2) The deeper bottleneck, and the one that survives repairing (1): there is NO INIT-HEAD CONTROL anywhere in the design, so C1 and C2 cannot separate a trained coupling from init structure -- a random-init head of this shape clears C1's floor in 99 percent of Monte-Carlo trials. Until the init control exists this question cannot be adjudicated however well the substrate behaves and however cleanly the readiness gate passes."
+      },
+      "growth_restriction": ""
+    },
+    "applied": true,
+    "registry_written": true,
+    "applied_utc": "2026-09-05T11:06:23Z",
+    "applied_by": "governance-20260905 (inline Step 9b, main session)"
+  },
+  "mechanical_checks": {
+    "dry_run_gate": "Target manifest carries no truthy top-level `dry_run`; every run cited in this artifact (822, 822a, 822b, 822c, 822d, 822e) is a full-budget run. dry_run_checked true, excluded_dry_run_ids [].",
+    "autopsy_pre_routing_checks": "scripts/autopsy_pre_routing_checks.py --json against the draft: fire_count 0, fires []. One `inapplicable` entry (C5, prose-keyed, from before the sibling .md existed). RE-RUN OWED against this final confirmed pair by the applying session, since the routing, the node classification and the read-across all changed.",
+    "granularity_debt_trigger": "DOES NOT FIRE. granularity_debt_cluster.py: SD-082 3 tagging targets (alignment unclear=3), SD-078 5 tagging targets (alignment unclear=5); NO target reads `weakened` in either cluster.",
+    "re_derive_brake": "DOES NOT FIRE. The literal prior counts DO meet the threshold (SD-082 3, SD-078 5, against N=2), and the red team's independent re-run of the SKILL Step-7 recipe reproduced both counts exactly. This target does not count (per-claim category `standard`, so the recipe's `counts()` returns False on its first test; `recommended_substrate_queue_entry.action` is `none`, so no build is owed). The brake is released on ONE ground: the true substrate-ceiling count for this lineage is 1 (822c), the other counted hits being instrument/DV defects wearing an `amend`. The draft's two other grounds are withdrawn as vacuous and as mis-describing clause 3 -- see targets[0].re_derive_brake.release_grounds_withdrawn. A byte-identical 822f is REFUSED; the design-changed 822f is licensed because it changes the load-bearing criterion, the control and the seeds.",
+    "recording_always_core": "Present: `recording_schema`, per-cell `arm_fingerprint.substrate_hash`, machine / machine_class, `elapsed_seconds`, `config`, explicit `seeds`. No always-core gap, and NOT a recording-debt case: the manifest carried enough for this run to diagnose itself (the ten `head_diag_by_phase` init/post_p1 norms) AND enough for a third party to falsify the draft's diagnosis offline (every readiness input in `per_seed_rows`, and a bit-comparable 822d manifest). Note the per-cell `substrate_hash` is identical across all ten cells but DIFFERS from 822d's despite bit-identical P0-P2 outputs -- the hash folds driver and config, not `ree_core` alone, so it is not evidence that the substrate moved.",
+    "hypothesis_space_step_9b": "DRAFTED, NOT WRITTEN. No existing question lists SD-078 or SD-082 across 53 questions (independently confirmed by the red team); a new question is warranted and is drafted in full registry schema under `hypothesis_space_ledger_pending.question`, with FIVE legs after the red team added H-init-structure. `draft_for_governance: true`.",
+    "step_7c_red_team": "RUN. Cross-model (fable-5.1), read-only, verdict CONTESTED. It CONFIRMED the diagnosis on every number it recomputed (the trainedness-gate arithmetic, all ten signed deltas, the C4 statistics and three-valued logic, the substrate/claims/manifest state, and the unstated-premise check that both arms carry SD-082's fix) and CONTESTED the routing and two things resting on it: the deterministic-replay finding, the movement-floor-is-not-a-trainedness-test finding, the registry leg set, and two of the three brake-release grounds. Findings 1-4 and hygiene H1/H4-H8 are applied throughout this artifact; findings 5-8 are verified sound and carried unchanged. Full findings: /private/tmp/claude-501/-Users-dgolden-REE-Working/2b29825c-bcaa-4275-97dc-f77b3fd5a682/scratchpad/redteam_822e.md. See the top-level `red_team` block.",
+    "step_8_gate": "RUN 2026-09-05. User decision, binding: 'No replay; 822f = init-head control + new seeds.' Both claims held at `non_contributory` with `epistemic_category: standard`. The draft's routing is withdrawn and recorded; the design-changed 822f is the ratified route.",
+    "claims_yaml_parse_note": "docs/claims/claims.yaml does not currently parse (yaml.scanner.ScannerError, line 74376, inside an unrelated v4_v5 aspect-closure entry). SD-078 and SD-082 were read textually and are structurally intact. Not caused by and not touched by this session; flagged for governance to clear before any claims-layer write. The committed HEAD copy of claims.yaml parses cleanly, so this is a live session's uncommitted working-tree edit rather than a landed break."
+  },
+  "confirmed_utc": "2026-09-05T10:59:11Z",
+  "confirmed_by": "governance-20260905 (user gate, inline route A)",
+  "red_team": {
+    "model": "fable-5.1",
+    "cross_model": true,
+    "verdict": "CONTESTED",
+    "findings_file": "/private/tmp/claude-501/-Users-dgolden-REE-Working/2b29825c-bcaa-4275-97dc-f77b3fd5a682/scratchpad/redteam_822e.md",
+    "findings_applied": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "H1",
+      "H4",
+      "H5",
+      "H6",
+      "H7",
+      "H8"
+    ],
+    "findings_verified_sound": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "user_gate_decision": "no replay; 822f = init-head control + new seeds; non_contributory both held",
+    "what_the_findings_moved": {
+      "1": "822e is a bit-for-bit deterministic replay of 822d (28/28 shared per-cell statistics identical across all ten cells; same seeds, budgets, box), so the readiness FAIL was arithmetically certain at queue time and a byte-identical 822f would reproduce every number. The draft's 'byte-identical except the trainedness statistic' routing is WITHDRAWN and a same-seed replay is REFUSED.",
+      "2": "A 1e-3 movement floor on a 32-parameter last layer is an optimizer-liveness test, not the trained-vs-random-structure test the gate's own text names (one Adam step at lr 5e-4 moves that tensor ~2.8e-3). A random-init head of the driver's shape clears C1's 1.0 floor in 99 percent of Monte-Carlo trials (median 3.93, p95 5.41) -- above 822e's measured 1.846. The read-across 'C1/C2 PASS is very likely an SD-082 PASS' is WITHDRAWN; non_contributory now rests on TWO grounds (instrument-voided readiness AND an uncreditable C1), and 822f's load-bearing criterion becomes a trained-minus-init discrimination index.",
+      "3": "The registry question was re-scoped: the omitted rival H-init-structure is added as a fifth leg (initial_frozen_count 4 -> 5, frozen before the adjudicating run), and H2/H3/H4 no longer carry V3-EXQ-822f in adjudicating_runs -- 822f performs neither the mask decomposition H3 names nor the initialisation variation H4 names. Each keeps a probe sketch and an empty adjudicating_runs list. The qid also changed, to sd082_candidate_discriminating_readout_locus.",
+      "4": "The literal recount STANDS (SD-082 3, SD-078 5, against N=2). Release ground 2 (the IMPLEMENTED-line consumer release) is removed as vacuous -- the SD-082 IMPLEMENTED line landed in ree-v3 d4f7580 on 2026-07-26, before all three counted hits, and the check is stateless. Release ground 3 is removed as mis-describing clause 3. The brake is released on ONE honest ground: the true substrate-ceiling count is 1 (822c), the other counted hits being instrument/DV defects wearing an `amend`.",
+      "H1": "flip-resolution floor corrected from 50 to 200 (manifest flip_ticks_floor); 1834 clears both.",
+      "H4": "this_target_counts_basis corrected: the SKILL recipe drops the target on the FIRST test in counts() (per-claim category `standard`), not via clause 3.",
+      "H5": "recorded that the SKILL recipe and validate_queue.py::_autopsy_counts_toward_brake are NOT byte-identical -- the recipe honours recommended_epistemic_category_per_claim and validate_queue reads only the blanket field. Both release here, by different routes.",
+      "H6": "the gate/sibling 'cheap lint' learning now states that the two differ in QUANTIFIER as well as sign (all-cell min vs ON-arm mean); a signed ON-mean (+0.004045) would also have passed, so the disagreement is not purely the sign convention.",
+      "H7": "step_7c_red_team and staging_note updated to record that Step 7c ran.",
+      "H8": "added the substrate_hash sentence: the hash differs between 822d and 822e despite bit-identical P0-P2 outputs, because it folds driver/config -- the substrate did not move."
+    }
+  }
+}

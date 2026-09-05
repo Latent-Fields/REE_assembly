@@ -24,10 +24,10 @@
     "MECH-069"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "mixed",
   "evidence_direction_per_claim": {
-    "ARC-021": "weakens",
-    "MECH-069": "weakens"
+    "ARC-021": "mixed",
+    "MECH-069": "mixed"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -172,5 +172,9 @@
       "experiments/_lib/baselines/arc019_curriculum_gating.py"
     ],
     "branch": "main"
-  }
+  },
+  "evidence_direction_note": "Governance override, 2026-09-05. The driver's pre-registered combination rule emitted `weakens` for both ARC-021 and MECH-069 because both discrimination criteria failed on both clauses (mean <= -0.15 AND all 4 seeds <= 0), and both manifest copies plus the derived index already carry that. A cross-model Step 7c red-team on the ADJUDICATION returned CONTESTED and the Step 8 human gate ratified `mixed` instead. Reason: the effect-size bound originally written into the adjudication used a z-multiplier on n=4 paired diffs; the correct t(3) 95 percent intervals are [-0.204, +0.191] (DENSE) and [-0.158, +0.382] (SPARSE), so the run does NOT exclude the pre-registered -0.15 degradation in either condition, and joint power at -0.15 is about 12 percent -- a FAIL is the modal outcome even when the claim is exactly right. Two further limits reinforce it: only one of ARC-021's two falsifier DVs (calibration_gap, not attribution accuracy) was read, and the merge was performed on driver-local surrogate heads over a frozen z_world rather than the E1/E2/E3 stack the claim's precondition names by file. The run remains informative -- it rules out a large merged degradation (roughly 0.20+ DENSE / 0.16+ SPARSE) in a faithful topology analogue on a working readout -- but it is not a clean falsification, so `mixed` rather than `weakens`. Full reasoning: REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-993a_2026-09-05.md sections 4, 5 and 13. Ratifying commit: governance-20260905 (this write).",
+  "epistemic_category": "standard",
+  "governance_override_utc": "2026-09-05T10:00:13Z",
+  "governance_override_from": "weakens"
 }

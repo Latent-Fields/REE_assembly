@@ -24,8 +24,11 @@
     "MECH-428"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-086": "non_contributory",
+    "MECH-428": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -58,5 +61,9 @@
       "experiments/_lib/baselines/arc019_curriculum_gating.py"
     ],
     "branch": "main"
-  }
+  },
+  "evidence_direction_note": "2026-09-05 (failure autopsy, V3-EXQ-1004, confirmed): NON_CONTRIBUTORY for both tagged claims. This run is a BUILD validation of the SD-WAYPOINT-FIELD observable, not claim evidence. It instantiates no REE agent, no z_goal, no E1/E2/E3 path, no feedback-channel ablation and no forced-seed control, so neither INV-086 nor MECH-428 was exercised; the driver says so itself ('claim_ids are carried as read-across only ... a PASS lifts the substrate block those claims' experiments were failing under, it does not score them'). The PASS itself is real and non-vacuous (C1 ON-minus-OFF visit lift met 5/5 seeds, realised ~53.6 against a 15.0 threshold, dv_headroom denominated on an ORACLE control that never reads the field) but LOW-SURPRISE by construction: the field is an analytic function of the same ground truth the demonstrator oracle uses. The manifest's self-routed claim_directions of 'supports' must not be applied -- and mechanically could not be: build_experiment_indexes.py reads evidence_direction / evidence_direction_per_claim and contains no reference to claim_directions anywhere, so this run otherwise lands in the index at evidence_direction 'unknown', which the indexer drops. Writing these fields is what puts the adjudication on the record. Full adjudication: REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-1004_2026-09-05.md and .json (confirmed 2026-09-05).",
+  "epistemic_category": "standard",
+  "diagnostic_evidence_adjudicated": true,
+  "adjudicated_utc": "2026-09-05T10:00:13Z"
 }

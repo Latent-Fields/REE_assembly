@@ -6261,6 +6261,153 @@
       "opened_note": "Opened because V3-EXQ-993a is the first run in this family with a working readout and therefore the first that can adjudicate anything here. 993a's own reading was amended at the Step 8 gate from `weakens` to `mixed` after a cross-model Step 7c red-team, so leg 1 stays alive rather than resolving -- the run bounds the effect from above without excluding the one the leg predicts. The question is genuinely a discrimination, and the biology is contested in the same direction (Engel 2024 / Engelhard 2019 / Groessl 2018 / Wolpert 1998 for channel specificity; Schultz 1998 for one global signal differentiated downstream), so the denominator should be frozen before the portfolio runs rather than after.",
       "registered_by_session": "governance-20260905",
       "registered_from_pending_block": "failure_autopsy_V3-EXQ-993a_2026-09-05.json"
+    },
+    {
+      "qid": "sd082_candidate_discriminating_readout_locus",
+      "title": "Is SD-082's propagated action bias candidate-DISCRIMINATING because the rule->bias readout was TRAINED to discriminate -- or is the apparent discrimination the INIT STRUCTURE of a random first layer plus ReLU, a tanh artefact, an upstream property of the candidate summaries, or capped by a half-dead head?",
+      "short_title": "SD-082 discriminating-readout locus",
+      "claims": [
+        "SD-082",
+        "SD-078"
+      ],
+      "registered_utc": "2026-09-05T09:56:19Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-822e_2026-09-05.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "initial_frozen_count_at_registration": 5,
+      "note_on_count": "5 = the four legs drafted by failure_autopsy_V3-EXQ-822e_2026-09-05 plus H-init-structure, added at that artifact's Step 7c red team and ratified at its Step 8 gate. Mode A throughout: no leg has been adjudicated, so the denominator is frozen BEFORE the adjudicating run exists. initial_frozen_count_at_registration is set here and never moves.",
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H1-trained-discriminating-readout",
+          "label": "The TRAINED rule->bias readout produces a candidate-DISCRIMINATING raw bias",
+          "desc": "SD-082's own assertion: with the per-candidate-summary amend engaged, the TRAINED head converts a differentiated rule_state into a raw pre-tanh action bias whose cross-candidate range is a substantial fraction of its mean-abs, and which is argmax-consequential. Adjudicated by a TRAINED-MINUS-INIT discrimination index exceeding a margin pre-registered off the random-init distribution, on new seeds -- NOT by an absolute index floor. Null: the trained index sits inside the init head's own distribution, i.e. training adds no discrimination.",
+          "axis": "readout",
+          "basis": "822e measured C1 at 4/5 seeds (mean_median index 1.846) and C2 at 0.0583 (107/1834), both clearing their pre-registered ABSOLUTE bars -- but the run's readiness conjunction voided the verdict, and its Step 7c red team then established that those bars do not separate this leg from H-init-structure. The leg is live and untested as stated here.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [
+            "V3-EXQ-822f"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        },
+        {
+          "hid": "H-init-structure",
+          "label": "The discrimination is present but is INIT STRUCTURE, not a trained coupling",
+          "desc": "The measured cross-candidate spread is what a randomly-initialised first layer plus ReLU already possesses -- exactly the reading the driver's `bias_head_actually_trained` gate text says it exists to exclude, and exactly the one C1/C2 as designed cannot separate from H1. Adjudicated by the same trained-minus-init measurement as H1, of which this leg is the complement: if the trained index does not exceed the init index by the pre-registered margin, this leg holds and H1 does not. Null: the trained index exceeds the init distribution by that margin.",
+          "axis": "intrinsic-architecture",
+          "basis": "Added at failure_autopsy_V3-EXQ-822e_2026-09-05's cross-model Step 7c red team (Finding 2/3) and ratified at its Step 8 gate. Monte-Carlo over 200 trials with a head of the driver's exact shape (K=32 centered random summaries, last-layer norm rescaled to the recorded 0.148, rule_state norm 0.19) gives a RANDOM-INIT raw discrimination index of median 3.93, p5 1.68, p95 5.41, clearing C1's 1.0 floor in 99 percent of trials -- above 822e's measured 1.846, and near the driver's own iid reference of 5.15. The leg is not merely live; on the recorded numbers it is the leg the existing evidence cannot rule out.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [
+            "V3-EXQ-822f"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        },
+        {
+          "hid": "H2-uniform-common-mode",
+          "label": "The propagated bias is candidate-UNIFORM; apparent spread is manufactured by the tanh",
+          "desc": "The raw pre-tanh bias is a common-mode shift near-identical across candidates; because the output stage is bias_scale*tanh(raw/bias_scale), a uniform raw shift emerges as a non-uniform post-tanh delta of the same order as the observed post-tanh spread. Such a state preserves argmax order and is invisible to every downstream reader. This is the only state that may WEAKEN SD-082. PROBE SKETCH (not assigned to V3-EXQ-822f, which measures a difference of indices and does not separate uniform from discriminating): decompose the raw stage against the post-tanh stage with the tanh scale swept or bypassed, declaring the null as the index sitting near its analytic 0 (< 0.25) in BOTH arms with zero argmax flips.",
+          "axis": "readout",
+          "basis": "This is the state the raw-stage DV was constructed to exclude, and it is the driver's own `reads_candidate_uniform` branch. 822e recorded `reads_candidate_uniform: false` and a post-tanh spread (2.15e-3 ON / 2.70e-3 OFF) of exactly the order the driver's header predicts a uniform shift would manufacture, so the leg is not excluded on any adjudicated run.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        },
+        {
+          "hid": "H3-upstream-summary-starvation",
+          "label": "Any index is set upstream: the post-action candidate summaries are too similar to flip hidden units",
+          "desc": "The index also reads near zero, and can read spuriously high in a pinned-pool arm, when the hidden ReLU mask is IDENTICAL or near-identical across candidates -- an UPSTREAM property of the centered candidate summaries rather than a property of SD-082's consumer. The driver records this caveat at `reads_uniform` and points at the summary-spread statistic. PROBE SKETCH (not assigned to V3-EXQ-822f): decompose the index against per-candidate hidden-mask heterogeneity -- the leg's own adjudication condition, and one 822f performs nowhere.",
+          "axis": "representation",
+          "basis": "The `candidate_summary_spread_survives_centering` gate is a FLOOR (worst-cell ratio 2.70e-3 against 1e-3), not a guarantee of mask heterogeneity, and the driver says so in terms. ARM_OFF/seed101 carrying the matrix's highest index (4.316) in a one-rule pinned pool is the kind of observation this leg predicts.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        },
+        {
+          "hid": "H4-dead-head-capacity",
+          "label": "The consumer head's capacity caps the achievable discrimination",
+          "desc": "Over half the head's hidden ReLU units are dead in both arms (`hidden_dead_relu_frac_p2_mean` 0.5140 ON / 0.5127 OFF), so the mapping from rule_state to per-candidate bias runs through roughly half the intended width. On this reading the index is real but systematically depressed, and the pre-registered bars are read against a handicapped head. PROBE SKETCH (not assigned to V3-EXQ-822f): an initialisation or activation-function variation that MOVES the dead fraction, asking whether the index moves with it -- a variation 822f does not perform.",
+          "axis": "readout",
+          "basis": "Measured and unchanged across 822c / 822d / 822e, and flagged by the driver itself as `dead_relu_partial_contributor: true` while `dead_relu_confirmed` stays false. Never isolated as a hypothesis; carried as a caveat only.",
+          "pre_registered_utc": "2026-09-05T09:56:19Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": null
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does the SD-082 TRAINED rule-to-action readout deliver a candidate-discriminating, argmax-consequential action bias BEYOND what the head's initialisation already provides -- the property that makes the SD-078 differentiated rule pool behaviourally consequential rather than silent?",
+        "live_gate": "V3-EXQ-822f as specified by failure_autopsy_V3-EXQ-822e_2026-09-05: a TRAINED-MINUS-INIT-HEAD raw discrimination index (the existing `_init_positive_control` snapshot and synthetic probe run through the INIT head as well as the trained one), with the margin pre-registered off the random-init distribution (Monte-Carlo p95 5.41, or an init distribution measured in-run), on NEW seeds (not 101/202/303/404/505), with the trainedness gate re-specified as ||W_p1 - W_init|| per parameter tensor scoped to the treatment arm, and the C4 / SD-078 contrast kept but emitted through the three-valued logic at a seed count its 1.69 variance can support. An ABSOLUTE index floor is explicitly NOT the gate: an untrained head clears 1.0 in 99 percent of trials.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "One DESIGN-CHANGED run away, not one repaired re-run away. The DV, the arm axis and the controls are exercised and stable at full budget, but the load-bearing criterion has to be replaced (init control) and the seeds changed before any run can adjudicate; a same-seed replay is a deterministic re-print of 822d/822e and adjudicates nothing.",
+        "observation_bottleneck": "TWO, compounding. (1) V3-EXQ-822e's run-level readiness gate `bias_head_actually_trained` compares the SIGNED difference of last-layer weight NORMS (driver L1164-1166) against a 1e-3 LOWER floor over the MINIMUM cell (L1402-1404), so a head that trained inward reads as untrained; ARM_OFF/seed101 read -0.003772 and voided the run, though all ten cells clear the floor on |delta| (min 0.002076). (2) The deeper bottleneck, and the one that survives repairing (1): there is NO INIT-HEAD CONTROL anywhere in the design, so C1 and C2 cannot separate a trained coupling from init structure -- a random-init head of this shape clears C1's floor in 99 percent of Monte-Carlo trials. Until the init control exists this question cannot be adjudicated however well the substrate behaves and however cleanly the readiness gate passes."
+      },
+      "growth_restriction": "",
+      "registered_by_session": "governance-20260905",
+      "registered_from_pending_block": "failure_autopsy_V3-EXQ-822e_2026-09-05.json"
     }
   ]
 }

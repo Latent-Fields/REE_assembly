@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-04T18:56:41Z",
+  "last_review_utc": "2026-09-05T11:07:55Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1267,7 +1267,12 @@
     "v3_exq_999_mech161_vigilance_inverted_u_heartbeat",
     "v3_exq_997_mech162_zresource_zworld_planning_reconvergence",
     "v3_exq_1001_ext005_sd031_attribution_causal_shift",
-    "v3_exq_996_isef005_phase_gate_live_channels"
+    "v3_exq_996_isef005_phase_gate_live_channels",
+    "v3_exq_993a_arc021_merged_channel_action_conditioned_harm",
+    "v3_exq_642c_blocked_agency_headroom_dv_validation",
+    "v3_exq_1004_sd_waypoint_field_validation",
+    "v3_exq_1002_zworld_actor_adequacy_oracle_adapter",
+    "v3_exq_822e_sd082_candidate_discriminating_bias_spread"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4197,7 +4202,12 @@
     "v3_exq_999_mech161_vigilance_inverted_u_heartbeat_20260903T211939Z_v3",
     "v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3",
     "v3_exq_1001_ext005_sd031_attribution_causal_shift_20260904T032948Z_v3",
-    "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3"
+    "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3",
+    "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3",
+    "v3_exq_642c_blocked_agency_headroom_dv_validation_20260904T214459Z_v3",
+    "v3_exq_1004_sd_waypoint_field_validation_20260904T214702Z_v3",
+    "v3_exq_1002_zworld_actor_adequacy_oracle_adapter_20260905T005017Z_v3",
+    "v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6825,6 +6835,18 @@
         "v3_exq_996_isef005_phase_gate_live_channels_20260904T062128Z_v3"
       ],
       "note": "Cycle governance-20260904-1347 (user present). V3-EXQ-1000 (diagnostic PASS, vacuous_pass flag): confirmed autopsy by the failure-autopsy session (red-teamed Fable CONTESTED->accepted), label accurate, non_contributory/standard, SD-e1 amend, portfolio chipped. V3-EXQ-999 / 997 / 1001 (FAILs) and 996 (diagnostic PASS): autopsied INLINE (route A) by staging-mode subagents, each red-teamed on Fable (all four CONTESTED, all contests accepted and folded in), gate held. 999: precondition/readout confounded with the hold IV -> non_contributory/standard, 999a + amend dv-dynamic-range-precondition-class. 997: weakens -> non_contributory/standard (retrieval-form fusion exists at module.py:2658; instrument defects; C1 inverts under entry weighting), three-permutation retest, no create. 1001: SD-031 weakens -> mixed (user), co-tags non_contributory, standard; SD-031 gate amended to accept construction-balanced designs; portfolio with scratch-init control. 996: PASS real, label overstates (n=1); harm_gradient inert at default V2 params (pinned by contract since May; first measured by 587) -> INF-ENV-001 amend, degrading. No claim-tagged evidence PASS this cycle, so no driver skim owed. DRY-RUN CHECK: all 5 manifests clean (check_dry_run_citations.py)."
+    },
+    {
+      "reviewed_utc": "2026-09-05T11:07:55Z",
+      "session": "governance-20260905",
+      "run_ids": [
+        "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3",
+        "v3_exq_642c_blocked_agency_headroom_dv_validation_20260904T214459Z_v3",
+        "v3_exq_1004_sd_waypoint_field_validation_20260904T214702Z_v3",
+        "v3_exq_1002_zworld_actor_adequacy_oracle_adapter_20260905T005017Z_v3",
+        "v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3"
+      ],
+      "note": "Cycle governance-20260905 (user present). Five results, ALL autopsied INLINE (Step 1.5 route A; 822e landed mid-cycle and was added by user choice) by staging-mode Opus drafts, each red-teamed on Fable 5.1 (all five CONTESTED, all contests folded in), gate held per target. V3-EXQ-993a (evidence FAIL, ARC-021+MECH-069): weakens -> MIXED by user gate (t(3) CI does not exclude -0.15, joint power ~12%; one falsifier DV of two read; surrogate heads over frozen z_world), manifest overridden flat+pack, pending_retest cleared on both (GFLAG-0137 resolved), new-EXQ 3-leg portfolio owed; EXT-003 drop ratified. V3-EXQ-642c (diagnostic PASS, vacuous_pass): PASS real on C0/C1, flag UPHELD and broadened (C2 inert, C3 no_suffering inert, withdraw unrepresentable at action_dim=4/noop_class=0), MECH-353 v3_pending HELD by user judgment, 642d owed with the action-space fix. V3-EXQ-1004 (diagnostic PASS, INV-086+MECH-428 supports): both non_contributory/standard/adjudicated (no REE agent; manifest claim_directions is a dead letter -> written flat+pack); waypoint-field entry implemented_validated, corrupting gate released to degrading (user); MECH-428 retest routed as 884a (two-kwarg edit). V3-EXQ-1002 (diagnostic FAIL, claim-free): H-B eliminated, H-C CONFIRMED with caveat (untrained comparator ties), H-D re-cut as labelled fan-out on a git witness (Mode C withdrawn), H-E respecified against the 250-dim world_state; parallel portfolio owed. V3-EXQ-822e (evidence FAIL, SD-078+SD-082): verdict voided by a signed-norm trainedness gate; run is a bit-for-bit replay of 822d; C1 uncreditable without an init-head control (random head clears in 99% MC); non_contributory both; byte-identical 822f REFUSED, design-changed 822f owed. No claim-tagged evidence PASS this cycle, so no driver skim owed. DRY-RUN CHECK: all 5 clean. Registry: +4 questions (arc021_channel_separation_necessity, mech353_zblock_attribution_and_dissociation, waypoint_field_consumer_reach, sd082_candidate_discriminating_readout_locus) + 2 legs on zworld_actor_adequacy_locus; integrity 0 flags."
     }
   ]
 }
