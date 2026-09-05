@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_015",
+  "entry_id": "2026-09-05_arc_015_forward_model_agency_frith2000",
+  "timestamp_utc": "2026-09-05T06:05:26Z",
+  "claim_ids_tested": [
+    "ARC-015"
+  ],
+  "source": {
+    "title": "Explaining the symptoms of schizophrenia: abnormalities in the awareness of action",
+    "authors": [
+      "Christopher D. Frith",
+      "Sarah-Jayne Blakemore",
+      "Daniel M. Wolpert"
+    ],
+    "year": 2000,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/s0165-0173(99)00052-1",
+    "pmid": "10719163",
+    "pmc": null,
+    "volume": "31",
+    "issue": "2-3",
+    "pages": "357-363"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Canonical, heavily replicated formulation of the comparator/forward-model account, and the mapping to ARC-015 is close to literal: a mechanism that derives the predicted consequences of one's own action from the intended motor commands, whose failure produces both a phenomenological deficit (delusions of control) and a computational one (loss of central error correction, failure to attenuate self-caused sensation). That the failure is clinically recognisable is the strongest available argument that the machinery is REQUIRED rather than merely useful, which is exactly ARC-015's modal force. Held at 0.8 rather than higher because it is a 2000 theoretical review whose specific disconnection story has since been complicated, and because it concerns sensorimotor self-attribution rather than the full responsibility-flow ARC-015 also asserts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Without a forward model deriving predicted consequences from the efferent copy, self-generated sensory consequences are not attenuated and are processed as externally caused -- the concrete mechanism by which a system loses the ability to tell its own effects from the world's.",
+    "The same failure removes CENTRAL error correction: the agent can no longer correct an action against its own predicted outcome, only against externally observed outcome. Self-impact attribution is therefore load-bearing for control, not only for the experience of agency.",
+    "Delusions of control are accompanied by OVER-activity in parietal cortex, i.e. the failure is a failure to inhibit/attenuate, not an absence of signal -- an architecture missing the attribution channel does not go quiet, it over-reports."
+  ],
+  "tags": [
+    "arc-015",
+    "agency",
+    "forward_model",
+    "efference_copy",
+    "comparator",
+    "schizophrenia",
+    "sensory_attenuation",
+    "mech-095"
+  ],
+  "mapping": {
+    "source_claim_statement": "The primary cognitive deficit underlying delusions of control is a failure in the mechanism by which the predicted consequences of an action are derived from a forward model based on the intended sequence of motor commands. This produces a lack of central error correction and a failure to attenuate responses to self-generated sensations, and is associated with parietal over-activity attributed to cortico-cortical disconnection preventing frontal inhibitory signals from reaching sensory areas.",
+    "ree_translation": "Self-impact attribution is not an optional refinement but a structural requirement: a system that cannot derive, from its own committed action, what consequences it should expect to cause will (a) misattribute self-caused evidence to the world and (b) lose the ability to correct against its own predictions. This is the substrate reading of ARC-015's MECH-095 comparator and of the channel separation in MECH-060/061/066/067 -- the prediction channel and the observation channel must remain distinguishable at the point of comparison.",
+    "mapping_caveat": "The paper's domain is sensorimotor self-attribution over a short horizon -- limb movement, tickling, immediate sensory consequence. ARC-015 additionally asserts RESPONSIBILITY FLOW, i.e. attribution over extended causal chains and over consequences that are not sensory returns of one's own body. The extension from efference-copy attenuation to responsibility flow is an inference this paper does not make; the specific cortico-cortical disconnection account has also been complicated by later work even though the comparator framing has held.",
+    "source_context": "Human clinical/theoretical review, schizophrenia with delusions of control; motor control and sensory attenuation paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "mapping_fidelity is high because ARC-015 is an architectural_commitment and this paper supplies the canonical statement of the same architecture. The pathology evidence is what converts 'useful' into 'required', which is the modal claim ARC-015 makes."
+  }
+}

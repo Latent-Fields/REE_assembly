@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_015",
+  "entry_id": "2026-09-05_arc_015_action_selection_agency_voss2017",
+  "timestamp_utc": "2026-09-05T06:05:26Z",
+  "claim_ids_tested": [
+    "ARC-015"
+  ],
+  "source": {
+    "title": "In and out of control: brain mechanisms linking fluency of action selection to self-agency in patients with schizophrenia",
+    "authors": [
+      "Martin Voss",
+      "Valerian Chambon",
+      "Dorit Wenke",
+      "Simone Kuhn",
+      "Patrick Haggard"
+    ],
+    "year": 2017,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awx136",
+    "pmid": "28899009",
+    "pmc": null,
+    "volume": "140",
+    "issue": "8",
+    "pages": "2226-2239"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Strong design with a built-in dissociation: subliminal action priming affected response times EQUALLY in patients and controls, but affected reported sense of agency, angular gyrus activation, and fronto-parietal connectivity only in controls. That double pattern isolates the attribution pathway from the action-selection pathway rather than inferring it, which is what makes it evidence for ARC-015's channel-separation commitment specifically. Held at 0.74 because it is a single patient-fMRI study with the sample sizes that implies, and because the agency measure is a subjective report whose translation into REE's attribution machinery is looser than the sensorimotor comparator case.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Action selection can proceed entirely normally while self-attribution fails -- patients showed intact priming effects on response times and intact frontal action-selection effects, but no priming effect on agency, no angular gyrus response, and no priming-related fronto-parietal connectivity change. A system can therefore act correctly and attribute wrongly, so behavioural competence is not evidence that the attribution channel is intact.",
+    "The attribution deficit was in the READ-OUT of action-selection signals by parietal cortex, not in the generation of those signals -- so the failure mode to test for in E3 is a broken channel between the selector and the attributor, not a degraded selector."
+  ],
+  "tags": [
+    "arc-015",
+    "agency",
+    "action_selection",
+    "angular_gyrus",
+    "fronto_parietal_connectivity",
+    "schizophrenia",
+    "channel_separation",
+    "mech-060",
+    "mech-095"
+  ],
+  "mapping": {
+    "source_claim_statement": "Subliminally priming an action influences both response times and the reported sense of agency over subsequent outcomes, an effect associated with altered connectivity between frontal areas and the angular gyrus. In schizophrenia the response-time and frontal action-selection effects are preserved, but the priming effect on sense of agency, the angular gyrus activation, and the priming-related fronto-parietal connectivity change are all absent. Angular gyrus activity is proposed to constitute the experience of agency in part by PROCESSING action-selection signals generated in frontal cortex.",
+    "ree_translation": "Self-impact attribution is a distinct channel that CONSUMES the selector's own signals, and it can fail independently of the selector. This is direct substrate evidence for ARC-015's channel-separation requirement (MECH-060/061/066/067) and for a comparator (MECH-095) that reads selection-stage information rather than only outcome information: the agency signal here is prospective, derived from how fluently the action was selected, before its consequences are known.",
+    "mapping_caveat": "The dependent variable is a subjective agency report, which has no clean REE analogue -- E3 has no phenomenology to report. What transfers is the STRUCTURAL dissociation (attribution consumes selection signals; the two can dissociate), not the experiential claim. Sample sizes are those of a patient fMRI study, the priming is subliminal and so the effect sizes are modest, and 'fluency of selection' is one input to attribution among several rather than the whole story.",
+    "source_context": "Human fMRI, patients with schizophrenia versus healthy volunteers; subliminal action priming with agency ratings over outcomes."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "The dissociation is the value here -- intact selection with absent attribution is much stronger for a channel-separation claim than a correlation would be. mapping_fidelity limited by the subjective-report dependent variable."
+  }
+}

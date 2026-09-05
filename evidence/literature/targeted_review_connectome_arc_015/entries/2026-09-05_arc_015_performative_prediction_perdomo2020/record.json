@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_015",
+  "entry_id": "2026-09-05_arc_015_performative_prediction_perdomo2020",
+  "timestamp_utc": "2026-09-05T06:05:26Z",
+  "claim_ids_tested": [
+    "ARC-015"
+  ],
+  "source": {
+    "title": "Performative Prediction",
+    "authors": [
+      "Juan C. Perdomo",
+      "Tijana Zrnic",
+      "Celestine Mendler-Dunner",
+      "Moritz Hardt"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 37th International Conference on Machine Learning (ICML)",
+    "arxiv_id": "2002.06673",
+    "doi": null,
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2002.06673"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Formal, well-cited framework that supplies exactly the half of ARC-015 the sensorimotor literature does not reach: a rigorous account of what goes wrong when a system's own actions influence the outcomes it is learning from and that influence is not represented. Its central distinction -- calibration against past outcomes versus against the outcomes that manifest from acting on the prediction -- is a precise statement of ARC-015's epistemic reading. Held at 0.72 because it is a theory paper about supervised risk minimisation, not an agent architecture, so it establishes the problem's necessity and the conditions for convergence rather than demonstrating a required attribution MECHANISM.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A predictor that ignores its own influence sees performativity as ordinary distribution shift and responds with retraining -- so the failure presents as a data problem, and the natural remedy (more data, more retraining) is applied to a structural error and does not fix it.",
+    "Convergence of naive retraining to a performatively stable point holds only under stated sufficient conditions; outside them, repeated retraining on self-influenced data need not converge at all, so an agent lacking self-impact attribution has no guarantee its beliefs stabilise.",
+    "Performative stability requires calibration against outcomes that manifest FROM ACTING on the prediction. A system calibrated against past outcomes is confidently wrong in precisely the direction its own actions push, which is the naive-confirmation failure ARC-015's notes describe."
+  ],
+  "tags": [
+    "arc-015",
+    "self_impact",
+    "performativity",
+    "distribution_shift",
+    "epistemic_hygiene",
+    "strategic_classification",
+    "responsibility_flow"
+  ],
+  "mapping": {
+    "source_claim_statement": "When predictions support decisions they can influence the outcome they aim to predict. Ignoring this performativity makes it surface as undesirable distribution shift, routinely and inappropriately addressed by retraining. The authors give a risk-minimisation framework, define performative stability -- predictions calibrated not against past outcomes but against the future outcomes that manifest from acting on the prediction -- and establish necessary and sufficient conditions for retraining to converge to a performatively stable point of nearly minimal loss.",
+    "ree_translation": "This is the formal statement of the epistemic function ARC-015's notes attribute to self-impact attribution: evidence solicited by one's own committing action is not independent confirmation of the prior that produced the action, and a system that does not represent its own causal contribution will mistake a self-induced distribution for the world's. Responsibility flow is what makes an agent's belief updating well-posed, not merely well-mannered.",
+    "mapping_caveat": "This is a theory of supervised risk minimisation under a distribution map, not a theory of agent self-attribution. It shows the PROBLEM is real and characterises when naive retraining survives it; it does not show that an explicit attribution mechanism of the kind ARC-015 posits is the required solution -- performative stability can in principle be reached by procedures that never represent self-impact explicitly. Transfer to REE also assumes E3's action-solicited evidence has the distribution-map structure the framework requires, which is plausible but unverified.",
+    "source_context": "Machine learning theory; supervised learning where the deployed predictor shifts the data distribution. Strictly subsumes strategic classification."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Selected for the epistemic-hygiene reading registered in ARC-015's own notes (thought_intake_2026-08-12_responsibility_as_epistemic_hygiene). Fidelity is capped by the gap between 'the problem is real and structural' and 'this specific mechanism is required'."
+  }
+}

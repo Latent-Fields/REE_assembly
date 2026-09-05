@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_015",
+  "entry_id": "2026-09-05_arc_015_causal_misidentification_dehaan2019",
+  "timestamp_utc": "2026-09-05T06:05:26Z",
+  "claim_ids_tested": [
+    "ARC-015"
+  ],
+  "source": {
+    "title": "Causal Confusion in Imitation Learning",
+    "authors": [
+      "Pim de Haan",
+      "Dinesh Jayaraman",
+      "Sergey Levine"
+    ],
+    "year": 2019,
+    "venue": "Advances in Neural Information Processing Systems 32 (NeurIPS)",
+    "arxiv_id": "1905.11979",
+    "doi": null,
+    "pmid": null,
+    "url": "https://arxiv.org/abs/1905.11979"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Empirical demonstration, across several benchmark control domains and a realistic driving setting, that a learner blind to the causal structure of its own interaction with the environment suffers a counter-intuitive failure -- more information yields WORSE performance -- and that the fix requires targeted intervention (environment interaction or expert queries) rather than more data. That is a concrete, measured instance of the cost ARC-015 predicts for a missing self-impact channel, in an artificial agent rather than by analogy from human pathology. Held at 0.7 because the setting is behavioural cloning from expert demonstrations, where the confusion concerns the EXPERT's causal role as much as the learner's, so the mapping to an agent attributing its OWN impact is one step indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Access to more information yields worse performance -- the 'causal misidentification' signature. An E3 variant lacking self-impact attribution should show the same inverted scaling, and this is a cheap diagnostic: add an observation channel and check whether competence degrades.",
+    "The canonical instance is a learner keying on a variable that is a CONSEQUENCE of the action rather than a cause of it (the brake-indicator case), i.e. confusing its own downstream effect for an environmental predictor -- precisely the confusion self-impact attribution exists to prevent.",
+    "The remedy required targeted INTERVENTION -- environment interaction or expert queries -- not additional passive data. A system whose self-impact channel is absent cannot be repaired by scaling the observational dataset."
+  ],
+  "tags": [
+    "arc-015",
+    "causal_confusion",
+    "self_impact",
+    "imitation_learning",
+    "distribution_shift",
+    "intervention",
+    "responsibility_flow"
+  ],
+  "mapping": {
+    "source_claim_statement": "Behavioural cloning trains a discriminative model to predict expert actions from observations, and the training procedure is unaware of the causal structure of the interaction between expert and environment. Ignoring causality is particularly damaging under the distributional shift characteristic of imitation learning, producing 'causal misidentification', in which access to MORE information yields WORSE performance. The authors demonstrate this across benchmark control domains and realistic driving, and resolve it via targeted interventions -- environment interaction or expert queries -- to identify the correct causal model.",
+    "ree_translation": "A policy that cannot distinguish the consequences of its own action from environmental causes will latch onto its own downstream effects as predictors, and the resulting degradation is not a data-quantity problem: it worsens with more observation and is fixed only by intervention. This is the measured, artificial-agent counterpart of ARC-015's requirement, and it supplies a directly runnable diagnostic -- inverted scaling with added observation channels -- for detecting a missing attribution path in E3.",
+    "mapping_caveat": "The confusion here is primarily about the EXPERT's causal structure in a cloning setup, not about the learner attributing its own impact to itself, so the mapping to ARC-015's first-person self-impact attribution is one inferential step removed. The result is also about causal structure generally rather than self-causation specifically; self-caused confounders are the most damaging instance, not the only one. Benchmark and driving-simulator domains, not embodied sequential agents of E3's kind.",
+    "source_context": "Machine learning, behavioural cloning / imitation learning; benchmark control domains plus a realistic driving setting."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Value is the measured inverted-scaling signature and the intervention-not-data remedy, both of which give ARC-015 something falsifiable in an artificial system. Fidelity capped by expert-causality versus self-causality."
+  }
+}

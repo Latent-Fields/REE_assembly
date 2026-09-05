@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_012",
+  "entry_id": "2026-09-05_arc_012_altruism_common_currency_hutcherson2015",
+  "timestamp_utc": "2026-09-05T06:05:26Z",
+  "claim_ids_tested": [
+    "ARC-012"
+  ],
+  "source": {
+    "title": "A Neurocomputational Model of Altruistic Choice and Its Implications",
+    "authors": [
+      "Cendri A. Hutcherson",
+      "Benjamin Bushong",
+      "Antonio Rangel"
+    ],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.06.031",
+    "pmid": "26182424",
+    "pmc": "PMC4947370",
+    "volume": "87",
+    "issue": "2",
+    "pages": "451-462"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High source quality (Neuron, fMRI plus a fitted multi-attribute drift-diffusion model, converging behavioural/RT/BOLD constraints) and unusually high mapping fidelity: the paper's central negative result -- that generous choice needs neither a dual-process competition nor a reward value for generosity -- is the same architectural negative ARC-012 asserts for E3. Held below 0.8 because the domain is one-shot monetary dictator-style allocation in humans, not a sequential embodied selector, so the absence of a separate moral term is demonstrated for a narrower choice class than E3 spans.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If other-regarding behaviour in E3 required a dedicated ethical cost term, generous choices should show a signature of an extra competing process; Hutcherson et al. show the RT and BOLD signatures usually read that way are reproduced by a single accumulator with different attribute weights, so that signature does not license inferring a separate term.",
+    "The model predicts that when self-payoff is weighted above other-payoff, some generous acts are accumulation MISTAKES rather than pro-social preference -- an architecture with no explicit ethical term must therefore expect a residue of noise-driven 'ethical' acts that carry no ethical representation at all."
+  ],
+  "tags": [
+    "arc-012",
+    "ethics",
+    "common_currency",
+    "value_accumulation",
+    "drift_diffusion",
+    "vmpfc",
+    "tpj"
+  ],
+  "mapping": {
+    "source_claim_statement": "Choices between monetary payoffs for self and another are captured by a multi-attribute drift-diffusion process accumulating a relative value signal that linearly weights self-payoff and other-payoff, with ventral striatum, TPJ and vmPFC responses following from that single accumulator; the model reproduces the choice, RT and neural patterns without invoking competition between automatic and deliberative processes, and without any reward value assigned to generosity itself.",
+    "ree_translation": "Other-regarding (ethically loaded) selection can be realised as attribute weighting inside the SAME value-accumulation machinery E3 already runs, rather than as an additional ethical cost/penalty term bolted onto the objective. This is the positive existence proof ARC-012 needs: a working, quantitatively fitted mechanism in which ethical outcome differences change the WEIGHTS on existing attributes rather than adding a term.",
+    "mapping_caveat": "The paper shows a separate term is not NECESSARY to fit this task's data; it does not show one is never necessary. Its choice set is static, single-shot, two-recipient and explicitly monetised, so the attributes to be weighted are pre-individuated by the experimenter. E3 must first individuate what the ethically relevant attributes ARE, and nothing here speaks to whether that upstream individuation can also proceed without an explicit ethical representation.",
+    "source_context": "Human fMRI, N in the tens, real monetary prizes for self and an anonymous other; multi-attribute DDM fitted to choice and RT."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "mapping_fidelity weighted heavily -- ARC-012 is an architectural_commitment, so what matters is whether the paper's mechanism is the same SHAPE as the one E3 claims, and it is. transfer_risk is moderate rather than low because the transfer is human economic choice -> artificial sequential selector."
+  }
+}

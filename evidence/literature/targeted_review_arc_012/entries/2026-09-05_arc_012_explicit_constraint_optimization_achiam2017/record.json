@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_012",
+  "entry_id": "2026-09-05_arc_012_explicit_constraint_optimization_achiam2017",
+  "timestamp_utc": "2026-09-05T06:05:26Z",
+  "claim_ids_tested": [
+    "ARC-012"
+  ],
+  "source": {
+    "title": "Constrained Policy Optimization",
+    "authors": [
+      "Joshua Achiam",
+      "David Held",
+      "Aviv Tamar",
+      "Pieter Abbeel"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the 34th International Conference on Machine Learning (ICML)",
+    "arxiv_id": "1705.10528",
+    "doi": null,
+    "pmid": null,
+    "url": "https://arxiv.org/abs/1705.10528"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "A deliberately included counterweight. Source quality is high (ICML, general-purpose algorithm with per-iteration near-constraint-satisfaction guarantees). Its bearing on ARC-012 is real but partly indirect: the paper's motivating premise -- that designing behaviour through the reward function alone is inconvenient and unreliable, so safety-relevant behaviour should be specified as an explicit constraint with its own optimisation machinery -- is precisely the architectural position ARC-012 denies. Held at 0.62 because CPO argues from convenience and guarantees rather than demonstrating that no unconstrained architecture can achieve the behaviour, and because 'safety constraint' and 'ethical cost term' are adjacent rather than identical.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CPO's premise is that shaping a single reward to induce constraint-respecting behaviour is unreliable in high-dimensional control -- if that generalises, an E3 with no explicit ethical term should show exactly the failure mode CPO was built to fix: behaviour that satisfies the ethical desideratum on average while violating it during training and at the tails.",
+    "The guarantee CPO buys is per-iteration near-constraint-satisfaction THROUGHOUT training, not merely at convergence. An architecture with no explicit term has no analogous guarantee, so ARC-012 must accept that ethical behaviour is an emergent property of the converged system and cannot be underwritten during learning."
+  ],
+  "tags": [
+    "arc-012",
+    "ethics",
+    "constrained_rl",
+    "safe_rl",
+    "explicit_cost_term",
+    "counterweight"
+  ],
+  "mapping": {
+    "source_claim_statement": "For many reinforcement learning applications it is more convenient and more reliable to specify a reward function AND explicit constraints than to try to induce the desired behaviour through reward design alone; CPO is a general-purpose policy search algorithm for constrained RL that provides guarantees of near-constraint satisfaction at every iteration, demonstrated on locomotion tasks with safety-motivated constraints.",
+    "ree_translation": "The dominant engineering position in safe RL is the direct negation of ARC-012: where behaviour must reliably respect a normative boundary, that boundary is given its own explicit cost signal and its own optimisation machinery, because folding it into the primary objective is known to be brittle. If E3's ethical desiderata are of that kind, ARC-012 predicts brittleness where CPO-style architectures buy guarantees.",
+    "mapping_caveat": "The gap between 'safety constraint' and 'ethical cost term' is real and this entry should not be over-read. CPO's constraints are externally specified, scalar, and known in advance (e.g. do not enter this region); REE's ethical content is neither pre-specified nor obviously scalar, and INV-001's care-marker route is not the kind of thing a constraint set can express. CPO also argues from convenience and from what its guarantees require, not from a demonstration that unconstrained architectures cannot reach the behaviour -- so this weakens ARC-012's generality without refuting it.",
+    "source_context": "Deep RL, simulated robot locomotion, neural network policies; theoretical bound on expected returns of two policies under average divergence."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Included as an honest counterweight rather than a confirming source. mapping_fidelity is limited by the safety-constraint / ethical-content gap; the entry earns its place by naming the failure mode ARC-012 must be prepared to see."
+  }
+}

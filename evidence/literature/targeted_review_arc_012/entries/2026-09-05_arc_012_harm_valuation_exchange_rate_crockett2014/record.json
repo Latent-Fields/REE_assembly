@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_012",
+  "entry_id": "2026-09-05_arc_012_harm_valuation_exchange_rate_crockett2014",
+  "timestamp_utc": "2026-09-05T06:05:26Z",
+  "claim_ids_tested": [
+    "ARC-012"
+  ],
+  "source": {
+    "title": "Harm to others outweighs harm to self in moral decision making",
+    "authors": [
+      "Molly J. Crockett",
+      "Zeb Kurth-Nelson",
+      "Jenifer Z. Siegel",
+      "Peter Dayan",
+      "Raymond J. Dolan"
+    ],
+    "year": 2014,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1408988111",
+    "pmid": "25404350",
+    "pmc": "PMC4260587",
+    "volume": "111",
+    "issue": "48",
+    "pages": "17320-17325"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Strong methods (two studies, real electric shocks traded against real money, explicit computational models recovering per-subject exchange rates) and directly on-topic, but the evidence cuts both ways for ARC-012. That harm is priced as an exchange rate inside an ordinary money-vs-pain valuation supports a no-separate-term reading; that others' pain is priced ABOVE one's own, and that other-affecting choices are systematically slower in a way the authors read as deliberative engagement, is the pattern a separate-term architecture would predict. Confidence is deliberately mid-range because the entry's value is that it is genuinely two-directional, not because the paper is weak.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hyperaltruism is an asymmetry a pure shared-currency account does not predict: if others' pain entered the same accumulator as one attribute among others, the default expectation is a discount on distant others, not a premium over self.",
+    "Slower responding specifically on other-affecting choices is the RT signature Hutcherson et al. (2015) reproduce without a second process -- so the same observation is claimed by both architectures, and cannot on its own adjudicate ARC-012.",
+    "Subclinical psychopathic traits reduced aversion to pain for self AND others together, i.e. the parameter that varies is a general aversion weight rather than a selectively ethical module -- which cuts toward ARC-012."
+  ],
+  "tags": [
+    "arc-012",
+    "ethics",
+    "harm_aversion",
+    "exchange_rate",
+    "moral_decision",
+    "psychopathy"
+  ],
+  "mapping": {
+    "source_claim_statement": "When people trade money against painful electric shocks delivered either to themselves or to an anonymous other, computational models recover a per-subject relative value for pain that is, for most subjects, HIGHER for others' pain than for their own; this hyperaltruistic valuation is accompanied by slower responses on other-affecting choices, and aversion to pain for both self and others is reduced in those with subclinical psychopathic traits.",
+    "ree_translation": "Harm to others is represented as a PRICE inside an ordinary value comparison -- a weight on an attribute, recoverable as a scalar -- rather than as a deontic prohibition or a bolt-on penalty. To that extent E3 needs no explicit ethical cost term, only an attribute weight. But the specific SHAPE of that weight (others above self) and the RT asymmetry are not obviously derivable from generic valuation, and mark where a no-separate-term architecture owes an account.",
+    "mapping_caveat": "The exchange-rate framing is imposed by the experimental design: subjects are given money and shocks as commensurable options, so finding that harm has a price is partly built into the task and cannot by itself show that harm is priced in unforced settings. Transfer to E3 is further limited because the pain is experienced by a real human whose suffering the subject can model from the inside; E3 has no equivalent, so the mechanism that sets the weight here may not be available to it at all.",
+    "source_context": "Two human behavioural studies, real money and real electric shocks, anonymous other; computational models fitted per subject."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "mapping_fidelity is the binding constraint: the paper measures a price for harm, which is compatible with ARC-012 and with its negation. transfer_risk raised to 0.5 because the weight-setting mechanism (empathic modelling of a conspecific's pain) has no E3 analogue."
+  }
+}
