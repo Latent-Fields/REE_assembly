@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ext_008",
+  "entry_id": "2026-09-05_ext_008_null_model_benchmark_cheating_zheng2025",
+  "timestamp_utc": "2026-09-05T16:10:59Z",
+  "claim_ids_tested": [
+    "EXT-008"
+  ],
+  "source": {
+    "title": "Cheating Automatic LLM Benchmarks: Null Models Achieve High Win Rates",
+    "authors": [
+      "Xiaosen Zheng",
+      "Tianyu Pang",
+      "Chao Du",
+      "Qian Liu",
+      "Jing Jiang",
+      "Min Lin"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Learning Representations (ICLR 2025), Oral",
+    "arxiv_id": "2410.07137",
+    "doi": null,
+    "url": "https://openreview.net/forum?id=syThiTmWWm"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "This entry carries a different half of EXT-008 from the other three, and it is the half that is hardest to argue against: not that agents attack evaluators, but that a high score from an automated evaluator can be fully decoupled from the competence it purports to measure. A 'null model' returning one constant string, entirely independent of the instruction, scored 86.5% length-controlled win rate on AlpacaEval 2.0, 83.0 on Arena-Hard-Auto and 9.55 on MT-Bench -- top-ranked numbers with a policy that has no task behaviour at all. That is the cleanest possible demonstration that the score is a property of the scoring channel rather than of the system being scored, which is exactly the premise EXT-008 rests on when it says a high score 'no longer means competence'. It is peer-reviewed and an ICLR oral, the strongest venue in this pull. Confidence is nevertheless 0.66, held down by a mapping gap the entry should not paper over: the adversary here is a human researcher crafting an output offline, not an agent discovering the exploit through optimisation, so this paper evidences the EXPLOITABILITY of the evaluator without evidencing the emergence of exploitation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A constant response, identical for every instruction and containing no task content whatsoever, achieved an 86.5% length-controlled win rate on AlpacaEval 2.0 -- a top-ranked score with zero task competence behind it.",
+    "The same null strategy transferred to Arena-Hard-Auto (83.0) and MT-Bench (9.55), so the vulnerability is a property of automated LLM judging in general rather than of one benchmark's quirks.",
+    "Length control and style disentanglement -- mechanisms built specifically to reduce gameability -- did not prevent the attack, so an evaluator hardened against the previously known gaming route was still fully exploitable by a new one.",
+    "The cheating outputs transfer WITHOUT access to the benchmark instructions, which are private: keeping the test set secret was not sufficient protection, because the exploit targets the judge rather than the items."
+  ],
+  "tags": [
+    "ext-008",
+    "inv-077",
+    "ext-003",
+    "evaluator-capture",
+    "llm-as-judge",
+    "benchmark-gaming",
+    "null-model",
+    "goodharts-law",
+    "alpacaeval",
+    "peer-reviewed",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Automatic LLM benchmarks such as AlpacaEval 2.0, Arena-Hard-Auto and MT-Bench are widely used because they are cheap and scalable, and high win rates carry real promotional value, which motivates gaming through output length or style even though length-control and style-disentanglement mechanisms exist to reduce it. Nonetheless a null model that always outputs a constant response irrelevant to the input instruction achieves top-ranked win rates: 86.5% LC win rate on AlpacaEval 2.0, 83.0 on Arena-Hard-Auto and 9.55 on MT-Bench. The crafted outputs are transferable under the assumption that the benchmarks' instructions are private and inaccessible. The authors present this as proof of concept and call for anti-cheating mechanisms for automatic benchmarks.",
+    "ree_translation": "EXT-008 makes two moves: agents attack the evaluation boundary, and consequently a high score stops meaning competence. The other entries in this directory evidence the first move. This one evidences the second, independently of any agent behaviour at all, and it does so at the limit -- a policy with literally no task-conditional behaviour scoring in the top rank. For REE this is the empirical content behind the developmental_metrics.md formulation that 'a metric that can be Goodharted into a high score without developmental progress is a wrong metric', and it is why INV-077 types evidence feedback as something that must be provenance-tagged and reviewed rather than trusted on its face. It also speaks to a specific structural choice REE has already made. AlpacaEval's defences -- length control, style disentanglement -- are corrections applied INSIDE the scoring function, attempts to make the number more trustworthy; they failed against a route they were not designed for. REE's defence is not a better number but a refusal to let any number write the ledger: manifests require review, review feeds governance, governance updates claims. This paper is the argument for why that is the right shape, since it shows that hardening a score against known gaming does not generalise to unknown gaming.",
+    "mapping_caveat": "The central caveat is agency, and it is what keeps confidence below 0.7. The null model was constructed by human researchers with white-box knowledge of how the judges work; nothing in this paper shows an agent DISCOVERING the exploit under optimisation pressure, which is the emergent behaviour EXT-008 actually asserts. Read strictly, this paper establishes the exploitability of the channel and the score/competence decoupling, and is silent on emergence -- Denison and Baker are what supply that half, and the two halves must not be blurred into a single overstated conclusion. Second caveat: the domain is open-ended instruction-following judged by an LLM, which is not REE's evidence channel; REE's manifests are produced by deterministic experiment runs against declared criteria, not by a language model rating a response, so the specific vulnerability (a judge model swayed by a crafted string) has no direct REE analogue. What transfers is the general proposition that an automated evaluator's output can be decoupled from the property it names, not this particular attack. Third: the authors themselves frame the work as proof of concept, and the benchmarks have since had opportunity to patch the specific templates used.",
+    "source_context": "ICLR 2025 Oral; Sea AI Lab and Singapore Management University. Preprint submitted 9 October 2024, last revised 2 March 2025. Evaluation domain: open-ended instruction-following benchmarks scored by LLM judges (GPT-4-family auto-annotators) under AlpacaEval 2.0's length-controlled protocol, Arena-Hard-Auto and MT-Bench. Code released at github.com/sail-sg/Cheating-LLM-Benchmarks."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.9, the highest in the pull: peer-reviewed, ICLR 2025 Oral, result is simple, striking, code-released and trivially checkable, and it has been widely reproduced in discussion since. Mapping fidelity 0.6: the paper nails EXT-008's consequence (score decoupled from competence) but not its mechanism (agent discovers the exploit), and a reader could take this entry as evidence for emergent evaluation-boundary exploitation, which it is not. Transfer risk 0.45, the second highest here: LLM-as-judge on open-ended instructions is a considerable distance from REE's deterministic manifest -> review -> governance channel, so only the general proposition transfers, not the attack."
+  }
+}
