@@ -12567,6 +12567,7 @@
       "claim_id": "IMPL-016",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
+      "lane_repair_note": "2026-09-05: reset executed -> proposed. igw_routine_tick.py complete for IGW-20260905-234 retired this row lane-blind when the EXPERIMENTAL twin (EXP-0620) was disposed blocked_substrate. No literature review was ever performed for IMPL-016: zero literature records cite it. This lane is genuinely runnable -- its own why_now carries missing_literature_evidence, and IMPL-016 (E3 trajectory selection: commitment as precision gating, temporal collapse, safe switching on shared prefixes) has real external referents in the motor-preparation / affordance-competition literature, so it is NOT a skipped-as-internal-truthmaker case. Do not re-retire it without an actual /lit-pull.",
       "mapping_quality_weighting_required": true,
       "objective": "Improve literature grounding and confidence for IMPL-016.",
       "priority": "medium",
@@ -12594,17 +12595,17 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "executed",
+      "retired_at": "2026-09-05T01:32:48Z",
+      "retired_by_igw": "IGW-20260905-234",
+      "retired_reason": "igw outcome=USEFUL_LANDED: IMPL-016 NOT queued: marked EVB-1303/EXP-0620 blocked_substrate (commit predicate has no headroom -- 99.55% committed ticks, all uncommitted in warm-up) + emitted GOV-REUSE-",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_impl_016",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "retired_by_igw": "IGW-20260905-234",
-      "retired_reason": "igw outcome=USEFUL_LANDED: IMPL-016 NOT queued: marked EVB-1303/EXP-0620 blocked_substrate (commit predicate has no headroom -- 99.55% committed ticks, all uncommitted in warm-up) + emitted GOV-REUSE-",
-      "retired_at": "2026-09-05T01:32:48Z"
+      ]
     },
     {
       "acceptance_checks": [
