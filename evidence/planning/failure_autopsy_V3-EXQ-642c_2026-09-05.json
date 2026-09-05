@@ -1,0 +1,442 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-05T02:38:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "staging_mode": true,
+  "staged_for_session": "governance-20260905",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py over the four run_ids this artifact cites (642, 642a, 642b, 642c): 0 dry cited, 0 dry in named families, 0 ambiguous, 4 clean, exit 0. validate_recording.py on the target manifest: complete, 0 always-core gaps.",
+  "targets": [
+    {
+      "run_id": "v3_exq_642c_blocked_agency_headroom_dv_validation_20260904T214459Z_v3",
+      "queue_id": "V3-EXQ-642c",
+      "claim_ids": [],
+      "bears_on": [
+        "MECH-353",
+        "SD-029",
+        "MECH-112",
+        "MECH-320",
+        "MECH-342",
+        "ARC-016",
+        "SD-011",
+        "SD-019b",
+        "SD-070",
+        "SD-056"
+      ],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "validated_clear_v3_pending",
+      "self_route_verdict": "OVERTURNED IN PART -- and, per red-team F1, as a governance JUDGMENT rather than a forced reading of the claim text. The PASS is real and non-degenerate on C0 and C1: the baseline-relative floor gives the z_block integrator genuine dynamic range on a headroom DV, at an a-priori bar that provably rejects the un-calibrated predecessor regime. The label's second half ('clear_v3_pending') was put to the user at the Step 8 gate as a genuine two-reading choice, with MECH-353's release text quoted verbatim, and the user HELD v3_pending on 2026-09-05. The decisive reason is red-team F3, and it is prior to the num_hazards argument the draft led with: the assert-vs-withdraw dissociation MECH-353 names has NEVER been measurable anywhere in this family, because WITHDRAW IS UNREPRESENTABLE -- the driver runs at action_dim=4 while blocked_agency_noop_class defaults to 0, which CausalGridWorldV2 maps to MOVE-UP, and the stay action is index 4, unreachable by a 4-dim policy. So the claim's own named release run (the 642b lineage, which 642c supersedes and passes) has not yet been VALIDLY run, whatever its verdict. Recommended relabel: validated_substrate_calibration_v3_pending_stands.",
+      "adjudication_flag": "vacuous_pass",
+      "adjudication_flag_disposition": "UPHELD AND BROADENED. The indexer flagged criteria_non_degenerate.C2=false, which the driver recorded honestly. This autopsy finds the degeneracy is a property of the ENVIRONMENT (num_hazards=0), not of C2: C3's third conjunct no_suffering (block z_harm_a_mean_policy <= control + 0.02) is 0.0 <= 0.0 + 0.02 on 3/3 seeds and is inert by the same construction, and was not flagged. Red-team F3 broadens it further and changes the count: C3's SURVIVING legs (no_withdraw / assert_sig) are not merely thin, they are MIS-SPECIFIED -- action_dim=4 with blocked_agency_noop_class=0 (= MOVE-UP) means action_rate scores 'fraction of steps not choosing move-up' and withdraw has no representation in the action space at all. So THREE OF THE FOUR load-bearing criteria carry an inert or mis-specified leg (C2 entire, C3's no_suffering, C3's assert_sig/no_withdraw), not two. The PASS does NOT rest wholly on a degenerate criterion -- C1 is live, non-degenerate and demonstrably discriminating -- but it rests on fewer independent legs than the criteria list implies, and C3 is UNINFORMATIVE about the assert-vs-withdraw contrast rather than weakly informative.",
+      "failed_criterion": "none -- overall PASS (C0/C1/C2/C3 all true on 3/3 readiness-cleared seeds; seeds_needed 2)",
+      "degenerate_criterion_legs": [
+        "C2_dissociation_from_z_harm_a -- entire criterion: z_harm_a separation is 0.000 on 3/3 seeds (num_hazards=0), so (z_block_sep - z_harm_a_sep) >= 0.30 reduces to C1's first conjunct. Flagged by the driver (criteria_non_degenerate.C2=false, c2_degeneracy_reason).",
+        "C3_assert_not_withdraw, no_suffering leg -- block z_harm_a_mean_policy 0.0 vs control 0.0 on 3/3 seeds; the conjunct is trivially true and cannot vary. NOT flagged by the driver.",
+        "C3_assert_not_withdraw, assert_sig leg -- a zero-margin strict inequality (inherited from 642a and deliberately left alone per the 642b gate). Passing margins are 4/2400 steps (seed 42, action_rate 0.96208 vs 0.96042), 15/2400 (seed 43, 0.99667 vs 0.99042) and 24/2400 on the alt-switch route (seed 44, action_rate tied at 1.000, alt_switch 0.03792 vs 0.02792). Red-team H4: on seed 43 C3 passes ONLY via action_rate, while that seed's alt_switch goes the WRONG WAY (0.01625 block vs 0.02000 control, i.e. -9/2400) -- so the alt-switch signature the fan-out's drive probe expects to be ELEVATED is, on one of three seeds, depressed. Red-team F7 (pre-run) also records that C3's policy-arm rates are arm-order confounded (ARM_BLOCK always first; residue and hippocampal state are not reset between arms).",
+        "C3_assert_not_withdraw, no_withdraw + assert_sig legs -- MIS-SPECIFIED, not merely thin (red-team F3, and the decisive defect in this artifact). The driver runs at action_dim=4 (experiments/v3_exq_642a_blocked_agency_zblock_discriminative.py:252) while blocked_agency_noop_class defaults to 0 (ree_core/utils/config.py:5608 and :7676; the driver's CFG_KWARGS never overrides it), and CausalGridWorldV2.ACTIONS maps 0 -> (-1,0) = MOVE-UP with the stay action at index 4 (ree_core/environment/causal_grid_world.py:113-115), which a 4-dim policy can never emit. So action_rate = fraction of steps whose argmax is not MOVE-UP, and WITHDRAW (passivity) has NO representation in the action space. The consumer inherits the same miswire: ree_core/affect/blocked_agency.py:426 gives the ASSERT score-bias's passive_term to cls == noop_class, i.e. it treats MOVE-UP as the passive option and penalises it while favouring the other three moves. C3 is therefore UNINFORMATIVE about the assert-vs-withdraw contrast. This is an experiment-CONFIGURATION defect, not a substrate bug (the knob exists and is settable), and it is inherited unchanged across V3-EXQ-642 / 642a / 642b / 642c."
+      ],
+      "criteria_non_degenerate_adjudicated": {
+        "C0": true,
+        "C1": true,
+        "C2": false,
+        "C3": false,
+        "note": "The manifest records criteria_non_degenerate.C2=false only. This autopsy adjudicates C3 to FALSE as well, on red-team F3: C3's no_suffering conjunct is inert by the num_hazards=0 pin, and its surviving no_withdraw / assert_sig legs are mis-specified because withdraw is unrepresentable at action_dim=4 with noop_class=0. C0 and C1 remain true and non-degenerate. Net: three of four load-bearing criteria carry an inert or mis-specified leg. Governance may record this as a c3_degeneracy_note sibling on the manifest at its discretion; the overall PASS stands and this autopsy does not ask for the manifest to be rewritten."
+      },
+      "non_degenerate_load_bearing_criteria": [
+        "C0_detector_readiness -- blocked-step minus free-step mismatch within ARM_BLOCK: 0.601 / 0.547 / 0.498 vs floor 0.10 on 3/3 seeds. Real, but it is a readiness gate that also passed under the un-calibrated 642a regime, so it does not discriminate the build under test.",
+        "C1_z_block_rises -- z_block_mean separation 0.6805 / 0.5904 / 0.7709 vs bar 0.30, AND ARM_BLOCK z_block_mean 0.8119 / 0.7671 / 0.8345 vs floor 0.30, on 3/3 seeds. This is the single criterion that both varies and discriminates the regime under test."
+      ],
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim-free diagnostic (claim_ids: []); bears_on 10 claims, none tagged, evidence_direction forced non_contributory by the driver. Read-across only: MECH-353's DETECTOR half is strengthened (z_block rises under external blocking at a bar that rejects the un-calibrated regime); its DISSOCIATION half (from z_harm_a, and the assert-vs-withdraw pole contrast) is untested, not supported and not weakened.",
+        "biological_reference": "clear -- frustrative-non-reward / RAGE assert-pole comparator. Lit anchor PRESENT and adequate: evidence/literature/targeted_review_blocked_agency_anger_stream/VERDICT.md, 5 entries all supports (Papini et al. 2024 J Neurosci; Davis & Montag 2019 Front Neurosci; Bertsch et al. 2020 Curr Psychiatry Rep; Carruthers 2012 Conscious Cogn as the comparator anchor). No formal-import divergence: the detector is a single-pass MECH-256-family comparator, not a Pearl-counterfactual import. The biology is also what makes the environment gap load-bearing -- FNR is defined by expected-minus-obtained WITHOUT noxious input, so a hazard-free env tests the antecedent but cannot test the dissociation-from-nociception that is the claim's distinguishing predicate.",
+        "prerequisites": "present -- SD-070 P0a encoder warmup moved 4/4 split_encoder.world_encoder tensors on 3/3 seeds (delta 0.2710/0.2695/0.2685); SD-056 world-forward contrastive ran (final loss 0.3172/0.3079/0.1961); the per-seed P0 readiness gate cleared 3/3 with c0_probe_margin 0.6241/0.5322/0.5077 vs floor 0.10; n_ready_seeds 3, n_seeds_skipped_not_ready 0.",
+        "implementation": "complete -- the baseline-relative outcome_mismatch floor (ree-v3 d49db86f3e64670, threaded through BlockedAgencyConfig / REEConfig.from_dims / REEAgent) is built, landed and demonstrably effective on the headroom statistic: CONTROL z_block_mean fell from 1.26-1.35 (642a legacy absolute floor) to 0.0636-0.1768, and BLOCK-minus-CONTROL mean separation rose from 0.1650/0.1214/0.0831 to 0.6805/0.5904/0.7709. Substrate provenance recorded: substrate_hash 52ceaa7c..., commit 8149d3648, dirty on one unrelated path (experiments/_lib/baselines/arc019_curriculum_gating.py), substrate_stable_across_run true.",
+        "environment": "too sparse for the claim, adequate for the substrate question -- CausalGridWorldV2 size 8, toroidal, num_hazards=0, num_resources=0, block_interval 2 at prob 1.0. That configuration is exactly right for validating the floor calibration (the manipulation is scheduled action-blocking and nothing else varies). It is inadequate for MECH-353 for two reasons, and the SECOND is prior and decisive. (i) num_hazards=0 pins z_harm_a at 0.0 in both arms, so the dissociation partner cannot move and capacity_belief is pinned at 1.0 -- note the CORRECT cell for that is capacity_belief = 1 - capacity_collapse_weight * ||z_harm_a|| (ree_core/agent.py:4209-4214; the formula is named at agent.py:4022-4023), NOT motor_gate_shut_frac / motor_agency, which feed the ATTRIBUTION gate and are a different gate entirely (red-team H1; the draft cited the wrong cell for a true conclusion). (ii) Prior to any of that, the WITHDRAW POLE IS UNREPRESENTABLE in this action space: action_dim=4 with blocked_agency_noop_class=0 -> MOVE-UP, stay is index 4 and unreachable (red-team F3). So no capacity manipulation in this bed could have instantiated withdraw even if capacity HAD been challenged. This is an experiment-configuration defect inherited across the whole 642 family.",
+        "measurement": "partial / under-instrumented -- four findings. (a) THREE of four load-bearing criteria carry an inert or mis-specified leg (see degenerate_criterion_legs and criteria_non_degenerate_adjudicated). (b) The run recorded, in every arm, both the detector's own classification count (n_external_block_ticks) and the environment's ground-truth blocked-step count (n_blocked_steps), and nothing compared them (see detector_specificity_finding). (c) n_external_block_ticks (a driver-side run total) and n_external_blocks_counter (from blocked_agency.get_state()) sit side by side in the same per-arm dict and are not commensurable -- seed 44 ARM_BLOCK reads 1068 and 0 respectively. Precisely (red-team H3): blocked_agency.reset() zeroes _n_external_blocks (blocked_agency.py:456) and the loop calls agent.reset() on env-done, so the counter reports TICKS SINCE THE LAST env-done, which is not necessarily an episode boundary -- the observed block-arm values 34 / 56 / 0 are not 'final episode' totals of ~60. (d) Only COUNTS were recorded, never SERIES: no per-tick external_block or action_blocked flag list is kept or emitted (the run pack's metrics.json is 53 bytes), so the block-arm confusion matrix is not derivable from this run at any cost (red-team F5).",
+        "integration": "coupled but partially unverified -- both arms of a seed run sequentially on ONE agent, ARM_BLOCK first, and only blocked_agency state is reset per episode (agent.py:3661 -> blocked_agency.reset() nulls _baseline_mismatch_ema). Residue and hippocampal state are not reset (red-team F7), so ARM_CONTROL's policy runs on an agent carrying ARM_BLOCK's history. This is clean for C1 (the DV is the blocked-agency integrator, whose state IS reset) and a genuine confound for C3 (whose rates come from the policy arm). Left unfixed on the 642b gate's ratified instruction to keep C0/C3 as they stand.",
+        "scale": "adequate -- 3 seeds x 2 arms x 20 P1 episodes x 120 steps = 2400 measured steps per arm per seed; n_runs_completed 6/6; n_ready_seeds_effective 3, seed_base_sufficient true (the red-team F6 realized-n trap did not bite). elapsed_seconds 1283.0 on ree-cloud-4, machine_class linux-x86_64-py3.10-torch2.12.0+cpu."
+      },
+      "detector_specificity_finding": {
+        "summary": "RETITLED per red-team F2: BASELINE-RELATIVE MISMATCH-FLOOR FREE-STEP FALSE-POSITIVE RATE (6-15 pct of control-arm ticks). NEW and previously unrecorded, computed from cells the manifest already contains. The draft located this defect on the external-attribution gate; that is wrong. The ATTRIBUTION (motor) clause never discriminated in this run: motor_gate_shut_frac is 0.0 in BOTH arms on 3/3 seeds and motor_agency_min is 0.736-0.742 against attribution_motor_floor 0.5, so the clause was TRUE on all 14400 measured ticks -- it removed nothing, admitted nothing, and is INERT in this run. In ree_core/affect/blocked_agency.py:318-323 the predicate is (not baseline_seeded_this_tick AND goal_ok AND mism >= effective_floor AND motor >= attribution_motor_floor); with the goal pinned active and baseline seeding excluded, the ONLY clause that can be False on a control-arm tick is mism >= effective_floor. So every one of the 357 / 362 / 147 ARM_CONTROL fires is a FREE STEP whose outcome_mismatch crossed the 1.5x-EMA floor: ARM_CONTROL free_step_mismatch_mean 0.384 / 0.462 / 0.493 against effective_mismatch_floor_mean 0.701 / 0.775 / 0.893, i.e. the tail of the free-step mismatch distribution crosses the floor 6-15 pct of the time. That is the calibration THIS substrate_queue entry is itself about.",
+        "measured": [
+          "seed 42: ARM_CONTROL n_blocked_steps 0 of 2400, n_external_block_ticks 357 (14.9 pct). ARM_BLOCK n_blocked_steps 1179 of 2400 (49.1 pct), n_external_block_ticks 867 (36.1 pct).",
+          "seed 43: ARM_CONTROL 0 of 2400 blocked, 362 detector fires (15.1 pct). ARM_BLOCK 1183 of 2400 blocked, 933 fires (38.9 pct).",
+          "seed 44: ARM_CONTROL 0 of 2400 blocked, 147 detector fires (6.1 pct). ARM_BLOCK 1180 of 2400 blocked, 1068 fires (44.5 pct)."
+        ],
+        "derived_upper_bound_on_recall": "ARM_BLOCK detector fires as a fraction of actually-blocked steps, an UPPER bound because some block-arm fires certainly land on free steps: 867/1179 = 73.5 pct, 933/1183 = 78.9 pct, 1068/1180 = 90.5 pct. If the control-arm false-positive rate transfers to the block arm's free steps (an ASSUMPTION, not a measurement), true-positive recall is nearer 58-84 pct.",
+        "why_it_matters": "The aggregate BLOCK-vs-CONTROL mean separation survives this comfortably -- C1 is not undermined. What it does mean: any experiment or claim that reads z_block, or external_block_this_tick, as an indicator that an external block OCCURRED inherits a 6-15 pct base-rate contamination with no signal that it is there. It does NOT, however, support H2. The FP rate is evidence about the FLOOR, not about the attribution clause's permissiveness, which was never exercised at all (red-team F2c) -- the H2-support sentence the draft carried here is withdrawn. H1 vs H2 is untouched by this run.",
+        "provenance": "Both COUNTS are recorded per arm per seed in per_seed[].ARM_BLOCK / ARM_CONTROL. This is analysis of recorded cells, not a new measurement and not a recording gap. Note the limit (red-team F5): only counts exist, never per-tick series, so the ARM_CONTROL rate is derivable ONLY because n_blocked_steps is 0 there (every fire is a false positive by construction). In ARM_BLOCK, 867 fires against 1179 blocked and 1221 free steps cannot be split into TP/FP at all; the 58-84 pct recall figure below rests on transferring the control FP rate, which is an ASSUMPTION, not a measurement.",
+        "relation_to_recorded_residual": "This is the TICK-LEVEL FORM of the CONTROL-transient residual the entry ALREADY records, not a distinct new defect on the same file (red-team F2). Runs of consecutive free-step floor crossings are exactly what drives the CONTROL arm's z_block transiently to the 1.5 cap -- the residual recorded in the entry's severity_note ('CONTROL z_block_peak still reaches 1.500 on 3/3 seeds') and described by the driver (headroom_dv_diagnostics.note: 'this run does NOT close that entry'). Same defect, newly visible at tick level."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "PASS -- chargeability read, not a failure read. The result IS chargeable to the SUBSTRATE on the calibration question: Implementation completeness reads complete, C1 is non-degenerate, and the a-priori 0.30 bar demonstrably discriminates the un-calibrated regime (642a, 0.083-0.165, all below bar) from the calibrated one (0.590-0.771, all above), so the PASS is attributable to the built lever rather than to an implementation or measurement artefact. It is NOT chargeable as a MECH-353 CLAIM validation: Measurement adequacy reads partial (THREE of four criteria carry an inert or mis-specified leg -- red-team F3/H6 -- and the mismatch floor's free-step false-positive rate was recorded but never scored) and Environment adequacy reads too sparse (num_hazards=0 removes the dissociation partner and pins capacity_belief; and prior to that, the withdraw pole is unrepresentable at action_dim=4 with noop_class=0, so no capacity-collapse contrast was expressible in this bed at all). REE FAILED is not reachable, is not asserted, and would be the wrong frame in any case -- nothing failed."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Frustrative non-reward / Panksepp RAGE assert-pole: a comparator on expected-minus-obtained action outcome, firing without noxious input, driving assertion and effort escalation rather than withdrawal.",
+        "dependencies": [
+          "a trained action-conditional forward model of the intended effect (SD-056 / SD-031)",
+          "a trained world encoder so the comparator has a non-degenerate target (SD-070)",
+          "a live goal / wanting expectation (MECH-112 z_goal)",
+          "an external-vs-self attribution channel (motor agency, SD-029 family applied to the action-outcome channel)",
+          "a retained capacity-belief gate, with hand-off to the suffering accumulator on collapse (SD-019b / Q-036)"
+        ],
+        "is_formal_import": false,
+        "divergence": "None load-bearing. The detector is a single-pass comparator, which is the biologically-evidenced form (Carruthers 2012), not a two-pass counterfactual import -- this family does not repeat the SD-003 error. The divergence that IS live is scope, not mechanism: the biology defines FNR by the ABSENCE of noxious input, which makes the harm-free environment a faithful instantiation of the antecedent but an inadequate test of the dissociation-from-harm PREDICATE the claim registers as its falsifier.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "standard, not substrate_ceiling and not substrate_conditional. Nothing here asserts that MECH-353's answer is gated on substrate work -- the substrate is built and this run shows it works. What is owed is an EXPERIMENT in a richer environment, which is exactly the case the skill says maps to standard with the diagnosis in the note fields. Stamping substrate_ceiling or substrate_conditional would additionally make MECH-353 non-v3-testable (_claim_v3_testable) and starve it of experiment lanes at the moment the correct route is a new experiment lane.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "non_contributory STANDS, unchanged. Claim-free post-build substrate validation (claim_ids: []); the driver forces non_contributory on every outcome by design so a wrapper cannot move a claim's confidence through inherited metadata. The manifest's existing evidence_direction_note is correct as written and needs no edit. The PASS routes governance READINESS -- it licenses governance to close the substrate_queue validation and to update MECH-353's evidence_quality_note -- and it does not by itself clear v3_pending.",
+      "recommended_manifest_disposition": {
+        "evidence_direction": "non_contributory (stands)",
+        "evidence_direction_note": "stands as written",
+        "epistemic_category": "standard",
+        "vacuous_pass_flag": "UPHELD AND BROADENED, and the manifest's own record of it is honest and should be preserved rather than cleared. This autopsy adjudicates criteria_non_degenerate as {C0: true, C1: true, C2: false, C3: false} (see criteria_non_degenerate_adjudicated). Recommended addition at governance's discretion: extend interpretation.c2_degeneracy_reason (or add a sibling c3_degeneracy_note) to record BOTH that C3's no_suffering conjunct is inert by the same num_hazards=0 construction AND that its no_withdraw / assert_sig legs are mis-specified because withdraw is unrepresentable at action_dim=4 with blocked_agency_noop_class=0 (red-team F3). The overall PASS stands.",
+        "interpretation_label": "recommend governance record a relabel from validated_clear_v3_pending to validated_substrate_calibration_v3_pending_stands in the review note; the manifest itself is landed evidence and this autopsy does not ask for it to be rewritten.",
+        "withdraw_representable_revalidation_owed": true,
+        "withdraw_representable_revalidation_note": "A WITHDRAW-REPRESENTABLE re-validation is owed before MECH-353's v3_pending can clear -- not because the PASS is unsound, but because the criterion that would test the claim's registered falsifier could never EXPRESS the contrast it names (action_dim=4, blocked_agency_noop_class=0 -> MOVE-UP; the stay action is index 4 and unreachable). A HAZARD-PRESENT arm is owed alongside it, for the z_harm_a leg, and a SELF-ATTRIBUTABLE-cancellation arm for the attribution leg. V3-EXQ-642d is specified to carry all three. See routing and recommended_next_experiments."
+      },
+      "work_graph_node_class": "complex (probe-gated) / puzzle (known rules)",
+      "work_graph_note": "The frame is well posed -- everyone agrees what a dissociation test looks like and the environment already supports hazards -- and a FACT is missing: does z_block dissociate from z_harm_a when z_harm_a is free to vary, and is the BLOCK-vs-CONTROL elevation attributable to the external-attribution gate rather than to generic outcome-mismatch? That is a puzzle (known rules), which routes to a spike, i.e. /queue-experiment a diagnostic. It is NOT complicated (buildable): the substrate is already built and a build would be the wrong instrument. It is NOT mystery (known data): the data that would settle it does not exist yet -- this run's environment could not produce it.",
+      "per_claim_recommendation": {
+        "MECH-353": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "v3_pending STAYS TRUE -- by USER GATE DECISION on 2026-09-05, recorded as a governance JUDGMENT and NOT as a forced reading of the claim text (red-team F1). Both readings were put to the user with the claim quoted verbatim. Reading 1, the claim's own words: evidence_quality_note -- 'v3_pending=true until the smallest-V3 blocked-action discriminative experiment lands (env repeatedly blocks an intended predicted-to-succeed action, harm + goal held constant; measure assert-vs-withdraw dissociation from z_harm_a under matched controllability)'; implementation_note -- 'v3_pending remains TRUE until the post-build blocked-action discriminative validation, V3-EXQ-642b, passes'. Harm HELD CONSTANT is the claim's own instruction, the phrases 'free to vary' and 'num_hazards' appear nowhere in the claim, and 642c supersedes and PASSes the named 642b lineage -- so a fair reader could call this run the release. Reading 2, which the user took: the assert-vs-withdraw dissociation has NEVER been measurable anywhere in this family, because withdraw is UNREPRESENTABLE (action_dim=4 with blocked_agency_noop_class=0 = MOVE-UP; stay is action index 4 and unreachable), so the claim's named release run has not yet been VALIDLY run at all, whatever its verdict. Routing: V3-EXQ-642d with withdraw representable. What governance should apply regardless of that choice: rewrite evidence_quality_note per recommended_evidence_quality_note, refresh live_status.evidence.from to this artifact, set diagnostic_evidence_adjudicated true, and -- since MECH-353 currently carries NO epistemic_category field at all -- set one -> epistemic_category: standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate",
+          "v3_pending_recommendation": "STAYS TRUE -- user gate decision 2026-09-05, held as a governance judgment (see change). MECH-353 carries none of epistemic_category, pending_retest_after_substrate or diagnostic_evidence_adjudicated today (red-team H2), so the two recommended fields are ADDs, not sets-to-a-new-value; pending_retest_after_substrate is deliberately not recommended at all, since there is nothing waiting on a build to set it false about.",
+          "v3_pending_release_condition_restated": "The claim's own release text, verbatim, is the starting point, and it does NOT name num_hazards: evidence_quality_note -- 'v3_pending=true until the smallest-V3 blocked-action discriminative experiment lands (env repeatedly blocks an intended predicted-to-succeed action, harm + goal held constant; measure assert-vs-withdraw dissociation from z_harm_a under matched controllability)'; implementation_note -- 'v3_pending remains TRUE until the post-build blocked-action discriminative validation, V3-EXQ-642b, passes'. 'Harm + goal HELD CONSTANT' is the claim's own instruction, so a hazard-free bed is not per se disqualifying, and the draft's earlier 'leg A requires z_harm_a to be free to vary' inverted the clause it quoted (red-team F1). The binding reason v3_pending is HELD is different and prior: the assert-vs-withdraw dissociation the clause names has never been MEASURABLE in this family, because withdraw has no representation in the action space (action_dim=4, blocked_agency_noop_class=0 -> MOVE-UP; stay is index 4, unreachable), so C3's action_rate scores 'fraction of steps not choosing move-up' and the consumer's ASSERT bias (blocked_agency.py:426) treats move-up as the passive option. The named release run has therefore not validly run. CLEAR v3_pending on a run in which WITHDRAW IS EXPRESSIBLE (action_dim=5 with blocked_agency_noop_class=4, or an explicit no-op arm) and the assert-vs-withdraw contrast is scored with a pre-registered non-zero margin and a counterbalanced arm order. A hazards-present arm additionally makes C2's subtraction and C3's no_suffering conjunct live for the first time in the family, and is what tests H3. V3-EXQ-642d is specified to carry both.",
+          "note_governance_writes": "PASS validates the mismatch-floor calibration on the headroom DV (C1 separation 0.59-0.77 against an a-priori 0.30 bar, 3/3 seeds); v3_pending held by user decision 2026-09-05 because withdraw was unrepresentable (action_dim=4 / blocked_agency_noop_class=0) and z_harm_a pinned at 0, so the claim's named release run has not validly run; V3-EXQ-642d owed."
+        }
+      },
+      "read_across_not_adjudicated": [
+        "SD-029 -- NOT adjudicated and should not be. SD-029 is the single-pass comparator on the z_harm_s REAFFERENT stream; MECH-353's detector is that comparator form applied to the action-outcome / z_world channel, which is SD-031. With num_hazards=0 there is no z_harm_s traffic at all, so SD-029's own stream was never exercised. It is a peripheral co-tag in bears_on. Its stored epistemic_category is substrate_ceiling and this run neither supports nor disturbs that.",
+        "SD-070 and SD-056 -- exercised and clean, as READINESS preconditions rather than as scoring evidence: SD-070's P0a moved 4/4 world_encoder tensors on 3/3 seeds and SD-056's contrastive trained to 0.196-0.317, jointly clearing the C0 gate at margins 0.51-0.62 vs a 0.10 floor. Deliberately NOT written as per-claim supports: the run is claimless and forces non_contributory precisely so a wrapper cannot move claim confidence through inherited metadata, and adding a supports entry here would be that violation.",
+        "MECH-112 (z_goal expectation) -- z_goal was PINNED at 0.5 by base._pin_goal() as a deliberate experimental control (z_goal_stream: writer_calls 0, ticks_active 14400, active_frac 1.0, goal_pinned true, writer_defect null). A pinned goal cannot test a claim about a structured goal representation. Not adjudicated.",
+        "MECH-320 (vigor), MECH-342 (decommit release), ARC-016 (commitment threshold) -- these are MECH-353's CONSUMERS. This run measured the detector, not the consumers: n_external_blocks never drove a decommit path that was scored, and no vigor or commitment DV appears in the criteria. Not adjudicated.",
+        "SD-011 and SD-019b -- these are the claims the dissociation is FROM. They are exactly what the hazard-free environment made untestable here. Not adjudicated, and the fact that they cannot be is the finding, recorded against MECH-353's release condition rather than against them."
+      ],
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "sd_blocked_agency_mismatch_floor_calibration",
+        "title": "Calibrate blocked-agency outcome_mismatch_floor against the achievable free-step mismatch baseline",
+        "implementation_hint": "No further build is recommended on the floor calibration itself. The amend records what 642c DID demonstrate (a validation_record_642c note, not a status advance), resolves the 642b failure_record item with an explicit per-run caveat, and re-states the entry's EXISTING corrupting residual at tick level rather than opening a second defect on the same file.",
+        "unblocks_claims": [
+          "MECH-353",
+          "SD-029",
+          "MECH-112",
+          "SD-011",
+          "SD-019b"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "severity_change_note": "SEVERITY STAYS corrupting, on its ORIGINAL rationale -- governance should keep BOTH the value and the reason. The re-basing drafted earlier is WITHDRAWN on red-team F4. The entry's exit condition reads verbatim: 'Re-assess to degrading once a headroom-DV requirement is in place for this substrate.' No such REQUIREMENT exists. ree-v3 8e133d26ed (2026-09-04) landed the dv_headroom precondition as OPT-IN ('OPT-IN, and byte-identical when not opted into', experiments/_metrics.py:605) and the criterion_exceeds_achievable_range lint as WARN-only in BOTH modes (validate_experiments.py:7906; the commit message states it never hardens the exit code in any mode). A new blocked-agency author can still write a peak criterion and receive only a WARN, and nothing requires a per-arm saturation fraction at all. So the exit condition has NOT fired and the original justification for corrupting stands unretired. What this autopsy adds is not a second corrupting condition but the MECHANISM of the recorded one, at tick level: the residual the entry already carries (CONTROL z_block_peak reaches 1.500 on 3/3 seeds) is produced by runs of consecutive free-step crossings of the 1.5x-EMA floor, measured here at 6.1-15.1 pct of control-arm ticks (357/2400, 362/2400, 147/2400). Same defect, newly visible one level down.",
+        "substrate_paths": [
+          "ree_core/affect/blocked_agency.py"
+        ],
+        "status_recommendation": "NO STATUS ADVANCE -- the entry's status and status_phase stay AS-IS (implemented_pending_validation / validation_pending). The draft's advance to validated is WITHDRAWN on red-team F2b: a floor calibration with a measured 6-15 pct free-step false-positive rate, producing transient cap-hits in a no-block arm, is 'validated on the headroom statistic' and 'still defective on the tick statistic' AT THE SAME TIME, and advancing status_phase to validated while a floor-calibration defect is open on the same entry is internally inconsistent. RECOMMENDED INSTEAD: add a validation_record_642c note to the entry recording exactly what did validate -- BLOCK-minus-CONTROL z_block_mean 0.6805/0.5904/0.7709 against an a-priori 0.30 bar (20 pct of Z_BLOCK_CAP, stated before the predecessor separations were looked up), the same criterion rejecting the un-calibrated 642a regime 3/3 (0.1650/0.1214/0.0831), two dv_headroom preconditions met at margin 2.0, and z_block_saturation_frac recorded per arm per seed -- with the scope stated plainly: what is demonstrated is the FLOOR CALIBRATION on a headroom DV, not MECH-353, and not the tick-level specificity.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_642c_blocked_agency_headroom_dv_validation_20260904T214459Z_v3",
+          "experiment_type": "v3_exq_642c_blocked_agency_headroom_dv_validation",
+          "metric": "Baseline-relative mismatch-floor free-step FALSE-POSITIVE rate (retitled per red-team F2; the draft attributed this to the external-attribution gate, which never discriminated in this run). On a FREE step with the goal pinned active, outcome_mismatch crosses effective_mismatch_floor (1.5x EMA) and external_block_this_tick fires. Measured in ARM_CONTROL, where n_blocked_steps is 0: 357/2400 (14.9 pct), 362/2400 (15.1 pct), 147/2400 (6.1 pct). ARM_CONTROL free_step_mismatch_mean 0.384/0.462/0.493 against effective_mismatch_floor_mean 0.701/0.775/0.893. The attribution (motor) clause is INERT here -- motor_gate_shut_frac 0.0 on 14400/14400 ticks, motor_agency_min 0.736-0.742 vs floor 0.5 -- so these are FLOOR false positives, not attribution failures. This is the tick-level form of the entry's existing CONTROL-transient residual, and it is what drives CONTROL z_block_peak to the 1.500 cap on 3/3 seeds.",
+          "target": "target: provisional -- control-arm free-step FP rate <= 2%, to be derived from a per-tick series in 642d. The 2 pct bar is NOT derived from anything in this record -- no a-priori rule, no predecessor replay (red-team H7) -- and this family's own learning 5 is precisely that thresholds must be derived rather than invented. 642c cannot supply the derivation: no per-tick series exists (the driver stores only scalar counts; the run pack's metrics.json is 53 bytes), so the tail of the free-step mismatch distribution against the floor ratio cannot be characterised from the recorded cells. Derive the bar from the per-tick external_block / mismatch series V3-EXQ-642d is specified to record, and replace this provisional value at that point. Alongside it, record the per-tick confusion matrix against the environment's own action_blocked_this_step.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_642b_blocked_agency_calibrated_floor_validation_20260831T131011Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "resolved (per-run demonstration; no generic requirement installed). The 642b item's target is a DISJUNCTION -- 'either give the integrator headroom against brief excursions, OR require every blocked-agency criterion to route on a headroom DV and record a per-arm saturation fraction' -- and the SHAPE reading is correct (the wording was checked verbatim). But only the second disjunct's DEMONSTRATION half is satisfied, and it is satisfied PER-RUN by V3-EXQ-642c, NOT by an installed requirement (red-team F4). 642c's own design does it: C1/C2 route on z_block_mean, two dv_headroom preconditions gate feasibility (prior 1.3232 and measured 1.3232 against a 0.60 requirement at margin 2.0), and z_block_saturation_frac is recorded per arm per seed (BLOCK 0.276/0.346/0.398 vs CONTROL 0.0058/0.0513/0.0200). What ree-v3 8e133d26ed installed is an OFFER, not a REQUIREMENT: the dv_headroom precondition is opt-in (experiments/_metrics.py:605) and the criterion_exceeds_achievable_range lint is WARN-only in both modes (validate_experiments.py:7906), so nothing binds a future blocked-agency driver to a headroom DV and nothing requires a per-arm saturation fraction at all. The draft's claim that 'the requirement is installed generically, not per-run' is withdrawn -- that was the half that would have stopped re-litigation, and it is the half that is not true. The item's FIRST disjunct -- a substrate change giving the integrator headroom against transients -- was never required, only offered, and remains unbuilt; CONTROL still touches 1.500 on 3/3 seeds. Marking this resolved stops a satisfied disjunction being re-litigated every cycle; the caveat is recorded verbatim here so the resolution is never later read as a generic guarantee, and it is why the entry's severity stays corrupting on its ORIGINAL rationale."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after_substrate_note": "false deliberately. Nothing is waiting on a substrate build: the floor calibration is built and now validated. What is owed is an experiment in a richer environment, which is a queue-experiment route, not a substrate gate.",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "refused_requeue": false,
+        "supersedes_autopsy": null,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "R1-R3 counting convention run at 2026-09-05T02:38:25Z over every confirmed failure_autopsy_*.json: MECH-353 ceiling hits = 0. All four targets in this family (V3-EXQ-642, 642a, 642b, 642c) carry claim_ids: [], so none of them counts against MECH-353 or any other claim. This reading is NOT substrate_ceiling and adds no ceiling hit. The successor recommended here is a DIFFERENT test (hazards present, dissociation partner live, plus a distinct capacity-collapse contrast), not another letter circling a ceiling, so the brake's refusal clause does not apply. granularity_debt_cluster.py MECH-353: 0 tagging targets across 0 files -- the granularity-debt trigger does NOT fire, and cannot, because no autopsy in this family has ever tagged the claim. That absence is itself worth governance's attention: four autopsies have adjudicated MECH-353's validation path and none is visible to GOV-GRAN-1 or GOV-CEIL-1, which is why per_claim_recommendation is filled here for the first time in the family (642a and 642b both left it {})."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1 ATTRIBUTIONAL: the BLOCK-vs-CONTROL z_block_mean separation is produced by the external-attribution gate correctly selecting externally-cancelled steps -- i.e. the computation MECH-353 claims is the one doing the work.",
+          "H2 GENERIC-MISMATCH: the separation is produced by any large action-outcome mismatch, and the external-attribution gate is not load-bearing -- it would replicate under self-caused or hazard-caused disruption. V3-EXQ-642c's pre-run red-team F2 conceded this design 'cannot separate external block from move cancelled by any means'. NOTE, per Step 7c red-team F2c: the control-arm 6-15 pct firing rate is NOT evidence for H2 -- it is evidence about the mismatch FLOOR, and the attribution (motor) clause was never exercised at all in this run (true on 14400/14400 ticks). H1 vs H2 is UNTOUCHED by 642c.",
+          "H3 HARM-CONFOUNDED: with z_harm_a free to vary, z_block and z_harm_a co-vary under the block manipulation rather than dissociating -- the claim's registered distinctness predicate fails. Untestable in this environment and therefore wholly unaddressed by the PASS."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1 vs H2",
+            "axis": "process",
+            "sketch": "A THIRD ARM in which moves are cancelled by a SELF-ATTRIBUTABLE route (motor noise / execution failure) rather than an external schedule. H1 predicts near-zero firing in that arm; H2 predicts firing comparable to ARM_BLOCK. Declared null: the self-attributable arm's z_block_mean is statistically indistinguishable from ARM_BLOCK's. Score the per-tick confusion matrix of external_block_this_tick against action_blocked_this_step alongside it -- but as a SUPPORTING readout, not as the discriminator.",
+            "cost_note": "NOT free, and NOT derivable from 642c -- the draft's 'half free at zero compute' claim is withdrawn (red-team F5). No per-tick series exists: the driver stores n_external_block_ticks as a scalar int and n_blocked_steps as a length, the run pack's metrics.json is 53 bytes, and neither manifest carries external_block_this_tick or action_blocked_this_step per tick. In ARM_CONTROL the FP rate is derivable ONLY because n_blocked_steps = 0 there; in ARM_BLOCK, 867 fires against 1179 blocked and 1221 free steps cannot be split into TP/FP at any cost. And even a complete confusion matrix would NOT separate H1 from H2 in a design with no self-attributable cancellations -- both predict firing on externally cancelled moves. The self-attributable arm is the ONLY instrument that adjudicates them, and (per F2) the only listed probe that pushes motor_agency below the 0.5 attribution floor and thereby exercises the attribution clause at all. It is now specified INSIDE V3-EXQ-642d."
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "world",
+            "sketch": "An arm at num_hazards > 0 so z_harm_a is free to move, holding goal value and the block schedule fixed. C2's subtraction and C3's no_suffering conjunct become live for the first time in the family. Declared null: z_block and z_harm_a separations are proportional across seeds (co-variation), i.e. no dissociation. Specified INSIDE V3-EXQ-642d as its hazards arm.",
+            "cost_note": "Minimal change to a working driver; ~1300 s for the full 3-seed x 2-arm grid."
+          },
+          {
+            "hypothesis": "The claim's assert-vs-withdraw predicate (MECH-353 release leg B)",
+            "axis": "drive",
+            "sketch": "A capacity-collapse condition (SD-019b / Q-036 escapability) under the SAME block manipulation, so both poles are instantiated in one design: capacity-retained should ASSERT and capacity-collapsed should WITHDRAW. Declared null: the two conditions produce indistinguishable action-rate and alt-switch signatures. PRECONDITION, and it is a hard one: withdraw must be REPRESENTABLE first (action_dim=5 with blocked_agency_noop_class=4, or an explicit no-op arm). Running this design onto the current action space would score 'fraction of steps not choosing move-up' for both poles.",
+            "cost_note": "DEFERRED, not queued now. This is a materially different design (a new EXQ number, not a 642 letter), and it is held until V3-EXQ-642d demonstrates in a real run that withdraw is expressible. Queuing it onto an action space where passivity has no representation would repeat the family's configuration defect at greater cost."
+          }
+        ],
+        "note": "GOV-FANOUT-1, collapsed honestly after red-team F5. The draft advertised 'three probes on three axes' with the instrumentation leg 'half free'. It is neither: the confusion matrix is not derivable from 642c's recorded cells, and it does not discriminate H1 from H2 on its own. What actually exists is ONE build now -- V3-EXQ-642d, carrying the hazards arm (H3), the self-attributable arm (H1 vs H2), and the action-space repair that makes the assert-vs-withdraw contrast measurable at all -- plus ONE deferred build (the capacity-collapse contrast, held behind 642d). Still explicitly NOT a power-bump of the braked design: 642c's own criteria are already met and more seeds of the same environment would answer none of H1-H3."
+      },
+      "recommended_next_experiments": [
+        {
+          "id_suggested": "V3-EXQ-642d",
+          "kind": "same-question successor, alphabetic suffix -- the scientific question is unchanged; what is repaired is an experiment CONFIGURATION defect (letter, not new number).",
+          "rationale": "The scientific question is unchanged (does the blocked-agency stream validate, and is the elevation the attributional computation MECH-353 claims?). What was inadequate is the configuration: withdraw was unrepresentable in the action space, z_harm_a was pinned, no per-tick series was recorded, and no arm could exercise the attribution clause. Item (1) below is the decisive repair and is prior to the rest -- without it C3 stays vacuous a fifth time no matter what margin it is given.",
+          "spec": "642c protocol EXCEPT, and all six are required: (1) action_dim=5 with blocked_agency_noop_class=4 (or an explicit no-op arm) so WITHDRAW is expressible at all -- this repairs the defect inherited across 642/642a/642b/642c, in which action_rate scored 'fraction of steps not choosing move-up' and blocked_agency.py:426 gave the ASSERT bias's passive_term to move-up; (2) an arm with num_hazards > 0 so z_harm_a is free to vary, making C2's subtraction and C3's no_suffering conjunct live for the first time in the family; (3) a per-tick external_block / action_blocked FLAG SERIES recorded to the run pack (642c emits only scalar counts; its metrics.json is 53 bytes), so the confusion matrix and the floor's free-step FP rate become measurable rather than assumed, and the provisional <= 2 pct bar can finally be DERIVED; (4) a THIRD arm in which moves are cancelled by a SELF-ATTRIBUTABLE route (motor noise / execution failure) -- the H1-vs-H2 discriminator, and the only arm that pushes motor_agency below the 0.5 attribution floor and therefore the only one that exercises the attribution clause at all; (5) C3 with a pre-registered NON-ZERO margin and counterbalanced arm order (642c's C3 passed on 4-24 steps out of 2400 with a zero-margin strict inequality and ARM_BLOCK always first, and on seed 43 its alt_switch went the wrong way); (6) re-key criteria_non_degenerate on EVERY criterion leg that reads a structurally pinned variable, not only C2.",
+          "closes": "H3 fully (item 2); H1 vs H2 (item 4, the self-attributable arm specifically -- NOT the main hazards contrast, and NOT the confusion matrix alone); and, via item 1, it makes the assert-vs-withdraw contrast MEASURABLE for the first time in the family, which is the precondition for ever clearing MECH-353's v3_pending."
+        },
+        {
+          "id_suggested": "new EXQ number (not a 642 letter) -- DEFERRED, do not queue yet",
+          "kind": "new scientific question, deferred behind V3-EXQ-642d",
+          "rationale": "The dedicated capacity-collapse assert-vs-withdraw contrast is DEFERRED until V3-EXQ-642d shows in a real run that withdraw is expressible. Queuing a capacity-collapse design onto an action space in which passivity has no representation (action_dim=4, blocked_agency_noop_class=0 -> MOVE-UP) would repeat the family's configuration defect at greater cost and produce a fifth vacuous C3. Revisit once 642d's item (1) is verified.",
+          "spec": "Capacity-retained vs capacity-collapsed under a matched block manipulation; measure the behavioural distinctness of the assert and withdraw signatures (SD-019b / Q-036 hand-off). Precondition: 642d demonstrates a representable no-op / withdraw action and a C3 that reads it.",
+          "closes": "MECH-353 release-condition leg B, once unblocked."
+        }
+      ],
+      "learning_extracted": [
+        "A criterion degeneracy caused by a PINNED ENVIRONMENT VARIABLE is a property of the environment, not of the criterion -- so sweep every criterion leg that reads that variable, not the one that made the degeneracy obvious. V3-EXQ-642c correctly flagged criteria_non_degenerate.C2=false because num_hazards=0 makes the z_harm_a separation identically 0, and missed that the SAME pin makes C3's third conjunct (no_suffering: block z_harm_a_mean_policy <= control + eps, i.e. 0.0 <= 0.02) trivially true on every seed. The driver did perform exactly this sweep for the other degeneracy it fixed -- red-team F8 re-keyed C1/C2/C3 non-degeneracy off the clamp-pinned peak onto z_block_mean -- so the discipline exists in the file; it was applied to the pinned STATISTIC and not to the pinned VARIABLE.",
+        "Check a claim's v3_pending RELEASE CONDITION clause by clause against the validating run's environment CONFIG, before the run, not against its outcome afterwards. MECH-353's release condition reads 'measure assert-vs-withdraw dissociation from z_harm_a under matched controllability'; the validating environment pins num_hazards=0 (removing the dissociation partner) and never challenges capacity (motor_gate_shut_frac 0.0, motor_agency 0.74-0.78 in both arms, so only the assert pole is instantiated). A PASS on such a run can validate the substrate lever and still be structurally unable to release the claim -- and the run's own self-route label said clear_v3_pending.",
+        "Recording two series is not the same as scoring the relation between them. V3-EXQ-642c recorded, per arm per seed, both the detector's classification count (n_external_block_ticks) and the environment's ground-truth blocked-step count (n_blocked_steps), and nothing compared them. The comparison is the strongest unscored result in the manifest: the external-attribution gate fires on 6.1-15.1 pct of ticks in an arm with zero blocks. This is the mirror image of a recording gap -- the readout was recorded and the analysis was not specified.",
+        "Two same-named counters in one manifest dict can be measured over different windows. n_external_block_ticks is a driver-side run total; n_external_blocks_counter comes from blocked_agency.get_state(), and blocked_agency.reset() zeroes _n_external_blocks (blocked_agency.py:456) while the loop calls agent.reset() on env-done -- so it reports TICKS SINCE THE LAST env-done, which is not necessarily an episode boundary (red-team H3; the observed 34 / 56 / 0 are not 'final episode' totals of ~60). Seed 44 ARM_BLOCK reads 1068 and 0 side by side. Name the window in the key, or emit only one.",
+        "POSITIVE -- the template worth reusing. When a statistic change forces a threshold to be re-derived, the anti-fabrication-safe pattern is: (a) state an a-priori derivation rule in the DV's own units before looking at any observed separation (here, every margin = 20 pct of Z_BLOCK_CAP), (b) verify the rule lands somewhere useful by REPLAYING the criterion over the recorded per-seed cells of two predecessor manifests spanning the regimes you want discriminated (642a legacy floor -> C1 false 3/3; 642b calibrated floor -> C1 true 3/3), and (c) gate feasibility with a dv_headroom precondition so a starved criterion self-routes substrate_not_ready_requeue instead of recording a falsification. This gave a bar that is stricter as a fraction of the DV's range than the one it replaced AND demonstrably discriminating, with zero threshold fitting. It is the direct answer to failure_autopsy_V3-EXQ-642b learning 2.",
+        "A well-derived aggregate criterion can pass cleanly while the per-tick mechanism underneath it is noisy. C1's separation (0.59-0.77 against a 0.30 bar) is comfortable and real; the detector producing it has an estimated 58-84 pct recall and 85-94 pct specificity. Neither number contradicts the other, and only the first was scored. When a claim's distinctive content is an ATTRIBUTION (this mismatch was externally caused), the load-bearing readout is a confusion matrix, not a group-mean separation.",
+        "An experiment can be structurally unable to measure its own headline contrast, and no criterion-level repair will surface it -- check the ACTION SPACE against the behaviour the criterion names, at authoring time. V3-EXQ-642 / 642a / 642b / 642c all scored C3 'assert not withdraw' at action_dim=4 while blocked_agency_noop_class defaulted to 0, which CausalGridWorldV2 maps to MOVE-UP; the stay action is index 4 and a 4-dim policy can never emit it. So action_rate measured 'fraction of steps not choosing move-up' and WITHDRAW had no representation at all -- through four letters, a pre-run red-team, and three prior autopsies, none of which caught it. The consumer carried the same miswire (blocked_agency.py:426 gives the ASSERT bias's passive_term to move-up, penalising it and favouring the other three moves). This is the ACTION-SPACE sibling of learning 2's environment-CONFIG check: a criterion that names a behaviour must be checked against the space that behaviour would have to be expressed in, before the run.",
+        "Counts are not series, and 'we already recorded both numbers' is not 'the relation is derivable'. Learning 3 above says recording two series is not the same as scoring their relation; the sharper form (red-team F5) is that 642c recorded two COUNTS, never two SERIES, so the block-arm confusion matrix is not derivable at ANY compute cost -- only the control-arm false-positive rate is, and only because its ground-truth count is exactly zero. A reanalysis-is-free claim in a routing recommendation must be checked against what is actually on disk (here: a 53-byte metrics.json), not against what the driver appears to have measured."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "/queue-experiment, ONE item now -- V3-EXQ-642d (letter, not a new number: the scientific question is unchanged and what is repaired is an experiment CONFIGURATION defect). Its six required spec items are in recommended_next_experiments; item (1), action_dim=5 with blocked_agency_noop_class=4 so withdraw is expressible, is the decisive one and is prior to the rest. The separate NEW-EXQ capacity-collapse contrast is DEFERRED, explicitly not queued, until 642d demonstrates withdraw is expressible (red-team F3/F5). Explicitly NOT /implement-substrate: the substrate is built, this run validates the floor calibration on a headroom DV, and the re-derive brake does not fire (0 ceiling hits on MECH-353); the action-space defect is experiment configuration, not substrate. Explicitly NOT /lit-pull: the blocked-agency lit anchor is present and adequate (5 entries, all supports) and the mechanism is not a formal import. Explicitly NOT /claim-synthesis: granularity_debt_cluster.py reports 0 tagging targets for MECH-353 and no target in this family reads claim_alignment weakened, so the cluster is measurement, environment and configuration debt, not granularity debt. Explicitly NOT governance-demotion: nothing here weakens MECH-353; the verdict is that its falsifier has never yet been validly run. Work-graph class unchanged: complex (probe-gated) / puzzle (known rules).",
+      "governance_apply_checklist": [
+        "1. MECH-353: apply recommended_evidence_quality_note; ADD epistemic_category: standard (the claim carries NO epistemic_category field today); ADD diagnostic_evidence_adjudicated: true (also absent today); do NOT set pending_retest_after_substrate -- the claim does not carry it and there is nothing waiting on a build to set it false about (red-team H2); refresh live_status.evidence.from to failure_autopsy_V3-EXQ-642c_2026-09-05 (it currently cites failure_autopsy_V3-EXQ-642_2026-06-06, three runs stale). LEAVE v3_pending TRUE -- user gate decision 2026-09-05, recorded as a governance judgment, not a forced reading of the claim text.",
+        "2. substrate_queue sd_blocked_agency_mismatch_floor_calibration: mark the 642b failure_record item resolved WITH the per-run caveat verbatim ('resolved (per-run demonstration; no generic requirement installed)'); append the retitled failure_record item (baseline-relative mismatch-floor free-step FP rate, target marked provisional); do NOT advance status/status_phase -- add a validation_record_642c note instead; keep severity corrupting on its ORIGINAL rationale (the re-basing is withdrawn: 8e133d26ed is opt-in + WARN-only, so the exit condition has not fired).",
+        "3. Queue V3-EXQ-642d per recommended_next_experiments, with all six spec items (governance chips it; this autopsy does not spawn_task it). Do NOT queue the capacity-collapse new-EXQ contrast -- it is DEFERRED behind 642d.",
+        "4. hypothesis_space_registry.v1.json: apply hypothesis_space_ledger_pending below (a NEW question; nothing in the registry currently covers MECH-353 or z_block). The block is still marked draft-for-governance; this session performed no registry write.",
+        "5. review_tracker.json: mark the run reviewed at the governance walk, not here."
+      ],
+      "recommended_evidence_quality_note": "MECH-353 evidence_quality_note -- exact text governance should write, replacing the trailing v3_pending sentence of the existing note and leaving the literature paragraph above it intact:\n\nv3_pending=true STANDS as of 2026-09-05, by governance decision at the Step 8 gate. The blocked-agency SUBSTRATE is validated on the calibration question: V3-EXQ-642c (run v3_exq_642c_blocked_agency_headroom_dv_validation_20260904T214459Z_v3, PASS, claimless, non_contributory) showed the baseline-relative outcome_mismatch floor built in ree-v3 d49db86f3e64670 gives the z_block integrator real dynamic range on a headroom statistic -- BLOCK-minus-CONTROL z_block_mean 0.6805/0.5904/0.7709 on 3/3 seeds against an a-priori 0.30 bar (20 pct of Z_BLOCK_CAP, derived before the predecessor separations were consulted), where the same criterion rejects the un-calibrated V3-EXQ-642a regime (0.1650/0.1214/0.0831) on 3/3 seeds. The detector-readiness precondition passed 3/3 (blocked-minus-free mismatch margins 0.601/0.547/0.498 vs floor 0.10) on a trained encoder (SD-070) and a trained action-conditional world_forward (SD-056).\n\nThat is the detector half, and it does NOT release v3_pending. The claim's own release text reads 'harm + goal held constant' and names 'the post-build blocked-action discriminative validation, V3-EXQ-642b' as the release run, which 642c supersedes and passes -- so a fair reader could call this the release, and the hold below is a governance JUDGMENT rather than a forced reading. The judgment rests on this: the assert-vs-withdraw dissociation the clause names has never been MEASURABLE anywhere in this family. The driver runs at action_dim=4 while blocked_agency_noop_class defaults to 0, which CausalGridWorldV2 maps to MOVE-UP (the stay action is index 4 and a 4-dim policy cannot emit it), so C3's action_rate scores 'fraction of steps not choosing move-up', the consumer's ASSERT score-bias treats move-up as the passive option (blocked_agency.py:426), and WITHDRAW has no representation at all. Separately, num_hazards=0 pins the measured z_harm_a separation at exactly 0.000 on every seed, so C2's dissociation criterion reduces algebraically to C1 (recorded as criteria_non_degenerate.C2=false) and C3's no_suffering conjunct (0.0 <= 0.0 + 0.02) is trivially true, and capacity_belief (= 1 - w*||z_harm_a||) is pinned at 1.0. Three of the four load-bearing criteria therefore carry an inert or mis-specified leg. The claim's named release run has not yet been validly run.\n\nOne further finding from the run's own recorded cells, correctly located: the BASELINE-RELATIVE MISMATCH FLOOR has a free-step false-positive rate of 6.1-15.1 pct (357/2400, 362/2400, 147/2400 fires in an arm where zero blocks were applied). This is a FLOOR calibration residual, not an attribution-gate failure -- the attribution (motor) clause was true on all 14400 ticks and never discriminated -- and it is the tick-level form of the already-recorded CONTROL-transient residual. It says nothing about whether the external-attribution computation is load-bearing; that question is untouched by this run.\n\nClear v3_pending on a run in which WITHDRAW IS EXPRESSIBLE (action_dim=5 with blocked_agency_noop_class=4, or an explicit no-op arm) and the assert-vs-withdraw contrast is scored with a pre-registered non-zero margin and counterbalanced arm order; with a hazards-present arm so z_harm_a is free to vary and z_block demonstrably separates from it under the same block manipulation; with a self-attributable-cancellation arm so the external attribution gate is actually exercised; and with a per-tick series recorded so the detector's confusion matrix against action_blocked_this_step is measurable rather than assumed. V3-EXQ-642d is specified to carry all four. Adjudicated in evidence/planning/failure_autopsy_V3-EXQ-642c_2026-09-05.{md,json}.",
+      "hypothesis_space_ledger_pending": {
+        "registry_write_performed": false,
+        "reason": "DRAFT FOR GOVERNANCE -- still not written. Step 9b is drafted-only: this confirming session held the Step 8 gate and folded the Step 7c findings, but performed NO registry write. The next /governance walk applies this block, then runs build_hypothesis_space.py + check_hypothesis_space_integrity.py.",
+        "existing_question_found": false,
+        "search_note": "hypothesis_space_registry.v1.json holds 50 questions at 2026-09-05T02:38:25Z; none names MECH-353, z_block, blocked-agency, or any V3-EXQ-642 run in its qid, title, claims or hypotheses. Searched for 642, MECH-353, z_block, blocked_agency and blocked-agency across the serialised registry. The nearest neighbours are q086-zharma-calibration-vs-ecological (Q-086, z_harm_a saturation) and sd031_causal_signature_shortcut_vs_model (SD-031, the comparator-on-z_world claim MECH-353's detector instantiates); neither adjudicates this run's legs and neither should absorb them.",
+        "growth_restriction_check": "NOT APPLICABLE. The growth-restriction gate applies only when a leg attaches to an ALREADY-REGISTERED question. This draft opens a NEW questions[] entry, which by construction cannot carry a restriction. No existing question is grown and no fanout_growth_events or discovery_growth_events entry is owed.",
+        "new_question_warranted": true,
+        "new_question_rationale": "Two of the three hypotheses below are live rivals that this run could not separate, and the third is the claim's own registered falsifier which this environment could not instantiate. The fanout_recommendation above enumerates them as a portfolio on three distinct design axes, which is exactly the Mode A pre-registration case: freeze the denominator before the portfolio runs, so a later PASS on one leg cannot be read as having narrowed a space nobody wrote down.",
+        "draft_registry_block": {
+          "qid": "mech353_zblock_attribution_and_dissociation",
+          "title": "Is the z_block BLOCK-vs-CONTROL elevation the external-attribution computation MECH-353 claims, and does it dissociate from z_harm_a?",
+          "short_title": "z_block attribution + dissociation",
+          "claims": [
+            "MECH-353",
+            "SD-011",
+            "SD-019b"
+          ],
+          "registered_utc": "2026-09-05T02:38:25Z",
+          "fanout_sources": [
+            "failure_autopsy_V3-EXQ-642c_2026-09-05.json"
+          ],
+          "is_hero": false,
+          "initial_frozen_count": 4,
+          "initial_frozen_count_at_registration": 4,
+          "synthesis": null,
+          "decision": {
+            "decision_question": "May MECH-353's v3_pending be cleared -- i.e. is z_block an established distinct affect stream rather than a relabelled outcome-mismatch signal?",
+            "live_gate": "Leg H3 resolved (z_harm_a free to vary and z_block separates from it) AND leg H1-vs-H2 resolved in favour of H1 (the external-attribution gate is load-bearing) AND the assert-vs-withdraw pole contrast instantiated.",
+            "decidable": false,
+            "decision_log_ref": null,
+            "distance_phrase": "One correctly-configured re-run away for H1/H2/H3 -- V3-EXQ-642d, carrying a hazards arm, a self-attributable-cancellation arm and a per-tick series. The H1-vs-H2 half is NOT free reanalysis: 642c recorded counts, not series, so no confusion matrix is derivable from it, and a confusion matrix alone would not separate H1 from H2 anyway. The claim's own decision question is a further design away (the capacity-collapse contrast), and that one is DEFERRED behind 642d.",
+            "observation_bottleneck": "TWO bottlenecks, and the second is prior and decisive. (i) The validating environment pins num_hazards=0, so the dissociation partner cannot vary and z_harm_a separation is identically 0.000. (ii) WITHDRAW IS UNREPRESENTABLE in the family's action space: every 642-family driver runs at action_dim=4 while blocked_agency_noop_class defaults to 0, which CausalGridWorldV2 maps to MOVE-UP, with the stay action at index 4 and unreachable -- so C3's action_rate has always scored 'fraction of steps not choosing move-up' and the consumer's ASSERT score-bias (blocked_agency.py:426) treats move-up as the passive option. The family's C3 has therefore NEVER measured the assert-vs-withdraw contrast, across 642 / 642a / 642b / 642c. This is recorded here as a CONFIGURATION FACT about the observation bed, deliberately NOT as a hypothesis leg: it was discovered by the Step 7c red-team from the driver source, not by the run's data, and it is not a rival explanation of anything -- adding it as a leg would inflate initial_frozen_count with a non-hypothesis. It is the reason MECH-353's v3_pending was HELD at the 2026-09-05 gate and the reason V3-EXQ-642d's action-space repair is its first spec item."
+          },
+          "hypotheses": [
+            {
+              "hid": "H0-calibration-range",
+              "label": "The baseline-relative outcome_mismatch floor gives z_block real dynamic range on a headroom statistic",
+              "desc": "The V3-EXQ-642a defect was that a fixed absolute mismatch floor sat below the free-step baseline, pinning z_block at its cap in every condition. H0: the baseline-relative floor (ree-v3 d49db86f3e64670) fixes this, and a headroom DV (z_block_mean) separates BLOCK from CONTROL where the clamped peak cannot.",
+              "axis": "instrumentation",
+              "basis": "Directly adjudicated by V3-EXQ-642c.",
+              "pre_registered_utc": "2026-09-04T21:44:59Z",
+              "adjudicating_runs": [
+                "V3-EXQ-642c"
+              ],
+              "resolution": {
+                "state": "confirmed",
+                "resolving_runs": [
+                  "V3-EXQ-642c"
+                ],
+                "evidence_direction": "non_contributory",
+                "epistemic_category": "standard",
+                "self_route_label": "validated_substrate_calibration_v3_pending_stands",
+                "control_passed": true,
+                "non_degenerate": true,
+                "met_elimination_bar": false,
+                "resolved_utc": "2026-09-04T21:44:59Z",
+                "basis": "C0 (the absolute readiness criterion) passed 3/3 at margins 0.601/0.547/0.498 vs floor 0.10, and C1 -- non-degenerate on the statistic it consumes -- passed 3/3 with separations 0.6805/0.5904/0.7709 against an a-priori 0.30 bar that rejects the un-calibrated 642a regime 3/3 (0.1650/0.1214/0.0831). confirmed, not eliminated: this establishes a necessary instrument, it does not close the question."
+              }
+            },
+            {
+              "hid": "H1-attributional",
+              "label": "The separation is produced by the external-attribution gate selecting externally-cancelled steps",
+              "desc": "The BLOCK-vs-CONTROL z_block_mean separation reflects MECH-353's claimed distinctive computation: mismatch attributed to an EXTERNAL constraint rather than to the agent's own motor error.",
+              "axis": "process",
+              "basis": "Still live, and UNTOUCHED by V3-EXQ-642c. That run cannot separate H1 from H2 (its own pre-run red-team F2 concedes the design cannot distinguish an external block from a move cancelled by any means). Its control-arm firing rate of 6.1-15.1 pct is NOT evidence about this leg: the attribution (motor) clause was true on all 14400 measured ticks and never discriminated, so the false positives are mismatch-FLOOR crossings, not permissive attribution (Step 7c red-team F2). Adjudicated only by a self-attributable-cancellation arm, which is the only design that pushes motor_agency below the 0.5 attribution floor.",
+              "pre_registered_utc": "2026-09-05T02:38:25Z",
+              "pre_registration_source": "failure_autopsy_V3-EXQ-642c_2026-09-05.json",
+              "adjudicating_runs": [
+                "V3-EXQ-642d (proposed) -- the SELF-ATTRIBUTABLE-cancellation arm specifically, not the main hazards contrast and not the confusion matrix alone"
+              ],
+              "resolution": {
+                "state": "alive",
+                "resolving_runs": [],
+                "evidence_direction": "pending",
+                "resolved_utc": null,
+                "control_passed": false,
+                "non_degenerate": null,
+                "met_elimination_bar": false
+              }
+            },
+            {
+              "hid": "H2-generic-mismatch",
+              "label": "The separation is generic outcome-mismatch elevation; the external-attribution gate is not load-bearing",
+              "desc": "Any sufficiently large action-outcome mismatch drives z_block, so a self-attributable cancellation (motor noise, execution failure) would produce the same elevation, and z_block is a relabelled surprise signal rather than a distinct attributional stream.",
+              "axis": "process",
+              "basis": "Still live, and NOT supported by V3-EXQ-642c's control-arm false-positive rate -- that draft claim is withdrawn on Step 7c red-team F2c, since the FP rate is evidence about the mismatch floor and the attribution clause was never exercised. Discriminated from H1 only by a third, self-attributable-cancellation arm; the per-tick confusion matrix is a supporting readout and is not itself a discriminator (both hypotheses predict the same matrix in a design with no self-attributable cancellations).",
+              "pre_registered_utc": "2026-09-05T02:38:25Z",
+              "pre_registration_source": "failure_autopsy_V3-EXQ-642c_2026-09-05.json",
+              "adjudicating_runs": [
+                "V3-EXQ-642d (proposed) -- the SELF-ATTRIBUTABLE-cancellation arm specifically"
+              ],
+              "resolution": {
+                "state": "alive",
+                "resolving_runs": [],
+                "evidence_direction": "pending",
+                "resolved_utc": null,
+                "control_passed": false,
+                "non_degenerate": null,
+                "met_elimination_bar": false
+              }
+            },
+            {
+              "hid": "H3-harm-confounded",
+              "label": "With z_harm_a free to vary, z_block co-varies with it rather than dissociating",
+              "desc": "MECH-353's registered distinctness predicate fails: under a block manipulation in a hazard-bearing environment, z_block and z_harm_a move together, so the blocked-agency stream is not separable from the harm stream and the claim is falsified on its own terms.",
+              "axis": "world",
+              "basis": "Wholly untested. Every 642-family run to date pins num_hazards=0, so the measured z_harm_a separation is identically 0.000 and the dissociation criterion is algebraically inert -- the space has never contained an observation bearing on this leg.",
+              "pre_registered_utc": "2026-09-05T02:38:25Z",
+              "pre_registration_source": "failure_autopsy_V3-EXQ-642c_2026-09-05.json",
+              "adjudicating_runs": [
+                "V3-EXQ-642d (proposed) -- the HAZARDS arm (num_hazards > 0)"
+              ],
+              "resolution": {
+                "state": "alive",
+                "resolving_runs": [],
+                "evidence_direction": "pending",
+                "resolved_utc": null,
+                "control_passed": false,
+                "non_degenerate": null,
+                "met_elimination_bar": false
+              }
+            }
+          ]
+        },
+        "axis_family_note": "The three axis labels used above (instrumentation, process, world) must each exist in the registry's human-owned axis_families.map before this block is applied, or the question's convergence_class is forced to indeterminate. Confirm at apply time; add a mapping row in the same edit if any is missing.",
+        "applied": true,
+        "registry_written": true,
+        "applied_utc": "2026-09-05T09:52:19Z",
+        "applied_by": "governance-20260905 (inline Step 9b, main session; scratchpad apply_registry_20260905.py)"
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "pre_routing_checks": {
+    "tool": "scripts/autopsy_pre_routing_checks.py",
+    "run_at": "2026-09-05T02:38:25Z",
+    "invocation": "autopsy_pre_routing_checks.py --artifact REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-642c_2026-09-05.json --json (run with the sibling .md present, so C5 was applicable)",
+    "fires": [],
+    "fire_count": 0,
+    "dispositions": [],
+    "inapplicable": [
+      {
+        "check": "C1",
+        "reason": "claim-keyed check, but no target carries claim_ids"
+      },
+      {
+        "check": "C2",
+        "reason": "claim-keyed check, but no target carries claim_ids"
+      },
+      {
+        "check": "C3",
+        "reason": "claim-keyed check, but no target carries claim_ids"
+      },
+      {
+        "check": "C6",
+        "reason": "prose asserts an absolute, but no target manifest carries a top-level arm_results array of >= 4 rows"
+      },
+      {
+        "check": "C7",
+        "reason": "no target manifest carries an arm/condition-structured result array with >= 2 arms and >= 2 seeds"
+      }
+    ],
+    "inapplicable_note": "C5 WAS applicable on this run (the sibling .md exists) and did not fire. The three claim-keyed checks C1/C2/C3 are structurally blind on a claim_ids: [] target, and per the skill 'inapplicable is NOT no fire' -- Step 7c carries the whole load there, and Step 7c was NOT run in this staged draft. This is the artifact's largest residual risk; see red_team_pass and the .md section 10a."
+  },
+  "red_team_pass": {
+    "run": true,
+    "model": "fable-5.1 (cross-model; the draft was produced by claude-opus-5)",
+    "verdict": "CONTESTED",
+    "findings_file": "/private/tmp/claude-501/-Users-dgolden-REE-Working/2b29825c-bcaa-4275-97dc-f77b3fd5a682/scratchpad/redteam_642c.md",
+    "note": "Step 7c was run on this ADJUDICATION after the draft was staged, by a different model, read-only, ordering draft JSON -> raw evidence -> draft .md. Verdict CONTESTED: the arithmetic was recomputed and matches throughout, and the two substrate-side conclusions (the floor calibration works on the headroom DV; C2 and C3's no_suffering conjunct are inert under num_hazards=0) were confirmed. What was contested was the ROUTING and the RECOMMENDATIONS built on top of the arithmetic: five defects (F1-F5) plus eight hygiene findings. All five defects and eight hygiene items are folded into this artifact; see the top-level red_team block for the applied list. The run's OWN Step 4.5 red-team pass (claude-opus-5, 2026-09-04) is a pre-run design review of the EXPERIMENT and did not discharge this."
+  },
+  "confirming_session_owes": [
+    "DISCHARGED -- Step 7c adversarial red-team pass on THIS artifact: run 2026-09-05 by fable-5.1 (cross-model), CONTESTED, F1-F5 + H1-H8; see the top-level red_team block. The three items it was asked to attack all moved: the specificity finding was RE-LOCATED from the attribution gate to the mismatch floor (F2), the 642b disjunction resolution was narrowed to a per-run demonstration (F4), and the severity re-basing was WITHDRAWN so corrupting stands on its ORIGINAL rationale (F4).",
+    "DISCHARGED -- Step 8 interactive gate: held with the user on 2026-09-05. Decision, binding: HOLD v3_pending on MECH-353, and route V3-EXQ-642d with withdraw representable. Recorded as a governance JUDGMENT, not as a forced reading of the claim text (F1).",
+    "STILL OWED (governance) -- Step 9b registry write: apply hypothesis_space_ledger_pending.draft_registry_block, then build_hypothesis_space.py + check_hypothesis_space_integrity.py. Still marked draft-for-governance here; this session performed no registry write.",
+    "STILL OWED (governance) -- the routing's own follow-on is NOT chipped here (CLAUDE.md Session Land Protocol step 6): governance chips V3-EXQ-642d once Step 2b ratifies this routing. The separate new-EXQ capacity-collapse contrast is DEFERRED, not chipped, until 642d shows withdraw is expressible."
+  ],
+  "confirmed_utc": "2026-09-05T09:34:46Z",
+  "confirmed_by": "governance-20260905 (user gate, inline route A)",
+  "red_team": {
+    "model": "fable-5.1",
+    "cross_model": true,
+    "verdict": "CONTESTED",
+    "findings_file": "/private/tmp/claude-501/-Users-dgolden-REE-Working/2b29825c-bcaa-4275-97dc-f77b3fd5a682/scratchpad/redteam_642c.md",
+    "findings_applied": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "H6",
+      "H7",
+      "H8"
+    ],
+    "user_gate_decision": "hold v3_pending; route 642d with withdraw representable"
+  }
+}

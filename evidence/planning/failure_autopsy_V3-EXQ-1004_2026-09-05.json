@@ -1,0 +1,308 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-05T02:38:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_utc": "2026-09-05T09:35:20Z",
+  "confirmed_by": "governance-20260905 (user gate, inline route A)",
+  "red_team": {
+    "model": "fable-5.1",
+    "cross_model": true,
+    "verdict": "CONTESTED",
+    "findings_file": "/private/tmp/claude-501/-Users-dgolden-REE-Working/2b29825c-bcaa-4275-97dc-f77b3fd5a682/scratchpad/redteam_1004.md",
+    "findings_applied": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "hygiene"
+    ],
+    "findings_verified_sound": [
+      "non_contributory both",
+      "low-surprise grading",
+      "977 resolved",
+      "pending_retest stays",
+      "claim_directions dead-letter"
+    ],
+    "user_gate_decision": "release corrupting gate + implemented_validated; route 884a"
+  },
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1004_sd_waypoint_field_validation_20260904T214702Z_v3",
+      "queue_id": "V3-EXQ-1004",
+      "claim_ids": [
+        "INV-086",
+        "MECH-428"
+      ],
+      "self_route_label": "waypoint_field_converts_to_navigation",
+      "failed_criterion": "none -- PASS; the load-bearing C1 visit-lift criterion met on 5/5 seeds (threshold 15.0, realised lift ~53.6), C2 and C3 also met, all three preconditions met",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not exercised -- neither INV-086 nor MECH-428 was tested. Their what_would_answer regimes require a REE agent with a z_goal (WM-decay regime + feedback-channel ablation for INV-086; seeding-sparse z_goal_norm + forced-seed control for MECH-428). This run instantiates no REE agent, no z_goal, no E1/E2/E3 path and no feedback channel: the learners are behaviour-cloned 2-layer readers over a 25/50-dim hand-sliced observation. The driver's own docstring says so verbatim: 'claim_ids are carried as read-across only ... it does not score them.'",
+        "biological_reference": "clear -- an exteroceptive distal-target gradient (chemotaxis / beacon-taxis / distal landmark) that renders an out-of-view goal perceptible. Legitimate as an ENVIRONMENTAL affordance; it is not REE's own goal-maintenance machinery.",
+        "prerequisites": "present -- SD-094 (waypoint-arrival position check + hazard-free contamination gate) is implemented_validated and is explicitly enabled by this driver; use_proxy_fields and subgoal_mode are hard preconditions the env enforces. Note what is present for THIS run is not the same as what is present for the blocked claims' own tests: INV-086's EXP-0705 names two FURTHER unbuilt prerequisites -- an E3-scoring consumer of `_z_goal_parent` (chip-20260902-zgoal-parent-e3-consumer; MECH-427 cross-level credit has none anywhere in ree_core) and a VALENCE_WANTING write path not requiring a harm-allocated residue centre (MECH-216/217 writes starve in the hazard-free regime) -- so two of INV-086's three single-channel restore arms are DV-invariant by construction and its test stays blocked_substrate.",
+        "implementation": "complete -- the field is computed on demand in CausalGridWorld._get_observation_dict from self.waypoints (never self.grid, so the SD-094 marker-erasure defect cannot propagate), appended LAST so prefix slice constants are unaffected, 19 contracts, field_live_frac 1.0 across all 5 seeds.",
+        "environment": "partial -- deliberately de-ecologised relative to the configuration the substrate entry's own validation spec named. num_hazards=0, num_resources=0, energy_decay=0.0 and waypoint_visit_reward=0.2 (the V3-EXQ-977 probe used 0). Every deviation is argued from a measurement in the driver docstring, and each argument is sound; the consequence is still that the validated regime is a navigation-isolated bench, not the ecological subgoal_mode regime the blocked DVs live in.",
+        "measurement": "adequate with a disclosed protocol dependency -- the primary DV is a SAMPLED-policy rollout because under argmax the field-OFF reader pins (0.29 visits/ep, below the 1.29 random floor; 5.96 distinct cells/ep against a MIN_DISTINCT_CELLS floor of 5.0). Both readouts are recorded. Consequence: the OFF arm's headline 4.07 visits/ep is a sampling-entropy figure, not learned navigation -- which strengthens rather than weakens the blocked-baseline premise, but means 'OFF beats random 3x' must not be read as 'the radius-2 channel supports navigation'. One further protocol fact, stronger than the draft first stated it: under argmax the run would have been UNMEASURABLE rather than failed -- seed 42's OFF reader reached 4.95 distinct cells/ep against the MIN_DISTINCT_CELLS floor of 5.0, so eval_policy_not_stationary would have read 4/5 = 0.8 < 1.0 and the run would have self-routed substrate_not_ready_requeue. The sampled protocol is therefore what makes the run measurable at all. The ON result is protocol-invariant (59.28 visits/ep under argmax, C1 lift ~59).",
+        "integration": "isolated by design -- no REE agent in the loop. The channel is validated at the observation interface only; the z_world encoder -> E1/E2/E3 consumer path is untouched by this run.",
+        "scale": "adequate for the question asked (5 seeds, 24000 demonstrations, 300 BC steps, 20 eval episodes x 400 steps); NOT adequate as evidence about a reinforcement-trained consumer -- the driver reports an A2C reader on this task at 0.00 (OFF) / 0.10 (ON) visits/ep at 400 training episodes, but that A2C figure is DOCSTRING-ONLY (seed 42 only, never committed to the repo, no manifest, no per-episode trace) and was measured BEFORE the SD-094 contamination gate, on a self-contaminating env where every arm ended health_depleted at 44-134 steps against a declared 400 and per-episode contamination (~-1.2) outweighed the waypoint reward (~+0.04) by 30:1, so not moving was reward-optimal -- it MOTIVATES the consumer-reach question, it is not evidence about it. The correct status of the consumer question is UNTESTED, not 'measured at the floor'."
+      },
+      "biological_reference": {
+        "closest_mechanism": "exteroceptive distal-goal gradient (chemotaxis / beacon-taxis / place-field distance-to-goal signal); the cloned reader is an imitation-learned sensorimotor mapping, not goal maintenance",
+        "dependencies": [
+          "a policy able to exploit the gradient",
+          "a goal representation that persists when the gradient is absent (NOT tested here)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at the channel layer. The divergence that matters is at the CONSUMER layer: real organisms acquire gradient-following by reinforcement under sparse reward, whereas this validation supplies a supervised imitation target derived from the same ground truth that generates the gradient, which removes the exploration problem the field was in part meant to relieve.",
+        "lit_status": "present -- evidence/literature/targeted_review_proxy_progress_goal_maintenance (Bandura & Schunk 1981, Carver & Scheier 1990, Sutton 1988) grounds INV-086/MECH-427/MECH-428; no lit pull is owed by this run."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "NOT_APPLICABLE -- this is a PASS and no organism-level REE failure is asserted anywhere in this artifact. Recorded per GOV-FAILLOC-1 so the read is on the record: had the ON arm failed, MEASURES (protocol-dependent DV) and ENVIRONMENT (de-ecologised bench) are both only partial, so the correct read would have been MIXED, never REE FAILED."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-086": "standard",
+        "MECH-428": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "Both claim tags are PERIPHERAL co-tags, on the driver's own explicit statement ('claim_ids are carried as read-across only ... a PASS lifts the substrate block those claims' experiments were failing under, it does not score them'). Neither claim was exercised, so neither reading asserts substrate gating and neither counts toward the re-derive brake. `standard` is the correct stamp -- it is what the resolver infers for an emergent invariant and for a mechanism, and neither substrate_ceiling nor substrate_conditional fits. State the JUSTIFICATION precisely, though: what this run lifted is the OBSERVATION-LAYER gate (target perceptibility beyond radius 2), NOT every gate on these claims' experiments. INV-086's own test (EXP-0705) names THREE builds in priority order and only the first has landed: (a) the waypoint proximity field (landed, validated here); (b) an E3-scoring consumer of `_z_goal_parent` (chip-20260902-zgoal-parent-e3-consumer) -- MECH-427 cross-level credit has none anywhere in ree_core, so a MECH-427 restore arm is DV-invariant by construction; (c) a VALENCE_WANTING write path not requiring a harm-allocated residue centre -- MECH-216/217 writes drop silently in the hazard-free regime. With (b) and (c) unbuilt, two of the three single-channel restore arms INV-086's what_would_answer requires are DV-invariant, so INV-086's experiment stays blocked_substrate after this PASS. `standard` must not be read as 'INV-086 is now runnable'.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-086": "non_contributory",
+        "MECH-428": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-09-05, V3-EXQ-1004, PASS, diagnostic] Build validation of the SD-WAYPOINT-FIELD observable (ree-v3 7719385), NOT claim evidence. Four arms at 5 seeds: random 1.29 visits/ep, oracle 60.23, cloned-reader field-OFF 4.07, cloned-reader field-ON 57.71; sequences 0.23 (OFF) vs 18.87 (ON); imitation accuracy 0.575 vs 0.841; field_live_frac 1.0. C1 (load-bearing, ON-minus-OFF >= 15 visits/ep) met 5/5 seeds against a dv_headroom precondition denominated on the ORACLE control (56.3 achievable against a 15.0 threshold, ratio 3.75). The PASS is real and non-vacuous -- the OFF arm is zero-padded to the ON width so both nets are byte-identical at init, the oracle never reads the field, and the pre-registered off-ramps could have separated 'decodable but did not convert' from 'did not convert' -- but it is LOW-SURPRISE by construction: the field is an analytic function (1/(1+0.25d) over the 5x5 agent-centred patch) of the same environment ground truth the demonstrator oracle uses to choose its action, so the ON reader's task is a near-linear local-argmin decode of the demonstrator's own decision rule. What is established is that the channel is wired, live, decodable and behaviourally sufficient FOR A SUPERVISED READER. What is NOT established, and what INV-086/MECH-428 actually need, is that a REE agent -- z_world encoder into E1/E2/E3, reinforcement-trained under sparse reward -- can exploit it: the same driver reports an A2C reader on this task at 0.00 (OFF) / 0.10 (ON) visits/ep after 400 training episodes, which is why the reader was switched to behaviour cloning -- but that A2C figure is DOCSTRING-ONLY (seed 42 only, never committed to the repo, no manifest, no per-episode trace) and was measured BEFORE the SD-094 contamination gate, on a self-contaminating env where every arm ended health_depleted at 44-134 steps against a declared 400 and per-episode contamination (~-1.2) outweighed the waypoint reward (~+0.04) by 30:1, so not moving was reward-optimal -- it MOTIVATES the consumer-reach question, it is not evidence about it. Neither claim was exercised (no REE agent, no z_goal, no feedback-channel ablation, no forced-seed control), so both are non_contributory; the manifest's self-routed claim_directions of 'supports' must not be applied.",
+      "per_claim_recommendation": {
+        "INV-086": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "Read-across co-tag only. INV-086's what_would_answer needs a regime where MECH-116 working-memory maintenance has MEASURABLY DECAYED and all intermediate feedback channels are ablated; this run has no REE agent, no z_goal and no feedback channel, so it neither supports nor weakens the claim -- record it non_contributory with the drafted note and do NOT apply the manifest's self-routed `supports`. The note must ALSO say what this PASS does not unblock: EXP-0705 (INV-086's maintenance-axis test) names three builds in priority order and only the first has landed -- the waypoint proximity field (landed, validated by this run); an E3-scoring consumer of `_z_goal_parent` (chip-20260902-zgoal-parent-e3-consumer, unbuilt, so a MECH-427 restore arm is DV-invariant by construction); and a benefit/wanting-driven residue-centre allocation path (unbuilt, so MECH-216/217 writes starve in the hazard-free regime). INV-086's experiment therefore stays blocked_substrate after this PASS. INV-086 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-428": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": true,
+          "change": "Read-across co-tag only -- MECH-428's what_would_answer needs z_goal_norm against a 626b-style forced-seed control in a seeding-sparse regime, none of which this run instantiates; record non_contributory. Governance should ALSO refresh the evidence_quality_note to record the retest state ACCURATELY. (i) Attribution: the V3-EXQ-884 autopsy named ONE substrate item, SD-094 (two defects: waypoint-arrival detection, ambient contamination), now implemented_validated. The SD-WAYPOINT-FIELD observable came from the V3-EXQ-977 / EXP-0705 adjudication (session fable-queue-refill-20260902), NOT from the 884 autopsy; it landed 2026-09-04 and is reader-validated by this run. (ii) The retest driver EXISTS: ree-v3 experiments/v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding.py IS the EXP-0390 3-arm NO-SUBGOAL / SUBGOAL-BOOTSTRAP / FORCED-SEED driver (docstring line 7, 'Proposal: EXP-0390'; the proposal is status `executed`, executed_by V3-EXQ-884), and the confirmed 884 autopsy's instruction is to 're-queue V3-EXQ-884 (new letter, e.g. 884a) once the fix lands'. Any statement that the driver was never built is FALSE and must not be written into claims.yaml. (iii) The real gate on the retest is a two-kwarg edit: 884's _build_env sets neither `subgoal_arrival_position_check` nor `hazard_free_contamination_gate` (0 hits in the file), both default-off, so a verbatim re-queue reproduces the 884 failure. `complicated (buildable)`. (iv) 884 SCRIPTS the walk (_scripted_action), so SD-WAYPOINT-FIELD is not on 884a's code path at all -- 884a needs SD-094 only. `pending_retest_after_substrate` STAYS true because the retest has not run and no successor manifest to the 20260803T022131Z run exists. Governance should also refresh MECH-428's stale implementation_note, which still reads that EXP-0390's driver is 'STILL NEEDED' (dated SD-092, 2026-08-02 -- the day BEFORE the driver landed). MECH-428 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "waypoint-proximity-field-observable",
+        "title": "SD-WAYPOINT-FIELD observable -- VALIDATED at reader scope, corrupting gate RELEASED; consumer-reach is now an open question, not a substrate defect",
+        "implementation_hint": "Amend the existing entry, do not create. USER GATE DECISION 2026-09-05 (governance-20260905): RELEASE. (1) Status and gate are ONE lever, not two decisions -- /queue-experiment Step 2.5c gates iff the entry's status is OPEN, and CLOSED is exactly ('implemented', 'implemented_validated', 'validated', 'wontfix', 'closed_aleatoric'); there is no independent gate switch, so moving the status off `implemented_pending_validation` / `status_phase: validation_owed` IS the release. Set `status: implemented_validated`, clear `status_phase`. The validation_experiment this entry itself names (V3-EXQ-1004) has run and PASSED its load-bearing criterion on 5/5 seeds. (2) Record the validation SCOPE explicitly, because what was DELIVERED is narrower than what this entry's own implementation_hint SPECIFIED: the hint asked for the DV measured on 'the agent's OWN policy' with 'everything else held at the 977 probe configuration', whereas V3-EXQ-1004 measured a behaviour-cloned supervised reader on a navigation-isolated bench (hazards/resources/energy zeroed, waypoint_visit_reward 0.2 instead of 0). Each deviation is argued from a measurement in the driver docstring and each argument is sound. The user accepted delivered-vs-specified as sufficient for the OBSERVABLE'S CORRECTNESS -- which is precisely what the corrupting gate on causal_grid_world.py::_get_observation_dict protected. So the entry should read: validated as decodable-and-behaviourally-sufficient FOR A SUPERVISED READER; NOT yet validated for the reinforcement-trained REE consumer path, which is now tracked as its own open scientific question (hypothesis_space qid `waypoint_field_consumer_reach`) rather than as a substrate defect. (3) `severity` CHANGES: `corrupting` -> `degrading`. This is a deliberate classification change (stated explicitly per the amend rule that unchanged classification fields are left alone and said to be unchanged): the observable is validated as decodable, so a navigation DV can no longer be pinned at chance while the manifest reads as a clean 'no effect' null -- the corrupting signature is gone. Consumer reach is open, but an open scientific question is not a correctness defect. `substrate_paths` is UNCHANGED. (4) Consequence to record in the entry: this was the ONLY open `corrupting` entry whose substrate_paths name causal_grid_world.py (SD-MECH303-THRESHOLD-SOURCING and mech357 also list the module but are `degrading`), and Step 2.5c matches at MODULE granularity on a module ~1,201 drivers import -- so a HOLD would have STOP-gated every new /queue-experiment whose driver imports it, including BOTH legs of this autopsy's own H1/H2 fan-out, which run on this geometry by construction. The release un-gates that fan-out; that asymmetry is why hold-vs-release was not a symmetric judgement call.",
+        "unblocks_claims": [
+          "INV-086",
+          "MECH-428"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/environment/causal_grid_world.py::CausalGridWorld._get_observation_dict"
+        ],
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_977_inv086_goal_maintenance_feedback_necessity",
+            "resolved": "resolved",
+            "resolved_note": "The defect this record names -- 'waypoints reach the agent ONLY as entity-type channel 6 of the 5x5x7 local view (radius 2), so a waypoint more than two cells away is absent from the observation entirely' -- is demonstrably no longer true: with waypoint_proximity_field_enabled the target is perceptible at range (field_live_frac 1.0) and a reader that sees it completes 18.87 sequences/ep on 5/5 seeds against the record's target of '>= 1 sequence completed ... on >= 2 of 3 seeds', while the same reader without the field completes 0.23. Three scope caveats governance should carry forward rather than let the closure hide: (a) the completing policy is a behaviour clone of a ground-truth oracle, not a reinforcement-trained REE agent, so the record's phrase 'the agent's own unscripted policy' is satisfied only in the weak sense (unscripted, own net) and not in the strong sense (the REE agent); (b) the record's literal `target` ('>= 1 sequence completed ... on >= 2 of 3 seeds') is met by the OFF arm too under the sampled protocol (0.15-0.35 sequences/ep x 20 episodes = 3-7 per seed-run, on 5/5 seeds), so 'target met' is NON-DISCRIMINATING at this bench -- the closure rests on the ON-vs-OFF lift (18.87 vs 0.23), and should lean on that alone; (c) the record's own run_id has no manifest in evidence/experiments -- it names a scratchpad one-tick probe (probe_nav_977.py, session fable-queue-refill-20260902), and the actual V3-EXQ-977 manifest in the corpus is v3_exq_977_arc052_harm_stream_conditional_precision, a different experiment. Cite the record by its stored run_id string; do not attempt to resolve it to a manifest."
+          }
+        ],
+        "severity_change_note": "CHANGED from `corrupting` to `degrading` (user gate decision, 2026-09-05). `substrate_paths` is UNCHANGED and is repeated here only for addressing."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "recording_debt": {
+        "missing_always_core": [
+          "elapsed_seconds"
+        ],
+        "detector": "ree-v3/validate_recording.py --paths <manifest> -> '1 with always-core gaps: missing elapsed_seconds' (advisory)",
+        "impact": "Low for this adjudication (the verdict rests on effect sizes, not wall-clock), but it blocks any future cost/throughput comparison against the 20-minute queue estimate and against the A2C variant the driver abandoned -- exactly the comparison a consumer-reach follow-up will want. Recording-debt, NOT measurement-debt: the value existed at run time and was simply not stamped. Fix by calling experiments/_lib/manifest_core.stamp_recording_core(...) in the successor; do NOT re-run this experiment for it.",
+        "other_provenance_notes": [
+          "substrate_commit.dirty is true with dirty_count 1 on experiments/_lib/baselines/arc019_curriculum_gating.py -- unrelated to this driver's import graph, and substrate_hash is present, so substrate identity is adequately pinned.",
+          "The primary DV is a torch.multinomial-sampled rollout, so per-cell values are NOT bit-reproducible across machine classes (this run: linux-x86_64-py3.10-torch2.12.0+cpu on ree-cloud-4). Judge any reproduction on effect size, not on exact values.",
+          "The manifest's `dv_headroom_waypoint_visit_lift` precondition carries `n_control_values: 0` alongside `n_seed_values: 5` and `achievable_statistic: explicit` -- a dv_headroom_check field left unpopulated for the explicit-achievable form. It does NOT mean 'no control': the headroom is denominated on the ORACLE arm across all 5 seeds (56.3 achievable against a 15.0 threshold). Not this run's defect; recorded so a later reader does not read the 0 as an absent control."
+        ]
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-884_2026-08-03"
+        ],
+        "literal_count_meets_threshold": false,
+        "refused_requeue": false,
+        "note": "R1-R3 recipe run 2026-09-05 from REE_Working over the confirmed corpus: MECH-428 = 1 hit (failure_autopsy_V3-EXQ-884_2026-08-03, v3_exq_884_...20260803T022131Z_v3), INV-086 = 0 hits. This autopsy adds 0 to either count: its per-claim categories are declared `standard`, which the counter's per-claim short-circuit excludes. Below the threshold of 2, so the brake does not fire and a same-claim re-queue is NOT refused -- which is the substantively correct outcome, since MECH-428 has never had a single non-precondition-unmet test. Hygiene note: the single counted slug (failure_autopsy_V3-EXQ-884_2026-08-03) carries the out-of-enum stamp `precondition_unmet` that this autopsy separately flags, so the counter is treating an out-of-enum category as a hit. Counted anyway and stated rather than silently dropped; below the threshold either way, so it does not move the verdict."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": "none",
+        "basis": "granularity_debt_cluster.py 2026-09-05: MECH-428 = 1 tagging target (failure_autopsy_V3-EXQ-884_2026-08-03, claim_alignment `unclear`), alignment distribution unclear=1, NO target reads `weakened` -- the reader's own verdict is that this is measurement/implementation debt, not granularity debt. INV-086 = 0 tagging targets. Neither claim clears the trigger's two conditions (>=1 `weakened` target AND structurally different signatures)."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1 (exploration/objective): the residual blocker on navigation-dependent DVs is reward sparsity in the LEARNING signal, not target perceptibility -- with the field present, a consumer trained on a denser or shaped objective (or with demonstrations/curriculum) navigates, while the same consumer under the stock sparse waypoint reward stays at the floor. STATUS: UNTESTED. The driver's abandoned A2C reader (0.00 OFF / 0.10 ON visits/ep at 400 episodes with the field available) is what MOTIVATES H1, not evidence for it: that A2C figure is DOCSTRING-ONLY (seed 42 only, never committed to the repo, no manifest, no per-episode trace) and was measured BEFORE the SD-094 contamination gate, on a self-contaminating env where every arm ended health_depleted at 44-134 steps against a declared 400 and per-episode contamination (~-1.2) outweighed the waypoint reward (~+0.04) by 30:1, so not moving was reward-optimal -- it MOTIVATES the consumer-reach question, it is not evidence about it.",
+          "H2 (observation interface): the field does not survive REE's own consumption path -- a supervised reader over a hand-sliced 50-dim vector can decode it, but the z_world encoder (latent/stack.py, latent/zworld_p0.py) compresses a 275-dim world_state in which the field is the trailing 25 dims, and the gradient is lost or swamped before it reaches E1/E2/E3. Prior-consistent: [memory] project_v3_binding_constraint_observation_interface records the observation->z_world->E1/E2 interface as the binding V3 constraint on 39/43 nodes."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1",
+            "axis": "drive",
+            "sketch": "Hold the field ON and the consumer fixed; vary ONLY the training signal (stock sparse waypoint reward vs shaped/proximity-credited vs demonstration-warm-started). Declared null: visits/ep is flat across training signals, i.e. sparsity is not the residual blocker. Do NOT vary field ON/OFF here -- that leg is already resolved by V3-EXQ-1004."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "representation",
+            "sketch": "Decodability probe INSIDE the REE path: freeze a z_world encoder on this geometry and measure whether the pending waypoint's direction is linearly decodable from z_world with the field ON vs OFF, against the 0.575 -> 0.841 raw-observation decodability lift V3-EXQ-1004 already established as the upstream reference. Declared null: the z_world decodability lift is not distinguishable from zero while the raw-observation lift is large -- which would locate the loss at the encoder, not at the environment."
+          }
+        ],
+        "note": "GOV-FANOUT-1: the open question created by this PASS is a DISCRIMINATION (where does the residual blockage live -- objective or encoder), not one already-named build, so the next /queue-experiment should fan out a two-axis portfolio with declared nulls rather than one sequential re-pose of the 1004 design. A power-bump of the 1004 bench (more seeds, more BC steps) is explicitly NOT one of these legs: it would re-measure a question already answered at ratio 3.75 headroom."
+      },
+      "learning_extracted": [
+        "The manifest's `claim_directions` field is DEAD-LETTERED: build_experiment_indexes.py reads `evidence_direction` and `evidence_direction_per_claim` and has no reference to `claim_directions` anywhere. This driver emits only `claim_directions`, so the run currently lands in the index with evidence_direction `unknown` (confirmed in the run-pack manifest). The self-routed 'supports' therefore never reached the registry -- and neither would a correct read-across value have. Any driver intending a per-claim direction must emit `evidence_direction_per_claim`.",
+        "A build-validation diagnostic that carries claim tags 'as read-across only' still arrives at governance carrying `supports` in a manifest field, because the driver's scoring maps its load-bearing criterion straight onto every claim_id. The prose disclaimer lives in the docstring, which nothing downstream reads. If a run is not scoring its claims, the mechanically honest emission is `evidence_direction_per_claim: {<claim>: non_contributory}` plus an `evidence_direction_note`, not a comment.",
+        "Validating an OBSERVATION channel with a supervised clone of a ground-truth oracle answers the perceivability question and dodges the exploration question in the same move. That is a legitimate and well-argued design choice here (the driver measured an A2C alternative and reports an uninformative null -- though that figure is docstring-only, seed 42 only, never committed, and pre-dates the SD-094 contamination gate, so it motivates the consumer question rather than settling it), but it means the substrate entry's release condition and the validation actually delivered are not the same statement, and the difference must be written into the entry or the gap disappears.",
+        "The pre-registered off-ramps in this driver are a model of how to keep a validation falsifiable: `field_decodable_but_did_not_convert` (C3 met, C1 not) would have separated information-arrival from behavioural conversion, and `learner_capacity_not_field_reach` (oracle above floor, neither learner) would have separated the channel from the reader. Both were reachable; neither fired.",
+        "Recording gap: `elapsed_seconds` is absent from an otherwise complete rec/v1 manifest (substrate_hash, substrate_commit, machine, machine_class, config, seeds all present). Recording-debt, not measurement-debt -- fix in the successor via stamp_recording_core, never by re-running this experiment.",
+        "Provenance oddity for governance to carry, not to repair here: the waypoint-proximity-field-observable entry's failure_record cites run_id `v3_exq_977_inv086_goal_maintenance_feedback_necessity`, which has no manifest -- it names a scratchpad one-tick probe. The V3-EXQ-977 manifest that DOES exist is v3_exq_977_arc052_harm_stream_conditional_precision, a different experiment on a different claim. The record is still substantively correct; only its run_id is unresolvable.",
+        "Bears-on (out of scope, recorded so it is not lost): (a) the prior MECH-428 autopsy stamped `recommended_epistemic_category: precondition_unmet`, which is OUT of the claims.yaml enum (VALID_EPISTEMIC_CATEGORIES) -- the behaviour-preserving value for that reading is `standard`; (b) SD-094's `queue_accuracy_correction_2026_08_25` states that 'V3-EXQ-884 (MECH-428) subsequently RAN to completion and returned FAIL/weakens', but V3-EXQ-884 IS the failing run in that entry's own failure_record and no successor manifest exists in evidence/experiments -- the correction reads as though a retest happened when none has.",
+        "Red-team correction worth carrying: an autopsy can silently RE-SCOPE a confirmed prior disposition by asserting a missing artifact. The draft of this artifact stated that EXP-0390's driver 'has never been built', which replaced the confirmed 884 autopsy's cheap instruction (re-queue 884 as 884a once the fix lands) with an expensive new build, inside a block labelled 'context only, no state change'. The check that catches it is mechanical: before writing 'X was never built', grep the proposal's `executed_by` and the driver docstring's `Proposal:` line."
+      ],
+      "routing": "queue-experiment",
+      "recommended_manifest_write": {
+        "flat_path": "evidence/experiments/v3_exq_1004_sd_waypoint_field_validation_20260904T214702Z_v3.json",
+        "pack_path": "evidence/experiments/v3_exq_1004_sd_waypoint_field_validation/runs/v3_exq_1004_sd_waypoint_field_validation_20260904T214702Z_v3/manifest.json",
+        "write_both": true,
+        "evidence_direction": "non_contributory",
+        "evidence_direction_per_claim": {
+          "INV-086": "non_contributory",
+          "MECH-428": "non_contributory"
+        },
+        "evidence_direction_note": "2026-09-05 (failure autopsy, V3-EXQ-1004, confirmed): NON_CONTRIBUTORY for both tagged claims. This run is a BUILD validation of the SD-WAYPOINT-FIELD observable, not claim evidence. It instantiates no REE agent, no z_goal, no E1/E2/E3 path, no feedback-channel ablation and no forced-seed control, so neither INV-086 nor MECH-428 was exercised; the driver says so itself ('claim_ids are carried as read-across only ... a PASS lifts the substrate block those claims' experiments were failing under, it does not score them'). The PASS itself is real and non-vacuous (C1 ON-minus-OFF visit lift met 5/5 seeds, realised ~53.6 against a 15.0 threshold, dv_headroom denominated on an ORACLE control that never reads the field) but LOW-SURPRISE by construction: the field is an analytic function of the same ground truth the demonstrator oracle uses. The manifest's self-routed claim_directions of 'supports' must not be applied -- and mechanically could not be: build_experiment_indexes.py reads evidence_direction / evidence_direction_per_claim and contains no reference to claim_directions anywhere, so this run otherwise lands in the index at evidence_direction 'unknown', which the indexer drops. Writing these fields is what puts the adjudication on the record. Full adjudication: REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-1004_2026-09-05.md and .json (confirmed 2026-09-05).",
+        "rationale": "BOTH paths need the write. The flat manifest currently carries only claim_directions (no evidence_direction, no evidence_direction_per_claim) and the run-pack manifest carries evidence_direction 'unknown' with an empty evidence_direction_per_claim. The indexer scores the run-pack manifest, so a flat-only write would leave the pack's 'unknown' in place and the adjudication would never reach the registry. Write the same three fields to both. Do NOT hand-edit the driver-authored claim_directions field -- leave the run's history as recorded."
+      },
+      "routing_routes": [
+        {
+          "route": "/queue-experiment V3-EXQ-884a",
+          "scope": "MECH-428 retest, as already specified by the CONFIRMED failure_autopsy_V3-EXQ-884_2026-08-03",
+          "work": "Two-kwarg edit to the EXISTING EXP-0390 driver (ree-v3 experiments/v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding.py): set `subgoal_arrival_position_check=True` and `hazard_free_contamination_gate=True` in _build_env (it currently sets neither; both default off), then re-queue under a new letter as V3-EXQ-884a. Also record real episode length + done cause in the manifest, per the 884 autopsy. 884 scripts the walk, so SD-WAYPOINT-FIELD is not on this path -- 884a needs SD-094 only.",
+          "node_class": "complicated (buildable)",
+          "claim_effect": "MECH-428 `pending_retest_after_substrate` stays true until 884a scores."
+        },
+        {
+          "route": "/queue-experiment (new EXQ number, two-leg fan-out)",
+          "scope": "the NEW question this PASS opens -- consumer reach of the validated field (hypothesis_space qid `waypoint_field_consumer_reach`)",
+          "work": "H1 (axis `drive`) and H2 (axis `representation`) per fanout_recommendation, each with its declared null. Explicitly NOT a power-bump of the 1004 bench.",
+          "node_class": "complex (probe-gated) / puzzle (known rules)",
+          "claim_effect": "None directly; it discriminates where the residual blockage lives."
+        }
+      ]
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "note": "DRAFT FOR GOVERNANCE -- drafted only, not applied. Do NOT write hypothesis_space_registry.v1.json from this artifact; the next /governance walk applies it. Confirmed 2026-09-05 at the human gate with the F1/F2 red-team corrections folded in.",
+    "growth_restriction_check": "Mode A targets a NEW question (`waypoint_field_consumer_reach`), so no growth_restriction applies (a question registered in this edit cannot carry one). The one EXISTING question touched, `mech428_subgoal_bootstrap_seeding`, carries growth_restriction: null AND is not being grown -- no hypothesis is added to it; only its decision-block context text is refreshed.",
+    "mode_a_new_question": {
+      "qid": "waypoint_field_consumer_reach",
+      "title": "Now that the waypoint proximity field is decodable and behaviourally sufficient for a supervised reader (V3-EXQ-1004), where does the residual blockage on navigation-dependent subgoal_mode DVs live -- in the learning objective, or in REE's own observation-to-z_world interface?",
+      "short_title": "waypoint field consumer reach",
+      "claims": [
+        "INV-086",
+        "MECH-428"
+      ],
+      "registered_utc": "2026-09-05T02:38:25Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1004_2026-09-05.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-wpfield-objective-sparsity",
+          "label": "Reward sparsity in the learning signal, not target perceptibility, is the residual blocker",
+          "desc": "With the field ON and the consumer held fixed, varying ONLY the training signal (stock sparse waypoint reward vs shaped/proximity-credited vs demonstration-warm-started) moves visits/ep off the floor.",
+          "axis": "drive",
+          "basis": "UNTESTED leg. The V3-EXQ-1004 driver reports an A2C reader at 0.00 (OFF) / 0.10 (ON) visits/ep after 400 training episodes with the field available, and switched to behaviour cloning for that reason -- but that A2C figure is DOCSTRING-ONLY (seed 42 only, never committed to the repo, no manifest, no per-episode trace) and was measured BEFORE the SD-094 contamination gate, on a self-contaminating env where every arm ended health_depleted at 44-134 steps against a declared 400 and per-episode contamination (~-1.2) outweighed the waypoint reward (~+0.04) by 30:1, so not moving was reward-optimal -- it MOTIVATES the consumer-reach question, it is not evidence about it. The leg is live because the consumer question is genuinely open, not because evidence already points at sparsity.",
+          "pre_registered_utc": "2026-09-05T02:38:25Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1004_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-wpfield-zworld-interface",
+          "label": "The field does not survive REE's observation-to-z_world compression",
+          "desc": "The pending waypoint's direction is linearly decodable from the raw observation with the field ON (0.575 -> 0.841 imitation accuracy, V3-EXQ-1004) but not from z_world, locating the loss at the encoder rather than at the environment.",
+          "axis": "representation",
+          "basis": "The field is the trailing 25 dims of a 275-dim world_state consumed by prefix-sliced encoders (latent/stack.py, latent/zworld_p0.py); [memory] project_v3_binding_constraint_observation_interface records the observation->z_world->E1/E2 interface as the binding V3 constraint on 39/43 nodes.",
+          "pre_registered_utc": "2026-09-05T02:38:25Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1004_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is the residual blockage on navigation-dependent subgoal_mode DVs an objective/exploration problem or an observation-interface problem?",
+        "live_gate": "Both legs need a run; neither has an adjudicating experiment queued yet.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "0 of 2 legs tested -- portfolio pre-registered, not yet queued",
+        "observation_bottleneck": null
+      },
+      "axis_family_rows_needed": "`drive` and `representation` must both already be present in axis_families.map before this question is appended; if either is absent, add the row in the SAME edit or the question's convergence_class is forced to indeterminate."
+    },
+    "mode_b_context_only": {
+      "qid": "mech428_subgoal_bootstrap_seeding",
+      "action": "NO hypothesis added, NO state change -- H-mech428-bootstrap-v1 stays `alive` (this run does not adjudicate it: it validates an observation channel that is not even on that leg's scripted-walk code path). initial_frozen_count stays 1. CONTEXT ONLY.",
+      "decision_block_refresh": {
+        "live_gate": "The two substrate defects that starved V3-EXQ-884 are FIXED: SD-094 (waypoint-arrival position check + hazard-free contamination gate) is implemented_validated. What now gates a genuine test is a two-kwarg edit plus a re-queue under a new letter. The EXP-0390 3-arm driver EXISTS (ree-v3 experiments/v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding.py; proposal EXP-0390 is status `executed`, executed_by V3-EXQ-884) and the confirmed 884 autopsy's instruction is to re-queue it as V3-EXQ-884a once the fix landed -- but its _build_env sets neither `subgoal_arrival_position_check` nor `hazard_free_contamination_gate`, both default-off, so a verbatim re-queue would reproduce the 884 failure. `complicated (buildable)`, minutes of work. Note 884 SCRIPTS the walk, so the new SD-WAYPOINT-FIELD observable is NOT on this leg's code path; 884a needs SD-094 only.",
+        "observation_bottleneck": "Cleared for THIS leg. The causal_grid_world.py waypoint-arrival detection bug and the ambient self-contamination mechanic are fixed (SD-094, implemented_validated), which is all a scripted-walk 884a needs. Target perceptibility beyond radius 2 is separately fixed (SD-WAYPOINT-FIELD, reader-validated by V3-EXQ-1004) but is not on this leg's path. The consumer-reach question that PASS opens is tracked separately as qid `waypoint_field_consumer_reach`; it is not a bottleneck on this leg.",
+        "distance_phrase": "1 of 1 tested leg inconclusive (precondition_unmet); the substrate defects that starved it are fixed and the re-test (V3-EXQ-884a -- a two-kwarg edit to the existing EXP-0390 driver) is buildable and not yet queued"
+      },
+      "adjudicating_runs_refresh": {
+        "hid": "H-mech428-bootstrap-v1",
+        "current": [
+          "V3-EXQ-884"
+        ],
+        "refresh_to": [
+          "V3-EXQ-884",
+          "V3-EXQ-884a"
+        ],
+        "note": "Context-only refresh: this leg IS the walk/retest leg (its `desc` is V3-EXQ-884's own C1 criterion), so V3-EXQ-884a is the run that will adjudicate it. No hypothesis is added, `resolution.state` stays `alive`, `initial_frozen_count` stays 1, `initial_frozen_count_at_registration` untouched."
+      }
+    },
+    "draft_for_governance": true,
+    "applied": true,
+    "registry_written": true,
+    "applied_utc": "2026-09-05T09:52:19Z",
+    "applied_by": "governance-20260905 (inline Step 9b, main session; scratchpad apply_registry_20260905.py)"
+  },
+  "cluster_pattern": null
+}

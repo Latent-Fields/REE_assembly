@@ -1,0 +1,385 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-05T02:38:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_utc": "2026-09-05T09:34:00Z",
+  "confirmed_by": "governance-20260905 (user gate, inline route A)",
+  "staging_mode": true,
+  "staged_for_session": "governance-20260905",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3",
+      "queue_id": "V3-EXQ-993a",
+      "supersedes_queue_id": "V3-EXQ-993",
+      "claim_ids": [
+        "ARC-021",
+        "MECH-069"
+      ],
+      "experiment_purpose": "evidence",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "Both load-bearing discrimination criteria failed: C1_dense_merged_degrades_vs_separated and C2_sparse_merged_degrades_vs_separated. Every readiness / absolute / non-degeneracy gate PASSED, including the two new dv_headroom gates: control_arm_coverage_complete 8/8; harm_head_action_sensitivity_present worst control cell 0.1138 vs floor 0.05 (2.3x); p1_harm_events_observed_per_condition min 1616 vs floor 10 (161.6x); H1 dv_headroom_margin_room_below_control floor_headroom 0.22857 vs MARGIN 0.15 (1.52x); H2 dv_headroom_control_signal_floor_reachable max_abs 0.71546 vs 0.40 required (1.79x). criteria_non_degenerate true for BOTH conditions, so the pre-registered combination rule applied in full and returned merged_channel_hypothesis_not_supported = weakens. This is the INVERSE of the substrate-ceiling fingerprint (where absolute gates pass and discrimination fails because the DV has no room): here headroom was measured over the CONTROL arm before any MERGED cell trained, and the discrimination still failed. Step 7c red-team F4 bounds what that headroom certifies, and the bound is recorded rather than argued away: H1 declares dv_bounds [0.0, 1.0] and computes floor_headroom = min(control) - 0.0, but calibration_gap is a difference of mean logit differences and is unbounded BELOW (the driver says so itself at lines 203-205, and negative components appear in this run's own cells). So H1 certifies that the CONTROL arm's signal sits at least MARGIN above zero -- NOT that the MERGED arm had room to degrade, which on an unbounded-below DV is vacuous. The question a null actually needs answered is POWER, not headroom, and the power arithmetic is in the scale row.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- for the NECESSITY half of ARC-021 and for MECH-069's collapse-degrades-harm-calibration consequence, at this scale. ARC-021's own what_would_answer names this exact test ('merging E1/E2/E3 into a shared trunk/single optimizer ... should measurably DEGRADE calibration_gap') and its FALSIFYING signature ('statistically indistinguishable from -- or better than -- the separated-channel baseline ... across both dense- and sparse-hazard conditions'). The run produced that signature on ONE of the two DVs the signature names: DENSE mean paired diff -0.0064 (4 percent of MARGIN, 2 of 4 seeds negative), SPARSE +0.1120 in the OPPOSITE direction (1 of 4 seeds negative). WHY `unclear` AND NOT `weakened` (Step 7c red-team F1/F2, ratified at the Step 8 gate 2026-09-05): (i) the correct t(3) 95 percent intervals on the paired means -- [-0.204, +0.191] DENSE and [-0.158, +0.382] SPARSE -- do NOT exclude the pre-registered -0.15 in either condition, and joint power at -0.15 is about 12 percent, so a FAIL is the modal outcome even when the claim is exactly right; (ii) the falsifier names calibration_gap AND attribution accuracy, and only calibration_gap was read; (iii) 'statistically indistinguishable' is not what a threshold-plus-sign-consistency criterion tests, and at this power 'indistinguishable' means 'underpowered'; (iv) the merge was performed on a driver-local three-head surrogate over a frozen z_world, not the E1/E2/E3 predictor stack the claim's own precondition names by file. This remains the most on-target evidence ARC-021 has ever received and the first time the ablation it names has run with a working readout -- INFORMATIVE, and emphatically not non_contributory, but not a clean falsification either. NOT falsification: see also the implementation row.",
+        "biological_reference": "clear -- and, unusually, the biology is itself CONTESTED in exactly the direction this null points. Parallel segregated cortico-striatal loops (Alexander/DeLong; Haber 2003 corticostriatal spirals; O'Reilly & Frank 2006; Hazy 2007) are a strong existence proof for three anatomically distinct loops. The 2026-09-04 campaign-C4 pull (targeted_review_connectome_mech_069, 5 entries) splits on whether the error signals are separately COMPUTED or merely separately GATED: Engel 2024 (heterogeneous striatal dopamine across NAc-core/DMS/DLS, supports, 0.78), Groessl 2018 (PAG-to-dopamine fear gate, a distinct harm channel, supports, 0.72), Wolpert 1998 (cerebellar forward internal models, supports, 0.66), Engelhard 2019 (specialized sensory/motor/cognitive coding in VTA DA neurons, mixed, 0.68) -- against Schultz 1998 (weakens, 0.60), the explicit counterweight, whose position is that dopamine neurons 'fail to discriminate between different rewards' and emit a global reinforcement signal that is differentiated DOWNSTREAM. This run's null is precisely what Schultz's position predicts: one shared teaching channel, differentiated at the readout, suffices. So the FAIL does NOT contradict the biological existence proof for parallel loops; it bears on whether separate COMPUTATION at the source is required, which is the open question in the biology too.",
+        "prerequisites": "present in the SURROGATE's sense, not in the substrate the precondition sentence names (Step 7c red-team F2c / H4). ARC-021's stated non-degeneracy precondition reads 'requires the three error channels to be genuinely separately optimized IN THE SUBSTRATE UNDER TEST' and then names E1 (E1DeepPredictor), E2 and E3 (E3TrajectorySelector) by module path. The SEPARATED arm satisfies the TOPOLOGICAL reading of that sentence -- three disjoint parameter sets, three independent Adam instances, three independent backward passes, verified in the driver source (SeparatedChannels.train_step), depth-, width- and clip-matched to MERGED (design red-team F5), so parameter SHARING and loss SUMMATION are the only remaining differences -- but the modules separately optimized are experiment-local heads, not the named substrate. Reading the precondition as satisfied here is a substitution of substrate, and it is recorded as one rather than waved through. `depends_on` ARC-004 / MECH-033 / ARC-018 are not implicated.",
+        "implementation": "partial -- and this is the load-bearing qualifier on the whole adjudication. The ablation is a faithful TOPOLOGY analogue but is instantiated in an experiment-local three-head surrogate (SensoryHead / ForwardHead / action-conditioned HarmHead over a 32-dim z_world), not in the ree_core E1DeepPredictor / E2WorldForward / E2HarmSForward / E3TrajectorySelector modules ARC-021's what_would_answer names by file. Three specific consequences: (1) there is no E3 SELECTION role at all -- behaviour is a uniform-random policy and the harm channel is a supervised BCE classifier, so 'harm/goal error' is instantiated as label prediction rather than as a valuation channel driving commitment; (2) the encoder is FROZEN during P1 (heads train on .detach()ed z_world), so the merge can contaminate only a downstream 2-layer trunk and cannot corrupt the LATENT itself, which is where cross-stream contamination would bite hardest biologically; (3) MERGED's three losses are summed with equal weight, an arbitrary commensuration the claim does not specify. The manipulation is real and the arms are clean; what is partial is the TRANSLATION from ARC-021's E1/E2/E3 sentence to this surrogate.",
+        "environment": "adequate -- CausalGridWorldV2 12x12 / 3x3 local view at BOTH hazard densities (DENSE 15, SPARSE 4), which is exactly the two-condition design ARC-021's falsifying signature requires. Harm events are abundant in both (1616 DENSE, 1878 SPARSE) and the near-hazard/safe probe populations are well populated and geometrically distinct in both (DENSE 683-698 near-hazard vs 49-84 safe; SPARSE 203-219 near-hazard vs 583-638 safe). The environment contains the pressure the mechanism is supposed to handle.",
+        "measurement": "adequate -- the strongest measurement posture in this family to date, and the reason the direction is allowed to stand. The readout was rebuilt (action-conditioned PRE-SIGMOID harm logit, trained on the distribution it is read on) after the predecessor's sigmoid-compression defect; the control arm rose from max |calibration_gap| 0.00152 (993) to 0.71546 here, a ~470x improvement, positive in 8 of 8 SEPARATED cells. SEPARATED_SIGNAL_FLOOR was RAISED 0.02 -> 0.20 and still cleared in both conditions (0.4544 / 0.3986). The bars were sized against a MEASURED paired null (24 cells, 3 head-init draws, mean +0.0216, sd 0.1659, sign not consistent across draw pairs). Residual measurement debt, stated by the driver itself (F9), not papered over, and CORRECTED here by the Step 7c red-team (F1): MARGIN 0.15 with n=4 absorbs any sub-margin degradation. The interval on a paired mean of n=4 must use the t(3) multiplier 3.182, not 1.96 -- the correct 95 percent intervals are [-0.204, +0.191] in DENSE (mean -0.0064, sd 0.1240) and [-0.158, +0.382] in SPARSE (mean +0.1120, sd 0.1696). The run therefore excludes a merged-degradation of roughly 0.20 or larger in DENSE and roughly 0.16 or larger in SPARSE, and does NOT exclude the pre-registered -0.15 in EITHER condition. The draft's earlier z-intervals ([-0.128, +0.115] DENSE / [-0.054, +0.278] SPARSE) and the '0.13+ / 0.05+ excluded' clause were wrong and are WITHDRAWN. Measurement stays `adequate` -- the instrument works and the control arm carries real signal -- but adequate INSTRUMENTATION is not adequate POWER, and the two were conflated in the draft.",
+        "integration": "isolated -- deliberately. No ree_core.agent / REEAgent, no E1/E2/E3 predictor module, no latent stack, no sleep loop. This is the same property recorded in the implementation row and is why the result cannot reach the whole-agent form of ARC-021.",
+        "scale": "adequate for the effect sizes the design was powered for, marginal at the pre-registered bar. 4 seeds x 2 conditions x 2 arms, 80 P0 + 80 P1 episodes x 120 steps, 15 probe resets. Against the measured per-cell null sd 0.1659 the full criterion (mean <= -MARGIN AND all 4 seeds <= 0) has roughly 35 percent power PER CONDITION at a true effect of exactly -0.15 (Step 7c red-team F1, Monte Carlo, 200k draws; the draft's 'roughly 40 percent' was both imprecise and, more importantly, per-condition rather than whole-run). The pre-registered PASS requires BOTH conditions, so JOINT power at -0.15 is about 12 percent (0.353 squared). At -0.30 it is about 85 percent per condition and about 73 percent jointly. Consequence, stated plainly: this design returns a FAIL roughly 88 percent of the time when ARC-021 is exactly right at the effect size the run itself pre-registered. The observed point estimates ARE null-to-reversed (DENSE -0.0064, SPARSE +0.1120) and that is worth recording -- but at this power it CANNOT be used as a premise that the result is more than an unmet bar. The draft's 'null-to-reversed ESTIMATE, not merely an unmet bar' licence for `weakens` is WITHDRAWN."
+      },
+      "biological_reference": {
+        "closest_mechanism": "parallel segregated cortico-basal-ganglia-thalamic loops (Alexander/DeLong) with channel-specific dopaminergic teaching signals; cerebellar forward internal models as the motor-sensory channel; PAG-to-dopamine nociceptive gating as the harm channel",
+        "dependencies": [
+          "channel-specific teaching signals at the source (contested: Engel 2024 / Engelhard 2019 for, Schultz 1998 against)",
+          "a selection/commitment stage that consumes the harm channel with its own authority (absent from this design)",
+          "representation learning downstream of, not upstream of, the channel split (the frozen-encoder limitation)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified in the mechanism's translation direction. The relevant divergence is INTERNAL to the biology: whether the three error signals are separately computed or separately gated is an open question in the dopamine literature itself, and ARC-021 asserts the stronger (separately computed / separate learning channels) reading. This run's null is compatible with the weaker gating reading, which is Schultz 1998's position and is recorded in the C4 pull as a deliberate counterweight.",
+        "lit_status": "present -- targeted_review_connectome_arc_021 (3 entries, 2026-03-29: Haber 2003, Hazy 2007, O'Reilly 2006), targeted_review_connectome_mech_069 (5 entries, 2026-09-04, campaign C4: Engel 2024, Engelhard 2019, Groessl 2018, Wolpert 1998, Schultz 1998), targeted_review_reafference_streams (Haak & Beckmann 2018). No lit-pull commission is owed."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "ARC-021": "standard",
+        "MECH-069": "standard"
+      },
+      "recommended_epistemic_category_note": "Both stay `standard` (both already store it). This is a genuine evidence result, not a ceiling: the control arm carried real signal in 8 of 8 cells (max |calibration_gap| 0.71546, a ~470x lift over the predecessor) and the run reached a verdict on a working instrument, so nothing here asserts that the claims' answers are gated on substrate work. Note (Step 7c red-team F4) that the H1/H2 headroom gates certify the CONTROL arm's signal rather than the MERGED arm's room to degrade, so the 'not a ceiling' conclusion rests on the control-arm signal and the repaired readout, NOT on a headroom argument. Deliberately NOT substrate_ceiling / substrate_conditional: those sit in _EPI_SUPPRESS_PROPOSAL and _UNTESTABLE_EPISTEMIC and would strip v3 experiment lanes from two claims that have just demonstrated they can receive experimental evidence. The residual scope limitation (surrogate heads rather than the E1/E2/E3 stack) is a NEW, separately-routed question, not a suppression.",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-021": "mixed",
+        "MECH-069": "mixed"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-993a (2026-09-04, supersedes V3-EXQ-993) is the merged-channel ablation ARC-021's what_would_answer has named as 'the missing test' since 2026-03. It is the FIRST run in this family with a working readout: the action-conditioned PRE-SIGMOID harm logit, trained on the distribution it is read on, lifted the SEPARATED control arm's max |calibration_gap| from 0.00152 (993, 13.1x below its own 0.02 floor) to 0.71546, positive in 8 of 8 control cells, with SEPARATED_SIGNAL_FLOOR raised 0.02 -> 0.20 and still cleared in both conditions (DENSE 0.4544, SPARSE 0.3986). Every readiness gate passed, including the two dv_headroom gates minted by the 2026-09-03 cluster autopsy's substrate entry dv-dynamic-range-precondition-class (H1 floor_headroom 0.22857 vs MARGIN 0.15 = 1.52x; H2 max_abs 0.71546 vs 0.40 = 1.79x), both evaluated over the control arm BEFORE any MERGED cell trained. RESULT: merging the three channels into one shared trunk under one optimizer and one summed loss did NOT degrade harm calibration AT THE PRE-REGISTERED BAR. DENSE mean paired diff -0.0064 (merged 0.44801 vs separated 0.45438; per-seed -0.0147 / -0.1784 / +0.0736 / +0.0941, 2 of 4 negative); SPARSE +0.1120 in the OPPOSITE direction (merged 0.51061 vs separated 0.39862; per-seed +0.3521 / -0.0153 / +0.1105 / +0.0006, 1 of 4 negative). Both criteria required mean <= -0.15 AND all 4 seeds <= 0; both failed on both clauses, so the driver's pre-registered combination rule emitted `weakens`. GOVERNANCE RECORDS `mixed`, NOT `weakens`, AND THIS IS A DELIBERATE DEPARTURE FROM THE PRE-REGISTERED RULE (user gate, 2026-09-05, after a cross-model Step 7c red-team returned CONTESTED). Four grounds, in order of weight. (1) EFFECT SIZE, CORRECTED. The bound originally drafted into this note ([-0.128, +0.115] DENSE / [-0.054, +0.278] SPARSE) was computed with a z-multiplier on n=4 paired diffs and is WITHDRAWN. The correct t(3) 95 percent intervals are [-0.204, +0.191] (DENSE, mean -0.0064, sd 0.1240) and [-0.158, +0.382] (SPARSE, mean +0.1120, sd 0.1696), which do NOT exclude the pre-registered -0.15 in EITHER condition. What the run excludes is a merged degradation of roughly 0.20+ (DENSE) / 0.16+ (SPARSE), and nothing smaller. Power at a true -0.15 is about 35 percent per condition and about 12 percent JOINTLY (the PASS requires both), i.e. this design returns FAIL roughly 88 percent of the time when ARC-021 is exactly right at its own pre-registered effect; at -0.30, power is about 85 percent per condition and about 73 percent jointly. (2) ONE FALSIFIER DV OF TWO. ARC-021's falsifying signature names calibration_gap AND attribution accuracy; this driver reads calibration_gap only, so the signature was met on half of what it specifies. (3) PRECONDITION SUBSTRATE. The non-degeneracy precondition requires the three channels to be separately optimized IN THE SUBSTRATE UNDER TEST and names E1DeepPredictor / E2*Forward / E3TrajectorySelector by file; the SEPARATED arm satisfies it only in the SURROGATE's sense (experiment-local sensory-reconstruction / forward-prediction / action-conditioned harm heads over a frozen 32-dim z_world), with no E3 selection role and a uniform-random policy, so the merge could contaminate only a downstream 2-layer trunk and never the latent itself. (4) HEADROOM IS NOT POWER. H1's `dv_bounds: [0.0, 1.0]` declaration is false for a DV that is a difference of mean logit differences and is unbounded below, so the headroom gates certify the CONTROL arm's signal rather than the MERGED arm's room to degrade; 'the DV had measured room to move' is withdrawn as a licence for a direction. WHAT `mixed` MEANS HERE, precisely: the run is INFORMATIVE and is emphatically NOT non_contributory -- it is the first working-readout instance of the claim's own named ablation, its control arm carries real signal in 8 of 8 cells, and it does rule out a LARGE merged degradation in a faithful topology analogue. It does not exclude the effect ARC-021 predicts, and it did not test the substrate the claim names. IT DOES NOT BEAR ON: the descriptive claim that REE currently instantiates three separately-optimized channels (true, and verified in this run's control arm); MECH-069's scale / covariance / temporal incommensurability content (v3_exq_005's question, untouched here); or the biological existence proof for parallel cortico-striatal loops. TWO FURTHER BOUNDS, recorded rather than argued away: SPARSE's apparent ADVANTAGE for merging is carried by one seed -- dropping seed 101 (+0.3521) leaves mean +0.0319, so the defensible statement is 'indistinguishable at this power, possibly better', not 'merging helps'; and BIOLOGY -- the null direction is compatible with error signals being separately GATED rather than separately COMPUTED (Schultz 1998, a deliberate counterweight in the 2026-09-04 C4 pull), against which Engel 2024 / Engelhard 2019 / Groessl 2018 / Wolpert 1998 argue for genuine channel specificity, so the biology is contested in exactly the direction this run points. MANIFEST OVERRIDE OWED: the flat manifest and the run-pack manifest BOTH carry evidence_direction `weakens` and evidence_direction_per_claim weakens/weakens, and the indexer has already scored that, so governance must write `mixed` onto BOTH copies together with an evidence_direction_note citing this artifact -- see `recommended_manifest_write`. A claims.yaml note alone would leave the scored direction disagreeing with the adjudication. STATUS: ARC-021 stays `provisional` and MECH-069 stays `stable` -- one scoped, underpowered surrogate run does not move either, and the driver itself pre-registered that this run 'tests the collapse-degrades-E3 consequence, not MECH-069's scale/temporal content, so it cannot on its own demote a stable claim'. PENDING RETEST: the retest owed by the 2026-09-03 cluster autopsy (`pending_retest_after_substrate: true`, condition 'once the readout is fixed') HAS NOW RUN and cleared its preconditions, so the flag should be cleared on BOTH claims -- see GFLAG-0137, raised precisely because the IGW routine keeps re-spawning 'Retest after substrate: ARC-021' against a discharged condition. The remaining substrate-fidelity question (does this null survive on the real E1/E2/E3 stack, with a live selection role and an unfrozen encoder) is routed as a NEW experiment, not as an unresolved retest flag.",
+      "recommended_manifest_write": {
+        "evidence_direction": "mixed",
+        "evidence_direction_per_claim": {
+          "ARC-021": "mixed",
+          "MECH-069": "mixed"
+        },
+        "evidence_direction_note": "Governance override, 2026-09-05. The driver's pre-registered combination rule emitted `weakens` for both ARC-021 and MECH-069 because both discrimination criteria failed on both clauses (mean <= -0.15 AND all 4 seeds <= 0), and both manifest copies plus the derived index already carry that. A cross-model Step 7c red-team on the ADJUDICATION returned CONTESTED and the Step 8 human gate ratified `mixed` instead. Reason: the effect-size bound originally written into the adjudication used a z-multiplier on n=4 paired diffs; the correct t(3) 95 percent intervals are [-0.204, +0.191] (DENSE) and [-0.158, +0.382] (SPARSE), so the run does NOT exclude the pre-registered -0.15 degradation in either condition, and joint power at -0.15 is about 12 percent -- a FAIL is the modal outcome even when the claim is exactly right. Two further limits reinforce it: only one of ARC-021's two falsifier DVs (calibration_gap, not attribution accuracy) was read, and the merge was performed on driver-local surrogate heads over a frozen z_world rather than the E1/E2/E3 stack the claim's precondition names by file. The run remains informative -- it rules out a large merged degradation (roughly 0.20+ DENSE / 0.16+ SPARSE) in a faithful topology analogue on a working readout -- but it is not a clean falsification, so `mixed` rather than `weakens`. Full reasoning: REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-993a_2026-09-05.md sections 4, 5 and 13.",
+        "write_both_copies": true,
+        "flat_path": "evidence/experiments/v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3.json",
+        "pack_path": "evidence/experiments/v3_exq_993a_arc021_merged_channel_action_conditioned_harm/runs/v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3/manifest.json",
+        "why": "The manifest's own pre-registered combination rule wrote `weakens` and the indexer has already scored it, so a claims.yaml note alone would leave the scored direction disagreeing with the confirmed adjudication. Governance must OVERRIDE the manifest, on both copies, and rebuild the index afterwards."
+      },
+      "per_claim_recommendation": {
+        "ARC-021": {
+          "recommended_evidence_direction": "mixed",
+          "recommended_epistemic_category": "standard",
+          "change": "Direction MOVES weakens -> mixed (user gate 2026-09-05, after the cross-model Step 7c red-team returned CONTESTED), on three grounds: (a) the correct t(3) 95 percent intervals on the paired means ([-0.204, +0.191] DENSE, [-0.158, +0.382] SPARSE) do NOT exclude the pre-registered -0.15 in either condition and joint power there is about 12 percent, so the earlier bound clause and the 'null-to-reversed estimate, not merely an unmet bar' premise are withdrawn; (b) only ONE of ARC-021's two falsifier DVs was read -- calibration_gap, not attribution accuracy; (c) the claim's own non-degeneracy precondition names E1/E2/E3 by file and the SEPARATED arm satisfies it only in the SURROGATE's sense. This DEPARTS from `weakens` as emitted by the driver's pre-registered combination rule, which is why governance must also override the manifest (flat + pack both carry weakens and the indexer has scored it -- see recommended_manifest_write). The run stays INFORMATIVE, not non_contributory. epistemic_category already stores `standard`, so nothing moves there; write the evidence_quality_note above. The one storable claims-layer field that moves: the retest owed by failure_autopsy_ext-claim-probe-cluster_2026-09-03 has now run and cleared every precondition (GFLAG-0137), so -> set pending_retest_after_substrate false",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays provisional"
+        },
+        "MECH-069": {
+          "recommended_evidence_direction": "mixed",
+          "recommended_epistemic_category": "standard",
+          "change": "Direction MOVES weakens -> mixed on the same three grounds as ARC-021 (corrected t(3) intervals do not exclude -0.15 in either condition, joint power about 12 percent; one falsifier DV of two read; the merge ran on driver-local surrogate heads over a frozen z_world rather than the named E1/E2/E3 stack), and NARROWED in the note: it bears only on the collapse-degrades-harm-calibration consequence, NOT on MECH-069's scale / covariance / temporal incommensurability content (v3_exq_005's question), and a stable claim is not moved by one scoped, underpowered surrogate-topology run. This DEPARTS from the driver's pre-registered `weakens`; the manifest override in recommended_manifest_write covers the flat + pack copies the indexer reads. epistemic_category already stores `standard`. The storable claims-layer field that moves is the discharged retest condition -> set pending_retest_after_substrate false",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays stable"
+        }
+      },
+      "read_across_not_adjudicated": {
+        "EXT-003": {
+          "relationship": "dropped from claim_ids relative to V3-EXQ-993; flagged by the driver for governance ratification; NOT a target of this autopsy and NOT adjudicated here",
+          "autopsy_view": "ENDORSE THE DROP. EXT-003 asserts an EXPLOITATION failure mode -- 'scalar reward conflates incommensurable error signals' so an agent satisfies the reward by optimising one channel at the expense of the others. V3-EXQ-993a has no reward, no policy optimisation and no agent maximising anything: behaviour is a uniform-random policy and all three channels are supervised prediction targets, so nothing in the design can hack anything in either direction. Tagging it would let a claim-scoring consumer read `reward hacking tested` off a design with no reward, which is exactly the claim_ids-accuracy failure mode REE_assembly/CLAUDE.md rule 3 warns about ('err toward fewer tags'). The drop costs EXT-003 nothing: V3-EXQ-993 tagged it and was adjudicated non_contributory, so no evidence entry is lost.",
+          "counter_argument_considered_and_rejected": "The MERGED arm does instantiate the MECHANISM half of EXT-003's rider (one scalar objective summed over three error terms), so a partial/mixed tag could be argued. Rejected: EXT-003's polarity asserts the exploit, and a design in which nothing can exploit anything cannot bear on it in either direction. Under-tagging here PROTECTS the 2026-09-03 user ruling that EXT-003 waits on EXPERIMENTAL evidence -- the right response is a probe that actually instantiates a reward and an optimisation loop, not a tag on a supervised prediction study.",
+          "bears_on_note_for_governance": "EXT-003's `ree_mechanism` field cites MECH-069 and ARC-021 as the reason REE resists reward hacking ('REE maintains three distinct BG-like loops with separate learning channels that cannot be mutually satisfied by a single exploit'). That rider INHERITS whatever ARC-021/MECH-069 lose here, without any evidence tag on EXT-003 itself. Governance should note the inheritance when it next reviews EXT-003's status -- this is the sibling-claim bears-on the re-adjudication rule asks for, recorded even though EXT-003 is out of scope."
+        }
+      },
+      "readjudication_of": "failure_autopsy_ext-claim-probe-cluster_2026-09-03 (target V3-EXQ-993)",
+      "what_else_this_moves_in_the_superseded_artifact": [
+        "The 2026-09-03 cluster autopsy's central diagnosis is CORROBORATED, not overturned: it localised 993's flatness to the driver-local harm head's sigmoid compression and prescribed reading the pre-sigmoid logit. Doing that (plus the training-target repair the 993a driver measured independently) raised the control arm ~470x, from 0.00152 to 0.71546. The prescribed fix worked.",
+        "Its learning item 6 -- 'declining to lower a floor the data missed by 13x was the correct call' -- is vindicated: the floor was RAISED 0.02 -> 0.20 and still cleared in both conditions.",
+        "Its 993 target set pending_retest_after_substrate true on ARC-021 and MECH-069 with the condition 'once the readout is fixed'. That condition is now met; both flags should clear (see per_claim_recommendation and GFLAG-0137).",
+        "Its substrate entry dv-dynamic-range-precondition-class carries an OPEN failure_record item for run v3_exq_993_... whose target was 'a control-arm signal at or above the registered 0.02 floor, established BEFORE the ablation arm is run'. V3-EXQ-993a establishes exactly that, through the entry's own dv_headroom machinery -- see resolves_prior_failure_record.",
+        "Its EXT-003 disposition (standard, non_contributory, status stays candidate) is UNCHANGED by this autopsy; EXT-003 is untagged here and only inherits the bears-on note above."
+      ],
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "dv-dynamic-range-precondition-class",
+        "amend_intent": "RECORD A RESOLUTION AND PARTIAL VALIDATION EVIDENCE ONLY -- this autopsy found NO new substrate gap and mints NO new failure record. The entry is status `implemented_pending_validation` / status_phase `validation_owed`; V3-EXQ-993a is its FIRST PRODUCTION USE: the dv_headroom precondition kind ran over the control arm before any MERGED cell trained, measured H1 1.52x and H2 1.79x, and correctly let the run proceed to a verdict rather than self-routing substrate_not_ready_requeue. THE VALIDATION RECORD MUST READ, VERBATIM: 'PASS-path, first of six queued validations; refusal path (substrate_not_ready_requeue) never fired in production; dv_bounds declaration defect noted'. The defect (Step 7c red-team F4): H1 declared `dv_bounds: [0.0, 1.0]` for calibration_gap, which is a difference of mean logit differences and is UNBOUNDED BELOW -- the driver itself says so at lines 203-205 -- and the precondition class did not catch the false declaration. Conservative for a REFUSAL gate, but it means `floor_headroom = min(control) - 0.0` certifies the CONTROL arm's signal, not the ablation arm's room to degrade. Governance should therefore NOT discharge `validation_owed` on this single PASS-path use: the entry's own implementation_note names six queued validations and the refusal path is still unexercised.",
+        "failure_record_entry": null,
+        "severity": "degrading",
+        "substrate_paths": [
+          "validate_experiments.py",
+          "experiments/_metrics.py::p0_readiness_gate"
+        ],
+        "severity_and_paths_unchanged": true,
+        "severity_and_paths_note": "UNCHANGED from what governance-20260903T2013 already stored (degrading; the two harness paths, with causal_grid_world.py deliberately dropped because 1,201 drivers import it and Step 2.5c matches at module level). This occurrence does not change the classification -- it is a success of the gate, not a failure of it.",
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "Closed by V3-EXQ-993a (run_id v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3). The item's stated target was 'a control-arm signal at or above the registered 0.02 floor, established BEFORE the ablation arm is run'. 993a establishes it through this entry's own machinery: the dv_headroom precondition kind evaluated the SEPARATED cells before any MERGED cell trained and measured floor_headroom 0.22857 (H1, 1.52x over MARGIN 0.15) and max_abs 0.71546 (H2, 1.79x over the 0.40 required), against a floor RAISED to 0.20. Control-arm max |calibration_gap| went 0.00152 -> 0.71546, positive in 8 of 8 cells. The other open item on this entry (v3_exq_999_mech161_...) is untouched and stays open. Caveat carried from Step 7c red-team F4 and F6: the item's target IS met and closing it is justified, but the accompanying validation is PASS-path only (first of six queued validations, refusal path never fired) and rides on a `dv_bounds [0.0, 1.0]` declaration that is false for this DV -- see amend_intent."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED, MECHANISM-partial -- not chargeable to REE alone, and specifically not REE FAILED. Measurement and environment each read independently adequate here, which is rare in this corpus and is why the run is INFORMATIVE rather than non_contributory: the readout was rebuilt and verified before the arms were compared, the control arm carried real signal in 8 of 8 cells (~470x over the predecessor), and both hazard densities were present. That is NOT, however, a licence for `weakens`, and the draft's two licensing premises are withdrawn at the Step 8 gate: (i) 'the DV had measured room to move' -- Step 7c red-team F4 shows H1's `dv_bounds [0.0, 1.0]` declaration is false for an unbounded-below DV, so the headroom gates certify the CONTROL arm's signal, not the merged arm's room to degrade; (ii) the 'null-to-reversed point estimate' -- the corrected t(3) 95 percent intervals ([-0.204, +0.191] DENSE, [-0.158, +0.382] SPARSE) do NOT exclude the predicted -0.15 in either condition, and joint power there is about 12 percent. Adequate INSTRUMENTATION is not adequate POWER. Claim alignment therefore reads `unclear` and the recorded direction is `mixed`. What is only PARTIAL is the mechanism's translation: the ablation merged three experiment-local surrogate heads over a frozen latent, with no E3 selection role, rather than the ree_core E1/E2/E3 predictor stack ARC-021 names by file -- and the falsifier's second DV (attribution accuracy) was never read. So the correct organism-level statement is NOT 'REE's three-loop separation is unnecessary' but 'a faithful topology analogue of the separation, tested where it was supposed to bite at a power that could only have caught a large effect, did not bite -- and the untested residue is the real stack AND the second DV, not the instrument.'"
+      },
+      "node_classification": "complex (probe-gated) / puzzle (known rules)",
+      "node_classification_note": "The frame is well posed -- we know exactly what to merge, exactly what to measure, and the readout now works. What is missing is a FACT: does the null survive when the merge is performed on the real E1/E2/E3 stack, with a live selection role and an unfrozen encoder? That is a spike, not a build (so not `complicated (buildable)`), and it is not `mystery (known data)` -- we do not already have the data and reframing alone will not settle it. It is not `aleatoric (irreducible)`: the residual is not noise, it is a named untested configuration.",
+      "learning_extracted": [
+        "A prescribed readout repair worked, at scale, and the size is worth recording: reading the harm signal as an ACTION-CONDITIONED PRE-SIGMOID logit trained on the distribution it is read on, rather than a post-transition sigmoid, moved the control arm's max |calibration_gap| from 0.00152 to 0.71546 (~470x) and made 8 of 8 control cells positive. The 2026-09-03 cluster autopsy's localisation was correct.",
+        "The deeper defect the redesign found is a TRAINING-TARGET defect, not a readout one, and it generalises: causal_grid_world.py:2745 writes grid[new_x,new_y]='agent' on every committed move, so a head trained h(z_t1) -> harm_label is taught that post-harm states look safe (measured harm_discrim_logit 0.042 and -0.029 in DENSE). Any future driver labelling a transition outcome on the POST-transition observation in this environment inherits the same erasure.",
+        "The dv_headroom precondition class RAN as designed on its first production use -- it measured the control arm's room BEFORE the ablation arm trained (H1 1.52x, H2 1.79x) and let the run reach a verdict rather than self-routing a requeue. But Step 7c red-team F4 bounds what that validates: H1 declared `dv_bounds: [0.0, 1.0]` for a DV that is a difference of mean logit differences and is unbounded BELOW, and the class did not catch the false declaration. On an unbounded-below DV, `floor_headroom = min(control) - lower_bound` certifies the CONTROL arm's signal, not the ablation arm's room to degrade -- so the gate must never be cited as evidence that a null 'had somewhere to fall'. This is PASS-path evidence only: the first of six queued validations, with the refusal path still unexercised in production.",
+        "RAISING a non-degeneracy floor is the correct response to a repaired instrument, not lowering it: SEPARATED_SIGNAL_FLOOR went 0.02 -> 0.20 (10x) and was cleared in both conditions with room to spare. The predecessor autopsy's refusal to relax the floor is vindicated.",
+        "A precondition-cleared FAIL in the falsifying direction is not automatically a falsification, and TWO independent questions have to be answered before treating it as one. (i) Is the mechanism under test the claim's OWN mechanism or a surrogate for it? Here the topology was faithful but the modules merged were experiment-local heads over a frozen latent, not the E1/E2/E3 stack ARC-021 names -- and only one of the falsifier's two DVs was read. (ii) Could the design have DETECTED the predicted effect? Here it could not reliably: joint power at the pre-registered -0.15 is about 12 percent, so FAIL is the modal outcome even when the claim is exactly right. The draft called this run 'clean, well-powered' -- it was clean, it was not well-powered at its own pre-registered effect, and that adjective was doing load-bearing work in the direction argument until the red-team removed it.",
+        "Pre-registering a margin buys a false-positive guarantee and pays for it in a stated blind spot. The driver's F9 states it: MARGIN 0.15 with n=4 absorbs any sub-margin degradation. Recording the per-seed diffs in interpretation.condition_detail is what keeps that visible -- and it is what let this autopsy report that SPARSE's apparent merged ADVANTAGE is carried by one seed (+0.3521 on 101; mean falls to +0.0319 without it) rather than repeating the label.",
+        "A claim's what_would_answer can name a test that is only instantiable at two very different fidelities (surrogate heads vs the named modules). When it names modules BY FILE, an autopsy should check which one actually ran before treating the falsifying signature as met.",
+        "The Step 7b C1 check earned its keep here in a way the check itself cannot know: it named an existing never-scored driver (v3_spark_arc021_three_loop_scale.py) which turned out to implement the exact ablation the fanout's highest-value leg needs, on the real E1/E2/E3 stack. A C1 fire is worth reading as 'someone may already have built your next experiment', not only as 'you may be duplicating this one'.",
+        "An n=4 paired mean needs the t(3) multiplier 3.182, not 1.96 -- and the difference is not cosmetic when the number lands in a STORABLE field. The draft's z-intervals understated each half-width by about 38 percent and converted an interval that INCLUDES the pre-registered -0.15 into one that appeared to exclude it, inside an evidence_quality_note governance copies verbatim into claims.yaml. Two standing lessons: recompute effect-size bounds with the small-sample multiplier before writing them into a storable field, and always state the POWER at the pre-registered effect alongside the interval -- that is what stops 'not detected' being read as 'excluded'.",
+        "A positional read of a preconditions list is fragile against later insertions, and the failure is silent. The 993a driver computes `worst_harm_sensitivity = preconditions[0]['measured']` (line 1336); the DESIGN red-team's F6 later inserted `control_arm_coverage_complete` at the head of that list, so `metrics.worst_harm_action_sensitivity` records 8.0 -- the coverage COUNT -- instead of the true 0.11382 at preconditions[1]. `validate_recording.py` reports OK because the SCHEMA is intact; a schema check cannot see a wrong VALUE in a right FIELD. Index preconditions by `name`, never by position.",
+        "A cross-model Step 7c red-team changed this adjudication's recorded direction, its stored effect-size bound, its claim_alignment cell and its fan-out repair list -- none of which the authoring pass had flagged as uncertain. The two defects that mattered most (a z-interval on n=4, and a positional list read) were both ARITHMETIC/MECHANICAL rather than interpretive, which is exactly the class a second reader catches cheaply and an author re-reading their own prose does not."
+      ],
+      "recording_defects": [
+        {
+          "field": "metrics.worst_harm_action_sensitivity",
+          "recorded_value": 8.0,
+          "true_value": 0.11382,
+          "true_value_location": "interpretation.preconditions[1].measured -- harm_head_action_sensitivity_present, worst control cell DENSE/SEPARATED/seed303",
+          "cause": "ree-v3/experiments/v3_exq_993a_arc021_merged_channel_action_conditioned_harm.py line 1336 reads `preconditions[0]['measured']` POSITIONALLY; the design red-team's F6 inserted `control_arm_coverage_complete` at index 0, so the field records the coverage count (8) rather than the sensitivity.",
+          "copies_affected": [
+            "flat manifest",
+            "run pack metrics.json"
+          ],
+          "verdict_impact": "none -- no gate, criterion or verdict in this run reads the `metrics` field; every precondition verdict is computed from `interpretation.preconditions` directly, so the FAIL, the five gate PASSes and both discrimination criteria are unaffected.",
+          "consumer_impact": "any consumer reading metrics.worst_harm_action_sensitivity gets 8.0, which reads as an implausibly strong sensitivity rather than the true 0.11382.",
+          "found_by": "Step 7c cross-model red-team, hygiene finding H1",
+          "fix": "one-line driver fix for any lettered successor: look the precondition up by `name`, not by index.",
+          "validator_note": "validate_recording.py reports OK / zero always-core gaps. That is true of the SCHEMA and false of this VALUE -- the .md's 'Recording provenance: OK' line must be read with that qualifier."
+        }
+      ],
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: channel separation genuinely is NOT required for harm calibration -- ARC-021's necessity half is false and this null is the truth.",
+          "H2: the surrogate is too shallow to express the contamination -- the frozen encoder confines the merge to a downstream trunk, there is no E3 selection role, and the equal-weight loss sum is an arbitrary commensuration; the null is a translation artefact.",
+          "H3: the degradation is real but SUB-MARGIN (< 0.15) and this design cannot resolve it -- the driver's own F9."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1",
+            "axis": "drive",
+            "sketch": "Extend the merge UPSTREAM: run the same two arms with the encoder UNFROZEN and jointly optimised in P1, so a collapsed objective can corrupt the latent itself rather than only a downstream trunk. Null: DENSE and SPARSE mean paired diffs both still > -0.15 with no sign consistency. A degradation appearing only here localises the effect to representation learning, which is where the biology puts it."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "representation",
+            "sketch": "Perform the ablation on the ACTUAL ree_core stack -- E1/E2/E3 merged under ONE optimizer over agent.parameters() with a combined loss -- inside a live REEAgent loop with E3 actually selecting, measuring the action-conditioned calibration_gap plus a selection-level harm-avoidance readout (harm_rate). Null: no degradation beyond the pre-registered margin in either condition. This is the test ARC-021's what_would_answer literally names and is the one thing 993a did not do. START FROM THE EXISTING DRIVER, DO NOT AUTHOR A FOURTH: `ree-v3/experiments/v3_spark_arc021_three_loop_scale.py` already implements exactly this shape (imports REEAgent, SEPARATE = three independent optimizers vs MERGED = one optimizer over agent.parameters() with combined loss E1+E2+E3, at REEConfig.large world_dim=128, scoring e3_discrim AND harm_rate) and has NEVER produced a manifest -- surfaced by this autopsy's Step 7b C1 fire and verified at source. SIX repairs are MANDATORY before it runs -- (a) and (b) from the Step 7b read, (c) to (f) added by the Step 7c red-team (F3), which read the file at source. (a) Its C1 bar `e3_discrim_separate > e3_discrim_merged + 0.02` is UNMEASURED, the same defect class 993 died of, so it must be re-derived from a measured control arm. (b) It carries NO dv_headroom precondition, so H1/H2 gates of the dv-dynamic-range-precondition-class kind must be added over its control arm before the MERGED arm trains -- and `dv_bounds` must be declared HONESTLY for whichever DV is chosen (an unbounded-below DV must not be declared [0.0, 1.0]; that false declaration is exactly this autopsy's red-team F4). (c) PAIR THE ARMS ON SEED. The spark runs `_run_condition('SEPARATE', args.seed, ...)` then `_run_condition('MERGED', args.seed + 1, ...)` (lines 318-320), so the two arms differ in env seed AND agent init -- the same unpaired-arm defect class the 993 design red-team fixed by pairing. (d) THE ENCODER-GRADIENT CONFOUND, which is the load-bearing one. `_train_step_separate` computes the harm loss on `latent.z_world.detach()` (line 108) while `_train_step_merged` uses the UNDETACHED `latent.z_world` with the comment 'allow contamination gradient' (lines 126-128). As written, the MERGED arm therefore differs from SEPARATE in TWO things at once: optimizer topology AND whether the harm gradient reaches the encoder. Those are precisely THIS fan-out's H1 (encoder-level merge) and H2 (real-stack merge) legs, so running the spark as-is would ALIAS them in a single arm -- the exact verdict-aliasing this fan-out note forbids. Fix: make the encoder gradient a SEPARATE FACTOR (a 2x2: optimizer topology x detach/undetach) or make it SYMMETRIC across arms, and state in the queue entry which of the two manipulations the leg isolates. (e) MULTI-SEED WITH A MEASURED PAIRED NULL. The spark is single-seed (default 42), with no sign-consistency rule and no measured null, so the bar in (a) would have nothing to be sized against and the run would have no defensible power statement. Given this autopsy's own power arithmetic (joint 12 percent at -0.15 on n=4), the successor must pre-register an effect it can actually detect rather than inheriting 993a's -0.15/n=4 design. (f) RUNNER/INDEXER-COMPATIBLE MANIFEST. Its output is an ad-hoc JSON -- no `claim_ids`, no `evidence_direction`, no recording-standard fields, no `--dry-run`, no `_experiment_lib` -- written to `REE_assembly/evidence/experiments/<type>/`. It must be rebuilt through `experiments/_lib` (`manifest_core.stamp_recording_core(...)`) or nothing it produces will be scored. RUNNABILITY IS UNVERIFIED, and the artifact says so rather than implying otherwise: every agent method the spark calls resolves by NAME against the current ree_core/agent.py (compute_prediction_loss, generate_trajectories, select_action, record_transition, update_residue, sense, reset; e1/e2/e3/latent_stack attributes; REEConfig.large; the CausalGridWorldV2 kwargs), but SIGNATURES were not checked and the file has never executed. A smoke run against current agent.py is the FIRST step of this leg, not an afterthought. Consider also adding the 993a calibration_gap readout alongside e3_discrim, since e3_discrim is a discrimination statistic rather than the SD-003 causal signature ARC-021's what_would_answer names -- that was the 993a driver's own stated reason for not treating the spark as a substitute, and it remains correct for 993a's question while being repairable for this one."
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "measurement",
+            "sketch": "A sub-margin-sensitive re-pose: many more seeds (>= 16) and/or paired variance reduction (shared P0, common random numbers across arms), pre-registering a 0.05 effect rather than 0.15, with the criterion stated as a confidence interval on the paired mean rather than a threshold-plus-sign-consistency rule. Null: the 95 percent CI on the paired mean excludes -0.05 in both conditions."
+          }
+        ],
+        "note": "GOV-FANOUT-1: three live hypotheses on three different design axes (drive / representation / measurement), each with a declared null. Do NOT re-pose this as one sequential lettered iteration of 993 -- H1, H2 and H3 make different predictions and a single re-pose would inherit whichever confound it did not vary. Design-audit the portfolio for coverage and verdict-aliasing before queuing -- and note that the aliasing risk here is CONCRETE, not hypothetical: the existing spark driver the H2 leg starts from varies the encoder gradient (H1's manipulation) and the optimizer topology (H2's) in the same arm, so repair (d) in the H2 sketch is what keeps the two legs separable at all (Step 7c red-team F3). H2 is the highest-value leg (it is the claim's own named test) and the most expensive."
+      },
+      "routing": "queue-experiment",
+      "routing_note": "NEW EXQ NUMBER, not a lettered iteration of 993. The scientific question changes: 993/993a asked 'does merging three surrogate channels degrade harm calibration', and that question is now answered (no, at this scale, with the bounds recorded). The next question is 'does that null survive on the ree_core E1/E2/E3 stack with a live selection role and an unfrozen encoder', which is a different mechanism under test and different claim_ids scope. The re-derive brake does NOT fire (0 prior counting hits for each claim) and nothing here refuses a re-queue -- but the fanout_recommendation above is the shape the re-queue should take: a three-leg portfolio, not a fourth letter. NO /lit-pull is owed (ARC-021 and MECH-069 both carry current targeted reviews, MECH-069's landed 2026-09-04). NO /implement-substrate build is owed: the substrate amend above records a RESOLUTION and validation evidence, not a gap. NO /claim-synthesis handoff: the granularity-debt trigger does not fire for ARC-021 and is not satisfied on structural-difference grounds for MECH-069 (see granularity_debt_trigger). Step 7b C1 fired and was ACTED ON: the H2 leg should start from the existing never-scored driver v3_spark_arc021_three_loop_scale.py rather than authoring a fourth -- see pre_routing_checks_7b."
+    }
+  ],
+  "granularity_debt_trigger": {
+    "ARC-021": {
+      "fires": false,
+      "tagging_targets": 3,
+      "targets": [
+        "failure_autopsy_ext-claim-probe-cluster_2026-09-03 | v3_exq_993_ext003_arc021_merged_channel_ablation_20260903T053340Z_v3 | non_contributory / standard",
+        "failure_autopsy_grandfathered-misc2-ninethread-cluster_2026-08-08 | v3_exq_004_arc021_incommensurability_20260316T232412Z_v3 | mixed / measurement_gap",
+        "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 | 20260316T232412Z_v3_exq_004_arc021_incommensurability_v3 | mixed / measurement_gap"
+      ],
+      "claim_alignment_distribution": "other=1, unclear=1, untested=1 -- NO target reads `weakened`",
+      "reason": "The reader's own rule: a cluster in which no target reads `weakened` is measurement or implementation debt, not granularity debt. It flagged 1 free-text `other` target for a manual read -- failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08, whose string is 'already-diagnosed elsewhere' and which is the SAME run as the misc2 target (v3_exq_004, double-counted across two grandfathered sweeps). No buried weakened reading. Note, AMENDED at the Step 8 gate: the draft expected this autopsy to add the FIRST `weakened` target for ARC-021. It does NOT -- claim_alignment was moved to `unclear` after the Step 7c red-team (F1/F2), so ARC-021's distribution stays other=1, unclear=2, untested=1 with still NO `weakened` target, and the count-side condition remains unmet on the next pass as well. Re-evaluate on the NEXT ARC-021 autopsy; it will still need structurally DIFFERENT signatures, not just a first weakened reading."
+    },
+    "MECH-069": {
+      "fires": false,
+      "tagging_targets": 8,
+      "claim_alignment_distribution": "other=3, unclear=2, weakened=2, untested=1",
+      "weakened_targets": [
+        "failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08 | v3_exq_047b_sd005_sd010_joint_20260321T191558Z_v3 | weakens / standard",
+        "failure_autopsy_grandfathered-sd003-cluster_2026-08-08 | v3_exq_035_mech069_optimizer_merge_20260318T202626Z_v3 | weakened_resolved_by_supersession"
+      ],
+      "reason": "At least one target reads `weakened`, so the count-side condition is met -- but the trigger requires the signatures to differ STRUCTURALLY and they do not. Both prior weakened targets and this run circle the SAME signature: collapse/merge the error channels and the harm-attribution readout fails to degrade (v3_exq_035 is literally an optimizer merge, and its target was already resolved-by-supersession; v3_exq_047b is the unified-vs-split latent, the representation-level form of the same merge). That is ONE recurring question tested at three fidelities, not several finer mechanisms hiding inside a coarse claim. Routing to /claim-synthesis would inflate the believed tail on what is a fidelity ladder. If a FOURTH weakened MECH-069 target appears with a structurally different signature -- e.g. a scale/covariance failure rather than a merge failure -- re-evaluate then."
+    }
+  },
+  "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "counts_per_claim": {
+      "ARC-021": 0,
+      "MECH-069": 0
+    },
+    "prior_substrate_ceiling_autopsies": [],
+    "supersedes_autopsy": "failure_autopsy_ext-claim-probe-cluster_2026-09-03",
+    "refused_requeue": false,
+    "route_to": null,
+    "upstream_substrate": null,
+    "note": "Re-derived under the binding R1-R3 convention using the SKILL.md Step 7 recipe verbatim, run from /Users/dgolden/REE_Working over all confirmed failure_autopsy_*.json: 0 counting hits for ARC-021 and 0 for MECH-069. R1 (unit = run) and R2 (latest adjudication supersedes) are satisfied trivially -- each claim's only recent target is the 993 one in failure_autopsy_ext-claim-probe-cluster_2026-09-03. R3 excludes it: its per-claim category is `standard`, not `substrate_ceiling`, so the predicate short-circuits at clause 1 before the direction fallback is reached. The grandfathered 2026-08-08 targets carry `measurement_gap` / `standard` with mixed directions and likewise do not count. This autopsy itself does not add a hit -- its category is `standard` and its direction is `mixed` (moved from `weakens` at the Step 8 gate), neither of which is a counting reading. The direction change does not affect the brake: R3 short-circuits on the category clause, and `weakens` was never the operative reading here. The brake therefore does not fire and NO re-queue is refused; the portfolio in fanout_recommendation is permitted and recommended."
+  },
+  "hypothesis_space_ledger_pending": {
+    "existing_question_adjudicated": null,
+    "search_performed": "Loaded REE_assembly/evidence/planning/hypothesis_space_registry.v1.json (50 questions) and searched the full serialised JSON for ARC-021, MECH-069 and EXT-003: ZERO occurrences of each. The four literal `993` substring matches are unrelated numeric fragments in other qids' text, not references to V3-EXQ-993 or 993a. No registry question has a leg this run adjudicates, and no existing qid's theme covers the merged-vs-separated channel question (the nearest neighbours -- sd005-zself-zworld-asymmetry, e3_fdominance_causal_discrimination -- are about latent-split asymmetry and E3 variance dominance respectively, not about channel-topology necessity).",
+    "growth_restriction_check": "Not applicable -- no existing qid is being grown. (For completeness: the only qid in the registry carrying a non-empty growth_restriction is `competence_floor`, which is CLOSED to further fan-out and is unrelated to this question.)",
+    "recommended_action": "OPEN A NEW QUESTION. Drafted below in full; STILL NOT WRITTEN to the registry -- this block remains DRAFT-FOR-GOVERNANCE even though the artifact is now confirmed. The main /governance session writes the registry; this autopsy does not. Apply it as drafted, with leg 1's resolution as amended after the Step 7c red-team and the Step 8 gate: state stays `alive`, evidence_direction `mixed`, elimination bar NOT met. When applying, remember invariant 1 -- `initial_frozen_count` must equal 4 (the four legs below) and `initial_frozen_count_at_registration` must be set to the same value and never moved thereafter.",
+    "draft_new_question": {
+      "qid": "arc021_channel_separation_necessity",
+      "question": "Is separate optimisation of the three BG-like learning channels (sensory prediction / motor-sensory forward / harm-goal) REQUIRED for harm calibration, or is one shared channel differentiated at the readout sufficient?",
+      "claims": [
+        "ARC-021",
+        "MECH-069"
+      ],
+      "status": "open",
+      "growth_restriction": null,
+      "opened_by": "failure_autopsy_V3-EXQ-993a_2026-09-05",
+      "note": "Opened because V3-EXQ-993a is the first run in this family with a working readout and therefore the first that can adjudicate anything here. 993a's own reading was amended at the Step 8 gate from `weakens` to `mixed` after a cross-model Step 7c red-team, so leg 1 stays alive rather than resolving -- the run bounds the effect from above without excluding the one the leg predicts. The question is genuinely a discrimination, and the biology is contested in the same direction (Engel 2024 / Engelhard 2019 / Groessl 2018 / Wolpert 1998 for channel specificity; Schultz 1998 for one global signal differentiated downstream), so the denominator should be frozen before the portfolio runs rather than after.",
+      "legs": [
+        {
+          "hid": "H-surrogate-trunk-merge-degrades",
+          "label": "merging three surrogate channel heads into one trunk under one optimizer degrades harm calibration",
+          "desc": "In a driver-local three-head surrogate (sensory-reconstruction / forward-prediction / action-conditioned harm) over a frozen z_world, MERGED mean calibration_gap <= SEPARATED - 0.15 with all seeds sign-consistent, in BOTH hazard densities.",
+          "axis": "algorithm",
+          "pre_registered_utc": "2026-09-05T02:38:25Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-993a_2026-09-05.json",
+          "adjudicating_runs": [
+            "V3-EXQ-993a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "evidence_direction": "mixed",
+            "resolving_runs": [
+              "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3"
+            ],
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-993a returned DENSE mean paired diff -0.0064 (2 of 4 seeds negative) and SPARSE +0.1120 (1 of 4 seeds negative); both pre-registered criteria failed on both clauses, with H1/H2 dv_headroom cleared over the control arm beforehand and 8 of 8 control cells positive. The leg is NOT falsified and NOT eliminated: the correct t(3) 95 percent intervals on the paired means are [-0.204, +0.191] (DENSE) and [-0.158, +0.382] (SPARSE), so the run does NOT exclude this leg's own >= 0.15 degradation in either condition, and joint power at -0.15 is about 12 percent -- the bar is not met, so the state stays `alive`. What the run DOES establish is an upper bound: a merged degradation of roughly 0.20+ (DENSE) / 0.16+ (SPARSE) is excluded in this surrogate, on a working readout. Two further limits on how far the leg was even tested: only one of ARC-021's two falsifier DVs (calibration_gap, not attribution accuracy) was read, and the arm satisfies the claim's non-degeneracy precondition only in the surrogate's sense. WITHDRAWN at the Step 8 gate (2026-09-05): the draft's `falsified_at_this_scale` state, its `resolved_utc`, and its z-interval bound clause ('excludes roughly 0.13+ DENSE / 0.05+ SPARSE') -- all three were consequences of the same z-vs-t error (Step 7c red-team F1). PROVENANCE FLAG, unchanged: this leg was retro-registered and adjudicated by the SAME artifact, so it must not be counted as a live pre-registration when the Dimension 3/4 denominator is computed."
+          }
+        },
+        {
+          "hid": "H-encoder-level-merge-degrades",
+          "label": "the contamination is at the ENCODER, not the trunk",
+          "desc": "With the encoder unfrozen and jointly optimised under the collapsed objective, MERGED degrades harm calibration by >= 0.15 in both conditions. Null: both mean paired diffs still > -0.15 with no sign consistency.",
+          "axis": "drive",
+          "pre_registered_utc": "2026-09-05T02:38:25Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-993a_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive"
+          }
+        },
+        {
+          "hid": "H-real-stack-merge-degrades",
+          "label": "the null is a surrogate artefact -- merging the ACTUAL E1/E2/E3 stack degrades harm calibration",
+          "desc": "Merging E1DeepPredictor / E2WorldForward / E2HarmSForward / E3TrajectorySelector into one trunk under one optimizer inside a live REEAgent loop degrades the action-conditioned calibration_gap and a selection-level harm-avoidance readout, relative to the separated stack. Null: no degradation beyond the pre-registered margin in either condition. This is the test ARC-021's what_would_answer names by file. It should START from the existing never-scored driver ree-v3/experiments/v3_spark_arc021_three_loop_scale.py, but ONLY after the six mandatory repairs in fanout_recommendation.suggested_probes[H2] -- in particular repair (d), the detach/undetach encoder-gradient asymmetry, which as the spark stands would alias THIS leg with H-encoder-level-merge-degrades in a single arm. The leg must also read BOTH of ARC-021's falsifier DVs (calibration_gap AND attribution accuracy) and pre-register an effect its seed count can actually detect.",
+          "axis": "representation",
+          "pre_registered_utc": "2026-09-05T02:38:25Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-993a_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive"
+          }
+        },
+        {
+          "hid": "H-submargin-degradation-exists",
+          "label": "a real but sub-margin degradation exists and this design cannot resolve it",
+          "desc": "At >= 16 seeds with paired variance reduction, the 95 percent CI on the mean paired diff lies below -0.05 in at least one condition. Null: the CI excludes -0.05 in both.",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-09-05T02:38:25Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-993a_2026-09-05.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive"
+          }
+        }
+      ]
+    },
+    "applied": true,
+    "registry_written": true,
+    "applied_utc": "2026-09-05T09:52:19Z",
+    "applied_by": "governance-20260905 (inline Step 9b, main session; scratchpad apply_registry_20260905.py)",
+    "applied_note": "Draft new question converted to registry schema at apply time (legs -> hypotheses with full resolution shape; title/short_title/decision/synthesis added); qid arc021_channel_separation_necessity registered with 4 legs."
+  },
+  "pre_routing_checks_7b": {
+    "ran": true,
+    "tool": "scripts/autopsy_pre_routing_checks.py --json",
+    "fire_count": 1,
+    "fires": [
+      {
+        "check": "C1",
+        "message": "routing recommends queue-experiment for ['ARC-021','MECH-069'], but driver(s) for that claim are already on disk, have NEVER scored a run (nor has any same-question sibling), and are not mentioned anywhere in this artifact: v3_spark_arc021_three_loop_scale",
+        "names": [
+          "v3_spark_arc021_three_loop_scale"
+        ],
+        "disposition": "ACTED ON, not dismissed -- and it changed a recommendation. Read the driver at source: v3_spark_arc021_three_loop_scale.py imports ree_core.agent.REEAgent and implements SEPARATE (three independent optimizers) vs MERGED (ONE optimizer over agent.parameters(), combined loss E1+E2+E3) at REEConfig.large world_dim=128, scoring e3_discrim and harm_rate. That is materially the H2 leg of the fanout_recommendation -- the ablation on the REAL E1/E2/E3 stack in a live agent loop, which is the one thing V3-EXQ-993a did not do and which ARC-021's what_would_answer names by file. The H2 probe sketch has been rewritten to START from this existing driver rather than authoring a fourth, with SIX mandatory repairs recorded: its unmeasured 0.02 e3_discrim bar (the same defect class 993 died of), its absent dv_headroom precondition, and -- added by the Step 7c red-team's source read (F3) -- its unpaired arms, its aliasing detach/undetach asymmetry, its single-seed design with no measured null, and its runner/indexer-incompatible ad-hoc manifest. Its runnability against the current agent.py is explicitly recorded as UNVERIFIED. NOTE the 993a driver's own docstring C1 block already evaluated this file and correctly ruled it NOT a substitute FOR 993a'S QUESTION (it reads a discrimination statistic rather than the SD-003 causal signature, on an unmeasured bar); that verdict stands for 993a and is not contradicted here -- what changed is that the same file is the right STARTING POINT for the different, downstream question this autopsy routes.",
+        "changed_the_artifact": true
+      }
+    ],
+    "inapplicable": [],
+    "note": "C2/C3/C6 did not fire. C2 (recommended substrate entry already exists) is correctly silent because this artifact's action is `amend` against a named existing target_sd_id, not a `create`. C3 (literature declared ABSENT where entries exist) is correctly silent because lit_status is `present` and names the reviews. Per the skill, `inapplicable` is not `no fire` -- but the claim-keyed checks here were applicable (claim_ids is non-empty and both ids resolve), so the quiet report on C1's siblings is a real quiet, not a blind one.",
+    "rerun_after_disposition": {
+      "fire_count": 0,
+      "note": "Re-run against the FINAL artifact (with the sibling .md present): fire_count 0, no inapplicable checks. C1 clears because the driver it named is now cited and dispositioned in both files; C5 became applicable once the .md existed and did not fire. The zero is the result of ACTING on C1, not of suppressing it -- the original fire and its full disposition are retained above."
+    }
+  },
+  "red_team_7c": {
+    "ran": true,
+    "ran_by": "separate cross-model pass after the staged draft was produced; see the top-level `red_team` block",
+    "note": "The staged draft was produced with Steps 2-7b and 9 only, by explicit instruction of the dispatching governance session; the Step 7c adversarial pass and the Step 8 interactive gate were OWED and have now both been performed (2026-09-05). Findings and their disposition are recorded in the top-level `red_team` block. NOTE, separately, that the DRIVER carries its own cross-model (fable) red-team pass from design time -- CONTESTED, 10 findings, 7 fixed, 2 resolved by measurement, 1 recorded -- but that pass attacked the DESIGN, not this ADJUDICATION, and did not substitute for 7c."
+  },
+  "cluster_pattern": null,
+  "red_team": {
+    "model": "fable-5.1",
+    "cross_model": true,
+    "verdict": "CONTESTED",
+    "findings_file": "/private/tmp/claude-501/-Users-dgolden-REE-Working/2b29825c-bcaa-4275-97dc-f77b3fd5a682/scratchpad/redteam_993a.md",
+    "findings_applied": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "findings_verified_sound": [
+      "F5",
+      "F6",
+      "F7"
+    ],
+    "user_gate_decision": "mixed on both; pending_retest cleared on both",
+    "what_the_findings_moved": {
+      "F1": "The stored effect-size bound was computed with a z-multiplier on n=4. Replaced everywhere (evidence_quality_note, four_layer measurement row, four_layer scale row, .md sections 4 and 13, hypothesis-ledger leg note) with the t(3) intervals [-0.204, +0.191] DENSE and [-0.158, +0.382] SPARSE, which do NOT exclude the pre-registered -0.15; power restated as ~35 percent per condition / ~12 percent joint at -0.15 and ~85 / ~73 percent at -0.30. The 'null-to-reversed estimate, not merely an unmet bar' premise is withdrawn as a licence for `weakens`.",
+      "F2": "Direction moved weakens -> mixed on both claims (user gate). claim_alignment moved weakened -> unclear. The note now carries the corrected bound, the fact that only one of ARC-021's two falsifier DVs was read, that the precondition names the real substrate while the SEPARATED arm satisfies it only in the surrogate's sense, and that this DEPARTS from the direction the pre-registered combination rule emitted.",
+      "F3": "The H2 fan-out leg's repair list went from 2 items to 6, adding seed pairing, the detach/undetach encoder-gradient factor (which would otherwise alias H1 and H2 in one arm), multi-seed with a measured paired null, and a runner/indexer-compatible manifest via _experiment_lib; runnability against current agent.py is now stated as unverified.",
+      "F4": "H1's `dv_bounds: [0.0, 1.0]` declaration is false for an unbounded-below DV, so the headroom gates certify the control arm's signal rather than the merged arm's room to degrade. 'The DV had measured room to move' is removed as a licence for the direction, and the substrate amend's validation record now reads 'PASS-path, first of six queued validations; refusal path never fired in production; dv_bounds declaration defect noted'.",
+      "H1": "Manifest recording defect recorded under `recording_defects` and in learning_extracted: metrics.worst_harm_action_sensitivity = 8.0 is the coverage count read positionally from preconditions[0]; the true value is 0.11382 at preconditions[1]. No verdict is affected.",
+      "H2": "The .md's 'all five gates passed' is read off the indexer's RECOMPUTATION, not off the manifest -- the two dv_headroom entries carry no `met` key, unlike the three readiness entries. Wording corrected.",
+      "H3": "'all five readiness-kind' corrected to 3 `kind: readiness` + 2 `kind: dv_headroom`.",
+      "H4": "'satisfied by the SEPARATED arm' qualified to 'satisfied in the surrogate's sense, not in the substrate the sentence names', in both files."
+    },
+    "findings_verified_sound_note": {
+      "F5": "Clearing pending_retest_after_substrate on both claims is sound and is kept -- the stated condition was readout/harness, both are built, the retest ran, and GFLAG-0137 asks for exactly this clear.",
+      "F6": "The substrate amend's resolution of the 993 failure_record item is sound and is kept, WITH the F4 caveat now attached: the item's target is met, but the accompanying validation is PASS-path only and rides on a false dv_bounds declaration, so `validation_owed` should not be discharged on it.",
+      "F7": "The EXT-003 drop is endorsed and unchanged."
+    },
+    "hygiene_not_moving_the_verdict": [
+      "H5 (the `standard` category call is right but its confidence is tempered by F4 -- reflected in recommended_epistemic_category_note)",
+      "H6 (all checked absolutes hold: 8 of 8 control cells positive, ~470x, H1 1.52x, H2 1.79x, 2 of 4 and 1 of 4 sign counts, drop-seed-101 +0.0319, sds 0.124 / 0.170, worst control sensitivity 0.1138, harm events 1616 / 1878, floor 0.20 cleared at 0.4544 / 0.3986)",
+      "H7 (re-derive brake and granularity trigger inputs verified, the derivations not independently re-run)"
+    ],
+    "verdict_after_disposition": "All four defects folded and both files edited in place; the CONTESTED verdict is recorded as resolved-by-amendment, not overturned. The science the red-team checked (arms, cells, sign counts, gate ratios, control coverage, the ~470x lift, the EXT-003 drop, the 993 failure_record resolution, clearing the retest flag) stands unchanged."
+  }
+}
