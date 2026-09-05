@@ -1964,9 +1964,9 @@
       "summary": "The 2026-08-27 MECH-465 boundary-regime probe's headline 'P2 dispersion fails 3/3 by 11-19x' was measured on an UNTRAINED z_world (frozen random projection); its release condition sd_zworld_warmup_optimizer_group was read as pending when it had been status: validated since 2026-07-22. A confound-free re-measurement (evidence/planning/mech465_zworld_warmup_dispersion_spike_20260904.md, REE_assembly ac852cdab1) using the validated run_zworld_p0 warmup finds within-seed IQR(rv)/median rises monotonically with warmup budget on 3/3 seeds by 3.2-8.3x: P2 still fails, but by 2.7-5.8x rather than 11-19x, so the recorded failure magnitude is overstated ~3-4x wherever it is cited. Governance decision owed: the gate-rescale route is NOT demonstrably exhausted (the trend has not plateaued), so route a warmup-budget sweep probe (WARM400/800 plus phased P0a->P0b, thresholds recalibrated per arm so P1 becomes readable) rather than either minting the build or closing the route. Note also that IGW auto-discovery staged the now-retired build as IGW-20260904-213 before substrate_queue.json entry MECH465-COMMIT-GATE-HEADROOM was corrected (REE_assembly 0abb9f0006, ready flipped to false); that staged assignment should be withdrawn.",
       "raised_by_session": "campaign-c1b-20260904",
       "raised_at": "2026-09-04T21:42:17Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-05T10:18:53Z",
+      "resolution_note": "governance-20260905 user decision: route a warmup-budget sweep probe (chip-20260905-mech465-warmup-budget-sweep); gate-rescale build NOT minted, route NOT closed; substrate entry MECH465-COMMIT-GATE-HEADROOM annotated; recorded 11-19x magnitude to be corrected to 2.7-5.8x wherever cited; IGW-20260904-213 staged build to be withdrawn."
     },
     {
       "flag_id": "GFLAG-0137",
