@@ -1925,9 +1925,9 @@
       "summary": "ARC-007 is an architectural-decision gate that has been sitting on MECH-151's substrate build since 2026-08-18 with no decision content recorded anywhere. substrate_queue entry mech151-action-bias-has-no-e3-ranking-channel carries status 'proposed_GATED_on_ARC-007_governance_decision_DO_NOT_BUILD_YET' (unblocks MECH-151, SD-016, SD-055), and EXP-1311's blocked_by names 'ARC-007 (governance architectural-decision gate, not a routine substrate build)' verbatim -- but claims.yaml ARC-007 is status provisional with EMPTY notes, so what ARC-007 actually decides is written down nowhere. The entry's own implementation_hint frames the choice: (A) give E3 an action-object input channel and consume the bias there (honours ARC-007 STRICT; the larger build, and needs a decision about what consuming it MEANS since a per-batch constant added identically to every candidate can only re-rank through a nonlinear term), or (B) accept the substrate as correct under ARC-007 and QUALIFY MECH-151's registered mechanism -- a claims edit, not a build, which would close the entry with no code. Needs the A-or-B call. Surfaced by the campaign C3 unowned-blocked-proposal audit; this is a decision without an owner, not a build without an owner.",
       "raised_by_session": "campaign-c3-20260904",
       "raised_at": "2026-09-04T14:44:32Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-05T10:18:44Z",
+      "resolution_note": "governance-20260905 user decision (B): MECH-151 mechanism QUALIFIED (action_bias's only channel is the CEM refit), NO build; substrate entry mech151-action-bias-has-no-e3-ranking-channel -> wontfix; MECH-151 evidence_quality_note carries the decision content. The entry's 'ARC-007' gate was a dangling reference (claims.yaml ARC-007 is the hippocampal path-replay claim); recorded on MECH-151 and the entry instead."
     },
     {
       "flag_id": "GFLAG-0134",
