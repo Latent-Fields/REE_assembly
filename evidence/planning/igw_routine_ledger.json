@@ -4159,7 +4159,11 @@
       "task_claim_session_id": "igw-auto-igw-234-proposal-for-impl-008-20260905T001125Z",
       "task_claim_claimed_at": "2026-09-05T00:11:25Z",
       "assigned_at": "2026-09-05T00:10:22Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-05T00:23:31Z",
+      "completion_summary": "EVB-1297/experimental (IMPL-008) -> skipped, not V3-testable (implementation_note recording REE's own roadmap; claim-testability, not substrate) -- REE_assembly c7a69704bd; systemic resolver root chipped",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "EVB-1297/experimental (IMPL-008) -> skipped, not V3-testable (implementation_note recording REE's own roadmap; claim-testability, not substrate) -- REE_assembly c7a69704bd; systemic resolver root chipped"
     }
   ],
   "dispositions": [
@@ -5786,6 +5790,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-04T23:18:06Z",
       "re_eligible_after": "2026-09-06T23:18:06Z"
+    },
+    {
+      "stable_hash": "b20a11f4a7e6",
+      "igw_id_at_disposition": "IGW-20260905-234",
+      "owner_exq": null,
+      "claim_ids": [
+        "IMPL-008"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for IMPL-008",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-05T00:23:31Z",
+      "re_eligible_after": "2026-09-07T00:23:31Z"
     }
   ]
 }
