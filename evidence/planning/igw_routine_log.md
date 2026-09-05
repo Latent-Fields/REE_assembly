@@ -2610,3 +2610,8 @@ One line per hourly tick. ASCII only.
 2026-09-05T15:04:13Z workset committed (regen -- 249 items, 30 ready, 0 in flight)
 2026-09-05T15:03:27Z skip IGW-20260905-242: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-09-05T16:04:46Z SPAWN IGW-20260905-233 skill=/lit-pull prio=40 uuid=c37652c7-1ab6-46d9-b8e0-f65516199378 pid=48732 worktree=igw-233-literature-proposal-for-ext-008
+2026-09-05T16:28:51Z complete igw-233-literature-proposal-for-ext-008 spawned->completed outcome=USEFUL_LANDED: EXT-008 lit-pull landed: 5 literature entries (lit_conf 0.83, 0->5, EVB-1253 now
+2026-09-05T17:56:37Z GC removed worktree igw-233-literature-proposal-for-ext-008 (removed; branch deleted)
+2026-09-05T17:54:55Z GC sweep removed 1 orphan worktree(s), kept 14
+2026-09-05T17:57:29Z workset committed (regen -- 247 items, 30 ready, 0 in flight)
+2026-09-05T17:54:55Z skip IGW-20260905-235: no fresh runner heartbeat (experiment-lane item would just sit in queue)
