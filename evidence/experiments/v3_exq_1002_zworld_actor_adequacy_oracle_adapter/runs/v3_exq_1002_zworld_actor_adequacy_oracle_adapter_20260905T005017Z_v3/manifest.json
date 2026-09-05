@@ -1,0 +1,913 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1002_zworld_actor_adequacy_oracle_adapter",
+  "run_id": "v3_exq_1002_zworld_actor_adequacy_oracle_adapter_20260905T005017Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-05T00:50:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "zworld_geometry_blocks_oracle_mapping_h_c_geometry_mismatch",
+    "question_id": "zworld_actor_adequacy_locus",
+    "hypothesis_verdict": "H-C-geometry-mismatch",
+    "question": "Does the FROZEN z_world V3-EXQ-978 left support the representation-to-action mapping, read by a capacity-matched supervised adapter with credit assignment removed? The registered live_gate is 'CANNOT reproduce -> H-C; CAN reproduce -> H-B'. The untrained negative control is an ATTRIBUTION axis layered on top: it says whether any actionability found is creditable to SD-018's warmup, and it gates the H-C label so a verdict arm that beat its own control is never called geometry-blocked.",
+    "hypotheses": {
+      "H-B-consumer-learning": "z_world supports the representation-to-action mapping at the consumer's own capacity; the deficit is in the RL consumer's learning.",
+      "H-C-geometry-mismatch": "The information is present and linearly decodable (978: r2 0.71) but the geometry does not make the mapping accessible; the H-C corroborator (an information-preserving rotation/reweighting) becomes OWED on this branch and is deliberately NOT queued by this run."
+    },
+    "effective_pass_threshold_per_seed": [
+      {
+        "seed": 42,
+        "effective_pass_threshold": 0.8,
+        "trivial_baseline": 0.566107988357544,
+        "untrained_control_agreement": 0.6876164078712463
+      },
+      {
+        "seed": 43,
+        "effective_pass_threshold": 0.8,
+        "trivial_baseline": 0.5803008079528809,
+        "untrained_control_agreement": 0.6817079186439514
+      },
+      {
+        "seed": 44,
+        "effective_pass_threshold": 0.8,
+        "trivial_baseline": 0.5720101594924927,
+        "untrained_control_agreement": 0.694656491279602
+      }
+    ],
+    "combination_rule": "The VERDICT is C_zworld_adapter_reproduces_oracle alone, on the pre-registered arm zworld_off. C_positive_control_learns_from_raw_field is a gate on INTERPRETABILITY, not a conjunct: its failure routes the run to substrate_not_ready_requeue rather than turning a pass into a fail. C_untrained_control_below_bar is reported only, and is what separates an attributable H-C from 'nothing at 32 dimensions works'. The FIVE outcome cells are a function of three seed-majority booleans -- off_clears, beats_untrained, untrained_clears -- under three readiness gates -- gate_green, verdict_arm_green and comparator_green -- all computed by `_adjudicate()` and contract-tested by `--self-test`. H-C REQUIRES `not beats_untrained`: a verdict arm that beat its own untrained control by the margin is never labelled 'the geometry blocks the mapping'. A RED COMPARATOR ARM licenses no hypothesis verdict in either direction and routes to substrate_not_ready_requeue: the separation is differential, so a collapsed untrained control can neither hand the verdict arm a free margin (a spurious H-B) nor supply a vacuous `not beats_untrained` (a spurious H-C).",
+    "preconditions": [
+      {
+        "name": "rawfield_ceiling::adapter_capacity_sufficient_on_raw_field",
+        "precondition": "adapter_capacity_sufficient_on_raw_field",
+        "arm": "rawfield_ceiling",
+        "kind": "readiness",
+        "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+        "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9730280041694641,
+        "threshold": 0.6,
+        "met": true
+      },
+      {
+        "name": "rawfield_ceiling::oracle_labels_non_degenerate",
+        "precondition": "oracle_labels_non_degenerate",
+        "arm": "rawfield_ceiling",
+        "kind": "readiness",
+        "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+        "control": "worst-seed majority-class share of the oracle's action on the training split",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.25387057662010193,
+        "threshold": 0.6,
+        "met": true
+      },
+      {
+        "name": "rawfield_ceiling::heldout_split_sufficient",
+        "precondition": "heldout_split_sufficient",
+        "arm": "rawfield_ceiling",
+        "kind": "readiness",
+        "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+        "control": "worst-seed held-out labelled step count on the oracle-driven split",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1965.0,
+        "threshold": 500.0,
+        "met": true
+      },
+      {
+        "name": "rawfield_ceiling::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "rawfield_ceiling",
+        "kind": "readiness",
+        "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "zworld_untrained::adapter_capacity_sufficient_on_raw_field",
+        "precondition": "adapter_capacity_sufficient_on_raw_field",
+        "arm": "zworld_untrained",
+        "kind": "readiness",
+        "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+        "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9730280041694641,
+        "threshold": 0.6,
+        "met": true
+      },
+      {
+        "name": "zworld_untrained::oracle_labels_non_degenerate",
+        "precondition": "oracle_labels_non_degenerate",
+        "arm": "zworld_untrained",
+        "kind": "readiness",
+        "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+        "control": "worst-seed majority-class share of the oracle's action on the training split",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.25387057662010193,
+        "threshold": 0.6,
+        "met": true
+      },
+      {
+        "name": "zworld_untrained::heldout_split_sufficient",
+        "precondition": "heldout_split_sufficient",
+        "arm": "zworld_untrained",
+        "kind": "readiness",
+        "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+        "control": "worst-seed held-out labelled step count on the oracle-driven split",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1965.0,
+        "threshold": 500.0,
+        "met": true
+      },
+      {
+        "name": "zworld_untrained::zworld_not_collapsed",
+        "precondition": "zworld_not_collapsed",
+        "arm": "zworld_untrained",
+        "kind": "readiness",
+        "description": "z_world must retain more than one effective dimension. SD-018's own ML note names 25-dim-target-dominates-P0 collapse as its hazard and the substrate has measured participation ratio 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating-point failure, NOT evidence that the geometry is unusable -- which is exactly the H-C conclusion this run must not reach by accident.",
+        "control": "participation ratio of frozen z_world over that arm's own BC feature matrix",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.492851658629209,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "zworld_untrained::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "zworld_untrained",
+        "kind": "readiness",
+        "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "zworld_off::adapter_capacity_sufficient_on_raw_field",
+        "precondition": "adapter_capacity_sufficient_on_raw_field",
+        "arm": "zworld_off",
+        "kind": "readiness",
+        "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+        "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9730280041694641,
+        "threshold": 0.6,
+        "met": true
+      },
+      {
+        "name": "zworld_off::oracle_labels_non_degenerate",
+        "precondition": "oracle_labels_non_degenerate",
+        "arm": "zworld_off",
+        "kind": "readiness",
+        "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+        "control": "worst-seed majority-class share of the oracle's action on the training split",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.25387057662010193,
+        "threshold": 0.6,
+        "met": true
+      },
+      {
+        "name": "zworld_off::heldout_split_sufficient",
+        "precondition": "heldout_split_sufficient",
+        "arm": "zworld_off",
+        "kind": "readiness",
+        "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+        "control": "worst-seed held-out labelled step count on the oracle-driven split",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1965.0,
+        "threshold": 500.0,
+        "met": true
+      },
+      {
+        "name": "zworld_off::zworld_encoder_trained_in_p0",
+        "precondition": "zworld_encoder_trained_in_p0",
+        "arm": "zworld_off",
+        "kind": "readiness",
+        "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder, or the 'frozen z_world' the adapter reads is a random projection and the run measures nothing about 978's latent. Same guard and floor the family uses.",
+        "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.28158509731292725,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "zworld_off::zworld_not_collapsed",
+        "precondition": "zworld_not_collapsed",
+        "arm": "zworld_off",
+        "kind": "readiness",
+        "description": "z_world must retain more than one effective dimension. SD-018's own ML note names 25-dim-target-dominates-P0 collapse as its hazard and the substrate has measured participation ratio 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating-point failure, NOT evidence that the geometry is unusable -- which is exactly the H-C conclusion this run must not reach by accident.",
+        "control": "participation ratio of frozen z_world over that arm's own BC feature matrix",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.222778806991767,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "zworld_off::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "zworld_off",
+        "kind": "readiness",
+        "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "control": "strongest TRIVIAL predictor's held-out agreement, per seed -- max(state-blind majority class, repeat-previous-executed-action); the achievable elevation is what is left between it and 1.0",
+        "description": "The elevation criterion must be reachable: 1.0 minus the worst (largest) trivial baseline is the room the DV actually has above a reader that ignores the state. margin 2.0 because the criterion must RESOLVE the effect, not merely touch the bound. STATED HONESTLY (red-team pass 2, Finding 3): at authoring-time measurements this gate PASSES BY 0.02-0.03 -- measured headroom 0.418/0.420/0.434 against the 0.40 required, a ratio of 1.05-1.09. A seed whose held-out split realises repeat-previous-action >= 0.60 routes the WHOLE run to substrate_not_ready_requeue on a property of the oracle's walk rather than of any representation. That is an honest refusal, not a misattribution -- but the margin is satisfied only nominally and the run is one unlucky split from answering nothing. The margin is deliberately NOT lowered to buy comfort: moving a pre-registered threshold to obtain a pass is the failure this precondition class exists to prevent.",
+        "name": "dv_headroom_agreement_elevation",
+        "kind": "dv_headroom",
+        "measured": 0.41969919204711914,
+        "threshold": 0.4,
+        "direction": "lower",
+        "dv_name": "oracle_action_agreement_elevation_over_state_blind",
+        "achievable_statistic": "ceiling_headroom",
+        "criterion_threshold": 0.2,
+        "headroom_margin": 2.0,
+        "n_control_values": 3,
+        "headroom_ratio": 1.0492479801177979,
+        "dv_bounds": [
+          0.0,
+          1.0
+        ],
+        "met": true
+      },
+      {
+        "control": "rawfield_ceiling held-out agreement per seed -- what this DV demonstrably reaches at this capacity on this dataset",
+        "description": "The absolute bar must sit inside what the DV is shown to reach. NOT implied by adapter_capacity_sufficient_on_raw_field: that certifies the instrument against a 0.60 FLOOR, while this asks whether the 0.80 BAR is reachable -- a different question, and the bar now sits above the floor, so the implication runs the wrong way. Measured at authoring time the raw-field control reaches 0.973-0.985 with this same adapter, so the ratio is ~1.22 and the bar is comfortably in range -- unlike the elevation check above, this one is NOT marginal.",
+        "name": "dv_headroom_agreement_absolute",
+        "kind": "dv_headroom",
+        "measured": 0.9846368432044983,
+        "threshold": 0.8,
+        "direction": "lower",
+        "dv_name": "oracle_action_agreement",
+        "achievable_statistic": "max_abs",
+        "criterion_threshold": 0.8,
+        "headroom_margin": 1.0,
+        "n_control_values": 3,
+        "headroom_ratio": 1.2307960540056229,
+        "met": true
+      }
+    ],
+    "per_arm_gate": {
+      "non_degenerate": true,
+      "degeneracy_reason": "",
+      "all_green": true,
+      "any_green": true,
+      "green_arms": [
+        "rawfield_ceiling",
+        "zworld_untrained",
+        "zworld_off"
+      ],
+      "red_arms": [],
+      "adjudication_preconditions": [
+        {
+          "name": "rawfield_ceiling::adapter_capacity_sufficient_on_raw_field",
+          "precondition": "adapter_capacity_sufficient_on_raw_field",
+          "arm": "rawfield_ceiling",
+          "kind": "readiness",
+          "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+          "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+          "direction": "lower",
+          "applies": true,
+          "measured": 0.9730280041694641,
+          "threshold": 0.6,
+          "met": true
+        },
+        {
+          "name": "rawfield_ceiling::oracle_labels_non_degenerate",
+          "precondition": "oracle_labels_non_degenerate",
+          "arm": "rawfield_ceiling",
+          "kind": "readiness",
+          "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+          "control": "worst-seed majority-class share of the oracle's action on the training split",
+          "direction": "upper",
+          "applies": true,
+          "measured": 0.25387057662010193,
+          "threshold": 0.6,
+          "met": true
+        },
+        {
+          "name": "rawfield_ceiling::heldout_split_sufficient",
+          "precondition": "heldout_split_sufficient",
+          "arm": "rawfield_ceiling",
+          "kind": "readiness",
+          "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+          "control": "worst-seed held-out labelled step count on the oracle-driven split",
+          "direction": "lower",
+          "applies": true,
+          "measured": 1965.0,
+          "threshold": 500.0,
+          "met": true
+        },
+        {
+          "name": "rawfield_ceiling::d3_local_view_greedy_clears_floor",
+          "precondition": "d3_local_view_greedy_clears_floor",
+          "arm": "rawfield_ceiling",
+          "kind": "readiness",
+          "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+          "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+          "direction": "lower",
+          "applies": true,
+          "measured": 45.75,
+          "threshold": 1.0,
+          "met": true
+        },
+        {
+          "name": "zworld_untrained::adapter_capacity_sufficient_on_raw_field",
+          "precondition": "adapter_capacity_sufficient_on_raw_field",
+          "arm": "zworld_untrained",
+          "kind": "readiness",
+          "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+          "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+          "direction": "lower",
+          "applies": true,
+          "measured": 0.9730280041694641,
+          "threshold": 0.6,
+          "met": true
+        },
+        {
+          "name": "zworld_untrained::oracle_labels_non_degenerate",
+          "precondition": "oracle_labels_non_degenerate",
+          "arm": "zworld_untrained",
+          "kind": "readiness",
+          "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+          "control": "worst-seed majority-class share of the oracle's action on the training split",
+          "direction": "upper",
+          "applies": true,
+          "measured": 0.25387057662010193,
+          "threshold": 0.6,
+          "met": true
+        },
+        {
+          "name": "zworld_untrained::heldout_split_sufficient",
+          "precondition": "heldout_split_sufficient",
+          "arm": "zworld_untrained",
+          "kind": "readiness",
+          "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+          "control": "worst-seed held-out labelled step count on the oracle-driven split",
+          "direction": "lower",
+          "applies": true,
+          "measured": 1965.0,
+          "threshold": 500.0,
+          "met": true
+        },
+        {
+          "name": "zworld_untrained::zworld_not_collapsed",
+          "precondition": "zworld_not_collapsed",
+          "arm": "zworld_untrained",
+          "kind": "readiness",
+          "description": "z_world must retain more than one effective dimension. SD-018's own ML note names 25-dim-target-dominates-P0 collapse as its hazard and the substrate has measured participation ratio 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating-point failure, NOT evidence that the geometry is unusable -- which is exactly the H-C conclusion this run must not reach by accident.",
+          "control": "participation ratio of frozen z_world over that arm's own BC feature matrix",
+          "direction": "lower",
+          "applies": true,
+          "measured": 7.492851658629209,
+          "threshold": 2.0,
+          "met": true
+        },
+        {
+          "name": "zworld_untrained::d3_local_view_greedy_clears_floor",
+          "precondition": "d3_local_view_greedy_clears_floor",
+          "arm": "zworld_untrained",
+          "kind": "readiness",
+          "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+          "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+          "direction": "lower",
+          "applies": true,
+          "measured": 45.75,
+          "threshold": 1.0,
+          "met": true
+        },
+        {
+          "name": "zworld_off::adapter_capacity_sufficient_on_raw_field",
+          "precondition": "adapter_capacity_sufficient_on_raw_field",
+          "arm": "zworld_off",
+          "kind": "readiness",
+          "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+          "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+          "direction": "lower",
+          "applies": true,
+          "measured": 0.9730280041694641,
+          "threshold": 0.6,
+          "met": true
+        },
+        {
+          "name": "zworld_off::oracle_labels_non_degenerate",
+          "precondition": "oracle_labels_non_degenerate",
+          "arm": "zworld_off",
+          "kind": "readiness",
+          "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+          "control": "worst-seed majority-class share of the oracle's action on the training split",
+          "direction": "upper",
+          "applies": true,
+          "measured": 0.25387057662010193,
+          "threshold": 0.6,
+          "met": true
+        },
+        {
+          "name": "zworld_off::heldout_split_sufficient",
+          "precondition": "heldout_split_sufficient",
+          "arm": "zworld_off",
+          "kind": "readiness",
+          "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+          "control": "worst-seed held-out labelled step count on the oracle-driven split",
+          "direction": "lower",
+          "applies": true,
+          "measured": 1965.0,
+          "threshold": 500.0,
+          "met": true
+        },
+        {
+          "name": "zworld_off::zworld_encoder_trained_in_p0",
+          "precondition": "zworld_encoder_trained_in_p0",
+          "arm": "zworld_off",
+          "kind": "readiness",
+          "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder, or the 'frozen z_world' the adapter reads is a random projection and the run measures nothing about 978's latent. Same guard and floor the family uses.",
+          "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+          "direction": "lower",
+          "applies": true,
+          "measured": 0.28158509731292725,
+          "threshold": 1e-06,
+          "met": true
+        },
+        {
+          "name": "zworld_off::zworld_not_collapsed",
+          "precondition": "zworld_not_collapsed",
+          "arm": "zworld_off",
+          "kind": "readiness",
+          "description": "z_world must retain more than one effective dimension. SD-018's own ML note names 25-dim-target-dominates-P0 collapse as its hazard and the substrate has measured participation ratio 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating-point failure, NOT evidence that the geometry is unusable -- which is exactly the H-C conclusion this run must not reach by accident.",
+          "control": "participation ratio of frozen z_world over that arm's own BC feature matrix",
+          "direction": "lower",
+          "applies": true,
+          "measured": 4.222778806991767,
+          "threshold": 2.0,
+          "met": true
+        },
+        {
+          "name": "zworld_off::d3_local_view_greedy_clears_floor",
+          "precondition": "d3_local_view_greedy_clears_floor",
+          "arm": "zworld_off",
+          "kind": "readiness",
+          "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+          "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+          "direction": "lower",
+          "applies": true,
+          "measured": 45.75,
+          "threshold": 1.0,
+          "met": true
+        }
+      ],
+      "vacuous_arms": [],
+      "per_arm_gate": {
+        "green_arms": [
+          "rawfield_ceiling",
+          "zworld_untrained",
+          "zworld_off"
+        ],
+        "red_arms": [],
+        "structurally_vacuous_arms": [],
+        "vacuity_reason_by_arm": {},
+        "all_green": true,
+        "any_green": true,
+        "failed_preconditions_by_arm": {},
+        "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+        "green": [
+          {
+            "arm": "rawfield_ceiling",
+            "gate_green": true,
+            "structurally_vacuous": false,
+            "vacuity_reason": "",
+            "failed_preconditions": [],
+            "preconditions": [
+              {
+                "name": "rawfield_ceiling::adapter_capacity_sufficient_on_raw_field",
+                "precondition": "adapter_capacity_sufficient_on_raw_field",
+                "arm": "rawfield_ceiling",
+                "kind": "readiness",
+                "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+                "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+                "direction": "lower",
+                "applies": true,
+                "measured": 0.9730280041694641,
+                "threshold": 0.6,
+                "met": true
+              },
+              {
+                "name": "rawfield_ceiling::oracle_labels_non_degenerate",
+                "precondition": "oracle_labels_non_degenerate",
+                "arm": "rawfield_ceiling",
+                "kind": "readiness",
+                "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+                "control": "worst-seed majority-class share of the oracle's action on the training split",
+                "direction": "upper",
+                "applies": true,
+                "measured": 0.25387057662010193,
+                "threshold": 0.6,
+                "met": true
+              },
+              {
+                "name": "rawfield_ceiling::heldout_split_sufficient",
+                "precondition": "heldout_split_sufficient",
+                "arm": "rawfield_ceiling",
+                "kind": "readiness",
+                "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+                "control": "worst-seed held-out labelled step count on the oracle-driven split",
+                "direction": "lower",
+                "applies": true,
+                "measured": 1965.0,
+                "threshold": 500.0,
+                "met": true
+              },
+              {
+                "name": "rawfield_ceiling::d3_local_view_greedy_clears_floor",
+                "precondition": "d3_local_view_greedy_clears_floor",
+                "arm": "rawfield_ceiling",
+                "kind": "readiness",
+                "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+                "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+                "direction": "lower",
+                "applies": true,
+                "measured": 45.75,
+                "threshold": 1.0,
+                "met": true
+              }
+            ],
+            "scoped_out": [
+              {
+                "name": "rawfield_ceiling::zworld_encoder_trained_in_p0",
+                "precondition": "zworld_encoder_trained_in_p0",
+                "arm": "rawfield_ceiling",
+                "applies": false,
+                "reason": "rawfield_ceiling reads the raw observation channel and warms no encoder at all, so it has no P0 weight delta to certify; zworld_untrained is the NEGATIVE CONTROL whose encoder is deliberately never trained, so a trained-encoder precondition is not meaningful for it (scoping the PRECONDITION out, not the arm)"
+              },
+              {
+                "name": "rawfield_ceiling::zworld_not_collapsed",
+                "precondition": "zworld_not_collapsed",
+                "arm": "rawfield_ceiling",
+                "applies": false,
+                "reason": "rawfield_ceiling has no latent whose dimensionality could collapse"
+              }
+            ]
+          },
+          {
+            "arm": "zworld_untrained",
+            "gate_green": true,
+            "structurally_vacuous": false,
+            "vacuity_reason": "",
+            "failed_preconditions": [],
+            "preconditions": [
+              {
+                "name": "zworld_untrained::adapter_capacity_sufficient_on_raw_field",
+                "precondition": "adapter_capacity_sufficient_on_raw_field",
+                "arm": "zworld_untrained",
+                "kind": "readiness",
+                "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+                "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+                "direction": "lower",
+                "applies": true,
+                "measured": 0.9730280041694641,
+                "threshold": 0.6,
+                "met": true
+              },
+              {
+                "name": "zworld_untrained::oracle_labels_non_degenerate",
+                "precondition": "oracle_labels_non_degenerate",
+                "arm": "zworld_untrained",
+                "kind": "readiness",
+                "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+                "control": "worst-seed majority-class share of the oracle's action on the training split",
+                "direction": "upper",
+                "applies": true,
+                "measured": 0.25387057662010193,
+                "threshold": 0.6,
+                "met": true
+              },
+              {
+                "name": "zworld_untrained::heldout_split_sufficient",
+                "precondition": "heldout_split_sufficient",
+                "arm": "zworld_untrained",
+                "kind": "readiness",
+                "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+                "control": "worst-seed held-out labelled step count on the oracle-driven split",
+                "direction": "lower",
+                "applies": true,
+                "measured": 1965.0,
+                "threshold": 500.0,
+                "met": true
+              },
+              {
+                "name": "zworld_untrained::zworld_not_collapsed",
+                "precondition": "zworld_not_collapsed",
+                "arm": "zworld_untrained",
+                "kind": "readiness",
+                "description": "z_world must retain more than one effective dimension. SD-018's own ML note names 25-dim-target-dominates-P0 collapse as its hazard and the substrate has measured participation ratio 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating-point failure, NOT evidence that the geometry is unusable -- which is exactly the H-C conclusion this run must not reach by accident.",
+                "control": "participation ratio of frozen z_world over that arm's own BC feature matrix",
+                "direction": "lower",
+                "applies": true,
+                "measured": 7.492851658629209,
+                "threshold": 2.0,
+                "met": true
+              },
+              {
+                "name": "zworld_untrained::d3_local_view_greedy_clears_floor",
+                "precondition": "d3_local_view_greedy_clears_floor",
+                "arm": "zworld_untrained",
+                "kind": "readiness",
+                "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+                "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+                "direction": "lower",
+                "applies": true,
+                "measured": 45.75,
+                "threshold": 1.0,
+                "met": true
+              }
+            ],
+            "scoped_out": [
+              {
+                "name": "zworld_untrained::zworld_encoder_trained_in_p0",
+                "precondition": "zworld_encoder_trained_in_p0",
+                "arm": "zworld_untrained",
+                "applies": false,
+                "reason": "rawfield_ceiling reads the raw observation channel and warms no encoder at all, so it has no P0 weight delta to certify; zworld_untrained is the NEGATIVE CONTROL whose encoder is deliberately never trained, so a trained-encoder precondition is not meaningful for it (scoping the PRECONDITION out, not the arm)"
+              }
+            ]
+          },
+          {
+            "arm": "zworld_off",
+            "gate_green": true,
+            "structurally_vacuous": false,
+            "vacuity_reason": "",
+            "failed_preconditions": [],
+            "preconditions": [
+              {
+                "name": "zworld_off::adapter_capacity_sufficient_on_raw_field",
+                "precondition": "adapter_capacity_sufficient_on_raw_field",
+                "arm": "zworld_off",
+                "kind": "readiness",
+                "description": "POSITIVE CONTROL. The capacity-matched adapter, on the same dataset with the same optimiser and passes, must reproduce the oracle from the RAW 25-dim field. This is the readiness assert for the load-bearing criterion and it reports the SAME statistic that criterion routes on (held-out top-1 agreement), on the worst seed. Below floor the instrument cannot learn the mapping from information handed to it directly, so a z_world null is uninterpretable and the run self-routes substrate_not_ready_requeue rather than claiming H-C.",
+                "control": "rawfield_ceiling worst-seed held-out oracle_action_agreement",
+                "direction": "lower",
+                "applies": true,
+                "measured": 0.9730280041694641,
+                "threshold": 0.6,
+                "met": true
+              },
+              {
+                "name": "zworld_off::oracle_labels_non_degenerate",
+                "precondition": "oracle_labels_non_degenerate",
+                "arm": "zworld_off",
+                "kind": "readiness",
+                "description": "The oracle's action marginal must not be dominated by a single action, or agreement measures label skew rather than state-dependence and a state-blind predictor could clear the bar. CEILING: measured is the worst (largest) majority-class share across seeds. Authoring-time measurement 0.2556.",
+                "control": "worst-seed majority-class share of the oracle's action on the training split",
+                "direction": "upper",
+                "applies": true,
+                "measured": 0.25387057662010193,
+                "threshold": 0.6,
+                "met": true
+              },
+              {
+                "name": "zworld_off::heldout_split_sufficient",
+                "precondition": "heldout_split_sufficient",
+                "arm": "zworld_off",
+                "kind": "readiness",
+                "description": "Enough held-out labelled steps, on the worst seed, for the agreement estimate to resolve the pre-registered elevation. Guards the case where short episodes (early termination) shrink the test split below usefulness.",
+                "control": "worst-seed held-out labelled step count on the oracle-driven split",
+                "direction": "lower",
+                "applies": true,
+                "measured": 1965.0,
+                "threshold": 500.0,
+                "met": true
+              },
+              {
+                "name": "zworld_off::zworld_encoder_trained_in_p0",
+                "precondition": "zworld_encoder_trained_in_p0",
+                "arm": "zworld_off",
+                "kind": "readiness",
+                "description": "The P0a SD-070 recipe must actually move split_encoder.world_encoder, or the 'frozen z_world' the adapter reads is a random projection and the run measures nothing about 978's latent. Same guard and floor the family uses.",
+                "control": "latent_stack weight delta over the warmup, vs the family's guard floor",
+                "direction": "lower",
+                "applies": true,
+                "measured": 0.28158509731292725,
+                "threshold": 1e-06,
+                "met": true
+              },
+              {
+                "name": "zworld_off::zworld_not_collapsed",
+                "precondition": "zworld_not_collapsed",
+                "arm": "zworld_off",
+                "kind": "readiness",
+                "description": "z_world must retain more than one effective dimension. SD-018's own ML note names 25-dim-target-dominates-P0 collapse as its hazard and the substrate has measured participation ratio 9.21 -> 1.06 under a related recipe. A collapsed arm is an operating-point failure, NOT evidence that the geometry is unusable -- which is exactly the H-C conclusion this run must not reach by accident.",
+                "control": "participation ratio of frozen z_world over that arm's own BC feature matrix",
+                "direction": "lower",
+                "applies": true,
+                "measured": 4.222778806991767,
+                "threshold": 2.0,
+                "met": true
+              },
+              {
+                "name": "zworld_off::d3_local_view_greedy_clears_floor",
+                "precondition": "d3_local_view_greedy_clears_floor",
+                "arm": "zworld_off",
+                "kind": "readiness",
+                "description": "The demonstrator must be worth cloning: local_view_greedy must clear the 1.0 competence floor FROM THE SAME 5x5 field the adapter reads, closing the V3-EXQ-732a privileged-oracle confound. 978 measured 45.75 / 49.7 / 48.7.",
+                "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+                "direction": "lower",
+                "applies": true,
+                "measured": 45.75,
+                "threshold": 1.0,
+                "met": true
+              }
+            ],
+            "scoped_out": []
+          }
+        ],
+        "red": []
+      }
+    },
+    "dv_headroom_gate_green": true,
+    "dv_headroom_reason": "",
+    "criteria_non_degenerate": {
+      "C_zworld_adapter_reproduces_oracle": true,
+      "C_verdict_arm_beats_untrained_control": true,
+      "C_positive_control_learns_from_raw_field": true,
+      "C_untrained_control_below_bar": true
+    },
+    "criteria": [
+      {
+        "name": "C_zworld_adapter_reproduces_oracle",
+        "load_bearing": true,
+        "passed": false,
+        "description": "On zworld_off (the verdict arm), a capacity-matched supervised adapter reads the FROZEN z_world and reproduces local_view_greedy's action on >= 2 of 3 seeds, at held-out agreement >= 0.80 AND >= 0.20 above that seed's own STRONGEST TRIVIAL predictor -- max(state-blind majority class, repeat-previous-executed-action) -- AND >= 0.10 above the paired UNTRAINED negative control on that same seed. All three conjuncts are required: the absolute bar alone was clearable by an autocorrelation shortcut (measured 0.57) and by an untrained random projection (measured 0.59). PASS -> H-B (the representation supports the mapping; the RL consumer failed to learn it). FAIL, with the positive control green -> H-C (the geometry does not make the mapping accessible)."
+      },
+      {
+        "name": "C_verdict_arm_beats_untrained_control",
+        "load_bearing": true,
+        "passed": false,
+        "description": "zworld_off exceeds the paired zworld_untrained negative control by >= 0.10 on >= 2 of 3 seeds. The control is the SAME agent construction with the warmup SKIPPED, scored on the same data with the same adapter, so it carries the SAME shortcuts (label autocorrelation, random-projection-preserved field content) and the difference isolates what the warmup added to the latent's actionability. Reported as its own criterion, not folded into the one above, so a manifest shows WHICH conjunct failed. 0 of 3 seeds cleared."
+      },
+      {
+        "name": "C_positive_control_learns_from_raw_field",
+        "load_bearing": false,
+        "passed": true,
+        "description": "The SAME adapter, dataset, optimiser and passes reach >= 0.60 agreement from the raw 25-dim field on every seed. This is what makes a z_world null attributable to the representation rather than to the instrument; it is a criterion AND a precondition because its failure changes the outcome LABEL, not just a number."
+      },
+      {
+        "name": "C_untrained_control_below_bar",
+        "load_bearing": false,
+        "passed": true,
+        "description": "REPORTED, never gating -- it is what makes an H-C label attributable to THIS latent's geometry rather than to '32 dimensions of anything cannot do it'. True (the expected case) means the untrained random projection does NOT itself clear the bar+elevation. FALSE while the verdict arm also fails is a distinct and interesting outcome -- a random projection outperforming 978's warmed latent -- and the grid gives it its own label rather than folding it into H-C."
+      }
+    ],
+    "untrained_control_differential": {
+      "margin_required": 0.1,
+      "n_seeds_clearing": 0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "verdict_arm_agreement": 0.6694599390029907,
+          "untrained_control_agreement": 0.6876164078712463,
+          "trivial_baseline": 0.566107988357544,
+          "effective_pass_threshold": 0.8,
+          "margin": -0.018156468868255615,
+          "clears": false
+        },
+        {
+          "seed": 43,
+          "verdict_arm_agreement": 0.6734594702720642,
+          "untrained_control_agreement": 0.6817079186439514,
+          "trivial_baseline": 0.5803008079528809,
+          "effective_pass_threshold": 0.8,
+          "margin": -0.008248448371887207,
+          "clears": false
+        },
+        {
+          "seed": 44,
+          "verdict_arm_agreement": 0.6478371620178223,
+          "untrained_control_agreement": 0.694656491279602,
+          "trivial_baseline": 0.5720101594924927,
+          "effective_pass_threshold": 0.8,
+          "margin": -0.046819329261779785,
+          "clears": false
+        }
+      ],
+      "note": "verdict-arm minus paired untrained-control held-out agreement, per seed. Authoring-time measurement WITH THIS RUN'S OWN ADAPTER (not a linear readout -- that stale 0.590 figure is what red-team pass 2 Finding 1 corrected): an untrained z_world reaches 0.681-0.695 held-out, 0.609-0.623 on shortcut-free turn states. AGREEMENT_BAR is calibrated against THAT figure plus this margin."
+    },
+    "null_reading": {
+      "substrate_not_ready_requeue": "ONE OF TWO, and the manifest's criteria list says which: (a) the positive control did not learn the mapping from the RAW field, or (b) the DV had no headroom for its own threshold. NEITHER is an H-C verdict and neither may be read as one -- both say the INSTRUMENT is uninterpretable here. Re-queue with more BC episodes or adapter passes. NOTE the 'cleared the bar but did not beat the untrained control' case is NO LONGER routed here: it has its own label below, because the registered live_gate is satisfied on that branch.",
+      "zworld_supports_mapping_but_warmup_non_contributory": "the adapter DID reproduce the oracle from the frozen latent at >= the bar, so the registered live_gate's H-B leg is satisfied and H-C is DISCONFIRMED -- the H-C corroborator is NOT owed. What is unestablished is ATTRIBUTION: an untrained random projection of the same observation does about as well, so the actionability is not creditable to SD-018's warmup. The next question is an attribution question about the warmup, not a geometry probe. Outcome is FAIL only because a pre-registered load-bearing conjunct is unmet.",
+      "zworld_partially_supports_oracle_mapping_below_bar": "the warmup DID add actionability the untrained control lacks (paired margin cleared) but the absolute level falls short of the registered floor. Neither hypothesis is adjudicated. NOT H-C: a geometry that demonstrably improved is not a geometry that blocks the mapping, and queueing the H-C corroborator here would chase an effect pointing the other way. Report the graded reading -- how far short, against the raw-field ceiling.",
+      "untrained_projection_clears_warmed_arm_does_not": "an UNTRAINED random projection of this observation clears the bar while 978's warmed latent does not. H-C is REFUTED for the observation at this dimensionality; the finding is that the warmup DEGRADED actionability -- a statement about SD-018's recipe, not about geometry in general. Do NOT queue the H-C corroborator on this branch.",
+      "zworld_geometry_blocks_oracle_mapping_h_c_geometry_mismatch": "a reader with the consumer's EXACT capacity, trained by supervision on the oracle's own visited states with credit assignment removed, still cannot reproduce the oracle from frozen z_world -- while the same reader can from the raw field at 0.97+. AND the untrained control fails too, which is what makes this attributable to the geometry rather than to 'nothing at 32 dimensions works'; that conjunct is reported as C_untrained_control_below_bar and the label is withheld without it. H-C; the H-C corroborator becomes owed."
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5125cc63eb43d63808364f9c41a93e73a943b3528992c644c1b8d3504f5e8063",
+  "substrate_commit": {
+    "commit": "773abd5131d2baaa1c573948612782c61a2595aa",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "latent.use_resource_field_head": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_action_contrastive_multistep_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_vs_rollout_gating": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_context_from_e2_world_forward": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "use_ofc_analog": true,
+    "ofc_harm_dim": 32,
+    "use_ofc_devaluation_head": true,
+    "ofc_train_devaluation_head": true,
+    "use_gated_policy": true,
+    "use_noise_floor": true,
+    "use_e3_score_diversity": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 139052,
+    "ticks_active": 138569,
+    "writer_calls": 139052,
+    "active_frac": 0.9965264793027069,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
