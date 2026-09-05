@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-08-20.1 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-09-02.1 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,6 +185,12 @@
              font-family: 'SF Mono','Fira Code',monospace; }
     .afSub { font-size: 9px; text-transform: uppercase; letter-spacing: 0.07em;
              color: #475569; margin: 6px 0 3px; }
+    /* SD-018 directional-field readout */
+    .fieldRow { display: flex; align-items: center; gap: 4px; font-size: 10px;
+                color: var(--muted); margin-top: 2px; }
+    .fieldSw  { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+    .fieldVal { margin-left: auto; font-family: 'SF Mono','Fira Code',monospace;
+                font-size: 9px; color: #cbd5e1; }
     /* Bipolar excite(+)/dread(-) meter */
     .biWrap { position: relative; flex: 1; height: 9px; background: #060d1c;
               border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
@@ -422,6 +428,22 @@
           <span class="barPct" id="energyPct">100%</span>
         </div>
       </div>
+      <div id="fieldPanel" style="display:none">
+        <div class="iLabel">Directional field <span style="opacity:.55;font-weight:400">(SD-018)</span></div>
+        <div class="fieldRow"><span class="fieldSw" style="background:#34d399"></span>true peak<span class="fieldVal" id="fldTrue">-</span></div>
+        <div class="fieldRow"><span class="fieldSw" style="background:#22d3ee"></span>predicted<span class="fieldVal" id="fldPred">-</span></div>
+        <div class="fieldRow" id="fldEncRow"><span class="fieldSw" style="background:#a78bfa"></span>enc-path<span class="fieldVal" id="fldEnc">-</span></div>
+        <div class="barRow" style="margin-top:5px">
+          <span class="afLbl">hit</span>
+          <div class="barOuter"><div class="barInner" id="fldAccBar" style="width:0%;background:#22d3ee"></div></div>
+          <span class="barPct" id="fldAccPct">-</span>
+        </div>
+        <div class="afSub" id="fldNote" style="margin-top:3px"></div>
+        <label class="fieldRow" style="margin-top:5px;cursor:pointer">
+          <input type="checkbox" id="fldToggle" checked style="margin:0 5px 0 0">show overlay
+        </label>
+      </div>
+
       <div id="affectPanel">
         <div class="iLabel">Affect</div>
 
@@ -588,6 +610,23 @@ let currentDread     = 0.0;
 let currentHazards   = [];
 let currentResources = [];
 let currentReefCells = [];
+
+// ── SD-018 directional resource-field overlay ────────────────────────────────
+// Populated ONLY by drivers that log the three resource_field_* channels
+// (v3_exq_978_sd018_directional_field_fishtank onward). Every value stays null
+// for every other experiment's logs, and drawFieldOverlay() no-ops on null, so
+// this whole block is inert for the existing corpus.
+//
+// Index -> grid offset, verified against
+// ree_core/environment/causal_grid_world.py: the 5x5 view is built as
+//   view[di + 2, dj + 2] = field[agent_x + di, agent_y + dj]   (di, dj in -2..2)
+// then flattened row-major, so for flat index k:
+//   di (offset on agent_x) = floor(k / 5) - 2
+//   dj (offset on agent_y) = (k % 5)     - 2
+let currentFieldTrue    = null;   // argmax cell of the REAL resource gradient
+let currentFieldPred    = null;   // head's argmax read on SENSE-time z_world
+let currentFieldPredEnc = null;   // head's argmax read on ENCODER-path z_world
+let showFieldOverlay    = true;
 
 // Particles
 let bubbles  = [];
@@ -1064,6 +1103,86 @@ function drawFish(ctx, cx, cy, faceRight, mode, health, t, excite, dread) {
 // ══════════════════════════════════════════════════════════════
 //  Drawing: Particles
 // ══════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════
+//  SD-018 directional resource-field overlay
+// ══════════════════════════════════════════════════════════════
+// Turns the 25-dim agent-centred resource_field_view argmax into a grid cell.
+// See the index->offset derivation beside the state declarations above.
+// Returns null for a null/out-of-range index so callers degrade rather than
+// drawing a marker at a fabricated location.
+function fieldIdxToCell(idx, agentX, agentY) {
+  if (idx == null) return null;
+  const k = Number(idx);
+  if (!Number.isFinite(k) || k < 0 || k > 24) return null;
+  const di = Math.floor(k / 5) - 2;    // offset on agent_x
+  const dj = (k % 5) - 2;              // offset on agent_y
+  let cx = agentX + di, cy = agentY + dj;
+  const sz = gridSize();
+  if (isToroidal()) {
+    cx = ((cx % sz) + sz) % sz;
+    cy = ((cy % sz) + sz) % sz;
+  } else if (cx < 0 || cx >= sz || cy < 0 || cy >= sz) {
+    // Off-grid: the env clamps these cells to 0.0, so an argmax landing here
+    // means the whole view was flat. Nothing truthful to draw.
+    return null;
+  }
+  return [cx, cy];
+}
+
+// One marker: rounded-square outline inset in the cell, optionally dashed.
+function drawFieldMarker(ctx, cell, colour, dashed, inset, label) {
+  if (!cell) return;
+  const x = cell[0] * CELL + inset;
+  const y = cell[1] * CELL + inset;
+  const w = CELL - inset * 2;
+  ctx.save();
+  ctx.strokeStyle = colour;
+  ctx.lineWidth = 2;
+  if (dashed) ctx.setLineDash([4, 3]);
+  ctx.shadowColor = colour;
+  ctx.shadowBlur = 6;
+  ctx.beginPath();
+  const r = 5;
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y,     x + w, y + w, r);
+  ctx.arcTo(x + w, y + w, x,     y + w, r);
+  ctx.arcTo(x,     y + w, x,     y,     r);
+  ctx.arcTo(x,     y,     x + w, y,     r);
+  ctx.closePath();
+  ctx.stroke();
+  if (label) {
+    ctx.setLineDash([]);
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = colour;
+    ctx.font = '600 9px ui-sans-serif, system-ui, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(label, x + 2, y + 1);
+  }
+  ctx.restore();
+}
+
+// Draws the true gradient peak and the head's prediction(s) on BOTH arms.
+// On field_loss_off the head is untrained, so its markers are the within-run
+// chance baseline -- that arm is the control you watch it against, not an
+// empty panel.
+function drawFieldOverlay(ctx, agentX, agentY) {
+  if (!showFieldOverlay) return;
+  if (currentFieldTrue == null && currentFieldPred == null) return;
+
+  const tCell = fieldIdxToCell(currentFieldTrue,    agentX, agentY);
+  const pCell = fieldIdxToCell(currentFieldPred,    agentX, agentY);
+  const eCell = fieldIdxToCell(currentFieldPredEnc, agentX, agentY);
+
+  // True peak first (underneath), then encoder-path, then sense-time on top:
+  // the sense-time prediction is the one the policy actually acts on.
+  drawFieldMarker(ctx, tCell, '#34d399', false, 3,  null);
+  if (eCell && !(pCell && eCell[0] === pCell[0] && eCell[1] === pCell[1])) {
+    drawFieldMarker(ctx, eCell, '#a78bfa', true, 10, 'e');
+  }
+  drawFieldMarker(ctx, pCell, '#22d3ee', false, 7,  null);
+}
+
 function drawBubbles(ctx) {
   for (const b of bubbles) {
     ctx.beginPath();
@@ -1178,6 +1297,8 @@ function renderFrame(now) {
     }
   }
 
+  drawFieldOverlay(ctx, curPos[0], curPos[1]);
+
   drawSparkles(ctx);
   drawBubbles(ctx);
   // Draw fish; in toroidal mode also draw ghost on opposite edge if near boundary
@@ -1232,6 +1353,14 @@ function goToStep(n) {
   currentHazards   = step.hazards   || [];
   currentResources = step.resources || [];
   currentReefCells = step.reef_cells || curEp().reef_cells || [];
+  // SD-018: null-coalesce, never ||-default -- cell index 0 is a legitimate
+  // value and `0 || null` would silently discard it.
+  currentFieldTrue    = step.resource_field_true_argmax != null
+                          ? step.resource_field_true_argmax : null;
+  currentFieldPred    = step.resource_field_pred_argmax != null
+                          ? step.resource_field_pred_argmax : null;
+  currentFieldPredEnc = step.resource_field_pred_argmax_encoder_path != null
+                          ? step.resource_field_pred_argmax_encoder_path : null;
 
   emitBubbles(curPos[0] * CELL + CELL / 2, curPos[1] * CELL + CELL / 2, 2);
 
@@ -1467,6 +1596,89 @@ function updateInfo() {
   sc.value  = stepIdx;
   document.getElementById('stepDisplay').textContent =
     `step ${stepIdx + 1} / ${steps.length}`;
+
+  updateFieldPanel(s, steps);
+}
+
+// ══════════════════════════════════════════════════════════════
+//  SD-018 directional-field readout
+// ══════════════════════════════════════════════════════════════
+// Hidden entirely unless the loaded log carries the channels, so every
+// pre-SD-018 log renders exactly as before.
+function updateFieldPanel(s, steps) {
+  const panel = document.getElementById('fieldPanel');
+  if (!panel) return;
+  const hasField = s && s.resource_field_true_argmax != null;
+  panel.style.display = hasField ? '' : 'none';
+  if (!hasField) return;
+
+  const t = s.resource_field_true_argmax;
+  const p = s.resource_field_pred_argmax;
+  const e = s.resource_field_pred_argmax_encoder_path;
+  const fmt = (v) => (v == null ? 'n/a' : `cell ${v}`);
+
+  document.getElementById('fldTrue').textContent = fmt(t);
+  document.getElementById('fldPred').textContent =
+    p == null ? 'n/a' : `${fmt(p)} ${p === t ? '\u2713' : '\u2717'}`;
+
+  // The encoder-path row is meaningful only when the driver logged it.
+  const encRow = document.getElementById('fldEncRow');
+  encRow.style.display = (e == null) ? 'none' : '';
+  if (e != null) {
+    document.getElementById('fldEnc').textContent =
+      `${fmt(e)} ${e === t ? '\u2713' : '\u2717'}`;
+  }
+
+  // Episode-level tracking accuracy. Counted over steps that HAVE both values,
+  // so a partially-logged episode reports on what it actually recorded rather
+  // than diluting the rate with absent steps.
+  let n = 0, hitP = 0, nE = 0, hitE = 0;
+  const trueCounts = new Map();     // for the majority-cell baseline
+  const predSeen   = new Set();     // for the degenerate-predictor check
+  for (const st of steps) {
+    const tt = st.resource_field_true_argmax;
+    if (tt == null) continue;
+    trueCounts.set(tt, (trueCounts.get(tt) || 0) + 1);
+    if (st.resource_field_pred_argmax != null) {
+      n++; predSeen.add(st.resource_field_pred_argmax);
+      if (st.resource_field_pred_argmax === tt) hitP++;
+    }
+    if (st.resource_field_pred_argmax_encoder_path != null) {
+      nE++; if (st.resource_field_pred_argmax_encoder_path === tt) hitE++;
+    }
+  }
+  // THE BASELINE THAT MATTERS. Uniform chance (1/25 = 4%) is the wrong yardstick
+  // here and actively misleads: the true peak is strongly autocorrelated -- it sits
+  // in one cell for long stretches -- so a head that has learned NOTHING and emits a
+  // constant argmax scores whatever the majority cell scores. Measured on the
+  // 2026-09-02 dry-run preview: an untrained head predicting cell 0 every step read
+  // 19/20 = 95% against "chance 4%", i.e. a 24x win by a degenerate predictor.
+  // Always-guess-the-most-common-cell is the honest floor to beat.
+  let majority = 0;
+  for (const c of trueCounts.values()) majority = Math.max(majority, c);
+  const nTrue    = Array.from(trueCounts.values()).reduce((a, b) => a + b, 0);
+  const majAcc   = nTrue ? majority / nTrue : null;
+  const predConst = (predSeen.size === 1);
+  const accP = n ? hitP / n : null;
+  const accE = nE ? hitE / nE : null;
+  document.getElementById('fldAccBar').style.width =
+    accP == null ? '0%' : `${Math.round(accP * 100)}%`;
+  document.getElementById('fldAccPct').textContent =
+    accP == null ? '-' : `${Math.round(accP * 100)}%`;
+
+  // Chance is 1/25 for a uniform guess over the 5x5 view. Naming it inline is
+  // what stops a 12% hit rate reading as failure when it is 3x chance.
+  const bits = [`ep ${hitP}/${n}`];
+  if (majAcc != null) bits.push(`majority-cell ${Math.round(majAcc * 100)}%`);
+  if (accE != null)   bits.push(`enc-path ${Math.round(accE * 100)}%`);
+  if (predConst)      bits.push(`PRED CONSTANT (cell ${[...predSeen][0]})`);
+  const note = document.getElementById('fldNote');
+  note.textContent = bits.join(' \u00b7 ');
+  // Amber the readout whenever the hit rate is not actually beating the trivial
+  // baseline, so a degenerate predictor cannot read as a result at a glance.
+  const beating = (accP != null && majAcc != null && accP > majAcc + 1e-9);
+  note.style.color = (predConst || !beating) ? '#f59e0b' : '#475569';
+  document.getElementById('fldAccBar').style.background = beating ? '#22d3ee' : '#f59e0b';
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -1617,6 +1829,14 @@ function fullRefresh() {
   currentHazards   = step.hazards   || [];
   currentResources = step.resources || [];
   currentReefCells = step.reef_cells || curEp().reef_cells || [];
+  // SD-018: null-coalesce, never ||-default -- cell index 0 is a legitimate
+  // value and `0 || null` would silently discard it.
+  currentFieldTrue    = step.resource_field_true_argmax != null
+                          ? step.resource_field_true_argmax : null;
+  currentFieldPred    = step.resource_field_pred_argmax != null
+                          ? step.resource_field_pred_argmax : null;
+  currentFieldPredEnc = step.resource_field_pred_argmax_encoder_path != null
+                          ? step.resource_field_pred_argmax_encoder_path : null;
 
   buildSeedBtns();
   buildTimeline();
@@ -1811,6 +2031,8 @@ async function init() {
   document.getElementById('btnFirst').onclick = () => { stopPlay(); goToStep(0); };
   document.getElementById('btnBack').onclick  = () => { stopPlay(); goToStep(stepIdx - 1); };
   document.getElementById('btnPlay').onclick  = togglePlay;
+  const fldT = document.getElementById('fldToggle');
+  if (fldT) fldT.onchange = (e) => { showFieldOverlay = !!e.target.checked; };
   document.getElementById('btnFwd').onclick   = () => { stopPlay(); goToStep(stepIdx + 1); };
   document.getElementById('btnLast').onclick  = () => { stopPlay(); goToStep(curSteps().length - 1); };
 

@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-04T13:53:57Z
+Generated: 2026-09-05T02:32:36Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -30,7 +30,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-02 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-02 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-14 |
-| `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-07-21 |
+| `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-09-03 |
 | `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 100% | done:7 | 2026-06-15 |
 | `mech303_safety_threshold_plan.md` | MECH-303 Safety-Threshold Sourcing | 1 | 100% | done:1 | 2026-08-16 |
@@ -54,7 +54,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P3` | Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lif | blocked | 3 | high |  | depends_on: sd_037_axis_b:P2 | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-3` | MECH-257 dual-function 3-arm ablation re-queue | blocked | 3 | medium | TBD | depends_on: self_attribution:GAP-1, self_attribution:GAP-2 | 2026-06-25 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P4` | Phase 4 (re-application) -- terminal behavioural validation (4-arm 2x2) on the a | blocked | 4 | high |  | depends_on: sd_037_axis_b:P3 | 2026-06-05 |
-| self_attribution_plan.md | `self_attribution:GAP-6` | SD-031 z_world causal-footprint comparator: V3 discriminative validation | blocked | 6 | medium |  | Both halves of the claims.yaml SD-031 evidence_quality_note gate must hold before the disc | 2026-08-18 |
+| self_attribution_plan.md | `self_attribution:GAP-6` | SD-031 z_world causal-footprint comparator: V3 discriminative validation | blocked | 6 | medium |  | Both halves of the claims.yaml SD-031 evidence_quality_note gate must hold before the disc | 2026-09-04 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress |  | load-bearing |  | V3-EXQ-654h RAN TERMINAL FAIL/non_contributory 2026-06-21T17:57Z (manifest v3_exq_654h_... | 2026-09-01 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial |  | load-bearing |  | MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN | 2026-08-01 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress |  | load-bearing |  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-09-02 |

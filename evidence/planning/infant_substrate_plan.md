@@ -272,8 +272,8 @@ closure_plan:
       status: blocked_pending_substrate
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-04"
+        from: "failure_autopsy_V3-EXQ-996_2026-09-04"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
