@@ -12515,16 +12515,26 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1303",
+      "blocked_by": [
+        "ARC-016",
+        "MECH-108"
+      ],
+      "blocked_note": "E3 commit predicate saturated ON: running_variance converges to ~2.5e-3 vs default commitment_threshold 0.40 (median 55.5x margin), so 99.55% of E3 ticks are committed and all uncommitted ticks are the warm-up transient (none after tick 10). IMPL-016's epistemic commitment gate cannot be tested non-degenerately on this substrate. Evidence: reanalysis_does_the_v3_substrate_present_a_non_degenerate_p_20260905T012300Z",
       "claim_id": "IMPL-016",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-05T01:23:34Z",
+      "gated_by_session": "igw-234-proposal-for-impl-016",
+      "gating_reason": "vacuous_by_construction: testing IMPL-016's epistemic commitment gate needs a non-degenerate population of UNCOMMITTED E3 selections. Recorded per-tick telemetry (V3-EXQ-785a, latch-cleared reference driver; corroborated by V3-EXQ-785 on the same substrate_hash 849de508 and V3-EXQ-787 on another) shows 1757/1765 = 99.55% committed ticks, with all 8 uncommitted ticks confined to the initialisation transient (tick 0 at the 0.5 precision_init, plus ticks 7-9 during decay) and zero after tick 10. A run would contrast ~1757 committed observations against ~8 warm-up ones -> criteria_non_degenerate: false, a vacuous PASS rather than a verdict. Not a claim verdict: IMPL-016's gate IS implemented (residue accumulation and the ARC-108 RPE update are both commitment-gated); it is inert at the current operating point, so the claim is neither supported nor weakened.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for IMPL-016 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0620",
       "proposal_type": "experimental",
+      "reanalysis_evidence": "reanalysis_does_the_v3_substrate_present_a_non_degenerate_p_20260905T012300Z",
+      "release_condition": "A substrate change that restores a steady-state uncommitted E3 population, then re-propose. This is /implement-substrate work -- complicated (buildable), a named build with no open question -- NOT another experiment. Note the obvious fix is insufficient: the converged running_variance (~2.5e-3) sits ~4x BELOW the bottom of the band variance_commit_threshold's own docstring declares intended (~0.01-0.05), so recalibrating commitment_threshold into that documented band still leaves the predicate saturated. Either recalibrate to the empirical variance scale (~2e-3) or make MECH-108's breath-sweep threshold reduction actually open uncommitted windows at the converged variance -- its code comment ('Without this, the agent becomes permanently committed', e3_selector.py:3596-3599) states the intent the measurement shows is unmet. Verify release by re-running the e3_commit_predicate_duty_cycle readout: uncommitted ticks after tick 10 must be > 0.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -12537,7 +12547,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_impl_016",
       "target_repo": "ree-v3",
       "why_now": [
@@ -22584,16 +22594,27 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1445",
+      "blocked_by": [
+        "ARC-041",
+        "MECH-151",
+        "MECH-152",
+        "SD-016"
+      ],
+      "blocked_note": "MECH-160 (E2 action_bias vs E3 terrain_weight differential UPDATE-RATE claim) presupposes ARC-041's dual-pathway circuit is a functioning, cue-conditioned baseline whose two outputs can be reversal-trained and timed against each other. ARC-041 is itself HELD (claims.yaml, as_of 2026-08-13): its own what_would_answer explicitly flags MECH-160 as 'its own un-evidenced candidate claim... proposing a REVISION to ARC-041's current design' and OUT OF SCOPE of ARC-041's own falsification -- i.e. claims.yaml's own editors already recorded that MECH-160 is not yet testable ahead of ARC-041 clearing. MECH-152 (terrain_weight/vmPFC leg): failure_autopsy_V3-EXQ-922a_2026-08-16 (2026-08-16 governance-ratified re-adjudication) found terrain_weight's output std runs 2-6 orders of magnitude below the 0.6 swing MECH-152's own threshold requires, across ALL THREE tested selection configs (legacy/A0_OFF, hard-Gumbel/A1_PRODUCTION, soft-selection/A2_SOFTSEL) -- evidence_direction downgraded to non_contributory; Pearson r cannot adjudicate a magnitude claim on a near-constant series. This session's own throwaway Step 2.5a probe (contextmemory_write_usage_balancing=True, 16/16 slots occupied) independently reproduced this: terrain_l2_divergence 0.0003, terrain_within_safe_std 0.0028 (SAFE vs DANGEROUS env cues). MECH-151 (action_bias/OFC leg): its V3-EXQ-922 'supports' reading was WITHDRAWN to non_contributory by failure_autopsy_V3-EXQ-936_2026-08-18 on three grounds -- (1) underpowered: a single sign-test criterion, 2/3 seeds, no effect-size threshold, arm means overlap (A0 0.0305 vs A1 0.0509), seed 42 inverts; (2) GFLAG-0043 confirmed e3_selector.py has ZERO action_object/action_bias references -- the pathway has NO ranking site, so MECH-151's asserted elevate/suppress mechanism is structurally unimplemented (a new opt-in E3 ranking channel, GFLAG-0051, was built 2026-09-01 but is default-off and explicitly documented as 'STILL OPEN, NOT DONE HERE... untested'); (3) V3-EXQ-922's own driver ran with sd016_writepath_mode='off' in BOTH arms, so ContextMemory.write() never fired -- the run did not actually test retrieval over a populated memory bank at all. SD-016 (the shared ContextMemory cue-indexed-retrieval substrate both pathways read from) carries status 'implemented' but its own substrate_queue entry title reads 'validation gated on env entropy precondition' and its failure_record lists 9 post-build experiments (418d/e/f/g/h, 898, 907, 908, 922) without a clean pass on the shared retrieval-selectivity + downstream-behavioural-divergence signature.",
       "claim_id": "MECH-160",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-03T19:25:58Z",
+      "gated_by_session": "daily-20260903-exq998-mech160",
+      "gating_reason": "complex (probe-gated) -- substrate_ceiling trending: >=6 post-build discriminative-retrieval experiments (V3-EXQ-418g/h, 898, 907, 908, 922, 922a) plus 2 governance-ratified re-adjudications (failure_autopsy_V3-EXQ-936_2026-08-18, failure_autopsy_V3-EXQ-922a_2026-08-16) have already targeted exactly the 'do the two SD-016 cue-indexed pathways discriminate/diverge by cue' question MECH-160 needs answered as its own precondition, without landing a clean, non-degenerate, both-pathways-live result. This is not a single named missing build (complicated (buildable)) -- GOV-FANOUT-1's own portfolio (H1 ctxdiv-aux-loss, H3 hard-Gumbel selection) already ran and did not clear MECH-152's magnitude ceiling, and the newest E3-ranking-channel build for MECH-151 (GFLAG-0051, 2026-09-01) is untested.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-160 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0868",
       "proposal_type": "experimental",
+      "release_condition": "Re-evaluate MECH-160 only after BOTH: (a) ARC-041's own pre-registered confirming signature clears (SD-016 leg A retrieval-selectivity + SD-055/cue_action_proj consumer-wiring, now also GFLAG-0051's E3 ranking channel, land and are behaviourally validated -- i.e. ARC-041 moves off HELD), AND (b) MECH-152's terrain_weight magnitude ceiling is independently resolved by a NAMED substrate fix (not yet designed as of this session) that widens terrain_weight's effective dynamic range by the 2-6 orders of magnitude the 922a autopsy measured as missing -- e.g. output-scale/loss-weighting rework, not another selection-mechanism ablation (soft/hard/off has already been swept 3-ways with no rescue). Only once a SHARED config exists under which BOTH action_bias and terrain_weight independently show non-degenerate, cue-conditioned discrimination does an update-RATE comparison (MECH-160's actual question) become well-posed rather than vacuous.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -22613,18 +22634,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "blocked_by": [
-        "ARC-041",
-        "MECH-151",
-        "MECH-152",
-        "SD-016"
-      ],
-      "blocked_note": "MECH-160 (E2 action_bias vs E3 terrain_weight differential UPDATE-RATE claim) presupposes ARC-041's dual-pathway circuit is a functioning, cue-conditioned baseline whose two outputs can be reversal-trained and timed against each other. ARC-041 is itself HELD (claims.yaml, as_of 2026-08-13): its own what_would_answer explicitly flags MECH-160 as 'its own un-evidenced candidate claim... proposing a REVISION to ARC-041's current design' and OUT OF SCOPE of ARC-041's own falsification -- i.e. claims.yaml's own editors already recorded that MECH-160 is not yet testable ahead of ARC-041 clearing. MECH-152 (terrain_weight/vmPFC leg): failure_autopsy_V3-EXQ-922a_2026-08-16 (2026-08-16 governance-ratified re-adjudication) found terrain_weight's output std runs 2-6 orders of magnitude below the 0.6 swing MECH-152's own threshold requires, across ALL THREE tested selection configs (legacy/A0_OFF, hard-Gumbel/A1_PRODUCTION, soft-selection/A2_SOFTSEL) -- evidence_direction downgraded to non_contributory; Pearson r cannot adjudicate a magnitude claim on a near-constant series. This session's own throwaway Step 2.5a probe (contextmemory_write_usage_balancing=True, 16/16 slots occupied) independently reproduced this: terrain_l2_divergence 0.0003, terrain_within_safe_std 0.0028 (SAFE vs DANGEROUS env cues). MECH-151 (action_bias/OFC leg): its V3-EXQ-922 'supports' reading was WITHDRAWN to non_contributory by failure_autopsy_V3-EXQ-936_2026-08-18 on three grounds -- (1) underpowered: a single sign-test criterion, 2/3 seeds, no effect-size threshold, arm means overlap (A0 0.0305 vs A1 0.0509), seed 42 inverts; (2) GFLAG-0043 confirmed e3_selector.py has ZERO action_object/action_bias references -- the pathway has NO ranking site, so MECH-151's asserted elevate/suppress mechanism is structurally unimplemented (a new opt-in E3 ranking channel, GFLAG-0051, was built 2026-09-01 but is default-off and explicitly documented as 'STILL OPEN, NOT DONE HERE... untested'); (3) V3-EXQ-922's own driver ran with sd016_writepath_mode='off' in BOTH arms, so ContextMemory.write() never fired -- the run did not actually test retrieval over a populated memory bank at all. SD-016 (the shared ContextMemory cue-indexed-retrieval substrate both pathways read from) carries status 'implemented' but its own substrate_queue entry title reads 'validation gated on env entropy precondition' and its failure_record lists 9 post-build experiments (418d/e/f/g/h, 898, 907, 908, 922) without a clean pass on the shared retrieval-selectivity + downstream-behavioural-divergence signature.",
-      "gated_at_utc": "2026-09-03T19:25:58Z",
-      "gated_by_session": "daily-20260903-exq998-mech160",
-      "gating_reason": "complex (probe-gated) -- substrate_ceiling trending: >=6 post-build discriminative-retrieval experiments (V3-EXQ-418g/h, 898, 907, 908, 922, 922a) plus 2 governance-ratified re-adjudications (failure_autopsy_V3-EXQ-936_2026-08-18, failure_autopsy_V3-EXQ-922a_2026-08-16) have already targeted exactly the 'do the two SD-016 cue-indexed pathways discriminate/diverge by cue' question MECH-160 needs answered as its own precondition, without landing a clean, non-degenerate, both-pathways-live result. This is not a single named missing build (complicated (buildable)) -- GOV-FANOUT-1's own portfolio (H1 ctxdiv-aux-loss, H3 hard-Gumbel selection) already ran and did not clear MECH-152's magnitude ceiling, and the newest E3-ranking-channel build for MECH-151 (GFLAG-0051, 2026-09-01) is untested.",
-      "release_condition": "Re-evaluate MECH-160 only after BOTH: (a) ARC-041's own pre-registered confirming signature clears (SD-016 leg A retrieval-selectivity + SD-055/cue_action_proj consumer-wiring, now also GFLAG-0051's E3 ranking channel, land and are behaviourally validated -- i.e. ARC-041 moves off HELD), AND (b) MECH-152's terrain_weight magnitude ceiling is independently resolved by a NAMED substrate fix (not yet designed as of this session) that widens terrain_weight's effective dynamic range by the 2-6 orders of magnitude the 922a autopsy measured as missing -- e.g. output-scale/loss-weighting rework, not another selection-mechanism ablation (soft/hard/off has already been swept 3-ways with no rescue). Only once a SHARED config exists under which BOTH action_bias and terrain_weight independently show non-degenerate, cue-conditioned discrimination does an update-RATE comparison (MECH-160's actual question) become well-posed rather than vacuous."
+      ]
     },
     {
       "acceptance_checks": [
@@ -38857,6 +38867,8 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-999",
+      "executed_queue_id": "V3-EXQ-999",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-161 via targeted experiment runs.",
       "priority": "medium",
@@ -38881,9 +38893,7 @@
         "insufficient_experimental_replication",
         "low_exp_conf",
         "missing_literature_evidence"
-      ],
-      "executed_by": "V3-EXQ-999",
-      "executed_queue_id": "V3-EXQ-999"
+      ]
     },
     {
       "acceptance_checks": [
@@ -38945,6 +38955,8 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-997",
+      "executed_queue_id": "V3-EXQ-997",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-162 via targeted experiment runs.",
       "priority": "medium",
@@ -38969,9 +38981,7 @@
         "insufficient_experimental_replication",
         "low_exp_conf",
         "missing_literature_evidence"
-      ],
-      "executed_by": "V3-EXQ-997",
-      "executed_queue_id": "V3-EXQ-997"
+      ]
     },
     {
       "acceptance_checks": [
