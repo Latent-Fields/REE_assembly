@@ -4184,7 +4184,11 @@
       "task_claim_session_id": "igw-auto-igw-234-proposal-for-impl-016-20260905T011419Z",
       "task_claim_claimed_at": "2026-09-05T01:14:19Z",
       "assigned_at": "2026-09-05T01:13:07Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-05T01:32:48Z",
+      "completion_summary": "IMPL-016 NOT queued: marked EVB-1303/EXP-0620 blocked_substrate (commit predicate has no headroom -- 99.55% committed ticks, all uncommitted in warm-up) + emitted GOV-REUSE-1 reanalysis; corrected attribution for the untrained-z_world confound and re-pointed release off the retired gate-rescale route to MECH465-COMMIT-GATE-HEADROOM/GFLAG-0136. REE_assembly fe45ebad8b+06788d4eb4.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "IMPL-016 NOT queued: marked EVB-1303/EXP-0620 blocked_substrate (commit predicate has no headroom -- 99.55% committed ticks, all uncommitted in warm-up) + emitted GOV-REUSE-1 reanalysis; corrected attribution for the untrained-z_world confound and re-pointed release off the retired gate-rescale route to MECH465-COMMIT-GATE-HEADROOM/GFLAG-0136. REE_assembly fe45ebad8b+06788d4eb4."
     }
   ],
   "dispositions": [
@@ -5825,6 +5829,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-05T00:23:31Z",
       "re_eligible_after": "2026-09-07T00:23:31Z"
+    },
+    {
+      "stable_hash": "583b459df068",
+      "igw_id_at_disposition": "IGW-20260905-234",
+      "owner_exq": null,
+      "claim_ids": [
+        "IMPL-016"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for IMPL-016",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-05T01:33:04Z",
+      "re_eligible_after": "2026-09-07T01:33:04Z"
     }
   ]
 }
