@@ -2591,3 +2591,14 @@ One line per hourly tick. ASCII only.
 2026-09-05T02:40:49Z retire-proposal LIT-0627 -> executed (igw-235-proposal-for-impl-019; complete)
 2026-09-05T02:40:50Z auto-defer igw-235-proposal-for-impl-019 hash=eb6a9e3c8ca4 for 48h (complete)
 2026-09-05T02:41:16Z complete igw-235-proposal-for-impl-019 spawned->completed outcome=USEFUL_LANDED: IMPL-019 NOT queued: marked EVB-1306/EXP-0626 blocked_substrate -- no Stage-4 so
+2026-09-05T03:20:10Z skip: paused (.igw_routine_pause present)
+2026-09-05T04:20:12Z skip: paused (.igw_routine_pause present)
+2026-09-05T05:20:16Z skip: paused (.igw_routine_pause present)
+2026-09-05T06:20:18Z skip: paused (.igw_routine_pause present)
+2026-09-05T07:20:19Z skip: paused (.igw_routine_pause present)
+2026-09-05T08:20:20Z skip: paused (.igw_routine_pause present)
+2026-09-05T10:04:39Z skip: paused (.igw_routine_pause present)
+2026-09-05T11:04:40Z skip: paused (.igw_routine_pause present)
+2026-09-05T12:57:46Z GC removed worktree igw-235-proposal-for-impl-019 (removed; branch deleted)
+2026-09-05T12:57:23Z GC sweep removed 1 orphan worktree(s), kept 13
+2026-09-05T12:58:26Z workset committed (regen -- 249 items, 30 ready, 0 in flight)
