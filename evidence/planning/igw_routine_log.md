@@ -2583,3 +2583,7 @@ One line per hourly tick. ASCII only.
 2026-09-05T01:13:07Z SPAWN IGW-20260905-234 skill=/queue-experiment prio=40 uuid=f4a76932-3abb-4e2c-a98d-149a8885fe4c pid=98269 worktree=igw-234-proposal-for-impl-016
 2026-09-05T01:33:04Z retire-proposal LIT-0621 -> executed (igw-234-proposal-for-impl-016; complete)
 2026-09-05T01:33:04Z auto-defer igw-234-proposal-for-impl-016 hash=583b459df068 for 48h (complete)
+2026-09-05T01:33:42Z complete igw-234-proposal-for-impl-016 spawned->completed outcome=USEFUL_LANDED: IMPL-016 NOT queued: marked EVB-1303/EXP-0620 blocked_substrate (commit predicat
+2026-09-05T02:16:57Z GC removed worktree igw-234-proposal-for-impl-016 (removed; branch deleted)
+2026-09-05T02:16:20Z GC sweep removed 1 orphan worktree(s), kept 13
+2026-09-05T02:17:30Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
