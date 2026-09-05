@@ -13018,6 +13018,7 @@
       "claim_id": "IMPL-019",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
+      "lane_repair_note": "2026-09-05: reset executed -> proposed. igw_routine_tick.py complete for IGW-20260905-235 committed 3e24e52d7d 'LIT-0627 -> executed' when the EXPERIMENTAL twin EXP-0626 was disposed blocked_substrate. The retire is lane-blind: retire_proposal_for_entry selects by claim_id only, never proposal_type, so Guard 2's correct refusal to clobber the deliberate blocked_substrate disposition falls through to the literature twin. NO literature review was performed for IMPL-019 and zero records under evidence/literature/ cite it; experiment_proposals_index.v1.json still read 'proposed' (the tick writes only experiment_proposals.v1.json), so the two files had been left skewed. The lane is genuinely runnable -- its why_now carries missing_literature_evidence, and IMPL-019 (developmental ordering: self-viability before social coupling) has rich external referents in the ontogeny of self-regulation vs theory-of-mind and in comparative work on conserved subcortical regulators preceding neocortical social systems. NOT a skipped-as-internal-truthmaker case. Third confirmed occurrence of this defect (after EVB-1253/LIT-0532 and EVB-1303/LIT-0621); already routed by open chips chip-20260902-igwtick-retire-proposal-lane-displacement and chip-20260902-campaign-proposalindexer-dataintegrity, so not re-chipped. retired_* fields retained as provenance, per the IGW-234 precedent (REE_assembly 0a24d6235d).",
       "mapping_quality_weighting_required": true,
       "objective": "Improve literature grounding and confidence for IMPL-019.",
       "priority": "medium",
@@ -13045,17 +13046,17 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "executed",
+      "retired_at": "2026-09-05T02:40:30Z",
+      "retired_by_igw": "IGW-20260905-235",
+      "retired_reason": "igw outcome=USEFUL_LANDED: IMPL-019 NOT queued: marked EVB-1306/EXP-0626 blocked_substrate -- no Stage-4 social/other-modelling substrate in ree_core (SOCIAL_MODEL_CHECK register-only, multi-agent sco",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_impl_019",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "retired_by_igw": "IGW-20260905-235",
-      "retired_reason": "igw outcome=USEFUL_LANDED: IMPL-019 NOT queued: marked EVB-1306/EXP-0626 blocked_substrate -- no Stage-4 social/other-modelling substrate in ree_core (SOCIAL_MODEL_CHECK register-only, multi-agent sco",
-      "retired_at": "2026-09-05T02:40:30Z"
+      ]
     },
     {
       "acceptance_checks": [
