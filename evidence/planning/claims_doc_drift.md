@@ -1,12 +1,12 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-01T17:07:26Z
+Generated: 2026-09-05T01:20:38Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Docs resolved to a claim: 101
+Docs resolved to a claim: 104
 
 ## Frontmatter drift -- HARD (0)
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (137)
+## Unresolved with a hand status line -- INFO (140)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -39,6 +39,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `astrocyte_regulatory_stack.md` -- "candidate"
 - `axiom_chain_adversarial_audit.md` -- "first pass (WS-13 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `bitter_lesson_position.md` -- "first pass (WS-6 of `evidence/planning/ree_ai_design_critique_plan.md`)"
+- `bridge_organism_lineage.md` -- "STUB — records the GOV-BRIDGE-1 governance rule and its rationale; not yet an"
 - `canonical_profile_admission_criteria.md` -- "design doctrine, 2026-08-12. Derived verbatim from"
 - `causal_reach_and_installability.md` -- "candidate. Audit/interpretation framework only -- no new substrate, no runtime"
 - `claim_phase_provenance.md` -- "design proposal + landed checker, 2026-06-09"
@@ -90,6 +91,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `landing_integration_worker_investigation.md` -- "investigated, decided — no dedicated worker; one narrow follow-on chipped"
 - `language.md` -- "stable"
 - `learned_cross_loop_arbitration.md` -- "IMPLEMENTED 2026-07-01. PROMOTES NOTHING. Behind a no-op-default flag, byte-identical OFF."
+- `lens_predictive_sensorimotor_transformation.md` -- "conceptual lens. Registers **no** REE claim and changes no architecture,"
 - `mode_manager.md` -- "legacy"
 - `modes_of_cognition.md` -- "provisional"
 - `modulatory_bias_selection_authority.md` -- "IMPLEMENTED 2026-06-03 (substrate-readiness validation pending V3-EXQ)."
@@ -123,7 +125,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `sd_102_epistemic_deficit_accumulator.md` -- "IMPLEMENTED"
 - `sd_actor_critic_action_learning.md` -- "SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **"
 - `sd_cross_stream_binding_substrate.md` -- "IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic)"
-- `sd_e1_rollout_consistency_training.md` -- "ITEM 1 IMPLEMENTED (2026-08-29, VALIDATED by V3-EXQ-965 2026-08-30) / ABSOLUTE-VS-RESIDUAL BRANCH SUBSTRATE IMPLEMENTED "
+- `sd_e1_rollout_consistency_training.md` -- "ITEM 1 IMPLEMENTED (2026-08-29, VALIDATED by V3-EXQ-965 2026-08-30) / ABSOLUTE-VS-RESIDUAL BRANCH CLOSED (substrate 2026"
 - `sd_e3_scorer_completion.md` -- "IMPLEMENTED"
 - `sd_hazard_aware_policy_decomposition.md` -- "IMPLEMENTED 2026-08-01"
 - `sd_mech267_cem_selection_fix.md` -- "IMPLEMENTED"
@@ -141,6 +143,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `sd_queue_seed_enforcement.md` -- "IMPLEMENTED"
 - `sd_residue_valence_bound.md` -- "IMPLEMENTED"
 - `sd_v4_loop_segregation.md` -- "IMPLEMENTED 2026-06-27; finer-channel plumbing DEFECT fixed 2026-06-28; **C2 RELEASE (per-named-channel range-preserving"
+- `sd_waypoint_proximity_field.md` -- "IMPLEMENTED"
 - `self_attribution_per_stream.md` -- "Active roadmap document. Supersedes the narrow SD-003 counterfactual architecture."
 - `sensory_stream_tags.md` -- "provisional"
 - `serotonin.md` -- "provisional"

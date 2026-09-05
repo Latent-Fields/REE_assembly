@@ -1,7 +1,6 @@
 ---
 title: REE for My Parents
 nav_order: 14
-has_children: true
 ---
 
 # REE for My Parents
@@ -331,7 +330,7 @@ still un-named, still loved.
 <!-- CAMPAIGN_STATE:START -->
 ### The campaign so far
 
-*The under-mountain map is **72%** lit. Of the gates that matter for this stretch, **63** stand open and **34** are still shut.*
+*The under-mountain map is **73%** lit. Of the gates that matter for this stretch, **64** stand open and **33** are still shut.*
 
 *Gates the goblin has closed for good: ARC-005 Control-Plane Routing, Goal Pipeline, MECH-303 Safety-Threshold Sourcing, SD-033 Governance, and others.*
 

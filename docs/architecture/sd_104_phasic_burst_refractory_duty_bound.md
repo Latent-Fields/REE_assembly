@@ -1,8 +1,13 @@
+---
+status: candidate/v3_pending
+status_asof: 2026-09-05
+status_claim: SD-104
+---
+
 # SD-104: phasic.burst_refractory_duty_bound
 
 **Claim ID:** SD-104
 **Subject:** control_plane.phasic_burst_refractory_duty_bound
-**Status:** IMPLEMENTED
 **Registered:** 2026-09-04
 **Depends on:** SD-069, SD-075, MECH-063
 **Blocks:** V3-EXQ-963b (MECH-063 sub-claim ii retest), SD-069 validation

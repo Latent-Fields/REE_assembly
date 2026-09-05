@@ -1,8 +1,13 @@
+---
+status: candidate/v3_pending
+status_asof: 2026-09-05
+status_claim: SD-105
+---
+
 # SD-105: control_plane.selection_entropy_headroom_floor
 
 **Claim ID:** SD-105
 **Subject:** control_plane.selection_entropy_headroom_floor
-**Status:** IMPLEMENTED
 **Registered:** 2026-09-04
 **Depends on:** SD-074, MECH-313
 **Blocks:** V3-EXQ-963b (MECH-063 sub-claim ii retest), and any readout of E3
