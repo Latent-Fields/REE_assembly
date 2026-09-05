@@ -12965,11 +12965,20 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1306",
+      "blocked_by": [
+        "ARC-034",
+        "MECH-127",
+        "Q-023"
+      ],
+      "blocked_note": "No Stage-4 social/other-modelling substrate in ree_core: SOCIAL_MODEL_CHECK is register-only with no coalition template, coalition_templates.py states the social consumer modules do not exist yet, multi-agent social is scoped to V5 (config.py; ARC-034 implementation_phase v5), and no other_agent/other_harm/mirror_harm symbol exists under ree_core/. The sole multiagent probe V3-EXQ-160 bypasses ree_core with a hand-rolled agent and FAILED with 'other-cost active: False'. All four of IMPL-019's testable predictions are therefore either vacuous (P1: nothing to remove) or unrunnable (P2/P3/P4). Literature twin LIT-0627 left proposed -- it is runnable.",
       "claim_id": "IMPL-019",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-05T02:36:42Z",
+      "gated_by_session": "igw-235-proposal-for-impl-019",
+      "gating_reason": "no_substrate: IMPL-019 asserts a developmental TESTING-ORDER heuristic (self-viability and control-plane stabilisation first, social coupling last). Its empirical content is the four testable predictions in docs/thoughts/DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md S6, and every one of them requires a functioning Stage-4 social/other-modelling layer in order to contrast at least two orderings. That layer does not exist in ree_core. Measured 2026-09-05 against live ree-v3: (1) ControlDemandType.SOCIAL_MODEL_CHECK is 'Register-only: declared for taxonomy stability, no template yet' (ree_core/claustrum/control_demand.py) and is excluded from MVP_TEMPLATED_TYPES; (2) ree_core/claustrum/coalition_templates.py states consumer substrate for the untemplated demand types \"doesn't exist yet in ree_core (social/language/reality-coherence modules)\"; (3) ree_core/utils/config.py scopes 'V5 multi-agent social synchronisation experiments' to the xlarge/V5 track, and ARC-034 (nth-order multiagent ethics testing) carries implementation_phase v5 / v3_pending true; (4) no other_agent / other_harm / mirror_harm / conspecific symbol exists anywhere under ree_core/, and ree_core/environment has no second-agent entity. The only multiagent probe, V3-EXQ-160 (Q-023), hand-rolls its own minimal agent in-script (WorldEncoder / SelfEncoder / WorldPredictor / HarmEvaluator / Policy) and bypasses ree_core entirely -- no E1/E2/E3 predictors, no residue field, no commitment gating, no control plane -- and it returned FAIL with check C6 'MECH127 other-cost active: False', i.e. the other-cost coupling was not even engaged in the one run that has ever been attempted. Prediction by prediction: P1 (removing social modules during early stages must not impair self-survival) is a no-op manipulation here because there are no social modules to remove, so any PASS is tautological; P2 (introducing social coupling before control-plane stabilisation increases instability) is the load-bearing prediction and needs functional social coupling; P3 (precision regulation shows measurable effects before social weighting does) needs social weighting; P4 (residue geometry alone yields proto-social avoidance) needs an other-agent entity in the environment and in any case tests residue geometry rather than the ordering heuristic. NOT a claim verdict: IMPL-019 is neither supported nor weakened. Its own source document calls it 'a testing and governance heuristic', explicitly 'not an architectural commitment', and its S8 governance note sets the promotion bar at empirical validation of exactly the P1-P4 set that is unrunnable here.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for IMPL-019 via targeted experiment runs.",
       "priority": "medium",
@@ -12987,7 +12996,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_impl_019",
       "target_repo": "ree-v3",
       "why_now": [
