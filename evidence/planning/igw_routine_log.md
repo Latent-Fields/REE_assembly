@@ -2571,3 +2571,6 @@ One line per hourly tick. ASCII only.
 2026-09-04T23:07:46Z SPAWN IGW-20260904-215 skill=/queue-experiment prio=28 uuid=ee7ed3a8-3d38-499f-a238-71c0f2fd9935 pid=45788 worktree=igw-215-retest-after-substrate-arc-021
 2026-09-04T23:18:06Z auto-defer igw-215-retest-after-substrate-arc-021 hash=f0efd41b7e34 for 48h (complete)
 2026-09-04T23:18:26Z complete igw-215-retest-after-substrate-arc-021 spawned->completed outcome=DUPLICATE: No queue: ARC-021 retest already executed as V3-EXQ-993a (FAIL, weakens, non_deg
+2026-09-05T00:10:24Z GC removed worktree igw-215-retest-after-substrate-arc-021 (removed; branch deleted)
+2026-09-05T00:10:22Z GC sweep removed 1 orphan worktree(s), kept 13
+2026-09-05T00:11:08Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
