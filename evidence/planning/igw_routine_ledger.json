@@ -4209,7 +4209,11 @@
       "task_claim_session_id": "igw-auto-igw-235-proposal-for-impl-019-20260905T021801Z",
       "task_claim_claimed_at": "2026-09-05T02:18:01Z",
       "assigned_at": "2026-09-05T02:16:20Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-05T02:40:30Z",
+      "completion_summary": "IMPL-019 NOT queued: marked EVB-1306/EXP-0626 blocked_substrate -- no Stage-4 social/other-modelling substrate in ree_core (SOCIAL_MODEL_CHECK register-only, multi-agent scoped V5, single-agent env); all 4 testable predictions vacuous or unrunnable. REE_assembly 2a26ebb00e + fab7aac5ad. LIT-0627 left proposed.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "IMPL-019 NOT queued: marked EVB-1306/EXP-0626 blocked_substrate -- no Stage-4 social/other-modelling substrate in ree_core (SOCIAL_MODEL_CHECK register-only, multi-agent scoped V5, single-agent env); all 4 testable predictions vacuous or unrunnable. REE_assembly 2a26ebb00e + fab7aac5ad. LIT-0627 left proposed."
     }
   ],
   "dispositions": [
@@ -5864,6 +5868,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-05T01:33:04Z",
       "re_eligible_after": "2026-09-07T01:33:04Z"
+    },
+    {
+      "stable_hash": "eb6a9e3c8ca4",
+      "igw_id_at_disposition": "IGW-20260905-235",
+      "owner_exq": null,
+      "claim_ids": [
+        "IMPL-019"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for IMPL-019",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-05T02:40:50Z",
+      "re_eligible_after": "2026-09-07T02:40:50Z"
     }
   ]
 }
