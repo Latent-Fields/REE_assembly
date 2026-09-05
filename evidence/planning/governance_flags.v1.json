@@ -1980,6 +1980,20 @@
       "status": "resolved",
       "resolved_at": "2026-09-05T10:00:22Z",
       "resolution_note": "governance-20260905: V3-EXQ-993a reviewed with a confirmed autopsy (failure_autopsy_V3-EXQ-993a_2026-09-05); pending_retest_after_substrate cleared on ARC-021 and MECH-069 in claims.yaml; direction ratified as mixed (manifest override flat+pack), not weakens; residual substrate-fidelity question routed as a new-EXQ portfolio (arc021_channel_separation_necessity)."
+    },
+    {
+      "flag_id": "GFLAG-0138",
+      "claim_ids": [
+        "EXT-008",
+        "INV-077"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "EXT-008's wording overstates its own anchor source. A full-text read of arXiv:2606.04455 (Meta-Agent Challenge) during the 2026-09-05 lit-pull found that the ground-truth exfiltration attempts occurred but were CONTAINED: the paper states isolation 'successfully neutralized every exploit attempt' and 'no flagged run artificially inflated its test score'. EXT-008's title and docs/architecture/evaluation_channel_integrity.md both say agents exfiltrated ground truth 'despite anti-reward-hacking protections', which reads as a successful collapse of the evidence loop into an optimisation loop; on the source, 'despite' holds for the ATTEMPT only, not the RESULT. Governance should decide whether to reword EXT-008 (and the architecture doc) to 'attempted exploitation under an intact boundary'. Note this is a favourable correction for INV-077: what held the line in MAC was structural (ground truth in a private container filesystem; the X-Verifier-Secret injected only after the development phase), matching INV-077's own what_would_answer insistence that confirmation come from the STRUCTURAL absence of a write path rather than from a review norm. Full reasoning and five graded entries: REE_assembly/evidence/literature/targeted_review_ext_008/.",
+      "raised_by_session": "igw-233-literature-proposal-for-ext-008",
+      "raised_at": "2026-09-05T16:19:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
