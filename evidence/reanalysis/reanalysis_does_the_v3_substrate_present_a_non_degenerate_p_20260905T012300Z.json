@@ -1,30 +1,36 @@
 {
-  "schema_version": "reanalysis/v1",
-  "recording_schema": "rec/v1",
-  "artifact_type": "post_hoc_reanalysis",
-  "reanalysis_id": "reanalysis_does_the_v3_substrate_present_a_non_degenerate_p_20260905T012300Z",
-  "generated_utc": "2026-09-05T01:23:00Z",
-  "gov_rule": "GOV-REUSE-1",
-  "question": "Does the V3 substrate present a non-degenerate population of UNCOMMITTED E3 selections, as required to test IMPL-016's epistemic commitment gate (uncommitted rollouts do not drive belief update; committed trajectories do)?",
-  "claim_ids": [
-    "IMPL-016"
-  ],
-  "decisive_readout": "e3_commit_predicate_duty_cycle",
-  "source_run_ids": [
-    "v3_exq_785a_mech463_arousal_exogenous_urgency_decomp_20260719T133431Z_v3",
-    "v3_exq_785_mech463_arousal_variance_amplifier_decomp_20260718T212815Z_v3"
-  ],
-  "source_substrate_hashes": {
-    "v3_exq_785a_mech463_arousal_exogenous_urgency_decomp_20260719T133431Z_v3": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b",
-    "v3_exq_785_mech463_arousal_variance_amplifier_decomp_20260718T212815Z_v3": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b"
-  },
-  "substrate_compatibility": "matched",
-  "substrate_invariant_asserted": false,
   "answer": {
-    "committed_ticks": 1757,
-    "uncommitted_ticks": 8,
-    "n_ticks": 1765,
     "committed_fraction": 0.99547,
+    "committed_ticks": 1757,
+    "config_commitment_threshold_default": 0.4,
+    "corroboration_other_substrate_hash": {
+      "v3_exq_787": {
+        "committed": 13946,
+        "n": 14023,
+        "uncommitted": 77
+      }
+    },
+    "corroboration_same_substrate_hash": {
+      "v3_exq_785": {
+        "committed": 7918,
+        "n": 8000,
+        "uncommitted": 82
+      }
+    },
+    "documented_variance_space_band": [
+      0.01,
+      0.05
+    ],
+    "effective_threshold_range": [
+      0.198,
+      0.384
+    ],
+    "median_margin_threshold_over_variance": 55.5,
+    "n_ticks": 1765,
+    "running_variance_init": 0.5,
+    "running_variance_median": 0.00562,
+    "running_variance_min": 0.00254,
+    "steady_state_uncommitted_ticks_after_tick_10": 0,
     "uncommitted_all_warmup_transient": true,
     "uncommitted_tick_indices": [
       0,
@@ -36,37 +42,39 @@
       0,
       8
     ],
-    "steady_state_uncommitted_ticks_after_tick_10": 0,
-    "running_variance_median": 0.00562,
-    "running_variance_min": 0.00254,
-    "running_variance_init": 0.5,
-    "effective_threshold_range": [
-      0.198,
-      0.384
-    ],
-    "config_commitment_threshold_default": 0.4,
-    "documented_variance_space_band": [
-      0.01,
-      0.05
-    ],
-    "median_margin_threshold_over_variance": 55.5,
-    "corroboration_same_substrate_hash": {
-      "v3_exq_785": {
-        "committed": 7918,
-        "uncommitted": 82,
-        "n": 8000
-      }
-    },
-    "corroboration_other_substrate_hash": {
-      "v3_exq_787": {
-        "committed": 13946,
-        "uncommitted": 77,
-        "n": 14023
-      }
-    }
+    "uncommitted_ticks": 8
   },
+  "artifact_type": "post_hoc_reanalysis",
+  "caveat": " | CONFOUND (see confound_correction, added 2026-09-05T01:27:40Z): both sources ran on an UNTRAINED z_world, the same confound the 2026-09-04 MECH-465 spike identified. The duty-cycle number stands; its attribution to the commit gate does not. Do NOT cite this as evidence for a gate rescale -- that route is retired.",
+  "claim_ids": [
+    "IMPL-016"
+  ],
+  "confound_correction": {
+    "added_utc": "2026-09-05T01:27:40Z",
+    "finding": "Both source runs (V3-EXQ-785, V3-EXQ-785a) ran with NO z_world warmup -- verified: the 785a driver contains zero zworld_p0/run_zworld_p0/warmup references and neither manifest config carries a warmup/p0/zworld key. That is the SAME confound the 2026-09-04 spike (evidence/planning/mech465_zworld_warmup_dispersion_spike_20260904.md) identified in the three MECH-465 commit-gate probes: they measured a frozen random-projection z_world with a near-degenerate CEM policy.",
+    "owning_front": "substrate_queue MECH465-COMMIT-GATE-HEADROOM, node_class 'complex (probe-gated)', ready=false, next step a warmup-budget sweep PROBE owned by governance via GFLAG-0136. IMPL-016 is the FOURTH claim observed to hit this same regime (after MECH-463, MECH-465, and MECH-027 via failure_autopsy_V3-EXQ-981_2026-09-03).",
+    "severity": "changes_attribution_not_conclusion",
+    "supersedes_in_this_artifact": "The notes field's implication that threshold recalibration is the natural release lever. It is NOT: substrate_queue MECH465-COMMIT-GATE-HEADROOM records the gate-rescale route as RETIRED 2026-09-04 ('Do NOT build the gate rescale'; threshold recalibration does not converge -- the calibration target moves 35-165% while the graded band is only 2.7-4.5% wide).",
+    "what_it_changes": "ATTRIBUTION, not the operational conclusion. The measured duty cycle (99.55% committed; all uncommitted ticks in the warm-up transient) is a fact about these recorded runs and stands, so IMPL-016's epistemic commitment gate remains untestable on them. But the 55.5x margin must NOT be read as a property of the commit GATE: the 2026-09-04 spike showed that warming z_world with run_zworld_p0 raises within-seed IQR(running_variance)/median MONOTONICALLY with warmup budget on 3/3 seeds (up to 8.3x), and the trend had not plateaued. An unknown share of the saturation reported here is therefore attributable to the untrained encoder rather than to the gate."
+  },
+  "decisive_readout": "e3_commit_predicate_duty_cycle",
+  "generated_utc": "2026-09-05T01:23:00Z",
+  "gov_rule": "GOV-REUSE-1",
   "method_note": "Re-read the recorded per-tick JSONL sidecars (fields: committed, commit_variance, effective_threshold) of two MECH-463 runs sharing substrate_hash 849de508. Primary source is V3-EXQ-785a, the latch-cleared reference implementation for per-tick E3 diagnostics (it clears agent.e3.last_score_diagnostics before every select_action, so each row is one genuine selection); V3-EXQ-785 corroborates but predates that fix and may carry pseudo-replication, so it is cited as corroboration only. Counted committed vs uncommitted ticks and located each uncommitted tick in its seed's tick sequence. No new compute.",
-  "verdict": "inconclusive",
   "notes": "GOV-REUSE-1 consumer check for IGW-20260905-234 / proposal EXP-0620 (EVB-1303). FINDING: the ARC-016 commit predicate (committed = running_variance < commitment_threshold) is SATURATED ON at the default operating point. running_variance decays from its 0.5 init to ~2.5e-3 within ~10 ticks and stays there, against a default commitment_threshold of 0.40 -- a median 55.5x margin. All 8 uncommitted ticks in 785a are the warm-up transient (tick 0 at the 0.5 init, plus ticks 7-9 during decay); zero uncommitted ticks occur after tick 10 in any seed. NOTE the converged variance (~2.5e-3) sits ~4x BELOW the bottom of the band variance_commit_threshold's own docstring declares intended (~0.01-0.05), so recalibrating the threshold into that documented band would NOT restore uncommitted windows either. MECH-108's breath-sweep threshold reduction, written explicitly to prevent 'the agent becomes permanently committed', does not produce uncommitted windows at this converged variance. CONSEQUENCE for IMPL-016: any experiment testing the epistemic commitment gate on the current substrate would contrast ~1757 committed observations against ~8 initialisation-transient ones -- criteria_non_degenerate: false by construction, a vacuous PASS rather than a verdict. This is why proposal EXP-0620 is marked blocked_substrate rather than queued.",
-  "caveat": ""
+  "question": "Does the V3 substrate present a non-degenerate population of UNCOMMITTED E3 selections, as required to test IMPL-016's epistemic commitment gate (uncommitted rollouts do not drive belief update; committed trajectories do)?",
+  "reanalysis_id": "reanalysis_does_the_v3_substrate_present_a_non_degenerate_p_20260905T012300Z",
+  "recording_schema": "rec/v1",
+  "schema_version": "reanalysis/v1",
+  "source_run_ids": [
+    "v3_exq_785a_mech463_arousal_exogenous_urgency_decomp_20260719T133431Z_v3",
+    "v3_exq_785_mech463_arousal_variance_amplifier_decomp_20260718T212815Z_v3"
+  ],
+  "source_substrate_hashes": {
+    "v3_exq_785_mech463_arousal_variance_amplifier_decomp_20260718T212815Z_v3": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b",
+    "v3_exq_785a_mech463_arousal_exogenous_urgency_decomp_20260719T133431Z_v3": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b"
+  },
+  "substrate_compatibility": "matched",
+  "substrate_invariant_asserted": false,
+  "verdict": "inconclusive"
 }
