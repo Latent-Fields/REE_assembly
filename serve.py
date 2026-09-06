@@ -6932,6 +6932,13 @@ def build_claims_summary() -> dict:
             "depends_on": [
                 d for d in (_summary_normalize_dep(x) for x in (c.get("depends_on") or [])) if d
             ],
+            # GOV-EDGE-1 (2026-09-04): the UNDIRECTED reciprocal-coupling layer,
+            # split out of depends_on (which is now a prerequisite DAG). Written
+            # on both endpoints in claims.yaml; the explorer draws it without an
+            # arrowhead and never treats it as a dependency.
+            "coupled_with": [
+                d for d in (_summary_normalize_dep(x) for x in (c.get("coupled_with") or [])) if d
+            ],
             "genuine_exp_count": ev.get("genuine_exp_count") or 0,
             "evidence_quadrant": ev.get("evidence_quadrant"),
             "experimental_confidence_decoupled": ev.get("experimental_confidence_decoupled"),

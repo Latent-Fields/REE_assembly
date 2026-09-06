@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-09-01.1 -->
+<!-- EXPLORER_VERSION: 2026-09-06.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -1355,6 +1355,10 @@
       border-top: 2px solid #cfc6b8;
     }
 
+    .legend-line.coupled {
+      border-top: 2px dotted #8e6bb8;
+    }
+
     .legend-swatch {
       width: 12px;
       height: 12px;
@@ -1660,6 +1664,32 @@
     .edge.downstream {
       stroke: var(--accent);
       stroke-width: 2;
+    }
+
+    /* coupled_with: undirected reciprocal coupling (GOV-EDGE-1). Drawn without
+       an arrowhead, dotted, in a hue no dependency edge uses. */
+    .edge.coupled {
+      stroke: #8e6bb8;
+      stroke-width: 1.3;
+      stroke-dasharray: 2 3;
+    }
+
+    .edge.coupled.dim {
+      stroke: #d6cde2;
+      stroke-width: 1;
+      opacity: 0.35;
+    }
+
+    .edge.coupled.anchor {
+      stroke: #6f4aa8;
+      stroke-width: 2;
+      stroke-dasharray: 3 3;
+    }
+
+    .node.coupled rect {
+      stroke: #8e6bb8;
+      stroke-width: 1.6;
+      stroke-dasharray: 2 3;
     }
 
     .graph-tooltip {
@@ -2579,6 +2609,7 @@
                 <span class="legend-item"><span class="legend-line upstream"></span>Upstream focus path</span>
                 <span class="legend-item"><span class="legend-line downstream"></span>Downstream focus path</span>
                 <span class="legend-item"><span class="legend-line dim"></span>Outside focus</span>
+                <span class="legend-item" title="coupled_with: undirected reciprocal coupling (co-defining architecture). Not a dependency; no arrowhead."><span class="legend-line coupled"></span>Coupled with (undirected)</span>
                 <span class="legend-item"><code>*</code> Claim has conflict file(s)</span>
               </div>
               <div class="legend-row">
@@ -3352,6 +3383,7 @@ END CONFLICT RESOLUTION`;
       function pushCur() {
         if (!cur) return;
         if (!cur.depends_on) cur.depends_on = [];
+        if (!cur.coupled_with) cur.coupled_with = [];
         claims.push(cur);
       }
 
@@ -3378,14 +3410,16 @@ END CONFLICT RESOLUTION`;
         if (keyMatch) {
           const key = keyMatch[1];
           const val = keyMatch[2] || '';
-          if (key === 'depends_on') {
-            cur.depends_on = [];
-            mode = 'depends_on';
+          if (key === 'depends_on' || key === 'coupled_with') {
+            // Same list shape for both edge layers; `mode` remembers which
+            // list the following `- item` lines belong to.
+            cur[key] = [];
+            mode = key;
             if (val.trim()) {
               const inline = val.replace(/^\[/, '').replace(/\]$/, '');
               inline.split(',').map(s => s.trim()).filter(Boolean).forEach(item => {
                 const norm = normalizeDep(item);
-                if (norm) cur.depends_on.push(norm);
+                if (norm) cur[key].push(norm);
               });
               mode = null;
             }
@@ -3405,9 +3439,9 @@ END CONFLICT RESOLUTION`;
         }
 
         const listMatch = line.match(/^\s*-\s*(.+)$/);
-        if (listMatch && mode === 'depends_on') {
+        if (listMatch && (mode === 'depends_on' || mode === 'coupled_with')) {
           const norm = normalizeDep(listMatch[1]);
-          if (norm) cur.depends_on.push(norm);
+          if (norm) cur[mode].push(norm);
         }
       }
 
@@ -3419,7 +3453,7 @@ END CONFLICT RESOLUTION`;
       blocks.forEach(block => {
         const idMatch = block.match(/id:\s*([A-Z]{1,6}-\d{3})/i);
         if (!idMatch) return;
-        const c = { id: idMatch[1].trim(), depends_on: [] };
+        const c = { id: idMatch[1].trim(), depends_on: [], coupled_with: [] };
         ['claim_type', 'subject', 'polarity', 'status', 'location', 'implementation_phase'].forEach(key => {
           const km = block.match(new RegExp(`^\\s*${key}:\\s*(.+)$`, 'm'));
           if (km) c[key] = km[1].trim();
@@ -3464,6 +3498,8 @@ END CONFLICT RESOLUTION`;
         subject: c.subject || '',
         polarity: c.polarity || '',
         depends_on: c.depends_on || [],
+        // Undirected reciprocal coupling (GOV-EDGE-1). Never a dependency.
+        coupled_with: c.coupled_with || [],
         location: c.location || '',
         lifecycle_stage: c.lifecycle_stage || '',
         adjudication_decision_status: c.adjudication_decision_status || '',
@@ -6290,6 +6326,17 @@ END CONFLICT RESOLUTION`;
       return depends.join(', ');
     }
 
+    // coupled_with (GOV-EDGE-1): undirected reciprocal coupling, rendered as
+    // its own labelled relation -- never folded into Depends On / Dependents.
+    function coupledWithLinksHtml(c) {
+      const list = (c && c.coupled_with) || [];
+      return list.length ? list.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-';
+    }
+
+    function coupledWithDetailLi(c) {
+      return `<li><strong>Coupled With</strong> <span class="meta" title="Undirected reciprocal coupling (co-defining architecture). Not a dependency.">(undirected)</span>: ${coupledWithLinksHtml(c)}</li>`;
+    }
+
     let selectedId = null;
     // Persisted across page reloads; defaults to the experiments view on first open.
     const CURRENT_VIEW_STORAGE_KEY = 'ree_explorer.current_view.v1';
@@ -6837,6 +6884,7 @@ END CONFLICT RESOLUTION`;
           <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
           <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
           <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
+          ${coupledWithDetailLi(c)}
           <li><strong>Transitive Blocking:</strong> ${renderTransitiveBlocking(c.id)}</li>
           <li><strong>Conflicts:</strong> ${conflicts.length ? conflicts.map(f => {
             const link = relativeLink(f);
@@ -6893,6 +6941,7 @@ END CONFLICT RESOLUTION`;
           <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
             <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
             <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
+            ${coupledWithDetailLi(c)}
             <li><strong>Transitive Blocking:</strong> ${renderTransitiveBlocking(c.id)}</li>
             <li><strong>Conflict files:</strong> ${conflicts.length ? conflicts.map(f => {
               const link = relativeLink(f);
@@ -6958,6 +7007,7 @@ END CONFLICT RESOLUTION`;
         <div class="title">${c.id}</div>
         <div class="meta">${c.type} | ${c.status}</div>
         <div class="meta">Subject: ${escapeHtml(c.subject || '-')}</div>
+        ${(c.coupled_with || []).length ? `<div class="meta">Coupled with (undirected): ${escapeHtml(c.coupled_with.join(', '))}</div>` : ''}
         ${claimLine ? `<div>${escapeHtml(claimLine)}</div>` : '<div class="meta">Loading claim...</div>'}
         ${overlayHtml}
       `;
@@ -6972,6 +7022,7 @@ END CONFLICT RESOLUTION`;
             <div class="title">${c.id}</div>
             <div class="meta">${c.type} | ${c.status}</div>
             <div class="meta">Subject: ${escapeHtml(c.subject || '-')}</div>
+            ${(c.coupled_with || []).length ? `<div class="meta">Coupled with (undirected): ${escapeHtml(c.coupled_with.join(', '))}</div>` : ''}
             <div>${line}</div>
             ${overlayHtml}
           `;
@@ -7118,12 +7169,20 @@ END CONFLICT RESOLUTION`;
       }
 
       selected = selectedId && nodeMap.has(selectedId) ? selectedId : null;
+      // Direct coupled_with partners of the anchored node (GOV-EDGE-1). Kept
+      // in focus so the reciprocal coupling stays visible beside the
+      // dependency neighbourhood; NOT walked transitively and never added to
+      // upstream/downstream, because coupling carries no direction.
+      const coupledPartners = new Set();
       if (focusMode === 'anchor' && selected) {
         const up = collectUpstream(selected);
         const down = collectDownstream(selected);
         up.forEach(x => upstream.add(x));
         down.forEach(x => downstream.add(x));
-        focusSet = new Set([selected, ...upstream, ...downstream]);
+        ((nodeMap.get(selected) || {}).coupled_with || []).forEach(other => {
+          if (nodeMap.has(other) && other !== selected) coupledPartners.add(other);
+        });
+        focusSet = new Set([selected, ...upstream, ...downstream, ...coupledPartners]);
       }
 
       if (focusMode === 'workset') {
@@ -7217,6 +7276,22 @@ END CONFLICT RESOLUTION`;
           if (nodeMap.has(dep)) edges.push([dep, n.id]);
         });
       });
+      // coupled_with (GOV-EDGE-1): undirected, written on BOTH endpoints in
+      // claims.yaml, so dedupe by unordered pair. Drawn only when both
+      // endpoints are already in the graph -- coupling pulls in no ghost
+      // nodes, because it is not a dependency ("Include graph deps" is about
+      // depends_on). Layout (depth) also ignores it: it carries no phase order.
+      const coupledEdges = [];
+      const coupledSeen = new Set();
+      nodeList.forEach(n => {
+        (n.coupled_with || []).forEach(other => {
+          if (!nodeMap.has(other) || other === n.id) return;
+          const key = n.id < other ? `${n.id}|${other}` : `${other}|${n.id}`;
+          if (coupledSeen.has(key)) return;
+          coupledSeen.add(key);
+          coupledEdges.push([n.id, other]);
+        });
+      });
       const focus = focusSet;
 
       if (els.graphMeta) {
@@ -7226,7 +7301,7 @@ END CONFLICT RESOLUTION`;
         } else if (focusMode === 'workset') {
           focusLabel = selectedWorkset.size ? `focus: workset ${selectedWorkset.size} (${worksetScope})` : 'focus: workset (none)';
         }
-        els.graphMeta.textContent = `Dependency graph (filtered set) — nodes: ${nodeList.length}, edges: ${edges.length} — ${focusLabel}`;
+        els.graphMeta.textContent = `Dependency graph (filtered set) — nodes: ${nodeList.length}, edges: ${edges.length}, coupled: ${coupledEdges.length} — ${focusLabel}`;
       }
 
       const svgParts = [];
@@ -7260,6 +7335,27 @@ END CONFLICT RESOLUTION`;
           if (!(focus.has(from) && focus.has(to))) edgeClass = 'edge dim';
         }
         svgParts.push(`<line class="${edgeClass}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#arrow)" />`);
+      });
+
+      // coupled_with edges: centre-to-centre, NO arrowhead (undirected), dotted
+      // and in their own hue (.edge.coupled). Node rects are drawn later and
+      // cover the line ends, so only the inter-node span shows. Focus modes
+      // only dim them; they are never classed upstream/downstream because
+      // coupling has no direction.
+      coupledEdges.forEach(([a, b]) => {
+        const pa = positions[a];
+        const pb = positions[b];
+        if (!pa || !pb) return;
+        let edgeClass = 'edge coupled';
+        const bothInFocus = focus && focus.has(a) && focus.has(b);
+        if (focusMode === 'anchor' && selected && (a === selected || b === selected)) {
+          edgeClass = 'edge coupled anchor';
+        } else if ((focusMode === 'anchor' && selected && !bothInFocus)
+            || (focusMode === 'workset' && focus && !bothInFocus)) {
+          edgeClass = 'edge coupled dim';
+        }
+        svgParts.push(`<line class="${edgeClass}" x1="${pa.x + 90}" y1="${pa.y + 16}" x2="${pb.x + 90}" y2="${pb.y + 16}">`
+          + `<title>${a} coupled with ${b} (undirected)</title></line>`);
       });
 
       // Phase-2 evidence-flow animation (Option D) over the propagated beliefs:
@@ -7315,6 +7411,7 @@ END CONFLICT RESOLUTION`;
           if (n.id === selected) nodeClass = ' selected';
           else if (downstream.has(n.id)) nodeClass = ' downstream';
           else if (upstream.has(n.id)) nodeClass = ' upstream';
+          else if (coupledPartners.has(n.id)) nodeClass = ' coupled';
           else nodeClass = ' dim';
         } else if (focusMode === 'workset' && focus) {
           if (selectedWorkset.has(n.id)) nodeClass = ' selected';

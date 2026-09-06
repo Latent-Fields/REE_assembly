@@ -289,6 +289,11 @@ def main():
             "subject": claim.get("subject", ""),
             "status": claim.get("status", ""),
             "title": claim.get("title", ""),
+            # Undirected reciprocal-coupling layer (GOV-EDGE-1, 2026-09-04):
+            # written on both endpoints in claims.yaml, distinct from the
+            # directed `depends_on` DAG. Always emitted (default []) so a
+            # consumer can tell "no coupling" from "field unknown".
+            "coupled_with": [str(x) for x in (claim.get("coupled_with") or [])],
         }
         if claim.get("claim_type") == "invariant":
             itype = claim.get("invariant_type")
