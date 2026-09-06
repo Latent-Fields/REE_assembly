@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-05T11:07:55Z",
+  "last_review_utc": "2026-09-06T16:56:48Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1272,7 +1272,8 @@
     "v3_exq_642c_blocked_agency_headroom_dv_validation",
     "v3_exq_1004_sd_waypoint_field_validation",
     "v3_exq_1002_zworld_actor_adequacy_oracle_adapter",
-    "v3_exq_822e_sd082_candidate_discriminating_bias_spread"
+    "v3_exq_822e_sd082_candidate_discriminating_bias_spread",
+    "v3_exq_983a_ext002_residue_error_persistence_headroom"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4207,7 +4208,8 @@
     "v3_exq_642c_blocked_agency_headroom_dv_validation_20260904T214459Z_v3",
     "v3_exq_1004_sd_waypoint_field_validation_20260904T214702Z_v3",
     "v3_exq_1002_zworld_actor_adequacy_oracle_adapter_20260905T005017Z_v3",
-    "v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3"
+    "v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3",
+    "v3_exq_983a_ext002_residue_error_persistence_headroom_20260905T141459Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6847,6 +6849,17 @@
         "v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3"
       ],
       "note": "Cycle governance-20260905 (user present). Five results, ALL autopsied INLINE (Step 1.5 route A; 822e landed mid-cycle and was added by user choice) by staging-mode Opus drafts, each red-teamed on Fable 5.1 (all five CONTESTED, all contests folded in), gate held per target. V3-EXQ-993a (evidence FAIL, ARC-021+MECH-069): weakens -> MIXED by user gate (t(3) CI does not exclude -0.15, joint power ~12%; one falsifier DV of two read; surrogate heads over frozen z_world), manifest overridden flat+pack, pending_retest cleared on both (GFLAG-0137 resolved), new-EXQ 3-leg portfolio owed; EXT-003 drop ratified. V3-EXQ-642c (diagnostic PASS, vacuous_pass): PASS real on C0/C1, flag UPHELD and broadened (C2 inert, C3 no_suffering inert, withdraw unrepresentable at action_dim=4/noop_class=0), MECH-353 v3_pending HELD by user judgment, 642d owed with the action-space fix. V3-EXQ-1004 (diagnostic PASS, INV-086+MECH-428 supports): both non_contributory/standard/adjudicated (no REE agent; manifest claim_directions is a dead letter -> written flat+pack); waypoint-field entry implemented_validated, corrupting gate released to degrading (user); MECH-428 retest routed as 884a (two-kwarg edit). V3-EXQ-1002 (diagnostic FAIL, claim-free): H-B eliminated, H-C CONFIRMED with caveat (untrained comparator ties), H-D re-cut as labelled fan-out on a git witness (Mode C withdrawn), H-E respecified against the 250-dim world_state; parallel portfolio owed. V3-EXQ-822e (evidence FAIL, SD-078+SD-082): verdict voided by a signed-norm trainedness gate; run is a bit-for-bit replay of 822d; C1 uncreditable without an init-head control (random head clears in 99% MC); non_contributory both; byte-identical 822f REFUSED, design-changed 822f owed. No claim-tagged evidence PASS this cycle, so no driver skim owed. DRY-RUN CHECK: all 5 clean. Registry: +4 questions (arc021_channel_separation_necessity, mech353_zblock_attribution_and_dissociation, waypoint_field_consumer_reach, sd082_candidate_discriminating_readout_locus) + 2 legs on zworld_actor_adequacy_locus; integrity 0 flags."
+    },
+    {
+      "reviewed_utc": "2026-09-06T16:56:48Z",
+      "session": "governance-20260906-1604",
+      "run_ids": [
+        "v3_exq_983a_ext002_residue_error_persistence_headroom_20260905T141459Z_v3"
+      ],
+      "note": "governance 2026-09-06: one pending result, V3-EXQ-983a (evidence FAIL, EXT-002 + ARC-013), autopsied INLINE (Step 1.5 route A, user choice). Fable cross-model red-team CONTESTED on routing, all numbers reproduced, four verdict-moving findings folded: no board screen can produce the 6/8 seed-death split (constant mover survives all 8 pinned boards, random walker dies on all 8) -- the split is E3 single-action latching per seed; seed 31's 0 erred keys is the fresh-tick key-registration gate; the proposed substrate create duplicated dv-dynamic-range-precondition-class; brake count depends on the per-claim stamp. Ratified: non_contributory both claims (manifest already carried it; note added flat+pack), standard both (ARC-013 gains the field), brake RELEASED (test-design defects, no build owed), same-DV letters refused, successor = NEW EXQ two-stage (latching spike, then avoidance-DV re-pose). Registry +1 question residue_error_persistence_readout (2 alive legs), integrity 0. dv-dynamic-range-precondition-class: validation_record_983a (first production refusal-path firing). No claim-tagged evidence PASS this cycle, so no driver skim owed. DRY-RUN CHECK: 983 and 983a real, 0 dry in either family. Artifact commit REE_assembly 71694d5b01.",
+      "discussed_experiment_dirs": [
+        "v3_exq_983a_ext002_residue_error_persistence_headroom"
+      ]
     }
   ]
 }
