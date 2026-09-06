@@ -3078,6 +3078,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0219",
+      "claim_ids": [
+        "MECH-057b",
+        "ARC-065"
+      ],
+      "flag_type": "stale_note",
+      "summary": "The CONFIRMED failure_autopsy_V3-EXQ-672-series_2026-06-15 recommended a substrate_queue amendment (action=amend, target_sd_id=ARC-065, unblocks_claims=[MECH-057b], plus a hint that the completion channel is hippocampal._score_trajectory with cross-candidate spread ~0.009). Its CLAIM-side half was applied on 2026-08-28 (672b reclassified to non_contributory) but the SUBSTRATE-side half never was: ARC-065 today lists neither MECH-057b in unblocks_claims nor the completion-discriminability hint, so nothing tracks MECH-057b's release trigger and the owed build is unowned. Separately, GOV-CONFIRM-1 keeps firing MECH-057b as a zero-experimental-evidence candidate with 'built substrate (tagged in ree_core)', which is a FALSE POSITIVE: the only MECH-057b string in ree_core is a comment at ree_core/utils/config.py:1021 recording that the claim could NOT be tested, and ree_core/hippocampal/ contains no sequence-completion verification or promotion policy at all. Retest registered blocked_substrate as EXP-0594 (REE_assembly 3635cf2d38).",
+      "raised_by_session": "igw-240-confirm-evidence-mech-057b-lit-0",
+      "raised_at": "2026-09-06T19:31:10Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
