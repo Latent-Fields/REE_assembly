@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-05T02:32:38Z",
+  "generated_at": "2026-09-06T16:12:21Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -13,11 +13,11 @@
       "state_counts": {
         "proposed": 34,
         "implemented": 95,
-        "implemented_pending_validation": 23,
-        "validated": 25
+        "implemented_pending_validation": 22,
+        "validated": 26
       },
-      "build_proof_gap": 118,
-      "build_proof_gap_note": "143 modules built, 118 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 117,
+      "build_proof_gap_note": "143 modules built, 117 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,210 +31,216 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 96,
-      "total_initial": 165,
-      "total_initial_at_registration": 138,
-      "total_fanout_added": 27,
-      "total_resolved_out": 56,
-      "total_confirmed": 36,
+      "total_surviving": 110,
+      "total_initial": 182,
+      "total_initial_at_registration": 153,
+      "total_fanout_added": 29,
+      "total_resolved_out": 57,
+      "total_confirmed": 39,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 33.9,
-      "net_narrowing_pct": 30.4,
+      "reduction_pct_vs_current": 31.3,
+      "net_narrowing_pct": 28.1,
       "convergence_classes": {
-        "static": 23,
+        "static": 26,
         "narrowing": 20,
         "circling": 4,
-        "refining": 2,
+        "refining": 3,
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "96 alive against 138 originally enumerated, and against 165 including 27 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 50
+      "honest_pair_note": "110 alive against 153 originally enumerated, and against 182 including 29 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 54
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 19,
-      "open_questions": 50
+      "ready": 20,
+      "open_questions": 54
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 164,
+      "surviving": 181,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-11",
-      "surviving": 163,
+      "surviving": 180,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-13",
-      "surviving": 161,
+      "surviving": 178,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-15",
-      "surviving": 157,
+      "surviving": 174,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-16",
-      "surviving": 156,
+      "surviving": 173,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-17",
-      "surviving": 153,
+      "surviving": 170,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-18",
-      "surviving": 147,
+      "surviving": 164,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-19",
-      "surviving": 143,
+      "surviving": 160,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-20",
-      "surviving": 142,
+      "surviving": 159,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-24",
-      "surviving": 141,
+      "surviving": 158,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-27",
-      "surviving": 139,
+      "surviving": 156,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-29",
-      "surviving": 138,
+      "surviving": 155,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-31",
-      "surviving": 137,
+      "surviving": 154,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-01",
-      "surviving": 135,
+      "surviving": 152,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-02",
-      "surviving": 129,
+      "surviving": 146,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-04",
-      "surviving": 128,
+      "surviving": 145,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-06",
-      "surviving": 127,
+      "surviving": 144,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-08",
-      "surviving": 125,
+      "surviving": 142,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-09",
-      "surviving": 123,
+      "surviving": 140,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-10",
-      "surviving": 122,
+      "surviving": 139,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-11",
-      "surviving": 121,
+      "surviving": 138,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-12",
-      "surviving": 120,
+      "surviving": 137,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-14",
-      "surviving": 118,
+      "surviving": 135,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-17",
-      "surviving": 117,
+      "surviving": 134,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-20",
-      "surviving": 116,
+      "surviving": 133,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-24",
-      "surviving": 115,
+      "surviving": 132,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-29",
-      "surviving": 112,
+      "surviving": 129,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-30",
-      "surviving": 110,
+      "surviving": 127,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-02",
-      "surviving": 109,
+      "surviving": 126,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-05",
-      "surviving": 96,
+      "surviving": 125,
+      "closure_pct": 73.0,
+      "build_pct": 80.8
+    },
+    {
+      "date": "2026-09-06",
+      "surviving": 110,
       "closure_pct": 73.0,
       "build_pct": 80.8
     }
@@ -2926,9 +2932,9 @@
         "readiness_state": "observation_bottleneck",
         "evidence_decile": 2,
         "decision_question": "Does MECH-428's bottom-up bootstrap mechanism produce a materially structured parent under realistic event cadence?",
-        "distance_phrase": "1 of 1 tested leg inconclusive (precondition_unmet) -- awaiting substrate fix before a genuine test can run",
-        "live_gate": "A causal_grid_world.py substrate fix (SD-094: waypoint-arrival detection + ambient contamination gating) is needed before a genuine test can run -- not yet queued under a new letter.",
-        "observation_bottleneck": "causal_grid_world.py waypoint-arrival detection bug (grid-cell-type clobbered on premature transit) + undisabled ambient self-contamination mechanic (see SD-094)"
+        "distance_phrase": "1 of 1 tested leg inconclusive (precondition_unmet); the substrate defects that starved it are fixed and the re-test (V3-EXQ-884a -- a two-kwarg edit to the existing EXP-0390 driver) is buildable and not yet queued",
+        "live_gate": "The two substrate defects that starved V3-EXQ-884 are FIXED: SD-094 (waypoint-arrival position check + hazard-free contamination gate) is implemented_validated. What now gates a genuine test is a two-kwarg edit plus a re-queue under a new letter. The EXP-0390 3-arm driver EXISTS (ree-v3 experiments/v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding.py; proposal EXP-0390 is status `executed`, executed_by V3-EXQ-884) and the confirmed 884 autopsy's instruction is to re-queue it as V3-EXQ-884a once the fix landed -- but its _build_env sets neither `subgoal_arrival_position_check` nor `hazard_free_contamination_gate`, both default-off, so a verbatim re-queue would reproduce the 884 failure. `complicated (buildable)`, minutes of work. Note 884 SCRIPTS the walk, so the new SD-WAYPOINT-FIELD observable is NOT on this leg's code path; 884a needs SD-094 only.",
+        "observation_bottleneck": "Cleared for THIS leg. The causal_grid_world.py waypoint-arrival detection bug and the ambient self-contamination mechanic are fixed (SD-094, implemented_validated), which is all a scripted-walk 884a needs. Target perceptibility beyond radius 2 is separately fixed (SD-WAYPOINT-FIELD, reader-validated by V3-EXQ-1004) but is not on this leg's path. The consumer-reach question that PASS opens is tracked separately as qid `waypoint_field_consumer_reach`; it is not a bottleneck on this leg."
       }
     },
     {
@@ -4835,68 +4841,136 @@
         "INV-088"
       ],
       "is_hero": false,
-      "initial_frozen_count": 2,
+      "initial_frozen_count": 4,
       "initial_frozen_count_at_registration": 2,
-      "fanout_added": 0,
-      "fanout_growth_events": [],
-      "fanout_growth_note": null,
+      "fanout_added": 2,
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-09-05T09:36:37Z",
+          "pre_registered_utc": "2026-09-04T18:45:00Z",
+          "fanout_source": "exq1002_redteam_findings_20260904.md",
+          "fanout_source_note": "Full path evidence/planning/exq1002_redteam_findings_20260904.md, git witness ac85c048a2 (2026-09-04 19:45 +0100 = 18:45Z). This autopsy, failure_autopsy_V3-EXQ-1002_2026-09-05.json, is the artifact that labels the growth and is the pre_registration_source of the H-E leg.",
+          "added_hids": [
+            "H-D-warmup-not-the-locus",
+            "H-E-channel-input-capacity"
+          ],
+          "delta": 2,
+          "note": "GOV-FANOUT-1 portfolio opened by V3-EXQ-1002 and labelled at its Step 8 gate (2026-09-05). Invariant 3a(a) is satisfied by GIT WITNESS for the one leg whose evidence is already in: H-D-warmup-not-the-locus was named in writing in evidence/planning/exq1002_redteam_findings_20260904.md, first committed ac85c048a2 on 2026-09-04 18:45Z -- about 6 h before the run resolved (2026-09-05T00:50:17Z) and ~50 min before it started -- so it self-clears with no human adjudication. It is deliberately NOT recorded as Mode C discovery growth: the rival was anticipated (the driver's own grid carries two warmup-locus cells and the manifest names the untrained arm as an attribution axis), and discovery growth explicitly forbids use as an escape hatch for an anticipated-but-unregistered rival. The staged draft's discovery_growth block (added_hid H-D, delta 1) is DELETED, not amended. H-E-channel-input-capacity is ordinary Mode A growth -- its adjudicating run is not queued, let alone resolved -- and carries its OWN pre_registered_utc of 2026-09-05T09:36:37Z with pre_registration_source failure_autopsy_V3-EXQ-1002_2026-09-05.json; the event-level pre_registered_utc records the earlier witness stamp that licenses the batch, and each leg's own stamp is on the leg. Axis families: intrinsic-architecture -> constitution and instrumentation -> instrumentation, neither of which previously carried a leg on this question (the eliminated H-B sits in `representation`), so the growth is REFINING rather than circling."
+        }
+      ],
+      "fanout_growth_note": "This question took ONE labelled fan-out growth event (delta 2) in its first adjudication cycle: the denominator moved 2 -> 4 while one leg was eliminated and two were confirmed, so the headline narrowing ratio is inflated exactly here and must be read alongside the growth event rather than instead of it. The growth is REFINING rather than CIRCLING -- the eliminated leg sits in family `representation`, the two new legs in `constitution` and `instrumentation`, neither of which previously carried a leg on this question. The owed H-C corroborator (parallel leg 2) does sit in `representation`, but adds NO leg: it tests an existing confirmed leg.",
       "net_narrowing_ratio": 0.0,
       "bits_removed_vs_registration": 0.0,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
-        "families_touched": [],
-        "families_fresh": [
+        "convergence_class": "refining",
+        "reason": "2 families closed out; the latest growth opened fresh territory",
+        "families_closed": [
+          "constitution",
           "representation"
         ],
+        "families_touched": [
+          "representation"
+        ],
+        "families_fresh": [
+          "instrumentation"
+        ],
         "unclassified_axes": [],
-        "growth_events": []
+        "growth_events": [
+          {
+            "recorded_utc": "2026-09-05T09:36:37Z",
+            "fanout_source": "exq1002_redteam_findings_20260904.md",
+            "event_class": "refining",
+            "added": [
+              {
+                "hid": "H-D-warmup-not-the-locus",
+                "family": "constitution"
+              },
+              {
+                "hid": "H-E-channel-input-capacity",
+                "family": "instrumentation"
+              }
+            ],
+            "re_entered": [],
+            "families_already_dead": [
+              "representation"
+            ]
+          }
+        ]
       },
       "surviving": 2,
-      "alive": 2,
-      "resolved_out": 0,
-      "confirmed": 0,
+      "alive": 1,
+      "resolved_out": 1,
+      "confirmed": 2,
       "superseded": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
-      "synthesis": null,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.25,
+      "bits_removed": 1.0,
+      "synthesis": {
+        "surviving_label": "H-C geometry-mismatch (confirmed, caveated) + H-D warmup-not-the-locus (confirmed); H-E channel-input capacity alive; H-B consumer-learning eliminated",
+        "text": "As of V3-EXQ-1002 the actor-adequacy deficit is located on the REPRESENTATION side of the observation-to-action interface, and not in the consumer. With credit assignment removed entirely and the reader held at the consumer's exact capacity, the local_view_greedy oracle's policy is recoverable from the raw 25-dim observation at 0.979 held-out agreement and from the frozen 32-dim z_world at 0.664 -- a gap of ~0.31 on identical steps, replicated on a random-driven state distribution and on a shortcut-free turn-state subset. H-B (consumer learning) is ELIMINATED and H-C (geometry mismatch) is CONFIRMED at its registered gate. Two things the run does not settle are recorded rather than glossed. First, the deficit is not what the SD-018/P0a warmup wrote: on the pre-registered standardised instrument the warmed latent is no better than, and consistently slightly worse than, an untrained projection of the same input (H-D, confirmed) -- by an amount an order of magnitude smaller than the deficit itself. Second, the encoder's actual input is the full 250-dim world_state, of which the 25-dim field is 10%, so the run's only 32-dim comparator is itself a compression of that input and its failure is equally consistent with a 250 -> 32 channel-INPUT bound (H-E, alive) that no rotation of z_world could fix; H-C's confirmed label therefore carries a caveated basis and an owed corroborator. A parallel two-leg portfolio on the banked dataset separates them: a 32-dim projection of the full world_state, and an information-preserving re-basis of the frozen latent. Biologically the shape is a missing prerequisite rather than a falsification: DiCarlo-style untangling says a code can carry information a simple readout cannot use until a cascade whose job is reshaping has separated the behaviourally relevant manifolds, and z_world is trained for sensory prediction with no pressure to untangle the action-relevant variable and no separate action-formatted stream for an actor to read.",
+        "under_test": "Parallel two-leg portfolio owed (new EXQ): 250-dim world_state 32-dim projection control (H-E, instrumentation) + information-preserving rotation/reweighting corroborator (H-C, representation), both on the banked V3-EXQ-1002 dataset with the same adapter. Not yet queued."
+      },
       "hypotheses": [
         {
           "hid": "H-B-consumer-learning",
           "label": "Consumer/readout learning failure",
           "desc": "The directional information in z_world is in an adequately usable form, and the downstream consumer has simply failed to learn the mapping from that representation to action. Predicts: a simple SUPERVISED reader on the frozen latent CAN reproduce oracle actions, and the deficit is in the RL consumer's learning rather than in the representation.",
           "axis": "readout",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "(unqueued) frozen-latent supervised oracle-adapter probe"
+            "V3-EXQ-1002"
           ],
-          "basis": "Not yet adjudicated -- the discriminating probe is designed and unqueued.",
+          "basis": "The registered live_gate ran. A capacity-matched supervised adapter (x734.PPOPolicyNet, 21381 action-path parameters -- the class and width V3-EXQ-978 used as its reader) trained by cross-entropy on the oracle's action at every visited state, with credit assignment removed entirely, reaches only 0.6695/0.6735/0.6478 held-out agreement from the frozen z_world: 0 of 3 seeds against a 0.80 bar, and 0 of 3 against the paired untrained control. The same adapter on the same steps reaches 0.9846/0.9796/0.9730 from the raw 25-dim field. H-B predicts the supervised reader CAN reproduce the oracle; it cannot. Discriminating non_contributory: the verdict arm sits sub-floor against a PASSING reference band, every readiness gate is green (per_arm_gate.all_green, dv_headroom green) and criteria_non_degenerate is true, so the full elimination bar is met. Uncontested by the Step 7c cross-model red-team pass.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-C-geometry-mismatch",
           "label": "Representational mismatch (information present, geometry unusable)",
           "desc": "The directional information is technically recoverable but the current geometry does not make the relationships required by action selection accessible under the actual learning dynamics. Predicts: a simple SUPERVISED reader on the frozen latent CANNOT reproduce oracle actions despite strong generic decoding, and a task-/candidate-conditioned transformation could improve behavioural accessibility without increasing total information content.",
           "axis": "representation",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1002"
+          ],
+          "basis": "CONFIRMED at the registered live_gate, on a CAVEATED basis (user decision, Step 8 gate 2026-09-05). The gate is verbatim 'CANNOT reproduce -> H-C' (this question's decision.live_gate). A capacity-matched supervised adapter (x734.PPOPolicyNet, 21381 action-path parameters -- the class and width V3-EXQ-978 used as its reader), trained by cross-entropy on the oracle's action at every visited state with credit assignment removed entirely, could NOT reproduce the oracle from the frozen z_world: 0.6695/0.6735/0.6478 held-out, 0 of 3 seeds against a 0.80 bar, while the identical adapter on the identical steps reached 0.9846/0.9796/0.9730 from the raw 25-dim resource_field_view. Every readiness gate is green (per_arm_gate.all_green, red_arms [], vacuous_arms [], dv_headroom green) and criteria_non_degenerate is true on all four criteria, so control_passed is true. THE CAVEAT, recorded here rather than by holding the leg open: the run's only 32-dimensional comparator is zworld_untrained, an UNTRAINED random NONLINEAR compression of the SAME input, and it TIES with -- in fact slightly beats -- the verdict arm (0.664 vs 0.688; off at or below untrained on 3/3 held-out seeds). So the 'THIS latent's LEARNED geometry' gloss is NOT established by this run. The deficit may instead be a property of the 250 -> 32 CHANNEL INPUT (the encoder reads the full 250-dim world_state, of which the 25-dim resource_field_view is 10%), in which case no rotation of z_world recovers it. THE OWED INFORMATION-PRESERVING ROTATION/REWEIGHTING CORROBORATOR IS THE TEST OF THIS LEG: a flat result there WEAKENS this confirmed leg (registry states are not terminal), and the parallel H-E-channel-input-capacity leg can weaken it independently. met_elimination_bar is false precisely because that corroborator is owed. RECORDED AND WITHDRAWN: the staged draft held this leg `alive` on the argument that C_untrained_control_below_bar is 'inverted relative to its own stated purpose'. That argument is WITHDRAWN. The conjunct's documented purpose -- in the driver's ARMS section, the manifest's interpretation.question, and the C_verdict_arm_beats_untrained_control description -- is attribution TO THE WARMUP ('whether any actionability found is creditable to SD-018's warmup') plus a guard against a spurious H-C via a collapsed comparator, and for that purpose its sign is correct; the phrase 'rather than to 32 dimensions of anything cannot do it' is loose English and incoherent as written (32 > 25 field dims, and the encoder's input is 250 dims), i.e. a wording defect in the driver rather than a licence to reopen a pre-registered gate.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-D-warmup-not-the-locus",
+          "label": "The deficit is upstream of the learned geometry -- the encoder CHANNEL, not what the warmup wrote into it",
+          "desc": "The actor-adequacy deficit is not attributable to what V3-EXQ-978's (SD-018/SD-070 P0a) warmup wrote into z_world: the SD-018 warmup does not account for the ~0.30 deficit to the raw-field ceiling. On the PRE-REGISTERED standardised instrument the warmed latent is consistently slightly WORSE than an untrained projection of the same input on fittability (training-split agreement -0.067 mean, final CE +0.150, participation ratio 0.53x) and no better held-out (3/3 seeds, mean -0.024) -- differences an order of magnitude smaller than the deficit itself. Whatever blocks the representation-to-action mapping is therefore a property of the observation-to-z_world channel already present before any warmup gradient is applied. Predicts: interventions on the warmup OBJECTIVE (more directional supervision, different auxiliary weights, longer P0a) move the action readout by amounts at or inside the seed spread, exactly as V3-EXQ-978's own ON-vs-OFF null did on the decode readout.",
+          "axis": "intrinsic-architecture",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1002"
+          ],
+          "basis": "Confirmed as a NECESSARY-not-sufficient reading on a LABELLED FAN-OUT leg (invariant 3a), NOT a Mode C discovery. Invariant 3a(a) is satisfied by GIT WITNESS: 'the warmup is not the locus' was named in writing -- 'Nobody reading hypothesis_verdict alone can tell trained latent is no more actionable than a random projection (a real finding about the WARMUP) from z_world lacks accessible directional structure (the registered H-C)' -- in evidence/planning/exq1002_redteam_findings_20260904.md, first committed ac85c048a2 on 2026-09-04 19:45 +0100 (18:45Z), about 6 h BEFORE the run resolved (2026-09-05T00:50:17Z) and ~50 min before it started. Mode C is therefore the WRONG door: the rival was anticipated (the driver's own _adjudicate grid carries two warmup-locus cells, zworld_supports_mapping_but_warmup_non_contributory and untrained_projection_clears_warmed_arm_does_not, and the manifest's interpretation.question names the untrained arm as an ATTRIBUTION axis), so discovery growth's born-not-anticipated condition fails and using it would be the escape-hatch the discovery_growth invariant explicitly forbids. What the leg establishes is that the warmup is not the LOCUS of the ~0.30 deficit -- not WHICH property of the channel is, which is what the parallel H-E-channel-input-capacity leg asks -- so met_elimination_bar is false.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-E-channel-input-capacity",
+          "label": "The deficit is a channel-INPUT bottleneck (250 -> 32), not this latent's learned geometry",
+          "desc": "A 32-dim random or PCA projection of the FULL 250-dim world_state (the encoder's actual input; the 25-dim resource_field_view is 10% of it) through the same adapter on the same banked dataset cannot reproduce the oracle -- i.e. the deficit is a channel-INPUT bottleneck property, not this latent's learned geometry. Predicts: that projection also fails the 0.80 bar, as zworld_untrained (a random NONLINEAR compression of the same 250 dims) already does at 0.688. If H-E holds, H-C's confirmed 'learned geometry' gloss is unsupportable, the owed rotation corroborator is a foregone null, and the route is instrument/interface redesign rather than a geometry build. Sanity anchor only and explicitly NOT a gate: a 32-dim projection of the 25-dim resource_field_view ALONE is expected to clear -- any injective linear map R^25 -> R^32 composed with the adapter's Linear(32,128) first layer spans exactly the Linear(25,128) function class, so the positive control's own 0.973-0.985 function is representable and the null could only fire through an optimisation artefact. That is why the staged draft's 25-dim-field specification of this leg (a rank-preserving re-basis of the positive control, with an unrealisable declared null) is DROPPED and replaced by this one.",
+          "axis": "instrumentation",
           "state": "alive",
           "evidence_runs": [
-            "(unqueued) frozen-latent supervised oracle-adapter probe"
+            "(unqueued) new EXQ number, leg 1: 32-dim random-Gaussian/PCA projection of the full 250-dim world_state through the V3-EXQ-1002 x734.PPOPolicyNet adapter on V3-EXQ-1002's banked BC dataset and standardiser"
           ],
-          "basis": "Not yet adjudicated -- the discriminating probe is designed and unqueued.",
+          "basis": "Not yet adjudicated -- the discriminating control is designed (fanout_recommendation probe 1, PARALLEL leg 1 of 2) and deliberately unqueued by this session.",
           "children": [],
           "met_elimination_bar": false
         }
       ],
       "decision": {
-        "readiness_state": "observation_bottleneck",
-        "evidence_decile": 2,
-        "decision_question": "Is the z_world actor-adequacy deficit located in the consumer's learning of a representation-to-action mapping (H-B), or in the accessibility of the required structure within z_world's geometry (H-C)?",
-        "distance_phrase": "One probe away. The discriminating experiment is designed and unqueued; no substrate change is required to run it.",
-        "live_gate": "A frozen-latent SUPERVISED oracle adapter: freeze z_world exactly as V3-EXQ-978 left it and behaviour-clone the local_view_greedy oracle policy (which scores 45.75 on this same field). Declared null: the adapter cannot reproduce oracle actions above a pre-registered floor. CANNOT reproduce -> H-C; CAN reproduce -> H-B. NOT YET QUEUED. Deliberately SUPERVISED, not RL: the frozen-latent reader has already been run twice with a PPO reader (V3-EXQ-948 ppo_ree_latent 0.5; V3-EXQ-978 OFF arm 0.267, both 0/3 against floor) and both failures are confounded with RL credit-assignment difficulty, which is exactly what a behaviour-clone removes.",
-        "observation_bottleneck": "Both existing frozen-latent readings used an RL learner, so the confirmed parent finding (conversion_ceiling_root H-observation-interface) cannot separate 'the representation is unusable' from 'the RL consumer did not learn'. Removing that confound is the whole point of the supervised probe."
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Is the z_world actor-adequacy deficit located in the consumer's learning of a representation-to-action mapping (H-B, ELIMINATED 2026-09-05), in the accessibility of the required structure within z_world's learned geometry (H-C, CONFIRMED 2026-09-05 at its registered gate on a caveated basis, corroborator owed), or in the observation-to-latent CHANNEL itself -- either upstream of anything the warmup wrote (H-D, CONFIRMED) or as a 250 -> 32 channel-input bound that no rotation could fix (H-E, ALIVE)?",
+        "distance_phrase": "Decided on the registered question (H-B eliminated, H-C confirmed); one parallel two-leg portfolio away on the residual attribution, both legs on already-banked data with no ree_core change, no new warmup family and no contract-gate exposure.",
+        "live_gate": "A PARALLEL two-leg portfolio on V3-EXQ-1002's banked BC dataset, adapter and standardiser -- NOT an ordered chain, and neither leg conditional on the other. LEG 1 (instrumentation axis, adjudicates H-E): a 32-dim random-Gaussian and/or PCA projection of the FULL 250-dim world_state -- the encoder's actual input, optionally plus body_state to mirror the topdown term -- fitted on the training split, read by the same x734.PPOPolicyNet adapter. Declared null: it also fails the 0.80 bar. CLEARS -> H-E eliminated; an optimal linear 250 -> 32 compression preserves what the task needs, the deficit is specific to the REE encoder channel, and H-C's learned-geometry gloss survives. DOES NOT CLEAR -> H-E confirmed; the deficit is a channel-input bound and H-C is weakened to its narrow gate sense. LEG 2 (representation axis, corroborates or weakens the confirmed H-C): an information-preserving rotation/reweighting of the frozen z_world (whitening, decision-relevant reweighting, or a train-split-fitted supervised linear re-basis), same adapter. Declared null: agreement is flat under a separability-improving, information-preserving re-basis; a flat result WEAKENS the confirmed H-C leg, a lift corroborates it. NOT YET QUEUED -- new EXQ number, not a lettered V3-EXQ-1002b (refused by the re-derive brake).",
+        "observation_bottleneck": "No run carries a 32-dim reference of the encoder's ACTUAL input -- the full 250-dim world_state -- known to be able to clear the bar, and no run applies an information-preserving re-basis to the frozen z_world. Until one of those exists, the confirmed H-C leg's 'learned geometry' gloss and a 250 -> 32 channel-input bound remain confounded. Note the correction this records: V3-EXQ-1002's untrained control IS a 32-dim comparator, but of the 250-dim input, and it fails -- which is evidence for the channel-input reading rather than against it."
       }
     },
     {
@@ -5414,9 +5488,415 @@
         "live_gate": "G_H_INTACT_frac > G_H_LESION_frac on a graded, non-saturating, scoring-window-scoped survival DV, with G_H_LESION below and G_H_POSCTRL above the floor",
         "observation_bottleneck": "The current DV (median of last 10 episode lengths >= 75, against a 200-step cap on a bimodal distribution) saturates at 1.0 for all three arms, and the gate's efficacy underflows to ~1e-120 inside the scoring window. Two independent observation bottlenecks, either sufficient alone to make the comparison uninformative."
       }
+    },
+    {
+      "qid": "mech353_zblock_attribution_and_dissociation",
+      "title": "Is the z_block BLOCK-vs-CONTROL elevation the external-attribution computation MECH-353 claims, and does it dissociate from z_harm_a?",
+      "short_title": "z_block attribution + dissociation",
+      "claims": [
+        "MECH-353",
+        "SD-011",
+        "SD-019b"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.25,
+      "bits_removed_vs_registration": 0.42,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [
+          "instrumentation"
+        ],
+        "families_touched": [],
+        "families_fresh": [
+          "process",
+          "world"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 1,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.42,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H0-calibration-range",
+          "label": "The baseline-relative outcome_mismatch floor gives z_block real dynamic range on a headroom statistic",
+          "desc": "The V3-EXQ-642a defect was that a fixed absolute mismatch floor sat below the free-step baseline, pinning z_block at its cap in every condition. H0: the baseline-relative floor (ree-v3 d49db86f3e64670) fixes this, and a headroom DV (z_block_mean) separates BLOCK from CONTROL where the clamped peak cannot.",
+          "axis": "instrumentation",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-642c"
+          ],
+          "basis": "C0 (the absolute readiness criterion) passed 3/3 at margins 0.601/0.547/0.498 vs floor 0.10, and C1 -- non-degenerate on the statistic it consumes -- passed 3/3 with separations 0.6805/0.5904/0.7709 against an a-priori 0.30 bar that rejects the un-calibrated 642a regime 3/3 (0.1650/0.1214/0.0831). confirmed, not eliminated: this establishes a necessary instrument, it does not close the question.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H1-attributional",
+          "label": "The separation is produced by the external-attribution gate selecting externally-cancelled steps",
+          "desc": "The BLOCK-vs-CONTROL z_block_mean separation reflects MECH-353's claimed distinctive computation: mismatch attributed to an EXTERNAL constraint rather than to the agent's own motor error.",
+          "axis": "process",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-642d (proposed) -- the SELF-ATTRIBUTABLE-cancellation arm specifically, not the main hazards contrast and not the confusion matrix alone"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-generic-mismatch",
+          "label": "The separation is generic outcome-mismatch elevation; the external-attribution gate is not load-bearing",
+          "desc": "Any sufficiently large action-outcome mismatch drives z_block, so a self-attributable cancellation (motor noise, execution failure) would produce the same elevation, and z_block is a relabelled surprise signal rather than a distinct attributional stream.",
+          "axis": "process",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-642d (proposed) -- the SELF-ATTRIBUTABLE-cancellation arm specifically"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-harm-confounded",
+          "label": "With z_harm_a free to vary, z_block co-varies with it rather than dissociating",
+          "desc": "MECH-353's registered distinctness predicate fails: under a block manipulation in a hazard-bearing environment, z_block and z_harm_a move together, so the blocked-agency stream is not separable from the harm stream and the claim is falsified on its own terms.",
+          "axis": "world",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-642d (proposed) -- the HAZARDS arm (num_hazards > 0)"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "May MECH-353's v3_pending be cleared -- i.e. is z_block an established distinct affect stream rather than a relabelled outcome-mismatch signal?",
+        "distance_phrase": "One correctly-configured re-run away for H1/H2/H3 -- V3-EXQ-642d, carrying a hazards arm, a self-attributable-cancellation arm and a per-tick series. The H1-vs-H2 half is NOT free reanalysis: 642c recorded counts, not series, so no confusion matrix is derivable from it, and a confusion matrix alone would not separate H1 from H2 anyway. The claim's own decision question is a further design away (the capacity-collapse contrast), and that one is DEFERRED behind 642d.",
+        "live_gate": "Leg H3 resolved (z_harm_a free to vary and z_block separates from it) AND leg H1-vs-H2 resolved in favour of H1 (the external-attribution gate is load-bearing) AND the assert-vs-withdraw pole contrast instantiated.",
+        "observation_bottleneck": "TWO bottlenecks, and the second is prior and decisive. (i) The validating environment pins num_hazards=0, so the dissociation partner cannot vary and z_harm_a separation is identically 0.000. (ii) WITHDRAW IS UNREPRESENTABLE in the family's action space: every 642-family driver runs at action_dim=4 while blocked_agency_noop_class defaults to 0, which CausalGridWorldV2 maps to MOVE-UP, with the stay action at index 4 and unreachable -- so C3's action_rate has always scored 'fraction of steps not choosing move-up' and the consumer's ASSERT score-bias (blocked_agency.py:426) treats move-up as the passive option. The family's C3 has therefore NEVER measured the assert-vs-withdraw contrast, across 642 / 642a / 642b / 642c. This is recorded here as a CONFIGURATION FACT about the observation bed, deliberately NOT as a hypothesis leg: it was discovered by the Step 7c red-team from the driver source, not by the run's data, and it is not a rival explanation of anything -- adding it as a leg would inflate initial_frozen_count with a non-hypothesis. It is the reason MECH-353's v3_pending was HELD at the 2026-09-05 gate and the reason V3-EXQ-642d's action-space repair is its first spec item."
+      }
+    },
+    {
+      "qid": "waypoint_field_consumer_reach",
+      "title": "Now that the waypoint proximity field is decodable and behaviourally sufficient for a supervised reader (V3-EXQ-1004), where does the residual blockage on navigation-dependent subgoal_mode DVs live -- in the learning objective, or in REE's own observation-to-z_world interface?",
+      "short_title": "waypoint field consumer reach",
+      "claims": [
+        "INV-086",
+        "MECH-428"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-wpfield-objective-sparsity",
+          "label": "Reward sparsity in the learning signal, not target perceptibility, is the residual blocker",
+          "desc": "With the field ON and the consumer held fixed, varying ONLY the training signal (stock sparse waypoint reward vs shaped/proximity-credited vs demonstration-warm-started) moves visits/ep off the floor.",
+          "axis": "drive",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-wpfield-zworld-interface",
+          "label": "The field does not survive REE's observation-to-z_world compression",
+          "desc": "The pending waypoint's direction is linearly decodable from the raw observation with the field ON (0.575 -> 0.841 imitation accuracy, V3-EXQ-1004) but not from z_world, locating the loss at the encoder rather than at the environment.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Is the residual blockage on navigation-dependent subgoal_mode DVs an objective/exploration problem or an observation-interface problem?",
+        "distance_phrase": "0 of 2 legs tested -- portfolio pre-registered, not yet queued",
+        "live_gate": "Both legs need a run; neither has an adjudicating experiment queued yet.",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "arc021_channel_separation_necessity",
+      "title": "Is separate optimisation of the three BG-like learning channels (sensory prediction / motor-sensory forward / harm-goal) REQUIRED for harm calibration, or is one shared channel differentiated at the readout sufficient?",
+      "short_title": "ARC-021 channel-separation necessity",
+      "claims": [
+        "ARC-021",
+        "MECH-069"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation",
+          "process",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 4,
+      "alive": 4,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-surrogate-trunk-merge-degrades",
+          "label": "merging three surrogate channel heads into one trunk under one optimizer degrades harm calibration",
+          "desc": "In a driver-local three-head surrogate (sensory-reconstruction / forward-prediction / action-conditioned harm) over a frozen z_world, MERGED mean calibration_gap <= SEPARATED - 0.15 with all seeds sign-consistent, in BOTH hazard densities.",
+          "axis": "algorithm",
+          "state": "alive",
+          "evidence_runs": [
+            "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3"
+          ],
+          "basis": "V3-EXQ-993a returned DENSE mean paired diff -0.0064 (2 of 4 seeds negative) and SPARSE +0.1120 (1 of 4 seeds negative); both pre-registered criteria failed on both clauses, with H1/H2 dv_headroom cleared over the control arm beforehand and 8 of 8 control cells positive. The leg is NOT falsified and NOT eliminated: the correct t(3) 95 percent intervals on the paired means are [-0.204, +0.191] (DENSE) and [-0.158, +0.382] (SPARSE), so the run does NOT exclude this leg's own >= 0.15 degradation in either condition, and joint power at -0.15 is about 12 percent -- the bar is not met, so the state stays `alive`. What the run DOES establish is an upper bound: a merged degradation of roughly 0.20+ (DENSE) / 0.16+ (SPARSE) is excluded in this surrogate, on a working readout. Two further limits on how far the leg was even tested: only one of ARC-021's two falsifier DVs (calibration_gap, not attribution accuracy) was read, and the arm satisfies the claim's non-degeneracy precondition only in the surrogate's sense. WITHDRAWN at the Step 8 gate (2026-09-05): the draft's `falsified_at_this_scale` state, its `resolved_utc`, and its z-interval bound clause ('excludes roughly 0.13+ DENSE / 0.05+ SPARSE') -- all three were consequences of the same z-vs-t error (Step 7c red-team F1). PROVENANCE FLAG, unchanged: this leg was retro-registered and adjudicated by the SAME artifact, so it must not be counted as a live pre-registration when the Dimension 3/4 denominator is computed.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-encoder-level-merge-degrades",
+          "label": "the contamination is at the ENCODER, not the trunk",
+          "desc": "With the encoder unfrozen and jointly optimised under the collapsed objective, MERGED degrades harm calibration by >= 0.15 in both conditions. Null: both mean paired diffs still > -0.15 with no sign consistency.",
+          "axis": "drive",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-real-stack-merge-degrades",
+          "label": "the null is a surrogate artefact -- merging the ACTUAL E1/E2/E3 stack degrades harm calibration",
+          "desc": "Merging E1DeepPredictor / E2WorldForward / E2HarmSForward / E3TrajectorySelector into one trunk under one optimizer inside a live REEAgent loop degrades the action-conditioned calibration_gap and a selection-level harm-avoidance readout, relative to the separated stack. Null: no degradation beyond the pre-registered margin in either condition. This is the test ARC-021's what_would_answer names by file. It should START from the existing never-scored driver ree-v3/experiments/v3_spark_arc021_three_loop_scale.py, but ONLY after the six mandatory repairs in fanout_recommendation.suggested_probes[H2] -- in particular repair (d), the detach/undetach encoder-gradient asymmetry, which as the spark stands would alias THIS leg with H-encoder-level-merge-degrades in a single arm. The leg must also read BOTH of ARC-021's falsifier DVs (calibration_gap AND attribution accuracy) and pre-register an effect its seed count can actually detect.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-submargin-degradation-exists",
+          "label": "a real but sub-margin degradation exists and this design cannot resolve it",
+          "desc": "At >= 16 seeds with paired variance reduction, the 95 percent CI on the mean paired diff lies below -0.05 in at least one condition. Null: the CI excludes -0.05 in both.",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Is separate optimisation of the three BG-like learning channels required for harm calibration, or is one shared channel differentiated at the readout sufficient?",
+        "distance_phrase": "1 of 4 legs adjudicated (surrogate trunk merge: bounded from above at ~0.20/0.16 degradation, -0.15 not excluded, joint power ~12 percent -> alive/mixed); 3 fan-out legs pre-registered, none queued.",
+        "live_gate": "The three-leg portfolio pre-registered here: an encoder-unfrozen merge (drive axis), a real E1/E2/E3-stack merge inside a live REEAgent loop reading BOTH of ARC-021's falsifier DVs (representation axis; start from v3_spark_arc021_three_loop_scale.py only after its six mandatory repairs, esp. the detach/undetach asymmetry), and a >=16-seed sub-margin re-pose with a CI on -0.05 (measurement axis). New EXQ number, not a 993 letter.",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "sd082_candidate_discriminating_readout_locus",
+      "title": "Is SD-082's propagated action bias candidate-DISCRIMINATING because the rule->bias readout was TRAINED to discriminate -- or is the apparent discrimination the INIT STRUCTURE of a random first layer plus ReLU, a tanh artefact, an upstream property of the candidate summaries, or capped by a half-dead head?",
+      "short_title": "SD-082 discriminating-readout locus",
+      "claims": [
+        "SD-082",
+        "SD-078"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "initial_frozen_count_at_registration": 5,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "constitution",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 5,
+      "alive": 5,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H1-trained-discriminating-readout",
+          "label": "The TRAINED rule->bias readout produces a candidate-DISCRIMINATING raw bias",
+          "desc": "SD-082's own assertion: with the per-candidate-summary amend engaged, the TRAINED head converts a differentiated rule_state into a raw pre-tanh action bias whose cross-candidate range is a substantial fraction of its mean-abs, and which is argmax-consequential. Adjudicated by a TRAINED-MINUS-INIT discrimination index exceeding a margin pre-registered off the random-init distribution, on new seeds -- NOT by an absolute index floor. Null: the trained index sits inside the init head's own distribution, i.e. training adds no discrimination.",
+          "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-822f"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-init-structure",
+          "label": "The discrimination is present but is INIT STRUCTURE, not a trained coupling",
+          "desc": "The measured cross-candidate spread is what a randomly-initialised first layer plus ReLU already possesses -- exactly the reading the driver's `bias_head_actually_trained` gate text says it exists to exclude, and exactly the one C1/C2 as designed cannot separate from H1. Adjudicated by the same trained-minus-init measurement as H1, of which this leg is the complement: if the trained index does not exceed the init index by the pre-registered margin, this leg holds and H1 does not. Null: the trained index exceeds the init distribution by that margin.",
+          "axis": "intrinsic-architecture",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-822f"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-uniform-common-mode",
+          "label": "The propagated bias is candidate-UNIFORM; apparent spread is manufactured by the tanh",
+          "desc": "The raw pre-tanh bias is a common-mode shift near-identical across candidates; because the output stage is bias_scale*tanh(raw/bias_scale), a uniform raw shift emerges as a non-uniform post-tanh delta of the same order as the observed post-tanh spread. Such a state preserves argmax order and is invisible to every downstream reader. This is the only state that may WEAKEN SD-082. PROBE SKETCH (not assigned to V3-EXQ-822f, which measures a difference of indices and does not separate uniform from discriminating): decompose the raw stage against the post-tanh stage with the tanh scale swept or bypassed, declaring the null as the index sitting near its analytic 0 (< 0.25) in BOTH arms with zero argmax flips.",
+          "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-upstream-summary-starvation",
+          "label": "Any index is set upstream: the post-action candidate summaries are too similar to flip hidden units",
+          "desc": "The index also reads near zero, and can read spuriously high in a pinned-pool arm, when the hidden ReLU mask is IDENTICAL or near-identical across candidates -- an UPSTREAM property of the centered candidate summaries rather than a property of SD-082's consumer. The driver records this caveat at `reads_uniform` and points at the summary-spread statistic. PROBE SKETCH (not assigned to V3-EXQ-822f): decompose the index against per-candidate hidden-mask heterogeneity -- the leg's own adjudication condition, and one 822f performs nowhere.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H4-dead-head-capacity",
+          "label": "The consumer head's capacity caps the achievable discrimination",
+          "desc": "Over half the head's hidden ReLU units are dead in both arms (`hidden_dead_relu_frac_p2_mean` 0.5140 ON / 0.5127 OFF), so the mapping from rule_state to per-candidate bias runs through roughly half the intended width. On this reading the index is real but systematically depressed, and the pre-registered bars are read against a handicapped head. PROBE SKETCH (not assigned to V3-EXQ-822f): an initialisation or activation-function variation that MOVES the dead fraction, asking whether the index moves with it -- a variation 822f does not perform.",
+          "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does the SD-082 TRAINED rule-to-action readout deliver a candidate-discriminating, argmax-consequential action bias BEYOND what the head's initialisation already provides -- the property that makes the SD-078 differentiated rule pool behaviourally consequential rather than silent?",
+        "distance_phrase": "One DESIGN-CHANGED run away, not one repaired re-run away. The DV, the arm axis and the controls are exercised and stable at full budget, but the load-bearing criterion has to be replaced (init control) and the seeds changed before any run can adjudicate; a same-seed replay is a deterministic re-print of 822d/822e and adjudicates nothing.",
+        "live_gate": "V3-EXQ-822f as specified by failure_autopsy_V3-EXQ-822e_2026-09-05: a TRAINED-MINUS-INIT-HEAD raw discrimination index (the existing `_init_positive_control` snapshot and synthetic probe run through the INIT head as well as the trained one), with the margin pre-registered off the random-init distribution (Monte-Carlo p95 5.41, or an init distribution measured in-run), on NEW seeds (not 101/202/303/404/505), with the trainedness gate re-specified as ||W_p1 - W_init|| per parameter tensor scoped to the treatment arm, and the C4 / SD-078 contrast kept but emitted through the three-valued logic at a seed count its 1.69 variance can support. An ABSOLUTE index floor is explicitly NOT the gate: an untrained head clears 1.0 in 99 percent of trials.",
+        "observation_bottleneck": "TWO, compounding. (1) V3-EXQ-822e's run-level readiness gate `bias_head_actually_trained` compares the SIGNED difference of last-layer weight NORMS (driver L1164-1166) against a 1e-3 LOWER floor over the MINIMUM cell (L1402-1404), so a head that trained inward reads as untrained; ARM_OFF/seed101 read -0.003772 and voided the run, though all ten cells clear the floor on |delta| (min 0.002076). (2) The deeper bottleneck, and the one that survives repairing (1): there is NO INIT-HEAD CONTROL anywhere in the design, so C1 and C2 cannot separate a trained coupling from init structure -- a random-init head of this shape clears C1's floor in 99 percent of Monte-Carlo trials. Until the init control exists this question cannot be adjudicated however well the substrate behaves and however cleanly the readiness gate passes."
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-1002",
+      "all_runs": [
+        "V3-EXQ-1002"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "zworld_actor_adequacy_locus",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "The registered live_gate ran. A capacity-matched supervised adapter (x734.PPOPolicyNet, 21381 action-path parameters -- the class and width V3-EXQ-978 used as its reader) trained by cross-entropy on the oracle's action at every visited state, with credit assignment removed entirely, reaches only 0.6695/0.6735/0.6478 held-out agreement from the frozen z_world: 0 of 3 seeds against a 0.80 bar, and 0 of 3 against the paired untrained control. The same adapter on the same steps reaches 0.9846/0.9796/0.9730 from the raw 25-dim field. H-B predicts the supervised reader CAN reproduce the oracle; it cannot. Discriminating non_contributory: the verdict arm sits sub-floor against a PASSING reference band, every readiness gate is green (per_arm_gate.all_green, dv_headroom green) and criteria_non_degenerate is true, so the full elimination bar is met. Uncontested by the Step 7c cross-model red-team pass.",
+      "resolved_utc": "2026-09-05T00:50:17Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-642c",
+      "all_runs": [
+        "V3-EXQ-642c"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech353_zblock_attribution_and_dissociation",
+      "claims": [
+        "MECH-353",
+        "SD-011",
+        "SD-019b"
+      ],
+      "moved": "C0 (the absolute readiness criterion) passed 3/3 at margins 0.601/0.547/0.498 vs floor 0.10, and C1 -- non-degenerate on the statistic it consumes -- passed 3/3 with separations 0.6805/0.5904/0.7709 against an a-priori 0.30 bar that rejects the un-calibrated 642a regime 3/3 (0.1650/0.1214/0.0831). confirmed, not eliminated: this establishes a necessary instrument, it does not close the question.",
+      "resolved_utc": "2026-09-04T21:44:59Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-996",
       "all_runs": [
@@ -6634,6 +7114,21 @@
       "evidence_direction": "supports"
     },
     {
+      "run": "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3",
+      "all_runs": [
+        "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "arc021_channel_separation_necessity",
+      "claims": [
+        "ARC-021",
+        "MECH-069"
+      ],
+      "moved": "V3-EXQ-993a returned DENSE mean paired diff -0.0064 (2 of 4 seeds negative) and SPARSE +0.1120 (1 of 4 seeds negative); both pre-registered criteria failed on both clauses, with H1/H2 dv_headroom cleared over the control arm beforehand and 8 of 8 control cells positive. The leg is NOT falsified and NOT eliminated: the correct t(3) 95 percent intervals on the paired means are [-0.204, +0.191] (DENSE) and [-0.158, +0.382] (SPARSE), so the run does NOT exclude this leg's own >= 0.15 degradation in either condition, and joint power at -0.15 is about 12 percent -- the bar is not met, so the state stays `alive`. What the run DOES establish is an upper bound: a merged degradation of roughly 0.20+ (DENSE) / 0.16+ (SPARSE) is excluded in this surrogate, on a working readout. Two further limits on how far the leg was even tested: only one of ARC-021's two falsifier DVs (calibration_gap, not attribution accuracy) was read, and the arm satisfies the claim's non-degeneracy precondition only in the surrogate's sense. WITHDRAWN at the Step 8 gate (2026-09-05): the draft's `falsified_at_this_scale` state, its `resolved_utc`, and its z-interval bound clause ('excludes roughly 0.13+ DENSE / 0.05+ SPARSE') -- all three were consequences of the same z-vs-t error (Step 7c red-team F1). PROVENANCE FLAG, unchanged: this leg was retro-registered and adjudicated by the SAME artifact, so it must not be counted as a live pre-registration when the Dimension 3/4 denominator is computed.",
+      "resolved_utc": null,
+      "evidence_direction": "mixed"
+    },
+    {
       "run": "V3-EXQ-997",
       "all_runs": [
         "V3-EXQ-997"
@@ -6877,6 +7372,21 @@
         "INV-088"
       ],
       "moved": "Composed build under test: retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life (substrate landed, proof pending).",
+      "resolved_utc": null,
+      "evidence_direction": "pending"
+    },
+    {
+      "run": "Parallel two-leg portfolio owed (new EXQ): 250-dim world_state 32-dim projection control (H-E, instrumentation) + information-preserving rotation/reweighting corroborator (H-C, representation), both on the banked V3-EXQ-1002 dataset with the same adapter. Not yet queued.",
+      "all_runs": [
+        "Parallel two-leg portfolio owed (new EXQ): 250-dim world_state 32-dim projection control (H-E, instrumentation) + information-preserving rotation/reweighting corroborator (H-C, representation), both on the banked V3-EXQ-1002 dataset with the same adapter. Not yet queued."
+      ],
+      "momentum_class": "implementation_completed",
+      "qid": "zworld_actor_adequacy_locus",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "Composed build under test: H-C geometry-mismatch (confirmed, caveated) + H-D warmup-not-the-locus (confirmed); H-E channel-input capacity alive; H-B consumer-learning eliminated (substrate landed, proof pending).",
       "resolved_utc": null,
       "evidence_direction": "pending"
     },

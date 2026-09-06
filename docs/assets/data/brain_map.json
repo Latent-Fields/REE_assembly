@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-05T02:35:14Z",
+  "generated_at": "2026-09-06T16:15:56Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -148,7 +148,7 @@
           "pass_runs": 3,
           "fail_runs": 3,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.743
+          "overall_confidence": 0.74
         },
         {
           "id": "ARC-018",
@@ -160,7 +160,7 @@
           "pass_runs": 2,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.724
+          "overall_confidence": 0.723
         },
         {
           "id": "ARC-031",
@@ -184,7 +184,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.656
+          "overall_confidence": 0.655
         },
         {
           "id": "ARC-038",
@@ -232,7 +232,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.726
+          "overall_confidence": 0.724
         },
         {
           "id": "ARC-057",
@@ -621,7 +621,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.804
+          "overall_confidence": 0.803
         },
         {
           "id": "MECH-074",
@@ -633,7 +633,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.818
+          "overall_confidence": 0.817
         },
         {
           "id": "MECH-074a",
@@ -645,7 +645,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.783
+          "overall_confidence": 0.782
         },
         {
           "id": "MECH-074b",
@@ -657,7 +657,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.794
+          "overall_confidence": 0.792
         },
         {
           "id": "MECH-074c",
@@ -669,7 +669,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.735
+          "overall_confidence": 0.733
         },
         {
           "id": "MECH-074d",
@@ -681,7 +681,7 @@
           "pass_runs": 0,
           "fail_runs": 4,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.607
+          "overall_confidence": 0.605
         },
         {
           "id": "MECH-078",
@@ -729,7 +729,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.739
+          "overall_confidence": 0.738
         },
         {
           "id": "MECH-347",
@@ -741,7 +741,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.743
+          "overall_confidence": 0.742
         },
         {
           "id": "MECH-348",
@@ -1197,19 +1197,22 @@
         "MECH-358"
       ],
       "leading_edge": true,
-      "queued_exqs": [
-        {
-          "queue_id": "V3-EXQ-822e",
-          "title": "SD-082 validation: raw pre-tanh candidate-discrimination index of the propagated action bias, absolute criteria applied to both arms (5 seeds x 2 arms)",
-          "status": "claimed",
-          "claim_ids": [
-            "SD-082"
-          ]
-        }
-      ],
+      "queued_exqs": [],
       "conflict_refs": [],
       "coverage_tier": "expressed",
       "recent_experiments": [
+        {
+          "run_id": "v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3",
+          "experiment_type": "v3_exq_822e_sd082_candidate_discriminating_bias_spread",
+          "timestamp_utc": "2026-09-05T02:56:44Z",
+          "completed_at": "2026-09-05T02:56:44Z",
+          "outcome": "FAIL",
+          "summary": "non_contributory -- excluded from scoring",
+          "claim_ids": [
+            "SD-082"
+          ],
+          "manifest_url": "/evidence/experiments/v3_exq_822e_sd082_candidate_discriminating_bias_spread/runs/v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3/manifest.json"
+        },
         {
           "run_id": "v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
           "experiment_type": "v3_exq_822d_sd082_post_action_summary_validation",
@@ -1445,22 +1448,9 @@
             "SD-033a"
           ],
           "manifest_url": "/evidence/experiments/v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural/runs/v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural_20260612T213304Z_v3/manifest.json"
-        },
-        {
-          "run_id": "v3_exq_485f_sd033b_trained_ofc_head_behavioural_20260611T221413Z_v3",
-          "experiment_type": "v3_exq_485f_sd033b_trained_ofc_head_behavioural",
-          "timestamp_utc": "2026-06-11T22:14:13.471766Z",
-          "completed_at": "2026-06-11T22:14:13.471766Z",
-          "outcome": "FAIL",
-          "summary": "direction/status mismatch",
-          "claim_ids": [
-            "MECH-263",
-            "SD-033b"
-          ],
-          "manifest_url": "/evidence/experiments/v3_exq_485f_sd033b_trained_ofc_head_behavioural/runs/v3_exq_485f_sd033b_trained_ofc_head_behavioural_20260611T221413Z_v3/manifest.json"
         }
       ],
-      "recent_experiments_total": 48
+      "recent_experiments_total": 49
     },
     {
       "id": "cingulate",
@@ -1510,7 +1500,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.707
+          "overall_confidence": 0.706
         },
         {
           "id": "MECH-259",
@@ -1522,7 +1512,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.665
+          "overall_confidence": 0.664
         },
         {
           "id": "MECH-260",
@@ -1546,7 +1536,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.761
+          "overall_confidence": 0.76
         },
         {
           "id": "MECH-266",
@@ -1558,7 +1548,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.818
+          "overall_confidence": 0.817
         },
         {
           "id": "MECH-268",
@@ -1570,7 +1560,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.758
+          "overall_confidence": 0.757
         },
         {
           "id": "MECH-480",
@@ -1582,7 +1572,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.683
+          "overall_confidence": 0.682
         },
         {
           "id": "SD-032",
@@ -1985,7 +1975,7 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.76
+          "overall_confidence": 0.865
         },
         {
           "id": "ARC-023",
@@ -2009,7 +1999,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.812
+          "overall_confidence": 0.811
         },
         {
           "id": "ARC-108",
@@ -2045,7 +2035,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.827
+          "overall_confidence": 0.826
         },
         {
           "id": "MECH-075",
@@ -2057,7 +2047,7 @@
           "pass_runs": 0,
           "fail_runs": 3,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.537
+          "overall_confidence": 0.535
         },
         {
           "id": "MECH-335",
@@ -2159,7 +2149,7 @@
           "timestamp_utc": "2026-09-04T21:23:34Z",
           "completed_at": "2026-09-04T21:23:34Z",
           "outcome": "FAIL",
-          "summary": "FAIL with weakening direction",
+          "summary": "mixed direction",
           "claim_ids": [
             "ARC-021"
           ],
@@ -2433,7 +2423,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.757
+          "overall_confidence": 0.756
         },
         {
           "id": "ARC-090",
@@ -2445,7 +2435,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.73
+          "overall_confidence": 0.729
         },
         {
           "id": "INV-011",
@@ -2469,7 +2459,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.699
+          "overall_confidence": 0.698
         },
         {
           "id": "MECH-094",
@@ -2481,7 +2471,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.754
+          "overall_confidence": 0.753
         },
         {
           "id": "MECH-248",
@@ -2841,7 +2831,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.725
+          "overall_confidence": 0.724
         },
         {
           "id": "INV-010",
@@ -2865,7 +2855,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.62
+          "overall_confidence": 0.619
         },
         {
           "id": "INV-048",
@@ -2877,7 +2867,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.835
+          "overall_confidence": 0.834
         },
         {
           "id": "INV-063",
@@ -2949,7 +2939,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.811
+          "overall_confidence": 0.809
         }
       ],
       "implementation": "full",
@@ -2958,9 +2948,9 @@
         "pass_runs": 6,
         "fail_runs": 3,
         "quadrant_counts": {
-          "plausible_unproven": 18,
+          "plausible_unproven": 17,
           "unknown": 14,
-          "speculative": 2,
+          "speculative": 3,
           "confirmed_established": 3
         }
       },
@@ -3318,7 +3308,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.829
+          "overall_confidence": 0.828
         },
         {
           "id": "MECH-280",
@@ -3354,7 +3344,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.778
+          "overall_confidence": 0.777
         },
         {
           "id": "SD-058",
@@ -3378,7 +3368,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.777
+          "overall_confidence": 0.775
         },
         {
           "id": "SD-099",
@@ -3707,7 +3697,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.704
+          "overall_confidence": 0.703
         },
         {
           "id": "MECH-087",
@@ -3719,7 +3709,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.644
+          "overall_confidence": 0.642
         },
         {
           "id": "MECH-088",
@@ -3731,7 +3721,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.774
+          "overall_confidence": 0.773
         },
         {
           "id": "MECH-186",
@@ -3803,7 +3793,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.842
+          "overall_confidence": 0.841
         }
       ],
       "implementation": "full",
@@ -4124,7 +4114,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.537
+          "overall_confidence": 0.536
         },
         {
           "id": "Q-004",
@@ -4136,7 +4126,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.759
+          "overall_confidence": 0.758
         },
         {
           "id": "Q-005",
@@ -4148,7 +4138,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.774
+          "overall_confidence": 0.773
         }
       ],
       "implementation": "full",
@@ -4504,7 +4494,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.756
+          "overall_confidence": 0.755
         },
         {
           "id": "MECH-167",
@@ -4528,7 +4518,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "novel_discovery",
-          "overall_confidence": 0.761
+          "overall_confidence": 0.757
         },
         {
           "id": "MECH-220",
@@ -4540,7 +4530,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.837
+          "overall_confidence": 0.836
         },
         {
           "id": "MECH-282",
@@ -4576,7 +4566,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.73
+          "overall_confidence": 0.729
         },
         {
           "id": "Q-036",
@@ -4600,7 +4590,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.776
+          "overall_confidence": 0.775
         }
       ],
       "implementation": "full",
@@ -5494,7 +5484,7 @@
           "pass_runs": 0,
           "fail_runs": 5,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.592
+          "overall_confidence": 0.591
         }
       ],
       "implementation": "claim_only",
@@ -5640,7 +5630,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.658
+          "overall_confidence": 0.657
         },
         {
           "id": "INV-103",
@@ -5664,7 +5654,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.809
+          "overall_confidence": 0.808
         },
         {
           "id": "MECH-116",
@@ -5676,7 +5666,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.575
+          "overall_confidence": 0.574
         },
         {
           "id": "MECH-128",
@@ -5700,7 +5690,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.682
+          "overall_confidence": 0.679
         },
         {
           "id": "MECH-153",
@@ -5712,7 +5702,7 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.686
+          "overall_confidence": 0.685
         },
         {
           "id": "MECH-154",
@@ -5724,7 +5714,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.745
+          "overall_confidence": 0.744
         },
         {
           "id": "MECH-155",
@@ -6080,7 +6070,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.788
+          "overall_confidence": 0.787
         },
         {
           "id": "MECH-081",
@@ -6116,7 +6106,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.811
+          "overall_confidence": 0.81
         },
         {
           "id": "SD-056",
@@ -6128,7 +6118,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.62
+          "overall_confidence": 0.619
         },
         {
           "id": "SD-063",
@@ -6140,7 +6130,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.78
+          "overall_confidence": 0.778
         },
         {
           "id": "SD-080",
@@ -6292,7 +6282,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.635
+          "overall_confidence": 0.634
         },
         {
           "id": "MECH-071",
@@ -6328,7 +6318,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.545
+          "overall_confidence": 0.544
         },
         {
           "id": "MECH-160",
@@ -6364,7 +6354,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.697
+          "overall_confidence": 0.696
         },
         {
           "id": "MECH-457",
@@ -6376,7 +6366,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.668
+          "overall_confidence": 0.667
         },
         {
           "id": "MECH-459",
@@ -6388,7 +6378,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.789
+          "overall_confidence": 0.788
         },
         {
           "id": "MECH-460",
@@ -6424,7 +6414,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.662
+          "overall_confidence": 0.66
         }
       ],
       "implementation": "full",
@@ -6810,7 +6800,7 @@
           "pass_runs": 1,
           "fail_runs": 4,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.872
+          "overall_confidence": 0.869
         },
         {
           "id": "ARC-008",
@@ -6822,7 +6812,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.81
+          "overall_confidence": 0.809
         },
         {
           "id": "ARC-016",
@@ -6834,7 +6824,7 @@
           "pass_runs": 6,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.867
+          "overall_confidence": 0.865
         },
         {
           "id": "ARC-028",
@@ -7277,7 +7267,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.783
+          "overall_confidence": 0.782
         },
         {
           "id": "ARC-013",
@@ -7289,7 +7279,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.709
+          "overall_confidence": 0.708
         },
         {
           "id": "MECH-034",
@@ -7325,7 +7315,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.81
+          "overall_confidence": 0.809
         },
         {
           "id": "MECH-069",
@@ -7337,7 +7327,7 @@
           "pass_runs": 2,
           "fail_runs": 7,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.786
+          "overall_confidence": 0.858
         },
         {
           "id": "MECH-070",
@@ -7373,7 +7363,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.715
+          "overall_confidence": 0.714
         },
         {
           "id": "MECH-221",
@@ -7397,7 +7387,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.708
+          "overall_confidence": 0.707
         },
         {
           "id": "MECH-412",
@@ -7429,28 +7419,29 @@
         "MECH-412"
       ],
       "leading_edge": true,
-      "queued_exqs": [
-        {
-          "queue_id": "V3-EXQ-983a",
-          "title": "EXT-002 residue error-persistence, REDESIGNED with a headroom-derived decline_gap bar (C1 0.15 -> 0.04, from 983's own measured control range 0.046790), a runtime dv_headroom precondition, and a training-completion gate before seeds are pooled",
-          "status": "claimed",
-          "claim_ids": [
-            "EXT-002",
-            "EXT-002",
-            "ARC-013"
-          ]
-        }
-      ],
+      "queued_exqs": [],
       "conflict_refs": [],
       "coverage_tier": "expressed",
       "recent_experiments": [
+        {
+          "run_id": "v3_exq_983a_ext002_residue_error_persistence_headroom_20260905T141459Z_v3",
+          "experiment_type": "v3_exq_983a_ext002_residue_error_persistence_headroom",
+          "timestamp_utc": "2026-09-05T14:14:59Z",
+          "completed_at": "2026-09-05T14:14:59Z",
+          "outcome": "FAIL",
+          "summary": "non_contributory -- excluded from scoring",
+          "claim_ids": [
+            "ARC-013"
+          ],
+          "manifest_url": "/evidence/experiments/v3_exq_983a_ext002_residue_error_persistence_headroom/runs/v3_exq_983a_ext002_residue_error_persistence_headroom_20260905T141459Z_v3/manifest.json"
+        },
         {
           "run_id": "v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3",
           "experiment_type": "v3_exq_993a_arc021_merged_channel_action_conditioned_harm",
           "timestamp_utc": "2026-09-04T21:23:34Z",
           "completed_at": "2026-09-04T21:23:34Z",
           "outcome": "FAIL",
-          "summary": "FAIL with weakening direction",
+          "summary": "mixed direction",
           "claim_ids": [
             "MECH-069"
           ],
@@ -7671,21 +7662,9 @@
             "SD-005"
           ],
           "manifest_url": "/evidence/experiments/v3_exq_047g_sd005_functional_separation/runs/v3_exq_047g_sd005_functional_separation_20260323T175246Z_v3/manifest.json"
-        },
-        {
-          "run_id": "v3_exq_047f_sd005_orth_split_pair_20260323T124338Z_v3",
-          "experiment_type": "v3_exq_047f_sd005_orth_split_pair",
-          "timestamp_utc": "2026-03-23T12:43:38Z",
-          "completed_at": "2026-03-23T12:43:38Z",
-          "outcome": "FAIL",
-          "summary": "non_contributory -- excluded from scoring",
-          "claim_ids": [
-            "SD-005"
-          ],
-          "manifest_url": "/evidence/experiments/v3_exq_047f_sd005_orth_split_pair/runs/v3_exq_047f_sd005_orth_split_pair_20260323T124338Z_v3/manifest.json"
         }
       ],
-      "recent_experiments_total": 91
+      "recent_experiments_total": 92
     },
     {
       "id": "policy_engineering",
@@ -7795,7 +7774,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.815
+          "overall_confidence": 0.813
         },
         {
           "id": "ARC-071",
@@ -7807,7 +7786,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.846
+          "overall_confidence": 0.845
         },
         {
           "id": "MECH-309",
@@ -7933,6 +7912,18 @@
       "conflict_refs": [],
       "coverage_tier": "expressed",
       "recent_experiments": [
+        {
+          "run_id": "v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3",
+          "experiment_type": "v3_exq_822e_sd082_candidate_discriminating_bias_spread",
+          "timestamp_utc": "2026-09-05T02:56:44Z",
+          "completed_at": "2026-09-05T02:56:44Z",
+          "outcome": "FAIL",
+          "summary": "non_contributory -- excluded from scoring",
+          "claim_ids": [
+            "SD-078"
+          ],
+          "manifest_url": "/evidence/experiments/v3_exq_822e_sd082_candidate_discriminating_bias_spread/runs/v3_exq_822e_sd082_candidate_discriminating_bias_spread_20260905T025644Z_v3/manifest.json"
+        },
         {
           "run_id": "v3_exq_871b_mech090_e3_reselection_shortcircuit_retest_20260901T212042Z_v3",
           "experiment_type": "v3_exq_871b_mech090_e3_reselection_shortcircuit_retest",
@@ -8162,22 +8153,9 @@
             "MECH-309"
           ],
           "manifest_url": "/evidence/experiments/v3_exq_851_arc062_pa_lateral_pfc_route_source_gapfanout/runs/v3_exq_851_arc062_pa_lateral_pfc_route_source_gapfanout_20260801T110851Z_v3/manifest.json"
-        },
-        {
-          "run_id": "v3_exq_829a_mech324_rapid_reacquisition_window_isolation_fix_20260801T062510Z_v3",
-          "experiment_type": "v3_exq_829a_mech324_rapid_reacquisition_window_isolation_fix",
-          "timestamp_utc": "2026-08-01T06:25:10Z",
-          "completed_at": "2026-08-01T06:25:10Z",
-          "outcome": "PASS",
-          "summary": "PASS with supporting direction",
-          "claim_ids": [
-            "MECH-323",
-            "MECH-324"
-          ],
-          "manifest_url": "/evidence/experiments/v3_exq_829a_mech324_rapid_reacquisition_window_isolation_fix/runs/v3_exq_829a_mech324_rapid_reacquisition_window_isolation_fix_20260801T062510Z_v3/manifest.json"
         }
       ],
-      "recent_experiments_total": 110
+      "recent_experiments_total": 111
     },
     {
       "id": "architecture_meta",
@@ -8251,7 +8229,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.819
+          "overall_confidence": 0.818
         },
         {
           "id": "ARC-025",
@@ -8287,7 +8265,7 @@
           "pass_runs": 0,
           "fail_runs": 5,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.65
+          "overall_confidence": 0.648
         },
         {
           "id": "ARC-041",
@@ -8299,7 +8277,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.511
+          "overall_confidence": 0.509
         },
         {
           "id": "ARC-042",
@@ -8311,7 +8289,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.636
+          "overall_confidence": 0.635
         },
         {
           "id": "ARC-043",

@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-05T02:32:38Z",
+  "generated_at": "2026-09-06T16:12:21Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -32,6 +32,18 @@
         ],
         "surviving": 1,
         "initial": 1,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "arc021_channel_separation_necessity",
+        "title": "ARC-021 channel-separation necessity",
+        "claims": [
+          "ARC-021",
+          "MECH-069"
+        ],
+        "surviving": 4,
+        "initial": 4,
         "convergence": "static",
         "is_hero": false
       },
@@ -361,6 +373,19 @@
         "is_hero": false
       },
       {
+        "id": "mech353_zblock_attribution_and_dissociation",
+        "title": "z_block attribution + dissociation",
+        "claims": [
+          "MECH-353",
+          "SD-011",
+          "SD-019b"
+        ],
+        "surviving": 3,
+        "initial": 4,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "mech357_stageh_discrimination_bottleneck",
         "title": "MECH-357 Stage-H discrimination",
         "claims": [
@@ -530,6 +555,18 @@
         "is_hero": false
       },
       {
+        "id": "sd082_candidate_discriminating_readout_locus",
+        "title": "SD-082 discriminating-readout locus",
+        "claims": [
+          "SD-082",
+          "SD-078"
+        ],
+        "surviving": 5,
+        "initial": 5,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "sd_e1_residual_crush_locus",
         "title": "E1 residual crush locus (post-ITEM-1)",
         "claims": [
@@ -563,6 +600,18 @@
         "is_hero": false
       },
       {
+        "id": "waypoint_field_consumer_reach",
+        "title": "waypoint field consumer reach",
+        "claims": [
+          "INV-086",
+          "MECH-428"
+        ],
+        "surviving": 2,
+        "initial": 2,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "zresource-zworld-planning-convergence",
         "title": "z_resource/z_world planning convergence",
         "claims": [
@@ -583,8 +632,8 @@
           "INV-088"
         ],
         "surviving": 2,
-        "initial": 2,
-        "convergence": "static",
+        "initial": 4,
+        "convergence": "refining",
         "is_hero": false
       },
       {
@@ -614,12 +663,12 @@
     },
     {
       "label": "Narrow",
-      "value": "96 / 138",
+      "value": "110 / 153",
       "detail": "rival explanations still standing"
     },
     {
       "label": "Decide",
-      "value": "19",
+      "value": "20",
       "detail": "design choices currently recorded as ready"
     }
   ],
@@ -827,6 +876,24 @@
           "more_count": 14,
           "nodes": [
             {
+              "id": "INV-077",
+              "title": "Evaluation channels are evidence-producing boundaries, not world-state affordances: no agentic subsystem -- including an AI assistant developing REE -- may update architectural confidence directly from a performance score without provenance, review, and governance mediation. World feedback, evidence feedback, and governance feedback are distinct typed signal classes that must remain non-collapsible.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 9,
+              "depends_on": [
+                "INV-020",
+                "INV-024",
+                "INV-070",
+                "INV-073",
+                "EXT-003"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-050",
               "title": "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking.",
               "status": "candidate",
@@ -958,24 +1025,6 @@
                 "INV-086",
                 "SD-014",
                 "SD-015"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-077",
-              "title": "Evaluation channels are evidence-producing boundaries, not world-state affordances: no agentic subsystem -- including an AI assistant developing REE -- may update architectural confidence directly from a performance score without provenance, review, and governance mediation. World feedback, evidence feedback, and governance feedback are distinct typed signal classes that must remain non-collapsible.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "experiment_planned",
-              "attention_rank": 2,
-              "incoming_dependencies": 9,
-              "depends_on": [
-                "INV-020",
-                "INV-024",
-                "INV-070",
-                "INV-073",
-                "EXT-003"
               ],
               "additional_dependencies": 0
             },
@@ -1585,6 +1634,25 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-015",
+              "title": "Self-impact attribution and responsibility flow are required.",
+              "status": "provisional",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 27,
+              "depends_on": [
+                "INV-018",
+                "ARC-003",
+                "ARC-005",
+                "ARC-004",
+                "ARC-013",
+                "ARC-007"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "ARC-009",
               "title": "Language is a symbolic mediation and coordination layer.",
               "status": "active",
@@ -1659,20 +1727,6 @@
               "incoming_dependencies": 6,
               "depends_on": [
                 "SD-005"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "SD-006",
-              "title": "E1, E2, and E3 run at characteristic rates (async multi-rate) rather than lockstep.",
-              "status": "implemented",
-              "phase": "substrate_unspecified",
-              "claim_class": "substrate_or_design",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "ARC-023"
               ],
               "additional_dependencies": 0
             }
@@ -2687,10 +2741,11 @@
     "planned": 870
   },
   "archive": {
-    "snapshot_count": 102,
-    "latest": "2026-09-05",
+    "snapshot_count": 103,
+    "latest": "2026-09-06",
     "earliest": "2026-02-28",
     "recent_dates": [
+      "2026-09-06",
       "2026-09-05",
       "2026-09-03",
       "2026-08-30",
@@ -2699,8 +2754,7 @@
       "2026-08-23",
       "2026-08-22",
       "2026-08-17",
-      "2026-08-16",
-      "2026-08-15"
+      "2026-08-16"
     ]
   }
 }

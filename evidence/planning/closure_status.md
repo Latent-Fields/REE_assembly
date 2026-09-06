@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-05T02:32:36Z
+Generated: 2026-09-06T16:12:19Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -23,14 +23,14 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-07-10 |
 | `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 10% | blocked:1 | 2026-08-21 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-23 |
-| `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-08-18 |
+| `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-09-04 |
 | `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 32% | blocked:1 done:1 in_progress:2 open:2 | 2026-08-30 |
 | `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 50% | partial:1 | 2026-08-29 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 56% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:2 partial:1 | 2026-09-01 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-02 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-02 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-14 |
-| `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-09-03 |
+| `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-09-04 |
 | `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 100% | done:7 | 2026-06-15 |
 | `mech303_safety_threshold_plan.md` | MECH-303 Safety-Threshold Sourcing | 1 | 100% | done:1 | 2026-08-16 |

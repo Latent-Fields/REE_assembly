@@ -242,6 +242,61 @@
         "uses"
       ]
     },
+    "autopsy|failure_autopsy_V3-EXQ-1002_2026-09-05|0|0": {
+      "artifact": "failure_autopsy_V3-EXQ-1002_2026-09-05",
+      "claim_ids": [],
+      "embedded_ids": [
+        "267",
+        "v3-exq-948",
+        "v3-exq-978"
+      ],
+      "flags": [
+        "twice"
+      ],
+      "item_index": 0,
+      "run_id": "v3_exq_1002_zworld_actor_adequacy_oracle_adapter_20260905T005017Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "H-B IS ELIMINATED, and this is the run's load-bearing, uncontested result. The frozen-latent reader had failed twice before (V3-EXQ-948 ppo_ree_latent 0.5 res/ep, V3-EXQ-978 OFF arm 0.267, both 0/3 against a 1.0 floor) and both failures were confounded with RL credit assignment. Removing credit assignment entirely -- supervised cross-entropy on the oracle's action at every visited state, at the consumer's exact capacity, on a green instrument -- does not recover the mapping. The deficit is on the representation side of the interface, not in the consumer's learning.",
+      "tokens": [
+        "action",
+        "assignment",
+        "capacity",
+        "confounded",
+        "consumer",
+        "credit",
+        "cross-entropy",
+        "deficit",
+        "does",
+        "eliminated",
+        "entirely",
+        "exact",
+        "failed",
+        "failures",
+        "floor",
+        "frozen-latent",
+        "green",
+        "instrument",
+        "interface",
+        "learning",
+        "load-bearing",
+        "mapping",
+        "oracle",
+        "ppo_ree_latent",
+        "reader",
+        "recover",
+        "removing",
+        "representation",
+        "side",
+        "state",
+        "supervised",
+        "uncontested",
+        "visited",
+        "were",
+        "with"
+      ]
+    },
     "autopsy|failure_autopsy_V3-EXQ-190a_2026-08-09|0|1": {
       "artifact": "failure_autopsy_V3-EXQ-190a_2026-08-09",
       "claim_ids": [
@@ -2336,7 +2391,7 @@
       ]
     }
   },
-  "last_swept_at": "2026-09-05T02:33:11Z",
+  "last_swept_at": "2026-09-06T16:13:11Z",
   "schema_version": "v1",
   "seen_autopsy_mtimes": {
     "failure_autopsy_2026-07-28-sweep.json": 1785272911.3774624,
@@ -2393,6 +2448,8 @@
     "failure_autopsy_V3-EXQ-059c-533_2026-07-26.json": 1785088570.613919,
     "failure_autopsy_V3-EXQ-1000_2026-09-04.json": 1788529714.9482567,
     "failure_autopsy_V3-EXQ-1001_2026-09-04.json": 1788548456.6759002,
+    "failure_autopsy_V3-EXQ-1002_2026-09-05.json": 1788601939.3905952,
+    "failure_autopsy_V3-EXQ-1004_2026-09-05.json": 1788601939.3897624,
     "failure_autopsy_V3-EXQ-108a_2026-08-02.json": 1785668029.7057362,
     "failure_autopsy_V3-EXQ-108b_2026-08-03.json": 1785746715.678587,
     "failure_autopsy_V3-EXQ-190a_2026-08-09.json": 1786254536.6576376,
@@ -2523,6 +2580,7 @@
     "failure_autopsy_V3-EXQ-642_2026-06-06.json": 1780733630.614811,
     "failure_autopsy_V3-EXQ-642a_2026-08-30.json": 1788074545.8192198,
     "failure_autopsy_V3-EXQ-642b_2026-09-01.json": 1788248083.409057,
+    "failure_autopsy_V3-EXQ-642c_2026-09-05.json": 1788601939.3887422,
     "failure_autopsy_V3-EXQ-643_2026-06-06.json": 1780752478.381431,
     "failure_autopsy_V3-EXQ-647_2026-06-06.json": 1780776722.8875985,
     "failure_autopsy_V3-EXQ-648_2026-06-07.json": 1780808929.3777266,
@@ -2645,6 +2703,7 @@
     "failure_autopsy_V3-EXQ-821b_2026-08-08.json": 1786207442.538904,
     "failure_autopsy_V3-EXQ-822b-834_2026-07-29.json": 1785355317.0051231,
     "failure_autopsy_V3-EXQ-822c_2026-08-29.json": 1787999010.7318895,
+    "failure_autopsy_V3-EXQ-822e_2026-09-05.json": 1788606383.466606,
     "failure_autopsy_V3-EXQ-824_2026-07-26.json": 1785089870.3345082,
     "failure_autopsy_V3-EXQ-828a_2026-08-01.json": 1785589219.3399549,
     "failure_autopsy_V3-EXQ-828b_2026-08-02.json": 1785665867.0011647,
@@ -2766,6 +2825,7 @@
     "failure_autopsy_V3-EXQ-978_2026-09-03.json": 1788465969.033314,
     "failure_autopsy_V3-EXQ-980_2026-09-03.json": 1788411932.7189057,
     "failure_autopsy_V3-EXQ-981_2026-09-03.json": 1788465969.034076,
+    "failure_autopsy_V3-EXQ-993a_2026-09-05.json": 1788601939.38749,
     "failure_autopsy_V3-EXQ-996_2026-09-04.json": 1788548456.6770775,
     "failure_autopsy_V3-EXQ-997_2026-09-04.json": 1788548456.6742313,
     "failure_autopsy_V3-EXQ-999_2026-09-04.json": 1788548456.672411,
@@ -2821,5 +2881,5 @@
     "failure_autopsy_v3exq665-cluster_2026-08-09.json": 1786259604.7569785,
     "failure_autopsy_zworld-integration-cluster_2026-06-06.json": 1780751397.9365296
   },
-  "seen_review_tracker_mtime": 1788548201.6704395
+  "seen_review_tracker_mtime": 1788606475.0984251
 }

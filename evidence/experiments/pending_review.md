@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-09-05T11:08:01Z`  
+Generated: `2026-09-06T16:11:50Z`  
 Last review: `2026-09-05T11:07:55Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_983a_ext002_residue_error_persistence_headroom_20260905T141459Z_v3` | 2026-09-05T14:14 | ARC-013, EXT-002 | — |
 
 ---
 
