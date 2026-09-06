@@ -1,6 +1,8 @@
 # STAGED (not applied): `/thought-digestion v3-closure` -- 2026-09-04 unattended campaign
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to `claims.yaml`.**
+**Status: APPLIED 2026-09-06T19:27:10Z (session `thought-digestion-v3-20260904-apply`).** The user reviewed all 21 groups on 2026-09-06 and approved every draft as written; all 47 `what_would_answer` fields, the epistemic_category changes, 7 `digestion_note`s, the depends_on / related_claims / source edits and 23 proposals (EXP-1379..EXP-1401) were applied to `claims.yaml` / `manual_proposals.v1.json`, and the governance flags below were raised via `governance_flag.py`. This file is now the archival record of the drafts; the registry is authoritative.
+
+~~**Status: AWAITING USER REVIEW. Nothing in this file has been written to `claims.yaml`.**~~
 
 **Started:** 2026-09-04T21:02:59Z · **Session:** `thought-digestion-v3-20260904` (Mac, main checkout, no worktree)
 **Mode:** unattended / staged-for-review, GROUPED (wave-of-groups, edge-first, `cap=5 floor=3.0`, lettered
