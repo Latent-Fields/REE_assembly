@@ -4,7 +4,7 @@ closure_plan:
   generation: process
   title: "TASK_CLAIMS/TASK_CHIPS Coordinator Migration (single-writer cutover)"
   registered: 2026-08-26
-  last_updated: 2026-08-28
+  last_updated: 2026-09-06
   owner: machinery
   summary: >
     Move TASK_CLAIMS.json/TASK_CHIPS.json claim+chip coordination off
@@ -49,10 +49,24 @@ closure_plan:
         origin fact) change the design as sketched.
     - id: PHASE-1
       title: "Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; git stays authoritative"
-      status: soaking
+      status: done
       severity: high
-      last_updated: 2026-08-28
+      last_updated: 2026-09-06
       note: >
+        CLOSED 2026-09-06 (session cutover-closeout-20260906). The soak
+        PASSED under the RESTATED criterion (user decision 2026-09-01, see
+        section 3): zero PERSISTENT divergence plus the tick-coverage clause.
+        Measured 2026-09-01: 143 ticks/24h, 16 diverged, every one an orphan
+        that self-healed within one reconcile cadence (26/26 identities,
+        orphan age median 56s / max 100s), 0 content mismatches. Re-measured
+        2026-09-06T20:55Z: 143 ticks/24h, 5 diverged, 0 content mismatches,
+        0 persistent. The log now has a PROGRAMMATIC reader (durability
+        review finding C.8): hygiene_routine_tick.py source 28
+        (_drift_log_findings) reads GET /task_claim/drift over the last 24h
+        every tick and chips only on a persistent orphan, a content
+        mismatch, or a stalled detector -- the old "zero diverged ticks"
+        wording is retired below as unmeetable, not merely unmet.
+
         SOAK EVIDENCE INVALIDATED AND THE DETECTOR FIXED, 2026-08-28 (session
         coordinator-migration-phase2b). The zero-drift record this node
         previously reported was real but SHORT, and everything after it was a
@@ -303,10 +317,27 @@ closure_plan:
         actually elapsed cleanly.
     - id: PHASE-2
       title: "Claim-authority cutover: task_claim.py/chip_ledger.py call the coordinator; git becomes state-change materialization"
-      status: in-progress
+      status: done
       severity: high
-      last_updated: 2026-08-27
+      last_updated: 2026-09-06
       note: >
+        LIVE SINCE 2026-08-28 and CLOSED 2026-09-06 (session
+        cutover-closeout-20260906). Client git-write suppression is armed on
+        the Mac, ree-cloud-4 and ree-cloud-5 (~/.ree_coordinator_client.json
+        suppress_git_write=true); the hub materializer runs
+        REGISTRY_WRITER_MODE=write on a 2-min timer (verified live 2026-09-06);
+        every open/close/record/resolve in the fleet prints
+        "coordinator-acknowledged; git write suppressed". The last
+        unverified suppressed verb was closed 2026-09-06: `renew` now
+        verifies its ack (verify_renew_coordinator_ack, durability review
+        finding C.7) exactly as close/amend do, falling through to the git
+        path on a hollow or mismatched ack. The durability review of
+        2026-08-28 (coordinator_cutover_durability_review_20260828.md)
+        returned HOLDS / no rollback. The git fallback path stays PERMANENT
+        (section 5.3) and is exercised whenever the hub is unreachable.
+        Everything below this paragraph is the build record and predates
+        the go-live.
+
         Mirrors ree-v3's SYNC_MODE=coordinator (claim cutover): the DB becomes
         the claim/chip authority; git remains the transport/audit trail, one
         writer thread committing on state-change only (mirrors
@@ -618,8 +649,20 @@ closure_plan:
       title: "Hub-serialised commit intake for the REMAINING coordination files (WORKSPACE_STATE.md, claims.yaml, ledgers): clients submit intents, the hub is the one committer"
       status: in-progress
       severity: high
-      last_updated: 2026-08-28
+      last_updated: 2026-09-06
       note: >
+        STATUS 2026-09-06: the intake is LIVE for every file it was built
+        for so far -- WORKSPACE_STATE.md (workspace_state_suppress_git_write
+        on the Mac 2026-08-28, cloud-4/5 2026-09-01; unmaterialized rows 0
+        on 2026-09-06), RECOMMENDATION_LOG.jsonl (flag flipped fleet-wide
+        2026-09-06, hub DB 132/133 materialized at check time), the three
+        IGW ledger files via POST /intent/replace (2026-09-01), and the
+        retired heartbeat/status/command git telemetry (runbook R1-R7
+        complete 2026-09-06). Not yet started: a claims.yaml intake, if one
+        is ever wanted -- the governance cycle still commits claims.yaml
+        directly under its pause claim, and nothing here assumes otherwise.
+        The record below is the activation and soak history.
+
         ACTIVATED + SOAKING 2026-08-28T18:26Z: the user authorised the
         coordinator restart; /workspace_state/append and /pending answer 200.
         End-to-end dual-write verified live within minutes: entry_id 1
@@ -759,8 +802,22 @@ closure_plan:
       title: "Harden: monitoring, CLAUDE.md rewrite to reflect the new default, decommission what is safe to decommission"
       status: in-progress
       severity: medium
-      last_updated: 2026-08-28
+      last_updated: 2026-09-06
       note: >
+        STATUS 2026-09-06: monitoring hardening DONE (C.8 drift-log reader,
+        hygiene source 28; C.7 renew ack check; coordinator DB backup timer
+        on the hub, R6, daily since 2026-09-01 with a 7-day rotation).
+        Decommissioning DONE: the hub runner is retired (D.7, 2026-08-30) and
+        the heartbeat-retirement runbook R1-R7 is complete (2026-09-06;
+        frozen runner_heartbeats/ runner_status/ runner_commands/ removed
+        from REE_assembly master in 6320b7f3fa). THE ONE REMAINING ITEM is
+        the doctrine/skill-text shrink for the retired telemetry paths --
+        chip-20260901-doctrine-shrink-retired-telemetry, unblocked by R7 and
+        still open: CLAUDE.md (umbrella + ree-v3), twelve skills mirrored to
+        .agents/skills/, and the retired-mode-only tests, with the
+        GOV-HELDOUT-1 check before any standing-rule rewording. When that
+        lands, flip this node to done.
+
         CLAUDE.md REWRITE LANDED 2026-08-28 (REE_Working 7914a203, session
         elated-nobel-914234, chip
         chip-20260828-phase3-claudemd-registry-doctrine-shrink): new
@@ -836,6 +893,21 @@ Root `CLAUDE.md`'s "Multi-Machine Experiment Coordination" section explicitly do
 **Follow the same three-phase shadow-first cutover** the queue used (section 2), not a hard cutover -- every session in the fleet depends on `task_claim.py`/`chip_ledger.py` working, so this is exactly the kind of infra change `feedback_infra_shadow_first` (memory) says must be reversible and staged.
 
 **Server-side atomic claim-check-and-write is a strict correctness improvement, not just a contention reduction.** Root `CLAUDE.md`'s own "Conflict resolution" section admits arbitration today is "best-effort, not a lock": two sessions can each read `TASK_CLAIMS.json` clean and both write, which is exactly the confirmed 2026-07-28 three-session collision on `runner_remote_control.py`. A single DB transaction (the same `BEGIN IMMEDIATE` primitive `db.py` already uses for experiment claims) removes the read-then-write gap across machines entirely -- there is no longer a window for two different machines to land in, only one DB transaction ordering to reason about.
+
+**Soak exit criterion -- RESTATED 2026-09-01 (user decision), recorded here
+because the wording that used to live in section 10 was unmeetable by
+construction, for the second time in this plan's history.** The mirror is
+judged over a 24h window of `GET /task_claim/drift?since=<24h-ago>`, and it
+PASSES when BOTH hold: (1) **zero PERSISTENT divergence** -- no orphan
+identity (a `(session_id, claimed_at)` claim key or a `chip_ref`) appears in
+two or more diverged ticks, and no diverged tick reports a content mismatch
+(`n_*_new` / `n_*_updated` > 0); (2) `window.total_ticks` is consistent with
+the 10-minute cadence (~144/day -- a stalled detector must never read as a
+clean soak). Sub-cadence orphans are ingest lag (measured 2026-09-01: orphan
+age median 56 s, max 100 s, 26/26 self-healed) and are explicitly NOT a
+failure; requiring `diverged_ticks == 0` was requiring that no fleet write
+land in any pre-ingest window all day. This criterion is what
+`hygiene_routine_tick.py` source 28 now enforces mechanically.
 
 ## 4. Scope
 
@@ -1192,97 +1264,49 @@ See the frontmatter `nodes` table at the top of this file for the authoritative,
 
 ## 10. Where to resume
 
-**PHASE-0 is closed (2026-08-26).** Sections 6.1, 6.2 and 6.3 all carry live-verified answers, not carried-forward memory claims.
+**As of 2026-09-06 the cutover is complete for TASK_CLAIMS.json /
+TASK_CHIPS.json and every PHASE-4 file built so far.** PHASE-0, PHASE-1 and
+PHASE-2 are `done` in the frontmatter above; PHASE-3 and PHASE-4 are
+`in-progress` with exactly one open item between them. Read the frontmatter
+nodes for the record; this section is only the pointer.
 
-**PHASE-1 is now soaking with `/task_claim/*` and `/chip/*` LIVE (coordinator
-restarted 2026-08-27T07:52:01Z, session
-metaworker-chip-20260827-coordinator-phase1-restart-soak-start).** The
-read-only clone, systemd timer, zero-drift verification, and now the
-coordinator restart itself are all done -- see the PHASE-1 frontmatter node
-for full detail. The exit criterion (N days of `diverged_ticks` staying at
-0) is now directly measurable via `GET /task_claim/drift`
-(`total_ticks`/`diverged_ticks`), no `journalctl` workaround required. As of
-the restart, only ~11.4h of zero-drift history exists -- well short of any
-reasonable N. **The only remaining PHASE-1 work is elapsed time**: no code,
-no infra, no config change is pending. A future session (or a human) should
-periodically check `GET /task_claim/drift` (or `journalctl -u
-ree-task-claim-chip-shadow-sync`) until N days of clean history has
-accumulated, then bring that evidence forward for the PHASE-2 go/no-go
-decision. (Section 6.2's Mac-tunnel rate-criterion is no longer a
-prerequisite here -- see the 2026-08-27 revision at the end of section 6.2:
-deferred to post-cutover monitoring by explicit user decision.)
+**What is live (verified against the hub, the clients and origin on
+2026-09-06):**
 
-Two things PHASE-1 must NOT do, unchanged from the original plan and still
-true of the code as built and now the live routes: it must not add any write
-path back to git (that is PHASE-2, and it is explicitly not user-ratified as
-a build -- see section 3), and it must not treat section 6.2's green digest
-as settling the Mac's tunnel (see the rate-criterion recommendation there,
-which is a PHASE-2 gate). Neither happened -- verified by
-test_reconcile_never_dirties_the_source_working_tree and
-test_no_mutating_task_claim_or_chip_post_route_exists in
-ree-v3/coordinator/ (unchanged by this session, since it touched
-infrastructure, not code), and the Mac's tunnel was not touched.
+- Client suppression armed on the Mac, ree-cloud-4 and ree-cloud-5 for
+  claims, chips, WORKSPACE_STATE.md and RECOMMENDATION_LOG.jsonl
+  (`~/.ree_coordinator_client.json`); the hub materializer in
+  `REGISTRY_WRITER_MODE=write` on a 2-min timer; the shadow-sync drift
+  detector on a 10-min timer, now read every hygiene tick (source 28).
+- Every suppressed verb verifies its ack before trusting suppression
+  (`open`/`close`/`amend`/`dedupe`, and `renew` since 2026-09-06).
+- Coordinator DB backed up daily on the hub (7-day rotation); the hub runner
+  retired; git heartbeat/status/command telemetry retired and its frozen
+  directories removed from REE_assembly master.
+- The git fallback path is PERMANENT and byte-identical to the pre-cutover
+  behaviour whenever the hub is unreachable (section 5.3). Do not remove it.
 
-**PHASE-2a is BUILT (2026-08-27) and is where a resuming session picks up.**
-The sentence that used to stand here -- "Do not start PHASE-2 from this
-state" -- was written before the user's explicit 2026-08-27 go-ahead to
-DECOUPLE the build from the soak. That decision is narrow and is worth
-restating precisely, because the reasoning is what makes it safe: the soak
-validates that the shadow mirror does not drift **before anything depends on
-it**, which says nothing whatever about whether the transport code is
-correct. So building and testing proceed in parallel; what still waits on the
-soak is FLIPPING THE DEFAULT, and only that.
+**The one open item:** the doctrine/skill-text shrink for the retired
+telemetry paths -- `chip-20260901-doctrine-shrink-retired-telemetry`
+(umbrella + ree-v3 CLAUDE.md, twelve skills mirrored to `.agents/skills/`,
+retired-mode-only tests). It needs the GOV-HELDOUT-1 held-out check before
+any standing-rule rewording lands, and it is what flips PHASE-3 to `done`.
 
-Read the PHASE-2 frontmatter node for exactly what landed and what is tested.
-The four things still open, in the order a resuming session should think about
-them:
+**How to check health by hand, if the hygiene tick is not running:**
 
-1. **PHASE-2b -- the DB->git materializer.** ~~The largest remaining piece~~
-   **BUILT + DEPLOYED IN CHECK MODE 2026-08-28** (ree-v3 `af4dcea1e9`;
-   `coordinator/task_claim_chip_git_writer.py` + verbatim `entry_json` in
-   `db.py` + deploy units enabled on the hub, 2-min timer,
-   `REGISTRY_WRITER_MODE=check`). Commits on STATE-CHANGE ONLY, as required.
-   See the PHASE-2 frontmatter node for what landed and the healthy-soak
-   signature. What remains before the client git write can be suppressed:
-   (i) the CLIENT suppression branch in `task_claim.py`/`chip_ledger.py`
-   (blocked 2026-08-28 behind rc-remotetip-gate-20260828's claim on those
-   files); (ii) client env wiring (mode flag + URL + token) for Mac
-   interactive sessions and ree-cloud-5; (iii) flipping
-   `REGISTRY_WRITER_MODE=check` -> `write` on the hub AS PART OF the
-   go-live decision, never before it.
-2. ~~**Deployment.**~~ **DONE 2026-08-27.** The user authorised the
-   coordinator restart and the orchestrator session (insights-7fd98a)
-   performed it; `/task_claim/*` and `/chip/*` now answer 401 rather than
-   404 (routes exist, bearer-gated), with phase3 writer traffic resuming
-   cleanly. The endpoints are reachable. **This changes nothing about the
-   cutover** -- the client flag still defaults to `git`, so no session calls
-   them.
-3. **Soak evidence -- CRITERION RESTATED 2026-08-28, and the old one was
-   unmeetable.** The previous wording ("N days of `GET /task_claim/drift`
-   showing `diverged_ticks: 0`") cannot be satisfied: `diverged_ticks` is
-   cumulative and permanently carries the 64 false-positive rows produced
-   between 2026-08-27T19:03Z and the detector fix (full account in the PHASE-1
-   node). Those rows are not wrong and must not be deleted. Use the window:
+```bash
+curl -s -H "Authorization: Bearer $TOK" \
+  "http://10.8.0.1:8787/task_claim/drift?since=<ISO-24h-ago>&limit=200"
+```
 
-   ```bash
-   # on the hub, or any box with the bearer token over WireGuard
-   curl -s -H "Authorization: Bearer $TOK" \
-     "http://10.8.0.1:8787/task_claim/drift?since=<ISO-24h-ago>&limit=200"
-   ```
+and apply the section 3 criterion (persistent divergence, content mismatch,
+tick coverage). `ref_convergence.py --check` and a `rev-list --left-right
+--count origin/<b>...HEAD` per checkout cover the client side.
 
-   PASS requires BOTH: `window.diverged_ticks == 0`, and `window.total_ticks`
-   consistent with the 10-minute cadence (~144 per 24h). **Do not drop the
-   second clause.** Zero diverged out of two ticks is not evidence of
-   anything, and without a total a stalled timer reads as a clean soak --
-   which is precisely how a broken detector went unnoticed for 10.7 hours.
-4. **The go-live decision itself**, which is a human's and is separate from
-   all three above.
-
-**What a resuming session must NOT do:** flip
-`TASK_CLAIM_COORDINATION_MODE` to `coordinator` anywhere -- not in
-`.claude/settings.json`, not in a systemd unit, not as a default in
-`coordinator_transport.py` -- and must not remove the git path. Section 5.3
-and the PHASE-3 node both say the git path stays permanently, mirroring the
-runner's own retained legacy git-claim fallback.
+**What a resuming session must NOT do:** re-derive as open work anything the
+frontmatter marks done (the earlier text of this section listed the client
+suppression branch and the writer-mode flip as pending for a week after they
+went live); flip any client back to `git` mode without a hub-side reason; or
+remove the git fallback code path.
 
 Update the frontmatter `nodes` status/note for whichever phase you touch, in the same commit as your actual work, so the next session does not have to re-read this whole document to find out what changed.
