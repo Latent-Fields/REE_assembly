@@ -4283,7 +4283,11 @@
       "task_claim_session_id": "igw-auto-igw-235-proposal-for-impl-023-20260906T181348Z",
       "task_claim_claimed_at": "2026-09-06T18:13:48Z",
       "assigned_at": "2026-09-06T18:11:27Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-06T18:33:37Z",
+      "completion_summary": "IMPL-023/EVB-1307 experimental lane marked blocked_substrate (non-experimentable claim class: implementation_note, polarity=records, no DV; 0/1002 manifests tag any IMPL-*); durable row EXP-IMPL023-V2-SPEC-RECORD, REE_assembly 9163c2d807; LIT twin left proposed",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "IMPL-023/EVB-1307 experimental lane marked blocked_substrate (non-experimentable claim class: implementation_note, polarity=records, no DV; 0/1002 manifests tag any IMPL-*); durable row EXP-IMPL023-V2-SPEC-RECORD, REE_assembly 9163c2d807; LIT twin left proposed"
     }
   ],
   "dispositions": [
@@ -5952,6 +5956,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-05T02:40:50Z",
       "re_eligible_after": "2026-09-07T02:40:50Z"
+    },
+    {
+      "stable_hash": "4b7c946d680a",
+      "igw_id_at_disposition": "IGW-20260906-235",
+      "owner_exq": null,
+      "claim_ids": [
+        "IMPL-023"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for IMPL-023",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-06T18:33:50Z",
+      "re_eligible_after": "2026-09-08T18:33:50Z"
     }
   ]
 }
