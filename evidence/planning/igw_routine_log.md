@@ -2630,3 +2630,4 @@ One line per hourly tick. ASCII only.
 2026-09-06T19:15:28Z GC removed worktree igw-235-proposal-for-impl-023 (removed; branch deleted)
 2026-09-06T19:15:13Z GC sweep removed 1 orphan worktree(s), kept 14
 2026-09-06T19:16:05Z workset committed (regen -- 247 items, 30 ready, 0 in flight)
+2026-09-06T19:15:13Z SPAWN IGW-20260906-240 skill=/queue-experiment prio=55 uuid=3928de9b-b3a4-45ba-ad58-cf543a27550f pid=64267 worktree=igw-240-confirm-evidence-mech-057b-lit-0
