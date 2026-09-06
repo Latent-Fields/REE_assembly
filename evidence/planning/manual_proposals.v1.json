@@ -3287,6 +3287,43 @@
         "ablation of ContextMemory slots, or fixed noise injected into the E3 attribution path; identical"
       ],
       "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-181 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue."
+    },
+    {
+      "proposal_id": "EXP-0594",
+      "claim_id": "MECH-057b",
+      "related_claims": [
+        "MECH-057b",
+        "ARC-065",
+        "ARC-028",
+        "MECH-105",
+        "SD-056"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "status": "blocked_substrate",
+      "registered_utc": "2026-09-06",
+      "dispatch_mode": "targeted_probe",
+      "estimated_minutes": 240,
+      "machine_affinity": "any",
+      "gated_at_utc": "2026-09-06",
+      "gated_by_session": "igw-240-confirm-evidence-mech-057b-lit-0",
+      "blocked_by": [
+        "ARC-065",
+        "mech057b-hippocampal-completion-verification-promotion-policy"
+      ],
+      "blocked_note": "Double block. (1) MECHANISM UNBUILT: ree_core/hippocampal/module.py has no sequence-completion verification or trajectory-promotion policy at all (grep for promot/sequence_complete/completion_verif over ree_core/hippocampal/ returns zero hits, verified 2026-09-06). The only MECH-057b string anywhere in ree_core is a COMMENT at ree_core/utils/config.py:1021 recording that the claim could NOT be tested -- so GOV-CONFIRM-1's 'built substrate (tagged in ree_core)' trigger is a FALSE POSITIVE on this claim. V3-EXQ-672b tested a harness quantile proxy over hippocampal._score_trajectory, which is a terrain/residue score for CEM elite selection (ARC-007 STRICT) carrying no completion signal. (2) INPUT CHANNEL NON-DISCRIMINATIVE: that proxy's cross-candidate spread is ~0.009 with completion_signal pinned ~0.3439 across arms (ARC-065 GAP-A monostrategy candidate-pool collapse); ARC-065 is still implementation_status=null. re-derive brake: count 2 on MECH-057b (672a + 672b, failure_autopsy_V3-EXQ-672-series_2026-06-15, CONFIRMED), named upstream ARC-065 NOT built -> brake HOLDS per /queue-experiment Step 2.5b.",
+      "objective": "Confirm MECH-057b -- that hippocampal sequence completion is verified before a trajectory candidate becomes eligible for E3 selection -- with a representation/functional-signature DV (selectivity of suppression on completion) rather than the behavioural harm/completion DVs that V3-EXQ-672b could not measure. BLOCKED: see blocked_note.",
+      "design": "When unblocked: measurement-only selectivity probe, no behavioural commitment required. DV = does the promotion gate suppress candidates SELECTIVELY on verified sequence completion -- i.e. is the completion score of suppressed candidates separated from that of promoted candidates by more than chance (AUC / rank-separation), per tick, across seeds. Deliberately NOT a harm/completion-benefit DV: that is the wall V3-EXQ-672b hit. Re-derive the design at unblock time against whatever completion-verification path actually lands -- do NOT author from this sketch, since no such path exists in ree_core today.",
+      "acceptance_checks": [
+        "MANDATORY NON-VACUITY PRECONDITION (blocks scoring, per the 672-series autopsy's standing guard): mean_candidate_score_spread on the completion channel must clear a non-vacuity floor (>= 0.05 normalised) on a POSITIVE CONTROL of endogenously-generated candidates before any selectivity criterion is read. Below floor -> self-route substrate_not_ready_requeue -> non_contributory, NEVER a verdict on MECH-057b.",
+        "PASS / supports MECH-057b: suppressed candidates' completion scores are separated from promoted candidates' by more than chance (pre-registered rank-separation threshold), on an endogenous candidate pool.",
+        "FAIL / weakens MECH-057b: the gate suppresses candidates independently of completion (separation at chance) despite a discriminable pool -- the completion signal is not what gates promotion.",
+        "VACUITY GUARD: hand-constructed / synthetic candidates with injected completion differences do NOT satisfy this proposal. A quantile filter sorting supplied numbers is an arithmetic identity, not evidence for the claim -- the candidate pool must be endogenous.",
+        "Emit claim_ids_tested=[MECH-057b] + evidence_direction; pre-register thresholds before execution."
+      ],
+      "release_condition": "BOTH must hold. (1) A hippocampal sequence-completion verification signal and trajectory-promotion policy actually EXIST in ree_core/hippocampal/ (not a harness proxy over _score_trajectory) -- this build is currently UNOWNED: it has no substrate_queue entry, so audit_blocked_proposal_unblockers.py will report it in the UNOWNED bucket until one is minted. (2) ARC-065 GAP-A lands divergent per-candidate world predictions and mean_candidate_score_spread on the completion channel is re-measured ABOVE the non-vacuity floor on a trained substrate. Re-check both empirically before unblocking -- neither is satisfied by a doc status alone.",
+      "notes": "Minted BLOCKED by IGW-20260906-240 (/queue-experiment substrate-readiness stop, Step 2.5 + Step 2.5b). Registered rather than silently omitted so MECH-057b reads as known-untested-and-why instead of re-firing GOV-CONFIRM-1 as a zero-evidence candidate every cycle. NOT a replacement for EXP-1284/EVB-0086, which is correctly status=executed by V3-EXQ-672b; this is the owed RETEST. OPEN GOVERNANCE ITEM: the 672-series autopsy's recommended_substrate_queue_entry (action=amend, target_sd_id=ARC-065, unblocks_claims=[MECH-057b]) was CONFIRMED but never applied -- ARC-065 today lists neither MECH-057b in unblocks_claims nor the _score_trajectory completion-discriminability hint, so nothing on the substrate side currently tracks this claim's release trigger. Applying that amendment is /governance work (Step 6a), deliberately not chipped from here."
     }
   ]
 }
