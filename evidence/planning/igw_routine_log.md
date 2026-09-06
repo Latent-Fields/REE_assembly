@@ -2635,3 +2635,4 @@ One line per hourly tick. ASCII only.
 2026-09-06T20:17:53Z GC removed worktree igw-240-confirm-evidence-mech-057b-lit-0 (removed; branch deleted)
 2026-09-06T20:17:29Z GC sweep removed 1 orphan worktree(s), kept 14
 2026-09-06T20:18:34Z workset committed (regen -- 247 items, 30 ready, 0 in flight)
+2026-09-06T20:17:29Z SPAWN IGW-20260906-241 skill=/queue-experiment prio=55 uuid=07c1ba28-618a-411a-bc23-03e814b73fbb pid=96055 worktree=igw-241-confirm-evidence-mech-489-lit-0
