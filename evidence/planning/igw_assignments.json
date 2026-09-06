@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-06T20:19:29Z",
+  "generated_at": "2026-09-06T20:31:46Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -10031,6 +10031,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "session_uuid=07c1ba28-618a-411a-bc23-03e814b73fbb branch=claude/igw-241-confirm-evidence-mech-489-lit-0",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-489 (lit 0.82, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-489"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260906T203146Z-829f5783-claude_local",
+      "stable_hash": "829f578353c7",
+      "igw_id_at_assign": "IGW-20260906-241",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-06T20:31:46Z",
+      "released_at": "2026-09-06T20:31:46Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "complete: IGW-20260906-241 -> completed (outcome=USEFUL_LANDED)",
+      "released_event_for": "asn-20260906T201729Z-829f5783-claude_local",
       "note": "session_uuid=07c1ba28-618a-411a-bc23-03e814b73fbb branch=claude/igw-241-confirm-evidence-mech-489-lit-0",
       "item_snapshot": {
         "skill": "/queue-experiment",

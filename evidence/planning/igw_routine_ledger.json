@@ -4333,7 +4333,11 @@
       "task_claim_session_id": "igw-auto-igw-241-confirm-evidence-mech-489-lit-0-20260906T201848Z",
       "task_claim_claimed_at": "2026-09-06T20:18:48Z",
       "assigned_at": "2026-09-06T20:17:29Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-06T20:31:46Z",
+      "completion_summary": "QUEUED NOTHING (correct): second adjudicated DO-NOT-QUEUE for MECH-489, landed on EXP-0057 gating_reason (REE_assembly 1ba089029c). Not blocked_substrate -- ORNT-6 says no build is owed. Vacuity re-verified fresh (defensive_orienting.py unchanged since c1c24c6; 0/10 agent.py commits since 910b touch the orienting path). Diagnosed why the confirmer lane re-fired despite chip-20260826's landed diagnostic_evidence_adjudicated flag: generate_inter_governance_workset.py _load_claims_meta omits the key and _evidence_confirmer_candidates' FM10 hook excludes status=executed. Re-chipped as chip-20260906-confirmer-lane-diagnostic-adjudicated-flag.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "QUEUED NOTHING (correct): second adjudicated DO-NOT-QUEUE for MECH-489, landed on EXP-0057 gating_reason (REE_assembly 1ba089029c). Not blocked_substrate -- ORNT-6 says no build is owed. Vacuity re-verified fresh (defensive_orienting.py unchanged since c1c24c6; 0/10 agent.py commits since 910b touch the orienting path). Diagnosed why the confirmer lane re-fired despite chip-20260826's landed diagnostic_evidence_adjudicated flag: generate_inter_governance_workset.py _load_claims_meta omits the key and _evidence_confirmer_candidates' FM10 hook excludes status=executed. Re-chipped as chip-20260906-confirmer-lane-diagnostic-adjudicated-flag."
     }
   ],
   "dispositions": [
@@ -5438,7 +5442,7 @@
     },
     {
       "stable_hash": "829f578353c7",
-      "igw_id_at_disposition": "IGW-20260826-235",
+      "igw_id_at_disposition": "IGW-20260906-241",
       "owner_exq": null,
       "claim_ids": [
         "MECH-489"
@@ -5447,8 +5451,8 @@
       "title": "Confirm evidence: MECH-489 (lit 0.83, exp ~0)",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-08-26T07:15:11Z",
-      "re_eligible_after": "2026-08-28T07:15:11Z"
+      "noted_at": "2026-09-06T20:31:47Z",
+      "re_eligible_after": "2026-09-08T20:31:47Z"
     },
     {
       "stable_hash": "33f820eb9eac",
