@@ -170,6 +170,141 @@ def extract_claim_tokens(value: Any) -> set[str]:
     return tokens
 
 
+def reciprocal_category(
+    *,
+    size: int,
+    status_counts: dict[str, int],
+    type_counts: dict[str, int],
+    members: list[str],
+    mutual: bool,
+) -> tuple[str, str, str]:
+    """Shared reciprocal-structure taxonomy (category, cleanup_priority, rationale).
+
+    Written for cyclic depends_on components; since the 2026-09-04 GOV-EDGE-1
+    edge-type split (mutual pairs and cycle-break edges moved to coupled_with)
+    depends_on is a DAG, so the same ladder is applied to coupled_with pairs
+    where ``size`` is the undirected coupling-cluster size containing the pair
+    and ``mutual`` means both endpoints list each other. One function so the
+    pair-level labels are literally the component-level rules, not a copy.
+    """
+    has_question_or_invariant = any(
+        key in type_counts
+        for key in ("question", "open_question", "derived_prediction", "invariant")
+    )
+    has_design_and_mechanism = (
+        "design_decision" in type_counts
+        and ("mechanism_hypothesis" in type_counts or "mechanism" in type_counts)
+    )
+    has_sd = any(str(member).startswith("SD-") for member in members)
+    if "superseded" in status_counts:
+        return (
+            "legacy_superseded_cycle",
+            "low",
+            "Cycle includes superseded registry material; preserve history unless it blocks tooling.",
+        )
+    if size >= 10:
+        return (
+            "accepted_reciprocal_architecture",
+            "low",
+            "Large multi-claim reciprocal architecture cluster; likely reflects real feedback coupling rather than a simple ordering bug.",
+        )
+    if has_question_or_invariant and size <= 3:
+        return (
+            "semantic_explanation_cycle",
+            "medium",
+            "Question, prediction, or invariant is mutually explanatory with its mechanism; edge type may be more precise than strict depends_on.",
+        )
+    if has_sd and has_design_and_mechanism:
+        return (
+            "co_definition_module_function",
+            "low",
+            "Substrate/module claim and functional mechanism co-define each other; useful architecture coupling, not necessarily build-order dependency.",
+        )
+    if size <= 2 and mutual:
+        return (
+            "edge_type_cleanup_candidate",
+            "medium",
+            "Small mutual dependency; likely wants an edge type such as co_defines_with, implements, or predicts rather than strict depends_on.",
+        )
+    if size <= 6 and mutual:
+        return (
+            "co_definition_module_function",
+            "watch",
+            "Small reciprocal module/function cluster; probably valid coupling but worth reviewing edge semantics.",
+        )
+    return (
+        "accepted_reciprocal_architecture",
+        "watch",
+        "Reciprocal structure is present but not clearly a hygiene issue from graph shape alone.",
+    )
+
+
+COUPLED_ENTRY_RE = re.compile(r"^    -\s+(\S+)\s*(#.*)?$")
+CLAIM_HEAD_RE = re.compile(r"^-\s+id:\s*(\S+)")
+
+
+def load_coupled_with_annotations() -> dict[tuple[str, str], str]:
+    """Inline comment text per directed coupled_with entry (source, target).
+
+    claims.yaml is comment-bearing; the GOV-EDGE-1 split tagged every moved
+    entry (``mutual pair`` / ``cycle-break`` / ``reverse of``), and governance
+    ratification notes live in the same comment. yaml.safe_load drops them, so
+    this is a text scan keyed on the same ``- id:`` / ``coupled_with:`` layout
+    the split script wrote.
+    """
+    annotations: dict[tuple[str, str], str] = {}
+    current = None
+    in_block = False
+    for line in CLAIMS_PATH.read_text().splitlines():
+        head = CLAIM_HEAD_RE.match(line)
+        if head:
+            current = head.group(1)
+            in_block = False
+            continue
+        if line.startswith("  coupled_with:"):
+            in_block = True
+            continue
+        if not in_block or current is None:
+            continue
+        entry = COUPLED_ENTRY_RE.match(line)
+        if entry:
+            annotations[(current, entry.group(1))] = (entry.group(2) or "").strip()
+        elif not line.startswith("    "):
+            in_block = False
+    return annotations
+
+
+def coupled_edge_origin(comment: str) -> str:
+    lowered = comment.lower()
+    if "cycle-break" in lowered:
+        return "cycle_break"
+    if "reverse of" in lowered:
+        return "cycle_break_reverse"
+    if "mutual pair" in lowered or "mutual-pair" in lowered:
+        return "mutual_pair"
+    return "native"
+
+
+def connected_components(adjacency: dict[str, set[str]]) -> list[list[str]]:
+    seen: set[str] = set()
+    components: list[list[str]] = []
+    for start in sorted(adjacency):
+        if start in seen:
+            continue
+        stack = [start]
+        members: list[str] = []
+        while stack:
+            node = stack.pop()
+            if node in seen:
+                continue
+            seen.add(node)
+            members.append(node)
+            stack.extend(adjacency[node] - seen)
+        components.append(sorted(members))
+    components.sort(key=lambda comp: (-len(comp), comp[0]))
+    return components
+
+
 def main() -> None:
     claims = yaml.safe_load(CLAIMS_PATH.read_text())
     if not isinstance(claims, list):
@@ -301,48 +436,19 @@ def main() -> None:
         type_counts = component.get("type_counts", {})
         class_counts = component.get("class_counts", {})
         status_counts = component.get("status_counts", {})
-        has_question_or_invariant = any(
-            key in type_counts
-            for key in ("question", "open_question", "derived_prediction", "invariant")
-        )
-        has_design_and_mechanism = (
-            "design_decision" in type_counts
-            and ("mechanism_hypothesis" in type_counts or "mechanism" in type_counts)
-        )
-        has_sd = any(str(member).startswith("SD-") for member in members)
         size = int(component.get("size", 0) or 0)
         if not component.get("cyclic"):
             category = "acyclic"
             cleanup_priority = "none"
             rationale = "No internal dependency cycle."
-        elif "superseded" in status_counts:
-            category = "legacy_superseded_cycle"
-            cleanup_priority = "low"
-            rationale = "Cycle includes superseded registry material; preserve history unless it blocks tooling."
-        elif size >= 10:
-            category = "accepted_reciprocal_architecture"
-            cleanup_priority = "low"
-            rationale = "Large multi-claim reciprocal architecture cluster; likely reflects real feedback coupling rather than a simple ordering bug."
-        elif has_question_or_invariant and size <= 3:
-            category = "semantic_explanation_cycle"
-            cleanup_priority = "medium"
-            rationale = "Question, prediction, or invariant is mutually explanatory with its mechanism; edge type may be more precise than strict depends_on."
-        elif has_sd and has_design_and_mechanism:
-            category = "co_definition_module_function"
-            cleanup_priority = "low"
-            rationale = "Substrate/module claim and functional mechanism co-define each other; useful architecture coupling, not necessarily build-order dependency."
-        elif size <= 2 and mutual_pairs:
-            category = "edge_type_cleanup_candidate"
-            cleanup_priority = "medium"
-            rationale = "Small mutual dependency; likely wants an edge type such as co_defines_with, implements, or predicts rather than strict depends_on."
-        elif size <= 6 and mutual_pairs:
-            category = "co_definition_module_function"
-            cleanup_priority = "watch"
-            rationale = "Small reciprocal module/function cluster; probably valid coupling but worth reviewing edge semantics."
         else:
-            category = "accepted_reciprocal_architecture"
-            cleanup_priority = "watch"
-            rationale = "Reciprocal structure is present but not clearly a hygiene issue from graph shape alone."
+            category, cleanup_priority, rationale = reciprocal_category(
+                size=size,
+                status_counts=status_counts,
+                type_counts=type_counts,
+                members=members,
+                mutual=bool(mutual_pairs),
+            )
         return {
             "category": category,
             "cleanup_priority": cleanup_priority,
@@ -368,6 +474,150 @@ def main() -> None:
     for component in components:
         if component["cyclic"]:
             component["cycle_audit"] = component_cycle_audit(component)
+
+    # ---- coupled_with layer (GOV-EDGE-1, 2026-09-04) ------------------------
+    # depends_on is now a DAG, so the reciprocal taxonomy above is dormant at
+    # component level. It is re-applied here per unordered coupled_with pair,
+    # with the pair's undirected coupling cluster standing in for SCC size.
+    coupled_annotations = load_coupled_with_annotations()
+    coupled_adjacency: dict[str, set[str]] = defaultdict(set)
+    coupled_directed: set[tuple[str, str]] = set()
+    coupled_dangling: list[dict[str, str]] = []
+    for claim_id, claim in by_id.items():
+        for other in claim.get("coupled_with", []) or []:
+            if other not in by_id:
+                coupled_dangling.append({"source": claim_id, "target": str(other)})
+                continue
+            coupled_directed.add((claim_id, other))
+            coupled_adjacency[claim_id].add(other)
+            coupled_adjacency[other].add(claim_id)
+    coupled_clusters_raw = connected_components(coupled_adjacency)
+    claim_to_cluster: dict[str, str] = {}
+    coupled_clusters = []
+    for idx, members in enumerate(coupled_clusters_raw, start=1):
+        cluster_id = f"K{idx:03d}"
+        for member in members:
+            claim_to_cluster[member] = cluster_id
+        coupled_clusters.append({
+            "cluster_id": cluster_id,
+            "size": len(members),
+            "claim_ids": members,
+            "type_counts": counter_dict(Counter(by_id[m].get("claim_type", "unknown") for m in members)),
+            "status_counts": counter_dict(Counter(by_id[m].get("status", "unknown") for m in members)),
+            "class_counts": counter_dict(Counter(class_for(by_id[m]) for m in members)),
+            "depends_on_components": sorted({claim_to_component[m] for m in members}),
+        })
+    cluster_by_id = {cluster["cluster_id"]: cluster for cluster in coupled_clusters}
+
+    coupled_pairs = []
+    for left, right in sorted({tuple(sorted(edge)) for edge in coupled_directed}):
+        pair_members = [left, right]
+        symmetric = (left, right) in coupled_directed and (right, left) in coupled_directed
+        forward_comment = coupled_annotations.get((left, right), "")
+        reverse_comment = coupled_annotations.get((right, left), "")
+        origins = {coupled_edge_origin(c) for c, present in (
+            (forward_comment, (left, right) in coupled_directed),
+            (reverse_comment, (right, left) in coupled_directed),
+        ) if present}
+        if "cycle_break" in origins:
+            origin = "cycle_break"
+        elif "mutual_pair" in origins:
+            origin = "mutual_pair"
+        elif origins == {"cycle_break_reverse"}:
+            origin = "cycle_break"
+        else:
+            origin = "native"
+        # A mixed pair keeps a prerequisite in the other direction (emergent_from
+        # is never moved by the split; it stays a subset of depends_on).
+        prerequisite_reverse = []
+        for src, dst in ((left, right), (right, left)):
+            if dst in (by_id[src].get("depends_on", []) or []):
+                prerequisite_reverse.append({"source": src, "target": dst})
+        cluster_id = claim_to_cluster[left]
+        cluster_size = cluster_by_id[cluster_id]["size"]
+        status_counts = counter_dict(Counter(by_id[m].get("status", "unknown") for m in pair_members))
+        type_counts = counter_dict(Counter(by_id[m].get("claim_type", "unknown") for m in pair_members))
+        category, cleanup_priority, rationale = reciprocal_category(
+            size=cluster_size,
+            status_counts=status_counts,
+            type_counts=type_counts,
+            members=pair_members,
+            mutual=symmetric,
+        )
+        record: dict[str, Any] = {
+            "pair_id": f"{left}|{right}",
+            "claim_ids": pair_members,
+            "titles": {m: by_id[m].get("title", "") for m in pair_members},
+            "symmetric": symmetric,
+            "prerequisite_reverse": prerequisite_reverse,
+            "origin": origin,
+            "cluster_id": cluster_id,
+            "cluster_size": cluster_size,
+            "category": category,
+            "cleanup_priority": cleanup_priority,
+            "rationale": rationale,
+            "type_counts": type_counts,
+            "status_counts": status_counts,
+            "class_counts": counter_dict(Counter(class_for(by_id[m]) for m in pair_members)),
+        }
+        if origin == "cycle_break":
+            # The split moved exactly one direction; the other carries "reverse of".
+            if coupled_edge_origin(forward_comment) == "cycle_break":
+                moved = {"source": left, "target": right, "comment": forward_comment}
+            else:
+                moved = {"source": right, "target": left, "comment": reverse_comment or forward_comment}
+            cycle_match = re.search(r"\(cycle ([^)]*)\)", moved["comment"])
+            record["cycle_break"] = {
+                "moved_edge": f"{moved['source']} -> {moved['target']}",
+                "cycle": cycle_match.group(1).strip() if cycle_match else "",
+                "ratified": "ratified" in moved["comment"].lower(),
+                "comment": moved["comment"],
+            }
+        coupled_pairs.append(record)
+
+    coupled_category_counts = Counter(pair["category"] for pair in coupled_pairs)
+    coupled_cleanup_counts = Counter(pair["cleanup_priority"] for pair in coupled_pairs)
+    coupled_origin_counts = Counter(pair["origin"] for pair in coupled_pairs)
+    cycle_break_report = [
+        {
+            "moved_edge": pair["cycle_break"]["moved_edge"],
+            "pair_id": pair["pair_id"],
+            "category": pair["category"],
+            "cleanup_priority": pair["cleanup_priority"],
+            "cluster_id": pair["cluster_id"],
+            "cluster_size": pair["cluster_size"],
+            "ratified": pair["cycle_break"]["ratified"],
+            "cycle": pair["cycle_break"]["cycle"],
+        }
+        for pair in coupled_pairs
+        if pair["origin"] == "cycle_break"
+    ]
+    coupled_with_section = {
+        "method": (
+            "Each unordered coupled_with pair is labelled with the same reciprocal taxonomy "
+            "the depends_on cycle audit used (reciprocal_category); 'size' is the undirected "
+            "coupled_with cluster containing the pair, 'mutual' means both endpoints list each other. "
+            "Labels are pair-level; governance re-judgement of cycle-break edges is reported, not applied."
+        ),
+        "summary": {
+            "pair_count": len(coupled_pairs),
+            "directed_entry_count": len(coupled_directed),
+            "claim_count": len(coupled_adjacency),
+            "cluster_count": len(coupled_clusters),
+            "largest_cluster_size": max((c["size"] for c in coupled_clusters), default=0),
+            "symmetric_pairs": sum(1 for pair in coupled_pairs if pair["symmetric"]),
+            "mixed_prerequisite_pairs": sum(1 for pair in coupled_pairs if pair["prerequisite_reverse"]),
+            "dangling_targets": len(coupled_dangling),
+            "category_counts": counter_dict(coupled_category_counts),
+            "cleanup_counts": counter_dict(coupled_cleanup_counts),
+            "origin_counts": counter_dict(coupled_origin_counts),
+            "cycle_break_category_counts": counter_dict(Counter(row["category"] for row in cycle_break_report)),
+        },
+        "cycle_break_edges": cycle_break_report,
+        "clusters": coupled_clusters,
+        "pairs": coupled_pairs,
+        "dangling": coupled_dangling,
+    }
 
     def claim_attention_for(claim_id: str) -> dict[str, Any]:
         claim = by_id[claim_id]
@@ -728,6 +978,7 @@ def main() -> None:
             "claims_count": len(by_id),
             "dependency_edges": edge_count,
             "component_edges": len(component_edges),
+            "coupled_with_pairs": len(coupled_pairs),
             "git_head": run_git(["rev-parse", "--short", "HEAD"]).strip(),
         },
         "summary": {
@@ -741,6 +992,9 @@ def main() -> None:
             "lifecycle_counts": counter_dict(Counter(row["lifecycle"] for row in claim_rows)),
             "cycle_audit_counts": counter_dict(cycle_audit_counts),
             "cycle_cleanup_counts": counter_dict(cycle_cleanup_counts),
+            "coupled_with_pairs": len(coupled_pairs),
+            "coupled_with_category_counts": counter_dict(coupled_category_counts),
+            "coupled_with_cleanup_counts": counter_dict(coupled_cleanup_counts),
         },
         "weeks": weeks,
         "components": components,
@@ -749,6 +1003,7 @@ def main() -> None:
             for source, target in sorted(component_edges)
         ],
         "claim_rows": claim_rows,
+        "coupled_with": coupled_with_section,
         "recent": {
             "weeks": recent_weeks,
             "window": {
@@ -837,6 +1092,15 @@ def main() -> None:
     print(f"Dependency edges: {edge_count}")
     print(f"SCC components: {len(components)}")
     print(f"Cyclic components: {payload['summary']['cyclic_components']}")
+    cw = coupled_with_section["summary"]
+    print(f"coupled_with pairs: {cw['pair_count']} (claims {cw['claim_count']}, clusters {cw['cluster_count']}, largest {cw['largest_cluster_size']})")
+    print(f"coupled_with origin counts: {cw['origin_counts']}")
+    print(f"coupled_with category counts: {cw['category_counts']}")
+    print(f"coupled_with cleanup counts: {cw['cleanup_counts']}")
+    print(f"cycle-break edges ({len(cycle_break_report)}) -- taxonomy label vs governance re-judgement:")
+    for row in cycle_break_report:
+        ratified = "RATIFIED" if row["ratified"] else "unratified"
+        print(f"  {row['moved_edge']:<24} {row['category']:<34} {row['cleanup_priority']:<7} cluster {row['cluster_id']} (size {row['cluster_size']}) {ratified}")
 
 
 if __name__ == "__main__":
