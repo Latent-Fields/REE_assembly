@@ -94836,3 +94836,101 @@
     depends_on and its categories (accepted_reciprocal_architecture etc.) are the natural
     labels to carry over onto coupled_with pairs; the 8 cycle-break edges owe a human
     re-judgement.
+- id: MECH-535
+  title: "Direction-blind reactive ambitendency (catatonia route III): a memoryless reactive actor reading a state representation that carries goal PROXIMITY MAGNITUDE but not goal DIRECTION produces, from one frozen policy and selected only by initial condition, either a two-cell approach/withdraw limit cycle (ambitendency: one step toward the goal, one step away, repeated) or a boundary-press fixed point (stupor); the catatonic phenotype therefore has a REPRESENTATIONAL generative route that requires no commitment gate to malfunction and no harm-stream lock, distinct from MECH-202B (gate frozen at maximum threshold) and SD-036 subtype II (harm-stream lock-in upstream of an intact gate)."
+  claim_type: mechanism_hypothesis
+  subject: psychiatric.catatonia_direction_blind_reactive_ambitendency
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/standard
+    as_of: 2026-09-06
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  registered_utc: 2026-09-06
+  depends_on:
+    - MECH-202  # catatonia route I (commit-gate paralysis) this is explicitly distinguished from
+    - SD-036    # catatonia route II (harm-stream lock-in) this is explicitly distinguished from
+    - MECH-279  # PAG freeze gate: the stupor phenotype's registered gating route, also distinguished
+    - INV-088   # z_world differentiation bound; this claim names its behavioural signature
+    - MECH-457  # the bare actor substrate whose memoryless greedy read produces the cycle
+    - ARC-086   # two-axis failure taxonomy; this is one new row on the representational axis
+  location: docs/architecture/psychiatric_failure_modes.md#mech-535
+  notes: >
+    Registered 2026-09-06 from thought-intake evidence/planning/thought_intake_2026-09-06_direction_blind_reactive_ambitendency.md
+    (user thought during a V3-EXQ-978 fishtank read: "I would wonder if the ambitendency seen has
+    anything to do with the catatonic ambitendency"). EXEMPLAR (observational, NOT the scored DV):
+    V3-EXQ-978 episode-log companion, seed 42, 12 frozen-policy rollouts (6 field_loss_off + 6
+    field_loss_on). 10/12 end in a two-cell limit cycle whose resource_field_max alternates
+    high/low across the pair (so it is approach/withdraw relative to the goal, not undirected
+    dithering), each killed at step 11-23 by the causal-footprint contamination rule in a
+    hazard-free env; 2/12 are a boundary-press fixed point, 198/200 stationary, one on the same
+    corner cell as the V3-EXQ-471 catatonic lock. MECHANISM: the eval reader (x737
+    LatentPPOEvalPolicy) is a greedy argmax head on z_world alone, memoryless, re-deciding every
+    step; z_world decodes the resource field's MAGNITUDE (held-out r2 ~0.71, scalar SD-018 head
+    trained) but the DIRECTIONAL head's argmax is constant at one cell on every step, so the
+    policy is conditioned on how-close and not which-way; on an adjacent cell pair a
+    magnitude-conditioned reflex is back-and-forth. Ambitendency = intact actor + direction-blind
+    state + no persistence. DISTINCT FROM MECH-202B: no commitment gate exists in this loop to be
+    frozen. DISTINCT FROM SD-036 subtype II / MECH-279: no harm stream, no mode manager, no freeze
+    gate in the loop (D3_hazard_free rung, W3_survival_zeroed). SAME SYNDROME STRUCTURE as both:
+    stupor and ambitendency from one deficit under different initial conditions (fixed point vs
+    2-cycle of one deterministic map), which is how catatonic signs co-vary clinically. Clinical
+    reading (analogy, NOT evidence, per feedback_lit_exp_decoupled): the sign is ambitendency in
+    the Kahlbaum / Bush-Francis sense; a representational (goal-in-valence-not-direction) route
+    has NOT yet been checked against the catatonia mechanism literature (Northoff top-down
+    OFC/mPFC-motor model; GABA-A / NMDA-R routes) -- lit-pull owed before hardening. RELATED, NOT
+    OWNED HERE: GFLAG-0131 (2026-09-04) records the eval-protocol confound this phenotype creates
+    in 978's competence DV (deterministic argmax cycle + contamination truncation; reader scores
+    below random_walk). Falsifier lives in MECH-536. epistemic_category standard and
+    implementation_phase v3 because the phenomenon is already observed on existing V3 substrate
+    (mirrors SD-036 / MECH-279, the sibling V3-fishtank-grounded catatonia entries). DO NOT queue
+    an experiment from this entry; routing is a /governance decision.
+
+- id: MECH-536
+  title: "Basal-ganglia-like action persistence (a post-commit latch / commitment hysteresis) is PROTECTIVE against representational degradation rather than NECESSARY for competence: with an adequate directional representation a memoryless greedy actor forages competently with no latch at all (V3-EXQ-978 local_view_greedy anchor, 45.75 res/ep), whereas with a direction-blind representation (MECH-535) a latch abolishes the ambitendency limit cycle but yields perseveration (straight runs into the boundary) with no rise in competence. Predicted dissociating signature: adding k>=2-step action persistence to the direction-blind actor removes the two-cell cycle AND leaves resources/episode flat; a competence rise under the latch would instead indicate a gating deficit."
+  claim_type: mechanism_hypothesis
+  subject: selection.commitment_persistence_robustness_contract
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/standard
+    as_of: 2026-09-06
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  registered_utc: 2026-09-06
+  depends_on:
+    - MECH-535  # the direction-blind ambitendency phenotype this prediction dissociates
+    - ARC-107   # BG selector constitution; root C post-commit latch is the persistence mechanism named
+    - MECH-047  # commitment with hysteresis and switching costs (mode manager)
+    - MECH-266  # asymmetric enter/exit hysteresis (Schmitt-trigger form of persistence)
+    - MECH-457  # actor-critic substrate on which the eval-time latch would sit
+  location: docs/architecture/psychiatric_failure_modes.md#mech-536
+  notes: >
+    Registered 2026-09-06 from the same thought-intake as MECH-535, answering its second half ("something
+    malfunctioning which may include contracts with basal ganglia systems"). The 978 reader has NO
+    basal-ganglia contract to malfunction: it is what an actor looks like WITHOUT one. Two facts
+    from the same run fix the functional claim. (1) local_view_greedy, a memoryless greedy policy
+    on the 5x5 resource field, forages 45.75 res/ep with no persistence at all, so a latch is not
+    necessary given a good representation. (2) Any persistence of >=2 steps on the chosen action
+    escapes a two-cycle trivially, so a latch would abolish MECH-535's ambitendency; but with a
+    direction-blind latent the latched agent can only run straight lines to the boundary, which is
+    exactly the ON arm's pre-cycle transients in the 978 log. Hence: persistence buys robustness to
+    a degraded representation; it does not supply direction. THE DISCRIMINATOR: eval-time
+    action-persistence wrapper (persist the argmax action k>=2 steps, or MECH-266-style switch
+    cost) on the SAME frozen OFF-arm policy, scored on cycle incidence AND resources/episode.
+    Cycle gone + competence flat -> representational deficit (this claim + MECH-535 supported).
+    Cycle gone + competence rises -> gating deficit (this claim weakened; routes to ARC-107 root
+    C). Cheap and V3-ready; it is a different axis from the 978 autopsy's oracle-adapter
+    discriminator (readout adequacy, H-B/H-C) and from GFLAG-0131's stochastic-eval ask (noise as
+    de facto commitment perturbation -- the non-biological version of the same fix; the project's
+    brain-like-construction principle prefers the latch). DISTINCT FROM MECH-047 / MECH-266 / ARC-107:
+    those register persistence MECHANISMS; this registers what persistence is FOR relative to
+    representation quality, and a prediction that dissociates the two deficit classes. Clinical
+    echo (analogy only): lorazepam restores movement in catatonia without treating the underlying
+    illness. epistemic_category standard, implementation_phase v3, same grounds as MECH-535. DO
+    NOT queue the discriminator from this entry; /governance decides whether it runs as a 978
+    letter, folds into chip-20260903-exq978-oracle-adapter-discriminator's pre-registration, or
+    waits.

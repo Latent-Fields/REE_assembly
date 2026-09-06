@@ -316,6 +316,8 @@ describe the developmental etiology (insufficient calibration during childhood).
 | MECH-202 | commitment_gate_developmental_failure | Impulsivity, OCD, catatonia (commit-gate paralysis subtype) |
 | SD-036 | gabaergic.cross_stream_decay_regulator | Catatonia (harm-stream lock-in subtype) -- see EXQ-471 exemplar below |
 | MECH-279 | pag.gabaergic_freeze_gate | Freeze response duration; failure -> sustained immobility |
+| MECH-535 | psychiatric.catatonia_direction_blind_reactive_ambitendency | Catatonia (direction-blind reactive ambitendency subtype) -- see EXQ-978 exemplar below |
+| MECH-536 | selection.commitment_persistence_robustness_contract | Persistence protective vs representational degradation; latch -> perseveration without competence |
 
 **Updated claims:**
 - INV-034: added clinical inverse note (goal maintenance failure = depression, EXQ-237a)
@@ -726,6 +728,94 @@ and disturbance produces stuck-in-freeze.
 **Updated claims:**
 - MECH-202: noted as a *distinct* catatonia subtype (commit-gate paralysis) from the
   harm-stream lock subtype documented here. Both are real; treatment differs.
+
+---
+
+<a id="mech-535"></a>
+## Catatonia, Subtype III: Direction-Blind Reactive Ambitendency (MECH-535, MECH-536)
+
+> **Registered 2026-09-06 from the V3-EXQ-978 fishtank exemplar** (thought-intake
+> `evidence/planning/thought_intake_2026-09-06_direction_blind_reactive_ambitendency.md`).
+> A third generative route to the catatonic phenotype. Shares the surface phenomenology of
+> Subtypes I and II (ambitendency, stupor) but requires neither a commitment gate nor a harm
+> stream: the deficit is in what the state representation carries.
+
+### The exemplar
+
+V3-EXQ-978 (SD-018 directional-field validation, FAIL) wrote a fishtank episode log: seed 42,
+six `field_loss_off` episodes followed by six `field_loss_on` episodes, each an independent
+rollout of a FROZEN trained policy on a fresh env. Nothing learns between episodes; the
+behaviour types below are attractors of one deterministic map, selected by start cell.
+
+- **10 of 12 episodes end in a two-cell limit cycle.** The resource field at the agent's cell
+  alternates high / low across the pair, so each cycle is one step toward food and one step
+  away, repeated. This is ambitendency in the strict clinical sense (a goal movement started,
+  retracted, restarted), not undirected dithering.
+- **The cycle is lethal by its own repetition.** The env has `num_hazards = 0`. The
+  causal-footprint contamination rule adds 0.5 per visit, retypes a cell contaminated at 2.0,
+  and costs 0.4 health per contaminated step; two cells visited alternately cross the threshold
+  at about step 8 and the agent is dead by step 11-23. Every cycling episode ends `health_depleted`.
+- **2 of 12 episodes are a boundary-press fixed point.** The same action every step against the
+  wall, 198 of 200 steps stationary, no contamination (a blocked move never departs the cell), so
+  the agent survives 200 steps eating nothing. One of them sits on the same corner cell as the
+  EXQ-471 Subtype II lock.
+- **The ON arm runs longer straight lines before locking in** (up to 7 cells vs 2-3), and the one
+  consumption inside a cycling episode is incidental to such a run: the directional head's
+  predicted argmax is constant at cell 6 on every ON step, so nothing is steering.
+
+### Mechanism
+
+The eval reader is a greedy argmax head on `z_world` alone (x737 `LatentPPOEvalPolicy`):
+memoryless, re-deciding every step, with no gate, no mode manager, and no harm stream in the
+loop. `z_world` decodes the resource field's **magnitude** (held-out r2 ~0.71; the scalar SD-018
+proximity head trained) but not its **direction** (the 25-dim head's argmax is constant). A
+reactive policy conditioned on magnitude learns "at low proximity do X, at high proximity do Y";
+on an adjacent pair of cells that is back-and-forth.
+
+> Ambitendency = intact actor + direction-blind state + no persistence.
+
+| | Subtype I (MECH-202B) | Subtype II (SD-036 / MECH-279) | Subtype III (MECH-535) |
+|---|---|---|---|
+| Proximal deficit | Commit gate frozen at max threshold | Harm latent self-sustaining, mode locked `avoid` | State carries goal proximity, not goal direction |
+| Where | Commitment gate | Upstream of an intact gate | Representation feeding a gateless reactive actor |
+| Needs a gate? | Yes (it is the gate) | Yes (gate commits, to the wrong thing) | No |
+| Needs a harm event? | No | Yes (single hazard contact) | No (hazard-free rung) |
+| Signs produced | Paralysis | Stupor, autonomic collapse | Ambitendency AND stupor, by initial condition |
+| Exemplar | -- | EXQ-471 seed 0 ep 0 | EXQ-978 seed 42, 12 episodes |
+
+<a id="mech-536"></a>
+### The basal-ganglia contract, and the prediction that dissociates the routes (MECH-536)
+
+Any persistence of two or more steps on the chosen action escapes a two-cycle, so a BG-like
+post-commit latch (ARC-107 root C; MECH-047 / MECH-266 hysteresis) would abolish Subtype III
+ambitendency immediately. It would **not** restore foraging: with a direction-blind latent a
+latched agent can only run straight lines into the boundary, which is what the ON arm's
+pre-cycle transients already look like.
+
+Two facts from the same run fix what persistence is for. `local_view_greedy`, a memoryless
+greedy policy on the 5x5 field, forages 45.75 resources per episode with no latch at all, so
+commitment is not necessary given a good representation. What it buys is robustness to a
+degraded one. The 978 reader has no BG contract to malfunction; it shows what an actor looks
+like without one.
+
+**Discriminator (not queued; /governance routes):** an eval-time action-persistence wrapper on the
+same frozen OFF-arm policy, scored on cycle incidence and resources per episode.
+
+- Cycle gone, competence flat -> representational deficit (Subtype III; MECH-535 and MECH-536 supported).
+- Cycle gone, competence rises -> gating deficit (MECH-536 weakened; routes to ARC-107 root C).
+
+This is a different axis from the 978 autopsy's oracle-adapter discriminator (readout adequacy)
+and from GFLAG-0131's stochastic-eval ask (noise as a de facto commitment perturbation, the
+non-biological form of the same fix).
+
+### Clinical reading (analogy, not evidence)
+
+The sign matches catatonic ambitendency; the co-occurrence of stupor and ambitendency from one
+deficit under different initial conditions matches how catatonic signs co-vary within a patient;
+and the latch prediction echoes lorazepam restoring movement without treating the underlying
+illness. Whether a goal-in-valence-but-not-direction route has been proposed in the catatonia
+mechanism literature (Northoff's top-down OFC/mPFC-motor model; GABA-A and NMDA-R routes) has
+**not** been checked. Literature pull owed before either claim hardens.
 
 ---
 
