@@ -1,0 +1,833 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1006_sd_e1_var_bar_portfolio_fidelity_anchor",
+  "run_id": "v3_exq_1006_sd_e1_var_bar_portfolio_fidelity_anchor_20260906T195135Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-06T19:51:35Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "anchor_restores_centroid_lifts_var__realvar_below_bar__rsd_goal_orthogonal",
+    "preconditions": [
+      {
+        "name": "ARM_OFF::encoder_trained",
+        "precondition": "encoder_trained",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, every seed (min over seeds of max_abs_delta).",
+        "control": "SD-070 P0 warmup on a random policy",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.23063954710960388,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">"
+      },
+      {
+        "name": "ARM_OFF::real_zworld_nondegenerate_h1",
+        "precondition": "real_zworld_nondegenerate_h1",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "Phase 4b CR_real(h=1) finite and > CR_REAL_FLOOR with >= 10 surviving real samples, every seed (min n over seeds; met also requires the CR floor).",
+        "control": "40 real from-reset trajectories per horizon",
+        "direction": "lower",
+        "applies": true,
+        "measured": 40.0,
+        "threshold": 9.999999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_OFF::branched_same_start_nondegenerate_h1",
+        "precondition": "branched_same_start_nondegenerate_h1",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": ">= 10 candidate sequences survived the Phase 4d branch to h=1 with a finite same-start CR, every seed (min over seeds).",
+        "control": "env deepcopy + latent-state restore per candidate sequence",
+        "direction": "lower",
+        "applies": true,
+        "measured": 40.0,
+        "threshold": 9.999999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_OFF::no_missing_action_calls",
+        "precondition": "no_missing_action_calls",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "E1DeepPredictor._action_cond_missing_calls is 0 on every cell (max over seeds).",
+        "control": "every actions= call supplied a real one-hot",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true,
+        "comparator": "<="
+      },
+      {
+        "name": "ARM_OFF::direct_action_supply_fraction",
+        "precondition": "direct_action_supply_fraction",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "Fraction of E1 calls that received a genuine one-hot actions= argument, min over seeds (>= 0.999).",
+        "control": "one-hot supply audited at every call site",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.998999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_OFF::cr_ratio_h1_finite",
+        "precondition": "cr_ratio_h1_finite",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) finite and positive on every seed of this arm (min over seeds).",
+        "control": "the exact statistic bar 1 reads",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0005407908486922785,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">"
+      },
+      {
+        "name": "ARM_OFF::e1_grad_steps_matched",
+        "precondition": "e1_grad_steps_matched",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "This arm took the same number of E1 optimiser steps as every other arm at each seed (max over seeds of the cross-arm gap). TRUE BY CONSTRUCTION under the uniform trailing-window trigger; measured, not assumed.",
+        "control": "identical random policy, env, seeds and trailing-window schedule in every arm",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true,
+        "comparator": "<=",
+        "per_seed": {
+          "seed42": 0,
+          "seed123": 0,
+          "seed7": 0,
+          "seed2024": 0,
+          "seed17": 0,
+          "seed31": 0
+        }
+      },
+      {
+        "name": "ARM_RSD::encoder_trained",
+        "precondition": "encoder_trained",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, every seed (min over seeds of max_abs_delta).",
+        "control": "SD-070 P0 warmup on a random policy",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.23063954710960388,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">"
+      },
+      {
+        "name": "ARM_RSD::real_zworld_nondegenerate_h1",
+        "precondition": "real_zworld_nondegenerate_h1",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": "Phase 4b CR_real(h=1) finite and > CR_REAL_FLOOR with >= 10 surviving real samples, every seed (min n over seeds; met also requires the CR floor).",
+        "control": "40 real from-reset trajectories per horizon",
+        "direction": "lower",
+        "applies": true,
+        "measured": 40.0,
+        "threshold": 9.999999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD::branched_same_start_nondegenerate_h1",
+        "precondition": "branched_same_start_nondegenerate_h1",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": ">= 10 candidate sequences survived the Phase 4d branch to h=1 with a finite same-start CR, every seed (min over seeds).",
+        "control": "env deepcopy + latent-state restore per candidate sequence",
+        "direction": "lower",
+        "applies": true,
+        "measured": 40.0,
+        "threshold": 9.999999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD::no_missing_action_calls",
+        "precondition": "no_missing_action_calls",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": "E1DeepPredictor._action_cond_missing_calls is 0 on every cell (max over seeds).",
+        "control": "every actions= call supplied a real one-hot",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true,
+        "comparator": "<="
+      },
+      {
+        "name": "ARM_RSD::direct_action_supply_fraction",
+        "precondition": "direct_action_supply_fraction",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": "Fraction of E1 calls that received a genuine one-hot actions= argument, min over seeds (>= 0.999).",
+        "control": "one-hot supply audited at every call site",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.998999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD::cr_ratio_h1_finite",
+        "precondition": "cr_ratio_h1_finite",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) finite and positive on every seed of this arm (min over seeds).",
+        "control": "the exact statistic bar 1 reads",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8053821202056126,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">"
+      },
+      {
+        "name": "ARM_RSD::e1_grad_steps_matched",
+        "precondition": "e1_grad_steps_matched",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": "This arm took the same number of E1 optimiser steps as every other arm at each seed (max over seeds of the cross-arm gap). TRUE BY CONSTRUCTION under the uniform trailing-window trigger; measured, not assumed.",
+        "control": "identical random policy, env, seeds and trailing-window schedule in every arm",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true,
+        "comparator": "<=",
+        "per_seed": {
+          "seed42": 0,
+          "seed123": 0,
+          "seed7": 0,
+          "seed2024": 0,
+          "seed17": 0,
+          "seed31": 0
+        }
+      },
+      {
+        "name": "ARM_RSD::rsd_objective_engaged",
+        "precondition": "rsd_objective_engaged",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": "rollout_sequence_divergence_loss training calls were non-degenerate (n_distinct_full_sequences >= 2) on a nonzero fraction of ticks, every seed (min over seeds).",
+        "control": "K sampled real windows per tick, distinct-full-sequence floor replicated pre-call",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">",
+        "per_seed": {
+          "seed42": 1.0,
+          "seed123": 1.0,
+          "seed7": 1.0,
+          "seed2024": 1.0,
+          "seed17": 1.0,
+          "seed31": 1.0
+        }
+      },
+      {
+        "name": "ARM_RSD::rsd_action_sensitive",
+        "precondition": "rsd_action_sensitive",
+        "arm": "ARM_RSD",
+        "kind": "readiness",
+        "description": "ARM_RSD's InfoNCE term actually DEPENDS on the sampled action sequences: mean loss under a row-permuted action assignment / mean loss under the real assignment >= 1.05, every seed (min over seeds). V3-EXQ-1000 red-team #1/#2 identity-shortcut control. GATES ARM_RSD ONLY: on an anchor arm a lost action-sensitivity is a RESULT of the anchor (divergence re-crushed; read via cr_bar_retained), not a readiness failure, and gating it there would let the manipulation move its own gate (red-team #4, 2026-09-06). Anchor arms' ratios are recorded in interpretation.recorded_preconditions.",
+        "control": "row-permuted action-sequence assignment, isolated RNG stream, no_grad, every RSD tick",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.31576691570651,
+        "threshold": 1.049999999,
+        "met": true,
+        "comparator": ">=",
+        "per_seed": {
+          "seed42": 1.3816357054934605,
+          "seed123": 1.31576691570651,
+          "seed7": 1.417150885068173,
+          "seed2024": 1.5194905235039573,
+          "seed17": 1.4304620367736676,
+          "seed31": 1.3315027040916674
+        }
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::encoder_trained",
+        "precondition": "encoder_trained",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, every seed (min over seeds of max_abs_delta).",
+        "control": "SD-070 P0 warmup on a random policy",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.23063954710960388,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">"
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::real_zworld_nondegenerate_h1",
+        "precondition": "real_zworld_nondegenerate_h1",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": "Phase 4b CR_real(h=1) finite and > CR_REAL_FLOOR with >= 10 surviving real samples, every seed (min n over seeds; met also requires the CR floor).",
+        "control": "40 real from-reset trajectories per horizon",
+        "direction": "lower",
+        "applies": true,
+        "measured": 40.0,
+        "threshold": 9.999999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::branched_same_start_nondegenerate_h1",
+        "precondition": "branched_same_start_nondegenerate_h1",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": ">= 10 candidate sequences survived the Phase 4d branch to h=1 with a finite same-start CR, every seed (min over seeds).",
+        "control": "env deepcopy + latent-state restore per candidate sequence",
+        "direction": "lower",
+        "applies": true,
+        "measured": 40.0,
+        "threshold": 9.999999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::no_missing_action_calls",
+        "precondition": "no_missing_action_calls",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": "E1DeepPredictor._action_cond_missing_calls is 0 on every cell (max over seeds).",
+        "control": "every actions= call supplied a real one-hot",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true,
+        "comparator": "<="
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::direct_action_supply_fraction",
+        "precondition": "direct_action_supply_fraction",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": "Fraction of E1 calls that received a genuine one-hot actions= argument, min over seeds (>= 0.999).",
+        "control": "one-hot supply audited at every call site",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.998999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::cr_ratio_h1_finite",
+        "precondition": "cr_ratio_h1_finite",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) finite and positive on every seed of this arm (min over seeds).",
+        "control": "the exact statistic bar 1 reads",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.12285759599227948,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">"
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::e1_grad_steps_matched",
+        "precondition": "e1_grad_steps_matched",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": "This arm took the same number of E1 optimiser steps as every other arm at each seed (max over seeds of the cross-arm gap). TRUE BY CONSTRUCTION under the uniform trailing-window trigger; measured, not assumed.",
+        "control": "identical random policy, env, seeds and trailing-window schedule in every arm",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true,
+        "comparator": "<=",
+        "per_seed": {
+          "seed42": 0,
+          "seed123": 0,
+          "seed7": 0,
+          "seed2024": 0,
+          "seed17": 0,
+          "seed31": 0
+        }
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::rsd_objective_engaged",
+        "precondition": "rsd_objective_engaged",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": "rollout_sequence_divergence_loss training calls were non-degenerate (n_distinct_full_sequences >= 2) on a nonzero fraction of ticks, every seed (min over seeds).",
+        "control": "K sampled real windows per tick, distinct-full-sequence floor replicated pre-call",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">",
+        "per_seed": {
+          "seed42": 1.0,
+          "seed123": 1.0,
+          "seed7": 1.0,
+          "seed2024": 1.0,
+          "seed17": 1.0,
+          "seed31": 1.0
+        }
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_EP::anchor_engaged",
+        "precondition": "anchor_engaged",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "kind": "readiness",
+        "description": "The anchor term's realised gradient authority (w_t * ||grad anchor|| / ||grad InfoNCE||, mean over the arm's anchored training ticks) >= 0.5 on every seed (min over seeds), with at least one anchored tick. By construction ~ANCHOR_GRAD_AUTHORITY unless the clamp bound; measured, not assumed (red-team #1, 2026-09-06: at a fixed unit weight the anchor was a few percent of the update).",
+        "control": "per-tick autograd.grad norms of both terms on E1's parameters; gradient-matched dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.499999999,
+        "met": true,
+        "comparator": ">=",
+        "per_seed": {
+          "seed42": 1.0,
+          "seed123": 1.0,
+          "seed7": 1.0,
+          "seed2024": 1.0,
+          "seed17": 1.0,
+          "seed31": 1.0
+        },
+        "anchor_w_mean_per_seed": {
+          "seed42": 261.7778770196939,
+          "seed123": 235.63059877170764,
+          "seed7": 227.4040130676419,
+          "seed2024": 246.80347466696765,
+          "seed17": 264.03366219493546,
+          "seed31": 217.97383258283878
+        },
+        "raw_grad_ratio_per_seed": {
+          "seed42": 261.7778770196939,
+          "seed123": 235.63059877170764,
+          "seed7": 227.4040130676419,
+          "seed2024": 246.80347466696765,
+          "seed17": 264.03366219493546,
+          "seed31": 217.97383258283878
+        }
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::encoder_trained",
+        "precondition": "encoder_trained",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, every seed (min over seeds of max_abs_delta).",
+        "control": "SD-070 P0 warmup on a random policy",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.23063954710960388,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">"
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::real_zworld_nondegenerate_h1",
+        "precondition": "real_zworld_nondegenerate_h1",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": "Phase 4b CR_real(h=1) finite and > CR_REAL_FLOOR with >= 10 surviving real samples, every seed (min n over seeds; met also requires the CR floor).",
+        "control": "40 real from-reset trajectories per horizon",
+        "direction": "lower",
+        "applies": true,
+        "measured": 40.0,
+        "threshold": 9.999999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::branched_same_start_nondegenerate_h1",
+        "precondition": "branched_same_start_nondegenerate_h1",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": ">= 10 candidate sequences survived the Phase 4d branch to h=1 with a finite same-start CR, every seed (min over seeds).",
+        "control": "env deepcopy + latent-state restore per candidate sequence",
+        "direction": "lower",
+        "applies": true,
+        "measured": 40.0,
+        "threshold": 9.999999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::no_missing_action_calls",
+        "precondition": "no_missing_action_calls",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": "E1DeepPredictor._action_cond_missing_calls is 0 on every cell (max over seeds).",
+        "control": "every actions= call supplied a real one-hot",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true,
+        "comparator": "<="
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::direct_action_supply_fraction",
+        "precondition": "direct_action_supply_fraction",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": "Fraction of E1 calls that received a genuine one-hot actions= argument, min over seeds (>= 0.999).",
+        "control": "one-hot supply audited at every call site",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.998999999,
+        "met": true,
+        "comparator": ">="
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::cr_ratio_h1_finite",
+        "precondition": "cr_ratio_h1_finite",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": "cr_ratio(h=1) finite and positive on every seed of this arm (min over seeds).",
+        "control": "the exact statistic bar 1 reads",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.12220517948224396,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">"
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::e1_grad_steps_matched",
+        "precondition": "e1_grad_steps_matched",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": "This arm took the same number of E1 optimiser steps as every other arm at each seed (max over seeds of the cross-arm gap). TRUE BY CONSTRUCTION under the uniform trailing-window trigger; measured, not assumed.",
+        "control": "identical random policy, env, seeds and trailing-window schedule in every arm",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true,
+        "comparator": "<=",
+        "per_seed": {
+          "seed42": 0,
+          "seed123": 0,
+          "seed7": 0,
+          "seed2024": 0,
+          "seed17": 0,
+          "seed31": 0
+        }
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::rsd_objective_engaged",
+        "precondition": "rsd_objective_engaged",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": "rollout_sequence_divergence_loss training calls were non-degenerate (n_distinct_full_sequences >= 2) on a nonzero fraction of ticks, every seed (min over seeds).",
+        "control": "K sampled real windows per tick, distinct-full-sequence floor replicated pre-call",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.0,
+        "met": true,
+        "comparator": ">",
+        "per_seed": {
+          "seed42": 1.0,
+          "seed123": 1.0,
+          "seed7": 1.0,
+          "seed2024": 1.0,
+          "seed17": 1.0,
+          "seed31": 1.0
+        }
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::anchor_engaged",
+        "precondition": "anchor_engaged",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "kind": "readiness",
+        "description": "The anchor term's realised gradient authority (w_t * ||grad anchor|| / ||grad InfoNCE||, mean over the arm's anchored training ticks) >= 0.5 on every seed (min over seeds), with at least one anchored tick. By construction ~ANCHOR_GRAD_AUTHORITY unless the clamp bound; measured, not assumed (red-team #1, 2026-09-06: at a fixed unit weight the anchor was a few percent of the update).",
+        "control": "per-tick autograd.grad norms of both terms on E1's parameters; gradient-matched dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.499999999,
+        "met": true,
+        "comparator": ">=",
+        "per_seed": {
+          "seed42": 1.0,
+          "seed123": 1.0,
+          "seed7": 1.0,
+          "seed2024": 1.0,
+          "seed17": 1.0,
+          "seed31": 1.0
+        },
+        "anchor_w_mean_per_seed": {
+          "seed42": 620.1231709080084,
+          "seed123": 524.7330746729236,
+          "seed7": 459.53380105733953,
+          "seed2024": 548.7044303010836,
+          "seed17": 641.2361888315736,
+          "seed31": 512.4303055293165
+        },
+        "raw_grad_ratio_per_seed": {
+          "seed42": 620.1231709080084,
+          "seed123": 524.7330746729236,
+          "seed7": 459.53380105733953,
+          "seed2024": 548.7044303010836,
+          "seed17": 641.2361888315736,
+          "seed31": 512.4303055293165
+        }
+      }
+    ],
+    "recorded_preconditions": [
+      {
+        "name": "ARM_RSD_ANCHOR_EP::rsd_action_sensitive_recorded",
+        "kind": "readiness",
+        "arm": "ARM_RSD_ANCHOR_EP",
+        "description": "action-sensitivity ratio of this ANCHOR arm's InfoNCE term (recorded, not gating: a lost sensitivity is a result of the anchor, read via cr_bar_retained)",
+        "measured": 1.2322369496648433,
+        "threshold": 1.05,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": true,
+        "gating": false,
+        "per_seed": {
+          "seed42": 1.2433292792875315,
+          "seed123": 1.2322369496648433,
+          "seed7": 1.3067249613161476,
+          "seed2024": 1.3723389559105252,
+          "seed17": 1.2957787462358812,
+          "seed31": 1.2481430094353463
+        }
+      },
+      {
+        "name": "ARM_RSD_ANCHOR_RC::rsd_action_sensitive_recorded",
+        "kind": "readiness",
+        "arm": "ARM_RSD_ANCHOR_RC",
+        "description": "action-sensitivity ratio of this ANCHOR arm's InfoNCE term (recorded, not gating: a lost sensitivity is a result of the anchor, read via cr_bar_retained)",
+        "measured": 1.3115393514213662,
+        "threshold": 1.05,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": true,
+        "gating": false,
+        "per_seed": {
+          "seed42": 1.3598942265821061,
+          "seed123": 1.3115393514213662,
+          "seed7": 1.3837660658383693,
+          "seed2024": 1.4678811141076968,
+          "seed17": 1.4047470836736538,
+          "seed31": 1.330945139943217
+        }
+      },
+      {
+        "control": "SAME-START real endpoint set (Phase 4d: the 40 candidate sequences executed for real from the warmup snapshot) goal_proximity variance at h=1, per seed, read off arm ARM_OFF (arm-invariant: identical encoder per seed); achievable = the majority-order statistic (value reached by >= 4/6 seeds). The from-reset Phase 4b variance is recorded beside it (an upper bound: it adds start dispersion).",
+        "gating": false,
+        "recorded_only": true,
+        "why_not_adjudicating": "an UNMET headroom here IS the registered H-readout-saturation finding (the 0.002 bar exceeds what real endpoints produce at real spread) -- routed by the confirmed V3-EXQ-1000 autopsy to 're-register the bar', not to substrate_not_ready_requeue; the run still resolves every relative reading. Lives in interpretation.recorded_preconditions so the indexer surfaces it without vacating the run (red-team #2, 2026-09-06).",
+        "per_seed": {
+          "seed42": 0.0017361000645905733,
+          "seed123": 0.0022618842776864767,
+          "seed7": 0.023915840312838554,
+          "seed2024": 3.306982762296684e-05,
+          "seed17": 0.00020028157450724393,
+          "seed31": 0.001071486622095108
+        },
+        "per_seed_from_reset": {
+          "seed42": 0.00946614146232605,
+          "seed123": 0.012140415608882904,
+          "seed7": 0.019625471904873848,
+          "seed2024": 0.011369839310646057,
+          "seed17": 0.004680063109844923,
+          "seed31": 0.005611858796328306
+        },
+        "majority_order_from_reset": 0.00946614146232605,
+        "reference_arm": "ARM_OFF",
+        "name": "dv_headroom_e1coe_score_var_h1",
+        "kind": "dv_headroom",
+        "measured": 0.001071486622095108,
+        "threshold": 0.002,
+        "direction": "lower",
+        "dv_name": "e1coe_score_var_h1",
+        "achievable_statistic": "explicit",
+        "criterion_threshold": 0.002,
+        "headroom_margin": 1.0,
+        "n_control_values": 0,
+        "headroom_ratio": 0.535743311047554,
+        "met": false,
+        "comparator": ">="
+      }
+    ],
+    "preconditions_scope_note": "interpretation.preconditions carries ONLY the per-arm readiness gates (green arms' entries on a partial run, per precondition_gate). interpretation.recorded_preconditions carries (a) the dv_headroom entry on e1coe_score_var(h=1) against the SAME-START real-endpoint goal_proximity variance -- an unmet value there IS the registered H-readout-saturation finding (instrument target), which must surface to governance without vacating the run's relative readings; and (b) the anchor arms' action-sensitivity ratios, which are results of the anchor (read via cr_bar_retained), not readiness failures.",
+    "criteria": [
+      {
+        "name": "C0_portfolio_non_degenerate",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 4,
+        "threshold": 1,
+        "statement": "At least one arm passed its own regime-conditioned gate (any-arm-green, precondition_gate semantics). This is the ONLY PASS/FAIL criterion; the rest classify."
+      },
+      {
+        "name": "C1_fidelity_anchor_restores_centroid_and_lifts_var",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 6,
+        "threshold": 4,
+        "statement": "Some green anchor arm has centroid_norm/real in [0.750,1.333] AND e1coe_score_var(h=1) >= 2.0x ARM_RSD's, each on >= 4/6 seeds (or clears both bars)."
+      },
+      {
+        "name": "C2_fidelity_anchor_clears_both_bars_h1",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 1,
+        "threshold": 4,
+        "statement": "Some green anchor arm has cr_ratio(h=1) >= 0.1 AND e1coe_score_var(h=1) >= 0.002 on >= 4 seeds."
+      },
+      {
+        "name": "C3_real_endpoint_var_reaches_bar_h1",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 2,
+        "threshold": 4,
+        "statement": "SAME-START real-endpoint (Phase 4d branched) goal_proximity variance at h=1 >= 0.002 on >= 4 seeds (H-readout-saturation's declared null; the registry named the Phase 4b set, which is recorded beside it and is an upper bound)."
+      },
+      {
+        "name": "C4_rsd_goal_axis_fraction_within_2x_real",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 0,
+        "threshold": 4,
+        "statement": "ARM_RSD's goal-axis fraction of spread variance within 2.0x of the real endpoints' on >= 4 seeds (H-goal-orthogonal-dispersion's declared null)."
+      },
+      {
+        "name": "C5_both_bars_any_cell_any_h",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 28,
+        "threshold": 1,
+        "statement": "Any (arm, seed, h) cell reaches both bars. RECORDED, not routing."
+      }
+    ],
+    "criteria_aggregation": "PASS iff C0 (any arm green). C1-C5 CLASSIFY the outcome and are load_bearing:false by design (V3-EXQ-1000 learning #2: a fail-able load-bearing criterion under an unconditional PASS is a guaranteed vacuous_pass). The label carries the outcome.",
+    "criteria_non_degenerate": {
+      "C1_fidelity_anchor_restores_centroid_and_lifts_var": true,
+      "C2_fidelity_anchor_clears_both_bars_h1": true,
+      "C4_rsd_goal_axis_fraction_within_2x_real": true,
+      "C3_real_endpoint_var_reaches_bar_h1": true,
+      "C0_portfolio_non_degenerate": true,
+      "C5_both_bars_any_cell_any_h": true
+    },
+    "leg_verdicts": {
+      "A": {
+        "hypothesis": "H-fidelity-anchor",
+        "tag": "anchor_restores_centroid_lifts_var",
+        "state": "supported"
+      },
+      "B": {
+        "hypothesis": "H-readout-saturation",
+        "tag": "realvar_below_bar",
+        "state": "supported"
+      },
+      "C": {
+        "hypothesis": "H-goal-orthogonal-dispersion",
+        "tag": "rsd_goal_orthogonal",
+        "state": "supported"
+      }
+    },
+    "relative_var_reading": {
+      "ARM_RSD_ANCHOR_EP": {
+        "var_reaches_branched_endpoint_var": false,
+        "n_branched": 2,
+        "var_reaches_from_reset_endpoint_var": false,
+        "n_from_reset": 0
+      },
+      "ARM_RSD_ANCHOR_RC": {
+        "var_reaches_branched_endpoint_var": false,
+        "n_branched": 1,
+        "var_reaches_from_reset_endpoint_var": false,
+        "n_from_reset": 0
+      }
+    },
+    "combination_rule": "label = '<legA>__<legB>__<legC>' read at h=1 with majority = n_seeds//2+1. Leg A per green anchor arm: centroid_restored (centroid_norm/real in [0.750,1.333]) and var_lifted (>= 2.0x ARM_RSD) -> supported; either declared-null disjunct -> that reading; H-fidelity-anchor is ELIMINATED only if no green anchor arm supports it. Leg B: real-endpoint goal_proximity variance >= 0.002 on majority -> eliminated (realvar_reaches_bar); < on majority -> supported (realvar_below_bar: instrument target). Leg C: ARM_RSD goal-axis fraction / real within [0.50,2.00] on majority -> eliminated; < on majority -> supported (rsd_goal_orthogonal). substrate_not_ready_requeue only when no arm is green; legs whose arms are red read *_undetermined_arm_red.",
+    "dv_symmetry_note": "Every arm's DVs are functions of E1's learned weights through the rollout endpoints: e1coe_score_var (variance of a bounded nonlinear readout), centroid_norm ratio, spread ratio, goal-axis fraction and fidelity MSE. A changed training objective moves the endpoints non-uniformly (neither a common rescaling nor a permutation of the candidate index), so the manipulation reaches every DV. cr_ratio is scale-free and blind to a shrunk centroid (1000 learning #4) -- which is exactly why the centroid-norm band and the centroid-corrected cr_ratio are read beside it. Leg B's DV is arm-independent by design (a measurement of the real endpoints), so no manipulation-invariance question arises.",
+    "e1_alone_readout_note": "*_e1alone fields are the V3-EXQ-980/1000 sibling readout at every checkpoint incl. h=30; RECORDED for the MECH-135 consumer question, never gating.",
+    "branched_same_start_note": "Phase 4d fields (*branched*) are REAL endpoints for the SAME (start, sequence) as the rollouts, obtained by env deepcopy + agent latent-state restore at eval only. They add a same-start real reference beside the lineage's from-reset Phase 4b set; the registered legs read Phase 4b so this run stays comparable with 1000."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1cb09199f00f21a4b7a7f09d6a8fc57961200b5f862d3a7c8d0ca945ee8ba76b",
+  "substrate_commit": {
+    "commit": "3939db768c0b4193be4fd936befc1b297666bac8",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.action_conditioned_transition": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "e1.e1_rollout_sequence_divergence_enabled": true,
+    "e1.e1_rollout_consistency_enabled": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": false
+  }
+}
