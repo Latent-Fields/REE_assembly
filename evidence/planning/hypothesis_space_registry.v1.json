@@ -6408,6 +6408,92 @@
       "growth_restriction": "",
       "registered_by_session": "governance-20260905",
       "registered_from_pending_block": "failure_autopsy_V3-EXQ-822e_2026-09-05.json"
+    },
+    {
+      "qid": "residue_error_persistence_readout",
+      "title": "Does the residue field leave a persistent error record that shapes future action away from a known-costly (cell, action) key? (EXT-002's REE rider, ablated as ARC-013's persistent latent curvature)",
+      "short_title": "residue error-persistence readout",
+      "claims": [
+        "EXT-002",
+        "ARC-013"
+      ],
+      "registered_utc": "2026-09-06T16:53:15Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-983a_2026-09-06.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-residue-shapes-reapproach",
+          "label": "A persistent residue trace shifts future selection away from erred (cell, action) keys",
+          "desc": "With the residue field intact (A0) vs frozen at init (A1), the intact agent re-approaches previously-erred keys less over training than the frozen one -- the passive-avoidance signature. The 983 lineage operationalised this as a drop in P(harm | revisit), which a pinned board fixes at 0 or 1; the leg's proper readout is the revisit RATE of erred keys under held-tick-aware key registration.",
+          "axis": "process",
+          "basis": "Live: the ablation demonstrably reaches executed behaviour in 5/8 seeds (same-seed action-stream divergence 0.12-0.57) and the field is populated (32/32 centres), but neither run could measure re-approach. Both adjudications were non_contributory without discriminating.",
+          "pre_registered_utc": "2026-09-03T15:00:05Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-983a_2026-09-06.json",
+          "adjudicating_runs": [
+            "V3-EXQ-983",
+            "V3-EXQ-983a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-983",
+              "V3-EXQ-983a"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "substrate_not_ready_requeue",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-05T14:14:59Z",
+            "basis": "Twice uninformative, not discriminated: 983's DV realised 3.2x too little range with an ungated seed population (control passed at 51x); 983a's DV had no agent-side freedom on a pinned board (heterogeneity 0.00, achievable range 0.0 vs 0.04), key registration on fresh ticks only hid ~90% of harms, and 6/8 seeds died to single-action latching. Observation bottleneck: an avoidance-rate DV with certified freedom, held-tick-aware keys, and a seed population with a repertoire."
+          }
+        },
+        {
+          "hid": "H-residue-written-not-read",
+          "label": "Residue is written on harm but does not reach E3's selection (no behavioural channel)",
+          "desc": "A populated residue field changes no executed action: the ablation is behaviourally inert because the residue term never moves the argmin winner among the hippocampal candidates.",
+          "axis": "process",
+          "basis": "Partially discriminated, not eliminated: in 3/8 seeds (23, 31, 42) a 32-centre field with a positive candidate-score range changed 0.00-0.03 of executed actions over 1,229-22,000 steps, while in 5/8 it changed 0.12-0.57. The reach is all-or-nothing per seed and its determinant is unrecorded (residue enters E3 at rho_residue 0.5; candidate first-actions can collapse to one class).",
+          "pre_registered_utc": "2026-09-03T15:00:05Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-983a_2026-09-06.json",
+          "adjudicating_runs": [
+            "V3-EXQ-983a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-983a"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "substrate_not_ready_requeue",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-05T14:14:59Z",
+            "basis": "Not eliminated: reach into executed behaviour is present in 5/8 seeds and absent in 3/8 on the same substrate; whether the absent cases are latching (one candidate class for every candidate) or a residue-readout failure is unmeasured. The stage-1 latching spike routed by the autopsy is the confirmer."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Can the residue-persistence rider be tested at all on the current actor -- does the E3 policy on the pinned 6x6 bed retain enough action repertoire per seed for re-approach to be a choice -- and, if so, does an intact residue field reduce re-approach to erred keys relative to a frozen one?",
+        "live_gate": "Stage 1 of the routed successor (diagnostic spike: per-seed training-phase action-class histogram + survival under canonical E3) decides whether the rider question is gated on the actor-adequacy / monostrategy line; stage 2 (avoidance-DV ablation) runs only if a repertoire exists.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "0 of 2 legs discriminated after 2 runs (27.5h); both readouts were construct-blocked, not answered",
+        "observation_bottleneck": "single-action latching per seed under canonical E3 select_action (inferred from control-policy profile matching; training-phase repertoire never recorded) + a DV conditional on a world-pinned event + fresh-tick-only key registration"
+      },
+      "discovery_growth_events": [],
+      "growth_restriction": null,
+      "registered_by_session": "governance-20260906-1604 (inline failure-autopsy, Step 9b Mode B on a new question)",
+      "registered_from_pending_block": false
     }
   ]
 }

@@ -1,0 +1,289 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-06T16:49:34Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py --family v3_exq_983a --family v3_exq_983: 0 dry in named families; both lineage manifests real. validate_recording.py: always-core complete.",
+  "readjudication_of": null,
+  "session": "governance-20260906-1604 (inline, governance Step 1.5 route A)",
+  "targets": [
+    {
+      "run_id": "v3_exq_983a_ext002_residue_error_persistence_headroom_20260905T141459Z_v3",
+      "queue_id": "V3-EXQ-983a",
+      "claim_ids": [
+        "EXT-002",
+        "ARC-013"
+      ],
+      "experiment_purpose": "evidence",
+      "supersedes": "V3-EXQ-983",
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "absolute",
+      "failed_criterion_note": "Readiness preconditions failed, so C1 was never evaluated (all_green=false): P4 revisit_denominator (min early-half revisits over pooled cells) 0 vs floor 4.5 -- seed 31 registered 0 erred keys because first_harm_at is written only on fresh E3 ticks and all 330 of its harms fell on held ticks (driver bookkeeping, not the seed); P7 revisit_outcome_heterogeneity 0.00 vs floor 0.10 in both arms of both pooled seeds; dv_headroom: decline_gap achievable range 0.0 vs required 0.04 (range over all finite pooled cells = seed 456's two arms; seed 31 NaN dropped; the manifest's reason string 'A1 over pooled seeds [456, 31]' is a mis-generated description), the first production firing of the refusal path. P1/P2/P3/P6 passed (residue field live 3.3e-5 weight variance, 32/32 centres; candidate score range 0.083 (A0) / 0.013 (A1); E1 prediction-error floor 0.0051 > 1e-4; pooled seeds 2 = MIN_POOLED_SEEDS).",
+      "facts": {
+        "seeds": [
+          42,
+          123,
+          456,
+          7,
+          11,
+          17,
+          23,
+          31
+        ],
+        "pooled_seeds": [
+          456,
+          31
+        ],
+        "excluded_by_completion_gate": {
+          "42": "steps 0.059 harm 0.82",
+          "123": "steps 0.074 harm 0.77",
+          "7": "steps 0.116 harm 0.47",
+          "11": "steps 0.475 harm 0.13",
+          "17": "steps 0.108 harm 0.48",
+          "23": "steps 0.056 harm 0.99"
+        },
+        "repeat_rate_by_arm_seed": "1.000 early and late in both arms for seeds 42/123/456/7/17/23; seed 11 (excluded on steps) 0.868->0.865 (A0) and 0.863->0.850 (A1) with heterogeneity 0.14/0.17 -- the only seed with any outcome heterogeneity; seed 31 nan (no revisits)",
+        "action_stream_divergence_by_seed": {
+          "42": 0.03,
+          "123": 0.414,
+          "456": 0.118,
+          "7": 0.569,
+          "11": 0.416,
+          "17": 0.229,
+          "23": 0.0,
+          "31": 0.0
+        },
+        "late_half_revisits_A0_vs_A1": {
+          "456": [
+            102,
+            92
+          ],
+          "7": [
+            75,
+            85
+          ],
+          "17": [
+            55,
+            58
+          ],
+          "123": [
+            58,
+            60
+          ],
+          "42": [
+            55,
+            54
+          ],
+          "23": [
+            54,
+            54
+          ],
+          "11": [
+            230,
+            234
+          ],
+          "31": [
+            0,
+            0
+          ]
+        },
+        "fresh_select_yield": "0.08-0.10 in every cell (E3 fresh selection roughly 1 tick in 10; the other 9 are held commitments); repeat-error bookkeeping is correctly gated on fresh ticks",
+        "executed_action_classes_probe": "1.0-2.0 -- measured on the 25-step post-training P2 probe only (2-3 fresh selections), NOT over training; no training-phase action-class histogram is recorded",
+        "start_to_nearest_hazard_manhattan": {
+          "42": 1,
+          "123": 1,
+          "456": 1,
+          "7": 1,
+          "11": 2,
+          "17": 2,
+          "23": 1,
+          "31": 1
+        },
+        "predecessor": {
+          "run_id": "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3",
+          "adjudicated": "non_contributory (measurement + seed population), failure_autopsy_ext-claim-probe-cluster_2026-09-03",
+          "control_range": 0.0468,
+          "positive_control_margin_x": 51.2
+        },
+        "red_team_control_policy_probe": "Fable red-team rebuilt all 8 pinned boards with the driver's kwargs: random walk (30 ep/seed) death_rate 1.00 on 8/8 (13.2-16.4 steps, harm 0.72-0.80); constant move (any of actions 0-3) survives 200/200 on 8/8 (harm 0.000-0.015); stay (action 4) dies in 10-14 steps on 8/8 (every start inside the proximity field). Casualties 42/23 ran 11.9/11.2 steps per episode at harm 0.82/0.99 (stay profile); survivor 31 harm 0.0150 = constant-action profile on its board.",
+        "key_registration_gate": "first_harm_at[key] written only inside `if is_fresh_select` (driver ~989-999; e3_steps_per_tick=10): seed 31 330 harms -> 0 keys; seed 456 447 harms -> 8 keys; seed 42 1072 harms -> 3 keys."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- EXT-002 asserts a property of transformer LLMs (subject llm.hallucination); what the run manipulates is the ARC-013 residue rider. Neither claim was tested under conditions where it could express itself: the DV's agent-side degree of freedom was zero by construction on the pinned board and only 2/8 seeds trained. The recorded non_contributory self-route is correct and STANDS.",
+        "biological_reference": "present -- the closest mechanism (hippocampal/striatal eligibility trace + one-trial aversive/avoidance learning) predicts that a persistent error trace changes WHETHER the animal re-approaches the erred location/action (passive avoidance, fewer revisits), not the harm probability conditional on re-approaching, which in a deterministic world is fixed by the world. The 983 lineage's DV (decline in P(harm | revisit)) is the second quantity. This is a measurement-level divergence from the biological signature, not a translation failure of the residue mechanism.",
+        "prerequisites": "present -- residue field populated (32/32 centres, coverage 1.0) in A0 and empty in A1; INV-006/INV-004/ARC-004 are implemented; the E3 residue readout (Phi_R) is the canonical path.",
+        "implementation": "partial -- the ablation is clean and wired into the canonical selection path (E3 compute_residue_cost -> residue_field.evaluate_trajectory at half weight, rho_residue 0.5); it changed executed actions in 5/8 seeds (divergence 0.12-0.57) and changed NO executed action in 3/8 (0.00/0.00/0.03) with a populated field and a positive candidate-score range (whether the argmin winner moved is unmeasured; candidate first-actions can collapse to one class). Separately, the per-seed survival split is best explained by the E3 policy latching a single action class per seed (stay-like -> death in ~11 steps/episode; constant-move -> survival), i.e. the monostrategy / actor-adequacy locus. That is inferred from harm-rate profile matching against control policies plus a 25-step probe, not from a training-phase repertoire readout, which was never recorded.",
+        "environment": "adequate-but-unforgiving, not the lever -- pinned 6x6 board with 4 hazards and a start inside the proximity field on every seed: a constant mover survives all 8 boards and a random walker dies on all 8, so the boards do not discriminate and no board screen could reproduce the 6/8 casualty split. Pinning does make every (cell,action) outcome world-determined for keys whose target is not a consumable resource (seed 11's 0.14/0.17 heterogeneity came through resource consumption), which is the DV-construct problem in the measurement row.",
+        "measurement": "misleading -- (i) the load-bearing DV (decline in repeat_rate = P(harm | revisit of an erred key)) is construct-invalid on a pinned board (1.000 both halves, both arms, 6/8 seeds); (ii) key registration only on fresh E3 ticks hides ~90% of harm events and produced seed 31's 0-key P4 failure; (iii) the avoidance quantity (revisit rate of erred keys) was recorded as raw early/late counts but not scored; (iv) P4 aggregates by MIN over pooled cells so one degenerate seed vetoes; (v) dv_headroom fired on n=1 finite seed. RECORDING GAP: no per-arm training-phase executed-action-class histogram (only the 25-step probe), so the latching reading cannot be confirmed from the manifest.",
+        "integration": "partially coupled -- residue -> E3 argmin -> action changed behaviour in 5/8 seeds and not at all in 3/8; the coupling is seed-dependent and its determinant is unrecorded.",
+        "scale": "likely insufficient -- 8 seeds drawn, 2 pooled at exactly the MIN_POOLED_SEEDS floor, one of them with no registered erred keys. A floor of 2 admits a degenerate pair."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal/striatal eligibility trace + passive-avoidance (one-trial aversive) learning",
+        "dependencies": [
+          "persistent trace write on harm",
+          "trace-modulated action selection with a repertoire to select among",
+          "an environment in which the agent survives long enough to revisit, and in which revisiting is a choice"
+        ],
+        "is_formal_import": false,
+        "divergence": "measurement-level: the biological signature of a persistent error trace is reduced re-approach (avoidance), not reduced harm-per-approach; the DV measures the latter, which a deterministic world pins.",
+        "lit_status": "present -- targeted_review_ext_002 (5 LLM-side entries, lit_conf 0.855) and targeted_review_connectome_arc_013 (3 entries, lit_conf 0.742); no new lit-pull owed."
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES dominant; MECHANISM partial) -- the DV and key registration are test-design defects; the per-seed survival split points at E3 single-action latching (actor/monostrategy locus), inferred not measured. Environment is unforgiving but not discriminating. Not chargeable to REE."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Test-design diagnosis (failure mode: measurement_test_design_defect -- world-pinned conditional DV + fresh-tick key registration + degenerate seed floor). No ceiling asserted for either claim; standard preserves EXT-002's experimental lanes per the 2026-09-03 user ruling. Both claims were exercised, so no per-claim category stamp (the peripheral-co-tag mechanism) is used -- red-team finding 2: a per-claim `standard` would exclude this target under the /queue-experiment counter while validate_queue.py's blanket-category predicate would count it, breaking the lockstep.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "EXT-002": "non_contributory",
+        "ARC-013": "non_contributory"
+      },
+      "manifest_write_owed": "NONE -- the manifest (flat and pack) already carries evidence_direction non_contributory and evidence_direction_per_claim {EXT-002, ARC-013: non_contributory} from the run's own self-route; governance ratifies rather than rewrites. Add an evidence_direction_note citing this artifact and the ratifying commit so _is_annotated marks the disposition as adjudicated.",
+      "recommended_evidence_quality_note": "[2026-09-06 governance-20260906-1604, inline failure_autopsy_V3-EXQ-983a_2026-09-06, Fable cross-model red-team CONTESTED on routing, contests folded in] V3-EXQ-983a (residue-frozen ablation REDESIGN, FAIL, 18.1h, ree-worker-3, supersedes V3-EXQ-983) self-routed substrate_not_ready_requeue and is ratified non_contributory on TEST-DESIGN grounds; no verdict on the EXT-002 rider. THREE DEFECTS, all in the driver/design, none a substrate build: (1) DV construct: pinning the board per seed (the F1 fix for 983's per-episode hazard lottery) makes P(harm | revisit of the same (cell,action)) world-pinned for every key whose target is not a consumable resource -- repeat_rate 1.000 in both halves of both arms in 6/8 seeds, revisit_outcome_heterogeneity 0.00 in every pooled cell vs the 0.10 floor (only seed 11, excluded on the steps floor, showed any: 0.14/0.17 via resource consumption) -- so decline_gap's achievable range was 0.0 (measured over seed 456's two arms; seed 31 contributed NaN) against the 0.04 bar: the first production firing of the dv_headroom refusal path, which worked. What a persistent error trace changes in a deterministic world is WHETHER the agent revisits an erred key, not the harm probability given a revisit. (2) Key registration: first_harm_at is written only on fresh E3 ticks (1 tick in 10; the other 9 are held commitments), so a harm on a held tick never registers -- seed 31 logged 330 harm events and 0 erred keys, and P4 (min early-half revisits over pooled cells) read 0 vs 4.5 because of it; ~90% of harm events are invisible to the DV in every seed. (3) Seed population: the training-completion gate excluded 6/8 seeds (steps_realized_frac 0.056-0.475 vs 0.60; harm_rate_train 0.13-0.99 vs 0.35; 5/8 died to agent_health<=0 within 6-12% of budget, seed 11 at 47%), leaving exactly the MIN_POOLED_SEEDS=2 floor. Red-team control probes on the same 8 pinned boards: a constant-move policy survives 200/200 on ALL 8, a random walker dies on ALL 8 (13-16 steps), 'stay' dies on ALL 8 (every start sits inside the proximity field). So no board screen can produce the 6/8 split; the split is WHICH single action class the E3 argmin latches per seed (casualties match the stay profile, ~11 steps/episode at harm 0.8-1.0; survivor 31's harm_rate 0.0150 equals the constant-action profile on its board, with byte-identical A0/A1 streams). That is the monostrategy / actor-adequacy locus (zworld_actor_adequacy_locus, V3-EXQ-1002; MECH-269/MECH-341/ARC-065 line) -- a read-across, not adjudicated here: the only action-repertoire readout is a 25-step probe (executed_action_classes 1.0-2.0), the training-phase histogram was never recorded. Residual carried, not erased: the ablation changed executed actions in 5/8 seeds (same-seed action-stream divergence 0.12-0.57) and changed NO executed action in 3/8 (0.00/0.00/0.03; seeds 23/31/42) despite a populated 32-centre field and a positive candidate-score range; a post-hoc unregistered read of the avoidance quantity (late-half revisits to erred keys, A0 vs A1) is mixed across seeds (A1 fewer in 456: 92 vs 102; A1 more in 7/17/123; equal in 23), n=2 trained -- exploratory, not evidence. Re-derive brake: literal count 2 (983 + 983a) under the blanket-category counter, RELEASED as a producer decision: both readings are instrument/test-design defects owing no substrate build (action none). REFUSED nonetheless: any 983-lineage letter keeping the repeat-rate DV or the fresh-tick key registration. ROUTE: /queue-experiment, NEW EXQ number, a cheap DIAGNOSTIC spike first (record per-seed training-phase action-class histogram + survival under the canonical E3 policy on these pinned boards, hours not 18h) that decides whether the rider test is gated on the actor line, then, if the repertoire exists, the evidence re-pose with a hold-aware revisit-AVOIDANCE DV (held-tick harm attributed to the governing fresh-decision key), a per-seed gate on action-stream divergence > 0 and on training-phase action-class diversity, MIN_POOLED_SEEDS 3. Status stays candidate; epistemic_category stays standard (test-design diagnosis, no ceiling asserted); no substrate hold placed on EXT-002.",
+      "per_claim_recommendation": {
+        "EXT-002": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_evidence_quality_note": "[2026-09-06 governance-20260906-1604, inline failure_autopsy_V3-EXQ-983a_2026-09-06, Fable cross-model red-team CONTESTED on routing, contests folded in] V3-EXQ-983a (residue-frozen ablation REDESIGN, FAIL, 18.1h, ree-worker-3, supersedes V3-EXQ-983) self-routed substrate_not_ready_requeue and is ratified non_contributory on TEST-DESIGN grounds; no verdict on the EXT-002 rider. THREE DEFECTS, all in the driver/design, none a substrate build: (1) DV construct: pinning the board per seed (the F1 fix for 983's per-episode hazard lottery) makes P(harm | revisit of the same (cell,action)) world-pinned for every key whose target is not a consumable resource -- repeat_rate 1.000 in both halves of both arms in 6/8 seeds, revisit_outcome_heterogeneity 0.00 in every pooled cell vs the 0.10 floor (only seed 11, excluded on the steps floor, showed any: 0.14/0.17 via resource consumption) -- so decline_gap's achievable range was 0.0 (measured over seed 456's two arms; seed 31 contributed NaN) against the 0.04 bar: the first production firing of the dv_headroom refusal path, which worked. What a persistent error trace changes in a deterministic world is WHETHER the agent revisits an erred key, not the harm probability given a revisit. (2) Key registration: first_harm_at is written only on fresh E3 ticks (1 tick in 10; the other 9 are held commitments), so a harm on a held tick never registers -- seed 31 logged 330 harm events and 0 erred keys, and P4 (min early-half revisits over pooled cells) read 0 vs 4.5 because of it; ~90% of harm events are invisible to the DV in every seed. (3) Seed population: the training-completion gate excluded 6/8 seeds (steps_realized_frac 0.056-0.475 vs 0.60; harm_rate_train 0.13-0.99 vs 0.35; 5/8 died to agent_health<=0 within 6-12% of budget, seed 11 at 47%), leaving exactly the MIN_POOLED_SEEDS=2 floor. Red-team control probes on the same 8 pinned boards: a constant-move policy survives 200/200 on ALL 8, a random walker dies on ALL 8 (13-16 steps), 'stay' dies on ALL 8 (every start sits inside the proximity field). So no board screen can produce the 6/8 split; the split is WHICH single action class the E3 argmin latches per seed (casualties match the stay profile, ~11 steps/episode at harm 0.8-1.0; survivor 31's harm_rate 0.0150 equals the constant-action profile on its board, with byte-identical A0/A1 streams). That is the monostrategy / actor-adequacy locus (zworld_actor_adequacy_locus, V3-EXQ-1002; MECH-269/MECH-341/ARC-065 line) -- a read-across, not adjudicated here: the only action-repertoire readout is a 25-step probe (executed_action_classes 1.0-2.0), the training-phase histogram was never recorded. Residual carried, not erased: the ablation changed executed actions in 5/8 seeds (same-seed action-stream divergence 0.12-0.57) and changed NO executed action in 3/8 (0.00/0.00/0.03; seeds 23/31/42) despite a populated 32-centre field and a positive candidate-score range; a post-hoc unregistered read of the avoidance quantity (late-half revisits to erred keys, A0 vs A1) is mixed across seeds (A1 fewer in 456: 92 vs 102; A1 more in 7/17/123; equal in 23), n=2 trained -- exploratory, not evidence. Re-derive brake: literal count 2 (983 + 983a) under the blanket-category counter, RELEASED as a producer decision: both readings are instrument/test-design defects owing no substrate build (action none). REFUSED nonetheless: any 983-lineage letter keeping the repeat-rate DV or the fresh-tick key registration. ROUTE: /queue-experiment, NEW EXQ number, a cheap DIAGNOSTIC spike first (record per-seed training-phase action-class histogram + survival under the canonical E3 policy on these pinned boards, hours not 18h) that decides whether the rider test is gated on the actor line, then, if the repertoire exists, the evidence re-pose with a hold-aware revisit-AVOIDANCE DV (held-tick harm attributed to the governing fresh-decision key), a per-seed gate on action-stream divergence > 0 and on training-phase action-class diversity, MIN_POOLED_SEEDS 3. Status stays candidate; epistemic_category stays standard (test-design diagnosis, no ceiling asserted); no substrate hold placed on EXT-002.",
+          "change": "direction and category STAND (non_contributory / standard, both already stored) and no substrate hold is placed; what moves is the evidence_quality_note APPEND above, so -> stamp this artifact",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        },
+        "ARC-013": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_evidence_quality_note": "[2026-09-06 governance-20260906-1604, inline failure_autopsy_V3-EXQ-983a_2026-09-06] V3-EXQ-983a ablated the residue field (ARC-013's persistent latent curvature) as the rider mechanism for EXT-002 and returned non_contributory on test-design grounds: a world-pinned conditional DV, fresh-tick-only key registration, and a seed population that collapsed to 2 because the E3 policy latched a lethal single action class in 6/8 seeds (see EXT-002's note). ARC-013's own evidence path (V3-EXQ-697 separability PASS, supports) is untouched; the residue field was live (32/32 centres) and its ablation changed executed actions in 5/8 seeds, changing none in 3/8 -- recorded, unexplained. ARC-013 carried no epistemic_category field; set standard. No substrate hold on ARC-013.",
+          "change": "ARC-013 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays active"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No substrate build is owed. Red-team finding 1 refuted the survivability pre-screen (no control policy discriminates the 8 boards); finding 4 showed the DV-freedom half is dv-dynamic-range-precondition-class's own subject (identical substrate_path, EXT-002 already in its unblocks_claims). Governance should record V3-EXQ-983a on that entry as `validation_record_983a` (first production firing of the refusal path; worked as designed; measured over n=1 finite seed) and may add a one-line 'world-pinned conditional DV' sub-case to its implementation_hint -- a note, not a failure record. The actor-latching read-across belongs to the existing monostrategy / actor-adequacy line (zworld_actor_adequacy_locus; MECH-269 / MECH-341 / ARC-065 entries), not a new sd_id.",
+        "validation_record_for": "dv-dynamic-range-precondition-class"
+      },
+      "validation_record_for_dv_dynamic_range_precondition_class": "V3-EXQ-983a is the FIRST production firing of the dv_headroom refusal path (substrate_not_ready_requeue, achievable 0.0 vs required 0.04, control arm A1 over pooled cells) -- the path the entry's validation_record_993a says had never fired. It fired correctly on a genuinely pinned DV. Governance should record this on that entry as validation evidence (no failure record; the entry is not at fault).",
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": true,
+        "literal_count_note": "Under the blanket-category counter (ree-v3/validate_queue.py::_autopsy_counts_toward_brake) EXT-002 = 2 (983 step-4 fallback + 983a standard/non_contributory); under the SKILL.md recipe also 2 now that the per-claim stamp is dropped. ARC-013 = 1 under both. Reported so the release is explicit, not accidental.",
+        "release_basis": "R3 step 2/3 -- both counted readings are instrument/test-design defects (983: DV 3.2x short of its bar + ungated seed population; 983a: world-pinned conditional DV + fresh-tick key registration + degenerate seed floor) and neither owes a substrate build (action none). The survival split is a read-across to an existing actor-adequacy line, not a build this autopsy mints.",
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_ext-claim-probe-cluster_2026-09-03"
+        ],
+        "counted_runs": [
+          "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3",
+          "v3_exq_983a_ext002_residue_error_persistence_headroom_20260905T141459Z_v3"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "refusal_scope": "REFUSED regardless of the release: any 983-lineage letter (983b...) keeping the repeat-rate DV (decline in P(harm | revisit)) or the fresh-tick-only key registration. PERMITTED: a NEW EXQ number -- first a cheap diagnostic spike, then the evidence re-pose -- as in routing_note.",
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "fanout_note": "No discrimination among rival mechanisms is open on the rider question itself; the one open fact (does the E3 policy latch a single action class per seed on this bed during training?) is a cheap diagnostic spike, not a portfolio. GOV-FANOUT-1 exempt.",
+      "work_graph_debt": {
+        "latching_spike": "complex (probe-gated) / puzzle (known rules) -- the missing fact is the training-phase action-class repertoire per seed; recording it is the design",
+        "rider_repose": "complex (probe-gated) / puzzle (known rules), gated on the spike's answer (if latched: the rider test waits on the actor line; if not: run the avoidance-DV re-pose)"
+      },
+      "learning_extracted": [
+        "Two correct repairs were jointly fatal: pinning the layout (right, for 'the same error') plus an unchanged conditional-harm DV guarantee repeat_rate = 1.0 for every non-resource key. A DV conditional on an agent-chosen event needs its conditional outcome certified world-free BEFORE the run; P7 did it after 18h.",
+        "Key registration gated on fresh E3 ticks (1 in 10) silently discards ~90% of harm events and can zero a seed's erred-key set outright (seed 31: 330 harms, 0 keys). A held-tick harm must be attributed to the governing fresh-decision key.",
+        "No board screen can fix this bed: a constant mover survives all 8 pinned boards and a random walker dies on all 8. The 6/8 casualty split is which single action class the E3 argmin latches per seed -- the monostrategy / actor-adequacy locus, recurring here with the canonical select_action path. A post-training completion gate can only exclude; it turned 8 seeds into a 2-seed floor with one degenerate member.",
+        "The residue signal's reach into executed behaviour is all-or-nothing per seed (0.00/0.00/0.03 vs 0.12-0.57) with a populated field and a positive candidate-score range. Recorded, not gated, unexplained; the successor should gate per seed on divergence > 0.",
+        "Recording gap (Experimental Recording Standard): the training-phase per-arm executed-action-class histogram existed at run time and was never written; only a 25-step probe is. Without it the latching reading is profile-matching, not measurement.",
+        "The dv_headroom refusal path fired correctly in production for the first time (achievable 0.0 vs 0.04, n=1 finite seed): validation evidence for dv-dynamic-range-precondition-class, and a reminder that it is a post-hoc net.",
+        "Infra: the three 'lockstep' brake counters are not in lockstep -- the SKILL.md recipe honours recommended_epistemic_category_per_claim and validate_queue.py::_autopsy_counts_toward_brake does not; an artifact with a per-claim non-ceiling stamp counts under one and not the other. Reported for a fix; this artifact avoids the shape.",
+        "Post-hoc, unregistered, explicitly not evidence: the avoidance quantity (late-half revisits, A0 vs A1) is mixed across seeds with n=2 trained."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "queue-experiment, NEW EXQ number (not 983b), two stages. STAGE 1 (diagnostic, hours): on the same 8 pinned boards under the canonical E3 policy, record per-seed training-phase executed-action-class histogram, survival curve, and harm attribution with held-tick harms keyed to the governing fresh decision; pre-registered readout: fraction of seeds whose training repertoire is a single action class. If latched in most seeds -> the rider test is gated on the actor-adequacy / monostrategy line (existing work: zworld_actor_adequacy_locus portfolio chipped 2026-09-05; MECH-269 / MECH-341 / ARC-065), report to governance, do not run stage 2. STAGE 2 (evidence, only if the repertoire exists): residue-frozen ablation with a hold-aware revisit-AVOIDANCE DV (fresh-decision revisits to erred keys per unit exposure, early vs late, A0 minus A1), P7-style certification of DV freedom under a control policy BEFORE training, per-seed gate on action-stream divergence > 0 and on action-class diversity, MIN_POOLED_SEEDS 3, seeds drawn until the floor is met. Governance chips both after ratification (CLAUDE.md 2026-07-30). Also for governance: record validation_record_983a on dv-dynamic-range-precondition-class; chip an infra fix reconciling the per-claim-category branch across the three brake counters.",
+      "read_across_not_adjudicated": [
+        "dv-dynamic-range-precondition-class (substrate_queue): 983a is its first production refusal-path firing -- record as validation_record_983a (n=1 finite seed), not a failure record; optionally add the 'world-pinned conditional DV' sub-case to its hint.",
+        "zworld_actor_adequacy_locus (registry) / V3-EXQ-1002 / MECH-269 / MECH-341 / ARC-065: the per-seed survival split matches single-action-class latching under the canonical E3 select_action (control-policy profile match + 25-step probe). Bears on the monostrategy line; not adjudicated here because the training-phase repertoire is unrecorded. Stage 1 of the routing measures it.",
+        "Brake-counter lockstep (infra): SKILL.md recipe vs validate_queue.py::_autopsy_counts_toward_brake disagree on recommended_epistemic_category_per_claim; chip a reconciliation."
+      ]
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "mode": "B-new-question",
+    "qid": "residue_error_persistence_readout",
+    "title": "Does the residue field leave a persistent error record that shapes future action away from a known-costly (cell, action) key? (EXT-002 rider; ARC-013)",
+    "claims": [
+      "EXT-002",
+      "ARC-013"
+    ],
+    "hypotheses": [
+      {
+        "hid": "H-A-residue-shapes-reapproach",
+        "label": "Residue trace shapes future action selection away from erred keys",
+        "axis": "process",
+        "state": "alive",
+        "resolving_runs": [
+          "V3-EXQ-983",
+          "V3-EXQ-983a"
+        ],
+        "basis": "Twice adjudicated non_contributory without discriminating: 983's DV had 3.2x too little range and an ungated seed population; 983a's DV had zero agent-side freedom on a pinned board and 6/8 seeds never trained. Leg stays alive; observation bottleneck = a survivable pinned bed + an avoidance DV."
+      },
+      {
+        "hid": "H-B-residue-written-not-read",
+        "label": "Residue is written but does not reach E3's selection (no behavioural channel)",
+        "axis": "process",
+        "state": "alive",
+        "resolving_runs": [
+          "V3-EXQ-983a"
+        ],
+        "basis": "Partially discriminated, not eliminated: the ablation changed behaviour in 5/8 seeds (divergence 0.12-0.57) but not at all in 3/8 (0.00-0.03) with a populated field. Seed-dependent reach, determinant unrecorded."
+      }
+    ],
+    "pre_registered_utc": "2026-09-03T15:00:05Z",
+    "note": "Drafted only; applied at Step 9b once the Step 8 gate ratifies.",
+    "applied": "applied at Step 9b in this session (interactive), see registry question residue_error_persistence_readout"
+  },
+  "red_team_pass": {
+    "model": "Claude Fable 5.1 (claude-fable-5-1), cross-model (drafter: Claude Fable 5.1 governance session -- same family, independent context, reasoning withheld)",
+    "verdict": "CONTESTED",
+    "findings_file": "scratchpad redteam_983a.md (session-local)",
+    "verdict_moving_findings_folded": [
+      "1 survivability pre-screen has no premise (control-policy probe on 8 boards) -> create withdrawn, environment/implementation rows rewritten, survival split re-attributed to E3 single-action latching (read-across)",
+      "2 brake count differs across counters when a per-claim stamp is present -> per-claim stamp dropped, count stated under both, release made explicit",
+      "3 seed 31's zero keys is the fresh-tick registration gate -> measurement row + successor spec fixed",
+      "4 create overlaps dv-dynamic-range-precondition-class -> action none + validation record",
+      "5 brake: release chosen (no build owed), refusal of same-DV letters kept"
+    ],
+    "hygiene_folded": [
+      "6 dv_headroom measured over seed 456's two arms (n=1 finite seed); manifest reason string mis-generated",
+      "7 seed 11 at 47% breaks the 6-12% band; 5/8 in band",
+      "8 'by construction' narrowed to non-resource keys (seed 11 heterogeneity via consumption)",
+      "9 'argmin winner' -> 'executed action'; residue is wired at rho_residue 0.5",
+      "10 EXT-002 hold dropped with the create",
+      "11-13 verified"
+    ],
+    "recomputed": "16 completion-gate cells, heterogeneity, late-half revisits, divergence, dv_headroom, brake counts under both predicates, plus a NEW control-policy survivability probe on all 8 boards"
+  },
+  "pre_routing_checks": {
+    "run_on": "first draft",
+    "fires": [
+      "C2: INF-ENV-001 (harm gradient zones, implemented 2026-05-16, unblocks ARC-013) -- disposed: a different gap (env knob vs bed certification); moot after the create was withdrawn"
+    ],
+    "inapplicable": [
+      "C5"
+    ],
+    "rerun_on_revised_draft": "0 fires, 0 inapplicable"
+  },
+  "confirmed_utc": "2026-09-06T16:51:46Z",
+  "confirmed_by": "user at the Step 8 gate (governance-20260906-1604, interactive): route 'Release brake, two-stage new EXQ' and 'Confirm both' per-claim dispositions"
+}
