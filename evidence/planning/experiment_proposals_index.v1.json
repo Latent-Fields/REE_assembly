@@ -4908,14 +4908,23 @@
       "priority": "medium",
       "proposal_id": "EXP-0628",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_impl_023",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-09-06T18:27:17Z",
+      "gated_by_session": "igw-235-proposal-for-impl-023 (IGW-20260906-235)",
+      "gating_reason": "DECLINED at the /queue-experiment Step 2.5 substrate-readiness guardrail (2026-09-06). This is a NON-EXPERIMENTABLE CLAIM CLASS, not a missing ree_core feature -- do NOT route it to /implement-substrate on an SD. (1) CLAIM SHAPE: IMPL-023 is claim_type=implementation_note, polarity='records', subject=roadmap.ree_v2_representation_interface_spec. It is the document-header claim of docs/architecture/ree_v2_spec.md (the <a id=\"impl-023\"></a> anchor sits under that doc's own 'Claim ID: IMPL-023' header, line 14-15), whose declared Scope is 'V2 architecture, subsystem boundaries, SD-001/002/003 resolution, required metrics, failure gates'. It records that a spec and a phase gate exist; it asserts no mechanism. There is no quantity an agent run could carry as a DV. Consistent with that, IMPL-023 carries neither what_would_answer nor falsifier in claims.yaml -- and neither does any of the 25 implementation_note claims in the registry. (2) SUBJECT SUBSTRATE IS CLOSED: the claim is about REE-v2, which CLAUDE.md's repo map records as 'V2 substrate -- CLOSED (all experiments complete)', while the proposal's target_repo is ree-v3. (3) MEASURED, not inferred: ZERO of the 1002 flat manifests under evidence/experiments/ tag ANY IMPL-* claim (the runs/ pack contains no manifests at all). IMPL-023 has zero hits across ree-v3/ree_core/, ree-v3/CLAUDE.md and ree-v3/experiments/; its only hit anywhere in ree-v3 is dispatch/dispatch.db, i.e. this IGW item's own dispatch record. There is no substrate module, latent, config knob or readout a V3 run could instrument for it, so any queued script would have to invent one and would measure something else. (4) THE DECOMPOSITION ALREADY HAPPENED, and the class boundary is visible inside IMPL-023's own depends_on list: its mechanism_hypothesis dependencies carry V3 evidence (MECH-063 tagged by 7 manifests, MECH-062 by 1) while its three implementation_note dependencies carry none (IMPL-008: 0, IMPL-021: 0, IMPL-022: 0) and two of those are already status=legacy. Mechanism claims get experiments; the implementation_note that contains them does not. (5) ROOT CAUSE OF THE SPURIOUS MINT (generator gap, recorded so it can be fixed at source rather than re-dispositioned every cycle): build_experiment_indexes._is_experiment_ineligible_claim gates on _resolve_epistemic_category, whose fallthrough maps claim_type=implementation_note with no explicit epistemic_category to 'standard'. 'standard' is in neither _NON_EXPERIMENTAL_EPISTEMIC_CATEGORIES {out_of_domain, derivational, governance_rule} nor _PROBE_GATED_EPISTEMIC_CATEGORIES, so every implementation_note flagged missing_experimental_evidence seeds a generic EXP row. The auto-minted proposal for EVB-1307 is exactly that template output ('Reduce uncertainty for IMPL-023 via targeted experiment runs', suggested_experiment_type=claim_probe_impl_023); it carries no design and no awareness of the claim class. (6) Re-derive brake (Step 2.5b) counted 0 prior braking autopsies on IMPL-023 -- recorded for completeness; the brake is NOT the reason for this stop. LANE SCOPE: this disposition is on the EXPERIMENTAL lane only. The literature twin (LIT-#### for EVB-1307, targeted_review_impl_023) is NOT blocked -- a literature review needs no V3 substrate. The indexer's (backlog_id, proposal_type) carry-forward key keeps this row off that twin; do not widen it.",
+      "release_condition": "NOT RELEASED BY ANY SUBSTRATE BUILD. No ree_core feature makes a polarity='records' spec note experimentable, so there is nothing here for /implement-substrate to build and this row should not be re-offered on a substrate-readiness signal. The two productive routes are instead: (a) GOVERNANCE, at source -- annotate IMPL-023 in claims.yaml with an explicit epistemic_category the generator already recognises as non-experimental, or move its status to legacy as IMPL-021 and IMPL-022 already are; either stops the generic claim_probe_impl_023 EXP row being re-minted every cycle, and would generalise to the other 24 implementation_note claims. (b) EVIDENCE ON THE MECHANISMS -- if evidence about the V2 representation-interface contract is genuinely wanted, target the mechanism_hypothesis claims in IMPL-023's depends_on (MECH-057a, MECH-058, MECH-059, MECH-060, MECH-061, MECH-062, MECH-063), which are testable and already carry runs, not the implementation_note that contains them. Re-offer this experimental proposal only if IMPL-023 is itself rewritten to assert a testable mechanism with a named DV -- at which point it would no longer be an implementation_note.",
+      "blocked_by": [
+        "non_experimentable_claim_class",
+        "v2_substrate_closed"
+      ],
+      "blocked_note": "IMPL-023 is the document-header implementation_note (polarity='records') of ree_v2_spec.md: it records that a REE-v2 representation-interface spec and phase gate exist, asserts no mechanism, and has no DV. Measured: 0/1002 manifests tag any IMPL-* claim; zero ree_core/experiments footprint; its testable content already sits in its depends_on MECH-* claims, which DO carry runs. Subject substrate (V2) is closed. Experimental lane only; the literature twin is unblocked."
     },
     {
       "backlog_id": "EVB-1307",
@@ -18112,6 +18121,17 @@
         "insufficient_experimental_replication",
         "low_exp_conf"
       ]
+    },
+    {
+      "backlog_id": "EVB-1307",
+      "claim_id": "IMPL-023",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Placeholder carrying the /queue-experiment blocked_substrate disposition for the auto-minted IMPL-023 experimental proposal (EVB-1307). IMPL-023 is the document-header implementation_note of docs/architecture/ree_v2_spec.md with polarity 'records'; it records that a REE-v2 representation-interface spec and phase gate EXIST and what their scope is. It asserts no mechanism and carries no dependent variable, so no ree-v3 experiment can produce contributory evidence for it.",
+      "priority": "medium",
+      "proposal_id": "EXP-IMPL023-V2-SPEC-RECORD",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3"
     }
   ],
   "n_executed": 239,
