@@ -1994,6 +1994,1090 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0139",
+      "claim_ids": [
+        "SD-017"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-017' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] SD-017's `evidence_quality_note` closes on 2026-08-30 with \"Routed instead to the already-frozen hypothesis_space portfolio `contextmemory_write_content_discrimination` (H1-H4, none yet queued)\". H1-H4 were queued and returned 2026-09-02 as V3-EXQ-969/970/971/972; `failure_autopsy_contextmemory-write-content-cluster_2026-09-03` is confirmed.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:26Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0140",
+      "claim_ids": [
+        "MECH-181",
+        "INV-050",
+        "MECH-180"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-181' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the standing \"INV-050 / MECH-180 MEL producer is parked / blocked\" reading (SD-MEL-CONSUMER's 2026-07-08 re-park note, and the corresponding session memory) is superseded twice over: the user un-parked it 2026-07-21, and `SD-MEL-PRODUCER` reached `ready: true` / `validated_utc: 2026-07-30` on V3-EXQ-798a PASS. MECH-181's REE leg is no longer substrate-blocked, and the ecological end-to-end run that both substrate entries name as owed is not in the live queue.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:26Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0141",
+      "claim_ids": [
+        "MECH-353"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-353' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] V3-EXQ-642b's own manifest already contains the deciding statistic and it PASSES: swapping `z_block_peak` -> `z_block_mean` at the SAME pre-registered margins gives C1 and C2 on 3/3 seeds (separations 0.681 / 0.590 / 0.771 vs a 0.20 margin; BLOCK means 0.767-0.835 vs a 0.20 floor), while the recorded `outcome` is FAIL and `evidence_direction` is `non_contributory`.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:27Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0142",
+      "claim_ids": [
+        "MECH-354"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-354' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-354 is registered `candidate` with `v3_pending: true` and reads as ordinary pending-experiment work, but nothing has been built, nothing is queued, and it has no `substrate_queue` entry, while a mechanism implementing a substantial part of its SLOW leg (`SD-SLEEP-ENTRY-PRESSURE`) landed 2026-08-26 with no cross-reference in either direction. Governance should decide (i) whether to register the fast accumulator as a substrate-queue build, and (ii) whether to accept the partial absorption above and narrow the slow leg to the integrand question.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:28Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0143",
+      "claim_ids": [
+        "SD-047"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-047' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the block records a supports/PASS while the index scores a weakens, and the two have disagreed in sign since 2026-05-04. `live_status.evidence` (as_of 2026-07-11) reads `from: v3_exq_509_sd047_multi_source_substrate_readiness_20260503T103241Z_v3, verdict: supports/PASS` -- a substrate-*readiness* smoke. The behavioural sweep landed the next day: `v3_exq_510_sd047_mech095_live_env_comparator_gap_20260504T074619Z_v3`, FAIL, `evidence_direction_per_claim: {\"SD-047\": \"weakens\"}`.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:28Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0144",
+      "claim_ids": [
+        "SD-047",
+        "MECH-095"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-047' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ` clause: \"if flat-failure across all arms, route MECH-095 from `substrate_ceiling` to `substrate_conditional`.\" V3-EXQ-510's manifest records `\"outcome_branch\": \"WOO_SPELKE\"` with C1-C3 failing in all four arms. `substrate_queue.json` records the consequent as \"MECH-095 epistemic_category reclassification to substrate_conditional deferred pending further analysis\". V3-EXQ-741 (2026-07-12) then supplied that further analysis and governance chose to keep `substrate_ceiling` and re-point it to `multi_agent_ecology_v5:MAE-3` (with `implementation_phase` v3 -> v5).",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:29Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0145",
+      "claim_ids": [
+        "SD-047",
+        "ARC-058",
+        "SD-048"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-047' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] \"Level 2 (ARC-058) V3-tractable but no calibration SD\" -- contradicted within the same field two paragraphs earlier (\"Level 2 ... SD-048 ... is the calibration SD\"), and by `substrate_queue.json`, where SD-048 is `implemented` / `ready: True` with `unblocks_claims: [\"ARC-058\", \"ARC-033\", \"ARC-061\"]`. (b) `notes`: \"Level 1 (MECH-095) substrate_ceiling, SD-047 pending\" -- SD-047 has been `implemented` since 2026-05-03, and MECH-095's ceiling was re-pointed away from SD-047 to `multi_agent_ecology_v5:MAE-3` on 2026-07-12 with `implementation_phase` reassigned v3 -> v5.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:30Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0146",
+      "claim_ids": [
+        "SD-047",
+        "MECH-098",
+        "MECH-099"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-047' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] substrate_queue.json's SD-047 entry (status implemented, ready true, priority 1) advertises unblocks_claims [MECH-098, MECH-099], but V3-EXQ-529 (2026-05-06, reviewed) tested MECH-098 ON the SD-047 substrate (multi_source_dynamics + weather_field + transient_events enabled, 3 arms keyed on SD-047 x reafference) and returned FAIL / weakens. The entry advertises an unblock its own consumer evidence refutes; MECH-095 was already removed from it 2026-07-11 for the same reason.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:30Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0147",
+      "claim_ids": [
+        "SD-047",
+        "ARC-061"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-047' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MAE-1 -> MAE-2 -> MAE-3` (all `blocked`, nothing built). Ask: set `implementation_phase: v5` on ARC-061 so it leaves V3-completion accounting alongside its dependency. Low-risk: ARC-061 has fan-in 0, so no reverse-dep repointing is needed.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:31Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0148",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-029' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-029's `provisional` status rests on a run whose ablation is confounded and whose non-degeneracy gate passed vacuously.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:32Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0149",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-029' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] two routing notes in ARC-029's own `evidence_quality_note` promise follow-ups that never happened. (a) 2026-06-03: \"Redesign queued (confound-isolation arm)\" -- not in `experiment_queue.json`, no manifest, no `substrate_queue.json` row, no chip, no IGW assignment; ~3 months stale. (b) 2026-04-05: \"EXQ-125a redesign (num_hazards=8, hazard_harm=0.05, 5 seeds, harm_obs passed to sense()) is the correct follow-up\" -- V3-EXQ-125a never ran; ~5 months stale. Both should be corrected to say the work was never queued, so the claim stops reading as though a fix is in flight.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0150",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-029' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-029 has no explicit `epistemic_category`, so it infers `substrate_coherence` from `claim_type: architectural_commitment`, which suppresses promote/demote gating -- while the claim is in fact managed as experiment-gated (promoted on `conf=0.774` from EXQ-063; five experimental entries; `exp_conf` tracked in `claim_evidence.v1.json`). Setting `epistemic_category: standard` explicitly would align the dispatch with how the claim is actually governed, but it *un-suppresses* promote/demote and so is a governance decision, not a digestion edit. Flagged for ratification, not applied.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0151",
+      "claim_ids": [
+        "MECH-025b"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-025b' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the 2026-08-03 `weakens/standard` verdict on MECH-025b rests on a pooled estimator that is confounded by seed and whose sign inverts every one of its constituents. V3-EXQ-671b computes its gating C1/C2 on samples pooled across 4 seeds whose per-seed precision spreads differ by ~37x (160611.76 / 5674.23 / 4300.25 / 0.00), so the pooled median split approximates a seed-identity split. Per-seed correlations: +0.0505, +0.1017, +0.0651, 0.0000 -- all non-negative. Pooled correlation: -0.0446. Per-seed ratios: 0.9214, 1.1327, 1.1471, 0.0000 -- 2 of 3 non-degenerate seeds clear the 1.1 bar.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:34Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0152",
+      "claim_ids": [
+        "MECH-025b"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-025b' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `evidence_discrepancy` (minor, registry/index disagreement) -- the 671b manifest carries `evidence_direction: \"mixed\"` and `claim_evidence.v1.json` scores it accordingly (`genuine_exp_direction_counts: {mixed: 1, weakens: 0}`), while the claim's `live_status.evidence.verdict` records `weakens/standard`. The registry and the indexed evidence disagree about the direction of the single genuine experimental entry for this claim.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:35Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0153",
+      "claim_ids": [
+        "MECH-074"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-074 still carries `v3_pending: true` and a `live_status.evidence` of `decision:...@2026-04-25 hold_pending_v3_substrate/applied`, while its two stated release conditions (substrate lands; EXQ-A/B-equivalent evidence) are both discharged and it now holds a reviewed PASS of its own (888, exp_conf 0.705, `confirmed_established`). Recommend clearing `v3_pending` and refreshing `live_status.evidence` to point at 888.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:36Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0154",
+      "claim_ids": [
+        "MECH-074a"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074a' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the `evidence_quality_note` asserts \"this is the first [experimental entry]\" and `exp_conf now 0.775`; there are now two entries (659, 888) and `exp_conf` is 0.755. The promotion gate is still unmet so status does not move; only the note needs refreshing, plus a `live_status.evidence` pointer to 888 alongside 659.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:36Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0155",
+      "claim_ids": [
+        "MECH-074b"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074b' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `v3_pending: true` and an empty `live_status` on a claim that holds a reviewed 3/3-seed PASS (888 C2), `exp_conf 0.705`, `confirmed_established`; and the block's `source` omits the entire 2026-08-07 `targeted_review_mech_074b/` pull. Recommend clearing `v3_pending`, adding a `live_status.evidence` pointer to 888, and folding in the four lit entries.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:37Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0156",
+      "claim_ids": [
+        "MECH-074b",
+        "MECH-074a"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074b' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] one of those new lit entries (Roozendaal & McGaugh 2011, `evidence_direction: mixed`, confidence 0.62) explicitly weakens this claim's RETRIEVAL locus while supporting MECH-074a's encoding locus: \"the best-established amygdala memory effect is on CONSOLIDATION ... at RETRIEVAL the amygdala/glucocorticoid effect is documented as IMPAIRING\". The claim text does not record this, and a governance pass should decide whether 074b's locus needs narrowing (e.g. to a *sampling-priority* rather than *retrieval-enhancement* form) before more experiment budget goes to it.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:38Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0157",
+      "claim_ids": [
+        "MECH-074c"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074c' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] proposing `epistemic_category: substrate_conditional` on a `provisional` claim suppresses promote/demote. The case for it: the claim's in-loop content has never been exercised (0 fires embodied). The case against: legs 1-2 hold genuine driven-regime PASSes and 895 is already scored `supports`. Governance should choose explicitly rather than let the tag drift; a middle option is to leave the category inferred and record the firing precondition as a `digestion_note`, which preserves the evidence reading while still preventing a vacuous successor.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:38Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0158",
+      "claim_ids": [
+        "MECH-074c"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074c' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] (i) \"Urgency interrupt at ree-v3/ree_core/agent.py:869-886\" no longer resolves (that range is now the ConditionedSafetyStore block); the deferred migration into `fast_prime` is still undone. (ii) The 2026-08-08 note's \"fast:slow ratio ... out of scope pending SD-032c AIC comparator wiring\" is stale as to the blocker -- AICAnalog is built and wired; the actual blocker is the never-firing embodied gate.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:39Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0159",
+      "claim_ids": [
+        "MECH-074d",
+        "MECH-153",
+        "MECH-150"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074d' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-153's own registration says of the identical failure signature: \"This is an implementation precondition, not a claim that MECH-150 is false.\" By that precedent MECH-074d's four weakens results measure an absent input, not a false mechanism.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:40Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0160",
+      "claim_ids": [
+        "MECH-074d",
+        "SD-035"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074d' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] SD-035's open failure_record target (\"a verified context-discriminating input signal\") has had a substantial workstream land against it since 894c (ree-v3 `76cbf84` plus V3-EXQ-943/946/956/969/970/971/972, 2026-08-19 to 2026-09-02), yet every one of those runs is `non_contributory` with `claim_ids: null`, so nothing has updated MECH-074d or the SD-035 entry. The `resolved: open` record and the claim's `pending_re",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:40Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0161",
+      "claim_ids": [
+        "MECH-104"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-104' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-104's `status_note` stops at EXQ-365 (2026-04-14) and omits the two later non-excluded PASSes, including V3-EXQ-623 (2026-06-01), which is the strongest evidence on file and the only run to test the behavioural half of the title.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:41Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0162",
+      "claim_ids": [
+        "MECH-104"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-104' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-104's `active` status rests on a conjunction *across* runs that no single run establishes: endogenous SELECTIVITY (V3-EXQ-204) plus driver-INJECTED SUFFICIENCY (V3-EXQ-061 / 062b / 623). The only endogenous magnitude ever measured (`harm_spike_rv ~1.6-1.9e-6`) is ~5 orders of magnitude below the ~0.39 rv-to-threshold gap, and `regulators/phasic_surprise_burst.py:32` describes the injection path as experiments that \"poke to fake MECH-104\". This does not make the claim wrong; it makes `active` a stronger reading than the evidence supports until the run above is done.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:42Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0163",
+      "claim_ids": [
+        "MECH-106"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-106' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-106 is `provisional` on a single non-excluded run (V3-EXQ-231a) in which (1) the mechanism was implemented in the driver, not the substrate (no `valence_bias` anywhere in `ree_core/`), and (2) criterion C2 (`threshold_asymmetry > 1.20`) is an arithmetic consequence of criterion C1 (`da_divergence > 0.20`) under that driver's own symmetric linear map `base * (1 + 1.2 * (da - 0.5))` -- reproduced numerically above -- so the \"5/5 criteria\" count over-states the independent evidence, and the asymmetry the claim is named for was never tested.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:42Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0164",
+      "claim_ids": [
+        "MECH-106",
+        "SD-011"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-106' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-106 and SD-011 (`status: stable`) make opposite-sign predictions about how harm modulates `effective_threshold`, on the same multiplicative chain in `e3_selector.select()` (`e3_selector.py:3599-3625`). SD-011's block was sign-flipped on 2026-08-26 to RAISE the threshold under accumulated threat (commit *more* readily, \"D2 avoidance escape response\"); MECH-106 asserts harm makes commitment *harder*.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:43Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0165",
+      "claim_ids": [
+        "MECH-234"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-234' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-234 has sat at `candidate` since 2026-04-15 with zero evidence rows and zero reverse-deps while its operative content (a design ruling: do not build Layer 3) was applied long ago. It is either (a) a `literature_synthesis` whose REE consequence has been discharged, or (b) a `substrate_conditional` mechanism awaiting a multi-effector environment that is not on any roadmap I could find. Leaving it as an undifferentiated `candidate` mechanism_hypothesis costs governance a recurring adjudication with no possible next step.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:44Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0166",
+      "claim_ids": [
+        "MECH-250",
+        "MECH-108"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-250' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `stale_note` (concerns MECH-108, surfaced via MECH-250's dependency) -- MECH-108 carries `epistemic_category: substrate_conditional` while its BreathOscillator is built (`heartbeat/clock.py`), auto-wired (`agent.py:7287` -> `9256` -> `e3_selector.py:3600`), and ON by default in every experiment-built config (`REEConfig.from_dims` defaults `breath_period = 50`, `config.py:8169/9791`, against a dataclass default of 0 at `config.py:3148`).",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:44Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0167",
+      "claim_ids": [
+        "SD-105"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-105' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] SD-105 was registered 2026-09-04 asserting the autopsy's \"warmup must leave headroom\" branch and naming V3-EXQ-963b as its validation. On the same day, ree-v3 `d2104f8` recorded a BLOCKING red-team verdict whose core finding (F1, \"CONFIRMED / NOT FIXED\") is that SD-105 cannot be validated as a live closed loop in a difference-of-arms design whose DV is the quantity it regulates, and requires a freeze/share API SD-105 does not have. Neither the claim block, its `functional_restatement`, its `implementation_note`, nor its design doc records this.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:45Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0168",
+      "claim_ids": [
+        "SD-105"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-105' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `evidence/planning/substrate_queue.json`, `sd_phasic_burst_decay_and_warmup_headroom.validation_experiment`, states V3-EXQ-963b was \"queued by campaign-c2c-20260904\". It was not (ree-v3 `d2104f8`; the live queue snapshot `99817b6` holds only V3-EXQ-1002 / 983a / 993a; `git log -S963b` on the queue file is empty). The entry sits at `status_phase: validation_owed` with no owner for the owed validation.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:46Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0169",
+      "claim_ids": [
+        "MECH-182",
+        "MECH-192",
+        "MECH-193"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'group preamble G4' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] The 2026-04-05/06 \"Steve\" cohort (MECH-182, MECH-192, MECH-193, ARC-048, INV-057) carries no `epistemic_category` and no `implementation_phase`, so the indexer infers `standard` for the three mechanism_hypotheses and fires `lit_only`/`low_exp` flags perpetually against claims that are structurally unbuildable in V3, while INV-057 gets `substrate_coherence` suppression for the wrong reason. Every later-registered structural twin (ARC-047, MECH-405, MECH-505, MECH-506, MECH-194, ARC-115, ARC-117, ARC-118) carries explicit `substrate_conditional` + `v5`.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:46Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0170",
+      "claim_ids": [
+        "MECH-183",
+        "MECH-191"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'group preamble G4' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `fast_empathy_v5_plan.md`'s 2026-06-10 decision-log entry records reassignment flags raised for MECH-183 and MECH-191; neither claim has an `implementation_phase` field in `claims.yaml` as of 2026-09-04. The flag was raised and never applied. (MECH-183 and MECH-191 are read-only context for me -- no draft, no disposition; this is a plan/registry consistency finding only.)",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:47Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0171",
+      "claim_ids": [
+        "MECH-191",
+        "ARC-048"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'group preamble G4' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] The 2026-04-06 intake's Next Step 4 (social.md stubs for MECH-191/192/193 and ARC-048) is unexecuted against a file that has been actively maintained since (`docs/architecture/social.md`, mtime 2026-08-30, gained MECH-505/MECH-506 sections). Zero references to any of the four. Also: MECH-192, MECH-182, MECH-193 and INV-057 appear in no plan's `scope_claims`, and ARC-048 is missing from `language_emergence_bootstrap_v6_plan.md` `scope_claims` / node LANG-2 despite being the registered pre-linguistic bridge to INV-003.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:48Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0172",
+      "claim_ids": [
+        "ARC-048",
+        "INV-003",
+        "ARC-009"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-048' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-048 is registered as the pre-linguistic bridge to INV-003 but is absent from `language_emergence_bootstrap_v6_plan.md` `scope_claims` (`[ARC-009, INV-003, INV-007, MECH-010, MECH-014, MECH-308]`) and from node `LANG-2`'s enabling-conditions checklist, which is the exact node its content belongs to. Recommend adding ARC-048 to that plan's `scope_claims` and naming \"functional states pre-exist as referents\" as an explicit LANG-2 enabling condition.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:48Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0173",
+      "claim_ids": [
+        "INV-057"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-057' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] INV-057 is `claim_type: invariant` / `invariant_type: universal`, so with no explicit `epistemic_category` the indexer resolves `substrate_coherence` and suppresses promote/demote as if it were a foundational REE design choice. It is not: it is an argument from comparative ethology with 5 literature entries and zero experimental entries, and its architectural half is already owned by MECH-191.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:49Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0174",
+      "claim_ids": [
+        "MECH-182"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-182' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-182's registered mechanism (\"this cross-modal association is learned from self-experience by the harm attribution stream\") presumes an attribution learner that is (a) default-off (`ree_core/utils/config.py:6017`, `bla_attribution_head = \"contribution_threshold\"`, the fixed non-trainable rule) and (b) at a documented competence floor (V3-EXQ-894 / V3-EXQ-894a both FAIL/weakens, autopsy `failure_autopsy_V3-EXQ-894a_2026-08-08` = `competence_implementation_gap`). Neither fact is recorded against MECH-182, and either alone would make a Leg A run vacuous.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:50Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0175",
+      "claim_ids": [
+        "MECH-192",
+        "MECH-191",
+        "MECH-183"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-192' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-192 as registered is near-analytic and its empirical content is covered by MECH-191 Leg B (receiver ablation) and MECH-183 (coupling ablation); the partial-merge proposal above narrows it to the one manipulation nobody owns (the signal-side, information-matched scramble at fixed coupling). Requires a governance decision on retitle + text migration, not a silent edit.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:51Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0176",
+      "claim_ids": [
+        "SD-034"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-034' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] V3-EXQ-466e (PASS, `{SD-034: supports}`, 2026-06-25T03:02:05Z, reviewed, `scoring_excluded: None`) is the ONLY genuine scoring experimental entry SD-034 has and it appears nowhere in `claims.yaml`. SD-034's `live_status.evidence` still cites the superseded `failure_autopsy_V3-EXQ-466d_2026-06-24` (`non_contributory`) at `as_of: 2026-07-11`, and the block's most recent governance note is 2026-06-19. The index already reflects 466e (`exp_conf 0.616`, `overall 0.766`, `fail_runs 0`); the claim text does not.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:51Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0177",
+      "claim_ids": [
+        "SD-034",
+        "ARC-108"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-034' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] SD-034's `implementation_note` records \"616 LOC\" and two completion entry points; `closure_operator.py` is 816 LOC with three firing routes, the third being the ARC-108 JOB-2 habenula negative-RPE abort (`habenula_tick`, `habenula_abort_enabled`, `habenula_delta_threshold`, `_n_habenula_aborts`, added 2026-06-22, firing the same five-part `_fire`). `grep -c habenula_abort claims.yaml` = 0.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:52Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0178",
+      "claim_ids": [
+        "SD-034"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-034' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] two flags on this claim are now decidable and should be closed rather than left standing: (i) `pending_retest_after_substrate: true`, whose named retest (the non-cap-pinned de-commit DV) was decomposed to MECH-445/446 on 2026-06-19 and has since run eight times under those ids; (ii) the 2026-06-13 `demote_to_candidate` recommendation, recorded as DEFERRED pending a post-rebuild `conflict_ratio` re-evaluation -- post-rebuild is now available (2026-09-04T14:48:23Z: `fail_runs 0`, `pass_runs 1`, all historical weakens excluded as `stale_substrate`/`non_contributory`/`superseded`), so the deferral is resolved and the demotion is not indicated.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:53Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0179",
+      "claim_ids": [
+        "ARC-120",
+        "ARC-130"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-120' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-120 carries `exp_count 0` while pre-existing, CONFIRMED evidence at its own rung sits untagged, by an explicit decision recorded in a sibling claim.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:53Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0180",
+      "claim_ids": [
+        "ARC-120"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-120' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-120 acquired a 5-entry literature pull on 2026-09-02 (`evidence/literature/targeted_review_arc_120/`, `lit_conf 0.852`, one `mixed`: blumberg2013 twitch-bootstrapped authority) with no SYNTHESIS.md and no reflection in the claim's `notes`, which still read as though the claim had never been evidenced.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:54Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0181",
+      "claim_ids": [
+        "ARC-121"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-121' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-121 is a FUSED claim and its literature pull is scoring the wrong leg. Its title and its stated falsifier are both about REE's own architecture (\"REE's mechanisms increasingly converge...\", falsified by \"REE's future substrate development\"), which is a code-auditable, derivational question.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:54Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0182",
+      "claim_ids": [
+        "ARC-121",
+        "MECH-482"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-121' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-121 declares MECH-482 as a dependency and as an instance of epistemic-state convergence, while the code shows `epistemic_deficit` is a 4-file, single-consumer, mechanism-private container with no read path from harm evaluation, replay, planning or closure. The claim's premise and its own dependency's implementation disagree. Not urgent and not a demotion trigger (both are `candidate`), but it should be recorded on both blocks rather than rediscovered: it is the concrete content of ARC-121's falsifier, and MECH-482's next substrate pass is where it would cheaply be fixed.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:55Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0183",
+      "claim_ids": [
+        "MECH-294",
+        "ARC-065"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-294' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] V3-EXQ-840b, MECH-294's sole genuine experimental entry (the `weakens` behind `exp_conf 0.249` and the 2026-08-01 `substrate_ceiling -> standard` graduation), was measured under ARC-065's P1 clamp at its default of 2 (driver line 485; `worst_diversity_* = 2.0022` of `action_dim=5`, vs ARC-065's required >= 4.5), and its own pre-registered `mean_tv > cross_seed_baseline_tv` conjunct was false for both C1 and C2 (`cross_seed_baseline_tv = 0.7669`; largest contrast 0.1928).",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:56Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0184",
+      "claim_ids": [
+        "MECH-294"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-294' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `evidence/planning/substrate_queue.json` entry `mech294_coherence_magnitude_strengthening` still carries `ready: false` and a V3-EXQ-840-era status string, though its own `diagnosis_correction` (2026-07-31, session `confident-morse-af47a8`) concluded no substrate change is warranted and V3-EXQ-840b then closed the line on 2026-08-01.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:56Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0185",
+      "claim_ids": [
+        "MECH-341"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-341' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `evidence/planning/substrate_queue.json` entry `sd_id: MECH-341` still reads `status: amend_validated_v3_exq_614c_614d_zero_committed_authority`, `ready: true`, describing a state superseded by V3-EXQ-614e (2026-06-07), V3-EXQ-660 (2026-06-10), the 660a/660b reclassifications (2026-06-11) and the 2026-06-14 ratification that closed `behavioral_diversity_isolation:GAP-B` for this claim. Update or close the entry.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:57Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0186",
+      "claim_ids": [
+        "MECH-442",
+        "MECH-341",
+        "MECH-448"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-442' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] PARTIAL-ABSORPTION PROPOSAL (proposal only; no id retired, nothing deleted). - Survivors: `MECH-341` (in-group) and `MECH-448` (out-of-group, already BUILT).",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:58Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0187",
+      "claim_ids": [
+        "MECH-442"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-442' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-442's `notes` assert *\"substrate_conditional on a behavioral-descriptor eligible-set archive beyond top-k not yet built\"* and name V3-EXQ-569i top-k as the comparator. Both were true on 2026-06-18 and are not true now: (a) a descriptor-indexed per-niche-elite archive with a coverage-aware commit rule IS built (`stratified_select`, under MECH-341, validated through V3-EXQ-660); (b) the conversion route of record is MECH-448 demotion + MECH-449 Go/No-Go (V3-EXQ-689g PASS, 2026-06-22, four days after registration), not 569i top-k; and (c) `top_k` itself has since gained conflict-graded width.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:58Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0188",
+      "claim_ids": [
+        "MECH-206"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-206' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-206's functional slot has an incumbent from within its own dependency graph. The claim argues a graded CA1 PE readout is required to rank episodes for replay (\"a binary match/mismatch flag would not support the priority ordering MECH-205 requires\"). The only replay-priority ranker actually built, `ree_core/sleep/replay_sampler.py` (MECH-285 Phase B), ranks by MECH-284 staleness keyed on MECH-288 `(scale, segment_id)` -- a different signal for the same job.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:28:59Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0189",
+      "claim_ids": [
+        "MECH-288"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-288' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-288's promotion bar is half-satisfied and the claim text does not say so. The `evidence_quality_note` (2026-07-14) states the promote-to-active gate as \"integration into Phase 2 (ii)+(iii)+(iv) downstream substrate plus the falsifiable predictions above\". `substrate_queue.json` now shows MECH-269, MECH-284, MECH-287 and MECH-288 all `implemented`, and `invalidation_trigger.py` implements the Verdict-3 subscriber architecture exactly. The integration half has landed; only the falsifiable predictions remain.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:00Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0190",
+      "claim_ids": [
+        "MECH-288"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-288' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the shipped fast-scale trigger is not the trigger the claim commits to, on the observation path. MECH-288's Verdict 1 makes \"PE-spike the primary trigger (Zacks 2007 EST canonical)\" and the title names a \"PE-threshold detector on the fast scale (z_world+z_self)\". `ree_core/agent.py:5448` calls `event_segmenter.step(latent_dict=..., pe_dict=None, t=...)`, and `event_segmenter.py:139-142` documents that with no `pe_dict` the aggregator falls back to `sum_s ||z_s(t) - z_s(t-1)||` -- a latent-delta magnitude.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:00Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0191",
+      "claim_ids": [
+        "MECH-288"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-288' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] evidence attribution gap. MECH-288 sits at `experimental_confidence 0.66` from `genuine_exp_count: 1` (V3-EXQ-757, an action-free synthetic isolation test) while its substrate ran live inside 22 further indexed experiments, none of which names MECH-288 in `claim_ids`. Two questions for governance: (i) should any of those 22 (e.g.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:01Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0192",
+      "claim_ids": [
+        "SD-084",
+        "MECH-321"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-084' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] SD-084's 2026-08-10 routing block directs work that had already been done nine days earlier, and cites a chip_ref that does not exist. The block reads: \"Routing: queue a successor MECH-321 R4 EVIDENCE experiment (new EXQ, claim_ids=[MECH-321]) testing the behavioural/task effect of the now-reachable hook ...",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:02Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0193",
+      "claim_ids": [
+        "SD-084"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-084' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] a validated design decision reads as evidence-free. SD-084 is `status: candidate_substrate_landed`, `evidence: []`, and `claim_evidence.v1.json` returns `null` for it, while its validating diagnostic V3-EXQ-839 PASSed cleanly (415 vs 0, attributability 4/4 as pre-registered, negative control held, non_degenerate), was CONFIRMED by `failure_autopsy_V3-EXQ-839_2026-07-30`, was ratified by governance on 2026-08-10, and is in `reviewed_run_ids`. The zero-evidence reading is an artifact of the (correct, deliberate) `claim_ids: []` on a diagnostic.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:02Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0194",
+      "claim_ids": [
+        "ARC-057",
+        "MECH-458"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-057' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-057's `notes` open with *\"The curiosity/exploration drive seeks information gain (novel or unexplored representational structure)\"*. MECH-458 (candidate, registered 2026-07-17, anchored on 767a + 768a) establishes the drive has zero proactive pull toward unexplored/unshaped structure and is 100% parasitic on prior DA shaping. The ARC-057 *result* is untouched (MECH-458 says so in terms), but this sentence in ARC-057's own notes now states the opposite of a measured finding registered in the same registry. Recommend a one-line amendment pointing at MECH-458, not a status change.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:03Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0195",
+      "claim_ids": [
+        "SD-024"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-024' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] SD-024 is `status: candidate` while carrying `experimental_confidence 0.715`, `evidence_quadrant confirmed_established`, `epistemic_stance: shown`, one reviewed evidence-purpose PASS (V3-EXQ-900, 2026-08-08) and one reviewed diagnostic PASS (V3-EXQ-795), zero conflicting runs. Its `live_status.as_of` is `2026-07-11`, i.e. it predates both live runs and the whole implementation. This is a promotion candidate that has never been put in front of a governance cycle. Recommend `/governance` read V3-EXQ-900 against SD-024 and either promote or record why not; digestion does not promote.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:04Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0196",
+      "claim_ids": [
+        "SD-024"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-024' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `substrate_queue.json` SD-024 `validation_experiment: \"PENDING -- live-path efficacy (producer ON vs OFF), not yet queued\"` is contradicted by a landed, reviewed, PASSing run (V3-EXQ-795, 2026-07-20). Same field's `status: implemented_pending_validation` should be re-read in light of V3-EXQ-900 being evidence-purpose. Also in this bucket: SD-024's `implementation_note` MECH-232-is-circular sentence (MECH-232 is now `stable`), and the two \"NOTE for governance ... depends_on_unresolved s",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:04Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0197",
+      "claim_ids": [
+        "SD-025"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-025' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the entire fishtank experiment family runs with the SD-025 curiosity channel dead while its config reads as though curiosity is on.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:05Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0198",
+      "claim_ids": [
+        "MECH-349",
+        "SD-078",
+        "ARC-063"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-349' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-349 has zero entries in `claim_evidence.v1.json` while three landed, reviewed runs carry its headline diagnostics under SD-078/ARC-063 attribution: V3-EXQ-806 (PASS/supports, `crf_n_minted` 3-10, dist 1.598-1.701), V3-EXQ-822 (FAIL, `evidence_direction: unknown`, 16/16 slots minted, dist 1.711) and V3-EXQ-666c (`ARM_0_OFF` 302 minted / 302 retired / dist 0.0). The same gap affects MECH-350, MECH-351 and MECH-352 (all four `NOT FOUND` in the index).",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:06Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0199",
+      "claim_ids": [
+        "MECH-349",
+        "SD-078"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-349' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-349's `notes` end \"Validation V3-EXQ-639\", but 639 is `non_contributory` with `claim_ids: []`, and the notes predate and omit the SD-078 centering fix (2026-07-25), the completed `crf-availability-maintenance` amend (ready 2026-06-19), and V3-EXQ-806/822. `live_status.as_of` is 2026-07-11.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:06Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0200",
+      "claim_ids": [
+        "MECH-527"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-527' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-527's `notes` state \"the above-action-level perturbation channels and the false-bottom ecology do not [exist] -- DO NOT queue an experiment against this until both exist\" and that the lit-pull \"SHOULD widen its target\". Both are out of date. SD-061 (detector + proposal-entropy regulator) is `implemented_pending_validation` and was exercised by V3-EXQ-694 on 2026-06-19; the widened lit-pull ran 2026-09-01 (the day the claim was registered) and delivered three named revisions plus a finding that escalating breadth is biologically unsupported.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:07Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0201",
+      "claim_ids": [
+        "MECH-527",
+        "MECH-343",
+        "SD-061"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-527' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-527 partially duplicates MECH-343/SD-061 with no cross-reference in either direction, and is currently `substrate_conditional` on a premise the substrate contradicts for its built leg.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:08Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0202",
+      "claim_ids": [
+        "MECH-527"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-527' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `promotion_review` (low priority, informational) -- V3-EXQ-694 (`v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness_20260619T224714Z_v3.json`) is `outcome: PASS`, is in `reviewed_run_ids`, and carries `claim_ids: []`. It is the only exercise of the SD-061 substrate and its entropy result (ON-arm `first_action_entropy` fell -0.0812/-0.0734/ -0.0953 on 3/3 seeds while control drift was mixed in sign) is load-bearing for MECH-343 and now for MECH-527. It is currently attributable to neither.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0203",
+      "claim_ids": [
+        "INV-063",
+        "MECH-205"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-063' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-205's `what_would_answer` non-degeneracy precondition asserts that `pe_surprise_threshold` \"STILL DEFAULTS TO 0.001 (config.py:3035)\" and builds its central trap warning (\"a run that enables the flag and inherits the default threshold writes ZERO VALENCE_SURPRISE entries ... and reads vacuously\") on that default. The default is now 1e-5 (`ree-v3/ree_core/utils/config.py:3365`), promoted by GFLAG-0075 on 2026-09-01, with the promotion recorded in the adjacent comment at :3363. The cited line numbers are also stale (3026/3035 -> 3350/3365).",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0204",
+      "claim_ids": [
+        "INV-063"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-063' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] INV-063 is a FUSED claim (testable REE leg + `out_of_domain` environmental-psychiatry leg) carried under a single `invariant` / `emergent` / `candidate` registration with `overall_confidence 0.0` and zero sources of either kind. As registered it can never resolve: an experimental result on the REE leg cannot move a claim whose text also asserts a clinical epidemiological gradient, and a literature pull on the epidemiological leg cannot move a claim whose text also asserts an offline-function starvation mechanism.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:10Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0205",
+      "claim_ids": [
+        "INV-063",
+        "INV-050"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-063' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the run designed above would supply, as a by-product, the consumer-absent control arm that INV-050's own `what_would_answer` names as its outstanding non-degeneracy requirement and on which GFLAG-0002 (open since 2026-08-07, \"promotion re-gated on a genuinely independent test ... and/or a consumer-absent control per the claim's own what_would_answer non-degeneracy precondition\") is still gated. INV-050 also still carries `pending_retest_after_substrate: true`.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:11Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0206",
+      "claim_ids": [
+        "INV-063",
+        "MECH-209",
+        "MECH-210"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-063' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] two coverage gaps found in the sleep plan-of-record. (a) `evidence/planning/sleep_substrate_plan.md` `scope_claims` omits INV-063, MECH-209, MECH-210 and MECH-211 while including every other member of the sleep cluster (SD-017, MECH-204/205/272/273/275/285, INV-049, INV-050, MECH-180, Q-041/042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166) -- so four sleep claims have no plan-of-record node and are invisible to the plan's own resume/gating machinery.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:11Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0207",
+      "claim_ids": [
+        "INV-104",
+        "SD-018"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-104' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `REE_assembly/evidence/planning/substrate_queue.json`, `queue[44]` (SD-018), `failure_record[0]` still reads `amend_status: \"AWAITING VALIDATION -- directional field head landed 2026-09-02 ... target re-tested by the owed 948-shape probe with use_resource_field_head OFF vs ON\"`. That re-test HAS run: V3-EXQ-978 (2026-09-03), whose confirmed autopsy section 7 explicitly instructs *\"amend SD-018 -- record the failure_record item and move `amend_status` off 'AWAITING VALIDATION' to validated-negative-for-shape-(a)\"*.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:12Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0208",
+      "claim_ids": [
+        "INV-104",
+        "MECH-100",
+        "SD-009"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-104' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] INV-104's own `notes` cite \"MECH-100 / SD-009 (event-type CE auxiliary loss -- class 1)\" as an EXISTING SINGLE-CLASS INSTANCE which INV-104 \"generalises rather than duplicates\", with no caveat.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:13Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0209",
+      "claim_ids": [
+        "INV-104"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-104' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] INV-104 carries a single `epistemic_category: substrate_conditional` over five preservation classes whose substrate readiness differs by years of roadmap. Verified: class 1 built and exercised three times (SD-018 directional head landed 2026-09-02, V3-EXQ-978 ran it on an 8/8 green precondition gate); class 2's primitive built and default-OFF (`ree_core/utils/config.py:884`); class 3 blocked on the untrained ARC-004 depth cascade (MECH-523 site b); class 4 on MECH-430 (v4); class 5 on ARC-047 (v4-v5, unbuilt, and the causal-compression intake deliberately declined to chip it).",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:13Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0210",
+      "claim_ids": [
+        "MECH-258"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-258' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-258's `evidence_quality_note` and `live_status.evidence` are two adjudications behind. They record only \"[2026-05-08 governance]: EXQ-445h supports (C1 wins=2/3 seeds) ... First clean supporting evidence for shared-substrate harm prediction on dACC reef\" and `from: failure_autopsy_V3-EXQ-445h_2026-06-19 / verdict: supports/standard`.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:14Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0211",
+      "claim_ids": [
+        "MECH-258"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-258' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] V3-EXQ-597c was routed by a confirmed failure autopsy on 2026-05-24 (`/queue-experiment -> V3-EXQ-597c`, with a two-fix redesign spec: raise `dacc_bias_max_abs` to 20.0; per-component telemetry with a per-seed C1 gate) and was never authored, never queued, and never run -- verified against `ree-v3/experiments/`, `git log --all -S`, `experiment_queue.json`, the evidence corpus, and `governance_flags.v1.json`.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:15Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0212",
+      "claim_ids": [
+        "MECH-258",
+        "SD-086"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-258' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the \"harm_a forward R2 = 0.94-0.99 / 0.91-0.94\" figure is cited on MECH-258 (and in the 445h substrate_queue metric) as supporting evidence, but on a target measured to be range-degenerate (SD-086/SD-087/Q-086: `cov_z_harm_a` below the 0.05 floor, mode ordering inverted, insensitive to both the training-target flag and hazard density) a near-perfect one-step forward R2 is the *predicted consequence of the degeneracy*, not independent support.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:16Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0213",
+      "claim_ids": [
+        "MECH-258",
+        "MECH-259"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-258' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `contested_disposition` (low priority) -- MECH-259 is `stable` on `genuine_exp_count: 1` (V3-EXQ-455, exp_conf 0.575) while the `depends_on` edge it declares to MECH-258 (\"the magnitude compared against threshold\") has never been exercised in a run that supported it. Not a demotion recommendation; a request that governance check whether MECH-259's stable reading is scoped to non-harm salience sources, and record that scoping if so.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:16Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0214",
+      "claim_ids": [
+        "MECH-485"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-485' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] The 2026-08-09 governance note on MECH-485 (GFLAG-0009 resolution) records that the what_would_answer drafted 2026-08-07 was 'applied verbatim' -- it was NOT: at that commit (REE_assembly d8ccbce59e) and in every commit since, the MECH-485 block had no what_would_answer, and the same commit DELETED the staging file evidence/planning/thought_digestion_staged_2026-08-07_mech485_q090.md while applying only the sibling Q-090 draft, so Q-090's live falsifier pointed at a non-existent field. Re-derived from the recovered draft and applied 2026-09-06; the note should be corrected and the Q-090 pointer re-checked.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0215",
+      "claim_ids": [
+        "MECH-485"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-485' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-485's predicted_harm_delta callout ('computed and never consumed anywhere in ree_core -- benign-by-design or worth a substrate check') is still true but understated and mis-homed: the FIELD (ree_core/pfc/e2_escape_affordance_linker.py) still has one write and zero readers, while the underlying harm_delta HEAD is trained and read only inside clamp01((harm_delta + threat_termination)/2), so no consumer ever sees an unaveraged predicted-harm magnitude. The finding belongs to SD-059 / MECH-358, not MECH-485. Separately the owed V3-EXQ-964 successor (epistemic_deficit readiness, sd_epistemic_deficit_multitarget_readiness) was recorded as required on 2026-09-01 and never queued.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:18Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0216",
+      "claim_ids": [
+        "SD-063"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-063' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] SD-063 was promoted to `provisional` on evidence that never tested the half of the claim its title asserts. The title says the head feeds \"E3 commitment gating\"; the promoting run V3-EXQ-716a scores only offline predictor quality (CRPS, precision_error_corr, agency-residual preservation) on held-out transitions. `E3Config.use_conditional_precision_gate` has never been `True` in any experiment driver in the repo (verified by whole-tree grep: matches occur only in `ree_core/`, three test files, and two experiment DOCSTRINGS).",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:18Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0217",
+      "claim_ids": [
+        "SD-063"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-063' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] fresh, reviewed, unrouted calibration evidence. `v3_exq_977_arc052_harm_stream_conditional_precision_20260903T112134Z_v3` (PASS, reviewed 2026-09-03 by `governance-20260903T2013`, whose Step-2b PASS skim recorded \"NOTHING FOUND\" against ARC-052's own criteria) carries per-arm `coverage_80` telemetry showing the SD-063 head form under-covering its nominal 80% interval on z_world at 5/5 seeds (mean 0.7154, mean `coverage_err_80` 0.0846) and on z_harm_s (mean 0.7076). SD-063 is not among that run's `claim_ids`, so this deposits no SD-063 evidence and nothing routed it.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:19Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0218",
+      "claim_ids": [
+        "SD-063"
+      ],
+      "flag_type": "stale_note",
+      "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-063' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `evidence/planning/substrate_queue.json` SD-063 entry (line 6317) is fourteen months of drift behind in miniature.",
+      "raised_by_session": "thought-digestion-v3-20260904-apply",
+      "raised_at": "2026-09-06T19:29:20Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
