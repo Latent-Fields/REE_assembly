@@ -105,10 +105,11 @@ be rewritten for them to keep matching.
 The one genuine residue is telemetry FILENAMES. `runner_heartbeats/` and
 `runner_status/` are keyed by the identity string, so the next runner start
 writes `DLAPTOP.json` and leaves the old `DLAPTOP-4.local.json` behind as a box
-that never reports again. Those files are materialised by the Phase-3 heartbeat
-writer from the coordinator DB, so hand-renaming them is not durable -- the
-correct cleanup is to let the stale pair age out (or delete them once the DB has
-no rows under the old name). Noted here rather than papered over.
+that never reports again. (Historical: those files were materialised by the
+Phase-3 heartbeat writer from the coordinator DB until 2026-09-01; the directories
+left REE_assembly master on 2026-09-06, so the residue now lives only in the
+coordinator `heartbeats` table, where a stale row under the old name simply ages
+out.) Noted here rather than papered over.
 
 Deliberately NOT done here: rewriting the 137 manifests that carry a `machine`
 field. A result manifest is a record of what happened, and editing it to claim a
