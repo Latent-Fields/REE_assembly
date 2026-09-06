@@ -9,8 +9,11 @@ nav_order: 1
 ## Why this gate exists
 
 REE_assembly governance cycles involve multiple moving parts: experiment manifests on
-multiple machines, per-machine runner heartbeats and status files, a central runner
-status file that may lag behind, pending_review.md generated from indexed manifests, and
+multiple machines, coordinator-held runner heartbeats and status (the git-committed
+heartbeat/status/command directories were retired 2026-09-06; the checks below read
+coordinator `/shadow/status` and fall back to the now-empty git files only when it is
+unreachable), a central runner status file that may lag behind, pending_review.md
+generated from indexed manifests, and
 roadmap snapshots that summarise the current state.
 
 These pieces can disagree. Documented failure modes:
@@ -20,8 +23,10 @@ These pieces can disagree. Documented failure modes:
 - **Roadmap/pending_review mismatch**: the roadmap snapshot and pending_review.md
   report different pending counts, typically because one was written after and the
   other before a governance walk.
-- **Stale central runner_status.json**: after the Phase-2 coordinator cutover,
-  per-machine status files carry live writes while the central file lags. Downstream
+- **Stale central runner_status.json**: after the Phase-2 coordinator cutover the
+  per-machine status files carried live writes while the central file lagged; both are
+  now a retired git mirror (2026-09-06) and this check is skipped whenever the
+  coordinator answers. Downstream
   indexers that depend on the central file see stale counts.
 - **EXQ drained without manifest**: an experiment drains from the queue and its
   outcome disappears from central indices, leaving its claim evidence status unknown.
@@ -113,8 +118,9 @@ add an explicit note that the snapshot is intentionally stale (and why).
 
 Checks whether evidence/experiments/runner_status.json is present and recent. The
 default stale threshold is 12 hours. This is a warn (not block) because, after the
-Phase-2 coordinator cutover, per-machine status files are authoritative and the central
-file may legitimately lag.
+Phase-2 coordinator cutover the coordinator (`GET /shadow/status`) is authoritative and
+this whole check is skipped when it answers; the per-machine git status files are a
+retired (2026-09-06) fallback, not a current source.
 
 **Resolution**: Investigate whether the coordinator->central-index merge has wedged. If
 Phase-2 is intentionally active, document that in the roadmap snapshot and the finding
@@ -122,7 +128,8 @@ is acceptable.
 
 ### Check D: `HEARTBEAT_STATUS_DIVERGENCE` (warn)
 
-Compares each machine's runner heartbeat (state, current_exq) against its per-machine
+Compares each machine's live coordinator row (or, when the coordinator is unreachable,
+its git heartbeat file -- a retired 2026-09-06 fallback) against its per-machine
 runner_status.json (idle, current). If the heartbeat says running but the status says
 idle, the runner may have stopped mid-experiment. Heartbeats older than 4 hours are
 skipped (machine may be offline).

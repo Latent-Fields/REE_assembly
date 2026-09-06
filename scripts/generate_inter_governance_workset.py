@@ -846,7 +846,7 @@ def _running_exqs() -> dict[str, str]:
     """queue_id -> machine, coordinator-primary with git-heartbeat fallback.
 
     Coordinator-primary (2026-09-01): the git materialization of
-    runner_heartbeats/*.json is being retired (files freeze in place), so a
+    runner_heartbeats/*.json is retired (removed from master 2026-09-06), so a
     frozen file could report a long-dead current_exq forever. Prefer the live
     /shadow/status rows; fall back to the git files only when the coordinator
     client returns nothing (never raises).

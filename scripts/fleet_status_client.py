@@ -2,7 +2,7 @@
 """Coordinator /shadow/status client -- stdlib-only, never raises.
 
 The git materialization of evidence/experiments/runner_heartbeats/*.json and
-runner_status/*.json is being retired (the files freeze in place). The live
+runner_status/*.json is retired (removed from master 2026-09-06). The live
 authority for fleet telemetry is the coordinator on the hub
 (http://10.8.0.1:8787 over WireGuard), whose GET /shadow/status returns:
 

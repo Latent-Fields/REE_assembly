@@ -132,10 +132,11 @@ WHAT IT MEASURES (three buckets, reported separately -- do not silently merge)
 
 * CORROBORATING -- per-machine `evidence/experiments/runner_status/<machine>.json`.
   NOTE the distinction that motivated this whole tool: the MONOLITHIC
-  `runner_status.json` is frozen at 2026-06-09, but the PER-MACHINE split is
-  still live (files updated within the last day) and it is the richest record of
-  ERROR entries, because the runner writes an ERROR there on every crash --
-  including crashes that never reach the coordinator. It is read here as a
+  `runner_status.json` is frozen at 2026-06-09, and the PER-MACHINE split was
+  retired from the repo 2026-09-06 (git materialisation off since 2026-09-01), so
+  it normally reads 0 files; the coordinator DB is the sole live source. It was
+  the richest record of ERROR entries while live (the runner wrote an ERROR there
+  on every crash, including crashes that never reached the coordinator). It is read here as a
   cross-check on the ERROR numerator ONLY. It must NOT be used as the
   denominator: the runner deduplicates `completed` by queue_id (preferring
   non-ERROR over ERROR), so its run count is lossy -- it shows 61 classified
@@ -311,7 +312,7 @@ def runner_status_split_is_stale():
 
 
 def scan_per_machine_errors(cutoff):
-    """Corroborating ERROR record from the LIVE per-machine runner_status split.
+    """Corroborating ERROR record from the per-machine runner_status split (retired 2026-09-06; normally 0 files).
 
     Numerator cross-check only -- see the module docstring for why this cannot
     supply the denominator (the runner dedupes `completed` by queue_id).
@@ -560,7 +561,7 @@ def main():
                      p["updated_at"]))
         if n_phantom > 10:
             print("      ... and %d more" % (n_phantom - 10))
-    print("  corroborating ERROR entries in the LIVE per-machine")
+    print("  corroborating ERROR entries in the per-machine")
     print("  runner_status/ split (%d file(s) read): %d in window"
           % (rs_files, len(rs_errs)))
     for e in rs_errs[:10]:

@@ -35,7 +35,7 @@ def _coordinator_rows():
     """Live /shadow/status rows keyed by machine, or None when unavailable.
 
     Coordinator-primary telemetry (2026-09-01): the git materialization of
-    runner_heartbeats/ is being retired (files freeze in place), so in-flight
+    runner_heartbeats/ is retired (removed from master 2026-09-06), so in-flight
     liveness is judged from the coordinator when it answers and from the git
     files only when it does not. Never raises; any failure returns None so
     callers fall back to today's behavior.
@@ -327,8 +327,7 @@ def generate_handoff(repo_root):
         "evidence/experiments/pending_review.md",
         "docs/roadmap.md",
         "evidence/planning/inter_governance_workset.v1.json",
-        "evidence/experiments/runner_heartbeats/",
-        "evidence/experiments/runner_status/",
+        "FLEET_STATUS.md",  # live-status branch; coordinator /shadow/status is the source of truth
     ]
     if ver_report_path:
         relevant_files.insert(0, ver_report_path)

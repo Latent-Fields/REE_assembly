@@ -107,7 +107,7 @@ All active repos live under **`/Users/dgolden/REE_Working/`** only. Do not use t
 | `REE_Working/TASK_CLAIMS.json` | Concurrency lock | Before editing shared files across sessions |
 | `REE_Working/WORKSPACE_STATE.md` | Session log | Recent work; check before high-contention edits |
 | `evidence/planning/substrate_queue.json` | Substrate readiness queue | Implementation gaps blocking experiments |
-| `evidence/experiments/runner_heartbeats/` | Live runner telemetry | Multi-machine freshness (with `/machines` dashboard) |
+| `/machines` dashboard (coordinator `/shadow/status`) | Live runner telemetry | Multi-machine freshness; the git `runner_heartbeats/` dir was retired 2026-09-06 |
 | `REE_assembly/explorer.html` (via serve.py) | Live governance cockpit | Navigate claims, governance, experiments visually |
 
 ---
@@ -187,7 +187,7 @@ No server running? The closure map has a committed, static rollup at [`evidence/
 | Stale `TASK_CLAIMS` | Session ended without closing claim | Confirm with owner; prune done entries >24h |
 | ERROR or wrong science after "fix" | Reused EXQ ID or wrong `claim_ids` | New letter suffix; `/diagnose-errors` or `/queue-experiment` |
 | Substrate-readiness FAIL | Code path not wired | `/implement-substrate`; check `substrate_queue.json` |
-| Duplicate runs on two machines | Queue claim race without `--auto-sync` | Use runner claiming; check `runner_heartbeats/` |
+| Duplicate runs on two machines | Queue claim race without `--auto-sync` | Use runner claiming; check the `/machines` dashboard |
 | Silent loss of evidence edits | Heartbeat `git pull --autostash` without claim on `evidence/` | Open `TASK_CLAIMS` covering `evidence/` before editing; commit or release |
 | Confidence drift without review | Manual manifest edits skipped governance | Run `/governance`; do not hand-edit confidence without adjudication |
 

@@ -499,7 +499,9 @@ def _runner_status_mirror_is_stale() -> bool:
 
     A file counts as fresh if either its mtime or its embedded last_updated
     timestamp is within the window (an unparseable embedded timestamp falls
-    back to mtime alone). No files at all -> not stale (the absent-dir case
+    back to mtime alone). No files at all -> not stale; since 2026-09-06 the directory is gone from
+    master, so this always returns False now and an empty completed list is the
+    real signal that runner_status corroboration is unavailable (the absent-dir case
     already degrades to the legacy monolithic file / empty result).
     Never raises.
     """

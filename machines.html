@@ -71,11 +71,11 @@
   <div class="grid" id="grid"></div>
   <div class="toast" id="toast"></div>
   <div class="footer">
-    <p>Heartbeats are written each runner loop tick when the runner is started with
-       <code>--remote-control</code>. Per-machine heartbeats live at
-       <code>REE_assembly/evidence/experiments/runner_heartbeats/&lt;hostname&gt;.json</code>;
-       per-machine status (pre-existing) at <code>runner_status/&lt;hostname&gt;.json</code>;
-       per-machine command queues at <code>runner_commands/&lt;hostname&gt;.json</code>.
+    <p>Heartbeats are posted to the coordinator each runner loop tick when the runner is
+       started with <code>--remote-control</code>; this dashboard reads the coordinator's
+       <code>/shadow/status</code>. (The git-committed per-machine files under
+       <code>runner_heartbeats/</code>, <code>runner_status/</code> and
+       <code>runner_commands/</code> were retired 2026-09-06.)
        A machine is "fresh" if its last heartbeat is within 3 minutes (3x the default
        60s polling interval).</p>
     <p>Buttons enqueue commands to the target machine; the runner picks them up on its

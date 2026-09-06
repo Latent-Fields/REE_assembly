@@ -88,9 +88,9 @@ except ImportError:
 
 SERVE_DIR = Path(__file__).resolve().parent
 STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"  # legacy monolithic
-STATUS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_status"       # per-machine split
-HEARTBEAT_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_heartbeats"  # per-machine heartbeats
-COMMANDS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_commands"     # per-machine command queues
+STATUS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_status"       # per-machine split -- retired 2026-09-06, normally absent; coordinator /shadow/status is primary
+HEARTBEAT_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_heartbeats"  # per-machine heartbeats -- retired 2026-09-06, normally absent
+COMMANDS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_commands"     # per-machine command queues -- retired 2026-09-06; coordinator /commands/issue is the channel
 RUNNER_LOG = SERVE_DIR / "runner.log"
 PLANNING_DIR = SERVE_DIR / "evidence" / "planning"
 WORKSET_JSON_FILE = PLANNING_DIR / "inter_governance_workset.v1.json"
@@ -566,6 +566,10 @@ def run_phase3_writers_summary() -> dict:
     {...}, heartbeat_writer: {...}} | None, spool_pending: int|null,
     journal_tail: [str], probe: 'http'|'ssh', cached_at: iso,
     fleet_drained: bool|null (optional)}.
+    
+    heartbeat_writer's git-log search finds nothing new by design: the writer
+    is off (PHASE3_HEARTBEAT_GIT_MATERIALIZE=0, retired 2026-09-06), so a stale or
+    absent heartbeat_writer row is expected, not a fault.
     """
     global _phase3_writers_cache, _phase3_writers_cache_at
     with _phase3_writers_lock:
@@ -1597,11 +1601,10 @@ def read_merged_runner_status() -> dict:
     # it reads the same file for its completed-run corpus, and the reason
     # scripts/experiment_error_rate.py calls it the only record for its era.
     #
-    # The branch is unreachable in practice (evidence/experiments/runner_status/
-    # has existed since 2026-04-18 and the phase3 heartbeat writer keeps it
-    # populated); it is corrected rather than deleted so that a box which somehow
-    # loses the split directory degrades to "no live status" instead of to a
-    # confidently wrong one.
+    # The branch is now the NORMAL path: evidence/experiments/runner_status/ was
+    # retired from master 2026-09-06 (6320b7f3fa) and the phase3 heartbeat writer
+    # is off, so STATUS_DIR is expected to be absent; kept so a box with no split
+    # directory degrades to "no live status" instead of to a confidently wrong one.
     if not raw_files and STATUS_FILE.exists():
         try:
             legacy = json.loads(STATUS_FILE.read_text())
@@ -2019,7 +2022,7 @@ def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
         # invocation, so it attests only that the timer fired -- confirmed
         # 2026-08-19, ree-cloud-5 published state="dispatching" with a tick
         # fresh to the minute for ~12h while every cycle died on a usage limit.
-        # See runner_heartbeats/README.md for the value table (note that
+        # See runner_heartbeats/README.md at REE_assembly 6320b7f3fa^ for the value table (note that
         # health=="idle" is HEALTHY and must not be rendered as an alarm).
         # Absent on a pre-2026-08-19 heartbeat, hence no default, same as the
         # rest of this block.
@@ -2103,8 +2106,9 @@ def read_machines() -> dict:
 
     Rows are keyed by CANONICAL machine identity, never by the raw reported
     hostname: telemetry filenames outlive the name the box reports (the Phase-3
-    writer materialises `runner_heartbeats/<machine>.json` from the coordinator
-    DB and never deletes a superseded one), so a laptop whose LocalHostName was
+    writer materialised `runner_heartbeats/<machine>.json` from the coordinator
+    DB and never deleted a superseded one; the git render is retired 2026-09-06, this
+    dedup stays for the fallback path), so a laptop whose LocalHostName was
     re-suffixed leaves a file behind under each spelling. Keyed raw, that is one
     physical machine rendered as two cards -- the stale one ageing into a card
     that reads as a dead box.
@@ -5941,8 +5945,10 @@ def _default_runner_extra_env() -> dict | None:
         # the git-mode mutex (bit-identical pre-Phase-3 behaviour).
         "PHASE3_DISABLE_RUNNER_CLAIM_PUSH": "1",
         # Suppress the LOCAL heartbeat + commands file writes too. The
-        # writer publishes the canonical runner_heartbeats/<host>.json
-        # from the coordinator DB; without this flag, the runner's local
+        # writer used to publish the canonical runner_heartbeats/<host>.json
+        # from the coordinator DB (git render retired 2026-09-06); this flag is kept
+        # so a locally-started runner never re-introduces the retired dir.
+        # Historically, without this flag, the runner's local
         # write conflicts with the writer-pulled version on every
         # auto-sync `git pull REE_assembly` and leaves UU markers that
         # block subsequent pulls until a human clears them. The flag's
@@ -6359,8 +6365,10 @@ def start_shadow() -> dict:
         "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
         # Suppress the LOCAL heartbeat + commands file writes too. The
-        # writer publishes the canonical runner_heartbeats/<host>.json
-        # from the coordinator DB; without this flag, the runner's local
+        # writer used to publish the canonical runner_heartbeats/<host>.json
+        # from the coordinator DB (git render retired 2026-09-06); this flag is kept
+        # so a locally-started runner never re-introduces the retired dir.
+        # Historically, without this flag, the runner's local
         # write conflicts with the writer-pulled version on every
         # auto-sync `git pull REE_assembly` and leaves UU markers that
         # block subsequent pulls until a human clears them. The flag's
@@ -6436,8 +6444,10 @@ def start_coordinator() -> dict:
         # write is preserved; only the commit/push is skipped.
         "PHASE3_DISABLE_RUNNER_CLAIM_PUSH": "1",
         # Suppress the LOCAL heartbeat + commands file writes too. The
-        # writer publishes the canonical runner_heartbeats/<host>.json
-        # from the coordinator DB; without this flag, the runner's local
+        # writer used to publish the canonical runner_heartbeats/<host>.json
+        # from the coordinator DB (git render retired 2026-09-06); this flag is kept
+        # so a locally-started runner never re-introduces the retired dir.
+        # Historically, without this flag, the runner's local
         # write conflicts with the writer-pulled version on every
         # auto-sync `git pull REE_assembly` and leaves UU markers that
         # block subsequent pulls until a human clears them. The flag's

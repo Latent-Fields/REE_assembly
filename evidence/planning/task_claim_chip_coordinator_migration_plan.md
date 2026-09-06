@@ -800,7 +800,7 @@ closure_plan:
         burn.
     - id: PHASE-3
       title: "Harden: monitoring, CLAUDE.md rewrite to reflect the new default, decommission what is safe to decommission"
-      status: in-progress
+      status: done
       severity: medium
       last_updated: 2026-09-06
       note: >
@@ -810,13 +810,20 @@ closure_plan:
         Decommissioning DONE: the hub runner is retired (D.7, 2026-08-30) and
         the heartbeat-retirement runbook R1-R7 is complete (2026-09-06;
         frozen runner_heartbeats/ runner_status/ runner_commands/ removed
-        from REE_assembly master in 6320b7f3fa). THE ONE REMAINING ITEM is
-        the doctrine/skill-text shrink for the retired telemetry paths --
-        chip-20260901-doctrine-shrink-retired-telemetry, unblocked by R7 and
-        still open: CLAUDE.md (umbrella + ree-v3), twelve skills mirrored to
-        .agents/skills/, and the retired-mode-only tests, with the
-        GOV-HELDOUT-1 check before any standing-rule rewording. When that
-        lands, flip this node to done.
+        from REE_assembly master in 6320b7f3fa). The last item,
+        the doctrine/skill-text shrink for the retired telemetry paths
+        (chip-20260901-doctrine-shrink-retired-telemetry), CLOSED 2026-09-06
+        (session nifty-chebyshev-227274): REE_Working 34ce6e67b (CLAUDE.md +
+        AGENTS.md + 13 skills mirrored to .agents/skills/ + archaeology note
+        A-93 holding the levers and every removed passage verbatim; scripts
+        docstrings), ree-v3 fccf81ca27 (CLAUDE.md Remote Control compressed;
+        code docstrings describe the git path as the degraded path;
+        phase3_verify check_derived_heartbeats + its 3 tests removed -- the
+        only test whose sole subject was the retired mode; flag-gate and
+        writer tests kept), REE_assembly (serve.py/scripts/docs comment
+        accuracy; governance handoff relevant_files no longer points at the
+        deleted dirs). GOV-HELDOUT-1 run on 4 non-degenerate cases, passed.
+        PHASE-3 is complete.
 
         CLAUDE.md REWRITE LANDED 2026-08-28 (REE_Working 7914a203, session
         elated-nobel-914234, chip

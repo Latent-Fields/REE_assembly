@@ -20,7 +20,8 @@
 # What it does:
 #   0. Clears a stale .git/index.lock in each repo (only if no git process holds it).
 #   1. REE_assembly: stages everything EXCEPT runner_heartbeats/ and runner_status/
-#      (those are materialised on origin by the hub phase3 writer, not the operator),
+#      (retired 2026-09-06 -- deleted from master, no writer repopulates them; excluded
+#      so a stray local copy is never re-added),
 #      commits, runs the dropped-file post-commit check, then pushes master
 #      (auto-rebasing once if the push is rejected non-fast-forward).
 #   2. REE_Working umbrella: stages only TASK_CLAIMS.json + WORKSPACE_STATE.md,
@@ -72,7 +73,7 @@ git symbolic-ref -q HEAD >/dev/null || die "REE_assembly is in a detached HEAD"
 git checkout master >/dev/null 2>&1 || die "could not checkout master in REE_assembly"
 
 git add -A
-# Never commit hub-owned telemetry: those land on origin via the phase3 writer.
+# Never commit the retired telemetry dirs (2026-09-06): a stray local copy must not be re-added.
 git reset -q -- evidence/experiments/runner_heartbeats \
                 evidence/experiments/runner_status 2>/dev/null || true
 

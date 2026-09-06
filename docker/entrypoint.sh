@@ -86,6 +86,8 @@ RUNNER_SCRIPT="${WORKSPACE}/ree-v3/experiment_runner.py"
 if [ "${AUTO_START}" = "true" ]; then
     echo "[ree-entrypoint] AUTO_START_RUNNER=true -- launching V3 runner ..."
     # Start runner in background; serve.py will detect the PID file
+    # NOTE: --status-file targets evidence/experiments/runner_status/, retired from git
+    # 2026-09-06 (6320b7f3fa). This writes locally only; --auto-sync must not recommit it.
     nohup python3 "${RUNNER_SCRIPT}" \
         --status-file "${SERVE_DIR}/evidence/experiments/runner_status/${MACHINE_NAME}.json" \
         --machine "${MACHINE_NAME}" \

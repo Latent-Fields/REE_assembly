@@ -430,7 +430,8 @@ PREPULL_LABEL = "runner-prepull-untracked"
 # By-design-local paths. Verified 2026-07-30 against origin/master: ZERO
 # *_per_tick.jsonl blobs exist there, so their absence from origin is the
 # design and not a loss. runner_status / runner_commands / runner_heartbeats
-# are transient telemetry, materialised on origin only by the phase3 writers.
+# are transient telemetry; the three dirs were retired from origin 2026-09-06 and
+# nothing materialises them any more -- still graded as noise, not findings.
 # These become NOTES, never findings -- see the module docstring on why a
 # probe that false-positives on ordinary runner churn gets ignored.
 #
