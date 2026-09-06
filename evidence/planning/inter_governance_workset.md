@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-06T13:02:24Z`
+Generated: `2026-09-06T19:15:42Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -12,7 +12,7 @@ UI: http://localhost:8000/workset
 - Items: **247** (ready 30, in_flight 0, blocked 159)
 - By generation: clinical 11, governance 5, meta 4, process 10, v3 78, v4 76, v5 38, v6 25
 - Pending review: **0**
-- Queue pending (unclaimed): **0**
+- Queue pending (unclaimed): **1**
 
 - Live EXQs: V3-EXQ-906c
 
@@ -1006,7 +1006,7 @@ Instructions:
 
 </details>
 
-### IGW-20260906-213 -- Queue depth low (0 pending)
+### IGW-20260906-213 -- Queue depth low (1 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1015,7 +1015,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260906-213
-Title: Queue depth low (0 pending)
+Title: Queue depth low (1 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -2757,25 +2757,24 @@ Instructions:
 
 </details>
 
-### IGW-20260906-235 -- Proposal for IMPL-023
+### IGW-20260906-235 -- Literature proposal for IMPL-023
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260906-235
-Title: Proposal for IMPL-023
-Lane: experiment | Skill: /queue-experiment
+Title: Literature proposal for IMPL-023
+Lane: lit | Skill: /lit-pull
 Status: ready
 Claims: IMPL-023
 Proposal backlog id (stable): EVB-1307
 Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Use /lit-pull for the claim cluster named.
 - Workset: http://localhost:8000/workset
 ```
 
