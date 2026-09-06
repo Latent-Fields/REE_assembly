@@ -3,7 +3,7 @@ closure_plan:
   id: self_attribution
   title: "Self-Attribution Comparator Loop"
   registered: 2026-05-08
-  last_updated: 2026-08-18
+  last_updated: 2026-09-04
   scope_claims: [SD-013, SD-029, SD-030, SD-031, ARC-033, ARC-058, MECH-256, MECH-257, MECH-258, MECH-260]
   sibling_plans: [behavioral_diversity_isolation, conversion_ceiling_campaign, sleep_substrate, goal_pipeline]
   nodes:
