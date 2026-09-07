@@ -163,6 +163,7 @@ INDEX_BODY = """<div class="ree-home">
         whether that architecture can be derived from first principles rather
         than designed by hand.
       </p>
+      <!-- REE_EVIDENCE_STRIP_SLOT -->
       <p class="ree-research-disclosure">
         Exploratory research materials: no REE manuscript or related work has
         been accepted for peer-reviewed publication. <a href="{{ '/research_status.html' | relative_url }}">Read the research status</a>.
@@ -357,6 +358,112 @@ INDEX_BODY = """<div class="ree-home">
 """
 
 
+EVIDENCE_STRIP_SLOT = "<!-- REE_EVIDENCE_STRIP_SLOT -->"
+
+
+def _fmt_int(n):
+    return format(int(n), ",d")
+
+
+def _strip_item(value, label, sub=None):
+    sub_html = ""
+    if sub:
+        sub_html = ('\n          <span class="ree-evidence-strip-sub">%s</span>'
+                    % sub)
+    return ('        <div class="ree-evidence-strip-item">\n'
+            '          <span class="ree-evidence-strip-value">%s</span>\n'
+            '          <span class="ree-evidence-strip-label">%s</span>%s\n'
+            '        </div>') % (value, label, sub_html)
+
+
+def render_evidence_strip(data):
+    """Build the hero evidence strip from governance-derived figures.
+
+    Every key is OPTIONAL. An ABSENT key drops its item; a key present
+    with value 0 is real data and IS rendered. Returns "" when not a
+    single item can be built, so the slot stays an inert HTML comment
+    rather than an empty box.
+
+    TWO FRAMING RULES, both load-bearing, neither cosmetic:
+
+    1. `claims_total` is NEVER rendered. Pairing a promoted-claim count
+       against the full registry total invites the reader to divide, and
+       the resulting "6% proven" is both wrong and damaging.
+
+    2. Evidence counts come from the claim/evidence join, NOT from claim
+       status. Status and evidence are decoupled here (measured
+       2026-09-07: 25 of 68 `active` and 60 of 97 `provisional` claims
+       have a supporting experimental entry, while 98 `candidate` claims
+       do), so a status tally would both overclaim and undercount. See
+       evidence_strip_data._gather_claim_evidence.
+
+    The weakening count is deliberately shown. A registry that records
+    results contradicting its own claims is making a stronger rigour
+    argument than any promotion count, and hiding it would be the kind
+    of selective presentation this programme exists to avoid.
+    """
+    if not isinstance(data, dict):
+        return ""
+    items = []
+
+    pct = data.get("closure_pct")
+    if pct is not None:
+        sub = None
+        done, total = data.get("closure_done"), data.get("closure_total")
+        if done is not None and total is not None:
+            sub = "%s of %s nodes complete" % (_fmt_int(done), _fmt_int(total))
+        items.append(_strip_item("%s%%" % round(float(pct)), "v3 closure", sub))
+
+    backed = data.get("claims_with_supporting_evidence")
+    if backed is not None:
+        items.append(_strip_item(
+            _fmt_int(backed), "claims with supporting experimental evidence",
+            "each linked to at least one run that supports it"))
+
+    runs = data.get("runs_logged")
+    if runs is not None:
+        items.append(_strip_item(_fmt_int(runs), "logged experiment runs"))
+
+    weakens = data.get("evidence_weakens")
+    if weakens is not None:
+        entries = data.get("evidence_entries")
+        sub = ("of %s linked evidence entries" % _fmt_int(entries)
+               if entries is not None else None)
+        items.append(_strip_item(
+            _fmt_int(weakens), "results recorded as weakening a claim", sub))
+
+    if not items:
+        return ""
+    return ('<div class="ree-evidence-strip" role="group"'
+            ' aria-label="Programme evidence snapshot">\n'
+            + "\n".join(items) + "\n      </div>")
+
+
+def _splice_evidence_strip(body):
+    """Substitute the strip into INDEX_BODY.
+
+    str.replace(), never .format()/f-strings: INDEX_BODY is full of literal
+    Liquid tags such as {{ '/x.html' | relative_url }}, which a brace-parsing
+    formatter would mangle or raise on.
+
+    Fails open in every direction -- a missing data module, an unreadable
+    source, or an empty strip all leave the sentinel in place, where it
+    renders as an invisible HTML comment.
+    """
+    try:
+        _here = os.path.dirname(os.path.abspath(__file__))
+        if _here not in sys.path:
+            sys.path.insert(0, _here)
+        import evidence_strip_data
+        figures = evidence_strip_data.gather_evidence_figures(ROOT)
+        strip = render_evidence_strip(figures) if figures else ""
+    except Exception:
+        strip = ""
+    if not strip:
+        return body
+    return body.replace(EVIDENCE_STRIP_SLOT, strip, 1)
+
+
 def render_index(now):
     """docs/index.md -- regenerated public Home page (nav frontmatter first)."""
     frontmatter = "---\ntitle: Home\nnav_order: 1\n---\n"
@@ -365,7 +472,7 @@ def render_index(now):
               "Edit the INDEX_BODY template in that script, not this file. "
               "apply_nav_frontmatter.py owns the frontmatter above. -->\n"
               % (GEN_MARK, now))
-    return frontmatter + header + "\n" + INDEX_BODY
+    return frontmatter + header + "\n" + _splice_evidence_strip(INDEX_BODY)
 
 
 def main():
