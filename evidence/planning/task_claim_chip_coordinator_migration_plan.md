@@ -656,9 +656,24 @@ closure_plan:
         on the Mac 2026-08-28, cloud-4/5 2026-09-01; unmaterialized rows 0
         on 2026-09-06), RECOMMENDATION_LOG.jsonl (flag flipped fleet-wide
         2026-09-06, hub DB 132/133 materialized at check time), the three
-        IGW ledger files via POST /intent/replace (2026-09-01), and the
+        IGW ledger files via POST /intent/replace (2026-09-01 -- BUT SEE
+        THE 2026-09-07 CORRECTION), and the
         retired heartbeat/status/command git telemetry (runbook R1-R7
-        complete 2026-09-06). Not yet started: a claims.yaml intake, if one
+        complete 2026-09-06).
+        CORRECTION 2026-09-07 (session campaign-split-20260907-d2): the
+        /intent/replace CLIENT path is live, but the hub never had
+        COORDINATOR_INTENT_REPO_REE_ASSEMBLY set and no dedicated clone
+        existed, so every one of the 218 intents logged in git_intent_log
+        between 2026-09-02T22:17Z and 2026-09-07T07:37Z (ledger 65,
+        assignments 57, workset json/md 46+46, proposals 4) answered
+        repo_not_configured (HTTP 500) and degraded to the git path -- the
+        DP-11 pre-activation state, silently, because the client line said
+        only 'returned HTTP 500' (fixed: coordinator_transport now prints
+        the server verdict). Prepared 2026-09-07: clone
+        /home/ree/REE_Working_intent_ree_assembly (identity 'REE Automation
+        (Hub)', push dry-run OK) + the env var in /etc/ree-coordinator.env.
+        ACTIVATION = the next user-authorised ree-coordinator restart (DP-11);
+        until then the git path remains the operative path for these files. Not yet started: a claims.yaml intake, if one
         is ever wanted -- the governance cycle still commits claims.yaml
         directly under its pause claim, and nothing here assumes otherwise.
         The record below is the activation and soak history.
