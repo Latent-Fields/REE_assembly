@@ -290,13 +290,35 @@ by definition, and 59% of sessions invoke no skill at all.
 
 ### Combined
 
-| lever | saving | risk |
-|---|---|---|
-| WI-1 | ~9.2% | none |
-| WI-2 | ~4.8% | none |
-| **both** | **~14%** | **none** |
-| *(Headroom best case, for comparison)* | *11.7%* | *lossy, proxy, new failure surface* |
-| *(Headroom realistic here)* | *4-6%* | *as above* |
+| lever | planned | **realized** | risk |
+|---|---|---|---|
+| WI-1 | ~9.2% | **~9.8%** | none |
+| WI-2 | ~4.8% | **~2.3%** | none |
+| **both** | ~14% | **~12%** | **none** |
+| *(Headroom best case, for comparison)* | *11.7%* | -- | *lossy, proxy, new failure surface* |
+| *(Headroom realistic here)* | *4-6%* | -- | *as above* |
+
+WI-2's realized figure is below plan because roughly a third of its candidate mass proved
+to be rules rather than reference and correctly stayed inline (see its OUTCOME block) --
+a classification finding, not a shortfall. **The combined realized ~12% already exceeds
+the compression layer's best published case, losslessly.**
+
+### Live confirmation (added 2026-09-07T22:13:02Z by the measuring session)
+
+The sha256 recomposition above proves the SPLIT was lossless. This proves the SAVING is
+real in a running session rather than only on disk -- the observed `nested_memory`
+injection payload for `ree-v3/CLAUDE.md`, last pre-split against first post-split:
+
+```
+2026-09-07T02:10Z   1,493,819 chars  (~373,454 tok)   pre-split
+2026-09-07T20:50Z      62,569 chars  (~ 15,642 tok)   post-split   -95.8%
+```
+
+**Caveat, stated so it is not over-read: n=1 post-split injection.** It confirms the
+mechanism end to end; it is NOT a fleet budget re-measure. Re-run the measurement in
+`token_split_measurement_20260907.md` once post-change sessions have accumulated (~1 week)
+for the fleet-level figure, and check the section 6 negative control at the same time --
+the saving holds only while sessions do not read back many substrate files.
 
 The restructure beats the compression layer's best case and roughly triples its realistic
 case, without a lossy layer.
