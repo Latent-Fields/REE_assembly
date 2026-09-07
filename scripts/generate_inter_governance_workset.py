@@ -150,6 +150,32 @@ live paths. (The held-pending-recs loop's `add()` call needs no such guard: it
 never reads a substrate_queue status at all, only a promotion_demotion
 verdict.) Regression test:
 scripts/test_generate_inter_governance_workset_substrate_staleness.py
+
+THE RE-MINT CLASS (2026-09-07, wave-4 HK-A.6) -- WHY A DISPOSITION ON AN OLD
+IGW ID STILL HOLDS, AND WHAT IT DOES NOT COVER
+-----------------------------------------------------------------------------
+Every item is minted with a DATE-STAMPED id (`add()`:
+`IGW-<YYYYMMDD>-<seq>`), so a retest / confirm / proposal item that is still
+`ready` after a user dispositions it (DEFER / RESOLVE / DONE / REJECT on
+IGW-20260904-241, say) comes back on the next regen as IGW-20260907-241 -- a
+NEW id, same work. Reading the ledger by id, that looks like the disposition
+was ignored and the item "re-minted"; the 09-01..09-07 token audit in
+science_wave_campaign_plan_20260907.md counted 19 of 32 completions that
+produced nothing, several of them exactly this shape. The id is NOT the
+identity. igw_routine_tick.stable_hash() keys an item on
+(skill, owner_exq, sorted gap_ids, sorted claim_ids) -- content, never the
+id, title or generated_at -- and dispositions are recorded and checked
+against that hash (`dispositioned_hashes`), so a permanent disposition on the
+OLD id suppresses the NEW id for as long as the content is the same. It
+therefore covers the re-mint class ONLY because the hash is content-keyed;
+anything that changes one of those four fields (a lane retag, a claim_id
+split, an owner_exq re-letter) is a genuinely new item and is NOT covered --
+which is the correct default, because the work changed. What the ledger did
+not show a wave planner is the DELTA: how many of the currently-ready items
+are already held by a permanent disposition and so will not spawn.
+`igw_routine_tick.py status` prints that count ("Ready items suppressed by a
+permanent disposition: N of M ready"), so the planner reads the live
+backlog, not the workset's headline ready count.
 """
 from __future__ import annotations
 
