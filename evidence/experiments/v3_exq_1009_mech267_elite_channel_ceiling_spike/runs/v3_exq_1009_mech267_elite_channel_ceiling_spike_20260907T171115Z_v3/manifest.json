@@ -1,0 +1,259 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1009_mech267_elite_channel_ceiling_spike",
+  "run_id": "v3_exq_1009_mech267_elite_channel_ceiling_spike_20260907T171115Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-07T17:11:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "elite_channel_ceiling_confirmed_all_benches",
+    "summary": "No cell clears the pre-registered 0.02 oracle-elite relocation floor on the lineage scale (production reference FROZEN/floor0.2 = 0.00046477995274126215; shortfall factors {'FROZEN/floor0.2': 43.03111586900518, 'FROZEN/floor0.0': 2.312387321949136, 'GROUNDED/floor0.2': 8.694531710871816, 'GROUNDED/floor0.0': 4.722480359414274}). Neither grounding E2's action-object head into genuine action-dependence nor removing the support-preserving ao_std floor lets the STRONGEST possible content-selective re-ranker relocate the proposal centroid above the floor. MECH-267's content assertion is not measurable by proposal-output centroid at production CEM settings on any bench tested here.",
+    "routing": "route to /governance: either narrow MECH-267's what_would_answer to the breadth channel, or register a complicated (buildable) substrate_queue entry (ao_std floor policy under mode conditioning, or E2 action-object action-dependence). This run deliberately registers NEITHER -- that is governance's call, not the spike's.",
+    "preconditions": [
+      {
+        "name": "frozen_production_cell_reproduces_archived_ceiling",
+        "description": "FROZEN/floor0.2 IS the V3-EXQ-1005 bench, so its oracle ceiling must reproduce the archived probe-C value (+0.0001..+0.001). If it does not, this spike is not measuring the instrument that produced the refusal.",
+        "measured": 0.001200779597662105,
+        "threshold": 0.005,
+        "direction": "upper",
+        "control": "the refused 1005 bench itself, re-instantiated unchanged",
+        "met": true
+      },
+      {
+        "name": "grounded_cells_lift_action_object_action_dependence",
+        "description": "The GROUNDED cells exist to supply action-dependence in E2's recomputed action objects. Worst cell reported (this is a quantifier claim over cells, not a central tendency). Below floor means those cells are vacuous and cannot support a no-clear verdict.",
+        "measured": 2.768394044660726,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "same statistic the elite channel is bounded by, measured pre/post grounding",
+        "offending_cell": "GROUNDED/floor0.2@seed4",
+        "met": true
+      },
+      {
+        "name": "standardised_dv_well_conditioned",
+        "description": "The DV divides by the pooled per-dim sample spread. Removing the ao_std floor collapses that spread, so the smallest per-dim spread over every cell must stay above a floor for the standardised statistic to be numerically trustworthy. Worst cell reported.",
+        "measured": 0.0020515331998467445,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "control": "min over all cells, both arms, all modes",
+        "offending_cell": "FROZEN/floor0.0@seed1",
+        "met": true
+      },
+      {
+        "name": "oracle_elite_override_fired_every_iteration",
+        "description": "The oracle replaces elite choice at the _support_preserving_elite_indices call site. That site must be reached once per CEM iteration in every cell, or the oracle is silently inert and the ceiling is not an oracle ceiling.",
+        "measured": 3,
+        "threshold": 3.0,
+        "direction": "lower",
+        "control": "min call count over all cells and arms",
+        "offending_cell": "FROZEN/floor0.2@seed0",
+        "met": true
+      },
+      {
+        "name": "ctrl_arm_mode_blind_under_shared_seed",
+        "description": "Under the gated (shared) seed regime with mode conditioning disabled in every cell, the four CTRL proposer runs must be bit-identical, so dbar(CTRL) is exactly 0 and delta_dbar is a PURE oracle-induced separation rather than a difference against a randomly-oriented sampling-noise baseline. A non-zero value means something mode-dependent is leaking into the CTRL arm and the bound is not pure. Worst cell reported.",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "upper",
+        "control": "max |dbar(CTRL)| over all cells and seeds, gated regime",
+        "offending_cell": "FROZEN/floor0.2@seed0",
+        "met": true
+      },
+      {
+        "name": "oracle_directions_maximally_separating",
+        "description": "The oracle directions must form a regular simplex -- all six pairwise distances equal -- so no mode pair is privileged and the induced separation enters dbar at first order for every pair simultaneously. Measured as the max-minus-min pairwise distance, which is 0 for a regular simplex. A non-zero spread means the construction degenerated.",
+        "measured": 2.384185791015625e-07,
+        "threshold": 1e-06,
+        "direction": "upper",
+        "control": "sqrt(8/3) reference; see _maximally_separating_directions",
+        "met": true
+      },
+      {
+        "name": "at_least_two_scorable_cells",
+        "description": "Injection-contaminated (seed, cell) rows are dropped per CELL, and a cell retaining fewer than MIN_CLEAN_SEEDS_PER_CELL clean seeds is marked unscorable and excluded from C1/C2 -- it does NOT fail the run. This gate asks only whether ENOUGH cells survived to discriminate at all. Making it a run-level AND over every cell's retention would let one contaminated cell vacate three clean ones, which is exactly the multi-arm gate defect CLAUDE.md forbids (and which this precondition previously committed).",
+        "measured": 4.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "count of cells retaining >= MIN_CLEAN_SEEDS_PER_CELL injection-clean seeds",
+        "offending_cell": null,
+        "met": true
+      }
+    ],
+    "anchor_reachability": {
+      "frozen_production_cell_reproduces_archived_ceiling": {
+        "anchor_name": "frozen_production_cell_reproduces_archived_ceiling",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "exq1005_mech267_location_dv_redteam_blocking_20260907.md sec 3 probe C + 1009 pilot seeds 0-1",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 5,
+        "n_reference_scored_true": 5,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "grounded_cells_lift_action_object_action_dependence": {
+        "anchor_name": "grounded_cells_lift_action_object_action_dependence",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "1009 Step 2.5a delta-target grounding probe, seeds 0-2",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 3,
+        "n_reference_scored_true": 3,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true
+        ]
+      },
+      "standardised_dv_well_conditioned": {
+        "anchor_name": "standardised_dv_well_conditioned",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "1009 Step 2.5a spread probe, all four cells, seeds 0-1",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 8,
+        "n_reference_scored_true": 8,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "oracle_elite_override_fired_every_iteration": {
+        "anchor_name": "oracle_elite_override_fired_every_iteration",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "1009 Step 2.5a Q3 probe, floor0.2 and floor0.0",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 4,
+        "n_reference_scored_true": 4,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "ctrl_arm_mode_blind_under_shared_seed": {
+        "anchor_name": "ctrl_arm_mode_blind_under_shared_seed",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "1009 iter3 shared-seed pilot: dbar_ctrl measured exactly 0.000000 in all 12 cells",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 4,
+        "n_reference_scored_true": 4,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "at_least_two_scorable_cells": {
+        "anchor_name": "at_least_two_scorable_cells",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "scorable-cell counts reachable at n=5; the n=3 pilot left 3 of 4 scorable",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 3,
+        "n_reference_scored_true": 3,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true
+        ]
+      },
+      "oracle_directions_maximally_separating": {
+        "anchor_name": "oracle_directions_maximally_separating",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "regular simplex: all 6 pairwise distances equal sqrt(8/3), spread 0 by construction",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 1,
+        "n_reference_scored_true": 1,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true
+        ]
+      }
+    },
+    "criteria_non_degenerate": {
+      "C1_any_cell_clears_content_floor": true,
+      "C2_clearing_cell_relocates_centroid_not_ruler": false
+    },
+    "criteria_non_degenerate_note": "C2 is marked non-degenerate only when at least one cell cleared C1; with no C1 clear there is nothing for the attribution guard to discriminate, and the verdict routes on C1 alone.",
+    "what_a_null_does_not_mean": "A no-clear result is a statement about what the proposal-output centroid readout can see, NOT evidence against MECH-267. claim_ids is empty for this reason."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1e96147bcd8f8e7754f32ca7c2a81c646be971d37496d33b900ed9801aee8c87",
+  "substrate_commit": {
+    "commit": "447034ddadef460cb9a96fca44606f263f5376cc",
+    "dirty": false,
+    "branch": "main"
+  }
+}
