@@ -672,8 +672,16 @@ closure_plan:
         the server verdict). Prepared 2026-09-07: clone
         /home/ree/REE_Working_intent_ree_assembly (identity 'REE Automation
         (Hub)', push dry-run OK) + the env var in /etc/ree-coordinator.env.
-        ACTIVATION = the next user-authorised ree-coordinator restart (DP-11);
-        until then the git path remains the operative path for these files. Not yet started: a claims.yaml intake, if one
+        ACTIVATED 2026-09-07T08:43:57Z (user-authorised restart; env line
+        deduplicated to one entry). Live probe: content-identical intent on
+        igw_assignments.json -> git_intent_log id 221 verdict=applied
+        (noop, no commit, origin unchanged). The Mac client config carries
+        NO igw_*_suppress_git_write flag, so the IGW tick is now in the
+        DUAL-WRITE SOAK (hub applies synchronously AND the tick still
+        commits+pushes locally; content-identical, so the push-retry rebase
+        collapses the duplicate). Soak window start = 08:43:57Z; evaluate
+        against section 7 no earlier than 2026-09-10T08:44Z, then flip the
+        three suppress predicates (chip-20260907-igw-intent-soak-eval-flag-flip). Not yet started: a claims.yaml intake, if one
         is ever wanted -- the governance cycle still commits claims.yaml
         directly under its pause claim, and nothing here assumes otherwise.
         The record below is the activation and soak history.
