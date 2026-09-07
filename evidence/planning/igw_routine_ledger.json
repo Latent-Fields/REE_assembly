@@ -4096,7 +4096,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-09-04T21:02:19Z",
       "staged_at": "2026-09-04T21:02:19Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-09-07T22:43:09Z",
+      "completion_summary": "NEVER LAUNCHED. Staged 2026-08-31/2026-09-04 and still 'staged' 7 days later, past STAGE_STALE_HOURS(72); the backing workset item no longer exists in inter_governance_workset.v1.json (matched by neither stable_hash nor title on 2026-09-07), so the frozen IGW_START_HERE.md brief described a condition that had already lapsed. Its worktree was then removed IN ERROR by session w4hk-bundle-c-20260907 (W4-HK bundle C worktree-graveyard GC): that sweep applied gate 1 as 'chip resolved done/withdrawn' for metaworker-* worktrees only and did not check the IGW ledger status for igw-* ones, which chip-20260826-worktree-graveyard-triage-and-gc explicitly requires ('for igw-*, its ledger entry ... is completed -- prefer running igw_routine_tick.py gc'). Gates 2/3/4 did all hold (no live process, clean tree, zero unlanded commits), so no committed or uncommitted work was lost; what was lost is the staged IGW_START_HERE.md brief, which is not reconstructible because its source workset item is gone. Closed NO_OP rather than left dangling so the entry stops sitting LIVE against an absent worktree and its 2026-08-31 TASK_CLAIMS claim closes. If this substrate item is still wanted, it should be re-surfaced by the generator on its own merits rather than relaunched from a lapsed brief. Lane is 'substrate' and outcome NO_OP, so R3 retires no proposal.",
+      "outcome": "NO_OP",
+      "outcome_evidence": "NEVER LAUNCHED. Staged 2026-08-31/2026-09-04 and still 'staged' 7 days later, past STAGE_STALE_HOURS(72); the backing workset item no longer exists in inter_governance_workset.v1.json (matched by neither stable_hash nor title on 2026-09-07), so the frozen IGW_START_HERE.md brief described a condition that had already lapsed. Its worktree was then removed IN ERROR by session w4hk-bundle-c-20260907 (W4-HK bundle C worktree-graveyard GC): that sweep applied gate 1 as 'chip resolved done/withdrawn' for metaworker-* worktrees only and did not check the IGW ledger status for igw-* ones, which chip-20260826-worktree-graveyard-triage-and-gc explicitly requires ('for igw-*, its ledger entry ... is completed -- prefer running igw_routine_tick.py gc'). Gates 2/3/4 did all hold (no live process, clean tree, zero unlanded commits), so no committed or uncommitted work was lost; what was lost is the staged IGW_START_HERE.md brief, which is not reconstructible because its source workset item is gone. Closed NO_OP rather than left dangling so the entry stops sitting LIVE against an absent worktree and its 2026-08-31 TASK_CLAIMS claim closes. If this substrate item is still wanted, it should be re-surfaced by the generator on its own merits rather than relaunched from a lapsed brief. Lane is 'substrate' and outcome NO_OP, so R3 retires no proposal."
     },
     {
       "igw_id": "IGW-20260904-214",
@@ -5779,7 +5783,7 @@
     },
     {
       "stable_hash": "4dafb051f849",
-      "igw_id_at_disposition": "IGW-20260902-219",
+      "igw_id_at_disposition": "IGW-20260904-213",
       "owner_exq": null,
       "claim_ids": [
         "MECH-465"
@@ -5788,8 +5792,8 @@
       "title": "Substrate ready: MECH465-COMMIT-GATE-HEADROOM",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-09-02T20:26:09Z",
-      "re_eligible_after": "2026-09-04T20:26:09Z"
+      "noted_at": "2026-09-07T22:43:09Z",
+      "re_eligible_after": "2026-09-09T22:43:09Z"
     },
     {
       "stable_hash": "d1a503221ce7",
