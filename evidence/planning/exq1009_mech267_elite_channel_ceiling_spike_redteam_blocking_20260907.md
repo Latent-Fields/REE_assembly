@@ -1,3 +1,19 @@
+> **SUPERSEDED 2026-09-07T17:05Z -- THE SPIKE WAS SUBSEQUENTLY REPAIRED AND QUEUED AS `V3-EXQ-1009`.**
+> This record refused the SECOND design iteration. A third iteration (user-directed) fixed all three
+> BLOCKING findings and passed a second red-team pass (CONTESTED, findings fixed or dispositioned);
+> the driver is queued and live on the coordinator (`ree-v3 dbf1beeb47`). What still stands here,
+> and is why this file is kept rather than deleted: **sections 2 and 4 -- the three confirmed
+> substrate findings**, two of which generalise well beyond this spike. What is superseded:
+> section 1's "cannot be given a non-fitted gate" conclusion, section 3's repair narrative, and
+> section 6's routing. The third iteration's own reasoning is in the driver docstring and in the
+> queue entry `note`.
+>
+> The gate that iteration 3 found: the 1005 threshold is an INCREMENT over a sampling-noise
+> baseline B, so a displacement d moves dbar by `sqrt(B^2+d^2)-B`, not by d. Measuring d cleanly
+> (shared-seed regime, where dbar(CTRL) is structurally 0) and projecting it onto that scale using
+> each cell's measured B inherits the 0.02 honestly -- which neither of the first two iterations
+> managed.
+
 # V3-EXQ-1009 (MECH-267 elite-channel ceiling 2x2 spike) -- DESIGN REFUSED at `/queue-experiment` Step 4.5 (red-team BLOCKING, confirmed)
 
 **Status: NOT QUEUED. No queue entry, no coordinator row, no manifest. The design-complete driver and its three probes are landed under `ree-v3/experiments/_scratch/` so the paid-for work is recoverable; nothing here has been written to `claims.yaml`, `substrate_queue.json`, or `experiment_queue.json`. The chip that commissioned this spike is resolved with this record.**
