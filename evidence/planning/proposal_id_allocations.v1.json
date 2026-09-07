@@ -1049,6 +1049,7 @@
     "EVB-1709|literature": 9,
     "EVB-1710|literature": 11,
     "EVB-1711|literature": 13,
+    "EVB-1712|experimental": 40,
     "EVB-1712|literature": 26,
     "EVB-1713|literature": 27,
     "EVB-1714|experimental": 28,
@@ -1056,6 +1057,9 @@
     "EVB-1715|experimental": 31,
     "EVB-1715|literature": 32,
     "EVB-1716|literature": 33,
+    "EVB-1719|experimental": 35,
+    "EVB-1720|experimental": 36,
+    "EVB-1721|experimental": 46,
     "EVB-PINNED-Q019|literature": 558
   },
   "note": "Append-only map from a proposal's stable identity '<backlog_id>|<lane>' to its numeric EXP-/LIT- index. Written by build_experiment_indexes.py. An entry is never changed or removed: ids must stay stable across regens because EXP-/LIT- ids are referenced from chips, the IGW ledger and planning prose. Do not hand-edit.",

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-06T16:11:29.896621Z",
+  "generated_at_utc": "2026-09-07T04:19:24.972550Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -287,24 +287,6 @@
         "active_conflict",
         "directional_conflict_alert",
         "low_exp_conf"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0593",
-      "claim_id": "MECH-074d",
-      "dispatch_mode": "discriminative_pair",
-      "executed_by": "v3-exq-812-harness-repair-1f9438",
-      "executed_queue_id": "V3-EXQ-894a",
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-074d with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0041",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_074d",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert"
       ]
     },
     {
@@ -1543,27 +1525,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-1234",
-      "claim_id": "ARC-121",
-      "dispatch_mode": "discriminative_pair",
-      "objective": "Run a discriminative support-vs-ablation pair for ARC-121 with matched seeds and pre-registered thresholds.",
-      "priority": "medium",
-      "proposal_id": "EXP-0267",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_arc_121",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert",
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1189",
       "claim_id": "ARC-019",
       "dispatch_mode": "discriminative_pair",
@@ -1573,7 +1534,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0264",
       "proposal_type": "experimental",
-      "status": "executed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_019",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1596,6 +1557,25 @@
       "suggested_experiment_type": "claim_probe_arc_006",
       "target_repo": "ree-v3",
       "why_now": [
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1719",
+      "claim_id": "MECH-535",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-535 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0035",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_535",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -1678,6 +1658,25 @@
       ]
     },
     {
+      "backlog_id": "EVB-1720",
+      "claim_id": "MECH-536",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-536 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0036",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_536",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
       "backlog_id": "EVB-0361",
       "claim_id": "SD-046",
       "dispatch_mode": "targeted_probe",
@@ -1724,25 +1723,6 @@
       "proposal_type": "experimental",
       "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_077",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1226",
-      "claim_id": "ARC-113",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for ARC-113 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0285",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_arc_113",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -1800,25 +1780,6 @@
       "proposal_type": "experimental",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_ext_008",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0080",
-      "claim_id": "INV-057",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for INV-057 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0291",
-      "proposal_type": "experimental",
-      "status": "gated",
-      "suggested_experiment_type": "claim_probe_inv_057",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -2264,25 +2225,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-0103",
-      "claim_id": "MECH-182",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-182 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0342",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_182",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-0104",
       "claim_id": "MECH-184",
       "dispatch_mode": "targeted_probe",
@@ -2292,25 +2234,6 @@
       "proposal_type": "experimental",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_184",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0105",
-      "claim_id": "MECH-192",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-192 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0344",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_192",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -2368,25 +2291,6 @@
       "proposal_type": "experimental",
       "status": "gated",
       "suggested_experiment_type": "claim_probe_q_078",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0109",
-      "claim_id": "ARC-048",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for ARC-048 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0350",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_arc_048",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -3098,24 +3002,6 @@
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1203",
-      "claim_id": "ARC-061",
-      "dispatch_mode": "targeted_probe",
-      "executed_by": "reanalysis_sd048_arc058_min_bucket_guard_902_reanalysis_20260902T215741Z",
-      "objective": "Reduce uncertainty for ARC-061 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0473",
-      "proposal_type": "experimental",
-      "status": "gated",
-      "suggested_experiment_type": "claim_probe_arc_061",
-      "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
@@ -4915,16 +4801,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "gated_at_utc": "2026-09-06T18:27:17Z",
-      "gated_by_session": "igw-235-proposal-for-impl-023 (IGW-20260906-235)",
-      "gating_reason": "DECLINED at the /queue-experiment Step 2.5 substrate-readiness guardrail (2026-09-06). This is a NON-EXPERIMENTABLE CLAIM CLASS, not a missing ree_core feature -- do NOT route it to /implement-substrate on an SD. (1) CLAIM SHAPE: IMPL-023 is claim_type=implementation_note, polarity='records', subject=roadmap.ree_v2_representation_interface_spec. It is the document-header claim of docs/architecture/ree_v2_spec.md (the <a id=\"impl-023\"></a> anchor sits under that doc's own 'Claim ID: IMPL-023' header, line 14-15), whose declared Scope is 'V2 architecture, subsystem boundaries, SD-001/002/003 resolution, required metrics, failure gates'. It records that a spec and a phase gate exist; it asserts no mechanism. There is no quantity an agent run could carry as a DV. Consistent with that, IMPL-023 carries neither what_would_answer nor falsifier in claims.yaml -- and neither does any of the 25 implementation_note claims in the registry. (2) SUBJECT SUBSTRATE IS CLOSED: the claim is about REE-v2, which CLAUDE.md's repo map records as 'V2 substrate -- CLOSED (all experiments complete)', while the proposal's target_repo is ree-v3. (3) MEASURED, not inferred: ZERO of the 1002 flat manifests under evidence/experiments/ tag ANY IMPL-* claim (the runs/ pack contains no manifests at all). IMPL-023 has zero hits across ree-v3/ree_core/, ree-v3/CLAUDE.md and ree-v3/experiments/; its only hit anywhere in ree-v3 is dispatch/dispatch.db, i.e. this IGW item's own dispatch record. There is no substrate module, latent, config knob or readout a V3 run could instrument for it, so any queued script would have to invent one and would measure something else. (4) THE DECOMPOSITION ALREADY HAPPENED, and the class boundary is visible inside IMPL-023's own depends_on list: its mechanism_hypothesis dependencies carry V3 evidence (MECH-063 tagged by 7 manifests, MECH-062 by 1) while its three implementation_note dependencies carry none (IMPL-008: 0, IMPL-021: 0, IMPL-022: 0) and two of those are already status=legacy. Mechanism claims get experiments; the implementation_note that contains them does not. (5) ROOT CAUSE OF THE SPURIOUS MINT (generator gap, recorded so it can be fixed at source rather than re-dispositioned every cycle): build_experiment_indexes._is_experiment_ineligible_claim gates on _resolve_epistemic_category, whose fallthrough maps claim_type=implementation_note with no explicit epistemic_category to 'standard'. 'standard' is in neither _NON_EXPERIMENTAL_EPISTEMIC_CATEGORIES {out_of_domain, derivational, governance_rule} nor _PROBE_GATED_EPISTEMIC_CATEGORIES, so every implementation_note flagged missing_experimental_evidence seeds a generic EXP row. The auto-minted proposal for EVB-1307 is exactly that template output ('Reduce uncertainty for IMPL-023 via targeted experiment runs', suggested_experiment_type=claim_probe_impl_023); it carries no design and no awareness of the claim class. (6) Re-derive brake (Step 2.5b) counted 0 prior braking autopsies on IMPL-023 -- recorded for completeness; the brake is NOT the reason for this stop. LANE SCOPE: this disposition is on the EXPERIMENTAL lane only. The literature twin (LIT-#### for EVB-1307, targeted_review_impl_023) is NOT blocked -- a literature review needs no V3 substrate. The indexer's (backlog_id, proposal_type) carry-forward key keeps this row off that twin; do not widen it.",
-      "release_condition": "NOT RELEASED BY ANY SUBSTRATE BUILD. No ree_core feature makes a polarity='records' spec note experimentable, so there is nothing here for /implement-substrate to build and this row should not be re-offered on a substrate-readiness signal. The two productive routes are instead: (a) GOVERNANCE, at source -- annotate IMPL-023 in claims.yaml with an explicit epistemic_category the generator already recognises as non-experimental, or move its status to legacy as IMPL-021 and IMPL-022 already are; either stops the generic claim_probe_impl_023 EXP row being re-minted every cycle, and would generalise to the other 24 implementation_note claims. (b) EVIDENCE ON THE MECHANISMS -- if evidence about the V2 representation-interface contract is genuinely wanted, target the mechanism_hypothesis claims in IMPL-023's depends_on (MECH-057a, MECH-058, MECH-059, MECH-060, MECH-061, MECH-062, MECH-063), which are testable and already carry runs, not the implementation_note that contains them. Re-offer this experimental proposal only if IMPL-023 is itself rewritten to assert a testable mechanism with a named DV -- at which point it would no longer be an implementation_note.",
-      "blocked_by": [
-        "non_experimentable_claim_class",
-        "v2_substrate_closed"
-      ],
-      "blocked_note": "IMPL-023 is the document-header implementation_note (polarity='records') of ree_v2_spec.md: it records that a REE-v2 representation-interface spec and phase gate exist, asserts no mechanism, and has no DV. Measured: 0/1002 manifests tag any IMPL-* claim; zero ree_core/experiments footprint; its testable content already sits in its depends_on MECH-* claims, which DO carry runs. Subject substrate (V2) is closed. Experimental lane only; the literature twin is unblocked."
+      ]
     },
     {
       "backlog_id": "EVB-1307",
@@ -6331,6 +6208,23 @@
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1712",
+      "claim_id": "INV-104",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for INV-104 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0040",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_inv_104",
+      "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
@@ -8453,23 +8347,6 @@
     {
       "backlog_id": "EVB-1453",
       "claim_id": "MECH-206",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-206 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0878",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_206",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1453",
-      "claim_id": "MECH-206",
       "objective": "Improve literature grounding and confidence for MECH-206.",
       "priority": "medium",
       "proposal_id": "LIT-0879",
@@ -8929,23 +8806,6 @@
     {
       "backlog_id": "EVB-1470",
       "claim_id": "MECH-234",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-234 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0908",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_234",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1470",
-      "claim_id": "MECH-234",
       "objective": "Improve literature grounding and confidence for MECH-234.",
       "priority": "medium",
       "proposal_id": "LIT-0909",
@@ -9302,23 +9162,6 @@
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1483",
-      "claim_id": "MECH-250",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-250 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0932",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_250",
-      "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
@@ -10318,23 +10161,6 @@
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1520",
-      "claim_id": "MECH-354",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-354 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0998",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_354",
-      "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
@@ -11482,23 +11308,6 @@
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1585",
-      "claim_id": "MECH-474",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-474 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1081",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_474",
-      "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
@@ -13811,23 +13620,6 @@
     {
       "backlog_id": "EVB-1193",
       "claim_id": "ARC-037",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for ARC-037 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1231",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_arc_037",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "low_exp_conf",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1193",
-      "claim_id": "ARC-037",
       "objective": "Improve literature grounding and confidence for ARC-037.",
       "priority": "medium",
       "proposal_id": "LIT-1232",
@@ -14219,6 +14011,21 @@
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_arc_060",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "low_exp_conf"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1721",
+      "claim_id": "Q-081",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for Q-081 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0046",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_q_081",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
@@ -16364,8 +16171,417 @@
       "priority": "medium",
       "proposal_id": "EXP-ARC019-CURRICULUM-STAGED-VS-FLAT",
       "proposal_type": "experimental",
-      "status": "executed",
+      "status": "blocked_substrate",
       "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": "EVB-1307",
+      "claim_id": "IMPL-023",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Placeholder carrying the /queue-experiment blocked_substrate disposition for the auto-minted IMPL-023 experimental proposal (EVB-1307). IMPL-023 is the document-header implementation_note of docs/architecture/ree_v2_spec.md with polarity 'records'; it records that a REE-v2 representation-interface spec and phase gate EXIST and what their scope is. It asserts no mechanism and carries no dependent variable, so no ree-v3 experiment can produce contributory evidence for it.",
+      "priority": "medium",
+      "proposal_id": "EXP-IMPL023-V2-SPEC-RECORD",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-353",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-353 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: \"V3-EXQ-642c -- MECH-353 z_block discriminative validation on a HEADROOM statistic, with a\n  `use_blocked_agency=OFF` necessity arm\"\n- related_claims: MECH-353 (primary, direction to be scored); bears_on SD-029, MECH-112, MECH-320,\n  MECH-342, ARC-016, SD-011, SD-019b, SD-070, SD-056\n- acceptance_checks:\n  1. `claim_ids: [\"MECH-353\"]` -- NOT a claimless diagnostic (the single most important change from\n     642/642a/642b).\n  2. C1/C2 recomputed on `z_block_mean` at the UNCHANGED pre-registered margins (`C1_MARGIN 0.20`,\n     `Z_BLOCK_MIN 0.20`, `C2_MARGIN 0.20`) -- moving the STATISTIC off a provably dead one is not the\n     same as moving a threshold to fit a result, and the 642b a",
+      "priority": "medium",
+      "proposal_id": "EXP-1379",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "SD-083",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test SD-083 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: \"SD-083 instrument-validity readout: per-parameter-group Fisher mass (policy vs value head)\n  and window RNG-neutrality, emitted from the existing `consolidate_offline_window` path\"\n- related_claims: SD-083 (primary), MECH-459, MECH-460 (the live successors of MECH-476), MECH-475\n  (the online-global contrast this claim asserts it differs from), MECH-441\n- acceptance_checks: (1) manifest emits per-parameter-group Fisher mass with value-head share\n  reported; (2) manifest emits RNG-state equality against the OFF arm; (3) `claim_ids` names SD-083 with\n  an explicit direction; (4) the four already-confirmed properties (i)-(iii) are re-emitted in the same\n  manifest so the whole instrum",
+      "priority": "medium",
+      "proposal_id": "EXP-1380",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-074",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-074 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-<next>: MECH-074 read/write-head route separability on a SECOND readout consumer (E3.select proposal reweighting)`\n- related_claims: MECH-074, MECH-074a, MECH-074b, SD-035, ARC-007, MECH-073, MECH-165 (the `replay_diversity_enabled` gate that currently owns the only live consumer)\n- acceptance_checks: (1) 888's five readiness gates green per arm; (2) OFF-arm flatness |AOR_z| <= 0.02; (3) head authority delta >= 0.03 on >= 2/3 seeds; (4) both single-route arms >= their replication floors (0.06 address / 0.15 strength); (5) a wiring precondition that `retrieval_bias.numel() == n_candidates` at the E3 consumer, reported, not assumed.\n- Note the prerequisite: this run cannot be ",
+      "priority": "medium",
+      "proposal_id": "EXP-1381",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-074a",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-074a per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-<next>: MECH-074a live-loop threat-vs-neutral recall under BLA encoding gain (the unexecuted half of SD-035 EXQ-B)`\n- related_claims: MECH-074a, MECH-074, SD-035, MECH-073, ARC-007\n- acceptance_checks: `bla_n_ticks > 0`; per-episode peak-gain range >= 0.05 with >= 1 episode above 0.4 and no saturation at 2.5; baseline neutral recall non-degenerate (not 0.0 or 1.0); C1 threat-recall delta >= max(0.05, 1 SD) on >= 2/3 seeds; C2 neutral-recall delta > -0.02 on the same seeds; C3 bit-identical control with `use_amygdala_analog=False` (already contract-guarded by `tests/test_flag_inertness.py` probe F-P1 and `tests/contracts/test_feature_flag_boot_matrix.py` `tpj_and_amygdala` ro",
+      "priority": "medium",
+      "proposal_id": "EXP-1382",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-074b",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-074b per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-<next>: MECH-074b central/peripheral dissociation under vector vs scalar BLA retrieval bias`\n- related_claims: MECH-074b, MECH-074a (supplies the encoding-time tag; a 074b null is uninterpretable if the tag write is not green), MECH-074, SD-035, ARC-007\n- acceptance_checks: shared 888 readiness block; `bla_retrieval_tag_at_encoding` true in ARM_VECTOR / false in ARM_SCALAR with all else bit-identical; within-episode central vs peripheral item recall both non-degenerate in ARM_OFF; C1 vector dissociation 1.3x-2.0x on >= 2/3 seeds; C2 scalar-arm dissociation <= 0.02 above OFF; C3 OFF flatness.",
+      "priority": "medium",
+      "proposal_id": "EXP-1383",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-104",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-104 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-<next> -- MECH-104 endogenous volatility interrupt: does the UN-INJECTED surprise spike de-commit? (supersedes V3-EXQ-623's behavioural leg, which injected)`\n- related_claims: `MECH-104`, `ARC-016`, `MECH-090`, `SD-076`, `MECH-108` (as a pinned-off confound)\n- acceptance_checks: C1-C2 selectivity as above; C3 ABLATED flat (`delta_var_unexpected < 1e-6`);\n  C4 cross-condition discriminative delta; C5 `n_unexpected_harm >= 10` in committed state;\n  C6 de-commitment ratio >= 2.0x with the ABLATED denominator reported; C7 committed-fraction in\n  (0,1) in every arm; C8 `breath_period == 0` asserted at runtime in both arms; C9 no write to\n  `_running_variance` outside `update_runn",
+      "priority": "medium",
+      "proposal_id": "EXP-1384",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "SD-034",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test SD-034 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-466f -- SD-034 closure-operator NECESSITY ablation: three-arm ON / OFF-baseline /\n  OFF-tuned(MECH-090 + MECH-260 + MECH-094 sweep) scored componentwise on the five-part done token`\n- related_claims: SD-034 (primary, direction expected `supports` or `weakens`); MECH-090,\n  MECH-260, MECH-094 (co-tagged -- the tuned arm is a direct test of THEIR sufficiency, so if\n  OFF-tuned reproduces the signature they gain a `supports` while SD-034 takes the `weakens`);\n  MECH-268, SD-032a (co-tagged, `non_contributory` expected -- they are components (d)/(e), not the\n  question). Explicitly NOT tagged: MECH-445, MECH-446 (scope fence).\n- acceptance_checks:\n  1. ON arm gate: `n_closures >",
+      "priority": "medium",
+      "proposal_id": "EXP-1385",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-294",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-294 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-840c -- MECH-294 theta-packet joint-binding committed-action falsifier, ARMED-CONVERSION re-measurement (supersedes V3-EXQ-840b)`\n- related_claims: `MECH-294` (primary), `ARC-065` (precondition owner), `MECH-089`, `MECH-269b`,\n  `MECH-341` (the class definition the DV is built on)\n- acceptance_checks:\n  - R1 `support_preserving_min_first_action_classes = action_dim`; measured\n    `mean_distinct_first_action_classes >= 4.5` in all four arms (ARC-065 P1).\n  - R2 `use_modulatory_selection_authority = True`; measured `authority_rel_deviation_mean > 0.05`\n    in all packet-ON arms (ARC-065 P2).\n  - R3 the four 840b readiness preconditions unchanged (`routed_range_bounded`,\n    `j",
+      "priority": "medium",
+      "proposal_id": "EXP-1386",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-341",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-341 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-660c -- MECH-341 scoring-layer class-diversity preservation at an ARMED (raised-P1) candidate pool`\n  (note: the retired \"660c\" label was for the *graded-in-K* successor, which stays retired; if the\n  collision is judged confusing, mint a fresh number rather than a letter -- flagging it here rather\n  than deciding it, per the EXQ versioning policy's \"when in doubt, new number\".)\n- related_claims: `MECH-341` (primary), `ARC-065` (precondition owner + parent pathway),\n  `MECH-442` (consumer of the preserved diversity -- reads the same class statistic downstream),\n  `INV-076`, `MECH-257`\n- acceptance_checks:\n  - R1 measured `mean_distinct_first_action_classes >= 4.5` (of 5) in ",
+      "priority": "medium",
+      "proposal_id": "EXP-1387",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-288",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-288 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - Title: `V3-EXQ-<next> -- MECH-288 in-agent boundary alignment: slow/fast segment boundaries\n  vs task-natural transitions, rate-matched chance baseline`\n- related_claims: `MECH-288` (primary, `claim_ids: [\"MECH-288\"]` -- the point of the run),\n  bears_on `MECH-269`, `MECH-284`, `MECH-287`, `ARC-070`.\n- acceptance_checks:\n  1. Precondition gates (all four above), each with a measured value and threshold in the\n     manifest's `interpretation.preconditions` block, per house recording standard.\n  2. `pe_dict` declaration gate: the run states explicitly, per arm, whether the fast scale\n     received forward PE or ran the latent-delta fallback. Recommend running BOTH as arms -- this\n     is che",
+      "priority": "medium",
+      "proposal_id": "EXP-1388",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "SD-084",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test SD-084 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - Title: `V3-EXQ-<next> -- SD-084 handle-liveness invariant: no stale committed-program handle\n  is ever consumed by the MECH-321 R4 hook` (DIAGNOSTIC; `claim_ids: [\"SD-084\"]` -- not `[]`\n  this time, see flag below).\n- related_claims: `SD-084` (primary), bears_on `MECH-321`, `ARC-071`, `MECH-090`, `MECH-091`.\n- acceptance_checks:\n  1. Preconditions (1)-(3) above, with (3) implemented as a new manifest field pairing each hook\n     fire with `(commit_tick, chunk_sequence_hash, beta_elevation_epoch)`.\n  2. C1: `n_stale_handle_consumptions == 0` over >= 6 seeds with `n_total_midexec_fires >=\n     100` (839's 415 shows this volume is attainable).\n  3. C2 (adversarial coverage, the anti-vacuity g",
+      "priority": "medium",
+      "proposal_id": "EXP-1389",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "ARC-057",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test ARC-057 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `ARC-057 live-path DA-expansion x curiosity interaction: does the 768a super-additivity\n  survive when the benefit terrain is built by the agent's own reward contacts?`\n- related_claims: `ARC-057` (primary), `SD-024`, `SD-025`, `MECH-232`, `ARC-007`\n  (weight-independence / no-valence-gradient), `MECH-094` (replay must not expand),\n  `MECH-233` (harm asymmetry, C4 control in 900).\n- acceptance_checks: `benefit_terrain_live_producer=True` and driver contains no bare\n  `accumulate_benefit` call outside the declared positive control; `n_expansion_events >= 5` pooled;\n  load-bearing statistic is the continuous CEM score-margin with non-zero cross-seed variance and\n  non-zero cross-candi",
+      "priority": "medium",
+      "proposal_id": "EXP-1390",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "SD-024",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test SD-024 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `SD-024 live DA-expansion dose-response: does expansion FRACTION and the resulting\n  cross-candidate curiosity range scale with da_allocation_scale and drive_level?`\n- related_claims: `SD-024` (primary), `MECH-232`, `SD-025` (the consumer whose range is the\n  downstream DV), `ARC-057` (whose precondition (2) this discharges), `MECH-233`, `MECH-094`,\n  `SD-012` (the phasic-DA scaling rule `benefit_magnitude * drive_level`).\n- acceptance_checks: P0 sweep `rho >= 0.9` on both legs; `n_expansion_events >= 5` per sweep\n  cell (not just pooled -- 900's pooled-only floor is what makes its 6/57 hard to read);\n  `benefit_terrain_live_producer=True` and no driver-side `accumulate_benefit`; re",
+      "priority": "medium",
+      "proposal_id": "EXP-1391",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "SD-025",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test SD-025 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `SD-025 live-path consequentiality: does the curiosity bonus change committed action, or\n  only exist?`\n- related_claims: `SD-025` (primary), `SD-024` (producer, supplies the preconditions),\n  `ARC-057` (the interaction this deliberately does NOT test), `ARC-007` (weight-independence),\n  `MECH-094` (replay gate), `MECH-111` (the broken broadcast-novelty -> E3 path 767 was scoped\n  against), `MECH-458` (the polarity claim that bounds how a diversity null is read).\n- acceptance_checks: `benefit_terrain_live_producer=True`, driver makes no direct\n  `accumulate_benefit` call outside a declared positive control; `FamiliarityTracker` constructed\n  (assert `curiosity_weight > 0` reaches `m",
+      "priority": "medium",
+      "proposal_id": "EXP-1392",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-349",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-349 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - Title: `MECH-349 CREATE-face mint predicate falsifier: recurrence-gating x novelty-gating x\n  non-saturating pool`\n- Related claims: MECH-349 (primary), MECH-350 (REPRESENT -- cross-referenced for the\n  distinctness readout, not re-derived), ARC-064 (bottom-up regularity source), ARC-062\n  (seed leg, arm-able separately), ARC-063 (parent; explicitly NOT under test here).\n- Design: 2x2x(regime-count) on the SD-078-centered + mature-pool + maintenance stack.\n  Factor 1 `crf_mint_recurrence_threshold` in {3, 12}; factor 2 `crf_mature_mint_block_threshold`\n  in {0.8, 0.5}; factor 3 ecology regime count in {1, 3}. Slot pressure relieved\n  (`crf_n_slots` raised above the regime count, or `crf_ma",
+      "priority": "medium",
+      "proposal_id": "EXP-1393",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "ARC-029",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test ARC-029 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-063b -- ARC-029 within-run committed/uncommitted harm contrast under threshold-modulated mode alternation (precision-invariant ablation)`\n- related_claims: `ARC-029` (primary), `ARC-016` (the now-`stable` structural circuit this\n  is the behavioural layer of), `MECH-090` (the beta gate), `MECH-108` (the BreathOscillator\n  supplying threshold-side mode alternation), `MECH-025b` (shares P1/P2; a joint run can emit\n  both DVs from one rollout -- see the cross-claim note)\n- acceptance_checks:\n  - `G0_occupancy` (GATING): per seed, `committed_step_fraction` in [0.15, 0.85] AND mean\n    committed-run length >= 3 ticks, on >= 4/5 seeds. Report the full run-length histogram, not\n   ",
+      "priority": "medium",
+      "proposal_id": "EXP-1394",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-025b",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-025b per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-671c -- MECH-025b precision-margin x residue within-seed regression (per-seed estimator, MECH-027 precision_margin_norm, 5 seeds)`\n- related_claims: `MECH-025b` (primary), `MECH-025` (parent; supplies the \"precision is\n  continuous, not a mode\" constraint), `ARC-016` (the precision->commitment circuit, `stable`),\n  `MECH-256` (the self-attribution half the responsibility reading needs), `INV-012` (Leg 0\n  gates the accountability interpretation of a PASS)\n- acceptance_checks:\n  - `G1_residue_accumulates` (GATING, per seed): unchanged from 671a/671b.\n  - `G2_precision_spread_grouped_by_seed` (GATING): unchanged from 671b -- keep the GROUP-mode\n    `check_degeneracy`, do not r",
+      "priority": "medium",
+      "proposal_id": "EXP-1395",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-273",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-273 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: \"MECH-273 sleep-half ablation: held-out E2_harm_s residual, spurious-self-attribution correction, and cross-episode attribution stability under a three-arm cluster-ON / writeback-suppressed / cluster-OFF contrast\"\n- related_claims: `claim_ids_tested: [MECH-273]` (single-claim by design -- the ARM_SLEEP_NO_WRITEBACK control exists precisely so the result is not shared with the rest of the cluster). Cross-referenced but NOT tagged: MECH-275 (parent aggregator; needs its own run once the MECH-276 feedstock is built), MECH-285 / MECH-272 (already have their 702 evidence), SD-029 / MECH-256 (waking half, P6 only), SD-017 / INV-049 (E1 leg, excluded by P7), INV-050 (source of the third-ar",
+      "priority": "medium",
+      "proposal_id": "EXP-1396",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "INV-104",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test INV-104 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - Title: \"INV-104 class-1 preservation ladder: retained-fraction of organism-relevant distinction\n  access through the trained z_world compression, with scaffold-removal and matched-arbitrary-auxiliary\n  controls\"\n- related_claims: `INV-104` (primary), `GOV-MATCHAUX-1` (the admissibility rule the design\n  instantiates), `MECH-523` (the untrained-site precondition), `SD-070` (the trained-compression\n  recipe), `SD-018` (the class-1 scaffold), `MECH-517` (the H-B/H-C interpretation gate), `ARC-138`\n  (adjacent, NOT co-tagged as the DV -- see the fusion-risk note above).\n  NOT `INV-088`, NOT `MECH-457` -- the re-derive brake fired on both in the confirmed\n  V3-EXQ-978 autopsy (13 and 2 prior ce",
+      "priority": "medium",
+      "proposal_id": "EXP-1397",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "INV-063",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test INV-063 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `INV-063 entropy-intake floor: offline function degradation at PINNED offline budget\n  (consumer-absent graded-intake ladder)`\n- claim_ids / related_claims: primary `INV-063`; secondary `INV-050` (this run carries the\n  consumer-absent arm INV-050's own what_would_answer names as its outstanding non-degeneracy control,\n  and GFLAG-0002's promotion question is gated on exactly that), `MECH-205` (leg A is a direct read of\n  its surprise-gating instrument under intake starvation), `MECH-180` (quantity-side sibling, arms\n  pinned here). Register INV-050/MECH-205 with an explicit per-claim direction; do NOT tag MECH-121,\n  MECH-209, MECH-210, MECH-211 -- three are substrate_conditional/o",
+      "priority": "medium",
+      "proposal_id": "EXP-1398",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-332",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-332 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - Title: `V3-EXQ-878b -- MECH-332 dual-pathway dissociation, 2x2 with realised-config arming proof (supersedes V3-EXQ-878/878a)`\n- related_claims: `MECH-332` (primary), `SD-021`, `SD-032c`, `SD-029`, `MECH-256`, `MECH-090`, `SD-011`\n- Pre-work (blocking, and it is a driver repair, not a substrate build): port the `chip-20260822-fromdims-exq325-dead-ablation-axis` idiom into `experiments/v3_exq_878_mech332_efference_aic_dissociation.py` and `experiments/_lib/baselines/exq878_mech332_efference_aic_baseline.py` -- set `harm_descending_mod_enabled`, `descending_attenuation_factor`, and `heartbeat.beta_gate_bistable` by attribute assignment on the returned config, then read them back and record t",
+      "priority": "medium",
+      "proposal_id": "EXP-1399",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "SD-063",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test SD-063 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - *title:* \"V3-EXQ-XXX -- SD-063 conditional-uncertainty head: nominal-interval calibration and E3\n  commit-gate consumption\" (two-part: a calibration arm reusing 716a's phased P0/P1/P2 protocol with\n  `encoders_trained: true`, and a yoked commit-gate arm that is the first ever exercise of\n  `use_conditional_precision_gate`).\n- *related_claims:* SD-063 (primary), MECH-059 (the confidence channel this realizes), SD-031 (the agency\n  residual guard, F4), IMPL-022 (the contract field `latent_uncertainty_calibration_error` this run would\n  be the first to emit). Report-only cross-references, no claim_ids beyond SD-063 unless the driver\n  genuinely scores them.\n- *acceptance_checks:* precondition",
+      "priority": "medium",
+      "proposal_id": "EXP-1400",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": null,
+      "claim_id": "MECH-181",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test MECH-181 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: \"MECH-181/MECH-180 ecological cognitive-reserve chain: graded world-rule-shift novelty ->\n  above-reference waking MEL -> graded offline-phase work -> differential retention at matched insult\"\n- related_claims: MECH-181 (primary), MECH-180, INV-050, INV-049, SD-017, MECH-204\n- acceptance_checks: all five preconditions above emitted as explicit P0 gates (producer\n  supra-reference with the decay check; the matched-PE noise negative control; consumer un-pinned;\n  saturation fraction reported; consumer-OFF attribution arm); `claim_ids` naming MECH-181 and MECH-180\n  with per-claim direction; monotonicity scored against MEASURED MEL not the novelty label;\n  `>= 5` seeds; leave-one-out r",
+      "priority": "medium",
+      "proposal_id": "EXP-1401",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": "EVB-1722",
+      "claim_id": "MECH-057b",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Confirm MECH-057b -- that hippocampal sequence completion is verified before a trajectory candidate becomes eligible for E3 selection -- with a representation/functional-signature DV (selectivity of suppression on completion) rather than the behavioural harm/completion DVs that V3-EXQ-672b could not measure. BLOCKED: see blocked_note.",
+      "priority": "low",
+      "proposal_id": "EXP-0594",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": "EVB-0593",
+      "claim_id": "MECH-074d",
+      "dispatch_mode": "discriminative_pair",
+      "executed_by": "v3-exq-812-harness-repair-1f9438",
+      "executed_queue_id": "V3-EXQ-894a",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-074d with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0041",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_074d",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1234",
+      "claim_id": "ARC-121",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Run a discriminative support-vs-ablation pair for ARC-121 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0267",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_arc_121",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1226",
+      "claim_id": "ARC-113",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for ARC-113 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0285",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_arc_113",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0080",
+      "claim_id": "INV-057",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for INV-057 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0291",
+      "proposal_type": "experimental",
+      "status": "gated",
+      "suggested_experiment_type": "claim_probe_inv_057",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0103",
+      "claim_id": "MECH-182",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-182 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0342",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_182",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0105",
+      "claim_id": "MECH-192",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-192 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0344",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_192",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0109",
+      "claim_id": "ARC-048",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for ARC-048 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0350",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_arc_048",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
     },
     {
       "backlog_id": "EVB-0443",
@@ -18121,21 +18337,10 @@
         "insufficient_experimental_replication",
         "low_exp_conf"
       ]
-    },
-    {
-      "backlog_id": "EVB-1307",
-      "claim_id": "IMPL-023",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Placeholder carrying the /queue-experiment blocked_substrate disposition for the auto-minted IMPL-023 experimental proposal (EVB-1307). IMPL-023 is the document-header implementation_note of docs/architecture/ree_v2_spec.md with polarity 'records'; it records that a REE-v2 representation-interface spec and phase gate EXIST and what their scope is. It asserts no mechanism and carries no dependent variable, so no ree-v3 experiment can produce contributory evidence for it.",
-      "priority": "medium",
-      "proposal_id": "EXP-IMPL023-V2-SPEC-RECORD",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "target_repo": "ree-v3"
     }
   ],
-  "n_executed": 239,
-  "n_proposed_exp": 207,
+  "n_executed": 237,
+  "n_proposed_exp": 228,
   "n_proposed_lit": 502,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"

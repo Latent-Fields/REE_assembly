@@ -91,6 +91,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `memory_lifecycle_v4:MEM-2`
 
@@ -179,6 +180,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `memory_lifecycle_v4:MEM-3`
 
@@ -267,6 +269,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `memory_lifecycle_v4:MEM-4`
 
@@ -355,6 +358,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `memory_lifecycle_v4:MEM-5`
 
@@ -443,6 +447,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `memory_lifecycle_v4:MEM-6`
 
@@ -531,6 +536,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `memory_lifecycle_v4:MEM-7`
 
@@ -619,6 +625,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `memory_lifecycle_v4:MEM-8`
 
@@ -707,4 +714,5 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-08-30T14:48Z` [autopsy] `failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g` -> [`evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json`](../../../../evidence/planning/failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30.json) :: autopsy non_contributory/substrate_ceiling routing=queue-experiment **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 

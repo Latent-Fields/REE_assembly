@@ -338,6 +338,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-B`
 
@@ -673,6 +674,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-C`
 
@@ -1008,6 +1010,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-C-build`
 
@@ -1343,6 +1346,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-D`
 
@@ -1678,6 +1682,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-E`
 
@@ -2013,6 +2018,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-F`
 
@@ -2348,6 +2354,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-G`
 
@@ -2683,6 +2690,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-H`
 
@@ -3018,6 +3026,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-I`
 
@@ -3353,6 +3362,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-J`
 
@@ -3688,6 +3698,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 
 ## `behavioral_diversity_isolation:GAP-K`
 
@@ -4023,4 +4034,5 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-03T14:05Z` [manifest] `v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3` -> [`evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json`](../../../../evidence/experiments/v3_exq_951c_mech320_vt_floor_diagnostic_sd054_20260903T140538Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-03T19:00Z` [autopsy] `failure_autopsy_V3-EXQ-951c_2026-09-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-951c_2026-09-03.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
 

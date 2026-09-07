@@ -1,368 +1,294 @@
-# Morning Agenda — 2026-09-04
+# Morning Agenda — 2026-09-07
 
-Generated: 2026-09-04T04:25:22Z
+Generated: 2026-09-07T04:25:24Z
 
-> **DEGRADED RUN — `governance.sh` was NOT run.** Live sessions at generation time:
-> `IGW-20260904-222 ARC-021 MECH-069 implement-substrate STAGED`
-> (`igw-auto-igw-222-substrate-ready-dv-dynamic-range-20260904T025302Z`, age 1.4h);
-> `IGW-20260904-245 IMPL-008 lit-pull`
-> (`igw-auto-igw-245-literature-proposal-for-impl-008-20260904T035850Z`, age 0.3h);
-> `IGW-245 IMPL-008 lit-pull` (`igw-245-literature-proposal-for-impl-008`, age 0.2h).
-> The Governance Agenda, Experiments Awaiting Review, and granularity/category audit
-> sections below reflect the **last** pipeline run (2026-09-03T20:49Z), not today's state.
-> Re-run `/morning-digest` manually once sessions are clear to refresh them.
-
----
-
-## TOP OF THE MORNING — two compounding infrastructure findings
-
-**1. The experiment queue is EFFECTIVELY EMPTY. All six live entries have already run and been reviewed.**
-
-Every `pending` and `claimed` item in `ree-v3/experiment_queue.json` has a landed manifest
-dated 2026-09-03 and appears in `review_tracker.reviewed_run_ids`:
-
-| queue_id | queue status | manifest | reviewed |
-|---|---|---|---|
-| `V3-EXQ-977` | pending | 2026-09-03T11:21Z | yes |
-| `V3-EXQ-991` | pending | 2026-09-03T12:22Z | yes |
-| `V3-EXQ-995` | pending | 2026-09-03T19:44Z | yes |
-| `V3-EXQ-978` | claimed (ree-cloud-3) | 2026-09-03T11:17Z | yes |
-| `V3-EXQ-983` | claimed (ree-cloud-4) | 2026-09-03T15:33Z | yes |
-| `V3-EXQ-951c` | claimed (ree-cloud-2) | 2026-09-03T14:05Z | yes |
-
-**True claimable backlog: 0.** The queue snapshot reads "3 pending / 3 claimed" but nothing
-is actually runnable. The fleet has no work. `V3-EXQ-951c` is additionally held `claimed` by
-`ree-cloud-2` since 2026-09-02T21:20Z (~31h) while `hcloud server list` reports
-`ree-worker-2` **off** — a claim past the 6h `COORDINATOR_STALE_HOURS` floor that has not
-been reaped.
-
-**Action: queue refill is the highest-value thing to do today**, via `/queue-experiment`.
-This is a fresh-design refill, not a re-queue (see finding 2's exclusion tallies).
-
-**2. The fleet-idle watcher that exists to catch exactly finding 1 is DEAD — and has been for 5 days.**
-
-`~/Library/Logs/ree_fleet_idle_status.json` is frozen at `2026-08-30T09:26:52Z`. This is
-**not** Mac sleep — diagnosed, not assumed:
-
-- `launchctl print gui/501/com.ree.fleetidle` → `last exit code = 2`, `runs = 106`.
-- `~/Library/Logs/ree_fleet_idle.launchd.log` → **114** consecutive occurrences of
-  `ree_fleet_idle.sh: line 313: unexpected EOF while looking for matching '` /
-  `line 411: syntax error: unexpected end of file`.
-- `/bin/bash -n ~/.local/bin/ree_fleet_idle.sh` reproduces the parse error;
-  `/bin/zsh -n` on the same file **parses cleanly**.
-- Script mtime `2026-08-30 10:26` — the same minute as the last good snapshot.
-
-**Root cause: a bash-3.2 portability failure.** The shebang is `#!/bin/bash`, which on macOS
-is bash 3.2.57; the file was evidently authored/validated under zsh (the shell the Bash tool
-uses), which parses it fine. This is the CLAUDE.md "Shell Portability" failure class —
-`launchd` runs the bash-3.2 interpreter and the script never executes a single line.
-
-This is the 2026-08-15 outage shape recurring under a new mechanism: last time it exited 0 so
-launchd saw success; this time it exits 2 and **nothing reads the exit code**, so the outage is
-equally silent. The frozen snapshot's `idle_risk: true, claimable_backlog: 0` happens to be
-correct today — by coincidence, not by measurement.
-
-**Already chipped — no new chip spawned:** `chip-20260902-fleetidle-syntax-error`
-(`task_eaaf8fc5`, open since 2026-09-02) covers exactly this. It has been open two days
-while the watcher stayed dead, so it is worth prioritising rather than re-raising.
+*Tier 1 full run — no active non-stale claims at generation time; `governance.sh` ran to completion (exit 0).*
 
 ---
 
 ## Headlines — Positive Results & Live Decisions
 
-Fifteen runs landed since the last digest (2026-09-03). Six are positive or decision-flipping.
+Four PASSes landed since the last digest (2026-09-04T05:28Z). All four are tagged
+`non_contributory` by `evidence_direction`, and **three of them change what to do next** — the
+723 rule applies.
 
-- **V3-EXQ-1000 — sd_e1_item3_rollout_endpoint_contrastive_validation — PASS** (decision-flipping diagnostic, `non_contributory`)
-  - **Moves:** label `rollout_endpoint_contrastive_lifts_cr_ratio_h1` — the rollout-endpoint contrastive objective lifts the CR ratio (H1 confirmed).
-  - **Makes live / unblocks:** declares `unblocks_claims: [MECH-135, INV-088]`. This is SD-e1 ITEM 3 — squarely on the v3 **binding constraint** (`observation -> z_world -> E1/E2 interface`), the node 39/43 of the work graph chains to.
-  - **Gate on acting:** none stated; but read alongside V3-EXQ-978 below, which failed on the same interface at a different operating point.
+- **V3-EXQ-1006 — `sd_e1_var_bar_portfolio_fidelity_anchor` — PASS** (decision-flipping diagnostic)
+  - **Moves:** no claim tags. All **three registered legs read `supported`** at h=1:
+    `A` H-fidelity-anchor (`anchor_restores_centroid_lifts_var`), `B` H-readout-saturation
+    (`realvar_below_bar`), `C` H-goal-orthogonal-dispersion (`rsd_goal_orthogonal`).
+  - **Makes live / unblocks:** the SD-e1 / z_world observation-interface thread — the binding
+    constraint on v3 per the 2026-09-02 synthesis. Leg A says the fidelity anchor *restores the
+    centroid and lifts variance*, i.e. the anchor is a working lever, not a null. Leg B is the
+    registered **instrument target**: real-endpoint goal_proximity variance sits below the bar,
+    so the readout — not the substrate — is the saturating element.
+  - **Gate on acting:** it is the sole item in `pending_review.md` and is a **diagnostic with no
+    confirmed autopsy**. Its self-routed three-leg reading is a hypothesis until
+    `/failure-autopsy` confirms it. Do not apply any of the three legs to `claims.yaml` first.
+  - Note: carries a **recorded (non-gating)** precondition `dv_headroom_e1coe_score_var_h1` —
+    that unmet value *is* the H-readout-saturation finding, deliberately kept out of the
+    adjudicating `preconditions[]` so it surfaces without vacating the relative readings.
 
-- **V3-EXQ-995 — claim_probe_ext_005_causal_signature — PASS / `supports` — EXT-005**
-  - **Moves:** EXT-005 (`candidate`) — `causal_signature_present`. base AUROC(move_ok) 0.644±0.009; C2 gap vs bare +0.204±0.014; C3 gap vs shuffled +0.119±0.006 over 5 seeds.
-  - **Makes live:** EXT-005 is one of the four `pending_user` governance items below (`hold_candidate_resolve_conflict`, conflict_ratio 0.4). This is fresh evidence on the conflict the hold is waiting for.
-  - **Gate on acting:** **V3-EXQ-1001 (FAIL / `weakens`) also tags EXT-005** — `causal_signature_ood_fragile_no_readaptation_recovery`. The signature is present in-distribution and fragile out-of-distribution. Do not resolve the EXT-005 hold on 995 alone.
+- **V3-EXQ-996 — `isef005_phase_gate_live_channels` — PASS** (decision-flipping diagnostic)
+  - **Moves:** no claim tags. **Both load-bearing criteria passed** —
+    `C_live_gate_discriminates` and `C_raw_trajectories_diverge` (plus the non-load-bearing
+    `C_arms_differ_decision_level`). Readiness anchor `spike_arm_reproduces_advance` reachable
+    against the V3-EXQ-591f reference.
+  - **Makes live / unblocks:** the ISEF-005 phase-gate instrument now discriminates **in a live
+    closed loop**, which is the measurement precondition
+    `infant_substrate:GAP-14` (EXQ-ISEF-005, `blocked_pending_substrate` on the 591 family) has
+    been waiting on. GAP-14's row was last touched 2026-09-03 and does not yet reflect this.
+  - **Gate on acting:** GAP-14's own substrate blocker is unchanged; this clears the
+    *instrument*, not the substrate.
 
-- **V3-EXQ-982 — claim_probe_ext_001_sycophancy_channel_separation — PASS / `supports` — EXT-001**
-  - **Moves:** EXT-001 (`candidate`, "Sycophancy: approval-seeking displaces principled goal pursuit").
-  - **Makes live:** channel separation prevents appeasement-driven valuation collapse. Mean P1 fraction of ticks with goal-valuation engaged: separated **0.391** vs collapsed **0.889**; appeasement-attributable `z_goal` writer fires (collapsed, organic) = 44.
-  - **Gate on acting:** none stated — actionable now.
+- **V3-EXQ-642c — `blocked_agency_headroom_dv_validation` — PASS** (post-build DV validation)
+  - **Moves:** no claim tags. Validates the baseline-relative blocked-agency outcome-mismatch
+    floor (ree-v3 `d49db86f3e64670`) with the load-bearing readout moved off the clamp-degenerate
+    `z_block_peak` onto the headroom DV `z_block_mean`, margins re-derived a-priori (20 % of
+    `Z_BLOCK_CAP`) rather than transplanted from the peak calibration.
+  - **Makes live / unblocks:** the 642-family blocked-agency behavioural work now has a
+    validated, non-degenerate DV to read.
+  - **Gate on acting:** **C2 is recorded degenerate and is NOT independent confirmation of C1** —
+    `ENV_KWARGS` pins `num_hazards=0`, so `z_harm_a` is flat by construction and C2's subtraction
+    is inert (recorded per the V3-EXQ-981 autopsy, learning 5). Read C1 only.
 
-- **V3-EXQ-977 — arc052_harm_stream_conditional_precision — PASS / `supports` — ARC-052**
-  - **Moves:** ARC-052 (`candidate`, `harm_precision_weighting`). **Both** context-dependence clauses held: conditional precision tracked forward-model error (clause 1) **and** fell with accumulation volatility (clause 2).
-  - **Makes live:** `harm_stream_precision_is_context_dependent` — a two-clause conjunctive pass, unusually strong for this family.
-  - **Gate on acting:** none stated — actionable now.
+- **V3-EXQ-1004 — `sd_waypoint_field_validation` — PASS** — label
+  `waypoint_field_converts_to_navigation`, `measurable: true`, **zero unmet preconditions**.
+  Claims tagged INV-086 / MECH-428 (both `non_contributory`). A clean positive: the waypoint
+  field does convert to navigation. Already autopsied (`failure_autopsy_V3-EXQ-1004_2026-09-05`).
 
-- **V3-EXQ-951c — mech320_vt_floor_diagnostic_sd054 — PASS** (decision-flipping diagnostic, `non_contributory`)
-  - **Moves:** MECH-320 (`candidate_substrate_landed`) — localises the VT floor: `vt_floor_driven_by_low_v_raw`.
-  - **Makes live:** names the cause rather than the symptom, so the next MECH-320/SD-054 build targets `v_raw` rather than the floor knob.
-  - **Gate on acting:** precondition `reached_p2_alive` measured 1.0 (P1 survival gate satisfied) — the diagnostic is not vacuous.
-
-- **V3-EXQ-591h — isef005_phase01_gate_live — PASS** (decision-flipping diagnostic, `non_contributory`)
-  - **Moves:** `crossing_count_gate_discriminates_live_closed_loop` — the ISEF-005 phase-0/1 gate discriminates in a live closed loop.
-  - **Makes live / unblocks:** `infant_substrate:GAP-14` (EXQ-ISEF-005, `blocked_pending_substrate`, last touched 2026-09-03) — the gate-criterion question that node is blocked on.
-  - **Gate on acting:** none stated.
-
-**Negative results worth reading beside these (not headlines, listed so they are not lost):**
-`V3-EXQ-1001` FAIL/`weakens` (SD-031, ARC-037, MECH-095, EXT-005 — OOD fragility);
-`V3-EXQ-997` FAIL/`weakens` (MECH-162 — `z_resource` gives no discrimination advantage over `z_world`);
-`V3-EXQ-978` FAIL (INV-088, MECH-457 — directional head did not change `z_world` at this operating point);
-`V3-EXQ-983` FAIL (EXT-002 weakened — residue does not create the predicted structural pressure);
-`V3-EXQ-991` FAIL (EXT-004 — prior harm experience does not transfer cross-context);
-`V3-EXQ-993` FAIL (ARC-021, EXT-003, MECH-069 — separated baseline signal absent in both conditions;
-note a live IGW session holds `ARC-021`/`MECH-069` substrate work right now).
+FAILs in the same window, for context (not headlines): V3-EXQ-993a (ARC-021/MECH-069, `mixed`),
+V3-EXQ-1002, V3-EXQ-822e (SD-078/SD-082), V3-EXQ-983a (EXT-002/ARC-013).
 
 ---
 
 ## Queue Status
 
-- Total pending: **3** (Mac: 0 | PC: 0 | EWIN: 0 | any: 3) — plus 3 `claimed`.
-- **ALERT: effective claimable depth is 0.** All six live entries have already run and been
-  reviewed (see "Top of the morning" finding 1). The nominal count is not real work.
-- **ALERT: stale claim on a powered-off worker.** `V3-EXQ-951c` claimed by `ree-cloud-2`
-  2026-09-02T21:20:02Z (~31h); `ree-worker-2` is `off`. Past the 6h stale floor, unreaped.
-- Fleet-idle watcher: snapshot `2026-08-30T09:26:52Z`, `status: OK`, `idle_risk: true`,
-  `claimable_backlog: 0` (threshold 3), `ready_sd_validation_candidates: 0`.
-  **Treat these numbers as 5 days old — the watcher process is dead (finding 2).**
-  Exclusion tallies from that last good run: `excluded_validation_already_ran: 37`,
-  `excluded_no_queueable_validation: 38`, `excluded_known_churn: 4`,
-  `excluded_validation_already_queued: 0`. An empty candidate list with 37 already-ran
-  exclusions means **refill needs a fresh `/queue-experiment` design, not a re-queue.**
-- Owed successors: **none.** All three plan `owner_exq` ids (`V3-EXQ-445h`, `V3-EXQ-910b`,
-  `V3-EXQ-938`) have landed manifests, so none passes the Step 7c gate.
-- Phantom Owner-EXQ ids: **none.**
+- **Total pending: 0.** One item claimed and running: `V3-EXQ-1007` on `ree-cloud-2` (claimed
+  2026-09-07T02:10:51Z).
+- **ALERT: queue EMPTY.** Zero claimable work. This is the third consecutive digest reporting a
+  starved queue (2026-09-03, 2026-09-04, today). When 1007 finishes the fleet has nothing to run.
+- Affinity: n/a — no pending items to route.
+- **Fleet-idle watcher: STILL DEAD, 8 days.** Snapshot `~/Library/Logs/ree_fleet_idle_status.json`
+  is frozen at `2026-08-30T09:26:52Z` (`status: OK`, `idle_risk: true`, `claimable_backlog: 0`,
+  threshold 3). Diagnosed, not assumed: `com.ree.fleetidle` shows `last exit code = 2` and the
+  log repeats
+  `ree_fleet_idle.sh: line 313: unexpected EOF while looking for matching '` /
+  `line 411: syntax error: unexpected end of file` on every hourly run. Script mtime
+  `Aug 30 10:26` local = the snapshot stamp, so an edit that morning broke it. **This is not Mac
+  sleep.** Already chipped — `chip-20260902-fleetidle-syntax-error`, still `open` after 5 days;
+  no new chip spawned.
+  - Last good snapshot: `ready_sd_validation_candidates` was **empty** with
+    `excluded_validation_already_ran: 37` — so refill needs a fresh `/queue-experiment` design,
+    **not** a re-queue.
+- Owed successors: **none.** Every plan `owner_exq` on a non-terminal node
+  (V3-EXQ-445h, V3-EXQ-910b, V3-EXQ-938) has a manifest on disk and appears in `closure_drift.md`
+  under *Suppressed (legitimately non-terminal)* — all three fail Step 7c check (b). No phantom
+  and no declared-never-minted ids surfaced this run.
 
 ---
 
-## Experiments Awaiting Review (0 indexed / 0 runner-only)
+## Experiments Awaiting Review (1 indexed / 0 runner-only)
 
-`pending_review.md` (generated 2026-09-03T20:49:24Z, last review 2026-09-03T20:44:11Z):
-**0 pending** — 0 PASS, 0 FAIL, 0 runner-only, 0 unclaimed manifests, 0 ERROR manifests,
-0 diagnostic self-routes flagged. All fifteen overnight runs were reviewed before this digest.
+### V3-EXQ-1006 — `sd_e1_var_bar_portfolio_fidelity_anchor` — PASS
+- **Claims tested:** none (no claim tags on the manifest).
+- **Key metrics:** three-leg verdict `anchor_restores_centroid_lifts_var__realvar_below_bar__rsd_goal_orthogonal`;
+  all three legs `supported` at h=1, majority = `n_seeds//2+1`. PASS is `C0`-only by design
+  (C1–C5 are `load_bearing: false` — V3-EXQ-1000 learning #2: a fail-able load-bearing criterion
+  under an unconditional PASS is a guaranteed vacuous pass, so the *label* carries the outcome).
+- **Classification:** diagnostic.
+- **Governance impact if confirmed:** would establish the fidelity anchor as an effective lever on
+  the E1 rollout-endpoint readout and register the H-readout-saturation instrument target. No
+  claim IDs to move directly.
+- **Blocking:** diagnostic with **no confirmed autopsy** — needs `/failure-autopsy` before
+  governance marks it reviewed or acts on any leg.
+
+0 unclaimed manifests, 0 ERROR manifests, 0 diagnostic self-routes flagged for adjudication.
 
 ---
 
 ## Errors to Diagnose (0)
 
-No undiagnosed ERRORs. `runner_status.json` holds 87 ERROR rows out of 840 completed, but the
-most recent is `V3-EXQ-621` at 2026-05-31 — all predate the Phase-3 cutover and all have
-successors. `pending_review.md` independently reports 0 ERROR manifests.
+The coordinator DB shows **5 ERRORs in the last 30 days** (3.0 %, 5 / 169 classified runs;
+77 PASS / 87 FAIL). **All five already have a lettered successor with evidence on disk** —
+nothing is undiagnosed:
+
+| ERROR | recorded | successor on disk |
+|---|---|---|
+| V3-EXQ-591g | 2026-09-02 | 591h |
+| V3-EXQ-944a | 2026-08-22 | 944b |
+| V3-EXQ-926 | 2026-08-13 | 926a |
+| V3-EXQ-918 | 2026-08-11 | 918a |
+| V3-EXQ-821a | 2026-08-08 | 821b |
+
+0 unexplained phantoms, 0 operator cancellations in window.
 
 ---
 
-## Governance Agenda (4 recommendations)
+## Governance Agenda (2 recommendations)
 
-Four rows carry `decision_status: pending_user`. **All four now have fresh overnight evidence**,
-which is the notable thing about today's agenda — three of the four were probed last night.
+Only **two** entries are genuinely `pending_user`; the other 25 `pending_user` mentions in the
+file are recorded HOLD rationales explaining why a claim stops re-flagging.
 
-- **`EXT-002`** (`candidate`) — Recommendation: **hold_candidate_resolve_conflict**
-  - Evidence: 4 supporting, 1 weakening, 1 mixed (conflict_ratio 0.40); exp_conf 0.325; 1 exp / 5 lit entries.
-  - **NEW 2026-09-03:** `V3-EXQ-983` FAIL — `ext002_residue_persistent_error_record_not_supported`.
-    Residue accumulation is live on the substrate but did not produce the predicted repeat-error
-    decline (decline_gap −0.4pp vs a 15pp threshold). This weakens EXT-002 directly.
+- **MECH-535** (`candidate`, `implementation_phase: v3`) — Recommendation: **hold_pending_v3_substrate**
+  - Direction-blind reactive ambitendency (catatonia route III): a memoryless reactive actor
+    reading a representation carrying goal *proximity magnitude* but not goal *direction*.
+  - `implementation_phase=v3` with no V3 experimental runs yet — nothing to promote or demote on.
+- **MECH-536** (`candidate`, `implementation_phase: v3`) — Recommendation: **hold_pending_v3_substrate**
+  - Basal-ganglia-like action persistence (post-commit latch / commitment hysteresis) is
+    PROTECTIVE against representational degradation rather than NECESSARY for competence.
+  - Evidence: supports 3, weakens 0, mixed 2, unknown 1; conflict_ratio 0. Still no V3 runs.
 
-- **`EXT-004`** (`candidate`) — Recommendation: **hold_candidate_resolve_conflict**
-  - Evidence: 1 supporting, 2 weakening, 3 mixed (conflict_ratio 0.667); exp_conf 0.324; 1 exp / 5 lit entries.
-  - **NEW 2026-09-03:** `V3-EXQ-991` FAIL — `prior_harm_experience_does_not_transfer_cross_context`.
-    Consistent with the already-adverse 0.667 conflict ratio.
+Both are the same shape as the ARC-106 / ARC-130 family: register the hold so they stop
+re-flagging each cycle, or leave them until the substrate lands.
 
-- **`EXT-005`** (`candidate`) — Recommendation: **hold_candidate_resolve_conflict**
-  - Evidence: 4 supporting, 1 weakening, 1 mixed (conflict_ratio 0.40); exp_conf 0.775 (highest of the three); 1 exp / 5 lit entries.
-  - **NEW 2026-09-03/04, in BOTH directions:** `V3-EXQ-995` PASS/`supports`
-    (`causal_signature_present`) and `V3-EXQ-1001` FAIL/`weakens`
-    (`causal_signature_ood_fragile_no_readaptation_recovery`). The emerging shape is
-    *present in-distribution, fragile out-of-distribution* — which is a sharper hypothesis
-    than the current hold, and arguably the discriminating result the hold was waiting for.
+**Steward — ESCALATE = YES, 2 NEW findings awaiting adjudication** (34 total: 3 new / 31
+recurring / 1 resolved / 26 suppressed):
+- [P3 weak, conf 0.60] 1 near-duplicate flag of **GFLAG-0151** needs adjudication
+  (MECH-025b / `evidence_discrepancy`)
+- [P3 weak, conf 0.60] 1 near-duplicate flag of **GFLAG-0216** needs adjudication
+  (SD-063 / `evidence_discrepancy`)
 
-- **`SD-056`** (`candidate`) — Recommendation: **hold_pending_v3_substrate**
-  - Evidence: 1 supporting, 0 weakening, 0 mixed (conflict_ratio 0). Flagged `v3_pending`
-    (explicit manual gate); no promotion/demotion until the flag clears.
-  - Status note: *"Prior decision exists but recommendation changed; needs fresh review."*
-    Last logged decision `approved` by `dgolden` at 2026-05-31T08:30:00Z.
-
-*(The other 24 `pending_user` string matches in that file are prose inside "Last rationale"
-notes on already-`applied` rows, not open decisions.)*
+Also warn-only from the run: 11 developmental claims lack a `developmental_needs_register.md` row
+(includes Q-089, Q-101); 18 `check_manifest_degeneracy_consistency` findings (arms exactly equal
+on every per-seed metric but `non_degenerate` absent) — each needs a `/failure-autopsy`
+adjudication, **not** a mass `non_degenerate` set.
 
 **Granularity-debt recurrence (GOV-GRAN-1):**
+- **P0 `dropped_handoff`: 0** — no dropped `/claim-synthesis` handoffs. No chip owed.
+- **P1 `unflagged_recurrence`: 51** — list-only, no action taken. Only **6 of 51 have any
+  `weakened` alignment at all**; the rest are measurement or implementation debt by the
+  distribution test, not granularity debt:
+  - **ARC-038** — 3 hits / 1 signature, alignment `weakened:3` — **all-weakened, leans coarse-claim**
+  - **SD-005** — 3 hits / 1 signature, alignment `weakened:3` — **all-weakened, leans coarse-claim**
+  - Q-034 — 6 hits / 2 sigs, `other:3 weakened:3` — mixed
+  - INV-054 — 4 hits / 2 sigs, `other:2 weakened:2` — mixed
+  - MECH-111 — 5 hits / 3 sigs, `other:4 weakened:1` — mostly other
+  - ARC-018 — 2 hits / 2 sigs, `unclear:1 weakened:1` — thin
+  - Highest-count claims, all **no weakened** → measurement debt, not granularity debt:
+    INV-050 (12 hits / 8 sigs, `unclear:8 intact:4`), MECH-180 (11 / 7, `unclear:8 intact:2 other:1`),
+    MECH-075 (7 / 5, `intact:5 other:2`), Q-040 (6 / 5, `unclear:4 other:2`),
+    SD-078 (6 / 5, `unclear:6`), MECH-357 (5 / 4, `unclear:3 intact:1 untested:1`),
+    SD-082 (4 / 4, `unclear:4`), MECH-071 (6 / 3, `unclear:6`), MECH-143 (4 / 3, `unclear:4`).
 
-- **P0 `dropped_handoff`: 0** — no dropped `/claim-synthesis` handoffs. No chip spawned.
-- **P1 `unflagged_recurrence`: 49** claims (of 204 with hits); 74 further records correctly
-  excluded as metabolized/synthesized/ceiling-lane. **Six carry `any_weakened: true`** — the
-  only ones whose alignment distribution leans toward genuine granularity debt rather than
-  measurement debt. Listing those six only; the other 43 have no `weakened` alignment at all
-  and are measurement/implementation debt however high their hit count:
-  - `ARC-038` — 3 hits / 1 signature, alignment **weakened=3** (uniformly weakened, single signature) — the strongest coarse-claim signal in the set.
-  - `SD-005` — 3 hits / 1 signature, alignment **weakened=3** — same shape as ARC-038.
-  - `Q-034` — 6 hits / 2 signatures, alignment other=3 **weakened=3**.
-  - `INV-054` — 4 hits / 2 signatures, alignment other=2 **weakened=2**.
-  - `MECH-111` — 5 hits / 3 signatures, alignment other=4 **weakened=1**.
-  - `ARC-018` — 2 hits / 2 signatures, alignment unclear=1 **weakened=1**.
-  - Needs human discrimination (coarse-claim → `/claim-synthesis`, vs coherent substrate-build
-    campaign). **No action taken, no chips spawned** — per rule, P1 is list-only.
-  - Highest raw counts, all `any_weakened: false` and therefore *not* leaning granularity:
-    `MECH-058` (13 hits, alignment unclear=13), `MECH-059` (12, unclear=12),
-    `INV-050` (12 hits / 8 sigs, unclear=8 intact=4), `MECH-180` (11 / 7, unclear=8 intact=2 other=1).
-
-**Epistemic-category completeness (GOV-CAT-1): clean.**
-`missing_category: 0`, `invalid_category: 0`, `malformed_markers: 0`.
-P1 only: `unkeyed_schema: 10` (legacy singular `claim_id` targets), `claimless_missing: 2`.
-673 historical instances correctly excluded by the hit-scoped baseline snapshot
-(208 baseline artifacts). Neither P1 bucket can corrupt a count — list-only, no chips.
+**Epistemic-category completeness (GOV-CAT-1): clean.** `missing_category: 0`,
+`invalid_category: 0`, `malformed_markers: 0`. P1 only: 10 `unkeyed_schema` (legacy singular
+`claim_id` targets) and 2 `claimless_missing`. 673 instances remain excluded as the hit-scoped
+historical backlog — **do not regenerate that snapshot**.
 
 ---
 
 ## Active Plans Heartbeat (17 v3-scoped plans; 12 non-done)
 
-Weighted v3 closure: **73.0%** across 97 non-defer/non-assembling nodes. Remaining: **33**.
-Assembly frontier (separate axis, correctly not counted): **10**. Done: 64. Deferred: 10.
+Weighted v3 closure: **73.0 %** across 97 non-deferred nodes. 33 nodes remaining, 64 done,
+10 on the assembly frontier (separate axis), 10 deferred.
 
-| Plan | Phases in-flight | Blocked | Paused | Stale rows | Assembling | Last decision |
+| Plan | In-flight | Blocked | Paused | Stale rows | Progress | Last updated |
 |---|---|---|---|---|---|---|
-| `conversion_ceiling_campaign_plan` | 0 | 0 | 0 | 0 | 7 | 2026-09-02 |
-| `global_workspace_jlens_plan` | 2 | 2 | 0 | 0 | 0 | 2026-08-18 |
-| `policy_decomposition_trigger_plan` | 0 | 1 | 0 | 0 | 0 | 2026-08-21 |
-| `sd_037_axis_b_sustained_threat_curriculum_plan` | 0 | 3 | 0 | 0 | 1 | 2026-08-15 |
-| `self_attribution_plan` | 0 | 4 | 0 | 0 | 0 | 2026-08-18 |
-| `orienting_epistemic_deficit_v3_plan` | 4 | 1 | 0 | 0 | 0 | 2026-08-30 |
-| `mech357_avoidance_efficacy_plan` | 1 | 0 | 0 | 0 | 0 | 2026-08-29 |
-| `arc_062_rule_apprehension_plan` | 3 | 3 | 0 | 0 | 0 | 2026-09-02 |
-| `behavioral_diversity_isolation_plan` | 3 | 1 | 0 | 0 | 1 | 2026-09-03 |
-| `commitment_closure_plan` | 2 | 0 | 0 | 0 | 1 | 2026-09-02 |
-| `sleep_substrate_plan` | 0 | 1 | 0 | 0 | 0 | 2026-09-03 |
-| `infant_substrate_plan` | 1 | 1 | 0 | 0 | 0 | 2026-09-03 |
+| conversion_ceiling_campaign | 0 | 0 | 0 | 0 | 0 % (7 assembling) | 2026-07-10 |
+| global_workspace_jlens | 2 open | 2 | 0 | 0 | 5 % | 2026-07-10 |
+| policy_decomposition_trigger | 0 | 1 | 0 | 0 | 10 % | 2026-08-21 |
+| sd_037_axis_b_sustained_threat_curriculum | 0 | 3 | 0 | 0 | 10 % | 2026-06-23 |
+| self_attribution | 0 | 4 | 0 | 0 | 28 % | 2026-09-04 |
+| orienting_epistemic_deficit_v3 | 2 + 2 open | 1 | 0 | 0 | 32 % | 2026-08-30 |
+| mech357_avoidance_efficacy | 1 partial | 0 | 0 | 0 | 50 % | 2026-08-29 |
+| arc_062_rule_apprehension | 2 + 1 partial | 1 + 2 bps | 0 | 0 | 56 % | 2026-09-01 |
+| behavioral_diversity_isolation | 2 + 1 partial | 1 | 0 | 0 | 71 % | 2026-09-02 |
+| commitment_closure | 2 | 0 | 0 | 0 | 88 % | 2026-09-02 |
+| sleep_substrate | 0 | 1 upstream | 0 | 0 | 91 % | 2026-08-14 |
+| infant_substrate | 1 | 1 bps | 0 | 0 | 91 % | 2026-09-04 |
+| *(at 100 %)* arc_005_control_plane_routing, goal_pipeline, mech303_safety_threshold, sd033_governance, sd_037_axis_a | — | — | — | — | 100 % | — |
 
-*(`Blocked` folds `blocked` + `blocked_pending_substrate` + `upstream_blocked` for the count only;
-the qualified statuses are preserved in `closure_status.md`. `Last decision` is the latest date
-appearing in the plan file, a proxy for the decision-log entry. `Assembling` is reported on its
-own axis and is exempt from staleness by design.)*
+`bps` = `blocked_pending_substrate`.
 
-**Stale rows: none.** `closure_drift.md` reports Drifted 0, `Stale since last update` 0.
-Three nodes appear under **Suppressed (legitimately non-terminal)** — audit-visible, not drift:
-`orienting_epistemic_deficit_v3:ORNT-6` (`V3-EXQ-910b`, case_3_self_tag),
-`policy_decomposition_trigger:REPOSE` (`V3-EXQ-938`, manifest `non_contributory`),
-`self_attribution:GAP-1` (`V3-EXQ-445h`, case_3_self_tag).
+**Stale rows: 0 across every plan.** `closure_drift.md` (regenerated this run) reports
+`drifted_nodes=0  suppressed=3  stale_since_review=0  assembling=10 (revisit_due=0)
+status_plane_drift=0/99  plans_missing_last_updated=0`. This is a genuinely clean heartbeat —
+nothing to chase.
 
-**Assembly frontier: 10 nodes, 0 `revisit_due`.** All resting correctly; none has a passed
-`revisit_after` date. No action.
+**Suppressed (legitimately non-terminal, audit only, not drift):**
+- `orienting_epistemic_deficit_v3:ORNT-6` — `in_progress`, owner V3-EXQ-910b — `case_3_self_tag`
+- `policy_decomposition_trigger:REPOSE` — `blocked`, owner V3-EXQ-938 — manifest `non_contributory`
+- `self_attribution:GAP-1` — `blocked`, owner V3-EXQ-445h — `case_3_self_tag`
 
-**PLAN STALING: `global_workspace_jlens_plan` — no decisions logged since 2026-08-18 (17 days);
-2 rows open (`GATE-B`, `MECH-191`) and 2 blocked (`A`, `B`).** Worth a look: `GATE-B` is the
-SD-027/MECH-254 top-k access-gate build whose stated external gate is
-"competence-localization: V3-EXQ-724 (queued) + a competent all-ON substrate" — and V3-EXQ-724
-is the same confound named as the gate on the SD-027 decision in project memory. This plan is
-at 5% and is the least-moved of the twelve.
+**Assembly frontier — 10 nodes, resting by design, 0 `revisit_due`.** 7 of the 10 are the
+`conversion_ceiling_campaign` faces (`CAMPAIGN`, `FULLSTACK`, `GENERATION`, `P-comp`,
+`P2-rootC`, `P3-ofc`, `P4-learned-gating`), plus `behavioral_diversity_isolation:GAP-K`,
+`commitment_closure:GAP-8`, `sd_037_axis_b:P1b`. Two are `built` and therefore closest to
+convertible: `commitment_closure:GAP-8` (routing `queue-experiment`) and
+`conversion_ceiling_campaign:P3-ofc`. **These are the most plausible source of real queue
+refill** given the queue is empty.
+
+No plan is >14 days without a decision-log entry while holding in-flight rows.
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-No `high`-priority literature items exist in `evidence_backlog.v1.json`; the top tier is
-`medium`. 511 of 955 backlog items name `literature` in `evidence_needed`.
-Existing-entry counts checked via `claim_ids_tested` in each `record.json`
-(**not** by directory glob — that check silently misses, per the SD-082 case).
+510 backlog items name `literature`, but **none is `high` or `critical`** — the top band is
+`medium` and every one of the five below has the same mechanical `next_action` ("Run paired
+experiment + literature cycle before status change"), zero experimental entries, zero
+conflict_ratio, and zero prior lit-pulls. Treat this table as low-signal.
 
-| # | Claim | Subject | Priority | Existing entries |
-|---|---|---|---|---|
-| 1 | `ARC-008` | Commitment eligibility is gated by tau, rho, and phi (`provisional`) | medium | 0 |
-| 2 | `ARC-009` | Language is a symbolic mediation and coordination layer (`active`) | medium | 0 |
-| 3 | `ARC-012` | E3 does not require an explicit ethical cost term (`active`) | medium | 0 |
-| 4 | `ARC-015` | Self-impact attribution and responsibility flow are required (`provisional`) | medium | 0 |
-| 5 | `ARC-020` | Offline consolidation is protected by typed authority/write boundaries (`candidate`) | medium | 0 |
+| # | Claim | Type | Priority | Conflict | Existing entries |
+|---|---|---|---|---|---|
+| 1 | ARC-020 | architectural_commitment | medium | 0.0 | 0 |
+| 2 | ARC-031 | architecture_hypothesis | medium | 0.0 | 0 |
+| 3 | ARC-034 | architectural_commitment | medium | 0.0 | 0 |
+| 4 | ARC-043 | architectural_commitment | medium | 0.0 | 0 |
+| 5 | ARC-044 | architectural_commitment | medium | 0.0 | 0 |
 
-Note `ARC-009` and `ARC-012` are `active` claims with **zero** literature entries — an active
-claim carrying no literature grounding is the more interesting of the five.
+(Coverage checked via `claim_ids_tested` in every `evidence/literature/**/record.json`, not by
+globbing directory names.)
 
 ---
 
 ## Fleet Git Health
 
-Probed 2026-09-04 via `runner_git_health.py`. **All reachable checkouts structurally clean —
-no wedges, no unmerged entries, no HEAD/worktree skew, no `gc.log`.**
+All probed checkouts **structurally clean** — no wedge anywhere. `ree-cloud-3` and `ree-cloud-4`
+UNREACHABLE (routine power-off; `hcloud server list` is the authority).
 
-- `DLAPTOP-4` (local): REE_assembly OK, ree-v3 OK
-- `ree-cloud-1` (hub): REE_assembly OK, ree-v3 OK
-- `ree-cloud-2`: **UNREACHABLE** — `ree-worker-2` is `off` per `hcloud server list`.
-  Not a fault in itself, but see the stale `V3-EXQ-951c` claim above.
-- `ree-cloud-3`: OK / OK
-- `ree-cloud-4`: OK / OK
+**`ree-cloud-2` — 3 runner-prepull stash entries graded AT_RISK. Do not drop; almost certainly
+the known grader false positive.**
+- `stash@{0}` — `v3_exq_1006_..._20260906T195135Z_v3.json`
+- `stash@{1}` — `v3_exq_822e_..._20260905T025644Z_v3.json`
+- `stash@{2}` — `v3_exq_1000_..._20260903T213659Z_v3.json`
 
-**Worth a look — 3 same-run_id-different-content manifests** (the phantom-completion /
-partial-write shape; **not** strands and **not** duplicates). Diff both copies before deleting
-either; do not assume the origin copy is the good one:
+All three of those manifest paths **are present on `origin/master`** (verified with
+`git cat-file -e origin/master:<path>`), so the AT_RISK verdict matches the shape already chipped
+as `chip-20260903-prepull-grader-changed-field` (grader tolerates added fields but not changed
+ones). No new chip. Do **not** act on this by dropping the stashes — establish containment per
+`evidence/planning/ree_v3_orphaned_autostash_triage.md` and archive-tag first, always.
 
-- `ree-cloud-3`: `v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic_20260801T195304Z_v3` [PASS]
-- `ree-cloud-4`: `v3_exq_862a_q040c_dacc_pe_weight_delta_correlation_20260802T195935Z_v3` [FAIL]
-- `ree-cloud-4`: `v3_exq_869a_mech267_mode_conditioning_content_persistence_retest_20260802T195943Z_v3` [FAIL]
-
-Also on `ree-cloud-4` ree-v3: **1 other stash entry** — may strand evidence; inspect before dropping.
-Overall grading: 27 untracked paths graded, **0 stranded run manifests**, 3 same-run_id-different-content,
-0 stranded literature entries. Gitignored paths not graded (`--ignored` not passed).
+Also on `ree-cloud-2`, unchanged from prior runs: 2 untracked run manifests whose `run_id` is on
+origin with **different content** — the phantom-completion / partial-write shape:
+`v3_exq_603v_...20260827T184708Z_v3` [PASS] and `v3_exq_862b_...20260828T223750Z_v3` [FAIL].
+Diff both before deleting either; do not assume the origin copy is the good one. (A third,
+`v3_exq_850_...20260801T005937Z_v3`, is already adjudicated benign and not re-escalated.)
 
 ---
 
-## Stale Claims (0 active > 6h)
+## Stale Claims (1 active > 6h)
 
-**Stale claims: none — clean steady state.** `audit_stale_claims.py --json` at
-2026-09-04T04:23:53Z reports `stale_active: 0`, 0 records, 0 contentions.
-All three live claims are IGW-routine sessions under 1.5h old.
+- Buckets: A(auto-closable) 0 | B(vendor-sync) 0 | C(no-trace) 0 | **D(dirty-unproven) 1** | U(undetermined) 0
+- **[D]** `igw-238-confirm-evidence-mech-267-lit-0-exq-1005` (39.3 h) —
+  *queue-experiment: V3-EXQ-1005* — dirty, completeness not provable —
+  **do not commit, do not revert**
+  - warn: virtual ID-slot reservation (not attributable):
+    `ree-v3/experiment_queue.json/V3-EXQ-1005`
+  - Context: V3-EXQ-1005 has three `_runner_signals/_manual/` entries dated 2026-09-05 but is
+    **not in the queue** and has no scored manifest. The claim is holding an ID slot for work
+    that never landed.
 
 ---
 
 ## Serve.py Status
 
-**RUNNING** on port 8000 (PID 48712).
-
----
-
-## Follow-on Work — coverage check (Phase 3)
-
-Every actionable item this digest surfaced was cross-checked against the open chip ledger.
-**No new chips were spawned: everything is already in flight, or is `/governance` /
-`/failure-autopsy` work that is reported here rather than chipped.**
-
-Already covered by an open chip (do not duplicate):
-
-| Finding | Existing chip |
-|---|---|
-| `ree_fleet_idle.sh` broken since 2026-08-30 | `chip-20260902-fleetidle-syntax-error` (`task_eaaf8fc5`) |
-| Queue starvation / effectively-empty queue | `chip-queuefloor-fleet-g6` — **generation 6**, routed to `/metaworker-learning` for a root-cause pass rather than another instance fix |
-| `V3-EXQ-981` MECH-027 re-queue | `chip-20260903-exq981a-mech027-requeue` (`task_8185b7eb`) |
-| `V3-EXQ-983` EXT-002 redesign | `chip-20260903-exq983-redesign-headroom-bar` (`task_bcd92d4a`) |
-| `V3-EXQ-991` EXT-004 redesign | `chip-20260903-exq991-redesign-action-level-dv` (`task_db20034f`) |
-| `V3-EXQ-993` ARC-021/MECH-069 redesign | `chip-20260903-exq993-redesign-harm-readout` (`task_1c4aa79d`) |
-| `V3-EXQ-978` SD-018 discriminator | `chip-20260903-exq978-oracle-adapter-discriminator` (`task_08bf34bb`) |
-| Divergent manifests on `ree-cloud-4` (862a, 869a) | `chip-20260902-cloud4-divergent-manifests-862a-869a` (`task_6dcf0c69`) |
-| Fleet stale-state repair bundle | `chip-20260902-campaign-fleethygiene-cloud4-staterepair` (`task_d46a9c02`) |
-
-Reported inline, deliberately **not** chipped (`/failure-autopsy` work — it re-derives its own worklist):
-
-- **`V3-EXQ-999` (MECH-161, `vigilance_inverted_u_heartbeat`) has no autopsy yet** — it is the
-  one overnight FAIL with no confirmed autopsy artifact and no open chip. Its readiness
-  precondition failed hard: `baseline_avoidance_discrimination_margin` measured **−0.261**
-  against a **≥0.05** threshold. That control asks whether hazard-avoidance behaviour was
-  trained *at all*, and a negative margin means the agent discriminated in the **wrong
-  direction** — so the `substrate_not_ready_requeue` label may be understating the problem.
-  Its sibling `V3-EXQ-981` (same label) already has a confirmed autopsy
-  (`failure_autopsy_V3-EXQ-981_2026-09-03`) and a re-queue chip; **999 has neither.**
-  → Run `/failure-autopsy` on `V3-EXQ-999`.
-- The four `pending_user` governance rows (EXT-002/004/005, SD-056) — `/governance` work.
-- The 49 P1 granularity recurrences and the 12 P1 epistemic-category rows — list-only by rule.
-
-One note on the ledger itself: `chip-pausepressure-dlaptop-g5` is at **generation 5** and
-`chip-queuefloor-fleet-g6` at **generation 6**, both explicitly saying the symptom fixes are not
-holding and both routing to `/metaworker-learning`. Today's queue finding is another instance of
-the g6 class.
+- **RUNNING** on port 8000 (PID 9555).
 
 ---
 
 ## Blocked Items
 
-- **`governance.sh` was skipped** (Tier 2 contention — three live IGW claims, one of which
-  names `WORKSPACE_STATE.md`). `promotion_demotion_recommendations.md`, `pending_review.md`,
-  `closure_status.md` and `closure_drift.md` are all from the 2026-09-03T20:19–20:49Z pipeline
-  run. Nothing in this agenda depends on a refresh, but the governance sections are ~8h old.
-- **The `WORKSPACE_STATE.md` Recent Work append was skipped** for this run (Tier 2 rule — a
-  live session holds that file, and a whole-file read-modify-write would adopt its uncommitted
-  edits). This agenda is the record of the run.
-- **`ree_fleet_idle.sh` is broken** and will stay broken until repaired — the hourly launchd
-  loop will keep failing at parse time. Covered by the existing open chip
-  `chip-20260902-fleetidle-syntax-error` (`task_eaaf8fc5`) -- not re-chipped.
+- Nothing blocked this run. Tier 1 full run; `governance.sh` completed exit 0.
+- Gap since last agenda: 2 days (prior 2026-09-04). 2026-09-05 (Sat) and 2026-09-06 (Sun) are
+  **not** scheduled slots — cron is `7 5 * * 1-5`. **No weekday run was missed.**
