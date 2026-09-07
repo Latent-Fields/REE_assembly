@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-09-07_impl_026_trazodone_sws_cognition_la2019",
+  "timestamp_utc": "2026-09-07T19:23:21Z",
+  "claim_ids_tested": [
+    "IMPL-026"
+  ],
+  "source": {
+    "title": "Long-Term Trazodone Use and Cognition: A Potential Therapeutic Role for Slow-Wave Sleep Enhancers",
+    "authors": [
+      "A L La",
+      "C M Walsh",
+      "T C Neylan",
+      "K A Vossel",
+      "K Yaffe",
+      "A D Krystal",
+      "B L Miller",
+      "E Karageorgiou"
+    ],
+    "year": 2019,
+    "venue": "Journal of Alzheimer's Disease",
+    "doi": "10.3233/JAD-181145",
+    "pmid": "30689583",
+    "pmc": "PMC6398835",
+    "volume": "67",
+    "issue": "3",
+    "pages": "911-921"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Directly and almost uniquely addressed to IMPL-026's boldest assertion -- that a slow-wave-sleep enhancer carries disease-progression-modifying potential -- and the effect reported is large (2.6-fold slower MMSE decline). But n = 25 versus 25, retrospective, single-centre, and with no polysomnography at all, so the slow-wave mechanism in the title is inferred rather than measured. Held near the boundary of the moderate band for that reason.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "No polysomnography was performed, so the paper's own titular mechanism -- slow-wave sleep enhancement -- is never observed; the benefit tracked subjective sleep improvement instead.",
+    "n = 25 trazodone users versus 25 propensity-matched non-users at a single centre: an effect this large in a sample this small is a candidate for regression to the mean on replication.",
+    "Retrospective and non-randomised, so indication and adherence differences between users and non-users remain plausible alternative explanations for the cognitive difference.",
+    "The authors themselves decline to claim causation and state that prospective confirmation is required to establish whether any effect operates through slow-wave sleep enhancement."
+  ],
+  "tags": [
+    "impl-026",
+    "trazodone",
+    "slow_wave_sleep",
+    "disease_modification",
+    "cognitive_decline",
+    "class_surveyed:sws_enhancers",
+    "support_tag:dpm_potential"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 25 trazodone users versus 25 propensity-matched non-users followed about four years, non-users declined 2.6-fold faster on MMSE -- 0.70 (95% CI 0.50-0.90) versus 0.27 (95% CI 0.07-0.48) points per year (p = 0.023) -- with benefit especially associated with subjective improvement of sleep complaints in post-hoc analysis (p = 0.0006).",
+    "ree_translation": "IMPL-026 places trazodone (25-100 mg) in the architecture-preserving tier with 'Risk: IMPROVES Phase 1/2 fidelity. DPM potential: YES'. This is the primary human evidence behind that DPM assignment, and it is consistent with the REE reading that protecting Phase 1/2 consolidation protects downstream schema integrity rather than merely improving sleep comfort.",
+    "mapping_caveat": "IMPL-026 classifies medications by PREDICTED phase-specific pipeline disruption (INV-045 Phase 0-4). This paper measures neither phase-resolved consolidation nor any REE pipeline quantity; the mapping runs from a clinical endpoint back to a mechanism the study did not observe. The specific hazard here is that the study is cited for a slow-wave mechanism it did not measure: the mediator actually associated with benefit was SUBJECTIVE sleep improvement, which is compatible with, but does not establish, Phase 1/2 enhancement. Treating this entry as confirmation of the phase mechanism would be circular.",
+    "source_context": "Human retrospective cohort, memory-clinic population, approximately 4-year follow-up, MMSE endpoint."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Unusually, mapping_fidelity exceeds source_quality here: the paper is aimed squarely at IMPL-026's question but is methodologically thin. The aggregate is pulled below the mean of the components because for a disease-modification claim the design weakness is the dominant consideration, not the topical match."
+  }
+}

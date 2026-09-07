@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-09-07_impl_026_zdrug_dementia_torresbondia2022",
+  "timestamp_utc": "2026-09-07T19:23:21Z",
+  "claim_ids_tested": [
+    "IMPL-026"
+  ],
+  "source": {
+    "title": "Benzodiazepine and Z-Drug Use and the Risk of Developing Dementia",
+    "authors": [
+      "F Torres-Bondia",
+      "F Dakterzada",
+      "L Galvan",
+      "M Buti",
+      "G Besanson",
+      "E Grill",
+      "R Buil",
+      "J de Batlle",
+      "G Pinol-Ripoll"
+    ],
+    "year": 2022,
+    "venue": "International Journal of Neuropsychopharmacology",
+    "doi": "10.1093/ijnp/pyab073",
+    "pmid": "34727174",
+    "pmc": "PMC9017765",
+    "volume": "25",
+    "issue": "4",
+    "pages": "261-268"
+  },
+  "evidence_class": "epidemiological",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Large (>83 000 users vs >84 000 non-users), 13-year, population-registry cohort -- strong for an observational design and directly addressed to the Z-drug row that IMPL-026 previously had no evidence for at all. Held to 0.70 because the crude signal (HR 1.22) does not survive confounder adjustment, leaving only a dose-dependent residual, and because no sleep variable of any kind was measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The crude association between benzodiazepine-receptor-agonist use and incident dementia (HR 1.22, 95% CI 1.15-1.31) became non-significant after adjustment for confounders, so IMPL-026's unqualified 'Z-drugs: WORSENS' assignment is not supported at ordinary therapeutic exposure.",
+    "Elevated risk was confined to the highest dose stratum, implying a threshold or dose-dependent relation that IMPL-026's categorical WORSENS/NEUTRAL/IMPROVES schema cannot express.",
+    "The study measured no sleep architecture at all, so it cannot discriminate IMPL-026's proposed Phase 1/Phase 4 mechanism from any competing pathway (falls, sedation, anticholinergic co-prescription, reverse causation)."
+  ],
+  "tags": [
+    "impl-026",
+    "z_drugs",
+    "zolpidem",
+    "zopiclone",
+    "benzodiazepines",
+    "dementia_risk",
+    "class_surveyed:z_drugs",
+    "dose_dependence"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a retrospective cohort of >83 000 benzodiazepine-receptor-agonist users and >84 000 non-users aged over 45 followed 2002-2015, the crude hazard ratio for incident dementia among users was 1.22 (95% CI 1.15-1.31) but lost significance after adjustment; increased risk persisted at the highest doses, and for shorter-acting benzodiazepines and Z-drugs, particularly in women.",
+    "ree_translation": "This is the first literature entry bearing on IMPL-026's Z-drug row, which asserts 'WORSENS (less severe than classical BZDs but still harmful over years)'. The cohort supports the comparative half of that statement -- Z-drugs behave like a milder member of the same family, not like an architecture-preserving agent -- while withholding support from the 'harmful over years' half at standard doses.",
+    "mapping_caveat": "IMPL-026 classifies medications by PREDICTED phase-specific pipeline disruption (INV-045 Phase 0-4). This paper measures neither phase-resolved consolidation nor any REE pipeline quantity; the mapping runs from a clinical endpoint back to a mechanism the study did not observe. Additionally, prescription-registry exposure is not adherence, and the female-predominant signal has no counterpart anywhere in IMPL-026's mechanism, which is specified without sex terms.",
+    "source_context": "Catalan Health Service population registry; adults >45 years; 2002-2015; incident dementia endpoint."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "source_quality strong on size and follow-up, capped by the retrospective registry design. mapping_fidelity limited because the dementia endpoint is downstream of every pathway, not just the sleep-pipeline one. transfer_risk is the highest of this pull: confounding by indication plus a dose-response that could equally be confounding-by-severity."
+  }
+}

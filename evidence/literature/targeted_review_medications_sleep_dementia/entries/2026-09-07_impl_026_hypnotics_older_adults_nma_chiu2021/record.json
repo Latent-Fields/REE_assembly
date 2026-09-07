@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-09-07_impl_026_hypnotics_older_adults_nma_chiu2021",
+  "timestamp_utc": "2026-09-07T19:23:21Z",
+  "claim_ids_tested": [
+    "IMPL-026"
+  ],
+  "source": {
+    "title": "Comparative efficacy and safety of hypnotics for insomnia in older adults: a systematic review and network meta-analysis",
+    "authors": [
+      "H Y Chiu",
+      "H C Lee",
+      "J W Liu",
+      "S J Hua",
+      "P Y Chen",
+      "P S Tsai",
+      "Y K Tu"
+    ],
+    "year": 2021,
+    "venue": "Sleep",
+    "doi": "10.1093/sleep/zsaa260",
+    "pmid": "33249496",
+    "pmc": null,
+    "volume": "44",
+    "issue": "5",
+    "pages": "zsaa260"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "A well-executed network meta-analysis (24 RCTs, 5917 older adults) is the right INSTRUMENT for testing a comparative classification, and its top-ranked agent agrees with IMPL-026. But it ranks on efficacy and adverse-event endpoints rather than on architecture preservation, and it does not rank the orexin antagonists that IMPL-026 places at the top of its own ordering -- so it corroborates one row while leaving the table's decisive comparison untested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The network ranks agents on efficacy (total sleep time, sleep onset latency, wake after sleep onset, sleep efficiency) and overall adverse events, none of which is a measure of sleep-phase preservation, so a high rank here is not evidence of a favourable IMPL-026 pipeline classification.",
+    "Eszopiclone -- a Z-drug that IMPL-026 assigns WORSENS -- ranks jointly optimal for prolonging total sleep time, showing directly that efficacy rank and IMPL-026 risk direction can be opposed.",
+    "Dual orexin receptor antagonists, which IMPL-026 places in its top tier with 'DPM potential: YES', do not appear among the ranked optima, so the table's central comparative assertion is untested by this network.",
+    "Triazolam showed higher risk of overall adverse events (OR 1.96, 95% CI 1.03-3.74), a short-horizon tolerability signal that is not the multi-year neurodegenerative endpoint IMPL-026 classifies on."
+  ],
+  "tags": [
+    "impl-026",
+    "network_meta_analysis",
+    "hypnotics",
+    "older_adults",
+    "doxepin",
+    "eszopiclone",
+    "class_surveyed:hypnotics",
+    "comparative_ranking"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 24 randomised controlled trials in 5917 older adults, eszopiclone and low-dose doxepin ranked optimal for prolonging objective and subjective total sleep time (26.69 and 28.19 min), zaleplon was most effective for sleep onset latency (-21.63 and -15.86 min), temazepam best for wake after sleep onset (-25.29 and -22.25 min), triazolam carried higher odds of overall adverse events (OR 1.96, 95% CI 1.03-3.74), and the authors concluded that 'low-dose doxepin seems to be the optimal pharmacotherapy' on combined efficacy and safety.",
+    "ree_translation": "IMPL-026 is a comparative ranking of hypnotics, so an independent comparative ranking is the natural external check on it. The two agree at one point of contact -- low-dose doxepin comes out well in both -- but they rank on different quantities, and where the quantities diverge (eszopiclone) the orderings invert. This entry is therefore best read as delimiting what a clinical-efficacy ranking can and cannot say about a pipeline-preservation ranking.",
+    "mapping_caveat": "IMPL-026 classifies medications by PREDICTED phase-specific pipeline disruption (INV-045 Phase 0-4). This paper measures neither phase-resolved consolidation nor any REE pipeline quantity; the mapping runs from a clinical endpoint back to a mechanism the study did not observe. The specific risk is an equivocation on the word 'optimal': Chiu et al. mean optimal for sleep quantity and short-term tolerability, whereas IMPL-026 means optimal for long-run consolidation-pipeline integrity. Eszopiclone ranking jointly first here while sitting in IMPL-026's WORSENS tier is the proof that these are separable orderings.",
+    "source_context": "Human RCT network meta-analysis; 24 trials, 5917 participants; older adults with insomnia; efficacy and adverse-event endpoints."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.3,
+    "notes": "source_quality is high -- a properly conducted NMA in a strong sleep journal. mapping_fidelity is the lowest in this pull and drives the aggregate down: efficacy ranking and phase-preservation ranking are demonstrably different orderings, as the eszopiclone case shows within this very paper. transfer_risk moderate-low; the population is the right one."
+  }
+}

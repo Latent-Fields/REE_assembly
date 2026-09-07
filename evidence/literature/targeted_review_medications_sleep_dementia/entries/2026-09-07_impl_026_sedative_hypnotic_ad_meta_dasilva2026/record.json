@@ -1,0 +1,68 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-09-07_impl_026_sedative_hypnotic_ad_meta_dasilva2026",
+  "timestamp_utc": "2026-09-07T19:23:21Z",
+  "claim_ids_tested": [
+    "IMPL-026"
+  ],
+  "source": {
+    "title": "Use of Sedative-Hypnotic Drugs and the Risk of Developing Alzheimer's Disease: A Systematic Review, Meta-Analysis and Meta-Regression",
+    "authors": [
+      "A M P da Silva",
+      "G C N Tudella",
+      "O R Goncalves",
+      "F V Ribeiro",
+      "M A O M Pereira",
+      "M D V S do Nascimento",
+      "B V Nogueira",
+      "D H Santos",
+      "F H de Gobbi Porto",
+      "P F Hoilund-Carlsen",
+      "F S Duarte",
+      "G Perry",
+      "E de Souza Franco",
+      "M B de Sousa Maia"
+    ],
+    "year": 2026,
+    "venue": "Drugs",
+    "doi": "10.1007/s40265-026-02335-9",
+    "pmid": "42334823",
+    "pmc": null,
+    "volume": "86",
+    "issue": "7",
+    "pages": "1103-1119"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Recent, large, well-conducted systematic review with meta-regression -- the best available class-level test of IMPL-026's central risk ordering. Downgraded from higher because the headline association is design-dependent (OR 1.29, 95% CI 1.10-1.53 significant; HR-restricted 1.17, 95% CI 0.87-1.58 null), heterogeneity is severe (I2 86.5%), and the subgroup pattern actively contradicts one of IMPL-026's rows rather than merely under-determining it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Restricting to hazard ratios attenuates the sedative-hypnotic/AD association to non-significance (HR 1.17, 95% CI 0.87-1.58), so IMPL-026's blanket WORSENS assignments are not robust to study design.",
+    "Short-acting agents showed elevated AD risk while broad-acting benzodiazepines did not -- the opposite of IMPL-026's row ordering, which places classical benzodiazepines in the highest-risk tier on the strength of their SWS+REM suppression.",
+    "Between-study heterogeneity of I2 = 86.5% means the pooled point estimate should not be read as a stable class effect for any single row of the table.",
+    "The authors explicitly cannot separate a genuine drug effect from confounding by indication (prodromal insomnia as an early AD symptom), which is the reverse-causation pathway IMPL-026's mechanistic framing assumes away."
+  ],
+  "tags": [
+    "impl-026",
+    "sedative_hypnotics",
+    "alzheimers_risk",
+    "meta_analysis",
+    "class_surveyed:benzodiazepines",
+    "class_surveyed:z_drugs",
+    "confounding_by_indication"
+  ],
+  "mapping": {
+    "source_claim_statement": "Pooled observational evidence associates sedative-hypnotic use with higher odds of Alzheimer's disease (OR 1.29; 95% CI 1.10-1.53; I2 = 86.5%), but the association is attenuated and non-significant when restricted to hazard-ratio estimates (HR 1.17; 95% CI 0.87-1.58; I2 = 73.1%); short-acting agents showed elevated risk whereas broad-acting benzodiazepines did not.",
+    "ree_translation": "Read against IMPL-026, this is the closest thing to a direct test of the table's top-level claim that GABAergic/sedative agents carry a net WORSENS dementia-risk direction. It supports the sign of the effect at class level while refusing to support the table's confident row-by-row gradation -- and its short-acting/broad-acting split is orthogonal to the phase-disruption axis (MECH-173/MECH-174) that IMPL-026 uses to order the rows.",
+    "mapping_caveat": "IMPL-026 classifies medications by PREDICTED phase-specific pipeline disruption (INV-045 Phase 0-4). This paper measures neither phase-resolved consolidation nor any REE pipeline quantity; the mapping runs from a clinical endpoint back to a mechanism the study did not observe. In particular, pharmacokinetic half-life -- the axis on which this meta-analysis found its subgroup signal -- is NOT the axis IMPL-026 classifies on, so a concordant overall sign masks a discordant internal structure.",
+    "source_context": "Human pharmacoepidemiology; databases searched from inception to 16 August 2025; incident Alzheimer's disease endpoint."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "source_quality high for design and recency but capped by I2 = 86.5%. mapping_fidelity is the binding constraint: an incident-AD endpoint is several inferential steps from phase-specific pipeline disruption. transfer_risk moderate -- confounding by indication runs in the same direction as the hypothesised effect."
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-09-07_impl_026_low_dose_doxepin_psg_krystal2010",
+  "timestamp_utc": "2026-09-07T19:23:21Z",
+  "claim_ids_tested": [
+    "IMPL-026"
+  ],
+  "source": {
+    "title": "Efficacy and Safety of Doxepin 1 mg and 3 mg in a 12-week Sleep Laboratory and Outpatient Trial of Elderly Subjects with Chronic Primary Insomnia",
+    "authors": [
+      "A D Krystal",
+      "H H Durrence",
+      "M Scharf",
+      "P Jochelson",
+      "R Rogowski",
+      "E Ludington",
+      "T Roth"
+    ],
+    "year": 2010,
+    "venue": "Sleep",
+    "doi": "10.1093/sleep/33.11.1553",
+    "pmid": "21102997",
+    "pmc": "PMC2954705",
+    "volume": "33",
+    "issue": "11",
+    "pages": "1553-1561"
+  },
+  "evidence_class": "rct_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Methodologically the strongest study in this pull -- randomised, double-blind, placebo-controlled, 12 weeks, polysomnographic, n = 240 elderly -- and it decisively supports the anticholinergic-sparing half of IMPL-026's low-dose doxepin row with an explicit negative finding. Capped at 0.68 because the reported PSG outcomes are continuity measures (WASO, TST, SE), not the sleep-stage or spindle measures IMPL-026's Phase 2/3 assignment actually asserts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The trial reports continuity outcomes (WASO, total sleep time, sleep efficiency) and does not report spindle density, so IMPL-026's specific claim that low-dose doxepin 'enhances spindle density (Phase 3 compatible)' is unevidenced by its own primary citation.",
+    "Doses tested were 1 mg and 3 mg; IMPL-026 specifies the 3-6 mg Silenor range, so the upper half of the row's dose window is not covered and the muscarinic-sparing finding cannot be extrapolated to it unexamined.",
+    "The population was elderly patients with chronic primary insomnia, not patients at elevated MCI or Alzheimer's risk, so the row's disease-progression-relevant CONDITIONAL rating is not tested here.",
+    "A 12-week trial cannot speak to the multi-year exposure horizon over which IMPL-026's other rows assign their dementia-risk directions."
+  ],
+  "tags": [
+    "impl-026",
+    "doxepin",
+    "histamine_h1",
+    "anticholinergic_burden",
+    "polysomnography",
+    "class_surveyed:sedating_antihistamines",
+    "support_tag:architecture_neutral"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a 12-week randomised double-blind placebo-controlled trial of doxepin 1 mg (n = 77), 3 mg (n = 82) and placebo (n = 81) in elderly chronic primary insomnia, the 3 mg dose significantly improved wake time after sleep onset, total sleep time and sleep efficiency versus placebo, sustained to Night 85, with 'no significant next-day residual effects' and 'no reports of memory impairment, complex sleep behaviors, anticholinergic effects, weight gain, or increased appetite'.",
+    "ree_translation": "IMPL-026 rates low-dose doxepin 'NEUTRAL to mildly IMPROVES Phase 2/3', reasoning that below 10 mg the agent is a selective H1 antagonist with negligible muscarinic activity and therefore escapes the anticholinergic Phase 4 penalty that condemns the TCA row. This trial is the direct test of that dissociation and it passes: sedative benefit is obtained with an explicitly null anticholinergic and memory-effect profile.",
+    "mapping_caveat": "IMPL-026 classifies medications by PREDICTED phase-specific pipeline disruption (INV-045 Phase 0-4). This paper measures neither phase-resolved consolidation nor any REE pipeline quantity; the mapping runs from a clinical endpoint back to a mechanism the study did not observe. Here the gap is sharp and specific: the trial establishes what low-dose doxepin does NOT do (no anticholinergic burden, no memory impairment) far better than what IMPL-026 says it DOES do (spindle enhancement, Phase 3 compatibility). The absence of harm is being read as the presence of architecture preservation, and those are not the same finding.",
+    "source_context": "Human RCT, elderly chronic primary insomnia, 12 weeks, laboratory polysomnography plus outpatient subjective measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.25,
+    "notes": "source_quality is the highest in this pull on design grounds. mapping_fidelity is the binding constraint and is the reason the direction is mixed rather than supports: continuity metrics are not phase metrics. transfer_risk is low -- elderly insomnia to elderly at-MCI-risk is a short hop compared with the animal-to-human transfers elsewhere in this corpus."
+  }
+}
