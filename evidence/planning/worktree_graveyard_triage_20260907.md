@@ -297,3 +297,95 @@ resume and must SKIP (it did, 5 times, after the fix).
 a compound `rm -f ... && git worktree remove ... && git branch -d ...`, and went through
 immediately as separate single commands. If a sweep looks blocked, split the three commands
 before concluding anything about the worktree.
+
+---
+
+# BRANCH DISPOSITION -- appended 2026-09-07T23:22:12Z
+
+Chip: `chip-20260907-umbrella-dangling-claude-branches`, session `cool-sutherland-9d984d`.
+The GC above deliberately left every branch in place. This section adjudicates them.
+
+## Verdict: KEEP ALL 245. Nothing deleted.
+
+## State
+
+274 local `claude/*` branches; 29 are checked out in a surviving worktree (never deletable);
+**245 are deletion candidates**, and every one of them holds at least one unlanded commit, so
+`git branch -d` refuses all 245 by construction and `-D` would be required for each.
+
+**Branch name != worktree directory name** (e.g. `closure-maps-correctness-807268` is on
+`claude/metaworker-dispatch-34f021`). The checked-out set must be derived from
+`git worktree list --porcelain`, never by slug matching.
+
+## The audit was RE-RUN, not inherited -- and the chip's premise did not survive it
+
+The chip asserted the ~262 non-merged branches "exist solely to hold commits whose CONTENT was
+proven to be on origin". That is **false as stated**. The audit above covered 305 commits from
+the 53 worktrees alive on 2026-09-07; the 245 candidate branches carry **896 distinct unlanded
+commits**, so roughly 591 were never examined -- they belong to worktrees collected long before
+this GC. No sha list of the 301-proven set was persisted, so coverage could not be inherited
+and the audit was rebuilt from scratch, by path class:
+
+| class | commits | method | unaccounted |
+|---|---:|---|---:|
+| `TASK_CHIPS.json` | 344 | complete `chip_ref` oracle on origin (3146 refs) | **0** |
+| `RECOMMENDATION_LOG.jsonl` | 41 | union of all distinct lines ever on origin (434) | **0** |
+| code / skills / docs | 98 | exact blob-in-path-history, then marker adjudication | **0** |
+| `TASK_CLAIMS.json` | 263 | key index over 8,902 distinct blobs since 2026-05 (10,248 keys) | **8** |
+| `WORKSPACE_STATE.md` | 137 | live file + all 6 monthly archives (17,572 lines) | **17** |
+
+Transient paths (`dispatcher_control.json`, generated `worktree_session_registry`,
+`metaworker_dispatch_budget_log.json`) carry no recoverable content -- superseded by later writes.
+
+**The code class is clean, and that is the reassuring part.** 238 of 247 file/commit pairs matched
+a blob **exactly** in that path's origin history. All 9 exceptions resolved to landed-in-evolved
+or landed-relocated form, reproducing the pattern the audit above found: `audit_stale_claims.py`'s
+"ANNOTATING A CONTENTION OWNER" landed reworked as "OWNER LANDEDNESS ANNOTATION (added
+2026-08-19)", and its `OwnerAnnotationTest` landed as the separate file
+`scripts/test_audit_stale_claims_contention_owner_landed.py`. Checking only the original filename
+would have called both lost. **No executable code is stranded on any candidate branch.**
+
+**What IS stranded: 21 distinct commits across 25 candidate branches**, all bookkeeping --
+8 `TASK_CLAIMS.json` `session_id`s that appear nowhere in origin's history of that file
+(`arc063-bringforward-arc077`, `diagnose-exq543e-noncontrib`, `state-sync-implement-substrate-arc062`,
+`arc062-gap-b-spcem-falsifier`, `metaworker-chip-20260814-mech122-dv3-revalidation-861d`,
+`metaworker-chip-20260813-queueexp-mech321-r4`, `studyhum1-mvp-spike`,
+`metaworker-chip-20260813-queueexp-mech152-softselect-ablation`) and 17 `WORKSPACE_STATE.md`
+session-closing entries whose own timestamp is on neither the live file nor any archive. Three
+further claim keys looked unaccounted but landed under a different `claimed_at` -- benign.
+Method note: two of the 17 pass a naive marker test because the entry body *quotes* an older
+timestamp that is on origin; the entry's **own** stamp must be the marker.
+
+The method independently rediscovered `58c4eba41`, a known strand from the audit above, which is
+what gives it credit for the 21 it found that the earlier pass never looked at.
+
+## Why keeping is right, and why archive-tagging is not the compromise it looks like
+
+- **The benefit is ~1%.** Objects reachable only from the 245 candidates: 653 blobs + 843 trees +
+  677 commits = **16.0 MB** in a **1.5 GB** `.git`. Refs cost 22.4 KB of `packed-refs`.
+- **Nothing reads the branch list.** `dev-doctor.sh` is the only tooling that enumerates branches
+  and it inspects only worktree-attached ones, so it never sees these 245. The cost of keeping
+  them is a longer `git branch` listing and nothing else.
+- **Archive-tagging before deleting accomplishes exactly nothing.** A tag holds identical
+  reachability to a branch, so tagging all 245 and deleting the branches reclaims **0 MB** and
+  leaves the ref count unchanged -- it renames `refs/heads/claude/*` to `refs/tags/*`. The chip's
+  containment suggestion and the only real benefit (reclaiming space) are **mutually exclusive**,
+  because holding commits alive is the entire function these refs perform. This is the structural
+  difference from the stash case CLAUDE.md models it on: a stash entry is *additional* to the
+  object's reachability, whereas here the branch *is* the reachability.
+- **`-D` is close to irreversible.** All 274 branches have per-branch reflogs, and `git branch -D`
+  deletes the branch's reflog with it; the 677 commits then fall to the next `gc` under a 2-week
+  `pruneExpire` grace.
+
+So the options are: delete untagged (gain 1%, permanently destroy 21 commits of unique
+bookkeeping plus the recoverability of the rest), delete tagged (gain nothing), or keep (cost
+nothing measurable). **Keep.** The chip explicitly blesses this outcome and asks that it not be
+overridden out of tidiness.
+
+## If this is ever revisited
+
+Do not treat this section as a standing clearance. It is scan-time evidence: a branch touched
+after 2026-09-07T23:22:12Z is outside it, and the 25 strand-holding branches are listed here precisely so that a
+future sweep can exclude them rather than re-derive them. The cheapest real win in this repo is
+unrelated to branches -- two orphaned `.git/objects/*/tmp_obj_*` files from an interrupted git
+operation, which `git gc` clears and which nothing references.
