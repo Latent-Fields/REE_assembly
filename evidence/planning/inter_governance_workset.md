@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-07T08:19:34Z`
+Generated: `2026-09-07T12:54:23Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -5519,7 +5519,7 @@ Instructions:
 ### IGW-20260907-241 -- Confirm evidence: MECH-489 (lit 0.82, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0057 status=executed: ADJUDICATED DO-NOT-QUEUE 2026-09-06 (igw-241-confirm-evidence-mech-489-lit-0, IGW-20260906-241, same GOV-CONFIRM-1 confirmer lane). The re-fire the 2026-08-26 note flagged as a KNOWN RI
+- **Blocked by:** experiment_proposals.v1.json EXP-0057 status=executed: SECOND ADJUDICATED DO-NOT-QUEUE 2026-09-06 (igw-241-confirm-evidence-mech-489-lit-0, IGW-20260906-241, same GOV-CONFIRM-1 confirmer lane). The re-fire the 2026-08-26 note flagged as a K
 - **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (metaworker-chip-20260817-sd-orienting-decision-scale-amend) recorded EXP-0057 status=executed in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-O
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -5530,7 +5530,7 @@ Title: Confirm evidence: MECH-489 (lit 0.82, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-489
-Blocked by: experiment_proposals.v1.json EXP-0057 status=executed: ADJUDICATED DO-NOT-QUEUE 2026-09-06 (igw-241-confirm-evidence-mech-489-lit-0, IGW-20260906-241, same GOV-CONFIRM-1 confirmer lane). The re-fire the 2026-08-26 note flagged as a KNOWN RI
+Blocked by: experiment_proposals.v1.json EXP-0057 status=executed: SECOND ADJUDICATED DO-NOT-QUEUE 2026-09-06 (igw-241-confirm-evidence-mech-489-lit-0, IGW-20260906-241, same GOV-CONFIRM-1 confirmer lane). The re-fire the 2026-08-26 note flagged as a K
 Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (metaworker-chip-20260817-sd-orienting-decision-scale-amend) recorded EXP-0057 status=executed in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-O
 
 Instructions:
