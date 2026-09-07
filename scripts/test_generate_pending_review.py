@@ -731,5 +731,106 @@ class ReviewedFailSectionRenderTests(unittest.TestCase):
         self.assertIn("remain un-autopsied", text)
 
 
+class ManifestEnumeratorTests(unittest.TestCase):
+    """GFLAG-0117: the dry-run readers enumerate ALL THREE manifest shapes.
+
+    Before 2026-09-07 `load_dry_run_run_ids` (and `check_dry_run_citations`'
+    private copy of the same walk) scanned the top-level flat manifests and
+    the canonical run packs only. The per-type flat shape
+    `<experiment_type>/<run_id>.json` -- 797 files live -- was invisible, so a
+    dry_run:true stamp there reached no guard. The absence of a test pinning
+    the shape set is why it survived; this is that test.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _with_evidence(self, evidence, fn):
+        orig = self.mod.EVIDENCE_DIR
+        self.mod.EVIDENCE_DIR = evidence
+        try:
+            return fn()
+        finally:
+            self.mod.EVIDENCE_DIR = orig
+
+    @staticmethod
+    def _populate(evidence):
+        """One dry manifest per shape, plus every exclusion the walk must honour."""
+        def w(path, obj):
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(obj))
+        # shape 1: top-level flat
+        w(evidence / "v3_exq_1_a_20260101T000000Z_v3.json",
+          {"run_id": "v3_exq_1_a_20260101T000000Z_v3", "dry_run": True})
+        # shape 2: canonical pack
+        w(evidence / "v3_exq_2_b" / "runs" / "v3_exq_2_b_20260101T000000Z_v3" / "manifest.json",
+          {"run_id": "v3_exq_2_b_20260101T000000Z_v3", "dry_run": "true"})
+        # shape 3: per-type flat -- THE DEFECT
+        w(evidence / "v3_exq_3_c" / "v3_exq_3_c_20260101T000000Z_v3.json",
+          {"run_id": "v3_exq_3_c_20260101T000000Z_v3", "dry_run": 1})
+        # a real (non-dry) per-type flat manifest: enumerated, not a dry id
+        w(evidence / "v3_exq_4_d" / "v3_exq_4_d_20260101T000000Z_v3.json",
+          {"run_id": "v3_exq_4_d_20260101T000000Z_v3", "result": "PASS"})
+        # exclusions: non-manifest registry files at both depths, and a
+        # stray *.json directly under a runs/ dir
+        w(evidence / "claim_evidence.v1.json", {"entries": [], "dry_run": True})
+        w(evidence / "v3_exq_5_e" / "review_tracker.json", {"dry_run": True})
+        w(evidence / "runs" / "stray.json", {"run_id": "stray", "dry_run": True})
+        return {
+            "v3_exq_1_a_20260101T000000Z_v3",
+            "v3_exq_2_b_20260101T000000Z_v3",
+            "v3_exq_3_c_20260101T000000Z_v3",
+        }
+
+    def test_all_three_shapes_are_enumerated(self):
+        with tempfile.TemporaryDirectory() as td:
+            evidence = Path(td)
+            self._populate(evidence)
+            paths = self._with_evidence(
+                evidence, lambda: [p.relative_to(evidence).as_posix()
+                                   for p in self.mod._iter_manifest_paths()])
+        self.assertIn("v3_exq_1_a_20260101T000000Z_v3.json", paths)
+        self.assertIn("v3_exq_2_b/runs/v3_exq_2_b_20260101T000000Z_v3/manifest.json", paths)
+        self.assertIn("v3_exq_3_c/v3_exq_3_c_20260101T000000Z_v3.json", paths,
+                      "per-type flat manifest not enumerated (GFLAG-0117)")
+        self.assertIn("v3_exq_4_d/v3_exq_4_d_20260101T000000Z_v3.json", paths)
+        for excluded in ("claim_evidence.v1.json", "v3_exq_5_e/review_tracker.json",
+                         "runs/stray.json"):
+            self.assertNotIn(excluded, paths)
+
+    def test_dry_run_ids_include_the_per_type_flat_shape(self):
+        with tempfile.TemporaryDirectory() as td:
+            evidence = Path(td)
+            expected = self._populate(evidence)
+            ids = self._with_evidence(evidence, self.mod.load_dry_run_run_ids)
+        self.assertEqual(ids, expected)
+
+    def test_missing_evidence_dir_yields_nothing(self):
+        with tempfile.TemporaryDirectory() as td:
+            missing = Path(td) / "absent"
+            paths = self._with_evidence(
+                missing, lambda: list(self.mod._iter_manifest_paths()))
+            ids = self._with_evidence(missing, self.mod.load_dry_run_run_ids)
+        self.assertEqual(paths, [])
+        self.assertEqual(ids, set())
+
+    def test_check_dry_run_citations_shares_the_enumerator(self):
+        """The second reader must IMPORT the walk, never carry its own copy --
+        two independent shape lists is how the third shape went missing."""
+        import importlib.util
+        import inspect
+        import sys
+        script = SCRIPT_PATH.parent / "check_dry_run_citations.py"
+        if str(SCRIPT_PATH.parent) not in sys.path:
+            sys.path.insert(0, str(SCRIPT_PATH.parent))
+        spec = importlib.util.spec_from_file_location("ree_check_dry_cit", script)
+        cdc = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cdc)
+        src = Path(inspect.getsourcefile(cdc._iter_manifest_paths)).resolve()
+        self.assertEqual(src, SCRIPT_PATH.resolve())
+        self.assertNotIn("def _iter_manifest_paths", script.read_text())
+
+
 if __name__ == "__main__":
     unittest.main()

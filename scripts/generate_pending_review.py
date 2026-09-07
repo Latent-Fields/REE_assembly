@@ -116,18 +116,13 @@ def load_dry_run_run_ids() -> set:
 
     claim_evidence entries do not carry the dry_run flag (the indexer drops it),
     so the PASS/FAIL sections -- which read the index, not the manifests -- need
-    the run_id set built directly from disk. Scans both the flat top-level
-    manifests and the canonical runs/<run_id>/manifest.json packs so a dry_run
-    leak via either path is caught (treated like superseded/degenerate).
+    the run_id set built directly from disk. Enumerates every on-disk
+    manifest shape via _iter_manifest_paths() (top-level flat, per-type flat,
+    canonical runs/<run_id>/manifest.json pack) so a dry_run leak via any path
+    is caught (treated like superseded/degenerate).
     """
-    if not EVIDENCE_DIR.is_dir():
-        return set()
     ids: set[str] = set()
-    candidates = list(EVIDENCE_DIR.glob("*.json"))
-    candidates += list(EVIDENCE_DIR.glob("*/runs/*/manifest.json"))
-    for f in candidates:
-        if f.name in _NON_MANIFEST_FILES:
-            continue
+    for f in _iter_manifest_paths():
         try:
             d = json.loads(f.read_text())
         except Exception:
@@ -137,6 +132,54 @@ def load_dry_run_run_ids() -> set:
             if rid:
                 ids.add(rid)
     return ids
+
+
+def _iter_manifest_paths():
+    """Every result-manifest path on disk -- ALL THREE shapes that exist.
+
+    THE THIRD SHAPE WAS MISSING, AND IT WAS LEAKING (GFLAG-0117, governance
+    cycle 2026-09-02; chip-20260902T1250-dryfilter-manifest-shape-blindspot).
+    `load_dry_run_run_ids()` here and `check_dry_run_citations.build_index()`
+    both enumerated exactly two shapes:
+
+        evidence/experiments/<run_id>.json                        # top-level flat
+        evidence/experiments/<type>/runs/<run_id>/manifest.json   # canonical pack
+
+    A third shape is live in the corpus and matched NEITHER glob:
+
+        evidence/experiments/<experiment_type>/<run_id>.json      # per-type flat
+
+    (797 files on 2026-09-07, 751 carrying a run_id, 19 of them stamped
+    dry_run.) For that shape, setting dry_run:true had NO EFFECT on any guard:
+    pending_review's dry exclusion could not see it, check_dry_run_citations
+    reported "no manifest on disk", and GOV-DRY-1 reported "0 asserting dry
+    stamps" while one was live -- a FALSE zero. Confirmed on the three
+    v3_exq_395_mech220_harm_hub_dry_* smokes, which governance contained on
+    2026-09-02 (REE_assembly 20ac9d7cab) and which STILL sat in the FAIL bucket
+    because the enumerator could not reach them.
+
+    The indexer's own `_load_dry_run_run_ids` had already learned this glob on
+    2026-07-28 (build_experiment_indexes.py); these two readers had not, which
+    is exactly the drift a shared enumerator prevents. check_dry_run_citations
+    imports THIS function rather than keeping its own copy -- do not
+    re-implement it there.
+
+    Exclusions: the known non-manifest top-level files (_NON_MANIFEST_FILES),
+    and a `runs/` parent at depth 2 (never a manifest). Deduplication is the
+    caller's job -- a run legitimately appears in more than one shape and the
+    callers key on run_id.
+    """
+    if not EVIDENCE_DIR.is_dir():
+        return
+    for f in sorted(EVIDENCE_DIR.glob("*.json")):
+        if f.name not in _NON_MANIFEST_FILES:
+            yield f
+    for f in sorted(EVIDENCE_DIR.glob("*/*.json")):
+        if f.parent.name == "runs" or f.name in _NON_MANIFEST_FILES:
+            continue
+        yield f
+    for f in sorted(EVIDENCE_DIR.glob("*/runs/*/manifest.json")):
+        yield f
 
 
 AUTOPSY_GLOB = "evidence/planning/failure_autopsy_*.json"

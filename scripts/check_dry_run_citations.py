@@ -54,11 +54,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     # Single source of truth for the truthiness check ("true"/"1"/"yes").
     # Do not re-implement it here -- a second copy is how the forms drift.
-    from generate_pending_review import _is_dry_run, _NON_MANIFEST_FILES
+    # Same for the manifest ENUMERATOR: both readers scanned two of the three
+    # on-disk manifest shapes and both missed the per-type flat one
+    # (GFLAG-0117). One enumerator, imported, so the shapes cannot drift apart
+    # again.
+    from generate_pending_review import (
+        _is_dry_run, _NON_MANIFEST_FILES, _iter_manifest_paths,
+    )
 except ImportError as exc:  # pragma: no cover - environment problem, be loud
     raise SystemExit(
-        "cannot import _is_dry_run/_NON_MANIFEST_FILES from "
-        "scripts/generate_pending_review.py: %s" % exc
+        "cannot import _is_dry_run/_NON_MANIFEST_FILES/_iter_manifest_paths "
+        "from scripts/generate_pending_review.py: %s" % exc
     )
 
 # A run_id always carries the manifest timestamp stem (20260518T063711Z).
@@ -71,17 +77,6 @@ def _looks_like_run_id(s):
     constantly; without this every such mention lands in UNKNOWN and buries the
     real findings. Every genuine run_id is `<stem>_<timestamp>_v3`."""
     return "_" in s
-
-
-def _iter_manifest_paths():
-    """Flat top-level manifests plus the canonical runs/<run_id>/manifest.json packs."""
-    if not EVIDENCE_DIR.is_dir():
-        return
-    for f in EVIDENCE_DIR.glob("*.json"):
-        if f.name not in _NON_MANIFEST_FILES:
-            yield f
-    for f in EVIDENCE_DIR.glob("*/runs/*/manifest.json"):
-        yield f
 
 
 def build_index():
