@@ -83978,8 +83978,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-08-06
+    as_of: "2026-09-07"
     needs_review: false
+    evidence:
+      from: "failure_autopsy_604a-624a-630_2026-06-03#claim_synthesis_ARC-120_2026-09-07"
+      as_of: "2026-09-07"
+      verdict: "supports the DESCRIPTIVE NEGATIVE clause only ('authority is never granted merely because a computation or mechanism exists'), at FRAMING level: three independent mechanisms -- MECH-314 curiosity bias (V3-EXQ-604a) and MECH-320 vigor penalty (V3-EXQ-624a), confirmed cluster autopsy reading substrate_enrichment_selection_authority, plus MECH-341 within-class temperature (V3-EXQ-614d, fires with no committed-class lift) -- each exist, are represented and locally operate yet acquire no authority over the committed argmax. The POSITIVE clause (authority CONDITIONED ON competence) is DESIGN-SPACE ONLY: in all three the absence has no competence predicate in its path, so the ordering is EMERGENT not ENFORCED; the sole enforced instance is the ARC-108 JOB-2 habenula de-commit gate (hypothesis_tag/beta, closure_operator.py, default-off), read from code. The GENERALISATION (four gates = one sequence) remains UNTESTED and un-posable in V3 (total verdict aliasing). No scored credit granted: claim_ids untouched on all three manifests, exp_count stays 0 by design. See evidence_quality_note + evidence/planning/claim_synthesis_ARC-120_2026-09-07.md"
   epistemic_category: standard
   claim_level: architectural
   implementation_phase: v3
@@ -84038,6 +84042,59 @@
     that accepts a new authority-granting mechanism. ARC-120 closes as resolved-by-derivation when that
     table has been maintained across a meaningful corpus with no ungated row; it is refuted the first
     time a row is ungated and stays ungated by decision.
+  evidence_quality_note: >
+    [2026-09-07 FRAMING-LEVEL CROSS-TAG, session recursing-engelbart-dfdf02, campaign W4-S4
+    item 2, chip-20260903-arc120-framing-evidence-tagging; EVB-1233/EXP-0286 release_condition
+    route (a); GFLAG-0179] Artifact: evidence/planning/claim_synthesis_ARC-120_2026-09-07.md.
+    Two evidence sets were assembled BY CONTENT (all predate this claim; none names ARC-120).
+
+    SET A -- authority-ABSENT findings, ARC-120's own competence->authority transition, STAMPED
+    on manifests as evidence_direction_per_claim ARC-120: supports (flat + pack), with claim_ids
+    deliberately NOT extended so no scored credit is granted: V3-EXQ-604a (MECH-314 curiosity
+    bias; four-layer diagnosis "coupled but inert -- bias computed but e3.select does not let it
+    change argmax"), V3-EXQ-624a (MECH-320 vigor no-op penalty), both under the CONFIRMED cluster
+    autopsy failure_autopsy_604a-624a-630_2026-06-03 (confirmed_reading
+    substrate_enrichment_selection_authority; load_bearing_pair 604a+624a), and V3-EXQ-614d
+    (MECH-341 within-class temperature: within-class active, committed-class entropy invariant).
+    V3-EXQ-630 is NOT tagged -- its own autopsy routes it to a distinct proximate cause
+    (environment confound).
+
+    SET B -- the four instance gates this claim generalises over, cited as the DESIGN-SPACE
+    CORPUS and deliberately NOT stamped on their own manifests (stamping them would record a
+    gate's own evidence as a direct test of the generalisation -- the peripheral-co-tag
+    mis-attribution the sibling ARC-130 gating EVB-0633 refused, and which EVB-1233's
+    release_condition names as its load-bearing half). Their state is HETEROGENEOUS and must not
+    be read as four uniformly-evidenced gates: ARC-107 candidate (its own note declines to apply
+    V3-EXQ-937b's stamped supports -- criteria analytically entailed by shipped code);
+    SD-032b candidate/substrate_ceiling/v3_pending after four consecutive nulls (445/445a/b/c)
+    then 445h does_not_support; MECH-261 stable but its latest run V3-EXQ-460g is
+    non_contributory NOT weakened -- the mode-conditioning predicate was never exercised
+    (n_automatic_fires=0); MECH-094 stable, promoted substantially on 13 supporting literature
+    entries. Per the 2026-09-03 live runtime probe all four are default-off or inert.
+
+    THE LIMITATION, stated so it is not rediscovered: set A evidences only that EXISTENCE does
+    not confer authority. It does not evidence authority CONDITIONED ON competence, because in
+    all three cases authority was absent for an incidental scaling/wiring reason with no
+    competence predicate anywhere in the path -- the ordering is EMERGENT, not ENFORCED, which is
+    exactly the discrimination this claim's own literature entry
+    (2026-09-02_arc_120_protracted_control_maturation_luna2015) flags as the real one. The single
+    ENFORCED instance in the record is the ARC-108 JOB-2 habenula de-commit
+    (ClosureOperator.habenula_tick: skipped:hypothesis_tag when MECH-094 tags the outcome
+    simulated, and skipped unless beta is elevated), which is a CODE READING of a default-off
+    path, not a run. So ARC-120's experimental debt is discharged in the sense that no V3 run can
+    add to it -- NOT in the sense that its central assertion is now evidenced.
+
+    NOT DONE HERE, all left to /governance (promotion_review GFLAG raised): status stays
+    candidate; epistemic_category stays standard -- the deferred flip to derivational recorded in
+    notes below should be sequenced AFTER the promotion decision, not on this landing, since
+    flipping on landing would re-freeze the promote/demote route in the same cycle it was
+    unfrozen for; diagnostic_evidence_adjudicated NOT set (recommended, not applied -- it is the
+    only thing that would clear the missing_experimental_evidence / lit_only_above_cap why_now
+    signals, which this tag does NOT clear on its own, correcting EVB-1233's prediction; exposure
+    is low because EXP-0286 is already non-queueable and ARC-120 cannot enter the GOV-CONFIRM-1
+    lane, having zero ree-v3 substrate footprint); the propose-only ladder narrowing is untouched;
+    the route-(b) standing design-space audit is recommended as a /governance audit bucket but is
+    NOT built. No experiment queued -- the three-gate refusal of 2026-09-03 stands.
   notes: >
     FRAMING CLAIM from the 2026-08-06 historical-archaeology thought intake (Observation
     4: "competence consistently precedes authority"). ARGUABLY IMPLIED by the depends_on

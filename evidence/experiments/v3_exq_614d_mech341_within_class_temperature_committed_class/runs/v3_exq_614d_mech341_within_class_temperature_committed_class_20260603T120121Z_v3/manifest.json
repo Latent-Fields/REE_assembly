@@ -25,7 +25,8 @@
   "evidence_class": "simulation",
   "evidence_direction": "mixed",
   "evidence_direction_per_claim": {
-    "MECH-341": "mixed"
+    "MECH-341": "mixed",
+    "ARC-120": "supports"
   },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -42,5 +43,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": " [2026-09-07 ARC-120 FRAMING-LEVEL CROSS-TAG, session recursing-engelbart-dfdf02, campaign W4-S4 item 2, chip-20260903-arc120-framing-evidence-tagging] evidence_direction_per_claim gains ARC-120: supports. SCOPE, and it is deliberately narrow: this run supports ONLY ARC-120's descriptive NEGATIVE clause -- 'authority is never granted merely because a computation or mechanism exists' -- by exhibiting a computation that exists, is represented and locally operates yet acquires no authority over the committed argmax. It does NOT show authority CONDITIONED ON competence: the absence here has no competence predicate in its path, so the ordering is EMERGENT, not ENFORCED (the discrimination ARC-120's own luna2015 literature entry names). It is NOT a test of ARC-120's generalisation that the four instance gates are one sequence rather than four ad hoc gates -- that has no runtime discriminator. claim_ids is deliberately NOT extended, so this stamp is an audit trail and grants ARC-120 no scored credit (build_experiment_indexes.py takes membership from claim_ids_tested and uses evidence_direction_per_claim only as a direction override). Rationale and refusal ledger: evidence/planning/claim_synthesis_ARC-120_2026-09-07.md"
 }
