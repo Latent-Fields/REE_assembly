@@ -100,15 +100,37 @@ def load_tracker() -> tuple[set, set, str]:
     return reviewed, discussed, last_review
 
 
+# The PRODUCER naming convention for a --dry-run smoke: drivers write
+# run_id = f"{EXPERIMENT_TYPE}_dry_{timestamp}" (a literal `_dry_` segment
+# followed by the compact UTC stamp). Anchored on that whole shape, NOT on a
+# bare "dry" substring: `harm_hub_dry` is a real experiment_type stem (v3_exq_395)
+# and would match a loose scan. Shared verbatim with build_experiment_indexes.py.
+_DRY_RUN_ID_RE = re.compile(r"_dry_\d{8}T\d{6}Z")
+
+
 def _is_dry_run(d: dict) -> bool:
-    """True if a manifest's top-level dry_run flag is set (any truthy form).
+    """True if a manifest is a --dry-run smoke: flag set, OR run_id of dry shape.
 
     A --dry-run smoke writes a real flat/pack manifest to evidence/experiments/
     (e.g. V3-EXQ-696: 1 seed, 4 toy episodes, elapsed 29.9s) but is NOT evidence
     -- it must never surface in pending_review. Mirrors the truthy check in
     flat_only_silent_drop_guard (str-cast tolerates bool/int/str forms).
+
+    THE FLAG ALONE WAS NOT ENOUGH (chip-20260902-dryrun-scoring-exclusion-gap).
+    The top-level `dry_run` field is stamped by the pack_writer chokepoint,
+    which landed 2026-07-12 / 2026-07-28. A manifest written BEFORE that by a
+    driver's own json.dump carries no `dry_run` key at all, so a smoke named
+    `<type>_dry_<stamp>` read as real evidence: MECH-220's only `weakens` rows
+    came from two 3-episode 395 smokes (confirmed autopsy
+    failure_autopsy_V3-EXQ-395-cluster_2026-09-02.md), and on 2026-09-07
+    ARC-033 / SD-003 (v3_exq_329 dry) and MECH-073 (v3_exq_375 dry) still
+    carried `supports` from unflagged smokes. The run_id shape is the producer's
+    own declaration and predates the flag; episode counts cannot be used
+    instead (395 writes module constants, not the reduced dry values).
     """
-    return str(d.get("dry_run", "")).strip().lower() in ("true", "1", "yes")
+    if str(d.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
+        return True
+    return bool(_DRY_RUN_ID_RE.search(str(d.get("run_id") or "")))
 
 
 def load_dry_run_run_ids() -> set:

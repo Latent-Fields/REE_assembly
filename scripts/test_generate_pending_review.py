@@ -832,5 +832,39 @@ class ManifestEnumeratorTests(unittest.TestCase):
         self.assertNotIn("def _iter_manifest_paths", script.read_text())
 
 
+class DryRunPredicateTests(unittest.TestCase):
+    """chip-20260902-dryrun-scoring-exclusion-gap: a `_dry_<stamp>` run_id is
+    dry even when the pre-pack_writer manifest carries no dry_run field."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def test_flag_forms_still_detected(self):
+        for v in (True, "true", "TRUE", 1, "1", "yes"):
+            self.assertTrue(self.mod._is_dry_run({"dry_run": v}), v)
+        for v in (False, "false", 0, "", None, "no"):
+            self.assertFalse(self.mod._is_dry_run({"dry_run": v, "run_id": "x_20260101T000000Z_v3"}), v)
+
+    def test_dry_shaped_run_id_without_flag_is_dry(self):
+        # the live 2026-09-07 shape: no dry_run key at all
+        for rid in ("v3_exq_329_arc033_e2_harm_s_counterfactual_dry_20260410T155945Z_v3",
+                    "v3_exq_375_mech073_valence_geometry_probe_dry_20260413T074214Z_v3",
+                    "v3_exq_395_mech220_harm_hub_dry_20260413T074905Z"):
+            self.assertTrue(self.mod._is_dry_run({"run_id": rid}), rid)
+
+    def test_bare_dry_substring_is_not_enough(self):
+        """`harm_hub_dry` is a real experiment_type stem; the real run must not
+        be swallowed by a loose substring match."""
+        real = {"run_id": "v3_exq_395_mech220_harm_hub_dry_20260418T101010Z_v3"}
+        self.assertTrue(self.mod._is_dry_run(real))  # this one IS the dry shape
+        for rid in ("v3_exq_395_mech220_harm_hub_20260418T101010Z_v3",
+                    "v3_exq_9_dryness_probe_20260418T101010Z_v3",
+                    "v3_exq_9_dry_v3", "v3_exq_9_dry_1775167807_v3", ""):
+            self.assertFalse(self.mod._is_dry_run({"run_id": rid}), rid)
+        self.assertFalse(self.mod._is_dry_run({}))
+        self.assertFalse(self.mod._is_dry_run({"run_id": None}))
+
+
 if __name__ == "__main__":
     unittest.main()

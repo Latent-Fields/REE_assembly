@@ -1305,8 +1305,15 @@ def _load_json(path: Path) -> dict[str, Any]:
         raise RuntimeError(f"Invalid JSON: {path}: {exc}") from exc
 
 
+# The PRODUCER naming convention for a --dry-run smoke: drivers write
+# run_id = f"{EXPERIMENT_TYPE}_dry_{timestamp}". Anchored on the whole
+# `_dry_<compact stamp>` shape, never a bare "dry" substring (`harm_hub_dry` is
+# a real experiment_type stem). Mirrors scripts/generate_pending_review.py.
+_DRY_RUN_ID_RE = re.compile(r"_dry_\d{8}T\d{6}Z")
+
+
 def _is_dry_run(manifest: dict[str, Any]) -> bool:
-    """True if a manifest's top-level dry_run flag is set (any truthy form).
+    """True if a manifest is a `--dry-run` smoke: flag set, OR run_id of dry shape.
 
     A `--dry-run` smoke writes a real manifest (flat AND run-pack) into
     evidence/experiments/, but it is NOT evidence: the driver's dry-run branch
@@ -1314,8 +1321,20 @@ def _is_dry_run(manifest: dict[str, Any]) -> bool:
     its PASS/FAIL is meaningless. Mirrors `_is_dry_run` in
     scripts/generate_pending_review.py verbatim -- the str-cast tolerates the
     bool / int / str spellings that have all appeared in the corpus.
+
+    THE FLAG ALONE WAS NOT ENOUGH (chip-20260902-dryrun-scoring-exclusion-gap).
+    `dry_run` is stamped by the pack_writer chokepoint (2026-07-12 / 07-28); a
+    manifest a driver json.dump'ed before that carries no such key and its
+    pack scored as real evidence. Confirmed: MECH-220's only `weakens` came from
+    two 3-episode 395 smokes (autopsy 2026-09-02), and on 2026-09-07 ARC-033 /
+    SD-003 (v3_exq_329_..._dry_20260410T155945Z) and MECH-073
+    (v3_exq_375_..._dry_20260413T074214Z) still carried `supports` with
+    scoring_excluded=None. The run_id shape is the producer's own declaration;
+    a dry run never scores, so `_scan_runs` skips it like every other dry run.
     """
-    return str(manifest.get("dry_run", "")).strip().lower() in ("true", "1", "yes")
+    if str(manifest.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
+        return True
+    return bool(_DRY_RUN_ID_RE.search(str(manifest.get("run_id") or "")))
 
 
 def _load_dry_run_run_ids(base_dir: Path) -> set[str]:

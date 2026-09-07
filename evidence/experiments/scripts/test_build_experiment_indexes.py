@@ -3116,6 +3116,46 @@ def _run_all():
     return failed
 
 
+# --------------------------------------------------------------------------- #
+# Dry-run detection: run_id shape arm (chip-20260902-dryrun-scoring-exclusion-gap)
+# --------------------------------------------------------------------------- #
+
+def test_dry_run_flag_forms_detected():
+    for val in (True, "true", "TRUE", 1, "1", "yes"):
+        assert b._is_dry_run({"dry_run": val}) is True, val
+    for val in (False, "false", 0, "", None):
+        assert b._is_dry_run({"dry_run": val, "run_id": "v3_exq_1_a_20260101T000000Z_v3"}) is False, val
+
+
+def test_dry_shaped_run_id_without_flag_is_dry():
+    """The live 2026-09-07 leak: v3_exq_329 / v3_exq_375 smokes with NO dry_run key
+    (written before the pack_writer stamp existed) scored as `supports`."""
+    for rid in ("v3_exq_329_arc033_e2_harm_s_counterfactual_dry_20260410T155945Z_v3",
+                "v3_exq_375_mech073_valence_geometry_probe_dry_20260413T074214Z_v3",
+                "v3_exq_395_mech220_harm_hub_dry_20260413T074905Z"):
+        assert b._is_dry_run({"run_id": rid}) is True, rid
+
+
+def test_bare_dry_substring_is_not_a_dry_run():
+    """`harm_hub_dry` is a real experiment_type stem: only `_dry_<compact stamp>` counts."""
+    for rid in ("v3_exq_395_mech220_harm_hub_20260418T101010Z_v3",
+                "v3_exq_9_dryness_probe_20260418T101010Z_v3",
+                "v3_exq_9_dry_1775167807_v3", "v3_exq_9_dry_v3", ""):
+        assert b._is_dry_run({"run_id": rid}) is False, rid
+    assert b._is_dry_run({}) is False
+
+
+def test_dry_run_predicate_mirrors_pending_review():
+    """The two readers must agree byte-for-byte on the run_id shape -- a second
+    spelling is how the forms drift (see the docstring on both)."""
+    import importlib.util
+    gpr_path = Path(__file__).resolve().parents[3] / "scripts" / "generate_pending_review.py"
+    spec = importlib.util.spec_from_file_location("ree_gpr_mirror", gpr_path)
+    gpr = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gpr)
+    assert gpr._DRY_RUN_ID_RE.pattern == b._DRY_RUN_ID_RE.pattern
+
+
 if __name__ == "__main__":
     sys.exit(1 if _run_all() else 0)
 
