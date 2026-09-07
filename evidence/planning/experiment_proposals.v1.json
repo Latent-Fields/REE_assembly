@@ -18527,12 +18527,6 @@
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
       "backlog_id": "EVB-1398",
-      "blocked_by": [
-        "ARC-010",
-        "ARC-006",
-        "MECH-036"
-      ],
-      "blocked_note": "MECH-031 (derived AGENCY / OTHER_SELFLIKE social tags + empathy coupling) has no V3 substrate to exercise, at three independent levels, so no non-vacuous experiment is constructible. (1) ENVIRONMENT: CausalGridWorld is single-agent -- ENTITY_TYPES = {empty,wall,resource,hazard,contaminated,agent,waypoint} (NUM_ENTITY_TYPES=7), where 'agent' marks the LEARNER'S OWN cell (causal_grid_world.py:156). There is no other-agent entity type and no constructor parameter to place one, so the claim's confirming signature -- discriminate interveners from passive dynamics -- has no target to tag. hazard_agent_pursuit is a scripted pursuing hazard (MECH-357 pressure fallback), not a self/world-separating other. (2) TAG DERIVATION: ree_core/ has 0 hits for other_selflike / selflike / intervener / multi_agent. The existing AGENCY machinery (SD-029 comparator, MECH-095 TPJ, MECH-353 BlockedAgency) is SELF-agency attribution, not agency attributed to another entity. ree_core/entities/object_file_buffer.py supplies object persistence with SD-049 resource type hints only -- no agentive/animate tag. (3) EMPATHY COUPLING: 0 config knobs for lambda_empathy / v_other_veto, so MECH-036's other-harm veto threshold cannot be scaled by OTHER_SELFLIKE probability. The claim's own NON-DEGENERACY PRECONDITION (derived tags must show non-zero cross-condition variance) is unsatisfiable when the tags do not exist. Multi-agent social work is scoped V5 in-substrate (ree_core/utils/config.py:9648). No substrate_queue.json entry and no SD id covers this gap, so blocked_by names the architectural anchors rather than an SD. Work-graph: complicated (buildable) -- a named build with no open question -- so the route is /implement-substrate (mint a substrate_queue entry first), NOT another experiment. Verified 2026-09-01: 0 experiments and 0 manifests have ever referenced MECH-031.",
       "claim_id": "MECH-031",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
@@ -18563,7 +18557,7 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "blocked_substrate",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_031",
       "target_repo": "REE_assembly",
       "why_now": [
@@ -18758,11 +18752,6 @@
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
       "backlog_id": "EVB-1401",
-      "blocked_by": [
-        "ARC-017",
-        "ARC-003"
-      ],
-      "blocked_note": "MECH-035 (vector-valued VALENCE ranked by constraint-first / Pareto-lexicographic comparison rather than scalar collapse) has no V3 substrate to exercise, so no non-vacuous experiment is constructible. Probed empirically 2026-09-01 against ree_core/predictors/e3_selector.py. (1) NO VECTOR COMPARATOR: E3TrajectorySelector exposes zero methods matching pareto/lexicographic/constraint/dominance/rank/vector, and select() ranks candidates solely by argmin/argmax/multinomial/topk over the SCALAR J(zeta) = f_weight*F + lambda_eff*M + rho_residue*Phi_R - benefit_weight*B - goal_weight*G (46 scalar-reduction call sites in select(), 0 vector comparators). Every 'dominance' hit in ree_core is F-DOMINANCE (MECH-439), which is the opposite finding -- the scalar F term dominating the sum. (2) COMPONENT STREAMS ABSENT: of the six streams the claim names (HOMEOSTASIS, HARM, TEMPORAL_COHERENCE, SELF_IMPACT error, option volume, inferred other welfare) only HARM is a live per-candidate V3 stream (45 config knobs); the other five have ZERO config surface on REEConfig. TEMPORAL_COHERENCE and inferred-other-welfare have 0 hits anywhere in ree_core; the only 'homeostasis' hit is MECH-120 SHY synaptic-weight normalisation in SWS, unrelated to a valence stream; the nearest SELF_IMPACT analogs (DR-10 self_viability, DR-12 pe_confidence) are generation:v4, default-off, and documented in-source as 'off the V3 critical path; promotes nothing in V3'. Social/other-welfare tags are scoped V5. (3) NOT PER-CANDIDATE: the per-component decomposition (_last_traj_components, V3-EXQ-571) reduces every component to a batch mean via .mean().item(), so components are not retained per candidate even for the one live stream. The claim's own NON-DEGENERACY PRECONDITION requires the named streams to be independently computable per candidate trajectory AND to show non-zero cross-candidate variance on at least two components SIMULTANEOUSLY, and states explicitly that a one-live-component scenario 'cannot distinguish vector-valued ranking from a scalar collapsed onto that one live component, and should self-route substrate_not_ready rather than count as a verdict'. That precondition is unsatisfiable here. Running anyway would test whether a fixed scalar weighting reproduces the rankings produced by a fixed scalar weighting -- an arithmetic identity that returns the claim's FALSIFYING signature regardless of whether MECH-035 is true, i.e. a vacuous falsification of a candidate claim. Work-graph: complicated (buildable) -- a named build with no open question -- so the route is /implement-substrate (mint a substrate_queue entry first), NOT another experiment. No substrate_queue.json entry and no SD id covers this gap, so blocked_by names the claim's own architectural anchors (ARC-017 stream tags, ARC-003 E3 selection). Verified 2026-09-01: 0 manifests in evidence/experiments/ have ever tagged MECH-035.",
       "claim_id": "MECH-035",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
@@ -18793,7 +18782,7 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "blocked_substrate",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_035",
       "target_repo": "REE_assembly",
       "why_now": [
@@ -19305,11 +19294,6 @@
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
       "backlog_id": "EVB-1408",
-      "blocked_by": [
-        "MECH-054",
-        "MECH-095"
-      ],
-      "blocked_note": "Substrate gate (EXP-0829 readiness check, 2026-09-01): MECH-043's behavioral half is not constructible on the current substrate. (1) NO PRECISION->DV COUPLING: the claim requires 'misallocation of this channel produce a measurable shift in a hallucination-like DV'. The only hallucination-like DV substrate present is the MECH-095 TPJ agency comparator (misattribution of self-caused events to external agency, ree_core/comparator/tpj_comparator.py). TPJComparator.compare() is a pure function of (z_self_pred, z_self_obs, self.agency_threshold) -- verified by AST: no precision token (current_precision/_running_variance/precision_norm/dacc_precision_scale) appears anywhere in ree_core/comparator/, and agency_threshold is assigned only at construction (agent.py:893 <- config.tpj_agency_threshold), never at runtime. The DV is therefore INVARIANT to a gain sweep of the unsigned channel by construction; the only residual path (precision -> commit gate -> different committed actions -> different z_self trajectory) is a confound, not the 'attributable to THIS channel specifically' attribution the claim demands. The unsigned channel's three real consumers are the E3 commit gate, dACC affective-PE weighting (dacc.py:195), and the SD-020 harm surprise target (agent.py:11243) -- none is an attribution DV. (2) NO DISSOCIATION CONTROL: falsifier (iv) requires demonstrating functional dissociation from MECH-054's signed harm/benefit precision channels, but MECH-054 has ZERO implementation in ree_core (0 occurrences; pi_H/pi_B exist only as an 'Implementation Sketch' in docs/architecture/precision_control.md). There is no signed-channel substrate to dissociate from, so (iv) can be neither confirmed nor falsified. Preconditions (a)/(b)/(c) DO hold and were confirmed: the audited term is unsigned by construction (e3_selector.update_running_variance: prediction_error.pow(2).mean()), live-invoked from the real step loop (e3_selector.py:4151), and influences commitment + learning rate. Owed build routes to /implement-substrate; NO substrate_queue entry currently unblocks MECH-043 (0 entries), so this work is unowned. Queueing a gain sweep now would yield a DV that cannot move for the reason under test -- a null would be uninterpretable between falsifier (iii) and an instrument defect. ARC-109 is deferred to V4; ARC-108 is implemented but substrate_conditional. NOTE: sibling proposal LIT-0830 shares backlog_id EVB-1408 and is deliberately left 'proposed' -- the literature-grounding route is unaffected by this substrate gap.",
       "claim_id": "MECH-043",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
@@ -19340,7 +19324,7 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "blocked_substrate",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_043",
       "target_repo": "REE_assembly",
       "why_now": [
@@ -31124,10 +31108,6 @@
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
       "backlog_id": "EVB-1583",
-      "blocked_by": [
-        "MECH-468"
-      ],
-      "blocked_note": "/queue-experiment Step 2.5 stop (2026-09-02). MECH-470 needs a topological term = relational distance to the current anchor along TYPED PATHS over the anchor set. (1) NO EDGE STRUCTURE EXISTS in ree-v3. ree_core/hippocampal/anchor_set.py Anchor carries only (key, z_world, active, created_at, last_accessed, below_threshold_streak, goal_payload) -- zero relational fields -- and AnchorSet exposes zero neighbour/adjacency/path/distance accessors (probed live 2026-09-02, not just read from docs). A repo-wide grep for typed-edge machinery over anchors returns nothing: the sole 'adjacency' hit in ree_core is a grid-placement comment in causal_grid_world.py, and SD-091 'coalition topology' is a star topology over SUBSYSTEMS whose own scope statement excludes edge-level interaction graphs. This is precisely what MECH-468 asserts -- REE's typed relations are each realised as a payload field, a gate, or a scoring term, and NONE is exposed as an edge type over the anchor set. (2) SECOND, INDEPENDENT BLOCKER: the falsifier is a ranking-quality comparison 'on EXISTING ghost-bank traces', and no such traces exist. GhostGoalBank telemetry is aggregate counters (n_candidates_scanned, n_admitted, component_sums); 0 of 4 ghost-related manifests carry per-anchor identity. So there is neither a per-anchor trace to re-rank nor a functional-role label to score ranking quality against. (3) THE GATE IS EXPLICIT IN claims.yaml: MECH-470 is 'gated behind the MECH-468 edge-type inventory spike (the typed-path distance it needs must be recoverable from logged telemetry); no experiment proposal minted'. EXP-1107 was auto-minted by the 2026-09-01 proposal_tick over that instruction. The owed next move is that SPIKE, not an experiment -- MECH-468's own note says 'FIRST MOVE IS A SCOPING SPIKE, NOT A PROBE'; node class complicated (buildable). (4) PARTIAL SPIKE ANSWER ALREADY IN HAND from this pass, in the negative: the typed-path distance is NOT recoverable from the current logged telemetry, so the spike cannot be cleared by reading the existing corpus -- it needs per-anchor ghost-bank trace recording first. (5) Step 2.5c substrate-path overlap gate is CLEAR: the only open substrate_queue entry touching ree_core/hippocampal/ is mech203-valence-pool-admissibility (module.py::_select_valence_weighted_start, severity unset, different function), so nothing corrupting blocks this path -- the block is the absent substrate itself. No script authored, no queue entry appended. Checked by chip-proposal-exp-1107-paced, 2026-09-02T02:52Z.",
       "claim_id": "MECH-470",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
@@ -31158,7 +31138,7 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "blocked_substrate",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_470",
       "target_repo": "REE_assembly",
       "why_now": [
@@ -31224,11 +31204,6 @@
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
       "backlog_id": "EVB-1585",
-      "blocked_by": [
-        "MECH-094",
-        "MECH-319"
-      ],
-      "blocked_note": "substrate gate (queue-experiment Step 2.5): MECH-474's narrow-form regime menu names FOUR learning regimes, but only THREE exist as learning regimes in the V3 substrate. 'counterfactual simulation' is architecturally WRITE-SUPPRESSED by design: MECH-094 (status stable) mandates that simulation content does not accumulate as committed experience, and MECH-319 (ree_core/regulators/simulation_mode_rule_gate.py) instantiates it as a rule-write gate suppressing arbitration-weight updates during ghost/replay/DMN passes. Confirmed at source: REEAgent._do_replay (agent.py:10397) generates replay trajectories and DISCARDS them (dead assignment, no parameter update); the only replay that drives updates is inside run_rem_attribution_pass, which IS regime 4 (offline consolidation), not regime 3. GhostGoalBank is explicitly 'pure arithmetic; no trainable parameters; no gradient flow'. VsRolloutGate is an input-quality gate, not a learning path. The simulation_mode_rule_gate_admit_writes knob exists but is the V3-EXQ-543c FALSIFIER (predicted to produce monomodal-collapse re-emergence) and reaches only the arbitration-EMA path, not the actor-critic/prediction-loss learning path. CONSEQUENCE: a fixed 'counterfactual simulation' arm would be a structurally inert no-learning arm, so MECH-474's own pre-registered NON-DEGENERACY GUARD (at least two regimes winning on different sub-tasks in the fixed-arm baseline) can never be met by that arm, and experiments/_lib/precondition_gate.assert_no_structurally_unsatisfiable_gate would refuse the run at setup. NOT ROUTABLE TO /implement-substrate AS-IS: building a write-enabled counterfactual learning regime would contradict MECH-094, which is status=stable. This is a GOVERNANCE adjudication (a claims.yaml disposition), not a build: either (a) narrow MECH-474's registered menu to the three learning regimes REE actually has -- after which EXP-0401's fixed-vs-selecting design is buildable as a 3-regime falsifier -- or (b) decide deliberately how a counterfactual-learning regime coexists with MECH-094. The menu must NOT be narrowed silently: MECH-474's notes pre-register it as exactly the four and warn against redesigning it. Recorded by chip-proposal-exp-1110-paced 2026-09-02; re-derive brake count 0; no completed run and no claim_evidence entry for MECH-474; V3-EXQ-976 was reserved and released unused. NOTE: sibling proposal LIT-1111 shares backlog_id EVB-1585 and is deliberately left 'proposed' -- the literature-grounding route is unaffected by this substrate gap.",
       "claim_id": "MECH-474",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
@@ -31259,7 +31234,7 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "blocked_substrate",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_474",
       "target_repo": "REE_assembly",
       "why_now": [
@@ -31753,12 +31728,6 @@
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
       "backlog_id": "EVB-1595",
-      "blocked_by": [
-        "MECH-494-context-arbitrator",
-        "contextmemory-write-path-addressing-degeneracy",
-        "SD-e1-rollout-consistency-training"
-      ],
-      "blocked_note": "/queue-experiment Step 2.5 + 2.5c stop (2026-09-02). (1) SUBSTRATE ABSENT: MECH-494's DV is context-switch rate under a retain-vs-switch-vs-create arbitration over STORED contexts. No such arbitration exists in ree_core -- there is no active-context state at all (grep for active_context/current_context/context_id/switch_to_context/create_context over ree_core/ returns nothing), matching the claim's own text ('nothing consumes it to arbitrate retain-vs-switch-vs-create over stored contexts'). MECH-288's event_segmenter emits observation-side boundaries only and is consumed as a region KEY, so measuring it would test MECH-288, not MECH-494. (2) TWO OPEN CORRUPTING SUBSTRATE_QUEUE ENTRIES overlap the exact modules any MECH-494 driver must exercise: contextmemory-write-path-addressing-degeneracy (severity corrupting, status implemented_pending_validation, ree_core/predictors/e1_deep.py::ContextMemory.write -- where stored contexts live) and SD-e1-rollout-consistency-training (severity corrupting, status item1_validated_item2_pending, e1_deep.py::forward / ::predict_long_horizon -- the forward model that would produce the explanatory-failure signal). Both statuses contain 'pending' and are therefore OPEN per Step 2.5c. (3) ENVIRONMENT IS PARTLY THERE, better than the 2026-08-19 intake assumed: transient surprise (transient_events_enabled / scheduled_external_hazard_enabled), sensor noise (weather_field_enabled -- agent-independent continuous perturbation of the hazard percept), gradual drift (background_drift_enabled, drift_policy=random_walk), and -- the discriminating action-consequence condition -- world_rule_shift (SD-MEL-PRODUCER, IMPLEMENTED 2026-07-21: re-permutes the action->displacement map so the scene is unchanged while action consequences invert) all exist. STILL MISSING: (a) RECURRENCE -- world_rule_shift applies cumulative RANDOM transpositions so a rule never returns, and without recurring contexts 'switch back to a stored context' is indistinguishable from 'create a new one', which is the exact trichotomy under test; (b) an abrupt OBSERVATION-side latent transition (world_rule_shift_scope hard-rejects anything but 'action_map'). ROUTE: /implement-substrate for the arbitrator plus the recurring-context environment pair -- both 2026-08-19 intakes independently say 'build the 2x2 environment family once, for both' and 'do not queue an experiment yet'. NOT AUTHORED: an experiment now could only implement the criterion inside the driver, which would test the driver rather than the substrate. Also note MECH-153 (ContextMemory undifferentiated without a supervised context-labeling objective) and MECH-309 (monostrategy collapse) remain live and would each independently null this run, per the intake's own precondition check.",
       "claim_id": "MECH-494",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
@@ -31789,7 +31758,7 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "blocked_substrate",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_494",
       "target_repo": "REE_assembly",
       "why_now": [
