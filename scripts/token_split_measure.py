@@ -145,7 +145,17 @@ def analyze(path):
             entrypoint = rec["entrypoint"]
         a = rec.get("attachment") or {}
         if a.get("type") == "nested_memory":
-            nested.append((a.get("displayPath") or "?", len(json.dumps(a))))
+            # Key by the REAL path, never displayPath: displayPath is relative to the
+            # session's cwd, so a session rooted in ree-v3 reports `ree-v3/CLAUDE.md`
+            # as plain "CLAUDE.md" -- which silently averages it together with
+            # REE_assembly/CLAUDE.md and produced a nonsense ~574 KB mean for a
+            # 133 KB file on 2026-09-07.
+            real = a.get("path") or a.get("displayPath") or "?"
+            try:
+                real = os.path.relpath(real, os.path.expanduser("~/REE_Working"))
+            except Exception:
+                pass
+            nested.append((real, len(json.dumps(a))))
         if rec.get("type") == "assistant":
             m = rec.get("message", {})
             u = m.get("usage") or {}
