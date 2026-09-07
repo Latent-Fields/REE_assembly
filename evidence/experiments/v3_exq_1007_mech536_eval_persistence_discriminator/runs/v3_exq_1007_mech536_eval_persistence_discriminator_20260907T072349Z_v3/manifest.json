@@ -1,0 +1,575 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1007_mech536_eval_persistence_discriminator",
+  "run_id": "v3_exq_1007_mech536_eval_persistence_discriminator_20260907T072349Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-07T07:23:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-536",
+    "MECH-535"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-536": "supports",
+    "MECH-535": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "latch_abolishes_cycle_competence_flat_representational_deficit",
+    "hypothesis_verdict": {
+      "outcome": "PASS",
+      "label": "latch_abolishes_cycle_competence_flat_representational_deficit",
+      "direction": "supports",
+      "MECH-536": "supports",
+      "MECH-535": "supports"
+    },
+    "combination_rule": "Verdict = C1 AND C2 on the verdict arms persist_k2 AND persist_k4, under a green gate. PASS iff both. C1 false -> non_contributory (the manipulation did not reach the DV). C1 true, C2 false -> weakens (gating deficit; ARC-107 root C) iff a verdict arm's competence beats random_walk on a strict majority of seeds or clears 1.0 on any seed; otherwise mixed (a measured rise that stays inside the undirected envelope). switch_cost and stochastic_sample carry their own C1/C2 flags and are reported, never adjudicated; C3 and C2_survival_matched are reported.",
+    "preconditions": [
+      {
+        "name": "zworld_encoder_trained_in_p0",
+        "kind": "readiness",
+        "description": "the P0a SD-070 recipe must actually move split_encoder.world_encoder (worst seed)",
+        "control": "latent_stack weight delta over the warmup vs the family's guard floor",
+        "measured": 0.28158509731292725,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "offending_cell": "reader|seed44",
+        "met": true
+      },
+      {
+        "name": "d3_local_view_greedy_clears_floor",
+        "kind": "readiness",
+        "description": "the env is floor-achievable FROM THE 5x5 LOCAL VIEW (worst seed); closes the 732a privileged-oracle confound",
+        "control": "local_view_greedy worst-seed res/ep vs the 1.0 competence floor",
+        "measured": 45.75,
+        "threshold": 1.0,
+        "direction": "lower",
+        "offending_cell": "local_view_greedy|seed42",
+        "met": true
+      },
+      {
+        "name": "greedy_reader_subfloor_replication",
+        "kind": "readiness",
+        "description": "arm (a) must NOT clear the 1.0 floor on any seed -- the 978/948/813 direction-blind premise. If it does the contrast is uninterpretable",
+        "control": "greedy_argmax best-seed res/ep vs the floor",
+        "measured": 0.55,
+        "threshold": 1.0,
+        "direction": "upper",
+        "comparator": "<",
+        "met": true
+      },
+      {
+        "name": "greedy_cycle_present_on_some_seed",
+        "kind": "readiness",
+        "description": "the manipulation reaches the DV only through cycling episodes; at least one seed's greedy reader must cycle on >= 25% of eval episodes",
+        "control": "greedy_argmax best-seed cycle_incidence vs CYCLE_PRESENCE_FLOOR",
+        "measured": 0.8,
+        "threshold": 0.25,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "gate_green": true,
+    "criteria": [
+      {
+        "name": "C1_latch_abolishes_cycle",
+        "load_bearing": true,
+        "passed": true,
+        "description": "on the cycle-present seeds a strict majority have cycle_incidence <= 0.05 on EACH verdict arm (persist_k2, persist_k4)"
+      },
+      {
+        "name": "C2_competence_flat_under_latch",
+        "load_bearing": true,
+        "passed": true,
+        "description": "on EVERY seed and each verdict arm the per-seed lift over greedy_argmax is below the 0.50 res/ep effect floor; clearing the 1.0 competence floor counts as a rise only with such a lift (red-team F1/F2)"
+      },
+      {
+        "name": "C3_latch_harmless_on_good_representation",
+        "load_bearing": false,
+        "passed": false,
+        "description": "local_view_greedy_persist_k2 retains >= 50% of local_view_greedy's res/ep on every seed (pre-registered expectation; reported)"
+      },
+      {
+        "name": "C2_survival_matched_contamination_off",
+        "load_bearing": false,
+        "passed": true,
+        "description": "under contamination_spread=0 persist_k2 stays sub-floor and its lift over greedy_argmax is below the same effect-floor rule (reported)"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_latch_abolishes_cycle": true,
+      "C2_competence_flat_under_latch": false,
+      "C3_latch_harmless_on_good_representation": true,
+      "C2_survival_matched_contamination_off": true
+    },
+    "c1_by_arm": {
+      "persist_k2": {
+        "arm_id": "persist_k2",
+        "n_cycle_present_seeds": 1,
+        "n_seeds_abolished": 1,
+        "per_cycle_present_seed_cycle_incidence": [
+          0.0
+        ],
+        "passed": true
+      },
+      "persist_k4": {
+        "arm_id": "persist_k4",
+        "n_cycle_present_seeds": 1,
+        "n_seeds_abolished": 1,
+        "per_cycle_present_seed_cycle_incidence": [
+          0.0
+        ],
+        "passed": true
+      },
+      "switch_cost": {
+        "arm_id": "switch_cost",
+        "n_cycle_present_seeds": 1,
+        "n_seeds_abolished": 0,
+        "per_cycle_present_seed_cycle_incidence": [
+          0.15
+        ],
+        "passed": false
+      },
+      "stochastic_sample": {
+        "arm_id": "stochastic_sample",
+        "n_cycle_present_seeds": 1,
+        "n_seeds_abolished": 1,
+        "per_cycle_present_seed_cycle_incidence": [
+          0.05
+        ],
+        "passed": true
+      }
+    },
+    "c2_by_arm": {
+      "persist_k2": {
+        "arm_id": "persist_k2",
+        "per_seed_lift": [
+          0.1,
+          0.0,
+          -0.050000000000000044
+        ],
+        "lift_sd": 0.06236095644623238,
+        "effect_floor": 0.5,
+        "greedy_seed_sd": 0.22484562605386738,
+        "per_seed_supra_floor": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_supra_floor_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_pass": [
+          true,
+          true,
+          true
+        ],
+        "passed": true
+      },
+      "persist_k4": {
+        "arm_id": "persist_k4",
+        "per_seed_lift": [
+          0.15,
+          0.0,
+          -0.050000000000000044
+        ],
+        "lift_sd": 0.08498365855987976,
+        "effect_floor": 0.5,
+        "greedy_seed_sd": 0.22484562605386738,
+        "per_seed_supra_floor": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_supra_floor_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_pass": [
+          true,
+          true,
+          true
+        ],
+        "passed": true
+      },
+      "switch_cost": {
+        "arm_id": "switch_cost",
+        "per_seed_lift": [
+          0.25,
+          0.0,
+          -0.050000000000000044
+        ],
+        "lift_sd": 0.13123346456686352,
+        "effect_floor": 0.5,
+        "greedy_seed_sd": 0.22484562605386738,
+        "per_seed_supra_floor": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_supra_floor_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_pass": [
+          true,
+          true,
+          true
+        ],
+        "passed": true
+      },
+      "stochastic_sample": {
+        "arm_id": "stochastic_sample",
+        "per_seed_lift": [
+          2.05,
+          1.45,
+          1.3499999999999999
+        ],
+        "lift_sd": 0.3091206165165234,
+        "effect_floor": 0.5,
+        "greedy_seed_sd": 0.22484562605386738,
+        "per_seed_supra_floor": [
+          true,
+          true,
+          true
+        ],
+        "per_seed_rise": [
+          true,
+          true,
+          true
+        ],
+        "per_seed_supra_floor_with_rise": [
+          true,
+          true,
+          true
+        ],
+        "per_seed_pass": [
+          false,
+          false,
+          false
+        ],
+        "passed": false
+      }
+    },
+    "random_walk_envelope_by_arm": {
+      "persist_k2": {
+        "arm_id": "persist_k2",
+        "per_seed_above_random_walk_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_supra_floor_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "exceeds": false
+      },
+      "persist_k4": {
+        "arm_id": "persist_k4",
+        "per_seed_above_random_walk_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_supra_floor_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "exceeds": false
+      },
+      "switch_cost": {
+        "arm_id": "switch_cost",
+        "per_seed_above_random_walk_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "per_seed_supra_floor_with_rise": [
+          false,
+          false,
+          false
+        ],
+        "exceeds": false
+      },
+      "stochastic_sample": {
+        "arm_id": "stochastic_sample",
+        "per_seed_above_random_walk_with_rise": [
+          true,
+          true,
+          true
+        ],
+        "per_seed_supra_floor_with_rise": [
+          true,
+          true,
+          true
+        ],
+        "exceeds": true
+      }
+    },
+    "exceeds_envelope": false,
+    "cycle_present_per_seed": [
+      true,
+      false,
+      false
+    ],
+    "orbit_replacement": {
+      "persist_k2": {
+        "per_cycle_present_seed_bounded_orbit_incidence": [
+          0.7
+        ],
+        "per_cycle_present_seed_longer_orbit_incidence": [
+          0.7
+        ],
+        "cycle_replaced_by_longer_orbit": true
+      },
+      "persist_k4": {
+        "per_cycle_present_seed_bounded_orbit_incidence": [
+          0.0
+        ],
+        "per_cycle_present_seed_longer_orbit_incidence": [
+          0.0
+        ],
+        "cycle_replaced_by_longer_orbit": false
+      },
+      "switch_cost": {
+        "per_cycle_present_seed_bounded_orbit_incidence": [
+          0.2
+        ],
+        "per_cycle_present_seed_longer_orbit_incidence": [
+          0.05
+        ],
+        "cycle_replaced_by_longer_orbit": false
+      },
+      "stochastic_sample": {
+        "per_cycle_present_seed_bounded_orbit_incidence": [
+          0.05
+        ],
+        "per_cycle_present_seed_longer_orbit_incidence": [
+          0.0
+        ],
+        "cycle_replaced_by_longer_orbit": false
+      }
+    },
+    "latch_family": {
+      "switch_cost_agrees_with_verdict_arms": false,
+      "switch_calibration_per_seed": [
+        {
+          "rule": "quantile 0.5 of greedy per-step switch margins",
+          "n_switch_steps": 164,
+          "delta": 0.05002143979072571,
+          "thin": false,
+          "margin_stats": {
+            "n": 164,
+            "mean": 0.05908736613828961,
+            "q25": 0.030286334455013275,
+            "q50": 0.05002143979072571,
+            "q75": 0.08284062147140503,
+            "min": 0.0010569393634796143,
+            "max": 0.15527531504631042
+          }
+        },
+        {
+          "rule": "quantile 0.5 of greedy per-step switch margins",
+          "n_switch_steps": 9,
+          "delta": 0.07903668284416199,
+          "thin": true,
+          "margin_stats": {
+            "n": 9,
+            "mean": 0.17904263072543675,
+            "q25": 0.05520915985107422,
+            "q50": 0.07903668284416199,
+            "q75": 0.1890777051448822,
+            "min": 0.021351099014282227,
+            "max": 0.6206808686256409
+          }
+        },
+        {
+          "rule": "quantile 0.5 of greedy per-step switch margins",
+          "n_switch_steps": 24,
+          "delta": 0.1888166069984436,
+          "thin": false,
+          "margin_stats": {
+            "n": 24,
+            "mean": 0.22919073700904846,
+            "q25": 0.07639849185943604,
+            "q50": 0.1888166069984436,
+            "q75": 0.38014256954193115,
+            "min": 0.0018795132637023926,
+            "max": 0.6179104447364807
+          }
+        }
+      ]
+    },
+    "gflag_0131_comparator": {
+      "arm": "stochastic_sample",
+      "c1": true,
+      "c2": false,
+      "exceeds_envelope": true,
+      "note": "reported alongside, not a gate: noise as de facto commitment perturbation"
+    },
+    "replication_978_off_arm": [
+      {
+        "seed": 42,
+        "greedy_competence": 0.0,
+        "expected_978_off": 0.0,
+        "greedy_survival": 50.75,
+        "expected_978_off_survival": 50.75,
+        "competence_abs_diff": 0.0
+      },
+      {
+        "seed": 43,
+        "greedy_competence": 0.25,
+        "expected_978_off": 0.25,
+        "greedy_survival": 200.0,
+        "expected_978_off_survival": 200.0,
+        "competence_abs_diff": 0.0
+      },
+      {
+        "seed": 44,
+        "greedy_competence": 0.55,
+        "expected_978_off": 0.55,
+        "greedy_survival": 200.0,
+        "expected_978_off_survival": 200.0,
+        "competence_abs_diff": 0.0
+      }
+    ],
+    "recorded_checks": [
+      {
+        "name": "contamination_off_greedy_cycle_present",
+        "measured": 0.75,
+        "threshold": 0.25,
+        "direction": "lower",
+        "gating": false,
+        "met": true
+      },
+      {
+        "name": "switch_cost_delta_calibrated_every_seed",
+        "gating": false,
+        "measured": 9,
+        "threshold": 20,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "caveats": [
+      "latch_costs_good_representation: local_view_greedy_persist_k2 retained < 50% of local_view_greedy on some seed -- MECH-536's 'protective, not necessary' framing needs a caveat",
+      "cycle_replaced_by_longer_orbit: a verdict arm shows a bounded orbit of period > 2 on a cycle-present seed -- the two-cycle was lengthened, not dissolved"
+    ],
+    "null_reading": {
+      "latch_did_not_abolish_cycle_non_contributory": "a pure latch that leaves a period-2 orbit standing is an instrumentation defect in the wrapper (see WHAT A PURE LATCH DOES BY CONSTRUCTION), not a finding about MECH-536",
+      "latch_lift_within_undirected_envelope": "the latch raised competence, but no further than undirected motion (random_walk) achieves; consistent with survival opportunity, silent on direction -- governance reads the contamination-off sub-grid",
+      "latch_restores_competence_gating_deficit_route_arc107_root_c": "the latch restored competence beyond the undirected envelope: direction was recoverable from the representation once the actor stopped re-deciding -- a gating deficit; route to ARC-107 root C",
+      "greedy_cycle_absent_manipulation_unreachable": "no seed's greedy reader cycled, so the latch had nothing to abolish; the 978 phenotype did not replicate on these seeds at this eval"
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1cb09199f00f21a4b7a7f09d6a8fc57961200b5f862d3a7c8d0ca945ee8ba76b",
+  "substrate_commit": {
+    "commit": "ebcd1e896edb33ff648ff934660536f534432502",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "latent.use_resource_field_head": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_action_contrastive_multistep_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_vs_rollout_gating": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_context_from_e2_world_forward": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "use_ofc_analog": true,
+    "ofc_harm_dim": 32,
+    "use_ofc_devaluation_head": true,
+    "ofc_train_devaluation_head": true,
+    "use_gated_policy": true,
+    "use_noise_floor": true,
+    "use_e3_score_diversity": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 278104,
+    "ticks_active": 277138,
+    "writer_calls": 278104,
+    "active_frac": 0.9965264793027069,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
