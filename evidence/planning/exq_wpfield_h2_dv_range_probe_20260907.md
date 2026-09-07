@@ -61,7 +61,9 @@ So a run pre-registered against "lift indistinguishable from zero" would resolve
 
 ## 6. Convergence with V3-EXQ-1008 (in flight)
 
-V3-EXQ-1008 LEG 1 carries `ws250_randproj` -- the same near-isometry control, on the same substrate, for the **resource** field in the 250-dim slice. The two are on **disjoint slices** (1008: `world_state[:250]`; H2: the trailing `[250:275]`), so this is corroboration rather than duplication. Its random-control number will independently calibrate the +0.211 floor above, and the queueing session should read it before fixing H2's bar. 1008 was `claimed` and running at the time of writing.
+V3-EXQ-1008 LEG 1 carries `ws250_randproj` -- a random-projection control of the same family, on the same substrate. The two are on **disjoint slices**: 1008's `world_state` is exactly 250 dims (`local_view[0:175]` + `contamination[175:200]` + `hazard_field[200:225]` + `resource_field[225:250]`; the driver contains zero `waypoint` references, so the field is OFF there), while H2 is the trailing `[250:275]` that only exists when the flag is ON. So this is **not** duplication.
+
+**But do not read 1008's number as directly comparable, and do not treat it as confirmation of the +0.211 floor.** The two controls measure different quantities: 1008 scores *absolute* agreement with an oracle action policy against a 0.80 bar (its own text anticipates the 250 -> 32 random projection may fail that bar), whereas this probe scores an *ON-minus-OFF differential* in direction decodability. A random projection can preserve a differential while failing an absolute bar, so a 1008 randproj miss would not contradict the +0.211 retention measured here. The useful transfer is methodological -- that a random-projection floor is the right control against which to read a `z_world` compression result at all -- not numerical. 1008 was `claimed` and running at the time of writing.
 
 ## 7. Why nothing was queued
 
