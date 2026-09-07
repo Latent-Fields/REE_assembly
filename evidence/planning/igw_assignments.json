@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-07T23:15:35Z",
+  "generated_at": "2026-09-07T23:47:54Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -10287,6 +10287,28 @@
         "priority": 40,
         "claim_ids": [
           "INV-040"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260907T234342Z-a2444c4a-claude_local",
+      "stable_hash": "a2444c4a55d8",
+      "igw_id_at_assign": "IGW-20260907-232",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-07T23:43:42Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=07aa8606-a28c-48d0-9cf8-0beca6406548 branch=claude/igw-232-proposal-for-inv-063",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for INV-063",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "INV-063"
         ]
       }
     }
