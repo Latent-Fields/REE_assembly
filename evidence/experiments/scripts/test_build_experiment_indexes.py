@@ -3189,6 +3189,60 @@ def test_invalid_compact_stamp_falls_back_to_identifier():
     assert raw == "" and dt == b._UNKNOWN_TIMESTAMP_DT
 
 
+# --------------------------------------------------------------------------- #
+# Re-append of resolved items no longer regenerated is LANE-aware (HK-A.5, 2026-09-07)
+# --------------------------------------------------------------------------- #
+
+def _row(pid, bid, lane, claim, status, **extra):
+    d = {"proposal_id": pid, "backlog_id": bid, "proposal_type": lane,
+         "claim_id": claim, "status": status}
+    d.update(extra)
+    return d
+
+
+def test_reappend_keeps_both_resolved_twins():
+    """LIT-0607 (skipped) was dropped because its EXP twin EXP-0606 (skipped,
+    same EVB-1297) had already marked the backlog_id present."""
+    fresh = []
+    existing = [
+        _row("EXP-0606", "EVB-1297", "experimental", "IMPL-008", "skipped", blocked_note="x"),
+        _row("LIT-0607", "EVB-1297", "literature_review", "IMPL-008", "skipped"),
+    ]
+    out = b.reappend_missing_resolved_items(fresh, existing)
+    assert [p for p, _ in out] == ["EXP-0606", "LIT-0607"]
+    assert [p["proposal_id"] for p in fresh] == ["EXP-0606", "LIT-0607"]
+    assert fresh[0] is not existing[0]  # verbatim COPY, not aliasing
+
+
+def test_reappend_skips_proposed_rows_and_present_lanes():
+    fresh = [_row("EXP-0001", "EVB-0001", "experimental", "MECH-001", "proposed")]
+    existing = [
+        _row("EXP-0001", "EVB-0001", "experimental", "MECH-001", "executed"),   # lane present
+        _row("LIT-0002", "EVB-0001", "literature_review", "MECH-001", "proposed"),  # not resolved
+        _row("LIT-0003", "EVB-0001", "literature_review", "MECH-001", "executed"),  # other lane -> kept
+    ]
+    out = b.reappend_missing_resolved_items(fresh, existing)
+    assert out == [("LIT-0003", "MECH-001")]
+    assert [p["proposal_id"] for p in fresh] == ["EXP-0001", "LIT-0003"]
+    assert fresh[0]["status"] == "proposed"  # the fresh row itself is untouched here
+
+
+def test_reappend_never_duplicates_a_lane_twice():
+    fresh = []
+    existing = [
+        _row("EXP-0009", "EVB-0009", "experimental", "MECH-009", "executed"),
+        _row("EXP-0009", "EVB-0009", "experimental", "MECH-009", "executed"),  # duplicate record
+    ]
+    out = b.reappend_missing_resolved_items(fresh, existing)
+    assert len(out) == 1 and len(fresh) == 1
+
+
+def test_reappend_tolerates_malformed_rows():
+    fresh = []
+    out = b.reappend_missing_resolved_items(fresh, [None, "x", {}, {"status": "executed"}])
+    assert out == [] and fresh == []
+
+
 if __name__ == "__main__":
     sys.exit(1 if _run_all() else 0)
 

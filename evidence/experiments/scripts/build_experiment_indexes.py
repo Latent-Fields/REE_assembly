@@ -6309,6 +6309,50 @@ def apply_claim_queue_gate(proposal: dict[str, Any], registry_meta: dict | None)
     return ""
 
 
+def reappend_missing_resolved_items(
+    proposals: list[dict[str, Any]], existing_items: list[dict[str, Any]]
+) -> list[tuple[str, str]]:
+    """Re-append, verbatim, every RESOLVED existing proposal that this regen no
+    longer mints -- keyed on (identity key, LANE), never identity key alone.
+
+    Why it exists: an eligibility-gate fix that newly excludes a claim (e.g. the
+    2026-08-02 substrate_conditional gate, or the 2026-09-07 implementation_note
+    gate) must not silently drop the record that an experiment WAS already run,
+    skipped or blocked for that claim -- see the caller's comment for the
+    Q-007 / EXP-0039 incident.
+
+    WHY THE LANE (2026-09-07, HK-A.5, found on an APFS-clone regen). The
+    original keyed the "already present" test on the bare identity key, and a
+    backlog_id is NOT unique -- an EXP and its LIT twin share one EVB. So after
+    re-appending the EXP twin it recorded EVB-1297 as present, and the LIT twin
+    (LIT-0607, IMPL-008, status skipped -- a deliberate 2026-09-04 disposition,
+    REE_assembly 6e378b696a) was dropped from the file on the next regen. The
+    same lane-blindness the carry-forward was cured of in 2fb49fbe92, one block
+    later. Pure and module-level so it is testable without running the indexer.
+    Returns the (proposal_id, claim_id) pairs it re-appended.
+    """
+    present: set[tuple[str, str]] = set()
+    for _p in proposals:
+        _lane = _proposal_lane(_p)
+        for _k in _proposal_identity_keys(_p):
+            present.add((_k, _lane))
+    out: list[tuple[str, str]] = []
+    for _ep in existing_items:
+        if not isinstance(_ep, dict):
+            continue
+        _ep_keys = _proposal_identity_keys(_ep)
+        if not _ep_keys or _ep.get("status", "proposed") == "proposed":
+            continue
+        _ep_lane = _proposal_lane(_ep)
+        if any((k, _ep_lane) in present for k in _ep_keys):
+            continue
+        proposals.append(dict(_ep))
+        for _k in _ep_keys:
+            present.add((_k, _ep_lane))
+        out.append((str(_ep.get("proposal_id") or "?"), str(_ep.get("claim_id") or "?")))
+    return out
+
+
 def apply_manual_proposal_write_back(
     item: dict[str, Any], resolved: dict | None
 ) -> tuple[bool, bool]:
@@ -8130,18 +8174,13 @@ def _write_planning_outputs(
     # (not just the status-family fields) so it survives regen exactly like
     # any other resolved item does.
     if _existing_proposals_doc is not None:
-        _regenerated_bids: set[str] = set()
-        for _p in proposals:
-            _regenerated_bids.update(_proposal_identity_keys(_p))
-        for _ep in _existing_proposals_doc.get("items", []):
-            _ep_keys = _proposal_identity_keys(_ep)
-            if (
-                _ep_keys
-                and not any(k in _regenerated_bids for k in _ep_keys)
-                and _ep.get("status", "proposed") != "proposed"
-            ):
-                proposals.append(dict(_ep))
-                _regenerated_bids.update(_ep_keys)
+        _reappended = reappend_missing_resolved_items(
+            proposals, _existing_proposals_doc.get("items", [])
+        )
+        if _reappended:
+            print(f"  proposal status: {len(_reappended)} resolved item(s) no longer "
+                  f"regenerated re-appended verbatim: "
+                  + ", ".join(f"{p} ({c})" for p, c in _reappended))
 
     # Write the same carried-forward status back into manual_proposals.v1.json
     # itself. Without this, a manual item's on-disk "status" is frozen at
