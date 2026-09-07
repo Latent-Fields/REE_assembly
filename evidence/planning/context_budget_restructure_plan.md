@@ -1,7 +1,7 @@
 # Context-budget restructure: plan of record
 
 **Opened:** 2026-09-07T17:55:42Z
-**Status:** WI-1 COMPLETE (2026-09-07, ree-v3 `main` 89907e3). WI-2 IN PROGRESS -- chipped as `chip-20260907-umbrella-claudemd-wi2-skill-scoping`, session started 2026-09-07. Not closed until WI-2 lands.
+**Status:** COMPLETE (2026-09-07). WI-1 landed ree-v3 `main` 89907e3; WI-2 landed umbrella `master` + ree-v3 `main` `a3cd923b8f` (chip `chip-20260907-umbrella-claudemd-wi2-skill-scoping`). Both outcomes recorded below, including WI-2's GOV-HELDOUT-1 result and its negative-control findings.
 **Evidence base:** [`token_split_measurement_20260907.md`](token_split_measurement_20260907.md)
 (REE_assembly `b36526f715`). Every figure below comes from that measurement; nothing here
 is re-derived or estimated independently.
@@ -186,6 +186,102 @@ Candidates, with their share of the umbrella file:
 | Dev Doctor, Explorer, MCP server, Recommendation ledger, Literature Pulls | ~3.5% | respective skills |
 
 **Expected saving: ~29% of the umbrella file ~= 4.8% of total budget.**
+
+**OUTCOME (landed 2026-09-07; 11 commits -- umbrella `REE_Working` master, `ree-v3` main
+`a3cd923b8f`).**
+
+| | before | after | |
+|---|---|---|---|
+| `CLAUDE.md` (umbrella) | 154,645 chars (~38,661 tok) | 133,024 chars (~33,256 tok) | **-14.0%** |
+| `ree-v3/CLAUDE.md` (carried-over sections) | 65,405 chars (~16,351 tok) | 60,910 chars (~15,227 tok) | **-6.9%** |
+
+**-14.0% against this section's ~29% estimate, and the gap is the finding, not a shortfall.**
+The estimate was a share-of-file sum over the candidate table. Applying the classification test
+below, roughly a third of that candidate mass turned out to be rules rather than reference and
+stayed inline -- correctly, per section 5.1's own risk.
+
+**Classification test actually applied** (fixed in slice 1, then applied unchanged): a line
+stays in `CLAUDE.md` **iff a session could VIOLATE it without ever reading further** -- i.e. it
+is a prohibition or a standing default, not mechanism or evidence. Mechanism goes behind a
+pointer; it goes into a `SKILL.md` **body** only where the work is *already gated to that skill*,
+so a session that needs the rule has necessarily invoked it.
+
+**This is deliberately weaker than WI-1's mitigation and was designed for that.** WI-1 moved
+content behind an index in the same file, so the pointer always loads. A `SKILL.md` body loads
+only on invocation, and **173 of 295 sessions (58.6%) invoke no skill at all** -- so a rule moved
+into a body is *invisible* to the majority, not merely deferred. Hence: only ONE section moved
+into a skill body outright; everything else moved into `docs/reference/` files that keep a
+one-line pointer in `CLAUDE.md` (what it covers, token cost, owner, when to read it) AND are
+pointed at from the owning `SKILL.md`. One copy, two entry points.
+
+**What moved** (5 new reference files + 2 skill-body moves):
+
+| from | to | kept inline |
+|---|---|---|
+| Running the test suite | `docs/reference/ree-v3-test-suite-routing.md` | don't run pytest on the Mac; "full suite" is six paths; a worker-green suite is not a gate for an exact-committed-action test |
+| `scripts/` test corpus | `docs/reference/scripts-test-corpus.md` | the invocation; run it before landing under `scripts/`; keep it local; the three vacuity rules, restated compactly |
+| Coordinator (Phase 3) | `docs/reference/coordinator-phase3.md` | which live sources to read for fleet progress; three prohibitions (hub heartbeat writer, hub runner retired, `_HEARTBEAT_WRITE`) |
+| Multi-Machine Coordination | `docs/reference/multi-machine-coordination.md` | `machine_affinity`; do not lower `COORDINATOR_STALE_HOURS` |
+| Experiment Scripts (minting default only) | `queue-experiment` SKILL.md **body** | the whole mandatory-skill-path rule; a one-line statement of the default |
+| `ree-v3` Remote Control | `ree-v3/docs/reference/remote-control.md` | default-off/bit-identical; the six command kinds; why `start` is not among them |
+| `ree-v3` Troubleshooting Runner | `diagnose-errors` SKILL.md **body** | runner log location; never re-queue under the same EXQ ID |
+
+**Negative-control findings -- candidates the plan named that are NOT skill-scopable.** The
+section's own negative control ("if MOST candidates fail, WI-2 is wrong as scoped") did NOT
+fire: by character mass most candidates did move. These did not:
+
+- **Experiment Scripts, "Mandatory skill path"** -- the clearest case. It is the rule that makes
+  a session invoke `/queue-experiment` at all; inside that skill it would be circular and reach
+  nobody. Only the minting default moved.
+- **Recommendation-Agreement Ledger** -- fires after *any* `AskUserQuestion` marked
+  `(Recommended)`, in any session, skill or not.
+- **Experiment Review Tracking** -- "do NOT infer discussed status from the filesystem" is a
+  prohibition against a plausible wrong inference, reachable by `view-experiments`,
+  `morning-digest` and no-skill sessions, not only `/governance`.
+- **Governance Pipeline** -- "update all of `claims.yaml` + docs + indexes in a single pass"
+  binds thought-intake, `/claim-synthesis` and `/failure-autopsy`, not only `/governance`.
+- **Dev Doctor, Explorer, MCP server, V3-Pending Gate, Literature Pulls, EXQ Versioning,
+  Experiment Runner** -- all session-startup affordances, standing prohibitions, or too small
+  for a pointer to pay for itself. Left inline; the ~3.5% "misc" row of the table is mostly
+  unrecoverable for this reason.
+- **`ree-v3` V3/V4 Scope Boundary (~7.5 KB)** -- scope doctrine plus explicit do-not-implement
+  gates; answers "is this in V3 scope?", which every kind of session asks.
+- **`ree-v3` Regression Suite (~3.6 KB)** -- its "when to run what" list is the standing
+  pre-commit default for every `ree-v3` code change.
+
+**Byte-exactness, verified mechanically** (not by reading) for every moved block: a non-blank-line
+**partition invariant** -- every non-blank line of the original section appears exactly once in
+kept-union-moved, the two disjoint -- plus verbatim-containment of each moved block in its
+destination, and a check that regions of `CLAUDE.md` outside the edited section are byte-identical
+to the previous commit. Links inside moved prose are left repo-root-relative and unrewritten on
+purpose, so the text stays byte-identical; each destination file's header says so.
+
+**GOV-HELDOUT-1 check: RUN, 3 non-degenerate held-out cases, rule survived unchanged.** Compared
+against the OLD wording (this section's candidate table: move the named section to the named
+skill). Only cases where old and new give *different* answers are counted.
+
+1. **2026-05-30 worker restart-loop** (`PHASE3_DISABLE_RUNNER_HEARTBEAT_WRITE`). OLD: the
+   prohibition travels into `metaworker-*` with the Coordinator section, invisible to a no-skill
+   fleet session. NEW: it stays inline. The incident is itself evidence this is a prohibition
+   that gets violated. **Differ; NEW is right.**
+2. **V3-EXQ-841 orphaned claim / `feedback_heartbeat_stale_not_abandoned`.** OLD: "do NOT lower
+   `COORDINATOR_STALE_HOURS`" travels into `/queue-experiment`, which has nothing to do with
+   editing `coordinator/db.py`. NEW: stays inline. The record shows this is the *tempting* wrong
+   fix and its cost is a duplicate run. **Differ; NEW is right.**
+3. **2026-03-23 six-experiment silent re-queue** (EXQ-075, 074b, 076, 084, 085, 047g). OLD: the
+   whole Troubleshooting section, including "never re-queue under the same EXQ ID", moves to
+   `/diagnose-errors`. But the sessions that caused the incident were *re-queueing*, not
+   diagnosing -- they would never have loaded it. NEW: the diagnoses move, the rule stays.
+   **Differ; NEW is right.**
+
+Cases considered and REJECTED as degenerate (old and new agree, so they test nothing): A-93's
+retired telemetry doctrine, the 2026-08-12 hand-rolled-close incident, the A-59 mis-homed chip,
+the 2026-03-24 missing-`title` incident, and the 43-second woken-worker shutdown.
+
+**Follow-on chipped, not done here** (content edits, not moves): `ree-v3`'s Regression Suite
+duplicates the umbrella's full-suite figures with STALE numbers (~1800 tests / ~6 min against
+the measured ~13m12s / ~3558); and the block moved into `queue-experiment` restates, and
+forward-references, the paragraph now immediately above it.
 
 **Do NOT move:** Concurrency Rules, Session Startup Protocol, Session Land Protocol,
 Worktree / Chipped Sessions, General Rules, Git Policy, Timestamps, Python, ASCII-only,
