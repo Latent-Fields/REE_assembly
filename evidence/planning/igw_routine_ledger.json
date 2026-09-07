@@ -4385,7 +4385,11 @@
       "task_claim_session_id": "igw-auto-igw-231-literature-proposal-for-impl-026-20260907T191736Z",
       "task_claim_claimed_at": "2026-09-07T19:17:36Z",
       "assigned_at": "2026-09-07T19:16:01Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-07T19:41:05Z",
+      "completion_summary": "lit-pull IMPL-026: landed 5 literature entries (REE_assembly 9ee1c63477 + INDEX 307f9dd79e); literature_confidence 0.831 from 0.0; findings partly undercut the table's row ordering, routed to governance; 2 chips raised",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull IMPL-026: landed 5 literature entries (REE_assembly 9ee1c63477 + INDEX 307f9dd79e); literature_confidence 0.831 from 0.0; findings partly undercut the table's row ordering, routed to governance; 2 chips raised"
     }
   ],
   "dispositions": [
@@ -6154,6 +6158,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-07T12:54:40Z",
       "re_eligible_after": "2026-09-09T12:54:40Z"
+    },
+    {
+      "stable_hash": "c8caaf9e3407",
+      "igw_id_at_disposition": "IGW-20260907-231",
+      "owner_exq": null,
+      "claim_ids": [
+        "IMPL-026"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for IMPL-026",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-07T19:41:06Z",
+      "re_eligible_after": "2026-09-09T19:41:06Z"
     }
   ]
 }
