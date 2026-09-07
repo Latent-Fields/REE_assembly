@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_040",
+  "entry_id": "2026-09-07_inv_040_anticipatory_scr_before_knowledge_bechara1997",
+  "timestamp_utc": "2026-09-07T22:44:50Z",
+  "claim_ids_tested": [
+    "INV-040"
+  ],
+  "source": {
+    "title": "Deciding advantageously before knowing the advantageous strategy.",
+    "authors": [
+      "A Bechara",
+      "H Damasio",
+      "D Tranel",
+      "A R Damasio"
+    ],
+    "year": 1997,
+    "venue": "Science",
+    "doi": "10.1126/science.275.5304.1293",
+    "pmid": "9036851",
+    "pmc": null,
+    "volume": "275",
+    "issue": "5304",
+    "pages": "1293-1295"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "The within-trial temporal structure is exactly INV-040's shape -- an anticipatory autonomic response is emitted while the participant hovers over a deck, before the card is turned and before any loss on that trial, i.e. before the aversive evidence for that decision has arrived. That is the strongest direct behavioural analogue of 'terrain preparation begins from cue evidence alone'. Confidence is held well below the source's venue and citation weight for two reasons: the sample is small (n=10 normal, 6 ventromedial-lesion), and the specific interpretation this claim's notes lean on -- that the bias precedes knowledge -- is directly contested by Maia & McClelland (2004), co-registered in this pull. Weighted toward mapping_fidelity because INV-040 is an architectural invariant.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ventromedial prefrontal patients never developed anticipatory SCRs yet some did eventually acquire explicit knowledge of which decks were risky -- so in this dataset the anticipatory cue-driven signal and the accumulated declarative representation are dissociable, and the cue-driven one can be absent while the accumulated one is intact.",
+    "The deck-level cue that drives the anticipatory SCR is itself learned over roughly ten prior trials, so the 'minimal cue' is minimal only within a trial, not within the lifetime of the task -- INV-040 must not be read as claiming an untrained cue suffices."
+  ],
+  "tags": [
+    "inv-040",
+    "anticipatory_response",
+    "somatic_marker",
+    "vmpfc",
+    "cue_before_outcome"
+  ],
+  "mapping": {
+    "source_claim_statement": "Normal participants began to choose advantageously, and to generate anticipatory skin conductance responses when pondering a risky choice, before they could report explicitly which strategy was best; prefrontal-damaged patients generated no anticipatory SCRs and continued to choose disadvantageously even once they could report the correct strategy.",
+    "ree_translation": "An anticipatory autonomic response emitted at cue-inspection time, before the outcome of that choice is known, is the biological counterpart of E3 terrain_weight w_harm being elevated by a hazard-relevant cue in z_world before z_harm_a has accumulated. The vmPFC-lesion group is the counterpart of the failure mode INV-040 names explicitly in its notes: a system whose harm weighting is not raised until the accumulator is already high prepares too late.",
+    "mapping_caveat": "Skin conductance is an undifferentiated autonomic arousal index, not a terrain precision weight -- it registers that something aversive is anticipated, not which terrain configuration was selected. INV-040 asserts the appropriate configuration is activated; this paper can only evidence that some anticipatory state is activated. The paper's own headline framing is about consciousness (nonconscious bias preceding declarative knowledge), which INV-040 does not assert and does not need; reading this paper as support for INV-040 requires deliberately taking its temporal result and leaving its consciousness result, and the latter is the part that did not survive replication.",
+    "source_context": "Human adults, Iowa Gambling Task; behavioural choice, skin conductance, and periodic self-report probes acquired in parallel; 10 normal controls and 6 patients with bilateral ventromedial prefrontal damage."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality marked down from what the venue would suggest: small n, and the paper's central interpretive claim was subsequently contested rather than replicated. Transfer risk is moderate-high -- human autonomic psychophysiology to a scalar weight in an artificial predictor is a long jump, and the direction of the mapping is carried by timing rather than by mechanism."
+  }
+}

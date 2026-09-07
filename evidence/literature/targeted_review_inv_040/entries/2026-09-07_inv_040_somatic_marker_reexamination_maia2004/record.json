@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_040",
+  "entry_id": "2026-09-07_inv_040_somatic_marker_reexamination_maia2004",
+  "timestamp_utc": "2026-09-07T22:44:50Z",
+  "claim_ids_tested": [
+    "INV-040"
+  ],
+  "source": {
+    "title": "A reexamination of the evidence for the somatic marker hypothesis: what participants really know in the Iowa gambling task.",
+    "authors": [
+      "Tiago V Maia",
+      "James L McClelland"
+    ],
+    "year": 2004,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.0406666101",
+    "pmid": "15501919",
+    "pmc": "PMC528759",
+    "volume": "101",
+    "issue": "45",
+    "pages": "16075-16080"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "High confidence that this paper removes one of the three biological groundings INV-040's notes cite by name, and does so on the strongest methodological footing available -- a direct re-run with more sensitive knowledge probes, showing participants report the advantageous strategy MORE reliably than they behave advantageously. Lower confidence that it bears on INV-040's actual content, because what it falsifies is the NONCONSCIOUS half of Bechara's interpretation, and INV-040 asserts cue-sufficiency and temporal precedence, not nonconsciousness. Registered as weakens rather than mixed because the honest effect on this claim is real: its cited evidential base is thinner than the notes imply.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When more sensitive probes are used, participants' reportable knowledge is sufficient to guide advantageous choice, so no cue-driven pre-declarative biasing signal needs to be posited to explain the behaviour -- the phenomenon INV-040 borrows as grounding may be an artefact of insensitive measurement rather than a mechanism.",
+    "A REE analogue of this failure: if w_harm elevation on cue-present steps is measured with an instrument coarse enough to miss that z_harm_a has already begun to move, an apparent 'cue precedes accumulation' result can be produced by measurement lag alone. Any INV-040 experiment must therefore condition explicitly on z_harm_a being below its accumulation threshold, not merely early in the episode."
+  ],
+  "tags": [
+    "inv-040",
+    "disconfirming",
+    "somatic_marker",
+    "replication_failure",
+    "measurement_sensitivity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using more sensitive knowledge-assessment methods, participants in the Iowa Gambling Task demonstrate substantially more reportable knowledge of the advantageous strategy than Bechara et al. reported -- in fact reporting it more reliably than they act on it -- so both choice and report can be explained by sampling from consciously accessible knowledge without appeal to nonconscious somatic markers.",
+    "ree_translation": "One of the three sources INV-040's notes cite as biological grounding (Bechara et al. 1997) does not carry the weight the notes place on it. For REE the transferable lesson is methodological rather than mechanistic: an apparent 'cue acts before the accumulator' result is only as good as the sensitivity of the instrument measuring the accumulator, and a coarse accumulator readout manufactures spurious precedence.",
+    "mapping_caveat": "This paper attacks the consciousness claim, not the timing claim. It does not show that cue-driven anticipatory states are absent, and it does not test whether a partial sensory cue can configure a defensive terrain -- it shows that this particular task does not require nonconscious mediation to explain the behaviour. Treating it as a refutation of INV-040 itself would overreach; treating it as leaving INV-040's cited grounding weaker than advertised is the defensible reading, and is what is recorded here.",
+    "source_context": "Human adults, Iowa Gambling Task, re-run with denser and more granular knowledge probes than the original self-report schedule; behavioural and verbal-report measures, no lesion group."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high -- PNAS, direct methodological replication of the exact paradigm, widely cited and broadly accepted as having shifted the field's reading of the original. Mapping fidelity deliberately mid-range: the target of the disconfirmation is adjacent to, not identical with, what INV-040 asserts, and saying so plainly is more useful to governance than inflating it into a clean falsifier."
+  }
+}

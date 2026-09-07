@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_040",
+  "entry_id": "2026-09-07_inv_040_ca3_pattern_completion_degraded_input_neunuebel2014",
+  "timestamp_utc": "2026-09-07T22:44:50Z",
+  "claim_ids_tested": [
+    "INV-040"
+  ],
+  "source": {
+    "title": "CA3 retrieves coherent representations from degraded input: direct evidence for CA3 pattern completion and dentate gyrus pattern separation.",
+    "authors": [
+      "Joshua P Neunuebel",
+      "James J Knierim"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.017",
+    "pmid": "24462102",
+    "pmc": "PMC3904133",
+    "volume": "81",
+    "issue": "2",
+    "pages": "416-427"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The highest-confidence entry in this pull, and the only one that speaks to INV-040's MECHANISM rather than to its behavioural signature. INV-040's operative content is that a partial sensory cue indexes a stored association and the retrieved content configures downstream weighting -- that is content-addressable retrieval from degraded input, and this paper is the direct quantitative demonstration of exactly that operation, with the input degradation measured rather than assumed. Held below 0.8 because the retrieved content here is a spatial reference frame, not a harm terrain, so the paper evidences the retrieval half of INV-040 and is silent on the harm-precision half.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pattern completion is only cue-SPECIFIC to the extent that the stored patterns are separated first -- the paper's design turns on CA3 completing while its dentate gyrus input is severely disrupted, i.e. separation and completion are complementary and completion without separation retrieves an undifferentiated representation regardless of cue. A memory bank whose stored entries are mutually near-identical will return a cue-invariant output, and any downstream weighting computed from it will be cue-invariant too.",
+    "That failure signature is not hypothetical for REE: the sibling experimental proposal EXP-0682 was gated blocked_substrate on 2026-09-07 after measuring that the ContextMemory bank sits near rank-1 under the online write path (written-slot pairwise cosine 0.9993 in V3-EXQ-436g), compressing the w_harm range 31x to 1600x with slot SELECTION still healthy. This literature says that is the predicted consequence of completion machinery operating without separation, not an incidental numerical problem."
+  ],
+  "tags": [
+    "inv-040",
+    "pattern_completion",
+    "pattern_separation",
+    "content_addressable_retrieval",
+    "ca3",
+    "contextmemory",
+    "degraded_cue"
+  ],
+  "mapping": {
+    "source_claim_statement": "Simultaneous recording from dentate gyrus and CA3 in behaving rats under a local/global reference-frame conflict showed that CA3 produced a coherent population response closer to the originally stored representation than its own severely disrupted dentate gyrus input patterns -- direct quantitative evidence for CA3 pattern completion operating on degraded input alongside dentate gyrus pattern separation.",
+    "ree_translation": "This is the biological warrant for the retrieval step INV-040 depends on: E1's cue-indexed ContextMemory query, keyed on z_world alone rather than on full state, returning a stored association whose content then sets E3's terrain weighting through cue_terrain_proj. The paper establishes that a degraded partial cue can retrieve the coherent stored pattern -- which is what makes 'the full accumulation of z_harm_a is not required' architecturally coherent rather than merely convenient. It equally establishes the precondition REE currently fails: completion is informative only over a separated store.",
+    "mapping_caveat": "The retrieved content in this study is a spatial reference frame in a rat navigating a familiar track; nothing here concerns harm, valence, or precision weighting, and no claim is made that the same circuit configures defensive terrain. The mapping is at the level of the computational operation (content-addressable completion from partial input) and deliberately not at the level of the represented content. A second boundary: CA3's completion has a threshold in cue fraction, so 'a minimal cue is sufficient' is true only above that threshold -- INV-040 should not be read as asserting sufficiency for arbitrarily impoverished cues.",
+    "source_context": "Male Long-Evans rats, simultaneous in vivo single-unit ensemble recording from dentate gyrus and CA3 during a double-rotation reference-frame conflict manipulation on a familiar circular track."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality is the highest in this pull: direct simultaneous recording from both structures, quantitative comparison against the stored representation rather than a proxy, and it confirms hallmark predictions of a long-standing computational model rather than reporting an isolated effect. Transfer risk is rodent-to-artificial-substrate but unusually contained, because the transferred object is a computation with an explicit formal statement in the source's own framing rather than a behavioural phenomenon."
+  }
+}

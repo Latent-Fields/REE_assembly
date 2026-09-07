@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_040",
+  "entry_id": "2026-09-07_inv_040_threat_imminence_vmpfc_pag_shift_mobbs2007",
+  "timestamp_utc": "2026-09-07T22:44:50Z",
+  "claim_ids_tested": [
+    "INV-040"
+  ],
+  "source": {
+    "title": "When fear is near: threat imminence elicits prefrontal-periaqueductal gray shifts in humans.",
+    "authors": [
+      "Dean Mobbs",
+      "Predrag Petrovic",
+      "Jennifer L Marchant",
+      "Demis Hassabis",
+      "Nikolaus Weiskopf",
+      "Ben Seymour",
+      "Raymond J Dolan",
+      "Christopher D Frith"
+    ],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1144298",
+    "pmid": "17717184",
+    "pmc": "PMC2648508",
+    "volume": "317",
+    "issue": "5841",
+    "pages": "1079-1083"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Genuinely two-directional for this claim, and registered as mixed for that reason rather than as a hedge. Supporting half: at DISTAL threat -- predator visible, no contact, nothing yet accumulated -- a defensive configuration is already engaged and is vmPFC-mediated, which is precisely INV-040's assertion that terrain preparation begins from sensory evidence alone. Weakening half: the configuration is not fixed by the cue, it is continuously re-weighted by proximity, and shifts to a qualitatively DIFFERENT midbrain configuration as the threat closes. That is a substantive challenge to 'the appropriate configuration' being activatable from a minimal cue, since which configuration is appropriate is itself a function of the accumulating variable INV-040 wants to do without.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The defensive configuration engaged at distal threat is not the one engaged at proximal threat -- activity shifts from ventromedial prefrontal cortex to periaqueductal gray as the predator closes -- so a cue that reliably activates SOME preparation may still activate the WRONG preparation, and INV-040's word 'appropriate' is doing load-bearing work the cue alone may not support.",
+    "The shift was maximal when a high degree of pain was anticipated, i.e. the magnitude of the anticipated harm modulates which configuration is selected; a REE cue carrying hazard presence but not hazard magnitude would be unable to make this selection."
+  ],
+  "tags": [
+    "inv-040",
+    "threat_imminence",
+    "defensive_terrain",
+    "vmpfc",
+    "periaqueductal_gray",
+    "graded_configuration"
+  ],
+  "mapping": {
+    "source_claim_statement": "As a virtual predator capable of chasing, capturing and inflicting pain grew spatially closer during an active-avoidance maze task, human brain activity shifted from ventromedial prefrontal cortex toward periaqueductal gray; the shift was maximal under high anticipated pain, and imminence-driven periaqueductal gray activity tracked increased subjective dread and decreased confidence of escape.",
+    "ree_translation": "This is the closest available biological picture of a harm terrain being configured and re-configured as a function of hazard evidence. The distal phase maps onto INV-040's target regime -- hazard cue present in the sensory field, harm accumulator still low, defensive preparation nonetheless underway. The proximal phase maps onto the regime where z_harm_a has accumulated, and shows the configuration there is qualitatively different, not merely a scaled-up version of the distal one.",
+    "mapping_caveat": "Spatial proximity of a visible predator is a continuously available, continuously updating sensory variable -- it is closer to a graded accumulator than to the minimal cue INV-040 posits, so the study cannot isolate the cue-only regime this claim is about. It also cannot distinguish 'the cue activated the configuration' from 'the cue initiated an accumulation that rapidly reached the configuration', which is the precise distinction INV-040 turns on. The REE readout is a scalar precision weight; the source readout is regional BOLD, and no quantitative correspondence is asserted between them.",
+    "source_context": "Healthy human adults, fMRI during an active-avoidance maze task with a virtual predator delivering real electric shock on capture; spatial threat distance manipulated within-subject alongside anticipated pain magnitude."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Well-designed and conceptually replicated within the same group's later work, but a single-study fMRI result at 2007 sample sizes, so source quality is capped below the 0.85 band. Mapping fidelity mid-range because the manipulated variable (proximity) is the wrong side of INV-040's cue/accumulator distinction even though the regime it brackets is the right one."
+  }
+}
