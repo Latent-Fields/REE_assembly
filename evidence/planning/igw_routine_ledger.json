@@ -4358,7 +4358,11 @@
       "task_claim_session_id": "igw-auto-igw-211-retest-after-substrate-arc-019-20260907T024854Z",
       "task_claim_claimed_at": "2026-09-07T02:48:54Z",
       "assigned_at": "2026-09-07T02:46:41Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-07T03:28:12Z",
+      "completion_summary": "ARC-019 retest DECLINED (block stands, all 4 release conditions re-verified unmet); repaired the blocked_substrate status silently reverted by the 09-05 regen (REE_assembly 52e37f8ec4), which had re-armed this item's auto-spawn; chipped the regen defect.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ARC-019 retest DECLINED (block stands, all 4 release conditions re-verified unmet); repaired the blocked_substrate status silently reverted by the 09-05 regen (REE_assembly 52e37f8ec4), which had re-armed this item's auto-spawn; chipped the regen defect."
     }
   ],
   "dispositions": [
@@ -5605,7 +5609,7 @@
     },
     {
       "stable_hash": "6217c74ba0b9",
-      "igw_id_at_disposition": "IGW-20260904-214",
+      "igw_id_at_disposition": "IGW-20260907-211",
       "owner_exq": null,
       "claim_ids": [
         "ARC-019"
@@ -5614,8 +5618,8 @@
       "title": "Proposal for ARC-019",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-09-04T22:25:34Z",
-      "re_eligible_after": "2026-09-06T22:25:34Z"
+      "noted_at": "2026-09-07T03:28:12Z",
+      "re_eligible_after": "2026-09-09T03:28:12Z"
     },
     {
       "stable_hash": "1bbffd85f0fe",
