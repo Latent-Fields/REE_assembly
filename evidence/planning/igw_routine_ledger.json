@@ -5467,17 +5467,21 @@
     },
     {
       "stable_hash": "829f578353c7",
-      "igw_id_at_disposition": "IGW-20260906-241",
+      "igw_id_at_disposition": "IGW-20260907-241",
       "owner_exq": null,
       "claim_ids": [
         "MECH-489"
       ],
       "skill": "/queue-experiment",
       "title": "Confirm evidence: MECH-489 (lit 0.83, exp ~0)",
-      "decision": "AUTO_DEFER",
-      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-09-06T20:31:47Z",
-      "re_eligible_after": "2026-09-08T20:31:47Z"
+      "decision": "DONE",
+      "note": "Third adjudicated DO-NOT-QUEUE for MECH-489 (IGW-20260906-241, REE_assembly 1ba089029c; earlier IGW-152/910b MIXED). Generator memory gap is chip-20260906-confirmer-lane-diagnostic-adjudicated-flag (wave-4 HK-A).",
+      "noted_at": "2026-09-07T07:36:48Z",
+      "auto_defer_superseded": {
+        "decision": "AUTO_DEFER",
+        "re_eligible_after": "2026-09-08T20:31:47Z",
+        "noted_at": "2026-09-06T20:31:47Z"
+      }
     },
     {
       "stable_hash": "33f820eb9eac",
