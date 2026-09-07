@@ -4472,7 +4472,11 @@
       "task_claim_session_id": "igw-auto-igw-233-literature-proposal-for-inv-040-20260907T223546Z",
       "task_claim_claimed_at": "2026-09-07T22:35:46Z",
       "assigned_at": "2026-09-07T22:34:24Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-07T23:15:34Z",
+      "completion_summary": "lit-pull landed 4 INV-040 entries (REE_assembly 9b3ce3deb3): lit_conf 0.677, 2 supports/1 weakens/1 mixed",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0682 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -6317,6 +6321,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-07T22:42:44Z",
       "re_eligible_after": "2026-09-09T22:42:44Z"
+    },
+    {
+      "stable_hash": "9bbf133d4d12",
+      "igw_id_at_disposition": "IGW-20260907-233",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-040"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for INV-040",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-07T23:15:35Z",
+      "re_eligible_after": "2026-09-09T23:15:35Z"
     }
   ]
 }
