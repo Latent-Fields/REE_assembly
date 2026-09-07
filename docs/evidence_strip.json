@@ -1,0 +1,56 @@
+{
+  "figures": {
+    "claims_active": 68,
+    "claims_by_status": {
+      "active": 68,
+      "candidate": 829,
+      "candidate_substrate_landed": 9,
+      "implemented": 7,
+      "legacy": 17,
+      "open": 43,
+      "provisional": 97,
+      "resolved": 6,
+      "retired": 3,
+      "retiring": 1,
+      "stable": 21,
+      "superseded": 2
+    },
+    "claims_candidate": 829,
+    "claims_provisional": 97,
+    "claims_total": 1103,
+    "claims_with_supporting_evidence": 228,
+    "closure_done": 64,
+    "closure_pct": 73.0,
+    "closure_remaining": 33,
+    "closure_total": 97,
+    "evidence_claims_linked": 618,
+    "evidence_entries": 5909,
+    "evidence_supports": 3320,
+    "evidence_weakens": 480,
+    "runs_logged": 2945
+  },
+  "generated_at": "2026-09-07T22:28:28Z",
+  "items": [
+    {
+      "label": "v3 closure",
+      "sub": "64 of 97 nodes complete",
+      "value": "73%"
+    },
+    {
+      "label": "claims with supporting experimental evidence",
+      "sub": "each linked to at least one run that supports it",
+      "value": "228"
+    },
+    {
+      "label": "logged experiment runs",
+      "sub": null,
+      "value": "2,945"
+    },
+    {
+      "label": "results recorded as weakening a claim",
+      "sub": "of 5,909 linked evidence entries",
+      "value": "480"
+    }
+  ],
+  "source": "REE_assembly scripts/generate_status_stubs.py"
+}
