@@ -4234,10 +4234,12 @@
       "task_claim_session_id": "igw-auto-igw-238-confirm-evidence-mech-267-lit-0-20260905T125853Z",
       "task_claim_claimed_at": "2026-09-05T12:58:53Z",
       "assigned_at": "2026-09-05T12:57:23Z",
-      "status": "completed_resumable",
+      "status": "completed",
       "reaped_at": "2026-09-05T14:02:40Z",
-      "outcome": "NO_OP",
-      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "Resumed by campaign W4-S2 item 0 (hopeful-solomon-01a60c). Design-complete driver red-teamed (Step 4.5, fable): BLOCKING, confirmed by two probes -- at production CEM settings the elite-selection channel cannot move the proposal centroid above the 0.02 floor on the untrained-E2 bench. NOT queued. Landed: ree-v3 8132312 (driver+probes under experiments/_scratch/), REE_assembly 48e804b28b (refusal record) + de6fbd2fc8 (GFLAG-0224). Spike chipped: chip-20260907-exq1005-elite-channel-ceiling-spike.",
+      "completed_at": "2026-09-07T12:54:39Z",
+      "completion_summary": "Resumed by campaign W4-S2 item 0 (hopeful-solomon-01a60c). Design-complete driver red-teamed (Step 4.5, fable): BLOCKING, confirmed by two probes -- at production CEM settings the elite-selection channel cannot move the proposal centroid above the 0.02 floor on the untrained-E2 bench. NOT queued. Landed: ree-v3 8132312 (driver+probes under experiments/_scratch/), REE_assembly 48e804b28b (refusal record) + de6fbd2fc8 (GFLAG-0224). Spike chipped: chip-20260907-exq1005-elite-channel-ceiling-spike."
     },
     {
       "igw_id": "IGW-20260905-233",
@@ -6117,6 +6119,20 @@
       "decision": "DEFER",
       "note": "GOV-CONFIRM-1 confirm for SD-056 (lit 0.62, lowest of the confirm lane): parked to wave-4 S4 confirmer session, to run only after HK-A (confirmer-lane adjudicated-flag memory) lands so the session cannot re-derive a prior verdict.",
       "noted_at": "2026-09-07T07:34:16Z"
+    },
+    {
+      "stable_hash": "e1ac0b83a08d",
+      "igw_id_at_disposition": "IGW-20260905-238",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-267"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Confirm evidence: MECH-267 (lit 0.86, exp ~0)",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-07T12:54:40Z",
+      "re_eligible_after": "2026-09-09T12:54:40Z"
     }
   ]
 }
