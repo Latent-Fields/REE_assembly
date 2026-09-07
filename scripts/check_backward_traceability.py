@@ -66,6 +66,9 @@ TRACEABILITY_EXEMPT = {
     "MECH-444": "staleness-gated target refresh on replay-write; 'play' matches 'verbatim playback' (replay-playback), not developmental play",
     "ARC-071": "policy composition via repeated grounding (Graybiel striatal chunking); 'repertoire' only in a governance note naming the experiment 'seed-202 narrow-repertoire follow-up V3-EXQ-810b', not developmental",
     "MECH-323": "chunk-accumulator formation operator (ARC-071 child); same incidental 'narrow-repertoire' V3-EXQ-810b experiment nickname in a governance note, not developmental",
+    "MECH-503": "motif selection and content binding in the control plane; 'repertoire' is a repertoire of REUSABLE COMPUTATIONAL MOTIFS (maintain, compare, accumulate, sequence, retrieve, estimate-uncertainty), not a behavioural repertoire -- same shape as MECH-442/ARC-071/MECH-323",
+    "Q-089": "epistemic-deficit competence-split hypothesis (V3 seed-level diagnostic); 'curriculum' appears only inside the list of RIVAL explanations the question controls for ('environmental difficulty, initialisation, premature deaths, or curriculum timing alone') -- a control variable, not a developmental commitment",
+    "ARC-133": "selection-relevant individuation, registered as a rival to MECH-278; 'infant' appears only in an explicitly UNPULLED literature-anchor list ('functional/teleological categories in infant cognition'). Drive-relative re-individuation is STATE-relative, not stage-relative. Its developmental content is represented via ARC-138 (DEV-NEED-051), which depends on it; withdraw this exemption if ARC-133 ever acquires a developmental-ordering commitment of its own",
 }
 
 _CLAIM_ID_RE = re.compile(r"\b(INV|ARC|MECH|SD|Q|IMPL|RA)-\d+[a-z]?\b")
