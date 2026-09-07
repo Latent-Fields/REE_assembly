@@ -1,7 +1,7 @@
 # Context-budget restructure: plan of record
 
 **Opened:** 2026-09-07T17:55:42Z
-**Status:** proposed -- not started
+**Status:** WI-1 COMPLETE (2026-09-07, ree-v3 `main` 89907e3). WI-2 IN PROGRESS -- chipped as `chip-20260907-umbrella-claudemd-wi2-skill-scoping`, session started 2026-09-07. Not closed until WI-2 lands.
 **Evidence base:** [`token_split_measurement_20260907.md`](token_split_measurement_20260907.md)
 (REE_assembly `b36526f715`). Every figure below comes from that measurement; nothing here
 is re-derived or estimated independently.
@@ -113,6 +113,63 @@ headings plus whatever preamble is genuinely universal to ree-v3 work.
   in original order and diff against the original file) rather than by inspection.
 
 **Expected saving: ~9.2% of total fleet budget; ~46% for the 25 sessions that load it.**
+
+**OUTCOME (landed 2026-09-07, ree-v3 `main` 89907e3; 5 commits, `integration/reev3-claudemd-split`
+merged and deleted).**
+
+| | before | after |
+|---|---|---|
+| `ree-v3/CLAUDE.md` | 1,478,781 bytes (~369,695 tok) | 65,719 bytes (~16,429 tok) |
+
+-95.56%. 200 per-feature records extracted to `ree-v3/docs/substrate/` across 117 feature IDs;
+14 non-per-feature sections kept inline (26,199 chars).
+
+**Classification test actually applied:** extract iff the section is a *per-feature substrate
+record*; general conventions, operational references, architecture-invariant lists and scope
+doctrine stay inline. Feature-keying, not size, decides. 172 of the 200 keyed automatically off
+a leading `SD-`/`MECH-`/`ARC-`/`INV-`/`Q-`/`DR-` token or a named substrate slug; 28 were
+assigned an ID by hand where the heading names the feature descriptively.
+
+**Two borderline calls, recorded so they can be revisited rather than reconstructed:**
+- `Q-020 Decision` is feature-KEYED but is a 366-char architecture invariant reading as a
+  continuation of `Key Architecture Constraints` -- a pointer would cost more than the content.
+  Kept inline.
+- `V3 / V4 Scope Boundary` (7.5 KB), `Remote Control` (6.0 KB), `Troubleshooting Runner`
+  (4.6 KB) and `Regression Suite` (3.6 KB) are large but not per-feature, so WI-1 correctly
+  left them. They ARE skill-scopable, so they are carried into WI-2's scope (~21 KB of the
+  file's remaining 66 KB).
+
+**Byte-exactness, verified mechanically** by recomposing the pre-split file from the 200
+committed `docs/substrate/*.md` blobs plus the 14 inline sections, in original document order,
+and diffing against `d5566f4:CLAUDE.md`:
+
+```
+original (d5566f4:CLAUDE.md) : 1,478,619 chars  sha256 c79c441fcb9e267a5218f30d99ff6e90f8b2ac3ca65dab5ef1f29f5c9fe39813
+recomposed from HEAD blobs   : 1,478,619 chars  sha256 c79c441fcb9e267a5218f30d99ff6e90f8b2ac3ca65dab5ef1f29f5c9fe39813
+RESULT: PASS -- byte-identical, 0 bytes differ
+```
+
+Link audit: 200 index links / 200 unique / 200 files on disk / 0 broken / 0 orphaned.
+
+**Deviation from this plan's size estimate, stated rather than quietly absorbed.** The
+"~17 KB (~4,300 tok)" figure in this section assumed a heading-only index. It did not budget for
+the retained universal preamble (26 KB) that this same section instructs be kept, nor for the
+per-entry links and token annotations that section 5.1 requires. The landed index is 66 KB.
+Cutting summaries to reach 17 KB would have bought ~1% more of the fleet budget while
+degrading exactly the signal section 5.1 identifies as the live risk, so it was not done.
+
+**On section 5.1 (a pointer must carry enough signal to know when to follow it).** The
+"when to read it" predicate is uniform across substrate records, so it is stated ONCE and
+prominently at the head of the file rather than repeated 200 times. Seven entries whose
+predicate is WIDER than that default -- standing lints, standing defaults and roll-up ledgers
+that bind a session not working on the feature at all (`INV-091`,
+`CEILING-ANCHOR-FLOOR-GUARD`, `DV-HEADROOM`, `GATE-DV`, `Q-081`, `SD-DECISIONS-IMPLEMENTED`,
+`SD-DECISIONS-VALIDATED`) -- carry an explicit per-entry override telling the reader to follow
+them on sight. That override set is the mitigation; the uniform default is orientation.
+
+**Negative control (section 6) checked and NOT triggered:** 200 of 214 sections are per-feature
+substrate records against a measured median usage of 2 of 139 feature IDs. Nothing found on
+reading contradicted the measurement.
 
 ### WI-2 (secondary): umbrella `CLAUDE.md` -> move skill-specific sections into SKILL.md
 
