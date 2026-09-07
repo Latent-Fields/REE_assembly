@@ -4435,7 +4435,11 @@
       "task_claim_session_id": "igw-auto-igw-233-proposal-for-inv-040-20260907T212928Z",
       "task_claim_claimed_at": "2026-09-07T21:29:28Z",
       "assigned_at": "2026-09-07T21:28:22Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-07T21:48:00Z",
+      "completion_summary": "marked EVB-1345/EXP-0682 (INV-040) blocked_substrate: w_harm DV unreachable through the near-rank-1 ContextMemory bank (Step 2.5c corrupting gate); no experiment queued",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -6232,6 +6236,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-07T20:45:06Z",
       "re_eligible_after": "2026-09-09T20:45:06Z"
+    },
+    {
+      "stable_hash": "dce342c6dfce",
+      "igw_id_at_disposition": "IGW-20260907-233",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-040"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-040",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-07T21:48:01Z",
+      "re_eligible_after": "2026-09-09T21:48:01Z"
     }
   ]
 }
