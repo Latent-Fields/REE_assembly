@@ -92363,8 +92363,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: "2026-08-25"
+    as_of: "2026-09-07"
     needs_review: false
+    evidence:
+      from: "failure_autopsy_931-932-wanting-authority-cluster_2026-08-16#claim_synthesis_ARC-130_2026-09-07"
+      as_of: "2026-09-07"
+      verdict: "supports at rungs 5-6 (V3-EXQ-931 authority achieved / throughput zero, confirmed cluster autopsy; ARC-071 commit-latch H1/H2 + E3-reselection probes, committed-throughput persistence) -- rungs 7-8 (ecological consequence, retention) UNTESTED; closed on existing evidence per GFLAG-0134 decision (b), no instrumentation authorised; see evidence_quality_note + evidence/planning/claim_synthesis_ARC-130_2026-09-07.md"
   epistemic_category: standard
   diagnostic_evidence_adjudicated: true  # cross-tag backfill, chip-20260826-arc130-authority-throughput-evidence-tagging (EVB-0633/EXP-0379 release_condition (a)): pre-existing claim-free diagnostic findings confirmed into evidence_quality_note below (2026-08-26)
   claim_level: architectural
@@ -92508,6 +92512,23 @@
     scratch probes by design, so exp_count reads 0 (design_decision_evidence_credit_gap_20260821.md
     fix shape 1). EVB-0633/EXP-0379 updated to status=gated in the same commit as this note per its
     own release_condition (a).
+
+    [2026-09-07, campaign W4-S4 item 1, session serene-leavitt-f8ccf5, /claim-synthesis TAGGING mode,
+    evidence/planning/claim_synthesis_ARC-130_2026-09-07.md]: CLOSURE ON EXISTING EVIDENCE per
+    GFLAG-0134 user decision (b) (governance 2026-09-05). No new evidence; the 2026-08-26 adjudication
+    above is confirmed unchanged and is now the claim's live_status.evidence citation. Discrimination
+    gate: not a FAIL cluster, no granularity debt, zero child claims proposed. Tagging actions: the
+    V3-EXQ-931 manifest (flat + pack) carries evidence_direction_per_claim ARC-130: supports as an
+    audit-trail per-claim override -- claim_ids stays [] by the driver's own design, so the indexer
+    scores nothing new (membership is claim_ids-gated; precedent v3_exq_445) and exp_count stays 0
+    under diagnostic_evidence_adjudicated. EXP-1344's blocker ARC-130-reach-stage-instrumentation-
+    unauthorised is resolved against the synthesis artifact (proposal RETIRED, status gated, no run).
+    The three MECH-314/320/341 instances remain deliberately untagged here (ARC-120's rung; owned by
+    GFLAG-0179 / campaign S4 item 2). Stage-qualified evidence map in the artifact: rungs 5-6
+    demonstrated by two independent mechanisms; rungs 7-8 untested and must not be read as supported.
+    PROMOTION RECOMMENDATION routed to /governance via a promotion_review flag: candidate -> provisional
+    is warranted on the tagged evidence, conditional on confirming the open VERSION-ROUTING flag and a
+    base-before-refinement decision relative to ARC-120 (candidate, exp_count 0). Status NOT changed here.
   evidence: []
 
 - id: ARC-131

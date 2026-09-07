@@ -22,7 +22,9 @@
   "claim_ids_tested": [],
   "evidence_class": "simulation",
   "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction_per_claim": {
+    "ARC-130": "supports"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -160,5 +162,6 @@
     "writer_defect": false,
     "n_agents": 25,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-09-07, /claim-synthesis tagging, evidence/planning/claim_synthesis_ARC-130_2026-09-07.md, GFLAG-0134 decision (b)]: evidence_direction_per_claim ARC-130: supports -- this run is the direct demonstration of ARC-130's rung-5/rung-6 dissociation (competitive authority at the CEM elite boundary forced to 80.3 pct argmin flips at w=5000 while committed behaviour stays bit-identical to ablation). Per-claim override only: claim_ids stays [] by the driver's design, so this stamp is an audit trail and adds no scored credit (indexer membership is claim_ids-gated). The claim was registered 2026-08-25, after this run."
 }
