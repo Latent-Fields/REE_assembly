@@ -3156,6 +3156,39 @@ def test_dry_run_predicate_mirrors_pending_review():
     assert gpr._DRY_RUN_ID_RE.pattern == b._DRY_RUN_ID_RE.pattern
 
 
+# --------------------------------------------------------------------------- #
+# Timestamp rendering (chip-20260902-indexer-run-timestamp-rendering-drift)
+# --------------------------------------------------------------------------- #
+
+def test_compact_declared_timestamp_renders_iso8601():
+    raw, dt = b._parse_timestamp("20260617T105251Z", "v4_exq_001_x_20260617T105251Z_v4")
+    assert raw == "2026-06-17T10:52:51Z"
+    assert dt == datetime(2026, 6, 17, 10, 52, 51, tzinfo=timezone.utc)
+
+
+def test_iso_declared_timestamp_passes_through_verbatim():
+    for raw_in in ("2026-06-17T10:52:51Z", "2026-06-17T10:52:51.123456Z",
+                   "2026-06-17T11:52:51+01:00", "2026-06-17T10:52:51"):
+        raw, dt = b._parse_timestamp(raw_in, "x")
+        assert raw == raw_in, raw_in
+        assert dt == datetime(2026, 6, 17, 10, 52, 51, dt.microsecond, tzinfo=timezone.utc)
+
+
+def test_compact_rendering_is_idempotent():
+    """Rendering the rendered form changes nothing -- the property the regen needs."""
+    once, _ = b._parse_timestamp("20260617T105251Z", "x")
+    twice, _ = b._parse_timestamp(once, "x")
+    assert once == twice == "2026-06-17T10:52:51Z"
+
+
+def test_invalid_compact_stamp_falls_back_to_identifier():
+    # 13th month: compact shape but not a date -> identifier-derived, then unknown
+    raw, dt = b._parse_timestamp("20261317T105251Z", "v3_exq_1_a_20260101T000000Z_v3")
+    assert raw == "2026-01-01T00:00:00Z"
+    raw, dt = b._parse_timestamp("20261317T105251Z", "")
+    assert raw == "" and dt == b._UNKNOWN_TIMESTAMP_DT
+
+
 if __name__ == "__main__":
     sys.exit(1 if _run_all() else 0)
 

@@ -1114,6 +1114,8 @@ def _fmt_delta(value: float | None) -> str:
 # The epoch form is guarded to the 1e9..2e9 second band so a 10-digit seed or
 # hash suffix is not mistaken for a time.
 _RUNID_COMPACT_TS_RE = re.compile(r"(\d{8})T(\d{6})Z?")
+# A DECLARED timestamp_utc in the compact form, whole-string. See _parse_timestamp.
+_DECLARED_COMPACT_TS_RE = re.compile(r"(\d{8})T(\d{6})Z")
 _RUNID_EPOCH_TS_RE = re.compile(r"(?:^|[_-])(1[0-9]{9})(?:[_-]|$)")
 
 # Sentinel for a run whose time cannot be recovered from any data-derived
@@ -1167,6 +1169,25 @@ def _parse_timestamp(raw: str | None, identifier: str = "") -> tuple[str, dateti
     plausible-looking wrong value.
     """
     if raw:
+        # A COMPACT declared stamp ("20260617T105251Z") is rendered as ISO-8601
+        # ("2026-06-17T10:52:51Z"), the convention every other timestamp in the
+        # derived artifacts follows (CLAUDE.md Timestamps). Some manifests
+        # genuinely carry the compact form (e.g. the v4_exq_00x falsifiers,
+        # phase3-writer-owned and immutable); passing it through verbatim made
+        # the committed indexes disagree with the regen and every rebuild
+        # flip-flopped ~10 INDEX.md/experiment.md rows and ~13 claim_evidence
+        # lines (chip-20260902-indexer-run-timestamp-rendering-drift). Only the
+        # exact compact form is rewritten -- an ISO string, including one with
+        # an offset or fractional seconds, is returned byte-for-byte as before.
+        compact = _DECLARED_COMPACT_TS_RE.fullmatch(raw.strip())
+        if compact:
+            try:
+                dt = datetime.strptime(compact.group(1) + compact.group(2), "%Y%m%d%H%M%S")
+            except ValueError:
+                dt = None
+            if dt is not None:
+                dt = dt.replace(tzinfo=timezone.utc)
+                return dt.isoformat().replace("+00:00", "Z"), dt
         normalized = raw
         if normalized.endswith("Z"):
             normalized = normalized[:-1] + "+00:00"
