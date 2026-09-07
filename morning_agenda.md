@@ -80,6 +80,15 @@ V3-EXQ-1002, V3-EXQ-822e (SD-078/SD-082), V3-EXQ-983a (EXT-002/ARC-013).
   - Last good snapshot: `ready_sd_validation_candidates` was **empty** with
     `excluded_validation_already_ran: 37` — so refill needs a fresh `/queue-experiment` design,
     **not** a re-queue.
+- **Queue starvation is already chipped, and the chip says stop symptom-fixing.**
+  `chip-queuefloor-fleet-g8` (open, spawned 2026-09-04T19:21Z by `hygiene_tick`) is
+  **GENERATION 8** of this class on this subject — resolved and re-fired 7 times before. Its own
+  text routes it to **`/metaworker-learning` for a root-cause pass INSTEAD of re-fixing the
+  instance**. No new refill chip was spawned this run, deliberately: the recurrence count is the
+  finding.
+  - If a refill is nevertheless wanted today, the two `built` assembly-frontier nodes are the
+    cheapest honest source: `commitment_closure:GAP-8` (SD-033b behavioural validation, routing
+    `queue-experiment`) and `conversion_ceiling_campaign:P3-ofc` (decoupled OFC devaluation head).
 - Owed successors: **none.** Every plan `owner_exq` on a non-terminal node
   (V3-EXQ-445h, V3-EXQ-910b, V3-EXQ-938) has a manifest on disk and appears in `closure_drift.md`
   under *Suppressed (legitimately non-terminal)* — all three fail Step 7c check (b). No phantom
@@ -290,5 +299,14 @@ Diff both before deleting either; do not assume the origin copy is the good one.
 ## Blocked Items
 
 - Nothing blocked this run. Tier 1 full run; `governance.sh` completed exit 0.
+- **`evidence/planning/behavioral_diversity_isolation_plan.md` left UNCOMMITTED on purpose.**
+  governance.sh Step 3c-pre-heal (SHP-3) re-stamped its derived `live:`/`join:` blocks in place
+  and by design leaves the edited plan file for a human to review and commit pathspec-limited.
+  It is the one modified file excluded from this morning's commit (3ab9c339cd, 44 files).
+- **No follow-on chips spawned.** Every actionable non-governance / non-autopsy finding this run
+  is already in flight: queue starvation (`chip-queuefloor-fleet-g8`), fleet-idle watcher
+  (`chip-20260902-fleetidle-syntax-error`), stash-grader false positives
+  (`chip-20260903-prepull-grader-changed-field`), developmental register rows
+  (`chip-20260904-developmental-register-10-claims`). Spawning nothing rather than filler.
 - Gap since last agenda: 2 days (prior 2026-09-04). 2026-09-05 (Sat) and 2026-09-06 (Sun) are
   **not** scheduled slots — cron is `7 5 * * 1-5`. **No weekday run was missed.**
