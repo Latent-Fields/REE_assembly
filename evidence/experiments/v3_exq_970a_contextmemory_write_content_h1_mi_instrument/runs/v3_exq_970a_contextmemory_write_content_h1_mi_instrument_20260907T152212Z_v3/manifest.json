@@ -1,0 +1,464 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_970a_contextmemory_write_content_h1_mi_instrument",
+  "run_id": "v3_exq_970a_contextmemory_write_content_h1_mi_instrument_20260907T152212Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-07T15:22:12Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "training_raises_content_conditioning_content_reference_not_required_a_h1pass_divfail_b_h1pass_divpass",
+    "preconditions": [
+      {
+        "name": "A::H1_CONTRASTIVE::writepath_engaged",
+        "precondition": "writepath_engaged",
+        "arm": "A::H1_CONTRASTIVE",
+        "kind": "readiness",
+        "description": "min n_write_calls (training phase) over the regime's UNTRAINED and this arm's cells",
+        "control": "ContextMemory.write() genuinely fired during real training (956/943/970 floor)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1397.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "A::H1_CONTRASTIVE::heldout_adequate_pairs",
+        "precondition": "heldout_adequate_pairs",
+        "arm": "A::H1_CONTRASTIVE",
+        "kind": "readiness",
+        "description": "number of seeds whose UNTRAINED and arm cells BOTH realised >= 24 balanced held-out states per class (>= 7; strict floor at 6.5)",
+        "control": "held-out split sized as a fraction of realised episodes, collected with every optimiser stopped; an inadequate cell is dropped from the paired test rather than fabricating a value, and the unit is scored only with enough pairs for the sign-flip p-floor to clear alpha",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.0,
+        "threshold": 6.5,
+        "met": true
+      },
+      {
+        "name": "A::H1_CONTRASTIVE::dv_headroom_nmi_excess",
+        "precondition": "dv_headroom_nmi_excess",
+        "arm": "A::H1_CONTRASTIVE",
+        "kind": "dv_headroom",
+        "description": "ceiling headroom of the load-bearing DV above the UNTRAINED control arm: 1.0 - max_seed(NMI_excess(UNTRAINED)) must exceed NMI_MARGIN (experiments/_metrics.dv_headroom_check, statistic ceiling_headroom)",
+        "control": "the seed-matched UNTRAINED arm's realised NMI_excess on the SAME load-bearing readout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8724188341831632,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "A::H1_CONTRASTIVE::objective_converged",
+        "precondition": "objective_converged",
+        "arm": "A::H1_CONTRASTIVE",
+        "kind": "readiness",
+        "description": "worst-cell (start_mean - end_mean) / objective_range over this arm's seeds must exceed 0.02 (first/last 5% of the trajectory)",
+        "control": "the arm's OWN monitored objective (971's coupling loss rose across training)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4365149779570481,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "A::DIVERSITY_956::writepath_engaged",
+        "precondition": "writepath_engaged",
+        "arm": "A::DIVERSITY_956",
+        "kind": "readiness",
+        "description": "min n_write_calls (training phase) over the regime's UNTRAINED and this arm's cells",
+        "control": "ContextMemory.write() genuinely fired during real training (956/943/970 floor)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1397.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "A::DIVERSITY_956::heldout_adequate_pairs",
+        "precondition": "heldout_adequate_pairs",
+        "arm": "A::DIVERSITY_956",
+        "kind": "readiness",
+        "description": "number of seeds whose UNTRAINED and arm cells BOTH realised >= 24 balanced held-out states per class (>= 7; strict floor at 6.5)",
+        "control": "held-out split sized as a fraction of realised episodes, collected with every optimiser stopped; an inadequate cell is dropped from the paired test rather than fabricating a value, and the unit is scored only with enough pairs for the sign-flip p-floor to clear alpha",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.0,
+        "threshold": 6.5,
+        "met": true
+      },
+      {
+        "name": "A::DIVERSITY_956::dv_headroom_nmi_excess",
+        "precondition": "dv_headroom_nmi_excess",
+        "arm": "A::DIVERSITY_956",
+        "kind": "dv_headroom",
+        "description": "ceiling headroom of the load-bearing DV above the UNTRAINED control arm: 1.0 - max_seed(NMI_excess(UNTRAINED)) must exceed NMI_MARGIN (experiments/_metrics.dv_headroom_check, statistic ceiling_headroom)",
+        "control": "the seed-matched UNTRAINED arm's realised NMI_excess on the SAME load-bearing readout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8724188341831632,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "A::DIVERSITY_956::objective_converged",
+        "precondition": "objective_converged",
+        "arm": "A::DIVERSITY_956",
+        "kind": "readiness",
+        "description": "worst-cell (start_mean - end_mean) / objective_range over this arm's seeds must exceed 0.02 (first/last 5% of the trajectory)",
+        "control": "the arm's OWN monitored objective (971's coupling loss rose across training)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.18999137144822342,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "B::H1_CONTRASTIVE::dv_headroom_nmi_excess",
+        "precondition": "dv_headroom_nmi_excess",
+        "arm": "B::H1_CONTRASTIVE",
+        "kind": "dv_headroom",
+        "description": "ceiling headroom of the load-bearing DV above the UNTRAINED control arm: 1.0 - max_seed(NMI_excess(UNTRAINED)) must exceed NMI_MARGIN (experiments/_metrics.dv_headroom_check, statistic ceiling_headroom)",
+        "control": "the seed-matched UNTRAINED arm's realised NMI_excess on the SAME load-bearing readout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8599377787870781,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "B::H1_CONTRASTIVE::objective_converged",
+        "precondition": "objective_converged",
+        "arm": "B::H1_CONTRASTIVE",
+        "kind": "readiness",
+        "description": "worst-cell (start_mean - end_mean) / objective_range over this arm's seeds must exceed 0.02 (first/last 5% of the trajectory)",
+        "control": "the arm's OWN monitored objective (971's coupling loss rose across training)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.22259396656602626,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "B::DIVERSITY_956::dv_headroom_nmi_excess",
+        "precondition": "dv_headroom_nmi_excess",
+        "arm": "B::DIVERSITY_956",
+        "kind": "dv_headroom",
+        "description": "ceiling headroom of the load-bearing DV above the UNTRAINED control arm: 1.0 - max_seed(NMI_excess(UNTRAINED)) must exceed NMI_MARGIN (experiments/_metrics.dv_headroom_check, statistic ceiling_headroom)",
+        "control": "the seed-matched UNTRAINED arm's realised NMI_excess on the SAME load-bearing readout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8599377787870781,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "B::DIVERSITY_956::objective_converged",
+        "precondition": "objective_converged",
+        "arm": "B::DIVERSITY_956",
+        "kind": "readiness",
+        "description": "worst-cell (start_mean - end_mean) / objective_range over this arm's seeds must exceed 0.02 (first/last 5% of the trajectory)",
+        "control": "the arm's OWN monitored objective (971's coupling loss rose across training)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.2088182668189208,
+        "threshold": 0.02,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "H1_contrastive_raises_generalising_content_conditioning_in_either_regime": true,
+      "A::H1_CONTRASTIVE::directional_test": true,
+      "A::DIVERSITY_956::directional_test": true,
+      "B::H1_CONTRASTIVE::directional_test": true,
+      "B::DIVERSITY_956::directional_test": true
+    },
+    "criteria": [
+      {
+        "name": "H1_contrastive_raises_generalising_content_conditioning_in_either_regime",
+        "load_bearing": true,
+        "passed": true,
+        "regime_a_pass": true,
+        "regime_b_pass": true,
+        "combination_rule": "OR across regimes: pass(A,H1) OR pass(B,H1); each regime's pass requires its (regime,H1) gate green AND mean paired NMI_excess elevation >= 0.1 AND exact sign-flip p < 0.0125 (Bonferroni over 2 regimes x 2 trained arms)",
+        "note": "Load-bearing readouts: Regime A = held-out real 2-context NMI_excess; Regime B = FRESH-cluster NMI_excess. A FAIL in one regime with a PASS in the other is not 'mostly failed' -- see combination_rule."
+      },
+      {
+        "name": "H1_content_reference_required",
+        "load_bearing": false,
+        "kind": "secondary",
+        "passed": false,
+        "evaluable": true,
+        "diversity_gate_green": {
+          "A": true,
+          "B": true
+        },
+        "h1_gate_green": {
+          "A": true,
+          "B": true
+        },
+        "regime_pattern": "a_h1pass_divfail_b_h1pass_divpass",
+        "regime_a_diversity_pass": false,
+        "regime_b_diversity_pass": true,
+        "combination_rule": "in every regime where H1 passes, DIVERSITY_956 was SCORED (gate green) and does NOT pass; not evaluable when H1 passes nowhere or when the control's gate is red in an H1-passing regime (unscored != refuted)",
+        "note": "H1's necessity sub-claim: content-BLIND training should not raise the DV."
+      },
+      {
+        "name": "objective_convergence_per_unit",
+        "load_bearing": false,
+        "kind": "readiness",
+        "per_unit": {
+          "A::H1_CONTRASTIVE": {
+            "worst_decrease_frac": 0.4365149779570481,
+            "offending_cell_seed": 42,
+            "per_seed": [
+              {
+                "seed": 42,
+                "decrease_frac": 0.4365149779570481
+              },
+              {
+                "seed": 7,
+                "decrease_frac": 0.4662612932310863
+              },
+              {
+                "seed": 13,
+                "decrease_frac": 0.6311771385623395
+              },
+              {
+                "seed": 100,
+                "decrease_frac": 0.6543794634070859
+              },
+              {
+                "seed": 200,
+                "decrease_frac": 0.5856233248355942
+              },
+              {
+                "seed": 300,
+                "decrease_frac": 0.6834392492014628
+              },
+              {
+                "seed": 400,
+                "decrease_frac": 0.7637033644649718
+              },
+              {
+                "seed": 500,
+                "decrease_frac": 0.672090278912897
+              }
+            ]
+          },
+          "A::DIVERSITY_956": {
+            "worst_decrease_frac": 0.18999137144822342,
+            "offending_cell_seed": 13,
+            "per_seed": [
+              {
+                "seed": 42,
+                "decrease_frac": 0.2735452555558261
+              },
+              {
+                "seed": 7,
+                "decrease_frac": 0.28473104834556584
+              },
+              {
+                "seed": 13,
+                "decrease_frac": 0.18999137144822342
+              },
+              {
+                "seed": 100,
+                "decrease_frac": 0.23536914932555053
+              },
+              {
+                "seed": 200,
+                "decrease_frac": 0.25305974651390406
+              },
+              {
+                "seed": 300,
+                "decrease_frac": 0.2712327135042236
+              },
+              {
+                "seed": 400,
+                "decrease_frac": 0.25962823940746815
+              },
+              {
+                "seed": 500,
+                "decrease_frac": 0.2513759467803256
+              }
+            ]
+          },
+          "B::H1_CONTRASTIVE": {
+            "worst_decrease_frac": 0.22259396656602626,
+            "offending_cell_seed": 400,
+            "per_seed": [
+              {
+                "seed": 42,
+                "decrease_frac": 0.26698017565657695
+              },
+              {
+                "seed": 7,
+                "decrease_frac": 0.2759831418221196
+              },
+              {
+                "seed": 13,
+                "decrease_frac": 0.2663063142038882
+              },
+              {
+                "seed": 100,
+                "decrease_frac": 0.24968876508499183
+              },
+              {
+                "seed": 200,
+                "decrease_frac": 0.24934956713269152
+              },
+              {
+                "seed": 300,
+                "decrease_frac": 0.2506994503469516
+              },
+              {
+                "seed": 400,
+                "decrease_frac": 0.22259396656602626
+              },
+              {
+                "seed": 500,
+                "decrease_frac": 0.24451427618662513
+              }
+            ]
+          },
+          "B::DIVERSITY_956": {
+            "worst_decrease_frac": 0.2088182668189208,
+            "offending_cell_seed": 13,
+            "per_seed": [
+              {
+                "seed": 42,
+                "decrease_frac": 0.2251546918451786
+              },
+              {
+                "seed": 7,
+                "decrease_frac": 0.22275904279947284
+              },
+              {
+                "seed": 13,
+                "decrease_frac": 0.2088182668189208
+              },
+              {
+                "seed": 100,
+                "decrease_frac": 0.2181174741238356
+              },
+              {
+                "seed": 200,
+                "decrease_frac": 0.23550795562068622
+              },
+              {
+                "seed": 300,
+                "decrease_frac": 0.21658090860644974
+              },
+              {
+                "seed": 400,
+                "decrease_frac": 0.2176613166630268
+              },
+              {
+                "seed": 500,
+                "decrease_frac": 0.2212124720166127
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "refractory_k2_reference_descriptive",
+        "load_bearing": false,
+        "kind": "descriptive",
+        "per_regime": {
+          "A": {
+            "mean_refractory_k2": -0.01793262551007158,
+            "mean_untrained": 0.018041544702034847,
+            "per_seed_refractory_k2": [
+              -0.030584240596625692,
+              -0.010304188095960332,
+              -0.011008528598963466,
+              -0.01142021905735046,
+              -0.017317572606554123,
+              -0.01577438984413085,
+              -0.036214484795443924,
+              -0.010837380485543795
+            ]
+          },
+          "B": {
+            "mean_refractory_k2": 0.025920678020184607,
+            "mean_untrained": 0.06659458304332667,
+            "per_seed_refractory_k2": [
+              0.016954092707518874,
+              0.02483051383545575,
+              0.046358068992853704,
+              0.02257421565441064,
+              0.039819656865948586,
+              0.04456247365325413,
+              0.0038028326661307486,
+              0.008463569785904422
+            ]
+          }
+        },
+        "note": "interim-enablement reference (decision_2026_09_06); no test"
+      }
+    ],
+    "h4_attribution_caveat": null
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1cb09199f00f21a4b7a7f09d6a8fc57961200b5f862d3a7c8d0ca945ee8ba76b",
+  "substrate_commit": {
+    "commit": "e1f302895fac660ef02367b4d5cb2b9cfa6d3f2c",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.contextmemory_gated_content_write": true,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.anchor_set.use_sd039_anchor_payload": true,
+    "heartbeat.breath_period": 50,
+    "use_noise_floor": true,
+    "contextmemory_write_addressing_loss_weight": 0.5
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 64,
+    "goal_state_present": false
+  }
+}

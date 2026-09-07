@@ -1,0 +1,797 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "load_bearing_readout_key": {
+      "A": "heldout_real_nmi_excess",
+      "B": "synthetic_fresh_nmi_excess"
+    },
+    "per_seed_nmi_excess": {
+      "A": {
+        "UNTRAINED": [
+          0.12758116581683673,
+          0.0,
+          0.0,
+          0.007872215114970268,
+          0.0,
+          0.008878976684471766,
+          0.0,
+          0.0
+        ],
+        "H1_CONTRASTIVE": [
+          0.28117367156849765,
+          0.12646998907746435,
+          0.3451835727206763,
+          0.368676941551106,
+          0.43420398767569846,
+          0.43363617975423174,
+          0.3802083806858044,
+          0.12816662606143664
+        ],
+        "DIVERSITY_956": [
+          -0.0048445963891139785,
+          0.019502222634911314,
+          9.734831671196886e-05,
+          0.023492957988704016,
+          0.03169639782998746,
+          0.014129596042665263,
+          -0.003349790991206858,
+          0.010343278512053213
+        ],
+        "REFRACTORY_K2": [
+          -0.030584240596625692,
+          -0.010304188095960332,
+          -0.011008528598963466,
+          -0.01142021905735046,
+          -0.017317572606554123,
+          -0.01577438984413085,
+          -0.036214484795443924,
+          -0.010837380485543795
+        ]
+      },
+      "B": {
+        "UNTRAINED": [
+          0.139136011172661,
+          0.05377281138499083,
+          0.010547615194699232,
+          0.14006222121292194,
+          0.06255915334429901,
+          0.06915298004407683,
+          0.005846193131423934,
+          0.05167967886154059
+        ],
+        "H1_CONTRASTIVE": [
+          0.24796137506685254,
+          0.22136426852080415,
+          0.2464240218989448,
+          0.2643205444131982,
+          0.23323081237064153,
+          0.2569688689267,
+          0.25852445551171627,
+          0.34061015610462686
+        ],
+        "DIVERSITY_956": [
+          0.30980933925074217,
+          0.3125927468038349,
+          0.28013702104872557,
+          0.3126009917960717,
+          0.2598415591078092,
+          0.2555172919490672,
+          0.3643907144408499,
+          0.38727160879222533
+        ],
+        "REFRACTORY_K2": [
+          0.016954092707518874,
+          0.02483051383545575,
+          0.046358068992853704,
+          0.02257421565441064,
+          0.039819656865948586,
+          0.04456247365325413,
+          0.0038028326661307486,
+          0.008463569785904422
+        ]
+      }
+    },
+    "per_seed_secondary_nmi_excess": {
+      "A_synthetic_fresh": {
+        "UNTRAINED": [
+          0.13853794785233725,
+          0.06472902910246103,
+          0.009984793080271774,
+          0.13721810755783298,
+          0.059472138421570564,
+          0.0690532352008484,
+          0.0034457460843542297,
+          0.0445388384824386
+        ],
+        "H1_CONTRASTIVE": [
+          0.14063069773415085,
+          0.11248912557746236,
+          0.08770056213205807,
+          0.10807239154609123,
+          0.0992271194179945,
+          0.048123071214516415,
+          0.061919958430420266,
+          0.0972376185925855
+        ],
+        "DIVERSITY_956": [
+          0.03384244408780071,
+          0.07874182559420748,
+          0.041952274785248364,
+          0.12531408848816017,
+          0.10536215701512963,
+          0.05522757725604348,
+          0.09245785177457212,
+          0.12871264176409883
+        ],
+        "REFRACTORY_K2": [
+          0.020215487758361145,
+          0.014079031359436072,
+          0.059362999846808984,
+          0.0507797175824055,
+          0.04065304048524951,
+          0.013716520838059944,
+          0.009758565296960342,
+          0.007029627199161389
+        ]
+      },
+      "B_synthetic_trained": {
+        "UNTRAINED": [
+          0.13756038903211512,
+          0.09172614648831633,
+          0.03645818374684426,
+          0.11239862028219336,
+          0.07728835836495757,
+          0.12642255299185284,
+          0.007336466531837404,
+          0.13658419860014326
+        ],
+        "H1_CONTRASTIVE": [
+          0.9921397729285671,
+          0.9920814334507096,
+          0.992091356028267,
+          0.9919227596943689,
+          0.9919419579664133,
+          0.9919755938552999,
+          0.9921040377916902,
+          0.9922516682873223
+        ],
+        "DIVERSITY_956": [
+          0.8605476819052258,
+          0.8805952773526138,
+          0.8775620664065984,
+          0.9653562063933862,
+          0.8774539949822897,
+          0.8901641898589516,
+          0.9029008620062594,
+          0.9695120562545043
+        ],
+        "REFRACTORY_K2": [
+          0.013686181274023351,
+          0.07015975691632222,
+          0.02973626144732818,
+          0.04158634715682126,
+          0.050051829086629786,
+          0.04271007545237024,
+          0.031242808703194066,
+          0.05664758803873718
+        ]
+      }
+    },
+    "per_seed_heldout_used_per_class_regime_a": {
+      "UNTRAINED": [
+        63,
+        66,
+        69,
+        68,
+        63,
+        63,
+        67,
+        62
+      ],
+      "H1_CONTRASTIVE": [
+        63,
+        66,
+        69,
+        68,
+        63,
+        63,
+        67,
+        62
+      ],
+      "DIVERSITY_956": [
+        70,
+        69,
+        69,
+        71,
+        65,
+        59,
+        66,
+        66
+      ],
+      "REFRACTORY_K2": [
+        64,
+        68,
+        71,
+        69,
+        63,
+        71,
+        68,
+        69
+      ]
+    },
+    "per_seed_n_write_calls_regime_a": {
+      "UNTRAINED": [
+        1397,
+        1441,
+        1645,
+        1519,
+        1579,
+        1417,
+        1440,
+        1577
+      ],
+      "H1_CONTRASTIVE": [
+        1397,
+        1441,
+        1645,
+        1519,
+        1579,
+        1417,
+        1440,
+        1577
+      ],
+      "DIVERSITY_956": [
+        1497,
+        1415,
+        1460,
+        1552,
+        1581,
+        1495,
+        1528,
+        1542
+      ],
+      "REFRACTORY_K2": [
+        1407,
+        1458,
+        1586,
+        1498,
+        1536,
+        1488,
+        1540,
+        1536
+      ]
+    },
+    "per_seed_class_spread_frac": {
+      "A": {
+        "UNTRAINED": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "H1_CONTRASTIVE": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "DIVERSITY_956": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "REFRACTORY_K2": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "B": {
+        "UNTRAINED": [
+          1.0,
+          1.0,
+          0.875,
+          0.875,
+          1.0,
+          1.0,
+          0.5,
+          0.875
+        ],
+        "H1_CONTRASTIVE": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "DIVERSITY_956": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "REFRACTORY_K2": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "tests": {
+      "A::H1_CONTRASTIVE": {
+        "regime": "A",
+        "arm": "H1_CONTRASTIVE",
+        "readout": "heldout_real_nmi_excess",
+        "mean_untrained": 0.018041544702034847,
+        "mean_arm": 0.31221491863686446,
+        "paired_diffs": [
+          0.15359250575166092,
+          0.12646998907746435,
+          0.3451835727206763,
+          0.3608047264361357,
+          0.43420398767569846,
+          0.42475720306976,
+          0.3802083806858044,
+          0.12816662606143664
+        ],
+        "paired_seeds": [
+          42,
+          7,
+          13,
+          100,
+          200,
+          300,
+          400,
+          500
+        ],
+        "n_paired_seeds": 8,
+        "n_tied_pairs": 0,
+        "mean_diff": 0.2941733739348296,
+        "required_margin": 0.1,
+        "p_value": 0.00390625,
+        "alpha_corrected": 0.0125,
+        "attainable_p_floor": 0.00390625,
+        "gate_green": true,
+        "passed": true,
+        "non_degenerate": true
+      },
+      "A::DIVERSITY_956": {
+        "regime": "A",
+        "arm": "DIVERSITY_956",
+        "readout": "heldout_real_nmi_excess",
+        "mean_untrained": 0.018041544702034847,
+        "mean_arm": 0.011383426743089052,
+        "paired_diffs": [
+          -0.1324257622059507,
+          0.019502222634911314,
+          9.734831671196886e-05,
+          0.015620742873733749,
+          0.03169639782998746,
+          0.005250619358193497,
+          -0.003349790991206858,
+          0.010343278512053213
+        ],
+        "paired_seeds": [
+          42,
+          7,
+          13,
+          100,
+          200,
+          300,
+          400,
+          500
+        ],
+        "n_paired_seeds": 8,
+        "n_tied_pairs": 0,
+        "mean_diff": -0.006658117958945794,
+        "required_margin": 0.1,
+        "p_value": 0.51171875,
+        "alpha_corrected": 0.0125,
+        "attainable_p_floor": 0.00390625,
+        "gate_green": true,
+        "passed": false,
+        "non_degenerate": true
+      },
+      "B::H1_CONTRASTIVE": {
+        "regime": "B",
+        "arm": "H1_CONTRASTIVE",
+        "readout": "synthetic_fresh_nmi_excess",
+        "mean_untrained": 0.06659458304332667,
+        "mean_arm": 0.2586755628516856,
+        "paired_diffs": [
+          0.10882536389419153,
+          0.16759145713581333,
+          0.23587640670424556,
+          0.12425832320027624,
+          0.17067165902634251,
+          0.18781588888262318,
+          0.25267826238029234,
+          0.2889304772430863
+        ],
+        "paired_seeds": [
+          42,
+          7,
+          13,
+          100,
+          200,
+          300,
+          400,
+          500
+        ],
+        "n_paired_seeds": 8,
+        "n_tied_pairs": 0,
+        "mean_diff": 0.1920809798083589,
+        "required_margin": 0.1,
+        "p_value": 0.00390625,
+        "alpha_corrected": 0.0125,
+        "attainable_p_floor": 0.00390625,
+        "gate_green": true,
+        "passed": true,
+        "non_degenerate": true
+      },
+      "B::DIVERSITY_956": {
+        "regime": "B",
+        "arm": "DIVERSITY_956",
+        "readout": "synthetic_fresh_nmi_excess",
+        "mean_untrained": 0.06659458304332667,
+        "mean_arm": 0.31027015914866574,
+        "paired_diffs": [
+          0.17067332807808117,
+          0.25881993541884407,
+          0.26958940585402635,
+          0.17253877058314976,
+          0.1972824057635102,
+          0.18636431190499037,
+          0.358544521309426,
+          0.33559192993068476
+        ],
+        "paired_seeds": [
+          42,
+          7,
+          13,
+          100,
+          200,
+          300,
+          400,
+          500
+        ],
+        "n_paired_seeds": 8,
+        "n_tied_pairs": 0,
+        "mean_diff": 0.24367557610533913,
+        "required_margin": 0.1,
+        "p_value": 0.00390625,
+        "alpha_corrected": 0.0125,
+        "attainable_p_floor": 0.00390625,
+        "gate_green": true,
+        "passed": true,
+        "non_degenerate": true
+      }
+    },
+    "dv_headroom_entries": {
+      "A": {
+        "control_arm": "UNTRAINED",
+        "regime": "A",
+        "control_values_per_seed": [
+          0.12758116581683673,
+          0.0,
+          0.0,
+          0.007872215114970268,
+          0.0,
+          0.008878976684471766,
+          0.0,
+          0.0
+        ],
+        "name": "dv_headroom_nmi_excess_regime_A",
+        "kind": "dv_headroom",
+        "measured": 0.8724188341831632,
+        "threshold": 0.1,
+        "direction": "lower",
+        "dv_name": "NMI_excess (heldout_real_nmi_excess)",
+        "achievable_statistic": "ceiling_headroom",
+        "criterion_threshold": 0.1,
+        "headroom_margin": 1.0,
+        "n_control_values": 8,
+        "headroom_ratio": 8.724188341831631,
+        "dv_bounds": [
+          0.0,
+          1.0
+        ]
+      },
+      "B": {
+        "control_arm": "UNTRAINED",
+        "regime": "B",
+        "control_values_per_seed": [
+          0.139136011172661,
+          0.05377281138499083,
+          0.010547615194699232,
+          0.14006222121292194,
+          0.06255915334429901,
+          0.06915298004407683,
+          0.005846193131423934,
+          0.05167967886154059
+        ],
+        "name": "dv_headroom_nmi_excess_regime_B",
+        "kind": "dv_headroom",
+        "measured": 0.8599377787870781,
+        "threshold": 0.1,
+        "direction": "lower",
+        "dv_name": "NMI_excess (synthetic_fresh_nmi_excess)",
+        "achievable_statistic": "ceiling_headroom",
+        "criterion_threshold": 0.1,
+        "headroom_margin": 1.0,
+        "n_control_values": 8,
+        "headroom_ratio": 8.59937778787078,
+        "dv_bounds": [
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "convergence_by_unit": {
+      "A::H1_CONTRASTIVE": {
+        "worst_decrease_frac": 0.4365149779570481,
+        "offending_cell_seed": 42,
+        "per_seed": [
+          {
+            "seed": 42,
+            "decrease_frac": 0.4365149779570481
+          },
+          {
+            "seed": 7,
+            "decrease_frac": 0.4662612932310863
+          },
+          {
+            "seed": 13,
+            "decrease_frac": 0.6311771385623395
+          },
+          {
+            "seed": 100,
+            "decrease_frac": 0.6543794634070859
+          },
+          {
+            "seed": 200,
+            "decrease_frac": 0.5856233248355942
+          },
+          {
+            "seed": 300,
+            "decrease_frac": 0.6834392492014628
+          },
+          {
+            "seed": 400,
+            "decrease_frac": 0.7637033644649718
+          },
+          {
+            "seed": 500,
+            "decrease_frac": 0.672090278912897
+          }
+        ]
+      },
+      "A::DIVERSITY_956": {
+        "worst_decrease_frac": 0.18999137144822342,
+        "offending_cell_seed": 13,
+        "per_seed": [
+          {
+            "seed": 42,
+            "decrease_frac": 0.2735452555558261
+          },
+          {
+            "seed": 7,
+            "decrease_frac": 0.28473104834556584
+          },
+          {
+            "seed": 13,
+            "decrease_frac": 0.18999137144822342
+          },
+          {
+            "seed": 100,
+            "decrease_frac": 0.23536914932555053
+          },
+          {
+            "seed": 200,
+            "decrease_frac": 0.25305974651390406
+          },
+          {
+            "seed": 300,
+            "decrease_frac": 0.2712327135042236
+          },
+          {
+            "seed": 400,
+            "decrease_frac": 0.25962823940746815
+          },
+          {
+            "seed": 500,
+            "decrease_frac": 0.2513759467803256
+          }
+        ]
+      },
+      "B::H1_CONTRASTIVE": {
+        "worst_decrease_frac": 0.22259396656602626,
+        "offending_cell_seed": 400,
+        "per_seed": [
+          {
+            "seed": 42,
+            "decrease_frac": 0.26698017565657695
+          },
+          {
+            "seed": 7,
+            "decrease_frac": 0.2759831418221196
+          },
+          {
+            "seed": 13,
+            "decrease_frac": 0.2663063142038882
+          },
+          {
+            "seed": 100,
+            "decrease_frac": 0.24968876508499183
+          },
+          {
+            "seed": 200,
+            "decrease_frac": 0.24934956713269152
+          },
+          {
+            "seed": 300,
+            "decrease_frac": 0.2506994503469516
+          },
+          {
+            "seed": 400,
+            "decrease_frac": 0.22259396656602626
+          },
+          {
+            "seed": 500,
+            "decrease_frac": 0.24451427618662513
+          }
+        ]
+      },
+      "B::DIVERSITY_956": {
+        "worst_decrease_frac": 0.2088182668189208,
+        "offending_cell_seed": 13,
+        "per_seed": [
+          {
+            "seed": 42,
+            "decrease_frac": 0.2251546918451786
+          },
+          {
+            "seed": 7,
+            "decrease_frac": 0.22275904279947284
+          },
+          {
+            "seed": 13,
+            "decrease_frac": 0.2088182668189208
+          },
+          {
+            "seed": 100,
+            "decrease_frac": 0.2181174741238356
+          },
+          {
+            "seed": 200,
+            "decrease_frac": 0.23550795562068622
+          },
+          {
+            "seed": 300,
+            "decrease_frac": 0.21658090860644974
+          },
+          {
+            "seed": 400,
+            "decrease_frac": 0.2176613166630268
+          },
+          {
+            "seed": 500,
+            "decrease_frac": 0.2212124720166127
+          }
+        ]
+      }
+    },
+    "gate_audit": [
+      {
+        "arm": "A::H1_CONTRASTIVE",
+        "precondition": "writepath_engaged",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "A::H1_CONTRASTIVE",
+        "precondition": "heldout_adequate_pairs",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "A::H1_CONTRASTIVE",
+        "precondition": "dv_headroom_nmi_excess",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "A::H1_CONTRASTIVE",
+        "precondition": "objective_converged",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "A::DIVERSITY_956",
+        "precondition": "writepath_engaged",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "A::DIVERSITY_956",
+        "precondition": "heldout_adequate_pairs",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "A::DIVERSITY_956",
+        "precondition": "dv_headroom_nmi_excess",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "A::DIVERSITY_956",
+        "precondition": "objective_converged",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "B::H1_CONTRASTIVE",
+        "precondition": "writepath_engaged",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "B::H1_CONTRASTIVE",
+        "precondition": "heldout_adequate_pairs",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "B::H1_CONTRASTIVE",
+        "precondition": "dv_headroom_nmi_excess",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "B::H1_CONTRASTIVE",
+        "precondition": "objective_converged",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "B::DIVERSITY_956",
+        "precondition": "writepath_engaged",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "B::DIVERSITY_956",
+        "precondition": "heldout_adequate_pairs",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "B::DIVERSITY_956",
+        "precondition": "dv_headroom_nmi_excess",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "B::DIVERSITY_956",
+        "precondition": "objective_converged",
+        "status": "satisfiable"
+      }
+    ]
+  }
+}
