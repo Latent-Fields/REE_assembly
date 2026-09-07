@@ -2682,3 +2682,4 @@ One line per hourly tick. ASCII only.
 2026-09-07T19:45:34Z complete igw-231-literature-proposal-for-impl-026 spawned->completed outcome=USEFUL_LANDED: lit-pull IMPL-026: landed 5 literature entries (REE_assembly 9ee1c63477 + INDEX
 2026-09-07T20:23:56Z GC removed worktree igw-231-literature-proposal-for-impl-026 (removed; branch deleted)
 2026-09-07T20:23:40Z GC sweep removed 1 orphan worktree(s), kept 14
+2026-09-07T20:23:40Z SPAWN IGW-20260907-232 skill=/lit-pull prio=40 uuid=aa15c3b7-b8ea-4108-b88b-eba4305b1379 pid=15975 worktree=igw-232-literature-proposal-for-impl-027
