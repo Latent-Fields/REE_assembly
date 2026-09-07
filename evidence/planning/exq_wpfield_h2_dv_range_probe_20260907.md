@@ -73,6 +73,49 @@ The campaign's **pacing rule** (`science_wave_campaign_plan_20260907.md` section
 
 (plus V3-EXQ-1008 claimed and running). `pending_review.md` reads 1 because it was generated 04:20Z and predates four of them. The chip's own instruction for this state is to spend the wait on design and red-team work and queue once the backlog clears -- which is what this record is.
 
+## 7b. AMENDMENT 2026-09-07T18:50Z -- the corrected design is NOT yet queueable, and section 4's framing was wrong
+
+Session `cool-sutherland-9d984d` audited this record against the shipped `_metrics.py`
+(record: `dv_headroom_floor_control_direction_20260907.md`, REE_assembly `76421fedc3`;
+chip `chip-20260907-dv-headroom-trivially-satisfiable-direction`). Two corrections, both
+re-verified here against this probe's own section-3 numbers and both binding on the
+queueing session.
+
+**(1) The corrected criterion in section 4 FAILS its own headroom gate -- do not queue it as
+written.** Feeding the architectural-floor arm to the unmodified `dv_headroom_check` as
+`control_values`:
+
+    floor (untrained SplitEncoder, 5 seeds) = [0.185, 0.155, 0.145, 0.173, 0.177]
+    floor mean    = 0.1670       required drop = 0.1670 - 0.02 = 0.1470
+    achievable    = 0.0400  (the floor arm's own realised seed-to-seed range)
+    met = False -> 3.7x shortfall -> P0NotReady -> substrate_not_ready_requeue
+
+Mean and range both re-confirmed against the section-3 table. So "H2 CONFIRMED iff the
+trained lift falls materially BELOW the random floor" is, at this bench and with the
+conventional control, an effect the configuration cannot show. **The leg still is not
+queueable.** Remaining work: establish a larger achievable range (measure a TRAINED encoder
+at probe scale -- training is a far larger intervention than a seed change, so the floor
+arm's own spread may be an over-conservative bound for this particular contrast) or
+re-specify the criterion. Resolve that BEFORE writing a driver -- and note that using the
+control arm's own spread IS the shipped convention, which exists precisely because the
+optimistic assumption produced the class's seven canonical failures.
+
+**(2) Section 4's "refuted by construction" finding stands, but its DIRECTION label was
+wrong.** This record (and the chip spawned from it) called H2 a *trivially-satisfiable* case
+needing new lint machinery. It is not: H2's null ("lift indistinguishable from zero") against
+a floor of +0.167 is trivially **VIOLATED** -- unsatisfiable, the SAME direction the existing
+`criterion_exceeds_achievable_range` class already covers, merely measured against the wrong
+control arm. What is trivially reached is the complementary verdict. **No new lint machinery
+is owed for this case**; the owed artefact is a guidance rule -- *when a criterion's passing
+side requires movement AWAY from an information-free configuration, the control arm must BE
+that configuration, not a null.* A genuinely distinct sub-direction (the floor arm already
+SATISFIES the load-bearing criterion; four historical cases, V3-EXQ-1002 as positive control)
+does exist and is chipped separately as `chip-20260907-dv-floor-control-check-2b`. A STATIC
+lint for either is REFUSED on measurement (0 true carriers in 1465 drivers) -- do not
+re-propose one.
+
+---
+
 ## 8. What the queueing session inherits
 
 - STOP-CHECK was clean at 17:15Z: not queued, both legs `alive` with empty `adjudicating_runs`, no driver in `git log`.
