@@ -2683,3 +2683,4 @@ One line per hourly tick. ASCII only.
 2026-09-07T20:23:56Z GC removed worktree igw-231-literature-proposal-for-impl-026 (removed; branch deleted)
 2026-09-07T20:23:40Z GC sweep removed 1 orphan worktree(s), kept 14
 2026-09-07T20:23:40Z SPAWN IGW-20260907-232 skill=/lit-pull prio=40 uuid=aa15c3b7-b8ea-4108-b88b-eba4305b1379 pid=15975 worktree=igw-232-literature-proposal-for-impl-027
+2026-09-07T20:45:06Z auto-defer igw-232-literature-proposal-for-impl-027 hash=feeedc7ba9ff for 48h (complete)
