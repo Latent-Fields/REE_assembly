@@ -399,7 +399,41 @@ _PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES = _PROPOSAL_BLOCKED_SUBSTRATE_STATU
 }
 
 
-def _proposals_by_claim(statuses: set[str]) -> dict[str, dict]:
+# FM10b (2026-09-07, chip-20260906-confirmer-lane-diagnostic-adjudicated-flag):
+# the marker an adjudicating session writes into a proposal's free text when the
+# verdict is "no further run of this lineage should be queued" but the LIFECYCLE
+# status is legitimately `executed` (the proposal really was dispatched and ran).
+# EXP-0057 / MECH-489 is the confirmed case: its gating_reason carries an
+# "ADJUDICATED DO-NOT-QUEUE 2026-08-26" section and a "SECOND ADJUDICATED
+# DO-NOT-QUEUE 2026-09-06" one, and the record explains at length why flipping
+# the status to `gated` would be a FALSE record (build_claim_dependency_process
+# .py:342 would then assert an experiment IS PLANNED). So the verdict has to be
+# readable WITHOUT a status change -- this marker is how.
+_ADJUDICATED_DO_NOT_QUEUE_RE = re.compile(r"ADJUDICATED\s+DO[-\s]?NOT[-\s]?QUEUE", re.IGNORECASE)
+
+# Lifecycle statuses (NOT adjudications) on which the free-text marker above is
+# honoured. Deliberately narrow: `executed` only. `proposed`/`queued` carry live
+# intent, and reading a do-not-queue marker off them would let a stale sentence
+# suppress work someone is actively planning.
+_PROPOSAL_DO_NOT_QUEUE_MARKER_STATUSES = {"executed"}
+
+
+def _proposal_carries_do_not_queue_marker(prop: dict) -> bool:
+    """True when a proposal's free text records an explicit DO-NOT-QUEUE verdict
+    and its status is one where that marker is honoured (see the note above)."""
+    if (prop.get("status") or "") not in _PROPOSAL_DO_NOT_QUEUE_MARKER_STATUSES:
+        return False
+    for field in ("gating_reason", "blocked_note", "release_condition"):
+        val = prop.get(field)
+        if isinstance(val, str) and _ADJUDICATED_DO_NOT_QUEUE_RE.search(val):
+            return True
+    return False
+
+
+def _proposals_by_claim(
+    statuses: set[str],
+    extra_predicate=None,
+) -> dict[str, dict]:
     """claim_id -> first experiment_proposals.v1.json entry whose status is in
     `statuses`. THE single reader of that file's claim field.
 
@@ -414,6 +448,11 @@ def _proposals_by_claim(statuses: set[str]) -> dict[str, dict]:
     `claim_ids` list form the ree-v3 QUEUE uses). The list form is read anyway so
     this cannot become the next singular-vs-list blind spot if the schema drifts.
     First occurrence wins (the file carries duplicate claim ids).
+
+    `extra_predicate` (optional) admits an entry whose STATUS is not in
+    `statuses` -- the FM10b escape hatch for an adjudication recorded in free
+    text on a proposal whose lifecycle status must not move. Callers that pass
+    nothing behave exactly as before.
     """
     if not PROPOSALS_JSON.exists():
         return {}
@@ -426,7 +465,8 @@ def _proposals_by_claim(statuses: set[str]) -> dict[str, dict]:
         if not isinstance(p, dict):
             continue
         if p.get("status") not in statuses:
-            continue
+            if not (extra_predicate and extra_predicate(p)):
+                continue
         cids = [str(c) for c in (p.get("claim_ids") or []) if c]
         single = p.get("claim_id")
         if single:
@@ -467,8 +507,21 @@ def _confirmer_adjudicated_proposals() -> dict[str, dict]:
     via the same parser (`_proposals_by_claim`). Same staleness semantic: no
     auto-clear, the status sits until a session clears it once the real blocker
     resolves. That is the intended manually-adjudicated behaviour, not a bug.
+
+    FM10b (2026-09-07). The status set above deliberately excludes `executed`,
+    because `executed` is a lifecycle position and an executed-then-FAILED
+    proposal may well want a successor. That exclusion is still right in
+    general, and it is ALSO how MECH-489 burned three workers: EXP-0057 ran, is
+    correctly `executed`, and carries its DO-NOT-QUEUE verdict in free text
+    because flipping the status would assert a planned experiment that does not
+    exist. So an `executed` proposal is admitted here ONLY when it carries the
+    explicit marker (`_proposal_carries_do_not_queue_marker`) -- an opt-in a
+    session writes deliberately, not an inference from the status.
     """
-    return _proposals_by_claim(_PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES)
+    return _proposals_by_claim(
+        _PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES,
+        extra_predicate=_proposal_carries_do_not_queue_marker,
+    )
 
 
 def _proposal_adjudication_reason(prop: dict) -> str:
@@ -489,7 +542,19 @@ def _proposal_adjudication_reason(prop: dict) -> str:
     for field in ("gating_reason", "blocked_note", "release_condition"):
         val = prop.get(field)
         if val:
-            return f"experiment_proposals.v1.json {pid} status={status}: {str(val)[:200]}"
+            text = str(val)
+            # FM10b: these fields accumulate -- a proposal can carry a release
+            # note, then a later DO-NOT-QUEUE section appended below it. Show
+            # the LAST adjudication, not the first 200 characters of history
+            # (for EXP-0057 that would render "RELEASED 2026-08-21", the
+            # opposite of the operative verdict).
+            marks = list(_ADJUDICATED_DO_NOT_QUEUE_RE.finditer(text))
+            if marks:
+                # Back up to the start of the marker's own line so a qualifier
+                # sitting in front of it ("SECOND ADJUDICATED DO-NOT-QUEUE ...")
+                # is not sheared off the excerpt.
+                text = text[text.rfind("\n", 0, marks[-1].start()) + 1:].strip()
+            return f"experiment_proposals.v1.json {pid} status={status}: {text[:200]}"
     return (
         f"experiment_proposals.v1.json {pid} status={status} "
         f"(backlog_id {prop.get('backlog_id') or '?'}); see the proposal record "
@@ -922,7 +987,8 @@ def _strip_yaml_scalar(value: str) -> str:
 
 def _load_claims_meta() -> dict[str, dict]:
     """claim_id -> {status, claim_type, epistemic_category, invariant_type,
-    implementation_phase, version_relevance, v3_pending}.
+    implementation_phase, version_relevance, v3_pending,
+    diagnostic_evidence_adjudicated}.
 
     Line-based block parser (same shape as _claim_retest_ids) so we never pay a
     full yaml.safe_load on the large registry. First occurrence of each field
@@ -934,6 +1000,15 @@ def _load_claims_meta() -> dict[str, dict]:
     v3_pending feeds _claim_v3_testable so the experiment lanes can suppress
     claims the governance V3-pending gate ignores (R5; mirrors R1 in
     igw_routine_tick._claim_is_v3_testable).
+    diagnostic_evidence_adjudicated feeds _claim_diagnostic_evidence_adjudicated
+    so the GOV-CONFIRM-1 confirmer lane can see the governance-ratified flag that
+    says "this claim's zero genuine_exp_count is already adjudicated". THE `keys`
+    TUPLE BELOW IS AN ALLOWLIST -- a field absent from it is structurally
+    invisible to EVERY lane, whatever that lane intends. That is exactly how
+    MECH-489 re-fired three times after the flag landed in claims.yaml
+    (chip-20260906-confirmer-lane-diagnostic-adjudicated-flag): the indexer
+    consumed the flag, this parser never saw it. Add the key here first when
+    teaching any lane about a new claims.yaml field.
     """
     out: dict[str, dict] = {}
     if not CLAIMS_YAML.exists():
@@ -943,7 +1018,7 @@ def _load_claims_meta() -> dict[str, dict]:
     keys = (
         "status", "claim_type", "epistemic_category", "invariant_type",
         "implementation_phase", "version_relevance", "v3_pending",
-        "title", "location",
+        "title", "location", "diagnostic_evidence_adjudicated",
     )
 
     def _flush() -> None:
@@ -967,6 +1042,27 @@ def _load_claims_meta() -> dict[str, dict]:
                 fields[key] = _strip_yaml_scalar(mm.group(1))
     _flush()
     return out
+
+
+_YAML_TRUE = ("true", "yes", "1")
+
+
+def _claim_diagnostic_evidence_adjudicated(meta: dict | None) -> bool:
+    """True when claims.yaml carries `diagnostic_evidence_adjudicated: true`.
+
+    Governance-ratified flag (chip-20260826-sd099-diagnostic-adjudicated-flag)
+    meaning: this claim's genuine_exp_count of 0 is ALREADY ADJUDICATED -- the
+    runs exist and are correctly scoring_excluded as diagnostic probes -- so a
+    zero-evidence signal about it is a FALSE POSITIVE, not missing evidence.
+    build_experiment_indexes.py already consumes it to suppress the
+    `missing_experimental_evidence` / `lit_only_above_cap` backlog reasons.
+
+    _load_claims_meta stores raw yaml scalars as strings, so compare the way the
+    indexer does (str(...).lower() in the truthy set), never `is True`.
+    """
+    if not meta:
+        return False
+    return str(meta.get("diagnostic_evidence_adjudicated") or "").strip().lower() in _YAML_TRUE
 
 
 _EPI_SUPPRESS_PROPOSAL = {
@@ -2146,6 +2242,17 @@ def _evidence_confirmer_candidates(
     Rendering `blocked` rather than dropping is the FM7 precedent from the retest
     lane, and is what makes including the broad `gated` status safe -- see
     _PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES for the v3_pending tension.
+
+    FM10c -- THE CLAIMS.YAML FLAG (2026-09-07,
+    chip-20260906-confirmer-lane-diagnostic-adjudicated-flag). FM10's memory hook
+    is proposal-shaped, so it can only remember a verdict some session wrote onto
+    a proposal record. The claim registry carries a SECOND, governance-ratified
+    adjudication of the same signal: `diagnostic_evidence_adjudicated: true`
+    means the zero genuine_exp_count that puts a claim in this lane at all is
+    already understood and correct. A claim carrying it is rendered `blocked` by
+    the same branch, with the flag named as the reason. MECH-489 is the confirmed
+    case -- three workers (2026-08-03 lineage, IGW-20260826-235,
+    IGW-20260906-241), each correctly concluding DO-NOT-QUEUE.
     """
     lit_conf = _claim_lit_conf()
     built = _claims_implemented_in_substrate()
@@ -2186,6 +2293,24 @@ def _evidence_confirmer_candidates(
                 "status": adj.get("status") or "?",
                 "reason": _proposal_adjudication_reason(adj),
                 "session": adj.get("gated_by_session") or "",
+            }
+        elif _claim_diagnostic_evidence_adjudicated(meta):
+            # FM10c: the claims.yaml flag says the zero-evidence signal that put
+            # this candidate here is itself already adjudicated. Same rendering
+            # as the proposal-backed branch (blocked, not dropped), so the claim
+            # stays on /workset carrying its verdict, consumes no autospawn cap
+            # slot, and re-enters the eligible set the moment the flag clears.
+            rec["adjudication"] = {
+                "proposal_id": f"claims.yaml:{cid}",
+                "status": "diagnostic_evidence_adjudicated",
+                "reason": (
+                    f"claims.yaml {cid} carries diagnostic_evidence_adjudicated: true -- "
+                    f"its zero genuine_exp_count is ALREADY ADJUDICATED (the runs exist and "
+                    f"are correctly scoring_excluded as diagnostic probes), so the "
+                    f"confirmable-but-unconfirmed signal is a false positive, not missing "
+                    f"evidence. Clear the flag to re-admit this confirmer."
+                ),
+                "session": "",
             }
         out.append(rec)
     out.sort(key=lambda d: (-d["lit_conf"], d["claim_id"]))
