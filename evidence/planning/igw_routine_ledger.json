@@ -5943,17 +5943,21 @@
     },
     {
       "stable_hash": "d3e65416c088",
-      "igw_id_at_disposition": "IGW-20260903-243",
+      "igw_id_at_disposition": "IGW-20260907-234",
       "owner_exq": null,
       "claim_ids": [
         "EXT-009"
       ],
       "skill": "/lit-pull",
       "title": "Literature proposal for EXT-009",
-      "decision": "AUTO_DEFER",
-      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-09-03T17:14:37Z",
-      "re_eligible_after": "2026-09-05T17:14:36Z"
+      "decision": "DONE",
+      "note": "Already executed as IGW-20260903-243 (EXT-009 lit-pull landed). Re-mint after AUTO_DEFER expiry.",
+      "noted_at": "2026-09-07T07:37:14Z",
+      "auto_defer_superseded": {
+        "decision": "AUTO_DEFER",
+        "re_eligible_after": "2026-09-05T17:14:36Z",
+        "noted_at": "2026-09-03T17:14:37Z"
+      }
     },
     {
       "stable_hash": "e84017ec9ec6",
