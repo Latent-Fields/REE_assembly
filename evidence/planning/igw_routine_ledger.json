@@ -5509,17 +5509,21 @@
     },
     {
       "stable_hash": "e1ac0b83a08d",
-      "igw_id_at_disposition": "IGW-20260905-238",
+      "igw_id_at_disposition": "IGW-20260907-236",
       "owner_exq": null,
       "claim_ids": [
         "MECH-267"
       ],
       "skill": "/queue-experiment",
       "title": "Confirm evidence: MECH-267 (lit 0.86, exp ~0)",
-      "decision": "AUTO_DEFER",
-      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-09-05T14:02:53Z",
-      "re_eligible_after": "2026-09-07T14:02:40Z"
+      "decision": "RESOLVE",
+      "note": "Duplicate of V3-EXQ-1005 (IGW-20260905-238): driver complete + smoke green, resume owned by wave-4 plan S2 item 0 (science_wave_campaign_plan_20260907.md). Do not spawn a second MECH-267 confirm.",
+      "noted_at": "2026-09-07T07:36:33Z",
+      "auto_defer_superseded": {
+        "decision": "AUTO_DEFER",
+        "re_eligible_after": "2026-09-07T14:02:40Z",
+        "noted_at": "2026-09-05T14:02:53Z"
+      }
     },
     {
       "stable_hash": "8407cf009a0e",
