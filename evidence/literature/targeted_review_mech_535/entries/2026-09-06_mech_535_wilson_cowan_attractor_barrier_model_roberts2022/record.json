@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_535_wilson_cowan_attractor_barrier_model_roberts2022",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-535",
+    "MECH-536"
+  ],
+  "source": {
+    "title": "Mechanistic modeling as an explanatory tool for clinical treatment of chronic catatonia",
+    "authors": [
+      "Patrick D. Roberts",
+      "James Conour"
+    ],
+    "year": 2022,
+    "venue": "Frontiers in Pharmacology",
+    "doi": "10.3389/fphar.2022.1025417",
+    "pmid": "36438845",
+    "pmc": "PMC9682077",
+    "volume": "13",
+    "pages": "1025417"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-535": "unknown",
+    "MECH-536": "mixed"
+  },
+  "confidence": 0.35,
+  "confidence_rationale": "The only computational model of catatonia the pull found. It is a two-population Wilson-Cowan cortical circuit with two stable firing states separated by a barrier; 'if the barrier is high then the system becomes stuck in a functional pattern and is interpreted to represent symptoms of catatonia such as posturing or perseveration', and benzodiazepines lower the barrier by raising inhibitory synaptic weight. For MECH-535 this is a documented null: the model has no goal representation, no agent, no spatial task, and the paper does not mention ambitendency or approach/withdraw oscillation; its catatonia is a state-transition (persistence-EXCESS) failure. For MECH-536 it is mildly informative: it models too-much persistence as pathology, consistent with persistence being a dial whose excess pole is perseveration, which is the MECH-536 prediction's 'latch yields perseveration' arm. Low confidence: fitted to BFCRS totals in a residential cohort, no behavioural dynamics.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model produces catatonia as the system being STUCK in a high-rate state behind a barrier -- a persistence-excess account; it has no mechanism that could yield a two-state limit cycle from a memoryless policy.",
+    "No goal, spatial or directional variable exists in the model, so a goal-in-valence-not-direction route is not merely untested but unrepresentable in it."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_535",
+    "mech_536",
+    "wilson_cowan",
+    "attractor",
+    "barrier",
+    "computational_psychiatry",
+    "benzodiazepine",
+    "perseveration",
+    "q2_null"
+  ],
+  "mapping": {
+    "source_claim_statement": "A Wilson-Cowan model of an excitatory (pyramidal) and an inhibitory (PV interneuron) population has two stable spike-rate states separated by an unstable barrier; transition from high to low rate 'represents the termination of a cortical activity pattern', and 'if the barrier is high then the system becomes stuck in a functional pattern and is interpreted to represent symptoms of catatonia such as posturing or perseveration'. Benzodiazepines are modelled as increased inhibitory synaptic weight (raising GABA-A current), lowering the barrier; antipsychotics and lamotrigine as other parameter changes. The model is fitted to BFCRS scores in a residential schizophrenia cohort to explain treatment effect sizes.",
+    "ree_translation": "This is a gating/persistence model of catatonia: the pathology is that a selected cortical pattern cannot be released. In MECH-536 terms it sits at the perseveration pole -- persistence in excess -- and the benzodiazepine mechanism is 'make release easier', which is the mirror image of adding a latch to the 978 reader. Its relevance to MECH-535 is entirely negative: it demonstrates that the one existing computational treatment of catatonia has no representational variable and no dynamics that could produce the ambitendency limit cycle. The Q2 null is therefore also a null in computational psychiatry, not only in the clinic.",
+    "mapping_caveat": "A two-variable rate model with no environment, no agent and no goal cannot test a claim about what a state representation carries; the null is one of unrepresentability, not of a tested-and-rejected hypothesis. The clinical fit is to BFCRS totals, so the model has never been asked which SIGN it produces. For MECH-536 the mapping is loose: 'barrier height' is not a post-commit latch on a discrete action, and the paper never contrasts persistence with representational adequacy.",
+    "source_context": "Computational (Wilson-Cowan mean-field) model; fitted to BFCRS totals in a residential schizophrenia cohort under benzodiazepine / antipsychotic / lamotrigine treatment; quantitative systems pharmacology framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.4,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.6,
+    "notes": "Single-group modelling paper in a pharmacology venue, authored from industry/clinic; cohort synthesis rather than trial data. Its value here is as the documented computational null on Q2 and as a marker of where computational psychiatry currently puts catatonia (state-transition barrier). Confidence kept low accordingly."
+  }
+}

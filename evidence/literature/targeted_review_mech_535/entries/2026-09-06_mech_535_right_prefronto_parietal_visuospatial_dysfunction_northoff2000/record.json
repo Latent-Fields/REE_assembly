@@ -1,0 +1,66 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_535_right_prefronto_parietal_visuospatial_dysfunction_northoff2000",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-535"
+  ],
+  "source": {
+    "title": "Right lower prefronto-parietal cortical dysfunction in akinetic catatonia: a combined study of neuropsychology and regional cerebral blood flow",
+    "authors": [
+      "G. Northoff",
+      "R. Steinke",
+      "C. Nagel Dczerwenka",
+      "O. Grosser",
+      "P. Danos",
+      "A. Genz",
+      "R. Krause",
+      "H. Boker",
+      "H. J. Otto",
+      "B. Bogerts"
+    ],
+    "year": 2000,
+    "venue": "Psychological Medicine",
+    "doi": "10.1017/s0033291799002007",
+    "pmid": "10883714",
+    "pmc": null,
+    "volume": "30",
+    "issue": "3",
+    "pages": "583-596"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "mixed",
+  "confidence": 0.4,
+  "confidence_rationale": "The only clinical dataset found that places a SPATIAL-REPRESENTATION deficit in catatonia: right parietal hypoperfusion plus poorer right-parietal visuospatial performance, with the normal visuospatial <-> right-parietal-rCBF coupling absent in patients and attentional measures instead correlating with motor symptoms. That is the closest the clinic comes to 'the state representation is degraded'. But visuospatial ability is not goal DIRECTION, the patients' problem is posturing (termination excess) not ambitendency, n = 10 with SPECT, and the authors themselves call it preliminary. Mixed, low-moderate confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The spatial deficit documented is general right-parietal visuospatial ability (tests of right parietal function), not a selective loss of goal-direction with proximity preserved; nothing in the design could separate a magnitude channel from a direction channel.",
+    "Visuospatial performance and right parietal perfusion were decoupled in patients (correlated only in controls), so the deficit may be a disconnection rather than a degraded representation per se."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_535",
+    "northoff",
+    "right_parietal",
+    "visuospatial",
+    "spect",
+    "spatial_representation",
+    "related:INV-088"
+  ],
+  "mapping": {
+    "source_claim_statement": "Ten acute akinetic catatonic patients showed significantly reduced rCBF (Tc-99m ECD SPECT) in right lower and middle prefrontal and right parietal cortex versus 10 matched psychiatric and 20 healthy controls, and significantly poorer visual-spatial performance on tests associated with right parietal function. Visual-spatial ability correlated with right parietal rCBF in both control groups but not in catatonia; in catatonia only, attentional measures correlated with motor symptoms, visual-spatial ability and right parietal rCBF. Findings 'are preliminary but suggest right lower prefronto-parietal cortical dysfunction in catatonia, which may be closely related to psychomotor disturbances.'",
+    "ree_translation": "This is the clinical foothold for a representational (as opposed to gating) component in catatonia: a right parietal spatial-processing deficit that travels with the motor signs. In REE terms it is compatible with INV-088 (z_world differentiation bounds the downstream reader) being the operative bound in some catatonic presentations, and it is the only published result that would let MECH-535's 'representational route' be read as more than a fishtank artefact. It does not, however, show the specific structure MECH-535 needs -- proximity preserved, direction lost -- only that spatial processing is degraded and motor signs co-vary with it.",
+    "mapping_caveat": "Three gaps. (1) The spatial measure is general visuospatial ability, not goal direction; the 978 dissociation (magnitude decodable at r2 ~0.71, directional argmax constant) has no counterpart in the test battery. (2) The patients' motor sign is akinesia/posturing, a termination pathology, not ambitendency; the paper cannot say whether spatial degradation produces approach/withdraw cycling. (3) n = 10, SPECT resolution, and the correlation pattern (decoupling in patients) is as consistent with disconnection as with a degraded representation.",
+    "source_context": "Human adults; acute akinetic catatonia (n = 10) vs psychiatric (n = 10) and healthy (n = 20) controls; Tc-99m ECD SPECT rCBF; neuropsychological battery including right-parietal visual-spatial tests; correlational."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.6,
+    "notes": "Small preliminary SPECT study, but the only one that puts a spatial-representation measure next to catatonic motor signs. Mapping fidelity is limited by 'visuospatial' being far coarser than 'direction without proximity'. Transfer risk is high: human right-parietal function has no clean analogue in a 25-dim directional head over a 5x5 field."
+  }
+}

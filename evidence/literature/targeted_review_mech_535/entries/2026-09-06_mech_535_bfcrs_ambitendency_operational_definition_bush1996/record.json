@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_535_bfcrs_ambitendency_operational_definition_bush1996",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-535"
+  ],
+  "source": {
+    "title": "Catatonia. I. Rating scale and standardized examination",
+    "authors": [
+      "G. Bush",
+      "M. Fink",
+      "G. Petrides",
+      "F. Dowling",
+      "A. Francis"
+    ],
+    "year": 1996,
+    "venue": "Acta Psychiatrica Scandinavica",
+    "doi": "10.1111/j.1600-0447.1996.tb09814.x",
+    "pmid": "8686483",
+    "pmc": null,
+    "volume": "93",
+    "issue": "2",
+    "pages": "129-136"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.4,
+  "confidence_rationale": "Supports only the PHENOTYPE-MATCH premise of MECH-535: the Bush-Francis operationalisation of ambitendency ('patient appears motorically stuck in indecisive, hesitant movement', elicited as repeatedly extending and withdrawing the hand when offered a handshake under a contradictory instruction) is what the 978 two-cell limit cycle resembles. The scale is a reliability instrument (inter-rater 0.93), not a mechanism study, so it can say nothing about WHY the sign occurs; hence low mapping fidelity for the mechanistic half of the claim and a support_tag restricting the reading to phenotype match.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The BFCRS elicits ambitendency under a CONTRADICTORY instruction (verbal offer of a handshake while told not to shake): the clinical sign is defined in a conflict context, whereas 978's cycle arises with no conflicting instruction at all -- the two cells simply read as different proximity values to a memoryless policy."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_535",
+    "bfcrs",
+    "bush_francis",
+    "operational_definition",
+    "kahlbaum",
+    "support_tag:phenotype_match_only"
+  ],
+  "mapping": {
+    "source_claim_statement": "A 23-item rating scale and 14-item screen built from 'operationalized definitions of signs ascribed to catatonia in published sources' (Kahlbaum onward) achieve inter-rater reliability of 0.93 (total score) and 88% mean item agreement; 7% of consecutive admissions met criteria. Ambitendency is one of the 23 items, defined as the patient appearing motorically 'stuck' in indecisive, hesitant movement, and elicited by offering a handshake while instructing the patient not to shake hands.",
+    "ree_translation": "Fixes what 'ambitendency' means operationally so the claim's phenotype assertion can be checked against it. The 978 log's pattern -- one step toward the resource cell, one step away, repeated 9-11 times until contamination kills the agent -- is a goal movement started, retracted and restarted, which is the operational sign. It is NOT undirected dithering, because resource_field_max alternates high/low across the pair. The scale also fixes stupor and posturing as separate items, so MECH-535's 'one deficit, two signs by initial condition' is a claim about items that the clinic scores independently and that co-vary within patients.",
+    "mapping_caveat": "A sign match is not a mechanism match. The BFCRS elicits ambitendency by instruction conflict (approach the hand / do not shake it); 978 has no instruction, no conflict source, and no examiner -- the 'conflict' is between what the same proximity value tells a reflex to do on two adjacent cells. Reading the scale as evidence FOR the representational mechanism would be a category error; it is evidence that the behavioural signature is the one the clinic names.",
+    "source_context": "Human adult psychiatric inpatients; 28 cases, 44 simultaneous ratings; academic inpatient unit; rating-scale development and reliability."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.5,
+    "notes": "The instrument is the field standard and its reliability is well established (hence source quality). Mapping fidelity is deliberately low: the paper evidences the phenotype label, nothing about representation vs gating. The Northoff Catatonia Rating Scale (Northoff et al. 1999, Mov Disord) is the other standard instrument and adds affective and behavioural subscales; its item set was not separately pulled here."
+  }
+}

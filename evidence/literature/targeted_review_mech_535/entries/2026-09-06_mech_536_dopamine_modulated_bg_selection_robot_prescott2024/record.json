@@ -1,0 +1,72 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_536_dopamine_modulated_bg_selection_robot_prescott2024",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-536",
+    "MECH-535"
+  ],
+  "source": {
+    "title": "Simulated Dopamine Modulation of a Neurorobotic Model of the Basal Ganglia",
+    "authors": [
+      "Tony J. Prescott",
+      "Fernando M. Montes Gonzalez",
+      "Kevin Gurney",
+      "Mark D. Humphries",
+      "Peter Redgrave"
+    ],
+    "year": 2024,
+    "venue": "Biomimetics",
+    "doi": "10.3390/biomimetics9030139",
+    "pmid": "38534824",
+    "pmc": "PMC10967936",
+    "volume": "9",
+    "issue": "3",
+    "pages": "139"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-536": "supports",
+    "MECH-535": "mixed"
+  },
+  "confidence": 0.5,
+  "confidence_rationale": "The dopamine-modulation study of the same neurorobotic GPR model, and the clearest source for what a D2-blockade / low-dopamine route to catatonia looks like inside a selection model. Low simulated dopamine produced 'slowed behaviour and, at low levels, an inability to initiate movement' -- 'failure to express movement despite being motivated' -- with premature deselection of weakly selected acts (loss of persistence) causing task failure, partially relieved by higher salience. High dopamine produced distortion by partially expressed losing actions and increased switching (21.3 vs 9.2 bouts). Both extremes could leave the robot in a 'behavioral trap': a stuck state or a repeated failed cycle. For MECH-536 this supports the functional reading: when the persistence signal is weakened (low DA) an actor with an INTACT salience representation fails to complete acts, i.e. persistence is doing protective work over adequate inputs. For MECH-535 it is mixed: it demonstrates a GATING-gain route that yields both a stupor-like fixed point and cycling from one parameter, so co-occurrence of stationary and cyclic signs does not by itself pick out the representational route.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Low simulated dopamine yields 'inability to initiate movement' despite adequate motivation -- an akinesia/stupor phenotype from a selection-gain deficit with the representation intact.",
+    "Both low and high dopamine can produce a 'behavioral trap' (stuck circling; repeated cycles of seek-and-failed-pickup): stationary and cyclic failure modes arise from one gating parameter, so their co-occurrence is not diagnostic of a representational cause.",
+    "Weakly selected behaviours are 'vulnerable to interruption' at low dopamine -- premature deselection is loss of persistence, and it degrades completion without any loss of input information."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_536",
+    "mech_535",
+    "basal_ganglia",
+    "dopamine",
+    "d2_blockade",
+    "gpr_model",
+    "robot",
+    "behavioural_trap",
+    "akinesia",
+    "switching",
+    "related:MECH-202",
+    "related:MECH-279"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reducing tonic simulated dopamine in the GPR-based neurorobotic model 'caused slowed behaviour and, at low levels, an inability to initiate movement', with 'failure to express movement despite being motivated' and premature deselection of weakly selected acts; these states 'were partially relieved by increased salience levels'. Increasing dopamine 'caused distortion of the robot's motor acts through partially expressed motor activity relating to losing actions' and 'an increased frequency of behaviour switching' (21.3 vs 9.2 bouts for winner-takes-all controls, p = 0.041). Levels far from baseline 'could cause a loss of behavioural integration, sometimes leaving the robot in a behavioral trap' -- e.g. a lowered gripper blocking the sensor and triggering 'slow circling behaviour until end of trial', or 'repeated cycles of cylinder-seek and (unsuccessful) cylinder-pickup'.",
+    "ree_translation": "This is the D2-blockade / hypodopaminergic route to catatonic signs rendered as a selection model: the locus is gain on the BG selection loop (gating), and the representation of what to do is intact throughout. For MECH-536, low dopamine weakens the persistence the thalamocortical loop supplies and the robot fails to complete acts it is motivated and informed to do -- persistence is protective over adequate inputs, and removing it costs completion without touching the inputs; the salience rescue shows the input side was fine. For MECH-535 the paper is a caution: one gating parameter produces both a stationary phenotype (no movement; stuck circling) and cyclic ones (repeated failed pickups; hyper-switching), so 'stupor and ambitendency from one deficit by initial condition' is a property a gating route can also have. MECH-535's discriminating feature is therefore not the co-occurrence of the two signs but the FLAT directional head -- the representation, not the gain, is what is missing in 978.",
+    "mapping_caveat": "A robot with hand-set saliences and a scalar dopamine parameter; 'catatonia' is the authors' analogy to dopamine dysregulation (Parkinsonism, dyskinesia), not a claim about catatonia proper. The behavioural traps arise partly from a sensor-blocking gripper, a body-environment interaction with no fishtank analogue. No representational degradation is manipulated, so MECH-536's dissociation is not tested. Small run counts per dopamine level.",
+    "source_context": "Neurorobotics; GPR basal ganglia model with D1/D2 striatal pathways and thalamocortical loops in a foraging robot (cylinder collection and deposit); tonic dopamine parameter swept from very low to very high."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Open-access 2024 study from the same group; modest venue, small n per level, but the only source that puts a dopamine-gain manipulation, a stupor-like fixed point and cyclic traps in one model. The per-claim split records that it supports MECH-536's functional reading while complicating MECH-535's sign-co-occurrence argument."
+  }
+}

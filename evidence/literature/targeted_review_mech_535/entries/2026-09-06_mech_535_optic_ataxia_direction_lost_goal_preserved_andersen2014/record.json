@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_535_optic_ataxia_direction_lost_goal_preserved_andersen2014",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-535"
+  ],
+  "source": {
+    "title": "Optic ataxia: from Balint's syndrome to the parietal reach region",
+    "authors": [
+      "Richard A. Andersen",
+      "Kristen N. Andersen",
+      "Eun Jung Hwang",
+      "Markus Hauschild"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2014.02.025",
+    "pmid": "24607223",
+    "pmc": "PMC4000741",
+    "volume": "81",
+    "issue": "5",
+    "pages": "967-983"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Optic ataxia is the cleanest clinical existence proof that the brain can lose the DIRECTION of a goal-directed act while preserving the goal, the intention and the motor capacity: posterior parietal (PRR) damage yields misreaching in the contralesional field with intact visual fields, oculomotor control, proprioception and motor ability, an inability to correct reaches online, and smooth performance once proprioceptive or auditory cues are given. That supports MECH-535's premise that a direction-specific representational deficit is a real dissociation, not a fishtank artefact. But the behavioural signature is dysmetria (over/undershoot) and misreaching, NOT an approach/withdraw limit cycle, because a reaching patient is not a memoryless step-wise reactive controller and does not re-decide from the degraded representation every step. Mixed: premise supported, signature not reproduced.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The direction deficit in optic ataxia produces misreaching with overshoot/undershoot, not oscillation; the patient completes a wrong reach rather than alternating toward and away from the target.",
+    "Once proprioceptive or auditory cues are supplied the same patient reaches smoothly, so the intact goal can be served by a substitute channel -- there is no analogue of that repair in a reader with no other input than z_world.",
+    "Whether target localisation is perceptually intact is debated in the source (spatial disorientation vs an eye-coordinate perceptual deficit), so 'goal preserved' is not uncontested."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_535",
+    "optic_ataxia",
+    "posterior_parietal",
+    "parietal_reach_region",
+    "direction_deficit",
+    "intention_without_direction",
+    "dorsal_stream",
+    "related:INV-088"
+  ],
+  "mapping": {
+    "source_claim_statement": "Optic ataxia is 'a high-order deficit in reaching to visual goals that occurs with posterior parietal cortex lesions', with misreaching in the contralesional visual field, difficulty preshaping the hand for grasping and 'an inability to correct reaches online'. Patients with isolated optic ataxia 'have intact visual fields, stereoscopic vision, oculomotor control, proprioception, motor abilities and cerebellar function'; they show dysmetria with overshooting and undershooting yet 'once the patient receives proprioceptive or auditory cues, they are able to perform the task smoothly'. Non-human primate work attributes the components to specific modules -- PRR for reach (PRR inactivation produces optic ataxia), LIP for saccades, AIP for grasp, area 5d for state estimation via efference copy.",
+    "ree_translation": "MECH-535 asserts that a goal representation can carry proximity/valence while losing direction, and that a reactive actor over such a representation produces ambitendency. Optic ataxia supplies the first half: a lesion to a reach-vector module (PRR) leaves the goal known and wanted, the motor system intact, and the reach VECTOR wrong -- direction lost, goal preserved. In REE terms this is INV-088's bound located in the biological dorsal stream: the downstream reader (motor cortex) is bounded by what the parietal reach representation carries. The second half -- that the behavioural consequence is a two-cell limit cycle -- is NOT what optic ataxia looks like, and the reason is instructive: the clinical actor is not memoryless and does not re-decide from the degraded map at each step; it commits to a (wrong) reach and executes it. That is exactly MECH-536's latch, present in the patient and absent in the 978 reader.",
+    "mapping_caveat": "The analogy is at the level of the representational dissociation, not the behavioural signature. Optic ataxia is misreaching, not ambitendency; nothing in the syndrome resembles alternating approach and withdrawal. Whether perceptual target localisation is truly preserved is debated in the source. And the patient's intact alternative channels (proprioception, audition, delayed perceptual coding per Milner et al. 1999) have no counterpart in a reader whose only input is z_world. Non-human primate inactivation data transfer to human clinical syndromes with the usual caveats, and neither transfers to a 5x5 grid.",
+    "source_context": "Human clinical neurology (Balint's syndrome, optic ataxia) integrated with macaque electrophysiology and reversible inactivation of posterior parietal reach, saccade and grasp modules; review."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.6,
+    "notes": "Authoritative Neuron review by the group that defined PRR. Mapping fidelity is limited to the premise (direction can be lost with goal preserved); the behavioural consequence in the syndrome (misreaching) differs from the claim's (limit cycle) for a reason that itself supports MECH-536 -- the patient commits. Transfer risk is high across species and across the clinic-to-gridworld gap."
+  }
+}

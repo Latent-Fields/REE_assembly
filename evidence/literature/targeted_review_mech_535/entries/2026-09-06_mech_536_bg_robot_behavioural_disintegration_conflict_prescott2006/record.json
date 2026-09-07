@@ -1,0 +1,68 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_536_bg_robot_behavioural_disintegration_conflict_prescott2006",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-536",
+    "MECH-535"
+  ],
+  "source": {
+    "title": "A robot model of the basal ganglia: behavior and intrinsic processing",
+    "authors": [
+      "Tony J. Prescott",
+      "Fernando M. Montes Gonzalez",
+      "Kevin Gurney",
+      "Mark D. Humphries",
+      "Peter Redgrave"
+    ],
+    "year": 2006,
+    "venue": "Neural Networks",
+    "doi": "10.1016/j.neunet.2005.06.049",
+    "pmid": "16153803",
+    "pmc": null,
+    "volume": "19",
+    "issue": "1",
+    "pages": "31-61"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-536": "mixed",
+    "MECH-535": "mixed"
+  },
+  "confidence": 0.45,
+  "confidence_rationale": "The fuller Sheffield robot study. Effective selection 'under a wide range of sensory and motivational conditions' with the embedded BG model supports the persistence-as-robustness reading, but the paper also reports that 'when confronted with multiple, high salience alternatives, the robot also exhibits forms of behavioral disintegration that show similarities to animal behavior in conflict situations'. So BG-style persistence does not protect against SYMMETRIC high conflict: when two options are strongly and equally supported, selection breaks down even with the latch. Mixed for MECH-536 (protection is bounded), and a useful boundary for MECH-535: the clinic's ambitendency is elicited by exactly such conflict, and here a BG selector reproduces conflict-driven disintegration -- a gating-side route to ambitendency-like behaviour that competes with MECH-535's representational one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Behavioural disintegration under multiple high-salience alternatives despite intact BG persistence: the latch protects against near-tie noise, not against strong symmetric conflict.",
+    "This gives a GATING-axis route to ambitendency-like output (conflict between well-represented, strongly supported options) that is distinct from MECH-535's representational route; the two must be discriminated by whether the competing options are well- or ill-represented."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_536",
+    "mech_535",
+    "basal_ganglia",
+    "gpr_model",
+    "robot",
+    "behavioural_disintegration",
+    "conflict",
+    "action_selection",
+    "related:MECH-202"
+  ],
+  "mapping": {
+    "source_claim_statement": "A robot architecture embedding the GPR basal ganglia model controls action selection in a task inspired by animal observations. 'Our results demonstrate effective action selection by the embedded model under a wide range of sensory and motivational conditions. When confronted with multiple, high salience alternatives, the robot also exhibits forms of behavioral disintegration that show similarities to animal behavior in conflict situations.' The model is said to cast light on neurobiological findings on behavioural switching and sequencing.",
+    "ree_translation": "For MECH-536, effective selection across conditions is consistent with persistence adding robustness, but the disintegration result bounds the protection: a BG latch handles near-tie NOISE (Girard 2003), not strong SYMMETRIC conflict. For MECH-535 it supplies the competing explanation the claim must be discriminated from: ambitendency-like output can arise on the gating axis when two well-represented options are both strongly supported (the clinical handshake-under-contradictory-instruction elicitation is this shape), with no representational degradation at all. The 978 case differs in that nothing is strongly supported -- the directional head is flat -- so the discriminator is whether the competing tendencies come from a rich but conflicted representation or from an impoverished one.",
+    "mapping_caveat": "Abstract-level read; the exact conditions and metrics of 'behavioural disintegration' were not extracted from the full text. Robot foraging with hand-set saliences; no representational degradation is manipulated, so the paper does not test the MECH-536 dissociation. 'Similarities to animal conflict behaviour' is the authors' qualitative reading.",
+    "source_context": "Bio-inspired robotics; GPR basal ganglia model with thalamocortical loops embedded in a robot; foraging-style task inspired by animal observations; simulation and robot runs."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Long, well-cited Neural Networks paper from the Sheffield group; scored from the abstract. Its value is the boundary condition it puts on Girard 2003's result and the gating-axis alternative it supplies for ambitendency-like behaviour."
+  }
+}

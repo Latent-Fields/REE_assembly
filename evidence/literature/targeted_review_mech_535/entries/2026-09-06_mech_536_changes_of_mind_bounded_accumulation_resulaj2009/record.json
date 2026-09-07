@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_536_changes_of_mind_bounded_accumulation_resulaj2009",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-536"
+  ],
+  "source": {
+    "title": "Changes of mind in decision-making",
+    "authors": [
+      "Arbora Resulaj",
+      "Roozbeh Kiani",
+      "Daniel M. Wolpert",
+      "Michael N. Shadlen"
+    ],
+    "year": 2009,
+    "venue": "Nature",
+    "doi": "10.1038/nature08275",
+    "pmid": "19693010",
+    "pmc": "PMC2875179",
+    "volume": "461",
+    "issue": "7261",
+    "pages": "263-266"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "The reference account of commitment and its revision in perceptual decision-making. A decision is 'a commitment to a proposition or plan of action'; noisy evidence accumulates to a bound that triggers the initial choice and movement; changes of mind occur on a minority of trials, without new stimulus information, when evidence already 'in the processing pipeline' pushes a continued accumulation past a second bound. The model explains why changes of mind are rarer than the moment-to-moment sign flips of the evidence would predict: commitment with a high revision threshold filters noise. That is the perceptual-decision form of MECH-536's protective-persistence claim -- a memoryless re-decider would vacillate whenever momentary evidence flipped, whereas a bound-plus-revision-threshold policy vacillates rarely and mostly correctively. Mapping fidelity is moderate (a two-alternative motion discrimination with hand reaching, not action persistence in a foraging loop), hence 0.45.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Changes of mind, when they occur, are predominantly CORRECTIVE (error-to-correct more often than correct-to-error) and more frequent at intermediate difficulty -- commitment is revisable in a way that improves accuracy, not a rigid latch.",
+    "The mechanism is a continuation of evidence accumulation after the initial bound, so the protection it offers is against NOISE in adequate evidence; it says nothing about evidence that is systematically direction-blind."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_536",
+    "decision_commitment",
+    "changes_of_mind",
+    "bounded_accumulation",
+    "kiani",
+    "shadlen",
+    "vacillation",
+    "related:MECH-047",
+    "related:ARC-107"
+  ],
+  "mapping": {
+    "source_claim_statement": "'A decision is a commitment to a proposition or plan of action based on evidence and the expected costs and benefits associated with the outcome.' Subjects judged noisy motion and indicated the choice by reaching; 'although they received no additional information after initiating their movement, their hand trajectories betrayed a change of mind in some trials'. The authors 'propose that noisy evidence is accumulated over time until it reaches a criterion level, or bound, which determines the initial decision, and that the brain exploits information that is in the processing pipeline when the initial decision is made to subsequently either reverse or reaffirm the initial decision'. The model explains the frequency of changes of mind and their dependence on difficulty and on whether the initial decision was correct.",
+    "ree_translation": "MECH-536 claims that action persistence (commitment hysteresis) is protective against degraded or noisy input rather than necessary for competence. Resulaj et al. give the canonical human demonstration that commitment is a bound crossing followed by a HIGH threshold for revision: the momentary evidence sign flips constantly (it is noisy), yet the hand reverses on only a minority of trials, and mostly for the better. A memoryless actor re-deciding from the instantaneous evidence would reverse far more often -- which is the vacillation MECH-535 describes and MECH-536 says a latch removes. In REE this is the perceptual-decision form of ARC-107 root C's post-commit latch and MECH-047's asymmetric enter/exit thresholds, with the added point that a well-set latch remains revisable when the pipeline evidence is strong.",
+    "mapping_caveat": "Two-alternative motion discrimination with a reaching response is far from step-wise foraging on a grid; the 'commitment' here is to a categorical choice, not to an action held over several steps. The protection demonstrated is against noise in evidence that is, on average, informative; the paper cannot speak to evidence that carries no direction at all, which is MECH-535's case and the situation MECH-536's dissociating prediction concerns. Healthy human subjects; no basal ganglia measurement.",
+    "source_context": "Human psychophysics (n small, typical of the field); random-dot motion discrimination; reaching responses with trajectory recording; drift-diffusion model with post-initiation continuation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "Nature paper from the field's principal group; source quality high. Mapping fidelity moderate because commitment to a categorical perceptual choice is only an analogue of holding an action across steps. Later work (van den Berg et al. 2016 eLife) extends the same mechanism to changes of mind about confidence and was surveyed but not separately recorded."
+  }
+}

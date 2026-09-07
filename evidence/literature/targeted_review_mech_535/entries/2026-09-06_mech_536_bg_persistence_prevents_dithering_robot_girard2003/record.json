@@ -1,0 +1,72 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_536_bg_persistence_prevents_dithering_robot_girard2003",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-536",
+    "MECH-535"
+  ],
+  "source": {
+    "title": "A basal ganglia inspired model of action selection evaluated in a robotic survival task",
+    "authors": [
+      "Benoit Girard",
+      "Vincent Cuzin",
+      "Agnes Guillot",
+      "Kevin N. Gurney",
+      "Tony J. Prescott"
+    ],
+    "year": 2003,
+    "venue": "Journal of Integrative Neuroscience",
+    "doi": "10.1142/s0219635203000299",
+    "pmid": "15011270",
+    "pmc": null,
+    "volume": "2",
+    "issue": "2",
+    "pages": "179-200"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-536": "supports",
+    "MECH-535": "supports"
+  },
+  "confidence": 0.6,
+  "confidence_rationale": "The most direct Q3 source found. The GPR basal-ganglia model with its thalamocortical positive-feedback loop ('behavioural persistence') is compared against a plain winner-takes-all selector in the SAME robot and environment. Three results carry MECH-536. (1) Dissociation of competence from persistence: 'Despite its lack of persistence, the WTA robot was able to survive during Experiment 1 by increasing the frequency of its reloading actions' -- a memoryless greedy selector is competent when its inputs are adequate. (2) What persistence buys: avoidance of 'dithering ... a rapid oscillation between two acts' when two saliences are close (Experiment 2: a robot starved of energy and dirty 'may hesitate to display either an ingesting or a grooming act'; 'Lacking this possibility, the WTA robot necessarily oscillates between these behaviours'), plus a wider comfort zone and energy saving. (3) Persistence is a tunable dial, not a competence source: bout length is set by the persistence weights, and the authors note interruption is sometimes adaptive. This is MECH-536's functional claim stated by the BG-modelling tradition itself. For MECH-535 the support is weaker: the two-act oscillation of a memoryless selector under near-tie inputs is the same dynamical shape as 978's cycle, but its cause is two competing motivations, not a direction-blind state.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The WTA robot survives without persistence -- persistence is not necessary for basic competence when saliences are informative.",
+    "Persistence tuned too high 'could reinforce itself endlessly preventing itself from being deselected' without the BGII control pathway; excess persistence is the perseveration failure, so the dial has a pathological pole on each side.",
+    "The oscillation prevented is between two DIFFERENT acts (ingest vs groom) driven by two motivations; it is not an approach/withdraw cycle toward one goal."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_536",
+    "mech_535",
+    "basal_ganglia",
+    "gpr_model",
+    "thalamocortical_loop",
+    "behavioural_persistence",
+    "dithering",
+    "winner_takes_all",
+    "robot",
+    "related:MECH-047",
+    "related:MECH-266",
+    "related:ARC-107"
+  ],
+  "mapping": {
+    "source_claim_statement": "A robotic implementation of the Gurney-Prescott-Redgrave basal ganglia model, with thalamocortical loops that 'can induce behavioural persistence', is compared with a classical winner-takes-all selector in a two-resource survival task. 'ROB, ROD and AO bouts generally last longer with the GPR architecture than with the WTA. This can be explained by effects of persistence, allowing an action to remain active for some time after its raw salience has fallen below that of other actions.' 'One of the advantages of having a persistence effect is to prevent dithering, that is, switching frequently between different actions'; with two competing acts 'the WTA robot necessarily oscillates between these behaviours'. 'Despite its lack of persistence, the WTA robot was able to survive during Experiment 1', but spent less time 'in a comfort zone well away from the boundary of viability'. 'An efficient action selection system should be able to control the level of behavioural persistence according to circumstances.'",
+    "ree_translation": "MECH-536 says BG-like action persistence is protective against degraded inputs rather than necessary for competence: a memoryless greedy actor forages competently given a good representation (978's local_view_greedy), and a latch on a direction-blind actor removes the cycle without restoring foraging. Girard et al. show the first half directly (WTA survives; persistence widens the viability margin and prevents oscillation between near-tie acts) and treat persistence as a dial that must be set per context, i.e. as a robustness mechanism layered on selection rather than as selection itself. Their 'dithering' is the same dynamical object as 978's two-cell cycle -- a memoryless selector flipping between two options whose values cross every step -- which supports MECH-535's 'ambitendency = intact actor + no persistence + inputs that alternate' at the level of the mechanism, with the caveat below.",
+    "mapping_caveat": "The GPR/WTA comparison varies persistence with inputs held adequate; it never degrades the REPRESENTATION, so it does not test MECH-536's dissociating prediction (latch + direction-blind input = cycle gone, competence flat). Its dithering is between two acts driven by two motivations, not approach/withdraw toward one goal from a magnitude-only state. Small-n robot runs (5-6 per condition) with hand-tuned weights. The claim that persistence is 'protective against representational degradation' specifically is REE's extension, not the paper's.",
+    "source_context": "Bio-inspired robotics; Khepera robot, two-resource survival task; GPR basal ganglia model with thalamocortical feedback vs winner-takes-all; 5-6 runs per condition."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "A well-known result from the Sheffield BG-modelling group in a modest venue, with small run counts and hand-tuned parameters (source quality moderate). Mapping fidelity is the highest in this pull for MECH-536 because the paper's own framing -- persistence prevents dithering and widens the viability margin while a persistence-free selector remains competent -- is the claim's functional statement. Transfer risk is moderate: a two-resource survival task is structurally close to the fishtank."
+  }
+}

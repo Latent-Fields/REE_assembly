@@ -1,0 +1,70 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_535_systems_model_convergent_phenotype_toledo2026",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-535",
+    "ARC-086"
+  ],
+  "source": {
+    "title": "Toward a systems model of catatonia: Circuits, neurochemistry, immune perturbation, and biological heterogeneity",
+    "authors": [
+      "Gustavo Toledo",
+      "Camilla T. P. Gusmao",
+      "Rafael Carvalho",
+      "Abdul Haseeb",
+      "Ana Cristina Ruiz",
+      "Brandi Karnes",
+      "Micah Knobles",
+      "Giselli Scaini",
+      "Joao Quevedo"
+    ],
+    "year": 2026,
+    "venue": "Progress in Neuro-Psychopharmacology and Biological Psychiatry",
+    "doi": "10.1016/j.pnpbp.2026.111833",
+    "pmid": "42431537",
+    "pmc": null,
+    "volume": "148",
+    "pages": "111833"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-535": "unknown",
+    "ARC-086": "supports"
+  },
+  "confidence": 0.4,
+  "confidence_rationale": "A current (2026) synthesis that reads catatonia as 'a final common phenotype of disturbed psychomotor regulation rather than the expression of a single disease process', with hypokinetic, hyperkinetic and aberrant-volitional components and converging GABAergic / glutamatergic-NMDA / dopaminergic disturbances across cortico-striatal-thalamic, orbitofrontal, cingulate and motor-premotor networks. For ARC-086 (one phenotype, several generative routes, taxonomy indexed on axes) this is direct support at the level of the stance. For MECH-535 it is unknown: the review inventories the GABA-A, NMDA and D2 routes the chip asked about and locates none of them in the goal representation -- a clean null on the specific route -- while its 'diverse upstream liabilities destabilize shared psychomotor networks' framing is exactly the kind of multi-route structure a third route would slot into.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "No single biomarker or unified mechanism accounts for catatonia across contexts; neuroimaging samples over-represent schizophrenia-spectrum patients and acute-state data are scarce.",
+    "The three named dimensions (hypokinetic, hyperkinetic, aberrant-volitional) index the phenotype by MOTOR OUTPUT and VOLITION, not by representational adequacy; there is no representational axis in the field's own taxonomy."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_535",
+    "arc_086",
+    "systems_model",
+    "gaba_a",
+    "nmda",
+    "dopamine",
+    "convergent_phenotype",
+    "failure_taxonomy"
+  ],
+  "mapping": {
+    "source_claim_statement": "Catatonia is transdiagnostic and internally heterogeneous, with hypokinetic, hyperkinetic and aberrant-volitional components that often overlap within an episode. The best-supported mechanistic model comes from neuroimaging implicating cortico-striatal-thalamic, cortico-cerebellar, orbitofrontal, cingulate and motor-premotor networks. Neurochemical evidence supports interacting disturbances in GABAergic inhibition, glutamatergic/NMDA excitation and dopaminergic modulation 'rather than a single-transmitter explanation'. 'Diverse upstream liabilities destabilize shared psychomotor networks, producing a recognizable but heterogeneous syndrome.'",
+    "ree_translation": "ARC-086 asserts that one undertrained or degraded mechanism can yield several failure signatures and that the psychiatric failure taxonomy should be indexed on generative axes rather than on surface signs; this review is the field arriving at the same many-routes-one-phenotype structure from the clinical side. For MECH-535 the review is the current inventory of the GABA-A, NMDA/anti-NMDAR and D2 routes the chip asked about, and every one of them is placed in circuit excitability or neuromodulation of the psychomotor network -- i.e. in gating and control -- not in what the state carries. The representational route is absent from the field's own dimensional taxonomy (hypokinetic / hyperkinetic / aberrant-volitional), which is the Q2 null stated at review level.",
+    "mapping_caveat": "A review that says 'many upstream liabilities converge' is compatible with a third route but is not evidence for any particular one; it cannot raise MECH-535's confidence. The dimensional taxonomy it endorses has no representational axis, so a reader could equally take it as evidence that the field has found no need for one. Published July 2026; abstract-level read only, full text not yet accessible at pull time.",
+    "source_context": "Narrative systems review; human clinical neuroimaging, neurochemistry, immunology, genetics; transdiagnostic (psychiatric, neurologic, autoimmune, developmental) catatonia."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "Recent narrative review from an interventional psychiatry group, not a systematic review; scored on the abstract. Mapping fidelity is good for ARC-086's stance and poor for MECH-535's specific route. The evidence_direction_per_claim field carries that split."
+  }
+}

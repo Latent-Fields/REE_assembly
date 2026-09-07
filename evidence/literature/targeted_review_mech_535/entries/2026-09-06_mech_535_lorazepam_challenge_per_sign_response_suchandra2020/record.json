@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_535",
+  "entry_id": "2026-09-06_mech_535_lorazepam_challenge_per_sign_response_suchandra2020",
+  "timestamp_utc": "2026-09-07T00:01:39Z",
+  "claim_ids_tested": [
+    "MECH-535",
+    "MECH-536"
+  ],
+  "source": {
+    "title": "Revisiting lorazepam challenge test: Clinical response with dose variations and utility for catatonia in a psychiatric emergency setting",
+    "authors": [
+      "Hari Hara Suchandra",
+      "Venkata Senthil Kumar Reddi",
+      "Bhaskaran Aandi Subramaniyam",
+      "Krishna Prasad Muliyala"
+    ],
+    "year": 2020,
+    "venue": "Australian and New Zealand Journal of Psychiatry",
+    "doi": "10.1177/0004867420968915",
+    "pmid": "33124447",
+    "pmc": null,
+    "volume": "55",
+    "issue": "10",
+    "pages": "993-1004"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "unknown",
+  "confidence": 0.2,
+  "confidence_rationale": "ANALOGY ONLY -- recorded per the chip's Q4 instruction and feedback_lit_exp_decoupled; this entry must not raise either claim's confidence, and evidence_direction is set to unknown for that reason. Content: in 57 emergency-setting catatonia patients, ambitendency was among the signs that responded significantly to BOTH 2 mg and 4 mg lorazepam (with stupor, mutism, staring, posturing, withdrawal, automatic obedience), whereas others responded only at 2 mg; the authors read the per-sign variability as suggesting 'neurobiological underpinnings for individual catatonic signs that may be potentially different'. The clinical analogy in MECH-536 -- a benzodiazepine restores movement without treating the underlying illness -- has a documented item-level basis here (ambitendency resolves with GABA-A potentiation) but says nothing about representation vs gating, and the resemblance runs through a transmitter system with no counterpart in the 978 reader.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Per-sign response to lorazepam is heterogeneous (some signs respond at 2 mg only), which the authors read as possibly distinct neurobiological substrates per sign -- catatonic signs may not share one mechanism, undercutting any inference from 'lorazepam relieves ambitendency' to a single locus.",
+    "Northoff (2002) describes a lorazepam NON-responder whose presentation was ambitendency-like (days before a wardrobe, unable to decide); the sign is not uniformly benzodiazepine-responsive."
+  ],
+  "tags": [
+    "ambitendency",
+    "catatonia",
+    "action_persistence",
+    "representation_vs_gating",
+    "mech_535",
+    "mech_536",
+    "lorazepam",
+    "benzodiazepine",
+    "gaba_a",
+    "lorazepam_challenge_test",
+    "bfcrs",
+    "support_tag:analogy_only",
+    "support_tag:corroborating_context_not_support"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a 6-month emergency-setting study of 57 catatonia patients, 2 mg (n = 37) and 4 mg (n = 20) lorazepam challenge doses produced no between-group difference in BFCRS change; within groups, 'significant response [was] noted to both doses (stupor, mutism, staring, posturing, withdrawal, ambitendency, automatic obedience) and others selectively to 2 mg (echolalia, rigidity, negativism, mitgehen)'. The authors propose 2 mg as the optimal challenge dose and note the findings offer direction for 'exploring neurobiological underpinnings for individual catatonic signs that may be potentially different'.",
+    "ree_translation": "MECH-536's notes carry a clinical echo: lorazepam restores movement in catatonia without treating the underlying illness, as a latch would abolish 978's ambitendency without restoring foraging. This entry documents that the echo has an item-level basis -- ambitendency specifically resolves under GABA-A potentiation -- and no more. It is corroborating CONTEXT for the shape of the prediction (a manipulation that removes the sign without addressing what produced it), not evidence for either claim, because nothing in a dose-response study touches whether the sign arose from a degraded representation or from a gating failure, and because GABA-A potentiation has no mechanism-level counterpart in an argmax reader over z_world.",
+    "mapping_caveat": "Analogy only, by design. The resemblance is between two different operations (raising GABA-A inhibition in a human brain; adding a k-step latch to a frozen policy) that share one abstract property (removing a sign without restoring the missing function). Governance must not read this as support for MECH-535 or MECH-536 (feedback_lit_exp_decoupled). Observational, no placebo, single centre, response judged at item level with multiple comparisons.",
+    "source_context": "Human adults; psychiatric emergency setting, tertiary neuropsychiatric centre, India; 57 catatonia patients; observational comparison of two lorazepam challenge doses; BFCRS item-level change."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.15,
+    "transfer_risk": 0.85,
+    "notes": "Mapping fidelity is set very low and transfer risk very high deliberately: the entry exists to record the analogy and its item-level basis so it is not re-pulled, and to carry the support_tag that tells governance to read it as context. Confidence 0.2 reflects that this is not evidence about either claim's mechanism."
+  }
+}
