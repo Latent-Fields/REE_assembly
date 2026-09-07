@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_impl_027",
+  "entry_id": "2026-09-07_impl_027_neural_computers_primary_source_zhuge2026",
+  "timestamp_utc": "2026-09-07T20:30:40Z",
+  "claim_ids_tested": ["IMPL-027"],
+  "source": {
+    "title": "Neural Computers",
+    "authors": [
+      "Mingchen Zhuge", "Changsheng Zhao", "Haozhe Liu", "Zijian Zhou", "Shuming Liu",
+      "Wenyi Wang", "Ernie Chang", "Gael Le Lan", "Junjie Fei", "Wenxuan Zhang",
+      "Yasheng Sun", "Zhipeng Cai", "Zechun Liu", "Yunyang Xiong", "Yining Yang",
+      "Yuandong Tian", "Yangyang Shi", "Vikas Chandra", "Jurgen Schmidhuber"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2604.06425",
+    "doi": null,
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2604.06425"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The primary source confirms IMPL-027's central structural mapping -- the four named CNC requirements exist verbatim as the document reports them, and the acknowledged prototype failures (symbolic instability, no routine reuse, no controlled update) are real and quoted accurately in substance. Confidence is held below 0.8 because verification also surfaced three concrete provenance/accuracy defects in IMPL-027's own rendering of this source (citation year, first author, and the GUIWorld data characterisation), and because the document's section 2 answers only three of the four requirements while the claim notes assert it addresses all four. Source quality is high (19-author industrial lab preprint with released prototypes) but it is an unrefereed preprint and a position/roadmap paper, so its own claims about what CNCs require are programmatic rather than established.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "IMPL-027 cites this work as 'Schmidhuber et al. (2025)'. The paper was submitted 7 April 2026 and its first author is Mingchen Zhuge; Jurgen Schmidhuber is the nineteenth and last author. Both the year and the et-al. anchor are wrong.",
+    "IMPL-027 cites only trade-press coverage (semiengineering.com) and no primary identifier. The paper is arXiv:2604.06425 and was reachable throughout; the claim carried secondary-source provenance for a document whose entire content is a reading of the primary source.",
+    "IMPL-027 describes the prototypes as 'trained on screen-recording I/O traces (CLIGen: 1,100 hours; GUIWorld: 1,510 hours)'. The paper's GUIWorld figure decomposes into ~110 hours of supervised goal-oriented trajectories plus ~1,400 hours of random mouse movement, so the quantity of task-relevant GUI supervision is overstated by roughly an order of magnitude by the undecomposed total.",
+    "IMPL-027 section 2 is titled as answering 'the Four CNC Requirements' and the claim notes assert REE 'addresses all four from first principles', but the section answers Behavior Consistency, Universal Programmability and Machine-Native Semantics only. Requirement 1, Turing completeness, is absent from section 2 and from the section 5 translation table; 'Long-Horizon Stability' (section 2.2) is a REE-introduced category, not one of the paper's four requirements."
+  ],
+  "tags": ["impl-027", "neural_computers", "primary_source", "positioning", "provenance_correction"],
+  "mapping": {
+    "source_claim_statement": "The paper proposes Neural Computers (NCs) that 'unify computation, memory, and I/O of traditional computers in a learned runtime state', with the long-term goal of a Completely Neural Computer (CNC) having 'stable execution, explicit reprogramming, and durable capability reuse'. It names four CNC characteristics -- Turing completeness, universal programmability, behavior consistency, machine-native semantics -- and reports that its video-model prototypes 'can acquire elementary interface primitives, especially I/O alignment and short-horizon control, while routine reuse, controlled updates, and symbolic stability remain challenging'.",
+    "ree_translation": "IMPL-027 treats these four requirements as an externally-generated checklist against which REE's independently derived structures can be positioned: behavior consistency maps to commitment gating and the beta-gate (MECH-061, MECH-090); universal programmability maps to the residue field plus hippocampal viability map (INV-004, ARC-018); machine-native semantics maps to axiomatic derivation rather than I/O-statistical emergence (INV-025..INV-029); and the paper's call for separating inference from parameter update maps to REE's online/offline phase separation (INV-049). The paper's acknowledged failure modes are read by IMPL-027 as the predicted consequences of lacking those structures.",
+    "mapping_caveat": "The mapping is between a roadmap paper's aspirational requirement names and REE's architectural claims -- not between two measured systems. The paper defines universal programmability specifically as reprogrammability 'using natural language or structured prompts', which is precisely the capability IMPL-027 section 4 concedes REE does not specify; so the section 2.3 answer (residue field plus trajectory reuse) addresses routine reuse and transfer, a genuinely overlapping but narrower target than the paper's own definition. Nothing here is experimental evidence for any REE mechanism: a correct reading of an external roadmap constrains IMPL-027's accuracy as a reference note, and nothing else.",
+    "source_context": "Industrial-lab preprint (Meta AI / KAUST); prototypes are video models rolling out screen frames in CLI and GUI settings, trained from I/O traces without instrumented program state."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "source_quality reflects a substantial 19-author preprint with released prototypes but no peer review and a declared position/roadmap purpose. mapping_fidelity is set by the split verdict: the four requirement names and the failure modes verify verbatim, while the citation metadata, the GUIWorld characterisation, and the all-four coverage assertion do not. transfer_risk is moderate rather than low because IMPL-027 is a positioning document -- the risk is that a correspondence of vocabulary gets read as a correspondence of evidence."
+  }
+}

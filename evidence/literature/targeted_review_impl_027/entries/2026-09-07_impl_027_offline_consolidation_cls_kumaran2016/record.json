@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_impl_027",
+  "entry_id": "2026-09-07_impl_027_offline_consolidation_cls_kumaran2016",
+  "timestamp_utc": "2026-09-07T20:30:40Z",
+  "claim_ids_tested": ["IMPL-027"],
+  "source": {
+    "title": "What Learning Systems do Intelligent Agents Need? Complementary Learning Systems Theory Updated",
+    "authors": ["Dharshan Kumaran", "Demis Hassabis", "James L. McClelland"],
+    "year": 2016,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2016.05.004",
+    "pmid": "27315762",
+    "volume": "20",
+    "issue": "7",
+    "pages": "512-534",
+    "pmc": null,
+    "arxiv_id": null
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "A canonical, peer-reviewed review that substantially supports IMPL-027's strongest technical bridge -- that periodic offline consolidation is a general requirement for a system that must both use and update a world model, and that the NC roadmap's call to separate inference from parameter update is the same requirement in different vocabulary. It is scored mixed rather than supports because the source derives that separation from a statistical argument about interleaved replay and catastrophic interference in overlapping distributed representations, which is a weaker and differently-grounded warrant than IMPL-027's assertion that the requirement is a 'mathematical necessity, not a biological contingency'. The source supports the architectural conclusion while undercutting the modal strength IMPL-027 attaches to it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "IMPL-027 asserts offline consolidation is 'a general computational necessity, not a biological contingency'. The canonical source for the underlying argument grounds the online/offline split in a statistical claim -- that interleaved replay is required to integrate new knowledge into overlapping distributed representations without catastrophic interference -- which is contingent on the representational scheme, not a necessity independent of it. A system using sufficiently sparse or non-overlapping representations faces the interference problem far less acutely.",
+    "The strength of IMPL-027's 'mathematical necessity' framing is not supported by the literature it implicitly rests on. INV-049 may still be correct, but the warrant available from complementary learning systems theory is weaker than the modal language claims, and IMPL-027 does not cite any source for the necessity assertion."
+  ],
+  "tags": ["impl-027", "inv-049", "complementary_learning_systems", "offline_consolidation", "catastrophic_forgetting"],
+  "mapping": {
+    "source_claim_statement": "The authors argue that intelligent agents require two complementary learning systems: a fast-learning episodic system supporting rapid acquisition of specific experiences, and a slow-learning neocortical system that acquires structured knowledge gradually. Integrating new information into the slow system requires interleaved replay of stored experience, because direct rapid learning in overlapping distributed representations produces catastrophic interference with existing knowledge.",
+    "ree_translation": "IMPL-027 section 3 asserts that REE derives offline consolidation from 'the fundamental incompatibility of model-use and model-update' (INV-049), and identifies the NC roadmap's 'architectural separation of inference from parameter updates' as the NC-language description of the same structure. This source is the strongest available external grounding for that bridge: it independently establishes that a system which must both use and revise a structured world model needs a separated, replay-driven consolidation phase, and that the alternative is catastrophic interference -- which is precisely the failure the NC prototypes exhibit when acquiring new capabilities.",
+    "mapping_caveat": "The source's warrant is statistical and representation-dependent, not modal. Catastrophic interference is a consequence of overlapping distributed representations under gradient learning; it is not a theorem about any system that uses and updates a model. IMPL-027's 'mathematical necessity, not a biological contingency' therefore overstates what this literature licenses -- the honest form is that offline consolidation is required for systems of a broad and practically dominant class, which includes both REE and the NC prototypes. Note also that Hassabis is a co-author here and on the DNC paper cited in this same pull, which bears on the independence premise IMPL-027 section 6 relies on.",
+    "source_context": "Theoretical review integrating rodent and human hippocampal-neocortical findings with machine learning; explicitly addressed to the design of artificial agents as well as to biology."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "source_quality is high: canonical peer-reviewed review by the originators of the framework, explicitly written to address artificial agent design as well as biology, which lowers the usual biology-to-architecture transfer concern. mapping_fidelity 0.70 -- the architectural conclusion maps well and the source addresses artificial agents directly, but IMPL-027's modal framing ('necessity') does not map onto the source's statistical argument. transfer_risk is the lowest in this pull at 0.30 because the source itself makes the cross-domain move, so REE is not smuggling a biological result into an architectural argument unaided."
+  }
+}

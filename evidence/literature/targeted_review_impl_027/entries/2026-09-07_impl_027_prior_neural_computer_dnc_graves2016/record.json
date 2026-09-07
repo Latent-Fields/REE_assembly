@@ -1,0 +1,70 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_impl_027",
+  "entry_id": "2026-09-07_impl_027_prior_neural_computer_dnc_graves2016",
+  "timestamp_utc": "2026-09-07T20:30:40Z",
+  "claim_ids_tested": [
+    "IMPL-027"
+  ],
+  "source": {
+    "title": "Hybrid computing using a neural network with dynamic external memory",
+    "authors": [
+      "Alex Graves",
+      "Greg Wayne",
+      "Malcolm Reynolds",
+      "Tim Harley",
+      "Ivo Danihelka",
+      "Agnieszka Grabska-Barwinska",
+      "Sergio Gomez Colmenarejo",
+      "Edward Grefenstette",
+      "Tiago Ramalho",
+      "John Agapiou",
+      "Adria Puigdomenech Badia",
+      "Karl Moritz Hermann",
+      "Yori Zwols",
+      "Georg Ostrovski",
+      "Adam Cain",
+      "Helen King",
+      "Christopher Summerfield",
+      "Phil Blunsom",
+      "Koray Kavukcuoglu",
+      "Demis Hassabis"
+    ],
+    "year": 2016,
+    "venue": "Nature",
+    "doi": "10.1038/nature20101",
+    "volume": "538",
+    "issue": "7626",
+    "pages": "471-476",
+    "pmid": null,
+    "arxiv_id": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "High source quality (peer-reviewed Nature paper, heavily replicated line of work) and a direct, uncontested bearing on one specific sub-argument: IMPL-027 section 6 claims the NC and REE programmes converge 'from entirely different starting points', which it treats as evidence that the converged-on structures are 'genuinely necessary'. The Differentiable Neural Computer is a decade-prior, explicitly named neural computer built on addressable external memory, from the DeepMind lineage; the NC roadmap's starting point is therefore not independent of the memory-augmented-neural-computation line, and REE_convergence has separately ingested that same line. Confidence is held at 0.68 rather than higher because the bearing is on the strength of an inference IMPL-027 draws, not on any REE architectural claim, and because independence of intellectual lineage is a matter of judgement that this paper informs but cannot settle.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "IMPL-027 section 6 argues that NC and REE converging on commitment boundaries, memory stratification, offline consolidation and separate learning channels 'from entirely different starting points -- suggests these are genuinely necessary structures'. The independence premise is weak: the Differentiable Neural Computer (Nature, 2016) is a prior, explicitly named 'neural computer' with addressable external memory, and it shares the DeepMind/Hassabis lineage that also produced the complementary-learning-systems argument REE cites for INV-049.",
+    "Two programmes drawing on a common prior literature can converge without that convergence carrying any evidential weight about necessity. IMPL-027 currently offers no argument that the NC roadmap's requirements were arrived at independently of the memory-augmented neural computation line, which REE_convergence has itself ingested as an external framework."
+  ],
+  "tags": [
+    "impl-027",
+    "differentiable_neural_computer",
+    "external_memory",
+    "convergence_argument",
+    "disconfirming"
+  ],
+  "mapping": {
+    "source_claim_statement": "The authors introduce a differentiable neural computer (DNC): 'a machine learning model comprising a neural network that can read from and write to an external memory matrix, analogous to the random-access memory in a conventional computer'. They show it can be trained by gradient descent to solve tasks requiring structured memory -- graph traversal on transport networks and family trees, and a block-puzzle planning task -- that recurrent networks without external memory fail.",
+    "ree_translation": "IMPL-027 does not cite this work, but it bears on the document's section 6 inference. The DNC establishes that the project of making a neural network into an addressable, reusable computer -- with explicit separation of computation from a persistent addressable store -- was formulated and demonstrated a decade before the NC roadmap, in the same institutional lineage. REE's own positioning of memory stratification (multi-timescale L-space) and routine reuse (hippocampal viability map, ARC-018) therefore sits in a field where these ideas are common currency, not one where two isolated programmes met by surprise.",
+    "mapping_caveat": "This entry weakens an inference, not a mechanism. Nothing here bears on whether REE's commitment gating, residue field, or phase separation are correct or necessary -- only on whether the fact of NC-REE agreement is evidence for that necessity. The DNC is also architecturally unlike both: its external memory is an explicit differentiable matrix, not a learned runtime state (NC) and not a valenced viability map (REE). Reading it as a third convergent instance would repeat the error this entry is flagging.",
+    "source_context": "Supervised and reinforcement-learned tasks on synthetic graph, family-tree and block-puzzle domains; no biological or agentic deployment."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "source_quality is high: peer-reviewed Nature, canonical and heavily cited. mapping_fidelity is 0.65 because the paper says nothing about REE or about the NC roadmap -- the bearing is inferential, assembled by me from the shared lineage and the decade-prior use of the same 'neural computer' framing, not asserted by the source. transfer_risk 0.40 reflects that judgements about intellectual independence are genuinely contestable; a reader could reasonably hold that the NC roadmap's four requirements were arrived at from systems-engineering pressures regardless of the DNC precedent."
+  }
+}

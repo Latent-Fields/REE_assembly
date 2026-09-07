@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_impl_027",
+  "entry_id": "2026-09-07_impl_027_turing_completeness_perez2021",
+  "timestamp_utc": "2026-09-07T20:30:40Z",
+  "claim_ids_tested": ["IMPL-027"],
+  "source": {
+    "title": "Attention is Turing-Complete",
+    "authors": ["Jorge Perez", "Pablo Barcelo", "Javier Marinkovic"],
+    "year": 2021,
+    "venue": "Journal of Machine Learning Research",
+    "volume": "22",
+    "issue": "75",
+    "pages": "1-35",
+    "url": "https://jmlr.org/papers/v22/20-302.html",
+    "doi": null,
+    "pmid": null,
+    "arxiv_id": null
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "A peer-reviewed formal result in a strong venue, bearing directly on the one CNC requirement IMPL-027 silently omits. Turing completeness is the first of the four requirements the document sets out to answer, and it is the only one with a settled formal literature: hard-attention Transformers are already Turing complete. This weakens IMPL-027 in two directions at once -- it is a gap in the document's claimed coverage, and it suggests the gap may be benign, because requirement 1 is arguably not an open architectural problem in the way the other three are. Confidence is held at 0.62 because the result's practical force depends on idealisation assumptions (notably arbitrary-precision internal representations) that I did not verify against the full text, and because REE has no corresponding formal expressiveness result to compare against, so the comparison is asymmetric.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "IMPL-027 section 2 sets out to answer the four CNC requirements and answers three. Turing completeness -- requirement 1, and the first row a technical reader will look for -- has no subsection and no row in the section 5 translation table. The claims.yaml notes for IMPL-027 nonetheless assert REE 'addresses all four from first principles'.",
+    "The omission is not merely presentational: REE has no registered formal expressiveness or computability result, so there is currently nothing in the claim graph that could fill the requirement-1 row if it were added. IMPL-027 has no basis on which to assert coverage of requirement 1.",
+    "Conversely, the formal literature suggests requirement 1 may be the least discriminating of the four: hard-attention Transformers are already Turing complete under the paper's assumptions, so a neural computer's difficulty is not expressive power but stable, reusable, governable execution -- which is what the other three requirements name."
+  ],
+  "tags": ["impl-027", "turing_completeness", "transformer_expressivity", "coverage_gap", "disconfirming"],
+  "mapping": {
+    "source_claim_statement": "'We show that the Transformer with hard-attention is Turing complete exclusively based on their capacity to compute and access internal dense representations of the data. Our study also reveals some minimal sets of elements needed to obtain this completeness result.'",
+    "ree_translation": "IMPL-027 lists Turing completeness as CNC requirement 1 and then does not answer it. This result indicates why an answer might be both unavailable and unnecessary: expressive universality is already established for the architecture class the NC prototypes are built from, so it is not the property that distinguishes a Completely Neural Computer from current models. The discriminating requirements are the other three -- behavior consistency, universal programmability, machine-native semantics -- which are about governed execution rather than expressive power, and which are precisely the three IMPL-027 does answer.",
+    "mapping_caveat": "The result is a formal idealisation. Turing completeness of an architecture class says nothing about whether a trained instance reliably executes anything -- the NC prototypes' ~4% arithmetic accuracy is entirely compatible with the architecture being universal in principle. Reading this entry as 'requirement 1 is solved' would be a category error; it says only that requirement 1 is the wrong place to look for the gap. I did not verify from the full text which idealisation assumptions the proof rests on (arbitrary-precision internal representations and unbounded computation steps are the standard caveats in this literature), so the strength of the practical reading is uncertain. REE also has no formal expressiveness result of its own, so this is not a like-for-like comparison between the two programmes.",
+    "source_context": "Formal computability-theoretic analysis of self-attention architectures; no empirical or trained-model component."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.50,
+    "notes": "source_quality is high -- JMLR, peer-reviewed formal result, widely cited. mapping_fidelity is 0.60 because the paper is about Transformers and says nothing about REE, NC, or IMPL-027; the bearing on the coverage gap is mine to argue. transfer_risk is the highest in this pull at 0.50, deliberately: the gap between an idealised universality proof and any statement about real systems is exactly where this kind of result is most often over-read, and the honest use of it here is narrow -- it identifies where IMPL-027's missing row sits and suggests the omission is defensible, not that anything is solved."
+  }
+}
