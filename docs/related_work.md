@@ -1,6 +1,6 @@
 ---
 title: Related Work
-nav_order: 9
+nav_order: 10
 ---
 
 # Related Latent-Fields Work
