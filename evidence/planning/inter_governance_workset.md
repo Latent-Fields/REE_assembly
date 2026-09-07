@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-07T07:32:16Z`
+Generated: `2026-09-07T08:19:34Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,7 +9,7 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **247** (ready 30, in_flight 0, blocked 163)
+- Items: **247** (ready 29, in_flight 0, blocked 164)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 81, v4 76, v5 38, v6 25
 - Pending review: **1**
 - Queue pending (unclaimed): **0**
@@ -5518,8 +5518,9 @@ Instructions:
 
 ### IGW-20260907-241 -- Confirm evidence: MECH-489 (lit 0.82, exp ~0)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
-- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.82, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
+- **Blocked by:** experiment_proposals.v1.json EXP-0057 status=executed: ADJUDICATED DO-NOT-QUEUE 2026-09-06 (igw-241-confirm-evidence-mech-489-lit-0, IGW-20260906-241, same GOV-CONFIRM-1 confirmer lane). The re-fire the 2026-08-26 note flagged as a KNOWN RI
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (metaworker-chip-20260817-sd-orienting-decision-scale-amend) recorded EXP-0057 status=executed in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-O
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -5527,9 +5528,10 @@ Instructions:
 REE inter-governance work item: IGW-20260907-241
 Title: Confirm evidence: MECH-489 (lit 0.82, exp ~0)
 Lane: experiment | Skill: /queue-experiment
-Status: ready
+Status: blocked
 Claims: MECH-489
-Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.82, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+Blocked by: experiment_proposals.v1.json EXP-0057 status=executed: ADJUDICATED DO-NOT-QUEUE 2026-09-06 (igw-241-confirm-evidence-mech-489-lit-0, IGW-20260906-241, same GOV-CONFIRM-1 confirmer lane). The re-fire the 2026-08-26 note flagged as a KNOWN RI
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (metaworker-chip-20260817-sd-orienting-decision-scale-amend) recorded EXP-0057 status=executed in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-O
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
