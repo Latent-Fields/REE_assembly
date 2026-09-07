@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-07T02:47:30Z`
+Generated: `2026-09-07T04:02:52Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,7 +9,7 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **244** (ready 30, in_flight 0, blocked 159)
+- Items: **244** (ready 29, in_flight 0, blocked 160)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 78, v4 76, v5 38, v6 25
 - Pending review: **0**
 - Queue pending (unclaimed): **0**
@@ -290,8 +290,9 @@ Instructions:
 
 ### IGW-20260907-211 -- Retest after substrate: ARC-019
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28 | **Generation:** v3
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
+- **Blocked by:** experiment_proposals.v1.json EXP-0264 status=blocked_substrate: blocked by z_goal_collapse_infant_curriculum_lineage, gate_criterion_2_h_pos_structurally_unreachable, gate_criterion_3_residue_coverage_degenerate, ARC-046_ready_false_ph
+- **Why now:** A prior investigation already adjudicated the backing proposal as blocked_substrate -- see blocked_by. Do not re-investigate; re-run /queue-experiment once the named blocker(s) are built.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -299,9 +300,10 @@ Instructions:
 REE inter-governance work item: IGW-20260907-211
 Title: Retest after substrate: ARC-019
 Lane: experiment | Skill: /queue-experiment
-Status: ready
+Status: blocked
 Claims: ARC-019
-Why now: claims.yaml pending_retest_after_substrate=true.
+Blocked by: experiment_proposals.v1.json EXP-0264 status=blocked_substrate: blocked by z_goal_collapse_infant_curriculum_lineage, gate_criterion_2_h_pos_structurally_unreachable, gate_criterion_3_residue_coverage_degenerate, ARC-046_ready_false_ph
+Why now: A prior investigation already adjudicated the backing proposal as blocked_substrate -- see blocked_by. Do not re-investigate; re-run /queue-experiment once the named blocker(s) are built.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
