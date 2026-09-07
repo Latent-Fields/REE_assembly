@@ -3306,7 +3306,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-08-31T10:53:41Z",
       "staged_at": "2026-08-31T10:53:41Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-09-07T22:42:43Z",
+      "completion_summary": "NEVER LAUNCHED. Staged 2026-08-31/2026-09-04 and still 'staged' 7 days later, past STAGE_STALE_HOURS(72); the backing workset item no longer exists in inter_governance_workset.v1.json (matched by neither stable_hash nor title on 2026-09-07), so the frozen IGW_START_HERE.md brief described a condition that had already lapsed. Its worktree was then removed IN ERROR by session w4hk-bundle-c-20260907 (W4-HK bundle C worktree-graveyard GC): that sweep applied gate 1 as 'chip resolved done/withdrawn' for metaworker-* worktrees only and did not check the IGW ledger status for igw-* ones, which chip-20260826-worktree-graveyard-triage-and-gc explicitly requires ('for igw-*, its ledger entry ... is completed -- prefer running igw_routine_tick.py gc'). Gates 2/3/4 did all hold (no live process, clean tree, zero unlanded commits), so no committed or uncommitted work was lost; what was lost is the staged IGW_START_HERE.md brief, which is not reconstructible because its source workset item is gone. Closed NO_OP rather than left dangling so the entry stops sitting LIVE against an absent worktree and its 2026-08-31 TASK_CLAIMS claim closes. If this substrate item is still wanted, it should be re-surfaced by the generator on its own merits rather than relaunched from a lapsed brief. Lane is 'substrate' and outcome NO_OP, so R3 retires no proposal.",
+      "outcome": "NO_OP",
+      "outcome_evidence": "NEVER LAUNCHED. Staged 2026-08-31/2026-09-04 and still 'staged' 7 days later, past STAGE_STALE_HOURS(72); the backing workset item no longer exists in inter_governance_workset.v1.json (matched by neither stable_hash nor title on 2026-09-07), so the frozen IGW_START_HERE.md brief described a condition that had already lapsed. Its worktree was then removed IN ERROR by session w4hk-bundle-c-20260907 (W4-HK bundle C worktree-graveyard GC): that sweep applied gate 1 as 'chip resolved done/withdrawn' for metaworker-* worktrees only and did not check the IGW ledger status for igw-* ones, which chip-20260826-worktree-graveyard-triage-and-gc explicitly requires ('for igw-*, its ledger entry ... is completed -- prefer running igw_routine_tick.py gc'). Gates 2/3/4 did all hold (no live process, clean tree, zero unlanded commits), so no committed or uncommitted work was lost; what was lost is the staged IGW_START_HERE.md brief, which is not reconstructible because its source workset item is gone. Closed NO_OP rather than left dangling so the entry stops sitting LIVE against an absent worktree and its 2026-08-31 TASK_CLAIMS claim closes. If this substrate item is still wanted, it should be re-surfaced by the generator on its own merits rather than relaunched from a lapsed brief. Lane is 'substrate' and outcome NO_OP, so R3 retires no proposal."
     },
     {
       "igw_id": "IGW-20260831-225",
@@ -6291,6 +6295,24 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-07T22:42:18Z",
       "re_eligible_after": "2026-09-09T22:42:18Z"
+    },
+    {
+      "stable_hash": "2e8dfe299e84",
+      "igw_id_at_disposition": "IGW-20260831-224",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-353",
+        "SD-029",
+        "MECH-112",
+        "SD-011",
+        "SD-019b"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: sd_blocked_agency_mismatch_floor_calibration",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-07T22:42:44Z",
+      "re_eligible_after": "2026-09-09T22:42:44Z"
     }
   ]
 }
