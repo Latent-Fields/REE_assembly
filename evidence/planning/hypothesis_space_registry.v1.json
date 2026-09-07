@@ -4844,10 +4844,11 @@
       "registered_utc": "2026-08-29T15:36:15Z",
       "fanout_sources": [
         "failure_autopsy_V3-EXQ-956_2026-08-29.json",
-        "failure_autopsy_contextmemory-write-content-cluster_2026-09-03.json"
+        "failure_autopsy_contextmemory-write-content-cluster_2026-09-03.json",
+        "failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07.json"
       ],
       "is_hero": false,
-      "initial_frozen_count": 4,
+      "initial_frozen_count": 5,
       "initial_frozen_count_at_registration": 4,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
@@ -4862,17 +4863,28 @@
             "V3-EXQ-970"
           ],
           "resolution": {
-            "state": "alive",
+            "state": "split",
             "resolving_runs": [
-              "V3-EXQ-970"
+              "V3-EXQ-970a"
             ],
             "evidence_direction": "non_contributory",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": false,
-            "met_elimination_bar": false,
-            "basis": "V3-EXQ-970 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED, AND CARRIES THE PORTFOLIO'S STRONGEST POSITIVE SIGNAL. Regime A (real agent latents) never produced its load-bearing DV: probe_heldout_real_latent_jaccard was null in 12/12 cells because the held-out gate needs >208 dangerous states and every cell yielded 171-195, so Regime A scored out in every possible world at this schedule. Regime B (synthetic 2-cluster stream) reached the BEST value the DV admits -- Jaccard 0.0 on 6/6 seeds -- and still returned FAIL, because with 2 of 6 paired diffs exactly zero the exact sign-flip p-grid floors at 1/2^4 = 0.0625 against alpha_corrected 0.025: no outcome could have cleared it. The self-route 'not confirmed in either regime' is a gate artifact, not a null. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
-            "epistemic_category": "standard"
+            "epistemic_category": "standard",
+            "self_route_label": "training_raises_content_conditioning_content_reference_not_required_a_h1pass_divfail_b_h1pass_divpass",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-09-07T15:22:12Z",
+            "children": [
+              {
+                "label": "a trained write-side objective RAISES generalising content conditioning",
+                "state": "confirmed"
+              },
+              {
+                "label": "a CONTENT-REFERENCING objective is REQUIRED to do so",
+                "state": "eliminated"
+              }
+            ],
+            "basis": "V3-EXQ-970a on the REDESIGNED MI instrument (supersedes V3-EXQ-970), 8 seeds. The instrument redesign the 2026-09-03 cluster autopsy demanded is discharged on all three named defects: near-binary Jaccard -> NMI-excess with 8.72/8.60 headroom ratio; attainable p-floor 0.0039 now BELOW alpha 0.0125; 0 tied pairs. SPLIT because the leg's two halves separate. POSITIVE half CONFIRMED: the contrastive objective raises generalising content conditioning in BOTH regimes (Regime A real-agent latents 0.018 -> 0.312, p=0.0039; Regime B synthetic 0.067 -> 0.259, p=0.0039). NECESSITY half ELIMINATED: the content-BLIND DIVERSITY_956 arm also raised the DV in Regime B (+0.244, p=0.0039) and beat the contrastive arm on 6/8 seeds; in Regime A it did not move (-0.007, p=0.51). SCOPE LIMIT: the tagger's z_world input is a FROZEN random projection (see H5), so this is evidence that a tagger can learn content-conditioned addressing FROM a frozen projection, not that a trained encoder was involved. PROVENANCE: substrate_stable_across_run false with NON-EMPTY process_snapshot_drift (worktree mutated twice mid-run) and commit_describes_recorded_hash false."
           }
         },
         {
@@ -4895,7 +4907,8 @@
             "non_degenerate": false,
             "met_elimination_bar": false,
             "basis": "V3-EXQ-969 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED. Phase B carries no untrained arm at its own seeds and is graded against Phase A's disjoint 10-seed pool (mean 0.85); the same instrument reads 0.400 (956, 971) / 0.4167 (970) on the Phase-B seed family, so the reported deltas are cross-seed-set. Phase A's paired sign test returned p=1.0, the maximum the test can produce, with 8 of 10 seeds tied at delta 0. Two weight settings 20x apart (w=0.1, w=2.0) gave bit-identical per-seed DV vectors. The gating criterion WAS attainable at the observed baseline, so this is a data/instrument failure rather than an unreachable bar -- but no operating-point conclusion is licensed. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
-            "epistemic_category": "standard"
+            "epistemic_category": "standard",
+            "frozen_encoder_annotation": "FLAGGED 2026-09-07 (failure_autopsy_dv-headroom-diagnostics-cluster): this leg's adjudicating run (V3-EXQ-969) was executed on a driver family that trains the write_addr_tagger on DETACHED buffered latents, so latent_stack never receives gradient and the write stream measured is a FROZEN RANDOM PROJECTION (see H5-frozen-encoder-harness). The buffered-detach pattern is code-verified in V3-EXQ-970/971/972/970a; V3-EXQ-969 does NOT carry it, so for H2 this flag is a caution to re-check rather than an established defect. NOT re-adjudicated here -- recorded so a future governance cycle does not read these legs as measurements of a trained encoder."
           }
         },
         {
@@ -4918,7 +4931,8 @@
             "non_degenerate": false,
             "met_elimination_bar": false,
             "basis": "V3-EXQ-971 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED; its 'null confirmed' label is not supportable. The load-bearing criterion is a bare mean-margin comparison at n=5 with no permutation test and no multiplicity correction -- the exact reading both sibling drivers demote to non-gating on this DV (measured FPR 25-68% in 969, ~15% in 970). Independently the objective did not train: the coupling loss ROSE across training (0.6273 -> 0.6514) while the untrained arm fell slightly, so a null cannot be attributed to the mechanism. The trained arm collapsed toward the single-slot regime the substrate entry exists to prevent (entropy 3.97 -> 0.79-1.48 bits; self_repeat 0.06 -> 0.71-0.88). See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
-            "epistemic_category": "standard"
+            "epistemic_category": "standard",
+            "frozen_encoder_annotation": "FLAGGED 2026-09-07 (failure_autopsy_dv-headroom-diagnostics-cluster): this leg's adjudicating run (V3-EXQ-971) was executed on a driver family that trains the write_addr_tagger on DETACHED buffered latents, so latent_stack never receives gradient and the write stream measured is a FROZEN RANDOM PROJECTION (see H5-frozen-encoder-harness). The buffered-detach pattern is code-verified in V3-EXQ-970/971/972/970a; V3-EXQ-969 does NOT carry it, so for H2 this flag is a caution to re-check rather than an established defect. NOT re-adjudicated here -- recorded so a future governance cycle does not read these legs as measurements of a trained encoder."
           }
         },
         {
@@ -4931,29 +4945,62 @@
             "V3-EXQ-972"
           ],
           "resolution": {
-            "state": "alive",
+            "state": "eliminated",
             "resolving_runs": [
-              "V3-EXQ-972"
+              "V3-EXQ-972a"
             ],
             "evidence_direction": "non_contributory",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": false,
+            "epistemic_category": "standard",
+            "self_route_label": "lineage_stream_linearly_decodable_structure_off_raw_axis",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-09-07T16:23:43Z",
+            "basis": "V3-EXQ-972a's held-out linear probe -- the exact upgrade the 2026-09-03 cluster autopsy prescribed for this leg -- REFUTES H4's premise. H4 asserted train-time z_world under-differentiation leaves 'no usable content structure for ANY write-side objective'. Measured: the write stream IS linearly decodable for safe-vs-dangerous, zworld32 probe excess 0.335 over a shuffle null, 8/8 seeds, p=0.0039, 84.4% mean balanced accuracy. The predecessor's 0.0281 cosine separability was an artifact of an uncentred contrast, which cannot distinguish 'no structure' from 'structure off the raw axis'. Control passed: UNTRAINED_ENCODER is a genuine non-degenerate control that itself produced a strong positive (excess 0.335, all 8 seeds positive). Structure exists; it is off the raw axis."
+          }
+        },
+        {
+          "hid": "H5-frozen-encoder-harness",
+          "axis": "instrumentation",
+          "label": "the harness severs gradient to latent_stack, so every affected leg measured a frozen random projection rather than a learned representation",
+          "desc": "Not a rival mechanism for content-conditioned addressing but a property of the apparatus that measured them: the drivers train E1/E2/E3/write_addr_tagger on DETACHED buffered latents, so 0 of 49 latent_stack parameters receive gradient and the 'trained' arm's encoder is bit-identical to an untrained one.",
+          "pre_registered_utc": "2026-09-07T16:23:43Z",
+          "discovery_source": "failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07.json",
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-972a"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
-            "basis": "V3-EXQ-972 RESULT (2026-09-02) -- LEG STAYS ALIVE but is now the BEST-SUPPORTED of the four. Its PASS is explicitly a measurement-validity gate, not a scientific verdict (the driver says 'do not read passed: true here as H4 refuted'). The measurement is substantive and first-of-kind: train-time write-stream latents sit in a narrow cone -- intra-class cosine 0.980 (safe) / 0.971 (dangerous) against inter-class 0.948, mean separability 0.0281 over 5 seeds. Safe and dangerous states are very nearly collinear, so there is little content structure for any write-side objective to condition on. The direction is well-evidenced; the threshold crossing rests on a floor the manifest itself calls not rigorously derived, and the leg has no comparator arm. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
-            "epistemic_category": "standard"
+            "resolved_utc": "2026-09-07T16:23:43Z",
+            "basis": "MEASURED by V3-EXQ-972a's own identity control, hash-verified: LINEAGE latents bit-identical to UNTRAINED_ENCODER latents on 8/8 seeds (collection_latent_hash), per-seed probe excesses identical value-for-value, and 8/8 LINEAGE cells read zero latent_stack delta. SD070_WARMED (the one arm whose P0a warmup genuinely moved the world encoder) differs from both on 8/8 seeds, which is the positive half of the control. MECHANISM verified in source during autopsy: standard_params (970a:984-986) INCLUDES the encoder -- excluding only harm_eval_head and context_memory.memory -- so the optimizer looks like it trains it, but the graph is severed upstream at the training-pool capture (970a:876) and ultimately at ree_core/agent.py:5835-5836, where the experience buffers store .detach().clone(). That ree_core detach is deliberate for the buffer path; the defect is the portfolio training on that path while claiming a result about a learned encoder. SCOPE, stated exactly: code-verified in V3-EXQ-970, 971, 972, 970a; MEASURED only in 972a's LINEAGE arm; V3-EXQ-956 and 969 do NOT carry the pattern and are NOT covered."
           }
         }
       ],
       "synthesis": null,
       "decision": {
         "decision_question": "Which mechanism family (objective / operating point / task coupling / input distribution) gates content-conditioned write addressing -- and is a learned write-address policy the right frame at all?",
-        "live_gate": "Instrument redesign, not another leg. failure_autopsy_contextmemory-write-content-cluster_2026-09-03 REFUSES a further write-side loss design against the unchanged C2 instrument.",
+        "live_gate": "Instrument redesign DISCHARGED for legs H1 and H4 (V3-EXQ-970a, V3-EXQ-972a, both 2026-09-07). New gate: the harness trains no encoder (H5). Before any further leg, decide whether this question is about a learned encoder -- in which case the harness needs a build -- or explicitly about a frozen projection.",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "0 of 4 legs adjudicated after the full portfolio ran. All four returned on 2026-09-02 and none discriminated: three FAILs are gate artifacts (unreachable p-floor, cross-seed-set baseline, a criterion both siblings demoted) and the fourth is a single-arm measurement whose PASS is explicitly not a verdict. The binding constraint is now the INSTRUMENT: the 2-cluster occupied-set Jaccard is near-binary (45/53 cells with both occupied sets at cardinality 1) and the substrate entry's own 2026-08-29 directive to replace it with a contingency-table mutual information has not been executed.",
+        "distance_phrase": "2 of 5 legs adjudicated (H1 split, H4 eliminated); H2 and H3 stay alive and are now FLAGGED as having been measured on a frozen-encoder harness; H5 (discovery) confirmed. The question's premise has moved: the portfolio was asking which objective makes addressing content-conditioned, while measuring a frozen random projection.",
         "observation_bottleneck": "The C2 DV cannot resolve graded change at n=5-6 (near-binary; ties saturate paired tests and force exact p-grids whose floor can exceed the corrected alpha). H4's train-time cone measurement (separability 0.0281) is the one readout in the portfolio that did resolve."
-      }
+      },
+      "discovery_growth_events": [
+        {
+          "recorded_utc": "2026-09-07T19:05:21Z",
+          "discovery_source": "failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07.json",
+          "added_hids": [
+            "H5-frozen-encoder-harness"
+          ],
+          "delta": 1,
+          "rationale": "Mode C discovery: this hypothesis was never anticipated as a rival and could not have been, because the four pre-registered legs are all about WHICH mechanism would make write addressing content-conditioned, and this one is about the apparatus that measured them. It was surfaced only by V3-EXQ-972a's own data -- an identity control between a nominal treatment arm and an untrained control, which no prior leg ran. Born resolved in the same edit (pre_registered_utc == resolved_utc == the resolving run's completion date), because the evidence that revealed it is what resolves it; there is no future adjudicating run to await. Axis 'instrumentation' (family: instrumentation) because it is a property of the measurement apparatus, not of the substrate under test."
+        }
+      ]
     },
     {
       "qid": "mech440_state_conditioning_and_self_annealing",
@@ -5378,7 +5425,8 @@
       ],
       "registered_utc": "2026-09-04T13:47:34Z",
       "fanout_sources": [
-        "failure_autopsy_V3-EXQ-1000_2026-09-04.json"
+        "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
+        "failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07.json"
       ],
       "is_hero": false,
       "initial_frozen_count": 3,
@@ -5393,13 +5441,18 @@
           "pre_registered_utc": "2026-09-04T13:47:34Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-1006"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "anchor_restores_centroid_lifts_var__realvar_below_bar__rsd_goal_orthogonal",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-06T19:51:35Z",
+            "basis": "V3-EXQ-1006 (6 seeds, 4 arms, all GREEN). ARM_RSD_ANCHOR_EP is UNANIMOUS 6/6 on all three sub-conditions: centroid_norm inside the real band 6/6; e1coe_score_var(h=1) lifted over ARM_RSD by 7.57x-214x (all >= the 2x requirement); cr_ratio(h=1) 0.123-0.393, all >= the 0.1 bar. The declared null (centroid outside band on a majority OR var within 2x of ARM_RSD) is NOT met on any seed. Confirmed, not eliminating: the stricter C2 (BOTH bars simultaneously) clears in only 1 of 12 anchor arm-seed cells, so the leg reads at the anchor_restores_centroid_lifts_var tier, one below clears-both-bars."
           }
         },
         {
@@ -5412,12 +5465,15 @@
           "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
+            "resolving_runs": [
+              "V3-EXQ-1006"
+            ],
+            "evidence_direction": "non_contributory",
             "resolved_utc": null,
             "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-1006 RAN THIS LEG BUT DOES NOT ADJUDICATE IT -- the verdict INVERTS with the denominator, and both denominators are recorded in the manifest. Declared null: 'real-endpoint goal_proximity variance >= 0.002 on a majority of seeds'. On the FROM-RESET (Phase 4b) set, real_goal_prox_var_h1 = 0.0047-0.0196, 6/6 seeds clear 0.002 -> null MET -> leg would be ELIMINATED. On the SAME-START (Phase 4d) set the driver adopted, branched_endpoint_goal_prox_var_h1 = 0.001736/0.002262/0.023916/0.000033/0.000200/0.001071, 4/6 below -> null NOT met -> leg supported. The driver's geometric argument for same-start is sound (at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so same-start isolates rollout-attributable variance); note its EMPIRICAL form is false -- on seed7 same-start EXCEEDS from-reset (0.0239158 vs 0.0196255), holding 5/6. UNEXPLAINED ASYMMETRY for governance: interpretation.branched_same_start_note says 'the registered legs read Phase 4b', yet the substitution was applied to Leg B ONLY -- the one leg whose verdict it changes (checked: not results-driven; Leg C is unaffected either way). Settling this needs NO new run -- complex (probe-gated) / mystery (known data). User gate 2026-09-07: LEAVE ALIVE, record both."
           }
         },
         {
@@ -5429,24 +5485,29 @@
           "pre_registered_utc": "2026-09-04T13:47:34Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-1000_2026-09-04.json",
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-1006"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "rsd_goal_orthogonal",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-06T19:51:35Z",
+            "basis": "V3-EXQ-1006: r = goal_axis_fraction_rollout(ARM_RSD) / goal_axis_fraction_real = 0.0194, 0.0077, 0.0132, 0.0355, 0.0237, 0.2805 across the 6 seeds. The declared null (within 2x of real, i.e. r in [0.5, 2.0]) holds on 0 of 6 seeds -- RSD's dispersion is strongly goal-orthogonal. Unanimous. Robustness checked during autopsy: on the same-start denominator the leg still reads rsd_goal_orthogonal (5 below / 1 above)."
           }
         }
       ],
       "synthesis": null,
       "decision": {
         "decision_question": "Is the e1coe_score_var bar a substrate target (fidelity-anchored divergence objective), a goal-axis representation problem, or an instrument defect of the bounded proximity readout?",
-        "live_gate": "H-readout-saturation (narrowed: reachable at REAL spread?) is the cheapest leg and gates the objective work: measure real-endpoint goal_proximity variance before licensing any objective.",
+        "live_gate": "Portfolio RAN (V3-EXQ-1006, 2026-09-06). The recorded observation_bottleneck ('real-endpoint goal_proximity variance never recorded') is DISCHARGED -- both denominators are now recorded. Remaining gate is a governance DECISION on which denominator settles Leg B, not a measurement.",
         "decidable": false,
-        "observation_bottleneck": "real-endpoint goal_proximity variance never recorded (recording gap)",
+        "observation_bottleneck": "DISCHARGED by V3-EXQ-1006 (both from-reset and same-start real-endpoint goal_proximity variance now recorded).",
         "decision_log_ref": null,
-        "distance_phrase": "0 of 3 legs resolved; portfolio not yet queued."
+        "distance_phrase": "2 of 3 legs resolved (H-fidelity-anchor confirmed, H-goal-orthogonal-dispersion confirmed); H-readout-saturation ran but is denominator-contingent and stays alive pending a governance decision on the denominator. No new run owed."
       },
       "registration_note": "Registered by failure_autopsy_V3-EXQ-1000_2026-09-04 (user-confirmed at the Step 8 gate 2026-09-04T13:47:34Z; drafted in that artifact, git-witnessed at REE_assembly 34fd92e301 before any adjudicating run). NEW question rather than growth on sd_e1_residual_crush_locus on the different-statistic ground: that question's title names cr_ratio (25-37x short of 0.1), which V3-EXQ-1000 answers; e1coe_score_var has a different readout (bounded goal proximity) and denominator. The parent keeps 3 alive legs, so the 965 'fully-resolved parent' precedent does NOT apply and is not claimed; H-fidelity-anchor shares the learning-signal family with the parent's alive H-training-objective, stated here so the overlap is auditable. All three legs share one git witness: this artifact's landing commit, which pre-dates the portfolio run."
     },

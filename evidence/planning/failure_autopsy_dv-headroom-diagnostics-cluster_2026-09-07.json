@@ -1,0 +1,327 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-07T19:05:21Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1006_sd_e1_var_bar_portfolio_fidelity_anchor_20260906T195135Z_v3",
+      "queue_id": "V3-EXQ-1006",
+      "claim_ids": [],
+      "failed_criterion": "none -- C0 (any arm green) is the only load_bearing criterion and it passed; C1-C5 are load_bearing:false classification labels by design",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids is empty by design (diagnostic portfolio, excluded from governance confidence scoring). unblocks_claims [MECH-135, INV-088] are downstream consumers, not scored here.",
+        "biological_reference": "n/a for this target -- the question is instrument dynamic range, not a mechanism translation.",
+        "prerequisites": "present -- all 4 arms GREEN, every readiness precondition met.",
+        "implementation": "complete -- anchor arms engaged (anchor_authority_mean exactly 1.0 on both anchor arms, all seeds), RSD objective engaged, 6 seeds. substrate_stable_across_run is false but BENIGN: process_snapshot_drift is empty and the two distinct per-cell hashes are the reusable OFF baseline minted with include_driver_script_in_hash=False. (No `disagreement_kind` field exists on this manifest -- do not cite one.)",
+        "environment": "adequate",
+        "measurement": "adequate for Leg A and Leg C (both unanimous 6/6); UNDER-DETERMINED for Leg B -- its verdict inverts with the denominator (see cluster_pattern).",
+        "integration": "coupled",
+        "scale": "adequate -- 6 seeds, majority rule 4/6 pre-registered."
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- readout dynamic-range question",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1006 ran the three-leg sd_e1_var_bar_readout_crush portfolio (6 seeds, 4 arms, all GREEN) and discharged the question's recorded observation_bottleneck ('real-endpoint goal_proximity variance never recorded'). Leg A (H-fidelity-anchor) and Leg C (H-goal-orthogonal-dispersion) are UNANIMOUS 6/6 against their declared nulls and are adjudicable. Leg B (H-readout-saturation) is NOT: its declared null ('real-endpoint goal_proximity variance >= 0.002 on a majority of seeds') is MET on the from-reset (Phase 4b) endpoint set -- 6/6 seeds clear 0.002 -- and NOT met on the same-start (Phase 4d) set the driver adopted, where 4/6 fall below. The two admissible denominators invert the leg's verdict. The run's own dv_headroom_gate records the same fact from the other side (achievable 0.00107 vs required 0.002, ratio 0.54) and is deliberately non-gating. Read Leg B as denominator-contingent, not as 'the bar is unreachable'.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "NOT A FAILURE -- an informative portfolio. Legs A and C are positive results at full power. Leg B is MEASURES-partial (denominator under-determination), not chargeable to REE."
+      },
+      "learning_extracted": [
+        "A bar registered before its DV's dynamic range is measured can be unreachable in one operationalisation and comfortably clearable in another. Leg B's 0.002 bar is cleared 6/6 on from-reset endpoints and missed 4/6 on same-start endpoints -- the SAME run, the SAME seeds, two defensible denominators.",
+        "The from-reset set is NOT a universal upper bound on the same-start set -- on seed7 the same-start variance EXCEEDS it (0.0239158 vs 0.0196255); it holds 5 of 6. The load-bearing argument is geometric, not empirical: at h=1, 40 rollouts from ONE start reach at most n_actions distinct endpoints, so the same-start set isolates rollout-attributable variance while the from-reset set adds start dispersion. Both denominators are recorded in this manifest, so settling Leg B needs NO new run -- it is `complex (probe-gated) / mystery (known data)`.",
+        "Making the classification criteria load_bearing:false (C1-C5) and gating PASS on C0 (any arm green) alone is a deliberate and effective answer to a prior vacuous_pass; the leg readings carry the science and the gate carries only readiness.",
+        "ASYMMETRY to surface with the Leg-B decision: the manifest's own interpretation.branched_same_start_note says 'the registered legs read Phase 4b so this run stays comparable with 1000', yet the same-start substitution was applied to Leg B ONLY. Leg C still reads Phase 4b. Leg B is also the only leg whose verdict the switch changes. Checked and NOT results-driven -- on the same-start denominator Leg C still reads rsd_goal_orthogonal (5 below / 1 above) -- but the asymmetry is unexplained and belongs in the governance decision."
+      ],
+      "routing": "governance-decide-denominator (no new experiment owed)",
+      "user_gate_disposition": "Leg B: LEAVE ALIVE, record both denominators (user-confirmed 2026-09-07). Legs A and C resolve confirmed (unanimous 6/6)."
+    },
+    {
+      "run_id": "v3_exq_970a_contextmemory_write_content_h1_mi_instrument_20260907T152212Z_v3",
+      "queue_id": "V3-EXQ-970a",
+      "claim_ids": [],
+      "failed_criterion": "none load-bearing -- H1 (load_bearing) PASSED both regimes; the secondary necessity criterion H1_content_reference_required FAILED",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids empty by design.",
+        "biological_reference": "partial -- content-conditioned write addressing is the hippocampal-indexing analogue; the lit basis sits with SD-016/SD-017, not re-derived here.",
+        "prerequisites": "present -- all 4 units GREEN, 12/12 preconditions met, objective convergence 0.19-0.44 against a 0.02 floor.",
+        "implementation": "complete for the TAGGER; but its input z_world is a FROZEN random projection (driver :887 detaches z_world; 972a measures 8/8 zero latent_stack delta for this harness family).",
+        "environment": "adequate",
+        "measurement": "adequate -- the instrument redesign WORKED: dv_headroom ratio 8.72 (A) / 8.60 (B) against a 0.1 threshold, attainable p-floor 0.0039 now BELOW alpha 0.0125, 0 tied pairs on 8 paired seeds. All three defects the 2026-09-03 cluster autopsy named are closed.",
+        "integration": "partially coupled -- the tagger trains, the encoder does not.",
+        "scale": "adequate -- 8 seeds."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal content-addressed indexing",
+        "dependencies": [
+          "SD-016 read path",
+          "SD-017 ContextMemory"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing here",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-970a is the instrument redesign the 2026-09-03 ContextMemory cluster autopsy demanded ('instrument redesign, not another leg'), and it DISCHARGES that demand: the near-binary Jaccard DV is replaced by an NMI-excess readout with 8.6-8.7x headroom, the attainable p-floor (0.0039) now sits below alpha (0.0125), and 0 of 8 pairs tie. On that instrument the contrastive objective raises generalising content conditioning in BOTH regimes (Regime A real-agent latents 0.018 -> 0.312, 8/8 seeds, p=0.0039; Regime B synthetic 0.067 -> 0.259, p=0.0039). The NECESSITY half of H1 is refuted: in Regime B the content-BLIND DIVERSITY_956 arm also raised the DV (+0.244, p=0.0039) and beat the contrastive arm on 6/8 seeds. Scope limit that must travel with this result: the tagger's z_world input is a FROZEN random projection -- the driver detaches z_world at :887 and V3-EXQ-972a measures zero latent_stack delta on 8/8 seeds for this harness family -- so this is evidence that a tagger can learn content-conditioned addressing FROM a frozen projection, not that a trained encoder was involved. Provenance caveat: substrate_stable_across_run is false with a NON-EMPTY process_snapshot_drift (the ree-v3 worktree was mutated twice mid-run) and commit_describes_recorded_hash is false, so the exact substrate state is not pinned.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "NOT A FAILURE -- a positive, well-powered result on a successfully redesigned instrument. The frozen-encoder scope limit is a HARNESS property, not a REE failure."
+      },
+      "learning_extracted": [
+        "The instrument redesign worked and is the template: replacing a near-binary occupied-set Jaccard with an NMI-excess readout moved headroom from ~0 to 8.7x and moved the attainable p-floor below alpha. A DV's dynamic range and its test's attainable p-grid floor are BOTH design-time obligations.",
+        "Content reference is NOT required to raise content conditioning: a content-blind diversity objective matched or beat the contrastive one on the synthetic stream (6/8 seeds). The regime split is the informative part -- on real-agent latents only the contrastive objective worked.",
+        "An optimizer whose parameter list INCLUDES the encoder does not train the encoder if the loss is computed on detached buffered latents. standard_params at :984-986 excludes only harm_eval_head and context_memory.memory, so the encoder LOOKS trained; 972a's hash-verified identity control is what shows it is not."
+      ],
+      "routing": "governance-record (no new experiment owed for this leg)"
+    },
+    {
+      "run_id": "v3_exq_972a_sd070_write_stream_heldout_linear_probe_20260907T162343Z_v3",
+      "queue_id": "V3-EXQ-972a",
+      "claim_ids": [
+        "SD-070"
+      ],
+      "failed_criterion": "T3_sd070_recipe_raises_decodability (load_bearing:false, routing) -- FAILED at ADEQUATE dynamic range (mean_diff -0.0105, p=0.625, 4+/4-). NOT starved: see recommended_evidence_quality_note.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- SD-070 is NOT weakened, but NOT because T3 was starved (it was not). T3 is a genuine, adequately-ranged null on a readout SD-070 does not assert: SD-070's own validation is grounding-head balanced-accuracy lift and z_world participation ratio, and its registered validation_experiment is V3-EXQ-783, not this run.",
+        "biological_reference": "partial -- anti-collapse encoder training; lit basis carried by SD-070's own entry.",
+        "prerequisites": "present -- 9/9 preconditions met; SD070_WARMED::encoder_trained 1.0 confirms P0a genuinely moved the world encoder.",
+        "implementation": "complete for SD-070's recipe; the LINEAGE arm's encoder is frozen by harness construction (0 of 49 latent_stack params receive gradient; 8/8 cells zero delta).",
+        "environment": "adequate -- alternating safe/dangerous warmup (departs from the 1006 lineage's safe-only integration, recorded as red-team F5).",
+        "measurement": "adequate throughout. T1/T2/T4 headroom ratios 3.1-3.2. T3 IS ALSO ADEQUATE: its pass condition is on the MEAN paired diff (>=0.15) and the mean-matched ceiling is 1-mean(LINEAGE acc)=0.15556 (ratio 1.037). The driver's dv_headroom_T3_above_lineage_accuracy reports 0.0806 = 1-MAX(acc)=1-0.91935 -- a MISMATCHED ORDER STATISTIC, and 2 of the 8 observed paired diffs (0.16135, 0.09297) exceed it, one exceeding 0.15 outright. That entry is a minor driver defect, not a finding about T3.",
+        "integration": "coupled",
+        "scale": "adequate -- 8 seeds, all clearing the 24/class floor."
+      },
+      "biological_reference": {
+        "closest_mechanism": "sensory-cortical representation learning / anti-collapse",
+        "dependencies": [
+          "SD-005",
+          "SD-018"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing here",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_epistemic_category_per_claim": {
+        "SD-070": "standard"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-972a is the held-out linear probe the 2026-09-03 cluster autopsy named as 'the cheap upgrade' over V3-EXQ-972's uncentred cosine contrast, and it overturns that predecessor's reading: the write stream IS linearly decodable for safe-vs-dangerous (zworld32 probe excess 0.335 over a shuffle null, 8/8 seeds, p=0.0039; 84.4% mean balanced accuracy). The 0.0281 cosine separability was an artifact of the uncentred contrast -- structure exists, it is simply OFF the raw axis. SD-070 is NOT weakened, and the reason matters: the only SD-070-specific test (T3, SD070_WARMED minus LINEAGE) is a GENUINE, ADEQUATELY-RANGED NULL -- mean_diff -0.0105, p=0.625, mixed sign 4+/4-, with a mean-matched achievable ceiling of 1-mean(LINEAGE accuracy)=0.15556 against a 0.15 requirement (ratio 1.037). It is NOT headroom-starved. What IS defective is the driver's dv_headroom_T3_above_lineage_accuracy entry, which reports 0.0806 = 1-MAX(accuracy) while the test statistic is the MEAN; two of the eight observed paired diffs (0.16135, 0.09297) exceed that asserted ceiling, one exceeding the 0.15 threshold outright, so the entry cannot be a ceiling. T3 is non_contributory for SD-070 because it probes a readout SD-070 does not assert (SD-070's own validation is grounding-head balanced-accuracy lift and z_world participation ratio; its registered validation_experiment is V3-EXQ-783), not because the instrument failed. The SD070_WARMED participation-ratio drop 7.50 -> 3.42 is in-family with SD-070's own registered validation (9.21 -> 5.19) and is not counter-evidence. The LOAD-BEARING finding is elsewhere and it reframes the ContextMemory write-content portfolio: LINEAGE's latents are bit-identical to UNTRAINED_ENCODER's on 8/8 seeds (hash-verified via collection_latent_hash), and 0 of 49 latent_stack parameters receive gradient. Scope of that generalisation, stated exactly: the buffered-detach training pattern is CODE-VERIFIED in four drivers -- V3-EXQ-970, 971, 972 and 970a -- and MEASURED only in 972a's own LINEAGE arm. V3-EXQ-956 and 969 do NOT carry the pattern and are NOT covered by this finding.",
+      "per_claim_recommendation": {
+        "SD-070": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "SD-070 currently carries NO epistemic_category field at all (contrast SD-071, which has one), so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "contextmemory-write-path-addressing-degeneracy",
+        "unblocks_claims": [
+          "SD-017",
+          "ARC-045",
+          "MECH-166"
+        ],
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/agent.py (experience buffers store z_self/z_world .detach().clone(), agent.py:5835-5836 -- the gradient-severing locus, NOT reachable from any driver edit)",
+          "ree_core/predictors/e1_deep.py::ContextMemory.write",
+          "experiments/v3_exq_970a_contextmemory_write_content_h1_mi_instrument.py:876 (training-pool state capture; :887 is action selection and is NOT the training-relevant detach)",
+          "experiments/v3_exq_972a_sd070_write_stream_heldout_linear_probe.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_972a_sd070_write_stream_heldout_linear_probe_20260907T162343Z_v3",
+          "experiment_type": "v3_exq_972a_sd070_write_stream_heldout_linear_probe",
+          "metric": "HARNESS DEFECT: drivers train the write_addr_tagger on DETACHED buffered latents, so latent_stack never moves. MEASURED in 972a's LINEAGE arm: 8/8 cells zero latent_stack delta; LINEAGE latents bit-identical to UNTRAINED_ENCODER on 8/8 seeds (collection_latent_hash). CODE-VERIFIED in V3-EXQ-970, 971, 972, 970a; V3-EXQ-956 and 969 do NOT carry the pattern. Gradient-severing locus is ree_core/agent.py:5835-5836 (experience buffers .detach().clone()), which is BY DESIGN for the buffer path -- the defect is the portfolio training on that path while claiming a result about a learned encoder. SEPARATELY: the write stream IS linearly decodable (zworld32 excess 0.335, 84.4% balanced accuracy), refuting the 0.0281-cosine 'no structure' reading. MINOR: dv_headroom_T3_above_lineage_accuracy is computed on 1-MAX(acc) while T3 tests the MEAN.",
+          "target": "a harness in which the encoder under discussion actually receives gradient, OR an explicit portfolio-wide restatement that the question is about a frozen projection",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_972_contextmemory_write_content_h4_input_distribution_20260902T211758Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "V3-EXQ-972a's held-out linear probe (the upgrade the 2026-09-03 cluster autopsy itself prescribed) finds the write stream linearly decodable at 0.335 excess / 84.4% balanced accuracy. The prior item's 0.0281 separability was an artifact of the uncentred cosine contrast, which cannot distinguish 'no structure' from 'structure off the raw axis'. Nothing was fixed; a better instrument overturned the read."
+          },
+          {
+            "run_id": "v3_exq_970_contextmemory_write_content_h1_contrastive_loss_20260902T205703Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "V3-EXQ-970a re-ran the H1 leg on the redesigned MI instrument, closing the prior item's two named defects (unreachable held-out gate; attainable p-floor above alpha). H1's positive half now passes in both regimes at p=0.0039."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- MECHANISM-untested for the portfolio (the encoder under discussion never trained). Measurement is ADEQUATE, including T3 (corrected after red team). NOT chargeable to REE: ree_core does carry losses that reach latent_stack; this portfolio never calls them. Explicitly NOT a weakening of SD-070."
+      },
+      "learning_extracted": [
+        "An uncentred cosine contrast cannot distinguish 'no structure' from 'structure not aligned with the raw axis'. The held-out linear probe the prior autopsy prescribed overturned the prior reading on the first attempt: 0.0281 cosine separability became 0.335 probe excess / 84.4% balanced accuracy on the same kind of stream.",
+        "A dv_headroom entry must be computed on the SAME STATISTIC AND THE SAME ORDER STATISTIC as the criterion it certifies. T3's entry used 1-MAX(control accuracy) while T3 tests the MEAN; the mismatch understated achievable range by ~1.9x and falsely presented an adequately-ranged genuine null as an instrument failure. Two observed paired diffs exceeded the asserted ceiling -- a ceiling the data exceeds is the tell.",
+        "PORTFOLIO-LEVEL: an identity control between a nominal treatment arm and an untrained control is cheap and decisive. Hash-comparing LINEAGE against UNTRAINED_ENCODER exposed in one criterion what four prior legs could not see -- that the encoder never trained.",
+        "An optimizer's parameter list is not evidence that a parameter trains: standard_params (970a:984-986) includes the encoder and excludes only harm_eval_head and context_memory.memory, yet latent_stack never moved, because the loss is computed on detached buffered latents."
+      ],
+      "routing": "implement-substrate",
+      "user_gate_disposition": "SD-070 non_contributory on OUT-OF-SCOPE grounds (T3 is a genuine adequately-ranged null on a readout SD-070 does not assert), not on starved-instrument grounds. Frozen-encoder finding: amend the substrate entry AND annotate H2/H3 in the ledger, without re-adjudicating them. User-confirmed 2026-09-07."
+    },
+    {
+      "run_id": "v3_exq_1009_mech267_elite_channel_ceiling_spike_20260907T171115Z_v3",
+      "queue_id": "V3-EXQ-1009",
+      "claim_ids": [],
+      "failed_criterion": "C1_any_cell_clears_content_floor -- clearing_cells [] on all 4 cells. C2 is DEGENERATE DOWNSTREAM of C1 (the driver computes c2_cells from c1_cells, so an empty C1 entails an empty C2; criteria_non_degenerate.C2 is false and the driver routes on C1 alone). C2 was in fact satisfied on its own statistic for GROUNDED/floor0.2.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids deliberately empty; the driver's own what_a_null_does_not_mean states nothing here is evidence for or against MECH-267.",
+        "biological_reference": "present -- MECH-267's biology lit-pull completed 2026-04-27 with 5 entries; not re-opened by this run.",
+        "prerequisites": "present -- all 7 readiness preconditions met, though the driver itself declares 2 of them structural leak checks that cannot fail by construction.",
+        "implementation": "complete, with one internal inconsistency noted: custom_information.joint_satisfiability_of_c1_and_c2.description says 'Both now read relocation_ratio', but the executed criteria read projected_lineage_increment (C1) and raw_centroid_displacement (C2); relocation_ratio gates neither.",
+        "environment": "adequate for its purpose -- a proposer-only synthetic bench, deliberately no env/agent/rollout (24s runtime fully accounted for).",
+        "measurement": "UNDER-RANGED, argued on C1's OWN statistic. C1 gates projected_lineage_increment = sqrt(B^2+d^2)-B; per-cell shortfall_factor_vs_floor is 43.03 (FROZEN/floor0.2), 2.31 (FROZEN/floor0.0), 8.69 (GROUNDED/floor0.2), 4.72 (GROUNDED/floor0.0). The MARGINAL cell is FROZEN/floor0.0 at 2.31x short. NOTE: custom_information.dv_headroom.headroom_ratio_by_cell (0.5709/0.5588/0.9973/0.4531) is computed on delta_dbar, NOT on the statistic C1 gates, so it must not be quoted as C1 headroom -- the 0.9973 figure in particular belongs to a cell that is 8.69x short on C1.",
+        "integration": "isolated by design",
+        "scale": "adequate for the question -- 5 seeds, 4 cells."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal forward replay under goal/mode conditioning",
+        "dependencies": [
+          "SD-004",
+          "SD-032a",
+          "MECH-261",
+          "MECH-092"
+        ],
+        "is_formal_import": false,
+        "divergence": "none new",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1009 is the 2x2 spike commissioned after V3-EXQ-1005 was refused at red-team, to separate two candidate causes of the elite-selection ceiling (untrained E2 action-object head vs the support-preserving ao_std floor). It discriminated NEITHER. Argued on C1's OWN statistic (projected_lineage_increment), no cell came close to the pre-registered 0.02 floor: shortfall factors 43.03 / 2.31 / 8.69 / 4.72, with FROZEN/floor0.0 the MARGINAL cell at 2.31x short. Do NOT state this as 'unreachable by construction', and do NOT quote the 0.9973 headroom figure as C1 headroom: dv_headroom.headroom_ratio_by_cell is computed on delta_dbar rather than on the statistic C1 gates, and the manifest's own red_team_dispositions_iter3 records that the oracle is GREEDY, not an argmax over all C(16,3)=560 elite subsets, so the measured ceiling is a LOWER bound on the true oracle ceiling. The defensible claim is bounded and still decisive: at THIS oracle's strength the elite-selection channel does not come within 2.3x of the floor on any of four benches, and the oracle directly optimises the axis the DV measures, so a real mode-conditioned arm is very unlikely to do better. The self-routed label 'elite_channel_ceiling_confirmed_all_benches' over-reads and must NOT be applied as a confirmed bench-independent ceiling; the driver's own what_a_null_does_not_mean already states the correct narrower reading. The defensible finding is that the proposal-output centroid is the wrong readout for MECH-267's content assertion -- consistent with, and adding nothing to, the already-CLOSED mech267_content_persistence_cem_refit question (5/5 legs adjudicated; locus confirmed as shared CEM elite-refit breadth). The outcome PASS is a driver convention (PASS in 3 of 4 branches; only a readiness failure yields FAIL), so the indexer's vacuous_pass flag is mechanically correct and should be read as 'informative null on an under-ranged DV', not as a degenerate result.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-MECH267-CEM-SELECTION-FIX",
+        "unblocks_claims": [
+          "MECH-267"
+        ],
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/hippocampal/module.py",
+          "ree_core/utils/config.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1009_mech267_elite_channel_ceiling_spike_20260907T171115Z_v3",
+          "experiment_type": "v3_exq_1009_mech267_elite_channel_ceiling_spike",
+          "metric": "READOUT EXHAUSTION, recorded so no future session re-attempts it. Argued on C1's own statistic (projected_lineage_increment): shortfall_factor_vs_floor = 43.03 FROZEN/floor0.2, 2.31 FROZEN/floor0.0, 8.69 GROUNDED/floor0.2, 4.72 GROUNDED/floor0.0 against the pre-registered 0.02 floor. The MARGINAL cell is FROZEN/floor0.0 at 2.31x short -- no cell is near-clearing. (Do NOT read custom_information.dv_headroom's 0.9973 for GROUNDED/floor0.2 as near-clearing: that ratio is on delta_dbar, and that cell is 8.69x short on the statistic C1 actually gates.) An ORACLE elite re-ranker that directly optimises the measured axis produced this; the oracle is greedy, so its ceiling is a LOWER bound on the true oracle ceiling and 'impossible' is NOT established -- but neither grounding E2's action-object head into genuine action-dependence nor removing the support-preserving ao_std floor lifts it within 2.3x.",
+          "target": "a readout other than proposal-output centroid, OR a floor re-registered against measured achievable headroom",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-869_2026-08-02",
+          "failure_autopsy_V3-EXQ-869a_2026-08-03",
+          "failure_autopsy_V3-EXQ-923_2026-08-12",
+          "failure_autopsy_927-928-mech267-cluster_2026-08-16"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-MECH267-CEM-SELECTION-FIX",
+        "note": "MECH-267 stands at 4 ceiling hits under R1-R3 against a threshold of 2 (869, 869a, 923, 927-928-cluster), recomputed and confirmed. This target is NOT claim-tagged (claim_ids deliberately empty) so it does not itself increment the count, and the /queue-experiment consumer gate keys on (claim, substrate) with NO readout dimension -- so the specific refusal below is PROSE, not machine-enforceable. It costs nothing here: the gate already refuses MECH-267 re-tests on the pre-existing count of 4. REFUSED: a further proposal-output-centroid re-test of MECH-267. PERMITTED: a redesign on a DIFFERENT readout, or work on the already-confirmed breadth channel."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES -- the DV could not reach its own pre-registered floor even under an oracle, so the mechanism was never fairly tested. NOT chargeable to REE, and NOT a confirmed elite-channel ceiling."
+      },
+      "learning_extracted": [
+        "A pre-registered floor must be checked against the DV's achievable maximum ON THE STATISTIC THE CRITERION GATES, before the run is read as a ceiling result. This driver measured headroom on delta_dbar while C1 gates projected_lineage_increment -- the right instinct on the wrong quantity, which is why the marginal cell (FROZEN/floor0.0, 2.31x short) is not the cell the headroom table makes look closest (GROUNDED/floor0.2, 0.9973 on delta_dbar but 8.69x short on C1).",
+        "A null from a starved DV is not a null about the mechanism. The driver's what_a_null_does_not_mean block and its empty claim_ids are the correct discipline and should be the template for spike drivers.",
+        "BEARS ON, discovered while adjudicating this run: the mech267_content_persistence_cem_refit ledger entry's decision.live_gate still says the remaining work is to 'flip mode_partitioned_cem from its False default'. That flip LANDED on 2026-08-26 (ree-v3 376d563, SD-MECH267-CEM-SELECTION-FIX). The gate text is stale on its own terms and should be corrected to name the open residual instead -- V3-EXQ-928's finding that the ORDERED four-mode gradient is still not restored (only the extreme-pair contrast is rescued)."
+      ],
+      "routing": "implement-substrate",
+      "user_gate_disposition": "Routing implement-substrate (amend SD-MECH267-CEM-SELECTION-FIX); same-readout re-queue REFUSED; stale ledger gate recorded as a bears-on note for governance."
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Three of the four targets carry a pass bar in tension with their DV's achievable range, and the batch is a MIXED verdict on the dv_headroom convention rather than a clean sweep. V3-EXQ-1006 Leg B: a genuine, verified case (achievable 0.00107 vs required 0.002), correctly declared non-gating. V3-EXQ-1009 C1: the right verdict reached via the WRONG statistic -- headroom was computed on delta_dbar while C1 gates projected_lineage_increment, so the cell the headroom table makes look closest (GROUNDED/floor0.2, 0.9973) is actually 8.69x short and the true marginal cell (FROZEN/floor0.0, 2.31x) is never named. V3-EXQ-972a T3: a FALSE POSITIVE of the instrument -- its headroom entry used 1-MAX(control accuracy) while the test is on the MEAN, and two observed paired diffs exceeded the asserted ceiling. V3-EXQ-970a is the clean control: 8.7x/8.6x headroom and a decisive positive at p=0.0039.",
+    "is_independent_bugs": false,
+    "structural_property": "One clean catch, one right-for-the-wrong-reason, one false positive. The convention is deployed and valuable, but this batch does NOT show it working as designed -- two of its three firings were computed on a quantity other than the one the criterion gates. The sharpened, actionable rule is therefore stronger than 'measure headroom': a dv_headroom entry MUST be computed on the same STATISTIC and the same ORDER STATISTIC as the criterion it certifies. A cheap self-check follows from the 972a case: if any observed value of the test statistic exceeds the asserted ceiling, the ceiling is mis-specified.",
+    "readings": [
+      "headroom_entries_mismatched_to_the_criteria_they_certify",
+      "bar_registered_before_dv_dynamic_range_measured"
+    ]
+  },
+  "red_team": {
+    "verdict": "CONTESTED",
+    "model": "inherited session model (Fable unavailable -- out of usage credits; re-spawned once per skill Step 7c)",
+    "contested_findings_accepted": [
+      "C1 972a T3 not starved (independently recomputed and confirmed)",
+      "C2 1009 wrong statistic + misleading durable record",
+      "C3 cluster pattern overstated",
+      "C4 substrate_paths missed ree_core/agent.py and cited the wrong 970a line",
+      "C5 routing contradicted the brake"
+    ],
+    "hygiene_accepted": [
+      "H1 from-reset upper-bound absolute falsified on seed7",
+      "H2 Leg-B-only denominator substitution surfaced",
+      "H3 1009 C2 degenerate downstream of C1, not a co-failure",
+      "H4 frozen-encoder claim narrowed to 4 code-verified drivers (956/969 excluded, independently confirmed)",
+      "H5 disagreement_kind citation removed",
+      "H6 brake refusal is prose-only; rides on the pre-existing count of 4",
+      "H7 1009 internal relocation_ratio inconsistency recorded"
+    ],
+    "note": "All five contested findings were independently re-verified by the adjudicating session before acceptance; none was taken on the agent's assertion alone."
+  },
+  "hypothesis_space_ledger_applied": {
+    "mode": "applied in-session (interactive; user-confirmed 2026-09-07)",
+    "sd_e1_var_bar_readout_crush": {
+      "H-fidelity-anchor": "confirmed",
+      "H-goal-orthogonal-dispersion": "confirmed",
+      "H-readout-saturation": "stays alive -- denominator-contingent, both sets recorded"
+    },
+    "contextmemory_write_content_discrimination": {
+      "H1-loss-objective-mismatch": "split",
+      "H4-input-distribution": "eliminated",
+      "H2-operating-point": "stays alive + frozen-encoder annotation",
+      "H3-task-pressure-required": "stays alive + frozen-encoder annotation",
+      "H5-frozen-encoder-harness": "Mode C discovery leg, born resolved (confirmed)"
+    }
+  }
+}
