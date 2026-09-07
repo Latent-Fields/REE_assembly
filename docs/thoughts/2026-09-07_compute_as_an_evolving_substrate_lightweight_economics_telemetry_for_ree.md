@@ -146,4 +146,173 @@ That is considerably more informative than displaying today's token price.
 For a candidate machine:
 
 \[
-C_{\text{owned}
+C_{\text{owned}}
+=
+C_{\text{capital amortisation}}
++
+C_{\text{electricity}}
++
+C_{\text{maintenance}}
++
+C_{\text{obsolescence}}
+\]
+
+Compare this with:
+
+\[
+C_{\text{external}}
+=
+C_{\text{substitutable API}}
++
+C_{\text{substitutable cloud compute}}
+\]
+
+The word **substitutable** is essential.
+
+The accounting system should not claim that an application programming interface (API) call could have been local merely because a local model exists. Substitution should eventually be empirically demonstrated on REE workloads.
+
+This suggests that REE could occasionally run **compute substitution assays**:
+
+> Can this class of coordinator task be performed by model X instead of the current frontier model without materially degrading the result?
+
+The answer then becomes part of the economic dataset.
+
+Commercial model progress itself can therefore reduce the value of owning inference hardware in one part of the project while increasing the value of ownership elsewhere.
+
+## There are several crossovers, not one
+
+The system should avoid producing a single simplistic “buy a workstation” number.
+
+There may be separate crossover points for:
+
+1. **REE_assembly inference**
+2. **routine coding and administration**
+3. **REE experimental inference**
+4. **REE training**
+5. **large experimental sweeps**
+6. **persistent organism operation**
+7. **rare high-compute experiments**
+
+Some may never favour ownership.
+
+For example, commercial frontier cognition might remain best purchased externally while recurrent REE experiments become overwhelmingly cheaper locally.
+
+Conversely, enormous but infrequent experiments may remain ideal cloud workloads even after REE owns substantial hardware.
+
+The probable mature infrastructure is therefore hybrid rather than purely local or purely cloud.
+
+## Queueing and scientific latency matter too
+
+Pure monetary accounting misses an important benefit of owned compute.
+
+Suppose an experiment costs only €20 in the cloud, but starting it involves provisioning hardware, transferring data, configuring environments and deciding whether its value justifies the expense.
+
+A local machine sitting beside the development environment changes behaviour.
+
+Experiments can become:
+
+> “Run it.”
+
+rather than:
+
+> “Is this worth renting a machine for?”
+
+That reduction in friction may increase experimentation itself.
+
+The ledger should therefore eventually capture at least crude measures of:
+
+- queue delay
+- time from experiment-ready to experiment-start
+- failures caused by unavailable resources
+- experiments deferred for cost or capacity reasons
+
+Ownership has scientific value if it converts scarce scheduled computation into an abundant laboratory instrument.
+
+## Conversely, ownership creates risks
+
+A purchase can also lock REE into assumptions that turn out to be wrong.
+
+Relevant risks include:
+
+- accelerator architecture becoming obsolete
+- insufficient accelerator memory
+- software ecosystem incompatibility
+- poor utilisation
+- rapidly falling cloud prices
+- rapid improvement in commercial models
+- REE becoming CPU- rather than GPU-bound
+- REE becoming memory-bandwidth-bound rather than compute-bound
+- distributed experiments proving more valuable than one very large machine
+- hardware failures
+- heat, noise and electrical requirements
+- sunk-cost pressure encouraging experiments suited to owned hardware rather than experiments scientifically worth doing
+
+The telemetry should therefore make **delay** measurable too.
+
+Waiting has option value.
+
+## Suggested purchase trigger
+
+Rather than selecting a particular workstation today, REE could eventually define a conservative purchasing rule.
+
+For example, investigate ownership seriously when all of the following become true:
+
+- projected workload fits a known hardware class;
+- the workload has remained substantial for several months;
+- a meaningful proportion of external spend is demonstrably substitutable;
+- utilisation would be high enough to avoid largely idle capital;
+- expected payback is comfortably within the useful hardware lifetime;
+- local execution provides meaningful scientific-throughput benefits;
+- the proposed hardware has been tested using actual REE workloads before purchase.
+
+This turns a future €10,000, €30,000 or €150,000 decision from speculation into an evidence-backed infrastructure decision.
+
+## Implementation principle
+
+The important constraint is:
+
+> **Measure once at the execution chokepoints; derive everything else later.**
+
+There should not be a new form for every experiment.
+
+Experiment manifests already know much of what is required. Model wrappers know token counts and model identity. Cloud runners know machine type and duration. Local runners can obtain hardware and elapsed-time information.
+
+These events can feed an append-only lightweight ledger, perhaps with a small pricing/configuration file applied during analysis.
+
+The coordinator then merely reads the resulting summary.
+
+If the coordinator interface changes again, the economic history survives.
+
+## Broader implication
+
+REE is unusual in that its infrastructure requirements may themselves trace the developmental progression of the project.
+
+Early REE may spend most of its resources on external intelligence required to construct and understand the organism.
+
+Later REE may spend increasingly large resources on the organism's own development, experience and experimental replication.
+
+A compute ledger could make that transition visible.
+
+One day the graph may cross:
+
+**cost of thinking about the organism**
+
+versus
+
+**cost of letting the organism think.**
+
+That crossover would itself be an interesting milestone in the development of REE.
+
+## Suggested action
+
+Introduce lightweight compute accounting now, while the workload is still modest.
+
+Do not optimise infrastructure around it yet.
+
+Record enough information that future decisions about local workstations, cloud accelerators and commercial models can be reconstructed empirically.
+
+Resurrect the former pricing display only as a view over this deeper dataset.
+
+The immediate goal is therefore not to decide what computer REE needs.
+
+It is to ensure that, when REE eventually tells us what computer it needs, we have been listening.
