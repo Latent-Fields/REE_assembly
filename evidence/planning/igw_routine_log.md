@@ -2659,3 +2659,4 @@ One line per hourly tick. ASCII only.
 2026-09-07T07:34:12Z disposition IGW-20260907-231 hash=1ea9f66c54ea decision=DEFER: MECH-535 (direction-blind reactive ambitendency) is the SD-018 directional-field
 2026-09-07T07:34:25Z disposition IGW-20260907-247 hash=23d982d6d95e decision=DEFER: GOV-CONFIRM-1 confirm for SD-056 (lit 0.62, lowest of the confirm lane): parked
 2026-09-07T07:36:44Z disposition-upgrade IGW-20260907-236 hash=e1ac0b83a08d decision=RESOLVE: Duplicate of V3-EXQ-1005 (IGW-20260905-238): driver complete + smoke green, resu
+2026-09-07T07:36:57Z disposition-upgrade IGW-20260907-241 hash=829f578353c7 decision=DONE: Third adjudicated DO-NOT-QUEUE for MECH-489 (IGW-20260906-241, REE_assembly 1ba0
