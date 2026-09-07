@@ -15039,16 +15039,25 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1345",
+      "blocked_by": [
+        "contextmemory-write-path-addressing-degeneracy",
+        "SD-016",
+        "SD-070"
+      ],
+      "blocked_note": "blocked at /queue-experiment Step 2.5c: open corrupting entry contextmemory-write-path-addressing-degeneracy leaves the ContextMemory bank near rank-1 (436g: written-slot cosine 0.9993), and w_harm reaches E3 only through that bank (e1_deep.py:1077), so INV-040's DV is compressed 31-1600x (measured) and a FAIL would be vacuous",
       "claim_id": "INV-040",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-07T21:37:43Z",
+      "gating_reason": "BLOCKED at the /queue-experiment Step 2.5c substrate-path overlap gate (session igw-233-proposal-for-inv-040, IGW-20260907-233, 2026-09-07). INV-040's decisive readout is E3 terrain_weight w_harm elevated by a hazard-gradient cue in z_world BEFORE z_harm_a accumulates. That DV is produced at ree_core/predictors/e1_deep.py:1077, terrain_weight = sigmoid(cue_terrain_proj(cue_context)), whose ONLY input is cue_context = output_proj(weights @ value_proj(context_memory.memory)). Unlike the sibling action_bias, cue_terrain_proj was deliberately NOT given the EXQ-449a z_world bypass -- MECH-152's whole content is that the terrain weighting is retrieval-mediated -- so the cue can only move w_harm through the ContextMemory bank. The OPEN corrupting substrate_queue entry contextmemory-write-path-addressing-degeneracy (status implemented_pending_validation, i.e. OPEN per Step 2.5c; substrate_paths ree_core/predictors/e1_deep.py::ContextMemory.write) has its ADDRESSING half closed (V3-EXQ-436g: 16/16 occupancy on 5/5 seeds) but its CONTENT half confirmed OPEN: 436g measured written-slot mean pairwise cosine 0.9993 (WAKING_ONLY) / 0.9991 (SWS_THEN_REM) against a 0.000 no-writes calibration -- the online write path alone collapses the bank to near-rank-1. A near-rank-1 bank makes value_proj(memory) rows near-identical, so the cue-driven selection weights cannot move cue_context and w_harm is cue-invariant by construction. MEASURED on the live substrate this session (throwaway probe over E1DeepPredictor.extract_cue_context, 8 distinct z_world cues, diverse bank vs a bank forced to the 436g-measured cosine 0.9996): legacy attention w_harm range 4.88e-03 -> 3.04e-06 (1600x compression); the production 922 combination (cue_slot_tagger + gumbel selection) 7.18e-02 -> 2.29e-03 (31x compression). Slot SELECTION was healthy in every cell (7 of 8 distinct slots chosen), so the collapse is attributable to retrieved CONTENT, not to cue discrimination -- i.e. squarely to this entry's own declared, still-unclosed content half. Queuing now would run the manipulation (hazard cue present vs absent) against a DV it cannot reach, and any FAIL would alias 'cue sufficiency is false' with 'the retrieved content is rank-1' -- a vacuous verdict on INV-040, not a falsification of it. The content half is under ACTIVE repair (V3-EXQ-970 / 970a H1 contrastive + MI instrument, V3-EXQ-969 H2 operating point; 970a sits in pending_review as of 2026-09-07), which is the correct route. NOTE the re-derive brake did NOT fire (0 autopsies tag INV-040) -- this is the orthogonal Step 2.5c unrelated-claim known-defect gate, not a re-derive stop.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for INV-040 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0682",
       "proposal_type": "experimental",
+      "release_condition": "Release when the CONTENT half of contextmemory-write-path-addressing-degeneracy is closed: written ContextMemory slots must retain measurable pairwise separation under a real training schedule (that entry's own stated target), demonstrated on the redesigned instrument its implementation_hint directs -- mutual information over the full contingency table, PROBE_CLUSTERS >= 4, with the FRESH-cluster generalization readout load-bearing (V3-EXQ-970's trained-vs-fresh divergence, 0.0 vs 0.4167, is why the trained-set readout cannot carry this). That entry's own declared secondary lever, SD-070 z_world entropy, may be the operative one. CONCRETE RELEASE PREDICATE, checkable without re-deriving the above: re-run this session's probe shape against the post-fix substrate and require the w_harm range under the realised trained bank to stay within ~3x of the diverse-bank ideal (this session measured 31x under the 922 production combination). At that point INV-040 is a runnable, commitment-free, measurement-only diagnostic -- w_harm on cue-present vs cue-absent steps, conditioned on z_harm_a still below its accumulation threshold -- and needs NO action-commitment substrate, so it is not blocked by the conversion / F-dominance ceiling. Route the intervening work via /implement-substrate on contextmemory-write-path-addressing-degeneracy, NOT via another lettered experiment here.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -15061,7 +15070,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_inv_040",
       "target_repo": "ree-v3",
       "why_now": [
