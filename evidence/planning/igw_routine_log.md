@@ -2664,3 +2664,5 @@ One line per hourly tick. ASCII only.
 2026-09-07T07:37:23Z disposition-upgrade IGW-20260907-234 hash=d3e65416c088 decision=DONE: Already executed as IGW-20260903-243 (EXT-009 lit-pull landed). Re-mint after AU
 2026-09-07T08:20:30Z workset committed (regen -- 247 items, 29 ready, 0 in flight)
 2026-09-07T08:17:49Z no eligible item (skipped 247): IGW-20260907-001:skill /governance not allowed; IGW-20260907-217:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260907-218:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
+2026-09-07T12:54:37Z workset committed (regen -- 247 items, 29 ready, 0 in flight)
+2026-09-07T12:54:40Z auto-defer IGW-20260905-238 hash=e1ac0b83a08d for 48h (complete)
