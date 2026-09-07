@@ -4440,6 +4440,27 @@
       "completion_summary": "marked EVB-1345/EXP-0682 (INV-040) blocked_substrate: w_harm DV unreachable through the near-rank-1 ContextMemory bank (Step 2.5c corrupting gate); no experiment queued",
       "outcome": "USEFUL_LANDED",
       "outcome_evidence": "CORRECTED from NO_OP (manual, 2026-09-07T21:52Z). AUTO's step-4 blocked-triage clause reads experiment_proposals.v1.json in the LOCAL working tree, which still showed EXP-0682 'proposed'; the disposition was landed from a THROWAWAY WORKTREE off origin/master (REE_assembly b2df800182) because the shared checkout was carrying an uncommitted, unclaimed governance regen across evidence/planning/, so a read-modify-write there would have swept it. origin/master carries EXP-0682 status=blocked_substrate; the local tree does not. Real deliverable: EVB-1345/EXP-0682 (INV-040) blocked_substrate in both proposal files with blocked_by/blocked_note/gated_at_utc/gating_reason/release_condition, plus umbrella 9c10fe138 (WORKSPACE_STATE). No experiment queued -- /queue-experiment Step 2.5c corrupting-overlap gate on contextmemory-write-path-addressing-degeneracy."
+    },
+    {
+      "igw_id": "IGW-20260907-233",
+      "stable_hash": "9bbf133d4d12",
+      "skill": "/lit-pull",
+      "lane": "lit",
+      "priority": 40,
+      "claim_ids": [
+        "INV-040"
+      ],
+      "owner_exq": null,
+      "title": "Literature proposal for INV-040",
+      "worktree": ".claude/worktrees/igw-233-literature-proposal-for-inv-040",
+      "branch": "claude/igw-233-literature-proposal-for-inv-040",
+      "session_uuid": "1882c7c0-5e51-47f7-8ff5-40c8edb8721a",
+      "pid": 6558,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-233-literature-proposal-for-inv-040 && claude --resume 1882c7c0-5e51-47f7-8ff5-40c8edb8721a",
+      "task_claim_session_id": "igw-auto-igw-233-literature-proposal-for-inv-040-20260907T223546Z",
+      "task_claim_claimed_at": "2026-09-07T22:35:46Z",
+      "assigned_at": "2026-09-07T22:34:24Z",
+      "status": "spawned"
     }
   ],
   "dispositions": [
