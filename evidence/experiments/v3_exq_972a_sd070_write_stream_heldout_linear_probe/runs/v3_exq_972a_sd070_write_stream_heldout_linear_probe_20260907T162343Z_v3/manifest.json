@@ -1,0 +1,331 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_972a_sd070_write_stream_heldout_linear_probe",
+  "run_id": "v3_exq_972a_sd070_write_stream_heldout_linear_probe_20260907T162343Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-07T16:23:43Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-070"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "lineage_stream_linearly_decodable_structure_off_raw_axis",
+    "preconditions": [
+      {
+        "name": "UNTRAINED_ENCODER::heldout_adequate_seeds",
+        "precondition": "heldout_adequate_seeds",
+        "arm": "UNTRAINED_ENCODER",
+        "kind": "readiness",
+        "description": "number of the arm's seeds with a balanced held-out TEST count >= 24 per class (>= 7; strict floor 6.5)",
+        "control": "episode-level split of an eval-mode collection phase; an inadequate seed is dropped, never fabricated; enough seeds keep the sign-flip p-floor under alpha",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.0,
+        "threshold": 6.5,
+        "met": true
+      },
+      {
+        "name": "UNTRAINED_ENCODER::dv_headroom_probe_excess",
+        "precondition": "dv_headroom_probe_excess",
+        "arm": "UNTRAINED_ENCODER",
+        "kind": "dv_headroom",
+        "description": "ceiling headroom of the DV (balanced accuracy) above the arm's own realised shuffle-null means: 1.0 - max_seed(null_mean) must exceed PROBE_MARGIN (experiments/_metrics.dv_headroom_check, ceiling_headroom)",
+        "control": "the arm's own label-shuffle null at run-time n",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4657575757575758,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "LINEAGE::writepath_engaged",
+        "precondition": "writepath_engaged",
+        "arm": "LINEAGE",
+        "kind": "readiness",
+        "description": "min training-phase n_write_calls over the arm's cells",
+        "control": "ContextMemory.write() genuinely fired during real training (956/943/970 floor)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1321.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "LINEAGE::heldout_adequate_seeds",
+        "precondition": "heldout_adequate_seeds",
+        "arm": "LINEAGE",
+        "kind": "readiness",
+        "description": "number of the arm's seeds with a balanced held-out TEST count >= 24 per class (>= 7; strict floor 6.5)",
+        "control": "episode-level split of an eval-mode collection phase; an inadequate seed is dropped, never fabricated; enough seeds keep the sign-flip p-floor under alpha",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.0,
+        "threshold": 6.5,
+        "met": true
+      },
+      {
+        "name": "LINEAGE::dv_headroom_probe_excess",
+        "precondition": "dv_headroom_probe_excess",
+        "arm": "LINEAGE",
+        "kind": "dv_headroom",
+        "description": "ceiling headroom of the DV (balanced accuracy) above the arm's own realised shuffle-null means: 1.0 - max_seed(null_mean) must exceed PROBE_MARGIN (experiments/_metrics.dv_headroom_check, ceiling_headroom)",
+        "control": "the arm's own label-shuffle null at run-time n",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4657575757575758,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "SD070_WARMED::writepath_engaged",
+        "precondition": "writepath_engaged",
+        "arm": "SD070_WARMED",
+        "kind": "readiness",
+        "description": "min training-phase n_write_calls over the arm's cells",
+        "control": "ContextMemory.write() genuinely fired during real training (956/943/970 floor)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1332.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "SD070_WARMED::encoder_trained",
+        "precondition": "encoder_trained",
+        "arm": "SD070_WARMED",
+        "kind": "readiness",
+        "description": "fraction of the arm's cells whose world encoder the SD-070 P0a warmup moved (zworld_encoder_guard weight-delta after P0a)",
+        "control": "experiments/_lib/zworld_encoder_guard -- a frozen random projection presenting as a trained encoder is the V3-EXQ-780 failure; this arm's premise is a TRAINED encoder",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.999,
+        "met": true
+      },
+      {
+        "name": "SD070_WARMED::heldout_adequate_seeds",
+        "precondition": "heldout_adequate_seeds",
+        "arm": "SD070_WARMED",
+        "kind": "readiness",
+        "description": "number of the arm's seeds with a balanced held-out TEST count >= 24 per class (>= 7; strict floor 6.5)",
+        "control": "episode-level split of an eval-mode collection phase; an inadequate seed is dropped, never fabricated; enough seeds keep the sign-flip p-floor under alpha",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.0,
+        "threshold": 6.5,
+        "met": true
+      },
+      {
+        "name": "SD070_WARMED::dv_headroom_probe_excess",
+        "precondition": "dv_headroom_probe_excess",
+        "arm": "SD070_WARMED",
+        "kind": "dv_headroom",
+        "description": "ceiling headroom of the DV (balanced accuracy) above the arm's own realised shuffle-null means: 1.0 - max_seed(null_mean) must exceed PROBE_MARGIN (experiments/_metrics.dv_headroom_check, ceiling_headroom)",
+        "control": "the arm's own label-shuffle null at run-time n",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.474375,
+        "threshold": 0.15,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "T1_lineage_write_stream_linearly_decodable": true,
+      "T2_sd070_warmed_write_stream_linearly_decodable": true,
+      "T3_sd070_recipe_raises_decodability": false,
+      "T4_untrained_encoder_write_stream_linearly_decodable": true
+    },
+    "criteria": [
+      {
+        "name": "T1_lineage_write_stream_linearly_decodable",
+        "load_bearing": true,
+        "passed": true,
+        "mean_excess": 0.334958861544043,
+        "p_value": 0.00390625,
+        "n_seeds": 8,
+        "combination_rule": "LINEAGE gate green AND mean per-seed (balanced accuracy - shuffle-null mean) >= 0.15 AND exact sign-flip p < 0.0125 (Bonferroni over 4 tests)",
+        "note": "972's question held out: a FAIL means the lineage's write stream carries no linearly decodable context at this n -- read with T2/T3 for the SD-070 routing, and T4 for what the observation hands a random projection."
+      },
+      {
+        "name": "T2_sd070_warmed_write_stream_linearly_decodable",
+        "load_bearing": false,
+        "kind": "secondary",
+        "passed": true,
+        "mean_excess": 0.3244209083337108,
+        "p_value": 0.00390625,
+        "n_seeds": 8
+      },
+      {
+        "name": "T3_sd070_recipe_raises_decodability",
+        "load_bearing": false,
+        "kind": "routing",
+        "passed": false,
+        "mean_diff": -0.010537953210332247,
+        "p_value": 0.625,
+        "n_paired_seeds": 8,
+        "note": "paired SD070_WARMED - LINEAGE; the SD-070 evidence_direction reads 'supports' iff this passes"
+      },
+      {
+        "name": "T4_untrained_encoder_write_stream_linearly_decodable",
+        "load_bearing": false,
+        "kind": "baseline",
+        "passed": true,
+        "mean_excess": 0.334958861544043,
+        "p_value": 0.00390625
+      },
+      {
+        "name": "T1b_lineage_full64_write_stream_descriptive",
+        "load_bearing": false,
+        "kind": "descriptive",
+        "passed": true,
+        "mean_excess": 0.3570645679063018,
+        "p_value": 0.00390625,
+        "note": "the stream as ContextMemory.write() receives it; NOT a label input and NOT in the Bonferroni family: the z_self half encodes health / harm_exposure, which separate the classes by interoception (red-team F1), so a high value here is expected and says nothing about the z_world encoder. Compare with zself32 in descriptive.per_arm."
+      },
+      {
+        "name": "lineage_encoder_frozen_by_construction",
+        "load_bearing": false,
+        "kind": "finding",
+        "passed": true,
+        "lineage_cells_with_zero_latent_stack_delta": 8,
+        "lineage_cells": 8,
+        "sd070_warmed_online_phase_cells_with_zero_delta": 8,
+        "sd070_warmed_cells": 8,
+        "note": "Measured at authoring time (2026-09-07) and re-measured here: the 956/970/972 harness trains E1/E2/E3/write_addr_tagger on DETACHED buffered latents, so no gradient reaches latent_stack and the write stream every ContextMemory content-half experiment measured is a random projection of the observation. If every LINEAGE cell reads zero delta, V3-EXQ-972's 0.028 cosine and V3-EXQ-970a's tagger input are both frozen-encoder streams -- read T4 (untrained encoder) as the same encoder on a different trajectory."
+      },
+      {
+        "name": "lineage_equals_untrained_encoder_identity_control",
+        "load_bearing": false,
+        "kind": "control",
+        "passed": true,
+        "n_seeds_lineage_identical_to_untrained": 8,
+        "n_seeds": 8,
+        "n_seeds_sd070_warmed_differs": 8,
+        "note": "Positive control on BOTH the shared-observation-set fix and the frozen-encoder finding: with every arm encoding the same observation sequence, LINEAGE (whose encoder no gradient reaches) must produce latents bit-identical to UNTRAINED_ENCODER, while SD070_WARMED (whose P0a moved the world encoder) must differ. A failure of either half means the shared-observation machinery or the frozen-encoder claim is wrong, and T3 is not an encoder contrast."
+      },
+      {
+        "name": "descriptive_half_probes_and_972_readacross",
+        "load_bearing": false,
+        "kind": "descriptive",
+        "per_arm": {
+          "UNTRAINED_ENCODER": {
+            "full64": {
+              "mean_excess": 0.3570645679063018,
+              "mean_balanced_accuracy": 0.855609486279849
+            },
+            "zworld32": {
+              "mean_excess": 0.334958861544043,
+              "mean_balanced_accuracy": 0.8444366105278402
+            },
+            "zself32": {
+              "mean_excess": 0.16893210322217375,
+              "mean_balanced_accuracy": 0.6713144108053383
+            }
+          },
+          "LINEAGE": {
+            "full64": {
+              "mean_excess": 0.3570645679063018,
+              "mean_balanced_accuracy": 0.855609486279849
+            },
+            "zworld32": {
+              "mean_excess": 0.334958861544043,
+              "mean_balanced_accuracy": 0.8444366105278402
+            },
+            "zself32": {
+              "mean_excess": 0.16893210322217375,
+              "mean_balanced_accuracy": 0.6713144108053383
+            }
+          },
+          "SD070_WARMED": {
+            "full64": {
+              "mean_excess": 0.36141957707406297,
+              "mean_balanced_accuracy": 0.8632632134648264
+            },
+            "zworld32": {
+              "mean_excess": 0.3244209083337108,
+              "mean_balanced_accuracy": 0.8256672073204332
+            },
+            "zself32": {
+              "mean_excess": 0.1963948707950724,
+              "mean_balanced_accuracy": 0.6980507863068347
+            }
+          }
+        },
+        "cosine_972_style_mean_per_arm": {
+          "UNTRAINED_ENCODER": 0.0014700334345333077,
+          "LINEAGE": 0.0014700334345333077,
+          "SD070_WARMED": 0.003470083807383992
+        },
+        "zworld_participation_ratio_mean_per_arm": {
+          "UNTRAINED_ENCODER": 7.500538724417216,
+          "LINEAGE": 7.500538724417216,
+          "SD070_WARMED": 3.422514984989549
+        }
+      }
+    ],
+    "sd070_routing": {
+      "T3_passed": false,
+      "evidence_direction": "non_contributory"
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "cd8cdb757d7895e91988bc17d889d2c1ce72e7b627fa372b3973dfe2f6ce28ca",
+  "substrate_commit": {
+    "commit": "7fb22a0d1cd1d3d9f239e19d0c667c83650ed47a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e1.contextmemory_gated_content_write": true,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.anchor_set.use_sd039_anchor_payload": true,
+    "heartbeat.breath_period": 50,
+    "contextmemory_write_addressing_loss_weight": 0.5,
+    "use_noise_floor": true
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": false
+  }
+}
