@@ -3792,12 +3792,34 @@ def test_subcase_b_generates_no_proposal_against_the_parent_id():
     assert [p for p in proposals if p.get("claim_id") == "SD-900"] == []
 
 
-def test_subcase_b_control_design_decision_without_children_still_skipped():
+def test_subcase_b_control_design_decision_without_children_takes_ordinary_path():
     """Negative control: the branch must fire on the instantiates RELATIONSHIP, not
-    merely on claim_type == design_decision. Otherwise all 110 design_decision
-    claims would flood the backlog."""
+    merely on claim_type == design_decision. If it fired on the type alone, every
+    design_decision claim would be credited as validated-via-children and carry an
+    empty evidence_needed, exempting all 113 of them from proposals in both lanes --
+    the opposite of the visibility this branch exists to give.
+
+    SCOPE CHANGED 2026-09-01 by f7ba73f16b (GFLAG-0054), which is why this control no
+    longer asserts ABSENCE. Before that commit a zero-evidence registered claim of any
+    type other than open_question hit a bare `continue` and never entered the backlog
+    at all; GFLAG-0054 routes it through the ordinary missing-evidence vocabulary
+    precisely to end that invisibility, so "SD-901 not in ids" was asserting the bug.
+    The control is now "SD-901 took the ORDINARY path, not the sub-case B one" -- the
+    same idiom test_subcase_a_not_implemented_parent_with_claim_meta_is_unchanged uses.
+
+    Why an ordinary proposal against SD-901 is fine while one against SD-900 is not:
+    the sub-case B exemption is about the RELATIONSHIP (a parent whose validation
+    lives in its children has nothing a direct run could clear), not about the type.
+    Runs are tagged against design_decision ids routinely -- 622 experimental entries
+    across 69 of the registry's 113 design_decision claims (measured 2026-09-07) -- so
+    a childless, evidence-less SD-901 is simply an unevidenced claim.
+    """
     ids, _ = _run_planning(_SUBCASE_B_REGISTRY, [_CHILD_ENTRY], {"MECH-900": {}})
-    assert "SD-901" not in ids
+    entry = ids["SD-901"]
+    assert "validated_via_instantiating_children" not in entry["reasons"]
+    assert "instantiating_children" not in entry["signals"]
+    assert "missing_experimental_evidence" in entry["reasons"]
+    assert set(entry["evidence_needed"]) == {"experimental", "literature"}
 
 
 def test_subcase_b_does_not_disturb_ordinary_claims():
