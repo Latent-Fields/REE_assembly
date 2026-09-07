@@ -3912,6 +3912,40 @@ def _strip_inline_yaml_comment(value: str) -> str:
     return value.strip()
 
 
+# Claim-level EXPERIMENT QUEUE GATE -- mirror of igw_routine_tick._resolve_queue_gate
+# (REE_Working/scripts/igw_routine_tick.py). Two carriers, in precedence order:
+#   1. the structured `experiment_gate: {gated: true, gating_claim, release_condition}`
+#      mapping (adopted by governance-20260905, C5 schema decision; 3 claims today);
+#   2. the anchored literal `GATED: DO NOT QUEUE` in `notes` (transitional; kept on
+#      ARC-113 as the human-readable copy).
+# The anchoring is measured, not asserted: on 2026-09-04 the anchored form matched
+# exactly 1 claim while a loose `DO NOT QUEUE` scan matched 67, including INV-012,
+# whose notes QUOTE a different claim's hold. Do NOT widen this pattern. The two
+# readers live in different repos, so this is a deliberate MIRROR (same precedent as
+# `_is_dry_run` above / scripts/generate_pending_review.py), not a cross-repo import
+# that works on the Mac and fails silently on the hub and workers.
+_QUEUE_GATE_MARKER = re.compile(r"GATED:\s*DO NOT QUEUE")
+
+
+def _compose_queue_gate_reason(
+    gated: bool, gating_claim: str | None, release: str | None, notes: str | None
+) -> str:
+    """The gate reason for one claim, or "" when ungated. Format-identical to
+    igw_routine_tick._resolve_queue_gate so a human sees one sentence in both."""
+    if gated:
+        bits = []
+        if gating_claim:
+            bits.append("gated on %s" % gating_claim)
+        if release:
+            bits.append("release: %s" % release)
+        return "; ".join(bits) or "experiment_gate.gated"
+    text = notes or ""
+    m = _QUEUE_GATE_MARKER.search(text)
+    if m:
+        return text[m.start():m.start() + 200].strip()
+    return ""
+
+
 def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     """Parse claim id/status/type/v3_pending/implementation_phase from docs/claims/claims.yaml.
 
@@ -3952,6 +3986,18 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     # this is a no-op against the current registry.
     current_intentional_cross_epoch: bool = False
     _collecting_eq_note: bool = False  # True while reading a block-scalar evidence_quality_note
+    # Claim-level experiment queue gate (chip-20260904-indexer-mints-gated-claims-
+    # as-blocked). Two carriers, read the same way igw_routine_tick._resolve_queue_
+    # gate reads them: the structured `experiment_gate:` mapping (gated /
+    # gating_claim / release_condition), and the anchored `GATED: DO NOT QUEUE`
+    # literal inside `notes`. `notes` is the bulk of the registry, so it is held
+    # for the CURRENT claim only and reduced to the gate excerpt at flush time.
+    current_gate_gated: bool = False
+    current_gate_claim: str | None = None
+    current_gate_release: str | None = None
+    _in_gate_block: bool = False
+    current_notes: str | None = None
+    _collecting_notes: bool = False
 
     if not path.exists():
         return registry
@@ -3967,6 +4013,24 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             else:
                 _collecting_eq_note = False
                 # Fall through to process this non-continuation line normally
+
+        if _collecting_notes:
+            if line.startswith("    "):
+                current_notes = (current_notes or "") + " " + line.strip()
+                continue
+            _collecting_notes = False
+        if _in_gate_block:
+            if line.startswith("    "):
+                _gk, _, _gv = line.strip().partition(":")
+                _gk = _gk.strip()
+                if _gk == "gated":
+                    current_gate_gated = _strip_inline_yaml_comment(_gv).lower() in ("true", "yes", "1")
+                elif _gk == "gating_claim":
+                    current_gate_claim = _gv.strip().strip("\"'")
+                elif _gk == "release_condition":
+                    current_gate_release = _gv.strip().strip("\"'")
+                continue
+            _in_gate_block = False
 
         if line.startswith("- id:"):
             if current_id:
@@ -3987,6 +4051,11 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                     "assembly_status": current_assembly_status or "",
                     "revisit_after": current_revisit_after or "",
                     "intentional_cross_epoch_comparison": str(current_intentional_cross_epoch),
+                    "queue_gate_reason": _compose_queue_gate_reason(
+                        current_gate_gated, current_gate_claim, current_gate_release, current_notes
+                    ),
+                    "queue_gate_claim": (current_gate_claim or "") if current_gate_gated else "",
+                    "queue_gate_release": (current_gate_release or "") if current_gate_gated else "",
                 }
             current_id = line.split(":", 1)[1].strip()
             current_status = None
@@ -4006,6 +4075,25 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_revisit_after = None
             current_intentional_cross_epoch = False
             _collecting_eq_note = False
+            current_gate_gated = False
+            current_gate_claim = None
+            current_gate_release = None
+            _in_gate_block = False
+            current_notes = None
+            _collecting_notes = False
+            continue
+
+        if current_id and line.startswith("  experiment_gate:"):
+            _in_gate_block = True
+            continue
+
+        if current_id and line.startswith("  notes:"):
+            _rest = line.split(":", 1)[1].strip()
+            if _rest in ("|", ">", "|-", ">-", "|+", ">+"):
+                current_notes = ""
+                _collecting_notes = True
+            else:
+                current_notes = _rest.strip("\"'")
             continue
 
         if current_id and line.startswith("  status:"):
@@ -4115,6 +4203,11 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             "assembly_status": current_assembly_status or "",
             "revisit_after": current_revisit_after or "",
             "intentional_cross_epoch_comparison": str(current_intentional_cross_epoch),
+            "queue_gate_reason": _compose_queue_gate_reason(
+                current_gate_gated, current_gate_claim, current_gate_release, current_notes
+            ),
+            "queue_gate_claim": (current_gate_claim or "") if current_gate_gated else "",
+            "queue_gate_release": (current_gate_release or "") if current_gate_gated else "",
         }
     return registry
 
@@ -6155,6 +6248,67 @@ def apply_proposal_status_carry_forward(
     return False
 
 
+# Provenance marker for a proposal BORN blocked by the claim gate below, so the
+# gate can also LIFT it: a regen that finds the claim ungated returns exactly the
+# rows it blocked itself to "proposed", and never touches a row a session blocked
+# by hand (which carries its own gated_by_session, or none).
+_GATE_MINT_MARKER = "build_experiment_indexes:claim_queue_gate"
+
+
+def apply_claim_queue_gate(proposal: dict[str, Any], registry_meta: dict | None) -> str:
+    """Make a queue-gated claim's EXPERIMENTAL proposal born blocked, in place.
+
+    THE DEFECT (chip-20260904-indexer-mints-gated-claims-as-blocked). Both
+    proposal PRODUCERS honour a claim's do-not-queue gate since 2026-09-04
+    (igw_routine_tick.claim_queue_gate_reason, consumed by proposal_routine_tick
+    and item_untestable_reason), so a gated claim no longer gets a chip. The
+    INDEXER did not: it minted the proposal "proposed" on every regen, and every
+    cycle a human re-adjudicated it by hand. Live case: ARC-113 (gated on
+    ARC-062 GAP-B) carried EXP-0486 / EXP-0274 / EXP-0278 at "proposed".
+
+    Runs AFTER the carry-forward, and only moves a row that is still "proposed":
+    a manual disposition (executed / skipped / a hand-written blocked_substrate)
+    always outranks the gate, exactly as manual_status_is_authoritative already
+    guarantees against the carry-forward. Returns "minted" when the row was
+    blocked here, "lifted" when a row this gate blocked on an earlier regen is
+    returned to "proposed" because the claim is no longer gated, "" otherwise.
+    Pure and module-level so it is testable without running the indexer.
+    """
+    if str(proposal.get("proposal_type") or "") != "experimental":
+        return ""
+    meta = registry_meta if isinstance(registry_meta, dict) else {}
+    reason = str(meta.get("queue_gate_reason") or "").strip()
+    status = str(proposal.get("status") or "proposed").strip().lower()
+    if reason:
+        if status != "proposed":
+            if proposal.get("gated_by_session") == _GATE_MINT_MARKER:
+                proposal["gating_reason"] = reason  # keep the reason current
+            return ""
+        gating_claim = str(meta.get("queue_gate_claim") or "").strip()
+        proposal["status"] = "blocked_substrate"
+        proposal["blocked_by"] = [gating_claim] if gating_claim else []
+        proposal["gating_reason"] = reason
+        proposal["gated_by_session"] = _GATE_MINT_MARKER
+        release = str(meta.get("queue_gate_release") or "").strip()
+        if release:
+            proposal["release_condition"] = release
+        proposal["blocked_note"] = (
+            f"Born blocked by build_experiment_indexes: {proposal.get('claim_id')} carries "
+            f"a claims.yaml experiment queue gate ({reason}). Not a substrate-readiness "
+            f"finding of this proposal's own; the row lifts back to 'proposed' "
+            f"automatically once the gate is removed from the claim "
+            f"(chip-20260904-indexer-mints-gated-claims-as-blocked)."
+        )
+        return "minted"
+    if status == "blocked_substrate" and proposal.get("gated_by_session") == _GATE_MINT_MARKER:
+        proposal["status"] = "proposed"
+        for k in ("blocked_by", "blocked_note", "gating_reason", "gated_by_session",
+                  "release_condition"):
+            proposal.pop(k, None)
+        return "lifted"
+    return ""
+
+
 def apply_manual_proposal_write_back(
     item: dict[str, Any], resolved: dict | None
 ) -> tuple[bool, bool]:
@@ -7940,6 +8094,21 @@ def _write_planning_outputs(
                  str(_p.get("status")), str((_carried or {}).get("status")))
             )
 
+    # A claim-level experiment queue gate (claims.yaml `experiment_gate` /
+    # anchored `GATED: DO NOT QUEUE`) makes the experimental proposal BORN
+    # blocked, and lifts it again when the gate goes -- see apply_claim_queue_gate.
+    # After the carry-forward on purpose: a manual disposition still wins.
+    _gate_mints: list[tuple[str, str]] = []
+    _gate_lifts: list[tuple[str, str]] = []
+    for _p in proposals:
+        _verdict = apply_claim_queue_gate(
+            _p, claim_registry.get(str(_p.get("claim_id") or ""), {})
+        )
+        if _verdict == "minted":
+            _gate_mints.append((str(_p.get("proposal_id") or "?"), str(_p.get("claim_id") or "?")))
+        elif _verdict == "lifted":
+            _gate_lifts.append((str(_p.get("proposal_id") or "?"), str(_p.get("claim_id") or "?")))
+
     # Preserve historical resolution records for items that no longer appear
     # in the freshly-generated `proposals` list AT ALL -- e.g. a claim that
     # is now correctly recognized as experiment-ineligible
@@ -8017,6 +8186,13 @@ def _write_planning_outputs(
         except Exception:
             pass  # malformed manual file -- skip silently, same as the merge above
 
+    if _gate_mints:
+        print(f"  proposal status: {len(_gate_mints)} experimental proposal(s) born "
+              f"blocked_substrate by a claim queue gate: "
+              + ", ".join(f"{p} ({c})" for p, c in _gate_mints))
+    if _gate_lifts:
+        print(f"  proposal status: {len(_gate_lifts)} gate-minted block(s) lifted "
+              f"(claim no longer gated): " + ", ".join(f"{p} ({c})" for p, c in _gate_lifts))
     if _manual_status_wins:
         _seen_wins: set[tuple[str, str, str, str]] = set()
         print(
