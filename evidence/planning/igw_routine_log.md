@@ -2656,3 +2656,4 @@ One line per hourly tick. ASCII only.
 2026-09-07T07:32:33Z workset committed (regen -- 247 items, 30 ready, 0 in flight)
 2026-09-07T07:33:34Z disposition IGW-20260907-235 hash=c40f16f617d1 decision=DEFER: implementation_note class (truthmaker is the repo); owned by chip-20260904-litla
 2026-09-07T07:33:53Z disposition IGW-20260907-232 hash=7b069af1d182 decision=DONE: V3-EXQ-1007 (MECH-536 eval-time persistence discriminator) already queued ree-v3
+2026-09-07T07:34:12Z disposition IGW-20260907-231 hash=1ea9f66c54ea decision=DEFER: MECH-535 (direction-blind reactive ambitendency) is the SD-018 directional-field
