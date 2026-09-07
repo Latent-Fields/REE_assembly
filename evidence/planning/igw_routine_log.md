@@ -2658,3 +2658,4 @@ One line per hourly tick. ASCII only.
 2026-09-07T07:33:53Z disposition IGW-20260907-232 hash=7b069af1d182 decision=DONE: V3-EXQ-1007 (MECH-536 eval-time persistence discriminator) already queued ree-v3
 2026-09-07T07:34:12Z disposition IGW-20260907-231 hash=1ea9f66c54ea decision=DEFER: MECH-535 (direction-blind reactive ambitendency) is the SD-018 directional-field
 2026-09-07T07:34:25Z disposition IGW-20260907-247 hash=23d982d6d95e decision=DEFER: GOV-CONFIRM-1 confirm for SD-056 (lit 0.62, lowest of the confirm lane): parked
+2026-09-07T07:36:44Z disposition-upgrade IGW-20260907-236 hash=e1ac0b83a08d decision=RESOLVE: Duplicate of V3-EXQ-1005 (IGW-20260905-238): driver complete + smoke green, resu
