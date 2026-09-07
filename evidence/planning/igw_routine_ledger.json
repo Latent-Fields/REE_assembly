@@ -4410,7 +4410,11 @@
       "task_claim_session_id": "igw-auto-igw-232-literature-proposal-for-impl-027-20260907T202439Z",
       "task_claim_claimed_at": "2026-09-07T20:24:39Z",
       "assigned_at": "2026-09-07T20:23:40Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-07T20:45:06Z",
+      "completion_summary": "lit-pull LIT-0635 landed: 4 IMPL-027 literature entries (REE_assembly 1d51b58b54, lit_conf 0.84, 2 mixed / 2 weakens / 0 supports) + GFLAG-0226 stale_note (e8398b09b7) for miscited primary source and 3-of-4 CNC requirement coverage",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull LIT-0635 landed: 4 IMPL-027 literature entries (REE_assembly 1d51b58b54, lit_conf 0.84, 2 mixed / 2 weakens / 0 supports) + GFLAG-0226 stale_note (e8398b09b7) for miscited primary source and 3-of-4 CNC requirement coverage"
     }
   ],
   "dispositions": [
@@ -6193,6 +6197,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-07T19:41:06Z",
       "re_eligible_after": "2026-09-09T19:41:06Z"
+    },
+    {
+      "stable_hash": "feeedc7ba9ff",
+      "igw_id_at_disposition": "IGW-20260907-232",
+      "owner_exq": null,
+      "claim_ids": [
+        "IMPL-027"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for IMPL-027",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-07T20:45:06Z",
+      "re_eligible_after": "2026-09-09T20:45:06Z"
     }
   ]
 }
