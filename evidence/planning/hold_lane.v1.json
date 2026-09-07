@@ -1,7 +1,7 @@
 {
   "schema_version": "hold_lane/v1",
-  "generated_at": "2026-09-06T17:57:01Z",
-  "generated_by": "science-wave-coord-20260906-decisions",
+  "generated_at": "2026-09-07T07:41:31Z",
+  "generated_by": "campaign-split-20260907 (wave-4 planning session)",
   "_schema_notes": [
     "A HOLD is a stated reason plus a review date, never a withdrawal: the chip keeps status open in TASK_CHIPS.json; this file only says a plan of record deliberately parked it.",
     "pause_pressure.py reads this file: an open authored chip listed here with review_after >= today is reported under open_chips_authored_held and EXCLUDED from the backlog arm's open_chips_authored trip; a hold whose review_after has passed counts again automatically (a hold is not a hide).",
@@ -9,7 +9,8 @@
   ],
   "source_plans": [
     "REE_assembly/evidence/planning/science_wave_campaign_plan_20260904.md#3",
-    "REE_assembly/evidence/planning/science_wave_campaign_plan_20260906.md#3"
+    "REE_assembly/evidence/planning/science_wave_campaign_plan_20260906.md#3",
+    "REE_assembly/evidence/planning/science_wave_campaign_plan_20260907.md#4"
   ],
   "review_after": "2026-09-11",
   "held": {
@@ -63,17 +64,7 @@
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
-    "chip-20260901-doctrine-shrink-retired-telemetry": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
     "chip-20260901-gflag0091-unblocks-claims-edge-repair": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260901-heartbeat-retirement-runbook": {
       "review_after": "2026-09-11",
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
@@ -93,22 +84,12 @@
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
-    "chip-20260902-arc113-stage-implementation-audit": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
     "chip-20260902-arc131-coalition-endogenous-recruitment-driver": {
       "review_after": "2026-09-11",
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-brake-wrapped-substrate-status": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-campaign-fleethygiene-cloud4-staterepair": {
       "review_after": "2026-09-11",
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
@@ -233,11 +214,6 @@
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
-    "chip-20260903-cloud5-no-puller-for-work-repos": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
     "chip-20260903-dea001-v3-channel-exposure-audit": {
       "review_after": "2026-09-11",
       "plan": "science_wave_campaign_plan_20260906.md section 3",
@@ -273,11 +249,6 @@
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
-    "chip-20260903-untracked-manifest-collision-recurring-class": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
     "chip-20260903-worktree-guard-bash-blindspot": {
       "review_after": "2026-09-11",
       "plan": "science_wave_campaign_plan_20260906.md section 3",
@@ -289,16 +260,6 @@
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260904-coordinator-intent-replace-http500": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260904-depproc-coupled-with-labels": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260904-explorer-coupled-with": {
       "review_after": "2026-09-11",
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
@@ -318,22 +279,7 @@
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
-    "chip-20260904-thought-sweep-intake-marker": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
     "chip-20260905-mech095-sd047-valid-retest-design": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-classifierblock-dlaptop-1a8f42c4-3c71-48": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-daemondrift-dlaptop-mac-serve": {
       "review_after": "2026-09-11",
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
@@ -402,6 +348,16 @@
       "review_after": "2026-09-11",
       "plan": "science_wave_campaign_plan_20260906.md section 3",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
+    },
+    "chip-20260906-mech057b-hippocampal-completion-gate-substrate": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260907.md section 4",
+      "reason": "off-chain substrate build (ARC-065 GAP-A co-blocks); not on the 39-of-43 v3 critical-path chain; costs at least one Opus session floor"
+    },
+    "chip-20260906-decision-pausepressure-hold-lane": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260907.md section 4",
+      "reason": "decision chip awaiting the user (wave-4 plan section 6.4); not work"
     }
   }
 }
