@@ -4152,6 +4152,68 @@ _PROBE_GATED_EPISTEMIC_CATEGORIES = {
 }
 
 
+# Claim TYPES whose members are records of what was built, not hypotheses about
+# it, and which therefore seed no designable experiment or literature review by
+# default. Keyed on claim_type rather than epistemic_category because the
+# resolver has no category that fits: `standard` is its fallthrough for anything
+# it cannot classify, and that fallthrough is precisely the bug
+# (chip-20260906-impl-note-proposal-gate).
+#
+# MEASURED, 2026-09-06 (IGW-20260906-235) and re-measured 2026-09-07: 25
+# implementation_note claims are registered; NONE carries what_would_answer or
+# falsifier; ZERO of the ~1000 flat manifests under evidence/experiments/ tags
+# any IMPL-* claim; and 37 proposal rows (19 experimental + 18 literature) had
+# already been minted against them, 30 still `proposed`. Each such row can
+# become an IGW workset item that spawns a headless /queue-experiment session
+# which can only decline it -- that happened for IMPL-023 (EVB-1307, declined,
+# recorded blocked_substrate as EXP-IMPL023-V2-SPEC-RECORD, 9163c2d807).
+_PROPOSAL_INELIGIBLE_CLAIM_TYPES = {"implementation_note"}
+
+
+def _is_class_proposal_ineligible_claim(registry_meta: "dict[str, Any] | None") -> bool:
+    """True when a claim's TYPE makes it undesignable by default, both lanes.
+
+    THE WARN-SAFE TENSION, resolved rather than ignored.
+    _is_experiment_ineligible_claim is deliberately warn-safe -- missing or blank
+    fields on a REGISTERED claim resolve to ELIGIBLE, so absent metadata never
+    silently suppresses a genuine proposal. A blanket class suppression cuts
+    against that stance, so this predicate carries an explicit per-claim escape
+    hatch instead of being unconditional: it fires ONLY when the claim carries NO
+    explicit epistemic_category. Annotating one claim in claims.yaml (any value
+    the resolver recognises, `standard` included) re-admits it to both lanes with
+    no code change. So the class default is suppression; an author's explicit
+    statement always wins, which is the warn-safe stance applied one level up.
+
+    Deliberately NOT a claims.yaml bulk edit (route (b) of the chip): annotating
+    25 claims is a /governance disposition, it would have to be repeated for
+    every new implementation_note, and it does not stop the next such class.
+    Route (b) remains available per claim, and is exactly what the escape hatch
+    above reads.
+    """
+    if not registry_meta:
+        return False
+    claim_type = str(registry_meta.get("claim_type", "")).strip().lower()
+    if claim_type not in _PROPOSAL_INELIGIBLE_CLAIM_TYPES:
+        return False
+    explicit = str(registry_meta.get("epistemic_category", "")).strip().lower()
+    return explicit not in EPISTEMIC_CATEGORIES
+
+
+def _is_literature_ineligible_claim(registry_meta: "dict[str, Any] | None") -> bool:
+    """True when a claim must not seed a literature (LIT-*) proposal either.
+
+    Narrow on purpose, and NOT the mirror of _is_experiment_ineligible_claim:
+    out_of_domain / derivational / substrate_conditional claims are all still
+    perfectly good /lit-pull targets (out_of_domain is ANSWERED by literature),
+    which is why that gate leaves this branch alone. The one class that is
+    undesignable in BOTH lanes is the record-of-what-was-built class -- an
+    implementation_note has no external referent to review, so a generic
+    "improve literature grounding for IMPL-0NN" row is a dispatch that can only
+    be declined.
+    """
+    return _is_class_proposal_ineligible_claim(registry_meta)
+
+
 def _is_deferred_to_later_generation(registry_meta: "dict[str, Any] | None") -> bool:
     """True when a claim is v3_pending AND implementation_phase names a
     generation >= v4 -- i.e. deliberately deferred to a later architecture
@@ -4174,7 +4236,10 @@ def _is_deferred_to_later_generation(registry_meta: "dict[str, Any] | None") -> 
 def _is_experiment_ineligible_claim(registry_meta: dict[str, Any]) -> bool:
     """True when a claim must not seed an experimental (EXP-*) proposal.
 
-    Four independent reasons (any one suffices):
+    Five independent reasons (any one suffices):
+      * the claim's TYPE is undesignable by default and it carries no explicit
+        epistemic_category (see _is_class_proposal_ineligible_claim -- the
+        implementation_note class, with a per-claim escape hatch),
       * registry_meta is empty -- the claim_id has no claims.yaml entry at all
         (claim_registry.get(claim_id, {}) fell through to the default; a real
         parsed entry always carries status/claim_type keys, even blank, so an
@@ -4200,6 +4265,8 @@ def _is_experiment_ineligible_claim(registry_meta: dict[str, Any]) -> bool:
     if not isinstance(registry_meta, dict):
         return False
     if not registry_meta:
+        return True
+    if _is_class_proposal_ineligible_claim(registry_meta):
         return True
     status = str(registry_meta.get("status", "")).strip().lower()
     if status in _ANSWERED_OR_CLOSING_CLAIM_STATUSES:
@@ -5970,6 +6037,105 @@ def lookup_existing_proposal_status(
     return None
 
 
+# The blocked_substrate family, spelled the same way the workset generator
+# spells it (generate_inter_governance_workset._PROPOSAL_BLOCKED_SUBSTRATE_STATUSES):
+# "proposed_blocked_substrate" is the one observed variant of the same semantic.
+# Kept here as its own name because the retest lane SUPPRESSES a claim whose
+# proposal is in this set -- so silently losing one of these statuses re-arms an
+# auto-spawn.
+_PROPOSAL_BLOCKED_SUBSTRATE_STATUSES = frozenset({
+    "blocked_substrate", "proposed_blocked_substrate",
+})
+
+# The wider "a session adjudicated this by hand" family. Every member is written
+# by a person or a session that reasoned about the proposal; none is derived.
+_PROPOSAL_MANUAL_ADJUDICATED_STATUSES = _PROPOSAL_BLOCKED_SUBSTRATE_STATUSES | frozenset({
+    "blocked_on_gate", "gated", "skipped", "deferred_substrate_not_ready",
+})
+
+
+def manual_status_is_authoritative(item: dict[str, Any], carried: dict | None) -> bool:
+    """True when `item`'s OWN recorded status must survive the carry-forward.
+
+    THE DEFECT THIS CLOSES (confirmed 2026-09-07, session IGW-20260907-211;
+    chip-20260907-proposal-status-revert-regen). The carry-forward below resolves
+    each proposal's status from the PREVIOUS GENERATED experiment_proposals.v1.json
+    and applied it UNCONDITIONALLY (`_p.update(_carried)`), then wrote the same
+    resolution back into manual_proposals.v1.json. So a session that hand-edited
+    only manual_proposals.v1.json -- the file whose own docstring presents itself
+    as the place to curate items -- had its edit reverted on the next regen, with
+    no error and no warning, because the generated file's prior status outranked
+    the curated source.
+
+    CONFIRMED INSTANCE: IGW-20260904-214 recorded ARC-019 / EVB-1189 as
+    blocked_substrate in manual_proposals.v1.json (REE_assembly dcfa8ddc24). The
+    governance regen five hours later (8d9fe1c714) reverted it to "executed" and
+    injected executed_by / executed_queue_id = V3-EXQ-591g (an ERROR run). That
+    silently RE-ARMED an auto-spawn: generate_inter_governance_workset.py's
+    retest lane suppresses a pending_retest_after_substrate claim only while its
+    proposal is in _PROPOSAL_BLOCKED_SUBSTRATE_STATUSES, so the identical ARC-019
+    retest item respawned three days later and re-derived the same investigation.
+
+    THE PREDICATE, and why it is this narrow. A generated proposal is always
+    minted "proposed", so this can only ever fire for a manual (or re-appended)
+    row that carries an explicit disposition of its own. It deliberately does NOT
+    fire when the item's status is absent or "proposed": that is the case the
+    write-back was BUILT for (2026-08-02, session determined-ritchie-55a3a6 --
+    manual rows frozen at a permanently-stale "proposed" long after the work
+    landed), and blocking it would re-open that defect. Nor does it fire when the
+    two agree -- then the carry-forward is a no-op that still usefully carries the
+    companion fields (blocked_note, gating_reason) forward.
+
+    Pure and module-level so it is testable without running the indexer.
+    """
+    if not carried:
+        return False
+    own = str(item.get("status") or "").strip().lower()
+    if not own or own == "proposed":
+        return False
+    return own != str(carried.get("status") or "").strip().lower()
+
+
+def apply_proposal_status_carry_forward(
+    item: dict[str, Any], carried: dict | None
+) -> bool:
+    """Apply `carried` onto `item` IN PLACE. Returns True when the item's own
+    manual disposition won and NOTHING was applied.
+
+    The whole update is skipped rather than the status field alone: the carried
+    execution provenance (executed_by / executed_queue_id) describes the status
+    being rejected, and grafting it onto a blocked_substrate row is exactly what
+    made the ARC-019 corruption look authoritative.
+    """
+    if not carried:
+        return False
+    if manual_status_is_authoritative(item, carried):
+        return True
+    item.update(carried)
+    return False
+
+
+def apply_manual_proposal_write_back(
+    item: dict[str, Any], resolved: dict | None
+) -> tuple[bool, bool]:
+    """Merge `resolved` into a manual_proposals.v1.json row IN PLACE.
+
+    Returns (changed, manual_won). Same predicate as the carry-forward, so the
+    two sites cannot drift apart: a regen must never write a reversion back into
+    the curated source, but it must still clear a permanently-stale "proposed".
+    """
+    if not resolved:
+        return False, False
+    if manual_status_is_authoritative(item, resolved):
+        return False, True
+    changed = False
+    for k, v in resolved.items():
+        if item.get(k) != v:
+            item[k] = v
+            changed = True
+    return changed, False
+
+
 # Status-family fields carried forward from an existing (pre-regen) resolved
 # proposal onto its freshly-regenerated counterpart (and written back onto
 # manual_proposals.v1.json -- both sites in main() share this same set via
@@ -7371,6 +7537,14 @@ def _write_planning_outputs(
         experiment_ineligible = _is_experiment_ineligible_claim(
             claim_registry.get(claim_id, {})
         )
+        # The literature branch stays open for out_of_domain / derivational /
+        # substrate_conditional claims (a lit-pull is never blocked by absent
+        # substrate). It closes only for the record-of-what-was-built class,
+        # which has no external referent to review -- see
+        # _is_literature_ineligible_claim.
+        literature_ineligible = _is_literature_ineligible_claim(
+            claim_registry.get(claim_id, {})
+        )
 
         if "experimental" in needed and not experiment_ineligible:
             target_repo = exploratory_repo if conflict_ratio >= 0.7 else default_exp_repo
@@ -7571,7 +7745,7 @@ def _write_planning_outputs(
 
             proposals.append(proposal)
 
-        if "literature" in needed:
+        if "literature" in needed and not literature_ineligible:
             lit_type = _suggest_literature_type(claim_id, matrix)
             lit_objective = f"Improve literature grounding and confidence for {claim_id}."
             if "mandatory_decision_checkpoint" in reasons:
@@ -7709,10 +7883,22 @@ def _write_planning_outputs(
     # (_existing_proposal_status / _existing_proposals_doc were loaded earlier,
     # before the proposal_id counter, so their numeric ids could be reserved --
     # see "ALSO reserve every already-RESOLVED existing proposal_id" above.)
+    # Rows whose own manual disposition beat the carried-forward status, reported
+    # at the end of the block. A silent guard is how the original defect went
+    # unnoticed for three days; this one says what it protected.
+    _manual_status_wins: list[tuple[str, str, str, str]] = []
+
+    # A MANUAL DISPOSITION OUTRANKS THE CARRY-FORWARD, and must -- the generated
+    # file is derived, manual_proposals.v1.json is curated. See
+    # manual_status_is_authoritative for the ARC-019 / EVB-1189 incident this
+    # closes and for why the predicate does not fire on "proposed".
     for _p in proposals:
         _carried = _lookup_existing_status(_p)
-        if _carried is not None:
-            _p.update(_carried)
+        if apply_proposal_status_carry_forward(_p, _carried):
+            _manual_status_wins.append(
+                (str(_p.get("proposal_id") or "?"), str(_p.get("claim_id") or "?"),
+                 str(_p.get("status")), str((_carried or {}).get("status")))
+            )
 
     # Preserve historical resolution records for items that no longer appear
     # in the freshly-generated `proposals` list AT ALL -- e.g. a claim that
@@ -7769,12 +7955,20 @@ def _write_planning_outputs(
                 if not isinstance(_mp, dict):
                     continue
                 _resolved = _lookup_existing_status(_mp)
-                if not _resolved:
-                    continue
-                for _k, _v in _resolved.items():
-                    if _mp.get(_k) != _v:
-                        _mp[_k] = _v
-                        _manual_changed = True
+                # NEVER write a reversion back into the curated source. The
+                # write-back exists to clear a permanently-stale "proposed"; it
+                # must not overwrite a disposition the manual row already
+                # records (chip-20260907-proposal-status-revert-regen).
+                _row_changed, _manual_won = apply_manual_proposal_write_back(
+                    _mp, _resolved
+                )
+                _manual_changed = _manual_changed or _row_changed
+                if _manual_won:
+                    _manual_status_wins.append(
+                        (str(_mp.get("proposal_id") or "?"),
+                         str(_mp.get("claim_id") or "?"),
+                         str(_mp.get("status")), str((_resolved or {}).get("status")))
+                    )
             if _manual_changed:
                 _atomic_write_text(
                     manual_proposals_path,
@@ -7782,6 +7976,18 @@ def _write_planning_outputs(
                 )
         except Exception:
             pass  # malformed manual file -- skip silently, same as the merge above
+
+    if _manual_status_wins:
+        _seen_wins: set[tuple[str, str, str, str]] = set()
+        print(
+            f"  proposal status: {len({w[0] for w in _manual_status_wins})} manual "
+            f"disposition(s) kept over the carried-forward status"
+        )
+        for _w in _manual_status_wins:
+            if _w in _seen_wins:
+                continue
+            _seen_wins.add(_w)
+            print(f"    {_w[0]} ({_w[1]}): manual '{_w[2]}' wins over carried '{_w[3]}'")
 
     proposals_doc = {
         "schema_version": "experiment_proposals/v1",

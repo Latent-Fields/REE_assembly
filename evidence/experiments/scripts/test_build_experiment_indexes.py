@@ -1241,6 +1241,90 @@ def test_eligible_plain_candidate_unaffected():
     assert b._is_experiment_ineligible_claim(meta) is False
 
 
+# --- EXP-*/LIT-* gate: the implementation_note class ------------------------
+#
+# Regression target: 2026-09-06 (IGW-20260906-235,
+# chip-20260906-impl-note-proposal-gate). _resolve_epistemic_category's
+# fallthrough maps claim_type=implementation_note with no explicit
+# epistemic_category to "standard", which is in neither
+# _NON_EXPERIMENTAL_EPISTEMIC_CATEGORIES nor _PROBE_GATED_EPISTEMIC_CATEGORIES,
+# so every implementation_note flagged missing_experimental_evidence seeded a
+# generic claim_probe_* EXP row carrying no design -- and a LIT row alongside it.
+# Measured 2026-09-07: 25 implementation_note claims, NONE carrying
+# what_would_answer or falsifier, ZERO of ~1000 manifests tagging any IMPL-*,
+# and 37 proposal rows (19 EXP + 18 LIT) already minted against them. IMPL-023
+# reached a headless /queue-experiment session that could only decline it.
+
+def test_implementation_note_seeds_no_experimental_proposal():
+    meta = {"status": "active", "claim_type": "implementation_note"}
+    assert b._is_experiment_ineligible_claim(meta) is True
+
+
+def test_implementation_note_seeds_no_literature_proposal_either():
+    """The one class that is undesignable in BOTH lanes: there is no external
+    referent to review in a record of what was built."""
+    meta = {"status": "active", "claim_type": "implementation_note"}
+    assert b._is_literature_ineligible_claim(meta) is True
+
+
+def test_an_explicit_epistemic_category_re_admits_the_claim():
+    """THE ESCAPE HATCH, and the reason this class gate does not violate the
+    warn-safe stance: the suppression is the class DEFAULT, and an author's
+    explicit annotation -- any recognised value, `standard` included -- always
+    wins, per claim, with no code change."""
+    for cat in ("standard", "answer_state", "substrate_coherence"):
+        meta = {"status": "active", "claim_type": "implementation_note",
+                "epistemic_category": cat}
+        assert b._is_class_proposal_ineligible_claim(meta) is False, cat
+    # `standard` is the resolver's own fallthrough, so it must be the RAW
+    # explicit field that is read here, never the resolved category.
+    assert b._is_experiment_ineligible_claim(
+        {"status": "active", "claim_type": "implementation_note",
+         "epistemic_category": "standard"}
+    ) is False
+
+
+def test_an_unrecognised_epistemic_category_is_not_an_escape_hatch():
+    """A typo must not silently re-admit the claim (validate_claims.py rejects
+    the value at ERROR level anyway -- this gate must not disagree with it)."""
+    meta = {"status": "active", "claim_type": "implementation_note",
+            "epistemic_category": "implementation_note"}
+    assert b._is_class_proposal_ineligible_claim(meta) is True
+
+
+def test_the_class_gate_is_scoped_to_implementation_note_only():
+    """NEGATIVE CONTROL. reference_note (IMPL-026 / IMPL-027 share the id
+    PREFIX but not the claim_type) and every ordinary type stay eligible -- the
+    gate keys on claim_type, never on the IMPL-* id prefix."""
+    for ct in ("reference_note", "mechanism_hypothesis", "design_decision",
+               "open_question", "invariant", "architectural_commitment"):
+        meta = {"status": "candidate", "claim_type": ct}
+        assert b._is_class_proposal_ineligible_claim(meta) is False, ct
+        assert b._is_literature_ineligible_claim(meta) is False, ct
+
+
+def test_the_literature_lane_stays_open_for_the_other_ineligible_classes():
+    """out_of_domain is ANSWERED by literature; substrate_conditional /
+    derivational claims are still fine /lit-pull targets. Only the experimental
+    lane closes for them -- do not let the LIT gate become the mirror of the
+    EXP one."""
+    for cat in ("out_of_domain", "derivational", "governance_rule",
+                "substrate_conditional", "substrate_ceiling"):
+        meta = {"status": "candidate", "claim_type": "open_question",
+                "epistemic_category": cat}
+        assert b._is_experiment_ineligible_claim(meta) is True, cat
+        assert b._is_literature_ineligible_claim(meta) is False, cat
+
+
+def test_an_unregistered_claim_is_not_class_ineligible():
+    """Empty meta is handled by _is_experiment_ineligible_claim's own rule; the
+    class predicate must not double-report it, and must not close the LIT lane
+    for it (that would be a new suppression this change did not intend)."""
+    assert b._is_class_proposal_ineligible_claim({}) is False
+    assert b._is_class_proposal_ineligible_claim(None) is False
+    assert b._is_literature_ineligible_claim({}) is False
+
+
 def test_recommendation_held_v4_still_fires_after_shared_helper_refactor():
     """_recommendation_for_claim's held_v4_by_architectural_commitment gate now
     delegates to the shared _is_deferred_to_later_generation helper -- pin that
