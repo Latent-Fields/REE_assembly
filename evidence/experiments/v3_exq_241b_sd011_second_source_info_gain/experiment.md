@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_241b_sd011_second_source_info_gain_20260408T231939Z_v3` at `20260408T231939Z` signatures: none
+- `v3_exq_241b_sd011_second_source_info_gain_20260408T231939Z_v3` at `2026-04-08T23:19:39Z` signatures: none
 
 Recurring signatures:
 

@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-09-02.1 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-09-06.1 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,6 +133,26 @@
        segment -- see episode_log per-episode sleep_cycle_fired_before_this_segment).
        Deliberately loud: this is the one state where the fish is not "doing" anything
        observable, so the UI has to say so explicitly rather than leaving a blank tank. */
+    /* Per-episode ARM badge. A multi-arm driver's episode log (e.g. V3-EXQ-978) is one
+       seed holding OFF-arm episodes followed by ON-arm episodes, each arm's `ep` counter
+       restarting at 0, and the plain "N / total" counter hides the arm switch entirely --
+       a viewer read six frozen OFF rollouts then six frozen ON rollouts as one agent
+       "developing" across twelve episodes. The badge names the arm and the episode's
+       index WITHIN that arm; colour is by arm order within the seed, so the switch is
+       visible at a glance. Hidden when no episode carries an `arm` field. */
+    .armBadge {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+      font-family: 'SF Mono','Fira Code',monospace;
+      background: #1e293b; color: #cbd5e1; border: 1px solid #334155;
+      white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis;
+    }
+    .armBadge.arm-0 { background: #1e3a5f; color: #bfdbfe; border-color: #2563eb; }
+    .armBadge.arm-1 { background: #3b2a12; color: #fde68a; border-color: #d97706; }
+    .armBadge.arm-2 { background: #14342b; color: #a7f3d0; border-color: #059669; }
+    .armBadge.arm-3 { background: #3b1a3a; color: #f5d0fe; border-color: #c026d3; }
+    .armBadge small { font-weight: 400; color: var(--muted); margin-left: 6px; }
+
     .sleepBadge {
       display: inline-block; padding: 3px 10px; border-radius: 4px;
       font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
@@ -407,6 +427,7 @@
           <span class="epDisplay" id="epDisplay">1 / ?</span>
           <button class="navBtn" id="epNext">&#9654;</button>
         </div>
+        <div id="armBadgeWrap" style="margin-top:4px;min-height:14px"></div>
       </div>
       <div>
         <div class="iLabel">Behaviour</div>
@@ -1590,6 +1611,33 @@ function updateInfo() {
 
   document.getElementById('epDisplay').textContent =
     `${episodeIdx + 1} / ${curEps().length}`;
+
+  // Arm badge (see .armBadge). Arm order = first-appearance order within this seed,
+  // so the OFF arm of a two-arm log is arm-0 whatever it is called. The within-arm
+  // index is derived by position rather than read from `ep`, so a log whose `ep`
+  // counter does NOT restart per arm still reads correctly.
+  {
+    const eps = curEps();
+    const arm = ep && ep.arm != null ? String(ep.arm) : null;
+    const wrap = document.getElementById('armBadgeWrap');
+    if (arm == null) {
+      wrap.innerHTML = '';
+    } else {
+      const order = [];
+      for (const e of eps) {
+        const a = e && e.arm != null ? String(e.arm) : null;
+        if (a != null && !order.includes(a)) order.push(a);
+      }
+      const ai = Math.max(0, order.indexOf(arm));
+      const inArm = eps.filter(e => e && String(e.arm) === arm);
+      const k = inArm.indexOf(ep) + 1;
+      const esc = t => t.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+      const armsNote = order.length > 1 ? ` &middot; arm ${ai + 1}/${order.length}` : '';
+      wrap.innerHTML =
+        `<span class="armBadge arm-${ai % 4}" title="arm ${esc(arm)}: episode ${k} of ${inArm.length} logged for this arm${order.length > 1 ? '; arms are independent frozen-policy rollouts, not a progression' : ''}">` +
+        `${esc(arm)}<small>ep ${k}/${inArm.length}${armsNote}</small></span>`;
+    }
+  }
 
   const sc  = document.getElementById('scrubber');
   sc.max    = steps.length - 1;

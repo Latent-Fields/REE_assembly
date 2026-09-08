@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-07T22:49:59.720256Z",
+  "generated_at_utc": "2026-09-08T07:15:07.790675Z",
   "items": [
     {
       "acceptance_checks": [
@@ -3789,6 +3789,61 @@
     },
     {
       "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1349",
+      "blocked_by": [
+        "contextmemory-write-path-addressing-degeneracy",
+        "SD-e1-rollout-consistency-training",
+        "sleep-integrated-world-model-update-path-unvalidated"
+      ],
+      "blocked_note": "blocked_substrate 2026-09-08 (IGW-20260907-232, /queue-experiment Step 2.5/2.5c). NOT a commitment/behavioural-DV block and NOT the conversion ceiling: this falsifier is measurement-only and its leg A is fully live. What is missing is a SLEEP-INTEGRATED, NON-CONFOUNDED WORLD-MODEL-UPDATE PATH for leg B. See gating_reason for the three verified findings. WHAT IS ALREADY READY (recorded so a successor does not re-derive it): P1 intake ladder REAL -- SD-MEL-PRODUCER implemented; CausalGridWorldV2 world_rule_shift_enabled/_interval/_depth wired (causal_grid_world.py:791-794, 821-835); V3-EXQ-901 measured precondition mel_dose_sweep_gradient_present_this_config = 1.0 (3/3 seeds) on this exact knob, and emits steps_since_world_rule_shift for the reducibility control. P2 offline budget PINNABLE -- use_mel_consumer (config.py:6364), use_entry_pressure (6435), use_within_life_sleep_trigger (6410) all exist and default False; V3-EXQ-901's sleep_opportunity_uniform_across_dose = 1.0 (3/3). P3 sleep FIRES -- use_sleep_aggregation_cluster (config.py:6336), SleepPhaseManager.notify_episode_end / force_cycle present; V3-EXQ-901 recorded n_cycles_fired=6 including the world_rule_shift_interval=0 arm, so the floor arm does sleep. P4 leg-A instrument LIVE -- agent._surprise_write_count and metrics['mech205_write_count'] (agent.py:10677-10740), _pe_ema, and surprise_weight = min(1.0, _pe_ema*5.0) at the replay call (agent.py:10517-10543); pe_surprise_threshold default CONFIRMED 1e-5 (config.py:3438), so MECH-205's 'still defaults to 0.001' warning is indeed stale as INV-063's P4 already states. P4 ALSO CONFIRMED EMPIRICALLY by the same Step 2.5a probe: after only 2 short episodes the agent reported _surprise_write_count = 68 and _pe_ema = 1.33e-3 > 0, i.e. VALENCE_SURPRISE writes genuinely fire and surprise_weight = min(1.0, _pe_ema*5.0) is NOT pinned at its 0.3 fallback -- leg A's instrument is live on the current substrate, and the sleep cycle itself fired with non-zero sws_n_writes / rem_n_rollouts. P5 IS UNDER-SCOPED AND SHOULD BE AMENDED ON THE CLAIM -- INV-063's P5 excludes only DVs 'routed through ContextMemory slot differentiation (slot_cosine_sim)'. But E1's FORWARD pass READS ContextMemory (e1_deep.py:911,1002), so EVERY E1-derived DV inherits the write-path degeneracy, not just slot-similarity DVs. That is finding (2) above and is why leg B, not merely the excluded Type-3 leg, is confounded. GOV-REUSE-1 (Step 2.4): decisive readouts are the leg-A surprise-write/surprise_weight/replay-start-spread triple and the leg-B across-sleep frozen-battery PE delta. Checked v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3 (substrate_hash 95d86b441c082c0813583df3a77d22a7a4a3d943c440bdf03e8ade3e02723554, the closest compatible run) and the 701/701a/701b/701c MEL-measurability lineage: NOT recoverable -- 901 ran with the MEL consumer ON (mel_on/mean_duration_factor present), the opposite of INV-063's P2 pinned-budget requirement, and records neither leg-A nor leg-B readouts. Reanalysis is not available; a run is genuinely owed once the block clears. RE-DERIVE BRAKE (Step 2.5b): INV-063 0 hits, MECH-205 0 hits. INV-050 shows 7 hits but the brake is RELEASED -- the named upstream substrate (SD-MEL-PRODUCER, SD-MEL-CONSUMER) is now built and validated -- and INV-050 was in any case going to be dropped from claim_ids: the run pins sleep quantity constant and so tests nothing of INV-050's drive claim (strict claim-tagging rule). Intended tags when unblocked: INV-063 (primary) + MECH-205 (leg A is a direct read of its surprise-gating instrument), with evidence_direction_per_claim; NOT INV-050, NOT MECH-180 (quantity-side sibling, deliberately pinned here), NOT MECH-423 (its consolidator is used as an instrument, not tested). WORK-GRAPH DEBT: complicated (buildable) -- two named builds/validations, no open question. Route to /implement-substrate, NOT another /queue-experiment iteration. EXQ ID V3-EXQ-1010 was reserved for this run and released unused (claim closed --not-landed).",
+      "claim_id": "INV-063",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "gated_at_utc": "2026-09-08T00:05:00Z",
+      "gated_by_session": "igw-232-proposal-for-inv-063",
+      "gating_reason": "Leg B of INV-063's own CONFIRMING criterion (C1 leg B: the ACROSS-SLEEP improvement in world-forward prediction error on a FROZEN held-out battery) has no clean instrument on the current substrate, and leg B is not optional -- C1 requires BOTH legs monotone, C2 (the self-declared load-bearing leg, 'what makes this claim distinct from INV-050') requires the knee in the SAME direction on both legs, and F3 requires the two legs' differential sensitivity. Three findings, each verified against ree-v3 source at 2026-09-07: (1) UNDER THE PRE-REGISTERED FLAG SET, SLEEP PERFORMS NO GRADIENT UPDATE TO ANY FORWARD MODEL, AND E2 -- THE MODEL LEG B'S OWN NAMED INSTRUMENT MEASURES -- IS BIT-EXACTLY UNCHANGED. An AST enumeration of the whole sleep call graph (agent.run_sleep_cycle 12629-12664, run_sws_schema_pass 12264-12511, run_rem_attribution_pass 12513-12627, enter_sws_mode, enter_rem_mode, exit_offline_mode) finds ZERO backward()/optimizer/world_forward/self.e2 tokens. CONFIRMED EMPIRICALLY by a live one-tick probe (/queue-experiment Step 2.5a; REEAgent + CausalGridWorldV2, world_rule_shift_enabled, the exact pre-registered flag set with use_cross_module_consolidation=False, 2 episodes then one real run_sleep_cycle()): max|delta| over agent.e2.parameters() across the sleep cycle = 0.0 EXACTLY. E2 is the model the named V3-EXQ-701b/701c frozen-probe instrument trains and measures (Adam(agent.e2.parameters()); e2_fast.predict_next_self), so leg B's DV -- pre-sleep PE minus post-sleep PE on the same frozen battery -- is structurally EXACTLY 0.0 in every arm at every seed: a DV pinned across all arms (the V3-EXQ-514m degeneracy class) and a DV-symmetry invariance in the /queue-experiment Step 3 sense, since no path exists from sleep to the world-forward parameters. IMPORTANT COROLLARY, so a later reader does not mis-read the probe: the SAME probe measured max|delta| over agent.e1.parameters() = 0.134, which is NOT evidence that leg B is measurable via E1. ContextMemory.memory is an nn.Parameter (e1_deep.py) mutated IN PLACE by the SWS slot write (self.memory[i] = 0.9*self.memory[i] + 0.1*write_signal), so the entire E1 delta is memory CONTENT written by run_sws_schema_pass -- not a learned-weight update -- and it is produced by precisely the ContextMemory.write path that is the open corrupting defect in finding (2). The only two offline weight-update sites in ree_core/sleep/ are cross_module_consolidation.py:179 (E1+E2, gated on use_cross_module_consolidation, default False -- a flag INV-063's pre-registered P2/P3 set never names, and which the probe held False) and self_model_aggregator.py:275, which steps e2_harm_s.parameters() ONLY ('the SOLE module whose grads are stepped') -- the harm-successor head, not the world-forward model. (2) ENABLING THE CONSOLIDATOR AND ROUTING LEG B THROUGH E1 (the pre-registered 'E1 world-model updating' leg) PUTS THE DV ON AN OPEN corrupting DEFECT THAT IS ALIGNED WITH THE IV. compute_prediction_loss -> e1_deep forward -> self.context_memory.read (e1_deep.py:911,1002), while the SWS pass writes those same slots through ContextMemory.write. substrate_queue entry 'contextmemory-write-path-addressing-degeneracy' is severity=corrupting, status=implemented_pending_validation (OPEN), and its documented failure mode is a deterministic single-slot fixed point UNDER A LOW-VARIANCE QUERY STREAM. INV-063's intake ladder IS a query-stream-variance manipulation, and its lowest-intake arm (world_rule_shift_interval=0, stationary world) is exactly that condition -- so the defect is CORRELATED WITH THE INDEPENDENT VARIABLE and would manufacture a monotone leg-B gradient by its own mechanism, indistinguishable from the starvation effect the claim predicts. That is a false-PASS generator on C1/C2, not a nuisance. The E1 path additionally overlaps the OPEN corrupting entry 'SD-e1-rollout-consistency-training' (ree_core/predictors/e1_deep.py::forward, ::predict_long_horizon). /queue-experiment Step 2.5c makes an open corrupting overlap a stop-gate. (3) ROUTING LEG B THROUGH E2 INSTEAD IS CLEAN BUT SUBSTITUTES AN EXPLICITLY EXCLUDED LEG. compute_e2_loss (agent.py:12137) reads only _e2_transition_buffer and e2.predict_next_self, and ree_core/predictors/e2_fast.py contains ZERO references to ContextMemory/context_memory/self.e1/e1_deep -- so an E2-only leg B evades both corrupting defects. But INV-063's what_would_answer EXPLICITLY excludes the E2 leg ('E2 motor-sequence learning ... blocked by the action-learning competence floor'), so E2 cannot stand in for leg B without silently re-specifying the claim.",
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for INV-063 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0687",
+      "proposal_type": "experimental",
+      "release_condition": "BOTH: (a) substrate_queue 'contextmemory-write-path-addressing-degeneracy' moves from implemented_pending_validation to validated (it is a VALIDATION run, not a build -- the fix has landed), so an E1-derived DV is no longer read through a write path whose degeneracy is aligned with this experiment's own intake/query-variance IV; AND (b) a sleep-integrated world-model-update path is exercised and validated in a landed run -- the SleepPhaseManager cross-module-consolidation hook (phase_manager.py:669-693, use_cross_module_consolidation + cross_module_consolidation_steps>0) has NEVER been exercised through the sleep cycle in any landed manifest; V3-EXQ-680e validated the CrossModuleConsolidator only by calling consolidate() DIRECTLY (its own manifest records sleep_driver_pattern 'N/A ... no sleep cycle'). Until (b), INV-063's leg B has no sanctioned offline world-model-update mechanism to measure at all. RECOMMENDED SEQUENCING: (b) first -- it is the cheaper of the two and, if the hook is wired to E2 only (compute_e2_loss is clean of both corrupting defects), it may also make (a) unnecessary for a leg-B variant. But an E2-only leg B requires INV-063's what_would_answer to be AMENDED first (it currently excludes the E2 leg), which is a /governance decision, not a /queue-experiment one. Also amend P5 per the under-scoping finding.",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_inv_063",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
         "At least 2 additional runs with distinct seeds.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
@@ -4321,6 +4376,103 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1365",
+      "blocked_by": [
+        "MECH-467",
+        "SD-032c"
+      ],
+      "blocked_note": "blocked_substrate 2026-09-08 by IGW-20260908-233 (session igw-233-proposal-for-inv-092) at the /queue-experiment substrate-readiness gate. No experiment queued and no script written. Three measured gaps: no distractor-suppression-strength knob to sweep; the harm-interrupt channel is structurally absent from the only interruption-threshold dial that exists (salience_coordinator has no harm input; AIC urgency is a no-op slot pending SD-032c), so INV-092's own non-degeneracy guard fails by construction; and the goal-completion axis has no denominator (V3-EXQ-874b leg_c_event_floor 1.0 vs 15). See gating_reason for the full evidence and release_condition for the re-queue test. REPAIR 2026-09-08T02:20Z: this row was reverted to status='executed' on origin by REE_assembly 7f9fa8ea42 ('igw-proposals: EXP-0715 -> executed (IGW-20260908-233)', REE Automation (Hub), 02:12:15Z), four minutes after 08230e1d73 landed the block. igw_routine_tick._retire_proposal's Guard 2 (flippable_statuses = {proposed, queued}, 'never rewrite a deliberate blocked/terminal disposition') is correct but reads PROPOSALS_JSON from the LOCAL WORKING TREE, which still held the pre-block regen snapshot; it therefore saw 'proposed' and flipped. It then rewrote the whole stale document, dropping every gating field here. NOTE the consequence that matters: 'executed' is NOT in generate_inter_governance_workset._PROPOSAL_BLOCKED_SUBSTRATE_STATUSES, so the revert also silently RE-ARMED the IGW auto-spawn -- the ARC-019 / chip-20260907-proposal-status-revert-regen failure mode, reached by a different writer. The retired_by_igw / retired_reason / retired_at fields are TRUE and deliberately kept: IGW-20260908-233 did complete, with outcome USEFUL_LANDED, and its outcome was this block. Only status and the gating fields are restored. Tracked as chip-20260908-igw-retire-proposal-reads-stale-worktree.",
+      "claim_id": "INV-092",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-08T02:06:00Z",
+      "gated_by_session": "igw-233-proposal-for-inv-092",
+      "gating_reason": "INV-092's falsifier is a PAIRED measurement across a SUPPRESSION-STRENGTH SWEEP (goal completion under distractor load AND interrupt latency/rate for an injected weak harm / other-agent-urgency signal), with the FAIL clause 'the suppression setting that MAXIMISES completion also measurably DEGRADES harm interruptibility'. Three independent substrate gaps make that unrunnable now; each was measured this session (2026-09-08, IGW-20260908-233) rather than inherited. (1) NO SUPPRESSION-STRENGTH KNOB TO SWEEP. Full audit of ree-v3 ree_core/utils/config.py for suppression/attenuation/filter/distractor-named fields returns exactly four: dacc_suppression_weight (MECH-260 recency-similarity counter-bias, i.e. PERSEVERATION suppression), avoidance_suppression_threshold (MECH-279 freeze-no-op gate -- ilPFC suppressing CeA freezing, the OPPOSITE control surface), aic_base_attenuation and descending_attenuation_factor. None of these attenuates competing/distractor EVIDENCE, which is the mechanism class INV-092 constrains. The claim's own notes say so ('no suppression-strength knob exists to sweep yet'), and manual proposal EXP-0398 (MECH-467, 2026-07-22) states it independently: 'Ethical counterpart INV-092 is NOT tested here -- it needs a suppression-strength knob that does not yet exist.' Re-verified against the live config 2026-09-08: still true. (2) THE HARM-INTERRUPT CHANNEL IS DEAD IN THE ONLY INTERRUPTION-THRESHOLD DIAL THAT DOES EXIST -- so the claim's OWN NON-DEGENERACY GUARD fails by construction. The nearest sweepable interruptibility dial is SD-032a's salience_switch_threshold (raise it -> harder to interrupt). But ree_core/cingulate/salience_coordinator.py contains NO harm/threat/z_harm input at all (case-insensitive grep for harm|threat|z_harm over the module: zero hits). Its mode_switch_trigger aggregate is dACC PE + foraging_value + drive_level; the AIC interoceptive-URGENCY slot -- the natural harm / other-agent route, and the one Craig 2009 / Menon & Uddin 2010 anchor the design on -- is a registered slot that is DEFAULT NO-OP UNTIL SD-032c LANDS. INV-092 states: 'NON-DEGENERACY GUARD: the harm-interrupt channel must be demonstrably LIVE at zero suppression -- baseline interrupt rate well above floor. A dead channel cannot be shown to be preserved.' At zero suppression the harm-interrupt rate through this dial is structurally zero, not merely low, so the sweep self-routes substrate_not_ready rather than returning a verdict. (3) THE GOAL-COMPLETION AXIS OF THE PAIR HAS NO DENOMINATOR. V3-EXQ-874b (2026-08-16, the MECH-467 three-leg distractor battery, the closest existing instrument) pre-registered leg_c_event_floor >= 15 pooled target-consumption events per arm and MEASURED 1.0, self-routing interpretation.label = substrate_not_ready_requeue; V3-EXQ-941 (2026-08-19) diagnosed the same wall as denominator_lost_at_approach_initiation. With completion pinned at floor in every arm there is no 'setting that MAXIMISES completion', so the FAIL clause is unevaluable and any run would re-derive the known conversion / approach-initiation ceiling under an ethics label -- a vacuous result, not a verdict. STANDING CONTAINMENT RULE (2026-06-04 attention analysis, restated in EXP-0398 and NOT relaxed here): REE-v3 attention is distributed precision-selection control, not a missing module; a new attention/suppression substrate is justified ONLY IF the MECH-467 battery exposes a specific failure. That battery returned substrate_not_ready, so the gate that would authorise BUILDING the knob in (1) is itself not open. NOT BLOCKED ON THE HARM PATHWAY ITSELF: V3-EXQ-603k PASSED (2026-06-09), so scaffold_train_harm_pathway can make E3.harm_eval_head / z_harm / z_harm_a live. The block is on the ROUTE from that pathway into an interrupt channel, not on harm valuation -- which is why release condition (b) below names SD-032c wiring rather than harm training. LIT-0716 (the literature twin, same backlog id EVB-1365) is deliberately LEFT 'proposed': attentional suppression and harm-cue interruption have a real external literature, and nothing here gates that lane.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for INV-092 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0715",
+      "proposal_type": "experimental",
+      "release_condition": "Re-queue when ALL THREE hold, verified rather than assumed: (a) a DISTRACTOR/COMPETING-INPUT suppression-strength parameter exists in ree-v3 and is sweepable (not dacc_suppression_weight, which is perseveration counter-bias, and not avoidance_suppression_threshold, which gates the freeze no-op); (b) the harm / other-agent-urgency signal is a LIVE input to whatever that parameter gates -- concretely SD-032c AIC salience landed and wired into the salience_coordinator aggregate, or an explicit harm route into the interrupt path -- with the baseline interrupt rate at ZERO suppression measured demonstrably above floor (INV-092's own non-degeneracy guard); and (c) the goal-completion denominator is restored above V3-EXQ-874b's pre-registered leg_c_event_floor of 15 pooled target-consumption events per arm, so the completion axis of the pair can actually move. Condition (a) is itself gated behind the standing containment rule: build the knob only after the MECH-467 battery (a V3-EXQ-874b successor) exposes a specific distractor-handling failure. MIRROR CHECK: INV-092's sibling INV-093 (EVB-1366 / EXP-0717) is the same ethical principle on the learning/refinement control surface and is in the same position ('no refinement-strength knob exists to sweep yet'); the two claims' notes require they be read and revised together, so any release of this gate must re-examine INV-093's.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_inv_092",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1366",
+      "blocked_by": [
+        "MECH-471"
+      ],
+      "blocked_note": "INV-093's registered falsifier is a JOINT panel measured across a REFINEMENT-STRENGTH SWEEP (competence gain AND harm sensitivity AND residue accumulation AND commitment integrity, never collapsed). The INDEPENDENT VARIABLE does not exist on the V3 substrate: there is no skill/competence refinement mechanism and no strength knob to sweep. Measured 2026-09-08 over every dataclass field in ree_core/utils/config.py -- 1164 distinct config fields, of which 0 match refin*/skill*/rollback*/provenance*, against 67 harm / 45 commit / 5 residue fields. So three of the four PANEL AXES have live instrument surfaces and the missing piece is the manipulation itself. Experimental lane only; the literature lane (LIT-0718, same EVB) stays open and is a genuinely runnable route for this claim.",
+      "claim_id": "INV-093",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-08T04:20:34Z",
+      "gated_by_session": "igw-234-proposal-for-inv-093 (IGW-20260908-234)",
+      "gating_reason": "BLOCKED at /queue-experiment Step 2.5 (substrate readiness) by session igw-234-proposal-for-inv-093, 2026-09-08. Node named per work_graph_debt_vocabulary: `complicated (buildable)` -- a named build with no open question -- so the route is /implement-substrate, NOT an experiment.\n\n(1) THE IV IS NOT BUILT. claims.yaml INV-093's own notes already say so ('Currently a constraint on a FUTURE mechanism -- no refinement-strength knob exists to sweep yet', registered 2026-07-22) and this session re-verified it against live code rather than trusting the note: enumerating every dataclass field across ree_core/utils/config.py yields 1164 distinct config fields with ZERO matching refin*/skill*/rollback*/provenance*; grep for refinement_strength/refine_strength/skill_refin across ree_core/ returns nothing; ree-v3/CLAUDE.md's SD sections register no refinement SD. The bounded/provenanced/rollback-capable competence-revision machinery is exactly what MECH-471 EXISTS TO MOTIVATE and is explicitly NOT built (V3-EXQ-875's own docstring: 'This experiment does NOT build or exercise any provenance/rollback machinery itself (that machinery is the thing MECH-471 would motivate)'). MECH-471 is status=candidate, implementation_phase=v3, pending_retest_after_substrate=true, and carries NO substrate_queue entry -- the INV-089 shape the workset generator's own _blocked_substrate_proposal_claims docstring names as the reason this disposition has to be recorded on the proposal: with no substrate_queue row to hang it on, the FM6 proposal-lane gate cannot see the block and the item re-surfaces as `ready` every regen.\n\n(2) EVEN A PROXY IV WOULD BE VACUOUS, because the panel's FIRST axis cannot be produced. INV-093 is a no-trade constraint: with no competence GAIN there is no trade to observe, and a 'nothing degraded' PASS means only that nothing was optimised. Competence acquisition on the all-ON stack is measured-unreliable: V3-EXQ-890 (confirmed autopsy failure_autopsy_V3-EXQ-890_2026-08-07, 16 seeds, ~10.3h) found only 5 of 16 seeds reach the survival floor, with H-exploration-init-variance CONFIRMED (93% of the eventual group gap present by episode 20) and H-hazard-layout-difficulty-variance ELIMINATED. The two full-budget attempts at MECH-471's own local-update-interference falsifier both died on this precondition rather than on the phenomenon (875 precondition_unmet, 875a competence_implementation_gap; 875a's phase-2 targeted update moved competence B by 0.0 against a 7.5-tick floor). That autopsy's ratified routing is /claim-synthesis on the MECH-457<->MECH-471<->Q-089 cross-reference with recommended_substrate_queue_entry.action=NONE, because MECH-457's own bottleneck mech457_competence_bootstrap_explorer is blocked_pending_discrimination. INV-093 needs strictly MORE than that falsifier, so it inherits the block.\n\n(3) NO MEASUREMENT-ONLY DIAGNOSTIC IS SUBSTITUTED, and this is a deliberate call rather than an omission. The usual commitment-free fallback rescues a claim whose DV instruments are blocked; here the DV instruments are the part that EXISTS (harm sensitivity: harm pathway trainable and validated since V3-EXQ-603k PASS / 603n, via scaffold_train_harm_pathway; residue: ree_core/residue/field.py live; commitment integrity: MECH-090 commit-entry, ARC-071 commit latch, MECH-342 release all implemented). A DV-readiness probe would only re-confirm the static measurement above, would carry evidence_direction=unknown, and would not touch the binding unknown (competence-acquisition reliability), which is already OWNED elsewhere -- GFLAG-0136 / MECH465-COMMIT-GATE-HEADROOM and the mech457 bottleneck. Queuing one would re-derive a known ceiling.\n\nRe-derive brake (Step 2.5b) did NOT fire: 0 autopsies tag INV-093 and no experiment in the corpus tags it (grep over ree-v3/experiments/ and REE_assembly/evidence/experiments/ returns nothing). This is the Step 2.5 unbuilt-substrate stop, not a re-derive stop. No script written, no queue entry added. SIBLING NOTE: INV-092 is the same ethical principle on the attention/suppression control surface and is coupled_with this claim; a reader clearing this block should check whether INV-092's proposal needs the same disposition.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for INV-093 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0717",
+      "proposal_type": "experimental",
+      "release_condition": "Release when BOTH hold, and check them in this order because the second is the cheaper falsifier of the first. (a) A COMPETENCE-REFINEMENT MECHANISM WITH A STRENGTH KNOB EXISTS AND IS REACHABLE AT RUNTIME -- i.e. the bounded / provenanced / rollback-capable competence-revision discipline MECH-471 argues for is built and registered as an SD in ree-v3/CLAUDE.md. CONCRETE PREDICATE, checkable in one command without re-deriving any of the above: enumerate every dataclass field in ree_core/utils/config.py and require a NON-EMPTY match on refin*/skill_refin*/rollback*/provenance* (this session measured 0 of 1164 on 2026-09-08), then confirm the knob is actually wired at runtime per Step 2.5a rather than merely declared -- see reference-reeconfig-from-dims-silent-kwargs, from_dims silently swallows unknown kwargs. (b) COMPETENCE ACQUISITION IS RELIABLE ENOUGH FOR A GAIN AXIS: the targeted update must demonstrably MOVE the targeted competence on a majority of seeds, not 5 of 16 (V3-EXQ-890). Practically this means MECH-457's mech457_competence_bootstrap_explorer has left blocked_pending_discrimination and MECH-471's own local-update-interference falsifier has reached a real verdict rather than a readiness self-route. When both hold, INV-093 becomes a 4-axis joint panel over a refinement-strength sweep and the three non-competence axes are ALREADY instrumented, so no further DV build is owed. Route the intervening work via /implement-substrate on the refinement mechanism and via the /claim-synthesis pass V3-EXQ-890's autopsy already recommended -- NOT via another experiment on this proposal.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_inv_093",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-0081",
       "claim_id": "MECH-183",
       "decision_deadline_utc": "",
@@ -4429,6 +4581,90 @@
       "seed_policy": "distinct_seeds",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_q_088",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1191",
+      "claim_id": "ARC-031",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for ARC-031 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0445",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_arc_031",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1195",
+      "blocked_by": [
+        "no_mech152_arc016_shared_gain_readout"
+      ],
+      "blocked_note": "blocked_substrate (2026-09-02, /queue-experiment attempt drafted as V3-EXQ-990, never queued -- BLOCKED by two independent adversarial design-review passes, fable model, both citing the same structural finding). (a) NO SHARED READOUT: MECH-152's w_harm enters ONLY E3Selector.score_trajectory's harm term (`m = m * w_harm`, ree_core/predictors/e3_selector.py ~line 1383) and ARC-016's running_variance enters ONLY the commit gate (`committed = commit_variance < effective_threshold`, same file ~line 3672); traced candidate generation (ree_core/predictors/e2_fast.py:generate_candidates_random, confirmed precision-blind) and select()'s only rv read (the gate itself) -- no code path lets the two mechanisms jointly determine any single measurable quantity. ARC-044's what_would_answer text presupposes a 'combined harm-evaluation precision/variability readout' that does not exist to be measured in the current substrate. (b) INDEPENDENTLY, e3_selector.py's harm_eval_head (~lines 413-418, the only harm-cost path available with no harm_bridge/harm_forward_model) receives NO training gradient anywhere in this driver family's loss inventory (agent.py ~10787-12033) -- it is a fixed random projection of z_world, so even a differently-designed shared-readout would be measuring noise, not a harm estimate. Neither finding is a script bug: fix requires either building actual coupling machinery in ree_core (a substrate change) or ARC-044's what_would_answer being reframed by governance/claim-target -- neither in scope for /queue-experiment. Follow-on: chip-20260902-arc044-mech152-arc016-no-shared-readout (chip_ledger.py).",
+      "claim_id": "ARC-044",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for ARC-044 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0457",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_arc_044",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -5025,6 +5261,48 @@
       "suggested_experiment_type": "claim_probe_arc_011",
       "target_repo": "ree-v3",
       "why_now": [
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1194",
+      "blocked_by": null,
+      "blocked_note": "ARC-043's own architecture doc (docs/architecture/five_axioms_foundations.md#arc-043, 'Conceptual Stack: Axioms Through Learning') states verbatim: 'The axioms imply a conceptual ordering from epistemic ground through the full learning loop. This is not a computational pipeline -- it is a logical dependency structure showing what each layer requires from the layers below it.' ARC-043 asserts that Layers 0-4 are the five/eight axioms, Layer 5 is ethics derived from them, Layer 6 is REE as decision system, Layers 7-9 close the action-consequence-learning loop -- a LOGICAL/DEFINITIONAL ordering of the spec's own concepts, not a claim about V3 runtime behaviour. No experiment output can vary with whether this conceptual layering holds; its truth is a property of the documentation's derivation structure, verified by inspection/derivation, not by any ree-v3 run. Contrast with sibling ARC-024 (same location doc, but a genuinely testable claim about world-latent proxy structure, executed as EXP-0046/EXQ-028/029/033) -- co-location in the axioms doc does not make a claim experiment-shaped. Skipped rather than blocked_substrate for the same reason as EXP-0273/ARC-080, EXP-0696+LIT-0697/INV-077, and EXP-1128+LIT-1129/MECH-530: queue-experiment Step 2.5 is for a buildable/probe-gated substrate-readiness gap, whereas this is a claim-testability guardrail -- no SD/MECH substrate is missing (ARC-043 depends_on INV-025..029/ARC-024/INV-042, all conceptual/axiomatic claims, none a V3 implementation dependency). NOTE RE SIBLING LIT-0441 (same backlog EVB-1194): this disposition applies ONLY to the EXP proposal. LIT-0441 (literature_review) is NOT skipped by this edit and remains legitimately proposed. PROVENANCE: the dispatch brief that spawned this session (chip-proposal-exp-0440) incorrectly stated 'claim ARC-037' with ARC-037's objective text (a different proposal, EXP-0438) -- verified against this file that proposal_id=EXP-0440 actually carries claim_id=ARC-043; proceeded on proposal_id as the authoritative key. 2026-09-02T20:17:10Z, session metaworker-chip-proposal-exp-0440, chip chip-proposal-exp-0440.",
+      "claim_id": "ARC-043",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for ARC-043 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0448",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "skipped",
+      "suggested_experiment_type": "claim_probe_arc_043",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -6519,414 +6797,6 @@
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1190",
-      "claim_id": "ARC-020",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-020.",
-      "priority": "medium",
-      "proposal_id": "LIT-0444",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_020",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1191",
-      "claim_id": "ARC-031",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-031 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0445",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_arc_031",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1191",
-      "claim_id": "ARC-031",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-031.",
-      "priority": "medium",
-      "proposal_id": "LIT-0446",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_031",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1192",
-      "claim_id": "ARC-034",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-034.",
-      "priority": "medium",
-      "proposal_id": "LIT-0447",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_034",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1194",
-      "blocked_by": null,
-      "blocked_note": "ARC-043's own architecture doc (docs/architecture/five_axioms_foundations.md#arc-043, 'Conceptual Stack: Axioms Through Learning') states verbatim: 'The axioms imply a conceptual ordering from epistemic ground through the full learning loop. This is not a computational pipeline -- it is a logical dependency structure showing what each layer requires from the layers below it.' ARC-043 asserts that Layers 0-4 are the five/eight axioms, Layer 5 is ethics derived from them, Layer 6 is REE as decision system, Layers 7-9 close the action-consequence-learning loop -- a LOGICAL/DEFINITIONAL ordering of the spec's own concepts, not a claim about V3 runtime behaviour. No experiment output can vary with whether this conceptual layering holds; its truth is a property of the documentation's derivation structure, verified by inspection/derivation, not by any ree-v3 run. Contrast with sibling ARC-024 (same location doc, but a genuinely testable claim about world-latent proxy structure, executed as EXP-0046/EXQ-028/029/033) -- co-location in the axioms doc does not make a claim experiment-shaped. Skipped rather than blocked_substrate for the same reason as EXP-0273/ARC-080, EXP-0696+LIT-0697/INV-077, and EXP-1128+LIT-1129/MECH-530: queue-experiment Step 2.5 is for a buildable/probe-gated substrate-readiness gap, whereas this is a claim-testability guardrail -- no SD/MECH substrate is missing (ARC-043 depends_on INV-025..029/ARC-024/INV-042, all conceptual/axiomatic claims, none a V3 implementation dependency). NOTE RE SIBLING LIT-0441 (same backlog EVB-1194): this disposition applies ONLY to the EXP proposal. LIT-0441 (literature_review) is NOT skipped by this edit and remains legitimately proposed. PROVENANCE: the dispatch brief that spawned this session (chip-proposal-exp-0440) incorrectly stated 'claim ARC-037' with ARC-037's objective text (a different proposal, EXP-0438) -- verified against this file that proposal_id=EXP-0440 actually carries claim_id=ARC-043; proceeded on proposal_id as the authoritative key. 2026-09-02T20:17:10Z, session metaworker-chip-proposal-exp-0440, chip chip-proposal-exp-0440.",
-      "claim_id": "ARC-043",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-043 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0448",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "skipped",
-      "suggested_experiment_type": "claim_probe_arc_043",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1194",
-      "claim_id": "ARC-043",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-043.",
-      "priority": "medium",
-      "proposal_id": "LIT-0450",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_043",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1195",
-      "blocked_by": [
-        "no_mech152_arc016_shared_gain_readout"
-      ],
-      "blocked_note": "blocked_substrate (2026-09-02, /queue-experiment attempt drafted as V3-EXQ-990, never queued -- BLOCKED by two independent adversarial design-review passes, fable model, both citing the same structural finding). (a) NO SHARED READOUT: MECH-152's w_harm enters ONLY E3Selector.score_trajectory's harm term (`m = m * w_harm`, ree_core/predictors/e3_selector.py ~line 1383) and ARC-016's running_variance enters ONLY the commit gate (`committed = commit_variance < effective_threshold`, same file ~line 3672); traced candidate generation (ree_core/predictors/e2_fast.py:generate_candidates_random, confirmed precision-blind) and select()'s only rv read (the gate itself) -- no code path lets the two mechanisms jointly determine any single measurable quantity. ARC-044's what_would_answer text presupposes a 'combined harm-evaluation precision/variability readout' that does not exist to be measured in the current substrate. (b) INDEPENDENTLY, e3_selector.py's harm_eval_head (~lines 413-418, the only harm-cost path available with no harm_bridge/harm_forward_model) receives NO training gradient anywhere in this driver family's loss inventory (agent.py ~10787-12033) -- it is a fixed random projection of z_world, so even a differently-designed shared-readout would be measuring noise, not a harm estimate. Neither finding is a script bug: fix requires either building actual coupling machinery in ree_core (a substrate change) or ARC-044's what_would_answer being reframed by governance/claim-target -- neither in scope for /queue-experiment. Follow-on: chip-20260902-arc044-mech152-arc016-no-shared-readout (chip_ledger.py).",
-      "claim_id": "ARC-044",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-044 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0457",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_arc_044",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1195",
-      "claim_id": "ARC-044",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-044.",
-      "priority": "medium",
-      "proposal_id": "LIT-0458",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_044",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1196",
-      "claim_id": "ARC-047",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-047.",
-      "priority": "medium",
-      "proposal_id": "LIT-0459",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_047",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
         "synthetic_signals_only"
       ]
     },
@@ -9277,6 +9147,150 @@
     },
     {
       "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1723",
+      "claim_id": "ARC-139",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for ARC-139.",
+      "priority": "medium",
+      "proposal_id": "LIT-0047",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_arc_139",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1724",
+      "claim_id": "ARC-140",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for ARC-140.",
+      "priority": "medium",
+      "proposal_id": "LIT-0048",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_arc_140",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1725",
+      "claim_id": "ARC-141",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for ARC-141.",
+      "priority": "medium",
+      "proposal_id": "LIT-0049",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_arc_141",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
         "At least 2 additional runs with distinct seeds.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
@@ -9930,6 +9944,54 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_gov_edge_1",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1726",
+      "claim_id": "GOV-EQUIV-1",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for GOV-EQUIV-1.",
+      "priority": "medium",
+      "proposal_id": "LIT-0050",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_gov_equiv_1",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -10986,6 +11048,54 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_gov_sec_1",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1727",
+      "claim_id": "GOV-SHARPEN-1",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for GOV-SHARPEN-1.",
+      "priority": "medium",
+      "proposal_id": "LIT-0060",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_gov_sharpen_1",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -13663,102 +13773,6 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-1349",
-      "claim_id": "INV-063",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for INV-063 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0687",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_inv_063",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "blocked_by": [
-        "contextmemory-write-path-addressing-degeneracy",
-        "SD-e1-rollout-consistency-training",
-        "sleep-integrated-world-model-update-path-unvalidated"
-      ],
-      "blocked_note": "blocked_substrate 2026-09-08 (IGW-20260907-232, /queue-experiment Step 2.5/2.5c). NOT a commitment/behavioural-DV block and NOT the conversion ceiling: this falsifier is measurement-only and its leg A is fully live. What is missing is a SLEEP-INTEGRATED, NON-CONFOUNDED WORLD-MODEL-UPDATE PATH for leg B. See gating_reason for the three verified findings. WHAT IS ALREADY READY (recorded so a successor does not re-derive it): P1 intake ladder REAL -- SD-MEL-PRODUCER implemented; CausalGridWorldV2 world_rule_shift_enabled/_interval/_depth wired (causal_grid_world.py:791-794, 821-835); V3-EXQ-901 measured precondition mel_dose_sweep_gradient_present_this_config = 1.0 (3/3 seeds) on this exact knob, and emits steps_since_world_rule_shift for the reducibility control. P2 offline budget PINNABLE -- use_mel_consumer (config.py:6364), use_entry_pressure (6435), use_within_life_sleep_trigger (6410) all exist and default False; V3-EXQ-901's sleep_opportunity_uniform_across_dose = 1.0 (3/3). P3 sleep FIRES -- use_sleep_aggregation_cluster (config.py:6336), SleepPhaseManager.notify_episode_end / force_cycle present; V3-EXQ-901 recorded n_cycles_fired=6 including the world_rule_shift_interval=0 arm, so the floor arm does sleep. P4 leg-A instrument LIVE -- agent._surprise_write_count and metrics['mech205_write_count'] (agent.py:10677-10740), _pe_ema, and surprise_weight = min(1.0, _pe_ema*5.0) at the replay call (agent.py:10517-10543); pe_surprise_threshold default CONFIRMED 1e-5 (config.py:3438), so MECH-205's 'still defaults to 0.001' warning is indeed stale as INV-063's P4 already states. P4 ALSO CONFIRMED EMPIRICALLY by the same Step 2.5a probe: after only 2 short episodes the agent reported _surprise_write_count = 68 and _pe_ema = 1.33e-3 > 0, i.e. VALENCE_SURPRISE writes genuinely fire and surprise_weight = min(1.0, _pe_ema*5.0) is NOT pinned at its 0.3 fallback -- leg A's instrument is live on the current substrate, and the sleep cycle itself fired with non-zero sws_n_writes / rem_n_rollouts. P5 IS UNDER-SCOPED AND SHOULD BE AMENDED ON THE CLAIM -- INV-063's P5 excludes only DVs 'routed through ContextMemory slot differentiation (slot_cosine_sim)'. But E1's FORWARD pass READS ContextMemory (e1_deep.py:911,1002), so EVERY E1-derived DV inherits the write-path degeneracy, not just slot-similarity DVs. That is finding (2) above and is why leg B, not merely the excluded Type-3 leg, is confounded. GOV-REUSE-1 (Step 2.4): decisive readouts are the leg-A surprise-write/surprise_weight/replay-start-spread triple and the leg-B across-sleep frozen-battery PE delta. Checked v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3 (substrate_hash 95d86b441c082c0813583df3a77d22a7a4a3d943c440bdf03e8ade3e02723554, the closest compatible run) and the 701/701a/701b/701c MEL-measurability lineage: NOT recoverable -- 901 ran with the MEL consumer ON (mel_on/mean_duration_factor present), the opposite of INV-063's P2 pinned-budget requirement, and records neither leg-A nor leg-B readouts. Reanalysis is not available; a run is genuinely owed once the block clears. RE-DERIVE BRAKE (Step 2.5b): INV-063 0 hits, MECH-205 0 hits. INV-050 shows 7 hits but the brake is RELEASED -- the named upstream substrate (SD-MEL-PRODUCER, SD-MEL-CONSUMER) is now built and validated -- and INV-050 was in any case going to be dropped from claim_ids: the run pins sleep quantity constant and so tests nothing of INV-050's drive claim (strict claim-tagging rule). Intended tags when unblocked: INV-063 (primary) + MECH-205 (leg A is a direct read of its surprise-gating instrument), with evidence_direction_per_claim; NOT INV-050, NOT MECH-180 (quantity-side sibling, deliberately pinned here), NOT MECH-423 (its consolidator is used as an instrument, not tested). WORK-GRAPH DEBT: complicated (buildable) -- two named builds/validations, no open question. Route to /implement-substrate, NOT another /queue-experiment iteration. EXQ ID V3-EXQ-1010 was reserved for this run and released unused (claim closed --not-landed).",
-      "gated_at_utc": "2026-09-08T00:05:00Z",
-      "gated_by_session": "igw-232-proposal-for-inv-063",
-      "gating_reason": "Leg B of INV-063's own CONFIRMING criterion (C1 leg B: the ACROSS-SLEEP improvement in world-forward prediction error on a FROZEN held-out battery) has no clean instrument on the current substrate, and leg B is not optional -- C1 requires BOTH legs monotone, C2 (the self-declared load-bearing leg, 'what makes this claim distinct from INV-050') requires the knee in the SAME direction on both legs, and F3 requires the two legs' differential sensitivity. Three findings, each verified against ree-v3 source at 2026-09-07: (1) UNDER THE PRE-REGISTERED FLAG SET, SLEEP PERFORMS NO GRADIENT UPDATE TO ANY FORWARD MODEL, AND E2 -- THE MODEL LEG B'S OWN NAMED INSTRUMENT MEASURES -- IS BIT-EXACTLY UNCHANGED. An AST enumeration of the whole sleep call graph (agent.run_sleep_cycle 12629-12664, run_sws_schema_pass 12264-12511, run_rem_attribution_pass 12513-12627, enter_sws_mode, enter_rem_mode, exit_offline_mode) finds ZERO backward()/optimizer/world_forward/self.e2 tokens. CONFIRMED EMPIRICALLY by a live one-tick probe (/queue-experiment Step 2.5a; REEAgent + CausalGridWorldV2, world_rule_shift_enabled, the exact pre-registered flag set with use_cross_module_consolidation=False, 2 episodes then one real run_sleep_cycle()): max|delta| over agent.e2.parameters() across the sleep cycle = 0.0 EXACTLY. E2 is the model the named V3-EXQ-701b/701c frozen-probe instrument trains and measures (Adam(agent.e2.parameters()); e2_fast.predict_next_self), so leg B's DV -- pre-sleep PE minus post-sleep PE on the same frozen battery -- is structurally EXACTLY 0.0 in every arm at every seed: a DV pinned across all arms (the V3-EXQ-514m degeneracy class) and a DV-symmetry invariance in the /queue-experiment Step 3 sense, since no path exists from sleep to the world-forward parameters. IMPORTANT COROLLARY, so a later reader does not mis-read the probe: the SAME probe measured max|delta| over agent.e1.parameters() = 0.134, which is NOT evidence that leg B is measurable via E1. ContextMemory.memory is an nn.Parameter (e1_deep.py) mutated IN PLACE by the SWS slot write (self.memory[i] = 0.9*self.memory[i] + 0.1*write_signal), so the entire E1 delta is memory CONTENT written by run_sws_schema_pass -- not a learned-weight update -- and it is produced by precisely the ContextMemory.write path that is the open corrupting defect in finding (2). The only two offline weight-update sites in ree_core/sleep/ are cross_module_consolidation.py:179 (E1+E2, gated on use_cross_module_consolidation, default False -- a flag INV-063's pre-registered P2/P3 set never names, and which the probe held False) and self_model_aggregator.py:275, which steps e2_harm_s.parameters() ONLY ('the SOLE module whose grads are stepped') -- the harm-successor head, not the world-forward model. (2) ENABLING THE CONSOLIDATOR AND ROUTING LEG B THROUGH E1 (the pre-registered 'E1 world-model updating' leg) PUTS THE DV ON AN OPEN corrupting DEFECT THAT IS ALIGNED WITH THE IV. compute_prediction_loss -> e1_deep forward -> self.context_memory.read (e1_deep.py:911,1002), while the SWS pass writes those same slots through ContextMemory.write. substrate_queue entry 'contextmemory-write-path-addressing-degeneracy' is severity=corrupting, status=implemented_pending_validation (OPEN), and its documented failure mode is a deterministic single-slot fixed point UNDER A LOW-VARIANCE QUERY STREAM. INV-063's intake ladder IS a query-stream-variance manipulation, and its lowest-intake arm (world_rule_shift_interval=0, stationary world) is exactly that condition -- so the defect is CORRELATED WITH THE INDEPENDENT VARIABLE and would manufacture a monotone leg-B gradient by its own mechanism, indistinguishable from the starvation effect the claim predicts. That is a false-PASS generator on C1/C2, not a nuisance. The E1 path additionally overlaps the OPEN corrupting entry 'SD-e1-rollout-consistency-training' (ree_core/predictors/e1_deep.py::forward, ::predict_long_horizon). /queue-experiment Step 2.5c makes an open corrupting overlap a stop-gate. (3) ROUTING LEG B THROUGH E2 INSTEAD IS CLEAN BUT SUBSTITUTES AN EXPLICITLY EXCLUDED LEG. compute_e2_loss (agent.py:12137) reads only _e2_transition_buffer and e2.predict_next_self, and ree_core/predictors/e2_fast.py contains ZERO references to ContextMemory/context_memory/self.e1/e1_deep -- so an E2-only leg B evades both corrupting defects. But INV-063's what_would_answer EXPLICITLY excludes the E2 leg ('E2 motor-sequence learning ... blocked by the action-learning competence floor'), so E2 cannot stand in for leg B without silently re-specifying the claim.",
-      "release_condition": "BOTH: (a) substrate_queue 'contextmemory-write-path-addressing-degeneracy' moves from implemented_pending_validation to validated (it is a VALIDATION run, not a build -- the fix has landed), so an E1-derived DV is no longer read through a write path whose degeneracy is aligned with this experiment's own intake/query-variance IV; AND (b) a sleep-integrated world-model-update path is exercised and validated in a landed run -- the SleepPhaseManager cross-module-consolidation hook (phase_manager.py:669-693, use_cross_module_consolidation + cross_module_consolidation_steps>0) has NEVER been exercised through the sleep cycle in any landed manifest; V3-EXQ-680e validated the CrossModuleConsolidator only by calling consolidate() DIRECTLY (its own manifest records sleep_driver_pattern 'N/A ... no sleep cycle'). Until (b), INV-063's leg B has no sanctioned offline world-model-update mechanism to measure at all. RECOMMENDED SEQUENCING: (b) first -- it is the cheaper of the two and, if the hook is wired to E2 only (compute_e2_loss is clean of both corrupting defects), it may also make (a) unnecessary for a leg-B variant. But an E2-only leg B requires INV-063's what_would_answer to be AMENDED first (it currently excludes the E2 leg), which is a /governance decision, not a /queue-experiment one. Also amend P5 per the under-scoping finding."
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1349",
-      "claim_id": "INV-063",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for INV-063.",
-      "priority": "medium",
-      "proposal_id": "LIT-0688",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_inv_063",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
       "backlog_id": "EVB-1350",
       "claim_id": "INV-066",
       "decision_deadline_utc": "",
@@ -14499,198 +14513,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1365",
-      "claim_id": "INV-092",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for INV-092 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0715",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_inv_092",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "retired_by_igw": "IGW-20260908-233",
-      "retired_reason": "igw outcome=USEFUL_LANDED: marked EVB-1365/EXP-0715 (INV-092) blocked_substrate in both proposal files, REE_assembly 08230e1d73 on origin/master: no suppression-strength knob to sweep; salience_coordi",
-      "retired_at": "2026-09-08T02:12:11Z",
-      "blocked_by": [
-        "MECH-467",
-        "SD-032c"
-      ],
-      "blocked_note": "blocked_substrate 2026-09-08 by IGW-20260908-233 (session igw-233-proposal-for-inv-092) at the /queue-experiment substrate-readiness gate. No experiment queued and no script written. Three measured gaps: no distractor-suppression-strength knob to sweep; the harm-interrupt channel is structurally absent from the only interruption-threshold dial that exists (salience_coordinator has no harm input; AIC urgency is a no-op slot pending SD-032c), so INV-092's own non-degeneracy guard fails by construction; and the goal-completion axis has no denominator (V3-EXQ-874b leg_c_event_floor 1.0 vs 15). See gating_reason for the full evidence and release_condition for the re-queue test. REPAIR 2026-09-08T02:20Z: this row was reverted to status='executed' on origin by REE_assembly 7f9fa8ea42 ('igw-proposals: EXP-0715 -> executed (IGW-20260908-233)', REE Automation (Hub), 02:12:15Z), four minutes after 08230e1d73 landed the block. igw_routine_tick._retire_proposal's Guard 2 (flippable_statuses = {proposed, queued}, 'never rewrite a deliberate blocked/terminal disposition') is correct but reads PROPOSALS_JSON from the LOCAL WORKING TREE, which still held the pre-block regen snapshot; it therefore saw 'proposed' and flipped. It then rewrote the whole stale document, dropping every gating field here. NOTE the consequence that matters: 'executed' is NOT in generate_inter_governance_workset._PROPOSAL_BLOCKED_SUBSTRATE_STATUSES, so the revert also silently RE-ARMED the IGW auto-spawn -- the ARC-019 / chip-20260907-proposal-status-revert-regen failure mode, reached by a different writer. The retired_by_igw / retired_reason / retired_at fields are TRUE and deliberately kept: IGW-20260908-233 did complete, with outcome USEFUL_LANDED, and its outcome was this block. Only status and the gating fields are restored. Tracked as chip-20260908-igw-retire-proposal-reads-stale-worktree.",
-      "gated_at_utc": "2026-09-08T02:06:00Z",
-      "gated_by_session": "igw-233-proposal-for-inv-092",
-      "gating_reason": "INV-092's falsifier is a PAIRED measurement across a SUPPRESSION-STRENGTH SWEEP (goal completion under distractor load AND interrupt latency/rate for an injected weak harm / other-agent-urgency signal), with the FAIL clause 'the suppression setting that MAXIMISES completion also measurably DEGRADES harm interruptibility'. Three independent substrate gaps make that unrunnable now; each was measured this session (2026-09-08, IGW-20260908-233) rather than inherited. (1) NO SUPPRESSION-STRENGTH KNOB TO SWEEP. Full audit of ree-v3 ree_core/utils/config.py for suppression/attenuation/filter/distractor-named fields returns exactly four: dacc_suppression_weight (MECH-260 recency-similarity counter-bias, i.e. PERSEVERATION suppression), avoidance_suppression_threshold (MECH-279 freeze-no-op gate -- ilPFC suppressing CeA freezing, the OPPOSITE control surface), aic_base_attenuation and descending_attenuation_factor. None of these attenuates competing/distractor EVIDENCE, which is the mechanism class INV-092 constrains. The claim's own notes say so ('no suppression-strength knob exists to sweep yet'), and manual proposal EXP-0398 (MECH-467, 2026-07-22) states it independently: 'Ethical counterpart INV-092 is NOT tested here -- it needs a suppression-strength knob that does not yet exist.' Re-verified against the live config 2026-09-08: still true. (2) THE HARM-INTERRUPT CHANNEL IS DEAD IN THE ONLY INTERRUPTION-THRESHOLD DIAL THAT DOES EXIST -- so the claim's OWN NON-DEGENERACY GUARD fails by construction. The nearest sweepable interruptibility dial is SD-032a's salience_switch_threshold (raise it -> harder to interrupt). But ree_core/cingulate/salience_coordinator.py contains NO harm/threat/z_harm input at all (case-insensitive grep for harm|threat|z_harm over the module: zero hits). Its mode_switch_trigger aggregate is dACC PE + foraging_value + drive_level; the AIC interoceptive-URGENCY slot -- the natural harm / other-agent route, and the one Craig 2009 / Menon & Uddin 2010 anchor the design on -- is a registered slot that is DEFAULT NO-OP UNTIL SD-032c LANDS. INV-092 states: 'NON-DEGENERACY GUARD: the harm-interrupt channel must be demonstrably LIVE at zero suppression -- baseline interrupt rate well above floor. A dead channel cannot be shown to be preserved.' At zero suppression the harm-interrupt rate through this dial is structurally zero, not merely low, so the sweep self-routes substrate_not_ready rather than returning a verdict. (3) THE GOAL-COMPLETION AXIS OF THE PAIR HAS NO DENOMINATOR. V3-EXQ-874b (2026-08-16, the MECH-467 three-leg distractor battery, the closest existing instrument) pre-registered leg_c_event_floor >= 15 pooled target-consumption events per arm and MEASURED 1.0, self-routing interpretation.label = substrate_not_ready_requeue; V3-EXQ-941 (2026-08-19) diagnosed the same wall as denominator_lost_at_approach_initiation. With completion pinned at floor in every arm there is no 'setting that MAXIMISES completion', so the FAIL clause is unevaluable and any run would re-derive the known conversion / approach-initiation ceiling under an ethics label -- a vacuous result, not a verdict. STANDING CONTAINMENT RULE (2026-06-04 attention analysis, restated in EXP-0398 and NOT relaxed here): REE-v3 attention is distributed precision-selection control, not a missing module; a new attention/suppression substrate is justified ONLY IF the MECH-467 battery exposes a specific failure. That battery returned substrate_not_ready, so the gate that would authorise BUILDING the knob in (1) is itself not open. NOT BLOCKED ON THE HARM PATHWAY ITSELF: V3-EXQ-603k PASSED (2026-06-09), so scaffold_train_harm_pathway can make E3.harm_eval_head / z_harm / z_harm_a live. The block is on the ROUTE from that pathway into an interrupt channel, not on harm valuation -- which is why release condition (b) below names SD-032c wiring rather than harm training. LIT-0716 (the literature twin, same backlog id EVB-1365) is deliberately LEFT 'proposed': attentional suppression and harm-cue interruption have a real external literature, and nothing here gates that lane.",
-      "release_condition": "Re-queue when ALL THREE hold, verified rather than assumed: (a) a DISTRACTOR/COMPETING-INPUT suppression-strength parameter exists in ree-v3 and is sweepable (not dacc_suppression_weight, which is perseveration counter-bias, and not avoidance_suppression_threshold, which gates the freeze no-op); (b) the harm / other-agent-urgency signal is a LIVE input to whatever that parameter gates -- concretely SD-032c AIC salience landed and wired into the salience_coordinator aggregate, or an explicit harm route into the interrupt path -- with the baseline interrupt rate at ZERO suppression measured demonstrably above floor (INV-092's own non-degeneracy guard); and (c) the goal-completion denominator is restored above V3-EXQ-874b's pre-registered leg_c_event_floor of 15 pooled target-consumption events per arm, so the completion axis of the pair can actually move. Condition (a) is itself gated behind the standing containment rule: build the knob only after the MECH-467 battery (a V3-EXQ-874b successor) exposes a specific distractor-handling failure. MIRROR CHECK: INV-092's sibling INV-093 (EVB-1366 / EXP-0717) is the same ethical principle on the learning/refinement control surface and is in the same position ('no refinement-strength knob exists to sweep yet'); the two claims' notes require they be read and revised together, so any release of this gate must re-examine INV-093's."
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1365",
-      "claim_id": "INV-092",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for INV-092.",
-      "priority": "medium",
-      "proposal_id": "LIT-0716",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_inv_092",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1366",
-      "claim_id": "INV-093",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for INV-093 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0717",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_inv_093",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "blocked_by": [
-        "MECH-471"
-      ],
-      "blocked_note": "INV-093's registered falsifier is a JOINT panel measured across a REFINEMENT-STRENGTH SWEEP (competence gain AND harm sensitivity AND residue accumulation AND commitment integrity, never collapsed). The INDEPENDENT VARIABLE does not exist on the V3 substrate: there is no skill/competence refinement mechanism and no strength knob to sweep. Measured 2026-09-08 over every dataclass field in ree_core/utils/config.py -- 1164 distinct config fields, of which 0 match refin*/skill*/rollback*/provenance*, against 67 harm / 45 commit / 5 residue fields. So three of the four PANEL AXES have live instrument surfaces and the missing piece is the manipulation itself. Experimental lane only; the literature lane (LIT-0718, same EVB) stays open and is a genuinely runnable route for this claim.",
-      "gated_at_utc": "2026-09-08T04:20:34Z",
-      "gated_by_session": "igw-234-proposal-for-inv-093 (IGW-20260908-234)",
-      "gating_reason": "BLOCKED at /queue-experiment Step 2.5 (substrate readiness) by session igw-234-proposal-for-inv-093, 2026-09-08. Node named per work_graph_debt_vocabulary: `complicated (buildable)` -- a named build with no open question -- so the route is /implement-substrate, NOT an experiment.\n\n(1) THE IV IS NOT BUILT. claims.yaml INV-093's own notes already say so ('Currently a constraint on a FUTURE mechanism -- no refinement-strength knob exists to sweep yet', registered 2026-07-22) and this session re-verified it against live code rather than trusting the note: enumerating every dataclass field across ree_core/utils/config.py yields 1164 distinct config fields with ZERO matching refin*/skill*/rollback*/provenance*; grep for refinement_strength/refine_strength/skill_refin across ree_core/ returns nothing; ree-v3/CLAUDE.md's SD sections register no refinement SD. The bounded/provenanced/rollback-capable competence-revision machinery is exactly what MECH-471 EXISTS TO MOTIVATE and is explicitly NOT built (V3-EXQ-875's own docstring: 'This experiment does NOT build or exercise any provenance/rollback machinery itself (that machinery is the thing MECH-471 would motivate)'). MECH-471 is status=candidate, implementation_phase=v3, pending_retest_after_substrate=true, and carries NO substrate_queue entry -- the INV-089 shape the workset generator's own _blocked_substrate_proposal_claims docstring names as the reason this disposition has to be recorded on the proposal: with no substrate_queue row to hang it on, the FM6 proposal-lane gate cannot see the block and the item re-surfaces as `ready` every regen.\n\n(2) EVEN A PROXY IV WOULD BE VACUOUS, because the panel's FIRST axis cannot be produced. INV-093 is a no-trade constraint: with no competence GAIN there is no trade to observe, and a 'nothing degraded' PASS means only that nothing was optimised. Competence acquisition on the all-ON stack is measured-unreliable: V3-EXQ-890 (confirmed autopsy failure_autopsy_V3-EXQ-890_2026-08-07, 16 seeds, ~10.3h) found only 5 of 16 seeds reach the survival floor, with H-exploration-init-variance CONFIRMED (93% of the eventual group gap present by episode 20) and H-hazard-layout-difficulty-variance ELIMINATED. The two full-budget attempts at MECH-471's own local-update-interference falsifier both died on this precondition rather than on the phenomenon (875 precondition_unmet, 875a competence_implementation_gap; 875a's phase-2 targeted update moved competence B by 0.0 against a 7.5-tick floor). That autopsy's ratified routing is /claim-synthesis on the MECH-457<->MECH-471<->Q-089 cross-reference with recommended_substrate_queue_entry.action=NONE, because MECH-457's own bottleneck mech457_competence_bootstrap_explorer is blocked_pending_discrimination. INV-093 needs strictly MORE than that falsifier, so it inherits the block.\n\n(3) NO MEASUREMENT-ONLY DIAGNOSTIC IS SUBSTITUTED, and this is a deliberate call rather than an omission. The usual commitment-free fallback rescues a claim whose DV instruments are blocked; here the DV instruments are the part that EXISTS (harm sensitivity: harm pathway trainable and validated since V3-EXQ-603k PASS / 603n, via scaffold_train_harm_pathway; residue: ree_core/residue/field.py live; commitment integrity: MECH-090 commit-entry, ARC-071 commit latch, MECH-342 release all implemented). A DV-readiness probe would only re-confirm the static measurement above, would carry evidence_direction=unknown, and would not touch the binding unknown (competence-acquisition reliability), which is already OWNED elsewhere -- GFLAG-0136 / MECH465-COMMIT-GATE-HEADROOM and the mech457 bottleneck. Queuing one would re-derive a known ceiling.\n\nRe-derive brake (Step 2.5b) did NOT fire: 0 autopsies tag INV-093 and no experiment in the corpus tags it (grep over ree-v3/experiments/ and REE_assembly/evidence/experiments/ returns nothing). This is the Step 2.5 unbuilt-substrate stop, not a re-derive stop. No script written, no queue entry added. SIBLING NOTE: INV-092 is the same ethical principle on the attention/suppression control surface and is coupled_with this claim; a reader clearing this block should check whether INV-092's proposal needs the same disposition.",
-      "release_condition": "Release when BOTH hold, and check them in this order because the second is the cheaper falsifier of the first. (a) A COMPETENCE-REFINEMENT MECHANISM WITH A STRENGTH KNOB EXISTS AND IS REACHABLE AT RUNTIME -- i.e. the bounded / provenanced / rollback-capable competence-revision discipline MECH-471 argues for is built and registered as an SD in ree-v3/CLAUDE.md. CONCRETE PREDICATE, checkable in one command without re-deriving any of the above: enumerate every dataclass field in ree_core/utils/config.py and require a NON-EMPTY match on refin*/skill_refin*/rollback*/provenance* (this session measured 0 of 1164 on 2026-09-08), then confirm the knob is actually wired at runtime per Step 2.5a rather than merely declared -- see reference-reeconfig-from-dims-silent-kwargs, from_dims silently swallows unknown kwargs. (b) COMPETENCE ACQUISITION IS RELIABLE ENOUGH FOR A GAIN AXIS: the targeted update must demonstrably MOVE the targeted competence on a majority of seeds, not 5 of 16 (V3-EXQ-890). Practically this means MECH-457's mech457_competence_bootstrap_explorer has left blocked_pending_discrimination and MECH-471's own local-update-interference falsifier has reached a real verdict rather than a readiness self-route. When both hold, INV-093 becomes a 4-axis joint panel over a refinement-strength sweep and the three non-competence axes are ALREADY instrumented, so no further DV build is owed. Route the intervening work via /implement-substrate on the refinement mechanism and via the /claim-synthesis pass V3-EXQ-890's autopsy already recommended -- NOT via another experiment on this proposal."
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1366",
-      "claim_id": "INV-093",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for INV-093.",
-      "priority": "medium",
-      "proposal_id": "LIT-0718",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_inv_093",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -15286,6 +15108,54 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_inv_104",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1728",
+      "claim_id": "INV-105",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for INV-105.",
+      "priority": "medium",
+      "proposal_id": "LIT-0061",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_inv_105",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -31764,6 +31634,390 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
+      "backlog_id": "EVB-1729",
+      "claim_id": "MECH-537",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-537.",
+      "priority": "medium",
+      "proposal_id": "LIT-0062",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_537",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1730",
+      "claim_id": "MECH-538",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-538.",
+      "priority": "medium",
+      "proposal_id": "LIT-0063",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_538",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1731",
+      "claim_id": "MECH-539",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-539.",
+      "priority": "medium",
+      "proposal_id": "LIT-0065",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_539",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1732",
+      "claim_id": "MECH-540",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-540.",
+      "priority": "medium",
+      "proposal_id": "LIT-0067",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_540",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1733",
+      "claim_id": "MECH-541",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-541.",
+      "priority": "medium",
+      "proposal_id": "LIT-0072",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_541",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1734",
+      "claim_id": "MECH-542",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-542.",
+      "priority": "medium",
+      "proposal_id": "LIT-0075",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_542",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1735",
+      "claim_id": "MECH-543",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-543.",
+      "priority": "medium",
+      "proposal_id": "LIT-0078",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_543",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1736",
+      "claim_id": "MECH-544",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-544.",
+      "priority": "medium",
+      "proposal_id": "LIT-0080",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_544",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
       "backlog_id": "EVB-1624",
       "claim_id": "Q-048",
       "decision_deadline_utc": "",
@@ -43411,9 +43665,18 @@
       ],
       "added_utc": "2026-09-06",
       "backlog_id": null,
+      "blocked_by": [
+        "contextmemory-write-path-addressing-degeneracy",
+        "SD-e1-rollout-consistency-training",
+        "sleep-integrated-world-model-update-path-unvalidated"
+      ],
+      "blocked_note": "blocked_substrate 2026-09-08 (IGW-20260907-232, /queue-experiment Step 2.5/2.5c). NOT a commitment/behavioural-DV block and NOT the conversion ceiling: this falsifier is measurement-only and its leg A is fully live. What is missing is a SLEEP-INTEGRATED, NON-CONFOUNDED WORLD-MODEL-UPDATE PATH for leg B. See gating_reason for the three verified findings. WHAT IS ALREADY READY (recorded so a successor does not re-derive it): P1 intake ladder REAL -- SD-MEL-PRODUCER implemented; CausalGridWorldV2 world_rule_shift_enabled/_interval/_depth wired (causal_grid_world.py:791-794, 821-835); V3-EXQ-901 measured precondition mel_dose_sweep_gradient_present_this_config = 1.0 (3/3 seeds) on this exact knob, and emits steps_since_world_rule_shift for the reducibility control. P2 offline budget PINNABLE -- use_mel_consumer (config.py:6364), use_entry_pressure (6435), use_within_life_sleep_trigger (6410) all exist and default False; V3-EXQ-901's sleep_opportunity_uniform_across_dose = 1.0 (3/3). P3 sleep FIRES -- use_sleep_aggregation_cluster (config.py:6336), SleepPhaseManager.notify_episode_end / force_cycle present; V3-EXQ-901 recorded n_cycles_fired=6 including the world_rule_shift_interval=0 arm, so the floor arm does sleep. P4 leg-A instrument LIVE -- agent._surprise_write_count and metrics['mech205_write_count'] (agent.py:10677-10740), _pe_ema, and surprise_weight = min(1.0, _pe_ema*5.0) at the replay call (agent.py:10517-10543); pe_surprise_threshold default CONFIRMED 1e-5 (config.py:3438), so MECH-205's 'still defaults to 0.001' warning is indeed stale as INV-063's P4 already states. P4 ALSO CONFIRMED EMPIRICALLY by the same Step 2.5a probe: after only 2 short episodes the agent reported _surprise_write_count = 68 and _pe_ema = 1.33e-3 > 0, i.e. VALENCE_SURPRISE writes genuinely fire and surprise_weight = min(1.0, _pe_ema*5.0) is NOT pinned at its 0.3 fallback -- leg A's instrument is live on the current substrate, and the sleep cycle itself fired with non-zero sws_n_writes / rem_n_rollouts. P5 IS UNDER-SCOPED AND SHOULD BE AMENDED ON THE CLAIM -- INV-063's P5 excludes only DVs 'routed through ContextMemory slot differentiation (slot_cosine_sim)'. But E1's FORWARD pass READS ContextMemory (e1_deep.py:911,1002), so EVERY E1-derived DV inherits the write-path degeneracy, not just slot-similarity DVs. That is finding (2) above and is why leg B, not merely the excluded Type-3 leg, is confounded. GOV-REUSE-1 (Step 2.4): decisive readouts are the leg-A surprise-write/surprise_weight/replay-start-spread triple and the leg-B across-sleep frozen-battery PE delta. Checked v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3 (substrate_hash 95d86b441c082c0813583df3a77d22a7a4a3d943c440bdf03e8ade3e02723554, the closest compatible run) and the 701/701a/701b/701c MEL-measurability lineage: NOT recoverable -- 901 ran with the MEL consumer ON (mel_on/mean_duration_factor present), the opposite of INV-063's P2 pinned-budget requirement, and records neither leg-A nor leg-B readouts. Reanalysis is not available; a run is genuinely owed once the block clears. RE-DERIVE BRAKE (Step 2.5b): INV-063 0 hits, MECH-205 0 hits. INV-050 shows 7 hits but the brake is RELEASED -- the named upstream substrate (SD-MEL-PRODUCER, SD-MEL-CONSUMER) is now built and validated -- and INV-050 was in any case going to be dropped from claim_ids: the run pins sleep quantity constant and so tests nothing of INV-050's drive claim (strict claim-tagging rule). Intended tags when unblocked: INV-063 (primary) + MECH-205 (leg A is a direct read of its surprise-gating instrument), with evidence_direction_per_claim; NOT INV-050, NOT MECH-180 (quantity-side sibling, deliberately pinned here), NOT MECH-423 (its consolidator is used as an instrument, not tested). WORK-GRAPH DEBT: complicated (buildable) -- two named builds/validations, no open question. Route to /implement-substrate, NOT another /queue-experiment iteration. EXQ ID V3-EXQ-1010 was reserved for this run and released unused (claim closed --not-landed).",
       "claim_id": "INV-063",
       "design": "- title: `INV-063 entropy-intake floor: offline function degradation at PINNED offline budget\n  (consumer-absent graded-intake ladder)`\n- claim_ids / related_claims: primary `INV-063`; secondary `INV-050` (this run carries the\n  consumer-absent arm INV-050's own what_would_answer names as its outstanding non-degeneracy control,\n  and GFLAG-0002's promotion question is gated on exactly that), `MECH-205` (leg A is a direct read of\n  its surprise-gating instrument under intake starvation), `MECH-180` (quantity-side sibling, arms\n  pinned here). Register INV-050/MECH-205 with an explicit per-claim direction; do NOT tag MECH-121,\n  MECH-209, MECH-210, MECH-211 -- three are substrate_conditional/out_of_domain and the fourth is\n  undigested, and tagging them would be the surface-substrate_conditional-as-ready anti-pattern.\n- design: 4 intake arms x >= 3 seeds, `world_rule_shift_interval` in {0, long, medium, short} at\n  fixed `_depth`, plus a matched-PE observation-noise negative control arm; `use_mel_consumer=False`,\n  `use_entry_pressure=False`, `use_within_life_sleep_trigger=False`,\n  `use_sleep_aggregation_cluster=True`, `surprise_gated_replay=True`, `valence_enabled=True`;\n  multi-episode driver (GAP-9 reachability).\n- acceptance_checks (pre-registered, in gate order):\n  1. R1 ladder real: mean waking MEL strictly monotone across the four arms, relative spread > 0.25;\n     PE decays within stationary windows against `steps_since_world_rule_shift`; the matched-PE-noise\n     arm does NOT reproduce the DV pattern. (Gate -- DVs not read if R1 fails.)\n  2. R2 budget pinned: `cumulative_sws_writes` and `cumulative_rem_rollouts` show zero cross-arm\n     variance, from measured output. (Gate.)\n  3. R3 non-vacuity: non-zero SWS writes AND non-zero REM rollouts in EVERY arm including the lowest;\n     non-zero VALENCE_SURPRISE writes and `_pe_ema > 0` in the HIGHEST arm. (Gate.)\n  4. C1 leg A: surprise-write count, realised `surprise_weight`, and replay start-selection spread all\n     non-increasing across intake-sorted arms, >= 2/3 seeds.\n  5. C1 leg B: across-sleep frozen-battery world-forward PE improvement non-increasing across\n     intake-sorted arms, >= 2/3 seeds.\n  6. C2 knee: low-end arm-to-arm drop exceeds high-end arm-to-arm drop by\n     `max(2 x pooled cross-seed SD of the delta, 20% of the highest arm's DV)`, >= 2/3 seeds, same\n     direction on both legs.\n  7. Manifest carries `claim_ids_tested`, `evidence_class`, `evidence_direction`, and per-claim\n     direction for INV-050 / MECH-205; the F1/F2/F3 self-route labels above are pre-registered in the\n     driver so the outcome is classified, not narrated.\n- Supersedes / replaces: EXP-0687 and EXP-0736 (`chip-proposal-exp-0736`) -- both auto-minted\n  placeholders with no design. LIT-0688 should be RETAINED and re-scoped to the out_of_domain\n  epidemiological leg only.",
       "dispatch_mode": "multi_arm_ablation",
+      "gated_at_utc": "2026-09-08T00:05:00Z",
+      "gated_by_session": "igw-232-proposal-for-inv-063",
+      "gating_reason": "Leg B of INV-063's own CONFIRMING criterion (C1 leg B: the ACROSS-SLEEP improvement in world-forward prediction error on a FROZEN held-out battery) has no clean instrument on the current substrate, and leg B is not optional -- C1 requires BOTH legs monotone, C2 (the self-declared load-bearing leg, 'what makes this claim distinct from INV-050') requires the knee in the SAME direction on both legs, and F3 requires the two legs' differential sensitivity. Three findings, each verified against ree-v3 source at 2026-09-07: (1) UNDER THE PRE-REGISTERED FLAG SET, SLEEP PERFORMS NO GRADIENT UPDATE TO ANY FORWARD MODEL, AND E2 -- THE MODEL LEG B'S OWN NAMED INSTRUMENT MEASURES -- IS BIT-EXACTLY UNCHANGED. An AST enumeration of the whole sleep call graph (agent.run_sleep_cycle 12629-12664, run_sws_schema_pass 12264-12511, run_rem_attribution_pass 12513-12627, enter_sws_mode, enter_rem_mode, exit_offline_mode) finds ZERO backward()/optimizer/world_forward/self.e2 tokens. CONFIRMED EMPIRICALLY by a live one-tick probe (/queue-experiment Step 2.5a; REEAgent + CausalGridWorldV2, world_rule_shift_enabled, the exact pre-registered flag set with use_cross_module_consolidation=False, 2 episodes then one real run_sleep_cycle()): max|delta| over agent.e2.parameters() across the sleep cycle = 0.0 EXACTLY. E2 is the model the named V3-EXQ-701b/701c frozen-probe instrument trains and measures (Adam(agent.e2.parameters()); e2_fast.predict_next_self), so leg B's DV -- pre-sleep PE minus post-sleep PE on the same frozen battery -- is structurally EXACTLY 0.0 in every arm at every seed: a DV pinned across all arms (the V3-EXQ-514m degeneracy class) and a DV-symmetry invariance in the /queue-experiment Step 3 sense, since no path exists from sleep to the world-forward parameters. IMPORTANT COROLLARY, so a later reader does not mis-read the probe: the SAME probe measured max|delta| over agent.e1.parameters() = 0.134, which is NOT evidence that leg B is measurable via E1. ContextMemory.memory is an nn.Parameter (e1_deep.py) mutated IN PLACE by the SWS slot write (self.memory[i] = 0.9*self.memory[i] + 0.1*write_signal), so the entire E1 delta is memory CONTENT written by run_sws_schema_pass -- not a learned-weight update -- and it is produced by precisely the ContextMemory.write path that is the open corrupting defect in finding (2). The only two offline weight-update sites in ree_core/sleep/ are cross_module_consolidation.py:179 (E1+E2, gated on use_cross_module_consolidation, default False -- a flag INV-063's pre-registered P2/P3 set never names, and which the probe held False) and self_model_aggregator.py:275, which steps e2_harm_s.parameters() ONLY ('the SOLE module whose grads are stepped') -- the harm-successor head, not the world-forward model. (2) ENABLING THE CONSOLIDATOR AND ROUTING LEG B THROUGH E1 (the pre-registered 'E1 world-model updating' leg) PUTS THE DV ON AN OPEN corrupting DEFECT THAT IS ALIGNED WITH THE IV. compute_prediction_loss -> e1_deep forward -> self.context_memory.read (e1_deep.py:911,1002), while the SWS pass writes those same slots through ContextMemory.write. substrate_queue entry 'contextmemory-write-path-addressing-degeneracy' is severity=corrupting, status=implemented_pending_validation (OPEN), and its documented failure mode is a deterministic single-slot fixed point UNDER A LOW-VARIANCE QUERY STREAM. INV-063's intake ladder IS a query-stream-variance manipulation, and its lowest-intake arm (world_rule_shift_interval=0, stationary world) is exactly that condition -- so the defect is CORRELATED WITH THE INDEPENDENT VARIABLE and would manufacture a monotone leg-B gradient by its own mechanism, indistinguishable from the starvation effect the claim predicts. That is a false-PASS generator on C1/C2, not a nuisance. The E1 path additionally overlaps the OPEN corrupting entry 'SD-e1-rollout-consistency-training' (ree_core/predictors/e1_deep.py::forward, ::predict_long_horizon). /queue-experiment Step 2.5c makes an open corrupting overlap a stop-gate. (3) ROUTING LEG B THROUGH E2 INSTEAD IS CLEAN BUT SUBSTITUTES AN EXPLICITLY EXCLUDED LEG. compute_e2_loss (agent.py:12137) reads only _e2_transition_buffer and e2.predict_next_self, and ree_core/predictors/e2_fast.py contains ZERO references to ContextMemory/context_memory/self.e1/e1_deep -- so an E2-only leg B evades both corrupting defects. But INV-063's what_would_answer EXPLICITLY excludes the E2 leg ('E2 motor-sequence learning ... blocked by the action-learning competence floor'), so E2 cannot stand in for leg B without silently re-specifying the claim.",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on INV-063 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
       "objective": "Test INV-063 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `INV-063 entropy-intake floor: offline function degradation at PINNED offline budget\n  (consumer-absent graded-intake ladder)`\n- claim_ids / related_claims: primary `INV-063`; secondary `INV-050` (this run carries the\n  consumer-absent arm INV-050's own what_would_answer names as its outstanding non-degeneracy control,\n  and GFLAG-0002's promotion question is gated on exactly that), `MECH-205` (leg A is a direct read of\n  its surprise-gating instrument under intake starvation), `MECH-180` (quantity-side sibling, arms\n  pinned here). Register INV-050/MECH-205 with an explicit per-claim direction; do NOT tag MECH-121,\n  MECH-209, MECH-210, MECH-211 -- three are substrate_conditional/o",
@@ -43431,19 +43694,10 @@
         "MECH-210",
         "MECH-211"
       ],
+      "release_condition": "BOTH: (a) substrate_queue 'contextmemory-write-path-addressing-degeneracy' moves from implemented_pending_validation to validated (it is a VALIDATION run, not a build -- the fix has landed), so an E1-derived DV is no longer read through a write path whose degeneracy is aligned with this experiment's own intake/query-variance IV; AND (b) a sleep-integrated world-model-update path is exercised and validated in a landed run -- the SleepPhaseManager cross-module-consolidation hook (phase_manager.py:669-693, use_cross_module_consolidation + cross_module_consolidation_steps>0) has NEVER been exercised through the sleep cycle in any landed manifest; V3-EXQ-680e validated the CrossModuleConsolidator only by calling consolidate() DIRECTLY (its own manifest records sleep_driver_pattern 'N/A ... no sleep cycle'). Until (b), INV-063's leg B has no sanctioned offline world-model-update mechanism to measure at all. RECOMMENDED SEQUENCING: (b) first -- it is the cheaper of the two and, if the hook is wired to E2 only (compute_e2_loss is clean of both corrupting defects), it may also make (a) unnecessary for a leg-B variant. But an E2-only leg B requires INV-063's what_would_answer to be AMENDED first (it currently excludes the E2 leg), which is a /governance decision, not a /queue-experiment one. Also amend P5 per the under-scoping finding.",
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3",
-      "blocked_by": [
-        "contextmemory-write-path-addressing-degeneracy",
-        "SD-e1-rollout-consistency-training",
-        "sleep-integrated-world-model-update-path-unvalidated"
-      ],
-      "blocked_note": "blocked_substrate 2026-09-08 (IGW-20260907-232, /queue-experiment Step 2.5/2.5c). NOT a commitment/behavioural-DV block and NOT the conversion ceiling: this falsifier is measurement-only and its leg A is fully live. What is missing is a SLEEP-INTEGRATED, NON-CONFOUNDED WORLD-MODEL-UPDATE PATH for leg B. See gating_reason for the three verified findings. WHAT IS ALREADY READY (recorded so a successor does not re-derive it): P1 intake ladder REAL -- SD-MEL-PRODUCER implemented; CausalGridWorldV2 world_rule_shift_enabled/_interval/_depth wired (causal_grid_world.py:791-794, 821-835); V3-EXQ-901 measured precondition mel_dose_sweep_gradient_present_this_config = 1.0 (3/3 seeds) on this exact knob, and emits steps_since_world_rule_shift for the reducibility control. P2 offline budget PINNABLE -- use_mel_consumer (config.py:6364), use_entry_pressure (6435), use_within_life_sleep_trigger (6410) all exist and default False; V3-EXQ-901's sleep_opportunity_uniform_across_dose = 1.0 (3/3). P3 sleep FIRES -- use_sleep_aggregation_cluster (config.py:6336), SleepPhaseManager.notify_episode_end / force_cycle present; V3-EXQ-901 recorded n_cycles_fired=6 including the world_rule_shift_interval=0 arm, so the floor arm does sleep. P4 leg-A instrument LIVE -- agent._surprise_write_count and metrics['mech205_write_count'] (agent.py:10677-10740), _pe_ema, and surprise_weight = min(1.0, _pe_ema*5.0) at the replay call (agent.py:10517-10543); pe_surprise_threshold default CONFIRMED 1e-5 (config.py:3438), so MECH-205's 'still defaults to 0.001' warning is indeed stale as INV-063's P4 already states. P4 ALSO CONFIRMED EMPIRICALLY by the same Step 2.5a probe: after only 2 short episodes the agent reported _surprise_write_count = 68 and _pe_ema = 1.33e-3 > 0, i.e. VALENCE_SURPRISE writes genuinely fire and surprise_weight = min(1.0, _pe_ema*5.0) is NOT pinned at its 0.3 fallback -- leg A's instrument is live on the current substrate, and the sleep cycle itself fired with non-zero sws_n_writes / rem_n_rollouts. P5 IS UNDER-SCOPED AND SHOULD BE AMENDED ON THE CLAIM -- INV-063's P5 excludes only DVs 'routed through ContextMemory slot differentiation (slot_cosine_sim)'. But E1's FORWARD pass READS ContextMemory (e1_deep.py:911,1002), so EVERY E1-derived DV inherits the write-path degeneracy, not just slot-similarity DVs. That is finding (2) above and is why leg B, not merely the excluded Type-3 leg, is confounded. GOV-REUSE-1 (Step 2.4): decisive readouts are the leg-A surprise-write/surprise_weight/replay-start-spread triple and the leg-B across-sleep frozen-battery PE delta. Checked v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3 (substrate_hash 95d86b441c082c0813583df3a77d22a7a4a3d943c440bdf03e8ade3e02723554, the closest compatible run) and the 701/701a/701b/701c MEL-measurability lineage: NOT recoverable -- 901 ran with the MEL consumer ON (mel_on/mean_duration_factor present), the opposite of INV-063's P2 pinned-budget requirement, and records neither leg-A nor leg-B readouts. Reanalysis is not available; a run is genuinely owed once the block clears. RE-DERIVE BRAKE (Step 2.5b): INV-063 0 hits, MECH-205 0 hits. INV-050 shows 7 hits but the brake is RELEASED -- the named upstream substrate (SD-MEL-PRODUCER, SD-MEL-CONSUMER) is now built and validated -- and INV-050 was in any case going to be dropped from claim_ids: the run pins sleep quantity constant and so tests nothing of INV-050's drive claim (strict claim-tagging rule). Intended tags when unblocked: INV-063 (primary) + MECH-205 (leg A is a direct read of its surprise-gating instrument), with evidence_direction_per_claim; NOT INV-050, NOT MECH-180 (quantity-side sibling, deliberately pinned here), NOT MECH-423 (its consolidator is used as an instrument, not tested). WORK-GRAPH DEBT: complicated (buildable) -- two named builds/validations, no open question. Route to /implement-substrate, NOT another /queue-experiment iteration. EXQ ID V3-EXQ-1010 was reserved for this run and released unused (claim closed --not-landed).",
-      "gated_at_utc": "2026-09-08T00:05:00Z",
-      "gated_by_session": "igw-232-proposal-for-inv-063",
-      "gating_reason": "Leg B of INV-063's own CONFIRMING criterion (C1 leg B: the ACROSS-SLEEP improvement in world-forward prediction error on a FROZEN held-out battery) has no clean instrument on the current substrate, and leg B is not optional -- C1 requires BOTH legs monotone, C2 (the self-declared load-bearing leg, 'what makes this claim distinct from INV-050') requires the knee in the SAME direction on both legs, and F3 requires the two legs' differential sensitivity. Three findings, each verified against ree-v3 source at 2026-09-07: (1) UNDER THE PRE-REGISTERED FLAG SET, SLEEP PERFORMS NO GRADIENT UPDATE TO ANY FORWARD MODEL, AND E2 -- THE MODEL LEG B'S OWN NAMED INSTRUMENT MEASURES -- IS BIT-EXACTLY UNCHANGED. An AST enumeration of the whole sleep call graph (agent.run_sleep_cycle 12629-12664, run_sws_schema_pass 12264-12511, run_rem_attribution_pass 12513-12627, enter_sws_mode, enter_rem_mode, exit_offline_mode) finds ZERO backward()/optimizer/world_forward/self.e2 tokens. CONFIRMED EMPIRICALLY by a live one-tick probe (/queue-experiment Step 2.5a; REEAgent + CausalGridWorldV2, world_rule_shift_enabled, the exact pre-registered flag set with use_cross_module_consolidation=False, 2 episodes then one real run_sleep_cycle()): max|delta| over agent.e2.parameters() across the sleep cycle = 0.0 EXACTLY. E2 is the model the named V3-EXQ-701b/701c frozen-probe instrument trains and measures (Adam(agent.e2.parameters()); e2_fast.predict_next_self), so leg B's DV -- pre-sleep PE minus post-sleep PE on the same frozen battery -- is structurally EXACTLY 0.0 in every arm at every seed: a DV pinned across all arms (the V3-EXQ-514m degeneracy class) and a DV-symmetry invariance in the /queue-experiment Step 3 sense, since no path exists from sleep to the world-forward parameters. IMPORTANT COROLLARY, so a later reader does not mis-read the probe: the SAME probe measured max|delta| over agent.e1.parameters() = 0.134, which is NOT evidence that leg B is measurable via E1. ContextMemory.memory is an nn.Parameter (e1_deep.py) mutated IN PLACE by the SWS slot write (self.memory[i] = 0.9*self.memory[i] + 0.1*write_signal), so the entire E1 delta is memory CONTENT written by run_sws_schema_pass -- not a learned-weight update -- and it is produced by precisely the ContextMemory.write path that is the open corrupting defect in finding (2). The only two offline weight-update sites in ree_core/sleep/ are cross_module_consolidation.py:179 (E1+E2, gated on use_cross_module_consolidation, default False -- a flag INV-063's pre-registered P2/P3 set never names, and which the probe held False) and self_model_aggregator.py:275, which steps e2_harm_s.parameters() ONLY ('the SOLE module whose grads are stepped') -- the harm-successor head, not the world-forward model. (2) ENABLING THE CONSOLIDATOR AND ROUTING LEG B THROUGH E1 (the pre-registered 'E1 world-model updating' leg) PUTS THE DV ON AN OPEN corrupting DEFECT THAT IS ALIGNED WITH THE IV. compute_prediction_loss -> e1_deep forward -> self.context_memory.read (e1_deep.py:911,1002), while the SWS pass writes those same slots through ContextMemory.write. substrate_queue entry 'contextmemory-write-path-addressing-degeneracy' is severity=corrupting, status=implemented_pending_validation (OPEN), and its documented failure mode is a deterministic single-slot fixed point UNDER A LOW-VARIANCE QUERY STREAM. INV-063's intake ladder IS a query-stream-variance manipulation, and its lowest-intake arm (world_rule_shift_interval=0, stationary world) is exactly that condition -- so the defect is CORRELATED WITH THE INDEPENDENT VARIABLE and would manufacture a monotone leg-B gradient by its own mechanism, indistinguishable from the starvation effect the claim predicts. That is a false-PASS generator on C1/C2, not a nuisance. The E1 path additionally overlaps the OPEN corrupting entry 'SD-e1-rollout-consistency-training' (ree_core/predictors/e1_deep.py::forward, ::predict_long_horizon). /queue-experiment Step 2.5c makes an open corrupting overlap a stop-gate. (3) ROUTING LEG B THROUGH E2 INSTEAD IS CLEAN BUT SUBSTITUTES AN EXPLICITLY EXCLUDED LEG. compute_e2_loss (agent.py:12137) reads only _e2_transition_buffer and e2.predict_next_self, and ree_core/predictors/e2_fast.py contains ZERO references to ContextMemory/context_memory/self.e1/e1_deep -- so an E2-only leg B evades both corrupting defects. But INV-063's what_would_answer EXPLICITLY excludes the E2 leg ('E2 motor-sequence learning ... blocked by the action-learning competence floor'), so E2 cannot stand in for leg B without silently re-specifying the claim.",
-      "release_condition": "BOTH: (a) substrate_queue 'contextmemory-write-path-addressing-degeneracy' moves from implemented_pending_validation to validated (it is a VALIDATION run, not a build -- the fix has landed), so an E1-derived DV is no longer read through a write path whose degeneracy is aligned with this experiment's own intake/query-variance IV; AND (b) a sleep-integrated world-model-update path is exercised and validated in a landed run -- the SleepPhaseManager cross-module-consolidation hook (phase_manager.py:669-693, use_cross_module_consolidation + cross_module_consolidation_steps>0) has NEVER been exercised through the sleep cycle in any landed manifest; V3-EXQ-680e validated the CrossModuleConsolidator only by calling consolidate() DIRECTLY (its own manifest records sleep_driver_pattern 'N/A ... no sleep cycle'). Until (b), INV-063's leg B has no sanctioned offline world-model-update mechanism to measure at all. RECOMMENDED SEQUENCING: (b) first -- it is the cheaper of the two and, if the hook is wired to E2 only (compute_e2_loss is clean of both corrupting defects), it may also make (a) unnecessary for a leg-B variant. But an E2-only leg B requires INV-063's what_would_answer to be AMENDED first (it currently excludes the E2 leg), which is a /governance decision, not a /queue-experiment one. Also amend P5 per the under-scoping finding."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [

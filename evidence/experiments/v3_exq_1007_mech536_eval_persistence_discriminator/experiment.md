@@ -1,4 +1,4 @@
-# Experiment: v3_exq_326_wanting_gradient_nav_fix
+# Experiment: v3_exq_1007_mech536_eval_persistence_discriminator
 
 ## What it tests
 
@@ -11,10 +11,5 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-Recent failure runs:
-- `v3_exq_326_wanting_gradient_nav_fix_20260413T144759Z_v3` at `2026-04-13T14:47:59Z` signatures: none
-
-Recurring signatures:
-
-Suggested design TODOs:
+No recent FAIL runs. Keep monitoring key stop metrics.
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

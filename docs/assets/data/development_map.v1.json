@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-06T16:12:21Z",
+  "generated_at": "2026-09-08T07:15:45Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -116,9 +116,9 @@
           "ARC-045",
           "MECH-166"
         ],
-        "surviving": 4,
-        "initial": 4,
-        "convergence": "static",
+        "surviving": 2,
+        "initial": 5,
+        "convergence": "narrowing",
         "is_hero": false
       },
       {
@@ -497,6 +497,18 @@
         "is_hero": false
       },
       {
+        "id": "residue_error_persistence_readout",
+        "title": "residue error-persistence readout",
+        "claims": [
+          "EXT-002",
+          "ARC-013"
+        ],
+        "surviving": 2,
+        "initial": 2,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "sd005-zself-zworld-asymmetry",
         "title": "SD-005 asymmetric specialisation",
         "claims": [
@@ -585,7 +597,7 @@
           "INV-088",
           "MECH-135"
         ],
-        "surviving": 3,
+        "surviving": 1,
         "initial": 3,
         "convergence": "static",
         "is_hero": false
@@ -632,8 +644,8 @@
           "INV-088"
         ],
         "surviving": 2,
-        "initial": 4,
-        "convergence": "refining",
+        "initial": 5,
+        "convergence": "circling",
         "is_hero": false
       },
       {
@@ -663,7 +675,7 @@
     },
     {
       "label": "Narrow",
-      "value": "110 / 153",
+      "value": "108 / 155",
       "detail": "rival explanations still standing"
     },
     {
@@ -766,6 +778,18 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-011",
+              "title": "Imagination must be possible without belief update.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "experiment_planned",
+              "attention_rank": 2,
+              "incoming_dependencies": 11,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-025",
               "title": "Irreducible uncertainty is an epistemological constraint that cannot be engineered away.",
               "status": "active",
@@ -792,18 +816,6 @@
             {
               "id": "INV-003",
               "title": "Language emerges as functional self-representation, not a bolt-on.",
-              "status": "active",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "experiment_planned",
-              "attention_rank": 2,
-              "incoming_dependencies": 10,
-              "depends_on": [],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-005",
-              "title": "Harm to others contributes via mirror modelling, not symbolic rules.",
               "status": "active",
               "phase": "unset",
               "claim_class": "invariant_or_foundation",
@@ -934,6 +946,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-088",
+              "title": "world_goal_evaluator_bounded_by_z_world_differentiation",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "INV-064",
+                "ARC-001",
+                "ARC-003",
+                "ARC-019"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-075",
               "title": "Signal-structure temporal decoupling: any signal that is BOTH self-extinguishing (its magnitude is coupled to its own success and therefore necessarily fades as what it bootstraps succeeds) AND load-bearing (the structure it establishes must persist after the signal fades) necessarily requires either a crystallization mechanism (LOCK -- the structure is rendered plasticity-resistant) or a handoff mechanism (a durable, non-extinguishing signal assumes maintenance of the structure before the establishing signal vanishes). Absent both, the structure decays and the acquisition is lost. The lock/handoff disjunction is exhaustive: no third resolution exists.",
               "status": "candidate",
@@ -943,23 +972,6 @@
               "attention_rank": 4,
               "incoming_dependencies": 3,
               "depends_on": [],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-088",
-              "title": "world_goal_evaluator_bounded_by_z_world_differentiation",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 2,
-              "depends_on": [
-                "INV-064",
-                "ARC-001",
-                "ARC-003",
-                "ARC-019"
-              ],
               "additional_dependencies": 0
             },
             {
@@ -1012,6 +1024,26 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-063",
+              "title": "minimum_entropy_intake_sleep_dependency",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 0,
+              "depends_on": [
+                "INV-049",
+                "SD-017",
+                "MECH-121",
+                "MECH-205",
+                "MECH-209",
+                "MECH-210",
+                "MECH-211"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-087",
               "title": "proxy_tethering_constraint",
               "status": "candidate",
@@ -1027,18 +1059,6 @@
                 "SD-015"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "INV-067",
-              "title": "V(t): Verisimilitude is the precision-weighted, phase-aligned, hierarchical correspondence between ascending sensory-constrained and descending model-based signals.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "experiment_planned",
-              "attention_rank": 2,
-              "incoming_dependencies": 8,
-              "depends_on": [],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -1048,7 +1068,7 @@
       "id": "architecture",
       "title": "Architecture",
       "summary": "System commitments and mechanism-level design.",
-      "total": 283,
+      "total": 277,
       "buckets": [
         {
           "key": "active",
@@ -1236,7 +1256,7 @@
               "claim_class": "mechanism_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 77,
+              "incoming_dependencies": 78,
               "depends_on": [
                 "ARC-014",
                 "INV-011",
@@ -1394,8 +1414,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 180,
-          "more_count": 170,
+          "count": 174,
+          "more_count": 164,
           "nodes": [
             {
               "id": "MECH-062",
@@ -1566,7 +1586,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 247,
+      "total": 254,
       "buckets": [
         {
           "key": "active",
@@ -1819,8 +1839,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 218,
-          "more_count": 208,
+          "count": 225,
+          "more_count": 215,
           "nodes": [
             {
               "id": "INV-049",
@@ -2000,7 +2020,7 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 272,
+      "total": 277,
       "buckets": [
         {
           "key": "active",
@@ -2032,7 +2052,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 28,
+              "incoming_dependencies": 29,
               "depends_on": [
                 "ARC-023",
                 "ARC-021",
@@ -2100,11 +2120,28 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 11,
+              "incoming_dependencies": 12,
               "depends_on": [
                 "SD-005",
                 "SD-010",
                 "ARC-035"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-279",
+              "title": "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia.",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 10,
+              "depends_on": [
+                "SD-036",
+                "SD-011",
+                "MECH-090",
+                "SD-035"
               ],
               "additional_dependencies": 0
             },
@@ -2144,23 +2181,6 @@
                 "MECH-094",
                 "SD-032a",
                 "SD-032b"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-279",
-              "title": "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia.",
-              "status": "provisional",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 9,
-              "depends_on": [
-                "SD-036",
-                "SD-011",
-                "MECH-090",
-                "SD-035"
               ],
               "additional_dependencies": 0
             },
@@ -2211,8 +2231,25 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 30,
+              "incoming_dependencies": 32,
               "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-017",
+              "title": "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 24,
+              "depends_on": [
+                "MECH-092",
+                "ARC-038",
+                "ARC-007",
+                "SD-014"
+              ],
               "additional_dependencies": 0
             },
             {
@@ -2233,23 +2270,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "SD-017",
-              "title": "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated.",
-              "status": "stable",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 23,
-              "depends_on": [
-                "MECH-092",
-                "ARC-038",
-                "ARC-007",
-                "SD-014"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "ARC-033",
               "title": "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream.",
               "status": "stable",
@@ -2257,7 +2277,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 12,
+              "incoming_dependencies": 13,
               "depends_on": [
                 "SD-011",
                 "ARC-027",
@@ -2353,8 +2373,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 200,
-          "more_count": 190,
+          "count": 205,
+          "more_count": 195,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2536,7 +2556,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 248,
+      "total": 258,
       "buckets": [
         {
           "key": "active",
@@ -2555,8 +2575,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 248,
-          "more_count": 238,
+          "count": 258,
+          "more_count": 248,
           "nodes": [
             {
               "id": "ARC-023",
@@ -2591,6 +2611,24 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-047",
+              "title": "Multi-agent gridworld with affective state leakage as gradient scent fields is the minimal substrate for empirically testing ARC-010 mirror modelling, MECH-041 affective expression, and cooperative behavior claims.",
+              "status": "candidate",
+              "phase": "v5",
+              "claim_class": "horizon_v5",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "MECH-041",
+                "MECH-031",
+                "MECH-036",
+                "MECH-127",
+                "IMPL-019"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "ARC-080",
               "title": "Object identity is a cross-cutting representational primitive. An object is a token-bound identity representation that persists across time and perceptual gaps, generalising z_object/z_resource into an object-file/binding layer (ARC-006), defined by causal feature-coherence under intervention (MECH-278), and consumed by drive/goal (SD-057), hippocampal planning (MECH-262), and the self/other special-object cases. The four planned object capabilities -- (1) permanence, (2) self-as-object, (3) tools/affordances, (4) others-as-object -- are specialisations of one primitive, not four separate mechanisms.",
               "status": "candidate",
@@ -2611,6 +2649,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-086",
+              "title": "REE's failure-mode taxonomy is indexed on TWO axes simultaneously: (1) named failure mode (the existing mechanistically-distinct entries -- psychosis/hypothesis-tag loss, confabulation, derealization, OCD, depressive attractor, catatonia subtypes, etc.) AND (2) a finite, named set of cross-cutting LATENT VULNERABILITY AXES that span the named entries (precision/confidence allocation; commitment-threshold/action-release authority; provenance/source tagging; agency attribution; residue/consequence persistence; goal/salience/incentive coupling; self-other coupling; offline integration/replay; social-contagion/cross-agent coupling; global instability). Named clinical syndromes are emergent clusters -- weighted combinations -- over these axes, not primitive natural kinds; comorbidity is overlapping axis activation and pleiotropy is one mechanism loading multiple axes. The axis layer is an INDEXING layer, never a merging layer: it does not collapse mechanistically-distinct failure modes into one another.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "IMPL-005",
+                "INV-061",
+                "MECH-343",
+                "RA-002"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "SD-040",
               "title": "Type-encoder produces a category-prototype feature vector that is written into the AnchorSet alongside z_world, so anchors can be queried by type-key as well as location-key. The type-encoder uses the same input substrate as the existing instance-encoder but produces a different (regularity-extracted) representation, mirroring the trisynaptic-vs-monosynaptic complementary-learning architecture within hippocampus.",
               "status": "candidate",
@@ -2622,23 +2677,6 @@
               "depends_on": [
                 "MECH-269",
                 "SD-039"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-086",
-              "title": "REE's failure-mode taxonomy is indexed on TWO axes simultaneously: (1) named failure mode (the existing mechanistically-distinct entries -- psychosis/hypothesis-tag loss, confabulation, derealization, OCD, depressive attractor, catatonia subtypes, etc.) AND (2) a finite, named set of cross-cutting LATENT VULNERABILITY AXES that span the named entries (precision/confidence allocation; commitment-threshold/action-release authority; provenance/source tagging; agency attribution; residue/consequence persistence; goal/salience/incentive coupling; self-other coupling; offline integration/replay; social-contagion/cross-agent coupling; global instability). Named clinical syndromes are emergent clusters -- weighted combinations -- over these axes, not primitive natural kinds; comorbidity is overlapping axis activation and pleiotropy is one mechanism loading multiple axes. The axis layer is an INDEXING layer, never a merging layer: it does not collapse mechanistically-distinct failure modes into one another.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "IMPL-005",
-                "INV-061",
-                "MECH-343",
-                "RA-002"
               ],
               "additional_dependencies": 0
             },
@@ -2714,21 +2752,6 @@
                 "MECH-089"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-085",
-              "title": "Unified autobiographical temporal event substrate: retrospective replay (ARC-007) and prospective simulation (ARC-018) draw on ONE self-tagged event-token store rather than two parallel memory machineries. Autobiographical memory is an identity-indexed event field -- personal events bound to perspective, emotion, residue, and self-state -- not neutral storage; future trajectory generation is forward re-composition of the same event tokens, while replay is their backward reinstatement.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 4,
-              "depends_on": [
-                "ARC-007",
-                "ARC-018"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -2738,13 +2761,15 @@
   "record_counts": {
     "active": 181,
     "closed": 50,
-    "planned": 870
+    "planned": 886
   },
   "archive": {
-    "snapshot_count": 103,
-    "latest": "2026-09-06",
+    "snapshot_count": 105,
+    "latest": "2026-09-08",
     "earliest": "2026-02-28",
     "recent_dates": [
+      "2026-09-08",
+      "2026-09-07",
       "2026-09-06",
       "2026-09-05",
       "2026-09-03",
@@ -2752,9 +2777,7 @@
       "2026-08-29",
       "2026-08-28",
       "2026-08-23",
-      "2026-08-22",
-      "2026-08-17",
-      "2026-08-16"
+      "2026-08-22"
     ]
   }
 }

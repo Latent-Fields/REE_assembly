@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-06T16:12:21Z",
+  "generated_at": "2026-09-08T07:15:45Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,216 +31,222 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 110,
-      "total_initial": 182,
-      "total_initial_at_registration": 153,
-      "total_fanout_added": 29,
-      "total_resolved_out": 57,
-      "total_confirmed": 39,
+      "total_surviving": 108,
+      "total_initial": 186,
+      "total_initial_at_registration": 155,
+      "total_fanout_added": 31,
+      "total_resolved_out": 61,
+      "total_confirmed": 41,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 31.3,
-      "net_narrowing_pct": 28.1,
+      "reduction_pct_vs_current": 32.8,
+      "net_narrowing_pct": 30.3,
       "convergence_classes": {
         "static": 26,
-        "narrowing": 20,
-        "circling": 4,
-        "refining": 3,
+        "narrowing": 21,
+        "circling": 5,
+        "refining": 2,
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "110 alive against 153 originally enumerated, and against 182 including 29 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 54
+      "honest_pair_note": "108 alive against 155 originally enumerated, and against 186 including 31 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 55
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 20,
-      "open_questions": 54
+      "open_questions": 55
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 181,
+      "surviving": 185,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-11",
-      "surviving": 180,
+      "surviving": 184,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-13",
-      "surviving": 178,
+      "surviving": 182,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-15",
-      "surviving": 174,
+      "surviving": 178,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-16",
-      "surviving": 173,
+      "surviving": 177,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-17",
-      "surviving": 170,
+      "surviving": 174,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-18",
-      "surviving": 164,
+      "surviving": 168,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-19",
-      "surviving": 160,
+      "surviving": 164,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-20",
-      "surviving": 159,
+      "surviving": 163,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-24",
-      "surviving": 158,
+      "surviving": 162,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-27",
-      "surviving": 156,
+      "surviving": 160,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-29",
-      "surviving": 155,
+      "surviving": 159,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-31",
-      "surviving": 154,
+      "surviving": 158,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-01",
-      "surviving": 152,
+      "surviving": 156,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-02",
-      "surviving": 146,
+      "surviving": 150,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-04",
-      "surviving": 145,
+      "surviving": 149,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-06",
-      "surviving": 144,
+      "surviving": 148,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-08",
-      "surviving": 142,
+      "surviving": 146,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-09",
-      "surviving": 140,
+      "surviving": 144,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-10",
-      "surviving": 139,
+      "surviving": 143,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-11",
-      "surviving": 138,
+      "surviving": 142,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-12",
-      "surviving": 137,
+      "surviving": 141,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-14",
-      "surviving": 135,
+      "surviving": 139,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-17",
-      "surviving": 134,
+      "surviving": 138,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-20",
-      "surviving": 133,
+      "surviving": 137,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-24",
-      "surviving": 132,
+      "surviving": 136,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-29",
-      "surviving": 129,
+      "surviving": 133,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-30",
-      "surviving": 127,
+      "surviving": 131,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-02",
-      "surviving": 126,
+      "surviving": 130,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-05",
+      "surviving": 129,
+      "closure_pct": 73.0,
+      "build_pct": 80.8
+    },
+    {
+      "date": "2026-09-07",
       "surviving": 125,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
-      "date": "2026-09-06",
-      "surviving": 110,
+      "date": "2026-09-08",
+      "surviving": 108,
       "closure_pct": 73.0,
       "build_pct": 80.8
     }
@@ -4490,33 +4496,36 @@
         "MECH-166"
       ],
       "is_hero": false,
-      "initial_frozen_count": 4,
+      "initial_frozen_count": 5,
       "initial_frozen_count_at_registration": 4,
-      "fanout_added": 0,
+      "fanout_added": 1,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
-        "families_touched": [],
-        "families_fresh": [
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 2 families, 2 fully closed",
+        "families_closed": [
+          "instrumentation",
+          "representation"
+        ],
+        "families_touched": [
           "process",
           "representation"
         ],
+        "families_fresh": [],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 4,
-      "alive": 4,
-      "resolved_out": 0,
-      "confirmed": 0,
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 2,
+      "confirmed": 1,
       "superseded": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.4,
+      "bits_removed": 1.32,
       "synthesis": null,
       "hypotheses": [
         {
@@ -4524,13 +4533,22 @@
           "label": "Pairwise addressing-distribution diversity references no content; a content-referencing (contrastive) objective is required",
           "desc": "Swap in a contrastive/cluster-supervised loss at the same schedule, on BOTH real-agent latents and the synthetic 2-cluster stream as training input (the dual regime avoids conflation with H4). Null: Jaccard does not drop by the 0.25 margin in either regime. Precedent: V3-EXQ-907's confirmed read-path result (context-referencing objective broke the saddle at the same 15,000-step schedule); both failed write-side losses (MoE importance; pairwise diversity) are content-blind objectives.",
           "axis": "algorithm",
-          "state": "alive",
+          "state": "split",
           "evidence_runs": [
-            "V3-EXQ-970"
+            "V3-EXQ-970a"
           ],
-          "basis": "V3-EXQ-970 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED, AND CARRIES THE PORTFOLIO'S STRONGEST POSITIVE SIGNAL. Regime A (real agent latents) never produced its load-bearing DV: probe_heldout_real_latent_jaccard was null in 12/12 cells because the held-out gate needs >208 dangerous states and every cell yielded 171-195, so Regime A scored out in every possible world at this schedule. Regime B (synthetic 2-cluster stream) reached the BEST value the DV admits -- Jaccard 0.0 on 6/6 seeds -- and still returned FAIL, because with 2 of 6 paired diffs exactly zero the exact sign-flip p-grid floors at 1/2^4 = 0.0625 against alpha_corrected 0.025: no outcome could have cleared it. The self-route 'not confirmed in either regime' is a gate artifact, not a null. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
-          "children": [],
-          "met_elimination_bar": false
+          "basis": "V3-EXQ-970a on the REDESIGNED MI instrument (supersedes V3-EXQ-970), 8 seeds. The instrument redesign the 2026-09-03 cluster autopsy demanded is discharged on all three named defects: near-binary Jaccard -> NMI-excess with 8.72/8.60 headroom ratio; attainable p-floor 0.0039 now BELOW alpha 0.0125; 0 tied pairs. SPLIT because the leg's two halves separate. POSITIVE half CONFIRMED: the contrastive objective raises generalising content conditioning in BOTH regimes (Regime A real-agent latents 0.018 -> 0.312, p=0.0039; Regime B synthetic 0.067 -> 0.259, p=0.0039). NECESSITY half ELIMINATED: the content-BLIND DIVERSITY_956 arm also raised the DV in Regime B (+0.244, p=0.0039) and beat the contrastive arm on 6/8 seeds; in Regime A it did not move (-0.007, p=0.51). SCOPE LIMIT: the tagger's z_world input is a FROZEN random projection (see H5), so this is evidence that a tagger can learn content-conditioned addressing FROM a frozen projection, not that a trained encoder was involved. PROVENANCE: substrate_stable_across_run false with NON-EMPTY process_snapshot_drift (worktree mutated twice mid-run) and commit_describes_recorded_hash false.",
+          "children": [
+            {
+              "label": "a trained write-side objective RAISES generalising content conditioning",
+              "state": "confirmed"
+            },
+            {
+              "label": "a CONTENT-REFERENCING objective is REQUIRED to do so",
+              "state": "eliminated"
+            }
+          ],
+          "met_elimination_bar": true
         },
         {
           "hid": "H2-operating-point",
@@ -4563,11 +4581,24 @@
           "label": "Train-time z_world under-differentiation (SD-008 ~0.98-cosine cone) leaves no usable content structure for ANY write-side objective",
           "desc": "Instrument train-time content structure: record pairwise-cosine distribution / cluster separability of the actual write-stream latents during training alongside the tagger's selections (un-instrumented in the 956 manifest). Null: latents carry separable structure the tagger ignores (which refocuses on H1/H3).",
           "axis": "representation",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "V3-EXQ-972"
+            "V3-EXQ-972a"
           ],
-          "basis": "V3-EXQ-972 RESULT (2026-09-02) -- LEG STAYS ALIVE but is now the BEST-SUPPORTED of the four. Its PASS is explicitly a measurement-validity gate, not a scientific verdict (the driver says 'do not read passed: true here as H4 refuted'). The measurement is substantive and first-of-kind: train-time write-stream latents sit in a narrow cone -- intra-class cosine 0.980 (safe) / 0.971 (dangerous) against inter-class 0.948, mean separability 0.0281 over 5 seeds. Safe and dangerous states are very nearly collinear, so there is little content structure for any write-side objective to condition on. The direction is well-evidenced; the threshold crossing rests on a floor the manifest itself calls not rigorously derived, and the leg has no comparator arm. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
+          "basis": "V3-EXQ-972a's held-out linear probe -- the exact upgrade the 2026-09-03 cluster autopsy prescribed for this leg -- REFUTES H4's premise. H4 asserted train-time z_world under-differentiation leaves 'no usable content structure for ANY write-side objective'. Measured: the write stream IS linearly decodable for safe-vs-dangerous, zworld32 probe excess 0.335 over a shuffle null, 8/8 seeds, p=0.0039, 84.4% mean balanced accuracy. The predecessor's 0.0281 cosine separability was an artifact of an uncentred contrast, which cannot distinguish 'no structure' from 'structure off the raw axis'. Control passed: UNTRAINED_ENCODER is a genuine non-degenerate control that itself produced a strong positive (excess 0.335, all 8 seeds positive). Structure exists; it is off the raw axis.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H5-frozen-encoder-harness",
+          "label": "the harness severs gradient to latent_stack, so every affected leg measured a frozen random projection rather than a learned representation",
+          "desc": "Not a rival mechanism for content-conditioned addressing but a property of the apparatus that measured them: the drivers train E1/E2/E3/write_addr_tagger on DETACHED buffered latents, so 0 of 49 latent_stack parameters receive gradient and the 'trained' arm's encoder is bit-identical to an untrained one.",
+          "axis": "instrumentation",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-972a"
+          ],
+          "basis": "MEASURED by V3-EXQ-972a's own identity control, hash-verified: LINEAGE latents bit-identical to UNTRAINED_ENCODER latents on 8/8 seeds (collection_latent_hash), per-seed probe excesses identical value-for-value, and 8/8 LINEAGE cells read zero latent_stack delta. SD070_WARMED (the one arm whose P0a warmup genuinely moved the world encoder) differs from both on 8/8 seeds, which is the positive half of the control. MECHANISM verified in source during autopsy: standard_params (970a:984-986) INCLUDES the encoder -- excluding only harm_eval_head and context_memory.memory -- so the optimizer looks like it trains it, but the graph is severed upstream at the training-pool capture (970a:876) and ultimately at ree_core/agent.py:5835-5836, where the experience buffers store .detach().clone(). That ree_core detach is deliberate for the buffer path; the defect is the portfolio training on that path while claiming a result about a learned encoder. SCOPE, stated exactly: code-verified in V3-EXQ-970, 971, 972, 970a; MEASURED only in 972a's LINEAGE arm; V3-EXQ-956 and 969 do NOT carry the pattern and are NOT covered.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -4576,8 +4607,8 @@
         "readiness_state": "observation_bottleneck",
         "evidence_decile": 2,
         "decision_question": "Which mechanism family (objective / operating point / task coupling / input distribution) gates content-conditioned write addressing -- and is a learned write-address policy the right frame at all?",
-        "distance_phrase": "0 of 4 legs adjudicated after the full portfolio ran. All four returned on 2026-09-02 and none discriminated: three FAILs are gate artifacts (unreachable p-floor, cross-seed-set baseline, a criterion both siblings demoted) and the fourth is a single-arm measurement whose PASS is explicitly not a verdict. The binding constraint is now the INSTRUMENT: the 2-cluster occupied-set Jaccard is near-binary (45/53 cells with both occupied sets at cardinality 1) and the substrate entry's own 2026-08-29 directive to replace it with a contingency-table mutual information has not been executed.",
-        "live_gate": "Instrument redesign, not another leg. failure_autopsy_contextmemory-write-content-cluster_2026-09-03 REFUSES a further write-side loss design against the unchanged C2 instrument.",
+        "distance_phrase": "2 of 5 legs adjudicated (H1 split, H4 eliminated); H2 and H3 stay alive and are now FLAGGED as having been measured on a frozen-encoder harness; H5 (discovery) confirmed. The question's premise has moved: the portfolio was asking which objective makes addressing content-conditioned, while measuring a frozen random projection.",
+        "live_gate": "Instrument redesign DISCHARGED for legs H1 and H4 (V3-EXQ-970a, V3-EXQ-972a, both 2026-09-07). New gate: the harness trains no encoder (H5). Before any further leg, decide whether this question is about a learned encoder -- in which case the harness needs a build -- or explicitly about a frozen projection.",
         "observation_bottleneck": "The C2 DV cannot resolve graded change at n=5-6 (near-binary; ties saturate paired tests and force exact p-grids whose floor can exceed the corrected alpha). H4's train-time cone measurement (separability 0.0281) is the one readout in the portfolio that did resolve."
       }
     },
@@ -4841,9 +4872,9 @@
         "INV-088"
       ],
       "is_hero": false,
-      "initial_frozen_count": 4,
+      "initial_frozen_count": 5,
       "initial_frozen_count_at_registration": 2,
-      "fanout_added": 2,
+      "fanout_added": 3,
       "fanout_growth_events": [
         {
           "recorded_utc": "2026-09-05T09:36:37Z",
@@ -4856,24 +4887,33 @@
           ],
           "delta": 2,
           "note": "GOV-FANOUT-1 portfolio opened by V3-EXQ-1002 and labelled at its Step 8 gate (2026-09-05). Invariant 3a(a) is satisfied by GIT WITNESS for the one leg whose evidence is already in: H-D-warmup-not-the-locus was named in writing in evidence/planning/exq1002_redteam_findings_20260904.md, first committed ac85c048a2 on 2026-09-04 18:45Z -- about 6 h before the run resolved (2026-09-05T00:50:17Z) and ~50 min before it started -- so it self-clears with no human adjudication. It is deliberately NOT recorded as Mode C discovery growth: the rival was anticipated (the driver's own grid carries two warmup-locus cells and the manifest names the untrained arm as an attribution axis), and discovery growth explicitly forbids use as an escape hatch for an anticipated-but-unregistered rival. The staged draft's discovery_growth block (added_hid H-D, delta 1) is DELETED, not amended. H-E-channel-input-capacity is ordinary Mode A growth -- its adjudicating run is not queued, let alone resolved -- and carries its OWN pre_registered_utc of 2026-09-05T09:36:37Z with pre_registration_source failure_autopsy_V3-EXQ-1002_2026-09-05.json; the event-level pre_registered_utc records the earlier witness stamp that licenses the batch, and each leg's own stamp is on the leg. Axis families: intrinsic-architecture -> constitution and instrumentation -> instrumentation, neither of which previously carried a leg on this question (the eliminated H-B sits in `representation`), so the growth is REFINING rather than circling."
+        },
+        {
+          "recorded_utc": "2026-09-08T05:31:03Z",
+          "pre_registered_utc": "2026-09-08T05:31:03Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-1008_2026-09-08.json",
+          "added_hids": [
+            "H-F-content-discarded-at-encode"
+          ],
+          "delta": 1,
+          "note": "Second fan-out growth event on this question. V3-EXQ-1008 eliminated H-E and split H-C, and the reading both eliminations point at -- encode-time content loss -- had no registered leg. Invariant 3a(a) holds by construction: H-F's adjudicating run does not exist, let alone resolve, so pre-registration precedes adjudication and pre_registration_source names this artifact as the git witness. 3a(c) holds: initial_frozen_count_at_registration stays 2. ONLY ONE leg is added, deliberately -- H-F's complement (content present, consumer-side capacity/format is the block) is H-F's own DECLARED ELIMINATION BRANCH, not an independent leg, and registering both would inflate the frozen denominator by two for what is a single measurement; it gets registered by the autopsy that adjudicates it, if H-F is eliminated."
         }
       ],
-      "fanout_growth_note": "This question took ONE labelled fan-out growth event (delta 2) in its first adjudication cycle: the denominator moved 2 -> 4 while one leg was eliminated and two were confirmed, so the headline narrowing ratio is inflated exactly here and must be read alongside the growth event rather than instead of it. The growth is REFINING rather than CIRCLING -- the eliminated leg sits in family `representation`, the two new legs in `constitution` and `instrumentation`, neither of which previously carried a leg on this question. The owed H-C corroborator (parallel leg 2) does sit in `representation`, but adds NO leg: it tests an existing confirmed leg.",
+      "fanout_growth_note": "This question has now taken TWO fan-out growth events (delta 2 on 2026-09-05, delta 1 on 2026-09-08) across two adjudication cycles; the denominator has moved 2 -> 4 -> 5 while one leg was eliminated, two confirmed, one more eliminated and one split. The headline narrowing ratio is inflated exactly here and must be read alongside the growth events. The 2026-09-08 growth is additionally flagged by its own artifact as reading CIRCLING on the convergence heuristic (H-F re-enters the `representation` family), with the grounds for accepting that recorded on the leg's axis_note rather than engineered away.",
       "net_narrowing_ratio": 0.0,
       "bits_removed_vs_registration": 0.0,
       "convergence": {
-        "convergence_class": "refining",
-        "reason": "2 families closed out; the latest growth opened fresh territory",
+        "convergence_class": "circling",
+        "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
-          "representation"
-        ],
-        "families_touched": [
-          "representation"
-        ],
-        "families_fresh": [
           "instrumentation"
         ],
+        "families_touched": [
+          "instrumentation",
+          "representation"
+        ],
+        "families_fresh": [],
         "unclassified_axes": [],
         "growth_events": [
           {
@@ -4894,17 +4934,38 @@
             "families_already_dead": [
               "representation"
             ]
+          },
+          {
+            "recorded_utc": "2026-09-08T05:31:03Z",
+            "fanout_source": "failure_autopsy_V3-EXQ-1008_2026-09-08.json",
+            "event_class": "circling",
+            "added": [
+              {
+                "hid": "H-F-content-discarded-at-encode",
+                "family": "representation"
+              }
+            ],
+            "re_entered": [
+              {
+                "hid": "H-F-content-discarded-at-encode",
+                "family": "representation"
+              }
+            ],
+            "families_already_dead": [
+              "instrumentation",
+              "representation"
+            ]
           }
         ]
       },
       "surviving": 2,
       "alive": 1,
-      "resolved_out": 1,
-      "confirmed": 2,
+      "resolved_out": 3,
+      "confirmed": 1,
       "superseded": 0,
-      "reduction_numerator": 1,
-      "reduction_ratio": 0.25,
-      "bits_removed": 1.0,
+      "reduction_numerator": 3,
+      "reduction_ratio": 0.6,
+      "bits_removed": 1.32,
       "synthesis": {
         "surviving_label": "H-C geometry-mismatch (confirmed, caveated) + H-D warmup-not-the-locus (confirmed); H-E channel-input capacity alive; H-B consumer-learning eliminated",
         "text": "As of V3-EXQ-1002 the actor-adequacy deficit is located on the REPRESENTATION side of the observation-to-action interface, and not in the consumer. With credit assignment removed entirely and the reader held at the consumer's exact capacity, the local_view_greedy oracle's policy is recoverable from the raw 25-dim observation at 0.979 held-out agreement and from the frozen 32-dim z_world at 0.664 -- a gap of ~0.31 on identical steps, replicated on a random-driven state distribution and on a shortcut-free turn-state subset. H-B (consumer learning) is ELIMINATED and H-C (geometry mismatch) is CONFIRMED at its registered gate. Two things the run does not settle are recorded rather than glossed. First, the deficit is not what the SD-018/P0a warmup wrote: on the pre-registered standardised instrument the warmed latent is no better than, and consistently slightly worse than, an untrained projection of the same input (H-D, confirmed) -- by an amount an order of magnitude smaller than the deficit itself. Second, the encoder's actual input is the full 250-dim world_state, of which the 25-dim field is 10%, so the run's only 32-dim comparator is itself a compression of that input and its failure is equally consistent with a 250 -> 32 channel-INPUT bound (H-E, alive) that no rotation of z_world could fix; H-C's confirmed label therefore carries a caveated basis and an owed corroborator. A parallel two-leg portfolio on the banked dataset separates them: a 32-dim projection of the full world_state, and an information-preserving re-basis of the frozen latent. Biologically the shape is a missing prerequisite rather than a falsification: DiCarlo-style untangling says a code can carry information a simple readout cannot use until a cascade whose job is reshaping has separated the behaviourally relevant manifolds, and z_world is trained for sensory prediction with no pressure to untangle the action-relevant variable and no separate action-formatted stream for an actor to read.",
@@ -4929,13 +4990,25 @@
           "label": "Representational mismatch (information present, geometry unusable)",
           "desc": "The directional information is technically recoverable but the current geometry does not make the relationships required by action selection accessible under the actual learning dynamics. Predicts: a simple SUPERVISED reader on the frozen latent CANNOT reproduce oracle actions despite strong generic decoding, and a task-/candidate-conditioned transformation could improve behavioural accessibility without increasing total information content.",
           "axis": "representation",
-          "state": "confirmed",
+          "state": "split",
           "evidence_runs": [
-            "V3-EXQ-1002"
+            "V3-EXQ-1002",
+            "V3-EXQ-1008"
           ],
-          "basis": "CONFIRMED at the registered live_gate, on a CAVEATED basis (user decision, Step 8 gate 2026-09-05). The gate is verbatim 'CANNOT reproduce -> H-C' (this question's decision.live_gate). A capacity-matched supervised adapter (x734.PPOPolicyNet, 21381 action-path parameters -- the class and width V3-EXQ-978 used as its reader), trained by cross-entropy on the oracle's action at every visited state with credit assignment removed entirely, could NOT reproduce the oracle from the frozen z_world: 0.6695/0.6735/0.6478 held-out, 0 of 3 seeds against a 0.80 bar, while the identical adapter on the identical steps reached 0.9846/0.9796/0.9730 from the raw 25-dim resource_field_view. Every readiness gate is green (per_arm_gate.all_green, red_arms [], vacuous_arms [], dv_headroom green) and criteria_non_degenerate is true on all four criteria, so control_passed is true. THE CAVEAT, recorded here rather than by holding the leg open: the run's only 32-dimensional comparator is zworld_untrained, an UNTRAINED random NONLINEAR compression of the SAME input, and it TIES with -- in fact slightly beats -- the verdict arm (0.664 vs 0.688; off at or below untrained on 3/3 held-out seeds). So the 'THIS latent's LEARNED geometry' gloss is NOT established by this run. The deficit may instead be a property of the 250 -> 32 CHANNEL INPUT (the encoder reads the full 250-dim world_state, of which the 25-dim resource_field_view is 10%), in which case no rotation of z_world recovers it. THE OWED INFORMATION-PRESERVING ROTATION/REWEIGHTING CORROBORATOR IS THE TEST OF THIS LEG: a flat result there WEAKENS this confirmed leg (registry states are not terminal), and the parallel H-E-channel-input-capacity leg can weaken it independently. met_elimination_bar is false precisely because that corroborator is owed. RECORDED AND WITHDRAWN: the staged draft held this leg `alive` on the argument that C_untrained_control_below_bar is 'inverted relative to its own stated purpose'. That argument is WITHDRAWN. The conjunct's documented purpose -- in the driver's ARMS section, the manifest's interpretation.question, and the C_verdict_arm_beats_untrained_control description -- is attribution TO THE WARMUP ('whether any actionability found is creditable to SD-018's warmup') plus a guard against a spurious H-C via a collapsed comparator, and for that purpose its sign is correct; the phrase 'rather than to 32 dimensions of anything cannot do it' is loose English and incoherent as written (32 > 25 field dims, and the encoder's input is 250 dims), i.e. a wording defect in the driver rather than a licence to reopen a pre-registered gate.",
-          "children": [],
-          "met_elimination_bar": false
+          "basis": "SPLIT by V3-EXQ-1008, the owed corroborator this leg's own 2026-09-05 confirmation named as ITS TEST. That confirmation is hereby superseded on its stronger reading and retained on its weaker one. The registered branch that fired is verbatim: 'WEAKENED by a flat/degrading result whose closed-form content witness is itself flat -- the block is then information, not geometry.' Every conjunct is satisfied on a fully green instrument: verdict arm flat, both secondary whitenings flat, untrained pair flat, and the closed-form witness (the oracle's own argmax rule applied to the linearly decoded field, NO adapter) DEGRADES to 0.5931/0.5910/0.6066 against a trivial baseline of 0.5661/0.5803/0.5720, i.e. content_margin_over_diag -0.0787/-0.0825/-0.0539, class degrade on 3/3. WHY SPLIT RATHER THAN ELIMINATED: the driver's pre-registered word is WEAKENED, and the evidence genuinely has two halves -- the LINEAR-re-basis reading is dead, while a real but insufficient geometry contribution reproduces on 3/3 seeds. Recording only the first half would overwrite a pre-registered word with a stronger one and discard a reproducible effect. WHAT THIS LEG DOES NOT ESTABLISH, stated because the design bounds it by algebra: every leg-2 arm is an INVERTIBLE LINEAR map absorbable by the adapter's first layer (W' = W R^-1), so the function class is IDENTICAL across leg-2 arms and leg 2 can only ever measure LEARNING DYNAMICS, never information; and the content witness is a LINEAR decode. Whether the decision-relevant content survives NONLINEARLY is unmeasured here and by every run in this lineage -- that residual is now carried by H-F, not by this leg. Adjudicated by failure_autopsy_V3-EXQ-1008_2026-09-08.json.",
+          "children": [
+            {
+              "label": "An information-preserving LINEAR re-basis of the frozen latent restores behavioural accessibility",
+              "state": "eliminated",
+              "basis": "Three independent invertible linear 32x32 re-bases -- ridge field-decode (the registered verdict arm), ZCA whitening and Fisher/LDA whitening -- are seed-majority FLAT over the paired zworld_off_diag baseline (field-decode -0.0030 mean; 0/3 seeds reach the 0.10 lift bar), the re-based arm clears the bar on 0/3 seeds, and the closed-form content witness DEGRADES."
+            },
+            {
+              "label": "Geometry contributes to accessibility, but far short of the gap",
+              "state": "confirmed",
+              "basis": "Both whitening arms lift CONSISTENTLY POSITIVE on 3 of 3 seeds each -- ZCA +0.0396/+0.0296/+0.0483 (mean +0.0392), LDA +0.0424/+0.0335/+0.0524 (mean +0.0428) -- and are binned 'flat' only because a single seed reaches the 0.05 marginal band. Against the ~0.131 needed to lift 0.6686 to the 0.80 bar, a decision-relevant whitening buys about a THIRD of the gap. Real, reproducible, and insufficient."
+            }
+          ],
+          "met_elimination_bar": true
         },
         {
           "hid": "H-D-warmup-not-the-locus",
@@ -4955,11 +5028,22 @@
           "label": "The deficit is a channel-INPUT bottleneck (250 -> 32), not this latent's learned geometry",
           "desc": "A 32-dim random or PCA projection of the FULL 250-dim world_state (the encoder's actual input; the 25-dim resource_field_view is 10% of it) through the same adapter on the same banked dataset cannot reproduce the oracle -- i.e. the deficit is a channel-INPUT bottleneck property, not this latent's learned geometry. Predicts: that projection also fails the 0.80 bar, as zworld_untrained (a random NONLINEAR compression of the same 250 dims) already does at 0.688. If H-E holds, H-C's confirmed 'learned geometry' gloss is unsupportable, the owed rotation corroborator is a foregone null, and the route is instrument/interface redesign rather than a geometry build. Sanity anchor only and explicitly NOT a gate: a 32-dim projection of the 25-dim resource_field_view ALONE is expected to clear -- any injective linear map R^25 -> R^32 composed with the adapter's Linear(32,128) first layer spans exactly the Linear(25,128) function class, so the positive control's own 0.973-0.985 function is representable and the null could only fire through an optimisation artefact. That is why the staged draft's 25-dim-field specification of this leg (a rank-preserving re-basis of the positive control, with an unrealisable declared null) is DROPPED and replaced by this one.",
           "axis": "instrumentation",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "(unqueued) new EXQ number, leg 1: 32-dim random-Gaussian/PCA projection of the full 250-dim world_state through the V3-EXQ-1002 x734.PPOPolicyNet adapter on V3-EXQ-1002's banked BC dataset and standardiser"
+            "V3-EXQ-1008"
           ],
-          "basis": "Not yet adjudicated -- the discriminating control is designed (fanout_recommendation probe 1, PARALLEL leg 1 of 2) and deliberately unqueued by this session.",
+          "basis": "ELIMINATED by V3-EXQ-1008 at the registered gate ('ELIMINATED if ws250_pca clears the bar'). A task-agnostic variance-optimal 32-dim LINEAR compression (train-split PCA-32) of the encoder's ACTUAL 250-dim world_state, read by the same x734.PPOPolicyNet at the same 21381-parameter width on the same banked steps, reaches 0.8771/0.8578/0.8702 held-out oracle-action agreement -- bar (0.80) and elevation (>= 0.20 over trivial 0.5661/0.5803/0.5720) cleared on 3 of 3 seeds. The readiness anchor ws250_full clears at 0.9399/0.9335/0.9425, the instrument gate is green (all 10 arms green, red_arms []), and criteria_non_degenerate is true on all ten criteria, so control_passed is true and the CONFIRMED branch (ws250_linear_compression_fails_bar) was fully realisable and did not fire. THE DEFICIT IS NOT DIMENSIONALITY: 250 -> 32 is not the bound. QUALIFICATION recorded rather than hidden -- this is the PLAIN elimination, not the STRONG one: the random orthonormal 32-dim projection reaches only 0.7863/0.7865/0.7445 and does NOT clear 0.80, so what is established is that the VARIANCE-OPTIMAL linear compression suffices, not that any linear compression does. The PCA-minus-random margin cleared on 1 of 3 seeds and is REPORTED ATTRIBUTION only -- _adjudicate_leg1 takes four booleans and the margin is not among them, deliberately, because a random compression also clearing would STRENGTHEN the elimination. Adjudicated by failure_autopsy_V3-EXQ-1008_2026-09-08.json.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-F-content-discarded-at-encode",
+          "label": "The observation->z_world encoding DISCARDS the decision-relevant content of its own input",
+          "desc": "The decision-relevant content of the observation is destroyed by the observation->z_world encoding and is NOT recoverable from the frozen latent by ANY decoder at any capacity. Predicts: a deliberately over-parameterised decoder, swept upward from the consumer's exact x734.PPOPolicyNet width on the already-banked V3-EXQ-1002/1008 latents, still fails the 0.80 bar on the seed majority -- while the SAME sweep applied to ws250_pca (known 0.868 at consumer width) clears it, calibrating the capacity axis on a representation known to carry the content. ELIMINATED if the over-capacity decoder clears: the content survives but is inaccessible at the consumer's capacity/format, the block is a consumer-side interface FORMAT bound, and the repair is interface reformatting rather than encoder retraining. CONFIRMED if it does not: the content is destroyed at encode time and the only repair is at the ENCODER's objective. This is the direct NEGATION of the eliminated child of H-C, not a re-entry of it: H-C asserted the content is present and linearly decodable but badly arranged; H-F asserts it is not there to arrange.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Not yet adjudicated -- the discriminating probe is designed (the over-capacity decoder sweep in failure_autopsy_V3-EXQ-1008_2026-09-08.json targets[0].fanout_recommendation.suggested_probes[0]) and NOT YET QUEUED. Ordinary Mode A: pre-registered before its adjudicating run exists, so invariant 2 (pre_registered_utc <= resolved_utc) holds trivially.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -4967,10 +5051,10 @@
       "decision": {
         "readiness_state": "decidable_now",
         "evidence_decile": 9,
-        "decision_question": "Is the z_world actor-adequacy deficit located in the consumer's learning of a representation-to-action mapping (H-B, ELIMINATED 2026-09-05), in the accessibility of the required structure within z_world's learned geometry (H-C, CONFIRMED 2026-09-05 at its registered gate on a caveated basis, corroborator owed), or in the observation-to-latent CHANNEL itself -- either upstream of anything the warmup wrote (H-D, CONFIRMED) or as a 250 -> 32 channel-input bound that no rotation could fix (H-E, ALIVE)?",
-        "distance_phrase": "Decided on the registered question (H-B eliminated, H-C confirmed); one parallel two-leg portfolio away on the residual attribution, both legs on already-banked data with no ree_core change, no new warmup family and no contract-gate exposure.",
-        "live_gate": "A PARALLEL two-leg portfolio on V3-EXQ-1002's banked BC dataset, adapter and standardiser -- NOT an ordered chain, and neither leg conditional on the other. LEG 1 (instrumentation axis, adjudicates H-E): a 32-dim random-Gaussian and/or PCA projection of the FULL 250-dim world_state -- the encoder's actual input, optionally plus body_state to mirror the topdown term -- fitted on the training split, read by the same x734.PPOPolicyNet adapter. Declared null: it also fails the 0.80 bar. CLEARS -> H-E eliminated; an optimal linear 250 -> 32 compression preserves what the task needs, the deficit is specific to the REE encoder channel, and H-C's learned-geometry gloss survives. DOES NOT CLEAR -> H-E confirmed; the deficit is a channel-input bound and H-C is weakened to its narrow gate sense. LEG 2 (representation axis, corroborates or weakens the confirmed H-C): an information-preserving rotation/reweighting of the frozen z_world (whitening, decision-relevant reweighting, or a train-split-fitted supervised linear re-basis), same adapter. Declared null: agreement is flat under a separability-improving, information-preserving re-basis; a flat result WEAKENS the confirmed H-C leg, a lift corroborates it. NOT YET QUEUED -- new EXQ number, not a lettered V3-EXQ-1002b (refused by the re-derive brake).",
-        "observation_bottleneck": "No run carries a 32-dim reference of the encoder's ACTUAL input -- the full 250-dim world_state -- known to be able to clear the bar, and no run applies an information-preserving re-basis to the frozen z_world. Until one of those exists, the confirmed H-C leg's 'learned geometry' gloss and a 250 -> 32 channel-input bound remain confounded. Note the correction this records: V3-EXQ-1002's untrained control IS a 32-dim comparator, but of the 250-dim input, and it fails -- which is evidence for the channel-input reading rather than against it."
+        "decision_question": "Is the z_world actor-adequacy deficit located in the consumer's learning of a representation-to-action mapping (H-B, ELIMINATED 2026-09-05), in the accessibility of the required structure within z_world's learned geometry (H-C, SPLIT 2026-09-08 by its own owed corroborator -- the linear-re-basis reading ELIMINATED, a real-but-insufficient geometry contribution CONFIRMED at about a third of the gap), in a 250 -> 32 channel-INPUT bound (H-E, ELIMINATED 2026-09-08 -- a task-agnostic PCA-32 of the encoder's own input clears the bar at the consumer's exact width), upstream of anything the warmup wrote (H-D, CONFIRMED), or in the observation->z_world encoding DISCARDING the decision-relevant content of its own input (H-F, ALIVE)?",
+        "distance_phrase": "Decided on the registered question and on both legs of the 2026-09-05 portfolio (H-B, H-E eliminated; H-C split; H-D confirmed); ONE banked-data capacity sweep away from choosing between an encoder-objective build and an interface-reformat build, whose costs differ by more than an order of magnitude.",
+        "live_gate": "AN OVER-CAPACITY DECODER SWEEP ON THE ALREADY-BANKED FROZEN LATENTS (adjudicates H-F). Same V3-EXQ-1002/1008 dataset, seeds, held-out episode split and standardiser; the ONLY thing varied is the decoder's capacity -- sweep from the consumer's exact x734.PPOPolicyNet (32->128, known 0.6686) up through progressively wider/deeper MLPs to a deliberately over-parameterised decoder, reporting BOTH oracle-action agreement AND a direct NONLINEAR decode of the five DECISION_WORLD_STATE_INDICES {232,236,237,238,242}. Anchor every rung against the SAME sweep applied to ws250_pca (known 0.8684) so the capacity axis is calibrated on a representation known to carry the content. DECLARED NULL: even the over-parameterised decoder stays below the 0.80 bar on the seed majority -> H-F CONFIRMED, the content is destroyed at encode time, and the next move is a BUILD at the encoder's objective, not a sixth diagnostic. CLEARS -> H-F ELIMINATED, the block is consumer-side capacity/format and the repair is interface reformatting. NOT a lettered V3-EXQ-1008b: 1008 held capacity FIXED and varied the input representation; this holds the representation fixed and varies capacity, which no run in the lineage has done. NOT YET QUEUED -- new EXQ number.",
+        "observation_bottleneck": "NO RUN IN THIS LINEAGE VARIES THE READER'S CAPACITY -- every one holds it at the consumer's exact width by design (the capacity_match requirement inherited from V3-EXQ-1002) -- so 'the content is discarded at encode time' and 'the content is present but inaccessible at the consumer's capacity/format' remain confounded. Secondary: no run localises WHERE in the observation->z_world path the content is lost; a layer-wise decode profile would convert a confirmed H-F from probe-gated to buildable at a named layer. Supersedes the 2026-09-05 bottleneck, which named the missing 32-dim reference of the 250-dim input -- V3-EXQ-1008 supplied it (ws250_pca 0.8684, clears) and that debt is DISCHARGED."
       }
     },
     {
@@ -4987,29 +5071,30 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.6667,
+      "bits_removed_vs_registration": 1.58,
       "convergence": {
         "convergence_class": "static",
         "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
+        "families_closed": [
+          "constitution",
+          "representation"
+        ],
         "families_touched": [],
         "families_fresh": [
-          "constitution",
-          "instrumentation",
-          "representation"
+          "instrumentation"
         ],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 3,
-      "alive": 3,
+      "surviving": 1,
+      "alive": 1,
       "resolved_out": 0,
-      "confirmed": 0,
+      "confirmed": 2,
       "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "bits_removed": 1.58,
       "synthesis": null,
       "hypotheses": [
         {
@@ -5017,9 +5102,11 @@
           "label": "shrunk centroid and under-dispersed h=1 endpoints: InfoNCE carries no surviving accuracy term",
           "desc": "RSD endpoints sit at centroid_norm 0.54-0.81 vs 1.41-2.17 for the same-start incumbents and are 0.33-0.62x real spread at h=1; the goal-proximity readout is flat there. A fidelity-anchored divergence objective (ITEM 3 InfoNCE + an endpoint-accuracy term) restores the centroid to the real band with real-scale spread and the readout variance follows.",
           "axis": "learning-signal",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1006"
+          ],
+          "basis": "V3-EXQ-1006 (6 seeds, 4 arms, all GREEN). ARM_RSD_ANCHOR_EP is UNANIMOUS 6/6 on all three sub-conditions: centroid_norm inside the real band 6/6; e1coe_score_var(h=1) lifted over ARM_RSD by 7.57x-214x (all >= the 2x requirement); cr_ratio(h=1) 0.123-0.393, all >= the 0.1 bar. The declared null (centroid outside band on a majority OR var within 2x of ARM_RSD) is NOT met on any seed. Confirmed, not eliminating: the stricter C2 (BOTH bars simultaneously) clears in only 1 of 12 anchor arm-seed cells, so the leg reads at the anchor_restores_centroid_lifts_var tier, one below clears-both-bars.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -5029,8 +5116,10 @@
           "desc": "goal_proximity is bounded and flat for goal-distant states; in V3-EXQ-1000 the bar is reached only at spread 3-3.7x real (seed2024 h=10/20/30). The lineage never measured the readout's variance over its own REAL endpoint samples (108b: means 0.64-0.81 only). If real endpoints' variance is < 0.002, the bar is an instrument target to re-register, not a substrate target.",
           "axis": "measurement",
           "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "evidence_runs": [
+            "V3-EXQ-1006"
+          ],
+          "basis": "V3-EXQ-1006 RAN THIS LEG BUT DOES NOT ADJUDICATE IT -- the verdict INVERTS with the denominator, and both denominators are recorded in the manifest. Declared null: 'real-endpoint goal_proximity variance >= 0.002 on a majority of seeds'. On the FROM-RESET (Phase 4b) set, real_goal_prox_var_h1 = 0.0047-0.0196, 6/6 seeds clear 0.002 -> null MET -> leg would be ELIMINATED. On the SAME-START (Phase 4d) set the driver adopted, branched_endpoint_goal_prox_var_h1 = 0.001736/0.002262/0.023916/0.000033/0.000200/0.001071, 4/6 below -> null NOT met -> leg supported. The driver's geometric argument for same-start is sound (at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so same-start isolates rollout-attributable variance); note its EMPIRICAL form is false -- on seed7 same-start EXCEEDS from-reset (0.0239158 vs 0.0196255), holding 5/6. UNEXPLAINED ASYMMETRY for governance: interpretation.branched_same_start_note says 'the registered legs read Phase 4b', yet the substitution was applied to Leg B ONLY -- the one leg whose verdict it changes (checked: not results-driven; Leg C is unaffected either way). Settling this needs NO new run -- complex (probe-gated) / mystery (known data). User gate 2026-09-07: LEAVE ALIVE, record both.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -5039,9 +5128,11 @@
           "label": "RSD's divergence lies in a subspace nearly orthogonal to the goal axis",
           "desc": "Even on-manifold, the induced endpoint dispersion does not project onto (z_goal - centroid); a goal-blind objective cannot move a goal-projected readout.",
           "axis": "representation",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1006"
+          ],
+          "basis": "V3-EXQ-1006: r = goal_axis_fraction_rollout(ARM_RSD) / goal_axis_fraction_real = 0.0194, 0.0077, 0.0132, 0.0355, 0.0237, 0.2805 across the 6 seeds. The declared null (within 2x of real, i.e. r in [0.5, 2.0]) holds on 0 of 6 seeds -- RSD's dispersion is strongly goal-orthogonal. Unanimous. Robustness checked during autopsy: on the same-start denominator the leg still reads rsd_goal_orthogonal (5 below / 1 above).",
           "children": [],
           "met_elimination_bar": false
         }
@@ -5050,9 +5141,9 @@
         "readiness_state": "observation_bottleneck",
         "evidence_decile": 2,
         "decision_question": "Is the e1coe_score_var bar a substrate target (fidelity-anchored divergence objective), a goal-axis representation problem, or an instrument defect of the bounded proximity readout?",
-        "distance_phrase": "0 of 3 legs resolved; portfolio not yet queued.",
-        "live_gate": "H-readout-saturation (narrowed: reachable at REAL spread?) is the cheapest leg and gates the objective work: measure real-endpoint goal_proximity variance before licensing any objective.",
-        "observation_bottleneck": "real-endpoint goal_proximity variance never recorded (recording gap)"
+        "distance_phrase": "2 of 3 legs resolved (H-fidelity-anchor confirmed, H-goal-orthogonal-dispersion confirmed); H-readout-saturation ran but is denominator-contingent and stays alive pending a governance decision on the denominator. No new run owed.",
+        "live_gate": "Portfolio RAN (V3-EXQ-1006, 2026-09-06). The recorded observation_bottleneck ('real-endpoint goal_proximity variance never recorded') is DISCHARGED -- both denominators are now recorded. Remaining gate is a governance DECISION on which denominator settles Leg B, not a measurement.",
+        "observation_bottleneck": "DISCHARGED by V3-EXQ-1006 (both from-reset and same-start real-endpoint goal_proximity variance now recorded)."
       }
     },
     {
@@ -5863,9 +5954,162 @@
         "live_gate": "V3-EXQ-822f as specified by failure_autopsy_V3-EXQ-822e_2026-09-05: a TRAINED-MINUS-INIT-HEAD raw discrimination index (the existing `_init_positive_control` snapshot and synthetic probe run through the INIT head as well as the trained one), with the margin pre-registered off the random-init distribution (Monte-Carlo p95 5.41, or an init distribution measured in-run), on NEW seeds (not 101/202/303/404/505), with the trainedness gate re-specified as ||W_p1 - W_init|| per parameter tensor scoped to the treatment arm, and the C4 / SD-078 contrast kept but emitted through the three-valued logic at a seed count its 1.69 variance can support. An ABSOLUTE index floor is explicitly NOT the gate: an untrained head clears 1.0 in 99 percent of trials.",
         "observation_bottleneck": "TWO, compounding. (1) V3-EXQ-822e's run-level readiness gate `bias_head_actually_trained` compares the SIGNED difference of last-layer weight NORMS (driver L1164-1166) against a 1e-3 LOWER floor over the MINIMUM cell (L1402-1404), so a head that trained inward reads as untrained; ARM_OFF/seed101 read -0.003772 and voided the run, though all ten cells clear the floor on |delta| (min 0.002076). (2) The deeper bottleneck, and the one that survives repairing (1): there is NO INIT-HEAD CONTROL anywhere in the design, so C1 and C2 cannot separate a trained coupling from init structure -- a random-init head of this shape clears C1's floor in 99 percent of Monte-Carlo trials. Until the init control exists this question cannot be adjudicated however well the substrate behaves and however cleanly the readiness gate passes."
       }
+    },
+    {
+      "qid": "residue_error_persistence_readout",
+      "title": "Does the residue field leave a persistent error record that shapes future action away from a known-costly (cell, action) key? (EXT-002's REE rider, ablated as ARC-013's persistent latent curvature)",
+      "short_title": "residue error-persistence readout",
+      "claims": [
+        "EXT-002",
+        "ARC-013"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-residue-shapes-reapproach",
+          "label": "A persistent residue trace shifts future selection away from erred (cell, action) keys",
+          "desc": "With the residue field intact (A0) vs frozen at init (A1), the intact agent re-approaches previously-erred keys less over training than the frozen one -- the passive-avoidance signature. The 983 lineage operationalised this as a drop in P(harm | revisit), which a pinned board fixes at 0 or 1; the leg's proper readout is the revisit RATE of erred keys under held-tick-aware key registration.",
+          "axis": "process",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-983",
+            "V3-EXQ-983a"
+          ],
+          "basis": "Twice uninformative, not discriminated: 983's DV realised 3.2x too little range with an ungated seed population (control passed at 51x); 983a's DV had no agent-side freedom on a pinned board (heterogeneity 0.00, achievable range 0.0 vs 0.04), key registration on fresh ticks only hid ~90% of harms, and 6/8 seeds died to single-action latching. Observation bottleneck: an avoidance-rate DV with certified freedom, held-tick-aware keys, and a seed population with a repertoire.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-residue-written-not-read",
+          "label": "Residue is written on harm but does not reach E3's selection (no behavioural channel)",
+          "desc": "A populated residue field changes no executed action: the ablation is behaviourally inert because the residue term never moves the argmin winner among the hippocampal candidates.",
+          "axis": "process",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-983a"
+          ],
+          "basis": "Not eliminated: reach into executed behaviour is present in 5/8 seeds and absent in 3/8 on the same substrate; whether the absent cases are latching (one candidate class for every candidate) or a residue-readout failure is unmeasured. The stage-1 latching spike routed by the autopsy is the confirmer.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Can the residue-persistence rider be tested at all on the current actor -- does the E3 policy on the pinned 6x6 bed retain enough action repertoire per seed for re-approach to be a choice -- and, if so, does an intact residue field reduce re-approach to erred keys relative to a frozen one?",
+        "distance_phrase": "0 of 2 legs discriminated after 2 runs (27.5h); both readouts were construct-blocked, not answered",
+        "live_gate": "Stage 1 of the routed successor (diagnostic spike: per-seed training-phase action-class histogram + survival under canonical E3) decides whether the rider question is gated on the actor-adequacy / monostrategy line; stage 2 (avoidance-DV ablation) runs only if a repertoire exists.",
+        "observation_bottleneck": "single-action latching per seed under canonical E3 select_action (inferred from control-policy profile matching; training-phase repertoire never recorded) + a DV conditional on a world-pinned event + fresh-tick-only key registration"
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-1008",
+      "all_runs": [
+        "V3-EXQ-1002",
+        "V3-EXQ-1008"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "zworld_actor_adequacy_locus",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "SPLIT by V3-EXQ-1008, the owed corroborator this leg's own 2026-09-05 confirmation named as ITS TEST. That confirmation is hereby superseded on its stronger reading and retained on its weaker one. The registered branch that fired is verbatim: 'WEAKENED by a flat/degrading result whose closed-form content witness is itself flat -- the block is then information, not geometry.' Every conjunct is satisfied on a fully green instrument: verdict arm flat, both secondary whitenings flat, untrained pair flat, and the closed-form witness (the oracle's own argmax rule applied to the linearly decoded field, NO adapter) DEGRADES to 0.5931/0.5910/0.6066 against a trivial baseline of 0.5661/0.5803/0.5720, i.e. content_margin_over_diag -0.0787/-0.0825/-0.0539, class degrade on 3/3. WHY SPLIT RATHER THAN ELIMINATED: the driver's pre-registered word is WEAKENED, and the evidence genuinely has two halves -- the LINEAR-re-basis reading is dead, while a real but insufficient geometry contribution reproduces on 3/3 seeds. Recording only the first half would overwrite a pre-registered word with a stronger one and discard a reproducible effect. WHAT THIS LEG DOES NOT ESTABLISH, stated because the design bounds it by algebra: every leg-2 arm is an INVERTIBLE LINEAR map absorbable by the adapter's first layer (W' = W R^-1), so the function class is IDENTICAL across leg-2 arms and leg 2 can only ever measure LEARNING DYNAMICS, never information; and the content witness is a LINEAR decode. Whether the decision-relevant content survives NONLINEARLY is unmeasured here and by every run in this lineage -- that residual is now carried by H-F, not by this leg. Adjudicated by failure_autopsy_V3-EXQ-1008_2026-09-08.json.",
+      "resolved_utc": "2026-09-07T23:38:26Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-972a",
+      "all_runs": [
+        "V3-EXQ-972a"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "contextmemory_write_content_discrimination",
+      "claims": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "moved": "V3-EXQ-972a's held-out linear probe -- the exact upgrade the 2026-09-03 cluster autopsy prescribed for this leg -- REFUTES H4's premise. H4 asserted train-time z_world under-differentiation leaves 'no usable content structure for ANY write-side objective'. Measured: the write stream IS linearly decodable for safe-vs-dangerous, zworld32 probe excess 0.335 over a shuffle null, 8/8 seeds, p=0.0039, 84.4% mean balanced accuracy. The predecessor's 0.0281 cosine separability was an artifact of an uncentred contrast, which cannot distinguish 'no structure' from 'structure off the raw axis'. Control passed: UNTRAINED_ENCODER is a genuine non-degenerate control that itself produced a strong positive (excess 0.335, all 8 seeds positive). Structure exists; it is off the raw axis.",
+      "resolved_utc": "2026-09-07T16:23:43Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-970a",
+      "all_runs": [
+        "V3-EXQ-970a"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "contextmemory_write_content_discrimination",
+      "claims": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "moved": "V3-EXQ-970a on the REDESIGNED MI instrument (supersedes V3-EXQ-970), 8 seeds. The instrument redesign the 2026-09-03 cluster autopsy demanded is discharged on all three named defects: near-binary Jaccard -> NMI-excess with 8.72/8.60 headroom ratio; attainable p-floor 0.0039 now BELOW alpha 0.0125; 0 tied pairs. SPLIT because the leg's two halves separate. POSITIVE half CONFIRMED: the contrastive objective raises generalising content conditioning in BOTH regimes (Regime A real-agent latents 0.018 -> 0.312, p=0.0039; Regime B synthetic 0.067 -> 0.259, p=0.0039). NECESSITY half ELIMINATED: the content-BLIND DIVERSITY_956 arm also raised the DV in Regime B (+0.244, p=0.0039) and beat the contrastive arm on 6/8 seeds; in Regime A it did not move (-0.007, p=0.51). SCOPE LIMIT: the tagger's z_world input is a FROZEN random projection (see H5), so this is evidence that a tagger can learn content-conditioned addressing FROM a frozen projection, not that a trained encoder was involved. PROVENANCE: substrate_stable_across_run false with NON-EMPTY process_snapshot_drift (worktree mutated twice mid-run) and commit_describes_recorded_hash false.",
+      "resolved_utc": "2026-09-07T15:22:12Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-1006",
+      "all_runs": [
+        "V3-EXQ-1006"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "sd_e1_var_bar_readout_crush",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "moved": "V3-EXQ-1006 (6 seeds, 4 arms, all GREEN). ARM_RSD_ANCHOR_EP is UNANIMOUS 6/6 on all three sub-conditions: centroid_norm inside the real band 6/6; e1coe_score_var(h=1) lifted over ARM_RSD by 7.57x-214x (all >= the 2x requirement); cr_ratio(h=1) 0.123-0.393, all >= the 0.1 bar. The declared null (centroid outside band on a majority OR var within 2x of ARM_RSD) is NOT met on any seed. Confirmed, not eliminating: the stricter C2 (BOTH bars simultaneously) clears in only 1 of 12 anchor arm-seed cells, so the leg reads at the anchor_restores_centroid_lifts_var tier, one below clears-both-bars.",
+      "resolved_utc": "2026-09-06T19:51:35Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-983a",
+      "all_runs": [
+        "V3-EXQ-983",
+        "V3-EXQ-983a"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "residue_error_persistence_readout",
+      "claims": [
+        "EXT-002",
+        "ARC-013"
+      ],
+      "moved": "Twice uninformative, not discriminated: 983's DV realised 3.2x too little range with an ungated seed population (control passed at 51x); 983a's DV had no agent-side freedom on a pinned board (heterogeneity 0.00, achievable range 0.0 vs 0.04), key registration on fresh ticks only hid ~90% of harms, and 6/8 seeds died to single-action latching. Observation bottleneck: an avoidance-rate DV with certified freedom, held-tick-aware keys, and a seed population with a repertoire.",
+      "resolved_utc": "2026-09-05T14:14:59Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-1002",
       "all_runs": [
@@ -7145,22 +7389,6 @@
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "V3-EXQ-972",
-      "all_runs": [
-        "V3-EXQ-972"
-      ],
-      "momentum_class": "underpowered",
-      "qid": "contextmemory_write_content_discrimination",
-      "claims": [
-        "SD-017",
-        "ARC-045",
-        "MECH-166"
-      ],
-      "moved": "V3-EXQ-972 RESULT (2026-09-02) -- LEG STAYS ALIVE but is now the BEST-SUPPORTED of the four. Its PASS is explicitly a measurement-validity gate, not a scientific verdict (the driver says 'do not read passed: true here as H4 refuted'). The measurement is substantive and first-of-kind: train-time write-stream latents sit in a narrow cone -- intra-class cosine 0.980 (safe) / 0.971 (dangerous) against inter-class 0.948, mean separability 0.0281 over 5 seeds. Safe and dangerous states are very nearly collinear, so there is little content structure for any write-side objective to condition on. The direction is well-evidenced; the threshold crossing rests on a floor the manifest itself calls not rigorously derived, and the leg has no comparator arm. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
-      "resolved_utc": null,
-      "evidence_direction": "non_contributory"
-    },
-    {
       "run": "V3-EXQ-971",
       "all_runs": [
         "V3-EXQ-971"
@@ -7173,22 +7401,6 @@
         "MECH-166"
       ],
       "moved": "V3-EXQ-971 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED; its 'null confirmed' label is not supportable. The load-bearing criterion is a bare mean-margin comparison at n=5 with no permutation test and no multiplicity correction -- the exact reading both sibling drivers demote to non-gating on this DV (measured FPR 25-68% in 969, ~15% in 970). Independently the objective did not train: the coupling loss ROSE across training (0.6273 -> 0.6514) while the untrained arm fell slightly, so a null cannot be attributed to the mechanism. The trained arm collapsed toward the single-slot regime the substrate entry exists to prevent (entropy 3.97 -> 0.79-1.48 bits; self_repeat 0.06 -> 0.71-0.88). See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
-      "resolved_utc": null,
-      "evidence_direction": "non_contributory"
-    },
-    {
-      "run": "V3-EXQ-970",
-      "all_runs": [
-        "V3-EXQ-970"
-      ],
-      "momentum_class": "underpowered",
-      "qid": "contextmemory_write_content_discrimination",
-      "claims": [
-        "SD-017",
-        "ARC-045",
-        "MECH-166"
-      ],
-      "moved": "V3-EXQ-970 RESULT (2026-09-02) -- LEG STAYS ALIVE, NOT ADJUDICATED, AND CARRIES THE PORTFOLIO'S STRONGEST POSITIVE SIGNAL. Regime A (real agent latents) never produced its load-bearing DV: probe_heldout_real_latent_jaccard was null in 12/12 cells because the held-out gate needs >208 dangerous states and every cell yielded 171-195, so Regime A scored out in every possible world at this schedule. Regime B (synthetic 2-cluster stream) reached the BEST value the DV admits -- Jaccard 0.0 on 6/6 seeds -- and still returned FAIL, because with 2 of 6 paired diffs exactly zero the exact sign-flip p-grid floors at 1/2^4 = 0.0625 against alpha_corrected 0.025: no outcome could have cleared it. The self-route 'not confirmed in either regime' is a gate artifact, not a null. See failure_autopsy_contextmemory-write-content-cluster_2026-09-03.",
       "resolved_utc": null,
       "evidence_direction": "non_contributory"
     },

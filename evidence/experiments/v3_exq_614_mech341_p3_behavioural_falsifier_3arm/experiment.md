@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3` at `20260529T191318Z` signatures: none
+- `v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3` at `2026-05-29T19:13:18Z` signatures: none
 
 Recurring signatures:
 
