@@ -4522,7 +4522,11 @@
       "task_claim_session_id": "igw-auto-igw-232-literature-proposal-for-inv-063-20260908T005042Z",
       "task_claim_claimed_at": "2026-09-08T00:50:42Z",
       "assigned_at": "2026-09-08T00:49:28Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-08T01:10:15Z",
+      "completion_summary": "lit-pull INV-063: 5 entries landed (REE_assembly ab559aa083); lit evidence 0 -> 5, confidence 0.687; 3 supports / 1 mixed / 1 weakens; Larkin 2014 shows F3 non-specificity already in biology and Cordi & Rasch 2020 implies C2 at 3 seeds is underpowered",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull INV-063: 5 entries landed (REE_assembly ab559aa083); lit evidence 0 -> 5, confidence 0.687; 3 supports / 1 mixed / 1 weakens; Larkin 2014 shows F3 non-specificity already in biology and Cordi & Rasch 2020 implies C2 at 3 seeds is underpowered"
     }
   ],
   "dispositions": [
@@ -6395,6 +6399,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-08T00:13:57Z",
       "re_eligible_after": "2026-09-10T00:13:57Z"
+    },
+    {
+      "stable_hash": "9d40eeb56ac8",
+      "igw_id_at_disposition": "IGW-20260908-232",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-063"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for INV-063",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T01:10:15Z",
+      "re_eligible_after": "2026-09-10T01:10:15Z"
     }
   ]
 }
