@@ -2738,3 +2738,13 @@ One line per hourly tick. ASCII only.
 2026-09-08T06:32:37Z GC removed worktree igw-234-proposal-for-inv-093 (removed; branch deleted)
 2026-09-08T06:31:58Z GC sweep removed 2 orphan worktree(s), kept 11
 2026-09-08T06:31:58Z no eligible item (skipped 246): IGW-20260908-001:skill /governance not allowed; IGW-20260908-216:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260908-217:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
+2026-09-08T07:37:02Z skip: paused (.igw_routine_pause present)
+2026-09-08T08:37:04Z skip: paused (.igw_routine_pause present)
+2026-09-08T09:37:05Z skip: paused (.igw_routine_pause present)
+2026-09-08T10:37:19Z skip: paused (.igw_routine_pause present)
+2026-09-08T11:37:22Z skip: paused (.igw_routine_pause present)
+2026-09-08T12:37:27Z skip: paused (.igw_routine_pause present)
+2026-09-08T13:37:38Z skip: paused (.igw_routine_pause present)
+2026-09-08T14:37:40Z skip: paused (.igw_routine_pause present)
+2026-09-08T15:37:54Z skip: paused (.igw_routine_pause present)
+2026-09-08T16:39:38Z workset committed (regen -- 248 items, 29 ready, 0 in flight)
