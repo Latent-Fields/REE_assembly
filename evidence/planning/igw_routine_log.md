@@ -2755,3 +2755,4 @@ One line per hourly tick. ASCII only.
 2026-09-08T17:53:30Z GC sweep removed 1 orphan worktree(s), kept 11
 2026-09-08T17:54:35Z workset committed (regen -- 244 items, 28 ready, 0 in flight)
 2026-09-08T17:53:30Z SPAWN IGW-20260908-232 skill=/lit-pull prio=40 uuid=7e7404e0-4244-4159-b968-7c23025e751c pid=40890 worktree=igw-232-literature-proposal-for-inv-104
+2026-09-08T18:18:59Z auto-defer igw-232-literature-proposal-for-inv-104 hash=9bc13b513e6a for 48h (complete)
