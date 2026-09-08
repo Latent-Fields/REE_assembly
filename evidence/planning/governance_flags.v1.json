@@ -3263,6 +3263,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0233",
+      "claim_ids": [
+        "MECH-536",
+        "MECH-535"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The CONFIRMED failure_autopsy_V3-EXQ-1007_2026-09-08 routing states 'k=4 broke the orbit in 1007', and the target run's own manifest does not establish it: persist_k4 reports orbit_period None on 20/20 episodes only because bounded_orbit_period needs 24 consecutive positions for period 8 (min_repeats 3) while every short k4 episode is 19-23 steps. A direct check of the driver's own detectors shows a k-latch RE-PERIODISES a period-2 cycle to period 2k rather than breaking it, so period2_cycle_present -- the detector primary criterion C1 routes on -- returns False by ARITHMETIC for every k>=2, at every episode length. C1 therefore cannot fail, and the successor V3-EXQ-1007a was authored, smoke-green, and NOT QUEUED on a red-team BLOCKING verdict. Neither claim's direction changes; the finding is that the predecessor measured less than it appeared to. Repairing it requires re-posing the user-ratified C1 onto a period-agnostic orbit criterion, which is governance's call, not a queue-fill session's. Full measurement and successor recipe: REE_assembly evidence/planning/exq1007a_blocked_c1_satisfied_by_construction_20260908.md",
+      "raised_by_session": "w5-freshfill-20260908",
+      "raised_at": "2026-09-08T18:41:59Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
