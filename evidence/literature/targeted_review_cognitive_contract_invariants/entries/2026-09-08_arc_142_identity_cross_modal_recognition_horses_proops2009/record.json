@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_identity_cross_modal_recognition_horses_proops2009",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "Cross-modal individual recognition in domestic horses (Equus caballus)",
+    "authors": [
+      "Leanne Proops",
+      "Karen McComb",
+      "David Reby"
+    ],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "volume": "106",
+    "issue": "3",
+    "pages": "947-951",
+    "doi": "10.1073/pnas.0809127105",
+    "pmid": "19075246"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "A clean expectancy-violation design in a non-primate showing that the representation of a specific individual is recoverable when the input crosses from the visual to the auditory subsystem -- close to the candidate's definition. Held below 0.8 because the boundary crossed is sensory rather than representational-geometric, and because the horse is a social mammal for whom conspecific identity is an ecological problem, so the embodied reading is not excluded.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Modality-local familiarity would predict no response difference when a seen individual is followed by a different familiar individual's call; the observed violation response is the signature of a cross-modal identity representation."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "identity",
+    "cross_modal",
+    "comparative",
+    "domain:comparative",
+    "candidate:identity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Horses responded faster, looked longer and looked more often when a familiar herd member walked past out of sight and was then followed by a different familiar individual's whinny than when the call matched, indicating a multi-modal representation of a specific individual.",
+    "ree_translation": "The IDENTITY relation survives translation between two sensory subsystems in a non-primate. GOV-CONTRACT-1 domain 4 asks whether a distinction appears in species with different ecologies; together with mirror self-recognition in magpies (Prior et al. 2008) and the contested cleaner-wrasse result (Kohda et al. 2019), the identity relation recurs across mammal, bird and teleost lineages.",
+    "mapping_caveat": "Sensory cross-modality is an easier boundary than the inter-engine boundary ARC-142 names; and every species with positive evidence is social, so the relation may be recurrent because individual recognition is a shared ecological problem rather than because unified cognition requires it.",
+    "source_context": "Domestic horses, naturalistic cross-modal expectancy-violation playback design."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.4,
+    "notes": "Domain 4 (comparative) anchor for IDENTITY."
+  }
+}

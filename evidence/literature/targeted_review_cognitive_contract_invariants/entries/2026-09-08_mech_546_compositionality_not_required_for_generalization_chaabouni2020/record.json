@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_mech_546_compositionality_not_required_for_generalization_chaabouni2020",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "MECH-546",
+    "ARC-142"
+  ],
+  "source": {
+    "title": "Compositionality and Generalization in Emergent Languages",
+    "authors": [
+      "Rahma Chaabouni",
+      "Eugene Kharitonov",
+      "Diane Bouchacourt",
+      "Emmanuel Dupoux",
+      "Marco Baroni"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL)",
+    "doi": "10.18653/v1/2020.acl-main.407",
+    "arxiv_id": "2004.09124",
+    "pmid": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.66,
+  "confidence_rationale": "Direct, well-replicated evidence against the assumption behind MECH-546 that functional need forces a structured, separably encoded relation into a communication channel: emergent languages generalise to unseen combinations WITHOUT being compositional, compositionality does not correlate with generalisation, and it arises opportunistically and persists because it transmits more easily. For ARC-142 it is mixed: a channel can carry the information with the relation NOT explicitly marked, which is the translatable-around possibility GOV-CONTRACT-1 requires be preserved. Held at 0.66 because the games are simple attribute-value referential tasks whose 'relations' are not contract relations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "No correlation between degree of compositionality and generalisation to novel inputs -- the channel encodes the needed information without a separable relational structure, so 'the relation must be preserved' does not entail 'the relation must be MARKED'.",
+    "Compositional structure, when it appears, is selected by ease of transmission (Kirby, Cornish & Smith 2008), i.e. by the iterated-learning bottleneck rather than by a cognitive requirement -- which defaults any marked distinction to the CULTURAL classification under GOV-CONTRACT-1."
+  ],
+  "tags": [
+    "mech-546",
+    "arc-142",
+    "emergent_communication",
+    "compositionality",
+    "grammaticalisation",
+    "domain:artificial_agents",
+    "dissent"
+  ],
+  "mapping": {
+    "source_claim_statement": "In emergent-communication games, languages that generalise to unseen attribute combinations need not be compositional; degree of compositionality (measured by posdis / bosdis) does not predict generalisation; compositional languages, where they arise, are easier for new learners to acquire and so persist.",
+    "ree_translation": "MECH-546 predicts that agents transmitting invariant-rich states over a low-cost channel develop grammar-like structure for exactly the contract relations. Chaabouni et al. show that a channel can carry what is functionally needed without any separable structure, and that structure, when present, is explained by transmission ease rather than by the content's requirements. This is direction-(b) evidence for MECH-546's two-way test (marked structure lacking a cognitive necessity classifies as cultural) and a standing warning that 'agents under pressure invent it, therefore it is required' is not a valid inference. Lipinski et al. 2023 make the complementary point for temporal reference: it did not emerge from loss or task pressure and required an architectural intervention.",
+    "mapping_caveat": "The referential games encode attribute-value objects, not the five contract candidates; nothing here tests whether identity, temporal relation, reality status, agency or confidence are marked in an emergent channel. The result is about the LOGIC of inferring necessity from emergent structure, not about the candidates themselves.",
+    "source_context": "Emergent communication, two-agent referential games over attribute-value inputs, ACL 2020."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Domain 5 dissent applying to every candidate; the load-bearing negative result for MECH-546."
+  },
+  "evidence_direction_per_claim": {
+    "MECH-546": "weakens",
+    "ARC-142": "mixed"
+  }
+}

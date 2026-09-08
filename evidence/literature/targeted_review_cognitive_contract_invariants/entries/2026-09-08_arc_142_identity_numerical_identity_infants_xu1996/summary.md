@@ -1,0 +1,9 @@
+# Xu & Carey 1996 -- identity as its own computation, before the words for kinds
+
+The question this paper lets us ask is whether "same one or a different one" is something an infant reads off the features of what it sees, or something it computes separately. Xu and Carey's occlusion studies say the latter. Ten-month-olds who watch a duck emerge from one side of a screen and a ball from the other do not conclude there are two objects; they need a spatiotemporal discontinuity to posit two individuals. Two months later the kind contrast alone suffices. The identity decision has its own developmental timetable, and it is dissociable from the encoding of properties.
+
+For the cognitive contract this is the developmental-precedence datum GOV-CONTRACT-1 weights most heavily. MECH-545's first lesion deletes exactly this relation at an engine boundary and predicts duplicated objects, broken persistence and incoherent credit assignment. The infant result shows the relation is present and separable before language, which is the pattern an architectural candidate should show. What it does not show is that the relation must be carried ACROSS a boundary rather than recomputed on each side; that is the REE-internal question, and no developmental paper answers it.
+
+One honest caveat cuts toward the embodied classification. The first inputs to the identity decision are spatiotemporal, which is to say bodily and spatial; kind information enters later. So the relation may be architectural while its early format is embodied. I have recorded that in the classification note rather than smoothing it over.
+
+Confidence 0.7: strong, replicated source; mapping to object rather than self identity, and to an infant rather than an engine boundary, keep it out of the top band. Per feedback_lit_exp_decoupled this is motivation for the candidate, not support for any claim's status.

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_temporal_newborn_causal_order_mascalzoni2013",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "The cradle of causal reasoning: newborns' preference for physical causality",
+    "authors": [
+      "Elena Mascalzoni",
+      "Lucia Regolin",
+      "Giorgio Vallortigara",
+      "Francesca Simion"
+    ],
+    "year": 2013,
+    "venue": "Developmental Science",
+    "volume": "16",
+    "issue": "3",
+    "pages": "327-335",
+    "doi": "10.1111/desc.12018",
+    "pmid": "23587033"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The cleanest developmental-precedence datum found for any candidate: a preference for cause-before-effect launching structure in newborns a few hours old, with essentially no learning history. Confidence kept moderate because a perceptual preference is weaker than an explicit order representation, because newborn samples are small, and because causal order is one instance of the TEMPORAL RELATION candidate rather than the whole of it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The temporal-order sensitivity is specific to causally structured (launching) events; arbitrary order is a different and much later achievement (Bauer et al. 1998), so a boundary that preserved only content-free sequence position would not reproduce the newborn competence."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "temporal_relation",
+    "causal_order",
+    "newborn",
+    "domain:developmental",
+    "candidate:temporal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Newborns a few hours old looked preferentially at a Michotte launching event over spatiotemporally delayed or non-contact versions of matched motion, implying an early-available mechanism sensitive to the cause-before-effect relation.",
+    "ree_translation": "MECH-545's TEMPORAL lesion predicts cause/effect inversion and present-vs-anticipated confusion. GOV-CONTRACT-1 treats a distinction required before substantial learning as the strongest architectural signal; a newborn preference for causal order is that signal at its limit.",
+    "mapping_caveat": "A looking preference is not a represented relation that an engine could translate or lose. And what is early is causally constrained order; arbitrary order becomes reliable only around 28 months and is helped by language (Bauer et al. 1998), which concedes some ground to the cultural reading for order-as-content.",
+    "source_context": "Human newborns, hospital nursery, preferential-looking paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Domain 2 (developmental) anchor for TEMPORAL RELATION."
+  }
+}

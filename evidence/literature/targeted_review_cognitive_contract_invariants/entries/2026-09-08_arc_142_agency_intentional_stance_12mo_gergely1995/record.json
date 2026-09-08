@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_agency_intentional_stance_12mo_gergely1995",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "Taking the intentional stance at 12 months of age",
+    "authors": [
+      "Gyorgy Gergely",
+      "Zoltan Nadasdy",
+      "Gergely Csibra",
+      "Szilvia Biro"
+    ],
+    "year": 1995,
+    "venue": "Cognition",
+    "volume": "56",
+    "issue": "2",
+    "pages": "165-193",
+    "doi": "10.1016/0010-0277(95)00661-H",
+    "pmid": "7554793"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational and extensively replicated: 12-month-olds attribute goal-directed agency to a 2-D circle on the basis of efficient action-to-goal structure alone, with no face, body or biological motion. That the attribution is body-independent is exactly what the ARCHITECTURAL reading of the AGENCY candidate predicts and the embodied reading does not. Held at 0.72 because goal/agent attribution maps to 'who is the actor' more directly than to self-vs-other causation and controllability, which are covered by other sources (Verschoor et al. 2010; Rochat & Striano 2002).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Nine-month-olds do not show the effect: before the agency relation is available, the same trajectory is coded as a motion pattern rather than as a means to a goal -- a boundary that carried trajectory content without the actor/goal relation would reproduce the 9-month, not the 12-month, behaviour."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "agency",
+    "intentional_stance",
+    "goal_attribution",
+    "domain:developmental",
+    "candidate:agency"
+  ],
+  "mapping": {
+    "source_claim_statement": "Twelve-month-olds habituated to a small circle jumping over a barrier to reach a large circle looked longer, once the barrier was removed, at the old jumping path (now inefficient) than at a new direct path, indicating they encoded the action as an efficient means to a goal; 9-month-olds did not discriminate.",
+    "ree_translation": "MECH-545's AGENCY lesion deletes the actor relation and controllability at a boundary. GOV-CONTRACT-1 asks whether the distinction appears before language and whether it is body-independent. Attribution of agency to an abstract stimulus with no body at 12 months answers both: the relation is early and it is not read off a body.",
+    "mapping_caveat": "Attributing agency to OTHERS is the social half of the candidate; the self-caused vs externally caused half rests on action-effect binding (Verschoor et al. 2010) and self/other discrimination in specular images at 4 months (Rochat & Striano 2002), which are not this paper. Looking-time inference, infant sample.",
+    "source_context": "Human infants 9 and 12 months, habituation-dishabituation to 2-D animated displays."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "Domain 2 (developmental) anchor for AGENCY; the abstract-stimulus design is what makes the transfer risk low."
+  }
+}

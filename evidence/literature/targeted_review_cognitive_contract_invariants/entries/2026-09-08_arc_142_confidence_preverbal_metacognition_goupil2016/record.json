@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_confidence_preverbal_metacognition_goupil2016",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "Behavioral and Neural Indices of Metacognitive Sensitivity in Preverbal Infants",
+    "authors": [
+      "Louise Goupil",
+      "Sid Kouider"
+    ],
+    "year": 2016,
+    "venue": "Current Biology",
+    "volume": "26",
+    "issue": "22",
+    "pages": "3038-3045",
+    "doi": "10.1016/j.cub.2016.09.004",
+    "pmid": "27773566"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Converging behavioural and neural evidence that 12- and 18-month-olds compute a confidence signal about their own decisions and act on it, with an adult-homologous error-related negativity. The companion PNAS paper (Goupil, Romand-Monnier & Kouider 2016) shows 20-month-olds EXPORT that signal across an agent boundary by asking for help selectively when their memory is weak. Held at 0.7 because it is decision confidence about an action rather than a precision attached to a transmitted representation, and because Gori et al. 2008 shows reliability-WEIGHTED cross-modal integration is absent until about 8 years.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Confidence-as-flag (persist or seek help) is early; confidence-as-weight (optimal reliability-weighted cue combination) is late (Gori et al. 2008). A boundary lesion that removed only the weight would leave the flag intact, so MECH-545's CONFIDENCE signature must specify which of the two it is lesioning."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "confidence",
+    "metacognition",
+    "infant",
+    "domain:developmental",
+    "candidate:confidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Twelve- and 18-month-olds persisted longer in searching after decisions they had made correctly than after incorrect ones, and showed an error-related negativity time-locked to incorrect responses, indicating non-verbal monitoring of the reliability of their own decisions.",
+    "ree_translation": "MECH-545's CONFIDENCE lesion deletes uncertainty at a boundary while content translates, predicting overcommitment and failed precision-sensitive integration. GOV-CONTRACT-1 weights developmental precedence highest; a confidence signal that is computed and behaviourally read out before language, and exported to an adult as a help request at 20 months, is that signal. The precision / MECH-123 lineage is the content-level owner.",
+    "mapping_caveat": "The paper shows a flag attached to a decision, not a weight attached to a representation; the flag/weight dissociation is the main developmental finding for this candidate and it cuts against the strong precision-weighting reading.",
+    "source_context": "Human infants 12 and 18 months, hidden-object choice with search persistence and EEG."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Domain 2 (developmental) anchor for CONFIDENCE; paired with the Gori 2008 entry as the dissent."
+  }
+}

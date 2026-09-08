@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_reality_status_signal_strength_threshold_dijkstra2023",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "Subjective signal strength distinguishes reality from imagination",
+    "authors": [
+      "Nadine Dijkstra",
+      "Stephen M. Fleming"
+    ],
+    "year": 2023,
+    "venue": "Nature Communications",
+    "volume": "14",
+    "issue": "1",
+    "pages": "1627",
+    "doi": "10.1038/s41467-023-37322-1",
+    "pmid": "36959279"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "A well-designed dissent recorded as a first-class result. The paper shows reality judgements in adults depend on whether a combined imagery-plus-perception signal crosses a subjective strength threshold, with vivid imagery becoming subjectively indistinguishable from perception. That supports the EXISTENCE of a reality-status decision with a dedicated failure mode, and simultaneously argues it is a fallible inference over a shared graded variable rather than a protected provenance tag riding with the content. Mixed, at moderate confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Vivid enough imagery crosses the reality threshold and is judged real -- the confabulation-like signature MECH-545 predicts for a REALITY-STATUS boundary lesion, but produced here WITHOUT any lesion, by the normal operation of a threshold mechanism.",
+    "If provenance were a separately preserved label, imagery vividness should not affect the reality judgement; the observed dependence is evidence against the 'separable relation' form of the candidate and for a reconstruction-at-the-receiver form."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "reality_status",
+    "reality_monitoring",
+    "imagery",
+    "domain:neuroscience",
+    "candidate:reality_status",
+    "dissent"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across psychophysics and neuroimaging, judgements that a stimulus was real depended on whether the combined perceptual-plus-imagery signal exceeded a subjective strength threshold; sufficiently vivid imagery was judged as real.",
+    "ree_translation": "ARC-142 states that the contract specifies RECOVERABLE RELATIONSHIPS, not a fixed data structure. This paper is evidence about the mechanism by which reality status is recovered in humans: not read from a tag, but inferred from a graded quantity that observed and imagined content share. Under GOV-CONTRACT-1 a candidate shown to be translatable-around or reconstructed rather than preserved is a preserved negative finding. Paired with Garrison et al. 2015, which shows the substrate that makes this judgement (paracingulate sulcus) predicts hallucination regardless of sensory modality, the picture is a subsystem-independent DECISION over a subsystem-shared SIGNAL.",
+    "mapping_caveat": "Human adults with verbal reality judgements in a laboratory imagery task. The threshold account may describe how the relation is READ OUT for report without describing how it is carried between engines; the two are separable and MECH-545's within-boundary control is the assay that would separate them.",
+    "source_context": "Human adult psychophysics with concurrent neuroimaging, imagery-perception interference paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Recorded as the principal dissent for REALITY STATUS; direction mixed because it supports the distinction's existence and failure mode while contradicting the separable-tag form."
+  }
+}

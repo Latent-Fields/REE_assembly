@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_temporal_tenseless_guarani_temporal_reference_tonhauser2011",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545",
+    "MECH-546"
+  ],
+  "source": {
+    "title": "Temporal reference in Paraguayan Guarani, a tenseless language",
+    "authors": [
+      "Judith Tonhauser"
+    ],
+    "year": 2011,
+    "venue": "Linguistics and Philosophy",
+    "volume": "34",
+    "issue": "3",
+    "pages": "257-303",
+    "doi": "10.1007/s10988-011-9097-2",
+    "pmid": null
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "The one typological result in this pull that has the shape of a preservation-under-lesion finding rather than a universality claim: a language with no grammatical tense still obligatorily recovers temporal reference by other means. Held at 0.6 because it is one language (though typical of the tenseless class), because linguistic temporal reference is an inexact proxy for internal before/after/now relations, and because GOV-CONTRACT-1 admits typology only as an inverse probe.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The relation is recovered from aspectual class, adverbials and discourse anaphora when the dedicated tense channel is absent -- so a lesion of the dedicated carrier does NOT produce loss of the relation in language; this is a 'translatable-around' observation that MECH-545 must reckon with when it predicts fragmentation from a single-channel deletion."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "mech-546",
+    "temporal_relation",
+    "typology",
+    "tenseless",
+    "domain:typology",
+    "candidate:temporal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Paraguayan Guarani lacks grammatical tense morphology, yet matrix-clause temporal reference is not free: it is determined compositionally by aspectual class (default past for telic predicates, default present for statives) together with temporal adverbials and discourse context; apparent tense particles are aspectual or modal.",
+    "ree_translation": "Section 7 of the source thought admits language as an inverse probe: recurrently grammaticalised distinctions record what human cognition repeatedly needs to transmit. WALS chapter 66 shows ~40% of sampled languages have no grammatical past, so tense itself is an areal convention. Tonhauser shows what a tenseless language still does: the TEMPORAL RELATION is obligatorily recoverable when its dedicated carrier is deleted. For MECH-546 this is direction (b) evidence -- a grammaticalised distinction (tense) that is cultural, wrapped around a relation that is not.",
+    "mapping_caveat": "Cross-linguistic evidence alone is inadmissible for architectural standing under GOV-CONTRACT-1; this entry counts as one domain in a quorum, never as standing. Speaker temporal reference is a communicative achievement and its recovery 'by other means' may reflect hearer inference rather than an internal invariant.",
+    "source_context": "Formal-semantic fieldwork study of one Tupi-Guarani language, elicited and discourse data."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Domain 1 (typology) anchor for TEMPORAL RELATION; paired with WALS ch. 66 (Dahl & Velupillai 2013) for the areal distribution of tenselessness."
+  }
+}

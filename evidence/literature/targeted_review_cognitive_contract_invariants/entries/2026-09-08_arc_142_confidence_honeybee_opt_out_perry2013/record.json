@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_confidence_honeybee_opt_out_perry2013",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "Honey bees selectively avoid difficult choices",
+    "authors": [
+      "Clint J. Perry",
+      "Andrew B. Barron"
+    ],
+    "year": 2013,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "volume": "110",
+    "issue": "47",
+    "pages": "19155-19159",
+    "doi": "10.1073/pnas.1314571110",
+    "pmid": "24191024"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "The chosen-vs-forced signature of uncertainty monitoring in an insect: bees opt out more as a visual discrimination gets objectively harder and are more accurate on the trials they accept. Phylogenetic distance from primates (where Hampton 2001 and Kornell et al. found the same signature) and rats (Foote & Crystal 2007) is what argues against a large-brain or shared-embodiment explanation. Held at 0.6 because opt-out is a proxy for a precision estimate, not evidence that the estimate is attached to and transmitted with a particular representation, and because Carruthers' (2008) first-order associative critique applies to the bee result as much as to the macaque one and remains unresolved.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pigeon uncertainty-monitoring results have been repeatedly negative or confounded, while monkeys, dolphins, rats and bees pass -- a clean species-by-species dissociation is NOT what one expects if confidence were architecturally required of every unified cognitive system.",
+    "Carruthers 2008: every opt-out result admits a first-order explanation in which difficulty itself, not a represented confidence, drives the decline -- if so precision need not travel as a separate tag at all."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "confidence",
+    "metacognition",
+    "honeybee",
+    "opt_out",
+    "domain:comparative",
+    "candidate:confidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Free-flying honeybees trained on a visual discrimination opted out more often, when given the option, as the discrimination became objectively harder, and accuracy on accepted trials exceeded accuracy when opting out was unavailable.",
+    "ree_translation": "GOV-CONTRACT-1 domain 4 asks whether the distinction appears in species with substantially different sensory and behavioural ecologies. An insect implementing an uncertainty-sensitive decline is the strongest phylogenetic-distance evidence in the CONFIDENCE cell. The precision / MECH-123 lineage is the content-level owner of the signature MECH-545 assigns to a confidence lesion.",
+    "mapping_caveat": "Opt-out shows that a reliability estimate exists and controls behaviour; it does not show the estimate rides with a representation across a subsystem boundary. The associative-deflationary reading is live and, per the synthesis, is a translatable-around argument the contract must preserve as a negative possibility.",
+    "source_context": "Apis mellifera, free-flying visual discrimination with a third opt-out option."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.25,
+    "notes": "Domain 4 (comparative) anchor for CONFIDENCE; the low transfer risk is the point -- an insect with no cortex and a radically different sensory ecology."
+  }
+}

@@ -1,0 +1,9 @@
+# Perry & Barron 2013 -- a bee that declines the hard ones
+
+Train a honeybee to tell which side of a line a stimulus falls on, reward the right answer with sucrose and punish the wrong one with quinine, and then on some trials offer a third option that avoids both. Bees take the third option more often as the discrimination gets harder, and on the trials they do accept they are more accurate than they would have been without the option. That is the same chosen-versus-forced signature Hampton found in rhesus monkeys and Foote and Crystal found in rats.
+
+The value of the bee for the contract is phylogenetic. A signal that reads "I am not sure about this one" and gates behaviour appears in an animal with no cortex, a million neurons, and a sensory world unlike ours. Shared embodiment is a poor explanation of that. GOV-CONTRACT-1's comparative domain asks for exactly this kind of ecological distance.
+
+I have kept the confidence moderate for two reasons that are not going away. Opting out shows a reliability estimate exists and is used; it does not show the estimate is attached to a particular representation and carried across a boundary with it, which is what the candidate as stated requires. And Carruthers' (2008) sceptical reading, that difficulty itself rather than a represented confidence drives every one of these results, has not been refuted, only argued against (Smith, Couchman & Beran 2014). If Carruthers is right, precision may not need to travel as a separate tag, which is precisely the translatable-around possibility the governance rule says to keep. The species pattern is a further caution: pigeons have repeatedly failed where monkeys, dolphins, rats and bees pass, and a required invariant should not dissociate so cleanly by species.
+
+Confidence 0.6. Motivation, not support.

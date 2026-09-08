@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_identity_numerical_identity_infants_xu1996",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "Infants' metaphysics: the case of numerical identity",
+    "authors": [
+      "Fei Xu",
+      "Susan Carey"
+    ],
+    "year": 1996,
+    "venue": "Cognitive Psychology",
+    "volume": "30",
+    "issue": "2",
+    "pages": "111-153",
+    "doi": "10.1006/cogp.1996.0005",
+    "pmid": "8635312"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Canonical, heavily replicated developmental result showing that 'same individual or not' is computed as its own relation by 10-12 months, before sortal language. Held at 0.7 rather than higher because it evidences the IDENTITY candidate for objects, not selves, and because the earliest inputs to the identity decision are spatiotemporal (body-in-space), which keeps the embodied reading of the candidate's FORMAT alive even where the relation itself looks architectural.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Infants who cannot use kind/property information still individuate by spatiotemporal discontinuity, so an identity decision driven by feature matching alone is developmentally the LATER, not the earlier, form -- a subsystem boundary that carries only feature similarity would reproduce the 10-month failure, not the 12-month competence."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "identity",
+    "object_individuation",
+    "developmental",
+    "domain:developmental",
+    "candidate:identity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Ten-month-old infants use spatiotemporal information to establish representations of two numerically distinct objects in occlusion events but fail to use property/kind information (e.g. duck vs ball) to do so; by 12 months infants individuate on the basis of kind.",
+    "ree_translation": "GOV-CONTRACT-1's strongest single-domain signal is developmental precedence. This paper shows the IDENTITY relation named in MECH-545's first lesion (whether two representations concern the same entity) is computed pre-linguistically as a separable decision, dissociable from encoding the entity's properties. That is what an inter-engine invariant should look like from the outside: a relation with its own timetable, fed by changing inputs.",
+    "mapping_caveat": "Object identity across occlusion is not self-identity across engines, and looking-time inference in infants is a long way from a translation boundary in a machine. The paper supports that the relation is early and separable; it says nothing about whether it must be PRESERVED across a boundary rather than recomputed on each side.",
+    "source_context": "Human infants 10-12 months, violation-of-expectation occlusion paradigm, looking time."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.4,
+    "notes": "Domain 2 (developmental) anchor for IDENTITY. Source quality is canonical; transfer risk reflects the object-vs-self and infant-vs-engine gaps."
+  }
+}

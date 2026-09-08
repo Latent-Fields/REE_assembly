@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_confidence_late_cross_modal_integration_gori2008",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "Young children do not integrate visual and haptic form information",
+    "authors": [
+      "Monica Gori",
+      "Michela Del Viva",
+      "Giulio Sandini",
+      "David C. Burr"
+    ],
+    "year": 2008,
+    "venue": "Current Biology",
+    "volume": "18",
+    "issue": "9",
+    "pages": "694-698",
+    "doi": "10.1016/j.cub.2008.04.036",
+    "pmid": "18450446"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "Recorded as a first-class negative finding, per GOV-CONTRACT-1. Reliability-weighted cross-modal integration, the strong form of the CONFIDENCE / PRECISION candidate, is absent below about 8 years; one modality dominates wholesale. Precision therefore does not travel usefully across a modality boundary in early childhood, which weakens the claim that precision-as-weight is an architectural given rather than a calibration-dependent achievement. Moderate confidence because the result is about sensory cue combination, one instance of precision-sensitive integration, and does not touch decision confidence (Goupil & Kouider 2016).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Below ~8 years, children's visual-haptic size and orientation judgements are dominated by a single modality rather than combined by reliability -- the 'under-reaction to reliable predictions' signature MECH-545 assigns to a CONFIDENCE lesion, but present developmentally without any lesion."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "confidence",
+    "precision_weighting",
+    "multisensory_integration",
+    "developmental",
+    "domain:developmental",
+    "candidate:confidence",
+    "dissent"
+  ],
+  "mapping": {
+    "source_claim_statement": "Children younger than about 8 years failed to combine visual and haptic estimates of size and orientation in the statistically optimal reliability-weighted manner adults use; one modality dominated; adult-like optimal integration appeared only by 8-10 years.",
+    "ree_translation": "GOV-CONTRACT-1 says a negative finding is a first-class preserved result. This is the negative half of the CONFIDENCE cell: the flag (decision confidence) is present at 12-20 months, but the weight (precision-weighted integration across a modality boundary) is a late, calibration-dependent achievement. For ARC-142 this suggests precision may be an invariant that DIFFERENTIATES (per the developmental clause) rather than one that is present mature; for MECH-545 it says the confidence lesion must state whether it deletes a flag or a weight.",
+    "mapping_caveat": "Sensory cue combination is one form of precision-sensitive integration; the result says nothing about whether an uncertainty signal is CARRIED across the boundary, only that it is not USED optimally by young children. Absence of optimal use is compatible with the signal being preserved but the receiving weights being uncalibrated.",
+    "source_context": "Human children 5-10 years and adults, visual-haptic size and orientation discrimination psychophysics."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Domain 2 (developmental) dissent for CONFIDENCE; the flag/weight dissociation this establishes is carried into the synthesis classification."
+  }
+}

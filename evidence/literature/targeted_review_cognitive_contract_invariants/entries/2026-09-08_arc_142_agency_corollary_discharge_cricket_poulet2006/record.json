@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cognitive_contract_invariants",
+  "entry_id": "2026-09-08_arc_142_agency_corollary_discharge_cricket_poulet2006",
+  "timestamp_utc": "2026-09-08T20:22:39Z",
+  "claim_ids_tested": [
+    "ARC-142",
+    "MECH-545"
+  ],
+  "source": {
+    "title": "The cellular basis of a corollary discharge",
+    "authors": [
+      "James F. A. Poulet",
+      "Berthold Hedwig"
+    ],
+    "year": 2006,
+    "venue": "Science",
+    "volume": "311",
+    "issue": "5760",
+    "pages": "518-522",
+    "doi": "10.1126/science.1120847",
+    "pmid": "16439660"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The textbook single-cell demonstration of a self-caused vs externally-caused tag: one identified interneuron in the singing cricket inhibits auditory neurons in phase with the animal's own song, discounting self-generated sound while leaving external sound detectable. An insect with no cortex is the least embodiment-confounded source in the whole pull, and the same solution recurs in mormyrid electric fish (Bell et al. 1997) and primate visuomotor systems (Crapse & Sommer 2008), three lineages and three unrelated modalities. Held under 0.8 because the tag operates at reflex level, not the deliberative attribution MECH-545 also names.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Without the corollary-discharge inhibition the auditory system would treat the animal's own song as external sound -- the internal/external attribution error MECH-545 predicts for an AGENCY boundary lesion, realised as a single identifiable circuit.",
+    "The dissent from Reznik et al. 2014 (self-generated sounds ENHANCE rather than suppress auditory cortex, lateralised by producing hand) shows the agency tag is implemented per effector and per modality in humans, which favours the embodied reading of the MECHANISM even where the RELATION recurs across phyla."
+  ],
+  "tags": [
+    "arc-142",
+    "mech-545",
+    "agency",
+    "corollary_discharge",
+    "efference_copy",
+    "insect",
+    "domain:comparative",
+    "candidate:agency"
+  ],
+  "mapping": {
+    "source_claim_statement": "Intracellular recordings in singing crickets identified a single multisegmental corollary-discharge interneuron spiking in lock-step with the song motor pattern, producing presynaptic inhibition of auditory afferents and postsynaptic inhibition of the omega neuron, sharply reducing responses to self-generated sound while leaving responses to external sound intact; the inhibition can be driven in the absence of sound.",
+    "ree_translation": "This is a known INTER-SUBSYSTEM TRANSLATION MECHANISM whose sole job is to carry the self-caused/not relation from the motor system to the sensory system -- GOV-CONTRACT-1 domain 3's criterion met in an insect, and domain 4's cross-ecology criterion met by its recurrence in electric fish and primates. It is also the biological ancestor of MECH-256's comparator and the reafference lineage that MECH-545 names as the content-level owner of the agency signature. ARC-142's developmental clause lists 'self-caused / not' among the coarse primitives that precede derived contract structure; this is what that primitive looks like at cellular resolution.",
+    "mapping_caveat": "Reflex-level cancellation is the coarse primitive, not the derived structure (intention, control, responsibility) that ARC-142 says differentiates from it. Every instance is sensorimotor and effector-specific, so the embodied alternative is alive for the mechanism; the architectural case rests on independent recurrence of the RELATION, not on any shared implementation.",
+    "source_context": "Gryllus bimaculatus, intracellular electrophysiology during fictive and real singing."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.2,
+    "notes": "Domain 4 (comparative) anchor for AGENCY; also serves domain 3 (translation mechanism) alongside Crapse & Sommer 2008."
+  }
+}
