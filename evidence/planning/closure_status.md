@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-08T07:15:44Z
+Generated: 2026-09-08T18:35:20Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -61,8 +61,8 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | global_workspace_jlens_plan.md | `global_workspace_jlens:A` | Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space | blocked |  | load-bearing |  | ext: observation-encoding competence build (V3-EXQ-732-localized H2_observation_interface_ | 2026-07-10 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:B` | Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD- | blocked |  | load-bearing |  | Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Th | 2026-07-09 |
 | policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | Re-pose ARC-070's prediction-failure decomposition trigger off the saturated reg | blocked |  | load-bearing | V3-EXQ-938 | 2026-08-21 governance applied confirmed failure_autopsy_V3-EXQ-938_2026-08-20: non_contrib | 2026-08-21 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUE | 2026-09-02 |
-| global_workspace_jlens_plan.md | `global_workspace_jlens:GATE-B` | SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, | open |  | high |  | ext: competence-localization: V3-EXQ-724 (queued) + a competent all-ON substrate -- see cr | 2026-07-10 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | [RECONCILED 2026-09-08: V3-EXQ-460k RAN 2026-06-22T19:17Z, terminal FAIL / non_contributor | 2026-09-08 |
+| global_workspace_jlens_plan.md | `global_workspace_jlens:GATE-B` | SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, | open |  | high |  | ext: competence-localization: V3-EXQ-724 RAN 2026-07-09 terminal FAIL / non_contributory ( | 2026-09-08 |
 | mech357_avoidance_efficacy_plan.md | `mech357_avoidance_efficacy:BUILD` | Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the d | partial |  | high |  |  | 2026-08-29 |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked |  | high |  | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-08-13 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial |  | medium |  | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-07-20 |
