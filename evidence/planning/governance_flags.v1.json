@@ -3277,6 +3277,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0234",
+      "claim_ids": [
+        "MECH-439"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The E3 channel-commensurability rung-3 readiness target -- '>= 2 E3 score channels simultaneously above a 1e-3 RELATIVE cross-candidate share in the 936 regime', pre-registered by the CONFIRMED failure_autopsy_V3-EXQ-571c_2026-09-02 and restated as the acceptance condition in docs/architecture/sd_e3_channel_commensurability.md -- is an ARITHMETIC IDENTITY of the operator it is meant to validate, so no experiment adopting it can fail. The operator divides each channel's per-candidate term by an EMA of THAT CHANNEL'S OWN cross-candidate SD; the DV is the cross-candidate variance partition over those same terms, and e3_selector.py's own comment states the decomposition stores 'EFFECTIVE (post-commensurability) terms'. Var(term/s)=Var(term)/s^2 ~= 1 per channel, so shares go to 1/k and every channel above the 1e-12 absolute floor clears the 1e-3 relative floor (a 1000x tolerance). The spec's own build-time ON measurement, top_share 0.500000 with n_live 2, is exactly 1/2 -- the identity's fingerprint, not an effect. SEPARATELY, the natural control gate is refuted by 571c's landed manifest: its starved arm measured n_live 1/2/1/3 across seeds 42/43/45/46, and n_live==1 holds in only 7 of its 16 cells, so 'the monopoly means n_live==1' is a misreading of a worst-cell gate verdict. The owed validation V3-EXQ-1012 was authored, smoke-green, and NOT QUEUED. RECOMMEND the rung-3 target be re-posed onto a SELECTION-level DV (commit-flip under shadow OFF/ON scoring on the same tick and candidate set is the natural falsifier, and is what the spec's own argmin-invariance argument is actually about) before any validation is queued, and that the autopsy line and the SD doc be amended together since the sentence appears in both. Until then the rung is IMPLEMENTED but UNVALIDATABLE AS SPECIFIED, which differs materially from 'validation owed'. MECH-439's direction does NOT change: nothing here says the operator does or does not work, only that the target cannot tell. Full derivation, source citations and successor recipe: REE_assembly evidence/planning/exq1012_blocked_readiness_target_tautological_20260908.md",
+      "raised_by_session": "w5-freshfill-20260908",
+      "raised_at": "2026-09-08T19:33:40Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
