@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_regulation_first_authority_field",
+  "entry_id": "2026-09-08_q_103_traveling_waves_integrate_spatial_information_through_time_jacobs2025",
+  "timestamp_utc": "2026-09-08T18:51:20Z",
+  "claim_ids_tested": [
+    "Q-103"
+  ],
+  "source": {
+    "title": "Traveling Waves Integrate Spatial Information Through Time",
+    "authors": [
+      "Mozes Jacobs",
+      "Roberto C. Budzinski",
+      "Lyle Muller",
+      "Demba Ba",
+      "T. Anderson Keller"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint",
+    "doi": null,
+    "arxiv_id": "2502.06034",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "PREPRINT (arXiv 2502.06034, v1 2025-02-09, latest v4 2025-06-11 -- the thought cites v3, a version difference worth noting but not a discrepancy). Verified. This is the implementation-side evidence Q-103's notes flagged as unverified, and it holds up: convolutional recurrent networks trained to produce traveling waves in their hidden state propagate information across locally connected units, effectively expanding receptive fields for long-range encoding, and on visual semantic segmentation they substantially outperform local feedforward models and rival non-local U-Nets with fewer parameters. Supports Q-103's REPRESENTATIONAL branch in an artificial system: the wave carries spatial information through time rather than merely gating. Confidence 0.55 -- a clean, relevant result, discounted for preprint status, for being a vision-segmentation architecture rather than an inter-representation coupling field, and because outperforming a local feedforward baseline shows the wave is USEFUL, not that its trajectory carries structure that a content-only account could not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Q-103's representational branch predicts the coupling trajectory carries relational structure beyond the instantaneous content it gates. This architecture demonstrates a wave carrying spatial information through time -- but its comparison is against models with SMALLER effective receptive fields, so the result is also explainable as cheap long-range communication, which is the routing-only branch. The discriminator Q-103 needs is not run here.",
+    "The chip's note that the parameter saving comes 'at a speed cost' is consistent with the abstract's efficiency framing; a REE mechanism adopting waves for long-range integration would inherit that latency, which matters for any claim about the actionable-now state."
+  ],
+  "tags": [
+    "q-103",
+    "traveling_waves",
+    "recurrent_neural_network",
+    "spatial_integration",
+    "semantic_segmentation",
+    "implementation_evidence",
+    "preprint",
+    "representational_branch"
+  ],
+  "mapping": {
+    "source_claim_statement": "Convolutional recurrent networks that learn to produce traveling waves in their hidden state propagate wave-like activation across locally connected units, expanding effective receptive fields for long-range encoding and communication. On visual semantic segmentation requiring global spatial context they substantially outperform local feedforward models and rival non-local U-Net architectures with fewer parameters, with claimed efficiency and training-stability benefits.",
+    "ree_translation": "Q-103 asks whether an authority/coupling field's trajectory carries relational structure or only sets eligibility and gain. This is the artificial-system demonstration that a wave can carry spatial structure through time and be functionally load-bearing -- the implementation evidence Q-103's notes cited and marked unverified pending this pull.",
+    "mapping_caveat": "A vision architecture, not a model of coupling between representational subsystems; the wave here IS the computation substrate rather than a field modulating access between regions. The baseline comparison is against models with smaller effective receptive fields, so the result is equally readable as efficient long-range routing -- it does not discriminate Q-103's two branches. Preprint; the thought cites v3 while v4 is current.",
+    "source_context": "Artificial neural networks; visual semantic segmentation requiring global context."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.6,
+    "notes": "Preprint with a clear, relevant result and named authors overlapping the biological review banked alongside. Mapping capped because the architecture does not instantiate the object Q-103 is about."
+  }
+}

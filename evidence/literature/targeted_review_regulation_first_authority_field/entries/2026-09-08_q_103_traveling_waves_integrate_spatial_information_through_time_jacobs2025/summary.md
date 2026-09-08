@@ -1,0 +1,9 @@
+# Jacobs et al. 2025 -- waves that carry space through time, in a network
+
+arXiv 2502.06034, first posted 9 February 2025, currently at v4 (11 June 2025); Q-103's notes cite v3, which is a version difference rather than a discrepancy. The claim's notes marked this citation unverified pending this pull, and it verifies.
+
+The work builds convolutional recurrent networks that learn to produce traveling waves in their hidden state. Because activity propagates across locally connected units, the effective receptive field of a local neuron expands, giving long-range encoding and communication without non-local connectivity. On visual semantic segmentation, which needs global spatial context, the wave models substantially beat local feedforward models and rival non-local U-Nets while using fewer parameters.
+
+For Q-103's representational branch this is the artificial-system counterpart of the biological review banked alongside it -- and Lyle Muller is an author on both, which is worth knowing when weighing them as independent. A wave that carries spatial information through time is structure held in the propagating state, not merely a gain applied to structure held elsewhere.
+
+The honest limit is that it does not discriminate. The comparison is against architectures with smaller effective receptive fields, so "the wave helps" is equally explicable as cheap long-range routing, which is Q-103's other branch. The discriminating experiment -- does the trajectory carry relational structure beyond the content it gates, once content is accounted for -- is not run here and would have to be run in REE. And this is a vision architecture in which the wave IS the computation, rather than a field modulating access between two representational subsystems, which is the object Q-103 is actually about. Supports at 0.55.

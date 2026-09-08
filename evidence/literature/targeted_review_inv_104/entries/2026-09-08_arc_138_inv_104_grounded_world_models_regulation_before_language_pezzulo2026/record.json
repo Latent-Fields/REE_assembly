@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_104",
+  "entry_id": "2026-09-08_arc_138_inv_104_grounded_world_models_regulation_before_language_pezzulo2026",
+  "timestamp_utc": "2026-09-08T18:51:20Z",
+  "claim_ids_tested": [
+    "ARC-138",
+    "INV-104"
+  ],
+  "source": {
+    "title": "Grounded world models in biological organisms and future embodied AI",
+    "authors": [
+      "Giovanni Pezzulo",
+      "Davide Nuzzi",
+      "Marco D'Alessandro",
+      "Riccardo Proietti",
+      "Roberto Bottini",
+      "Paul Cisek"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint (perspective)",
+    "doi": null,
+    "arxiv_id": "2607.13560",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "PREPRINT, and a PERSPECTIVE rather than an empirical study -- both stated because the thought's bibliography does not. Verified on arXiv (2607.13560, submitted 2026-07-15). METADATA CORRECTION: the title is 'Grounded world models in biological organisms and future EMBODIED AI', not '...future artificial intelligence' as the thought's citation and ARC-138's stub have it. The substance is as the thought represents: current systems are 'largely based on passive training regimes where linguistic regularities create the scaffold onto which information from other modalities is attached', whereas 'biological intelligence is organized in the opposite way, where grounded world models acquired through interaction with the environment provide the semantic scaffold to which language is attached', with intrinsic dynamics, action, autonomous open-ended experience, and early predictive/control mechanisms scaffolding higher cognition. That is ARC-138's developmental ordering argued by a senior group. Confidence 0.55: an argued position paper, not evidence, and its ordering claim is about language-versus-grounding, which is ONE step of ARC-138's five-term chain rather than the whole of it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ARC-138 asserts a five-term ordering (machine -> regulation -> interaction -> organised experience -> knowledge). Pezzulo et al. argue the grounding-before-language half and say comparatively little about the REGULATION-before-interaction step, which is ARC-138's most distinctive and least externally supported link. Citing this paper as support for the whole chain would overstate it.",
+    "A perspective arguing that current AI has the ordering backwards is not evidence that the reversed ordering is NECESSARY. If a passively trained system were shown to acquire a portable world model without interactive grounding, ARC-138 would be weakened and this paper would not be, since it advances a design argument rather than an impossibility claim."
+  ],
+  "tags": [
+    "arc-138",
+    "inv-104",
+    "grounded_world_models",
+    "embodied_ai",
+    "regulation_first",
+    "developmental_ordering",
+    "preprint",
+    "perspective",
+    "pezzulo",
+    "cisek",
+    "metadata_correction"
+  ],
+  "mapping": {
+    "source_claim_statement": "Verbatim: 'neuroscience and cognitive science suggest that biological intelligence is organized in the opposite way, where grounded world models acquired through interaction with the environment provide the semantic scaffold to which language is attached.' The authors name as missing from current embodied AI: 'the role of intrinsic dynamics as a foundation for learning, the centrality of action in aligning these dynamics with the external world, the prominence of autonomous experience and open-ended learning over passive assimilation of externally provided data, and the fact that early predictive and control mechanisms scaffold higher cognitive abilities'.",
+    "ree_translation": "ARC-138 holds that a detached, portable world model is a developmental ACHIEVEMENT reached through interaction the organism itself drives, not a starting point. This is the same thesis argued independently, with allostatic control and emotion treated as integral rather than decorative. For INV-104 the relevant transfer is narrower: if the semantic scaffold is built from interaction, then what a compression must preserve is defined by the organism's own regulatory and action demands, which is INV-104's organism-relevance criterion rather than a generic information criterion.",
+    "mapping_caveat": "A position paper, not data; nothing here measures a compression, a distinction, or a developmental ordering. It argues that current AI has the scaffold inverted and that action and intrinsic dynamics matter, which supports ARC-138's direction without testing any of its steps. The regulation-before-interaction link, which is what makes ARC-138 more than standard embodied-cognition doctrine, is not separately defended.",
+    "source_context": "Perspective on embodied AI and neuroscience; no experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Strong authorship (Pezzulo, Cisek) but a preprint perspective; source quality scored for argument, not evidence."
+  }
+}

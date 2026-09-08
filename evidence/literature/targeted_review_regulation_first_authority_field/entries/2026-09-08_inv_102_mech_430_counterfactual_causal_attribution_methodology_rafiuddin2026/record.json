@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_regulation_first_authority_field",
+  "entry_id": "2026-09-08_inv_102_mech_430_counterfactual_causal_attribution_methodology_rafiuddin2026",
+  "timestamp_utc": "2026-09-08T18:51:20Z",
+  "claim_ids_tested": [
+    "INV-102",
+    "MECH-430"
+  ],
+  "source": {
+    "title": "C3T: Counterfactual Causal Reasoning for Sentiment Shifts in Social-Media Conversation Trees",
+    "authors": [
+      "S M Rafiuddin",
+      "Atriya Sen"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint",
+    "doi": null,
+    "arxiv_id": "2609.02131",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "unknown",
+  "confidence": 0.3,
+  "confidence_rationale": "PREPRINT, verified on arXiv (2609.02131, submitted 2026-09-02); the thought's citation is exact. Banked as a METHODOLOGICAL anchor only, which is what the chip specifies and what the thought itself concedes -- its findings do not transfer to embodied agents. What is transferable is the shape of the attribution problem: the model treats discourse moves (denial/correction, evidence, toxicity) as candidate INTERVENTIONS, learns sparse ancestor attribution over a conversation tree to identify which prior message drove a reply, and supports counterfactual queries by forcing intervention embeddings on or off. Direction 'unknown' and confidence 0.3 deliberately: the paper bears on HOW one would test an other-agent-caused hypothesis, not on whether REE needs one. Sentiment attribution in rumour threads is not other-agent causal-model selection.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "INV-102 requires a distinct OTHER-agent-caused hypothesis alongside world-caused and self-caused. C3T shows the attribution can be posed and estimated when the candidate causes are DISCRETE, LABELLED discourse moves in an explicit tree. REE has neither the labels nor the tree; if an REE implementation needs an annotated intervention vocabulary to make ancestor attribution tractable, that is a substantive cost this paper hides rather than solves.",
+    "The counterfactual here is implemented by toggling an intervention embedding in a learned model, not by intervening on the world. A REE evaluation using the same device would be measuring its own model's sensitivity, not the causal structure of its environment -- which is exactly the confound INV-102's falsifier has to avoid."
+  ],
+  "tags": [
+    "inv-102",
+    "mech-430",
+    "counterfactual",
+    "causal_attribution",
+    "ancestor_attribution",
+    "sentiment",
+    "methodological_anchor_only",
+    "preprint",
+    "does_not_transfer"
+  ],
+  "mapping": {
+    "source_claim_statement": "C3T models discourse moves in rumour-focused conversation threads (denial/correction, evidence/link, toxicity/attack) as candidate interventions, over a causally annotated dataset layer (CaSiRe) providing sentiment labels, parent-child shift indicators, intervention tags and explicit causal-source annotations. It learns sparse ancestor attribution to identify which prior messages plausibly drove a reply's sentiment and supports counterfactual queries by forcing intervention embeddings on or off. Denials, corrections and evidence reduce downstream negativity while toxicity increases it; attribution is reported as more reliable than open-weight LLM approaches.",
+    "ree_translation": "INV-102 says causal-model selection must include an other-agent-caused hypothesis; MECH-430 says provenance is a source VECTOR including source identity, not a single bit. C3T is a worked example of estimating WHICH other agent's prior act caused an observed change, with competing candidate causes and counterfactual tests -- the methodological shape both claims imply. It is not evidence for either.",
+    "mapping_caveat": "Text sentiment in social-media threads, with human-annotated intervention labels and an explicit parent-child tree given in advance. An embodied agent has no annotated intervention vocabulary and must infer the tree; the thought itself states the findings do not transfer. Counterfactuals are toggles on a learned embedding, not interventions on the world. Preprint.",
+    "source_context": "NLP; rumour conversation threads with the CaSiRe causal annotation layer."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.3,
+    "transfer_risk": 0.8,
+    "notes": "Deliberately floored. Direction 'unknown' because a methodology paper in a distant domain cannot bear on the truth of either claim; the entry exists so the citation is verified and its limits recorded."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_regulation_first_authority_field",
+  "entry_id": "2026-09-08_inv_037_sd_064_compression_precedes_reportable_awareness_jiang2026",
+  "timestamp_utc": "2026-09-08T18:51:20Z",
+  "claim_ids_tested": [
+    "INV-037",
+    "SD-064"
+  ],
+  "source": {
+    "title": "Compressed representations underpin knowledge awareness in sequence learning",
+    "authors": [
+      "Haoran Jiang",
+      "Xiuyan Guo",
+      "Yang Lu",
+      "Shaobo Xu",
+      "Guanglong Liu",
+      "Xianting Shen",
+      "Xue Weng"
+    ],
+    "year": 2026,
+    "venue": "bioRxiv (preprint, Cold Spring Harbor Laboratory)",
+    "doi": "10.64898/2026.08.22.746376",
+    "arxiv_id": null,
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "PREPRINT, not peer reviewed; verified directly on bioRxiv (DOI 10.64898/2026.08.22.746376, posted 2026-08-26 -- the thought's citation is correct, though the posting date is four days after the DOI stem's 08-22). EEG/MEG study of category-based triplet-rule learning. Key result as abstracted: 'implicit sequence knowledge was already represented in an abstract, compressed format' BEFORE awareness; 'Compression rate quantified how efficiently local rule information entered this shared format, and its pre-awareness level predicted later awareness specifically in the event-related potential P3 window'; MEG localised pre-transition compression to left middle temporal cortex with post-awareness expansion into prefrontal cortex, and pre-awareness temporal-to-prefrontal theta transfer was rule-specific and predicted later awareness. Banked as a LIT ANCHOR CANDIDATE ONLY, exactly as the chip specifies -- it is a human EEG/MEG correlational study of implicit-to-explicit transition, and INV-037/SD-064 are REE architectural claims about preparation substrates and a broadcast bottleneck. Confidence 0.5.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "INV-037 says stored-and-retrievable is not the same as active in the navigable state; this study's structure -- competent, compressed representation present and behaviourally effective before it is reportable -- is the human analogue, but the analogy would break if REE's 'preparation substrate' turned out to be what CREATES the representation rather than what makes an existing one live. The paper reports expansion into prefrontal cortex at the transition, which is compatible with either reading.",
+    "SD-064 asserts a capacity-limited selection-for-broadcast bottleneck whose contents are reportable. A compression-rate predictor of later awareness is consistent with that but does not establish a bottleneck: nothing here shows capacity limitation, competition between candidate contents, or that the broadcast is causally load-bearing rather than a correlate of the transition.",
+    "The predictor is measured in the P3 window, which is itself the classic index used to OPERATIONALISE conscious access in this literature. There is a real circularity risk in treating a P3-window measure as independent evidence about a broadcast architecture, and REE should not import it uncritically."
+  ],
+  "tags": [
+    "inv-037",
+    "sd-064",
+    "compression",
+    "implicit_explicit_transition",
+    "knowledge_awareness",
+    "sequence_learning",
+    "eeg_meg",
+    "p3",
+    "theta_routing",
+    "preprint",
+    "anchor_candidate_only"
+  ],
+  "mapping": {
+    "source_claim_statement": "Humans can acquire sequence structure before it enters awareness, and in some learners the implicit knowledge later becomes reportable. Using EEG/MEG on category-based triplet rules, implicit sequence knowledge was found already represented in an abstract, compressed format in which rule information generalised across triplet elements. Compression rate before awareness predicted later awareness in the P3 window; MEG localised pre-transition compression to left middle temporal cortex with post-awareness expansion into prefrontal cortex, and pre-awareness rule-specific temporal-to-prefrontal theta transfer predicted later awareness.",
+    "ree_translation": "The chip routes this at INV-037 / SD-064 as a candidate anchor for competence preceding inspectability. The mapping is: a representation can be structurally adequate and behaviourally effective while remaining unavailable to the system's reportable/broadcast channel, and what changes at the transition is routing and territory (temporal to prefrontal) rather than the acquisition of new content. That is INV-037's stored-versus-active distinction with a measured human instance, and SD-064's access channel with a candidate signature.",
+    "mapping_caveat": "Correlational human electrophysiology on an artificial triplet-rule task; awareness is operationalised by report and indexed in the P3 window, which is the same literature's own construct, so the predictive result is partly internal to that framework. No causal manipulation of compression. REE's INV-037 and SD-064 are architectural commitments about a preparation substrate and a broadcast bottleneck, neither of which this study measures. Preprint.",
+    "source_context": "Human EEG/MEG; category-based triplet sequence learning with an implicit-to-explicit awareness transition."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Preprint status and correlational design cap source quality. Mapping deliberately mid: banked as anchor candidate per the chip, not as support for the architecture."
+  }
+}

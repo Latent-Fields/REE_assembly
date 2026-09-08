@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_regulation_first_authority_field",
+  "entry_id": "2026-09-08_mech_534_q_103_analog_cognition_brain_waves_route_signals_miller2026",
+  "timestamp_utc": "2026-09-08T18:51:20Z",
+  "claim_ids_tested": [
+    "MECH-534",
+    "Q-103"
+  ],
+  "source": {
+    "title": "Analog Cognition and Consciousness",
+    "authors": [
+      "Earl K. Miller",
+      "Scott L. Brincat",
+      "Jefferson E. Roy"
+    ],
+    "year": 2026,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0711-26.2026",
+    "pmid": "42618509",
+    "pmc": "PMC13492466",
+    "volume": "46",
+    "issue": "33",
+    "pages": "e0711262026"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "Peer-reviewed, verified via PubMed (PMID 42618509, J Neurosci 46(33):e0711262026, 19 Aug 2026); the thought's citation including the unusual article number is exact. It is the clearest external statement of MECH-534's premise: 'Cognition and consciousness may arise from bidirectional interactions between neuronal spiking and rhythmic electric field activity (brain waves)', with waves supporting analog computation and flexibly ROUTING neural signals so that neurons take context-dependent roles. Confidence 0.52 because it is a perspective/theoretical piece rather than a decisive experiment, and because for Q-103 -- routing-only versus representational field -- it is explicitly on both sides: routing is asserted, and 'goal-directed thought, action, and unified consciousness emerge from cortex-wide wave dynamics' is a representational claim. It frames Q-103's fork rather than resolving it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-534's primary falsifier is the static-gate alternative: if coupling gain has no fast endogenous dynamics of its own, the claim fails. This paper asserts the opposite but does not test the static-gate alternative, so it cannot discharge that falsifier; it supplies the hypothesis REE registered, not evidence against its rival.",
+    "For Q-103, the paper's own framing straddles the fork. Taking its 'flexibly route neural signals' language as settling the routing-only branch, or its 'emerge from cortex-wide wave dynamics' language as settling the representational branch, would be selective reading of a source that asserts both."
+  ],
+  "tags": [
+    "mech-534",
+    "q-103",
+    "analog_cognition",
+    "brain_waves",
+    "electric_fields",
+    "routing",
+    "context_dependent_roles",
+    "miller_lab",
+    "theoretical"
+  ],
+  "mapping": {
+    "source_claim_statement": "Verbatim from the abstract: 'Cognition and consciousness may arise from bidirectional interactions between neuronal spiking and rhythmic electric field activity (brain waves).' Goal-directed behaviour is held to depend on top-down control orchestrating populations through low-dimensional task dynamics; brain waves support analog computation and flexibly route neural signals, enabling neurons to take context-dependent roles; 'goal-directed thought, action, and unified consciousness emerge from cortex-wide wave dynamics'.",
+    "ree_translation": "MECH-534 posits an authority field -- the moment-to-moment effective directed distance, permeability and gain between representational regions, with its own dynamics rather than a static gate. The bidirectional spiking/field account is that hypothesis in neural terms, and 'neurons assume context-dependent roles' is the biological form of a region's read of another being reconfigured moment to moment. Q-103 asks whether that coupling state itself carries relational structure or only sets eligibility and gain; this paper asserts both and settles neither.",
+    "mapping_caveat": "A theoretical/perspective article, not an experiment, from a group advancing this position; it should be cited as the hypothesis's clearest statement rather than as evidence for it. Macaque and human cortical electrophysiology background; nothing in it addresses whether an artificial agent NEEDS such a mechanism beyond existing precision or control machinery, which is the brake MECH-534's own notes adopt.",
+    "source_context": "Cortical electrophysiology; theoretical synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.6,
+    "notes": "Good venue, prominent group, but a position piece. Scored so it registers as the hypothesis's statement rather than its confirmation."
+  }
+}

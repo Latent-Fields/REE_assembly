@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_regulation_first_authority_field",
+  "entry_id": "2026-09-08_mech_534_q_103_neural_traveling_waves_spatiotemporal_dependencies_muller2026",
+  "timestamp_utc": "2026-09-08T18:51:20Z",
+  "claim_ids_tested": [
+    "MECH-534",
+    "Q-103"
+  ],
+  "source": {
+    "title": "Neural traveling waves in cortex: Network mechanisms and potential roles in neural computation",
+    "authors": [
+      "Lyle Muller",
+      "Alexandra N. Busch",
+      "Zachary W. Davis",
+      "John H. Reynolds"
+    ],
+    "year": 2026,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2026.06.019",
+    "pmid": "42480536",
+    "pmc": null,
+    "volume": "114",
+    "issue": "17",
+    "pages": "3156-3174"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Peer-reviewed review, verified via PubMed (PMID 42480536, Neuron 114(17):3156-3174, 2 Sep 2026, epub 21 Jul); the thought's DOI is exact. Direction is split by claim and this is the useful part. For MECH-534 it SUPPORTS: traveling waves are documented throughout the awake brain, arise intrinsically as well as from sensory and behavioural triggers, and influence neural excitability and behaviour -- i.e. an endogenous, fast-moving modulation of effective coupling, which is the authority field's premise. For Q-103 it leans toward the REPRESENTATIONAL branch and is therefore evidence on a fork REE has deliberately left open: waves 'introduce spatiotemporal dependencies across sensory maps' beyond feedforward/feedback models, and the review describes them implementing spatiotemporal computations including predicting upcoming input by embedding sensory history. Structure carried in the wave state is more than eligibility-setting. Confidence 0.58: a strong review by the field's leading group, but a review, and the computational roles are described as potential.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Q-103's discriminator asks whether the coupling trajectory carries relational structure beyond the content it gates. A wave that embeds sensory history to predict upcoming input is carrying temporal structure in the field itself -- so if a REE probe found the authority-field trajectory to be informationally empty once content was regressed out, that would be a divergence from the biology this review describes, not merely a null.",
+    "The review is explicit that computational ROLES are potential rather than established. MECH-534 registered the static-gate falsifier for a reason; a literature that documents waves exist and correlate with excitability and behaviour does not establish that the wave dynamics are doing computational work, and REE should not inherit the stronger reading."
+  ],
+  "tags": [
+    "mech-534",
+    "q-103",
+    "traveling_waves",
+    "spatiotemporal_computation",
+    "sensory_history",
+    "excitability",
+    "review",
+    "representational_branch"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neural traveling waves are observed throughout the awake animal brain, where they influence neural excitability and behaviour; they can emerge intrinsically or be triggered by sensory input and behaviour. They 'introduce spatiotemporal dependencies across sensory maps' beyond what feedforward/feedback models capture, and the review sets out circuit mechanisms generating them and how they can implement spatiotemporal computations, including predicting upcoming sensory inputs through embedded sensory history.",
+    "ree_translation": "MECH-534's authority field requires that inter-region coupling have fast endogenous dynamics rather than being a static gate; intrinsically generated traveling waves that modulate excitability are the biological instance. Q-103 asks whether that coupling state carries relational structure of its own; waves embedding sensory history to predict upcoming input are an instance of the representational branch, since the structure is in the field's trajectory rather than only in the content it gates.",
+    "mapping_caveat": "A review of animal cortical electrophysiology; computational roles are presented as potential rather than demonstrated, and no result here concerns an artificial agent's inter-representation coupling. Q-103's fork is about REE's L-space, and biological evidence for the representational branch in cortex does not establish it for REE -- MECH-534's own notes adopt the brake that biological likeness must not outrank functional necessity.",
+    "source_context": "Awake animal cortex (primate and rodent); review of mechanisms and proposed computational roles."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.6,
+    "notes": "Neuron review by the group that has driven this literature; source quality high for a review. Mapping mid because the fork it informs is about REE's own L-space, not cortex."
+  }
+}

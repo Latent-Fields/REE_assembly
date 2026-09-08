@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_regulation_first_authority_field",
+  "entry_id": "2026-09-08_mech_534_ephaptic_coupling_explains_trial_variability_pinotsis2026",
+  "timestamp_utc": "2026-09-08T18:51:20Z",
+  "claim_ids_tested": [
+    "MECH-534"
+  ],
+  "source": {
+    "title": "Ephaptic coupling can explain variability in neural activity",
+    "authors": [
+      "Dimitris A. Pinotsis",
+      "Earl K. Miller"
+    ],
+    "year": 2026,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhag098",
+    "pmid": "42411828",
+    "pmc": null,
+    "volume": "36",
+    "issue": "6",
+    "pages": "bhag098"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Peer-reviewed, verified via PubMed (PMID 42411828, Cereb Cortex 36(6):bhag098, 2 Jun 2026); the thought's citation is exact. NOT A DUPLICATE of existing REE coverage, which the chip asked me to check: targeted_review_connectome_mech_270 holds Anastassiou et al. 2011 'Ephaptic coupling of cortical neurons' (Nat Neurosci) and two 2010 field-effect papers, and MECH-499/MECH-500 hold coherence and movement-initiation work -- none holds this paper. It is the most directly MECH-534-relevant of the authority-field bibliography: analysing prefrontal LFP during a spatial delayed-saccade task, field-to-neuron coupling was STRONGER than neuron-to-field and tracked trial-by-trial changes in oscillatory power, supporting circular causality in which activity and extracellular fields continuously shape each other. Confidence 0.62 -- a real measurement with a directional asymmetry, discounted because it is a single dataset, correlational at the level that matters, and the memory-ensemble interpretation is the authors' own cytoelectric hypothesis rather than a demonstrated result.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-534's static-gate falsifier needs the coupling to vary endogenously and consequentially. Field-to-neuron coupling exceeding neuron-to-field is the specific asymmetry that makes the field a driver rather than a readout -- if the asymmetry ran the other way, the authority-field reading would lose its main biological support and the static-gate alternative would be strengthened.",
+    "Trial-to-trial power variability is here attributed to ephaptic influence rather than to neuromodulation, uncertainty encoding or excitability changes, but these are not mutually exclusive and the analysis does not exclude them. A REE mechanism that reproduced coupling variability from a precision/uncertainty signal alone would match this data equally well, which is why MECH-534's brake against inferring necessity is the right one."
+  ],
+  "tags": [
+    "mech-534",
+    "ephaptic_coupling",
+    "electric_fields",
+    "circular_causality",
+    "prefrontal",
+    "lfp",
+    "trial_variability",
+    "cytoelectric",
+    "not_duplicate_of_mech_270"
+  ],
+  "mapping": {
+    "source_claim_statement": "Cross-trial variability in cortical oscillatory power, usually attributed to neuromodulation, uncertainty encoding or excitability changes, is also due to fluctuations in the ephaptic influence of mesoscale electric fields. In prefrontal LFP recorded during a spatial delayed-saccade task, field-to-neuron coupling was stronger than neuron-to-field and correlated with trial-by-trial power changes, indicating circular causality between activity and extracellular fields; the authors read this as supporting mesoscale ephaptic contributions to memory-ensemble formation, a prediction of their cytoelectric coupling hypothesis.",
+    "ree_translation": "MECH-534 asserts that the effective coupling between representational regions has its own fast, endogenous dynamics. A measured field-to-neuron influence exceeding the reverse direction, varying trial by trial and tracking oscillatory power, is the biological form of exactly that: the coupling medium is a driver with its own state, not a passive summary of the units it connects.",
+    "mapping_caveat": "Single-dataset macaque prefrontal LFP with model-based coupling estimation; 'circular causality' is inferred from directional coupling strength rather than from intervention. The alternative sources of power variability the authors set aside (neuromodulation, uncertainty) are not excluded and are, in REE terms, precisely the existing precision machinery MECH-534's notes refuse to claim insufficiency for. The memory-ensemble reading is the authors' own hypothesis.",
+    "source_context": "Macaque prefrontal cortex; LFP during a spatial delayed-saccade task."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "Good journal, direct measurement, prominent group with a stake in the hypothesis. Discounted for single dataset and for an interpretation the authors are invested in."
+  }
+}
