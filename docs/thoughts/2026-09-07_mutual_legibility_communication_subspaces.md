@@ -563,7 +563,7 @@ And the main experimental principle is:
 - Binish N et al. *A communication subspace relays context-dependent actions from human prefrontal to motor cortex*. Nature Neuroscience 29, 1690-1698 (2026). DOI: 10.1038/s41593-026-02290-4.
 - Gonzalez J et al. *Subspace communication in the hippocampal-retrosplenial axis*. Nature 655, 192-201 (2026). DOI: 10.1038/s41586-026-10481-z.
 - Spens E, Burgess N. *Hippocampo-neocortical interaction as compressive retrieval-augmented generation*. Nature Communications 17, 7971 (2026). DOI: 10.1038/s41467-026-74357-6.
-- Karpowicz BM et al. *Stabilizing brain-computer interfaces through alignment of latent dynamics* (NoMAD). Nature Biomedical Engineering / open manuscript record, 2025.
+- Karpowicz BM et al. *Stabilizing brain-computer interfaces through alignment of latent dynamics* (NoMAD). Nature Communications 16, 4662 (2025). DOI: 10.1038/s41467-025-59652-y.
 
 ## 20. REE internal anchors
 

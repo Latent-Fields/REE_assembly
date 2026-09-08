@@ -71,7 +71,7 @@ Both entries match GOV-ROTATE-1's field shape (no `location` field; GOV-ROTATE-1
 4. **Deliberately left unregistered:** the `EquivalenceEnvelope` record shape (gated by GOV-ROTATE-1 (i) / GOV-EQUIV-1 (iii)); the precision-weighting analogue (already owned); the creature/scientist recursion (methodological analogy only); "choose experiments by representational disagreement" as a standalone rule (recorded as GOV-EQUIV-1's corollary; promote to its own claim only if a session finds it doing work GOV-FANOUT-1 does not).
 5. No experiment is to be minted against either claim. DO NOT build in V3.
 
-## Digestion pass (2026-09-08, session thought-digest-20260908-drift-checksum) -- STAGED, NOT YET APPLIED
+## Digestion pass (2026-09-08, session thought-digest-20260908-drift-checksum) -- APPLIED 2026-09-08T20:25:35Z (claims.yaml GOV-EQUIV-1/GOV-SHARPEN-1 `what_would_answer`, chip chip-20260908-digest-apply-gov-equiv-sharpen, campaign W6-HK-K2, session w6hk-k2-registry-20260908; drafts below kept verbatim as the record)
 
 `/thought-digestion` ran in the same session as the intake. At write time `task_claim.py open` returned
 NOT OWNER on `docs/claims/claims.yaml` (owner: `governance-20260908-0703`, "governance-pause: cycle
