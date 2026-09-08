@@ -4622,7 +4622,11 @@
       "task_claim_session_id": "igw-auto-igw-234-literature-proposal-for-inv-093-20260908T051917Z",
       "task_claim_claimed_at": "2026-09-08T05:19:17Z",
       "assigned_at": "2026-09-08T05:10:21Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-08T06:24:19Z",
+      "completion_summary": "lit-pull INV-093: 5 entries landed (REE_assembly 7b7d0f03b7 + index bf284e02df), lit_conf 0.855, plausible_unproven; flagged to governance that 3 of the 4 panel axes are unevidenced and the falsifier needs a sweep-resolution clause",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull INV-093: 5 entries landed (REE_assembly 7b7d0f03b7 + index bf284e02df), lit_conf 0.855, plausible_unproven; flagged to governance that 3 of the 4 panel axes are unevidenced and the falsifier needs a sweep-resolution clause"
     }
   ],
   "dispositions": [
@@ -6551,6 +6555,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-08T04:40:02Z",
       "re_eligible_after": "2026-09-10T04:40:02Z"
+    },
+    {
+      "stable_hash": "00bce91bef6d",
+      "igw_id_at_disposition": "IGW-20260908-234",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-093"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for INV-093",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T06:24:19Z",
+      "re_eligible_after": "2026-09-10T06:24:19Z"
     }
   ]
 }
