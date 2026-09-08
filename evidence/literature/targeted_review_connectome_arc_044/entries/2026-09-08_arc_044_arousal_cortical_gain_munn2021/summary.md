@@ -1,0 +1,21 @@
+# Munn, Muller, Wainstein & Shine (2021), *The ascending arousal system shapes neural dynamics to mediate awareness of cognitive states* -- ARC-044
+
+## What the paper does
+
+The starting complaint is one REE should recognise: models of cognition are written about cortex, and treat the ascending arousal system as background housekeeping rather than as a computational participant. The paper's response is to look for time-locked structure between phasic bursts in the locus coeruleus and basal forebrain and the large-scale configuration of cortical activity, using spontaneous fMRI. It finds it -- brainstem bursts relate systematically to the low-dimensional energy landscape of cortical dynamics, to network topology, and to travelling waves -- and interprets the relationship through a neural-mass model in which the manipulated parameter is gain. A second cohort of experienced meditators links locus coeruleus-mediated dynamics to reported shifts in conscious awareness.
+
+## Why it bears on ARC-044
+
+ARC-044's ambition is not that arousal turns a channel up. It is that arousal is the thing that reconfigures how the whole evaluation apparatus behaves, which is what would make it a credible unifier of four mechanisms that otherwise have nothing in common but a scaling coefficient. Most of the gain literature is at the wrong scale to speak to that -- it measures single cells in one area. This paper is at the right scale, in the right species, and it reports the right shape of effect: arousal bursts relate to the *configuration* of the system, not the amplitude of any part of it. For a claim about REE's control plane, that is the relevant grain, and there is not much else at that grain.
+
+It is also the paper that most directly damages the claim's headline. ARC-044 says these mechanisms are facets of a global arousal signal, singular. The analysis here separates locus coeruleus from basal forebrain precisely because their contributions are not interchangeable, and it reports distinguishable relationships for each. That is the third independent line in this batch pointing the same way -- Yu and Dayan derived it normatively, Polack measured it intracellularly, and Munn et al. observe it at the whole-brain level in humans. The convergence is what makes it worth acting on: it is not one preparation's quirk.
+
+## How I would translate it
+
+Keep the level of description, revise the cardinality. ARC-044's insight -- that effective precision at an evaluation channel is a composite quantity, and that ARC-016, MECH-152, MECH-026 and MECH-093 should write into that composite rather than each carrying a private threshold -- survives all three papers and is arguably strengthened by this one, because a topology-level effect is exactly what a genuinely architectural control signal should look like. What does not survive is 'a global arousal signal', in the singular, with one source. If REE wants to model the ascending systems faithfully it needs at least two, and the interesting design question then becomes what the second one is for, which is the question Yu and Dayan already answered from theory.
+
+One implementation note worth recording: the effects here are time-locked to *phasic* bursts. A REE arousal term implemented as a slowly-varying background level is not modelling this. It would be modelling tonic state, which is a different quantity that happens to share a name.
+
+## Limitations and confidence
+
+The load-bearing weakness is that gain is inferred rather than measured. What was recorded is BOLD; what is reported is a set of topological summaries; gain enters as the parameter of a model that reproduces those summaries. That is a legitimate and common inferential chain, but it is several steps longer than Polack's pipette, and other mechanisms could plausibly produce similar landscape effects. Brainstem fMRI carries its own well-known difficulty -- the locus coeruleus is small, adjacent to a noisy interface, and separating it from basal forebrain at standard resolution is not uncontested, which matters here because the LC/BF separation is the part I am treating as evidentially important. I have set confidence at 0.62 and direction mixed. The meditation finding, which is the paper's headline, I have deliberately not counted: it is interesting and it is not about ARC-044.

@@ -1,0 +1,61 @@
+{
+  "claim_ids_tested": [
+    "ARC-047"
+  ],
+  "source": {
+    "title": "Scalable Evaluation of Multi-Agent Reinforcement Learning with Melting Pot",
+    "authors": [
+      "Joel Z. Leibo",
+      "Edgar A. Duenez-Guzman",
+      "Alexander Sasha Vezhnevets",
+      "John P. Agapiou",
+      "Peter Sunehag",
+      "Raphael Koster",
+      "Jayd Matyas",
+      "Charles Beattie",
+      "Igor Mordatch",
+      "Thore Graepel"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 38th International Conference on Machine Learning (ICML), PMLR 139",
+    "doi": null,
+    "arxiv_id": "2107.06857",
+    "pages": "6187-6199",
+    "url": "https://proceedings.mlr.press/v139/leibo21a.html"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Establishes the strongest available prior that 2D gridworld substrates DO support the empirical study of cooperation, reciprocity, resource sharing and social dilemmas -- which is ARC-047's feasibility premise, and it is worth having that on the record from a serious, widely adopted benchmark rather than asserted. It cuts against the claim's 'minimal' qualifier just as clearly: the authors judged that assessing social behaviour required a suite of substrates and over eighty test scenarios, and reported that standard MARL training reveals weaknesses invisible from training performance alone. Confidence 0.6 because this is an infrastructure and evaluation-methodology paper, not a test of any mechanism REE cares about, so its bearing on ARC-047 is by analogy and by methodological warning rather than by direct measurement.",
+  "failure_signatures": [
+    "Evaluating a social mechanism on the same population and scenario it was trained in reveals weaknesses that training performance conceals -- so a single-scenario SocialGridWorld result would over-state whatever it found.",
+    "Social behaviour that appears in one social configuration does not necessarily generalise to novel co-players; a mirror-modelling result obtained against one fixed set of partners is not evidence the capability exists.",
+    "A benchmark judged to need over eighty scenarios to characterise social behaviour implies that a single environment cannot separate genuine social competence from configuration-specific policy, which is the inference a one-substrate ARC-047 experiment would want to draw."
+  ],
+  "tags": [
+    "arc-047",
+    "multi-agent-rl",
+    "gridworld",
+    "social-dilemma",
+    "benchmark",
+    "generalisation",
+    "test-substrate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Existing multi-agent RL evaluation suites do not treat generalisation to novel social situations as their primary objective; Melting Pot supplies a scalable evaluation methodology in 2D gridworld substrates with over eighty unique test scenarios spanning social dilemmas, reciprocity, resource sharing and task partitioning, exploiting the fact that one agent's behaviour constitutes part of another agent's environment, and standard MARL training algorithms applied to these scenarios reveal weaknesses not apparent from training performance alone.",
+    "ree_translation": "ARC-047 asserts two things: that a multi-agent gridworld is an adequate substrate for social-cognition claims, and that it is the MINIMAL one. Melting Pot is direct support for the first -- a large, well-resourced group settled on exactly this class of environment for exactly this class of question, and the suite has been widely adopted since, so the feasibility premise is not speculative. On the second it supplies a methodological warning rather than a refutation: the same group judged that characterising social behaviour required many substrates and many held-out scenarios, precisely because behaviour learned in one social configuration does not transfer. Applied to ARC-047, that means a single SocialGridWorld configuration can generate evidence but cannot, on its own, distinguish a genuine mirror-modelling capability from a policy fitted to one fixed set of co-players -- and ARC-010 is a capability claim, not a behaviour claim.",
+    "mapping_caveat": "The overlap is at the level of environment class, not mechanism. Melting Pot's scenarios test behavioural outcomes -- did agents cooperate, share, reciprocate -- and are indifferent to whether any internal modelling of others produced them, which is the whole content of ARC-010 and MECH-031. It has no affective-leakage channel, no involuntary internal-state broadcast, and no predator; its social signal is other agents' visible behaviour and its own agents are generic deep-RL policies rather than REE instances. So this entry constrains ARC-047's experimental METHODOLOGY and says nothing at all about whether the seven-scent design would work.",
+    "source_context": "2D gridworld substrates built on DeepMind Lab2D, evaluated with standard MARL algorithms against held-out scenarios populated by pretrained background populations; presented at ICML 2021."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.3,
+    "notes": "Source quality high as infrastructure -- ICML, heavily adopted, and the evaluation methodology has held up. Mapping fidelity is deliberately low: this is evidence about the environment class and about evaluation design, not about any mechanism ARC-047 wants to test, and inflating it would be crediting the claim for a paper that never addresses it. Transfer risk moderate and of an unusual kind -- the risk is not domain transfer but over-reading a methodology paper as mechanistic support."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_047",
+  "entry_id": "2026-09-08_arc_047_melting_pot_leibo2021",
+  "timestamp_utc": "2026-09-08T07:09:05Z",
+  "summary_path": "summary.md"
+}

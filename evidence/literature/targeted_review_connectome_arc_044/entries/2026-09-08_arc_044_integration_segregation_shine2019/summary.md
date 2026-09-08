@@ -1,0 +1,19 @@
+# Shine (2019), *Neuromodulatory Influences on Integration and Segregation in the Brain* -- ARC-044
+
+## What the paper does
+
+This is a review with a thesis. The complaint it opens with is that cognitive neuroscience has spent its effort on what specialised regions compute and almost none on what coordinates them, so the coordinating layer remains, in the author's phrase, poorly understood. The proposal is that the ascending neuromodulatory systems are that layer, and specifically that the cholinergic basal forebrain and the noradrenergic locus coeruleus regulate how segregated or integrated the cortical network is, through interactions that are both competitive and cooperative, on timescales fast enough to matter for attention.
+
+## Why it is worth an entry despite being a review
+
+Because it is asking ARC-044's question, not merely providing material adjacent to it. ARC-044's own framing is that REE has fragmented a single architecture into four independent mechanisms and needs a principled account of how they compose. That is structurally the same complaint this review makes about the neuroscience, and the substrate it nominates -- ascending neuromodulation as a coordination layer sitting over specialised processors -- is the substrate ARC-044 nominates. When an argument converges from a different tradition on the same diagnosis, that is worth recording even when it brings no new numbers.
+
+What it converges on, though, is not what ARC-044 concluded. The coordinating layer described here has two members whose topological effects run in opposite directions, and the account is built on that opposition rather than treating it as a detail. This is now the fourth entry in this batch to land in the same place, and I want to be careful about how much that convergence is worth: Shine is also an author on Munn et al. (2021), so those two are not independent. The genuinely independent lines are Yu and Dayan's normative derivation, Polack's intracellular pharmacology, and this lab's whole-brain work counted once. Three, not four. Still enough.
+
+## The more interesting contribution
+
+The review offers REE something the other papers do not, which is a candidate for the shared quantity. ARC-044 proposes that what unifies ARC-016, MECH-152, MECH-026 and MECH-093 is gain -- effective precision at an evaluation channel. Gain is a per-channel scalar, and it is not obvious why four mechanisms writing into a per-channel scalar constitutes an architecture rather than a naming convention. Integration versus segregation is a different kind of quantity: it is a property of the whole set of channels at once, describing whether they are currently operating as one coupled system or as independent evaluators. If REE had that as an explicit control-plane state, then ARC-016's commit threshold, MECH-152's contextual terrain weights, MECH-026's vigilance sensitivity and MECH-093's heartbeat rate would have something genuinely shared to modulate, rather than four private multipliers that happen to be described in the same language. I think that is the more promising reading of ARC-044's intuition, and it is not the reading ARC-044 currently states.
+
+## Limitations and confidence
+
+A review is an argument. This one contributes no measurement, its central proposal was contested at the time of writing, and the integration/segregation construct is defined over functional networks derived from neuroimaging -- an object REE does not have and should not pretend to have. Borrowing the vocabulary without the referent would be importing a metaphor and calling it a mechanism, which is the failure mode this repository exists to catch. I have set confidence at 0.6, direction mixed, and I would use this entry to frame the next revision of ARC-044 rather than to weight its confidence: it is the clearest available statement of what the claim gets right about the problem and what it gets wrong about the answer.

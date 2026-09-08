@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "ARC-047"
+  ],
+  "source": {
+    "title": "Emergent Social Learning via Multi-agent Reinforcement Learning",
+    "authors": [
+      "Kamal Ndousse",
+      "Douglas Eck",
+      "Sergey Levine",
+      "Natasha Jaques"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 38th International Conference on Machine Learning (ICML), PMLR 139",
+    "doi": null,
+    "arxiv_id": "2010.00581",
+    "url": "https://proceedings.mlr.press/v139/ndousse21a.html"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "The single most decision-relevant paper for ARC-047, because it ran the experiment ARC-047's design implicitly assumes will work and it did not work. The setup is a near-match: a partially observed multi-agent gridworld, experts pursuing their own goals with no incentive to teach, and -- critically -- an explicit involuntary state-derived signal (a prestige cue rendered into the observation as agent colour) whose whole purpose was to let observers identify whose behaviour to read. Vanilla model-free RL agents still failed to socially learn, even with the cue present and with individual exploration made expensive. Confidence 0.78: strong venue, clean negative result with a positive control (SociAPL fixes it), and the mapping is unusually tight; held below 0.85 only because the tasks are exploratory navigation, which the authors themselves flag as a scope limit.",
+  "failure_signatures": [
+    "An agent placed in a shared environment with informative others, given an observation channel that encodes those others' internal state, does NOT thereby acquire the ability to read that channel -- social learning did not emerge from the substrate even when the substrate was designed to make it pay.",
+    "Making individual exploration expensive is insufficient pressure to induce social reading; the authors built exactly that environment and vanilla model-free RL still ignored the expert cues.",
+    "The fix required was architectural, not environmental: a model-based auxiliary loss forcing the agent to model transition dynamics in the presence of others. So an experiment that adds scent channels to an environment and trains standard RL is set up to produce a null result that says nothing about the mirror-modelling claim it was meant to test.",
+    "Agents that did not learn to rely on social cues generalised poorly to novel environments with new experts, so a substrate-level null result also forecloses the transfer measurement that would have been the interesting outcome."
+  ],
+  "tags": [
+    "arc-047",
+    "arc-010",
+    "mech-031",
+    "mech-041",
+    "multi-agent-rl",
+    "social-learning",
+    "gridworld",
+    "mirror-modelling",
+    "test-substrate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Independent model-free RL agents in a multi-agent, partially observed gridworld (Goal Cycle, 13x13, and Four Rooms, 17x17, built on gym-minigrid) do not spontaneously use cues from expert agents to improve their performance, even in an environment purpose-built to reward social learning through costly individual exploration and an explicit prestige cue identifying competent agents; a model-based auxiliary loss (SociAPL) is required before agents exploit expert cues, after which they outperform solo learners, outperform the experts they trained with, and transfer zero-shot to novel environments with new experts.",
+    "ree_translation": "ARC-047 proposes SocialGridWorld as the minimal substrate for empirically testing ARC-010 mirror modelling, MECH-041 affective expression and MECH-031 OTHER_SELFLIKE inference. This paper is the closest existing instance of that substrate actually being built and run, and its result is a warning about what such an experiment will measure. Their prestige cue is structurally the same object as ARC-047's scent channels: an involuntary, internally-derived scalar rendered into the observation as a perceptual field for others to read. They put it there deliberately, to make social reading easy, and standard agents did not read it. The implication for ARC-047 is sharp: if REE instantiates SocialGridWorld and trains model-free agents in it, a null result on ARC-010 will be the expected outcome and will be uninformative about mirror modelling -- it will only re-measure this paper's finding. The substrate is necessary and is not sufficient; what made social reading appear was a model-based objective, which is an architectural commitment ARC-047 does not currently list among its dependencies.",
+    "mapping_caveat": "Three gaps. (1) Their agents are generic deep-RL policies, not REE instances -- REE agents already carry predictive machinery of the sort SociAPL had to add, so REE may be on the right side of this result by construction rather than falling foul of it; that is a plausible defence and it is untested, so it cannot be assumed. (2) The prestige cue is a competence scalar, not an affective state, and it is a single channel rather than ARC-047's seven; nothing here speaks to whether seven simultaneous Gaussian gradient fields are learnable or merely noisy. (3) The authors explicitly limit their finding to exploratory navigation tasks, where following is the effective social strategy -- ARC-047's target behaviours are harm avoidance, other-cost counterfactuals and cooperative defence, which are not following.",
+    "source_context": "Multi-agent partially observed gridworlds built on gym-minigrid: Goal Cycle (13x13, three or four goals that must be visited in an unknown cyclic order) and Four Rooms (17x17) for zero-shot transfer; scripted expert policies; agents learn from pixel observations; agent colour encodes a decaying prestige value derived from accumulated reward."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Source quality high: ICML, clean experimental design, and the negative result is paired with a positive control that rescues it, which is what distinguishes a finding from a failed run. Mapping fidelity is the highest of any entry in this batch -- the substrate, the observation format and even the involuntary-broadcast channel are near-matches to what ARC-047 proposes to build. Transfer risk low: both sides of the mapping are gridworld RL, so there is no species or modality leap, only the question of whether REE agents differ from the deep-RL policies tested."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_047",
+  "entry_id": "2026-09-08_arc_047_social_learning_ndousse2021",
+  "timestamp_utc": "2026-09-08T07:09:05Z",
+  "summary_path": "summary.md"
+}

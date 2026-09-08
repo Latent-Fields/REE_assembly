@@ -1,0 +1,23 @@
+# Debiec & Sullivan (2014), *Intergenerational transmission of emotional trauma through amygdala-dependent mother-to-infant transfer of specific fear* -- ARC-047
+
+## What the paper does
+
+A rat mother is fear-conditioned to peppermint odour before her pups are born. Later, the pups acquire an aversion to peppermint -- not a general fearfulness, an aversion to that specific odour. The obvious reading is that the pups watched their mother be afraid and learned from her behaviour, and the paper's most important experiment is the one that removes that reading. Maternal presence was not required. The odour of the frightened mother, delivered together with the novel peppermint cue, was sufficient on its own to raise the pups' corticosterone and to produce subsequent peppermint aversion. The transfer is amygdala-dependent, with lateral and basal nuclei implicated, and the authors connect the receiving side to the Grueneberg ganglion's role in alarm chemosignalling.
+
+So the causal chain is: mother is frightened; her fear produces a chemical emission she does not choose to make; that emission propagates through the environment independently of her; a conspecific detects it, undergoes a physiological stress response, and acquires a specific learned aversion to whatever else was present.
+
+## Why ARC-047 needs this
+
+ARC-047 makes a design decision it does not argue for. Of its seven scent channels, six are involuntary -- wanting, seeking, harm_stress and direction emitted automatically in proportion to internal state, alarm and celebration as event-triggered spikes -- and only defence is a chosen action. That is a substantive commitment. It could easily have been otherwise: one could build a social harness in which agents signal deliberately, and communication-emergence research in MARL mostly does exactly that. ARC-047 instead posits leakage, and the difference matters, because involuntary emission is what makes a signal honest and therefore what makes it worth reading.
+
+This paper is the biological warrant for that choice. The frightened mother is not signalling; she is leaking. The signal propagates without her. And the receiver gets something specific out of it. If ARC-047 is ever challenged on why affective expression should be modelled as semi-involuntary leakage rather than as an action, this is the answer, and it is a good one. The graded-field rendering also falls out naturally: a diffusible chemical signal is a concentration gradient by construction, so ARC-047's Gaussian scent fields are not an implementation convenience but a reasonable abstraction of how such a signal actually reaches a receiver.
+
+## What it conspicuously does not supply
+
+The interpretation half. The pup is not doing what ARC-010 and MECH-031 describe. It is not tagging the mother as another agent, inferring her internal state, and responding to that inference. It is undergoing amygdala-dependent associative conditioning to a chemical stimulus. Those are different mechanisms, and the difference is precisely the thing ARC-047's harness exists to test -- MECH-031's OTHER_SELFLIKE inference is stated as the prerequisite for interpreting a scent socially rather than merely reacting to it. So this paper validates the emission side of the design and is silent, or arguably cautionary, about the reception side: it demonstrates that a scent channel can produce adaptive downstream behaviour through a route that involves no other-modelling at all. An agent in SocialGridWorld could reproduce the useful behaviour by pure conditioning on the scent field, and that outcome would look like success while containing none of the mechanism ARC-010 claims.
+
+That is worth stating plainly as a design consequence, because it is actionable. Any ARC-047 experiment needs a discriminating measurement that separates conditioned reaction to a scent field from inference over an inferred other-state. Behavioural outcome alone will not do it.
+
+## The extrapolation, stated honestly
+
+This is one channel, alarm, in a mother-infant dyad with a strong developmental asymmetry, in rats. ARC-047 posits seven simultaneous channels among symmetric peers, and alarm is the best-attested of the seven -- there is nothing here about wanting, seeking, celebration or direction, and the entry should not be read as covering them. Alarm chemosignalling is doing the work for six channels it never tested. I have set transfer risk at 0.5, the highest in this batch, for that reason, and confidence at 0.68: the paper is good, the source is strong, the control is exactly the right one, and it is being asked to travel a long way.

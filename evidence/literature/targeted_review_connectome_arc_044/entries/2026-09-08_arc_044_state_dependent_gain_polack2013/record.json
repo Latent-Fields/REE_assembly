@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "ARC-044"
+  ],
+  "source": {
+    "title": "Cellular mechanisms of brain state-dependent gain modulation in visual cortex",
+    "authors": [
+      "Pierre-Olivier Polack",
+      "Jonathan Friedman",
+      "Peyman Golshani"
+    ],
+    "year": 2013,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3464",
+    "pmid": "23872595",
+    "pmc": "PMC3786578",
+    "volume": "16",
+    "issue": "9",
+    "pages": "1331-1339"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Direct intracellular mechanism for the exact phenomenon ARC-044's global layer posits: an arousal-state change produces a multiplicative-like gain change that raises firing rates while preserving tuning, and the paper localises the causal neuromodulator. Source quality is high (Nature Neuroscience, whole-cell recordings in behaving mice, pharmacological dissection rather than correlation). Mapping fidelity is good for the LC-NE-as-global-gain assignment specifically and poor for everything else in the claim -- there is no context-specific vmPFC/OFC layer in this preparation and nothing that speaks to composition. Held at 0.75 rather than higher because the arousal manipulation is locomotion in mouse V1, which is a long way from REE's hazard/resource evaluation channels.",
+  "failure_signatures": [
+    "Implementing arousal gain as a pure output-side multiplier misses the mechanism the paper identifies: the noradrenergic contribution is a tonic membrane-potential depolarisation, which changes the operating point and therefore the variability, not only the amplitude.",
+    "A single-neuromodulator arousal model cannot reproduce the dissociation reported here -- the cholinergic and noradrenergic contributions were separately necessary for different features of the state change, so removing either one breaks the effect in a different way.",
+    "Treating gain change and selectivity change as the same knob is wrong: firing rates rose substantially while orientation selectivity was preserved, so a REE gain term that also sharpens or blunts channel discrimination is modelling something other than this."
+  ],
+  "tags": [
+    "arc-044",
+    "mech-026",
+    "arc-016",
+    "gain-modulation",
+    "locus-coeruleus",
+    "noradrenaline",
+    "signal-to-noise",
+    "arousal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Visual cortical neurons fire at higher rates to visual stimuli during locomotion than during immobility while maintaining orientation selectivity; whole-cell recordings from layer 2/3 and layer 4 neurons in behaving mice show that noradrenergic input is necessary for the tonic depolarisation associated with locomotion, whereas cholinergic input is essential for maintaining the unimodal membrane-potential distribution during immobility.",
+    "ree_translation": "This is the cellular receipt for ARC-044's global layer. The claim asserts that a global arousal signal (LC-NE) sets an overall sensitivity level that modulates processing across channels, and that gain control affects signal-to-noise ratio rather than magnitude alone -- and this paper shows precisely that, with the causal neuromodulator identified. It supports REE's MECH-026 (arousal-mediated vigilance sensitivity) having a real substrate, and it supports the specific choice of noradrenaline as the carrier of the global term rather than some other diffuse system. It also constrains the implementation: the mechanism is a shift in the membrane-potential operating point, which is why selectivity survives, so REE's arousal term should be applied at the input/threshold side of an evaluation channel rather than as a post-hoc scaling of the channel's output.",
+    "mapping_caveat": "Two large gaps. First, the arousal manipulation is locomotion in mouse primary visual cortex -- a sensory area under a motor-state change -- whereas ARC-044's channels are evaluative (harm, goal) and its arousal signal is meant to be hazard- and vigilance-linked; whether the same cellular story holds for evaluative circuits is assumed here, not shown. Second, the paper says nothing about ARC-044's second layer: there is no context-specific gain, no vmPFC/OFC contribution, and therefore no evidence at all about how the two layers compose, which is the part of ARC-044 that is actually novel. Reading it as support for the whole claim would be reading support for a quarter of it.",
+    "source_context": "Whole-cell current-clamp recordings from layer 2/3 and layer 4 neurons of primary visual cortex in head-fixed mice free to run on a treadmill, with pharmacological blockade of cholinergic and adrenergic transmission; visual stimuli were drifting gratings."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: intracellular recordings in behaving animals with causal pharmacology, in a high-bar venue, and the core locomotion-gain result has been reproduced widely since. Mapping fidelity moderate -- excellent for the narrow proposition 'LC-NE implements a global gain that preserves selectivity and alters SNR', poor for ARC-044 as stated. Transfer risk is the real cost here: mouse V1 under locomotion to a REE evaluative channel under hazard proximity is two transfers, species and function, and the second is the one I trust least."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_044",
+  "entry_id": "2026-09-08_arc_044_state_dependent_gain_polack2013",
+  "timestamp_utc": "2026-09-08T07:09:05Z",
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "ARC-044"
+  ],
+  "source": {
+    "title": "The ascending arousal system shapes neural dynamics to mediate awareness of cognitive states",
+    "authors": [
+      "Brandon R. Munn",
+      "Eli J. Muller",
+      "Gabriel Wainstein",
+      "James M. Shine"
+    ],
+    "year": 2021,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-021-26268-x",
+    "pmid": "34650039",
+    "pmc": "PMC8516926",
+    "volume": "12",
+    "issue": "1",
+    "pages": "6016"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Human evidence, at the whole-brain scale ARC-044 actually cares about, that an ascending arousal signal reorganises cortical dynamics in a way the authors model as neural gain -- that is the right level of description for a REE control-plane claim, and it is scarce. It is recorded as mixed rather than supporting for one specific reason: the paper's design separates locus coeruleus from basal forebrain bursts and finds distinguishable relationships for each, which is direct evidence against the single-global-signal reading of ARC-044 at exactly the scale where ARC-044 makes its claim. Confidence held at 0.62 because gain here is inferred through a model fitted to BOLD rather than measured, and because brainstem fMRI at conventional resolution is a known-hard signal.",
+  "failure_signatures": [
+    "A control plane with one global arousal scalar cannot express the LC-versus-basal-forebrain distinction this paper reports at the whole-brain level, so any REE prediction that depends on which ascending system is driving will be unrepresentable.",
+    "If arousal is implemented as a gain applied per channel independently, REE cannot reproduce the finding that the effect of arousal is a reorganisation of the system's low-dimensional energy landscape -- a topology-level change, not a per-channel amplitude change.",
+    "Treating arousal as a slow background level misses that the effects here are time-locked to phasic bursts, so a REE arousal term with a long time constant will be modelling tonic state and not the phasic events that carried the reported effects."
+  ],
+  "tags": [
+    "arc-044",
+    "mech-026",
+    "mech-093",
+    "arousal",
+    "neural-gain",
+    "locus-coeruleus",
+    "basal-forebrain",
+    "network-topology"
+  ],
+  "mapping": {
+    "source_claim_statement": "Phasic bursts in locus coeruleus and basal forebrain, measured with spontaneous fMRI, show precise time-locked relationships to the low-dimensional energy landscape of cortical dynamics, network topology and spatiotemporal travelling waves; the authors interpret this as the ascending arousal system modulating cortical neural gain, and in experienced meditators locus coeruleus-mediated network dynamics tracked internal shifts in conscious awareness.",
+    "ree_translation": "ARC-044 needs the global arousal layer to be more than a per-channel volume knob -- it needs arousal to be the thing that changes how the whole evaluation system is configured, which is what makes it a plausible unifier for four otherwise unrelated mechanisms. This paper is the closest available evidence that arousal really does operate at that level in humans: the reported effect is on the configuration of cortical dynamics, not on the amplitude of any one region. That is the right shape for what ARC-044 wants. The complication is that the paper gets there by separating two ascending systems, and finds them distinguishable, which is the same shape of result as Shine (2019) and Polack (2013) and points the same way: the global layer is not one signal.",
+    "mapping_caveat": "Gain is not observed here, it is inferred -- the empirical quantities are BOLD time series and derived topological measures, and 'neural gain' is the interpretation supplied by an accompanying model. That is a materially weaker footing than the intracellular measurement in Polack (2013), and it means the paper cannot adjudicate between gain and several other mechanisms that would produce similar landscape effects. Brainstem fMRI adds its own caveat: locus coeruleus is a small structure near a noisy interface, and separating its signal from basal forebrain at standard resolution is contested. Finally the meditation cohort result, which is the paper's most striking finding, is the least relevant part for ARC-044 and should not be counted toward it.",
+    "source_context": "Human resting-state (spontaneous) fMRI, with a separate cohort of experienced meditators; brainstem and basal forebrain regions of interest, low-dimensional energy landscape and network topology analyses, plus a neural-mass model in which gain is the manipulated parameter."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.3,
+    "notes": "Source quality good but not top-tier for this purpose: strong venue and careful analysis, weakened by the inferential distance between BOLD and gain and by the difficulty of brainstem fMRI. Mapping fidelity moderate -- right species, right scale, right conceptual object, but the object is modelled rather than measured. Transfer risk low: this is human whole-brain data being mapped to a whole-architecture claim, which is the least lossy transfer in this batch."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_044",
+  "entry_id": "2026-09-08_arc_044_arousal_cortical_gain_munn2021",
+  "timestamp_utc": "2026-09-08T07:09:05Z",
+  "summary_path": "summary.md"
+}

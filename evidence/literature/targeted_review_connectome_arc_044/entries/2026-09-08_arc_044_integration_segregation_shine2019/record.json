@@ -1,0 +1,54 @@
+{
+  "claim_ids_tested": [
+    "ARC-044"
+  ],
+  "source": {
+    "title": "Neuromodulatory Influences on Integration and Segregation in the Brain",
+    "authors": [
+      "James M. Shine"
+    ],
+    "year": 2019,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.04.002",
+    "pmid": "31076192",
+    "volume": "23",
+    "issue": "7",
+    "pages": "572-583"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "A synthesis rather than a result, so it carries no independent empirical weight -- but it is a synthesis of exactly the question ARC-044 asks, by an author who has argued the position from data elsewhere, and its answer is explicit. It supports ARC-044's premise that ascending neuromodulation is the coordinating layer over otherwise specialised processing. It contradicts the unification: the organising principle it proposes is two systems in competitive AND cooperative interaction, with opposite topological signatures. Confidence 0.6 reflects a well-argued review with high mapping relevance and no primary data of its own; it should be read as framing evidence and never cited as a measurement.",
+  "failure_signatures": [
+    "A unified-gain model predicts that raising the global signal moves the system monotonically along one axis; this account predicts that noradrenergic and cholinergic drive move it in opposing topological directions, so REE would predict the wrong sign for one of them.",
+    "If REE's control plane has no way to represent segregation versus integration of its evaluation channels, it cannot express the state variable this literature treats as the primary output of neuromodulation, and the four mechanisms ARC-044 lists will remain four amplitude knobs with no shared state to unify.",
+    "Assuming the two ascending systems are purely antagonistic is also wrong -- the interaction is described as both competitive and cooperative, so a REE model that implements one as the negation of the other will fail wherever they cooperate."
+  ],
+  "tags": [
+    "arc-044",
+    "arc-041",
+    "mech-152",
+    "neuromodulation",
+    "network-topology",
+    "integration-segregation",
+    "locus-coeruleus",
+    "basal-forebrain"
+  ],
+  "mapping": {
+    "source_claim_statement": "Cognitive function relies on dynamic cooperation between specialised brain regions, and the elements responsible for coordinating that interaction are poorly understood; the cholinergic basal forebrain and the noradrenergic locus coeruleus mediate brain network coordination through competitive and cooperative interactions, regulating segregation and integration across specialised regions on a timescale relevant for cognition and attention.",
+    "ree_translation": "ARC-044 says REE currently fragments one architecture into four mechanisms and should compose them coherently. This review says the same thing about neuroscience -- that the field has studied specialised regions and neglected the coordinating layer -- and proposes that the ascending neuromodulatory systems ARE that layer. So the review endorses ARC-044's diagnosis and its choice of substrate. Where it parts company is on the answer: the coordinating layer it describes has two members with opposing topological effects, which is a two-system architecture, not a single unifying mechanism with a context-specific modulator. It also supplies a state variable REE does not currently have -- how integrated versus segregated the evaluation channels are -- which is arguably a better candidate for the shared quantity ARC-044 is groping toward than 'gain' is.",
+    "mapping_caveat": "This is a review: it contributes no measurement, and its central proposal was a position under active argument at the time of writing rather than a settled result. Its integration/segregation framework is defined over cortical functional networks derived from neuroimaging, and REE's evaluation channels are not networks in that sense -- importing the vocabulary risks importing a metaphor. It also has an overlapping author with Munn et al. (2021) in this same batch, so the two entries are not independent evidence and should not be counted as two confirmations of the LC/basal-forebrain dissociation.",
+    "source_context": "Theoretical review synthesising human neuroimaging, animal electrophysiology and computational modelling of ascending neuromodulatory systems and large-scale network topology."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Source quality moderate by design -- Trends in Cognitive Sciences is a strong venue for framing, but a review is an argument, not an observation, and this one advances a position rather than reporting consensus. Mapping fidelity is the highest in this batch because the paper is asking ARC-044's own question. Transfer risk moderate: the integration/segregation construct is defined over imaging-derived networks and does not have an obvious REE counterpart, which is a translation gap rather than a species gap."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_044",
+  "entry_id": "2026-09-08_arc_044_integration_segregation_shine2019",
+  "timestamp_utc": "2026-09-08T07:09:05Z",
+  "summary_path": "summary.md"
+}

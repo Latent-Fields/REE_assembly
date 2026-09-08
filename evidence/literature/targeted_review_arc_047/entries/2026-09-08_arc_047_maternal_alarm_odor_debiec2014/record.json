@@ -1,0 +1,56 @@
+{
+  "claim_ids_tested": [
+    "ARC-047"
+  ],
+  "source": {
+    "title": "Intergenerational transmission of emotional trauma through amygdala-dependent mother-to-infant transfer of specific fear",
+    "authors": [
+      "Jacek Debiec",
+      "Regina M. Sullivan"
+    ],
+    "year": 2014,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1316740111",
+    "pmid": "25071168",
+    "pmc": "PMC4142995",
+    "volume": "111",
+    "issue": "33",
+    "pages": "12222-12227"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Direct biological warrant for the design premise ARC-047 rests on but does not defend: that an animal's affective state leaks involuntarily into the world as a diffusible chemical signal, and that a conspecific can acquire a specific affective response from that signal alone. The decisive control is that maternal presence was not required -- the odour of the frightened mother, paired with a novel cue, was sufficient. That is precisely the semi-involuntary scent-emission model ARC-047 specifies, validated in biology rather than assumed from design convenience. Held at 0.68 because it is a rat mother-infant preparation with one alarm channel, and ARC-047 posits seven channels among peer agents, which is a substantial extrapolation.",
+  "failure_signatures": [
+    "A design in which affective broadcast is voluntary or gated by the emitter cannot reproduce this result -- the transmission here runs through an emission the frightened animal does not choose to make.",
+    "If the receiving agent must observe the emitter to acquire the response, the mechanism is behavioural imitation and not chemosignalling; this paper's maternal-absence control specifically rules that reading out, so a REE scent channel that only works while the emitter is in view is modelling something else.",
+    "The transferred response was specific to the paired cue rather than a diffuse elevation of arousal, so a scent channel implemented as an undifferentiated alarm scalar cannot support the specific-fear acquisition this mechanism produces."
+  ],
+  "tags": [
+    "arc-047",
+    "mech-041",
+    "mech-031",
+    "arc-010",
+    "alarm-chemosignal",
+    "affective-expression",
+    "emotional-contagion",
+    "social-transmission"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rat pups acquire an aversion to a specific odour after exposure to their mother expressing fear to that odour; the transfer is amygdala-dependent, involves the Grueneberg ganglion's role in alarm chemosignalling, and maternal presence was not needed -- elevation of the pups' corticosterone induced by the odour of the frightened mother, together with a novel peppermint odour, was sufficient to produce subsequent aversion to that odour.",
+    "ree_translation": "ARC-047's load-bearing and undefended design assumption is that affective state should leak into the environment involuntarily, as a graded field other agents can read, rather than being emitted as a deliberate communicative act. It lists wanting, seeking, harm_stress and direction as automatic and proportional to internal state, with only defence as a chosen action. This paper is biological warrant for that architecture: a frightened animal emits an alarm chemosignal it does not choose to emit, that signal propagates independently of the emitter's presence, and a receiver acquires a specific affective response from it. It supports MECH-041 (affective expression as mode broadcast) having a real biological referent and supports the specific decision to make the harm_stress and alarm channels involuntary. It also supports the graded-field rendering: a diffusible chemical signal is intrinsically a concentration gradient, which is what ARC-047's Gaussian scent fields are modelling.",
+    "mapping_caveat": "The extrapolation is large in three directions and each should be held separately. (1) This is a mother-infant dyad with a strong asymmetry and a developmental window; ARC-047 posits symmetric peer agents, and nothing here shows peer-to-peer transfer works the same way. (2) It is one channel -- alarm -- and ARC-047 posits seven simultaneous ones including wanting, seeking, celebration and direction, for which this paper is no evidence at all; alarm chemosignalling is the best-attested of the seven and the others are being carried by it. (3) The receiver mechanism is amygdala-dependent associative conditioning, not the inferential other-modelling ARC-010 and MECH-031 describe -- the pup is not tagging the mother as a selflike other and interpreting her state, it is being conditioned. That distinction is exactly what ARC-047's harness is supposed to test, so this paper supplies the emission half of the design and nothing of the interpretation half.",
+    "source_context": "Rat mother-infant preparation; mothers fear-conditioned to peppermint odour pre-partum, pups exposed to the mother's fear expression or to the odour of a frightened mother in her absence; measures included pup odour aversion, corticosterone, and lateral and basal amygdala activity."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high: PNAS, a clean dissociation design, and the maternal-absence condition is the control that makes the chemosignalling interpretation stick rather than a behavioural-observation one. Mapping fidelity moderate -- it validates the emission side of ARC-047's design precisely and the reception side not at all. Transfer risk is the highest in this batch and is where most of the discount sits: rat mother-infant alarm chemosignalling to seven-channel peer affective leakage in a gridworld is a long way, and it is being asked to carry six channels it never tested."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_047",
+  "entry_id": "2026-09-08_arc_047_maternal_alarm_odor_debiec2014",
+  "timestamp_utc": "2026-09-08T07:09:05Z",
+  "summary_path": "summary.md"
+}

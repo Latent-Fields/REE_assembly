@@ -1,0 +1,55 @@
+{
+  "claim_ids_tested": [
+    "ARC-044"
+  ],
+  "source": {
+    "title": "Uncertainty, neuromodulation, and attention",
+    "authors": [
+      "Angela J. Yu",
+      "Peter Dayan"
+    ],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.026",
+    "pmid": "15944135",
+    "volume": "46",
+    "issue": "4",
+    "pages": "681-692"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical, heavily cited Bayesian account that is unusually well matched to what ARC-044 is actually asserting -- that several apparently separate gain knobs are facets of one precision-control architecture. It supports the architectural half strongly: uncertainty-driven precision control really is the shared computational currency, and the two signals really do compose rather than run independently. It weakens the unification half just as directly: the composition the paper derives is 'part-antagonistic, part-synergistic', which is neither a single mechanism nor the clean multiplicative interaction ARC-044's own experimental prediction names. Held at 0.72 rather than higher because it is a theoretical proposal marshalling existing data, not a decisive experiment, and because the two axes it separates (expected vs unexpected uncertainty) are not the same two axes ARC-044 separates (global arousal vs sensory context).",
+  "failure_signatures": [
+    "A model that treats all precision modulation as one signal cannot represent the expected/unexpected uncertainty distinction, and will therefore respond to a known-noisy cue and to an unsignalled context switch in the same way -- which is the wrong response in at least one of the two cases.",
+    "If REE composes its gain terms multiplicatively as a matter of construction, it forecloses the part-antagonistic regime this model requires, and the resulting system cannot reproduce the cueing-task dissociations the neuromodulator literature documents.",
+    "Collapsing ARC-016 (temporal precision from prediction-error variance) into MECH-152 (contextual terrain weight) would merge signals that this account holds to be separately estimable from different statistics of the same stream."
+  ],
+  "tags": [
+    "arc-044",
+    "arc-016",
+    "mech-152",
+    "neuromodulation",
+    "precision",
+    "uncertainty",
+    "acetylcholine",
+    "norepinephrine"
+  ],
+  "mapping": {
+    "source_claim_statement": "Acetylcholine signals expected uncertainty (the known unreliability of predictive cues within a context) and norepinephrine signals unexpected uncertainty (as when unsignalled context switches produce strongly unexpected observations); these two uncertainty signals interact to enable optimal inference and learning in noisy, changeable environments, and their interaction is part-antagonistic, part-synergistic.",
+    "ree_translation": "This is the closest thing in the neuromodulator literature to ARC-044's own thesis stated from the other direction. It agrees that REE's scattered gain terms are not arbitrary engineering knobs but instances of one computational job -- deciding how much a given evaluation channel should be trusted right now -- and it agrees that the job decomposes into a within-context term and a context-change term. ARC-016's running_variance-driven commit threshold maps onto the expected-uncertainty term (unreliability estimated from the ongoing prediction-error stream) and REE's arousal/vigilance channel onto the unexpected-uncertainty term. What the paper does NOT license is the further step ARC-044 takes: it does not collapse these into a single signal with a single source, and its interaction term is explicitly not uniformly multiplicative.",
+    "mapping_caveat": "The decomposition axis differs from ARC-044's. Yu and Dayan cut the problem into expected vs unexpected uncertainty, both of which are temporal/statistical; ARC-044 cuts it into a global arousal level (LC-NE) and a sensory-context-specific gain (vmPFC/OFC), which is a source-and-scope cut, not a statistical one. The two decompositions are compatible but not the same, so evidence for theirs is only indirect evidence for ARC-044's. The paper is also a normative model fitted to a wide but heterogeneous body of pharmacological and behavioural data rather than a direct test, and its ACh term has no counterpart at all in ARC-044's four-mechanism list.",
+    "source_context": "Bayesian normative modelling of attentional cueing and context-switching tasks, synthesising rodent, primate and human pharmacological, physiological and behavioural literature; no new empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Source quality very high (Neuron, foundational, two decades of downstream use). Mapping fidelity moderate-to-good: the paper is about the same computational object as ARC-044 but partitions it along a different axis. Transfer risk moderate -- the account is species-general and already stated at the algorithmic level, so importing it into REE costs less than importing a rodent electrophysiology result would, but the mapping of ACh onto nothing in REE is an unforced gap."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_044",
+  "entry_id": "2026-09-08_arc_044_uncertainty_neuromodulation_yu2005",
+  "timestamp_utc": "2026-09-08T07:09:05Z",
+  "summary_path": "summary.md"
+}
