@@ -3304,6 +3304,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0236",
+      "claim_ids": [
+        "INV-092",
+        "INV-093"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "INV-092/INV-093 acceptance shape may be wrong in KIND, not degree: both claims are registered as 'improved competence/completion AND preserved harm sensitivity/interruptibility', which reads as jointly OPTIMISABLE. Two independent 2026-09-08 literature lanes now suggest the honest form is jointly BOUNDED -- Buhle & Wager 2010 (attention surface: pain and executive WM draw on an overlapping capacity-limited resource; pain completely mediated the heat-to-performance effect) and Ray/Achiam/Amodei 2019 (learning surface: constrained-RL algorithms that violate least do so by exploring less and returning less). Two different control surfaces reaching the same trade shape. Governance decision needed: restate the acceptance shape of BOTH siblings as a joint bound (a Pareto frontier with a floor on each axis) rather than a conjunction of maxima, or record why the conjunctive form stands. Panels refined and landed 2026-09-08 (REE_assembly 57f41cbe37) WITHOUT this change; status/confidence untouched.",
+      "raised_by_session": "w6-s5a-closure-20260908",
+      "raised_at": "2026-09-08T20:08:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
