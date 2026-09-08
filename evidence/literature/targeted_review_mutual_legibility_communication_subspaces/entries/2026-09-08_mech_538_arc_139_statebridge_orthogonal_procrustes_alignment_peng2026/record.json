@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-08_mech_538_arc_139_statebridge_orthogonal_procrustes_alignment_peng2026",
+  "timestamp_utc": "2026-09-08T18:30:50Z",
+  "claim_ids_tested": [
+    "MECH-538",
+    "ARC-139"
+  ],
+  "source": {
+    "title": "StateBridge: Training-free Hidden-state Alignment for Latent Communication in LLM Multi-Agent Systems",
+    "authors": [
+      "Yanwen Peng",
+      "Delvin Ce Zhang",
+      "Xi Wang",
+      "Nikolaos Aletras"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint (accepted to COLM 2026 per the abstract page)",
+    "doi": null,
+    "arxiv_id": "2608.13317",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "PREPRINT (arXiv 2608.13317, 13 Aug 2026; the abstract page says accepted to COLM 2026 -- not yet verified as published). Full PDF read. Split by claim. MECH-538 SUPPORTS: the paper is a working instance of the ladder's orthogonal-Procrustes rung, with the right controls -- replacing Procrustes with ridge regression (a more expressive linear map) is compared directly, a random-noise prefix collapses accuracy (48.8% vs ~80%), and removing norm calibration or vocabulary anchoring costs a few points -- and it reports best or tied-best on 22 of 26 model-task pairs. ARC-139 is MIXED, and this is a CORRECTION to the thought: StateBridge aligns a model's final-layer hidden states to the SAME model's input-embedding space. The authors write 'Our current setting assumes a shared model' and list heterogeneous models as future work; the 'OLMo3' result switches BOTH agents to OLMo3, it does not bridge Qwen to OLMo. So the thought's gloss 'some incompatibilities may be shallow' is true only within one model, and the paper does not bear on translation between independently trained systems. 0.5 overall.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-538's ladder predicts that when the Procrustes rung succeeds, a more expressive map should not be needed; StateBridge's ridge-regression comparison is that test in miniature and Procrustes wins, but on a within-model output->input alignment, so a REE interface where the Procrustes rung FAILS and ridge succeeds would not contradict this paper.",
+    "For ARC-139, any citation of StateBridge as evidence that heterogeneous, independently trained systems are bridgeable by a shallow map is an overreach: the authors explicitly restrict to a shared model."
+  ],
+  "tags": [
+    "mech-538",
+    "arc-139",
+    "statebridge",
+    "orthogonal_procrustes",
+    "training_free",
+    "norm_calibration",
+    "vocabulary_anchoring",
+    "homogeneous_only",
+    "preprint",
+    "colm_2026"
+  ],
+  "mapping": {
+    "source_claim_statement": "StateBridge is 'a training-free latent communication approach that aligns the sender's final-layer hidden states to the receiver's input space via a closed-form orthogonal transformation' (Procrustes on vocabulary-embedding anchors), with norm calibration and vocabulary anchoring so the prefix stays compatible with the pretrained input distribution. It is best or tied-best on 22 of 26 model-task pairs across Qwen3 (4B/8B/32B) and OLMo3-7B-Think; a random-noise prefix drops the average from ~80% to 48.8%; ridge regression in place of Procrustes is compared and Procrustes retained. 'Our current setting assumes a shared model and a fixed prefix length. Future work could extend the method to heterogeneous models.'",
+    "ree_translation": "For MECH-538 this is the least-expressive-rung-first principle demonstrated: an orthogonal map with calibration is enough to make a sender's hidden state readable by an input layer, a random map is not, and a more expressive linear map is not better. That is the shape of the ladder measurement REE intends, including the random-projection floor INV-105 requires. For ARC-139 it is NOT evidence about federation between different systems, because both ends are the same model.",
+    "mapping_caveat": "Within-model output-to-input alignment is a much easier problem than bridging two independently specialised representations; the whole difficulty ARC-139/MECH-538 care about (different training histories, different geometry) is absent by construction. Preprint; COLM acceptance stated but not confirmed. LLM agent setting.",
+    "source_context": "LLM multi-agent; Qwen3-4B/8B/32B and OLMo3-7B-Think; math, code, QA benchmarks; planner->critic pipeline with a K-token continuous prefix."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.6,
+    "notes": "Preprint with solid ablations (noise control, ridge comparison). Source quality capped for preprint status. Mapping split: good for the ladder rung, poor for the cross-system claim."
+  }
+}

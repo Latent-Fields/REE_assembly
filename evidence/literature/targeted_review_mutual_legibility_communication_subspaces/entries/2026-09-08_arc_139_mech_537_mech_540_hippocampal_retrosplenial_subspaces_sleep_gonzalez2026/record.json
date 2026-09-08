@@ -1,0 +1,69 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-08_arc_139_mech_537_mech_540_hippocampal_retrosplenial_subspaces_sleep_gonzalez2026",
+  "timestamp_utc": "2026-09-08T18:30:50Z",
+  "claim_ids_tested": [
+    "ARC-139",
+    "MECH-537",
+    "MECH-540"
+  ],
+  "source": {
+    "title": "Subspace communication in the hippocampal-retrosplenial axis",
+    "authors": [
+      "Jose Gonzalez",
+      "Mihaly Voroslakos",
+      "Deniz Aykan",
+      "Nicolas Soto",
+      "Noam Nitzan",
+      "Rachel Swanson",
+      "Mustafa Karadas",
+      "Zhe Sage Chen",
+      "Gyorgy Buzsaki"
+    ],
+    "year": 2026,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-026-10481-z",
+    "pmid": "42129569",
+    "pmc": "PMC13317024",
+    "volume": "655",
+    "issue": "8121",
+    "pages": "192-201"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Peer-reviewed (Nature, epub 2026-05-13; the Dec-2025 bioRxiv version is PMID 41509324, DOI 10.64898/2025.12.31.697203), verified via PubMed and read in full via PMC13317024. Citation in the thought is exact. Direction is split by claim. For ARC-139 and MECH-537 it SUPPORTS: overlapping CA1 neuron pools participate in distinct, mutually near-orthogonal ('rotated') subspaces depending on the partner region -- which is the 'private representation, multiple context-specific interfaces' picture stated directly. For MECH-540 the honest reading is MIXED: the paper reports a plasticity-stability DIFFERENCE across interfaces in post-experience sleep (CA1-CA3 subspace reactivation correlates with replay; CA1-RSC does not, and its weights are more stable pre/post), which is the adjacent-and-weaker finding MECH-540's own notes describe, but it measures subspace alignment and reactivation ONLY -- no bridge-complexity metric, no demonstration that sleep REDUCES a mapping's complexity, and the CA1-RSC direction is not simply 'stable' (post-sleep CA1-RSC projections are reported as both MORE aligned with the maze subspace and LOWER in correlation than pre-maze). Aggregate 0.55 weights the two clean supports against the one adjacent-only.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-540 predicts sleep selectively lowers the complexity of the bridge a consumer needs; Gonzalez et al. measure subspace correlation and principal angles, never a mapping-complexity quantity, so a REE result that found NO bridge-complexity change after sleep would not contradict this paper and this paper cannot be cited as having shown one.",
+    "The paper reports that events with high CA1-RSC subspace correlation during sleep were associated with REDUCED replay fidelity; a REE sleep assay that treated rising cross-system alignment as success would be reading the biology backwards (this is MECH-540's registered adverse signature S4 in biological form).",
+    "Subspace 'members' are defined by pCCA weight, and the authors explicitly caution that locally correlated but non-communicating neurons can acquire large weights; a REE diagnostic reading membership as connectivity inherits the same ambiguity."
+  ],
+  "tags": [
+    "arc-139",
+    "mech-537",
+    "mech-540",
+    "communication_subspace",
+    "partial_cca",
+    "hippocampus",
+    "retrosplenial",
+    "sleep",
+    "replay",
+    "plasticity_stability",
+    "rotated_subspaces",
+    "mouse"
+  ],
+  "mapping": {
+    "source_claim_statement": "Large-scale (up to 1,024-channel) recordings across DG, CA3, CA2, CA1 and retrosplenial cortex in behaving mice, analysed with partial canonical correlation analysis, identify low-dimensional communication subspaces that capture distinct input-output transformations in CA1. Membership is constrained by intrinsic firing properties and deep-sublayer location; subspaces 'recombine overlapping neuronal pools to support distinct interareal interactions', with input and output subspaces 'rotated relative to each other' (principal angles approaching orthogonality). 'Reactivation patterns of CA1-CA3 subspaces, but not those of CA1-RSC, during post-experience sleep correlated with replay, reflecting a plasticity-stability balance in the input-output transformation along the hippocampal-retrosplenial axis.'",
+    "ree_translation": "ARC-139 architecture (3)/(4) -- specialised objects joined by context-specific translations over a shared private pool -- is what the rotated, overlapping-membership subspaces instantiate. MECH-537 gets a second biological anchor for the consumer-facing subspace being a rotated, non-dominant subset. For MECH-540 the paper supplies exactly what the claim's notes already say it supplies: different offline plasticity/stability behaviour across different interfaces of the same sender, i.e. sleep acts on interfaces SELECTIVELY rather than aligning everything -- but it does not measure L(A->B) and does not show sleep reducing any mapping's complexity.",
+    "mapping_caveat": "Three transfers stack: mouse hippocampus to an artificial forward-model agent; pCCA-defined subspace correlation to a bridge-complexity ladder that this paper never computes; and replay-coupled reactivation to REE's sleep cycle. For MECH-540 specifically, the full text reports the CA1-RSC subspace behaving in two ways post-sleep (more maze-aligned by weight overlap, lower in projected correlation), so 'cortical-facing mappings stay comparatively stable' is a fair gloss of the weight-stability result but not a complete description; cite the abstract's 'plasticity-stability balance' wording rather than the gloss.",
+    "source_context": "Mouse; Neuropixels 2.0 (4 mice, 12 sessions, 384 ch) and SiNAPS (2 mice, 3 sessions, 1,024 ch); spatial and non-spatial tasks with pre/post NREM sleep; partial CCA."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Nature, Buzsaki lab, large dataset, full text read. Mapping fidelity dragged down by MECH-540: the claim's quantity is not measured. Transfer risk high for the sleep mapping specifically."
+  }
+}

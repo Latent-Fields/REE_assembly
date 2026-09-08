@@ -1,0 +1,9 @@
+# Binish et al. 2026 -- a communication subspace in human PFC-M1 that predicts behaviour
+
+The thought's citation is exact: Nature Neuroscience 29(7):1690-1698, DOI 10.1038/s41593-026-02290-4, PMID 42067701, first online 1 May 2026. Binish, Terlau, Martini, Lin, Knight and Helfrich recorded intracranially from prefrontal and motor cortex in twelve epilepsy patients doing a contextually cued target-detection task, and found a low-dimensional subspace within the high-dimensional PFC activity that selectively relays behaviourally relevant information trial by trial. The headline is that activity in this subspace predicts the context-dependent action better than either region's full activity does.
+
+This is the source that moves the package from "communication subspaces exist" (Semedo) to "the interface, not the sender, is the behaviourally load-bearing object" -- and does so in a human. For ARC-139 it is a clean instance of a rich private representation coordinating through a selective low-dimensional channel. For MECH-537 it is the nearest published relative of the claim's phenotype, because prediction is being carried by the routed subset rather than by the whole sender.
+
+The gap to state plainly: better prediction from the subspace is a success story about selective relay. MECH-537 asserts a failure story -- a distinction present in the sender, absent from the consumer-facing subspace, with a behavioural cost. Binish et al. do not construct that case; there is no manipulation in which a needed variable is shown to be withheld. So the paper supports the interface framing and leaves the failure mode as REE's own hypothesis.
+
+The sample is twelve patients with clinically placed electrodes on one task, and the authors say more work is needed before any clinical extrapolation. Confidence 0.68: strong venue, human data with a behavioural criterion, honest step short of the claimed mechanism.

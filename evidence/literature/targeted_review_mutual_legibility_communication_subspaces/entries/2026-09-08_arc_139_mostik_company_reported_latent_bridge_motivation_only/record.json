@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-08_arc_139_mostik_company_reported_latent_bridge_motivation_only",
+  "timestamp_utc": "2026-09-08T18:30:50Z",
+  "claim_ids_tested": [
+    "ARC-139"
+  ],
+  "source": {
+    "title": "Latent communication between AI models (public technical description)",
+    "authors": [
+      "Mostik (company)"
+    ],
+    "year": 2026,
+    "venue": "Company web page, not peer reviewed",
+    "doi": null,
+    "arxiv_id": null,
+    "pmid": null,
+    "pmc": null,
+    "url": "https://mostik.ai/read-more"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "unknown",
+  "confidence": 0.1,
+  "confidence_rationale": "COMPANY-REPORTED, NOT INDEPENDENTLY REPLICATED, NOT PEER REVIEWED. Banked so that the record is explicit rather than absent. The page (fetched 2026-09-08) describes a 'small trained bridge' letting a frozen GLM-5.2 (753B) sender hand hidden states to a Qwen-3.5 (4B) receiver, and reports the small model 'closes 50% of that distance, which lifts its own accuracy by 25%', up to 2x on harder subsets, at 2.5x less compute than a mid-sized model, and up to 10 points over text handoff. No paper, preprint, code, or data is provided for these results; the citations on the page are to interpretability work by others (Hanna & Ameisen ICLR 2026; Lindsey et al. 2025; Gurnee et al. 2026; Korbak et al. 2025), not to a replication. Direction 'unknown' and confidence 0.10 so that it cannot contribute support to any claim; it is motivation only, exactly as ARC-139 and MECH-537's notes require.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the Mostik result were independently replicated with frozen endpoints and mismatched-pair controls it would become ARC-139/MECH-538 evidence; until then any citation of it as support is a citation of a marketing page."
+  ],
+  "tags": [
+    "arc-139",
+    "mostik",
+    "company_reported",
+    "support_tag:motivation_only",
+    "not_replicated",
+    "not_peer_reviewed",
+    "latent_bridge"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mostik states that 'One model hands its hidden states to another through a small trained bridge, and the receiving model works with them directly', and reports accuracy and cost gains for a GLM-5.2 -> Qwen-3.5-4B pairing. No methodology, controls, or independent evaluation are published.",
+    "ree_translation": "Motivation only. The thought package and both affected claims already say this must not be promoted to support, and the pull confirms there is nothing to promote: no artefact exists that could be verified.",
+    "mapping_caveat": "Unverifiable. Numbers are company-reported on a web page with no stated protocol. Do not cite as evidence for any claim.",
+    "source_context": "Company technical description; frozen GLM-5.2 (753B) sender, Qwen-3.5 (4B) receiver, trained bridge."
+  },
+  "confidence_components": {
+    "source_quality": 0.1,
+    "mapping_fidelity": 0.3,
+    "transfer_risk": 0.9,
+    "notes": "Deliberately floored. The entry exists to make the epistemic status explicit in the evidence record, per the chip's special-handling instruction."
+  }
+}

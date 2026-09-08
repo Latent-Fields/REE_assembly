@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-08_arc_139_interlat_heterogeneous_latent_communication_du2026",
+  "timestamp_utc": "2026-09-08T18:30:50Z",
+  "claim_ids_tested": [
+    "ARC-139"
+  ],
+  "source": {
+    "title": "Enabling Agents to Communicate Entirely in Latent Space",
+    "authors": [
+      "Zhuoyun Du",
+      "Runze Wang",
+      "Huiyu Bai",
+      "Zouying Cao",
+      "Xiaoyong Zhu",
+      "Yu Cheng",
+      "Bo Zheng",
+      "Wei Chen",
+      "Haochao Ying"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026, Long Papers)",
+    "doi": "10.18653/v1/2026.acl-long.1248",
+    "arxiv_id": "2511.09149",
+    "pmid": null,
+    "pmc": null,
+    "pages": "27106-27129"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Peer-reviewed (ACL 2026 long paper, DOI verified on the ACL Anthology; arXiv 2511.09149 v4 read for method detail). The thought's description is accurate: last-layer hidden states are passed as the message, injected into the receiver's input-embedding sequence through a trained light-weight self-attention plus projection adapter, with full SFT on Qwen2.5-7B/0.5B and LLaMA3.1-8B base models and a token-to-latent replacement curriculum. The one result that bears on ARC-139 is the heterogeneous pair: a Qwen2.5-7B-Instruct sender feeding a LLaMA3.1-8B-Base actor reached 71.39% unseen accuracy against a 57.46% baseline -- integration across two differently-trained representational spaces through a trained low-complexity adapter, with no attempt to make the two models' representations the same. The paper also reports content-specificity ablations (cross-task latents, covariance-matched Gaussian and random-rotation surrogates degrade performance); I could not cleanly verify the CrossTask figures from the HTML extraction and have not relied on them. Held at 0.5: LLM agents on ALFWorld and MATH, trained adapter, and it is feasibility evidence, not a test of specialisation and legibility rising together.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-139 is right, heterogeneous systems should be bridgeable by a LOW-complexity trained map without representational convergence; Interlat's adapter is small but the sender and actor are ALSO fully fine-tuned, so the result does not isolate the bridge from co-adaptation of the endpoints -- a REE replication with FROZEN endpoints (MECH-538's protocol) could come out differently.",
+    "The content-specificity ablations are reported but the extracted CrossTask numbers (61.19% vs 61.43%) do not read as a drop; treat Interlat as feasibility evidence and rely on Cheng/Das/Ramnath and Zhang/Emu for the example-specificity question."
+  ],
+  "tags": [
+    "arc-139",
+    "interlat",
+    "latent_communication",
+    "multi_agent_llm",
+    "heterogeneous_models",
+    "communication_adapter",
+    "acl_2026",
+    "feasibility"
+  ],
+  "mapping": {
+    "source_claim_statement": "Interlat transmits an LLM agent's last-layer hidden states directly as its message, consumed by another agent through a trained light-weight adapter, and outperforms fine-tuned chain-of-thought and single-agent baselines 'even across heterogeneous models'; a separate latent-space reasoner compresses messages for up to 24x lower latency. Ablations with cross-task, Gaussian-surrogate and randomly-rotated messages indicate the actor is sensitive to the message's specific geometry.",
+    "ree_translation": "ARC-139 asserts that integration does not require representational sameness. Interlat's heterogeneous Qwen->LLaMA result is an existence proof in the ML domain: two independently pretrained representational spaces coordinated through a small trained interface, with the sender's private representation left as it is.",
+    "mapping_caveat": "Both endpoints are fine-tuned alongside the adapter, so this is not the frozen-endpoint, minimum-bridge measurement MECH-538 specifies and cannot show that the bridge alone carried the integration. Two-agent LLM setting on one embodied benchmark (ALFWorld) and one symbolic one (MATH); the authors list scale, closed-model inaccessibility and interpretability loss as limitations. Says nothing about local specialisation rising with legibility, which is ARC-139's non-redundant prediction.",
+    "source_context": "LLM multi-agent; Qwen2.5-7B/0.5B-Base, LLaMA3.1-8B-Base, cross-family sender/actor pair; ALFWorld and MATH."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.6,
+    "notes": "Top NLP venue; full SFT of both endpoints weakens it as bridge evidence. Transfer risk high: LLM agents exchanging reasoning traces are not E1/E2 in an embodied forward model."
+  }
+}

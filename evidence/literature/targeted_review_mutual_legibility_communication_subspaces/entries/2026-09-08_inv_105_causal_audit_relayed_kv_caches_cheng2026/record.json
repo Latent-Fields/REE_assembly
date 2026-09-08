@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-08_inv_105_causal_audit_relayed_kv_caches_cheng2026",
+  "timestamp_utc": "2026-09-08T18:30:50Z",
+  "claim_ids_tested": [
+    "INV-105"
+  ],
+  "source": {
+    "title": "When Does Latent Communication Pay? A Causal Audit of Relayed KV Caches in Multi-Agent LLMs",
+    "authors": [
+      "Jiaming Cheng",
+      "Subhransu Das",
+      "Rajiv Ramnath"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint (cs.CR)",
+    "doi": null,
+    "arxiv_id": "2608.04893",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "PREPRINT (arXiv 2608.04893, v1 5 Aug 2026, v2 27 Aug 2026), full PDF read. The two figures INV-105's mandatory-controls clause rests on are VERIFIED VERBATIM: 'On MedQA the total effect sits almost entirely in the non-pairing terms: true versus zero is +14.7 points, against tau_TD = +0.4 with 90% CI [-1.34, +2.14], both seed-level means from the raw records' -- a Qwen3-8B natural-regime cell, where true = the correct example's relayed cache, zero = geometry-preserving zeroed cache, and TD = true minus deranged (mismatched-example) cache. The audit uses four controls (deranged, zeroed, moment-matched random, and an intact answer-irrelevant relay), two regimes (calibrated: receiver needs sender-private facts, reads ~100% vs 23-25%; natural: receiver could solve alone, equivalence within +/-2.8 points under Holm-corrected TOST, five seeds), three families (Qwen3-4B/8B/14B, Mistral-Nemo-12B, phi-4), and dissociates three delivered systems (LatentMAS ceiling, KVComm partial, C2C's released projector no detected example-specific transfer). Pre-registered conventions. 0.78: preprint status is the only thing holding it below 0.8; the method is exactly the mismatched-pair control INV-105 mandates and the figures are as claimed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "INV-105's clause: a channel's total effect (present vs absent) does not license the inference that its example-specific content is used; the +14.7 vs +0.4 cell is the concrete instance, and any REE interface experiment that reports only a present-vs-absent contrast has, per this audit, not established transmission.",
+    "Receiver need is not sufficient for transfer: under the identical information-asymmetry test, C2C's released projector showed no detected example-specific transfer while LatentMAS reached ceiling -- so a REE bridge that is well-motivated and even load-bearing can still fail the mismatched-pair test, and only that test tells.",
+    "Random-cache arms collapse accuracy, which is what confirms the intervention reaches the receiver; a REE audit without such a positive control cannot distinguish a null result from a dead instrument."
+  ],
+  "tags": [
+    "inv-105",
+    "causal_audit",
+    "kv_cache_relay",
+    "mismatched_control",
+    "deranged_cache",
+    "latentmas",
+    "c2c",
+    "kvcomm",
+    "tost_equivalence",
+    "preregistered",
+    "preprint"
+  ],
+  "mapping": {
+    "source_claim_statement": "Multi-agent LLM systems that relay KV caches credit gains to 'latent thoughts'; that is 'a claim about which example's cache is relayed, not merely that one is'. Replacing the cache with deranged (mismatched-example), zeroed and moment-matched random counterparts under two regimes shows ceiling-level pairing value where the receiver needs sender-private content (~100% vs 23-25%) and equivalence within +/-2.8 points where it does not. 'A large cache effect need not be a pairing effect. In one natural cell, zeroing the relay costs 14.7 points; a mismatched cache, 0.4.' Three delivered channels read ceiling, partial, and no detected example-specific transfer under the same test. 'Benchmark deltas do not by themselves establish latent-thought transmission; establishing it takes a mismatched-cache audit.'",
+    "ree_translation": "This is INV-105's mandatory-controls clause, independently derived and executed: 'causally used' and 'pairing-specific' are separate rungs, and the only way to establish the latter is to replace the sender state with a well-formed state from the WRONG example and measure the drop. The 14.7/0.4 dissociation is the existence proof that a strongly load-bearing channel can carry almost no example-specific content, which is why REE's ladder refuses to let a present-vs-absent result stand in for transmission.",
+    "mapping_caveat": "LLM KV-cache relay is not an E1/E2 latent interface; the transferred content is the evidential logic, not any empirical number. The natural-regime equivalence depends on a margin anchored to the audited system's claimed gain (2.8 points), a convention REE would have to set for itself. Preprint, cs.CR listing, not yet peer reviewed.",
+    "source_context": "LLM multi-agent; Qwen3-4B/8B/14B, Mistral-Nemo-12B, phi-4; GSM8K, ARC-Challenge, MedQA, procedurally generated private-fact tasks, prose document QA; n=500 per arm per seed, 3-5 seeds."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.9,
+    "transfer_risk": 0.35,
+    "notes": "Careful, pre-registered, multi-family, released audit; preprint caps source quality. Mapping fidelity very high: the paper's evidential standard IS the invariant. Transfer risk moderate only because the transferred content is methodological."
+  }
+}

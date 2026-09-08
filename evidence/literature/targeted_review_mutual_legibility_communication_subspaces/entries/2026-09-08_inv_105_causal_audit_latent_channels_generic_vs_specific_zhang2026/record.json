@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-08_inv_105_causal_audit_latent_channels_generic_vs_specific_zhang2026",
+  "timestamp_utc": "2026-09-08T18:30:50Z",
+  "claim_ids_tested": [
+    "INV-105"
+  ],
+  "source": {
+    "title": "Do Latent Channels Actually Communicate? A Causal Audit of Latent Multi-Agent LLM Communication",
+    "authors": [
+      "Huixiang Zhang",
+      "Mahzabeen Emu"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint (cs.AI; carries an AAAI copyright notice)",
+    "doi": null,
+    "arxiv_id": "2607.26773",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "PREPRINT (arXiv 2607.26773, 29 Jul 2026; the PDF carries a 'Copyright 2027, AAAI' notice, so it may be accepted to AAAI-27 but that is unverified). Full PDF read. An independent second audit with the same logic as Cheng/Das/Ramnath, on LatentMAS with Qwen3-4B and Qwen3-8B: four message settings (no message; other-example message from the same interface, length-matched; compute-matched self-generated message; current-example message) support five measurements separating message presence, message identity, example-specific content and other-agent value. Headline decomposition verified verbatim: on GSM8K the Qwen3-4B overall effect of -1.00 pp 'decomposes into a -6.17-point effect retained by an other-example message and a +5.17-point effect attributable to example-specific content; both component directions reverse at 8B'; on MATH-500 the 4B gain of 15.00 points is 8.33 retained by an other-example message and 6.67 example-specific. 0.68: preprint, small n (60-100 per cell), and it corroborates rather than adds to Cheng et al. -- but two groups reaching the same decomposition independently is what makes INV-105's control clause a standard rather than one paper's preference.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "INV-105: a net-zero aggregate effect (-1.00 pp) concealed a -6.17 generic-channel component and a +5.17 example-specific component -- so a REE interface experiment reading a null aggregate as 'no transmission' would be wrong in exactly the way this audit exposes, and the sign of each component flipped between 4B and 8B.",
+    "Example-specific content and other-agent value are shown to be distinct (self-substitution control): a receiver can benefit from its OWN example-specific latent as much as from another agent's, so 'the sender helped' needs a self-generated comparator, not only a mismatched one."
+  ],
+  "tags": [
+    "inv-105",
+    "causal_audit",
+    "latent_communication",
+    "other_example_control",
+    "self_substitution",
+    "generic_channel_effect",
+    "latentmas",
+    "qwen3",
+    "preprint"
+  ],
+  "mapping": {
+    "source_claim_statement": "'End-task performance alone cannot reveal whether an observed effect depends on message presence, content generated for the evaluated example, or information supplied by a separate agent.' A causal audit applying controlled message replacements at the sender-receiver boundary decomposes latent-relay effects; on GSM8K (Qwen3-4B) -1.00 = -6.17 (other-example) + 5.17 (example-specific) pp, on MATH-500 +15.00 = 8.33 + 6.67, with component directions reversing at 8B. 'Self-substitution comparisons further show that example-specific content and other-agent value are distinct.' Conclusion: controlled message comparisons should be a standard evaluation.",
+    "ree_translation": "INV-105's ladder separates 'causally used', 'pairing-specific' and 'behaviourally beneficial', and mandates mismatched-pair controls; this audit adds a further separation REE should adopt -- a compute-matched SELF-generated message -- because example-specific content can come from the receiver's own computation, so 'the other system supplied it' is a rung of its own. The generic-versus-specific decomposition with sign reversals across scale is the strongest available demonstration that an aggregate delta is uninterpretable on its own.",
+    "mapping_caveat": "LLM latent relay on maths benchmarks; small per-cell n (40-100), single seed for many cells, one released system (LatentMAS). The transferred content is the decomposition logic and the extra self-substitution control, not any magnitude. Preprint; AAAI acceptance unverified.",
+    "source_context": "LLM multi-agent; LatentMAS hidden-state relay; Qwen3-4B and Qwen3-8B; GSM8K, ARC-C, MATH-500."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.4,
+    "notes": "Preprint, smaller and less pre-registered than Cheng et al., but methodologically aligned and independent. Mapping fidelity high for the same reason: the audit's decomposition is the ladder."
+  }
+}

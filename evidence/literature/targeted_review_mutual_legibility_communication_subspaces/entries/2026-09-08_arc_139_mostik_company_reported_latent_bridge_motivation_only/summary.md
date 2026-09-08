@@ -1,0 +1,7 @@
+# Mostik -- company-reported, banked as motivation only
+
+The chip asked for this to be recorded as what it is, and it is: a company web page, fetched on 2026-09-08 at https://mostik.ai/read-more, describing a "small trained bridge" through which a frozen GLM-5.2 (753B) sender hands hidden states to a Qwen-3.5 (4B) receiver. The page reports that the small model closes half the accuracy gap to the large one, lifting its own accuracy by 25% and up to 2x on harder subsets, at 2.5x less compute than an equivalent mid-sized model and up to 10 points better than a text handoff.
+
+None of this is verifiable. There is no paper, no preprint, no code, no data, and no stated protocol. The citations on the page are to other people's interpretability work -- Hanna and Ameisen (ICLR 2026), Lindsey et al. (2025), Gurnee et al. (2026), Korbak et al. (2025) -- none of which is a replication of Mostik's own claim. The company describes itself as fifteen people, four months old.
+
+This entry carries direction "unknown" and confidence 0.10 so that it cannot contribute support to ARC-139 or anything else. It is here so the evidence record says explicitly what the thought package and the claim notes already say: Mostik is the reason the question was asked, not an answer to it. Were the result replicated with frozen endpoints and the mismatched-pair controls INV-105 requires, it would become MECH-538 evidence; until then it stays motivation.

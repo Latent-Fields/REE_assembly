@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-08_arc_139_mech_537_human_pfc_m1_communication_subspace_binish2026",
+  "timestamp_utc": "2026-09-08T18:30:50Z",
+  "claim_ids_tested": [
+    "ARC-139",
+    "MECH-537"
+  ],
+  "source": {
+    "title": "A communication subspace relays context-dependent actions from human prefrontal to motor cortex",
+    "authors": [
+      "Neha Binish",
+      "Jonas Terlau",
+      "Jan Martini",
+      "Jack J. Lin",
+      "Robert T. Knight",
+      "Randolph F. Helfrich"
+    ],
+    "year": 2026,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-026-02290-4",
+    "pmid": "42067701",
+    "pmc": null,
+    "volume": "29",
+    "issue": "7",
+    "pages": "1690-1698"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Peer-reviewed (Nature Neuroscience, epub 2026-05-01, in print Jul 2026), verified via PubMed (PMID 42067701); citation in the thought's reference list is exact. It adds the two things Semedo lacks: human data, and a BEHAVIOURAL readout -- the subspace predicts context-dependent action at the single-trial level better than either region's full activity. That is closer to MECH-537's phenotype than any other biological source in the package. Held at 0.68 because n=12 intracranial patients, the analysis is on field-potential-scale recordings rather than sorted units, and 'predicts action better than either area alone' is a statement about prediction, not about a distinction being withheld from the consumer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the full PFC population had predicted action at least as well as its communication subspace, the claim that the interface FILTERS rather than merely transmits would lose its human anchor; the paper reports the subspace predicting better, but only in 12 patients on one target-detection task.",
+    "A REE interface metric that reads off the consumer's full input rather than the RRR-estimated subspace would not reproduce this result and would not be testing the same object."
+  ],
+  "tags": [
+    "arc-139",
+    "mech-537",
+    "communication_subspace",
+    "human_intracranial",
+    "prefrontal",
+    "motor_cortex",
+    "context_dependent_action",
+    "single_trial"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using intracranial recordings from human prefrontal cortex and motor cortex, the authors identify a communication subspace embedded within high-dimensional PFC activity that selectively relays behaviourally relevant information at the single-trial level; activity in this subspace predicts context-dependent action more strongly than either region alone.",
+    "ree_translation": "ARC-139's claim that a low-dimensional interface can carry what a consumer needs while the sender remains high-dimensional and privately rich is here shown in a human, with a behavioural criterion. For MECH-537 it is the closest published instance of the interface being the thing that predicts behaviour rather than the sender's full state -- i.e. the consumer-facing subspace is the behaviourally load-bearing object.",
+    "mapping_caveat": "Predicting action BETTER from the subspace than from either full population is not the same as showing a variable that is present in PFC but absent from the subspace with a behavioural cost. The paper demonstrates selective relay of relevant information, not the routing FAILURE MECH-537 names. Small n (12 epilepsy patients), clinical electrode placement, and one task; the authors themselves flag the sample size.",
+    "source_context": "12 patients with drug-resistant epilepsy, intracranial recordings from PFC and M1, contextually cued target-detection task."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Nature Neuroscience with released code (github nehabinish/pfc-m1-communication-subspace, simulated data only). Small clinical sample limits source quality slightly. Mapping mid: right object, right direction, wrong side of the failure/success distinction."
+  }
+}

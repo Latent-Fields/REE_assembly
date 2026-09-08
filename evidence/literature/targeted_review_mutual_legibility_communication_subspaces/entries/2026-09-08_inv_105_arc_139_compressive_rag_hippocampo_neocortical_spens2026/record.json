@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-08_inv_105_arc_139_compressive_rag_hippocampo_neocortical_spens2026",
+  "timestamp_utc": "2026-09-08T18:30:50Z",
+  "claim_ids_tested": [
+    "INV-105",
+    "ARC-139"
+  ],
+  "source": {
+    "title": "Hippocampo-neocortical interaction as compressive retrieval-augmented generation",
+    "authors": [
+      "Eleanor Spens",
+      "Neil Burgess"
+    ],
+    "year": 2026,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-026-74357-6",
+    "pmid": "42350398",
+    "pmc": "PMC13447824",
+    "volume": "17",
+    "issue": "1",
+    "pages": "7971"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Peer-reviewed (Nature Communications 17:7971, 25 Jun 2026), verified via PubMed (PMID 42350398); citation in the thought is exact. Full text read from the bioRxiv v4 (PMC page is behind a CAPTCHA). Split by claim. INV-105 SUPPORTS, modestly: the model's whole design judges a compressed hippocampal trace by whether the neocortical generator can reconstruct from it, not by literal completeness -- adequacy of a stored representation is defined relative to its consumer, which is the ladder's core point (encoded != usable-by-this-reader). ARC-139 is MIXED: the two systems share ONE representational format (the hippocampus 'must use neocortical representations for input and output'; the interface is a text-embedding vector), which is ARC-139's architecture (2), a shared low-dimensional interface format, and sits closer to ARC-121's shared-object framing than to context-specific translation. It is a modelling paper with no interface measurement, and it says nothing about mutual legibility rising with specialisation. 0.45 overall.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "INV-105 says presence is not usability; in this model a trace that is complete but not reconstructible by the generator is useless, and a trace that is a gist plus surprising details is better than a full copy -- so any REE reading that scores a compression by literal information retained rather than by consumer reconstruction is the failure this paper argues against.",
+    "For ARC-139, if REE's interfaces converge on a single shared embedding format the way this model's hippocampus and neocortex do, the federation reading loses and ARC-121 gains; this paper is a live example of the shared-format architecture working, not of federation."
+  ],
+  "tags": [
+    "inv-105",
+    "arc-139",
+    "hippocampus",
+    "neocortex",
+    "compression",
+    "retrieval_augmented_generation",
+    "modern_hopfield",
+    "consolidation",
+    "computational_model",
+    "mech-532_adjacent"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sequential experiences are encoded in the hippocampus (a modern Hopfield network) in compressed conceptual form -- a compressed gist vector plus high-perplexity details -- and replayed to fine-tune a neocortical generative network (a transformer LM). The hippocampus 'must use neocortical representations for input and output', so it 'stores episodic memories in a highly compressed form' optimised to enable generation. The model reproduces consolidation, gist-and-detail memory, Bartlett-style distortion increasing with consolidation, and RAG-style problem solving.",
+    "ree_translation": "For INV-105: a representation's adequacy is defined by what its consumer can do with it, so 'decodable in principle' and 'usable by the actual generator' are different rungs -- the paper builds the whole architecture around that distinction. For ARC-139: it is one of the four live architectures the claim lists (shared interface format), and it works; it therefore cannot be read as favouring federation over convergence.",
+    "mapping_caveat": "This is a computational model fitted to psychological data, not neural evidence; the authors say the mechanistic link to cell types is unexplored and backpropagation is not biologically plausible. It measures no interface, no subspace, and no bridge complexity. The thought cites it as resonant with MECH-532 (compression site needs a paired decompression), which is the more natural home for it than ARC-139; it is tagged to ARC-139 here only to record the shared-format point.",
+    "source_context": "Computational; modern Hopfield network hippocampus, Mistral-7B / GPT-2 neocortex with LoRA fine-tuning; simulations of Bartlett recall, gist/detail, grid and family-tree structure inference."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "Good venue, careful modelling, clear limitations section. Mapping fidelity low because neither claim's actual quantity is measured; the entry is banked mainly to record that the thought's characterisation is accurate and that the architecture is shared-format."
+  }
+}
