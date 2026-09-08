@@ -2748,3 +2748,5 @@ One line per hourly tick. ASCII only.
 2026-09-08T14:37:40Z skip: paused (.igw_routine_pause present)
 2026-09-08T15:37:54Z skip: paused (.igw_routine_pause present)
 2026-09-08T16:39:38Z workset committed (regen -- 248 items, 29 ready, 0 in flight)
+2026-09-08T16:38:08Z SPAWN IGW-20260908-235 skill=/lit-pull prio=40 uuid=7bdbaf23-394e-4586-8087-f3f6ae219f1e pid=2202 worktree=igw-235-literature-proposal-for-inv-095
+2026-09-08T17:33:59Z auto-defer igw-235-literature-proposal-for-inv-095 hash=4e47ec8d5b54 for 48h (complete)
