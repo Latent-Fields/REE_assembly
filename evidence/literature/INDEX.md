@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-08T01:03:15.931879Z`
+Generated: `2026-09-08T03:20:22.166391Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -260,6 +260,7 @@ Generated: `2026-09-08T01:03:15.931879Z`
 | `targeted_review_inv_064` | [`2026-07-15_inv064_sensorimotor_association_axis_sydnor2021`](targeted_review_inv_064/entries/2026-07-15_inv064_sensorimotor_association_axis_sydnor2021/record.json) | 3 | [`summary`](targeted_review_inv_064/entries/2026-07-15_inv064_sensorimotor_association_axis_sydnor2021/summary.md) |
 | `targeted_review_inv_088` | [`2026-07-13_inv_088_value_generalization_bound_lelan2022`](targeted_review_inv_088/entries/2026-07-13_inv_088_value_generalization_bound_lelan2022/record.json) | 4 | [`summary`](targeted_review_inv_088/entries/2026-07-13_inv_088_value_generalization_bound_lelan2022/summary.md) |
 | `targeted_review_inv_089` | [`2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016`](targeted_review_inv_089/entries/2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016/record.json) | 3 | [`summary`](targeted_review_inv_089/entries/2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016/summary.md) |
+| `targeted_review_inv_092` | [`2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010`](targeted_review_inv_092/entries/2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010/record.json) | 5 | [`summary`](targeted_review_inv_092/entries/2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010/summary.md) |
 | `targeted_review_mcc_effort_value` | [`2026-04-19_mcc_serotonin_effort_learning_scholl2017`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/record.json) | 5 | [`summary`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/summary.md) |
 | `targeted_review_mech261_mode_gating` | [`2026-04-20_mech_261_triple_coupling_gating_latchoumane2017`](targeted_review_mech261_mode_gating/entries/2026-04-20_mech_261_triple_coupling_gating_latchoumane2017/record.json) | 5 | [`summary`](targeted_review_mech261_mode_gating/entries/2026-04-20_mech_261_triple_coupling_gating_latchoumane2017/summary.md) |
 | `targeted_review_mech269b_vs_rollout_gating` | [`2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002`](targeted_review_mech269b_vs_rollout_gating/entries/2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002/record.json) | 7 | [`summary`](targeted_review_mech269b_vs_rollout_gating/entries/2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002/summary.md) |
