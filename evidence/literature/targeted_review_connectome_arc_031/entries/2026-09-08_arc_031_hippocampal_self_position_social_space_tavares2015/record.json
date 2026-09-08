@@ -1,0 +1,61 @@
+{
+  "claim_ids_tested": [
+    "ARC-031"
+  ],
+  "source": {
+    "title": "A Map for Social Navigation in the Human Brain.",
+    "authors": [
+      "Rita Morais Tavares",
+      "Avi Mendelsohn",
+      "Yael Grossman",
+      "Christian Hamilton Williams",
+      "Matthew Shapiro",
+      "Yaacov Trope",
+      "Daniela Schiller"
+    ],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.06.011",
+    "pmid": "26139376",
+    "pmc": "PMC4662863",
+    "volume": "87",
+    "issue": "1",
+    "pages": "231-43"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "The most self-relevant paper available for ARC-031. Hippocampal activity tracked participants' own MOVEMENT through a two-dimensional social space framed by power and affiliation, during a role-playing task -- not a third-person map of others, but the agent's own evolving position, with the vector of movement (not merely location) predicting hippocampal response, and the effect scaling with self-reported social skill. This is the closest published approach to what ARC-031 asks for: hippocampal representation of the agent's own state-trajectory in a non-physical space. Held at 0.45 because social space is still an interpersonal-relational space, not the epistemic self-state space (D_eff, hypothesis-tag integrity) ARC-031 actually names, and because the trajectories are LIVED rather than PLANNED -- ARC-031's distinguishing content is planning one's own deliberation, which requires prospective simulation this task never elicits.",
+  "failure_signatures": [
+    "Social space (power x affiliation) is a space of the self's relations to OTHERS. ARC-031's z_self is a space of the self's own epistemic and self-maintenance state -- uncertainty in a domain, hypothesis-tag integrity, self-coherence. These are both 'about the self' in ordinary language and are not the same coordinate system; treating them as equivalent is the main over-reading risk this entry carries.",
+    "The trajectories are experienced, not planned. Participants moved through social space by making choices whose consequences unfolded; nothing here shows the hippocampus generating or evaluating a CANDIDATE sequence of future self-states, which is the whole of ARC-031's 'plan its own deliberation'.",
+    "Correlational fMRI with a geometric model fitted to hippocampal BOLD. The finding is that a power/affiliation model predicts activity, not that the hippocampus computes navigation in that space; alternative accounts in which hippocampus indexes episodic novelty or relational binding that happens to covary with the model are not excluded.",
+    "No E3-analogue evaluation. ARC-031 specifies that trajectories are scored by self-coherence, hypothesis-tag integrity and self-maintenance cost rather than harm cost. Nothing in this task measures or manipulates any cost function over the trajectory."
+  ],
+  "tags": [
+    "arc_031",
+    "hippocampus",
+    "social_space",
+    "cognitive_map",
+    "self_representation",
+    "abstract_navigation",
+    "trajectory"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants acted as lead characters in a role-playing game, finding a home and a job through interactions with virtual characters. A two-dimensional geometric model of social relationships -- a 'social space' framed by power and affiliation -- predicted hippocampal activity, with participants' movement through that space tracking hippocampal response. Participants reporting better social skills showed stronger covariance between hippocampal activity and movement through social space. The authors conclude the hippocampus computes a general, abstract, multidimensional cognitive map rather than only framing physical locations.",
+    "ree_translation": "ARC-031 asserts HippocampalModule navigates z_self trajectory space -- the agent's own internal state, traversed as a space -- in addition to external action-object space O. Tavares et al. is the nearest published instance of a hippocampus representing the AGENT'S OWN position and movement in a non-physical space, rather than a map of external entities. The movement-not-just-location result is the part that matters: it is trajectory-adjacent, where the rest of the abstract-cognitive-map literature is position-only. In REE terms this is evidence that a hippocampal navigator can take the self's own state as the thing being navigated, which is the structural precondition ARC-031 needs.",
+    "mapping_caveat": "The equivocation to guard against is on the word 'self'. Social space is the self's position relative to OTHER PEOPLE along power and affiliation; ARC-031's z_self is the self's own epistemic condition -- effective dimensionality, hypothesis-tag integrity, self-coherence. Both are non-physical and both involve the self, and that surface similarity is exactly what makes this the easiest entry in the pull to over-read. Second caveat: these trajectories are lived, not planned. ARC-031's claim is that the agent can PLAN a deliberation sequence -- 'first resolve uncertainty in domain X, then attend to Y, then commit' -- which requires prospective simulation and an evaluation function, neither of which this task elicits or measures. Standing ARC-031 caveat also applies: phase-locked v4, zero substrate in ree-v3.",
+    "source_context": "Healthy adult humans, task fMRI during an interactive narrative role-playing game with virtual characters; hippocampal BOLD analysed against a fitted 2D power/affiliation geometric model, with individual differences in self-reported social skill as a moderator. Neuron 2015."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.78: creative, well-executed and influential, but correlational, model-fitted to BOLD, and with the usual caveats about a geometric model predicting activity being weaker than a demonstration that the region computes in that geometry. Mapping fidelity 0.4 -- higher than most of this pull because it is the only entry where the navigated space is the agent's own state, lower than Constantinescu because social space is not z_self and lived trajectories are not planned ones. Transfer risk 0.55, moderate-high: the social/epistemic conflation is a genuine hazard, and the individual-differences result (social skill moderating the effect) has no counterpart in an artificial architecture."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_031",
+  "entry_id": "2026-09-08_arc_031_hippocampal_self_position_social_space_tavares2015",
+  "timestamp_utc": "2026-09-08T05:41:29Z",
+  "summary_path": "summary.md"
+}

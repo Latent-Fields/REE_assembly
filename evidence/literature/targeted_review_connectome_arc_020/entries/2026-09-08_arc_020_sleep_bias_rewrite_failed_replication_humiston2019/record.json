@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "ARC-020"
+  ],
+  "source": {
+    "title": "Unlearning implicit social biases during sleep: A failure to replicate.",
+    "authors": [
+      "Graelyn B. Humiston",
+      "Erin J. Wamsley"
+    ],
+    "year": 2019,
+    "venue": "PLoS ONE",
+    "doi": "10.1371/journal.pone.0211416",
+    "pmid": "30682167",
+    "pmc": "PMC6347202",
+    "volume": "14",
+    "issue": "1",
+    "pages": "e0211416"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.2,
+  "confidence_rationale": "Deliberately low, and the direction is deliberately 'mixed' rather than 'supports'. Hu et al. (2015, Science) reported that targeted memory reactivation during a nap reduced implicit racial and gender bias -- the single most-cited demonstration that an offline process can rewrite something attitude-like rather than merely representational, and therefore the closest thing in the human literature to a direct falsifier of ARC-020's protected-boundary commitment. This well-powered (0.9 for the original effect) replication found nothing, with non-overlapping confidence intervals. Removing a putative falsifier is not the same as producing support, and I decline to score it as such: a null result cannot establish that a boundary exists, only that the best evidence it does not exist has weakened. Scored 0.2 to register the entry as genuinely informative to governance while keeping it far away from anything that could harden ARC-020's status.",
+  "failure_signatures": [
+    "This is evidence of absence being used to argue for a positive architectural commitment, which is weak inference and must not be laundered. A null replication is consistent with 'the boundary exists', with 'the boundary does not exist but TMR is simply an ineffective way to cross it', and with the original having been a false positive about something unrelated to boundaries at all.",
+    "The authors themselves name the false-negative possibility and argue against it on power and CI-overlap grounds. That argument is reasonable but it is theirs, and n=31 college students in a single laboratory is not a multi-site replication.",
+    "The manipulation was reactivation of counter-stereotype TRAINING memories, not an attempt to write to an authority store. Implicit bias as measured by the IAT is not obviously an ARC-020 'authority store' (POL/ID/CAPS) analogue -- it is arguably a representational/associative structure, which ARC-020's own sleep.md 'MAY update' list says SHOULD be freely modifiable offline. If so, the original Hu result would never have been a falsifier and this replication is doubly irrelevant.",
+    "Nothing here bears on TYPE discrimination. No condition contrasted an authority-affecting target against a representational one."
+  ],
+  "tags": [
+    "arc_020",
+    "sleep",
+    "targeted_memory_reactivation",
+    "implicit_bias",
+    "failed_replication",
+    "offline_consolidation",
+    "null_result",
+    "write_boundary"
+  ],
+  "mapping": {
+    "source_claim_statement": "A direct replication (n=31) of Hu et al. (2015), in which counter-stereotype training was followed by a 90-minute nap with targeted memory reactivation cues. Contrary to the original report, no effect of cueing on implicit racial or gender bias was found either immediately after the nap or one week later; bias was non-significantly greater for cued than uncued stimuli. The study was powered at 0.9 to detect the originally reported effect and its 95% confidence interval did not overlap the original's, which the authors argue makes Type II error an unlikely explanation.",
+    "ree_translation": "ARC-020 asserts that offline consolidation cannot land writes directly into privileged authority stores. The strongest empirical challenge to that shape in the human literature was Hu et al.'s claim that cued reactivation during sleep could shift implicit social attitudes -- i.e. that an offline process reaches content that looks policy-like rather than merely representational. This replication removes that challenge. In REE terms: a candidate demonstration that the offline write path reaches an authority-adjacent store failed to reproduce, so the empirical pressure against ARC-020 from that direction is weaker than it appeared.",
+    "mapping_caveat": "Two caveats, and the second is the one that should govern how this entry is read. First, this is evidence of absence: it subtracts a falsifier rather than adding support, and cannot on its own license any movement in ARC-020's status. Second, and more corrosive, it is not clear that implicit bias is an ARC-020 authority store at all. On REE's own taxonomy an implicitly-measured associative structure looks more like the representational/residue material that sleep.md explicitly says MAY be updated offline -- in which case Hu et al. was never a falsifier, this replication settles nothing about boundaries, and the whole line of argument dissolves. I have recorded the entry because governance should see that the putative counter-evidence is unreliable, not because it advances the claim.",
+    "source_context": "n=31 healthy college students, single site, 90-minute daytime nap with polysomnography, IAT-based implicit bias measures immediately post-nap and at one week. Pre-registered direct replication of a high-profile Science result."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.15,
+    "transfer_risk": 0.75,
+    "notes": "Source quality 0.7: methodologically careful, adequately powered for the target effect, transparent about its own limits, published in a venue that accepts null results -- but single-site and modest n. Mapping fidelity 0.15, the lowest in this pull, because of the unresolved question of whether implicit bias is an authority store or a representational one on REE's own taxonomy; if it is the latter, fidelity is effectively zero. Transfer risk 0.75, high, reflecting both the human-to-artificial jump and the evidence-of-absence inference structure. The aggregate 0.2 is intentionally near the floor: this entry exists to inform governance that a widely-cited counter-example is unreliable, and should never be read as ARC-020 having acquired support."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_020",
+  "entry_id": "2026-09-08_arc_020_sleep_bias_rewrite_failed_replication_humiston2019",
+  "timestamp_utc": "2026-09-08T05:41:29Z",
+  "summary_path": "summary.md"
+}

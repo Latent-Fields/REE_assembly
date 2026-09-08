@@ -1,0 +1,59 @@
+{
+  "claim_ids_tested": [
+    "ARC-020"
+  ],
+  "source": {
+    "title": "Formation and suppression of acoustic memories during human sleep.",
+    "authors": [
+      "Thomas Andrillon",
+      "Daniel Pressnitzer",
+      "Damien Leger",
+      "Sid Kouider"
+    ],
+    "year": 2017,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-017-00071-z",
+    "pmid": "28790302",
+    "pmc": "PMC5548898",
+    "volume": "8",
+    "issue": "1",
+    "pages": "179"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.4,
+  "confidence_rationale": "Strong, well-powered human EEG+behaviour study with an unusually clean result: the SAME stimulus, delivered to the SAME sleeping brain, is learned during REM/light NREM and actively SUPPRESSED during deep NREM, with the two outcomes traceable to distinct oscillatory events (spindles for facilitation, slow waves for suppression). That is a genuine demonstration that offline plasticity is gated rather than uniformly permissive, which is the load-bearing premise underneath ARC-020. Confidence is held at 0.4 rather than higher because the gating demonstrated is by sleep PHASE over a single content type, whereas ARC-020 asserts gating by write TYPE (representational vs authority-affecting) -- a different axis of discrimination. The paper establishes that a boundary of some kind exists; it does not establish that the boundary is typed in the sense ARC-020 requires.",
+  "failure_signatures": [
+    "The discrimination demonstrated is along the SLEEP-PHASE axis (deep NREM vs REM/light NREM), not along a CONTENT-TYPE axis. ARC-020's falsifier (b) -- 'a boundary exists but does not discriminate by TYPE' -- is precisely the reading this paper cannot rule out, and on its own evidence is arguably the reading it supports.",
+    "Only one class of material was tested (novel acoustic noise, a perceptual/representational item). Nothing authority-affecting -- no commitment, no policy, no identity-level content -- was ever presented, so the paper is silent on whether a privileged store would have been treated differently from a representational one.",
+    "Suppression during deep NREM produced performance WORSE than baseline, i.e. the offline process actively degraded rather than merely declining to write. A protective boundary that damages the material it refuses is not the same architecture as one that re-routes it through a verifier, which is what ARC-020 specifies."
+  ],
+  "tags": [
+    "arc_020",
+    "sleep",
+    "offline_consolidation",
+    "memory_gating",
+    "sleep_spindles",
+    "slow_waves",
+    "nrem",
+    "rem",
+    "write_boundary"
+  ],
+  "mapping": {
+    "source_claim_statement": "Repeated exposure to a novel acoustic noise during REM or light NREM sleep produces measurable behavioural improvement on waking, while the identical exposure during deep NREM sleep produces impaired performance relative to baseline. EEG markers of learning extracted during sleep confirm the dissociation, and the two directions of plasticity are traceable to distinct transient events -- spindles for facilitation, slow waves for suppression. Highly selective memory processes are therefore active during human sleep, with intertwined episodes of facilitative and suppressive plasticity.",
+    "ree_translation": "ARC-020 commits to offline/sleep consolidation being unable to write freely into privileged authority stores -- writes must be intercepted or re-routed through a typed commit boundary rather than landing directly. Andrillon et al. supply the biological existence proof for the weaker but necessary premise that offline states are not uniformly write-permissive: the sleeping brain runs a live gate that admits some plasticity and actively refuses other plasticity, and which way the gate falls is determined by the ongoing neural regime rather than by the content being unavailable. In REE terms this is a phase/mode-conditioned permission on the consolidation write path -- structurally the same shape as MECH-067's phase/store/actor permission matrix, one axis short.",
+    "mapping_caveat": "The axis of discrimination is wrong for what ARC-020 actually asserts, and this must not be glossed. The paper gates by sleep PHASE applied uniformly to one content type; ARC-020 gates by write TYPE within a phase (representational writes proceed, authority-affecting writes are intercepted). Reading this paper as evidence for a typed boundary requires an inference the data do not license -- indeed the paper's own result is fully consistent with ARC-020's falsifier (b), a boundary that is real but type-blind. Additional transfer risk: human auditory perceptual learning over a single night, versus an artificial cognitive architecture's commitment-token and policy stores. Treat this as corroborating the ARCHITECTURAL PLAUSIBILITY of a gated offline write path, not as evidence about typing.",
+    "source_context": "Healthy young adult humans, full-night polysomnography with auditory stimulation; behavioural test on waking plus sleep-EEG decoding of learning markers. Peer-reviewed, Nature Communications 2017."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.6,
+    "notes": "Source quality high: clean within-subject design, the same stimulus across conditions, converging behavioural and electrophysiological evidence, and a mechanistic account tied to identifiable sleep events rather than a bare phase contrast. Mapping fidelity deliberately low-moderate -- per lit-pull calibration, mapping is weighted heavily for architectural claims, and the phase-vs-type mismatch is exactly the kind of gap that silently inflates confidence if it is folded into an average. Transfer risk moderate-high: single-night human perceptual learning to an artificial substrate's authority stores, and ARC-020's own what_would_answer records that the V3 substrate currently has no reachable authority-store write path at all, so no literature can be more than architecturally suggestive here."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_020",
+  "entry_id": "2026-09-08_arc_020_sleep_phase_gated_plasticity_andrillon2017",
+  "timestamp_utc": "2026-09-08T05:41:29Z",
+  "summary_path": "summary.md"
+}

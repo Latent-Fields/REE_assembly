@@ -1,0 +1,59 @@
+{
+  "claim_ids_tested": [
+    "ARC-031"
+  ],
+  "source": {
+    "title": "Mental search of concepts is supported by egocentric vector representations and restructured grid maps.",
+    "authors": [
+      "Simone Vigano",
+      "Rena Bayramova",
+      "Christian F. Doeller",
+      "Roberto Bottini"
+    ],
+    "year": 2023,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-023-43831-w",
+    "pmid": "38065931",
+    "pmc": "PMC10709434",
+    "volume": "14",
+    "issue": "1",
+    "pages": "8132"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.48,
+  "confidence_rationale": "The closest published approach to ARC-031's 'planning its own deliberation'. During goal-directed MENTAL SEARCH -- an internally-generated cognitive act, not navigation of a presented stimulus -- parietal cortex evoked egocentric (self-referenced) vector representations of where a target concept lies relative to the searcher, while the entorhinal/prefrontal/parietal grid-like signal was modulated by goal proximity in conceptual space. Two things ARC-031 needs appear together here for the first time: a self-referenced frame, and a map that reconfigures according to the current cognitive goal rather than sitting static. Held at 0.48 because the searched space remains a semantic concept space, not the agent's own epistemic state space, and because 'search for a concept' is a considerably thinner act than 'plan a deliberation sequence'.",
+  "failure_signatures": [
+    "The space searched is semantic/conceptual (word meanings), external to the agent. ARC-031 requires search over the agent's OWN state space. An egocentric REFERENCE FRAME on an external space is not the same as the self being the space -- this is the sharpest distinction in the pull and the easiest to blur.",
+    "Mental search for a target concept is a single-goal retrieval act. ARC-031's deliberation trajectory is multi-step and structured ('first resolve uncertainty in X, then attend to Y, then commit'), with an evaluation function over the whole sequence. Nothing here involves a sequence of goals or any cost function over one.",
+    "Grid-signal modulation by goal proximity is an interesting but indirect measure; the causal claim that grid maps are 'restructured' by the goal rests on a correlational modulation, and the mechanism by which a goal would restructure a map is not demonstrated.",
+    "Recent (2023) single-study result in a fast-moving area, not yet independently replicated to my knowledge. Weight accordingly."
+  ],
+  "tags": [
+    "arc_031",
+    "mental_search",
+    "egocentric_representation",
+    "grid_cells",
+    "conceptual_space",
+    "parietal_cortex",
+    "goal_directed",
+    "deliberation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using fMRI, human parietal cortex was shown to evoke egocentric representations during goal-directed mental search in conceptual spaces -- representations of where a goal concept lies relative to oneself, analogous to those seen during physical navigation -- complementing the allocentric cognitive maps of the hippocampal-entorhinal system. Concurrently, the strength of the grid-like signal in entorhinal, prefrontal and parietal cortices was modulated as a function of goal proximity in conceptual space. The authors propose these complementary reference frames support flexible parallel readout of where target conceptual information is stored.",
+    "ree_translation": "ARC-031's distinguishing content is not merely that a non-physical space is mapped, but that the agent PLANS ITS OWN traversal of one -- deliberation as navigation. Vigano et al. is the nearest empirical approach: the act studied is internally generated mental search rather than externally driven navigation, the representation is self-referenced (egocentric vectors: where the goal sits relative to me), and the map itself is modulated by the current goal rather than being a fixed chart. In REE terms this evidences that a navigation system can be recruited by an internal cognitive goal and can reconfigure according to it -- which is what HippocampalModule would have to do to serve deliberation-planning rather than only world-planning.",
+    "mapping_caveat": "The critical distinction, and the one this entry exists to make precisely: an EGOCENTRIC FRAME on an external space is not a SELF-STATE space. Vigano et al. show the searcher's position used as origin for coordinates over semantic concepts; ARC-031 requires the searcher's own epistemic condition (D_eff, hypothesis-tag integrity, self-coherence) to be the navigated content. Blurring these would be the most seductive error available in this pull, because 'egocentric' and 'self' share a word. Second gap: single-goal retrieval versus a multi-step, cost-evaluated deliberation sequence -- ARC-031 needs an E3-analogue scoring whole trajectories, which nothing here provides. Third: 2023, single study, not yet independently replicated. Standing caveat: ARC-031 is phase-locked v4 with zero substrate in ree-v3.",
+    "source_context": "Healthy adult humans, fMRI during goal-directed mental search within a learned conceptual space; analyses of parietal egocentric vector coding and of grid-like signal modulation by goal proximity in entorhinal, prefrontal and parietal cortex. Nature Communications 2023."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.42,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.72: good design from an established group (Doeller), addressing exactly the internally-generated case the field had left open -- discounted for being a single recent study in a fast-moving area with no independent replication yet, and for the indirectness of the goal-proximity grid modulation as evidence of map restructuring. Mapping fidelity 0.42: it delivers internal generation, a self-referenced frame, and goal-conditioned map reconfiguration, three things ARC-031 needs and no other entry here supplies together -- but on an external semantic space, for a single-goal act. Transfer risk 0.55 reflecting the egocentric-frame/self-state conflation hazard specifically."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_031",
+  "entry_id": "2026-09-08_arc_031_egocentric_mental_search_conceptual_space_vigano2023",
+  "timestamp_utc": "2026-09-08T05:41:29Z",
+  "summary_path": "summary.md"
+}

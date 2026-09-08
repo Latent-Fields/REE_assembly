@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "ARC-020"
+  ],
+  "source": {
+    "title": "Neuromodulation: acetylcholine and memory consolidation.",
+    "authors": [
+      "Michael E. Hasselmo"
+    ],
+    "year": 1999,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/s1364-6613(99)01365-0",
+    "pmid": "10461198",
+    "pmc": null,
+    "volume": "3",
+    "issue": "9",
+    "pages": "351-359"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.38,
+  "confidence_rationale": "Canonical, heavily-cited theoretical synthesis proposing that cholinergic tone sets which of two incompatible dynamical regimes the hippocampus runs: high ACh during active waking suppresses excitatory feedback and favours encoding without interference from stored material; low ACh during quiet waking and SWS releases that suppression and lets activity spread hippocampus-to-entorhinal, favouring consolidation. This is the mechanistic story ARC-020 needs underneath a phase-conditioned write permission -- a single scalar that determines DIRECTION of information flow and which connections are functionally open. Confidence held at 0.38: it is a proposal and review rather than a decisive experiment, it is 1999 and the field has since complicated it, and -- decisively for mapping -- it gates a dynamical regime, not a content-type permission. It supplies the actuator ARC-020's boundary would need, not evidence that the boundary is typed.",
+  "failure_signatures": [
+    "The mechanism proposed is a graded neuromodulatory bias on synaptic transmission, not a discrete permission check. There is no representation anywhere in the account of a write's TYPE, no verifier, and nothing that could reject-and-re-route a particular class of update while admitting another within the same phase -- ARC-020's falsifier (b) again.",
+    "The account is explicitly a two-stage encoding/consolidation model. It predicts WHEN a trace can spread, not WHAT may be spread into. A store holding policy or identity content would, on this mechanism, be as open during low-ACh SWS as any representational store.",
+    "1999 theoretical proposal; the subsequent literature has substantially revised the simple high-ACh-encodes/low-ACh-consolidates dichotomy (phasic vs tonic ACh, REM cholinergic tone, task-dependent release). Citing it as settled mechanism would overstate its current standing.",
+    "Rodent slice and in-vivo physiology generalised to human systems consolidation and thence to an artificial architecture -- two transfers, neither tested here."
+  ],
+  "tags": [
+    "arc_020",
+    "acetylcholine",
+    "neuromodulation",
+    "sleep",
+    "systems_consolidation",
+    "encoding_consolidation_switch",
+    "hippocampus",
+    "entorhinal_cortex",
+    "write_boundary"
+  ],
+  "mapping": {
+    "source_claim_statement": "Cholinergic tone varies systematically across the sleep-wake cycle and thereby modulates distinct stages of memory formation. High acetylcholine during active waking partially suppresses excitatory feedback connections within hippocampus, setting dynamics appropriate for encoding new information without interference from previously stored patterns. The lower acetylcholine present during quiet waking and slow-wave sleep releases that suppression, permitting stronger spread of activity within hippocampus and outward to entorhinal cortex, thereby facilitating consolidation of separate traces.",
+    "ree_translation": "ARC-020 requires that something in the offline regime be capable of determining what a consolidation process is permitted to do -- otherwise the 'boundary' is a naming convention (the claim's own falsifier (c)). Hasselmo's proposal identifies a concrete biological actuator with exactly the right functional signature: a single neuromodulatory variable that changes which connections are effectively open and in which direction information flows, and that is systematically different in the offline state. In REE terms this is the closest biological analogue to a phase-conditioned entry in MECH-067's phase/store/actor permission matrix: the phase index is real, it is physically implemented, and it genuinely changes what the offline process can reach.",
+    "mapping_caveat": "This gates a REGIME, not a PERMISSION, and the distinction is the whole of ARC-020. A cholinergic bias makes certain pathways more or less transmissive to everything travelling them; ARC-020 needs a mechanism that inspects a candidate write and treats an authority-affecting one differently from a representational one arriving by the same route at the same moment. Nothing in this account can do that. Use it to answer 'could an offline write boundary have a physical implementer?' -- yes -- and not to answer 'is that boundary typed?', on which it is silent and, read strictly, mildly discouraging. Compounded transfer risk: rodent physiology to human consolidation to artificial substrate.",
+    "source_context": "Theoretical/review synthesis in Trends in Cognitive Sciences, drawing on rodent hippocampal slice and in-vivo cholinergic physiology plus human amnesia and systems-consolidation data. No new experiment."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.65,
+    "notes": "Source quality 0.72 rather than higher: canonical and influential, but a review-and-proposal rather than a decisive result, now 27 years old and substantially revised downstream. Mapping fidelity 0.35 for the regime-versus-permission gap, which is the same failure the Andrillon entry has and should not be double-counted as if two independent papers had converged on ARC-020's actual assertion -- they converge on its prerequisite. Transfer risk 0.65 for the two-step generalisation (rodent circuit physiology -> human systems consolidation -> artificial authority stores)."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_020",
+  "entry_id": "2026-09-08_arc_020_cholinergic_mode_switch_hasselmo1999",
+  "timestamp_utc": "2026-09-08T05:41:29Z",
+  "summary_path": "summary.md"
+}

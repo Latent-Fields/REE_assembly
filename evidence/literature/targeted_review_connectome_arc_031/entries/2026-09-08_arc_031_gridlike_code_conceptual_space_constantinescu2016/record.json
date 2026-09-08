@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "ARC-031"
+  ],
+  "source": {
+    "title": "Organizing conceptual knowledge in humans with a gridlike code.",
+    "authors": [
+      "Alexandra O. Constantinescu",
+      "Jill X. O'Reilly",
+      "Timothy E. J. Behrens"
+    ],
+    "year": 2016,
+    "venue": "Science",
+    "doi": "10.1126/science.aaf0941",
+    "pmid": "27313047",
+    "pmc": "PMC5248972",
+    "volume": "352",
+    "issue": "6292",
+    "pages": "1464-1468"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Direct empirical demonstration, in humans, that the hexagonally-symmetric grid signature previously tied to physical navigation appears when subjects traverse a purely conceptual two-dimensional space (bird stimuli varying in neck and leg length), in a network markedly overlapping the spatial-navigation network, and reproducibly across sessions a week apart. This is the load-bearing premise of ARC-031: that hippocampal-entorhinal navigation machinery is domain-general over continuous abstract spaces rather than specialised for physical space. Confidence 0.55 -- the highest in this pull -- because the premise really is established. It is held below 0.7 because establishing the premise is not establishing the claim: ARC-031's distinguishing content is that z_SELF trajectory space specifically is navigated, and a bird-morphospace is not a self-state space.",
+  "failure_signatures": [
+    "The abstract space here is an exteroceptive stimulus space (bird neck/leg length) that subjects were explicitly trained on with continuous visual feedback. ARC-031 requires navigation of INTERNAL self-state space -- D_eff, hypothesis-tag integrity, self-coherence -- which is neither externally presented nor trainable in this way, and may not have the smooth 2D metric structure the grid code requires.",
+    "The result is about POSITION coding in a static conceptual space, not about TRAJECTORY planning through it. ARC-031's specific content is planned sequences of self-state transitions; a hexagonal grid signature says the space is metrically organised, not that sequences within it are generated or evaluated.",
+    "Grid-like fMRI signal is an inferred population signature, not a place/grid cell recording. Its interpretation depends on assumptions about hexagonal alignment consistency that have been contested since.",
+    "The claim's own registration notes already cite Behrens et al. 2018 for the same general point. This entry strengthens that premise with the primary empirical result behind it, but governance should not count it as an independent second line of support for the premise -- it is the evidence Behrens 2018 reviews."
+  ],
+  "tags": [
+    "arc_031",
+    "grid_cells",
+    "entorhinal_cortex",
+    "conceptual_space",
+    "cognitive_map",
+    "abstract_navigation",
+    "hippocampal_formation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Humans navigating a two-dimensional conceptual knowledge space showed a hexagonally symmetric fMRI signal -- the established population signature of grid-cell coding -- in a set of brain regions markedly similar to those active during physical spatial navigation. The signal was consistent across sessions acquired within an hour and more than a week apart. The authors conclude that global relational codes may organise nonspatial conceptual representations, taking a gridlike form when knowledge is laid out in two continuous dimensions.",
+    "ree_translation": "ARC-031 proposes that HippocampalModule navigates z_self trajectory space in addition to z_world action-object space O -- that is, that REE's existing hippocampal navigation machinery can be pointed at a domain other than the external world without being rebuilt. That proposal is only coherent if navigation algorithms are domain-general in biology. Constantinescu et al. is the primary empirical demonstration that they are: the same coding scheme, in the same anatomy, for a space with no physical extent at all. It licenses the architectural move ARC-031 makes -- reusing the navigator rather than writing a second one -- while saying nothing about whether z_self is a space the navigator can actually take.",
+    "mapping_caveat": "Two gaps, both load-bearing. (1) DOMAIN: a conceptual space of externally-presented stimulus features is not an internal self-state space. Subjects were trained on the bird morphospace with feedback until it had smooth metric structure; z_self as ARC-031 defines it (D_eff, hypothesis-tag integrity, self-coherence cost) is an internal, possibly non-metric, possibly non-2D quantity, and MECH-113's D_eff prerequisite exists precisely because that space may not be coherent enough to navigate. (2) OBJECT: this is position coding, not trajectory generation. ARC-031's distinguishing content is planned SEQUENCES of self-state transitions evaluated by self-coherence cost. A grid code over a space is a precondition for planning within it, not the planning. Add the standing ARC-031 caveat: the claim is phase-locked v4 with zero substrate in ree-v3, so no literature can do more here than establish architectural plausibility.",
+    "source_context": "Healthy adult humans, task fMRI with a trained continuous 2D conceptual stimulus space (bird silhouettes varying in neck and leg length); grid-like hexagonal modulation analysis in entorhinal, prefrontal and parietal cortex. Science 2016, highly cited."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: a clean, well-controlled and repeatedly-replicated result that changed how the field thinks about cognitive maps, with a within-subject cross-session reproducibility check that most fMRI work does not attempt. Mapping fidelity 0.45 -- the highest in this pull, but still short of good, because the paper establishes ARC-031's PREMISE (navigation generalises to abstract spaces) rather than its CLAIM (z_self trajectory space in particular is navigated). Transfer risk 0.45, moderate: human fMRI to artificial architecture is a real jump, but the transferred object is a computational organising principle rather than a physiological detail, which travels better than most."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_031",
+  "entry_id": "2026-09-08_arc_031_gridlike_code_conceptual_space_constantinescu2016",
+  "timestamp_utc": "2026-09-08T05:41:29Z",
+  "summary_path": "summary.md"
+}
