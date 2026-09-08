@@ -2767,3 +2767,4 @@ One line per hourly tick. ASCII only.
 2026-09-08T21:12:39Z GC removed worktree igw-233-literature-proposal-for-mech-002 (removed; branch deleted)
 2026-09-08T21:12:19Z GC sweep removed 1 orphan worktree(s), kept 11
 2026-09-08T21:13:31Z workset committed (regen -- 249 items, 28 ready, 0 in flight)
+2026-09-08T21:12:19Z SPAWN IGW-20260908-233 skill=/queue-experiment prio=40 uuid=6616f3d9-deb2-43eb-8ced-4cb8aec0e9d0 pid=16831 worktree=igw-233-proposal-for-inv-104
