@@ -3318,6 +3318,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0237",
+      "claim_ids": [
+        "INV-093"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "EVB-1366/EXP-0717 (INV-093) is blocked_substrate on a LEXICAL field-name test that is unsatisfiable by construction for a candidate IV that already exists. The gating_reason's ground (1) and release_condition (a) require a non-empty match on refin*/skill_refin*/rollback*/provenance* across ree_core/utils/config.py (measured 0 of 1164, 2026-09-08, IGW-20260908-234). This session re-tested semantically: use_policy_chunking (ree-v3 ree_core/policy/policy_chunking.py, 2114 lines) is REE's planned-to-habitual TRANSITION mechanism, wired config -> ree_core/agent.py:1518, with a graded formation-eagerness family (chunk_min_repetitions default 20, chunk_variance_low/high, chunk_evaluative_margin) already varied across >=10 experiment scripts; and V3-EXQ-871a already runs it ON while co-instrumenting harm_signal, update_residue and the MECH-090 commit latch -- three of INV-093's four panel axes in one existing script. No glob in the predicate can ever match those field names, so the release condition cannot fire on this route however meritorious. DECISION NEEDED: does habitisation eagerness count as 'refinement strength' for this invariant? If yes, rewrite release_condition (a) as a semantic test and re-adjudicate the block; if no, record why habitisation is out of scope so the next session does not re-derive this. Note release_condition (b), the competence-acquisition gain floor (5/16 seeds, V3-EXQ-890), is unaffected and still binds either way. Status NOT flipped by this session; verification note appended to the proposal (REE_assembly 3689e5d781).",
+      "raised_by_session": "w6-s5a-closure-20260908",
+      "raised_at": "2026-09-08T20:08:46Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
