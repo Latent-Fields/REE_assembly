@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-08T02:12:11Z",
+  "generated_at": "2026-09-08T03:01:40Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -10419,6 +10419,28 @@
         "skill": "/queue-experiment",
         "title": "Proposal for INV-092",
         "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "INV-092"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260908T025843Z-ffce258a-claude_local",
+      "stable_hash": "ffce258aa7b5",
+      "igw_id_at_assign": "IGW-20260908-233",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-08T02:58:43Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=13beb371-d0f0-4895-a8ac-ae9bb395a2d0 branch=claude/igw-233-literature-proposal-for-inv-092",
+      "item_snapshot": {
+        "skill": "/lit-pull",
+        "title": "Literature proposal for INV-092",
+        "lane": "lit",
         "priority": 40,
         "claim_ids": [
           "INV-092"
