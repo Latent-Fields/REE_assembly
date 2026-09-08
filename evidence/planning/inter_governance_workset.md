@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-08T19:00:35Z`
+Generated: `2026-09-08T20:07:23Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -12,15 +12,17 @@ UI: http://localhost:8000/workset
 - Items: **245** (ready 27, in_flight 0, blocked 164)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 79, v4 76, v5 38, v6 25
 - Pending review: **0**
-- Queue pending (unclaimed): **0**
+- Queue pending (unclaimed): **1**
 
-- Live EXQs: V3-EXQ-1010, V3-EXQ-1013, V3-EXQ-906c
+- Live EXQs: V3-EXQ-1010, V3-EXQ-1011, V3-EXQ-1015, V3-EXQ-906c
 
-- Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): ARC-021 -> v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3, MECH-152 -> v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3, MECH-162 -> v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3, Q-081 -> v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3
+- Auto-absorbed retests (queued, suppressed from workset): ARC-021 -> V3-EXQ-1011, MECH-465 -> V3-EXQ-1015
+
+- Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): MECH-152 -> v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3, MECH-162 -> v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3, Q-081 -> v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3
 
 ## Work packages
 
-### IGW-20260908-215 -- Implement substrate: SD-049-PHASE-2 (unblocks ARC-030)
+### IGW-20260908-214 -- Implement substrate: SD-049-PHASE-2 (unblocks ARC-030)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
@@ -29,7 +31,7 @@ UI: http://localhost:8000/workset
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-215
+REE inter-governance work item: IGW-20260908-214
 Title: Implement substrate: SD-049-PHASE-2 (unblocks ARC-030)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -44,7 +46,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-216 -- Implement substrate: mech457_competence_bootstrap_explorer (unblocks ARC-030)
+### IGW-20260908-215 -- Implement substrate: mech457_competence_bootstrap_explorer (unblocks ARC-030)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
@@ -53,7 +55,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-216
+REE inter-governance work item: IGW-20260908-215
 Title: Implement substrate: mech457_competence_bootstrap_explorer (unblocks ARC-030)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -68,7 +70,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-219 -- Implement substrate: contextmemory-write-path-addressing-degeneracy (unblocks ARC-045)
+### IGW-20260908-218 -- Implement substrate: contextmemory-write-path-addressing-degeneracy (unblocks ARC-045)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready=false (no ready_blocked_by detail); SD-070 [no-substrate-entry]: SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
@@ -77,7 +79,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-219
+REE inter-governance work item: IGW-20260908-218
 Title: Implement substrate: contextmemory-write-path-addressing-degeneracy (unblocks ARC-045)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -92,7 +94,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-221 -- Implement substrate: ARC-046 (unblocks ARC-046)
+### IGW-20260908-220 -- Implement substrate: ARC-046 (unblocks ARC-046)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs a V3-scoped substrate fix, not V4). OWNER CORRECTED 2026-08-0
@@ -101,7 +103,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-221
+REE inter-governance work item: IGW-20260908-220
 Title: Implement substrate: ARC-046 (unblocks ARC-046)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -116,7 +118,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-223 -- Implement substrate: escape-affordance-bridge (unblocks ARC-060)
+### IGW-20260908-222 -- Implement substrate: escape-affordance-bridge (unblocks ARC-060)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: STALE TEXT CORRECTED 2026-08-07T18:17Z (session metaworker-chip-20260807-substrate-queue-stale-gating-audit; companion sweep to the ARC-065 GAP-A fix REE_assembly ffb4dbc4fc): V3-EXQ-603l is NOT in fl; SD-058 [no-substrate-entry]: SD-058; MECH-357 [no-substrate-entry]: MECH-357; MECH-303 [no-substrate-entry]: MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry]: SD-011 (z_harm_a)
@@ -125,7 +127,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-223
+REE inter-governance work item: IGW-20260908-222
 Title: Implement substrate: escape-affordance-bridge (unblocks ARC-060)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -140,7 +142,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-225 -- Implement substrate: SD-054 (unblocks ARC-062)
+### IGW-20260908-224 -- Implement substrate: SD-054 (unblocks ARC-062)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: STALE TEXT CORRECTED 2026-08-07T18:17Z (session metaworker-chip-20260807-substrate-queue-stale-gating-audit; companion sweep to the ARC-065 GAP-A fix REE_assembly ffb4dbc4fc): the named gate RAN and d; ARC-062 [implemented]
@@ -149,7 +151,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-225
+REE inter-governance work item: IGW-20260908-224
 Title: Implement substrate: SD-054 (unblocks ARC-062)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -164,21 +166,21 @@ Instructions:
 
 </details>
 
-### IGW-20260908-226 -- Implement substrate: f_dominance_conversion_ceiling (unblocks ARC-062)
+### IGW-20260908-225 -- Implement substrate: f_dominance_conversion_ceiling (unblocks ARC-062)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
-- **Blocked by:** ready_blocked_by: RECOMPUTED 2026-07-06 (session ecstatic-pare-45f7ad). Both selection-face levers are BUILT + VALIDATED + PROMOTED-provisional: MECH-448 (demotion; V3-EXQ-689d PASS, promoted governance-cycle-20260621T; free-text: SD-e1-rollout-consistency-training var-bar portfolio (sd_e1_var_bar_readout_crush; unqueued as of 2026-09-04). ITEM 2 validation RAN: V3-EXQ-976 (2026-09-02, co; free-text: E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved by
+- **Blocked by:** ready_blocked_by: RECOMPUTED 2026-07-06 (session ecstatic-pare-45f7ad). Both selection-face levers are BUILT + VALIDATED + PROMOTED-provisional: MECH-448 (demotion; V3-EXQ-689d PASS, promoted governance-cycle-20260621T; free-text: SD-e1-rollout-consistency-training var-bar portfolio -- RAN as V3-EXQ-1006 (2026-09-06; confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07). L; free-text: E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved) a
 - **Why now:** substrate_queue entry status=mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substr
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-226
+REE inter-governance work item: IGW-20260908-225
 Title: Implement substrate: f_dominance_conversion_ceiling (unblocks ARC-062)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
 Claims: ARC-062, ARC-063, ARC-107, MECH-260, MECH-263, MECH-280
-Blocked by: ready_blocked_by: RECOMPUTED 2026-07-06 (session ecstatic-pare-45f7ad). Both selection-face levers are BUILT + VALIDATED + PROMOTED-provisional: MECH-448 (demotion; V3-EXQ-689d PASS, promoted governance-cycle-20260621T; free-text: SD-e1-rollout-consistency-training var-bar portfolio (sd_e1_var_bar_readout_crush; unqueued as of 2026-09-04). ITEM 2 validation RAN: V3-EXQ-976 (2026-09-02, co; free-text: E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved by
+Blocked by: ready_blocked_by: RECOMPUTED 2026-07-06 (session ecstatic-pare-45f7ad). Both selection-face levers are BUILT + VALIDATED + PROMOTED-provisional: MECH-448 (demotion; V3-EXQ-689d PASS, promoted governance-cycle-20260621T; free-text: SD-e1-rollout-consistency-training var-bar portfolio -- RAN as V3-EXQ-1006 (2026-09-06; confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07). L; free-text: E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved) a
 Why now: substrate_queue entry status=mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substr
 
 Instructions:
@@ -313,32 +315,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-213 -- Retest after substrate: ARC-021
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
-- **Blocked by:** post-substrate evidence already exists: v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3 [FAIL/mixed] ran 2026-09-04T21:23:34Z, after the substrate landing bound 2026-09-04T16:44:00Z (dv-dynamic-range-precondition-class.implemented_utc). pending_retest_after_substrate is still true in claims.yaml -- /governance must adjudicate that run and either clear the flag or re-scope the retest.
-- **Why now:** The retest has ALREADY RUN (v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3) -- do not re-queue it. The claims.yaml flag is still set, so this is a /governance disposition (clear the flag, or re-scope the retest), not /queue-experiment work. (FM11.)
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260908-213
-Title: Retest after substrate: ARC-021
-Lane: experiment | Skill: /queue-experiment
-Status: blocked
-Claims: ARC-021
-Blocked by: post-substrate evidence already exists: v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3 [FAIL/mixed] ran 2026-09-04T21:23:34Z, after the substrate landing bound 2026-09-04T16:44:00Z (dv-dynamic-range-precondition-class.implemented_utc). pending_retest_after_substrate is still true in claims.yaml -- /governance must adjudicate that run and either clear the flag or re-scope the retest.
-Why now: The retest has ALREADY RUN (v3_exq_993a_arc021_merged_channel_action_conditioned_harm_20260904T212334Z_v3) -- do not re-queue it. The claims.yaml flag is still set, so this is a /governance disposition (clear the flag, or re-scope the retest), not /queue-experiment work. (FM11.)
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260908-214 -- Retest after substrate: ARC-030
+### IGW-20260908-213 -- Retest after substrate: ARC-030
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; MECH-307 [implemented]; mech457_competence_bootstrap_explorer [blocked_pending_dependency (discrimination complete 2026-08-08; MECH-229 outstanding)]; MECH-229 [no-substrate-entry] (transitive via mech457_competence_bootstrap_explorer): MECH-229
@@ -347,7 +324,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-214
+REE inter-governance work item: IGW-20260908-213
 Title: Retest after substrate: ARC-030
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -363,7 +340,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-217 -- Retest after substrate: ARC-041
+### IGW-20260908-216 -- Retest after substrate: ARC-041
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** not v3-testable: ARC-041 epistemic_category=substrate_conditional
@@ -372,7 +349,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-217
+REE inter-governance work item: IGW-20260908-216
 Title: Retest after substrate: ARC-041
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -388,7 +365,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-218 -- Retest after substrate: ARC-045
+### IGW-20260908-217 -- Retest after substrate: ARC-045
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION [implemented_validated_result_non_contributory]; contextmemory-write-path-addressing-degeneracy [implemented_pending_validation]; SD-070 [no-substrate-entry] (transitive via contextmemory-write-path-addressing-degeneracy): SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
@@ -397,7 +374,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-218
+REE inter-governance work item: IGW-20260908-217
 Title: Retest after substrate: ARC-045
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -413,7 +390,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-220 -- Retest after substrate: ARC-046
+### IGW-20260908-219 -- Retest after substrate: ARC-046
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** ARC-046 [implemented]; free-text (via ARC-046): goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs a V3-scoped substrate fix, not V4). OWNER CORRECTED 2026-08-0
@@ -422,7 +399,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-220
+REE inter-governance work item: IGW-20260908-219
 Title: Retest after substrate: ARC-046
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -438,7 +415,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-222 -- Retest after substrate: ARC-060
+### IGW-20260908-221 -- Retest after substrate: ARC-060
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** escape-affordance-bridge [IMPLEMENTED (affordance-indexed avoidance credit wired; MECH-302 relief half + MECH-303/304 safety half built+wired into instrumental avoidance). SAFETY HALF VALIDATED at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (trained safety_signal 0.893 >= 0.5 floor + under-threat gate 0.584 >= 0.1; load-bearing G1_on_safety_credits_via_trained_signal PASS; claim_ids=[], non_contributory, reviewed). Relief half already credited non-vacuously (603i relief_credit_frac 0.67). Both bridge halves now credit; the scored 4-arm behavioural validation V3-EXQ-603l (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE; G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY) is IN FLIGHT. ready STAYS false until 603l scores.]; SD-058 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-058; MECH-357 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-357; MECH-303 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-011 (z_harm_a)
@@ -447,7 +424,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-222
+REE inter-governance work item: IGW-20260908-221
 Title: Retest after substrate: ARC-060
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -463,21 +440,21 @@ Instructions:
 
 </details>
 
-### IGW-20260908-224 -- Retest after substrate: ARC-062
+### IGW-20260908-223 -- Retest after substrate: ARC-062
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
-- **Blocked by:** ARC-062 [implemented]; SD-054 [candidate_v3_pending]; ARC-062 [implemented] (transitive via SD-054); f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]; free-text (via f_dominance_conversion_ceiling): SD-e1-rollout-consistency-training var-bar portfolio (sd_e1_var_bar_readout_crush; unqueued as of 2026-09-04). ITEM 2 validation RAN: V3-EXQ-976 (2026-09-02, co; free-text (via f_dominance_conversion_ceiling): E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved by
+- **Blocked by:** ARC-062 [implemented]; SD-054 [candidate_v3_pending]; ARC-062 [implemented] (transitive via SD-054); f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]; free-text (via f_dominance_conversion_ceiling): SD-e1-rollout-consistency-training var-bar portfolio -- RAN as V3-EXQ-1006 (2026-09-06; confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07). L; free-text (via f_dominance_conversion_ceiling): E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved) a
 - **Why now:** substrate_ceiling -- awaiting substrate enrichment; blocked by 6 unresolved prerequisite(s). See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-224
+REE inter-governance work item: IGW-20260908-223
 Title: Retest after substrate: ARC-062
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: ARC-062
-Blocked by: ARC-062 [implemented]; SD-054 [candidate_v3_pending]; ARC-062 [implemented] (transitive via SD-054); f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]; free-text (via f_dominance_conversion_ceiling): SD-e1-rollout-consistency-training var-bar portfolio (sd_e1_var_bar_readout_crush; unqueued as of 2026-09-04). ITEM 2 validation RAN: V3-EXQ-976 (2026-09-02, co; free-text (via f_dominance_conversion_ceiling): E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved by
+Blocked by: ARC-062 [implemented]; SD-054 [candidate_v3_pending]; ARC-062 [implemented] (transitive via SD-054); f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]; free-text (via f_dominance_conversion_ceiling): SD-e1-rollout-consistency-training var-bar portfolio -- RAN as V3-EXQ-1006 (2026-09-06; confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07). L; free-text (via f_dominance_conversion_ceiling): E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved) a
 Why now: substrate_ceiling -- awaiting substrate enrichment; blocked by 6 unresolved prerequisite(s). See blocked_by.
 
 Instructions:
@@ -488,21 +465,21 @@ Instructions:
 
 </details>
 
-### IGW-20260908-227 -- Retest after substrate: ARC-063
+### IGW-20260908-226 -- Retest after substrate: ARC-063
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
-- **Blocked by:** f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]; free-text (via f_dominance_conversion_ceiling): SD-e1-rollout-consistency-training var-bar portfolio (sd_e1_var_bar_readout_crush; unqueued as of 2026-09-04). ITEM 2 validation RAN: V3-EXQ-976 (2026-09-02, co; free-text (via f_dominance_conversion_ceiling): E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved by
+- **Blocked by:** f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]; free-text (via f_dominance_conversion_ceiling): SD-e1-rollout-consistency-training var-bar portfolio -- RAN as V3-EXQ-1006 (2026-09-06; confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07). L; free-text (via f_dominance_conversion_ceiling): E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved) a
 - **Why now:** Blocked by 3 unresolved substrate prerequisite(s) -- see blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-227
+REE inter-governance work item: IGW-20260908-226
 Title: Retest after substrate: ARC-063
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: ARC-063
-Blocked by: f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]; free-text (via f_dominance_conversion_ceiling): SD-e1-rollout-consistency-training var-bar portfolio (sd_e1_var_bar_readout_crush; unqueued as of 2026-09-04). ITEM 2 validation RAN: V3-EXQ-976 (2026-09-02, co; free-text (via f_dominance_conversion_ceiling): E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved by
+Blocked by: f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]; free-text (via f_dominance_conversion_ceiling): SD-e1-rollout-consistency-training var-bar portfolio -- RAN as V3-EXQ-1006 (2026-09-06; confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07). L; free-text (via f_dominance_conversion_ceiling): E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved) a
 Why now: Blocked by 3 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
@@ -513,7 +490,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-228 -- Retest after substrate: ARC-068
+### IGW-20260908-227 -- Retest after substrate: ARC-068
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** escape-affordance-bridge [IMPLEMENTED (affordance-indexed avoidance credit wired; MECH-302 relief half + MECH-303/304 safety half built+wired into instrumental avoidance). SAFETY HALF VALIDATED at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (trained safety_signal 0.893 >= 0.5 floor + under-threat gate 0.584 >= 0.1; load-bearing G1_on_safety_credits_via_trained_signal PASS; claim_ids=[], non_contributory, reviewed). Relief half already credited non-vacuously (603i relief_credit_frac 0.67). Both bridge halves now credit; the scored 4-arm behavioural validation V3-EXQ-603l (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE; G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY) is IN FLIGHT. ready STAYS false until 603l scores.]; SD-058 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-058; MECH-357 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-357; MECH-303 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-011 (z_harm_a)
@@ -522,13 +499,38 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-228
+REE inter-governance work item: IGW-20260908-227
 Title: Retest after substrate: ARC-068
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: ARC-068
 Blocked by: escape-affordance-bridge [IMPLEMENTED (affordance-indexed avoidance credit wired; MECH-302 relief half + MECH-303/304 safety half built+wired into instrumental avoidance). SAFETY HALF VALIDATED at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (trained safety_signal 0.893 >= 0.5 floor + under-threat gate 0.584 >= 0.1; load-bearing G1_on_safety_credits_via_trained_signal PASS; claim_ids=[], non_contributory, reviewed). Relief half already credited non-vacuously (603i relief_credit_frac 0.67). Both bridge halves now credit; the scored 4-arm behavioural validation V3-EXQ-603l (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE; G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY) is IN FLIGHT. ready STAYS false until 603l scores.]; SD-058 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-058; MECH-357 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-357; MECH-303 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-011 (z_harm_a)
 Why now: Blocked by 5 unresolved substrate prerequisite(s) -- see blocked_by.
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260908-228 -- Retest after substrate: ARC-070
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
+- **Blocked by:** not v3-testable: ARC-070 v3_pending
+- **Why now:** Held by the governance V3-pending gate (ARC-070 v3_pending) -- a /queue-experiment cannot yield contributory evidence. See blocked_by. (R5; mirrors R1.)
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260908-228
+Title: Retest after substrate: ARC-070
+Lane: experiment | Skill: /queue-experiment
+Status: blocked
+Claims: ARC-070
+Blocked by: not v3-testable: ARC-070 v3_pending
+Why now: Held by the governance V3-pending gate (ARC-070 v3_pending) -- a /queue-experiment cannot yield contributory evidence. See blocked_by. (R5; mirrors R1.)
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -1008,7 +1010,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-211 -- Queue depth low (0 pending)
+### IGW-20260908-211 -- Queue depth low (1 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1017,7 +1019,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260908-211
-Title: Queue depth low (0 pending)
+Title: Queue depth low (1 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -2369,7 +2371,7 @@ Instructions:
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 40 | **Generation:** v3
 - **Gap(s):** commitment_closure:GAP-4
-- **Why now:** Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUED + INGESTED 2026-06-22, ree-v3 main 979a943, coordinator /queue/active via git reconcile, machine_affinity any; supersedes V3-EXQ-460j, which RAN ter
+- **Why now:** [RECONCILED 2026-09-08: V3-EXQ-460k RAN 2026-06-22T19:17Z, terminal FAIL / non_contributory -- NOT in flight; the node now waits on the f_dominance_conversion_ceiling substrate AMEND per governance_2026_06_23 / reconcile_2026_09_08, success
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -2380,7 +2382,7 @@ Lane: plan | Skill: (plan reconcile)
 Status: in_progress
 Gap(s): commitment_closure:GAP-4
 Claims: SD-034, MECH-266, MECH-267, MECH-268, MECH-090, MECH-342
-Why now: Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUED + INGESTED 2026-06-22, ree-v3 main 979a943, coordinator /queue/active via git reconcile, machine_affinity any; supersedes V3-EXQ-460j, which RAN ter
+Why now: [RECONCILED 2026-09-08: V3-EXQ-460k RAN 2026-06-22T19:17Z, terminal FAIL / non_contributory -- NOT in flight; the node now waits on the f_dominance_conversion_ceiling substrate AMEND per governance_2026_06_23 / reconcile_2026_09_08, success
 
 Instructions:
 - Update plan-of-record doc and closure frontmatter when complete.
@@ -2666,31 +2668,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-231 -- Proposal for EXT-009
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260908-231
-Title: Proposal for EXT-009
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: EXT-009
-Proposal backlog id (stable): EVB-1254
-Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260908-232 -- Literature proposal for EXT-009
+### IGW-20260908-231 -- Literature proposal for EXT-009
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2698,7 +2676,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-232
+REE inter-governance work item: IGW-20260908-231
 Title: Literature proposal for EXT-009
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2713,7 +2691,7 @@ Instructions:
 
 </details>
 
-### IGW-20260908-233 -- Proposal for MECH-002
+### IGW-20260908-232 -- Proposal for MECH-002
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2721,7 +2699,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260908-233
+REE inter-governance work item: IGW-20260908-232
 Title: Proposal for MECH-002
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -2732,6 +2710,29 @@ Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_s
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260908-233 -- Literature proposal for MECH-002
+
+- **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260908-233
+Title: Literature proposal for MECH-002
+Lane: lit | Skill: /lit-pull
+Status: ready
+Claims: MECH-002
+Proposal backlog id (stable): EVB-1378
+Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+Instructions:
+- Use /lit-pull for the claim cluster named.
 - Workset: http://localhost:8000/workset
 ```
 
