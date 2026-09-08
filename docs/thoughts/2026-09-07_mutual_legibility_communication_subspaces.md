@@ -1,7 +1,11 @@
 # Mutual legibility without representational collapse
 
 **Date:** 2026-09-07  
-**Status:** evidence-backed thought / falsifiable architectural hypothesis  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-07_mutual_legibility.md
+Claims registered: ARC-139, MECH-537, MECH-538, MECH-539, MECH-540, INV-105
+
+**Document type:** evidence-backed thought / falsifiable architectural hypothesis
 **Scope:** REE-v3 closure implications plus broader developmental architecture; no claim promotion or experiment queue mutation in this document  
 **Evidence campaign:** `evidence/planning/latent_interface_translation_campaign_20260907.md` and associated tranche notes  
 **Companion implementation note:** `docs/thoughts/2026-09-07_mutual_legibility_implementation_assays.md`

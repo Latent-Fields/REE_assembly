@@ -97427,3 +97427,227 @@
     NOT queue the discriminator from this entry; /governance decides whether it runs as a 978
     letter, folds into chip-20260903-exq978-oracle-adapter-discriminator's pre-registration, or
     waits.
+
+- id: ARC-139
+  title: "Integration does not require representational sameness, it requires selective mutual legibility: specialised cognitive subsystems may preserve distinct high-dimensional PRIVATE internal representations while coordinating through low-dimensional, context-sensitive communication subspaces and low-complexity transformations, so development can raise local specialisation and cross-system legibility AT THE SAME TIME rather than trading one against the other. Non-redundant prediction: a maturing REE shows rising local competence in E1/E2/hippocampus/E3 while GLOBAL representational similarity between them stays flat or falls, and increasing representational similarity between subsystems must therefore NOT be used as the default marker of maturation. This is an explicit ALTERNATIVE framing to ARC-121's shared epistemic-state object, not a refutation of it: one common object, specialised objects with a shared interface format, specialised objects joined by context-specific translation, and a hybrid invariant-core-plus-private-dimensions architecture all remain live, and ARC-121 must not be used to prejudge the question."
+  claim_type: architectural_commitment
+  subject: architecture.mutual_legibility_without_representational_convergence
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  depends_on:
+    - ARC-121   # shared epistemic-state object -- the rival framing this is an alternative to
+    - MECH-517  # interface-before-representation ordering; the collapse case of the same family
+    - MECH-532  # compression/decompression pairing at designated sites
+    - MECH-507  # reciprocal compression/decompression bridge framing
+    - INV-104   # sender-side distinction-preservation contract this complements
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#arc-139
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 three-document mutual-legibility package
+    (intake evidence/planning/thought_intake_2026-09-07_mutual_legibility.md). This
+    registration IS the work programme's ML-01 claim-overlap review
+    (evidence/planning/mutual_legibility_work_program_20260907.md), which asked whether
+    mutual legibility merely reinterprets existing scope or justifies a new claim. Verdict:
+    new. GENERALIZES the specific interface findings of MECH-517/518 and SD-080 into an
+    architectural principle about federation vs convergence. DISTINCT FROM ARC-121, which
+    asserts convergence onto a shared epistemic-state object -- these are rival readings of
+    the same convergence evidence and both are deliberately left candidate; no ARC-121 field
+    is touched. DISTINCT FROM INV-104, which is the sender-side preservation contract; this
+    is about what crosses a boundary and in what geometry. Biological anchors (verified in
+    the thought's reference list, NOT independently re-verified in this pass): Semedo et al.
+    Neuron 2019 cortical communication subspace; Binish et al. Nat Neurosci 29:1690-1698
+    (2026) prefrontal->motor communication subspace predicting behaviour better than either
+    area alone; Gonzalez et al. Nature 655:192-201 (2026) rotated subspaces over overlapping
+    hippocampal-retrosplenial populations. DO NOT build in V3 -- no LatentBridge module, no
+    global CKA/RSA similarity objective. DO NOT queue an experiment from this entry; the
+    sanctioned near-term work is a read-only diagnostic harness over frozen checkpoints.
+    /governance owns the version-routing decision: the DIAGNOSTIC is v3-runnable on existing
+    recorded data, while any architectural response is v4, and this entry defaults to v4
+    rather than deciding that unilaterally.
+
+- id: MECH-537
+  title: "Communication-subspace routing failure -- encoded but not exposed: a task variable can be strongly encoded in the FULL sender latent while being weakly represented in the CONSUMER-FACING subspace, producing the phenotype `external probe succeeds -> native behaviour fails` with no information having been destroyed. This is a third failure category strictly between 'information absent from the sender' and 'information used by the receiver', and it is distinct from MECH-517 (the decoder collapses) and MECH-532 (the compression site has no trained decompression stage): routing failure requires neither a collapse nor a missing readout, because the consumer can be reading a perfectly healthy low-rank subspace that simply does not carry the distinction. Operationalised by cross-validated Reduced Rank Regression from sender activity to the ACTUAL consumer input tensor, comparing task decodability in the full sender, inside the estimated communication subspace, and in its orthogonal complement; the diagnostic signature is `target decodable from X` but `poorly decodable from P_comm X`."
+  claim_type: mechanism_hypothesis
+  subject: representation.communication_subspace_routing_exposure
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  depends_on:
+    - ARC-139   # the architectural principle this mechanism serves
+    - MECH-517  # RIVAL/sibling: interface collapse, the other way an interface hides a representation
+    - MECH-518  # action-object dual-role variance contention at a named candidate locus
+    - SD-080    # frozen action-object projection -- the locus of the strongest historical negative
+    - MECH-532  # compression/decompression pairing; the third sibling failure mode
+    - INV-105   # the evidence ladder that any routing claim must satisfy
+    - INV-088   # z_world differentiation lineage this reinterprets rather than replaces
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-537
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. WHAT MAKES THIS
+    TIMELY RATHER THAN SPECULATIVE: V3-EXQ-1002's autopsy (2026-09-05) already CONFIRMED the
+    H-C geometry-mismatch leg at its registered gate -- a capacity-matched supervised adapter
+    reached 0.6695/0.6735/0.6478 from frozen z_world against 0.9846/0.9796/0.9730 from the raw
+    25-dim field, and did NOT beat its own untrained-projection control on any seed -- and that
+    autopsy explicitly names an OWED "information-preserving rotation corroborator". The
+    orthogonal-Procrustes rung of MECH-538's bridge ladder IS that owed corroborator, arrived
+    at independently. This claim supplies the mechanism that would explain the 1002 result
+    without requiring information loss. DISTINGUISHED FROM MECH-517 deliberately and at
+    length: both produce a behavioural null downstream of a real representation, but they
+    route to different repairs -- MECH-517 to fixing a rank-deficient/collapsed decoder,
+    MECH-537 to changing WHICH directions are exposed to a healthy consumer. An experiment
+    that cannot tell those apart tests neither. The registered discriminator is failure class
+    F2 vs F3 in the routing table on the location doc. NOT independently verified in this
+    pass: the external references (Semedo 2019, Binish 2026, Gonzalez 2026, StateBridge
+    arXiv:2608.13317, Interlat ACL 2026, Cheng/Das/Ramnath arXiv:2608.04893) are taken from
+    the thought's own reference list and a lit-pull is owed before any of them is cited as
+    support. Mostik is COMPANY-REPORTED, not independently replicated, and must not be cited
+    as established. DO NOT queue an experiment from this entry. The read-only diagnostic
+    harness (work programme ML-10/ML-12/ML-20) is the sanctioned next step and /governance
+    owns whether it runs.
+
+- id: INV-105
+  title: "The latent-access evidence ladder: a variable's status in a latent space is not one property but seven, which must never be collapsed -- encoded (statistically present) != decodable (recoverable by an external probe) != natively accessible (usable by the system's existing consumer) != bridgeable (usable through a constrained map between frozen endpoints) != pairing-specific (useful specifically when the correct sender state is paired with the correct receiver situation) != causally used (interventions on its content alter downstream computation) != behaviourally beneficial (that causal use improves adaptive performance). Two evidential consequences bind rather than advise: (1) a content-transmission claim about any internal channel or bridge REQUIRES correct-vs-mismatched-vs-zero-vs-moment-matched-random controls, because a channel can be strongly load-bearing while its example-specific content is barely load-bearing; (2) a null measured on a COMPRESSED representation requires a dimensionality-matched RANDOM-PROJECTION floor, not a zero floor, before it can be read as information loss."
+  claim_type: invariant
+  invariant_type: universal
+  subject: methodology.latent_access_evidence_ladder
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4_v5
+  registered_utc: '2026-09-08'
+  depends_on:
+    - INV-104   # the sender-side preservation contract; this is the consumer/evidence-side half
+    - MECH-517  # interface collapse -- another rung-3 failure a rung-2 probe cannot see
+    - MECH-532  # ceiling nulls measured through an untrained readout are interface ceilings
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#inv-105
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. This is a UNIVERSAL
+    invariant in the definitional/evidential sense -- it constrains what a measurement
+    licenses, it is not an empirical hypothesis about REE substrate, and it should not be
+    given a falsification experiment. COMPLEMENTS INV-104: that claim says which distinctions
+    a compression must preserve; this one says that preservation is necessary and NOT
+    sufficient, and that a linear probe licenses only rung 2 of seven. The random-projection
+    floor clause is grounded in a measured REE result, not imported: the 2026-09-07
+    waypoint-field DV-range probe (ree-v3 f00402c9) found mean directional lift +0.269 raw,
+    +0.211 through a random 275->32 projection (~78% retention), +0.167 through an untrained
+    SplitEncoder (~62%), across five seeds -- so a severe random bottleneck preserved most of
+    the signal and "32 dimensions were too small" is not available as a default reading of a
+    null. The mismatched-control clause is grounded in the external causal-audit literature
+    (Cheng, Das & Ramnath arXiv:2608.04893 report zeroing a relay costing 14.7 points while
+    substituting the WRONG example's cache cost 0.4) -- NOT independently verified in this
+    pass; a lit-pull is owed before it is cited as support rather than as motivation.
+    RELATIONSHIP TO EXISTING PRACTICE: REE already applies pieces of this ad hoc (positive
+    controls for decodable-in-principle, V3-EXQ-1002's untrained-projection comparator). The
+    novelty is making the ladder explicit and naming the two controls as REQUIREMENTS, so that
+    the missing rung is visible when an experiment reports one. DO NOT build in V3 -- there is
+    nothing to build; this is an interpretive standard. /governance owns whether it is
+    promoted to a gate on experiment pre-registration.
+
+- id: MECH-538
+  title: "Minimum bridge complexity as the measure of mutual legibility: for systems A and B and a family of constrained mappings of increasing expressiveness (native readout -> orthogonal/Procrustes -> affine -> low-rank affine -> constrained nonlinear -> high-capacity upper bound), define L(A -> B) = the minimum bridge complexity achieving a predeclared HELD-OUT functional criterion between FROZEN endpoints; lower L means greater mutual legibility, and the simpler the bridge that works the stronger the evidence that the sender already held an appropriately structured representation -- a high-capacity bridge that succeeds may be performing new cognition and is therefore evidence about the bridge, not about the endpoints. L must never be read alone: two systems that became identical because one LOST its specialisation would show falling L with worsening cognition, so development is tracked on two axes (local specialisation/competence, and cross-system legibility). Non-redundant developmental prediction: sender and receiver each improve local competence WHILE global representational similarity stays flat or falls, task information concentrates in the consumer-facing subspace, and minimum bridge rank falls -- coordination without homogenisation."
+  claim_type: mechanism_hypothesis
+  subject: development.minimum_bridge_complexity_legibility_measure
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  depends_on:
+    - ARC-139   # the principle this operationalises into a measurable quantity
+    - MECH-537  # routing exposure; the subspace half of the same measurement battery
+    - INV-105   # the ladder that says which rung a bridge success establishes
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-538
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. THE METER, not the
+    mechanism -- this claim's content is a measurement construct plus one falsifiable
+    developmental prediction. Its orthogonal-Procrustes rung is independently owed elsewhere:
+    V3-EXQ-1002's autopsy names an "information-preserving rotation corroborator" as an open
+    obligation, and a flat result there WEAKENS the confirmed H-C leg. The two-axis
+    requirement is the anti-degeneracy guard and is load-bearing: optimising communication
+    -subspace rank toward being as small as possible WITHOUT a competence constraint is an
+    explicitly named anti-goal in the source package. DISTINCT FROM ordinary co-training or
+    representational-alignment work, which predicts rising cross-system similarity; this
+    claim predicts the opposite on the similarity axis while legibility rises, and that
+    divergence is what makes it testable rather than a redescription. NOT YET DEMONSTRATED IN
+    REE: no measurement of L exists at any REE interface, and the developmental prediction has
+    never been run. Registration is not a commitment to build. DO NOT queue a developmental
+    trajectory experiment -- the source package sequences this AFTER a single waking interface
+    metric has demonstrated range and stability at one locus (work programme ML-20 then
+    ML-50), for the stated reason that a developmental sweep run on an unvalidated instrument
+    measures the instrument.
+
+- id: MECH-539
+  title: "Dynamic interface compatibility: between PREDICTIVE systems, pointwise state correspondence across an interface is insufficient -- a mapping must additionally satisfy that receiver_transition(T(x_t), a_t) is compatible with T(x_(t+1)) under the relevant action/context, because a bridge can succeed pointwise while destroying transition geometry. The registered diagnostic separation is: map ONLY the initial state and let the receiver evolve natively, versus repeatedly mapping sender rollout states -- this distinguishes a bridge that supplies a compatible starting condition from one that must continually correct incompatible dynamics. Failure signature `good static + bad dynamic` routes to transition-geometry work rather than to representation work; `good one-step + degrading long-horizon` indicates compounding dynamics mismatch; `good dynamic but poor behaviour` routes downstream to valuation/selection."
+  claim_type: mechanism_hypothesis
+  subject: representation.dynamic_interface_transition_compatibility
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  depends_on:
+    - ARC-139   # federation principle; interfaces between predictive systems are its hard case
+    - MECH-538  # bridge ladder; this is the additional criterion every rung must also meet
+    - INV-088   # E1 rollout-consistency lineage -- adjacent but about E1's OWN transitions
+    - MECH-537  # routing exposure, the static half of the same interface question
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-539
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. DISTINGUISHED FROM
+    INV-088 explicitly, because the two are easy to conflate and a future session merging them
+    would lose a real distinction: INV-088's rollout-consistency lineage concerns E1's own
+    multi-step transition fidelity (does E1 predict its own future states well), whereas this
+    claim concerns whether a mapping BETWEEN two systems preserves action-conditioned
+    transition structure -- a perfectly self-consistent E1 and a perfectly self-consistent E2
+    can still be joined by a bridge that scrambles their relative dynamics. The E1 <-> E2
+    boundary is where the source package flags a pointwise-good/rollout-bad bridge as
+    "especially suspect". External motivation: NoMAD (Karpowicz et al.) reports that neural
+    -manifold alignment becomes more stable when temporal dynamics constrain the mapping
+    rather than treating each state as an independent point -- NOT independently verified in
+    this pass; lit-pull owed. DO NOT build in V3 and DO NOT queue an experiment. This is a
+    criterion attached to a diagnostic that does not yet exist.
+
+- id: MECH-540
+  title: "Sleep as selective interface maintenance -- the third offline job: MECH-529 gives offline consolidation two functions, revising the representation (split/merge/reweight over equivalence classes) and re-indexing episodic traces so autobiographical addressability survives that revision. This claim adds a THIRD: adjusting or stabilising the INTERFACE -- the subspace through which another subsystem reads the revised representation. The prediction is explicitly NOT global alignment but a PLASTICITY/STABILITY DIVISION OF LABOUR across interfaces: some reconfigure because recent learning demands it, others remain stable because downstream continuity matters more, so the strongest test compares at least TWO interfaces with different predicted plasticity rather than asking whether all systems become more similar after sleep. Four distinguishable post-sleep signatures: S1 representational retuning (interface metrics move only because the sender moved), S2 interface recalibration (local competence stable, communication subspace or bridge complexity improves), S3 stable scaffold (representations move, mapping holds), S4 maladaptive homogenisation (similarity rises while local competence or task-specific differentiation worsens)."
+  claim_type: mechanism_hypothesis
+  subject: sleep.selective_interface_maintenance
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  depends_on:
+    - MECH-529  # replay-driven rebucketing: the two offline jobs this adds a third to
+    - ARC-139   # federation principle; interfaces are the thing being maintained
+    - MECH-538  # bridge complexity, the quantity a sleep effect would move
+    - MECH-537  # communication subspace, the object whose rotation/rank is measured pre/post
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-540
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. EXTENDS MECH-529
+    rather than competing with it -- representation-revision and re-indexing are MECH-529's;
+    interface maintenance is the addition, and the source thought identifies it as the new
+    element. HONEST EVIDENCE STATUS, stated because the surrounding literature invites
+    overclaiming: the campaign found NO direct biological evidence that sleep reduces a formal
+    bridge-complexity metric between two independently specialised systems. That is a REE
+    hypothesis, not an established neuroscience finding. What the literature does support is
+    weaker and adjacent -- Gonzalez et al. (Nature 655:192-201, 2026) report different
+    stability/plasticity behaviour across hippocampal communication subspaces during
+    post-learning sleep, with some interfaces showing learning-related reactivation while
+    cortical-facing mappings stay comparatively stable. NOT independently verified in this
+    pass; lit-pull owed. S4 is the registered adverse signature and must be measured, not
+    assumed away: a sleep manipulation that raises cross-system similarity while local
+    competence falls is a FAILURE of this claim, not a partial success. SEQUENCING IS PART OF
+    THE CLAIM: the substrate exists (REEAgent.force_sleep_cycle_at_eval_boundary, ree-v3
+    de26949aa, permits within-run pre/post measurement without resetting the organism) but the
+    source package explicitly forbids queueing a sleep mutual-legibility experiment until a
+    WAKING interface metric has demonstrated stability and range, because otherwise the assay
+    measures the instrument. DO NOT queue an experiment from this entry.

@@ -1,7 +1,11 @@
 # Mutual legibility: implementation and assay companion
 
 **Date:** 2026-09-07  
-**Status:** implementation thought / diagnostic design; not queued and not a claim registration  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-07_mutual_legibility.md
+Claims registered: ARC-139, MECH-537, MECH-538, MECH-539, MECH-540, INV-105
+
+**Document type:** implementation thought / diagnostic design; not queued and not a claim registration
 **Parent:** `2026-09-07_mutual_legibility_communication_subspaces.md`
 
 ## Purpose

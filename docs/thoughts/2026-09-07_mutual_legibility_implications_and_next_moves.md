@@ -1,7 +1,11 @@
 # Mutual legibility: implications and next moves
 
 **Date:** 2026-09-07  
-**Status:** synthesis / next-step thought; not a claim registration, not an experiment queue mutation  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-07_mutual_legibility.md
+Claims registered: ARC-139, MECH-537, MECH-538, MECH-539, MECH-540, INV-105
+
+**Document type:** synthesis / next-step thought; not a claim registration, not an experiment queue mutation
 **Parent thought:** `2026-09-07_mutual_legibility_communication_subspaces.md`  
 **Implementation companion:** `2026-09-07_mutual_legibility_implementation_assays.md`  
 **Detailed work programme:** `../../evidence/planning/mutual_legibility_work_program_20260907.md`
