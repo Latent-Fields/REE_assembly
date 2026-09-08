@@ -4547,7 +4547,11 @@
       "task_claim_session_id": "igw-auto-igw-233-proposal-for-inv-092-20260908T015530Z",
       "task_claim_claimed_at": "2026-09-08T01:55:30Z",
       "assigned_at": "2026-09-08T01:53:34Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-08T02:12:11Z",
+      "completion_summary": "marked EVB-1365/EXP-0715 (INV-092) blocked_substrate in both proposal files, REE_assembly 08230e1d73 on origin/master: no suppression-strength knob to sweep; salience_coordinator has zero harm inputs so INV-092's own non-degeneracy guard fails by construction (AIC urgency no-op pending SD-032c); goal-completion denominator at floor (874b leg_c_event_floor 1.0 vs 15). No experiment queued. Explicit outcome, not AUTO: landed via throwaway worktree, so the local tree still reads 'proposed'. Chipped chip-20260908-inv093-suppression-sibling-readiness for the INV-093 sibling.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-1365/EXP-0715 (INV-092) blocked_substrate in both proposal files, REE_assembly 08230e1d73 on origin/master: no suppression-strength knob to sweep; salience_coordinator has zero harm inputs so INV-092's own non-degeneracy guard fails by construction (AIC urgency no-op pending SD-032c); goal-completion denominator at floor (874b leg_c_event_floor 1.0 vs 15). No experiment queued. Explicit outcome, not AUTO: landed via throwaway worktree, so the local tree still reads 'proposed'. Chipped chip-20260908-inv093-suppression-sibling-readiness for the INV-093 sibling."
     }
   ],
   "dispositions": [
@@ -6434,6 +6438,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-08T01:10:15Z",
       "re_eligible_after": "2026-09-10T01:10:15Z"
+    },
+    {
+      "stable_hash": "7251c4b8382f",
+      "igw_id_at_disposition": "IGW-20260908-233",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-092"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-092",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T02:12:29Z",
+      "re_eligible_after": "2026-09-10T02:12:29Z"
     }
   ]
 }
