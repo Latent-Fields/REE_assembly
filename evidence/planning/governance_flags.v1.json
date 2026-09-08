@@ -3209,6 +3209,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0229",
+      "claim_ids": [
+        "ARC-021",
+        "MECH-069"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The ARC-021 channel-separation portfolio's H2 leg -- the one failure_autopsy_V3-EXQ-993a_2026-09-05 calls 'the highest-value leg (it is the claim's own named test)' and 'the one thing 993a did not do' -- is BLOCKED ON SUBSTRATE and was NOT queued. That autopsy required a smoke run against current agent.py as the FIRST step of the leg; it was run this session and the MERGED arm crashes deterministically on its second step. Pinned with torch anomaly detection: the learnable parameter e1.context_memory.memory (ree_core/predictors/e1_deep.py:127) is mutated IN PLACE via .data by ContextMemory.write (e1_deep.py:272-273), advancing its autograd version counter and invalidating the previous step's _e1_tick -> generate_prior -> ContextMemory.read -> value_proj(memory) forward that the merged combined loss still retains (agent.py:5878, e1_deep.py:1741/:1002/:226). SEPARATE (three independent optimizers) runs clean, because it backwards each loss immediately; the entanglement is intrinsic to the MERGED manipulation and cannot be repaired from a driver, since the parameter lives in ree_core. Step 2.5c reaches the same stop independently -- ContextMemory.write is the substrate_paths entry of the OPEN corrupting item contextmemory-write-path-addressing-degeneracy -- but note these are DIFFERENT defects in the same function (that entry is about hard-argmin addressing degeneracy), so this is a NEW finding that nothing currently audits: no contract exercises a merged-optimizer backward over agent.parameters(). Governance owes: (a) route the fix to /implement-substrate, plausibly as an AMEND to contextmemory-write-path-addressing-degeneracy rather than a new entry, since it is the same function; (b) note that the portfolio's OTHER two legs are NOT blocked and are the right next queue-fill -- H3 (measurement axis, cheapest, no substrate needed: the 993a design at >=16 seeds with paired variance reduction, pre-registering 0.05 rather than 0.15 and a CI on the paired mean) and H1 (drive axis, encoder unfrozen in P1). Both must read BOTH ARC-021 falsifier DVs (calibration_gap AND attribution accuracy; 993a read only the first) and must NOT declare dv_bounds [0,1] for calibration_gap, which is unbounded below. EXP-0008/EXP-0006 were deliberately NOT flipped to blocked_substrate: both are already status executed (executed_by V3-EXQ-993a) and overwriting that would erase a true record; open a new proposal for the H2 leg if a durable key is wanted. Record: REE_assembly evidence/planning/arc021_h2_leg_blocked_substrate_merged_arm_crash_20260908.md; reproducer ree-v3 experiments/_scratch/arc021_h2_merged_optimizer_runnability_probe.py (ree-v3 2a7bae0f65).",
+      "raised_by_session": "w5-s2a-queue-fill-20260908",
+      "raised_at": "2026-09-08T16:34:52Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
