@@ -4597,7 +4597,11 @@
       "task_claim_session_id": "igw-auto-igw-234-proposal-for-inv-093-20260908T040434Z",
       "task_claim_claimed_at": "2026-09-08T04:04:34Z",
       "assigned_at": "2026-09-08T04:03:31Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-08T04:40:00Z",
+      "completion_summary": "marked EVB-1366/EXP-0717 blocked_substrate: no refinement-strength knob exists to sweep (0/1164 ree_core config fields) and competence-gain axis unreliable per V3-EXQ-890; REE_assembly origin/master d6e0b5e927",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-1366/EXP-0717 blocked_substrate: no refinement-strength knob exists to sweep (0/1164 ree_core config fields) and competence-gain axis unreliable per V3-EXQ-890; REE_assembly origin/master d6e0b5e927"
     }
   ],
   "dispositions": [
@@ -6512,6 +6516,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-08T03:25:55Z",
       "re_eligible_after": "2026-09-10T03:25:55Z"
+    },
+    {
+      "stable_hash": "4f87d1fd462f",
+      "igw_id_at_disposition": "IGW-20260908-234",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-093"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-093",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T04:40:02Z",
+      "re_eligible_after": "2026-09-10T04:40:02Z"
     }
   ]
 }
