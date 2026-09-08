@@ -1,6 +1,8 @@
 # Thought: Representational Drift, Predictive Equivalence, and Reality as Semantic Checksum
 
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-03_representational_drift_predictive_equivalence_reality_semantic_checksum.md
+Claims registered: GOV-EQUIV-1, GOV-SHARPEN-1
 
 Original status line: exploratory epistemic/scientific thought — not a promoted REE claim, not a governance rule, and not evidence for any current mechanism
 

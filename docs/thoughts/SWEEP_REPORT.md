@@ -1,25 +1,25 @@
 # Thought Sweep Report
 
-Generated: `2026-09-06T19:22:05.677376Z`
+Generated: `2026-09-08T07:09:08.981175Z`
 
 | metric | count |
 |---|---|
-| total thought files | 234 |
-| processed | 233 |
-| unprocessed | 1 |
+| total thought files | 241 |
+| processed | 241 |
+| unprocessed | 0 |
 | processed missing back-links | 0 |
 
 Back-link forms among processed thoughts:
 
 - `legacy`: 179
-- `intake_header`: 51
+- `intake_header`: 59
 - `frontmatter`: 1
 - `superseded`: 2
 - `none`: 0
 
 ## Unprocessed Queue
 
-- `2026-09-06` `2026-09-06_recovery_without_restoration_compensatory_realizability.md` (status=`unprocessed`)
+- _none_
 
 ## Processed Missing Links
 
@@ -243,6 +243,7 @@ Back-link forms among processed thoughts:
 - `2026-09-02_versioned_organisms_capacity_boundaries_and_retained_lineages.md` (1 link(s), form=`intake_header`)
 - `2026-09-03_claim_rotation_dual_view_claim_matrix.md` (1 link(s), form=`intake_header`)
 - `2026-09-03_ree_as_predictive_sensorimotor_transformation.md` (1 link(s), form=`intake_header`)
+- `2026-09-03_representational_drift_predictive_equivalence_reality_semantic_checksum.md` (1 link(s), form=`intake_header`)
 - `2026-09-03_temporary_coordinated_representational_transformations.md` (1 link(s), form=`intake_header`)
 - `2026-09-04_agency_as_an_organizing_axis.md` (1 link(s), form=`intake_header`)
 - `2026-09-04_authority_field_analog_cognition_ephaptic_coupling.md` (1 link(s), form=`intake_header`)
@@ -257,6 +258,13 @@ Back-link forms among processed thoughts:
 - `2026-09-04_z_world_regulatory_anchoring_experiment_spec.md` (1 link(s), form=`intake_header`)
 - `2026-09-04_z_world_representation_contract.md` (1 link(s), form=`intake_header`)
 - `2026-09-06_direction_blind_reactive_ambitendency.md` (1 link(s), form=`intake_header`)
+- `2026-09-06_recovery_without_restoration_compensatory_realizability.md` (1 link(s), form=`intake_header`)
+- `2026-09-07_compute_as_an_evolving_substrate_lightweight_economics_telemetry_for_ree.md` (1 link(s), form=`intake_header`)
+- `2026-09-07_culture_as_distributed_precommit_system.md` (1 link(s), form=`intake_header`)
+- `2026-09-07_culture_as_distributed_precommit_system_evidence.md` (1 link(s), form=`intake_header`)
+- `2026-09-07_mutual_legibility_communication_subspaces.md` (1 link(s), form=`intake_header`)
+- `2026-09-07_mutual_legibility_implementation_assays.md` (1 link(s), form=`intake_header`)
+- `2026-09-07_mutual_legibility_implications_and_next_moves.md` (1 link(s), form=`intake_header`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (1 link(s), form=`superseded`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s), form=`legacy`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s), form=`legacy`)

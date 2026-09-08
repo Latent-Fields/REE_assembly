@@ -1678,6 +1678,15 @@
     "type": "governance_rule",
     "what_would_answer": "TRIGGER: reassess when (a) validate_claims.py --strict blocks a governance run on a depends_on cycle and the session concludes the blocked edge really IS a prerequisite in both directions (which the rule says cannot happen -- a genuine instance falsifies the two-layer model and argues for a third edge type, not for re-tolerating cycles); (b) the 8 cycle-break edges the split script chose heuristically are re-judged by governance and more than a couple are found to be the WRONG edge of their cycle (the mechanical rule is then worse than a human pass and should be replaced by one before any re-run); (c) a consumer is found that needs orientation on coupled_with (none does today: the epistemic overlay treats depends_on and coupled_with as the same weak symmetric potential and its output was byte-identical across the split; the phase-provenance checker ignores coupled_with by design). WHAT WOULD REVISE: the observation that one field carried three meanings (prerequisite, reciprocal coupling, mutual explanation) is measured and stands. What this claim adds is that (1) the prerequisite meaning is the one with an acyclicity invariant worth enforcing and (2) a mechanical mutual-pair + feedback-arc-set demotion is an acceptable first pass at the split. (1) is undercut by a demonstrated need for a cyclic prerequisite edge; (2) by finding the heuristic picked the wrong edge often. Either demotes this claim toward superseded by a sharper edge-type schema, not toward re-merging the layers. READER NOTE: governance_rule about how the Assembly structures its OWN registry, not an empirical mechanism about REE cognition -- no EXP-#### should be minted against it. The brain has reciprocal loops; that is exactly why coupled_with exists. Per GOV-ANALOGY-1 any resemblance between the DAG requirement here and REE's own commitment machinery is an analogy, never evidence.\n"
   },
+  "GOV-EQUIV-1": {
+    "assembly_state": "gated_v3",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.predictive_equivalence_envelope",
+    "title": "Predictive-equivalence envelope for claim rotation (the checksum GOV-ROTATE-1 lacks): two representations of one canonical claim count as the SAME claim -- and may share one truth state -- only while the experimentally relevant predictions they license remain compatible over an EXPLICITLY DECLARED domain of contexts, interventions, observables, scales and auxiliary assumptions (the equivalence envelope); equivalence is earned by surviving discriminating interventions, never assumed from the wording reading as a paraphrase, and when a discriminating intervention reveals divergence the divergence MUST be classified (scope condition / hidden auxiliary assumption / underspecified parent claim / invalid rotation / genuinely new proposition) BEFORE any evidence is allowed to transfer between the two representations.",
+    "type": "governance_rule"
+  },
   "GOV-EXT-1": {
     "assembly_state": "remaining",
     "coupled_with": [],
@@ -1891,6 +1900,15 @@
     "status": "candidate",
     "subject": "governance.security.misuse_gate",
     "title": "Security and misuse release gate -- 'do not release a capability that can act faster than its containment can understand': before any language/tool/social/deceptive/public-facing capability is released, complete an OWASP-GenAI / MITRE-ATLAS / NIST-RMF security and misuse review.",
+    "type": "governance_rule"
+  },
+  "GOV-SHARPEN-1": {
+    "assembly_state": "gated_v3",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.predictive_sharpening_vs_split",
+    "title": "Predictive sharpening is not a new claim (the over-splitting guard that pairs with GOV-ROTATE-1's smuggling guard): a rotated representation that makes a SHARPER prediction than the canonical claim -- a sign rather than a magnitude, a causal ordering, a conditional dependence, a timescale, a locus, a developmental window, a falsifiable inequality -- remains an inferential refinement of the SAME claim, sharing its truth state, when the sharper prediction follows from the canonical claim plus already-accepted background assumptions (C + B); it becomes a DISTINCT claim (C AND A), which must be split and must NOT inherit C's evidence, exactly when the sharper prediction requires a NEW empirical assumption A introduced during the rotation. The test is which auxiliary assumptions are needed to make the predictions agree, not how different the sentences sound or how much more precise the new one is.",
     "type": "governance_rule"
   },
   "GOV-SKILL-1": {

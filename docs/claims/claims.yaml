@@ -97864,3 +97864,205 @@
     measurable first. NOT independently verified in this pass; lit-pull owed. Clinically
     adjacent to the user's own domain and worth a targeted review alongside MECH-541's. DO NOT
     build in V3, DO NOT queue an experiment.
+
+- id: GOV-EQUIV-1
+  title: 'Predictive-equivalence envelope for claim rotation (the checksum GOV-ROTATE-1 lacks): two representations
+    of one canonical claim count as the SAME claim -- and may share one truth state -- only while the experimentally
+    relevant predictions they license remain compatible over an EXPLICITLY DECLARED domain of contexts, interventions,
+    observables, scales and auxiliary assumptions (the equivalence envelope); equivalence is earned by surviving
+    discriminating interventions, never assumed from the wording reading as a paraphrase, and when a discriminating
+    intervention reveals divergence the divergence MUST be classified (scope condition / hidden auxiliary assumption
+    / underspecified parent claim / invalid rotation / genuinely new proposition) BEFORE any evidence is allowed to
+    transfer between the two representations.'
+  claim_type: governance_rule
+  subject: governance.epistemics.predictive_equivalence_envelope
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-09-08'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-08'
+  source_thought: docs/thoughts/2026-09-03_representational_drift_predictive_equivalence_reality_semantic_checksum.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-ROTATE-1
+  - GOV-SHARPEN-1
+  - GOV-INTERVENE-1
+  - GOV-PATHVALID-1
+  - GOV-GRAN-1
+  - GOV-STRAT-1
+  - GOV-HELDOUT-1
+  functional_restatement: 'Epistemic-hygiene governance rule; the SEMANTIC-IDENTITY member of the representation-layer
+    family opened by GOV-ROTATE-1. GOV-ROTATE-1 says a stalled claim may be re-described in another coordinate
+    system with ONE truth state, and that new empirical content exposed by a view must become a new claim. It
+    supplies no CRITERION for deciding whether a rotation is still the same claim. This rule supplies it: R_A(C)
+    and R_B(C) are equivalent over domain D iff the predictions P_A(I, O) and P_B(I, O) they make salient stay
+    compatible, within the precision the claim and the measurement justify, for every intervention I and observable
+    O inside D. THREE CONSEQUENCES. (1) Equivalence is DOMAIN-RELATIVE and the domain is NAMED: "architectural and
+    transformation views are treated as equivalent for current resource-direction experiments under fixed environment
+    dynamics and matched candidate sets; equivalence has not been established under action-semantic remapping or
+    developmental regime shift" is the well-formed statement; "these are the same claim" is not. (2) Observational
+    agreement is NOT interventional equivalence: two views that account for the same passive observations may imply
+    different responses to freezing a latent, replacing a consumer with an oracle reader, re-basing a representation,
+    remapping action semantics, withholding a sleep update, or crossing a developmental phase -- so when two views
+    look equivalent observationally, the next probe is an intervention under which their implied CAUSAL structure
+    differs. (3) A revealed divergence is a FINDING to classify, not a tie to break: it may be a missing scope
+    condition, a smuggled auxiliary assumption, an under-specified parent, a rotation that was never valid, or a
+    genuinely new proposition that must be split; the prohibition is on letting evidence flow across the pair until
+    that classification is made. GENERATIVE COROLLARY (the experiment-selection half): where two plausible
+    representations of one uncertainty disagree most sharply while remaining tractable is a preferred place to
+    probe -- representational disagreement is a source of discriminating experiments, complementary to (not a
+    replacement for) hypothesis-level fan-out under GOV-FANOUT-1. NON-FALSIFYING-SAFE / does nothing on its own:
+    changes no status or confidence, gates no promotion; it constrains what a rotation may CLAIM about itself and
+    what must happen before evidence transfers.'
+  notes: 'From thought-intake 2026-09-08 of the 2026-09-03 raw thought (docs/thoughts/2026-09-03_representational_drift_predictive_equivalence_reality_semantic_checksum.md;
+    Stage 2 intake evidence/planning/thought_intake_2026-09-03_representational_drift_predictive_equivalence_reality_semantic_checksum.md).
+    The thought is the fourth of the 2026-09-03 set (claim rotation -> GOV-ROTATE-1; temporary coordinated
+    representational transformations; REE as predictive sensorimotor transformation -> lens page) and answers the
+    question the rotation thought leaves open: how do we know the rotated claim is still the same claim.
+
+    (i) WHAT IT ADDS TO GOV-ROTATE-1, precisely. GOV-ROTATE-1 carries the SAFEGUARD (new empirical content -> new
+    claim, never inheriting the parent evidence). It does not say how to detect that content, so in practice the
+    test defaults to "does the wording read as a paraphrase" -- exactly the test the source thought argues is
+    unreliable in both directions (paraphrase-sounding pairs that predict differently; different-sounding pairs that
+    are indistinguishable over the domain that matters). This rule replaces the wording test with a prediction-under-
+    intervention test and adds the divergence-classification step. It is a REFINEMENT of GOV-ROTATE-1 and stands or
+    falls with it: if GOV-ROTATE-1 is demoted under its own success criterion (iv), this rule has nothing to govern.
+
+    (ii) WHAT IT IS NOT. NOT a theory of meaning -- the source thought says explicitly that truth is not reducible
+    to prediction; this is a practical criterion for keeping representations attached to the same empirical object.
+    NOT a synonym detector -- the checksum metaphor is deliberately partial: it tells you whether what you hold is
+    still compatible with a reference constraint, not everything about it. NOT precision: two views can be
+    equivalent while one constrains experiment far more sharply -- that distinction is GOV-SHARPEN-1, wired as
+    depends_on. NOT GOV-INTERVENE-1, which classifies the epistemic content and construction of a diagnostic
+    intervention; this rule USES interventions so classified to test representational equivalence. NOT
+    GOV-PATHVALID-1, though it shares its lesson that certifying a consumer given a state is not certifying the
+    production path -- here the same asymmetry appears as "the latent contains directional information" vs "the
+    latent provides an action-usable directional representation", which agree observationally and separate under
+    intervention. NOT GOV-GRAN-1, which fires on recurrent structurally-different failures; a divergence classified
+    here as "two claims that should never have shared one truth state" is one route INTO a GOV-GRAN-1-style
+    re-graining, not the same rule. NOT GOV-STRAT-1, which guards silent scope change ACROSS authority layers;
+    representational drift (a metaphor becoming a mechanism becoming a dependency becoming treated as established
+    architecture) is the WITHIN-claim analogue, and where a rotation is doing real scientific work the source thought
+    recommends it carry scope, auxiliary assumptions, observables, interventions, expected signatures and known
+    divergence points from the parent -- as prose on the rotation, not as a schema.
+
+    (iii) BUILD DISCIPLINE, inherited from GOV-ROTATE-1 (i) and BINDING here too: NO schema, NO registry field, NO
+    "EquivalenceEnvelope" record, NO tooling. The source thought presents the envelope as "a reasoning primitive"
+    and says in terms it "is not proposed as a mandatory schema or another registry". Its own section 17 lists the
+    conditions under which the idea is unnecessary (GOV-ROTATE-1 plus ordinary claim-splitting already handles every
+    practically important case; envelopes add paperwork without changing decisions; no historical case exists where
+    two purportedly equivalent representations would have transferred evidence incorrectly) and the conditions under
+    which it is misleading (prediction treated as the whole meaning of a claim; observational agreement mistaken for
+    causal equivalence; sharper predictions treated as truer; absence of a known discriminating intervention mistaken
+    for proof of equivalence; the predictive-processing analogy upgraded to a mechanistic identity). Its success
+    criterion, verbatim: "Does explicitly checking predictive equivalence prevent semantic drift and generate better
+    discriminating experiments without multiplying governance overhead? If not, retain the idea as a reasoning note
+    rather than a formal rule." That is this claim''s acceptance test, and the demotion route is the same one
+    GOV-ROTATE-1 (iv) names.
+
+    (iv) ADMISSIBLE EVIDENCE, per GOV-HELDOUT-1: recorded cases only, as dated notes, never a status change. The
+    strongest admissible positive case is a HISTORICAL one -- a pair of representations that DID share a truth state,
+    where a later discriminating result shows they should not have, and where applying this rule at the time would
+    have withheld the transfer. None has been searched for in this pass; finding one (or failing to after a genuine
+    search, which is evidence for the "unnecessary" branch of section 17) is the first thing owed. The z_world
+    adequacy lineage (V3-EXQ-978 -> 1002 -> 1008) is the ILLUSTRATION the source thought uses and is recorded in the
+    intake as such: "information present", "action-usable representation", "adequate 32-dimensional channel",
+    "linearly recoverable content" and "nonlinearly recoverable content" are adjacent formulations that the lineage
+    progressively separated (1008: H-E capacity eliminated; H-C geometry weakened; linear re-bases flat) -- but that
+    lineage was run WITHOUT this rule and so is not evidence for it, only the worked example of what it names.
+
+    (v) The predictive-processing resemblance the source thought draws (claim -> representation -> prediction ->
+    intervention -> observation -> prediction error -> revision; readiness/dynamic-range/non-degeneracy/evidence-class
+    as the governance analogue of precision weighting) is recorded in the intake as a methodological analogy and is
+    deliberately NOT registered: the thought itself says it "should not be overclaimed", and REE governance already
+    owns every one of the reliability gates it lists. DO NOT build in V3; DO NOT queue an experiment; a governance
+    rule advances by recorded trials only.
+
+    '
+  evidence: []
+
+- id: GOV-SHARPEN-1
+  title: 'Predictive sharpening is not a new claim (the over-splitting guard that pairs with GOV-ROTATE-1''s
+    smuggling guard): a rotated representation that makes a SHARPER prediction than the canonical claim -- a sign
+    rather than a magnitude, a causal ordering, a conditional dependence, a timescale, a locus, a developmental
+    window, a falsifiable inequality -- remains an inferential refinement of the SAME claim, sharing its truth state,
+    when the sharper prediction follows from the canonical claim plus already-accepted background assumptions (C + B);
+    it becomes a DISTINCT claim (C AND A), which must be split and must NOT inherit C''s evidence, exactly when the
+    sharper prediction requires a NEW empirical assumption A introduced during the rotation. The test is which
+    auxiliary assumptions are needed to make the predictions agree, not how different the sentences sound or how
+    much more precise the new one is.'
+  claim_type: governance_rule
+  subject: governance.epistemics.predictive_sharpening_vs_split
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-09-08'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-08'
+  source_thought: docs/thoughts/2026-09-03_representational_drift_predictive_equivalence_reality_semantic_checksum.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-ROTATE-1
+  - GOV-MATCHAUX-1
+  - GOV-HELDOUT-1
+  functional_restatement: 'Epistemic-hygiene governance rule; the SPLIT/NO-SPLIT discriminator for the
+    representation-layer family (GOV-ROTATE-1, GOV-EQUIV-1). GOV-ROTATE-1 guards one direction of error --
+    claim laundering, where new empirical content rides into an old truth state on the back of a rephrasing. This
+    rule guards the OPPOSITE direction -- claim fragmentation, where a legitimately sharper formulation is split off
+    into a new candidate claim with an empty evidence record merely because it is more precise, discarding the
+    parent''s evidence for what is in fact an entailment of it. The discriminator: "E2 should matter for action
+    selection" and "if resource direction is reversed while candidate action identity is held fixed, the ordering
+    of the corresponding candidate futures should reverse before E3 arbitration" are ONE claim if the second follows
+    from the first plus accepted background (what E2 computes, what E3 arbitrates over, that candidate futures are
+    ordered); they are TWO claims if the second needs, say, a new assumption that E2''s ordering is read before
+    rather than after E3 -- and then the second is C AND A, A carries its own evidence record, and A must not be
+    credited with C''s history because it arrived during a rotation. So predictive equivalence (GOV-EQUIV-1) and
+    predictive precision are different axes: a rotation''s scientific gain is very often "finding coordinates in
+    which the existing commitment makes a more discriminating prediction" WITHOUT adding information -- and that gain
+    is lost if every sharpening is treated as a new claim. NON-FALSIFYING-SAFE / does nothing on its own.'
+  notes: 'From the same 2026-09-08 intake as GOV-EQUIV-1 (docs/thoughts/2026-09-03_representational_drift_predictive_equivalence_reality_semantic_checksum.md
+    sections 4-5; Stage 2 intake evidence/planning/thought_intake_2026-09-03_representational_drift_predictive_equivalence_reality_semantic_checksum.md).
+    Registered as its OWN claim rather than a clause of GOV-EQUIV-1 because it answers a different question (is
+    this sharpening a new claim? vs are these two views the same claim?) and because it is the half a session is
+    most likely to get wrong in practice: the existing habit, absent a rule, is to mint a fresh candidate for every
+    sharper formulation, which is precisely the fragmentation this rule forbids.
+
+    (i) RELATION TO GOV-ROTATE-1: the source thought says this "restates and strengthens the safeguard in
+    GOV-ROTATE-1". The restatement is the C + B vs C + A test; the strengthening is the explicit statement that
+    PRECISION ALONE never triggers a split. GOV-ROTATE-1 already forbids A inheriting C''s evidence; nothing there
+    protected a legitimate refinement from being severed from C''s evidence. Wired depends_on to GOV-ROTATE-1
+    (the rule it refines) and to GOV-MATCHAUX-1, which is the nearest existing statement that an auxiliary
+    (there: an auxiliary CONTROL; here: an auxiliary ASSUMPTION) determines what a result is admissible as evidence
+    FOR.
+
+    (ii) WHAT "ACCEPTED BACKGROUND B" MEANS HERE, so the rule is not gamed: B is what the registry ALREADY holds as
+    established or architecturally committed at the time of the rotation (stable/provisional claims, ARC commitments
+    the claim already depends_on, the substrate as built) -- not whatever the rotating session finds plausible. An
+    assumption that is itself a candidate is A, not B, and the rotation is C AND A until it is promoted. This is the
+    same asymmetry GOV-STRAT-1 protects between layers, applied inside one rotation.
+
+    (iii) BUILD DISCIPLINE: none required and none authorised -- this is a judgement rule applied at the moment a
+    session drafts a rotated view or a lettered-successor claim. No field, no validator check, no tooling. It is the
+    kind of rule GOV-HELDOUT-1 exists for: before it hardens beyond candidate it should be checked against at least
+    three historical split/no-split decisions in claims.yaml that it was NOT written from (the MECH-074a-d split,
+    the z_gamma -> z_self/z_world split, and the 2026-06-11 stance-split hygiene pass are candidate cases; none was
+    examined in this pass) and give the right call on each, with the outcome recorded here as a dated note.
+    DO NOT build in V3; DO NOT queue an experiment.
+
+    '
+  evidence: []
