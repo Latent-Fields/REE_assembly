@@ -1,5 +1,9 @@
 # Compute as an Evolving Substrate: Lightweight Economics Telemetry for REE
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-07_compute_economics_telemetry.md
+Claims registered: none -- infrastructure/tooling proposal, nothing claim-shaped
+
 ## Thought
 
 The computational needs of the Reflective–Ethical Engine (REE) project are unlikely to remain of the same kind throughout development.
