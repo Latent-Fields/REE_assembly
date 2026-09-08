@@ -1,0 +1,117 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike",
+  "run_id": "v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike_20260908T223415Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "diagnostic_no_direction",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "repertoire_exists_stage2_proceeds",
+    "preconditions": [
+      {
+        "name": "adjudicable_seeds_sufficient",
+        "kind": "readiness",
+        "description": "count of seeds with >= 30 fresh E3 decisions (episode-initial deliberations counted; fallback ticks excluded)",
+        "control": "a repertoire read off a handful of decisions is not a repertoire; seeds below the floor are recorded as unadjudicated",
+        "measured": 8.0,
+        "threshold": 4.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "offending_cell": "seeds ",
+        "met": true
+      },
+      {
+        "name": "e3_selection_used",
+        "kind": "readiness",
+        "description": "min over seeds of the fraction of executed steps whose action came from E3 (not the no-candidates fallback)",
+        "control": "hippocampal proposals present",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "harm_attribution_complete",
+        "kind": "readiness",
+        "description": "min over seeds of the fraction of harm events attributed to a governing fresh decision (held-tick harms included) -- 1.0 by construction; recorded so a regression is visible",
+        "control": "governing-key registration",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "controls_ran_on_every_board",
+        "kind": "readiness",
+        "description": "every control policy ran its episodes on every board",
+        "control": "yardstick completeness",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "latched_fraction_readout": true
+    },
+    "gate_green": true
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f6fc776b61a1a25b96c9459ece7294c40fbfd5852f5a5728aeccb772a29bfa35",
+  "substrate_commit": {
+    "commit": "8c35ac75939543bdaa176cef9e88fce898346149",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 8,
+    "goal_state_present": false
+  }
+}
