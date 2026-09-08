@@ -1,25 +1,25 @@
 # Thought Sweep Report
 
-Generated: `2026-09-08T07:09:08.981175Z`
+Generated: `2026-09-08T20:00:18.374985Z`
 
 | metric | count |
 |---|---|
-| total thought files | 241 |
-| processed | 241 |
-| unprocessed | 0 |
+| total thought files | 243 |
+| processed | 242 |
+| unprocessed | 1 |
 | processed missing back-links | 0 |
 
 Back-link forms among processed thoughts:
 
 - `legacy`: 179
-- `intake_header`: 59
+- `intake_header`: 60
 - `frontmatter`: 1
 - `superseded`: 2
 - `none`: 0
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-09-08` `2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
@@ -265,6 +265,7 @@ Back-link forms among processed thoughts:
 - `2026-09-07_mutual_legibility_communication_subspaces.md` (1 link(s), form=`intake_header`)
 - `2026-09-07_mutual_legibility_implementation_assays.md` (1 link(s), form=`intake_header`)
 - `2026-09-07_mutual_legibility_implications_and_next_moves.md` (1 link(s), form=`intake_header`)
+- `2026-09-08_deriving_the_cognitive_contract.md` (1 link(s), form=`intake_header`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (1 link(s), form=`superseded`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s), form=`legacy`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s), form=`legacy`)
