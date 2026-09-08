@@ -16,7 +16,8 @@ nav_order: 7
 
 ## 1. The Neural Computers Programme
 
-Schmidhuber et al. (2025) — a 19-person collaboration from Meta AI and KAUST — propose that the
+Zhuge et al. (2026; arXiv:2604.06425) — a 19-author collaboration from Meta AI and KAUST, first
+author Mingchen Zhuge, with Jürgen Schmidhuber as the nineteenth and last author — propose that the
 next fundamental computing platform is the *Neural Computer* (NC): a system in which computation,
 memory, and I/O are unified as a single learned runtime state within a neural network. The core
 claim is that "the model itself" becomes the executable computer; there is no separation between
@@ -32,7 +33,9 @@ Their four requirements for a *Completely Neural Computer* (CNC):
 | 4 | Machine-native semantics | Develop genuine machine semantics, not just imitation of observed I/O |
 
 Their current prototypes — trained on screen-recording I/O traces (CLIGen: 1,100 hours; GUIWorld:
-1,510 hours) — demonstrate basic interactions but fail on all four requirements under any
+1,510 hours, of which only about 110 hours are supervised goal-oriented trajectories; the remaining
+~1,400 hours are random mouse movement, so the undecomposed total overstates task-relevant GUI
+supervision by roughly an order of magnitude) — demonstrate basic interactions but fail on all four requirements under any
 non-trivial load. Acknowledged failures include: inability to reliably perform two-digit
 arithmetic, no long-horizon behavioral stability, no routine reuse across contexts, and
 catastrophic forgetting when acquiring new capabilities.
@@ -52,9 +55,19 @@ formulation remains a compact mnemonic: uncertainty, self, world, others, love. 
 chain makes explicit that existence has value, agency requires both causal power and
 vulnerability, responsibility for others is existentially necessary, and language helps repair
 the self-other similarity model. The required architecture follows by logical necessity from
-that chain. The comparison below shows that REE's derived structures address each CNC
-requirement not by engineering toward it, but because the requirement is an instance of a more
-general architectural necessity.
+that chain. The comparison below shows that REE's derived structures address the three CNC
+requirements answered here (2, 3 and 4) not by engineering toward them, but because each
+requirement is an instance of a more general architectural necessity.
+
+**Scope note (correction, 2026-09-08).** This section answers three of the four CNC requirements.
+Requirement 1, Turing completeness, has no subsection here and no REE row in the section 5
+translation table: REE registers no formal expressiveness result and makes no claim on it. It is
+also the least architecturally discriminating of the four, because hard-attention Transformers are
+already Turing complete (Pérez, Barceló & Marinkovic, JMLR 22(75), 2021), so it does not separate
+the NC programme from existing architectures the way requirements 2–4 do. Subsection 2.2
+(Long-Horizon Stability) is a REE-introduced category, not one of the paper's four; it is kept
+because it is where the prototypes' acknowledged multi-step degradation actually lands.
+Verification record: `evidence/literature/targeted_review_impl_027/`.
 
 ### 2.1 Behavior Consistency
 
@@ -214,6 +227,7 @@ hardware claims.
 | Neural Computers term | REE canonical term |
 |------------------------|-------------------|
 | Neural Computer (model-as-runtime) | Agent instantiating L-space + three-loop architecture |
+| Turing completeness (CNC requirement 1) | No REE claim — no registered formal expressiveness result (see section 2 scope note) |
 | Behavior consistency | Commitment gating / beta-gate (MECH-061, MECH-090) |
 | Long-horizon stability | Hippocampal trajectory planning (ARC-007) + multi-timescale L-space |
 | Catastrophic forgetting | Solved by offline consolidation (INV-049) + timescale separation |
@@ -255,8 +269,15 @@ are genuinely necessary structures, not design choices.
 
 ## References
 
-- Schmidhuber, J. et al. (2025). *An Engineering Roadmap Toward Completely Neural Computers.*
-  Meta AI / KAUST. Coverage: https://semiengineering.com/an-engineering-roadmap-toward-completely-neural-computers-meta-ai-kaust/
+- Zhuge, M., Zhao, C., Liu, H., Zhou, Z., Liu, S., Wang, W., Chang, E., Le Lan, G., Fei, J., Zhang, W.,
+  Sun, Y., Cai, Z., Liu, Z., Xiong, Y., Yang, Y., Tian, Y., Shi, Y., Chandra, V. & Schmidhuber, J.
+  (2026). *Neural Computers.* arXiv:2604.06425 (submitted 7 April 2026; Meta AI / KAUST).
+  Primary source: https://arxiv.org/abs/2604.06425
+  - Secondary trade-press coverage (not a substitute for the paper):
+    https://semiengineering.com/an-engineering-roadmap-toward-completely-neural-computers-meta-ai-kaust/
+- Pérez, J., Barceló, P. & Marinkovic, J. (2021). *Attention is Turing-Complete.* JMLR 22(75).
+  https://jmlr.org/papers/v22/20-302.html
+- Verification of the above against the primary source: `evidence/literature/targeted_review_impl_027/` (2026-09-07)
 - REE foundational axioms: [docs/architecture/five_axioms_foundations.md](five_axioms_foundations.md)
 - REE architecture overview: [docs/architecture/overview.md](overview.md)
 - Commitment gating: [docs/architecture/e3.md](e3.md), [docs/architecture/control_plane.md](control_plane.md)
