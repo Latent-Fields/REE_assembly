@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_compensatory_realizability",
+  "entry_id": "2026-09-08_mech_541_safety_behaviours_experimentally_increase_the_fear_they_manage_deacon2008",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "MECH-541"
+  ],
+  "source": {
+    "title": "The effects of safety behaviors on the fear of contamination: an experimental investigation",
+    "authors": [
+      "Brett J. Deacon",
+      "Danielle J. Maack"
+    ],
+    "year": 2008,
+    "venue": "Behaviour Research and Therapy",
+    "doi": "10.1016/j.brat.2008.01.010",
+    "pmid": "18313031",
+    "pmc": null,
+    "volume": "46",
+    "issue": "4",
+    "pages": "537-547"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Peer-reviewed experimental study, verified via PubMed (PMID 18313031). This is the strongest CAUSAL clinical evidence found for MECH-541, and causality is what the fear-avoidance literature mostly lacks: rather than observing that safety behaviours accompany anxiety, this study experimentally induced them in non-clinical participants and found they INCREASED contamination fear and threat beliefs relative to control. A protective strategy, deliberately instated, generated the pathology it was meant to manage. That is MECH-541's assertion in its strongest form and in the right direction of inference. Confidence 0.66 rather than higher because the sample is analogue rather than clinical, the induction period is short, and the outcome is self-reported fear rather than an internal reallocation of causal responsibility.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-541's amplification sweep predicts that increasing a compensation's strength eventually degrades function; this study is the clinical demonstration that the degradation can be CAUSED by the compensation rather than merely correlated with it, so a REE sweep showing only correlation between substitute strength and impairment would be weaker evidence than this analogue already provides.",
+    "The mechanism here is that the safety behaviour prevents disconfirmation of the threat belief -- the compensation protects itself by removing the evidence against it. A REE compensation that did NOT suppress its own disconfirming input, yet still over-stabilised, would require a different route than the one the clinical literature supplies."
+  ],
+  "tags": [
+    "mech-541",
+    "safety_behaviours",
+    "contamination_fear",
+    "experimental",
+    "causal_evidence",
+    "disconfirmation_blocking",
+    "clinical_analogue"
+  ],
+  "mapping": {
+    "source_claim_statement": "Safety behaviours -- actions taken to prevent a feared outcome -- were experimentally manipulated rather than merely observed, and their use increased fear of contamination and threat-related beliefs relative to control conditions, supporting cognitive-behavioural accounts in which safety behaviours maintain anxiety by preventing disconfirmation of threat beliefs.",
+    "ree_translation": "MECH-541 says an adaptation to a problem can become the problem. This is that proposition tested causally: instate the protective strategy and the fear it manages gets worse. For the REE assay it also names the discriminating measurement -- the compensation's pathogenic effect is on the organism's ability to UPDATE, not on its immediate performance, so an over-amplification sweep should look for degraded correction rather than degraded execution.",
+    "mapping_caveat": "Analogue sample (non-clinical participants), short manipulation, self-report outcomes, and a specifically human cognitive mechanism (belief disconfirmation) that REE does not implement in that form. The transfer is of the causal logic and the choice of dependent variable, not of the phenomenon.",
+    "source_context": "Human experimental psychopathology; non-clinical participants, contamination-fear paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Solid experimental design in a good specialist journal; analogue sample caps source quality. Scored above the fear-avoidance review because it establishes direction of causation, which is what MECH-541 needs and mostly cannot get from clinical observation."
+  }
+}

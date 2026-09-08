@@ -1,0 +1,9 @@
+# Deacon & Maack 2008 -- instating the protection makes the fear worse
+
+Behaviour Research and Therapy 46(4):537-547, DOI 10.1016/j.brat.2008.01.010, PMID 18313031. Most of the clinical literature that resembles MECH-541 is observational: people with chronic disorders are found to be using protective strategies, and the direction of causation is arguable. This study inverts that. Safety behaviours were experimentally induced in participants in a contamination-fear paradigm, and their use increased fear and threat beliefs relative to control.
+
+That matters for MECH-541 more than a larger observational literature would, because the claim's content is causal. It asserts that pathology can arise from the adaptation rather than the damage, and here a protective strategy, deliberately instated, produced the disturbance it was supposed to manage. The proposed mechanism is the one the fear-avoidance model also invokes: the safety behaviour prevents the threat belief from being disconfirmed, so the belief survives an experience that should have corrected it.
+
+For the REE assay this suggests where to look. If a compensation's pathogenic signature is that it blocks its own correction, then the dependent variable in an over-amplification sweep should be the organism's capacity to UPDATE -- how readily the substitute yields when the world changes -- rather than immediate task performance, which may look fine or even improved right up to the point of failure. MECH-541's registered detection signature already names local gain with generalisation and calibration loss; this literature says the calibration half is the load-bearing one.
+
+The limits are the usual ones for analogue psychopathology: non-clinical participants, a brief manipulation, self-report outcomes, and a belief-level mechanism REE does not implement in that form. What transfers is the causal logic and the choice of measurement. Supports at 0.66.

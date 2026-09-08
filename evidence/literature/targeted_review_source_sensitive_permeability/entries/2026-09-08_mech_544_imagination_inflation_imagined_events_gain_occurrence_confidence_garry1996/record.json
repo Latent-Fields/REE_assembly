@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_source_sensitive_permeability",
+  "entry_id": "2026-09-08_mech_544_imagination_inflation_imagined_events_gain_occurrence_confidence_garry1996",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "MECH-544",
+    "MECH-542"
+  ],
+  "source": {
+    "title": "Imagination inflation: Imagining a childhood event inflates confidence that it occurred",
+    "authors": [
+      "Maryanne Garry",
+      "Charles G. Manning",
+      "Elizabeth F. Loftus",
+      "Steven J. Sherman"
+    ],
+    "year": 1996,
+    "venue": "Psychonomic Bulletin & Review",
+    "doi": "10.3758/BF03212420",
+    "pmid": null,
+    "pmc": null,
+    "volume": "3",
+    "issue": "2",
+    "pages": "208-214"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Peer-reviewed and heavily replicated (Psychon Bull Rev 3(2):208-214, 1996; DOI verified, no PubMed record found for this journal-year, which is unremarkable for Psychonomic titles of that period). It is the most direct human demonstration of MECH-542's PROTECTED column failing: merely imagining a childhood event raises confidence that it actually occurred, so the boundary between imagined and experienced is permeable in precisely the direction INV-011 and MECH-542 forbid. The proposed mechanisms -- source misattribution and familiarity misattribution -- connect it to Johnson et al. 1993, banked alongside. Confidence 0.65: robust and replicated effect with a well-characterised mechanism, discounted because effect sizes are modest, the measure is confidence rather than belief-driven action, and the familiarity route means it is not purely a source-tagging failure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-542 places autobiographical occurrence in the protected column; imagination inflation shows the protection is imperfect in humans under nothing more than repeated imagining. A REE system that protected autobiographical occurrence PERFECTLY would be more impermeable than the biology it models -- which MECH-544 predicts is the wrong design, since it would also learn nothing from imagination.",
+    "The familiarity-misattribution account means the effect can be produced without any source-tag failure at all: fluency is misread as evidence of occurrence. A REE assay attributing all such errors to source-tag decay would conflate two mechanisms that the human literature already separates."
+  ],
+  "tags": [
+    "mech-544",
+    "mech-542",
+    "imagination_inflation",
+    "source_misattribution",
+    "familiarity_misattribution",
+    "autobiographical_occurrence",
+    "protected_variable_failure"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants who imagined a childhood event that they had earlier rated as unlikely to have happened subsequently increased their confidence that the event had occurred, relative to non-imagined events. The effect is attributed to source misattribution (details generated during imagining are later mistaken for details of experience) and to familiarity misattribution (imagining increases fluency, which is read as evidence of occurrence).",
+    "ree_translation": "This is MECH-544's thesis demonstrated at the smallest scale: the same machinery that lets imagination be informative lets imagined content leak into occurrence judgements. It also fixes the direction of MECH-542's design tension -- a perfectly impermeable system would not show imagination inflation, and would also not be able to learn from counterfactual experience, which is the price the claim says is unavoidable.",
+    "mapping_caveat": "Confidence ratings about autobiographical childhood events in human participants, over short laboratory intervals; effect sizes are modest and the paradigm has known demand characteristics. Two distinct mechanisms (source and familiarity misattribution) produce the same surface effect, so the phenomenon is not clean evidence for source-tag decay specifically.",
+    "source_context": "Human memory experiment; Life Events Inventory pre/post imagination procedure."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Well-replicated classic. Discounted for modest effect sizes and for the two-mechanism ambiguity, which matters because MECH-544 names one of the two."
+  }
+}

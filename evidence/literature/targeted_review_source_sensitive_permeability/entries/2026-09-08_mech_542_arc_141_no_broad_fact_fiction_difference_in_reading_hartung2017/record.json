@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_source_sensitive_permeability",
+  "entry_id": "2026-09-08_mech_542_arc_141_no_broad_fact_fiction_difference_in_reading_hartung2017",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "MECH-542",
+    "ARC-141"
+  ],
+  "source": {
+    "title": "When Fiction Is Just as Real as Fact: No Differences in Reading Behavior between Stories Believed to be Based on True or Fictional Events",
+    "authors": [
+      "Franziska Hartung",
+      "Peter Withers",
+      "Peter Hagoort",
+      "Roel M. Willems"
+    ],
+    "year": 2017,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2017.01618",
+    "pmid": "28983269",
+    "pmc": "PMC5613255",
+    "volume": "8",
+    "pages": "1618"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Peer-reviewed, verified via PubMed (PMID 28983269), and LARGE -- 1,742 participants. Direction is 'supports' for a specific reason that must not be misread: the study found NO effect of a true-versus-fictional label on immersion, appreciation, perspective-taking or memory, concluding there is 'no evidence that knowing a story is fictional or based on true events influences reading behavior or experiential aspects of reading'. That is a null against the MODE-SWITCHING reading of source framing, which is precisely the reading MECH-542 was deliberately worded to avoid. The claim asserts selective permeability, not a global fiction switch; a large null on global switching removes the rival and leaves the selective account standing. For ARC-141 the same result is a caution, since a framing claim about fiction's special cultural role gains nothing from a study finding fiction is processed like fact. 0.7 -- large, preregistered-scale null in a mainstream venue, weakened only by being a null and by measuring experiential/behavioural rather than variable-specific update.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-542's falsifier has two directions: uniform update, or no update. A study finding that a fiction label changes NOTHING measurable is closer to the 'no differentiation' pole than the claim's proponents may want, and if variable-resolved measurement also finds nothing, MECH-542 fails. This entry supports the claim's WORDING while raising the bar for its eventual confirmation.",
+    "The authors propose that broader context (newspaper vs literature) activates reading goals rather than truth-value labels doing so. If source-sensitivity in humans is carried by contextual goal-setting rather than by a source tag on the representation, MECH-544's source-tag decay signature is measuring something that may not exist in the form REE posits."
+  ],
+  "tags": [
+    "mech-542",
+    "arc-141",
+    "fact_fiction",
+    "source_framing",
+    "null_result",
+    "large_sample",
+    "narrative_processing",
+    "replication_picture"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 1,742 participants reading stories labelled as based on true or on fictional events, in first- or third-person perspective, the authors found no differences in immersion, appreciation, perspective-taking or memory, and report 'no evidence that knowing a story is fictional or based on true events influences reading behavior or experiential aspects of reading'. They propose that wider reading context activates different reading goals rather than truth-value labels alone.",
+    "ree_translation": "MECH-542 states that a hypothetical source should not be implemented as 'hypothetical -> learning OFF', and its notes record that later work has not consistently reproduced broad fact-fiction differences. This is that later work, at scale. It licenses the claim's chosen wording -- selective permeability, variable by variable -- by removing the global mode-switch alternative, and it warns that whatever source-sensitivity exists is not visible in coarse experiential measures.",
+    "mapping_caveat": "Null results bound what is there; they do not establish the selective account. The measures are experiential and mnemonic (immersion, appreciation, perspective-taking, memory), not the variable-resolved update fingerprints MECH-542 actually predicts -- so this study could not have detected selective permeability had it been present. Human narrative reading, not an agent's internal update.",
+    "source_context": "Human; 1,742 participants, online story-reading with true/fiction framing manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Large sample and a clean manipulation; Frontiers venue and null design cap source quality modestly. Mapping fidelity good because the claim explicitly anticipates this result."
+  }
+}

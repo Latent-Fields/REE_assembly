@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_compensatory_realizability",
+  "entry_id": "2026-09-08_mech_541_fear_avoidance_adaptive_acutely_maladaptive_chronically_vlaeyen2000",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "MECH-541"
+  ],
+  "source": {
+    "title": "Fear-avoidance and its consequences in chronic musculoskeletal pain: a state of the art",
+    "authors": [
+      "Johan W. S. Vlaeyen",
+      "Steven J. Linton"
+    ],
+    "year": 2000,
+    "venue": "Pain",
+    "doi": "10.1016/S0304-3959(99)00242-0",
+    "pmid": "10781906",
+    "pmc": null,
+    "volume": "85",
+    "issue": "3",
+    "pages": "317-332"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Peer-reviewed and canonical (Pain 85(3):317-332, 2000), verified via PubMed (PMID 10781906); one of the most cited models in pain medicine. It is the cleanest statement in clinical literature of MECH-541's core proposition: avoidance is adaptive in acute pain and becomes the maintaining cause of disability when it persists into the chronic phase, via a self-perpetuating loop (catastrophising -> fear -> avoidance -> disuse, depression and disability -> more pain experience). The claim's phrase 'a workaround that was initially adaptive becomes over-strengthened, over-generalized or too persistent' is a paraphrase of this model in another domain. Confidence 0.62 rather than higher because it is a theoretical review rather than a decisive experiment, and because the model's own evidence base is partial -- Leeuw et al. 2007 (J Behav Med 30(1):77-94, PMID 17180640), the seven-year evidence review, finds the fear-avoidance components unevenly supported, with the avoidance-to-disability links better evidenced than the full causal chain.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-541 asserts that the compensation persists 'after the original problem has changed or resolved'; the fear-avoidance model's strongest form makes the same prediction and the evidence for the FULL causal chain is, per Leeuw et al. 2007, weaker than for its individual links -- so a REE result confirming only that a substitute persists would establish no more than the weakest confirmed part of the clinical analogue.",
+    "The model predicts avoidance produces disuse and a broadening of the avoided class (over-generalization); a compensation in REE that persisted without generalising beyond its original trigger would match MECH-541's persistence route but not its over-generalization route, and those should be scored separately."
+  ],
+  "tags": [
+    "mech-541",
+    "fear_avoidance",
+    "chronic_pain",
+    "avoidance",
+    "catastrophising",
+    "self_perpetuating_loop",
+    "clinical",
+    "canonical_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "In acute musculoskeletal pain, avoidance of activity is adaptive and promotes healing. Where pain is catastrophically interpreted, pain-related fear leads to avoidance and hypervigilance that persist beyond the acute phase, producing disuse, disability and depression, which in turn sustain the pain experience -- a self-perpetuating cycle in which the protective response, not the original injury, maintains the disorder.",
+    "ree_translation": "This is MECH-541 in the clinical domain the claim points at: an initially adaptive protective adjustment becomes over-persistent and over-generalised, and the pathology is then a property of the adaptation rather than of the original lesion. It also supplies the claim's missing detail of MECHANISM -- the loop is closed by the adaptation degrading the evidence that would correct it (avoidance prevents disconfirmation), which is a precision/learning-rate story REE can express.",
+    "mapping_caveat": "A psychological model of human chronic pain, formulated at the level of beliefs, fear and behaviour, not of internal representational reallocation. It says nothing about a substitute REPRESENTATION acquiring causal responsibility, which is ARC-140's and MECH-541's actual object; the shared structure is the temporal one (adaptive then maladaptive, self-sustaining). Evidence for the complete model is partial by its own later review.",
+    "source_context": "Human chronic musculoskeletal pain; theoretical synthesis of clinical and experimental literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Canonical, heavily replicated in its components, but a model paper rather than a single decisive study, and its full causal chain is less well evidenced than its parts (Leeuw 2007)."
+  }
+}

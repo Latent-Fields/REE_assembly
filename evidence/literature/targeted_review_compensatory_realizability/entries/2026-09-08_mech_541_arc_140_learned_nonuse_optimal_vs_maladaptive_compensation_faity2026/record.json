@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_compensatory_realizability",
+  "entry_id": "2026-09-08_mech_541_arc_140_learned_nonuse_optimal_vs_maladaptive_compensation_faity2026",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "MECH-541",
+    "ARC-140"
+  ],
+  "source": {
+    "title": "Neuromechanics of Nonuse and Compensation: Implications for Rehabilitation After Stroke",
+    "authors": [
+      "Germain Faity",
+      "Denis Mottet",
+      "Jerome Froger",
+      "Makii Delorme"
+    ],
+    "year": 2026,
+    "venue": "Neurorehabilitation and Neural Repair",
+    "doi": "10.1177/15459683261445442",
+    "pmid": "42080459",
+    "pmc": "PMC13392161",
+    "volume": "40",
+    "issue": "8",
+    "pages": "615-630"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Peer-reviewed (Neurorehabil Neural Repair 40(8):615-630, Aug 2026), verified via PubMed and read in full via PMC13392161. This is the closest clinical instance found of MECH-541's shape AND its most useful complication. Supporting: the paper defines compensation as 'alternative neural pathways and/or modified movement strategies for achieving functional goals despite persistent impairment' against true recovery as 'resolution of impairment, allowing movements to be performed using premorbid neural substrates and motor patterns'; it describes learned nonuse in which 'early experiences of pain, effort, or failure lead patients to avoid using the paretic limb, and this avoidance pattern may persist even after functional recovery has progressed'; and it describes self-reinforcement -- the CNS 'defaults to these familiar solutions', people 'frequently revert to familiar movement patterns, reflecting a kind of motor memory that can impede new learning'. Complicating, and this is why the entry is MIXED: the authors argue much nonuse is OPTIMAL rather than maladaptive -- effort conservation given real neuromechanical constraints -- and report that after constraint-induced therapy compensatory patterns partly re-emerge, 'suggesting that their original compensatory strategy was closer to optimal'. That is a live challenge to MECH-541's presumption that a persisting compensation is a pathological over-stabilisation. 0.6.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-541 predicts persisting compensation is over-stabilised and maladaptive; Faity et al. offer the competing explanation that it is OPTIMAL for the organism's actual constraints, and report partial re-emergence after forced disuse of the compensation as evidence for that reading. A REE assay that amplifies a substitute and observes persistence has NOT thereby shown maladaptation -- it must independently show the persistence is worse for the organism than the alternative, against a cost model.",
+    "A compensation-reduction intervention (the CIMT analogue) can itself induce a different compensation: the authors note 'CIMT may encourage compensatory strategies, notably increased trunk involvement'. An over-amplification sweep testing MECH-541 must therefore measure WHICH compensation is present, not merely whether behaviour recovered."
+  ],
+  "tags": [
+    "mech-541",
+    "arc-140",
+    "learned_nonuse",
+    "compensation",
+    "stroke",
+    "maladaptive_plasticity",
+    "cimt",
+    "optimality_challenge",
+    "clinical"
+  ],
+  "mapping": {
+    "source_claim_statement": "Compensation after stroke is defined as alternative neural pathways or modified movement strategies achieving functional goals despite persistent impairment, distinguished from true recovery (resolution of impairment using premorbid substrates and patterns) and split into mandatory versus non-mandatory. Learned nonuse -- avoidance driven by early pain, effort or failure -- 'may persist even after functional recovery has progressed', and familiar motor solutions are reverted to in a way 'that can impede new learning'. But the authors argue much nonuse is optimal effort conservation given neuromechanical constraints (a force-to-weight threshold above which trunk compensation genuinely becomes the better organisation), and note that compensatory patterns partly re-emerge after CIMT.",
+    "ree_translation": "MECH-541 asserts that an adaptation to damage can become over-stabilised and trap the organism after the original problem has changed. Learned nonuse is the canonical clinical instance: a strategy formed under acute conditions persisting past the conditions that formed it, self-reinforced by motor memory, and partially reversible by an intervention that forces exploration. ARC-140 gets the recovery-without-restoration distinction in operational clinical form (compensation vs restitution). The optimality argument is the discipline MECH-541 needs: persistence alone does not establish maladaptation.",
+    "mapping_caveat": "Human upper-limb motor rehabilitation, not psychiatric pathology and not an artificial agent; the mechanism is biomechanical and behavioural rather than precision-weighted inference, so MECH-541's specific routes (excess precision or gain, resistance to counterfactual correction) are not tested here. The reported study is an empirical seated-reaching experiment in 22 moderately impaired stroke patients and 22 controls with an accompanying framework, so its generalisation to severe impairment, cognitive deficits or daily activities is limited by the authors' own account.",
+    "source_context": "Stroke rehabilitation; 22 patients with moderate impairment and 22 controls, seated reaching under manipulated arm-weight conditions."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Good specialist journal, modest sample by the authors' own statement. Mapping fidelity relatively high because learned nonuse is structurally the same proposition as MECH-541, in a different substrate. The optimality challenge is scored as complication, not as weakening, because it constrains the assay rather than contradicting the claim."
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_source_sensitive_permeability",
+  "entry_id": "2026-09-08_mech_543_role_enactment_higher_engagement_than_imagination_tien2025",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "MECH-543"
+  ],
+  "source": {
+    "title": "Investigating the Influence of Role-Playing on Empathy and Perspective-Taking by Analyzing Level of Engagement, Emotional, and Cognitive Processes Through a Word Count Analysis Approach",
+    "authors": [
+      "Yun-Ming Tien",
+      "Chia-Yu Lin",
+      "Pei-Ying Pai",
+      "Chia-Hui Tsai",
+      "Li-Chuan Hsu"
+    ],
+    "year": 2025,
+    "venue": "Perspectives on Medical Education",
+    "doi": "10.5334/pme.1482",
+    "pmid": "41245769",
+    "pmc": "PMC12617402",
+    "volume": "14",
+    "issue": "1",
+    "pages": "736-749"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.35,
+  "confidence_rationale": "Peer-reviewed, verified via PubMed (PMID 41245769, PMC12617402). It is the only study found that directly contrasts imagining a role against enacting it within the same participants: 60 medical students first imagined being a patient or caregiver, then enacted both roles in counterbalanced order, writing reflections after each stage, with engagement indexed by function-word frequency (LIWC) and correlated with human-rated empathy. Role-playing reflections showed significantly higher engagement than imagination, particularly in the caregiver role. That is directionally what MECH-543 predicts. But it is weak evidence for the claim as registered: the design confounds enactment with ORDER (imagination always came first, so practice and elaboration are not controlled), the dependent variable is linguistic engagement in written reflection rather than the update fingerprints MECH-543 specifies (other-model formation, policy availability, affective prediction), and the setting is medical education. Direction mixed, confidence 0.35 -- consistent with the claim's Tier-3 status and no stronger.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-543 predicts DISTINGUISHABLE update fingerprints, not merely more of the same. A study showing enactment produces higher engagement than imagination is compatible with enactment being a stronger dose of one process rather than a different route -- which is the alternative MECH-543 must rule out and this design cannot.",
+    "Imagination preceded enactment for every participant, so the enactment advantage is confounded with order and cumulative elaboration. A REE contrast must counterbalance route order or the same confound reappears."
+  ],
+  "tags": [
+    "mech-543",
+    "role_enactment",
+    "imagination",
+    "perspective_taking",
+    "empathy",
+    "liwc",
+    "order_confound",
+    "tier_3",
+    "medical_education"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sixty second-year medical students completed an imagination stage (imagining being a patient or caregiver) followed by a role-playing stage enacting both roles in counterbalanced order, writing reflections after each. Level of engagement, computed from function-word frequency, was significantly higher for role-playing than for imagination, particularly in the caregiver role, and higher engagement correlated with human-rated empathy and perspective-taking.",
+    "ree_translation": "MECH-543 holds that enacting a role recruits one's own generative machinery under another agent's boundary conditions, whereas narrative only simulates another's trajectory, and predicts distinguishable consequences. This study supports the weaker antecedent -- that enactment and imagination are not equivalent in engagement -- and does not address the stronger claim about differing update fingerprints.",
+    "mapping_caveat": "Small sample, medical-education setting, and an indirect dependent variable (function-word-based engagement in written reflection) standing in for psychological process. Imagination always preceded enactment, confounding route with order. Nothing here measures other-model formation, policy availability or affective prediction, which is what MECH-543 actually asserts differs.",
+    "source_context": "Human; 60 medical students, patient and caregiver roles, LIWC analysis of written reflections."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.65,
+    "notes": "Deliberately low. The claim is registered at Tier 3 as speculative-but-tractable and the external evidence found is correspondingly thin; scoring it higher would misrepresent the state of the literature."
+  }
+}

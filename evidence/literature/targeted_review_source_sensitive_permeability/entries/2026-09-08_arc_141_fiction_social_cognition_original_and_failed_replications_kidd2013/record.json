@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_source_sensitive_permeability",
+  "entry_id": "2026-09-08_arc_141_fiction_social_cognition_original_and_failed_replications_kidd2013",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "ARC-141"
+  ],
+  "source": {
+    "title": "Reading literary fiction improves theory of mind",
+    "authors": [
+      "David Comer Kidd",
+      "Emanuele Castano"
+    ],
+    "year": 2013,
+    "venue": "Science",
+    "doi": "10.1126/science.1239918",
+    "pmid": "24091705",
+    "pmc": null,
+    "volume": "342",
+    "issue": "6156",
+    "pages": "377-380"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.3,
+  "confidence_rationale": "Peer-reviewed and prominent (Science 342(6156):377-380), verified via PubMed (PMID 24091705) -- and substantially unreplicated, which is the finding. Panero et al., 'No support for the claim that literary fiction uniquely and immediately improves theory of mind' (J Pers Soc Psychol 112(3):e5-e8, 2017, PMID 28221090), reports that a direct replication failed, and that when Kidd and Castano reanalysed the replication data in the way they themselves argued was appropriate, the original pattern still did not appear; further replication attempts (Samur et al. 2018 Cogn Emot; Camerer-style preregistered efforts) are mixed at best. The culture package's Tier-2 item 'fiction exposure associated with social-cognitive capacities' therefore rests on a contested causal claim plus a correlational literature (Mar & Oatley's lifetime-exposure work) that the causal experiments do not support. Direction 'mixed' and confidence 0.3, which is a deliberate floor: ARC-141's own notes warn that treating every beneficial effect of fiction as evidence would make it unfalsifiable, and this entry exists mainly to stop the strongest-looking such effect being cited.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ARC-141's evidence companion warns the framing claim becomes unfalsifiable if pleasant results about fiction are counted for it. The single most-cited pleasant result -- a short passage of literary fiction immediately improving theory of mind -- does not replicate. Any REE write-up citing fiction's social-cognitive benefits must cite the replication failure in the same breath.",
+    "The surviving correlational finding (lifetime fiction exposure correlates with social-cognitive measures) is compatible with selection: people with better social cognition read more fiction. It cannot support ARC-141's causal direction without a design that rules this out, and none of the banked literature does."
+  ],
+  "tags": [
+    "arc-141",
+    "literary_fiction",
+    "theory_of_mind",
+    "replication_failure",
+    "kidd_castano",
+    "panero",
+    "unfalsifiability_guard",
+    "correlational_confound"
+  ],
+  "mapping": {
+    "source_claim_statement": "Kidd and Castano reported across five experiments that brief exposure to literary fiction, but not to popular fiction or nonfiction, immediately improved performance on theory-of-mind measures. Panero et al. (2017) report a direct replication finding no such effect, and state that reanalysis of their data along the lines Kidd and Castano themselves proposed still failed to reproduce the original pattern.",
+    "ree_translation": "The culture package places fiction's association with social-cognitive and future-simulation capacities in its supporting tiers. Verified, that association is weaker than the package implies: the causal experimental version does not reliably replicate, and what survives is correlational and open to reverse causation. ARC-141 should be cited as a framing hypothesis whose empirical content is discharged through MECH-542, exactly as its notes already require.",
+    "mapping_caveat": "Human reading experiments with brief laboratory exposure and indirect theory-of-mind measures (largely the Reading the Mind in the Eyes test, whose construct validity is itself debated). Even had the effect replicated it would speak to fiction's effect on a human social-cognitive measure, not to culture functioning as a distributed precommit workspace.",
+    "source_context": "Human; brief reading manipulation, theory-of-mind tests; and the subsequent replication literature 2016-2019."
+  },
+  "confidence_components": {
+    "source_quality": 0.4,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.7,
+    "notes": "Source quality scored on the finding's current standing, not the venue's prestige: a Science paper whose central experimental claim did not replicate. Deliberately floored so it cannot lend support to ARC-141."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_source_sensitive_permeability",
+  "entry_id": "2026-09-08_arc_141_mech_542_narrative_transportation_alters_beliefs_green2000",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "ARC-141",
+    "MECH-542"
+  ],
+  "source": {
+    "title": "The role of transportation in the persuasiveness of public narratives",
+    "authors": [
+      "Melanie C. Green",
+      "Timothy C. Brock"
+    ],
+    "year": 2000,
+    "venue": "Journal of Personality and Social Psychology",
+    "doi": "10.1037/0022-3514.79.5.701",
+    "pmid": null,
+    "pmc": null,
+    "volume": "79",
+    "issue": "5",
+    "pages": "701-721"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Peer-reviewed and canonical (JPSP 79(5):701-721, 2000); DOI verified, no PubMed record (JPSP of that period is inconsistently indexed in PubMed, which is expected). It verifies the package's Tier-2 item that narrative transportation alters downstream attitudes and beliefs: transportation -- absorption into a story, comprising imagery, affect and attentional focus -- predicted story-consistent beliefs and favourable protagonist evaluations, and highly transported readers detected fewer false notes in the text. Crucially for MECH-542, in these studies the labelling of the narrative as fact or fiction did NOT moderate the belief effect, which is a positive statement of the same asymmetry Hartung et al. later found: content crosses regardless of source label, while transportation modulates how much. Confidence 0.58 -- a classic and much-extended finding, discounted because transportation is measured rather than manipulated in the key analyses, making the belief effect partly correlational.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-542 predicts source framing selectively gates which variables update. Green and Brock report belief change from narratives whether labelled fact or fiction, with transportation rather than source status doing the work -- so if REE's assay found source framing to be the dominant moderator of general belief update, it would be reproducing something the human literature does not show.",
+    "Reduced detection of false notes under high transportation is a critical-evaluation failure, not a source-tagging failure. MECH-544's pathology routes should therefore include suppressed scrutiny as a mechanism distinct from source-tag decay; a system that lost source tags but retained scrutiny would behave differently from a transported human reader."
+  ],
+  "tags": [
+    "arc-141",
+    "mech-542",
+    "narrative_transportation",
+    "persuasion",
+    "belief_change",
+    "false_notes",
+    "fiction_label_not_moderating",
+    "canonical"
+  ],
+  "mapping": {
+    "source_claim_statement": "Transportation, defined as absorption into a narrative involving imagery, affect and attentional focus, was proposed as the mechanism by which narratives affect beliefs. Higher transportation was associated with more story-consistent beliefs and more favourable evaluations of protagonists (Experiment 1, N=97), and highly transported readers identified fewer false notes in a story than less transported readers (Experiment 2, N=69). Labelling the narrative as fact or fiction did not produce the differences a source-based account would predict.",
+    "ree_translation": "ARC-141 claims culture works as a precommit workspace where candidate representations are explored before commitment; transportation research shows the exploration is not cost-free -- absorbed engagement with a narrative moves beliefs whether or not the narrative is true. For MECH-542 it is a data point on the permitted side of the ledger, and a warning that the fact/fiction label is not the operative variable in human belief update.",
+    "mapping_caveat": "Transportation is largely measured rather than manipulated in the belief analyses, so the belief effect is partly correlational; small samples by modern standards; the outcome is self-reported belief on story-relevant items shortly after reading, not durable model change. Human narrative persuasion, with no mapping to an agent's internal variable-resolved update.",
+    "source_context": "Human; undergraduate participants reading a narrative about a violent incident, with fact/fiction labelling and transportation measurement."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Canonical with a very large downstream literature; discounted for the measured-mediator design and small samples."
+  }
+}

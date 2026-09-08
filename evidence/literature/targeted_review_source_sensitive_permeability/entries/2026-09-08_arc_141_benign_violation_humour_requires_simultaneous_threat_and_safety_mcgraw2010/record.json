@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_source_sensitive_permeability",
+  "entry_id": "2026-09-08_arc_141_benign_violation_humour_requires_simultaneous_threat_and_safety_mcgraw2010",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "ARC-141"
+  ],
+  "source": {
+    "title": "Benign violations: making immoral behavior funny",
+    "authors": [
+      "A. Peter McGraw",
+      "Caleb Warren"
+    ],
+    "year": 2010,
+    "venue": "Psychological Science",
+    "doi": "10.1177/0956797610376073",
+    "pmid": "20587696",
+    "pmc": null,
+    "volume": "21",
+    "issue": "8",
+    "pages": "1141-1149"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Peer-reviewed, verified via PubMed (PMID 20587696). It verifies the package's benign-violation citation accurately: humour arises when a situation is simultaneously appraised as a violation and as benign, and the paper tests this in the moral domain across five experiments, identifying three routes to benignness (an alternative norm making the situation acceptable, weak commitment to the violated norm, and psychological distance). Relevance to ARC-141 is real but INDIRECT -- SOC-HUM-1 already owns humour as a low-commitment deniable probe, and this paper is that mechanism's external anchor rather than new ground. Confidence 0.55: sound experiments in a strong venue, but a 2010 social-psychology paradigm with the replication caveats of that era, and it evidences humour's appraisal structure rather than culture's precommit function.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ARC-141 treats humour as a cultural technology for traversing costly possibility space cheaply; benign-violation theory says the cheapness comes from an appraisal of benignness that can fail, producing offence rather than amusement. So the 'low commitment' of a humorous probe is not a property of the probe but of the receiver's appraisal -- a REE model treating humour as intrinsically low-commitment would miss the failure mode that makes it socially informative.",
+    "Psychological distance is one of the three benignness routes; this predicts the same content is funny at distance and offensive up close. Any REE humour mechanism that produced a distance-invariant response would not be implementing benign violation."
+  ],
+  "tags": [
+    "arc-141",
+    "soc-hum-1_adjacent",
+    "humour",
+    "benign_violation",
+    "moral_violation",
+    "appraisal",
+    "psychological_distance",
+    "already_owned_mechanism"
+  ],
+  "mapping": {
+    "source_claim_statement": "Humour occurs when and only when a situation is appraised as a violation (something that threatens how the world ought to be), is simultaneously appraised as benign, and both appraisals occur at once. Five experiments in the moral domain show that benign moral violations elicit amusement alongside disgust, with benignness supported by an alternative norm, weak commitment to the violated norm, or psychological distance.",
+    "ree_translation": "ARC-141 names humour among the cultural technologies making costly regions of possibility space traversable. Benign-violation theory gives the conditions under which that traversal succeeds: the norm must be genuinely violated (or nothing is explored) and simultaneously held benign (or the exploration is refused). That is a precise statement of the low-commitment probe SOC-HUM-1 already owns.",
+    "mapping_caveat": "Evidences the appraisal structure of humour in human participants, not culture's function as a distributed precommit workspace; ARC-141 gains a component account, not confirmation. SOC-HUM-1 is the REE claim that actually owns this mechanism, and this entry is tagged to ARC-141 only because that is the claim under review here. 2010-era social-psychology vignette experiments.",
+    "source_context": "Human; scenario-based experiments on moral violations and amusement."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.6,
+    "notes": "Good venue and a coherent theory with substantial downstream literature; discounted for era-typical designs and for evidencing a component rather than the claim."
+  }
+}

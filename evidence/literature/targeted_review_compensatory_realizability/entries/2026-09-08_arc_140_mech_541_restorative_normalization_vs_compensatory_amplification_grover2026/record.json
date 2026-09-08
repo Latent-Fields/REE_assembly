@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_compensatory_realizability",
+  "entry_id": "2026-09-08_arc_140_mech_541_restorative_normalization_vs_compensatory_amplification_grover2026",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "ARC-140",
+    "MECH-541"
+  ],
+  "source": {
+    "title": "Neuromodulation for restoring and amplifying brain function",
+    "authors": [
+      "Sandra Grover",
+      "Wen Wen",
+      "Robert M. G. Reinhart"
+    ],
+    "year": 2026,
+    "venue": "Nature Neuroscience (online ahead of print)",
+    "doi": "10.1038/s41593-026-02434-6",
+    "pmid": "42697957",
+    "pmc": null
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Peer-reviewed Review, verified via PubMed (PMID 42697957, Nat Neurosci, online ahead of print 2026-09-04); DOI in the claim notes is exact. The ABSTRACT was obtained verbatim and confirms precisely what ARC-140/MECH-541 attribute to it: the authors 'formalize these approaches as restorative normalization (RN) and compensatory amplification (CA)' and 'evaluate the following four factors that enable CA to be effective: multiple realizability, multiscale neuroplasticity, precision readiness and activity selectivity'. THE FULL TEXT REMAINS INACCESSIBLE -- nature.com serves an authentication wall, there is no PMC deposit, and no preprint or author PDF was found. So the chip's central question -- what the authors MEAN by 'precision readiness', and whether it differs from REE's precision/gain machinery -- IS STILL UNANSWERED, and ARC-140's terminological warning must stand unmodified rather than being either confirmed or retired. Confidence 0.5: the framework attribution is now verified, the substance behind it is not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ARC-140's registered warning is that 'precision readiness' must not be silently equated with REE's precision/gain machinery. This pull could not test that, because the section defining it is paywalled. Any future session that finds the definition and finds the two concepts to be the SAME must treat that as a wording change owed to ARC-140, not as a corroboration.",
+    "The abstract frames CA as a therapeutic DESIGN PRINCIPLE for neuromodulation -- deliberately amplifying a repurposed process -- whereas ARC-140 asserts a property of the organism (that it spontaneously reorganises causal responsibility). A paper about how to intervene is not evidence that the untreated system does this on its own; if the full text turns out to rest CA on clinician-driven amplification only, ARC-140's derived-hypothesis status is more exposed, not less."
+  ],
+  "tags": [
+    "arc-140",
+    "mech-541",
+    "neuromodulation",
+    "compensatory_amplification",
+    "restorative_normalization",
+    "multiple_realizability",
+    "precision_readiness_UNVERIFIED",
+    "paywalled_full_text",
+    "framework_origin"
+  ],
+  "mapping": {
+    "source_claim_statement": "Verbatim from the abstract: 'While many rehabilitation strategies seek to restore normal, healthy-like dynamics, some adopt a complementary strategy, using neuromodulation to strengthen repurposed processes that support function. Here we formalize these approaches as \"restorative normalization\" (RN) and \"compensatory amplification\" (CA), respectively. Drawing on cognitive neurophysiology, we evaluate the following four factors that enable CA to be effective: multiple realizability, multiscale neuroplasticity, precision readiness and activity selectivity.' The authors analyse RN/CA interplay across stroke rehabilitation and identify opportunities in neurodegeneration, psychiatry and aging.",
+    "ree_translation": "ARC-140 takes the RN/CA distinction and asserts the organism-side version: recovery need not be restoration, and a system may reallocate causal responsibility instead. MECH-541 takes the same machinery and asks what happens when amplification goes too far. The paper supplies the vocabulary and the clinical seriousness of the distinction; the REE claims are derived hypotheses on top of it, exactly as their notes already say.",
+    "mapping_caveat": "Two caveats, one of which is unresolved. (1) The full text is paywalled, so the four factors are verified as NAMES only; 'precision readiness' is undefined here and the terminological trap ARC-140 records is still open. (2) The paper's subject is therapeutic neuromodulation in humans -- how to intervene on a damaged brain -- not spontaneous reorganisation in an artificial agent. Reading it as evidence that an organism compensates unaided goes beyond what a review of intervention strategies can show.",
+    "source_context": "Human clinical neuromodulation (tACS/tDCS/DBS lineage); review across stroke rehabilitation, neurodegeneration, psychiatry, aging."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Nature Neuroscience review from a leading neuromodulation group; source quality high. Mapping fidelity capped at 0.5 because only the abstract could be read and the load-bearing term is undefined in it."
+  }
+}

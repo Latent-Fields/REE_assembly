@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_source_sensitive_permeability",
+  "entry_id": "2026-09-08_mech_544_source_monitoring_content_and_source_dissociate_johnson1993",
+  "timestamp_utc": "2026-09-08T18:41:01Z",
+  "claim_ids_tested": [
+    "MECH-544",
+    "MECH-542"
+  ],
+  "source": {
+    "title": "Source monitoring",
+    "authors": [
+      "Marcia K. Johnson",
+      "Shahin Hashtroudi",
+      "D. Stephen Lindsay"
+    ],
+    "year": 1993,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/0033-2909.114.1.3",
+    "pmid": "8346328",
+    "pmc": null,
+    "volume": "114",
+    "issue": "1",
+    "pages": "3-28"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Peer-reviewed, canonical, verified via PubMed (PMID 8346328); the founding statement of the source-monitoring framework and one of the most cited papers in memory research. It is the clearest external grounding in the whole culture package, as MECH-544's notes anticipate: source information is not an intrinsic property of a memory but is ATTRIBUTED at retrieval by decision processes operating on qualitative characteristics, so retained content and correct source attribution can and routinely do dissociate -- content survives while its origin is misassigned. That is source-tag decay as a documented human phenomenon rather than a REE conjecture. Confidence 0.72: a framework review rather than a single experiment, but one resting on a very large and durable empirical literature, and the dissociation itself is not seriously contested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-544 predicts source-tag decay as a signature; the source-monitoring framework says something stronger and structurally different -- there may be no persistent tag at all, source being RECONSTRUCTED at retrieval from qualitative features. If that is the right architecture, a REE implementation storing an explicit source tag and letting it decay would reproduce the phenomenon by a mechanism the biology does not use, and the two would diverge under any manipulation that alters retrieval conditions rather than storage.",
+    "The framework makes source errors a function of the SIMILARITY between sources and of the decision criterion applied. A REE system whose source errors did not increase with representational similarity between imagined and lived episodes, or did not shift with a criterion manipulation, would be exhibiting decay but not source monitoring."
+  ],
+  "tags": [
+    "mech-544",
+    "mech-542",
+    "source_monitoring",
+    "reality_monitoring",
+    "source_attribution",
+    "content_source_dissociation",
+    "canonical",
+    "attribution_at_retrieval"
+  ],
+  "mapping": {
+    "source_claim_statement": "Memories are not tagged with their origins; source is attributed through judgement processes that evaluate the qualitative characteristics of a mental experience (perceptual detail, contextual and semantic information, cognitive operations) against criteria that vary with task and motivation. Source misattributions therefore arise systematically, increase as sources become more similar, and can occur while the remembered content itself is well retained.",
+    "ree_translation": "MECH-544 asserts that the permeability enabling cultural learning necessarily produces failure modes, with source-tag decay as the registered signature. The source-monitoring framework establishes the underlying dissociation in humans -- content and origin come apart, routinely and lawfully -- and so provides the external grounding the claim's notes identify as its clearest. For MECH-542 it supplies the mechanism by which a protected variable (this happened to me) could fail even when the permitted variables update correctly.",
+    "mapping_caveat": "The framework's central commitment is that source is NOT a stored tag but an attribution made at retrieval. MECH-544's 'source-tag decay' language assumes a stored tag that weakens. These are different architectures making different predictions under retrieval manipulations, and the claim should not treat the human literature as confirming its implementation. Human memory research, no computational model of an embodied agent.",
+    "source_context": "Human memory; review of reality-monitoring and source-monitoring experimental literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Canonical review with a very large downstream literature. Mapping fidelity held at 0.6 by the stored-tag versus attributed-source architectural difference, which is a real divergence and not a quibble."
+  }
+}
