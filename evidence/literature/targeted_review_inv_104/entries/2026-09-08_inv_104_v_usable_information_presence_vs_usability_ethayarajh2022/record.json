@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_104",
+  "entry_id": "2026-09-08_inv_104_v_usable_information_presence_vs_usability_ethayarajh2022",
+  "timestamp_utc": "2026-09-08T17:59:40Z",
+  "claim_ids_tested": [
+    "INV-104"
+  ],
+  "source": {
+    "title": "Understanding Dataset Difficulty with V-Usable Information",
+    "authors": [
+      "Kawin Ethayarajh",
+      "Yejin Choi",
+      "Swabha Swayamdipta"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the 39th International Conference on Machine Learning (PMLR 162)",
+    "doi": null,
+    "arxiv_id": "2110.08420",
+    "pmid": null,
+    "pmc": null,
+    "volume": "162",
+    "pages": "5988-6008",
+    "url": "https://proceedings.mlr.press/v162/ethayarajh22a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Supports INV-104's MEASUREMENT PREMISE rather than its substantive assertion, and is scored accordingly. What it establishes -- with a formal treatment and an ICML outstanding-paper level of scrutiny -- is that 'how much information X carries about Y' is only well-posed relative to a bounded family V of extractors, so 'the distinction is present in the latent' and 'the distinction is usable by anything downstream' are different quantities that can and do come apart. That is exactly the T1/T2 split INV-104 builds its falsifier on, and exactly the gap V3-EXQ-978 (r2 0.710/0.858) and V3-EXQ-948 (downstream reader at 0.5 res/ep) fell into. Confidence held at 0.62 because the domain is NLP dataset difficulty, not representation compression in an embodied agent, and because the paper says nothing about WHICH distinctions matter.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A linear probe reporting high r2 on a frozen representation certifies only that the class is present to the probe's own function family; it licenses no inference about whether a downstream policy of different capacity can use it. INV-104's own history is an instance: V3-EXQ-978 measured the class-1 field linearly decodable at r2 0.710 sense-path / 0.858 encoder-path while V3-EXQ-948 measured a downstream reader on that same latent at 0.5 res/ep against a 1.0 competence floor.",
+    "Because V-usable information is defined relative to V, a retained-fraction statistic like INV-104's R_k is only interpretable if the adapter family is held FIXED across the compressed, raw-input-ceiling and untrained-projection arms. A capacity difference between arms silently redefines the quantity being compared, and the resulting R_k is a statement about the adapters, not about the compression.",
+    "V-information can be NEGATIVE relative to a family, i.e. conditioning on the representation can make a bounded extractor worse than the label prior. A near-zero or sub-floor R_k is therefore not automatically evidence that the class was destroyed; it can equally be evidence that the representation's geometry is adversarial to the adapter family -- MECH-517's H-C route, not a preservation failure."
+  ],
+  "tags": [
+    "inv-104",
+    "usable_information",
+    "probing",
+    "presence_vs_recoverability",
+    "measurement_methodology",
+    "r_k",
+    "two_tier",
+    "icml"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dataset difficulty is framed 'with respect to a model V as the lack of V-usable information (Xu et al., 2019), where a lower value indicates a more difficult dataset for V'. V-usable information measures 'how much information an input variable X can provide about Y when constrained to functions V'; pointwise V-information (PVI) gives the per-instance version. The framework permits comparing datasets and slices for a fixed model, rather than comparing models on a fixed dataset.",
+    "ree_translation": "INV-104's wording 'must preserve, OR leave recoverable through its dynamics' is a claim about usable information, not about information simpliciter -- and the claim's own falsifier says so, by making R_k rather than probe r2 the verdict statistic. This paper is the formal warrant for that design choice: information content is only defined relative to a bounded extractor family, so T1 (presence, via a linear/ridge probe) and T2 (recoverability-in-use, via a capacity-matched adapter behaviour-cloning an oracle) measure genuinely different quantities and may disagree. It also supplies the discipline that makes R_k meaningful: the extractor family must be held fixed across the compressed, ceiling and untrained-projection arms, which is what NDP-4's same-capacity floor arm already enforces.",
+    "mapping_caveat": "The domain transfer is real and should not be glossed. This is NLP dataset difficulty -- text classification benchmarks, transformer fine-tuning -- not an embodied agent's world-model compression, and the paper's target is annotation artefacts in datasets rather than developmental adequacy of a latent. The transferred content is the formal point about extractor-relative information, which is domain-general; nothing about the paper's empirical results transfers. Critically, the paper is silent on INV-104's actual substance: it tells you how to ask whether a distinction is usable, and nothing at all about which distinctions an organism must keep.",
+    "source_context": "NLP; dataset difficulty and annotation artefacts in benchmarks such as SNLI, MultiNLI, CoLA. ICML 2022 outstanding paper."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Source quality is high (ICML outstanding paper, formal result building on Xu et al.'s predictive V-information). Mapping fidelity is deliberately mid: the paper is methodological warrant for the falsifier's two-tier design, not evidence about the preservation contract, and I have not inflated the direction to compensate. Transfer risk 0.40 -- the domain gap is large but the transferred content is a definitional point rather than an empirical finding."
+  }
+}

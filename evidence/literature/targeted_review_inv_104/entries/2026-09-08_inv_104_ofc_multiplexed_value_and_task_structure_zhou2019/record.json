@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_104",
+  "entry_id": "2026-09-08_inv_104_ofc_multiplexed_value_and_task_structure_zhou2019",
+  "timestamp_utc": "2026-09-08T17:59:40Z",
+  "claim_ids_tested": [
+    "INV-104"
+  ],
+  "source": {
+    "title": "Rat Orbitofrontal Ensemble Activity Contains Multiplexed but Dissociable Representations of Value and Task Structure in an Odor Sequence Task",
+    "authors": [
+      "Jingfeng Zhou",
+      "Matthew P. H. Gardner",
+      "Thomas A. Stalnaker",
+      "Seth J. Ramus",
+      "Andrew M. Wikenheiser",
+      "Yael Niv",
+      "Geoffrey Schoenbaum"
+    ],
+    "year": 2019,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2019.01.048",
+    "pmid": "30827919",
+    "pmc": "PMC9445914",
+    "volume": "29",
+    "issue": "6",
+    "pages": "897-907.e3"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "The strongest biological anchor found for INV-104's core assertion and for MECH-520's counter-constraint simultaneously. Ensemble recordings show that a biological compression of task experience retains structure information that is DISSOCIABLE from value -- i.e. the brain does not compress to a value projection -- and that structure is retained selectively where it is behaviourally consequential (above-chance cross-positional decoding in the sequence where position was task-critical, at chance where it was not). The error-trial analysis further shows the representation tracks the animal's internal belief rather than the external scene, which is INV-104 class 2's 'internal-state consequence invisible in the scene'. Discounted to 0.71 for species (rat), for the fact that a neural correlate is not a compression-step measurement, and because 'retained where behaviourally relevant' is observational rather than manipulated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A compression that retains only value or only currently-rewarding distinctions is biologically atypical: value dominated only at the very lowest filtering threshold (0%) and 'declined precipitously even at a threshold of 2-3%', while structure information persisted across 10-40% thresholds on the remaining ~150 LDA components. A z_world that collapses to a value projection is therefore an over-compression relative to the biological reference, which is MECH-520's counter-constraint stated empirically.",
+    "Retention is selective, not uniform: cross-positional decoding was above chance in sequence 2 (where sequence position was task-critical) and not in sequence 1 (where it was not). A preservation contract enforced uniformly across all distinctions would over-specify relative to what the biology does; INV-104's per-class, per-site framing is closer to the observed pattern than a blanket 'preserve everything' reading of it would be.",
+    "On error trials, and on the trials PRECEDING them, ensembles miscoded which sequence the animal was in, in register with the animal's behavioural error -- the representation tracked internal belief, not external features. A latent scored only against ground-truth scene labels would mark this correct-representation-plus-wrong-belief case as a representation failure, and vice versa."
+  ],
+  "tags": [
+    "inv-104",
+    "orbitofrontal",
+    "task_structure",
+    "value",
+    "multiplexed",
+    "internal_belief",
+    "class_2",
+    "mech-520",
+    "rodent",
+    "electrophysiology"
+  ],
+  "mapping": {
+    "source_claim_statement": "Recording rat OFC ensembles during an odor sequence task, the authors reconcile the competing value-coding and cognitive-map accounts by showing OFC contains both, 'multiplexed but dissociable'. A single LDA component separated rewarded from non-rewarded trials with perfect value selectivity, while the remaining ~150 components 'retained detailed sequence structure without value information'. Ensembles 'distinguished positions in sequences when behaviorally relevant, but not when irrelevant'. On error trials and the trials preceding them, ensembles miscoded which sequence the animal was in, in register with the behavioural error.",
+    "ree_translation": "This is a biological instance of INV-104's contract holding at a real compression site. Three mappings. (1) The dissociability of structure from value is empirical support for MECH-520's counter-constraint as INV-104 incorporates it: preservation by regulatory/value relevance alone over-compresses, and the biological system does not do it -- value occupied one component and structure occupied the rest. (2) 'Distinguished positions when behaviorally relevant, but not when irrelevant' is class 3 (persistence and temporal relation) being preserved conditionally on organism relevance, which is the shape INV-104 asserts rather than a blanket preservation requirement. (3) The error-trial miscoding is class 2's 'controllability and agency incl. internal-state consequence invisible in the scene': the ensemble encoded the animal's belief about which sequence it was in, a variable with no scene correlate at that moment, and encoded it wrongly exactly when behaviour was wrong.",
+    "mapping_caveat": "Three boundaries, and the first is the important one. (1) This is a NEURAL CORRELATE in a trained animal, not a measurement of what a compression step preserved -- there is no ablation, no capacity-matched adapter, and no counterfactual encoder trained without the structure to compare against. It shows the biology instantiates the pattern INV-104 asserts; it does not show that a system violating the contract fails, which is the claim's normative half (F2's target). (2) Species and task: rat OFC, an over-trained odor sequence task with a small, discrete, experimenter-designed state space -- the 'behaviourally relevant' distinctions are relevant by construction, so the selective-retention finding is observational rather than manipulated. (3) The LDA-component decomposition and the filtering-threshold analysis are analysis choices; the value/structure dissociation is a property of that decomposition, and the quantitative thresholds (2-3% vs 10-40%) should not be transferred to REE as calibrated values.",
+    "source_context": "In vivo single-unit ensemble recording from rat lateral orbitofrontal cortex during a well-learned odor sequence task with two sequences differing in whether sequence position was task-critical."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "High source quality: Current Biology, Schoenbaum/Niv lab, ensemble-level analysis, and the finding is corroborated by the companion hippocampus/OFC paper from the same group (PMID 31588004). Mapping fidelity good but capped -- the paper shows the pattern INV-104 predicts without testing the counterfactual. Transfer risk is the highest of this pull at 0.45: rodent OFC in an over-trained discrete task is a long way from a V3 z_world encoder, and the temptation to read 'the brain does it this way' as 'the architecture must do it this way' is exactly the inference INV-104's falsifier is designed to avoid depending on."
+  }
+}

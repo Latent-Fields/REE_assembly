@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-08T17:10:49.795451Z`
+Generated: `2026-09-08T18:05:33.401123Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -269,6 +269,7 @@ Generated: `2026-09-08T17:10:49.795451Z`
 | `targeted_review_inv_092` | [`2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010`](targeted_review_inv_092/entries/2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010/record.json) | 5 | [`summary`](targeted_review_inv_092/entries/2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010/summary.md) |
 | `targeted_review_inv_093` | [`2026-09-08_inv_093_punishment_resistance_inflexible_habits_jones2024`](targeted_review_inv_093/entries/2026-09-08_inv_093_punishment_resistance_inflexible_habits_jones2024/record.json) | 5 | [`summary`](targeted_review_inv_093/entries/2026-09-08_inv_093_punishment_resistance_inflexible_habits_jones2024/summary.md) |
 | `targeted_review_inv_095` | [`2026-09-08_inv_095_pain_asymbolia_berthier1988`](targeted_review_inv_095/entries/2026-09-08_inv_095_pain_asymbolia_berthier1988/record.json) | 5 | [`summary`](targeted_review_inv_095/entries/2026-09-08_inv_095_pain_asymbolia_berthier1988/summary.md) |
+| `targeted_review_inv_104` | [`2026-09-08_inv_104_v_usable_information_presence_vs_usability_ethayarajh2022`](targeted_review_inv_104/entries/2026-09-08_inv_104_v_usable_information_presence_vs_usability_ethayarajh2022/record.json) | 5 | [`summary`](targeted_review_inv_104/entries/2026-09-08_inv_104_v_usable_information_presence_vs_usability_ethayarajh2022/summary.md) |
 | `targeted_review_mcc_effort_value` | [`2026-04-19_mcc_serotonin_effort_learning_scholl2017`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/record.json) | 5 | [`summary`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/summary.md) |
 | `targeted_review_mech261_mode_gating` | [`2026-04-20_mech_261_triple_coupling_gating_latchoumane2017`](targeted_review_mech261_mode_gating/entries/2026-04-20_mech_261_triple_coupling_gating_latchoumane2017/record.json) | 5 | [`summary`](targeted_review_mech261_mode_gating/entries/2026-04-20_mech_261_triple_coupling_gating_latchoumane2017/summary.md) |
 | `targeted_review_mech269b_vs_rollout_gating` | [`2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002`](targeted_review_mech269b_vs_rollout_gating/entries/2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002/record.json) | 7 | [`summary`](targeted_review_mech269b_vs_rollout_gating/entries/2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002/summary.md) |

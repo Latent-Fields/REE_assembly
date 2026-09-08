@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_104",
+  "entry_id": "2026-09-08_inv_104_bisimulation_task_relevant_invariance_zhang2021",
+  "timestamp_utc": "2026-09-08T17:59:40Z",
+  "claim_ids_tested": [
+    "INV-104"
+  ],
+  "source": {
+    "title": "Learning Invariant Representations for Reinforcement Learning without Reconstruction",
+    "authors": [
+      "Amy Zhang",
+      "Rowan McAllister",
+      "Roberto Calandra",
+      "Yarin Gal",
+      "Sergey Levine"
+    ],
+    "year": 2021,
+    "venue": "International Conference on Learning Representations (ICLR)",
+    "doi": null,
+    "arxiv_id": "2006.10742",
+    "pmid": null,
+    "pmc": null,
+    "url": "https://openreview.net/forum?id=-2FCwDKRREu"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Strong, replicated, code-released evidence for the specific clause INV-104 needs most -- that a compression trained on reconstruction/prediction can be behaviourally inadequate while its own loss looks fine, and that the adequacy criterion has to be stated in terms of downstream consequence rather than reconstruction fidelity. Held below 0.8 because the paper's operative notion of 'what must be preserved' is reward-equivalence (bisimulation), which is NARROWER than INV-104's five organism-relevant classes: bisimulation would happily collapse two states that differ only in a distinction the organism will need later but that carries no reward difference now. So the paper supports the negative half of INV-104 (reconstruction/prediction is not the right criterion) much more strongly than the positive half (which classes must survive).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A latent trained to minimise observation reconstruction spends capacity on high-variance, behaviourally inert scene content (the paper's moving distractors and natural-video backgrounds) and can lose the low-variance distinctions that actually change what the agent should do -- exactly the 'perceptual adequacy without organism adequacy' failure mode INV-104 names.",
+    "The converse failure the paper's own criterion invites: bisimulation aggregates states with equal reward and equal transition distribution over aggregated states, so a distinction that is currently consequence-neutral but LATER becomes consequential (INV-104 classes 3-5: persistence, causal ancestry, independently evolving trajectories) is legitimately discarded under bisimulation and illegitimately discarded under INV-104. A DBC-style objective is therefore not a drop-in implementation of the preservation contract.",
+    "The paper's invariance is defined against a FIXED reward function. Under INV-104's requirement that the ontology within a class remain free to split, merge and reweight over development, a representation optimally compressed for today's reward is a developmental regression waiting to happen."
+  ],
+  "tags": [
+    "inv-104",
+    "representation_compression",
+    "bisimulation",
+    "reconstruction_loss",
+    "task_relevant_invariance",
+    "z_world",
+    "arxiv"
+  ],
+  "mapping": {
+    "source_claim_statement": "Representations for control can be learned 'without relying either on domain knowledge or pixel-reconstruction'; bisimulation metrics 'quantify behavioral similarity between states' and are used to 'learn robust latent representations which encode only the task-relevant information from observations'. The method is demonstrated on visual MuJoCo tasks whose backgrounds are replaced with moving distractors and natural video, and on first-person highway driving where it 'learns invariance to clouds, weather, and time of day'.",
+    "ree_translation": "This is external evidence for INV-104's clause '(a step that destroys downstream access to one of them is a developmental regression) regardless of reconstruction or prediction loss'. The paper's whole premise is that reconstruction loss is the WRONG adequacy criterion for a compression that feeds control: a pixel-reconstructing encoder allocates capacity by pixel variance, not by consequence, and the distractor benchmarks are engineered to make that mis-allocation measurable. Mapped onto the observation -> z_world step in ree_core/latent/stack.py (SplitEncoder world path, SD-005), it says the world path's reconstruction objective cannot by itself certify that class-1 (consequence / opportunity-and-threat) distinctions survived, which is why INV-104's confirming condition (ii) demands that delta world_obs reconstruction loss and delta E2 one-step prediction MSE both stay inside the within-arm seed spread.",
+    "mapping_caveat": "Two boundaries. (1) The paper's preservation criterion is reward-equivalence under a fixed reward, not INV-104's five organism-relevant classes; it therefore supports 'reconstruction is not the criterion' but does NOT supply the criterion INV-104 asserts, and would in fact license discarding classes 3-5. (2) It is a benchmark-control result (DeepMind Control Suite, CARLA driving) with hand-constructed task-irrelevant distractors -- the ground truth about what is irrelevant is supplied by the experimenter. REE's setting has no such oracle, which is precisely why INV-104 needs NDP-3 (a raw-input ceiling arm) to establish that the class is determinable at all.",
+    "source_context": "Deep RL from pixels; modified DeepMind Control Suite MuJoCo tasks with video-background distractors, plus a CARLA first-person highway driving task. Simulation only, no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "High source quality: ICLR 2021, open-sourced (facebookresearch/deep_bisim4control), heavily replicated and heavily critiqued -- the offline-RL pitfalls literature that grew up around it is itself a sign the result was taken seriously. Mapping fidelity is capped by the reward-equivalence-vs-five-classes gap described in the caveat. Transfer risk is moderate rather than high because the mechanism at issue (capacity allocated by pixel variance rather than by consequence) is architectural and does not depend on the specific benchmark."
+  }
+}

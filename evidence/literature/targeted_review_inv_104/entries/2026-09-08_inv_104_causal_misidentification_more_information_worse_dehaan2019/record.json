@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_104",
+  "entry_id": "2026-09-08_inv_104_causal_misidentification_more_information_worse_dehaan2019",
+  "timestamp_utc": "2026-09-08T17:59:40Z",
+  "claim_ids_tested": [
+    "INV-104"
+  ],
+  "source": {
+    "title": "Causal Confusion in Imitation Learning",
+    "authors": [
+      "Pim de Haan",
+      "Dinesh Jayaraman",
+      "Sergey Levine"
+    ],
+    "year": 2019,
+    "venue": "Advances in Neural Information Processing Systems 32 (NeurIPS 2019)",
+    "doi": null,
+    "arxiv_id": "1905.11979",
+    "pmid": null,
+    "pmc": null,
+    "url": "https://proceedings.neurips.cc/paper/2019/hash/947018640bf36a2bb609d3557a285329-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Direct, benchmark-replicated evidence for INV-104's class-4 assertion (causal ancestry / intervention handles are a distinct preservation requirement, not reducible to predictive sufficiency) and for the claim's insistence that the losses do not see the failure. The 'causal misidentification' result -- access to more information yields WORSE performance, with training loss improving throughout -- is a demonstration that predictive adequacy over the training distribution and organism-level adequacy are separable, which is the same structure INV-104's condition (ii) asserts. Held at 0.68 because the paper is about a policy's input, not about a compression step's output, and because its remedy (targeted intervention / expert queries) is not available to a self-supervised encoder.",
+  "failure_signatures": [
+    "A representation or input set that is predictively SUFFICIENT over the training distribution can be causally WRONG, and the failure is invisible to the training objective: de Haan et al. show behaviour-cloning loss improving while the learned policy latches onto a downstream effect of the expert's action (the canonical 'brake indicator' confound) rather than its cause.",
+    "The pathology grows with information: adding a genuinely informative variable degrades deployed performance. This is a counterexample to the intuition that a preservation contract is automatically satisfied by preserving MORE, and it means INV-104's classes cannot be discharged by simply widening z_world.",
+    "The failure surfaces only under distribution shift induced by the agent's own actions. An offline probe -- T1 or even T2 on a frozen, on-distribution dataset -- cannot detect it, so a high R_k for class 4 would not establish that intervention handles were genuinely preserved."
+  ],
+  "tags": [
+    "inv-104",
+    "causal_ancestry",
+    "intervention_handles",
+    "class_4",
+    "imitation_learning",
+    "distribution_shift",
+    "loss_blindness",
+    "neurips"
+  ],
+  "mapping": {
+    "source_claim_statement": "Discriminative models trained by behavioural cloning are 'non-causal: the training procedure is unaware of the causal structure of the interaction between the expert and the environment'. This produces 'a counter-intuitive causal misidentification phenomenon: access to more information can yield worse performance'. The authors demonstrate it 'in several benchmark control domains as well as realistic driving settings', and resolve it 'through targeted interventions -- either environment interaction or expert queries -- to determine the correct causal model'.",
+    "ree_translation": "INV-104 lists causal ancestry / intervention handles (agent identity, action class, preconditions, uncertainty over causal contribution) as class 4 -- a distinct preservation requirement rather than something that falls out of predictive accuracy. This paper is the direct demonstration that the two are separable in the damaging direction: a model can be predictively excellent over its training distribution while having the causal direction backwards, and the objective registers nothing. That is precisely INV-104's confirming condition (ii), 'the losses do not see it', instantiated on a real system. It also bears on the claim's second half: because causal misidentification degrades performance only once the agent's own actions shift the distribution, a compression that discarded intervention handles would show a clean training loss, a healthy one-step prediction MSE, and an organism-level failure -- the developmental-regression signature INV-104 asserts.",
+    "mapping_caveat": "Two boundaries. (1) The paper's unit of analysis is a POLICY'S INPUT (which observed variables the cloner conditions on), whereas INV-104's unit is a COMPRESSION STEP'S OUTPUT (what survives observation -> z_world). The mechanism -- correlational sufficiency masking causal inadequacy -- is shared, but the identification is analogical rather than exact. (2) Their remedy requires targeted intervention or expert queries. REE's z_world encoder has neither an expert nor an interventional protocol at the compression site, so the paper diagnoses the failure INV-104 predicts without offering a route to satisfy the contract; class 4's substrate (MECH-430) remains v4 and unbuilt, and this entry does not change that.",
+    "source_context": "Imitation learning / behavioural cloning; MountainCar, Hopper and other benchmark control domains plus a realistic driving setting. Simulation only."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.38,
+    "notes": "NeurIPS 2019, code released, and the causal-confusion phenomenon has been independently reproduced and extended (notably in the offline-RL and driving literature), so the empirical claim is not resting on one paper. Mapping fidelity discounted for the policy-input vs compression-output shift described in the caveat. Transfer risk moderate: the mechanism is objective-structural rather than domain-specific, but REE's setting lacks the interventional access the paper's analysis presumes."
+  },
+  "summary_path": "summary.md"
+}

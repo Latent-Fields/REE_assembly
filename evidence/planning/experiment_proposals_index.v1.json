@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-08T17:10:49.795451Z",
+  "generated_at_utc": "2026-09-08T18:05:33.401123Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -1570,6 +1570,27 @@
       "proposal_type": "experimental",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_inv_063",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1712",
+      "claim_id": "INV-104",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Run a discriminative support-vs-ablation pair for INV-104 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0040",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_inv_104",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
@@ -5553,38 +5574,6 @@
       "objective": "Improve literature grounding and confidence for INV-103.",
       "priority": "medium",
       "proposal_id": "LIT-0729",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1712",
-      "claim_id": "INV-104",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for INV-104 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0040",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_inv_104",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1712",
-      "claim_id": "INV-104",
-      "objective": "Improve literature grounding and confidence for INV-104.",
-      "priority": "medium",
-      "proposal_id": "LIT-0026",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -17943,7 +17932,7 @@
   ],
   "n_executed": 236,
   "n_proposed_exp": 208,
-  "n_proposed_lit": 494,
+  "n_proposed_lit": 493,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }

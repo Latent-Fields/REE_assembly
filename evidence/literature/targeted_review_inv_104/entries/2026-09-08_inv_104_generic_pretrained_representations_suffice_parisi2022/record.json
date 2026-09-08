@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_104",
+  "entry_id": "2026-09-08_inv_104_generic_pretrained_representations_suffice_parisi2022",
+  "timestamp_utc": "2026-09-08T17:59:40Z",
+  "claim_ids_tested": [
+    "INV-104"
+  ],
+  "source": {
+    "title": "The Unsurprising Effectiveness of Pre-Trained Vision Models for Control",
+    "authors": [
+      "Simone Parisi",
+      "Aravind Rajeswaran",
+      "Senthil Purushwalkam",
+      "Abhinav Gupta"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the 39th International Conference on Machine Learning (PMLR 162)",
+    "doi": null,
+    "arxiv_id": "2203.03580",
+    "pmid": null,
+    "pmc": null,
+    "volume": "162",
+    "pages": "17359-17371",
+    "url": "https://proceedings.mlr.press/v162/parisi22a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.64,
+  "confidence_rationale": "Deliberately included as the disconfirming source, and it earns the role: it is the closest published instance of INV-104's own F1 (vacuity) route. Frozen representations trained on out-of-domain vision datasets with NO task-specific, consequence-specific or organism-specific pressure supported control policies 'competitive or even better than ground-truth state representations' across four diverse domains -- i.e. a high effective R_k through a generic compression, which is what F1 requires. Confidence 0.64 rather than higher because the evaluation is behaviour cloning / policy learning on short-horizon manipulation and navigation tasks whose consequence structure is thin, because 'competitive with ground-truth state' is a task-level comparison rather than a per-class retained fraction, and because a NeurIPS 2024 replication in the model-based setting (Schneider et al.) reports the opposite result.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a frozen encoder trained only on out-of-domain ImageNet-style data can support control at parity with ground-truth state, then for those tasks generic compression already preserved whatever the controller needed, with no preservation contract enforced and no organism-relevance pressure applied -- INV-104's F1 route, and its own red-team 5.",
+    "The result implies the preservation contract's practical bite depends entirely on the environment's consequence structure being RICH relative to what generic predictive objectives already capture. In an environment where it is not, INV-104 is true but does no work, and pressure to complicate z_world is unwarranted. This makes NDP-3 (raw-input ceiling >= 0.90) necessary but not sufficient: a class can be determinable AND already preserved for free.",
+    "Contested: Schneider et al. (NeurIPS 2024, arXiv 2411.10175) benchmark pre-trained visual representations in a MODEL-BASED RL setting and find them 'not more sample efficient than learning representations from scratch' and no better out-of-distribution, attributing the difference to the quality of the learned dynamics model. Since REE's z_world feeds E1/E2 rollout -- a model-based consumer, not a model-free policy -- the model-based result is arguably the more relevant one, which materially limits how far this entry weakens INV-104."
+  ],
+  "tags": [
+    "inv-104",
+    "disconfirming",
+    "f1_vacuity",
+    "pretrained_representations",
+    "frozen_encoder",
+    "generic_compression",
+    "red_team",
+    "icml"
+  ],
+  "mapping": {
+    "source_claim_statement": "Revisiting pre-trained visual representations for control across Habitat, DeepMind Control, Adroit and Franka Kitchen, the authors 'find that pre-trained visual representations can be competitive or even better than ground-truth state representations to train control policies. This is in spite of using only out-of-domain data from standard vision datasets, without any in-domain data from the deployment environments.'",
+    "ree_translation": "INV-104's F1 falsification route states that if R_k >= 0.75 for every class measurable at a stage, through a compression trained on generic predictive/reconstruction objectives with NO class-specific pressure, then generic compression already preserves what the organism needs and the preservation contract does no work. Parisi et al. are the closest published approximation to that condition: the encoders (MoCo, CLIP and relatives) had no access to the control task, no reward signal, no organism, and no consequence structure -- and the resulting frozen features supported policies at or above ground-truth-state parity. Translated to the observation -> z_world site, this is evidence that the class-1 material INV-104 worries about may survive generic compression without any SD-018-style directional head, which would make the restoration leg of condition (iii) unavailable to demonstrate.",
+    "mapping_caveat": "Four limits, and they are why this is scored 0.64 rather than higher. (1) 'Competitive with ground-truth state' is a task-level performance comparison, not a per-class retained fraction R_k; F1 as written requires the latter, and the paper does not decompose by distinction class. (2) The tasks are short-horizon manipulation and navigation with thin consequence structure -- no persistence-across-time requirement, no causal-ancestry requirement, no independently evolving agents -- so the classes most likely to be destroyed by generic compression (3, 4, 5) are the ones these benchmarks least require. (3) The pre-training corpora are enormous and real-world; REE's z_world is trained on its own small synthetic stream, so 'generic pre-training suffices' may be a statement about DATA SCALE rather than about compression objectives. (4) Schneider et al. (NeurIPS 2024) report the opposite result in a model-based setting, which is the setting REE's E1/E2 rollout consumer actually resembles.",
+    "source_context": "Visuo-motor control from pixels; frozen self-supervised and vision-language encoders (MoCo, CLIP and variants) evaluated via behaviour cloning and policy learning across Habitat navigation, DeepMind Control, Adroit dexterous manipulation and Franka Kitchen."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "ICML 2022, broad four-domain evaluation, code and project page released -- but the headline finding is contested by a later NeurIPS 2024 model-based benchmark, so source_quality reflects a well-executed study whose generality is genuinely in dispute rather than a settled result. Mapping fidelity 0.60: the paper reports task-level parity, F1 needs per-class R_k, and I have not pretended those are the same measurement. Transfer risk 0.50 is the highest assigned in this pull, driven by the data-scale confound and by the thin consequence structure of the benchmark tasks relative to REE's."
+  }
+}
