@@ -3236,6 +3236,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0231",
+      "claim_ids": [
+        "SD-056"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "GOV-CONFIRM-1 confirm for SD-056 (IGW-20260908-244, hash 23d982d6d95e) adjudicated DO-NOT-QUEUE by W5-S4 item 1 (REE_assembly 5819a55ae1: diagnostic_evidence_adjudicated true + experiment_gate on the claim): the representation-level DV is already measured three times (V3-EXQ-613 synthetic; 569d and 569e real training, t=1 cand_world_pairwise_dist ~0.05 ON vs ~0.014 OFF), the zero genuine_exp_count is a tagging fact (613/617 claim_ids [], 569c/d/e tagged ARC-065/MECH-341 only), and the ONLY run that moves the claim is the pre-registered EXP-0585 / EVB-0587 569e-equivalent Pathway A vs B probe (8 arms x 5 seeds, P1 budget) with the three 569e autopsy Section 6 script fixes and BOTH stability levers armed (e2_action_contrastive_multistep_enabled + e2_rollout_output_norm_clamp_enabled, true in ZERO runs as of 2026-09-01) -- a wave-budget funding decision for governance, not background fill. REGISTRY DEFECT for governance to repair in experiment_proposals.v1.json AND manual_proposals.v1.json (file was claim-held by admiring-heisenberg-6c7b32 this session, so not touched): EXP-0585 reads status executed with executed_by v3_exq_210_mech156_theta_traversal_probe, a 2026-04 MECH-156 run with no SD-056 tag; no SD-056 queue entry has existed since the proposal was minted 2026-08-07 and the 569e driver is unchanged since 2026-05-30 (pack_writer migration aside), so the run was never dispatched and the executed link is false -- restore a live lifecycle status (proposed, gated by the claim's experiment_gate) or write the DO-NOT-QUEUE marker via scripts/confirmer_verdict.py if governance declines to fund it this wave.",
+      "raised_by_session": "clever-joliot-bb5a54",
+      "raised_at": "2026-09-08T18:38:44Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
