@@ -1,0 +1,55 @@
+{
+  "source": {
+    "title": "Exposure to Novelty Promotes Long-Term Contextual Fear Memory Formation in Juvenile Mice: Evidence for a Behavioral Tagging.",
+    "authors": [
+      "Ning Chen",
+      "Tsung-Chih Tsai",
+      "Kuei-Sen Hsu"
+    ],
+    "year": 2020,
+    "venue": "Molecular Neurobiology",
+    "doi": "10.1007/s12035-020-02005-1",
+    "pmid": "32632604",
+    "pmc": null,
+    "volume": "57",
+    "issue": "9",
+    "pages": "3956-3968"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.42,
+  "confidence_rationale": "Included specifically because it is the only paper found in this pull that exhibits a THRESHOLD rather than a slope, and C2 (the knee) is INV-063's load-bearing and otherwise unevidenced leg. Weak training alone yields transient memory; the identical weak training paired with novelty exposure yields long-term memory -- a categorical conversion, which is the shape INV-063 predicts. The confidence is deliberately low, and lower than every other entry here, because the transfer is the weakest in the pull on three independent axes at once: there is no sleep in the design, the novelty is a discrete supplement within a time window rather than a graded ambient intake level, and the mechanism is protein-synthesis-and-dopamine tagging rather than offline replay. It is a shape analogy with a plausible mechanism attached, not evidence about sleep function.",
+  "failure_signatures": [
+    "The threshold here is a property of the CONSOLIDATION-tagging window, not of offline processing: novelty supplies plasticity-related proteins to stabilise an already-encoded weak trace, within roughly an hour of training. If INV-063's floor turned out to have this mechanism, the floor would live in the waking encode/tag pathway and not in the sleep functions at all, and the claim's attribution of the threshold to the four offline functions would be wrong even though its prediction of a threshold was right.",
+    "The effect is demonstrated on WEAK training only. Strong training produces long-term memory without any novelty supplement, meaning the threshold is contingent on the trace being marginal to begin with. Mapped across, this predicts that an intake floor would be visible only in an agent already operating near its competence margin -- which, given the documented action-learning competence floor in the V3 substrate, makes floor and artifact very hard to tell apart in exactly the arms where the knee is supposed to appear."
+  ],
+  "tags": [
+    "inv-063",
+    "behavioral_tagging",
+    "novelty",
+    "threshold",
+    "memory_persistence",
+    "dopamine",
+    "c2_knee"
+  ],
+  "mapping": {
+    "source_claim_statement": "In juvenile male mice, a weak contextual fear conditioning protocol that normally produces only transient memory resulted in long-term memory when paired with exploration of a NOVEL (but not a familiar) environment close in time to training. The effect required dopamine receptor activation and new protein synthesis in dorsal hippocampus, and novelty exposure increased the overlap between the CA1 neuronal ensembles engaged by conditioning and by novelty exploration.",
+    "ree_translation": "INV-063's C2 leg asserts that offline function degradation is disproportionate at the low end -- a knee, not a slope -- and that assertion is what distinguishes the claim from INV-050. This paper is the only located instance of environmental novelty producing a genuinely CATEGORICAL rather than proportional memory outcome: below the novelty threshold the trace does not persist, above it the same trace does. It is offered as an existence proof that novelty intake CAN gate a discontinuous consolidation outcome in biology, which is the shape our C2 gate is pre-registered to look for, and as a reason not to treat the knee as a priori implausible.",
+    "mapping_caveat": "This is the highest-transfer-risk entry in the pull and should not be leaned on. Three disjunctions, any one of which would be sufficient to block a strong inference. (1) There is NO SLEEP in this design -- the consolidation window is the hour after training, awake; INV-063 is a claim about offline sleep functions specifically. (2) The independent variable is a discrete novelty SUPPLEMENT (five minutes in a novel box) rather than a graded level of ambient environmental entropy, so the threshold demonstrated is temporal-window-and-presence, not a floor on an intake rate. (3) The mechanism is behavioural tagging -- dopaminergic capture of newly synthesised plasticity-related proteins -- which is a waking encoding mechanism, not replay, schema consolidation, or world-model updating. The correct use of this entry is 'thresholds of this general kind exist in the novelty-to-memory pathway', and nothing narrower.",
+    "source_context": "Juvenile male C57BL/6 mice; contextual fear conditioning with weak versus strong training protocols; five-minute novel-context exploration 30-60 minutes around training; pharmacological dopamine-receptor and protein-synthesis blockade in dorsal hippocampus; CA1 ensemble overlap imaging."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.75,
+    "notes": "Source quality 0.7: a competent, mechanistically controlled rodent study in a solid specialist journal, with pharmacological and ensemble-level converging evidence, but a single-lab result in a literature (behavioural tagging) whose boundary conditions are still actively contested. Mapping fidelity 0.35 and transfer risk 0.75 are the dominant terms and are what pin the aggregate at 0.42 -- well below the mean of the components, deliberately, because for a claim whose distinctive content is a threshold, an analogy about thresholds from a different pathway is suggestive and not probative."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-08_inv_063_novelty_behavioral_tagging_chen2020",
+  "timestamp_utc": "2026-09-08T00:55:08Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}

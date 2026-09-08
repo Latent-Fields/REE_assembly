@@ -1,0 +1,58 @@
+{
+  "source": {
+    "title": "Hippocampal output area CA1 broadcasts a generalized novelty signal during an object-place recognition task.",
+    "authors": [
+      "Margaret Carr Larkin",
+      "Christine Lykken",
+      "Lynne D Tye",
+      "Jeanette Graham Wickelgren",
+      "Loren M Frank"
+    ],
+    "year": 2014,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22268",
+    "pmid": "24596296",
+    "pmc": "PMC4065199",
+    "volume": "24",
+    "issue": "7",
+    "pages": "773-783"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Genuinely two-directional against this claim, which is why it carries `mixed` rather than a blanket label. It SUPPORTS INV-063's C1 leg A by showing that environmental novelty raises CA1 firing and -- the load-bearing detail -- that the elevation PERSISTS into sharp-wave ripples, the windows in which replay occurs; that is the biological form of 'intake modulates the replay substrate'. It WEAKENS the claim's function-specificity content by showing the novelty signal is generalized rather than restricted to what actually changed. INV-063's own falsifier pre-registers that second outcome as F3 (non-specific), so this is not an incidental caveat -- it is published evidence pointing at one of the claim's three named failure modes, in the very structure the claim's Type-1/2 leg depends on.",
+  "failure_signatures": [
+    "The authors' central negative result is that the CA1 novelty response was NOT spatially restricted to the regions that underwent change: CA1 'broadcasts the presence of novelty, rather than signaling what is novel'. That is INV-063's pre-registered F3 outcome observed in biology -- an undifferentiated 'more input, more offline engagement' rather than the four function-specific thresholds the claim asserts. If the mammalian system that INV-063 is modelled on does not itself resolve novelty into what-is-novel at the replay-eligible stage, the claim's specific content is under threat independently of anything the substrate does.",
+    "The novelty modulation appeared in CA1 but NOT in CA3 one synapse upstream, so where in a processing hierarchy the intake signal is read determines whether it is visible at all. Mapped to REE, an intake ladder read at the wrong stage of the E1 pathway could produce a flat DV (the F1 outcome) for purely instrumental reasons, and a null in leg B would not by itself distinguish 'no starvation effect' from 'measured one synapse too early'."
+  ],
+  "tags": [
+    "inv-063",
+    "novelty",
+    "sharp_wave_ripple",
+    "replay",
+    "ca1",
+    "function_specificity",
+    "f3_nonspecific",
+    "mech-205"
+  ],
+  "mapping": {
+    "source_claim_statement": "During an object-place recognition task in freely behaving rats, novelty (displaced familiar objects, and novel objects in unexpected locations) substantially altered activity in hippocampal output area CA1 but not in CA3. CA1 place cells showed robust firing-rate increases that persisted during sharp-wave ripples, when prior experience is replayed. These increases were NOT spatially restricted to the parts of the environment that had changed, indicating a generalized novelty signal: CA1 broadcasts the presence of novelty rather than signalling what is novel.",
+    "ree_translation": "Two mappings, in opposite directions. Supporting: INV-063 leg A predicts that as intake falls, surprise-gated replay has progressively less to prioritise -- and the persistence of novelty-driven rate elevation INTO sharp-wave ripples is the biological counterpart of environmental novelty modulating the residue that REE's replay start-selection reads, i.e. the MECH-205 instrument the leg depends on is measuring something with a real biological analogue. Weakening: the claim asserts four FUNCTION-SPECIFIC intake thresholds, each starving a different offline function. A generalized broadcast is the opposite architecture, and matches the F3 outcome the falsifier already names -- less input, uniformly less offline engagement, with no differential sensitivity.",
+    "mapping_caveat": "The generalization result concerns SPATIAL specificity within an environment (was the elevated firing confined to the changed locations?), whereas INV-063's specificity claim is across FUNCTIONS (do Types 1/2 replay and E1 world-model updating have separate thresholds?). These are not the same axis, and the mapping is an argument by structural analogy: a system that does not resolve novelty by location at the replay-eligible stage is unlikely to resolve it by downstream consumer, but that inference is not established by this data. The entry should be cited as raising the prior on F3, not as demonstrating it. Additional boundary: this is waking sharp-wave ripple activity during and immediately around exploration, not NREM sleep replay, and the study measures neural correlates without any memory-performance dependent variable.",
+    "source_context": "Male Long-Evans rats, freely behaving; simultaneous tetrode single-unit ensemble recording from hippocampal CA1 and CA3 during an object-place recognition task with displaced and novel objects."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.82: simultaneous CA1/CA3 recording from a leading laboratory, with the CA3 null serving as an internal specificity control for the CA1 effect rather than leaving it as an isolated positive. Mapping fidelity 0.55 reflects the axis mismatch spelled out in the caveat -- spatial specificity is being used to argue about functional specificity. Confidence 0.55 is an aggregate over an entry whose two directions are both real; it should be read as 'this is solid evidence that bears both ways', not as hedging about the finding."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-08_inv_063_ca1_generalized_novelty_signal_larkin2014",
+  "timestamp_utc": "2026-09-08T00:55:08Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}

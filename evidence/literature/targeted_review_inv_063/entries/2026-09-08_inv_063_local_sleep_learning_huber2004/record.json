@@ -1,0 +1,56 @@
+{
+  "source": {
+    "title": "Local sleep and learning.",
+    "authors": [
+      "Reto Huber",
+      "M Felice Ghilardi",
+      "Marcello Massimini",
+      "Giulio Tononi"
+    ],
+    "year": 2004,
+    "venue": "Nature",
+    "doi": "10.1038/nature02663",
+    "pmid": "15184907",
+    "pmc": null,
+    "volume": "430",
+    "issue": "6995",
+    "pages": "78-81"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The canonical demonstration that what happens during waking determines what sleep does afterwards, and that the offline consequence tracks the waking load rather than being a fixed nightly allowance. That is the general premise INV-063 needs, and the paper establishes it in humans with a within-subject topographic control. Held at 0.62 rather than higher for two reasons that are specific to THIS claim rather than to the paper's quality: the manipulation is a single learning task versus a motor control, not a graded intake ladder, so it speaks to the existence of the coupling and not at all to its SHAPE; and the dependent measure is SWA, a sleep-INTENSITY variable, which sits on INV-050's quantity side of the line rather than on INV-063's function-at-pinned-budget side.",
+  "failure_signatures": [
+    "The reported relation between the local SWA increase and the post-sleep performance gain is a graded correlation across subjects, not a step. Read as evidence about SHAPE, this paper is closer to INV-063's pre-registered F2 outcome (smooth, no knee) than to its C2 confirming leg -- the biology's most-cited demonstration of experience-dependent offline processing found a proportional relation, and nobody in this literature reports a floor below which offline benefit collapses.",
+    "SWA increase and performance improvement are both downstream of the learning episode, so their correlation does not establish that the SWA increase CAUSED the improvement. A REE run that graded intake and then observed both MEL and offline benefit moving together would inherit exactly this ambiguity unless the offline budget is pinned independently -- which is precisely what INV-063's P2 gate demands and what this paper does not do."
+  ],
+  "tags": [
+    "inv-063",
+    "local_sleep",
+    "slow_wave_activity",
+    "sleep_homeostasis",
+    "experience_dependent",
+    "waking_intake",
+    "sd-017"
+  ],
+  "mapping": {
+    "source_claim_statement": "A visuomotor rotation-adaptation learning task involving circumscribed cortical regions produced a LOCAL increase in NREM slow wave activity over those same regions during subsequent sleep, and the magnitude of that local SWA increase correlated with the improvement in task performance measured after sleep. Sleep homeostasis therefore has a local, use-dependent component that can be triggered by learning and that benefits performance.",
+    "ree_translation": "This is the biological warrant for the first half of INV-063's causal chain -- that the CONTENT and LOAD of waking experience, not merely elapsed time awake, set what the subsequent offline period does. In REE terms it is direct support for the SD-MEL-PRODUCER premise on which INV-063's intake ladder rests: a waking period that generates more model-error load produces a measurably different, and functionally better, offline period. It does NOT evidence INV-063's distinctive content. The claim's load-bearing assertion is that offline FUNCTION degrades when intake falls even with the offline BUDGET held constant; this paper's dependent variable is the budget itself (SWA intensity), which is free to move with the manipulation.",
+    "mapping_caveat": "Two boundaries, and the second is the one that matters for this claim. (1) Species and substrate: human high-density EEG scalp topography over sensorimotor cortex during a motor-adaptation task, mapped onto an artificial agent's sleep-aggregation cluster -- the shared object is the abstract coupling 'waking load determines offline processing', not any circuit. (2) Far more important: this is a TWO-LEVEL contrast (learning task vs kinematically matched motor control), not a graded ladder, and its DV moves on the quantity axis. It therefore cannot discriminate INV-063 from INV-050, and it cannot speak to the presence or absence of a minimum-intake floor. Citing it as support for the word 'minimum' in this claim would be a straightforward over-read.",
+    "source_context": "Healthy adult humans; 256-channel high-density EEG during baseline and post-learning nights; visuomotor rotation adaptation versus a matched motor control condition; within-subject topographic comparison."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Source quality is very high -- Nature, within-subject topographic design with a kinematically matched control, and the finding has been replicated and extended by the same group and others over twenty years. Mapping fidelity is the limiting term at 0.5: the paper is squarely about the coupling's EXISTENCE and squarely not about its shape or about function-at-fixed-budget, which is the whole of INV-063's distinctive content. Transfer risk is moderate rather than high because the transferred object is a coarse computational relation rather than a mechanism."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-08_inv_063_local_sleep_learning_huber2004",
+  "timestamp_utc": "2026-09-08T00:55:08Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}

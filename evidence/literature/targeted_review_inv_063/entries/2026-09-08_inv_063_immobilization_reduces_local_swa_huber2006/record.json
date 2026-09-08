@@ -1,0 +1,59 @@
+{
+  "source": {
+    "title": "Arm immobilization causes cortical plastic changes and locally decreases sleep slow wave activity.",
+    "authors": [
+      "Reto Huber",
+      "M Felice Ghilardi",
+      "Marcello Massimini",
+      "Fabio Ferrarelli",
+      "Brady A Riedner",
+      "Michael J Peterson",
+      "Giulio Tononi"
+    ],
+    "year": 2006,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1758",
+    "pmid": "16936722",
+    "pmc": null,
+    "volume": "9",
+    "issue": "9",
+    "pages": "1169-1176"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "This is the deprivation arm of the Huber 2004 result and therefore the closest published analogue to what INV-063 actually manipulates: it REDUCES input to a circumscribed region and measures the offline consequence, rather than adding a learning load. That directional match is why it earns 'supports'. It is held below the 2004 entry's confidence for a reason that is not about quality but about direction of implication: what the reduced input produced was a reduction in local sleep NEED, which is the deflationary reading of INV-063 rather than its confirmation. The paper is genuinely double-edged, and I have priced that in rather than splitting it into a 'mixed' label, because on the claim's own C1 leg (intake down, offline process degraded) the finding does point the right way.",
+  "failure_signatures": [
+    "The result is that reduced input reduced local sleep NEED -- less offline work was scheduled, not that offline work was starved of material. This licenses a deflationary reading of INV-063 in which low intake is not a pathology at all but a correctly downregulated budget, and the 'starvation' framing is a category error. INV-063 can only escape this reading by pinning the offline budget (its P2 gate) and showing function degrading anyway; this paper is evidence that in biology the two axes are NOT naturally separable, which makes P2 a demanding gate rather than a formality.",
+    "Immobilization degraded motor performance during waking as well as reducing sleep SWA, so the offline change is confounded with an online competence change in the same direction. A REE intake ladder has the same exposure: the lowest-intake arm may perform worse for online reasons, and any offline DV read from a less competent agent inherits that confound. This is the same structural hazard already recorded against the E2 motor-learning leg that INV-063 excluded from its falsifier -- but it applies to the retained legs too, not only the excluded one."
+  ],
+  "tags": [
+    "inv-063",
+    "local_sleep",
+    "slow_wave_activity",
+    "deprivation",
+    "synaptic_depression",
+    "sleep_homeostasis",
+    "inv-050_boundary"
+  ],
+  "mapping": {
+    "source_claim_statement": "Immobilizing one arm for twelve hours during waking produced deteriorated motor performance and reduced somatosensory and motor evoked potentials over contralateral sensorimotor cortex -- signatures of local synaptic depression -- and during the subsequent night slow wave activity over that same cortical area was markedly reduced. Local sleep regulation therefore tracks cortical plasticity in both directions, and when synaptic strength is reduced, local sleep need is reduced with it.",
+    "ree_translation": "INV-063 predicts that reducing waking intake starves the offline functions. This is the only paper in the pull that actually performs the reduction rather than the addition, and it confirms that the offline system responds to impoverished input with a measurable, regionally specific change rather than being indifferent to it. In REE terms: driving `world_rule_shift_interval` toward the never-shift arm should not be expected to leave the offline period unchanged, and this is the empirical basis for expecting a signal at all in the low arms. The paper's own framing -- reduced synaptic strength, reduced sleep need -- also sharpens what the claim must exclude to survive.",
+    "mapping_caveat": "The critical boundary is that the direction of the finding cuts both ways for this claim, and the entry should never be cited without that. Immobilization reduced sleep NEED, not offline COMPETENCE at a fixed budget. On the deflationary reading, an organism with less to consolidate correctly schedules less consolidation, and nothing is starved -- which is INV-050's proportional-drive account, not INV-063's floor. Additionally: the manipulation is sensorimotor deafferentation of one limb, not a reduction in environmental novelty or predictive-error structure. Mapping 'arm in a sling' onto 'low-entropy environment' is a real semantic stretch, and the shared object is only the abstract shape 'less input to a region, less offline processing of that region'.",
+    "source_context": "Healthy adult male humans; twelve hours of unilateral arm immobilization during waking; high-density EEG sleep recording plus somatosensory and motor evoked potentials over contralateral sensorimotor cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is high -- Nature Neuroscience, within-subject, with converging evoked-potential evidence that the intended synaptic depression actually occurred rather than being inferred from the sleep measure alone. That manipulation check is exactly the discipline INV-063's own P1 gate demands, and it is worth noting the biology did it. Mapping fidelity 0.5 and transfer risk 0.45 both reflect the same underlying problem: limb deafferentation is a poor semantic match for environmental entropy, and the DV is again on the quantity axis."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-08_inv_063_immobilization_reduces_local_swa_huber2006",
+  "timestamp_utc": "2026-09-08T00:55:08Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}

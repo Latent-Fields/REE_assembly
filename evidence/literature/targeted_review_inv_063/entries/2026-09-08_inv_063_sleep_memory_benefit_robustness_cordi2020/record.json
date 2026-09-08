@@ -1,0 +1,53 @@
+{
+  "source": {
+    "title": "How robust are sleep-mediated memory benefits?",
+    "authors": [
+      "Maren Jasmin Cordi",
+      "Bjorn Rasch"
+    ],
+    "year": 2020,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2020.06.002",
+    "pmid": "32711356",
+    "pmc": null,
+    "volume": "67",
+    "pages": "1-7"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "The highest-confidence entry in the pull, and the only one that weakens the claim outright. Its target is not INV-063's mechanism but INV-063's INSTRUMENT: the sleep-dependent memory benefit that both C1 legs propose to grade across four arms is, on this review's reading of the replication record, smaller, more task-dependent, less SWS-linked and less durable than the field assumed. Confidence is high because the assertion is about the state of an evidence base rather than about a mechanism, it is made by authors who are proponents rather than critics of sleep-consolidation theory, and it aggregates meta-analyses and null findings rather than resting on one study. Held at 0.7 rather than higher only because a review's selection of which failures to foreground is itself a judgement call.",
+  "failure_signatures": [
+    "If the base sleep-dependent memory benefit is itself fragile and task-dependent, then a design that proposes to detect the MONOTONE ORDERING of that benefit across four intake arms at >=3 seeds is attempting to resolve a gradient in a quantity whose existence is contested at a single contrast. The C1 legs are underpowered by construction, and the C2 knee -- a second-difference on that same quantity -- is worse, since differencing amplifies the noise. A null result would be uninformative rather than falsifying, which defeats the purpose of pre-registering F1.",
+    "The review specifically reports that observed effects are LESS SWS-RELATED than assumed. INV-063's whole architecture routes intake to function via the slow-wave/REM offline budget, and the P2 gate pins that budget on the assumption it is the operative channel. If the biological benefit is not principally carried by SWS, then pinning SWS writes and REM rollouts controls a variable that may not be the mediator, and 'budget pinned' would be a weaker control than the design treats it as."
+  ],
+  "tags": [
+    "inv-063",
+    "replication_crisis",
+    "effect_size",
+    "sleep_memory",
+    "null_findings",
+    "instrument_robustness",
+    "design_risk"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reviewing recent replication failures, null findings, meta-analyses and boundary-condition studies, Cordi and Rasch argue that several key findings supporting standard sleep-consolidation theories could not be replicated or held only under specific conditions, and conclude that effects of sleep on declarative memory are smaller, more task-dependent, less slow-wave-sleep-related, less robust and less long-lasting than previously assumed.",
+    "ree_translation": "INV-063 proposes to measure offline FUNCTION across a four-rung intake ladder and to detect first a monotone ordering (C1) and then a disproportionate low-end drop (C2). Both legs presuppose that 'sleep-dependent offline benefit' is a stable, gradeable quantity. This review is the strongest available argument that in the biological case it is not -- which bears on the claim in two distinct ways. Substantively, it lowers the prior that a starvation gradient exists to be found. Methodologically, and more usefully, it is a direct warning about the REE design's power budget: a second-difference test (the C2 knee) built on a base quantity this noisy is very unlikely to return an interpretable answer at three seeds.",
+    "mapping_caveat": "The review's subject is HUMAN DECLARATIVE memory consolidation measured behaviourally, and its diagnosis is partly sociological -- publication bias, small samples, flexible analysis -- rather than a claim that the underlying biology is absent. A simulated substrate is immune to several of the specific failure modes catalogued here: seeds can be increased at will, analysis can be pre-registered and is, and there is no file-drawer. So the transfer is NOT 'the effect probably does not exist in REE'; it is 'the phenomenon this claim is modelled on is weak and unstable in its native domain, which lowers the prior on a robust analogue and raises the required evidential bar'. Reading it as a direct prediction about the substrate would over-claim in the opposite direction from the usual error.",
+    "source_context": "Narrative review in Current Opinion in Neurobiology, aggregating replication failures, null findings, meta-analyses and boundary-condition studies in human sleep-and-declarative-memory research, written by authors working within the sleep-consolidation research programme."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.8 -- an invited review in a strong journal, and its evidential weight comes largely from being written by insiders to the research programme it is criticising, which makes it costly testimony rather than adversarial. Mapping fidelity 0.7 is the highest in the pull because the target is the claim's dependent variable itself, which transfers more cleanly than any mechanism does. Transfer risk 0.35 is the lowest here, but non-trivial: several catalogued failure modes are artifacts of human experimental practice that a simulated substrate does not inherit, which is precisely why the entry is scoped to the prior and the power budget rather than to a prediction about the run."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-08_inv_063_sleep_memory_benefit_robustness_cordi2020",
+  "timestamp_utc": "2026-09-08T00:55:08Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}

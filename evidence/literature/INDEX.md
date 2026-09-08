@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-07T22:49:59.720256Z`
+Generated: `2026-09-08T01:03:15.931879Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -256,6 +256,7 @@ Generated: `2026-09-07T22:49:59.720256Z`
 | `targeted_review_inv_052` | [`2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008`](targeted_review_inv_052/entries/2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008/record.json) | 4 | [`summary`](targeted_review_inv_052/entries/2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008/summary.md) |
 | `targeted_review_inv_053` | [`2026-04-18_inv_053_decision_theoretic_depression_huys2015`](targeted_review_inv_053/entries/2026-04-18_inv_053_decision_theoretic_depression_huys2015/record.json) | 5 | [`summary`](targeted_review_inv_053/entries/2026-04-18_inv_053_decision_theoretic_depression_huys2015/summary.md) |
 | `targeted_review_inv_054` | [`2026-05-05_inv_054_sudden_gains_tang1999`](targeted_review_inv_054/entries/2026-05-05_inv_054_sudden_gains_tang1999/record.json) | 6 | [`summary`](targeted_review_inv_054/entries/2026-05-05_inv_054_sudden_gains_tang1999/summary.md) |
+| `targeted_review_inv_063` | [`2026-09-08_inv_063_sleep_memory_benefit_robustness_cordi2020`](targeted_review_inv_063/entries/2026-09-08_inv_063_sleep_memory_benefit_robustness_cordi2020/record.json) | 5 | [`summary`](targeted_review_inv_063/entries/2026-09-08_inv_063_sleep_memory_benefit_robustness_cordi2020/summary.md) |
 | `targeted_review_inv_064` | [`2026-07-15_inv064_sensorimotor_association_axis_sydnor2021`](targeted_review_inv_064/entries/2026-07-15_inv064_sensorimotor_association_axis_sydnor2021/record.json) | 3 | [`summary`](targeted_review_inv_064/entries/2026-07-15_inv064_sensorimotor_association_axis_sydnor2021/summary.md) |
 | `targeted_review_inv_088` | [`2026-07-13_inv_088_value_generalization_bound_lelan2022`](targeted_review_inv_088/entries/2026-07-13_inv_088_value_generalization_bound_lelan2022/record.json) | 4 | [`summary`](targeted_review_inv_088/entries/2026-07-13_inv_088_value_generalization_bound_lelan2022/summary.md) |
 | `targeted_review_inv_089` | [`2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016`](targeted_review_inv_089/entries/2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016/record.json) | 3 | [`summary`](targeted_review_inv_089/entries/2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016/summary.md) |
