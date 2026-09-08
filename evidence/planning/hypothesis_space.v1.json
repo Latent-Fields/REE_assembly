@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-08T13:53:02Z",
+  "generated_at": "2026-09-08T18:42:39Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -5388,7 +5388,9 @@
           "desc": "The in-distribution AUROC 0.644 signature is memorised action->effect association, not a re-derivable action-conditioned model; it does not recover to a same-budget ceiling under relabelling at any budget.",
           "axis": "measurement",
           "state": "alive",
-          "evidence_runs": [],
+          "evidence_runs": [
+            "V3-EXQ-1013"
+          ],
           "basis": "V3-EXQ-1001 is consistent with this leg but cannot establish it: the run had no same-budget ceiling arm, so a sub-floor recovery is not separable from H-budget.",
           "children": [],
           "met_elimination_bar": false
@@ -5399,7 +5401,9 @@
           "desc": "120 optimizer steps is 1.82% of the original 6600-step fit; the observed +0.0117 gap-vs-shuffled and +0.0408 gap-vs-chance are the budget's output, and recovery scales with budget toward the pre-shift 0.1194.",
           "axis": "curriculum",
           "state": "alive",
-          "evidence_runs": [],
+          "evidence_runs": [
+            "V3-EXQ-1013"
+          ],
           "basis": "V3-EXQ-1001 is consistent with this leg too: the same 120-step pass recovered 44.2% of the forward-MSE degradation, so the budget was demonstrably non-trivial and the AUROC recovery of 17.0% has no ceiling to be judged against.",
           "children": [],
           "met_elimination_bar": false

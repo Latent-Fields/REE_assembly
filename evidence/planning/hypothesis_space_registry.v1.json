@@ -5817,7 +5817,9 @@
           "axis": "measurement",
           "pre_registered_utc": "2026-09-04T19:00:16Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-1001_2026-09-04.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-1013"
+          ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -5828,7 +5830,7 @@
             "met_elimination_bar": false,
             "basis": "V3-EXQ-1001 is consistent with this leg but cannot establish it: the run had no same-budget ceiling arm, so a sub-floor recovery is not separable from H-budget."
           },
-          "adjudicating_runs_note": "H1 probe queue_id, not yet queued"
+          "adjudicating_runs_note": "V3-EXQ-1013 (queued 2026-09-08, campaign W5-S2b; supersedes V3-EXQ-1001): H1 leg = same-budget scratch control + action-pathway-reinitialised PARTIAL start at B0 (transfer index, OR-combined)"
         },
         {
           "hid": "H-budget",
@@ -5837,7 +5839,9 @@
           "axis": "curriculum",
           "pre_registered_utc": "2026-09-04T19:00:16Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-1001_2026-09-04.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-1013"
+          ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -5848,7 +5852,7 @@
             "met_elimination_bar": false,
             "basis": "V3-EXQ-1001 is consistent with this leg too: the same 120-step pass recovered 44.2% of the forward-MSE degradation, so the budget was demonstrably non-trivial and the AUROC recovery of 17.0% has no ceiling to be judged against."
           },
-          "adjudicating_runs_note": "H2 probe queue_id, not yet queued"
+          "adjudicating_runs_note": "V3-EXQ-1013 (queued 2026-09-08, campaign W5-S2b; supersedes V3-EXQ-1001): H2 leg = full-pool readapt budget ladder 47..6580 optimizer steps, SCRATCH column as positive control"
         },
         {
           "hid": "H-testbed-degenerate",
@@ -5868,7 +5872,7 @@
             "met_elimination_bar": false,
             "basis": "Asserted by the V3-EXQ-1001 driver's own SCOPE LIMITATION and confirmed by D1's structure: D1's FAIL is predicted identically by H-shortcut and H-budget, so at least one criterion in this test bed is already known to be undecidable."
           },
-          "adjudicating_runs_note": "H3 probe queue_id, not yet queued"
+          "adjudicating_runs_note": "NOT adjudicated by V3-EXQ-1013: pre-registered UNTESTABLE in CausalGridWorldV2 (flat state-independent _action_map; a driver-side region-conditioned subclass was designed and rejected -- its frozen-arm null is unreachable by construction). Stays alive; the H1-stands AND H2-supported cell of 1013 is the trigger for an env build (see 1013 manifest h3_testbed_degenerate)."
         }
       ],
       "registered_by_session": "governance-20260904-1347",
