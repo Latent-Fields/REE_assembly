@@ -3141,9 +3141,9 @@
       "summary": "EXP-0590 (MECH-465) is blocked_substrate on sd_zworld_warmup_optimizer_group, which is now validated (audit_blocked_proposal_unblockers.py --bucket READY, 2026-09-07). Governance to adjudicate (note HK-C.2 records the MECH465-COMMIT-GATE-HEADROOM route as RETIRED 09-04) before any status change; not hand-flipped.",
       "raised_by_session": "nifty-chebyshev-227274",
       "raised_at": "2026-09-07T12:50:10Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-08T20:58:42Z",
+      "resolution_note": "Re-validated 2026-09-08 (chip chip-20260908-revalidate-unblocked-proposals-160-236-465, w6hk-k3-registry-20260908, REE_assembly 995397f098, corrected c0d5d4d70a). NOT released to proposed. sd_zworld_warmup_optimizer_group is genuinely validated (2026-07-22), but the release_condition's SECOND clause -- the offline sweep confirming within-seed IQR/median clears the 0.51 floor -- is now DECIDED and NEGATIVE-BUT-INDETERMINATE: V3-EXQ-1015 (GFLAG-0136's routed probe) landed FAIL, 0/3 seeds clear the bar, and the plateau-vs-climb trend discriminator is indeterminate at this n (CI straddles the plateau bar). New governance decision point raised as GFLAG-0238 (extend the sweep vs accept indeterminate and move to gated). EXP-0590 release_condition updated in place with the V3-EXQ-1015 result; status stays blocked_substrate pending GFLAG-0238."
     },
     {
       "flag_id": "GFLAG-0224",
