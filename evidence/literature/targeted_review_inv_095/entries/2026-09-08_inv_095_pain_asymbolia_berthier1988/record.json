@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_095",
+  "entry_id": "2026-09-08_inv_095_pain_asymbolia_berthier1988",
+  "timestamp_utc": "2026-09-08T16:50:58Z",
+  "claim_ids_tested": ["INV-095"],
+  "source": {
+    "title": "Asymbolia for pain: a sensory-limbic disconnection syndrome",
+    "authors": ["Marcelo Berthier", "Sergio Starkstein", "Ramon Leiguarda"],
+    "year": 1988,
+    "venue": "Annals of Neurology",
+    "doi": "10.1002/ana.410240109",
+    "pmid": "3415199",
+    "pmc": null,
+    "volume": "24",
+    "issue": "1",
+    "pages": "41-49"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "Highest mapping_fidelity in this pull (0.80) because it is the one human case series that dissociates SIGNAL PRESENCE from SIGNAL MATTERING -- sensory function normal, withdrawal and emotional response absent -- which is exactly the distinction INV-095's falsifier turns on ('harm signals would be noise rather than information'). Confidence is nonetheless held to 0.63 by source quality (0.62): a 1988 n=6 case series with pre-modern lesion localisation, no quantitative behavioural measures, and -- the material problem -- co-occurring hemiparesis, sensory loss and neglect that supply motor and attentional alternative explanations for absent withdrawal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hemiparesis, sensory loss and neglect were common in the series, each of which can independently abolish withdrawal from a noxious stimulus -- absent withdrawal is therefore not cleanly attributable to a valuational deficit rather than a motor or attentional one.",
+    "n=6 uncontrolled case series with no quantitative behavioural measurement and 1988-era lesion localisation; the insular attribution is a common-lesion inference across patients, not an experimental manipulation.",
+    "If REE's noise-substitution experiment produces a comparable dissociation (harm signal computed and present, but not weighted in E3 trajectory selection), this entry predicts behavioural degradation -- but it cannot rule out that the degradation is mediated by a downstream gating failure rather than by the signal's informativeness."
+  ],
+  "tags": ["inv-095", "pain_asymbolia", "insula", "sensory_limbic_disconnection", "signal_vs_mattering", "harm_gradient"],
+  "mapping": {
+    "source_claim_statement": "Six patients with unilateral brain damage showed 'a lack of withdrawal and absent or inadequate emotional responses to painful stimuli' despite normal sensory function; 'the insular cortex was invariably damaged in all 6 patients', supporting a sensory-limbic disconnection account in which the nociceptive signal reaches cortex but is severed from its affective/limbic valuation.",
+    "ree_translation": "The harm signal can be intact and correctly transduced yet fail to drive protective behaviour, when the pathway that makes it MATTER is cut. Mapped onto REE: computing z_harm_a/z_harm_s correctly is not sufficient for the axiom's named consequence -- the signal must additionally be weighted into E3's harm-weighted trajectory scoring (and through the amygdala BLA/CeA analogue, SD-035, and dACC, MECH-258). This is the clinical demonstration that the two can be dissociated, and therefore that INV-095's leg is not trivially satisfied by the mere existence of the signal.",
+    "mapping_caveat": "The lesion cuts a sensory-to-limbic CONNECTION; INV-095's falsifier corrupts the SIGNAL ITSELF. These probe adjacent but distinct architectural failure modes -- disconnection versus uninformativeness -- and a REE experiment could produce the disconnection phenotype (signal present, unweighted) while leaving the noise question untouched. The series' motor and attentional confounds compound this: absent withdrawal in a hemiparetic, neglecting patient is weak behavioural evidence about valuation specifically.",
+    "source_context": "Six adult human patients with unilateral hemispheric lesions; bedside neurological examination and lesion localisation, 1988."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.42,
+    "notes": "The unusual profile here -- low source quality, high mapping fidelity -- is deliberate and is the reason the entry is included despite its age and confounds. No stronger study makes this particular dissociation in humans, and the dissociation is the specific thing INV-095 needs."
+  }
+}

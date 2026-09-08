@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_095",
+  "entry_id": "2026-09-08_inv_095_nociception_ablation_cox2006",
+  "timestamp_utc": "2026-09-08T16:50:58Z",
+  "claim_ids_tested": ["INV-095"],
+  "source": {
+    "title": "An SCN9A channelopathy causes congenital inability to experience pain",
+    "authors": ["James J. Cox", "Frank Reimann", "Adeline K. Nicholas", "Gemma Thornton", "Emma Roberts", "Kelly Springell", "Gulshan Karbani", "Hussain Jafri", "Jovaria Mannan", "Yasmin Raashid", "Lihadh Al-Gazali", "Henan Hamamy", "Enza Maria Valente", "Shaun Gorman", "Richard Williams", "Duncan P. McHale", "John N. Wood", "Fiona M. Gribble", "C. Geoffrey Woods"],
+    "year": 2006,
+    "venue": "Nature",
+    "doi": "10.1038/nature05413",
+    "pmid": "17167479",
+    "pmc": "PMC7212082",
+    "volume": "444",
+    "issue": "7121",
+    "pages": "894-898"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Nature-published convergence of linkage mapping, three independent homozygous nonsense mutations across three consanguineous families, and patch-clamp confirmation that mutant channel currents were 'no greater than background' -- an unusually complete causal chain for a human natural knockout, hence high source_quality. Confidence is held well below that because the mapping is partial: this ablates the afferent nociceptive channel ENTIRELY, whereas INV-095's falsifier demands a distribution-matched NOISE SUBSTITUTION. Absence of signal and uninformative signal are different manipulations, and only the latter discriminates 'decorative' from 'load-bearing'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The manipulation is total signal absence, not distribution-matched noise substitution -- it cannot by itself distinguish 'harm signal is load-bearing' from 'any input on that channel is load-bearing'.",
+    "Affected individuals retained every other sensory modality and normal intelligence, so cognitive/observational compensation was available in principle -- and still did not prevent lethal injury, which is informative, but means the observed degradation is a joint function of missing signal and unsuccessful compensation rather than the missing signal alone.",
+    "Weisman, Quintner & Masharawi (2019, J Pain 20:1011-1014, 'Congenital Insensitivity to Pain: A Misnomer') argue the diagnostic label overstates the phenomenology in this population; if some nociceptive-affective capacity survives, the ablation is less complete than the canonical reading assumes."
+  ],
+  "tags": ["inv-095", "nociception", "channelopathy", "harm_gradient", "signal_vs_noise", "natural_knockout"],
+  "mapping": {
+    "source_claim_statement": "Loss-of-function mutations in SCN9A, encoding the Na(v)1.7 alpha-subunit strongly expressed in nociceptive neurons, abolish the ability to experience pain while leaving touch, warm and cold temperature, proprioception, tickle and pressure intact; SCN9A is 'an essential and non-redundant requirement for nociception in humans'.",
+    "ree_translation": "The harm channel in a biological existence-preserving architecture is non-redundant: when it is removed, protective behaviour fails catastrophically even though every other perceptual channel and general intelligence remain intact. This is the biological analogue of ablating REE's z_harm_a/z_harm_s/ResidueField pathway and observing whether E3 hazard-avoidance trajectory selection degrades. The modality-specific sparing acts as a within-subject specificity control that an artificial ablation rarely achieves.",
+    "mapping_caveat": "Two boundaries. (1) Manipulation shape: this is channel deletion, not the distribution-matched noise substitution INV-095's falsifier specifies -- the paper therefore speaks to whether the harm signal is NECESSARY, not to whether its INFORMATIONAL CONTENT (as opposed to its mere presence) is what carries the behavioural work. (2) Substrate: human peripheral nociception is an afferent transduction channel, whereas REE's harm gradient is a learned model-side signal feeding trajectory evaluation; the two occupy different positions in their respective architectures, so the inference is by functional analogy, not homology.",
+    "source_context": "Six affected individuals from three consanguineous northern Pakistani families; clinical observation plus genetic linkage and heterologous-expression electrophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Weighted toward mapping_fidelity because INV-095 is an architectural claim about whether a signal is load-bearing, not an empirical claim about nociception. The evidence is close to decisive for its own proposition and only analogically informative for REE's."
+  }
+}

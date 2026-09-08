@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_095",
+  "entry_id": "2026-09-08_inv_095_intrinsic_fear_ablation_lipton2016",
+  "timestamp_utc": "2026-09-08T16:50:58Z",
+  "claim_ids_tested": ["INV-095"],
+  "source": {
+    "title": "Combating Reinforcement Learning's Sisyphean Curse with Intrinsic Fear",
+    "authors": ["Zachary C. Lipton", "Kamyar Azizzadenesheli", "Abhishek Kumar", "Lihong Li", "Jianfeng Gao", "Li Deng"],
+    "year": 2016,
+    "venue": "arXiv preprint",
+    "arxiv_id": "1611.01211",
+    "doi": null,
+    "pmid": null,
+    "url": "https://arxiv.org/abs/1611.01211"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Lowest transfer_risk in this pull (0.20) and second-highest mapping_fidelity (0.78): the architecture under test -- a learned danger model whose predicted catastrophe probability penalises the value objective -- is structurally near-identical to REE's harm gradient feeding E3's harm-weighted trajectory scoring, and it is an artificial agent, so no cross-species inference is required. Held to 0.66 by source_quality (0.62): unrefereed arXiv preprint (submitted to ICLR 2017, OpenReview r1tHvHKge, not accepted), toy environments plus Atari, and no distribution-matched noise arm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper PROVES robustness to classification errors in the fear model -- a substantially noisy danger signal still yields the behavioural benefit. This is a direct warning for INV-095's falsifier: a weak or partial noise substitution may produce NO measurable degradation even when the signal is genuinely load-bearing, so a null result is not automatically a falsification. The noise must be strong enough to destroy the signal's informativeness, and the experiment must demonstrate that it did.",
+    "The comparison is presence-versus-absence of the fear model (DQN vs intrinsic-fear DQN), not intact-versus-distribution-matched-noise; it therefore shares Cox (2006)'s manipulation-shape limitation.",
+    "Benefits are partly attributable to reward shaping accelerating learning ('IF models tend to learn faster, owing to reward shaping'), which is a confound: faster learning could reduce catastrophe counts without the danger signal being load-bearing at convergence."
+  ],
+  "tags": ["inv-095", "intrinsic_fear", "reward_shaping", "catastrophic_states", "danger_model", "ablation", "harm_gradient", "e3_selector"],
+  "mapping": {
+    "source_claim_statement": "DRL agents periodically revisit catastrophic states because function approximation causes them to forget experiences that become unlikely under a new policy. Adding a 'fear model trained to predict the probability of imminent catastrophe', whose score penalises the Q-learning objective, prevents this: 'on Adventure Seeker, all Intrinsic Fear models cease to die within 14 runs', and the approach improves on several Atari games. The analysis bounds the return reduction from the perturbed objective and proves robustness to classification errors.",
+    "ree_translation": "An artificial agent with a learned danger model that discounts trajectory value by predicted harm avoids terminal states; the same agent without it does not, and specifically FORGETS what it previously learned about hazard. This is REE's architecture in miniature -- a harm signal that is load-bearing precisely because it re-weights trajectory evaluation -- and it is the closest published analogue to the ablation contrast INV-095's testable leg demands, on the same side of the biological/artificial divide.",
+    "mapping_caveat": "Three boundaries. (1) The contrast is presence/absence of the fear model, not distribution-matched noise, so it establishes necessity rather than informativeness -- the same limitation as Cox (2006). (2) The fear model is a hand-added shaping term on an otherwise standard DQN, whereas REE's harm gradient is architecturally integral (ResidueField, z_harm_a/z_harm_s, SD-035, MECH-258) and feeds a model-based selector; removing an add-on and corrupting an integral signal are not equivalent perturbations. (3) 'Catastrophe' here is an environment-defined terminal state, not REE's broader commitment-relevant behaviour.",
+    "source_context": "Deep Q-networks on Adventure Seeker (toy pathological environment) and Atari games including Asteroids and Seaquest."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "The robustness-to-classification-error result is the single most operationally useful finding in this pull -- it is a design constraint on the V3-EXQ-533 successor rather than evidence for or against the claim, and is recorded as a failure signature for that reason."
+  }
+}

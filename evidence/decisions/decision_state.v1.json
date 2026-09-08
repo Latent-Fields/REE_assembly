@@ -513,6 +513,15 @@
       "selected_option": "Keep candidate; hold recorded",
       "timestamp_utc": "2026-09-03T20:44:11.976886Z"
     },
+    "INV-040": {
+      "actor": "governance-20260908-0703 (user)",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "HOLD RECORDED 2026-09-08 so this stops re-flagging pending_user; no claims.yaml status change. Proposal for this claim was marked blocked_substrate by IGW this week (INV-040 IGW-233 09-07; INV-092 IGW-233 09-08; INV-093 IGW-234 09-08). Work-graph debt: complicated (buildable) -- gated on an upstream substrate build.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "hold_pending_v3_substrate",
+      "timestamp_utc": "2026-09-08T15:30:04.359146Z"
+    },
     "INV-041": {
       "actor": "user",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -539,6 +548,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-04-10T18:06:06.632775Z"
+    },
+    "INV-063": {
+      "actor": "governance-20260908-0703 (user)",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "HOLD RECORDED 2026-09-08: the conflict is LITERATURE-only (IGW-232 lit-pull landed 5 entries 09-08, literature_confidence 0.687 with mixed directions); no experimental conflict; the GFLAG-0123 detector shape. No claims.yaml status change; INV-063's own digestion flags (GFLAG-0203..0206) await the staged review.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "hold_candidate_resolve_conflict",
+      "timestamp_utc": "2026-09-08T15:30:04.464955Z"
     },
     "INV-074": {
       "actor": "user",
@@ -602,6 +620,24 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-07-29T23:42:48.978601Z"
+    },
+    "INV-092": {
+      "actor": "governance-20260908-0703 (user)",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "HOLD RECORDED 2026-09-08 so this stops re-flagging pending_user; no claims.yaml status change. Proposal for this claim was marked blocked_substrate by IGW this week (INV-040 IGW-233 09-07; INV-092 IGW-233 09-08; INV-093 IGW-234 09-08). Work-graph debt: complicated (buildable) -- gated on an upstream substrate build.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "hold_pending_v3_substrate",
+      "timestamp_utc": "2026-09-08T15:30:04.396167Z"
+    },
+    "INV-093": {
+      "actor": "governance-20260908-0703 (user)",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "HOLD RECORDED 2026-09-08 so this stops re-flagging pending_user; no claims.yaml status change. Proposal for this claim was marked blocked_substrate by IGW this week (INV-040 IGW-233 09-07; INV-092 IGW-233 09-08; INV-093 IGW-234 09-08). Work-graph debt: complicated (buildable) -- gated on an upstream substrate build.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "hold_pending_v3_substrate",
+      "timestamp_utc": "2026-09-08T15:30:04.430164Z"
     },
     "MECH-025": {
       "actor": "user",
@@ -2935,7 +2971,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-07T04:19:24.972550Z",
+  "generated_at_utc": "2026-09-08T17:06:21.031778Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

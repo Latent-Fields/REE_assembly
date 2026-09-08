@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_095",
+  "entry_id": "2026-09-08_inv_095_controllability_yoked_maier2016",
+  "timestamp_utc": "2026-09-08T16:50:58Z",
+  "claim_ids_tested": ["INV-095"],
+  "source": {
+    "title": "Learned helplessness at fifty: Insights from neuroscience",
+    "authors": ["Steven F. Maier", "Martin E. P. Seligman"],
+    "year": 2016,
+    "venue": "Psychological Review",
+    "doi": "10.1037/rev0000033",
+    "pmid": "27337390",
+    "pmc": "PMC4920136",
+    "volume": "123",
+    "issue": "4",
+    "pages": "349-367"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "The yoked-control design this literature is built on is the closest biological analogue to the DISTRIBUTION-MATCHED contrast INV-095's falsifier specifies: yoked animals receive an identical aversive-event distribution and differ only in whether that input is contingent on their action. Fifty years of converging behavioural and circuit-level evidence, synthesised in Psychological Review by the two investigators who defined the paradigm, gives high source_quality (0.88). Held below 0.8 because the manipulation targets action-outcome CONTINGENCY rather than the integrity of the harm signal itself -- adjacent to, but not identical with, replacing the signal with noise.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 2016 reframing INVERTS the original theory: passivity is 'the default, unlearned response to prolonged aversive events' mediated by dorsal raphe serotonergic activity, and it is CONTROL that is detected and learned by medial prefrontal cortex. So the behavioural divergence between yoked groups is driven by the presence of a learnable control signal, not by the aversive signal becoming uninformative -- a REE noise-substitution result could be driven by the same confound and would need to separate them.",
+    "Yoked designs equate the aversive-event distribution but cannot equate its temporal relationship to behaviour; residual differences in perceived predictability are a known criticism of the paradigm.",
+    "Rodent shock-escape behaviour is a narrow behavioural readout relative to REE's 'commitment-relevant behaviour', which spans trajectory selection and repair/avoidance pull."
+  ],
+  "tags": ["inv-095", "learned_helplessness", "controllability", "yoked_control", "distribution_matched", "dorsal_raphe", "vmpfc", "signal_vs_noise"],
+  "mapping": {
+    "source_claim_statement": "Passivity following prolonged aversive events is the default, unlearned response, mediated by serotonergic activity in the dorsal raphe nucleus; animals overcome it 'by learning control, with the activity of the medial prefrontal cortex'. Yoked controls receiving physically identical shock differ behaviourally from escapable-shock animals solely as a function of controllability.",
+    "ree_translation": "Two agents receiving an identical distribution of aversive input diverge sharply and persistently in behaviour depending only on whether that input stands in an informative relation to their own action. This is the biological demonstration that the DISTRIBUTION of a harm signal is not what carries the behavioural work -- its informativeness is. Applied to INV-095: a distribution-matched noise substitute preserves the statistics of REE's harm signal while destroying exactly the property this literature identifies as behaviourally load-bearing, which is why that falsifier is the right one and why a null result on it would be genuinely damaging to the claim.",
+    "mapping_caveat": "The manipulated variable is action-outcome contingency, not signal integrity. A yoked animal's shock is uncontrollable but still veridically signals tissue threat; REE's noise substitute would be uninformative about threat itself. These are different corruptions -- of the signal's relation to ACTION versus its relation to the WORLD -- and the 2016 reframing (control is learned; passivity is default) makes the gap wider rather than narrower, because it locates the behavioural difference in a control-detection circuit rather than in aversive-signal processing.",
+    "source_context": "Rodent escapable/inescapable shock with yoked controls, plus dorsal raphe and medial prefrontal circuit work; review synthesising ~50 years of the paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "The yoked design is the methodological contribution that matters here, more than any single empirical result -- it is the existence proof that a distribution-matched control is constructible and discriminating, which is the design lesson V3-EXQ-533's successor most needs."
+  }
+}

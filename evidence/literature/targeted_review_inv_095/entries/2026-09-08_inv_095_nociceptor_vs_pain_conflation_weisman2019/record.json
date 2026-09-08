@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_095",
+  "entry_id": "2026-09-08_inv_095_nociceptor_vs_pain_conflation_weisman2019",
+  "timestamp_utc": "2026-09-08T16:50:58Z",
+  "claim_ids_tested": ["INV-095"],
+  "source": {
+    "title": "Congenital Insensitivity to Pain: A Misnomer",
+    "authors": ["Asaf Weisman", "John Quintner", "Youssef Masharawi"],
+    "year": 2019,
+    "venue": "The Journal of Pain",
+    "doi": "10.1016/j.jpain.2019.01.331",
+    "pmid": "30716471",
+    "pmc": null,
+    "volume": "20",
+    "issue": "9",
+    "pages": "1011-1014"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Included as the deliberate disconfirming/mixed source LIT-0721 requires, and it earns that role rather than filling it: it directly undercuts the interpretive basis of this pull's strongest supporting entry (Cox 2006) by arguing that 'congenital insensitivity to pain' conflates nociception with pain, and that the condition is properly a nociceptor deficiency. That simultaneously WEAKENS the inference 'harm experience removed -> protective behaviour failed' and SUPPORTS the claim's underlying architectural premise that transduction and valuation are separable layers -- hence 'mixed'. Confidence 0.58 reflects that this is an epistemological/terminological argument in a 4-page commentary, not new empirical data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If CIP patients retain pain experience despite deficient nociceptors, then Cox et al. (2006) did NOT ablate the harm-valuation layer, and the catastrophic behavioural failure they document is attributable to missing afferent transduction alone -- which is the weaker of the two propositions INV-095 needs.",
+    "Applied to REE, this warns that ablating or noising z_harm_a/z_harm_s (the transduction-analogue) may leave intact whatever downstream structure actually implements 'harm matters'; a behavioural null could then reflect the wrong layer having been perturbed rather than the signal being decorative.",
+    "The argument is terminological and epistemological rather than empirical; it supplies no measurement that could adjudicate the layer question, so it constrains interpretation without settling it."
+  ],
+  "tags": ["inv-095", "nociception", "pain", "conflation", "disconfirming", "layer_distinction", "harm_gradient", "terminology"],
+  "mapping": {
+    "source_claim_statement": "The term 'congenital insensitivity to pain' is 'epistemologically incorrect and is the product of historical circumstances'; it 'conflates pain and nociception and, thus, prevents researchers and caregivers from grasping the full dimensions of these conditions'. The authors propose 'congenital nociceptor deficiency' as the accurate term, on the grounds that what is absent is nociceptive transduction rather than the experience of pain as such.",
+    "ree_translation": "Nociception (afferent harm transduction) and pain (harm as something that matters) are distinct architectural layers and must not be treated as one signal. Mapped onto REE, this is the distinction between computing z_harm_a/z_harm_s/ResidueField output and that output being WEIGHTED as being about something that matters in E3 trajectory selection. INV-095's testable leg is properly about the second layer, and this paper is the argument that evidence drawn from nociceptor-deficient humans speaks primarily to the first.",
+    "mapping_caveat": "This is a commentary advancing a terminological reform, not an empirical study, and its central assertion -- that CIP patients retain pain experience -- is a contested interpretive position rather than a measured finding. It should be read as a constraint on how confidently Cox (2006) can be transferred to INV-095, not as evidence that REE's harm signal is decorative. Note also that its layer distinction cuts BOTH ways for the claim: it weakens the nociceptor-ablation line of support while strengthening the Berthier (1988) line, which targets the valuation layer directly.",
+    "source_context": "Four-page conceptual/epistemological commentary in The Journal of Pain on the nosology of hereditary sensory autonomic neuropathies."
+  },
+  "confidence_components": {
+    "source_quality": 0.60,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is capped by genre -- a short commentary in a good journal, no new data. Mapping fidelity is nonetheless decent because the distinction it draws (transduction vs valuation) is precisely the one INV-095's testable leg turns on, and it is the reason this pull does not read as four papers all making the same point."
+  }
+}
