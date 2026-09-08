@@ -4672,7 +4672,11 @@
       "task_claim_session_id": "igw-auto-igw-232-literature-proposal-for-inv-104-20260908T175452Z",
       "task_claim_claimed_at": "2026-09-08T17:54:52Z",
       "assigned_at": "2026-09-08T17:53:30Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-08T18:18:58Z",
+      "completion_summary": "lit-pull INV-104: 5 entries in evidence/literature/targeted_review_inv_104 landed on origin/master as REE_assembly 9d483d292e; literature_confidence 0.759 (4 supports / 1 weakens, incl. a deliberate F1-vacuity weakens entry); experimental half of EVB-1712 still owed and already in flight elsewhere",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull INV-104: 5 entries in evidence/literature/targeted_review_inv_104 landed on origin/master as REE_assembly 9d483d292e; literature_confidence 0.759 (4 supports / 1 weakens, incl. a deliberate F1-vacuity weakens entry); experimental half of EVB-1712 still owed and already in flight elsewhere"
     }
   ],
   "dispositions": [
@@ -6629,6 +6633,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-08T17:33:59Z",
       "re_eligible_after": "2026-09-10T17:33:59Z"
+    },
+    {
+      "stable_hash": "9bc13b513e6a",
+      "igw_id_at_disposition": "IGW-20260908-232",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-104"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for INV-104",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T18:18:59Z",
+      "re_eligible_after": "2026-09-10T18:18:59Z"
     }
   ]
 }
