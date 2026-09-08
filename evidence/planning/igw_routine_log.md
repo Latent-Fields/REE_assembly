@@ -2729,3 +2729,4 @@ One line per hourly tick. ASCII only.
 2026-09-08T04:03:31Z GC sweep removed 1 orphan worktree(s), kept 11
 2026-09-08T04:03:31Z SPAWN IGW-20260908-234 skill=/queue-experiment prio=40 uuid=85bfb69f-3ff7-4a18-a569-71322341ea66 pid=40330 worktree=igw-234-proposal-for-inv-093
 2026-09-08T04:40:02Z auto-defer igw-234-proposal-for-inv-093 hash=4f87d1fd462f for 48h (complete)
+2026-09-08T04:45:32Z complete igw-234-proposal-for-inv-093 spawned->completed outcome=USEFUL_LANDED: marked EVB-1366/EXP-0717 blocked_substrate: no refinement-strength knob exists t
