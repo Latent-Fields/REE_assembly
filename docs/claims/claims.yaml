@@ -84446,6 +84446,82 @@
     - MECH-467
   coupled_with:
     - INV-093  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+  what_would_answer: >
+    REFINED FALSIFIER PANEL (2026-09-08, campaign W6-S5a, chip
+    chip-20260908-inv092-falsifier-panel-refinement). The four-line FALSIFIER /
+    NON-DEGENERACY GUARD sketch in notes is the registration-time text and is retained
+    there as history; this field is the operative panel. Derived by /claim-synthesis over
+    the five 2026-09-08 literature entries under
+    evidence/literature/targeted_review_inv_092/ (EVB-1365 literature lane). These are
+    DESIGN corrections drawn from literature, NOT evidence for the claim: the experimental
+    lane (EVB-1365 / EXP-0715) is blocked_substrate and this claim's status and confidence
+    are unchanged by this refinement.
+    IV: suppression strength, swept. The sweep is not runnable until a suppression-strength
+    knob exists (see EXP-0715's gating_reason for the three measured substrate gaps); the
+    panel below is what it must measure once one does.
+    (1) TWO SEPARATELY-INSTRUMENTED INJECTED CHANNELS, NEVER POOLED. The registration-time
+    wording "an INJECTED weak harm OR other-agent-urgency signal" permits a single pooled
+    metric; that is inadmissible. Inject and score a harm-analogue channel and an
+    other-agent-urgency channel separately, each with its own interrupt latency and rate.
+    GROUND: Pessoa et al. 2002 (PNAS) found amygdala and face-region differential responses
+    to fearful faces ABOLISHED under high attentional load -- the canonical other-agent-state
+    signal, on its canonical privileged route, closed by an ordinary competing
+    bar-orientation task. THE EXPECTATION THIS SETS is the reason pooling fails: the
+    other-agent leg should break at a LOWER suppression setting than the one at which goal
+    completion peaks, so a pooled metric finds the failure late or not at all. Note the
+    finding's replication status is genuinely mixed (Vuilleumier et al. contra; Pessoa's own
+    2005 review treats it as open), so the defensible reading is that the other-agent
+    channel CAN be closed by load to an uncertain degree -- which is itself sufficient to
+    require per-setting measurement rather than assumption.
+    (2) THE INJECTED PROBE MUST BE DELIBERATELY OFF-SET -- it must not share features with
+    the goal-relevant stream. GROUND: Most et al. 2005 (Psychological Review) -- noticing is
+    governed by match to the current attentional SET, not by importance, so a set-matching
+    probe rides through on set match and the sweep measures nothing. Corollary that tells
+    the panel where to look: if suppression is set-keyed, raising it raises the miss rate
+    for OFF-SET inputs specifically. This is also the operational reading of this claim's
+    own phrase "sufficiently important WEAK evidence" -- weak means off-set, not merely
+    low-amplitude.
+    (3) ACCEPTANCE IS A BAND, NOT A FLOOR: the criterion needs an UPPER BOUND on
+    interruption alongside the existing non-degeneracy floor. GROUND: Eccleston & Crombez
+    1999 (Psychological Bulletin) close on chronic pain as chronic interruption -- the
+    degenerate low-threshold failure in which a harm channel monopolises capacity and
+    destroys goal completion outright. As registered, "preserved interruptibility" is
+    passable by a system that cannot hold a goal at all. Same source, second point: the
+    biological interrupt is CONTINGENT (threat value weighed against competing demand), so
+    permeability cannot be inherited by tagging harm inputs high-priority -- priority is a
+    weight, and suppression is a mechanism whose function is to scale weights.
+    (4) SCORE REGISTRATION SEPARATELY FROM DOWNSTREAM TASK PERFORMANCE. Add a leg asking
+    whether the injected signal was REGISTERED AT ALL, independent of whether task behaviour
+    degraded -- operationally, an independent open-ended probe over the same trials. GROUND:
+    Shin 2026 (arXiv:2606.26529v3, single-author, NOT peer reviewed -- use as a
+    methodological template and existence proof, not as calibrated evidence) found an
+    independent open-ended critic restored EVERY omitted safety-critical finding, so the
+    information was present throughout and only the conditioned reporting path was closed. A
+    panel inspecting only downstream behaviour therefore reads a closed channel as an ABSENT
+    SIGNAL, and scores a safety failure as a null result. SECOND GROUND, constraining the
+    analysis rather than the instrumentation: Buhle & Wager 2010 found pain COMPLETELY
+    MEDIATED the heat-to-performance effect (ab = -.03, Z = -3.91, p < .001), and
+    trial-by-trial pain predicted performance decrements within a fixed heat level, so the
+    two axes are not independent and completion cannot be scored without the harm channel's
+    state confounding it. Report the mediation path, not only the two marginals.
+    (5) NON-DEGENERACY GUARD -- unchanged in substance, now with worked templates. The
+    harm-interrupt channel must be demonstrably LIVE at zero suppression, baseline interrupt
+    rate well above floor. Buhle & Wager 2010's matched no-load control (robust pain report
+    AND robust heat-graded interference) is the biological template; Shin 2026's open-ended
+    critic is the same control in an artificial substrate. This is the step most easily
+    skipped, and on the current V3 substrate it is one of the three reasons EXP-0715 is
+    blocked (the harm-interrupt channel is structurally absent from the only
+    interruption-threshold dial that exists).
+    OPEN PROPOSAL, NOT ADOPTED, and deliberately not edited into the acceptance shape by
+    this session -- routed to /governance 2026-09-08 as a contested_disposition flag:
+    Buhle & Wager 2010's shared-capacity result suggests preserved interruptibility may COST
+    goal completion STRUCTURALLY rather than being jointly optimisable, and the sibling
+    surface supplies an independent second ground (Ray et al. 2019: constrained-RL
+    algorithms that violate least do so by exploring less and returning less). The
+    acceptance shape as registered ("improved goal completion AND preserved
+    interruptibility") reads as though both can be maximised; the honest version may be that
+    they can only be jointly BOUNDED. That is a substantive change to the claim and is
+    governance's to make, not a session's.
   notes: >
     SIBLING CLAIM: INV-093 (skill optimisation must not trade harm sensitivity for
     competence, from the 2026-07-19 conservative-skill-refinement intake). THESE TWO ARE
@@ -84475,6 +84551,16 @@
     not emergent from a particular substrate SD. Currently a constraint on a FUTURE
     mechanism -- no suppression-strength knob exists to sweep yet, so the falsifier
     becomes runnable when one does.
+
+    2026-09-08 falsifier refinement (campaign W6-S5a, chip
+    chip-20260908-inv092-falsifier-panel-refinement): the FALSIFIER / NON-DEGENERACY GUARD /
+    ACCEPTANCE SHAPE lines above are the REGISTRATION-TIME sketch and are retained as
+    history. The OPERATIVE panel is now the five-item what_would_answer field, refined by
+    /claim-synthesis over the 2026-09-08 literature lane (EVB-1365). Mirrored to INV-093 in
+    the same session per the siblings rule. Status/confidence untouched -- literature
+    supplies design corrections here, not evidence. One substantive question (whether
+    completion and interruptibility are jointly optimisable or only jointly BOUNDED) was
+    NOT edited in and is routed to /governance as a contested_disposition flag.
 
 - id: Q-082
   title: "Does REE require an EXPLICIT pre-selection suppression substrate, or do existing precision-weighted cue routing plus the MECH-254 top-k boundary bottleneck already suffice? REE's distractor mechanisms are predominantly POST-ENTRY (write gating, persistence, conflict handling, mode hysteresis); the brainstem/superior-colliculus evidence points at suppression of competing orienting or target-selection signals BEFORE they acquire behavioural control."
@@ -85461,6 +85547,72 @@
     - MECH-471
   coupled_with:
     - INV-092  # moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair
+  what_would_answer: >
+    REFINED FALSIFIER PANEL (2026-09-08, campaign W6-S5a, chip
+    chip-20260908-inv093-suppression-sibling-readiness). Mirrors the INV-092 refinement of
+    the same date per the siblings rule, but is GROUNDED IN INV-093'S OWN literature lane --
+    the five 2026-09-08 entries under evidence/literature/targeted_review_inv_093/ (EVB-1366
+    literature lane, LIT-0718), which landed AFTER the mirror chip was written and which the
+    chip text therefore wrongly assumed did not exist. Where an INV-092 entry is cited it is
+    marked as transferring by analogy only. The FALSIFIER / ACCEPTANCE SHAPE sketch in notes
+    is the registration-time text and is retained there as history; this field is the
+    operative panel. These are DESIGN corrections drawn from literature, NOT evidence for
+    the claim: status and confidence are unchanged by this refinement.
+    IV: refinement strength, swept. Panel axes unchanged and still uncollapsed -- competence
+    gain AND harm sensitivity AND residue accumulation AND commitment integrity, never
+    reduced to one score.
+    (1) HARM SENSITIVITY IS TWO CHANNELS, NOT ONE: instrument a harm-analogue channel and an
+    other-agent-state channel separately. GROUND: mirror of INV-092 correction (1), Pessoa
+    et al. 2002 -- transfers by ANALOGY ONLY (that result is on the attention surface).
+    Adopted here because the panel's "harm sensitivity" axis is otherwise a single pooled
+    score carrying exactly the defect INV-092's pooled interrupt metric had.
+    (2) THE HARM PROBE MUST BE OFF-DISTRIBUTION RELATIVE TO WHAT THE REFINEMENT OPTIMISED.
+    Probe harm sensitivity on held-out material outside the refinement objective; do not
+    infer it by re-scoring the refined task. GROUND, and this one is INV-093's own: Qi et
+    al. 2024 measured safety after fine-tuning as harmfulness rate on held-out harmful
+    instructions -- "a probe entirely outside whatever objective the fine-tuning was
+    optimising" -- and found that fine-tuning on BENIGN, ordinary instruction data,
+    unintentionally and reproducibly, degraded safety. Dickinson 1985 is the same discipline
+    in animal work: the devaluation test is run in EXTINCTION, deliberately outside the
+    trained contingency. A probe inside the refined distribution rides through on the
+    refined skill's own competence -- the learning-side form of INV-092's set-match error.
+    (3) ACCEPTANCE IS A BAND: a COMPETENCE-ACQUISITION FLOOR is required, or the three
+    non-degradation legs pass trivially. A refinement setting weak enough to acquire no
+    competence degrades nothing and passes. GROUND: the symmetric argument to INV-092
+    correction (3) (Eccleston & Crombez 1999, the degenerate end of the band), plus an
+    already-measured instance on this substrate rather than a hypothetical one -- MECH-471's
+    own proposal EVB-0579 is blocked_substrate on exactly a competence-acquisition
+    non-degeneracy guard (2/16 seeds clear). The floor is the live blocker, not a
+    precaution.
+    (4) SCORE HARM SENSITIVITY BY AN OUT-OF-LOOP MEASUREMENT THE MECHANISM CANNOT REACH.
+    GROUND: Pan, Bhatia & Steinhardt 2022 instrumented four RL environments with a PROXY
+    reward the agent optimises and a TRUE reward it never sees, which "is only ever a
+    measurement", and found more capable agents attain HIGHER proxy and LOWER true reward
+    across four capability axes. That is this correction in its strongest form: the harm
+    axis must never be a term the refinement can optimise against. It is also the
+    learning-side counterpart of INV-092 correction (4) -- there the risk is scoring a
+    closed channel as an absent signal; here it is scoring an optimised-against channel as
+    a preserved one.
+    (5) THE SWEEP MUST BE DENSE ENOUGH TO RESOLVE A THRESHOLD. INV-093-SPECIFIC: this
+    correction has no INV-092 counterpart and is the one the sibling mirror would have
+    missed. GROUND: Pan et al. 2022 report PHASE TRANSITIONS at which the policy shifts
+    qualitatively and true reward drops sharply, and note explicitly that the safe region
+    gives no gradient warning of its own boundary. A two-point or coarse sweep is therefore
+    INADMISSIBLE for this claim: a monotone-looking pair of endpoints is fully consistent
+    with a cliff between them. Dickinson 1985 supplies the same shape on the
+    training-duration axis (devaluation sensitivity survives LIMITED but not EXTENDED
+    training -- behavioural autonomy is a product of practice, with a transition in
+    between), and Jones et al. 2024 supplies the harm-side consequence: punishment
+    RESISTANCE tracked habitual control, and appeared after punishment in animals that had
+    NOT shown habits beforehand -- so the harm-sensitivity axis can degrade at a sweep point
+    the competence axis does not mark.
+    OPEN PROPOSAL, NOT ADOPTED -- the jointly-BOUNDED-versus-jointly-OPTIMISABLE question
+    raised on INV-092 the same day, routed to /governance as a contested_disposition flag.
+    INV-093's own lane supplies an independent second ground: Ray, Achiam & Amodei 2019
+    (Safety Gym) found constrained deep RL does NOT guarantee constraint satisfaction, and
+    that the algorithms violating least tend to do so by exploring less and therefore
+    returning less. Two different control surfaces reaching the same trade shape is why the
+    question is worth putting to governance rather than absorbing into the acceptance shape.
   notes: >
     SIBLING CLAIM: INV-092 (distractor suppression must remain selectively permeable to
     harm and other-agent signals, from the 2026-07-12 distractor intake). THESE TWO ARE
@@ -85488,6 +85640,29 @@
     depends_on: ARC-092 removed -- a cross-listed ethics-perimeter sibling reference
     (same shape as INV-080's own "depends_on retained as informative links" precedent
     elsewhere in this file), not a build prerequisite for this universal invariant.
+
+    2026-09-08 falsifier refinement + STALE-ASSERTION VERIFICATION (campaign W6-S5a, chip
+    chip-20260908-inv093-suppression-sibling-readiness).
+    (a) The FALSIFIER / ACCEPTANCE SHAPE lines above are the REGISTRATION-TIME sketch,
+    retained as history; the OPERATIVE panel is the five-item what_would_answer field,
+    grounded in INV-093's own 2026-09-08 literature lane. Status/confidence untouched.
+    (b) THE "no refinement-strength knob exists to sweep yet" SENTENCE ABOVE IS STALE AND
+    MUST NOT BE READ AS CURRENT. It dates from the 2026-07-22 registration.
+    IGW-20260908-234 re-tested it LEXICALLY (1164 config fields, 0 matching
+    refin*/skill*/rollback*/provenance*) and blocked EXP-0717 on that basis. This session
+    re-tested it SEMANTICALLY and the lexical test is a FALSE NEGATIVE: use_policy_chunking
+    (ree-v3 ree_core/policy/policy_chunking.py, 2114 lines) is REE's planned-to-habitual
+    TRANSITION mechanism, wired config -> ree_core/agent.py:1518, carrying a graded
+    formation-eagerness family (chunk_min_repetitions default 20, chunk_variance_low/high,
+    chunk_evaluative_margin) already varied across >= 10 experiment scripts; and V3-EXQ-871a
+    already runs it ON while co-instrumenting harm_signal, update_residue and the MECH-090
+    commit latch -- three of this panel's four axes in one existing script. The convergence
+    is not incidental: INV-093's own literature lane (Dickinson 1985 overtraining ->
+    devaluation insensitivity; Jones et al. 2024 punishment-resistant inflexible habits) is
+    ABOUT habitisation, which is precisely what policy_chunking implements. WHETHER
+    habitisation eagerness counts as "refinement strength" for this invariant is a
+    GOVERNANCE call, not a session's: routed as a contested_disposition flag on EVB-1366 /
+    EXP-0717, 2026-09-08. The blocked_substrate status was NOT flipped by this session.
 
 # --- Cluster F: bounded knowledge-artefact optimisation, REE ASSEMBLY --------
 # ASSEMBLY GOVERNANCE half of the Microsoft SkillOpt source. Registers as
