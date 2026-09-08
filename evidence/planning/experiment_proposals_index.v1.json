@@ -3744,14 +3744,22 @@
       "priority": "medium",
       "proposal_id": "EXP-0529",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_ext_009",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "MECH-164"
+      ],
+      "blocked_note": "blocked_substrate 2026-09-08 by session admiring-heisenberg-6c7b32 (campaign W5-HK-E item 5, chip-20260902-ext009-exp0534-blocked-substrate-status; substrate-gate finding made 2026-09-02 at the /queue-experiment substrate-readiness gate). No experiment queued and no script written. Identity key: backlog_id EVB-1254 + proposal_type experimental (the proposal number drifts on regen: EXP-0534 on 2026-09-02, EXP-0529 at apply time). EXT-009 (similarity-gated care collapse) tests whether REE's care-gate reproduces out-group exclusion; its mechanism is MECH-164 (agent-indexed terrain inference -- modelling ANOTHER agent's terrain/affect), which is implementation_phase: v5 in claims.yaml and requires a multi-agent substrate. No multi-agent environment class exists anywhere under ree-v3/ree_core/environment/ (grepped 2026-09-02, zero hits for MultiAgent/n_agents/num_agents/second_agent/other_agent). WS-10 'minimal 2-agent world' (ree_ai_design_critique_plan.md) is status=open, not started (closure_status.md row, cognitive_architecture_graveyard.md AP-8: 'V5, multi-agent, and untouched by running code'). The claim's own notes state it is largely philosophical under the single-agent V3 substrate. INV-070 (a candidate mitigation source) is also implementation_phase: v5. Building a real multi-agent substrate is a major architecture undertaking (WS-10), not a bounded /implement-substrate task -- do not auto-route to /implement-substrate; this needs a deliberate scoping decision, likely at /governance. Re-queue only after MECH-164 or an equivalent multi-agent substrate lands.",
+      "gated_at_utc": "2026-09-08T18:34:47Z",
+      "gated_by_session": "admiring-heisenberg-6c7b32",
+      "gating_reason": "EXT-009 (similarity-gated care collapse) tests whether REE's care-gate reproduces out-group exclusion; its mechanism is MECH-164 (agent-indexed terrain inference -- modelling ANOTHER agent's terrain/affect), which is implementation_phase: v5 in claims.yaml and requires a multi-agent substrate. No multi-agent environment class exists anywhere under ree-v3/ree_core/environment/ (grepped 2026-09-02, zero hits for MultiAgent/n_agents/num_agents/second_agent/other_agent). WS-10 'minimal 2-agent world' (ree_ai_design_critique_plan.md) is status=open, not started (closure_status.md row, cognitive_architecture_graveyard.md AP-8: 'V5, multi-agent, and untouched by running code'). The claim's own notes state it is largely philosophical under the single-agent V3 substrate. INV-070 (a candidate mitigation source) is also implementation_phase: v5. Building a real multi-agent substrate is a major architecture undertaking (WS-10), not a bounded /implement-substrate task -- do not auto-route to /implement-substrate; this needs a deliberate scoping decision, likely at /governance. Re-queue only after MECH-164 or an equivalent multi-agent substrate lands.",
+      "release_condition": "Re-queue only after MECH-164 (agent-indexed terrain inference, implementation_phase v5) or an equivalent multi-agent substrate lands: verified by an environment class under ree-v3/ree_core/environment/ that instantiates a SECOND agent whose terrain/affect the first can model (WS-10 'minimal 2-agent world', ree_ai_design_critique_plan.md, status=open at gating time), not assumed from a plan-doc status change. Building that substrate is a WS-10-scale architecture decision for /governance, not a bounded /implement-substrate task; do not auto-route. LIT-0530 (the literature twin, same backlog id EVB-1254) is deliberately LEFT 'proposed' -- a literature review needs no substrate."
     },
     {
       "backlog_id": "EVB-1254",
