@@ -1651,8 +1651,9 @@
       "status": "implemented",
       "title": "Waking ghost-goal probe search (minority-budget branch in HippocampalModule.propose_trajectories)",
       "unblocks_claims": [
-        "MECH-163 (V3-EXQ-495 V3 full-completion gate)"
+        "MECH-163"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: MECH-163 via V3-EXQ-495 (V3 full-completion gate).",
       "validating_runs": [
         "v3_exq_497_mech293_ghost_probes_validation_20260427T061745Z_v3",
         "v3_exq_497_mech293_ghost_probes_validation_20260427T094353Z_v3"
@@ -1721,8 +1722,9 @@
       "title": "Symmetric V_s gating on E1 sensory predictor and E2 forward models",
       "unblocks_claims": [
         "Q-040",
-        "SD-032b (potentially)"
+        "SD-032b"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-032b (potentially) -- uncertain, symmetric V_s gating may unblock SD-032b, not confirmed.",
       "validation_experiment": "V3-EXQ-601"
     },
     {
@@ -1749,8 +1751,9 @@
       "unblocks_claims": [
         "MECH-269b",
         "Q-040b",
-        "Q-040 (broad)"
+        "Q-040"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: Q-040, broad variant (Phase 2 T2 forward-predictor V_s routing).",
       "status_note": "2026-07-31 (implement-substrate dry-run pilot, session stoic-mcnulty-3defb0). This entry's own cited design_doc (docs/architecture/v_s_invalidation_runtime.md, Verdict 3 of the 2026-04-22 foundation lit-pull fold-in, reconfirmed in the doc's 2026-04-24 status log -- THREE DAYS before this substrate_queue entry was added) states verbatim: 'Per-stream forward predictors should NOT be added in Phase 2.' That is an explicit architectural veto against the exact mechanism this entry proposes (routing z_world/z_harm_s V_s through per-stream forward predictors). The sibling entry MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate(), explicitly framed there as 'alternative to Phase 2 T2') was implemented 2026-04-29 and substrate-validated 2026-05-21 (V3-EXQ-601 PASS) -- confirmed via both this file's own -A entry (implementation_status: implemented) and claims.yaml MECH-269b. The 'Phase 2 T2' task label in this entry does not resolve to any task numbering in the cited design doc (558 lines, no T1-T4 scheme) -- likely mislabeled or sourced elsewhere. Do not implement as specified. If per-stream forward predictors are ever warranted despite the biological argument in Verdict 3, that is a lit-pull / architecture-revision decision, not a build to schedule from this entry."
     },
     {
@@ -1788,8 +1791,9 @@
       "unblocks_claims": [
         "MECH-269b",
         "Q-040b",
-        "Q-040 (narrow)"
+        "Q-040"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: Q-040, narrow variant (staleness-corrected V_s in VsRolloutGate.gate()).",
       "validation_experiment": "V3-EXQ-601"
     },
     {
@@ -1851,10 +1855,11 @@
       "status": "implemented",
       "title": "Governance closure operator -- five-part 'done' token at rule-completion",
       "unblocks_claims": [
-        "SD-033 cluster",
-        "MECH-090 release semantics",
-        "MECH-260 targeted No-Go"
+        "SD-033",
+        "MECH-090",
+        "MECH-260"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-033 cluster; MECH-090 release semantics; MECH-260 targeted No-Go.",
       "validation_experiment": "V3-EXQ-460 + V3-EXQ-466"
     },
     {
@@ -1987,9 +1992,10 @@
       "status": "implemented",
       "title": "Asymmetric per-mode hysteresis (Schmitt-trigger rails on SalienceCoordinator)",
       "unblocks_claims": [
-        "SD-032a hysteresis",
+        "SD-032a",
         "OCD/depression behavioural mapping"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-032a hysteresis.",
       "validation_experiment": "V3-EXQ-464 + V3-EXQ-467"
     },
     {
@@ -2026,10 +2032,11 @@
       "status": "implemented",
       "title": "Mode-conditioned hippocampal proposals -- HippocampalModule.propose_trajectories conditioned on operating_mode",
       "unblocks_claims": [
-        "SD-004 mode conditioning",
-        "SD-032a mode-aware proposals",
+        "SD-004",
+        "SD-032a",
         "ocd2 step 4 (mode-conditioning of hippocampal proposals)"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-004 mode conditioning; SD-032a mode-aware proposals.",
       "validation_experiment": "V3-EXQ-462 + V3-EXQ-465"
     },
     {
@@ -2066,10 +2073,11 @@
       "status": "implemented",
       "title": "dACC conflict saturation -- pe(t) habituates under repeated identical outcomes; reset on closure_event",
       "unblocks_claims": [
-        "SD-032b dACC saturation",
-        "SD-034 closure-event reset pipeline",
+        "SD-032b",
+        "SD-034",
         "ocd1 constraint 4 (conflict signal must cap, not run away)"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-032b dACC saturation; SD-034 closure-event reset pipeline.",
       "validation_experiment": "V3-EXQ-463 + V3-EXQ-468"
     },
     {
@@ -2140,13 +2148,14 @@
       "status": "amend_implemented_pending_validation",
       "title": "encoder.resource_proximity_supervision -- benefit-side analog of SD-009 forcing z_world to encode resource proximity",
       "unblocks_claims": [
-        "SD-015 z_resource encoder pipeline",
-        "ARC-030 benefit_terrain",
-        "MECH-117 wanting/liking gated approach",
+        "SD-015",
+        "ARC-030",
+        "MECH-117",
         "goal-directed behaviour pathway (entire EXQ-085h..o cluster)",
         "MECH-457",
         "ARC-065"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-015 z_resource encoder pipeline; ARC-030 benefit_terrain; MECH-117 wanting/liking gated approach.",
       "validation_experiment": "EXQ-085m diagnostic + EXQ-085h..o cluster | 2026-09-02 AMEND: directional field head landed; its 948-shape OFF-vs-ON validation is OWED and not yet queued (see implementation_log[0].validation). NOTE (948 autopsy secondary finding, still true): SD-018's own post-implementation r2>0.5 validation was never cleanly recorded -- EXQ-257 was confounded (see metric_trajectory).",
       "severity": "degrading",
       "substrate_paths": [
@@ -2205,9 +2214,10 @@
       "status": "implemented",
       "title": "PAG freeze gate -- committed behavioural freeze with GABAergic-gated entry+exit",
       "unblocks_claims": [
-        "SD-036 freeze coupling",
+        "SD-036",
         "catatonic lock-in pharmacology prediction"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-036 freeze coupling.",
       "validation_experiment": "V3-EXQ-475"
     },
     {
@@ -2244,9 +2254,10 @@
       "status": "implemented",
       "title": "Region-indexed staleness accumulator -- Phase 3 of V_s invalidation runtime",
       "unblocks_claims": [
-        "MECH-269 online hysteresis",
-        "MECH-285 offline replay priority"
+        "MECH-269",
+        "MECH-285"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: MECH-269 online hysteresis; MECH-285 offline replay priority.",
       "validation_experiment": "V3-EXQ-478"
     },
     {
@@ -2283,9 +2294,10 @@
       "status": "implemented",
       "title": "Invalidation trigger -- Phase 2(iv) of V_s runtime (BoundaryEvent subscriber)",
       "unblocks_claims": [
-        "MECH-284 staleness accumulator",
-        "MECH-269 anchor reset"
+        "MECH-284",
+        "MECH-269"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: MECH-284 staleness accumulator; MECH-269 anchor reset.",
       "validation_experiment": "tests/contracts/test_mech_287_invalidation_trigger.py (5 contracts)"
     },
     {
@@ -2322,9 +2334,10 @@
       "status": "implemented",
       "title": "Event segmenter -- Phase 2 of V_s runtime (hierarchical outer.inner BoundaryEvents)",
       "unblocks_claims": [
-        "MECH-287 broadcast trigger",
-        "MECH-269 anchor sets"
+        "MECH-287",
+        "MECH-269"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: MECH-287 broadcast trigger; MECH-269 anchor sets.",
       "validation_experiment": "tests/contracts/test_mech_288_event_segmenter.py (7 contracts)"
     },
     {
@@ -2361,9 +2374,10 @@
       "status": "implemented",
       "title": "Sleep routing gate -- state-conditioned channel weights across SWS/REM/WAKING",
       "unblocks_claims": [
-        "MECH-275 aggregator probe channel",
-        "MECH-273 self-model writeback"
+        "MECH-275",
+        "MECH-273"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: MECH-275 aggregator probe channel; MECH-273 self-model writeback.",
       "validation_experiment": "tests/contracts/test_sleep_phase_c_routing.py (10 contracts)"
     },
     {
@@ -2400,8 +2414,9 @@
       "status": "implemented",
       "title": "Bayesian aggregator -- Phase D of sleep cluster (per-domain per-region Gaussian posteriors)",
       "unblocks_claims": [
-        "MECH-273 self-model writeback consumer"
+        "MECH-273"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: MECH-273 self-model writeback consumer.",
       "validation_experiment": "tests/contracts/test_sleep_phase_d_aggregator.py (10 contracts)"
     },
     {
@@ -2438,8 +2453,9 @@
       "status": "implemented",
       "title": "Self-model writeback -- Phase E of sleep cluster (offline gradient pass on E2_harm_s)",
       "unblocks_claims": [
-        "SD-003 offline causal_sig refinement"
+        "SD-003"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-003 offline causal_sig refinement.",
       "validation_experiment": "tests/contracts/test_sleep_phase_e_self_model.py (10 contracts)"
     },
     {
@@ -2476,9 +2492,10 @@
       "status": "implemented",
       "title": "Sleep replay sampler -- Phase B of sleep cluster (staleness-priority anchor draws)",
       "unblocks_claims": [
-        "MECH-272 routing gate",
-        "MECH-275 aggregator"
+        "MECH-272",
+        "MECH-275"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: MECH-272 routing gate; MECH-275 aggregator.",
       "validation_experiment": "tests/contracts/test_sleep_phase_b_sampler.py (10 contracts)"
     },
     {
@@ -2515,9 +2532,10 @@
       "status": "implemented",
       "title": "Backward trajectory credit sweep -- reverse replay at goal endpoint",
       "unblocks_claims": [
-        "SD-014 VALENCE_WANTING write paths",
-        "MECH-105 hippocampal-betagate coupling"
+        "SD-014",
+        "MECH-105"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-014 VALENCE_WANTING write paths; MECH-105 hippocampal-betagate coupling.",
       "validation_experiment": "smoke C1-C7 PASS + agent boot end-to-end"
     },
     {
@@ -4525,7 +4543,7 @@
         "MECH-313",
         "Q-040",
         "Q-045",
-        "SD-049 Phase 2 behavioural",
+        "SD-049",
         "MECH-090",
         "MECH-094",
         "MECH-261",
@@ -4537,6 +4555,7 @@
         "SD-059",
         "MECH-358"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-049 Phase 2 behavioural.",
       "current_pending_amend": {
         "amend": "instrumental_avoidance_acquisition_SD-058_MECH-357",
         "status": "implemented_pending_validation",
@@ -5009,8 +5028,9 @@
       ],
       "unblocks_claims": [
         "entities/selection.coherence_nonreducibility (candidate, unregistered)",
-        "INV-002 (coherence includes temporal/phase binding)"
+        "INV-002"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: INV-002 (coherence includes temporal/phase binding).",
       "failure_record": [
         {
           "run_id": "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
@@ -5108,8 +5128,9 @@
         "ARC-060",
         "MECH-320",
         "ARC-068",
-        "SD-054-readiness"
+        "SD-054"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-054-readiness.",
       "failure_record": [
         {
           "run_id": "v3_exq_603h_instrumental_avoidance_stageh_validation_20260607T211923Z_v3",
@@ -5189,8 +5210,9 @@
       "unblocks_claims": [
         "MECH-045",
         "ARC-006",
-        "ARC-080 Pillar 1 (object permanence; ghost-goal-bank token generalisation)"
+        "ARC-080"
       ],
+      "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: ARC-080 Pillar 1 (object permanence; ghost-goal-bank token generalisation).",
       "wiring_targets": [
         "SD-057 IncentiveTokenBank (TYPE -> per-token type_hint, backward-compatible)",
         "SD-039 AnchorGoalPayload (ANCHOR -> optional token_id cross-reference)"
