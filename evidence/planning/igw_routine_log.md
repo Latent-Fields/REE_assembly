@@ -2689,4 +2689,38 @@ One line per hourly tick. ASCII only.
 2026-09-07T21:28:22Z GC sweep removed 1 orphan worktree(s), kept 14
 2026-09-07T21:28:22Z SPAWN IGW-20260907-233 skill=/queue-experiment prio=40 uuid=768f0568-e79a-4f8b-89c7-ffdd3fa192b7 pid=14774 worktree=igw-233-proposal-for-inv-040
 2026-09-07T21:48:01Z auto-defer igw-233-proposal-for-inv-040 hash=dce342c6dfce for 48h (complete)
+2026-09-07T21:49:44Z complete igw-233-proposal-for-inv-040 spawned->completed outcome=NO_OP: marked EVB-1345/EXP-0682 (INV-040) blocked_substrate: w_harm DV unreachable thro
+2026-09-07T22:34:43Z GC removed worktree igw-233-proposal-for-inv-040 (removed; branch deleted)
+2026-09-07T22:34:24Z GC sweep removed 1 orphan worktree(s), kept 14
+2026-09-07T22:35:30Z workset committed (regen -- 245 items, 29 ready, 0 in flight)
+2026-09-07T22:34:24Z SPAWN IGW-20260907-233 skill=/lit-pull prio=40 uuid=1882c7c0-5e51-47f7-8ff5-40c8edb8721a pid=6558 worktree=igw-233-literature-proposal-for-inv-040
+2026-09-07T22:42:18Z auto-defer 0e8de4d534f1 hash=0e8de4d534f1 for 48h (complete)
+2026-09-07T22:42:43Z complete 0e8de4d534f1 staged->completed outcome=NO_OP: NEVER LAUNCHED. Staged 2026-08-31/2026-09-04 and still 'staged' 7 days later, pa
+2026-09-07T22:42:44Z auto-defer 2e8dfe299e84 hash=2e8dfe299e84 for 48h (complete)
+2026-09-07T22:43:09Z complete 2e8dfe299e84 staged->completed outcome=NO_OP: NEVER LAUNCHED. Staged 2026-08-31/2026-09-04 and still 'staged' 7 days later, pa
+2026-09-07T22:43:29Z complete 4dafb051f849 staged->completed outcome=NO_OP: NEVER LAUNCHED. Staged 2026-08-31/2026-09-04 and still 'staged' 7 days later, pa
+2026-09-07T23:15:35Z auto-defer igw-233-literature-proposal-for-inv-040 hash=9bbf133d4d12 for 48h (complete)
+2026-09-07T23:17:04Z complete igw-233-literature-proposal-for-inv-040 spawned->completed outcome=USEFUL_LANDED: lit-pull landed 4 INV-040 entries (REE_assembly 9b3ce3deb3): lit_conf 0.677, 2 s
+2026-09-07T23:44:09Z GC removed worktree igw-233-literature-proposal-for-inv-040 (removed; branch deleted)
+2026-09-07T23:43:42Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-07T23:45:55Z workset committed (regen -- 246 items, 29 ready, 0 in flight)
+2026-09-07T23:43:42Z SPAWN IGW-20260907-232 skill=/queue-experiment prio=40 uuid=07aa8606-a28c-48d0-9cf8-0beca6406548 pid=60335 worktree=igw-232-proposal-for-inv-063
+2026-09-08T00:13:57Z auto-defer igw-232-proposal-for-inv-063 hash=a2444c4a55d8 for 48h (complete)
+2026-09-08T00:16:52Z complete igw-232-proposal-for-inv-063 spawned->completed outcome=USEFUL_LANDED: NOT queued -- marked EXP-1398 + EVB-1349/experimental blocked_substrate (REE_ass
+2026-09-08T00:49:42Z GC removed worktree igw-232-proposal-for-inv-063 (removed; branch deleted)
+2026-09-08T00:49:28Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-08T00:50:28Z workset committed (regen -- 246 items, 29 ready, 0 in flight)
+2026-09-08T00:49:28Z SPAWN IGW-20260908-232 skill=/lit-pull prio=40 uuid=c56e8912-1ec5-48bc-9d3a-2221c9e3bcb3 pid=34262 worktree=igw-232-literature-proposal-for-inv-063
 2026-09-08T01:10:15Z auto-defer igw-232-literature-proposal-for-inv-063 hash=9d40eeb56ac8 for 48h (complete)
+2026-09-08T01:13:12Z complete igw-232-literature-proposal-for-inv-063 spawned->completed outcome=USEFUL_LANDED: lit-pull INV-063: 5 entries landed (REE_assembly ab559aa083); lit evidence 0 ->
+2026-09-08T01:53:53Z GC removed worktree igw-232-literature-proposal-for-inv-063 (removed; branch deleted)
+2026-09-08T01:53:34Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-08T01:53:34Z SPAWN IGW-20260908-233 skill=/queue-experiment prio=40 uuid=a6d968e9-9c9e-459c-9af9-1594de9535b6 pid=74791 worktree=igw-233-proposal-for-inv-092
+2026-09-08T02:12:28Z retire-proposal EXP-0715 -> executed (igw-233-proposal-for-inv-092; complete)
+2026-09-08T02:12:29Z auto-defer igw-233-proposal-for-inv-092 hash=7251c4b8382f for 48h (complete)
+2026-09-08T02:14:33Z complete igw-233-proposal-for-inv-092 spawned->completed outcome=USEFUL_LANDED: marked EVB-1365/EXP-0715 (INV-092) blocked_substrate in both proposal files, REE
+2026-09-08T02:59:02Z GC removed worktree igw-233-proposal-for-inv-092 (removed; branch deleted)
+2026-09-08T02:58:43Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-08T02:59:56Z workset committed (regen -- 246 items, 29 ready, 0 in flight)
+2026-09-08T02:58:43Z SPAWN IGW-20260908-233 skill=/lit-pull prio=40 uuid=13beb371-d0f0-4895-a8ac-ae9bb395a2d0 pid=12339 worktree=igw-233-literature-proposal-for-inv-092
+2026-09-08T03:25:55Z auto-defer igw-233-literature-proposal-for-inv-092 hash=ffce258aa7b5 for 48h (complete)
