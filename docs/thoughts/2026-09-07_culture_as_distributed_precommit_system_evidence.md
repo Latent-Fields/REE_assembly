@@ -1,6 +1,10 @@
 # Evidence Appendix: Culture as a Distributed Precommit System
 
-**Status:** Evidence map / assay proposal  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-07_culture_distributed_precommit.md
+Claims registered: ARC-141, MECH-542, MECH-543, MECH-544
+
+**Document type:** Evidence map / assay proposal
 **Date:** 2026-09-07  
 **Companion thought:** [`2026-09-07_culture_as_distributed_precommit_system.md`](./2026-09-07_culture_as_distributed_precommit_system.md)
 

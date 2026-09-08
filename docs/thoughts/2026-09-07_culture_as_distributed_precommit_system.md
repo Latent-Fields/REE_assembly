@@ -1,6 +1,10 @@
 # Culture as a Distributed Precommit System
 
-**Status:** Thought / hypothesis-generating synthesis  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-07_culture_distributed_precommit.md
+Claims registered: ARC-141, MECH-542, MECH-543, MECH-544
+
+**Document type:** Thought / hypothesis-generating synthesis
 **Date:** 2026-09-07  
 **Scope:** Commitment, imagination, cultural learning, narrative, humour, fiction, drama, science fiction, social cognition  
 **Relationship to REE:** Extension of existing commitment-boundary and default-mode architecture; not presently an architectural commitment.

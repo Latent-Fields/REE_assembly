@@ -97727,3 +97727,140 @@
     at which compensation stops being adaptive. DO NOT build in V3, DO NOT queue an
     experiment -- it is downstream of ARC-140's assay, which is itself downstream of a stable
     lesionable V3 competence.
+
+- id: MECH-542
+  title: "Source-sensitive selective permeability -- INV-011 decomposed: `imagination without belief update` must NOT be implemented as `hypothetical -> learning OFF`, because 'belief update' is too unitary a category applied literally across every representational layer. A hypothetical/fictional source should PROTECT one set of variables -- autobiographical occurrence (this happened to me), historical occurrence (this event actually occurred), source truth (the narrator's proposition describes reality), responsibility attribution (I performed this action), and responsibility-bearing residue -- while PERMITTING update of another: possibility estimates, causal expectations, representations of other agents and their possible motivations, policy repertoire, harm/benefit expectations, social contingencies, counterfactual vocabulary, and the range of trajectories available for later simulation. Three otherwise-conflated properties must be free to dissociate: REPRESENTABILITY (can this state enter the generative system at all), EPISTEMIC COMMITMENT (does the system treat it as describing the actual world), and BEHAVIOURAL COMMITMENT (has an action been selected and owned on its basis). REGISTERED FALSIFIER -- the prediction is explicitly NOT 'fiction causes no update' but 'epistemic framing determines WHICH components are authorised to update': inject semantically identical event content under different source frames (direct observation / testimony / fiction / counterfactual / prediction / joke / memory / committed experience) and measure DIFFERENTIAL change across world-state belief, source confidence, E1 expectations, E2 predictions, other-agent models, harm-benefit expectations, policy availability, hippocampal trajectory repertoire, E3 evaluation, precision allocation, residue and subsequent behaviour. WRONG IN BOTH DIRECTIONS: if REE learns equally from fiction and observation across EVERY component the architecture is wrong, and if REE learns NOTHING transferable from fiction or counterfactual trajectories it is also wrong."
+  claim_type: mechanism_hypothesis
+  subject: default_mode.source_sensitive_selective_permeability
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-08'
+  depends_on:
+    - INV-011   # the ACTIVE invariant this refines; deliberately NOT amended -- see notes
+    - ARC-065   # commitment boundary / precommit architecture
+    - MECH-467  # precommit machinery
+    - ARC-141   # the cultural framing whose empirical content this discharges
+  location: docs/architecture/culture_distributed_precommit.md#mech-542
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 culture-as-distributed-precommit package (thought +
+    evidence companion; intake
+    evidence/planning/thought_intake_2026-09-07_culture_distributed_precommit.md). THIS IS THE
+    LOAD-BEARING CLAIM OF THAT PACKAGE -- its evidence companion names it explicitly as the
+    narrow falsifiable core and warns that the broader cultural conjecture (ARC-141) becomes
+    unfalsifiable if every beneficial effect of fiction is counted as evidence for it.
+    RELATIONSHIP TO INV-011, stated carefully because INV-011 is status ACTIVE: this claim
+    REFINES rather than contradicts it. INV-011 says imagining an event must not ordinarily
+    cause REE to believe the event occurred; that remains correct and is the first row of the
+    protected column here. What is added is that the protection is variable-specific, not
+    global. NO FIELD OF INV-011 WAS TOUCHED in this pass -- proposing a decomposition of an
+    active invariant is a governance decision, and /governance owns whether INV-011's wording,
+    what_would_answer, or audit scope should absorb this or whether the two stand as separate
+    claims. That decision is explicitly requested, not assumed. HONEST LITERATURE STATUS: the
+    source package records that fact-versus-fiction framing has produced distinct processing
+    signatures in some experiments but that LATER WORK HAS NOT CONSISTENTLY REPRODUCED broad
+    fact-fiction differences -- so the useful prediction is NOT that a fiction label globally
+    switches cognition into a different system, and this claim is deliberately worded as
+    selective permeability rather than mode-switching. None of the package's cited literature
+    was independently verified in this pass; a lit-pull is owed. DO NOT build in V3 -- the assay
+    requires linguistic or symbolic scenario injection REE does not have. DO NOT queue an
+    experiment from this entry.
+
+- id: ARC-141
+  title: "Culture as a distributed precommit workspace: culture functions partly as a shared precommit space in which many minds collectively generate, exchange, mutate and evaluate candidate beliefs, identities, norms and futures BEFORE those representations acquire full epistemic or behavioural commitment -- candidate trajectories need not originate within the individual organism, because another mind can construct a trajectory and transmit enough of its structure for a receiving predictive system to instantiate it. Fiction, drama, humour and science fiction are on this account not peripheral products of cognition but specialised cultural technologies for making otherwise costly regions of possibility space cognitively traversable, and the driver is that SEARCH IS MUCH CHEAPER THAN COMMITMENT. Proposed (explicitly non-universal, non-monotonic) cultural progression: unrepresentable -> representable only under protection -> hypothetically discussable -> socially negotiable -> propositionally credible -> behaviourally actionable -> committed. Science fiction is the clearest instance: externally generated long-horizon candidate trajectories reach E1/E3-like evaluation before the corresponding state has ever been directly sampled."
+  claim_type: architectural_commitment
+  subject: society.culture_distributed_precommit_workspace
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-08'
+  depends_on:
+    - ARC-065     # commitment boundary -- the individual-scale foothold this scales up
+    - INV-011     # imagination without belief update
+    - SOC-HUM-1   # humour as a low-commitment deniable probe -- an already-owned instance
+  location: docs/architecture/culture_distributed_precommit.md#arc-141
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 culture package. FRAMING CLAIM, and its own
+    evidence companion says so: "No literature identified directly demonstrates this whole
+    mechanism", and the largest conceptual danger is "treating every beneficial effect of
+    fiction as evidence for the hypothesis. That would make it unfalsifiable." ARC-141's
+    empirical content is therefore discharged through MECH-542, and this entry MUST NOT be
+    cited as independently confirmed by any pleasant result about fiction. Its value is offering
+    a possible COMMON COMPUTATIONAL EXPLANATION for why individually-studied phenomena cluster
+    (counterfactual simulation, fictional memories feeding future simulation, language-based
+    vicarious learning, narrative social cognition, humorous norm exploration, source-sensitive
+    belief formation, scenario-based anticipatory ethics, collective foresight) -- not
+    redescribing any one of them. NOT A NEW SUBSYSTEM: the package is explicit that this
+    requires no "fiction module"; the natural implementation is an extension of source tagging,
+    generative mode, hippocampal rollout, E1 representation and E3 commitment/precision
+    machinery. ALREADY OWNED and cross-referenced rather than re-minted: SOC-HUM-1 covers
+    humour as a low-commitment deniable probe that re-opens gridlocked norm conflicts, which is
+    sections 7-8 of the source thought. DO NOT build in V3, DO NOT queue an experiment.
+
+- id: MECH-543
+  title: "Drama runs OWN generative machinery under another agent's boundary conditions, where fiction only simulates another's trajectory: reading about an agent primarily requires modelling its trajectory, whereas ENACTING a role may temporarily recruit parts of one's own action and social machinery under the constraints of another identity or situation. Non-redundant prediction: enacted role-play should produce partially overlapping but DISTINGUISHABLE update fingerprints from semantically equivalent descriptive narrative -- specifically on other-model formation, policy availability, and affective prediction -- and role enactment should therefore be a more powerful route to exploring what another person could experience, without permanently confusing self and other."
+  claim_type: mechanism_hypothesis
+  subject: social.drama_enactment_vs_narrative_simulation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-08'
+  depends_on:
+    - MECH-542  # the update-fingerprint apparatus this claim's prediction is expressed in
+    - ARC-141   # the cultural workspace of which drama is one technology
+  location: docs/architecture/culture_distributed_precommit.md#mech-543
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 culture package, which labels the distinction
+    "speculative, but experimentally tractable" -- recorded here at that strength and no
+    higher. DISSOCIATES CLEANLY FROM MECH-542, which is why it is separate rather than folded:
+    MECH-542 concerns WHICH VARIABLES are authorised to update under a source frame; this claim
+    concerns BY WHAT ROUTE the material is instantiated (simulating another's trajectory vs
+    running one's own machinery under imported boundary conditions). Both could be true, either
+    could fail alone, and the drama-vs-narrative contrast is a within-source-frame comparison
+    that MECH-542's assay does not make. EXTERNAL STATUS: the evidence companion places this in
+    its Tier 3 ("meaningful but less decisive"), noting role enactment can produce different
+    engagement from imagination alone, but explicitly cautioning against concluding "the brain
+    has separate fiction, drama and humour systems". Not independently verified in this pass;
+    lit-pull owed. Relevant to REE's self/other-model machinery and to the standing constraint
+    that exploring another's perspective must not corrupt self-attribution. DO NOT build in V3,
+    DO NOT queue an experiment.
+
+- id: MECH-544
+  title: "Permeability pathology and source-tag decay: the same selective permeability that enables cultural learning (MECH-542) necessarily creates its failure modes, and this is NOT an accidental weakness but plausibly the unavoidable price of a system that can learn from counterfactual experience -- a fully impermeable hypothetical system learns nothing from imagination, a fully permeable one cannot distinguish imagination from reality, and the useful system lies between. Predicted routes: repeated fictional trajectories distorting perceived likelihood; emotionally powerful narratives acquiring inappropriate precision; propaganda altering other-agent models without adequate evidence; humour gradually reducing the effective cost of previously prohibited representations; imagined threats modifying expectations of groups never directly encountered; cultural availability mistaken for environmental frequency. REGISTERED SIGNATURE -- SOURCE-TAG DECAY: source information degrades while narrative structure is retained, producing characteristic errors in which retained narrative becomes progressively harder to distinguish from experienced or testified information. The architectural requirement is therefore NOT to prevent hypothetical material from influencing cognition, but to keep the KIND and MAGNITUDE of update appropriate to the epistemic status of the representation."
+  claim_type: mechanism_hypothesis
+  subject: default_mode.permeability_pathology_source_tag_decay
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-08'
+  depends_on:
+    - MECH-542  # the permeability whose failure mode this is
+    - INV-011   # the protection that source-tag decay erodes
+    - ARC-141   # cultural transmission as the exposure route
+  location: docs/architecture/culture_distributed_precommit.md#mech-544
+  notes: >
+    Registered 2026-09-08 from the 2026-09-07 culture package. WHY SEPARATE FROM MECH-542: they
+    are the same architecture read at opposite ends of its operating range, and they fail
+    independently. MECH-542 is refuted by a system that updates uniformly or not at all;
+    MECH-544 is refuted by a system whose selective permeability produces NO characteristic
+    pathology at any setting -- which would be a welcome result and a genuine surprise, since
+    the claim asserts the pathology is intrinsic rather than incidental. Registering them as one
+    would hide that the pathology is a PREDICTION rather than a caveat. CONNECTS TO EXISTING
+    REE WORK: architecture/language/language_failure_modes.md already identifies "spurious
+    residue from narrative contamination", and REE holds several reality-monitoring and
+    source-monitoring claims; this claim supplies the mechanism that would generate that family
+    from the permeability setting rather than from a separate defect. Source-tag decay is the
+    part with the clearest external grounding (source information and retained content can
+    dissociate -- Tier 2 of the package's evidence companion), and the part most likely to be
+    measurable first. NOT independently verified in this pass; lit-pull owed. Clinically
+    adjacent to the user's own domain and worth a targeted review alongside MECH-541's. DO NOT
+    build in V3, DO NOT queue an experiment.
