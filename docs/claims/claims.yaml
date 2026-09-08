@@ -12161,6 +12161,32 @@
     licenses discounting self-solicited evidence during belief updates --
     see INV-012 Leg 4, a downstream consumer of this comparator's output
     that does not itself require resolving MAE-3.
+    2026-09-08 RETEST DESIGN LANDED (campaign W6-S5a, chip
+    chip-20260905-mech095-sd047-valid-retest-design). Governance's 2026-09-05 decision named
+    "the SD-047 retest that has never validly run" as the only V3-actionable debt. The design
+    artifact is evidence/planning/mech095_sd047_valid_retest_design_20260908.md. ITS FINDING,
+    so it is not re-derived: that debt is ALREADY DISCHARGED -- V3-EXQ-741 (2026-07-12) is a
+    VALID run (non_degenerate true, all 4 arms passed both guards) and is the reason
+    n_ceiling_hits moved 0 -> 1. What remains owed is NOT a further single-agent SD-047
+    letter, which the re-derive brake and this claim's own NON-DEGENERACY PRECONDITION both
+    refuse. The doc therefore specifies TWO designs, kept rigidly apart: DESIGN A, the
+    verdict-bearing retest, GATED on multi_agent_ecology_v5:MAE-3 and NOT QUEUED (its swept
+    variable is the presence/interactivity of a structurally-distinct OTHER, not SD-047
+    intensity -- V3-EXQ-741's sweep peaked at intensity 0, so intensity is not the lever); and
+    DESIGN B, a single-agent probe of the INV-012 Leg 4 consumer named in the paragraph above,
+    which is EXPLICITLY NOT a MECH-095 verdict (claim_ids_tested INV-012; MECH-095 carried as
+    related_claims, scoring_excluded, self-routing substrate_not_ready on any MECH-095-shaped
+    reading). The doc also fixes a five-class invalidity taxonomy over the 13 prior attempts, a
+    five-gate definition of "valid", and a MANDATORY measured dv_headroom probe that must run
+    FIRST (V3-EXQ-741's criterion asked for 0.04 where the informative arm had only 0.176 of
+    range left, i.e. ~23% of headroom, against a best observed effect of 0.028). NOTHING WAS
+    QUEUED. BOOKKEEPING DEFECT SURFACED, for governance rather than this session: three
+    different live values exist for MECH-095's ceiling-hit count -- n_ceiling_hits 1 (the
+    valid-hit tally), 12 (the mechanical R1-R3 counter in
+    failure_autopsy_V3-EXQ-1001_2026-09-04.md sec 6), and the pair "5 | 12" in
+    rederive_brake_run_dedup_blast_radius_20260819.md:97; the drift was already flagged in
+    failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.md:33 and remains
+    unreconciled. Status, confidence and ceiling_decision UNCHANGED by this session.
   heterogeneity_note: "Substrate-version confound: the EXQ-121 FAIL reflects insufficient z_self dimensionality (32-dim) and training scale for the AgencyComparator to outperform ablation; the mechanism is validated by EXQ-047k PASS (4-seed) and strong literature anchor (TPJ comparator); held at active/substrate_ceiling pending z_self scaling."
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (HARD): a test of MECH-095 is informative only on a
