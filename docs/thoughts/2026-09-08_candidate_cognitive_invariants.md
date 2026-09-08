@@ -1,15 +1,16 @@
 # Thought: Candidate Cognitive Invariants
 
 **Date:** 2026-09-08  
-**Status:** active evidence synthesis / draft — not digested  
+**Status:** active evidence synthesis / red-team draft — **not digested**  
 **Parent thought:** `docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md`  
 **Related architecture:** `docs/architecture/cognitive_contract.md`  
-**Evidence ledger:** `evidence/planning/cognitive_contract_invariant_ledger.v1.json`  
+**Canonical candidate ledger:** `evidence/planning/cognitive_contract_invariant_ledger.v1.json`  
 **Ledger schema:** `evidence/planning/cognitive_contract_ledger_schema.v1.json`  
-**Evidence pulls:** `evidence/planning/cognitive_contract_evidence_pull_2026-09-08.md`, `evidence/planning/cognitive_contract_evidence_pull_2026-09-08_b.md`  
-**Experimental preregistration:** `evidence/planning/cognitive_contract_narrowing_preregistration_2026-09-08.md`  
-**V3 substrate audit:** `evidence/planning/cognitive_contract_stage0_v3_substrate_audit_2026-09-08.md`  
 **Related language thought:** `docs/thoughts/2026-02-09_language.md`
+
+> **Red-team revision note.** This revision deliberately tries to make the candidate set smaller, harder to satisfy, and less vulnerable to circularity. It also corrects an important bookkeeping error in the first draft: several working decomposition hypotheses had accidentally been assigned `CCI-*` identifiers already belonging to different records in the canonical ledger. In this document, `CCI-*` identifiers now refer **only** to canonical ledger records. New decomposition terms remain unnumbered hypotheses unless and until governance explicitly adds them to the ledger.
+>
+> The previous draft also cited three planning artefacts — an evidence pull, a narrowing preregistration, and a Stage-0 V3 substrate audit — that are not present on the repository default branch at this revision. They are therefore treated here as **planned artefacts/checks, not completed evidence**, until they are materialised and governed.
 
 ---
 
@@ -17,677 +18,810 @@
 
 The parent thought, **Deriving the Cognitive Contract**, established a methodological claim: heterogeneous cognitive systems do not necessarily need identical latent geometries in order to belong to one coherent cognitive system. What they may need instead is reliable preservation of certain relations across representational handoffs.
 
-That left the dangerous question unresolved: **which relations?**
+That left the dangerous question unresolved:
 
-It would be easy to answer this by inspecting human language, introspection, the existing REE architecture, or familiar philosophical categories and then writing a plausible list. That would also be an excellent way to build our assumptions into the system and later rediscover them as apparent necessities.
+> **Which relations?**
 
-This thought therefore has a deliberately destructive purpose. It is not a catalogue of concepts that seem important. It is an attempt to **destroy, merge, demote, or reclassify candidate invariants until the smallest defensible cognitive contract remains**.
+It would be easy to inspect human language, introspection, the present REE architecture, or familiar philosophical categories and write a plausible list. That would also be an excellent way to build our assumptions into the organism and later rediscover them as apparent necessities.
+
+This thought therefore has a deliberately destructive purpose. It is not a catalogue of concepts that seem important. It is an attempt to **destroy, merge, demote, reclassify, or localise candidate invariants until the smallest empirically defensible set of cross-representational obligations remains**.
 
 The working proposition is:
 
-> A cognitive invariant is not a universal symbol, concept, feature, or shared latent coordinate. It is a relation whose recoverability across representational transformations may be required for heterogeneous cognitive processes to continue referring coherently to the same world, history, alternatives, and possible actions.
+> A cognitive invariant is not a universal symbol, concept, feature, or shared latent coordinate. It is a relation whose recoverability across some representational transformation is required for heterogeneous cognitive processes to continue referring coherently to the same world, history, alternatives, and possible actions.
 
-Nothing in the present candidate inventory is yet entitled to architectural status merely because it appears in this document.
-
----
-
-## 2. What would count as an invariant?
-
-A candidate should be treated as a possible cognitive invariant only when several conditions are at least plausible.
-
-First, it must matter **across a handoff**. A distinction that is useful only within one representation does not need to belong to a contract between representations.
-
-Second, it must be **recoverable rather than coordinate-identical**. E1, E2, E3, hippocampal representations, body-state representations and later systems may encode the same relation in very different geometries. The contract concerns what survives translation, not how it is locally implemented.
-
-Third, the relation should be **consumer-relevant**. No representation should be forced to preserve every possible distinction. The contract is conditional on what downstream cognition actually requires.
-
-Fourth, a candidate should survive an **irreducibility challenge**. If a downstream consumer can cheaply and reliably reconstruct a proposed invariant from simpler relations already present, the proposed invariant may be a composite rather than a primitive contract item.
-
-Fifth, the candidate must survive **nuisance controls and alternative explanations**. Apparent identity may merely be an object ID. Apparent time may merely be the task clock. Apparent confidence may merely be response strength. Apparent source may merely be familiarity. Apparent salience may merely be local surprise.
-
-Finally, a strong candidate should generate a **specific causal failure mode when lost**. If deleting it makes no distinctive difference, or if the effect disappears as soon as the system adapts or nuisance variables are controlled, it should not be promoted simply because it is decodable.
-
-This suggests five classes that must not be conflated:
-
-1. **Architectural invariant:** a relation that must remain recoverable across some heterogeneous cognitive handoffs.
-2. **Derived composite:** a useful higher-order distinction reconstructed from more primitive relations.
-3. **Embodied/ecological regularity:** recurrent because agents like us inhabit bodies and worlds with particular structures.
-4. **Cultural/linguistic convention:** recurrent because human communicative systems have conventionalised it.
-5. **Local representational convenience:** useful to one module or implementation but unnecessary as a cross-system contract.
-
-The present evidence ledger therefore keeps `architectural / embodied / cultural / uncertain` classification explicit and preserves counterevidence rather than allowing candidate accumulation to masquerade as progress.
+Nothing in the present candidate inventory is entitled to architectural status merely because it appears here.
 
 ---
 
-## 3. Method: triangulation with a promotion barrier
+## 2. The first red-team correction: there may be no single flat contract
 
-The evidence programme deliberately samples independent domains:
+The phrase **the cognitive contract** risks suggesting a universal packet header that every subsystem must transmit at every handoff. That is probably too strong.
 
-- cross-linguistic typology and grammar,
-- developmental cognition,
-- neuroscience,
-- comparative cognition,
-- artificial agents and representation learning,
-- REE-specific recordings and experiments,
-- causal lesion/ablation evidence,
-- counterevidence and simpler alternative explanations.
+A more defensible formulation is boundary-specific.
 
-Language remains useful as an **inverse probe**: recurrent grammatical distinctions can tell us what kinds of relations human minds repeatedly need to make communicable. But linguistic recurrence cannot promote a candidate by itself. Human languages share phylogeny, bodies, sensory systems, ecological constraints and social problems. A language universal may therefore be cognitively deep, merely embodied, or historically conventional.
-
-Likewise, the current REE architecture cannot be used as the source of truth. REE is an experimental system in which the hypotheses can be tested. It must not become circular evidence for distinctions that were placed there by design.
-
-A candidate should therefore face four promotion gates:
-
-### Gate A — recurrence
-The relation recurs across genuinely independent evidence domains or computational settings.
-
-### Gate B — transfer
-The relation remains useful under remapping, novel content, held-out worlds, new tasks, or different internal representational geometries.
-
-### Gate C — irreducibility
-The relation is not cheaply and reliably reconstructable from a smaller already-supported basis.
-
-### Gate D — causal necessity
-Selective loss or corruption produces the predicted cross-module failure, with acute and adaptation-aware lesions distinguished.
-
-Decodability alone is insufficient. Linguistic namability is insufficient. Familiarity is insufficient. REE implementation history is insufficient.
-
----
-
-## 4. The candidate field has already begun to shrink
-
-The first evidence passes suggest that the flat initial brainstorm was too large. Several familiar cognitive categories may be better understood as **composites produced from a smaller relational basis**.
-
-The current working arrangement is approximately:
-
-### Stronger first-line candidates
-
-- token continuity / identity,
-- equivalence / similarity relation,
-- predictive relational topology / transition,
-- temporal order / persistence,
-- source / ownership / provenance,
-- branch / obtaining / hypothetical status,
-- causal / control relation,
-- epistemic confidence / precision.
-
-### Plausible second-layer candidates
-
-- non-obtaining / expected absence,
-- ordered magnitude / comparison,
-- viability / preference.
-
-### Current likely composites or implementation-level products
-
-- agency,
-- perception,
-- memory,
-- imagination,
-- prediction,
-- goal,
-- commitment,
-- exact number,
-- kind / part,
-- salience / priority,
-- signed harm / benefit / value.
-
-This ordering is deliberately provisional. It is more important that the programme be capable of **demoting a persuasive candidate** than that the present ranking be correct.
-
----
-
-## 5. Candidate family I: referential and structural relations
-
-### 5.1 Token continuity / identity — `CCI-001 identity_continuity`
-
-The candidate is deliberately narrower than philosophical identity or selfhood. The question is whether heterogeneous systems need some recoverable relation equivalent to **this token now is continuous with that token then**.
-
-Without such a relation, a system may be unable to accumulate evidence about persistent entities, bind consequences back to earlier states, or maintain stable reference during representational change. A failure could look like tracker fragmentation: the same entity repeatedly becomes a new entity for downstream cognition.
-
-The counterargument is strong. Apparent identity may be supplied by low-level segmentation, object tracking, spatial continuity, body organisation, or environmental IDs. If so, identity need not be a separate contract primitive.
-
-The decisive test is therefore not whether identity can be decoded in one task. It is whether **multiscale continuity generalises across held-out content and representations after trivial trackers and task IDs have been removed**, and whether corrupting that relation causes selective continuity and credit-assignment failure.
-
-Current stance: **plausible, but unresolved**.
-
-### 5.2 Equivalence / similarity — `CCI-006 relational_equivalence`
-
-A cognitive system frequently needs to preserve that two states, objects, actions, episodes or patterns are equivalent in some task-relevant respect even when their raw features differ.
-
-This is one of the most interesting points of contact with work on relational bottlenecks: abstraction can improve when downstream systems receive relations rather than all object-specific particulars. That literature is a useful positive control, not proof that REE requires an explicit equivalence primitive.
-
-The difficult alternative is that similarity is simply what a good latent geometry already supplies. If downstream consumers can robustly derive equivalence from distance, topology, or learned metrics, adding a special contract item would be redundant.
-
-The candidate therefore survives only if relation-specific generalisation appears across held-out objects/tasks **after controlling raw latent distance and content features**, and if destroying the relation selectively damages analogy or transfer.
-
-Current stance: **promising relational family; primitive status unresolved**.
-
-### 5.3 Temporal order / persistence — `CCI-002 temporal_order`
-
-A system that remembers, predicts or plans appears to require some way to preserve earlier/later, duration, persistence or sequence.
-
-But time is especially vulnerable to false promotion. An experiment can accidentally provide temporal order through an episode counter, environment clock, sequence index, recurrent state, spatial progression or event container. A neural or artificial system may never need an explicit scalar notion of time.
-
-The deeper candidate may therefore be **ordered succession** rather than clock time. What matters may be that one state precedes or follows another in a trajectory and that some tokens persist across that ordering.
-
-Promotion should require decoding and causal usefulness of temporal relation under nuisance control for external clocks and event labels, plus predicted sequencing/rollout errors after lesion.
-
-Current stance: **likely important relation, but representation and primitive status uncertain**.
-
-### 5.4 Predictive relational topology / transition — `CCI-007 transition_topology`
-
-This candidate currently looks unusually useful for REE.
-
-The relation is not an object's coordinate. It is the structure of **what can follow what**: adjacency, successor, reachability, fork, transition probability, controllable path, or predictive neighbourhood. Such structure can survive large remappings of raw sensory representation while retaining exactly the information a predictor or planner needs.
-
-This makes transition topology a particularly strong test of invariant-preserving translation. If the world is remapped but the successor/reachability structure is conserved, a representation that genuinely captures topology should transfer better than one that merely memorises coordinates or appearances.
-
-The alternative is that transition structure belongs inside a predictive dynamics model rather than in any handoff contract. If every downstream system can reconstruct it cheaply from local dynamics, explicit preservation is unnecessary.
-
-The decisive question is therefore whether a heterogeneous consumer loses planning/prediction competence when topology is selectively distorted despite preserved local state features, and whether the relevant relation transfers across remapped worlds.
-
-Current stance: **one of the strongest experimentally tractable candidates**.
-
----
-
-## 6. Candidate family II: epistemic and modal relations
-
-This family may turn out to be where familiar cognitive modes are decomposed most dramatically.
-
-### 6.1 Source / provenance — `CCI-008 source_provenance`
-
-A representation can contain the same apparent content while differing in where that content came from: direct observation, another subsystem, replay, inference, imagination, prediction, testimony, or cached memory.
-
-The key claim is not that the brain necessarily attaches a symbolic source tag. It is that **some relation to generator or evidence source may need to remain recoverable** when content crosses systems.
-
-The obvious alternative is that source is reconstructed probabilistically from familiarity, sensory detail, confidence, content statistics and context. If so, provenance may be a derived judgment rather than a primitive contract relation.
-
-This should be tested with same-content states in which source is manipulated while confidence and content are controlled.
-
-Current stance: **important candidate family; likely needs merging analysis with ownership**.
-
-### 6.2 Source / ownership — `CCI-011 source_ownership`
-
-Ownership asks a slightly different question from provenance: was a state, action, proposition or trajectory generated by self, other, environment, or another subsystem?
-
-The distinction may be critical for credit assignment, agency, replay routing and social attribution. But it may also be inseparable from provenance once nuisance factors are removed.
-
-A good experiment should swap self-/other-generated or perceived/internally-generated status while matching the content and confidence of the state. If downstream weighting, routing or learning fails in a characteristic way, ownership gains support. If ordinary provenance plus content explains everything, the two candidates should merge.
-
-Current stance: **likely part of a source family; separate primitive status unproven**.
-
-### 6.3 Branch / obtaining status — `CCI-012 branch_obtaining_status`
-
-One of the most consequential distinctions for a predictive organism is whether a represented state **obtains**, is merely expected, is imagined, is counterfactual, is a candidate branch, or has been rejected.
-
-This is potentially more fundamental than the familiar categories of perception, memory, imagination and prediction. Those modes may be partly reconstructed from combinations of source, temporal position, branch status, confidence and update state.
-
-REE gives this candidate a particularly clean failure prediction: if an imagined or counterfactual trajectory is replayed or learned from as though it had actually occurred, the organism should develop confabulation-like world-model drift or incorrect credit assignment.
-
-The key reduction challenge is whether branch status is independently necessary once source, time and confidence are known.
-
-Current stance: **promising candidate; high value for direct REE lesion testing**.
-
-### 6.4 Epistemic confidence / precision — `CCI-003 confidence_precision`
-
-Cognition does not merely represent content; it weights content differently according to reliability, expected precision or confidence. That weighting affects learning, action selection, conflict resolution and belief update.
-
-The important caution is that **uncertainty, neural precision, metacognitive confidence and reportable task confidence may not be one thing**. Evidence for one should not automatically promote a generic CONFIDENCE primitive.
-
-For the contract, the narrower question is whether a receiving system needs some recoverable estimate of the reliability or weighting of incoming information that cannot be reconstructed locally from the content itself.
-
-A selective lesion should therefore produce characteristic over-weighting, under-weighting or miscalibration without simply deleting the represented content.
-
-Current stance: **one of the stronger candidates, with internal decomposition still required**.
-
-### 6.5 Epistemic update / commitment status — `CCI-013 epistemic_update_commitment`
-
-Two representations may have the same content and similar confidence while differing profoundly in cognitive status: one may be an observation eligible for world-model update, another a hypothesis under evaluation, another a rejected possibility retained for counterfactual reasoning.
-
-This suggests a possible contract dimension for **what the system is currently entitled or instructed to do with the representation**.
-
-The reduction challenge is severe. Update status may be recoverable from source, branch status, confidence, freshness/update clocks, or local task state. If so, no new primitive is needed.
-
-The decisive assay requires same-content, same-confidence states with different update eligibility or commitment status. Only an independently decodable state with causal downstream consequences deserves promotion.
-
-Current stance: **hold as candidate, but presume composite until shown otherwise**.
-
-### 6.6 Non-obtaining / expected absence — `CCI-005 expected_absence`
-
-The original temptation was to write **negation**. The evidence so far counsels against that.
-
-Nonlinguistic systems can respond specifically when an expected item or event fails to occur. That supports a relation closer to:
-
-> X was expected in this position or branch, and X did not obtain.
-
-This is much weaker than a universal logical `NOT`, and that weakness is useful. It may be sufficient for an organism to learn omission, failed expectation, absent reward, missing conspecific, blocked transition or violated prediction. Abstract negation could later emerge from repeated use of this more primitive relation.
-
-The major alternative is that no absence relation is required at all: ordinary prediction error or surprise may account for the behaviour.
-
-Promotion therefore requires an omission-with-held-expectation signal that survives controls for input energy, surprise and salience, and whose loss selectively impairs reasoning about omitted expected events.
-
-Current stance: **retain in reduced form; do not promote abstract negation**.
-
----
-
-## 7. Candidate family III: agentive and regulatory relations
-
-### 7.1 Causal / control relation — `CCI-004 causal_control`
-
-Agents need more than passive transition knowledge. Some transitions depend on their interventions; others happen independently. A useful relation may therefore distinguish **what follows** from **what can be made to follow by action**.
-
-This is closely related to agency but need not be equivalent to it. Agency may be a composite built from intervention sensitivity, ownership, transition topology and value/viability.
-
-The alternative is that a sufficiently rich action-conditioned transition model already contains everything required; no separate causal/control invariant is necessary.
-
-A decisive assay therefore needs intervention sensitivity after controlling for ordinary temporal succession, similarity and identity. If lesion damages action-effect learning or counterfactual control while leaving passive prediction relatively intact, the candidate strengthens.
-
-Current stance: **important relational hypothesis; likely coupled to transition topology**.
-
-### 7.2 Viability / preference — `CCI-009 value_viability`
-
-This candidate has become more interesting precisely because the first evidence pass weakened the naive version of it.
-
-REE naturally speaks in terms of harm, benefit and value. But homeostatic reinforcement-learning approaches show that signed reward can arise from regulatory structure: an organism has preferred or viable states, and movement toward or away from those states generates reward-like signals.
-
-Two rival hypotheses must therefore remain alive:
-
-**H1 — signed value is itself a contract invariant.**  
-A receiving system needs something equivalent to positive/negative value or harm/benefit preserved across handoffs.
-
-**H2 — viability/preferred-state relation is deeper.**  
-The system needs a representation of viable/preferred state plus directional movement relative to it; signed value is derived.
-
-REE can discriminate these. If a system preserves viability distance and change direction while signed value is removed, does behaviour remain coherent? Conversely, can signed value substitute for richer viability relations across new conditions?
-
-Current stance: **retain the viability/preference family; actively try to demote signed value as a primitive**.
-
-### 7.3 Goal / commitment — `CCI-010 goal_commitment`
-
-Goals feel fundamental because they dominate deliberate cognition. That does not mean GOAL is a primitive contract item.
-
-A goal may be reconstructed from:
-
-- a represented future state,
-- viability or preference,
-- persistence over time,
-- action/control structure,
-- confidence,
-- update/commitment status.
-
-If those relations are already available, an explicit goal representation may be a useful local compression rather than something every cognitive handoff must preserve.
-
-The proper experiment is therefore to control for value, confidence and transition structure and ask whether an additional persistent commitment state remains necessary.
-
-Current stance: **likely composite until proven otherwise**.
-
-### 7.4 Salience / priority — `CCI-014 salience_priority`
-
-Salience and attention are clearly important for cognition, but their importance does not automatically make them semantic invariants.
-
-A priority or gain signal may instead belong to the control plane: it tells a subsystem **what to process now**, rather than **what the represented content means**. If each subsystem can recompute priority from local surprise, value, need and confidence, it need not cross the contract at all.
-
-The candidate should only survive if priority/gain itself must be communicated across heterogeneous systems and if its lesion produces coordination failure while content remains intact.
-
-Current stance: **more likely control-policy information than deep representational invariant; retain as a challenge case**.
-
----
-
-## 8. Compression hypotheses: familiar cognitive modes may not be primitives
-
-One of the strongest consequences of the evidence synthesis is that familiar words for modes of cognition may name **regions in a lower-dimensional relational space** rather than independent primitive states.
-
-A useful provisional decomposition is:
+For a handoff from subsystem `A` to subsystem `B`, define a set of relations that `B` must be able to recover:
 
 ```text
-cognitive mode
-    ≈ source / ownership
-      × temporal relation
-      × branch / obtaining status
-      × update / commitment status
-      × confidence / precision
+I_AB = relations required by B that B cannot cheaply and reliably reconstruct locally
 ```
 
-For example, very roughly:
+Different interfaces may therefore preserve different things. A sensory-to-world-model handoff, a hippocampal replay handoff, an E1-to-E2 predictive handoff, and a control-plane handoff need not carry the same relational payload.
 
-- **perception** may be present-directed, externally sourced, obtaining, update-eligible content;
-- **memory** may be past-directed, internally reconstructed but externally anchored, treated as having obtained;
-- **imagination** may be internally generated, non-obtaining or uncommitted content;
-- **prediction** may be future-directed, candidate-branch content with graded confidence;
-- **counterfactual** may be explicitly non-obtaining branch content conditioned on an alternative premise.
+The eventual cognitive contract may be better represented as a family of typed obligations:
 
-These descriptions are not definitions to hard-code. They are **reduction hypotheses**. Their value is experimental: if the modes can be reconstructed from smaller relations and lesions of those relations reproduce mode-confusion errors, then PERCEPTION, MEMORY, IMAGINATION and PREDICTION should not be placed separately into the deepest cognitive contract.
+```text
+C = { A -> B : I_AB, tolerated distortion, receiver capability, fallback behaviour }
+```
 
-This also offers a possible computational account of source-monitoring and reality-monitoring errors. Failure need not mean loss of a dedicated REALITY variable; it may arise from corruption in the relational combination by which cognitive status is inferred.
+A **deep shared core**, if one exists, should emerge as the relations repeatedly required across many heterogeneous interfaces — not be assumed beforehand.
+
+This matters immediately for candidates such as value, salience, confidence and commitment. They may be crucial at particular boundaries without being universal invariants of every internal representation.
 
 ---
 
-## 9. Other likely composites
+## 3. The second red-team correction: counting primitives is not minimality
+
+The first draft implicitly treated a shorter vocabulary as progress. That is useful but dangerously incomplete.
+
+Any sufficiently rich cognitive state can be redescribed as one giant relation. Likewise, an arbitrarily complicated decoder can reconstruct many distinctions from a single continuous scalar. Declaring that everything has been reduced to “one typed graph” or “one latent” would therefore be formally compact and scientifically empty.
+
+A reduction only counts if it reduces **total transferable complexity** without smuggling the lost distinctions into:
+
+- the definition of the remaining relation,
+- a more powerful decoder,
+- hidden context tags,
+- unconstrained numerical precision,
+- recurrent hidden state,
+- task-specific side channels,
+- or expensive reconstruction machinery.
+
+The relevant notion of minimality is therefore closer to **minimal sufficient transferable information under constrained encoders and receivers**, not “fewest English nouns”.
+
+A future mathematical treatment should make this explicit with a rate/description-length or rate-distortion objective. Informally:
+
+```text
+contract cost
+    ~= information rate
+     + encoder/decoder complexity
+     + context/side-channel complexity
+     + reconstruction distortion
+     + computational/latency cost
+     + robustness cost
+```
+
+A candidate has genuinely been reduced only if the replacement lowers this total cost while preserving downstream function and robustness.
+
+This is an anti-cheating rule for the entire programme.
+
+---
+
+## 4. Canonical ledger candidates: frozen names and identifiers
+
+The current machine-readable ledger is the canonical bookkeeping source. The fourteen seeded candidates are:
+
+| ID | Canonical candidate |
+|---|---|
+| `CCI-001` | identity continuity |
+| `CCI-002` | temporal relation |
+| `CCI-003` | reality status |
+| `CCI-004` | agency |
+| `CCI-005` | confidence / precision |
+| `CCI-006` | equivalence / similarity |
+| `CCI-007` | relational topology |
+| `CCI-008` | magnitude / order |
+| `CCI-009` | value / valence |
+| `CCI-010` | goal relation |
+| `CCI-011` | negation / absence |
+| `CCI-012` | alternative branch status |
+| `CCI-013` | commitment status |
+| `CCI-014` | priority / relevance |
+
+These are **candidates**, not primitives.
+
+Several useful ideas below — source, provenance, ownership, generative lineage, intervention/control, viability and correspondence — are **working decomposition hypotheses**. They do not receive `CCI-*` identifiers merely because they may eventually explain one or more ledger candidates.
+
+This distinction is important for REE_assembly ingestion: a thought may speculate freely, but it must not silently mutate the governed candidate ledger by identifier collision.
+
+---
+
+## 5. What would count as a genuine invariant?
+
+A candidate should survive all of the following challenges.
+
+### 5.1 Handoff relevance
+The distinction must matter across at least one heterogeneous interface. A feature useful only inside a local representation is not automatically part of a cognitive contract.
+
+### 5.2 Recoverability rather than coordinate identity
+E1, E2, E3, hippocampal representations, body-state representations and later systems may encode the same relation in very different geometries. The question is whether the receiver can recover what matters, not whether latent coordinates align.
+
+### 5.3 Consumer relevance
+No interface should preserve every distinction. The receiver's actual downstream needs determine the obligation.
+
+### 5.4 Irreducibility under constrained reconstruction
+If the receiver can cheaply, robustly and rapidly reconstruct a candidate from an already-supported smaller basis, the candidate is probably a composite.
+
+### 5.5 Transfer
+The relation should survive remapped objects, held-out worlds, altered surface features, novel tasks, or changed latent parameterisations when its underlying structure is preserved.
+
+### 5.6 Causal use
+Selective corruption should produce a predicted cross-module failure. Mere correlation or post-hoc decodability is insufficient.
+
+### 5.7 Nuisance resistance
+The result must survive removal of trivial proxies such as task clocks, coordinates, object IDs, reward labels, response magnitude, episode indices, fixed branch IDs, and local surprise.
+
+### 5.8 Computational availability
+Information-theoretic reconstructability is not enough. A relation may be derivable in principle but unavailable to the actual receiver within its compute, latency, sample and robustness constraints.
+
+This last criterion creates an important distinction:
+
+- **logical reducibility** — a mathematician can derive it;
+- **information-theoretic reducibility** — the needed information exists elsewhere;
+- **computational reducibility** — the receiver can derive it with plausible resources;
+- **operational reducibility** — the receiver can derive it reliably and quickly enough for the behaviour in question.
+
+Only the last two are decisive for a functioning cognifold.
+
+---
+
+## 6. Decodability is not recoverability
+
+A powerful nonlinear probe can often extract information that the downstream cognitive system itself cannot access. This creates a major false-positive route.
+
+The programme should therefore distinguish:
+
+```text
+information present in latent
+        !=
+information cheaply decodable by a researcher
+        !=
+information recoverable by the receiving subsystem
+        !=
+information causally used by that subsystem
+```
+
+Evidence should become progressively stronger in that order.
+
+Where possible, the relevant test should be **consumer-accessible recoverability**:
+
+- use the receiver itself as the decoder;
+- or restrict probes to a receiver-matched decoder class;
+- report probe complexity and sample efficiency;
+- compare against nuisance-matched baselines;
+- and confirm causal use by perturbing the relation at the handoff.
+
+A relation that is recoverable only by a large external probe should not be promoted as a cognitive contract invariant.
+
+---
+
+## 7. Red-team compression: from fourteen candidates toward three structural families and two fields
+
+The strongest result of the present pass is that the fourteen ledger candidates do **not** currently look like fourteen independent primitives.
+
+A more parsimonious hypothesis is that much of the apparent inventory may be generated from **three structural families plus two attached weighting fields**.
+
+This is not a replacement ledger. It is a destructive model to test against the ledger.
+
+### 7.1 Structural family A — correspondence / binding
+
+Working hypothesis:
+
+> heterogeneous systems require some way to preserve which token, event, state or relation in one representation corresponds to which in another or across time/context.
+
+This may absorb much of:
+
+- `CCI-001` identity continuity,
+- `CCI-006` equivalence / similarity.
+
+Identity could be a special case of correspondence constrained by continuity:
+
+```text
+identity-like relation
+    ~= correspondence
+     + continuity constraints
+     + persistence through transformation
+```
+
+Equivalence could be correspondence under a specified respect or transformation:
+
+```text
+equivalence-like relation
+    ~= correspondence under task/relation-preserving transformation
+```
+
+The merger must not be accepted merely because both can be described with the word “correspondence”. Identity should remain separate if persistent credit assignment, tracking or episodic binding requires information that equivalence does not supply.
+
+**Red-team verdict:** strong merge candidate; preserve both canonical records until a controlled reduction succeeds.
+
+### 7.2 Structural family B — directed event / trajectory structure
+
+Working hypothesis:
+
+> what matters may not be TIME and TOPOLOGY as separate primitives, but a structured relation among event instances: succession, persistence, reachability, branching, adjacency, duration and transition.
+
+This may absorb much of:
+
+- `CCI-002` temporal relation,
+- `CCI-007` relational topology,
+- part of `CCI-004` agency when transitions are action-conditioned.
+
+A simple graph over state values is not enough. Recurrent states create cycles; the same state may occur at different moments; simultaneity and duration may matter. The relevant representation may need event tokens, a partial order, interval relations, or a trajectory structure rather than a scalar clock.
+
+A useful decomposition is:
+
+```text
+directed event structure
+    = event/token instances
+    + ordered or partially ordered succession
+    + reachable transition relations
+    + persistence/correspondence across transitions
+    + optional typed intervention edges
+```
+
+If action-labelled edges are sufficient to reconstruct controllability, much of explicit AGENCY may disappear from the deepest contract.
+
+**Red-team verdict:** strong merge candidate for temporal relation + topology; agency should be forced to survive an intervention-labelled transition account before being treated as primitive.
+
+### 7.3 Structural family C — generative context / anchoring / lineage
+
+Working hypothesis:
+
+> many epistemic-mode distinctions may reduce to where a representation sits in a generative lineage: which process produced it, which branch it belongs to, whether that branch is anchored to the current sensory worldline, and how it relates to other generated alternatives.
+
+This family may explain much of:
+
+- `CCI-003` reality status,
+- `CCI-012` alternative branch status,
+- source/provenance distinctions not currently represented as a canonical CCI record,
+- self/other or ownership distinctions where these are needed.
+
+Instead of a binary REALITY bit, a system may preserve relations such as:
+
+```text
+current sensory-anchored lineage
+past reconstructed lineage
+future predicted branch
+internally generated hypothetical branch
+counterfactual branch conditioned on altered premise
+externally communicated lineage
+```
+
+“Actual” may then be a relation to the currently sensory-anchored worldline rather than a primitive category. Perception, memory, imagination, prediction and counterfactual reasoning could occupy different regions of this lineage structure.
+
+This family also offers a more precise source-monitoring hypothesis: confusion may arise because lineage/anchoring information is degraded, not because a dedicated REALITY neuron or symbol has been lost.
+
+**Red-team verdict:** strong reduction target for reality status + alternative branch status; provenance/ownership should remain unnumbered decomposition hypotheses until independently justified.
+
+### 7.4 Attached field D — epistemic weight
+
+`CCI-005 confidence / precision` may not be a structural relation of the same kind at all.
+
+A receiver often needs to know not just what content arrived but how reliable the producer believes that content to be. Yet “confidence”, “uncertainty”, “precision”, “gain” and “metacognitive confidence” are not automatically the same quantity.
+
+A better working hypothesis is an **epistemic weighting field** over states, edges or translations.
+
+This field becomes a contract obligation only when the producer has reliability information that the receiver cannot cheaply reconstruct locally.
+
+Important subcases must be distinguished:
+
+- uncertainty about world state,
+- uncertainty about a predicted transition,
+- confidence in a memory/source,
+- confidence in a translation itself,
+- precision/gain used by control machinery,
+- reportable metacognitive confidence.
+
+**Red-team verdict:** keep `CCI-005`, but reclassify provisionally from “content primitive” to “possibly boundary-specific epistemic field”. Do not collapse these subtypes without evidence.
+
+### 7.5 Attached field E — regulatory / viability weight
+
+`CCI-009 value / valence` may likewise be a weighting field rather than a universal semantic primitive.
+
+Signed reward or harm/benefit may emerge from a deeper relation between state/trajectory and organism viability or preferred regulatory ranges:
+
+```text
+regulatory value
+    ~= predicted relation to viable/preferred states
+     + direction/rate of change
+     + horizon
+```
+
+This could in turn help derive:
+
+- `CCI-010` goal relation,
+- `CCI-014` priority / relevance,
+- some forms of persistent action organisation.
+
+But viability is itself strongly embodied. It may be essential to REE as an organism while not belonging to the universal core of every cognitive handoff.
+
+**Red-team verdict:** keep value/valence as a ledger candidate, but test it as an embodied/regulatory field and boundary-specific obligation rather than assuming universal contract status.
+
+---
+
+## 8. Candidate-by-candidate red-team adjudication
+
+### `CCI-001` identity continuity
+**Attack:** reduce to correspondence/binding plus continuity constraints over directed event structure.  
+**Why it may survive:** persistent credit assignment and episodic integration may require continuity information that ordinary similarity cannot provide.  
+**Current status:** strong candidate family, primitive status unproven.
+
+### `CCI-002` temporal relation
+**Attack:** reduce scalar or symbolic time to ordered event/trajectory structure.  
+**Why it may survive:** duration, simultaneity, recurrence and temporal distance may require more than reachability.  
+**Current status:** likely necessary relation family; representation unresolved.
+
+### `CCI-003` reality status
+**Attack:** derive from generative lineage + sensory anchoring + branch history.  
+**Why it may survive:** receivers may need a fast explicit actuality signal when lineage reconstruction is too expensive or ambiguous.  
+**Current status:** strong demotion/merge candidate.
+
+### `CCI-004` agency
+**Attack:** derive from action-labelled transition structure + correspondence/ownership + intervention sensitivity.  
+**Why it may survive:** self-generated action, causal responsibility and controllability may dissociate despite identical transition statistics.  
+**Current status:** presume composite until intervention-controlled lesions show irreducible residue.
+
+### `CCI-005` confidence / precision
+**Attack:** separate into multiple epistemic/control quantities and test whether receivers can infer each locally.  
+**Why it may survive:** producer-private uncertainty often cannot be recovered from content alone.  
+**Current status:** plausible boundary field; generic CONFIDENCE primitive rejected.
+
+### `CCI-006` equivalence / similarity
+**Attack:** derive from correspondence under transformation or receiver-local geometry.  
+**Why it may survive:** relational generalisation may require explicit similarity/equivalence not preserved by raw latent distance.  
+**Current status:** strong merge candidate with correspondence/binding.
+
+### `CCI-007` relational topology
+**Attack:** fold into directed event/trajectory structure.  
+**Why it may survive:** topology can remain invariant under large sensory remappings and may be exactly what planners/predictors require.  
+**Current status:** one of the strongest experimentally tractable relation families.
+
+### `CCI-008` magnitude / order
+**Attack:** derive from metric/embedding/comparator machinery local to the receiver.  
+**Why it may survive:** ordinal structure may transfer where metric details do not.  
+**Current status:** keep in ledger; presently outside the smallest core hypothesis.
+
+### `CCI-009` value / valence
+**Attack:** derive signed value from viability/preference + predicted direction of change.  
+**Why it may survive:** cross-module coordination may require a compact signed regulatory signal even if it is derived upstream.  
+**Current status:** regulatory field candidate, likely embodied/boundary-specific.
+
+### `CCI-010` goal relation
+**Attack:** derive from preferred future + persistence + controllability + regulatory weighting.  
+**Why it may survive:** persistent commitment can display hysteresis not captured by instantaneous value.  
+**Current status:** likely composite until proven otherwise.
+
+### `CCI-011` negation / absence
+**Attack:** reduce to expectation + context/time window + failure to obtain.  
+**Why it may survive:** explicit absence can become useful when omitted events themselves must be represented and communicated.  
+**Current status:** abstract logical negation strongly demoted; expected-absence relation remains testable.
+
+### `CCI-012` alternative branch status
+**Attack:** derive from generative lineage/branch structure.  
+**Why it may survive:** treating counterfactual branches as actual is catastrophically consequential; a cheap explicit branch marker may be operationally necessary.  
+**Current status:** strong candidate family, likely merge with generative context rather than independent primitive.
+
+### `CCI-013` commitment status
+**Attack:** treat as local control/policy state derived from confidence, value, persistence and branch status.  
+**Why it may survive:** two equally valued/confident alternatives can differ in whether one has been selected for persistent policy execution.  
+**Current status:** boundary/control candidate, not established world-content invariant.
+
+### `CCI-014` priority / relevance
+**Attack:** derive from expected epistemic gain + regulatory consequence + urgency + control needs.  
+**Why it may survive:** cross-system scheduling may require explicit communicated priority.  
+**Current status:** likely control-plane field or derived scheduler quantity rather than deep semantic invariant.
+
+---
+
+## 9. Familiar cognitive modes as composites
+
+The red-team compression makes a stronger version of the earlier decomposition possible.
+
+A cognitive mode may be reconstructed from:
+
+```text
+mode
+    ~= generative lineage / anchor
+     + location in event/trajectory structure
+     + branch relation
+     + epistemic weight
+     + local update/control state
+```
+
+Very roughly:
+
+- **perception-like:** present sensory-anchored lineage;
+- **memory-like:** past event structure reconstructed into the present but anchored to a lineage believed to have obtained;
+- **imagination-like:** internally generated lineage without commitment to current-world anchoring;
+- **prediction-like:** future branch generated from current anchored state with graded epistemic weight;
+- **counterfactual-like:** branch generated under an explicitly altered premise and marked as non-current lineage.
+
+These are not definitions to hard-code. They are reduction hypotheses.
+
+A powerful result would be that mode labels can be removed entirely while downstream systems continue to distinguish these cases from the lower-dimensional relational structure. A falsifying result would be that same-structure states still require an irreducible mode signal to avoid systematic confusion.
+
+---
+
+## 10. Agency, goal, negation and salience as deliberately vulnerable composites
 
 ### Agency
 
-A provisional decomposition is:
-
 ```text
-agency
-    ≈ transition topology
-      + intervention/control sensitivity
-      + source/ownership
-      + temporal continuity
-      + viability/relevance
+agency-like organisation
+    ~= action-labelled event/transition structure
+     + intervention sensitivity
+     + correspondence/ownership where required
+     + regulatory consequence
 ```
 
-An organism can therefore develop richer agency without requiring a single primitive AGENCY coordinate.
+The key assay is whether action-effect competence survives without a dedicated agency representation.
 
 ### Goal
 
 ```text
-goal
-    ≈ candidate future state
-      + viability/preference
-      + persistence
-      + control possibility
-      + commitment/update status
-```
-
-### Signed value
-
-```text
-signed value
-    ≈ distance from preferred/viable state
-      + direction of predicted or actual change
+goal-like organisation
+    ~= candidate future state
+     + regulatory preference/viability
+     + persistence over time
+     + controllability
+     + policy/commitment state
 ```
 
 ### Negation-like processing
 
 ```text
-negation-like processing
-    ≈ represented expectation
-      + branch/obtaining status
-      + expected item fails to obtain
+absence-like representation
+    ~= expected event/token
+     + defined context/time window
+     + failure to obtain
 ```
 
-### Exact number
+This is intentionally weaker than abstract logical `NOT`.
 
-Exact number should remain outside the minimal basis until there is evidence that it cannot be reduced to object individuation, ordered magnitude, comparison and learned symbolic machinery. The existence of human number grammar is not enough.
-
-### Kind / part relations
-
-These may turn out to be genuine structural invariants, but they currently have less direct support in the ledger than identity, equivalence and transition. They should be investigated rather than assumed.
-
----
-
-## 10. A provisional minimal basis hypothesis
-
-The current evidence is not sufficient to declare a minimal cognitive contract. It is sufficient to formulate a **minimal-basis hypothesis to attack**.
-
-### Structural / referential
-
-1. **identity continuity** — what remains the same token across change,
-2. **relational equivalence** — what counts as similar/equivalent in a relevant respect,
-3. **temporal order** — earlier/later/persistence or ordered succession,
-4. **transition topology** — what can follow/reach what.
-
-### Modal / epistemic
-
-5. **source / ownership** — where content or action came from,
-6. **branch / obtaining status** — actual/candidate/counterfactual/non-obtaining,
-7. **confidence / precision** — how strongly the information should be weighted.
-
-### Agentive / regulatory
-
-8. **intervention / control** — which transitions are action-dependent,
-9. **viability / preference** — relation to preferred or survivable states.
-
-### Possible additional relation, currently under pressure to reduce
-
-10. **update / commitment status** — whether content is eligible to alter the persistent model or action policy.
-
-This is not a ten-item specification. It is a compact target for destructive testing. The expected scientific result is that some items merge, some split, some disappear and some currently missing relation proves necessary.
-
----
-
-## 11. Candidate dependency graph
-
-Thinking in dependencies rather than a flat vocabulary may be more productive:
+### Salience / priority
 
 ```text
-identity + temporal order
-    └── persistence / continuity
-
-identity + equivalence + transition topology
-    └── transferable world structure
-
-source/ownership + time + branch status + confidence + update status
-    └── cognitive mode / epistemic status
-       ├── perception-like
-       ├── memory-like
-       ├── imagination-like
-       ├── prediction-like
-       └── counterfactual-like
-
-transition topology + intervention + ownership
-    └── agency / controllability
-
-viability + predicted state + temporal persistence + control
-    └── goal-like organisation
-
-expectation + branch/non-obtaining
-    └── omission / negation-like processing
+priority-like signal
+    ~= expected epistemic consequence
+     + expected regulatory consequence
+     + urgency
+     + control bottleneck
 ```
 
-A dependency graph creates stronger tests than a list. If a proposed composite remains fully functional when its supposed higher-level label is absent but the lower-level relations survive, the higher-level item should be demoted. If the composite cannot be reconstructed, the graph is wrong and the missing relation becomes a new candidate.
+If a downstream subsystem can recompute this cheaply, `CCI-014` does not need to cross that handoff.
 
 ---
 
-## 12. The relational bottleneck result changes the experiment
+## 11. A warning against the vacuous “one graph” solution
 
-Independent artificial-system work on relational bottlenecks is important because it demonstrates that abstraction can improve when information flow is constrained toward relational structure rather than object-specific content.
+The three structural families can themselves be written as one typed relational graph with weighted nodes and edges. This is mathematically convenient and scientifically dangerous.
 
-For REE, however, the more interesting hypothesis is stronger:
+It would be trivial to say:
 
-> If several heterogeneous downstream consumers must share a narrowing representation, optimisation pressure may discover which relations are worth preserving even when those relations are not labelled in advance.
+> cognition only needs one invariant: the full typed relation graph.
 
-This is why the preregistered comparison matters:
+That is not a reduction. It merely renames the entire problem.
+
+A valid collapse must satisfy three requirements:
+
+1. **Lower total description/rate cost** under fixed assumptions about precision and decoder power.
+2. **Preserve discriminating predictions** — the reduced model must still predict distinct failure signatures when different information is corrupted.
+3. **Improve transfer or efficiency** — the reduced representation should generalise or communicate better than an unconstrained equivalent-capacity code.
+
+Therefore “correspondence”, “event structure” and “generative lineage” should themselves be attacked. They are useful only if they compress multiple candidates without hiding equal complexity inside their type system.
+
+---
+
+## 12. Lesions, ablations and compensation: a stronger causal standard
+
+Deleting a latent coordinate and observing worse behaviour is not enough.
+
+Ablation can fail in two opposite directions:
+
+- it can cause an **off-manifold lesion**, damaging many unrelated computations and falsely making a candidate look necessary;
+- or the organism can **compensate** through an alternative pathway, falsely making the original mechanism look unnecessary if only post-adaptation behaviour is examined.
+
+For each candidate or reduced family, the causal assay should therefore include where feasible:
+
+1. acute perturbation with weights frozen;
+2. matched random/subspace information-loss controls;
+3. within-manifold counterfactual replacement or resampling rather than only zeroing;
+4. nuisance-matched perturbations preserving total energy/rate;
+5. receiver-side recoverability measurement;
+6. behavioural and internal error signatures;
+7. continued lesion with controlled adaptation;
+8. measurement of alternative-pathway recruitment and recovery;
+9. restoration/rescue where possible.
+
+The interpretation must distinguish:
+
+- **normally used**,
+- **causally important in the intact system**,
+- **uniquely necessary**,
+- **replaceable after adaptation**,
+- **functionally recoverable through compensation**.
+
+A compensated system may show that the *function* is important while the original *mechanism* is not unique. That is particularly relevant to a distributed cognifold, where multiple realisation may be a feature rather than a nuisance.
+
+---
+
+## 13. The narrowing latent stack becomes a discovery experiment, not an assumption
+
+The user's narrowing-stack intuition now gives this thought a powerful independent test.
+
+Suppose successive latent levels are constrained so that less transferable information can survive at greater height. If several heterogeneous consumers must continue to predict, reconstruct, remember and control successfully, then representations useful only to one local geometry should become increasingly expensive. Relations useful across consumers, contexts and remappings may preferentially survive.
+
+But **fewer nodes is not by itself an information bottleneck**. A small number of unconstrained continuous variables can still carry a large amount of information.
+
+The experiment therefore needs explicit capacity pressure such as:
+
+- finite numerical precision,
+- injected noise,
+- quantisation,
+- sparsity/activity budget,
+- entropy or rate regularisation,
+- variational/KL constraints,
+- or an explicit rate-distortion budget.
+
+A cleaner family of conditions is:
 
 ```text
-A  wide representation control
-B  narrowing alone
-C  narrowing for one consumer only
-D  imposed relational bottleneck — positive control
-E  unlabeled multi-consumer narrowing — REE hypothesis
+A  wide / weakly constrained control
+B  width-narrowed only
+C  true rate-constrained single-consumer bottleneck
+D  true rate-constrained multi-consumer bottleneck, unlabeled
+E  relation-supervised bottleneck, positive control
+F  capacity-matched nuisance/random-relation control
 ```
 
-The candidate ledger must remain sealed from training. Language-derived labels must remain sealed until the latent analysis has been frozen. Otherwise the experiment merely manufactures the expected answer.
+The important condition is **D**. Candidate invariant labels remain sealed from its training objective.
 
-A particularly strong result would be that condition E preferentially preserves transferable relational information, outperforms B and C, and approaches the relation-favouring positive control D without being told which candidate relations to encode.
+Evidence for spontaneous invariant discovery would require more than probe success. At increasing stack height we would want to see, across seeds:
 
-Equally important are the negative outcomes. If narrowing alone performs as well as multi-consumer narrowing, the special multi-consumer account weakens. If only the imposed relational bottleneck succeeds, explicit relational inductive bias may be necessary. If neither succeeds, the measurement regime may be inadequate. If the unlabeled condition preserves irrelevant particulars rather than transferable structure, the central hypothesis is directly challenged.
+- lower recoverability of irrelevant particulars;
+- preserved or improved receiver-accessible recoverability of transferable relations;
+- survival under object/world remapping;
+- multi-consumer utility exceeding single-consumer/rate-matched controls;
+- increasingly economical decoding rather than only more powerful-probe decodability;
+- selective causal failure when the emergent relation is perturbed;
+- and no hidden side channel carrying the discarded detail.
 
----
+A striking result would be that the upper hierarchy converges toward the independently predicted structural families **without being taught their names**.
 
-## 13. REE gives us causal tests rather than correlations
-
-The current V3 substrate is useful precisely because E1, E2, E3 and hippocampal/trajectory systems are heterogeneous consumers rather than copies of a single representation.
-
-The Stage-0 audit also produced an important negative result: the existing latent stack is **not** a simple monotonic narrowing hierarchy. The current approximate flow includes `z_self` and `z_world` feeding a wider `z_beta`, then narrower `z_theta` and `z_delta`. We therefore cannot inspect present-day V3 and retroactively claim that it already demonstrated invariant discovery through compression.
-
-That forces a cleaner experiment: obtain a canonical frozen dataset of full latent vectors, validity/freshness state and behaviour, then train competing bottleneck/translation conditions offline. This protects the organism from architectural contamination while the hypothesis is being tested.
-
-For each candidate relation, the strongest workflow is:
-
-1. **Decode/reconstruct** the relation from held-out latent states.
-2. **Control nuisance variables** that could trivially reveal it.
-3. **Test transfer** under remapped objects/worlds/tasks.
-4. **Corrupt only that relation** at a relevant handoff with weights frozen.
-5. Measure the predicted acute functional deficit.
-6. Maintain the lesion while allowing controlled adaptation.
-7. Determine whether another representation or pathway compensates.
-
-The distinction between acute and adaptation-aware lesion is essential. A distributed cognitive system may recover function after losing an important mechanism. Recovery would show multiple realisability or compensation, not that the original mechanism never mattered.
+A negative result is equally useful. It may show that narrowing alone produces entangled arbitrary codes, that explicit relational inductive bias is needed, or that the contract is dynamically negotiated rather than statically represented.
 
 ---
 
-## 14. Candidate-specific lesion signatures
+## 14. The most important experimental separation: structural content versus attached fields
 
-The following signatures are hypotheses to test, not definitions:
+The **3 + 2** hypothesis makes a concrete prediction.
 
-- **identity continuity loss:** repeated relearning of the same entity, tracker fragmentation, unstable credit assignment, episodic binding failures;
-- **temporal order loss:** sequence inversion, planning confusion, inappropriate mixing of memory and prediction, impaired causal ordering;
-- **transition-topology loss:** preserved local feature recognition but degraded reachability, route selection and counterfactual rollout;
-- **source/ownership loss:** self/other or observed/generated confusion, replay misrouting, inappropriate evidential weighting;
-- **branch/obtaining loss:** counterfactual or imagined trajectories treated as experienced, confabulation-like model drift, incorrect learning from rejected branches;
-- **confidence/precision loss:** preserved content with pathological over-weighting, under-weighting, instability or calibration failure;
-- **control/intervention loss:** passive prediction retained while action-effect learning and controllability attribution degrade;
-- **viability/preference loss:** impaired preserve/avoid trade-offs and inability to organise action relative to preferred states;
-- **expected-absence loss:** specific failure to represent omitted expected events despite intact raw surprise detection;
-- **update/commitment loss:** hypotheses, observations and rejected branches become inappropriately interchangeable in persistent model update.
+Structural relations and weighting fields should behave differently under transfer.
 
-If lesions do not dissociate in these ways, candidate boundaries should be redrawn rather than defended.
+### Structural families
+Correspondence, event/trajectory structure and generative lineage should tend to survive remapping when the world relation remains the same despite changed surface features.
+
+### Attached fields
+Epistemic and regulatory weights may vary strongly with current uncertainty, needs, goals, physiology and task regime even when structural content is unchanged.
+
+This yields clean crossed experiments:
+
+- hold structure fixed while changing confidence;
+- hold structure fixed while changing viability/value;
+- hold confidence fixed while changing branch lineage;
+- hold value fixed while changing controllability;
+- hold sensory content fixed while changing source/generative path.
+
+If structural and weighting variables cannot be dissociated, the 3 + 2 model is wrong or too simple.
 
 ---
 
-## 15. Strong falsifiers of the entire programme
+## 15. Candidate-specific failure signatures after compression
 
-The cognitive-contract hypothesis should itself be vulnerable to failure.
+The following remain hypotheses, not definitions.
+
+- **correspondence/binding failure:** tracker fragmentation, unstable cross-representation reference, repeated relearning, credit-assignment and episodic binding errors;
+- **directed event/trajectory failure:** sequence inversion, reachability errors, rollout confusion, causal-order mistakes, failure to distinguish recurrent instances of the same state;
+- **generative lineage/anchoring failure:** observed/generated confusion, memory/prediction contamination, counterfactual branches treated as experienced, confabulation-like model drift;
+- **epistemic-weight failure:** preserved content but pathological over-weighting, under-weighting, unstable update or calibration failure;
+- **regulatory-weight failure:** preserved world structure but disorganised preserve/avoid trade-offs, poor prioritisation, or failure to organise trajectories relative to viable states;
+- **intervention/control residue, if irreducible:** passive prediction preserved with selective loss of action-effect learning and controllability attribution;
+- **expected-absence residue, if irreducible:** inability to represent omitted expected events despite intact raw surprise.
+
+If these signatures do not dissociate under nuisance-controlled perturbation, the candidate boundaries should be redrawn rather than defended.
+
+---
+
+## 16. Strong falsifiers of the programme
+
+The cognitive-contract programme should itself be vulnerable to failure.
 
 Several outcomes would weaken it substantially:
 
-1. **No compact basis exists.** Different consumers repeatedly require unrelated, task-specific exchange variables with little reusable relational structure.
-2. **Ordinary latent geometry is enough.** Every apparent invariant can be cheaply and robustly reconstructed locally, making a special contract layer unnecessary.
-3. **Lesion specificity disappears.** Candidate corruption produces only generic information loss once nuisance factors are controlled.
-4. **Cross-domain convergence evaporates.** Linguistic, developmental, neural, comparative and artificial-system evidence cluster around different relations with no coherent common basis.
-5. **Remapping destroys transfer.** Candidate relations appear decodable only while object identities, coordinates, task labels or environmental statistics are preserved.
-6. **Heterogeneous consumers do not discover shared relational structure.** Multi-consumer compression behaves no differently from ordinary narrowing or memorises particulars instead.
-7. **The basis continually expands without compression.** If every new task requires another named invariant, we have probably reinvented an ontology rather than discovered a contract.
+1. **No reusable compact structure exists.** Different consumers repeatedly require unrelated task-specific exchange variables.
+2. **Ordinary latent geometry is operationally enough.** Actual receiving modules cheaply reconstruct every required distinction without any stable cross-system relation family.
+3. **Probe-only invariants dominate.** Candidate information is externally decodable but unavailable or unused by receivers.
+4. **Lesion specificity disappears.** Controlled corruption produces only generic information loss.
+5. **Cross-domain convergence evaporates.** Linguistic, developmental, neural, comparative and artificial-system evidence support incompatible structures.
+6. **Remapping destroys transfer.** Apparent invariants depend on coordinates, object IDs, task labels or fixed environmental statistics.
+7. **Multi-consumer bottlenecks do not favour transferable relations.** Unlabelled multi-consumer compression behaves like ordinary narrowing or memorises particulars.
+8. **The basis continually expands.** Every new task requires another named invariant and total description cost fails to fall.
+9. **The reduction only works by decoder inflation.** Fewer transmitted variables require increasingly powerful or task-specific reconstruction machinery.
+10. **Boundary-specificity defeats a shared core.** Useful obligations exist, but their overlap across the cognitive graph is negligible.
 
-A successful research programme should reduce description length, not merely accumulate vocabulary.
-
----
-
-## 16. Implication for the cognifold
-
-Even a validated cognitive contract would not by itself prove that a system is one mind. It would, however, provide a much sharper operational account of what unity could require.
-
-A cognifold need not be one latent manifold. It may be a collection of local manifolds, specialised predictors, memories, control systems and learned translators whose representations are mutually non-isomorphic.
-
-What makes them function as one cognitive system may be that the relations required for shared reference, prediction, epistemic status and action remain recoverable across their interfaces.
-
-This suggests a future distinction between cognifold and braidling:
-
-- in a **cognifold**, specialised systems participate in one continuously maintained self/world/history/alternative structure through dependency on invariant-preserving internal transformations;
-- in a **braidling**, coherent cognitive entities can remain independently organised and communicate through an inter-agent channel.
-
-That boundary remains unresolved and belongs mainly to the later cognifold thought. The present work supplies the candidate relations and assays needed to make the distinction testable rather than metaphorical.
+Any of these would be a scientific result, not a reason to redefine the contract until it becomes unfalsifiable.
 
 ---
 
-## 17. Why grammar remains interesting after the pruning
+## 17. Developmental and linguistic predictions after the red-team pass
 
-The reduced candidate set still looks suspiciously grammar-like: reference and identity, temporal order, modality/actuality, evidential source, confidence/evidential strength, negation/absence, agency/control, comparison and value all have linguistic reflexes.
+If the deepest contract is relational rather than linguistic, much of the structural skeleton should operate before explicit language.
 
-The correct inference remains asymmetric.
+The prediction is not that infants possess adult concepts called CAUSE, REALITY, NEGATION or GOAL. It is that early cognition may preserve enough lower-level structure for continuity, ordered events, expected transitions, alternative possibilities, source/anchoring, confidence-sensitive learning and regulatory preference.
 
-We should not say:
+Language could then label, compress, combine and communicate these relations.
 
-> language contains these categories, therefore cognition must contain these primitives.
+The relation to grammar remains asymmetric:
 
-We may eventually be able to say something weaker and more interesting:
+> language can suggest distinctions worth testing, but nonlinguistic evidence must decide whether they are deep cognitive obligations.
 
-> if independent cognitive evidence repeatedly identifies a small set of relations that heterogeneous systems must preserve, then grammar may be understood partly as a public compression scheme for transmitting those already-useful relations between minds.
-
-Under that account, grammar would not create the contract. It would exploit and conventionalise distinctions that cognition already benefits from preserving.
-
-This prediction should remain sealed until nonlinguistic and REE analyses are frozen wherever possible.
+If independently discovered REE representations and nonlinguistic biological evidence later converge on structures resembling tense, aspect, modality, evidentiality, agency, negation or comparison, that would be much more interesting than building those categories into the model and rediscovering them.
 
 ---
 
-## 18. Developmental prediction
+## 18. Implication for the cognifold
 
-If the deepest contract is relational rather than linguistic, much of it should appear functionally **before explicit language**.
+The red-team revision makes the cognifold idea sharper.
 
-The relevant developmental question is not whether infants possess adult concepts such as CAUSE, REALITY, NEGATION or GOAL. It is whether early cognition already preserves enough lower-level relational structure to support continuity, expectation, omission, control learning, source discrimination, preference and alternative trajectories.
+A cognifold need not share one canonical latent space and may not even share one globally flat cognitive contract. It may instead consist of specialised representational spaces linked by a graph of transformations whose **boundary-specific obligations collectively preserve coherent reference, history, alternatives, epistemic weighting and action organisation**.
 
-Later language could then label, compress, combine and communicate these relations rather than creating them ex nihilo.
+Unity could therefore be a property of the transformation network rather than of any one representation.
 
-This gives a useful test for candidate ranking: relations that appear only after particular linguistic or cultural training should be treated with suspicion as deep architectural invariants unless independent evidence shows an earlier nonlinguistic precursor.
+This also gives a future way to distinguish cognifold from braidling:
+
+- a **cognifold** may consist of systems whose independent local representations are incomplete without recurrent, invariant-preserving participation in one jointly maintained world/history/action structure;
+- a **braidling** may consist of independently coherent cognitive entities that can preserve their own world/history/action structures while communicating through an external channel.
+
+This remains a hypothesis for the later cognifold thought, not a settled criterion.
 
 ---
 
-## 19. A practical promotion hierarchy
+## 19. Revised promotion hierarchy
 
-Rather than assigning a binary primitive/not-primitive label, candidates should move through a staged hierarchy:
-
-**Stage 0 — named candidate**  
-There is enough motivation to keep an entry in the ledger.
+**Stage 0 — named canonical candidate**  
+The relation exists in the governed ledger.
 
 **Stage 1 — cross-domain recurrence**  
-Independent evidence domains suggest a structurally similar distinction.
+Independent evidence domains suggest structurally similar functionality.
 
-**Stage 2 — transferable decodability**  
-The relation can be recovered across held-out content, tasks or representation remappings.
+**Stage 2 — transferable receiver-accessible recoverability**  
+The relation can be recovered by a plausible receiver across held-out content, tasks or remappings.
 
 **Stage 3 — causal handoff dependence**  
-Selective lesion produces a predicted deficit at a relevant interface.
+Selective nuisance-controlled corruption produces the predicted deficit at a relevant interface.
 
-**Stage 4 — irreducibility challenge survived**  
-The effect is not fully explained by a smaller set of already-supported relations or locally reconstructable state.
+**Stage 4 — irreducibility under constrained reconstruction**  
+A smaller basis cannot reproduce the function without excessive rate, decoder, context, latency or robustness cost.
 
 **Stage 5 — adaptation-aware characterisation**  
-The system's capacity or failure to compensate is understood, distinguishing necessity of function from exclusivity of mechanism.
+Compensation, alternative pathways and rescue are understood well enough to distinguish functional necessity from mechanism uniqueness.
 
-Only after this sequence should a candidate be considered for stronger architectural treatment. Even then, the claim should specify **which handoffs and consumers require it** rather than declaring a universal representation for the whole organism.
+**Stage 6 — boundary scope established**  
+We know which handoffs require the relation and which can reconstruct or omit it.
+
+Only then should a candidate be considered for stronger architectural treatment.
 
 ---
 
 ## 20. Immediate work programme
 
-The next empirical work should not expand the prose list. It should make the list harder to survive.
+### 20.1 Keep Thought 2 undigested
+No candidate should be promoted from this red-team pass. This document is doing ontology destruction, not architecture declaration.
 
-### 20.1 Freeze the present ledger as a baseline
-The current fourteen candidate records provide a useful pre-observation snapshot. Future merges, demotions and additions should be versioned so that later knowledge cannot rewrite what was expected beforehand.
+### 20.2 Preserve the canonical fourteen-record ledger as the baseline
+Do not rewrite the initial candidate set after seeing results. Future merges, demotions and additions should be versioned.
 
-### 20.2 Complete Dataset-A / Stage-1 execution manifest
-Freeze exact V3 configuration, seeds, episodes, latent recordings, freshness/validity filtering, transition and reachability labels, environment remappings, train/validation/held-out splits and go/no-go criteria before observing candidate-level results.
+### 20.3 Materialise the missing planned artefacts before citing them as evidence
+The evidence pull, narrowing preregistration and Stage-0 V3 substrate audit previously named in this thought are not present on the default branch at this revision. Either create them through the normal evidence/governance route or remove them permanently. Until then, claims depending on them remain hypotheses/checks.
 
-### 20.3 Begin with relations that have strong discriminating experiments
-Transition topology, confidence/precision, branch/obtaining status and source/ownership are particularly useful because they generate distinct nuisance-controlled tests and failures.
+### 20.4 Run forced-merger tests first
+Highest-value attacks are:
 
-### 20.4 Force candidate mergers
-In particular:
+```text
+CCI-001 identity
+ + CCI-006 equivalence
+        -> correspondence/binding ?
 
-- test `source_provenance` against `source_ownership`;
-- test `branch_obtaining_status` against source + time + confidence;
-- test `epistemic_update_commitment` against source + branch + confidence + update clocks;
-- test `causal_control` against action-conditioned transition topology;
-- test signed value against viability/preference + directional change;
-- test salience/priority against locally recomputed surprise + value + need + confidence.
+CCI-002 temporal relation
+ + CCI-007 relational topology
+        -> directed event/trajectory structure ?
 
-### 20.5 Preserve the language firewall
-Do not use the linguistic candidate labels as supervision for the unlabeled narrowing condition. Language can be returned to after the relational structure recovered from the artificial organism has been frozen.
+CCI-003 reality status
+ + CCI-012 alternative branch status
+ + unnumbered provenance/anchoring hypotheses
+        -> generative lineage ?
 
-### 20.6 Preserve negative results
-A demoted invariant is a scientific result, not a failed idea. The most valuable outcome may be discovering that several intuitively fundamental human categories are compressions of a much smaller machine-level basis.
+CCI-004 agency
+        -> action-labelled transition structure
+         + intervention sensitivity
+         + ownership/correspondence ?
+
+CCI-009 value
+        -> viability/preference
+         + direction of change ?
+
+CCI-010 goal
+ + CCI-013 commitment
+ + CCI-014 priority
+        -> regulatory/control composites ?
+
+CCI-011 negation/absence
+        -> expectation + failure-to-obtain ?
+```
+
+### 20.5 Attack `CCI-005` separately
+Confidence/precision is at high risk of becoming an overloaded label. Separate state uncertainty, translation confidence, control precision and metacognitive confidence before deciding whether any common invariant exists.
+
+### 20.6 Build the narrowing experiment as a true capacity experiment
+Width alone is insufficient. Rate-match conditions and seal candidate labels from the unlabeled multi-consumer condition.
+
+### 20.7 Measure receiver access, not only external probes
+The receiver's own capacity and causal use should be central to promotion.
+
+### 20.8 Preserve compensation as data
+Acute loss, adapted recovery and alternative pathway recruitment should all be measured. Recovery must not be misread as proof that the original function was irrelevant.
+
+### 20.9 Preserve the language firewall
+Do not use grammatical labels as supervision for invariant discovery. Return to language only after nonlinguistic/artificial analyses have been frozen wherever feasible.
 
 ---
 
-## 21. Current best prediction
+## 21. Red-team verdict
 
-The present best guess is not that REE will reveal a miniature human grammar inside its latent spaces.
+The provisional “nine-ish” basis from the first draft does **not** survive this pass unchanged.
 
-It is that heterogeneous cognitive consumers will place pressure on shared representations to preserve a **small relational skeleton**: continuity, succession, transition, source, obtaining status, reliability, control and viability, with richer concepts reconstructed from combinations of those relations.
+The current stronger compression hypothesis is:
 
-If that occurs without candidate labels being supplied during training, it would support a powerful account of cognitive unity:
+```text
+STRUCTURAL SKELETON
+  A. correspondence / binding
+  B. directed event / trajectory structure
+  C. generative context / anchoring / lineage
 
-> a mind can remain one thing while its internal systems represent the world differently, provided the transformations between them preserve enough relational structure for the systems to keep talking about the same world.
+ATTACHED FIELDS
+  D. epistemic weight
+  E. regulatory / viability weight
+```
 
-If it does not occur, the failure will still be informative. We may discover that unity requires richer shared geometry, task-specific interfaces, dynamically negotiated contracts, or something closer to explicit message passing between semi-independent systems.
+with intervention/control, commitment, goal, priority, absence, magnitude and other familiar categories forced to prove that they contain irreducible information not already available from this basis or locally reconstructable at the relevant boundary.
+
+Even **3 + 2 is not a target answer**. It is simply the smallest hypothesis currently worth attacking without collapsing into the vacuous claim that “everything is one typed graph”.
+
+No candidate is promoted by this revision.
 
 ---
 
-## 22. Central principle
+## 22. Current best prediction
 
-> **The cognitive contract should contain no distinction merely because humans can name it. A distinction belongs only if heterogeneous cognitive systems repeatedly need it, cannot reliably reconstruct it from cheaper information, and fail in a specific way when it is lost.**
+The most interesting outcome would not be discovery of a miniature human grammar inside REE.
 
-The goal is therefore not to find the most elegant list of cognitive primitives. It is to find the **smallest empirically defensible set of recoverable relations that allows heterogeneous representations to remain parts of one coherent cognition**.
+It would be that heterogeneous cognitive consumers, when forced through genuine information bottlenecks and required to remain mutually useful, spontaneously preserve a compact structure resembling:
 
-That is the candidate basis to be attacked.
+- correspondences that keep reference stable,
+- directed event relations that preserve succession and possibility,
+- generative lineage that separates current world, memory and alternatives,
+- epistemic weighting that preserves reliability where it cannot be locally reconstructed,
+- and regulatory weighting that preserves organism-relevant preference where needed.
+
+Richer concepts could then arise as local reconstructions or compressions over that structure.
+
+If this happens without candidate labels being supplied, and if the relations survive remapping, receiver-access tests and causal perturbation, it would be evidence that a cognitive contract can **emerge from the demands of maintaining one cognition across heterogeneous representational spaces**.
+
+If it does not happen, the alternatives are equally informative: richer shared geometry, interface-specific message passing, dynamically negotiated contracts, or something closer to coordination among semi-independent systems may be required.
+
+---
+
+## 23. Central principle
+
+> **The cognitive contract should contain no distinction merely because humans can name it, and no reduction should count merely because humans can rename it. A relation belongs only when a real receiving system repeatedly needs it, cannot reconstruct it cheaply and robustly from a smaller basis, and fails in a specific way when it is lost.**
+
+The goal is not the shortest vocabulary. It is the **smallest causally and computationally sufficient transferable structure that lets heterogeneous representations remain parts of one coherent cognition**.
