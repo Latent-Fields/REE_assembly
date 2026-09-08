@@ -3290,6 +3290,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0235",
+      "claim_ids": [
+        "INV-105",
+        "MECH-548"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-548 (registered 2026-09-08, REE_assembly c982402eb5) proposes an EIGHTH rung for INV-105's latent-access ladder -- 'recurrently stable: repeated use of the interface preserves receiver-state validity, information calibration and functional behaviour over the timescale the system actually uses it', assessed before behavioural usefulness is read as architecturally meaningful in a dynamical system -- and a third binding consequence: a receiver-conditioned bridge result (MECH-547) is admissible only with a receiver-state permutation control and a sender-only matched-capacity baseline. INV-105's title still lists seven rungs; decide whether to amend INV-105 or leave the rung on MECH-548.",
+      "raised_by_session": "thought-ingest-receiver-conditioned-20260908",
+      "raised_at": "2026-09-08T20:07:02Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
