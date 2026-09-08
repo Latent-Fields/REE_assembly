@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_002",
+  "entry_id": "2026-09-08_mech_002_expected_unexpected_uncertainty_yu2005",
+  "timestamp_utc": "2026-09-08T20:15:10Z",
+  "claim_ids_tested": ["MECH-002"],
+  "source": {
+    "title": "Uncertainty, neuromodulation, and attention",
+    "authors": ["Yu AJ", "Dayan P"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.026",
+    "pmid": "15944135",
+    "volume": "46",
+    "issue": "4",
+    "pages": "681-692"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "This is the canonical statement of the exact design constraint MECH-002 imposes: that expected uncertainty and unexpected uncertainty are distinct control channels carried by distinct neuromodulators (ACh and NE respectively), not collapsible into a single precision scalar. The mapping is close to identity -- MECH-002's 'design constraint' paragraph is effectively a restatement of this paper's central proposal, and the paper supplies the normative Bayesian argument for WHY the separation is necessary (the two uncertainties have opposite consequences for whether to trust the current context model or abandon it). Confidence is high but not maximal because the paper is a theoretical/computational contribution with a review of supporting physiology, not itself a new empirical dissociation; the strongest empirical tests of the dissociation came later and are more equivocal (see the Nassar 2012 entry in this directory).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper explicitly states the two neuromodulatory signals interact and that their interactions are 'part-antagonistic, part-synergistic'. An REE implementation that treats alpha_gamma (ACh-like, sensory depth) and the NE-like interrupt as fully orthogonal, independently settable knobs would be under-specified relative to the source model, which requires ACh and NE levels to be mutually constraining.",
+    "The model is validated against attentional cueing tasks and pharmacological/lesion data on cue-validity effects. It makes no prediction about regime-level phenomenology (confidence, alarm, clarity, patience), so it cannot adjudicate MECH-002's stronger claim that precision shifts induce QUALITATIVELY distinct cognitive regimes rather than graded changes in inference."
+  ],
+  "tags": ["mech_002", "precision", "acetylcholine", "norepinephrine", "expected_uncertainty", "unexpected_uncertainty", "bayesian_inference", "neuromodulation", "attention"],
+  "mapping": {
+    "source_claim_statement": "Optimal Bayesian inference in noisy, changeable environments requires representing more than one form of uncertainty. Acetylcholine signals expected uncertainty -- the known unreliability of predictive cues within a stable context. Norepinephrine signals unexpected uncertainty -- the surprise generated when an unsignalled context switch produces strongly unexpected observations. These two signals interact to enable optimal inference and learning, and the interaction is part-antagonistic, part-synergistic.",
+    "ree_translation": "MECH-002's depth-indexed precision gains alpha_k are REE's implementation surface for exactly this decomposition. The ACh-like regime -- 'increases precision at sensory depths (alpha_gamma) under expected noise, forcing perceptual updating against top-down prediction' -- is Yu and Dayan's expected-uncertainty channel: when cues are known to be unreliable, down-weight the prior and up-weight the likelihood. The NE-like regime -- 'transiently increases gain on surprising inputs and resets prior expectations, breaking existing phase-locks and suspending temporal collapse' -- is their unexpected-uncertainty channel: when the context model itself may be wrong, discard it rather than merely re-weight within it. MECH-002's design constraint that these 'are distinct control channels, not a single precision scalar' is the normative result this paper establishes, and it is the reason a single scalar alpha would be architecturally wrong rather than merely coarse.",
+    "mapping_caveat": "Yu and Dayan parameterise uncertainty over a specific generative model (cue validity within a context, plus a context-switch hazard rate); REE parameterises precision over hierarchical DEPTH k. These are not the same axis. A depth index is a structural property of the model hierarchy, whereas expected/unexpected uncertainty is a property of the inferential situation, and the same depth can be implicated in either. The mapping therefore holds at the level of 'two channels are required' -- which is what MECH-002's design constraint asserts -- but does NOT license reading alpha_gamma as literally 'the ACh level' or assuming the NE channel acts only at a single depth. The paper also says nothing about dopamine or serotonin, so it evidences only two of MECH-002's four regimes.",
+    "source_context": "Theoretical/computational neuroscience; Bayesian model of attentional cueing (Posner-style validity paradigms) with a synthesis of rodent, primate and human pharmacological, lesion and behavioural data on cholinergic and noradrenergic manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.90,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high -- Neuron, foundational and heavily replicated as a framework, though it is theory plus review rather than a new empirical dissociation. Mapping fidelity very high because MECH-002's design constraint is close to a paraphrase of the paper's thesis. Transfer risk kept at 0.25 rather than lower because the depth-indexed alpha_k axis is not the same parameterisation as the paper's cue-validity/hazard-rate model, so the constraint transfers but the specific knob identification does not."
+  }
+}

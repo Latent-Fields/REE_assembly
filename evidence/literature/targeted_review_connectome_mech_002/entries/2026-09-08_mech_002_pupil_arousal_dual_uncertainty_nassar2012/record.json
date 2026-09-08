@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_002",
+  "entry_id": "2026-09-08_mech_002_pupil_arousal_dual_uncertainty_nassar2012",
+  "timestamp_utc": "2026-09-08T20:15:10Z",
+  "claim_ids_tested": ["MECH-002"],
+  "source": {
+    "title": "Rational regulation of learning dynamics by pupil-linked arousal systems",
+    "authors": ["Nassar MR", "Rumsey KM", "Wilson RC", "Parikh K", "Heasly B", "Gold JI"],
+    "year": 2012,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3130",
+    "pmid": "22660479",
+    "pmc": "PMC3386464",
+    "volume": "15",
+    "issue": "7",
+    "pages": "1040-1046"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "This entry is deliberately included as the adversarial test of MECH-002's design constraint, and it cuts both ways. It SUPPORTS the two-channel requirement empirically: two dissociable uncertainty signals -- change-point probability and relative uncertainty -- are separately readable from distinct components of the same physiological measure and separately predict how much new data moves belief. That is direct human evidence that a single precision scalar is insufficient, which is the architectural core of the claim. But it WEAKENS the specific neuromodulator-to-channel assignment MECH-002 inherits from Yu and Dayan, because both signals are carried by pupil-linked arousal, standardly read as the LC-NE system: the NE-proxy tracks expected-uncertainty-like reliability (in baseline diameter) as well as unexpected-uncertainty-like surprise (in evoked change). It further weakens the assumption that precision effects are monotone in gain, since the causal manipulation produced an inverted-U. Confidence 0.65 reflects strong methods and a genuinely informative result whose interpretation is limited by pupil being a non-specific proxy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Both uncertainty signals were carried by the same pupil-linked arousal system, distinguished by TIMESCALE (evoked change vs baseline diameter) rather than by neuromodulator. If the brain separates expected from unexpected uncertainty temporally within one gain system rather than chemically across two, an REE architecture that instantiates them as two independent knobs has the right number of channels but the wrong factorisation -- and would miss the constraint that they share a common carrier and therefore trade off against each other.",
+    "The causal manipulation produced an INVERTED-U, not a monotone effect: increasing pupil diameter raised learning rate when baseline was low but slightly LOWERED it when baseline was already high. Any REE implementation in which raising alpha_k monotonically increases the influence of prediction error on belief will predict the wrong sign in the high-baseline regime. This is the most directly falsifying observation in this directory and is testable in substrate.",
+    "Pupil diameter is an indirect and non-specific proxy for locus coeruleus noradrenergic activity -- it is also modulated by cholinergic activity and by superior colliculus, which is precisely the confound that matters when the question at issue is whether ACh and NE carry separable signals. The paper therefore cannot fully adjudicate the assignment it appears to challenge."
+  ],
+  "tags": ["mech_002", "precision", "norepinephrine", "acetylcholine", "pupillometry", "expected_uncertainty", "unexpected_uncertainty", "change_point", "learning_rate", "inverted_u", "adaptive_gain"],
+  "mapping": {
+    "source_claim_statement": "In a predictive-inference task with randomly occurring change points, non-luminance-mediated pupil diameter tracked two distinct normatively defined quantities on different timescales. Brief evoked pupil changes reflected change-point probability -- the assessed instability of the data-generating process. Baseline pupil diameter reflected relative uncertainty -- the reliability with which recent data indicate the current state -- and individual differences in expected rates of instability. Together these metrics predicted the influence of new data on subsequent inference. A task- and luminance-independent manipulation of pupil diameter (unexpected auditory fixation cues) predictably altered that influence, with the direction depending on baseline diameter: learning rate rose on switch trials when baseline was low and fell slightly when baseline was high.",
+    "ree_translation": "MECH-002 asserts that expected and unexpected uncertainty are distinct control channels and not a single precision scalar. This paper is the strongest human empirical evidence for the FIRST half of that -- two normatively distinct uncertainty quantities are separately encoded and separately predictive of belief updating, which is exactly what a single scalar cannot do. But it complicates the SECOND half. MECH-002 assigns unexpected uncertainty to the NE-like channel and expected uncertainty to the ACh-like channel, following Yu and Dayan. Here both quantities ride on pupil-linked arousal, the canonical NE proxy, separated by timescale (evoked vs tonic baseline) rather than by chemistry. If that is the real factorisation, REE's two knobs are correctly counted but wrongly carved: a phasic/tonic decomposition within one gain system implies the channels share a carrier and constrain each other, whereas two independent alpha terms do not. The inverted-U is a second, sharper translation problem: REE's precision terms multiply prediction error, so raising alpha_k monotonically raises the influence of error on belief -- and this experiment shows the biological system doing the opposite at high tonic gain.",
+    "mapping_caveat": "Pupil diameter is an indirect proxy. It correlates with locus coeruleus activity but is also driven by cholinergic activity and by superior colliculus, so 'both signals are in the NE system' is an over-reading of what was measured -- the honest statement is 'both signals are in pupil-linked arousal, which is not chemically resolved'. This substantially limits how strongly the paper can be taken to contradict the Yu and Dayan assignment, and it is the reason this entry is scored mixed at 0.65 rather than as a strong weakening result. The task is also a low-dimensional predictive-inference task with an explicit generative model, far simpler than the settings in which REE's regimes are supposed to manifest.",
+    "source_context": "Human psychophysics with pupillometry; 30 subjects in the primary experiment and 29 in the causal manipulation experiment; predictive-inference task requiring estimation of a Gaussian mean subject to randomly occurring change points; normative Bayesian model used to define change-point probability and relative uncertainty; manipulation via unexpected auditory fixation cues, task- and luminance-independent."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "Source quality 0.85: Nature Neuroscience, adequate N in both the observational and manipulation arms, a normative model defining the quantities in advance rather than post hoc, and a genuine causal manipulation. Mapping fidelity 0.70: the normative quantities map well onto MECH-002's two uncertainties, but pupil-to-neuromodulator is the loose joint. Transfer risk 0.40: human data, but an indirect physiological proxy and a much simpler task than REE's target regimes. Scored mixed rather than supports because the entry's main value to governance is the constraint it places on the neuromodulator assignment and on monotonicity, not the confirmation it provides."
+  }
+}

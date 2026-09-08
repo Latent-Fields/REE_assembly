@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_002",
+  "entry_id": "2026-09-08_mech_002_dopamine_action_precision_friston2012",
+  "timestamp_utc": "2026-09-08T20:15:10Z",
+  "claim_ids_tested": ["MECH-002"],
+  "source": {
+    "title": "Dopamine, affordance and active inference",
+    "authors": ["Friston KJ", "Shiner T", "FitzGerald T", "Galea JM", "Adams R", "Brown H", "Dolan RJ", "Moran R", "Stephan KE", "Bestmann S"],
+    "year": 2012,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1002327",
+    "pmid": "22241972",
+    "pmc": "PMC3252266",
+    "volume": "8",
+    "issue": "1",
+    "pages": "e1002327"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the clearest formal statement in the literature that dopamine's computational role is the encoding of PRECISION over action-relevant representations rather than a scalar reward signal -- which is precisely the move MECH-002 makes when it assigns the dopamine-like analogue to 'increases precision at action and policy depths' and insists that precision control 'does not merely tune learning rates'. The paper also reproduces a pathology under reduced action-precision (bradykinesia/Parkinsonian slowing) from the same single synaptic parameter, which is the structural form MECH-002 requires: one knob, qualitatively different behavioural regimes at different settings. Confidence is held at 0.72 rather than higher because the evidence is simulation, not measurement -- no dopaminergic quantity is recorded or manipulated here -- and because the dopamine-as-precision account remains in live competition with the far more empirically entrenched dopamine-as-reward-prediction-error account, which this paper argues against but does not adjudicate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's central proposal competes directly with the reward-prediction-error account of phasic dopamine, which has substantially more direct electrophysiological support. If the RPE account is correct as the primary role, MECH-002's dopamine-like regime is mis-named: the commitment/trajectory-locking function would need a different substrate, and the architecture would be importing a contested interpretation as if settled.",
+    "All results are simulations of a hierarchical generative model performing sequential movements. No dopaminergic quantity is measured or manipulated, so the paper cannot exclude that the same behavioural repertoire arises from mechanisms other than precision modulation.",
+    "The demonstrated pathology is motor (bradykinesia-like slowing) under REDUCED action precision. MECH-002 asserts the opposite-direction pathology -- over-commitment, mania, compulsivity under EXCESSIVE precision -- which this paper does not simulate or evidence."
+  ],
+  "tags": ["mech_002", "precision", "dopamine", "active_inference", "commitment", "action_selection", "affordance", "parkinsons", "free_energy"],
+  "mapping": {
+    "source_claim_statement": "Dopamine is best understood not as reporting reward prediction error but as controlling the precision (salience) of external or internal cues that engender action. Within a hierarchical generative model performing active inference, this precision term sets the balance between sensory evidence and prior beliefs about action, and thereby determines which affordance is selected and how strongly it is pursued. Manipulating this single synaptic-level parameter reproduces a range of behavioural phenomena including Parkinsonian motor deficits.",
+    "ree_translation": "MECH-002's dopamine-like regime -- 'increases precision at action and policy depths; promotes temporal collapse of a selected trajectory' -- is this paper's proposal expressed in REE's alpha_k vocabulary. High precision on action-engendering representations is what makes one affordance dominate its competitors, which is REE's 'trajectory locking': the selected trajectory stops being one hypothesis among several and becomes the thing the system is doing. The paper is also the load-bearing external support for MECH-002's headline structural claim that 'precision control does not merely tune learning rates' but 'induces qualitatively distinct cognitive regimes' -- because it demonstrates, within one model, that varying a single precision parameter moves the system between behavioural repertoires that would ordinarily be described as different conditions rather than different settings.",
+    "mapping_caveat": "Two boundaries. First, this is a simulation study: no dopaminergic quantity is recorded, depleted or stimulated, so the evidence is that a precision account CAN generate the phenomena, not that dopamine DOES implement precision. Second, and more consequentially for REE, the dopamine-as-precision reading is a minority position relative to the reward-prediction-error account of phasic dopamine; MECH-002 adopts the precision reading as a premise. Importing a contested interpretation is defensible for a mechanism_hypothesis, but the claim should not be read as resting on settled dopamine neuroscience. Additionally the paper's demonstrated pathology (bradykinesia under LOW action precision) is the opposite direction from MECH-002's stated dopamine pathology (over-commitment, mania, compulsivity under HIGH precision), so the high-precision arm of the regime is unevidenced here.",
+    "source_context": "Computational simulation; hierarchical generative model of sequential movement under active inference; behavioural phenomena reproduced in silico, with reference to human Parkinsonian motor data."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.80: PLoS Computational Biology, highly cited, authoritative author list, but simulation-only with no new empirical data. Mapping fidelity 0.85: the paper's 'precision of cues that engender action' is close to a direct restatement of MECH-002's dopamine-like regime, and the one-parameter/many-regimes structure matches the claim's headline assertion. Transfer risk 0.35, higher than the Yu and Dayan entry, because the transfer is doubly indirect -- simulation to substrate, and a contested interpretation of dopamine to an architectural premise."
+  }
+}

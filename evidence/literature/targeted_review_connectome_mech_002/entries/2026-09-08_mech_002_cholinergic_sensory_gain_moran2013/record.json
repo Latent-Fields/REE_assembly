@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_002",
+  "entry_id": "2026-09-08_mech_002_cholinergic_sensory_gain_moran2013",
+  "timestamp_utc": "2026-09-08T20:15:10Z",
+  "claim_ids_tested": ["MECH-002"],
+  "source": {
+    "title": "Free energy, precision and learning: the role of cholinergic neuromodulation",
+    "authors": ["Moran RJ", "Campo P", "Symmonds M", "Stephan KE", "Dolan RJ", "Friston KJ"],
+    "year": 2013,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4255-12.2013",
+    "pmid": "23658161",
+    "pmc": "PMC4235126",
+    "volume": "33",
+    "issue": "19",
+    "pages": "8227-8236"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "This is the strongest CAUSAL and mechanistically specific evidence in this directory for any single one of MECH-002's four regimes. It is placebo-controlled, uses a pharmacological manipulation of the neuromodulator in question (galantamine, a cholinesterase inhibitor), and -- crucially -- localises the effect to a specific computational quantity rather than a behavioural correlate: dynamic causal modelling attributes the drug-induced change in prediction-error responses to GAIN modulation of supragranular pyramidal cells in primary sensory cortex. MECH-002's ACh-like regime says precisely that acetylcholine 'increases precision at sensory depths (alpha_gamma)'. Confidence is held to 0.75 rather than higher on two grounds: N=13 is small even for a within-subject pharmaco-EEG design, and the gain estimate is a model-derived quantity from DCM rather than a directly measured one, so the mechanistic specificity that makes this entry valuable is also the part most dependent on the chosen model space.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "N=13 healthy volunteers. A within-subject placebo-controlled design mitigates but does not remove the small-sample concern, particularly for a model-comparison result reported as a log Bayes factor rather than an effect size on a directly observed quantity.",
+    "The critical claim -- that the drug effect is specifically supragranular pyramidal GAIN -- is an inference from dynamic causal modelling, and is therefore conditional on the model space compared. A model space omitting the true generator could attribute a real drug effect to the wrong parameter while still producing decisive-looking Bayesian evidence.",
+    "The paradigm is a passive auditory mismatch-negativity task in which stimulus predictability is manipulated but expected uncertainty is not parametrically varied. The paper therefore does not test the specifically NORMATIVE part of the ACh account -- that sensory precision should track expected uncertainty -- only that cholinergic enhancement raises sensory gain."
+  ],
+  "tags": ["mech_002", "precision", "acetylcholine", "sensory_gain", "expected_uncertainty", "mismatch_negativity", "dynamic_causal_modelling", "galantamine", "predictive_coding", "free_energy"],
+  "mapping": {
+    "source_claim_statement": "Under the free energy principle, acetylcholine enhances the precision of bottom-up synaptic transmission in cortical hierarchies by optimizing the gain of supragranular pyramidal cells. Simulations of a mismatch negativity paradigm predicted trial-by-trial suppression of evoked sensory prediction-error responses that is attenuated by cholinergic neuromodulation; a placebo-controlled cholinesterase-inhibition study (galantamine, 8 mg, N=13, 128-channel EEG) confirmed this, and dynamic causal modelling attributed the drug-induced differences to gain modulation in supragranular pyramidal cells of primary sensory cortex. Acetylcholine thereby adaptively enhances sensory precision by boosting bottom-up signalling when stimuli are predictable.",
+    "ree_translation": "This is direct external support for MECH-002's ACh-like regime and, more specifically, for the existence of alpha_gamma as a separable knob. MECH-002 states that the cholinergic analogue 'increases precision at sensory depths (alpha_gamma) under expected noise' and thereby 'forces perceptual updating against top-down prediction'. Moran et al. supply the mechanism at the level MECH-002 needs: precision is implemented as GAIN on the units carrying ascending prediction error, and raising it makes bottom-up evidence win against the descending prediction. That the effect is localised to supragranular pyramidal cells -- the canonical error-carrying population in predictive-coding cortical microcircuit models -- is what makes this a mapping onto a depth-indexed precision term rather than a generic arousal effect. It also grounds MECH-002's design constraint empirically from the ACh side: the cholinergic manipulation moved sensory-depth gain specifically, not a global scalar.",
+    "mapping_caveat": "The paper evidences the DIRECTION of the cholinergic effect on sensory gain, not its normative CONTROL LAW. MECH-002 asserts that ACh-like precision rises 'under expected noise' -- i.e. that the setting of alpha_gamma tracks expected uncertainty. This study manipulates the drug, not the uncertainty: predictability is a fixed feature of the MMN paradigm rather than a parametrically varied quantity, so it cannot show that endogenous ACh implements the expected-uncertainty control law Yu and Dayan propose. The gain result is also DCM-derived and thus model-space-conditional. Finally, 'sensory depth' in REE is a position in an abstract hierarchy, whereas the measured effect is in primary auditory cortex under a specific microcircuit model; the identification of the two is an architectural assumption, not a measurement.",
+    "source_context": "Human pharmaco-EEG; 13 healthy volunteers (5 female, mean age 25); within-subject placebo-controlled galantamine (8 mg) administration; 128-channel EEG during an auditory mismatch-negativity paradigm; analysed with dynamic causal modelling of evoked responses alongside free-energy simulations."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality 0.80: Journal of Neuroscience, causal placebo-controlled pharmacological manipulation with a pre-registered-style simulation-then-test structure, but N=13 and the key parameter is model-derived. Mapping fidelity 0.85: 'precision implemented as gain on ascending prediction-error units at sensory depth' is almost exactly what alpha_gamma is supposed to be in MECH-002. Transfer risk 0.30: human data with a real drug, so lower than the simulation entries, but the depth-to-cortical-layer identification and the fixed-predictability paradigm both leave gaps. Weighted toward source_quality here as the skill directs for empirical claims, giving 0.75."
+  }
+}

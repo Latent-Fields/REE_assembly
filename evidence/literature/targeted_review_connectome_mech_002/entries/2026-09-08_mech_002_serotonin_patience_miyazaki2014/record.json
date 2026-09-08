@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_002",
+  "entry_id": "2026-09-08_mech_002_serotonin_patience_miyazaki2014",
+  "timestamp_utc": "2026-09-08T20:15:10Z",
+  "claim_ids_tested": ["MECH-002"],
+  "source": {
+    "title": "Optogenetic activation of dorsal raphe serotonin neurons enhances patience for future rewards",
+    "authors": ["Miyazaki KW", "Miyazaki K", "Tanaka KF", "Yamanaka A", "Takahashi A", "Tabuchi S", "Doya K"],
+    "year": 2014,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2014.07.041",
+    "pmid": "25155504",
+    "pmc": null,
+    "volume": "24",
+    "issue": "17",
+    "pages": "2033-2040"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Causally clean and directionally exactly right for MECH-002's serotonin-like regime: timed optogenetic activation of dorsal raphe serotonin neurons during a waiting period reduced premature cessation of waiting, with control experiments excluding both generalised behavioural inhibition and a reinforcing effect of the stimulation itself. MECH-002 says the serotonin analogue 'reduces premature commitment by limiting precision escalation' -- and 'premature cessation of waiting' is a behavioural instance of premature commitment. Confidence is nonetheless the lowest of the four supporting entries because the mapping is interpretive rather than mechanistic: the study measures a behavioural readout (wait duration) in mice, whereas the claim is about a precision parameter governing rollout horizon. Nothing in the paper measures or constrains precision, and several quite different internal mechanisms would produce the same waiting curve.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Wait duration is a single behavioural readout and is degenerate with respect to internal mechanism. 'Limits precision escalation so the trajectory does not collapse early' predicts the same lengthened wait as 'raises the subjective cost of abandoning', 'slows an internal decision timer', or 'reduces the discount rate'. The experiment cannot separate these, so it constrains the direction of MECH-002's serotonin regime without evidencing its stated mechanism.",
+    "Mice performing a delayed-reward waiting task do not perform anything analogous to REE's exploratory hippocampal rollouts. MECH-002's specific assertion that serotonin 'stabilises exploratory rollouts across longer horizons' is therefore unaddressed -- the horizon in this task is a fixed external delay, not a self-generated planning horizon.",
+    "Later work from the same group (Miyazaki et al. 2018, Nat Commun) shows the patience effect depends on reward probability and timing uncertainty, meaning the serotonin-to-patience relation is context-conditional rather than a fixed gain setting. An REE implementation treating the serotonin-like knob as a context-independent scalar would diverge from the biology this entry is drawn from."
+  ],
+  "tags": ["mech_002", "precision", "serotonin", "dorsal_raphe", "patience", "delayed_reward", "optogenetics", "anti_collapse", "temporal_horizon", "premature_commitment"],
+  "mapping": {
+    "source_claim_statement": "Timed optogenetic activation of dorsal raphe serotonin neurons during the waiting period for a delayed reward prolongs how long mice will wait, and reduces premature cessation of waiting for conditioned cues and food rewards. Control experiments established that the prolonged waiting was not attributable to generalised behavioural inhibition nor to a reinforcing effect of serotonergic activation itself. This is presented as the first causal demonstration that dorsal raphe serotonin neurons promote patience for delayed rewards.",
+    "ree_translation": "MECH-002's serotonin-like regime is defined as 'anti-collapse / horizon widening': it 'reduces premature commitment by limiting precision escalation' and 'stabilises exploratory hippocampal rollouts across longer horizons', with the phenomenology of patience and tolerance of ambiguity. Premature cessation of waiting is the cleanest available behavioural instance of premature commitment -- the animal collapses onto the alternative trajectory (leave, forage elsewhere) before the current one has resolved. Serotonergic activation suppressing that collapse is therefore the predicted directional effect of the REE knob, demonstrated causally rather than correlationally. The paper's controls are what make it useful: excluding behavioural inhibition rules out the deflationary reading in which the effect is motor suppression rather than an extended decision horizon.",
+    "mapping_caveat": "This is the weakest mapping in the directory and should be weighted accordingly. The study measures behaviour; the claim is about a precision parameter. Wait duration is degenerate across internal mechanisms -- limiting precision escalation, raising abandonment cost, slowing an internal timer, and lowering the discount rate all predict longer waits, and no measurement here separates them. The task also contains no analogue of the exploratory rollouts MECH-002 specifically says serotonin stabilises: the horizon is an externally imposed delay, not a self-generated planning depth. Rodent-to-architecture transfer adds a further layer. Read as evidence that the serotonin analogue's DIRECTION is right, not that its stated MECHANISM is.",
+    "source_context": "Optogenetics in transgenic mice; channelrhodopsin expression in dorsal raphe serotonin neurons; delayed-reward waiting task with timed stimulation during the wait period; includes control conditions for behavioural inhibition and for reinforcing effects of stimulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.50,
+    "notes": "Source quality 0.85: Current Biology, genuinely causal optogenetic manipulation with cell-type specificity and the two controls that matter most for this inference. Mapping fidelity 0.60 is the binding constraint -- the behavioural readout is degenerate with respect to the precision mechanism the claim asserts, and the task lacks any rollout analogue. Transfer risk 0.50, the highest in this directory: rodent behaviour to an architectural precision parameter, with no measured intermediate quantity. Aggregate held to 0.60 by mapping fidelity despite the strong source, per the skill's instruction to weight mapping fidelity heavily for architectural claims."
+  }
+}
