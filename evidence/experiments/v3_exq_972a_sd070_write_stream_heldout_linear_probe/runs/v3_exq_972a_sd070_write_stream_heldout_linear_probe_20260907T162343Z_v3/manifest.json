@@ -24,7 +24,9 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "non_contributory",
-  "evidence_direction_per_claim": {},
+  "evidence_direction_per_claim": {
+    "SD-070": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -327,5 +329,7 @@
     "writer_defect": null,
     "n_agents": 24,
     "goal_state_present": false
-  }
+  },
+  "epistemic_category": "standard",
+  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED for SD-070 by the confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07 (REE_assembly cb4a71fbd9) on OUT-OF-SCOPE grounds: T3 is a genuine, adequately-ranged null on a readout SD-070 does not assert (SD-070's own validation is V3-EXQ-783); SD-070 is NOT weakened. Load-bearing finding elsewhere: the write stream IS linearly decodable (probe excess 0.335, 84.4% balanced accuracy, 8/8 seeds), overturning V3-EXQ-972's uncentred-cosine read; and the 970/971/972/970a drivers train on detached buffered latents so latent_stack never moves (LINEAGE hash-identical to UNTRAINED_ENCODER 8/8). epistemic_category standard; SD-070 pending_retest_after_substrate true; contextmemory-write-path-addressing-degeneracy amended (stays corrupting)."
 }

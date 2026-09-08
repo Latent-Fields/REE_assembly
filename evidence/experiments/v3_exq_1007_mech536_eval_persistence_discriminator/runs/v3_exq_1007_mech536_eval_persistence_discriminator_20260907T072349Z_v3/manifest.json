@@ -24,10 +24,10 @@
     "MECH-535"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-536": "supports",
-    "MECH-535": "supports"
+    "MECH-536": "non_contributory",
+    "MECH-535": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -571,5 +571,9 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "epistemic_category": "standard",
+  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED for MECH-536 and MECH-535 by the confirmed failure_autopsy_V3-EXQ-1007_2026-09-08 (REE_assembly 33016d1a2f; user-ratified at its Step 8 gate; Fable cross-model red-team CONTESTED on the successor spec, applied). The driver's verdict grid returned PASS/supports but its own pre-registered C2 non-degeneracy check failed (non_degenerate: false): persist_k2 lengthened the two-cycle into a period-4 orbit (+1.6 unique cells vs +3 required) and persist_k4 cleared the opportunity test by 0.10 cells on a 9/20 wall-press arm; n=1 cycle-present seed. Indexer already scoring_excluded=degenerate; this write makes the record match. epistemic_category standard both; no substrate hold; successor V3-EXQ-1007a with a re-posed exposure DV.",
+  "non_degenerate": false,
+  "degeneracy_reason": "C2: on some cycle-present seed a verdict arm did not both outlive greedy AND visit >= 3 more cells -- the latch created no foraging opportunity (wall-press or lengthened orbit), so 'flat' measured nothing about direction"
 }

@@ -8,10 +8,10 @@
   ],
   "experiment_purpose": "evidence",
   "evidence_direction_per_claim": {
-    "ARC-033": "supports",
-    "SD-003": "supports"
+    "ARC-033": "non_contributory",
+    "SD-003": "non_contributory"
   },
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "outcome": "PASS",
   "criteria": {
     "c1_forward_r2_pass": true,
@@ -130,5 +130,8 @@
     "z_harm_dim": 32,
     "hazard_harm": 0.3
   },
-  "timestamp_utc": "20260410T155945Z"
+  "timestamp_utc": "20260410T155945Z",
+  "dry_run": true,
+  "dry_run_neutralised_prior_evidence_direction": "supports",
+  "evidence_direction_note": "[2026-09-08 governance, cycle governance-20260908-0703; GOV-DRY-1 Step 3i] DRY-RUN SMOKE, never evidence: asserting stamp neutralised (was evidence_direction='supports', epistemic_category=None). dry_run set true; direction non_contributory; the run must not weight any claim. Newly visible after the 2026-09-07 detector fixes (HK-A.5d/5e: _dry_<stamp> run_id shape + per-type flat manifests; GFLAG-0117/0120)."
 }

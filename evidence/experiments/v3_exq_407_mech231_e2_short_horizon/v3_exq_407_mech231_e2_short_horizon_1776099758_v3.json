@@ -6,7 +6,7 @@
     "MECH-231"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "pass": true,
   "elapsed_seconds": 5.0830769538879395,
   "dry_run": true,
@@ -179,11 +179,12 @@
       "c4": true
     }
   ],
-  "evidence_direction_note": "Dry run (3 warmup + 3 eval episodes). PASS classification maintained as preliminary support: the short-horizon signal is structural (slope_e2 174x steeper than slope_e1, consistent all 3 seeds) and does not require model convergence to manifest. First experimental evidence for MECH-231. Consistent with cerebellar 1-step forward model characterization (Wolpert 1998).",
+  "evidence_direction_note": "[2026-09-08 governance, cycle governance-20260908-0703; GOV-DRY-1 Step 3i] DRY-RUN SMOKE, never evidence: asserting stamp neutralised (was evidence_direction='supports', epistemic_category=None). dry_run set true; direction non_contributory; the run must not weight any claim. Newly visible after the 2026-09-07 detector fixes (HK-A.5d/5e: _dry_<stamp> run_id shape + per-type flat manifests; GFLAG-0117/0120). Dry run (3 warmup + 3 eval episodes). PASS classification maintained as preliminary support: the short-horizon signal is structural (slope_e2 174x steeper than slope_e1, consistent all 3 seeds) and does not require model convergence to manifest. First experimental evidence for MECH-231. Consistent with cerebellar 1-step forward model characterization (Wolpert 1998).",
   "acceptance_thresholds": {
     "c1_e2_r2_h1_gt_e1": "e2 R2 at h=1 > e1 R2 at h=1 (action conditioning single-step advantage)",
     "c2_e2_r2_h10_lt_e1": "e2 R2 at h=10 < e1 R2 at h=10 (E2 degrades more by h=10 -- short-horizon claim)",
     "c3_slope_e2_lt_slope_e1": "slope_e2 < slope_e1 (E2 slope more negative = faster degradation)",
     "c4_min_windows": 50
-  }
+  },
+  "dry_run_neutralised_prior_evidence_direction": "supports"
 }

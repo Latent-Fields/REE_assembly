@@ -1,35 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-09-08T07:15:26Z`  
-Last review: `2026-09-06T16:56:48Z`  
-Pending: **6** item(s) -- 6 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 run(s) with recorded (non-gating) preconditions
+Generated: `2026-09-08T15:31:20Z`  
+Last review: `2026-09-08T15:28:35Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_1006_sd_e1_var_bar_portfolio_fidelity_anchor_20260906T195135Z_v3` | 2026-09-06T19:51 | (no claim tags) |
-| `v3_exq_1007_mech536_eval_persistence_discriminator_20260907T072349Z_v3` | 2026-09-07T07:23 | MECH-535, MECH-536 |
-| `v3_exq_970a_contextmemory_write_content_h1_mi_instrument_20260907T152212Z_v3` | 2026-09-07T15:22 | (no claim tags) |
-| `v3_exq_972a_sd070_write_stream_heldout_linear_probe_20260907T162343Z_v3` | 2026-09-07T16:23 | SD-070 |
-| `v3_exq_1009_mech267_elite_channel_ceiling_spike_20260907T171115Z_v3` | 2026-09-07T17:11 | (no claim tags) |
-| `v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3` | 2026-09-07T23:38 | (no claim tags) |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_1009_mech267_elite_channel_ceiling_spike_20260907T171115Z_v3` | PASS | elite_channel_ceiling_confirmed_all_benches | **vacuous_pass** |
-
-## Recorded (non-gating) preconditions
-
-**No action is required on account of this section.** These runs declare a readiness finding in `interpretation.recorded_preconditions[]` that did NOT hold -- but the author deliberately did not gate the run on it, because the run's premise survives the finding (e.g. a shared symmetric prior that biases every arm identically, or a readout-side question with an unaffected control). The entries are kept out of the adjudicating `interpretation.preconditions[]` on purpose: that list is read flat and arm-blind, so an entry there would return a whole-run `precondition_unmet` and bury a valid result. Each run's own `preconditions_scope_note` states the reasoning. Read this as an audit trail when interpreting the run -- it is NOT an adjudication flag, does not block a governance action, and does not exclude the run from scoring. See evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md.
-
-| Run ID | Status | Recorded precondition(s) not met | Scope note |
-|--------|--------|----------------------------------|------------|
-| `v3_exq_1006_sd_e1_var_bar_portfolio_fidelity_anchor_20260906T195135Z_v3` | PASS | dv_headroom_e1coe_score_var_h1 | interpretation.preconditions carries ONLY the per-arm readiness gates (green arms' entries on a partial run, per precondition_gate). interpretation.recorded_preconditions carries (a) the dv_headroo... |
+All experiments reviewed. Nothing pending.
 
 ---
 

@@ -10,7 +10,7 @@
   ],
   "experiment_purpose": "evidence",
   "evidence_class": "discriminative_pair",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "outcome": "PASS",
   "registered_thresholds": {
     "c1_auroc_geom_min": 0.65,
@@ -101,7 +101,7 @@
       "n_probe_total": 60
     }
   ],
-  "evidence_direction_note": "Dry run (80 warmup/eval eps). PASS classification maintained as preliminary support: first experimental evidence for MECH-073 (previously only literature). Ablated condition at perfect chance (0.5 all seeds), geometry AUROC=0.982/0.923 in 2/3 seeds. Seed 7 outlier (0.174) likely training instability in short run. Consistent with Resolution A (MECH-073 co-true with ARC-007). Full EXQ-375 run is high priority. | [multi_sense_audit_2026_05_08_training_only_symmetric] AST-flagged for multi-sense in inner loop (training phase, lines 240 + 300). The second sense() at 300 is for compute_event_contrastive_loss which needs a differentiable forward pass. Substrate-tick rate during training is 2x the env-step rate. Eval phase (P2) is single-sense per state and is symmetric across VALENCE_GEOM vs VALENCE_ABLATED arms, so the C1/C2/C3 probe-AUROC comparison is structurally valid. Script correctly calls update_residue and update_z_goal. The 'supports MECH-073' direction is preserved with lower confidence: training-time substrate confound may have biased encoder learning. Re-run via StepHarness recommended to confirm the magnitude of GEOM > ABLATED.",
+  "evidence_direction_note": "[2026-09-08 governance, cycle governance-20260908-0703; GOV-DRY-1 Step 3i] DRY-RUN SMOKE, never evidence: asserting stamp neutralised (was evidence_direction='supports', epistemic_category=None). dry_run set true; direction non_contributory; the run must not weight any claim. Newly visible after the 2026-09-07 detector fixes (HK-A.5d/5e: _dry_<stamp> run_id shape + per-type flat manifests; GFLAG-0117/0120). Dry run (80 warmup/eval eps). PASS classification maintained as preliminary support: first experimental evidence for MECH-073 (previously only literature). Ablated condition at perfect chance (0.5 all seeds), geometry AUROC=0.982/0.923 in 2/3 seeds. Seed 7 outlier (0.174) likely training instability in short run. Consistent with Resolution A (MECH-073 co-true with ARC-007). Full EXQ-375 run is high priority. | [multi_sense_audit_2026_05_08_training_only_symmetric] AST-flagged for multi-sense in inner loop (training phase, lines 240 + 300). The second sense() at 300 is for compute_event_contrastive_loss which needs a differentiable forward pass. Substrate-tick rate during training is 2x the env-step rate. Eval phase (P2) is single-sense per state and is symmetric across VALENCE_GEOM vs VALENCE_ABLATED arms, so the C1/C2/C3 probe-AUROC comparison is structurally valid. Script correctly calls update_residue and update_z_goal. The 'supports MECH-073' direction is preserved with lower confidence: training-time substrate confound may have biased encoder learning. Re-run via StepHarness recommended to confirm the magnitude of GEOM > ABLATED.",
   "summary": "MECH-073 valence geometry probe (discriminative pair). VALENCE_GEOM AUROC=[0.9821428571428571, 0.17410714285714285, 0.9230769230769231] vs VALENCE_ABLATED AUROC=[0.5, 0.5, 0.5]. Outcome: PASS. Interpretation: valence is geometrically structured in the hippocampal map (Resolution A supported)",
   "config": {
     "seeds": [
@@ -121,5 +121,7 @@
     "hazard_harm": 0.15,
     "grid_size": 8
   },
-  "timestamp_utc": "20260413T074214Z"
+  "timestamp_utc": "20260413T074214Z",
+  "dry_run": true,
+  "dry_run_neutralised_prior_evidence_direction": "supports"
 }

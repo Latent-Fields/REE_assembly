@@ -21,7 +21,7 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -3071,5 +3071,7 @@
     "writer_defect": false,
     "n_agents": 18,
     "goal_state_present": true
-  }
+  },
+  "epistemic_category": "standard",
+  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED (was unknown) by the confirmed failure_autopsy_V3-EXQ-1008_2026-09-08 (REE_assembly 3f86587d6d; user-ratified at its Step 8 gate). Claim-free diagnostic (claim_ids []); bears_on INV-088, MECH-457 -- must NOT enter either claim's scoring entries. H-E (width) eliminated, H-C (geometry) split, H-F (content discarded at encode) added alive on zworld_actor_adequacy_locus. epistemic_category standard. Routing queue-experiment (over-capacity decoder sweep on banked latents); 1008b refused; SD-018 amended."
 }
