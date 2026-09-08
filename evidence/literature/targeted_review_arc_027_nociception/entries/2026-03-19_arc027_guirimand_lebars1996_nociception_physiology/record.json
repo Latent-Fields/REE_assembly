@@ -30,7 +30,9 @@
     "harm-stream",
     "ascending-pathways",
     "dedicated-afferents",
-    "supports"
+    "supports",
+    "scoring_excluded:gflag-0085",
+    "formerly_claim_ids_tested:ARC-027"
   ],
   "mapping": {
     "source_claim_statement": "Nociception is mediated by dedicated peripheral afferents (unmyelinated C fibres and fine myelinated Aδ fibres), ascending via spinothalamic and spinoreticular tracts, with supraspinal relays at reticular formation, parabrachial area, PAG, thalamic sites, and direct projections to the amygdala and hypothalamus for motivational and neuroendocrine responses. Cortical nociceptive information arrives at cingulate, insular, and somatosensory cortices — but as a downstream layer above the subcortical harm-detection substrates.",
@@ -43,9 +45,5 @@
     "mapping_fidelity": 0.75,
     "transfer_risk": 0.25,
     "notes": "Solid comprehensive review though published in a French anesthesia journal (English abstract). Source quality is good for anatomy; mapping fidelity is moderate — it establishes the dedicated-pathway claim well but is less direct than Romanski & LeDoux on the parallel-architecture point. Low transfer risk for the anatomical claims."
-  },
-  "scoring_exclusion_note": "[2026-09-01 governance, govapply-20260901, GFLAG-0085] UNTAGGED FROM ARC-027's SCORED EVIDENCE, deliberately -- this record is NOT defective and is NOT being disowned. ARC-027 is a FUSED claim: its own what_would_answer separates an OUT-OF-DOMAIN neuroanatomy leg (LeDoux's 'low road') from the one testable REE leg (harm-signal PRECEDENCE in the pipeline), and states of this record and its two siblings that they are 'the claim's biological GROUNDING, not its falsifier, and must never be scored as though a V3 run confirmed or weakened it.' They were nonetheless the ONLY three literature entries attached to ARC-027, so they alone produced literature_confidence 0.821, which cleared the 0.55 lit gate and -- combined with 6 experimental entries that are ALL SD-010's, 0 independent -- put ARC-027 in the confirmed_established quadrant on evidence its own text says cannot bear on it. Removing the claim_ids_tested tag is the minimal fix: it stops the scoring without losing the association, which survives in this record's directory name, in its `tags` ('arc-027'), and by name in ARC-027's own prose (all three papers are cited there). Precedent for fixing a join rather than a record: GFLAG-0032, build_experiment_indexes.py:3613-3629. If a claim is ever registered for the neuroanatomy question itself, retag to that.",
-  "formerly_claim_ids_tested": [
-    "ARC-027"
-  ]
+  }
 }
