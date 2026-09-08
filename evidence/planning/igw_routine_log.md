@@ -2772,3 +2772,4 @@ One line per hourly tick. ASCII only.
 2026-09-08T22:21:15Z auto-defer IGW-20260908-233 hash=b0b47de2de8b for 48h (reaped -> completed_resumable)
 2026-09-08T22:21:16Z reaped TASK_CLAIMS igw-auto-igw-233-proposal-for-inv-104-20260908T211352Z (ledger IGW-20260908-233 -> completed_resumable)
 2026-09-08T22:21:16Z GC keep igw-233-proposal-for-inv-104 (ledger IGW-20260908-233 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
+2026-09-08T22:19:27Z SPAWN IGW-20260908-237 skill=/lit-pull prio=40 uuid=963c22e0-02a6-4815-abfc-950ff6ef6fa2 pid=47567 worktree=igw-237-literature-proposal-for-mech-003
