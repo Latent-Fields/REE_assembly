@@ -2750,3 +2750,7 @@ One line per hourly tick. ASCII only.
 2026-09-08T16:39:38Z workset committed (regen -- 248 items, 29 ready, 0 in flight)
 2026-09-08T16:38:08Z SPAWN IGW-20260908-235 skill=/lit-pull prio=40 uuid=7bdbaf23-394e-4586-8087-f3f6ae219f1e pid=2202 worktree=igw-235-literature-proposal-for-inv-095
 2026-09-08T17:33:59Z auto-defer igw-235-literature-proposal-for-inv-095 hash=4e47ec8d5b54 for 48h (complete)
+2026-09-08T17:35:58Z complete igw-235-literature-proposal-for-inv-095 spawned->completed outcome=USEFUL_LANDED: lit-pull INV-095: 5 entries (4 supports + 1 mixed) landed REE_assembly 81f26cf49
+2026-09-08T17:53:46Z GC removed worktree igw-235-literature-proposal-for-inv-095 (removed; branch deleted)
+2026-09-08T17:53:30Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-08T17:54:35Z workset committed (regen -- 244 items, 28 ready, 0 in flight)
