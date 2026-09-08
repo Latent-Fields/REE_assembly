@@ -1,0 +1,160 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-08T07:24:26Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "dry_run_check_note": "check_dry_run_citations.py: V3-EXQ-1007 real, family v3_exq_1007 0 dry / 1 real; V3-EXQ-978 lineage real. validate_recording.py: always-core complete.",
+ "inline_governance_context": "Autopsied INLINE under /governance cycle governance-20260908-0703 (Step 1.5 route A, user choice); artifact claim governance-20260908-0703-autopsy-1007.",
+ "targets": [
+  {
+   "run_id": "v3_exq_1007_mech536_eval_persistence_discriminator_20260907T072349Z_v3",
+   "queue_id": "V3-EXQ-1007",
+   "claim_ids": [
+    "MECH-536",
+    "MECH-535"
+   ],
+   "experiment_purpose": "evidence",
+   "self_route_label": "latch_abolishes_cycle_competence_flat_representational_deficit",
+   "self_route_hypothesis_verdict": {
+    "outcome": "PASS",
+    "MECH-536": "supports",
+    "MECH-535": "supports"
+   },
+   "failed_criterion": "none by the verdict grid (C1 AND C2 true on both verdict arms) -- the defect is that the grid does not consult the driver's own pre-registered C2 non-degeneracy check, which FAILED (non_degenerate: false) for persist_k2 on the sole cycle-present seed; C1 for a k=2 latch is true by construction.",
+   "failed_criterion_note": "criteria_non_degenerate.C2_competence_flat_under_latch=false; C1 true (n_cycle_present_seeds=1); C3 (non-gating) FAILED, lvg_persist_k2 retention ~0.12 vs 0.50. C1 is a reach check at ANY k>=2 (driver lines 118-121), so the whole verdict rests on C2 and its non-degeneracy.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- on persist_k2 the test could not let either claim express itself (lengthened lethal orbit, no exposure); on persist_k4 the opportunity test cleared by 0.10 cells (~0.2 SE) on an arm that is 9/20 wall-press + 11/20 early death, i.e. the claim's own predicted stupor signature, which the pre-registered test cannot separate from exposure",
+    "biological_reference": "clear -- BG-like post-commit persistence / commitment hysteresis vs catatonic ambitendency (approach/withdraw two-cell cycle) and stupor (boundary press); targeted_review_mech_535 present (11 entries), MECH-536 6 entries",
+    "prerequisites": "present -- eval-time wrapper on a frozen reader; no unimplemented depends_on is exercised by the design",
+    "implementation": "complete -- the latch wrapper executes as specified (period-2 orbit impossible under k>=2; period-4 orbit recorded), detector self-test 6/6",
+    "environment": "adequate -- D3_hazard_free rung with contamination-lethal cycling is the environment 978 established the phenotype in; contamination-off sub-grid recorded",
+    "measurement": "misleading -- verdict grid ignores its own non-degeneracy flag; C1 on k=2 is by construction; only 1 of 3 seeds is cycle-present so the verdict rests on one seed; the stochastic comparator carries the envelope-exceeding signal outside the gate",
+    "integration": "n/a -- single reader, eval-time manipulation only",
+    "scale": "likely insufficient -- 3 seeds with 1 cycle-present; the 978 phenotype is seed-specific"
+   },
+   "failure_location": {
+    "mechanism": "established",
+    "measures": "partial",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MEASURES -- test-design defect (verdict grid non-gating on its own non-degeneracy check; k=2 verdict arm degenerate by construction on a period-2 alternation). NOT chargeable to REE; NOT a finding against MECH-535 or MECH-536."
+   },
+   "biological_reference": {
+    "closest_mechanism": "striatal/pallidal action persistence (post-decision commitment latch, Schmitt-like switch cost) protecting against a degraded cortical state estimate; clinical ambitendency/stupor in catatonia (Northoff GABA-A/SMA model; Fink & Taylor motor phenomenology)",
+    "dependencies": [
+     "direction-carrying state representation (goal direction, not only proximity)",
+     "BG selection/commitment gate",
+     "reward learning to shape the latch"
+    ],
+    "is_formal_import": false,
+    "divergence": "none load-bearing; the design tests the functional role (persistence buys robustness, not direction) rather than a formal definition",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_per_claim": {
+    "MECH-536": "standard",
+    "MECH-535": "standard"
+   },
+   "recommended_epistemic_category_note": "failure mode = measurement_test_design_defect (verdict grid non-gating on non-degeneracy; degenerate verdict arm). No substrate build owed, so the reading is standard on both claims and does NOT count toward the re-derive brake (R3 step 2).",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_direction_per_claim": {
+    "MECH-536": "non_contributory",
+    "MECH-535": "non_contributory"
+   },
+   "recommended_evidence_direction_note": "Manifest (flat) currently carries outcome PASS, evidence_direction supports, evidence_direction_per_claim supports/supports, non_degenerate: false. The PACK copy carries NO non_degenerate key at all and keys claims as claim_ids_tested. Write non_contributory (run-level AND per-claim) on flat AND pack with an evidence_direction_note citing this artifact; ADD non_degenerate: false + degeneracy_reason to the pack (an add, not an overwrite); leave outcome/status as the driver wrote them. The indexer already excludes the run as degenerate (flat is authoritative for non_degenerate), so scoring does not change -- the record does.",
+   "recommended_evidence_quality_note": "V3-EXQ-1007 (2026-09-07, evidence-purpose PASS, MECH-536 primary + MECH-535 read-across) is the eval-time action-persistence discriminator MECH-536's own notes name. Its verdict grid returned PASS / supports on both claims, but the run is NON-ADJUDICABLE and the direction is re-stamped non_contributory for BOTH claims, for one reason the driver itself recorded and its grid never consulted: the pre-registered C2 non-degeneracy check FAILED (manifest non_degenerate: false, reason 'C2: on some cycle-present seed a verdict arm did not both outlive greedy AND visit >= 3 more cells'). On the single cycle-present seed (42 of 42/43/44; greedy cycle_incidence 0.80/0.00/0.00) the persist_k2 verdict arm converted the period-2 cycle into a period-4 orbit on 70% of episodes (bounded_orbit_incidence 0.70, period histogram {4:14}) and visited 6.05 mean unique cells against a required 7.45 (greedy 4.45 + 3), so its 'competence flat' (0.10 vs 0.00 res/ep) measured no foraging exposure -- exactly the lengthened-lethal-orbit case the driver's red-team F3 named. C1 on a k=2 latch is satisfied by construction (the period-2 detector is silent on period-4 by design), so for persist_k2 both load-bearing criteria are true regardless of direction. persist_k4 is NOT a clean reading either (red-team finding 1, confirmed): it clears the opportunity test by 0.10 cells (7.55 vs 7.45; per-episode unique-cells SD 2.06, so ~0.2 SE) while 9/20 of its seed-42 episodes are 200-step wall-presses (stationary fraction 0.84-0.98, 87% of the arm's 2071 steps) and the other 11 die at 19-37 steps -- stupor plus early death, which is exactly MECH-536's predicted 'straight runs into the boundary' signature, so its C2 non-degeneracy pass is a coin-flip margin, not foraging exposure. The deeper design tension: MECH-536 PREDICTS perseveration into the boundary, while the pre-registered non-degeneracy test requires the latched agent to move through >= 3 more cells; if the claim is true, C2 non-degeneracy is hard to satisfy by construction, and the exposure DV must change, not only the gating. Either way n=1 cycle-present seed cannot carry a claim verdict. The indexer already scores this correctly (scoring_excluded: degenerate); the write corrects the manifest's PASS/supports stamp so the record matches. MECH-535: the seed-42 cycle is a scalar-identical (competence, survival) re-observation of 978's exemplar on 3/3 seeds, not independent evidence; the phenotype DISTRIBUTION on the scored DV -- 1 cycle seed (0.80) / 2 stupor seeds (fixed_point 1.0) of 3 -- is recorded here for the first time (978's exemplar was a 12-rollout fishtank on seed 42 only) and becomes the owed independent replication only once a successor pre-screens fresh seeds. Two recorded, non-gating findings the successor must carry: (i) C3 FAILED -- the same k=2 latch on the good-representation anchor retained ~12% of local_view_greedy (5.63 vs 48.05 res/ep), so the 'protective, not necessary' framing needs a 'costly on a good representation' caveat; (ii) the stochastic_sample comparator EXCEEDED the random-walk envelope on 3/3 seeds (2.05/1.70/1.90 vs random_walk 1.05/0.90/0.85; per 100 survived steps 3.09/2.36/2.99 vs 2.18/2.11/1.80) -- the reading the grid would have called a gating deficit had a verdict arm produced it; whether that rise is direction recovered from the logits or exploration opportunity is unposed by this design. Failure-location: MEASURES (test-design defect in the verdict grid), not chargeable to REE. No substrate hold; epistemic_category standard on both. Routing: /queue-experiment, same-question letter V3-EXQ-1007a with (1) the verdict grid gating on non-degeneracy, (2) an exposure DV that separates 'straight run then press' from 'lengthened orbit' (pooled non-stationary step fraction and cells traversed vs random_walk's per-step coverage, margin pre-registered above the per-episode SE; fixed-point caveat on pooled stationary fraction, not episode count), (3) the verdict k chosen by a per-k orbit-histogram reach check (the k=2 period-4 orbit is a generic latch artifact: local_view_greedy_persist_k2 orbits on 60-80% of episodes of a policy with zero orbits unlatched; k3 is untested), with the good-representation anchor latched at the SAME k so C3 is measured at the verdict k, (4) >= 2 cycle-present seeds via a greedy pre-screen, (5) a stochastic_sample_persist_k arm and a pre-registered reading for the comparator. C3 CAVEAT (user-ratified for MECH-536's note now, not deferred): the same k=2 latch on the good-representation anchor cut competence ~8x (local_view_greedy 45.75/49.7/48.7 -> local_view_greedy_persist_k2 5.75/3.45/7.7 res/ep; retention 0.126/0.069/0.158 vs the 0.50 bar), so 'protective, not necessary' carries 'costly at fixed depth on a good representation' until C3 is re-measured at the successor's verdict k.",
+   "per_claim_recommendation": {
+    "MECH-536": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "pending_retest_after_substrate": false,
+     "status_change": "none -- stays candidate",
+     "change": "MECH-536 currently has NO evidence_quality_note and no experimental entries; V3-EXQ-1007's PASS/supports is non-adjudicable (C2 degenerate on persist_k2, n=1 cycle-present seed; persist_k4 directionally consistent). Append the evidence_quality_note, keep epistemic_category standard, and re-stamp the manifest supports -> non_contributory"
+    },
+    "MECH-535": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "pending_retest_after_substrate": false,
+     "status_change": "none -- stays candidate",
+     "change": "MECH-535 currently has NO evidence_quality_note; V3-EXQ-1007's seed-42 cycle is a bit-identical re-observation of the 978 exemplar and the dissociation leg is degenerate, so no independent support accrues. Append the evidence_quality_note, keep epistemic_category standard, and re-stamp the manifest supports -> non_contributory"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "note": "No substrate gap: the defect is in the driver's verdict grid, not in ree_core. The x734/x808/x978 training recipe and the eval-time wrapper are not implicated."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "prior_hit_count_mech536": 0,
+    "prior_hit_count_mech535": 0,
+    "literal_count_meets_threshold": false,
+    "refused_requeue": false,
+    "route_to": "queue-experiment",
+    "upstream_substrate": null,
+    "note": "0 prior hits on either claim under R1-R3 (first autopsy targets for both, registered 2026-09-06). This reading is an instrument/test-design defect owing no build and does not count (R3 step 2). A same-question lettered successor is PERMITTED and recommended."
+   },
+   "granularity_debt_trigger": {
+    "fires": false,
+    "note": "granularity_debt_cluster.py: no tagging targets for MECH-535 or MECH-536 (first autopsy). Does not fire."
+   },
+   "learning_extracted": [
+    "A pre-registered non-degeneracy check that the verdict grid does not GATE on is decorative: this driver computed non_degenerate=false correctly and then returned PASS/supports anyway. The indexer's degeneracy guard caught it downstream (scoring_excluded), but pending_review.md lists an evidence-purpose non_degenerate:false PASS under 'PASS (verify & close)' with no flag, because the adjudication flag only fires for diagnostic/baseline runs -- a discovery-net gap, not only a driver gap.",
+    "A k=2 latch on a period-2 argmax alternation yields a period-4 orbit by construction -- AND the period-4 orbit is a GENERIC latch artifact on any greedy-on-gradient policy: local_view_greedy_persist_k2 orbits on 60-80% of episodes (histogram {4: 16/16/12}) on a policy with zero orbits unlatched. persist_k2 cannot be a verdict arm, and k3's orbit behaviour is untested (k4 happened to break it: {none: 20}).",
+    "The pre-registered non-degeneracy test (survive longer AND +3 unique cells) cannot separate 'straight run then boundary press' from 'lengthened lethal orbit': persist_k4 on seed 42 cleared it by 0.10 cells while 87% of its steps were 200-step wall-press. Worse, MECH-536 PREDICTS perseveration into the boundary, so a true claim makes the opportunity test hard to satisfy by construction. The exposure DV must change (pooled non-stationary steps, cells traversed vs random_walk per-step coverage, margin > SE), not only the gating.",
+    "The 978 ambitendency phenotype is seed-specific (1/3 cycle-present); a 3-seed design conditioned on cycle presence has n=1 by expectation. A successor must select or add seeds so >= 2 are cycle-present, or the verdict rests on one seed however the arms behave.",
+    "The stochastic comparator exceeded the undirected envelope on 3/3 seeds while both latches stayed inside it. That is a real signal outside the gate: either the logits carry recoverable direction that sampling exploits (gating-deficit-like) or sampling simply buys exploration coverage (26 unique cells vs 4-9). The successor must pre-register which, e.g. a stochastic_sample_persist_k4 arm and a per-survived-step competence DV.",
+    "C3 FAILED: the same k=2 latch on the good-representation anchor cut competence ~8x (48.05 -> 5.63 res/ep). Persistence is not merely 'not necessary' on a good representation; at k=2 it is costly. MECH-536's framing needs that caveat regardless of the verdict."
+   ],
+   "routing": "queue-experiment",
+   "routing_note": "NODE CLASSIFICATION: complex (probe-gated) / puzzle (known rules) for the science (the latch dissociation frame is well posed; the missing fact is a non-degenerate exposure-matched measurement) -- with one frame question the user must settle first (red-team finding 1): MECH-536's predicted signature (perseveration into the boundary) and the non-degeneracy test's demand (movement through >= 3 more cells) pull against each other, so the OPERATIONALISATION of 'competence flat' needs re-posing before the letter is authored. Route: /queue-experiment same-question letter V3-EXQ-1007a (implementation fix + re-posed exposure DV, not a new scientific question): (1) verdict grid gates on non_degenerate -- degenerate C2 returns non_contributory, never PASS; (2) exposure DV separating straight-run-then-press from lengthened orbit: pooled non-stationary step fraction + cells traversed vs random_walk's per-step coverage, margin pre-registered above the per-episode SE (unique_cells SD ~2.1); fixed-point caveat on pooled stationary fraction; (3) verdict k chosen by a per-k orbit-histogram reach check with an explicit 'k orbits -> arm reported only' branch (k2 excluded; k3 untested; k4 broke the orbit here), and local_view_greedy_persist_k at the verdict k so C3 is measured where the verdict is; (4) >= 2 cycle-present seeds via a cheap greedy pre-screen over more seeds; (5) keep switch_cost and stochastic_sample, add stochastic_sample_persist_k, pre-register the comparator's reading; (6) carry the C3 caveat. Refused: nothing -- brake not fired. Per CLAUDE.md the follow-on is NOT chipped by this autopsy; /governance (this same session) chips it after Step 2b.",
+   "read_across_not_adjudicated": [
+    {
+     "bears_on": "pending_review.md discovery net for evidence-purpose non_degenerate:false PASSes",
+     "detail": "generate_pending_review.py's adjudication section keys on diagnostic/baseline runs; an evidence PASS whose manifest self-declares non_degenerate:false lands in 'PASS (verify & close)' unflagged. Infra follow-on for governance to chip; not adjudicated here."
+    },
+    {
+     "bears_on": "GFLAG-0131 (stochastic-eval ask on INV-088/MECH-457)",
+     "detail": "This run's stochastic_sample comparator is the first measurement answering that flag's ask on the 978 reader: sampling at T=1.0 raises competence above the undirected envelope on 3/3 seeds. Recorded for the flag's owner; not adjudicated here."
+    },
+    {
+     "bears_on": "MECH-536 operationalisation of 'competence flat under the latch'",
+     "detail": "The claim predicts perseveration into the boundary; the run's non-degeneracy test demands exposure through >= 3 more cells. A true claim therefore makes C2 non-degeneracy hard by construction. Surfaced at the gate as a frame question for the successor's DV design; not adjudicated here."
+    }
+   ],
+   "user_gate_disposition": "non_contributory on MECH-536 and MECH-535, epistemic_category standard, no substrate hold (user-confirmed 2026-09-08). Successor 1007a: RE-POSE the exposure DV per red-team finding 1 (user-confirmed). Registry: new question, both legs alive (user-confirmed). C3 caveat recorded on MECH-536 now (user-confirmed)."
+  }
+ ],
+ "red_team": {
+  "model": "fable (cross-model; drafter = session model Fable 5.1 -- NOTE same underlying model family, see governance note)",
+  "verdict": "CONTESTED",
+  "findings_file": "scratchpad redteam_1007_findings.md (not committed)",
+  "verdict_moving_findings_applied": 2,
+  "qualifications_applied": 5,
+  "hygiene_applied": 2,
+  "summary": "Direction non_contributory x2, category standard and route queue-experiment all HELD against the cells; every arithmetic value in the draft matched on recompute. Contested on the SUCCESSOR SPEC: (1) persist_k4 clears the seed-42 opportunity test by 0.10 cells (~0.2 SE) while 9/20 episodes are 200-step wall-press (stationary 0.84-0.98, 87% of steps) -- gating on non_degenerate with the unchanged exposure DV would return PASS/supports on a stupor arm; the claim's predicted perseveration signature and the exposure test pull against each other. (2) The k2 period-4 orbit is a generic latch artifact (local_view_greedy_persist_k2 orbits 60-80%); k3 untested; C3 anchor must sit at the verdict k. Both confirmed by the drafter on the manifest cells and applied to the routing, the note, the learning and the claim-alignment row. Qualifications applied: C1 is a reach check at any k; MECH-535 phenotype distribution (1 cycle / 2 stupor) recorded; 'scalar-identical' not 'bit-identical'; pack lacks non_degenerate (add, not overwrite); pending_review premise confirmed (build_experiment_indexes.py _compute_adjudication returns n/a unless diagnostic/baseline). Rejected by the red team: any move toward weakens (stochastic comparator and C3 are pre-registered non-gating) or a weak supports on MECH-535 (non-independent)."
+ },
+ "confirmed_utc": "2026-09-08T13:52:11Z",
+ "confirmed_by": "user (interactive Step 8 gate, inline under governance-20260908-0703)",
+ "step8_gate": {
+  "held": true,
+  "held_utc": "2026-09-08T13:52:11Z",
+  "decisions": {
+   "disposition": "non_contributory both / standard / no hold (recommended option accepted)",
+   "successor frame": "re-pose the exposure DV (recommended option accepted); 'keep original spec' and 'design re-pose first, no chip' offered and declined",
+   "registry": "new question, both legs alive (recommended option accepted)",
+   "C3 caveat": "record on MECH-536 now (recommended option accepted)"
+  },
+  "note": "All four questions carried a (Recommended) option and all four were accepted; outcomes logged via record_recommendation_outcome.py."
+ },
+ "hypothesis_space_ledger_applied": {
+  "mode": "applied in-session (interactive; user-confirmed 2026-09-08)",
+  "qid": "mech536_latch_dissociation_representation_vs_gating",
+  "note": "NEW question registered with 2 legs, both left alive (V3-EXQ-1007 uninformative: C2 degenerate). pre_registered_utc = driver queue commit date (ree-v3 1bbcfd8, 2026-09-07) <= run date."
+ }
+}

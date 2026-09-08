@@ -6605,6 +6605,86 @@
       "growth_restriction": null,
       "registered_by_session": "governance-20260906-1604 (inline failure-autopsy, Step 9b Mode B on a new question)",
       "registered_from_pending_block": false
+    },
+    {
+      "qid": "mech536_latch_dissociation_representation_vs_gating",
+      "title": "Does an eval-time action-persistence latch on the frozen direction-blind 978-OFF z_world reader abolish the ambitendency two-cycle WITHOUT restoring foraging competence (representational deficit; MECH-536 + MECH-535) or WITH a competence rise beyond the undirected envelope (gating deficit; ARC-107 root C)?",
+      "short_title": "MECH-536 latch dissociation: representation vs gating",
+      "claims": [
+        "MECH-536",
+        "MECH-535"
+      ],
+      "registered_utc": "2026-09-08T13:53:02Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1007_2026-09-08.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-representational-deficit",
+          "label": "Latch abolishes the two-cycle and competence stays flat: the deficit is representational (direction absent from z_world), persistence buys robustness, not direction",
+          "desc": "Under persist_k>=2 on the frozen 978-OFF reader, cycle_incidence falls to <= 0.05 on cycle-present seeds AND the per-seed res/ep lift over greedy_argmax stays below the 0.5 effect floor, measured on an arm that actually gained foraging exposure (outlives greedy AND traverses more of the grid than a wall-press or a lengthened orbit).",
+          "axis": "representation",
+          "basis": "Live: MECH-536's own predicted signature; V3-EXQ-1007's persist_k4 arm on the sole cycle-present seed reads this way (lift +0.15, no orbit) but by a 0.10-cell opportunity margin on a 9/20 wall-press arm, so it is not adjudicable.",
+          "pre_registered_utc": "2026-09-07T01:32:00Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1007_2026-09-08.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1007"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1007"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "latch_abolishes_cycle_competence_flat_representational_deficit",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-07T07:23:49Z",
+            "basis": "Uninformative, not discriminated: V3-EXQ-1007's verdict grid returned PASS/supports but its own pre-registered C2 non-degeneracy check failed (persist_k2 lengthened the cycle to a period-4 orbit, +1.6 cells vs +3 required; persist_k4 cleared by 0.10 cells with 87% of its steps in 200-step wall-press). n=1 cycle-present seed of 3. Observation bottleneck: an exposure DV that separates straight-run-then-press from a lengthened orbit, a verdict k chosen by a per-k orbit reach check, and >= 2 cycle-present seeds."
+          }
+        },
+        {
+          "hid": "H-gating-deficit",
+          "label": "Latch abolishes the two-cycle AND competence rises beyond the undirected (random-walk) envelope: direction was recoverable from the representation once the actor stopped re-deciding (ARC-107 root C)",
+          "desc": "Under the latch a verdict arm's res/ep beats random_walk on a strict majority of seeds, or clears the 1.0 floor on any seed, with a lift >= the 0.5 effect floor.",
+          "axis": "selection",
+          "basis": "Live: neither latch arm exceeded the envelope in V3-EXQ-1007 (k2 [0.10, 0.25, 0.50], k4 [0.15, 0.25, 0.50] vs random_walk [1.05, 0.90, 0.85]) but the run was degenerate on C2, so the leg is not eliminated. The stochastic_sample comparator (pre-registered non-adjudicating) DID exceed the envelope on 3/3 seeds (2.05/1.70/1.90), which is the reading this leg predicts had a latch produced it; whether that is recovered direction or exploration coverage is unposed.",
+          "pre_registered_utc": "2026-09-07T01:32:00Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1007_2026-09-08.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1007"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1007"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "latch_abolishes_cycle_competence_flat_representational_deficit",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-07T07:23:49Z",
+            "basis": "Not eliminated: the arms that would have eliminated it were degenerate (see H-representational-deficit). The comparator signal keeps it live. Same observation bottleneck; the successor adds a stochastic_sample_persist_k arm and pre-registers the comparator's reading."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is the 978-OFF reader's ambitendency a representational deficit (persistence protective, direction absent) or a gating deficit (direction present, commitment absent) -- and therefore is the next build a directional representation (SD-018 lineage) or a governed commitment gate (ARC-107 root C)?",
+        "live_gate": "V3-EXQ-1007a with a re-posed exposure DV (pooled non-stationary steps + cells traversed vs random_walk per-step coverage), verdict grid gated on non-degeneracy, verdict k from a per-k orbit reach check, >= 2 cycle-present seeds, stochastic_sample_persist_k arm.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "one non-degenerate run away; 1007 measured the right arms with a test that could not see exposure",
+        "observation_bottleneck": "The pre-registered non-degeneracy test (outlive greedy AND +3 unique cells) cannot separate 'straight run then boundary press' (the claim's own predicted stupor) from 'lengthened lethal orbit'; and the 978 phenotype is seed-specific (1 cycle-present seed of 3)."
+      }
     }
   ]
 }
