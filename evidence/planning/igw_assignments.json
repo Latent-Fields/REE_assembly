@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-08T17:33:58Z",
+  "generated_at": "2026-09-08T17:56:34Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -10602,6 +10602,28 @@
         "priority": 40,
         "claim_ids": [
           "INV-095"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260908T175330Z-9bc13b51-claude_local",
+      "stable_hash": "9bc13b513e6a",
+      "igw_id_at_assign": "IGW-20260908-232",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-08T17:53:30Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=7e7404e0-4244-4159-b968-7c23025e751c branch=claude/igw-232-literature-proposal-for-inv-104",
+      "item_snapshot": {
+        "skill": "/lit-pull",
+        "title": "Literature proposal for INV-104",
+        "lane": "lit",
+        "priority": 40,
+        "claim_ids": [
+          "INV-104"
         ]
       }
     }
