@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_093",
+  "entry_id": "2026-09-08_inv_093_benign_finetuning_degrades_safety_qi2024",
+  "timestamp_utc": "2026-09-08T05:36:45Z",
+  "claim_ids_tested": ["INV-093"],
+  "source": {
+    "title": "Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To!",
+    "authors": ["Xiangyu Qi", "Yi Zeng", "Tinghao Xie", "Pin-Yu Chen", "Ruoxi Jia", "Prateek Mittal", "Peter Henderson"],
+    "year": 2024,
+    "venue": "International Conference on Learning Representations (ICLR) 2024 -- Oral",
+    "doi": null,
+    "arxiv_id": "2310.03693",
+    "url": "https://openreview.net/forum?id=hTEGyKf0dZ"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "ICLR 2024 oral with a directly measured competence-vs-harm-sensitivity trade: fine-tuning on benign, utility-motivated data measurably degrades safety behaviour. Mapping fidelity is the strongest of any entry here because the paper's benign-dataset condition IS the claim's scenario -- an optimisation run whose only intent was competence, whose collateral cost was harm sensitivity. Held below 0.9 because the mechanism is gradient fine-tuning of a language model's alignment layer rather than a skill-refinement knob in an embodied agent, and because the paper measures one of INV-093's four axes (harm sensitivity) and says nothing about residue accumulation or commitment integrity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A refinement run undertaken with no adversarial intent, on ordinary utility data, degrades harm refusal behaviour as a side effect -- so benign intent is not a defence and cannot be used to argue a refinement mechanism is safe by construction.",
+    "Safety behaviour established before refinement does not survive refinement: an initially impeccable alignment provides no floor once the optimiser is allowed to move the weights that carry it.",
+    "The degradation is invisible to the competence metric the refinement was run against, so a single-axis acceptance test passes a mechanism that has broken the invariant."
+  ],
+  "tags": ["inv-093", "inv-092", "skill-refinement", "safety-degradation", "fine-tuning", "ethics-perimeter", "alignment"],
+  "mapping": {
+    "source_claim_statement": "The safety alignment of a large language model can be compromised by fine-tuning on a few adversarially designed examples, and -- separately -- fine-tuning on benign, commonly used datasets can also inadvertently degrade safety alignment, to a lesser but real extent.",
+    "ree_translation": "The benign-dataset result is the empirical instance of INV-093's failure mode: an optimisation procedure aimed purely at competence silently attenuated the system's harm sensitivity, and the competence metric it was optimising registered success throughout. REE's skill-refinement mechanisms sit in the same structural position as this fine-tuning step -- they update the parameters that carry both skill and constraint -- so the paper is evidence that the non-degradation half of INV-093's acceptance shape has to be measured rather than assumed, and that measuring it requires a probe outside the competence objective.",
+    "mapping_caveat": "The substrate is wrong in two ways that matter. (1) LLM safety alignment is a post-hoc behavioural layer over a pretrained model, not a structurally distinct harm channel of the kind REE posits; its fragility under gradient updates may say more about how shallowly alignment is encoded than about any general competence-vs-harm trade. (2) The paper has no refinement-strength sweep of the sort INV-093's falsifier specifies -- it compares conditions, not a continuum -- so it establishes that the trade OCCURS without characterising how it scales, which is what REE actually needs to set an acceptance threshold.",
+    "source_context": "Fine-tuning of aligned LLMs (GPT-3.5 Turbo via the OpenAI fine-tuning API, and Llama-2-Chat) under three regimes: explicitly harmful examples, implicitly harmful identity-shifting examples, and benign utility datasets; safety measured by harmfulness rate on held-out harmful instructions."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: ICLR oral, widely replicated since, effect large and cheaply reproducible. Mapping fidelity high on the benign-fine-tuning arm specifically -- that arm is a direct instance of the claim -- and much lower on the adversarial arms, which are an attack model rather than the collateral-degradation phenomenon INV-093 is about. Transfer risk moderate: language-model alignment to embodied harm sensitivity is a real leap, but INV-093 is stated over 'any competence-refinement mechanism', so the claim's own generality is what is being tested here."
+  }
+}

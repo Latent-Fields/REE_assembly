@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_093",
+  "entry_id": "2026-09-08_inv_093_constrained_rl_joint_return_cost_ray2019",
+  "timestamp_utc": "2026-09-08T05:36:45Z",
+  "claim_ids_tested": ["INV-093"],
+  "source": {
+    "title": "Benchmarking Safe Exploration in Deep Reinforcement Learning",
+    "authors": ["Alex Ray", "Joshua Achiam", "Dario Amodei"],
+    "year": 2019,
+    "venue": "OpenAI technical report (Safety Gym); not peer-reviewed",
+    "doi": null,
+    "arxiv_id": null,
+    "url": "https://www.semanticscholar.org/paper/Benchmarking-Safe-Exploration-in-Deep-Reinforcement-Achiam-Amodei/4d0f6a6ffcd6ab04732ff76420fd9f8a7bb649c3"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "The field's standard argument for INV-093's acceptance shape -- that a policy improving return while accruing constraint cost must be scored on both, and that a single scalar makes safe and unsafe algorithms incomparable -- together with the benchmark that operationalises it. Evidentially this is a methodology precedent, not an empirical finding about competence-versus-harm, which is why it sits well below the other entries: it tells us HOW to measure INV-093's panel, not THAT the trade occurs. Further discounted because it is an unrefereed technical report, and because the constraint costs are engineered environment penalties rather than an independently-motivated protected property.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Algorithms cannot be ranked on return alone once constraints are in play: a higher-return policy that violates constraints more often is not better, and any comparison that reports one number has silently chosen an exchange rate between the two.",
+    "Constrained RL methods on this benchmark do not in fact guarantee constraint satisfaction -- they trade violations against return -- so declaring a mechanism safe because it was trained under a constraint formalism is unwarranted without the measurement.",
+    "Reducing violations by suppressing exploration lowers return, so a mechanism can appear to pass the safety axis by simply becoming incompetent; the joint measurement needs a competence floor as well as a harm ceiling."
+  ],
+  "tags": ["inv-093", "acceptance-shape", "constrained-rl", "safe-exploration", "joint-measurement", "benchmark", "ethics-perimeter"],
+  "mapping": {
+    "source_claim_statement": "Safe exploration should be standardised as constrained RL, in which an agent maximises return subject to bounded cumulative constraint cost; the accompanying benchmark reports return and cost as separate quantities for every algorithm, because a single aggregate cannot express whether a higher-return policy earned its return by violating constraints.",
+    "ree_translation": "This is the external precedent for INV-093's central methodological demand. The claim asserts that a refinement mechanism must be evaluated jointly on competence AND the protected panel and that a single-axis competence metric CANNOT express the constraint; constrained RL is the formalism the ML safety field arrived at for the same reason, and Safety Gym is what it looks like when instrumented. For REE it supplies a concrete template: define the protected axes as costs with their own accumulators, log them per-episode alongside return, and compare mechanisms on the pair rather than on any weighted sum.",
+    "mapping_caveat": "The constraint costs here are hand-placed environment hazards -- bump into a region, incur a unit of cost -- chosen to make the benchmark tractable, not because they represent anything independently valuable. INV-093's protected panel is the opposite: harm sensitivity, residue accumulation and commitment integrity are motivated properties of the agent for which no accumulator yet exists in REE, and the hard part of adopting this template is defining them, which the paper offers no help with. The report is also unrefereed and now several years old relative to the constrained-RL literature that followed it.",
+    "source_context": "Safety Gym: high-dimensional continuous control environments (robot navigation with hazards and fragile objects) with per-step constraint costs; Lagrangian-constrained variants of PPO and TRPO plus CPO evaluated as baselines, scored on return and cumulative cost jointly."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.65: influential, field-standard and openly released with code, but an unrefereed technical report. Mapping fidelity 0.70 -- the methodological principle transfers cleanly and is close to a restatement of INV-093's uncollapsed-panel requirement, while the specific cost formulation does not. Transfer risk 0.45, the highest in this directory: engineered navigation hazards standing in for an ethical panel is a substantial abstraction, and the entry is admitted as a measurement precedent rather than as evidence about harm sensitivity itself."
+  }
+}

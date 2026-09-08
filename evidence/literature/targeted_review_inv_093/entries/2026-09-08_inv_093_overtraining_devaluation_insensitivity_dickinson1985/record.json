@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_093",
+  "entry_id": "2026-09-08_inv_093_overtraining_devaluation_insensitivity_dickinson1985",
+  "timestamp_utc": "2026-09-08T05:36:45Z",
+  "claim_ids_tested": ["INV-093"],
+  "source": {
+    "title": "Actions and habits: the development of behavioural autonomy",
+    "authors": ["Anthony Dickinson"],
+    "year": 1985,
+    "venue": "Philosophical Transactions of the Royal Society of London B: Biological Sciences",
+    "doi": "10.1098/rstb.1985.0010",
+    "pmid": null,
+    "volume": "308",
+    "issue": "1135",
+    "pages": "67-78"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The canonical demonstration that practice ITSELF -- not a misspecified objective, not an adversary, not a shared-parameter accident -- decouples a well-refined behaviour from the current value of its outcome. Extended training makes a food-rewarded response persist after the food is devalued, where limited training does not. That is the biological form of INV-093's failure mode and the strongest available answer to the objection that the ML entries only show the trade under specification error. Held at 0.72 because outcome devaluation is not harm: the paper shows insensitivity to a change in outcome VALUE, and REE has to argue separately that a newly aversive outcome is a special case of a revalued one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The very training that makes a skill competent is what renders it autonomous from outcome value -- so refinement duration is itself a risk variable, and a mechanism cannot be certified once and trusted at all subsequent training levels.",
+    "The decoupling is invisible in performance: the overtrained animal and the moderately trained animal look identical until the outcome is revalued, which means the probe must involve an actual revaluation and cannot be read off the behaviour under unchanged conditions.",
+    "Behavioural autonomy is a graded consequence of amount of training rather than a discrete mode switch, so an acceptance test run at one refinement level says nothing about a later one."
+  ],
+  "tags": ["inv-093", "inv-092", "skill-refinement", "habit", "outcome-devaluation", "behavioural-autonomy", "ethics-perimeter", "brain-like-construction"],
+  "mapping": {
+    "source_claim_statement": "Instrumental behaviour is controlled by two systems. A goal-directed action is sensitive to the current value of its outcome; a habit is a stimulus-response disposition that is not. A simple food-rewarded response in rats is sensitive to reward devaluation after limited training but NOT after extended training -- behavioural autonomy develops with practice.",
+    "ree_translation": "This is the biology of INV-093's failure mode, and it arrives by a route the ML entries do not cover. Nothing is misspecified here and no adversary is present: the outcome value is correct, the animal is competent, and refinement alone has severed the link between the behaviour and the value of what it produces. If REE's skill-refinement mechanisms recapitulate this -- which the project's brain-like-construction commitment makes the default expectation rather than a worry -- then harm sensitivity degrading under refinement is the EXPECTED behaviour of a well-functioning system, not a bug to be designed out, and INV-093's insistence on a floor is load-bearing rather than precautionary.",
+    "mapping_caveat": "The decisive gap is that outcome devaluation is not harm. The paper shows insensitivity to a change in outcome VALUE (food paired with illness, or sated); INV-093 is about sensitivity to harm, other-agent signals and commitment violation. Treating a newly aversive outcome as a special case of a revalued outcome is an argument REE must make explicitly and has not yet made -- and the Jones et al. (2024) entry in this directory is here precisely because it takes one step across that gap empirically. Two further caveats: this is rat instrumental conditioning with no computational mechanism REE could port, and the habit literature since has repeatedly failed to induce habits in humans under comparable protocols, so the generality of the training-duration effect across species is genuinely contested.",
+    "source_context": "Rat instrumental conditioning; lever-press for food reward under limited versus extended training, followed by reward devaluation (taste aversion or specific satiety) and an extinction test measuring whether responding persists."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.85: the field's founding statement of the action/habit distinction, over a thousand citations, and the core devaluation effect has been replicated in rodents for four decades -- discounted from higher only by the contested human replication record. Mapping fidelity 0.70: the training-duration-causes-autonomy structure maps exactly onto INV-093, while outcome value standing in for harm sensitivity does not, and that substitution is the entry's main weakness. Transfer risk 0.45: rat instrumental conditioning to an artificial agent's ethical panel is a long transfer, mitigated by REE's explicit brain-like-construction commitment, which makes this literature a design expectation rather than a loose analogy."
+  }
+}
