@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-09-08_impl_026_lemborexant_vs_zolpidem_efficacy_sunrise1_primary_rosenberg2019",
+  "timestamp_utc": "2026-09-08T18:57:33Z",
+  "claim_ids_tested": [
+    "IMPL-026"
+  ],
+  "source": {
+    "title": "Comparison of Lemborexant With Placebo and Zolpidem Tartrate Extended Release for the Treatment of Older Adults With Insomnia Disorder: A Phase 3 Randomized Clinical Trial",
+    "authors": [
+      "Russell Rosenberg",
+      "Patricia Murphy",
+      "Gary Zammit",
+      "Dan Mayleben",
+      "Dinesh Kumar",
+      "Shobha Dhadda",
+      "Gleb Filippov",
+      "Antonia LoPresti",
+      "Margaret Moline"
+    ],
+    "year": 2019,
+    "venue": "JAMA Network Open",
+    "doi": "10.1001/jamanetworkopen.2019.18254",
+    "pmid": "31880796",
+    "pmc": "PMC6991236",
+    "volume": "2",
+    "issue": "12",
+    "pages": "e1918254"
+  },
+  "evidence_class": "rct_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Peer-reviewed phase 3 RCT, verified via PubMed (PMID 31880796) and PMC6991236. This is SUNRISE 1's PRIMARY report and it is banked to establish the trial that carries IMPL-026's head-to-head, and to mark what it does and does not show. It shows EFFICACY superiority over zolpidem ER 6.25 mg on sleep maintenance -- second-half-of-night wake after sleep onset improved by 6.7 min (5 mg, P=.004) and 8.0 min (10 mg, P<.001) versus zolpidem -- plus sleep efficiency and latency gains over placebo, and good tolerability (6 serious adverse events, 4 on zolpidem, none treatment-related). It does NOT report sleep architecture; that is the companion paper (Moline 2021, banked alongside). Direction MIXED because efficacy superiority is not phase preservation and must not be read across to IMPL-026's architectural assertion. Confidence 0.55.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A wake-after-sleep-onset advantage of 6.7-8.0 minutes over zolpidem is a maintenance-efficacy result. IMPL-026's ordering rests on PIPELINE effects, and less waking is compatible with better, worse or unchanged consolidation; treating this trial's headline as evidence for architectural superiority is the conflation the claim currently makes.",
+    "The trial is 30 days in adults 55+ with sleep-maintenance insomnia, 86.4% women, against one fixed low dose of one Z-drug. IMPL-026's disease-progression-modifying assertion concerns years of exposure in MCI; nothing about that horizon is tested here, and the corpus still holds no trial linking either drug to dementia-risk outcomes."
+  ],
+  "tags": [
+    "impl-026",
+    "lemborexant",
+    "zolpidem",
+    "sunrise_1",
+    "phase_3_rct",
+    "sleep_maintenance",
+    "waso",
+    "efficacy_not_architecture",
+    "active_comparator"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 1,006 participants aged 55+ (86.4% women, median age 63), lemborexant 5 and 10 mg significantly improved latency to persistent sleep versus placebo (ratios 0.77 and 0.72, P<.001), sleep efficiency at nights 29/30 (+7.1% and +8.0%, P<.001), and wake after sleep onset (-24.0 and -25.4 min, P<.001). Versus zolpidem ER, lemborexant significantly improved wake after sleep onset in the second half of the night (-6.7 min, P=.004; -8.0 min, P<.001). Six serious adverse events occurred (4 zolpidem, 2 lemborexant 5 mg), none treatment-related; 'Lemborexant therapy was well tolerated.'",
+    "ree_translation": "This establishes the head-to-head trial IMPL-026's assertion depends on and fixes its population, comparator dose and duration. Its own result is a maintenance-efficacy advantage, which is a different quantity from the phase preservation IMPL-026 claims; the architectural question is answered, partially, only by the companion analysis.",
+    "mapping_caveat": "Efficacy endpoints (latency, efficiency, wake after sleep onset) are not pipeline-phase measures and carry no information about consolidation quality. Sponsor-run trial with sponsor-affiliated authorship, 30 days, one fixed comparator dose, older adults with maintenance insomnia. No dementia or cognitive outcome is measured.",
+    "source_context": "Human phase 3 RCT (SUNRISE 1, NCT02783729); laboratory PSG efficacy endpoints over 30 days."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.6,
+    "notes": "High-quality large RCT in a strong journal; mapping fidelity low because the endpoints are efficacy rather than architecture, which is the whole point of banking it separately from Moline 2021."
+  }
+}

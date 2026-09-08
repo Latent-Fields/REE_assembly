@@ -1,0 +1,66 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-09-08_impl_026_lemborexant_vs_zolpidem_sleep_architecture_headtohead_moline2021",
+  "timestamp_utc": "2026-09-08T18:57:33Z",
+  "claim_ids_tested": [
+    "IMPL-026",
+    "MECH-176"
+  ],
+  "source": {
+    "title": "Comparison of the effect of lemborexant with placebo and zolpidem tartrate extended release on sleep architecture in older adults with insomnia disorder",
+    "authors": [
+      "Margaret Moline",
+      "Gary Zammit",
+      "Jocelyn Y. Cheng",
+      "Carlos Perdomo",
+      "Dinesh Kumar",
+      "Dan Mayleben"
+    ],
+    "year": 2021,
+    "venue": "Journal of Clinical Sleep Medicine",
+    "doi": "10.5664/jcsm.9150",
+    "pmid": "33590823",
+    "pmc": "PMC8314653",
+    "volume": "17",
+    "issue": "6",
+    "pages": "1167-1174"
+  },
+  "evidence_class": "rct_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "THE HEAD-TO-HEAD PSG EVIDENCE IMPL-026 ASSERTS DOES EXIST, and this is it: the sleep-architecture analysis of SUNRISE 1 (Study 304), a 1,006-participant parallel-group RCT with placebo AND zolpidem ER 6.25 mg arms and PSG at nights 1/2 and 29/30. Verified via PubMed (PMID 33590823) and read in full via PMC8314653. But it does NOT support the claim as written. It supports it on ONE stage: REM minutes rose more on lemborexant than zolpidem (nights 29/30: +8.9 min for 5 mg, +15.7 min for 10 mg, p<.0001) and zolpidem did not differ from placebo on REM at either timepoint. On SLOW WAVE SLEEP the picture runs partly the OTHER way -- on nights 1/2 zolpidem increased N3 MORE than placebo (7.7 vs 2.4 min, p<.01) and lemborexant 10 mg was significantly BELOW zolpidem (-3.5 min, p<.05); by nights 29/30 only lemborexant 5 mg exceeded zolpidem, by 3.8 min. Lemborexant also increased N1 (light sleep) more than zolpidem at both timepoints, and shortened REM latency by 27-32 min versus zolpidem, which the authors read as correcting a REM deficit but which is not self-evidently 'preservation'. The authors' own verdict: the architecture improvements 'were small in general and may not be clinically meaningful or noticeable to the patient'. Sleep architecture was an EXPLORATORY endpoint with no stated multiplicity adjustment. Direction MIXED per the chip's rule (stage-percentage superiority only). Confidence 0.6.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "IMPL-026 states orexin antagonists are 'superior to zolpidem on phase preservation in head-to-head PSG studies' and claims they 'preserve or improve SWS% and REM%'. The head-to-head shows REM superiority but NOT SWS superiority -- zolpidem beat lemborexant 10 mg on N3 acutely -- so the SWS half of the claim is contradicted for the 10 mg dose at nights 1/2 and unsupported at 30 days except for a 3.8-minute 5 mg difference.",
+    "Sleep-stage minutes are not consolidation-pipeline integrity. INV-045's Phase 3 is spindle coordination, and NEITHER SUNRISE 1 paper reports spindle density, amplitude or coupling; no clinical PSG trial in this corpus measures the quantity IMPL-026's phase framing is about. A drug could raise N2 minutes while degrading spindle-coupled consolidation and this trial could not detect it.",
+    "The active comparator is zolpidem ER 6.25 mg, the low geriatric dose, at a single fixed dose. A superiority claim over 'Z-drugs' as a class, at ordinary doses, does not follow from beating the lowest licensed dose of one of them in adults aged 55+ with maintenance insomnia over 30 days.",
+    "Lemborexant increased N1 more than zolpidem at both timepoints (nights 29/30: +5.5 and +6.2 min, p<.0001). If lighter sleep is a cost, the architecture ledger is not one-directional, and IMPL-026 currently records none of it."
+  ],
+  "tags": [
+    "impl-026",
+    "mech-176",
+    "lemborexant",
+    "zolpidem",
+    "head_to_head",
+    "polysomnography",
+    "sleep_architecture",
+    "sunrise_1",
+    "rem",
+    "slow_wave_sleep",
+    "exploratory_endpoint",
+    "overstated_claim"
+  ],
+  "mapping": {
+    "source_claim_statement": "In SUNRISE 1 (n=1,006; placebo 208, zolpidem ER 6.25 mg 263, lemborexant 5 mg 266, lemborexant 10 mg 269; PSG at baseline, nights 1/2 and 29/30), lemborexant produced significantly greater increases from baseline in total sleep time than both placebo and zolpidem, significantly greater REM sleep than both comparators (zolpidem not different from placebo on REM), and significantly shortened REM latency versus both. N3 differences were small and inconsistent in direction: zolpidem raised N3 above placebo on nights 1/2 (7.7 vs 2.4 min) and fell below placebo by nights 29/30 (-0.9 vs +2.7 min); lemborexant 10 mg was below zolpidem on nights 1/2 (-3.5 min) and lemborexant 5 mg above it on nights 29/30 (+3.8 min). Both drugs increased N2. Lemborexant increased N1 more than zolpidem. The authors conclude lemborexant 'may address some of the alterations in sleep architecture normally observed in older individuals with insomnia' while stating the improvements 'were small in general and may not be clinically meaningful'.",
+    "ree_translation": "IMPL-026 ranks dual orexin receptor antagonists at the top of its ordering partly on an asserted head-to-head PSG superiority over zolpidem on phase preservation. That assertion is now evidenced, and only partly. INV-045 Phase 4 (REM precision recalibration) is the phase where the head-to-head favours lemborexant clearly. Phase 1 (SHY homeostasis, indexed clinically by SWS) is where it does not, and where zolpidem was acutely better. Phase 3 (spindle coordination) is unmeasured. The correct revision is to narrow the claim to REM rather than to retire it.",
+    "mapping_caveat": "Three gaps between what was measured and what IMPL-026 asserts. (1) Stage minutes are not pipeline integrity; the INV-045 phase framing has no clinical PSG proxy and spindles were not reported. (2) The comparator is a single fixed low geriatric dose of zolpidem ER, not the Z-drug class at usual doses. (3) The architecture endpoints were exploratory with no stated multiplicity correction, in a 30-day trial of adults 55+ with sleep-maintenance insomnia (86% women), by an author group employed by or working with the sponsor. Nothing here speaks to dementia risk, which is IMPL-026's actual outcome of interest.",
+    "source_context": "Human RCT (SUNRISE 1 / Study 304, NCT02783729); older adults with insomnia disorder; laboratory PSG."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Large well-conducted phase 3 with an active comparator, which is rare and valuable; discounted for exploratory endpoints without multiplicity adjustment and for sponsor authorship. Mapping fidelity 0.5 because the measured quantity (stage minutes) is not the asserted one (phase preservation)."
+  }
+}
