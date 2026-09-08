@@ -3249,6 +3249,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0232",
+      "claim_ids": [
+        "ARC-065",
+        "MECH-341"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-569d (evidence, PASS, evidence_direction_per_claim ARC-065 supports / MECH-341 supports) was measured under the same E2 rollout overflow that V3-EXQ-569e was autopsied for, and its own arm_results counters contradict the 569e autopsy Addendum 9 reading of 569d as 'rollout-stability signatures clean across every arm, e3_top2_class_gap_nan_fraction 0.0': on every SD-056 ON arm the E3 top-2 gap tap was non-finite (n_top2_gap_skipped_nonfinite / n_p1_ticks) on 567/567, 3653/3653, 139/148 (ARM_1_W001 seeds 42/43/44), 218/237, 3505/3505, 114/174 (ARM_2_W005) and 352/425, 3620/3620, 105/134 (ARM_3_W020), with admitted-tick gap means 1e33-1e35, while ARM_0_OFF and ARM_4_MATCHED_NOISE admitted every tick with gap means 0.27-1.0; the driver's isfinite check (v3_exq_569d driver line ~397) bails only the diagnostic tap, so E3 selection itself ran on non-finite scores and the C3 selected-action-entropy lift over matched-noise that carried the PASS is not interpretable as support in either direction. Governance to decide whether 569d's evidence_direction moves to mixed/superseded (diagnostic, non-weighting, like 569e) and whether ARC-065 stable / MECH-341 provisional rest on it or on the later 569i lineage; surfaced by W5-S4 item 1 (REE_assembly 5819a55ae1), no manifest or claim field changed for these two claims.",
+      "raised_by_session": "clever-joliot-bb5a54",
+      "raised_at": "2026-09-08T18:39:04Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
