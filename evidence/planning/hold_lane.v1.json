@@ -1,7 +1,7 @@
 {
   "schema_version": "hold_lane/v1",
-  "generated_at": "2026-09-07T07:41:31Z",
-  "generated_by": "campaign-split-20260907 (wave-4 planning session)",
+  "generated_at": "2026-09-08T07:25:27Z",
+  "generated_by": "campaign-w5-20260908 (wave-5 planning session)",
   "_schema_notes": [
     "A HOLD is a stated reason plus a review date, never a withdrawal: the chip keeps status open in TASK_CHIPS.json; this file only says a plan of record deliberately parked it.",
     "pause_pressure.py reads this file: an open authored chip listed here with review_after >= today is reported under open_chips_authored_held and EXCLUDED from the backlog arm's open_chips_authored trip; a hold whose review_after has passed counts again automatically (a hold is not a hide).",
@@ -10,354 +10,235 @@
   "source_plans": [
     "REE_assembly/evidence/planning/science_wave_campaign_plan_20260904.md#3",
     "REE_assembly/evidence/planning/science_wave_campaign_plan_20260906.md#3",
-    "REE_assembly/evidence/planning/science_wave_campaign_plan_20260907.md#4"
+    "REE_assembly/evidence/planning/science_wave_campaign_plan_20260907.md#4",
+    "science_wave_campaign_plan_20260908.md"
   ],
   "review_after": "2026-09-11",
   "held": {
     "chip-20260814-queue-causal-sleep-matched-arm": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260818-mech152-redesign-queue-gated": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260826-representation-authority-selection-bottleneck": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260826-thought-digestion-wave-grouping-design": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260826-worktree-graveyard-triage-and-gc": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260827-capability-contract-plasticity-vocab": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260828-bashgate-shortcmd-unterminated-quote-underfire": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260828-chiparchive-uncovered-by-every-proof-route": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260828-chipledger-noop-record-committed-destructive-delete": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260901-dispatch-bg-wait-ceiling-kills-fanout": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260901-gflag0091-unblocks-claims-edge-repair": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260901-igwworkset-md-mergegap": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260901-mech035-vector-valence-substrate": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-arc044-mech152-arc016-no-shared-readout": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-arc131-coalition-endogenous-recruitment-driver": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-brake-wrapped-substrate-status": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-cloud4-divergent-manifests-862a-869a": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-cloud5-stash-scripts-wip-verify": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-dryrun-scoring-exclusion-gap": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-ext009-exp0534-blocked-substrate-status": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-failure-autopsy-bears-on-tagging": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-fleetidle-syntax-error": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-governance-mixed-diagnostic-fail": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-indexer-run-timestamp-rendering-drift": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-mech037-provenance-gate-substrate": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-mech039-control-channel-substrate-gap": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-mech065-rc-conflict-s5-substrate": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-mech157-sensory-hc-gate-wiring": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-mech320-implement-noop-margin-dv": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-mech468-anchor-relational-dump-substrate": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-mech494-context-arbitrator-substrate": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-plan-prose-460k-724-ran-not-queued": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-preexisting-corpus-reds-repin": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-r4-cloud-workrepo-puller-gap": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-settingslocal-wildcard-permission-rules": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-subcase-b-trunk-red": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902-use-before-def-lint-b": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260902-zgoal-parent-e3-consumer": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260902T1250-dryfilter-manifest-shape-blindspot": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260903-arc027-lit-schema-undeclared-keys": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260903-dea001-v3-channel-exposure-audit": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260903-e3eb-inert-marker-audit": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260903-handover-retired-timer-gate": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260903-igw-id-collision-shared-chipref": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260903-impl022-uncertainty-nondissipation-field": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260903-prepull-grader-changed-field": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260903-retroactive-duplicate-chip-sweep": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260903-worktree-guard-bash-blindspot": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260904-cloud4-runner-failsafe": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260904-coordinator-intent-replace-http500": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260904-indexer-mints-gated-claims-as-blocked": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260904-refwedge-r1-rate-cost-remeasure": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260904-substrate-stability-flag-mint-scope": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-20260905-mech095-sd047-valid-retest-design": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-igw-20260903-242": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-pausepressure-dlaptop-g5": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-0893": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-0903-paced": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-0904": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-0934": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-0936": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-0973": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-proposal-exp-1013": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-1045-paced": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-1069": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-proposal-exp-1096": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
-      "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
-    },
-    "chip-stagedskew-ree-cloud-4-ree-assembly": {
-      "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260906.md section 3",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "not on the 39-of-43 v3 critical-path chain this wave; costs at least one Opus session floor"
     },
     "chip-20260906-mech057b-hippocampal-completion-gate-substrate": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260907.md section 4",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "off-chain substrate build (ARC-065 GAP-A co-blocks); not on the 39-of-43 v3 critical-path chain; costs at least one Opus session floor"
     },
     "chip-20260906-decision-pausepressure-hold-lane": {
       "review_after": "2026-09-11",
-      "plan": "science_wave_campaign_plan_20260907.md section 4",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
       "reason": "decision chip awaiting the user (wave-4 plan section 6.4); not work"
+    },
+    "chip-20260908-sleep-integrated-world-model-update-validation": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
+      "reason": "INV-063 leg B instrument validation; not on the 39-of-43 v3 chain this wave; costs one Opus session floor"
+    },
+    "chip-20260908-compute-ledger-v2": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
+      "reason": "tooling build; the compute-economics thought registered no claims; not on the v3 chain"
+    },
+    "chip-20260907-mech267-persist-injection-state": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
+      "reason": "fold into the next MECH-267 successor design (the 1005 lineage was refused at red-team); no standalone session"
+    },
+    "chip-proposal-exp-0886-paced": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
+      "reason": "proposal_tick paced item; not on the 39-of-43 v3 chain this wave"
+    },
+    "chip-20260907-flag-registry-commit-time-gate": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
+      "reason": "HK-D residue: decide-or-leave item; needs a session that can weigh the gate cost"
+    },
+    "chip-20260902-r5-per-repo-divergence-threshold-gated": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
+      "reason": "gated on R4 (user decision 2026-09-02); not startable"
+    },
+    "chip-queuefloor-fleet-g9": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign) / section 2 (HK-D residue)",
+      "reason": "standing report chip (telemetry); never dispatched -- read by the coordinator each cycle"
+    },
+    "chip-20260906-intake-hygiene-register": {
+      "review_after": "2026-09-11",
+      "plan": "science_wave_campaign_plan_20260908.md section 3 (not a campaign)",
+      "reason": "user-gated /thought-ingestion batch (~36 candidates); runs only with the user present"
     }
   }
 }
