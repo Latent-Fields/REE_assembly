@@ -4572,7 +4572,11 @@
       "task_claim_session_id": "igw-auto-igw-233-literature-proposal-for-inv-092-20260908T030013Z",
       "task_claim_claimed_at": "2026-09-08T03:00:13Z",
       "assigned_at": "2026-09-08T02:58:43Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-08T03:25:55Z",
+      "completion_summary": "lit-pull INV-092: 5 literature entries landed (REE_assembly ae03befe72 + 7bafe657ba on origin/master), all 'supports', literature_confidence 0.848; chipped chip-20260908-inv092-falsifier-panel-refinement",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull INV-092: 5 literature entries landed (REE_assembly ae03befe72 + 7bafe657ba on origin/master), all 'supports', literature_confidence 0.848; chipped chip-20260908-inv092-falsifier-panel-refinement"
     }
   ],
   "dispositions": [
@@ -6473,6 +6477,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-08T02:12:29Z",
       "re_eligible_after": "2026-09-10T02:12:29Z"
+    },
+    {
+      "stable_hash": "ffce258aa7b5",
+      "igw_id_at_disposition": "IGW-20260908-233",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-092"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for INV-092",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T03:25:55Z",
+      "re_eligible_after": "2026-09-10T03:25:55Z"
     }
   ]
 }
