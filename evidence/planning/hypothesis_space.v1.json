@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-08T18:42:39Z",
+  "generated_at": "2026-09-08T19:43:23Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -5837,7 +5837,9 @@
           "desc": "At >= 16 seeds with paired variance reduction, the 95 percent CI on the mean paired diff lies below -0.05 in at least one condition. Null: the CI excludes -0.05 in both.",
           "axis": "measurement",
           "state": "alive",
-          "evidence_runs": [],
+          "evidence_runs": [
+            "V3-EXQ-1011"
+          ],
           "basis": null,
           "children": [],
           "met_elimination_bar": false
