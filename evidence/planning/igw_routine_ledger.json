@@ -4497,7 +4497,11 @@
       "task_claim_session_id": "igw-auto-igw-232-proposal-for-inv-063-20260907T234608Z",
       "task_claim_claimed_at": "2026-09-07T23:46:08Z",
       "assigned_at": "2026-09-07T23:43:42Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-08T00:13:54Z",
+      "completion_summary": "NOT queued -- marked EXP-1398 + EVB-1349/experimental blocked_substrate (REE_assembly 570ca8900f): INV-063 leg B has no clean instrument (probe: max|delta| e2 params across a real sleep cycle = 0.0 exactly; only E1 route sits on the open corrupting ContextMemory write-path defect, which is correlated with the intake IV). Chipped the sleep-integrated consolidation validation.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "NOT queued -- marked EXP-1398 + EVB-1349/experimental blocked_substrate (REE_assembly 570ca8900f): INV-063 leg B has no clean instrument (probe: max|delta| e2 params across a real sleep cycle = 0.0 exactly; only E1 route sits on the open corrupting ContextMemory write-path defect, which is correlated with the intake IV). Chipped the sleep-integrated consolidation validation."
     }
   ],
   "dispositions": [
@@ -6356,6 +6360,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-07T23:15:35Z",
       "re_eligible_after": "2026-09-09T23:15:35Z"
+    },
+    {
+      "stable_hash": "a2444c4a55d8",
+      "igw_id_at_disposition": "IGW-20260907-232",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-063"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-063",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T00:13:57Z",
+      "re_eligible_after": "2026-09-10T00:13:57Z"
     }
   ]
 }
