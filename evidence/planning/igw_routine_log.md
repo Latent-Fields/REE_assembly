@@ -2730,4 +2730,11 @@ One line per hourly tick. ASCII only.
 2026-09-08T04:03:31Z SPAWN IGW-20260908-234 skill=/queue-experiment prio=40 uuid=85bfb69f-3ff7-4a18-a569-71322341ea66 pid=40330 worktree=igw-234-proposal-for-inv-093
 2026-09-08T04:40:02Z auto-defer igw-234-proposal-for-inv-093 hash=4f87d1fd462f for 48h (complete)
 2026-09-08T04:45:32Z complete igw-234-proposal-for-inv-093 spawned->completed outcome=USEFUL_LANDED: marked EVB-1366/EXP-0717 blocked_substrate: no refinement-strength knob exists t
+2026-09-08T05:16:52Z workset committed (regen -- 246 items, 29 ready, 0 in flight)
+2026-09-08T05:10:21Z SPAWN IGW-20260908-234 skill=/lit-pull prio=40 uuid=5c0a29fb-c333-453a-8e3d-40f85dafa9e6 pid=23829 worktree=igw-234-literature-proposal-for-inv-093
 2026-09-08T06:24:19Z auto-defer igw-234-literature-proposal-for-inv-093 hash=00bce91bef6d for 48h (complete)
+2026-09-08T06:26:09Z complete igw-234-literature-proposal-for-inv-093 spawned->completed outcome=USEFUL_LANDED: lit-pull INV-093: 5 entries landed (REE_assembly 7b7d0f03b7 + index bf284e02df),
+2026-09-08T06:32:34Z GC removed worktree igw-234-literature-proposal-for-inv-093 (removed; branch deleted)
+2026-09-08T06:32:37Z GC removed worktree igw-234-proposal-for-inv-093 (removed; branch deleted)
+2026-09-08T06:31:58Z GC sweep removed 2 orphan worktree(s), kept 11
+2026-09-08T06:31:58Z no eligible item (skipped 246): IGW-20260908-001:skill /governance not allowed; IGW-20260908-216:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260908-217:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
