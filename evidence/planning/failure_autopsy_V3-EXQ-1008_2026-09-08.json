@@ -1,0 +1,290 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-08T05:31:03Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py on the target run_id and V3-EXQ-1008: 0 dry cited, 0 ambiguous, 1 clean, exit 0. Family sweep --family v3_exq_1008: 0 dry / 1 real. The manifest carries no truthy top-level `dry_run`. Criterion reachability: the driver's dry path sets DRY_RUN_SEEDS=[42] against SEED_MAJORITY=2, which forces seeds_sufficient False and structurally zeroes every *_clears and lift class -- a dry run of this driver can reach NO verdict at all, so a dry manifest could never have been mistaken for this one. Not applicable here: this run used all three seeds.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3",
+      "queue_id": "V3-EXQ-1008",
+      "question_id": "zworld_actor_adequacy_locus",
+      "claim_ids": [],
+      "bears_on": [
+        "INV-088",
+        "MECH-457"
+      ],
+      "bears_on_note": "Tokens reused VERBATIM from failure_autopsy_V3-EXQ-1002_2026-09-05.json targets[0].bears_on so the GOV-DIAG-1 chain advances rather than starting a fresh count of 1. A corpus scan of 488 autopsies found NO established namespaced work-stream token for this lineage (only `zworld_untrained_encoder_defect` on failure_autopsy_V3-EXQ-728_2026-07-20, a different defect), so the claim-id form is the established token here and is kept rather than improved.",
+      "self_route_label": "ws250_optimal_linear_compression_supports_mapping__linear_content_ceiling_information_not_geometry",
+      "self_route_hypothesis_verdict": "H-E: eliminated; H-C: weakened",
+      "failed_criterion": "none",
+      "failed_criterion_note": "PASS diagnostic. BOTH load-bearing criteria passed (C_leg1_adjudicated, C_leg2_adjudicated) -- outcome is PASS iff both legs reached a verdict, and the science is in the labels, not in PASS/FAIL. The five criteria reading false are all non-load-bearing DISCRIMINATING readouts: C_ws250_randproj_clears_bar (0/3), C_ws250_pca_beats_randproj (1/3), C_rebasis_lifts_by_margin (flat), C_rebasis_clears_bar (0/3), C_linear_content_supports_mapping (degrade). criteria_non_degenerate is true on ALL TEN criteria.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim-free: claim_ids [], deliberate; INV-088 / MECH-457 are bears_on relations, neither mechanism exercised)",
+        "biological_reference": "clear -- DiCarlo manifold untangling (two corpus entries, lit_status present). This run SHARPENS the reference read: an untangling failure predicts information present but tangled; the closed-form content witness instead shows the decision-relevant content is not linearly present at all. That is DISCARDING, not tangling -- a stronger and different missing-dependency signature (no objective anywhere in the training path preserves action-decision-relevant content).",
+        "prerequisites": "present -- encoder trained, latent non-collapsed, oracle clears the demonstrator floor (45.75 res/ep worst seed), 1965 held-out labelled steps worst seed, 3 seeds, seed_majority 2 satisfied",
+        "implementation": "complete -- the adapter IS x734.PPOPolicyNet at PPO_TRUNK_HIDDEN 128; all 32-dim arms carry identical action-path parameter counts (21381); adapter init re-seeded from the cell seed before every fit; per-cell substrate hashes agree (one distinct hash); validate_recording.py OK, no always-core gaps",
+        "environment": "adequate -- the mapping demonstrably exists from the same stored steps (raw 25-dim field 0.979; uncompressed 250-dim input 0.939; PCA-32 of that input 0.868), all above the 0.80 bar. The environment is not the constraint",
+        "measurement": "under-instrumented (NARROWLY, and in a NEW place) -- the 1002 debt is DISCHARGED (a 32-dim reference of the encoder's ACTUAL 250-dim input now exists and clears). The residual gap is specific: every leg-2 arm is an INVERTIBLE LINEAR 32x32 re-basis, which by the driver's own algebra leaves the adapter's function class IDENTICAL, so leg 2 can only ever measure LEARNING DYNAMICS, never information; and the content witness is a LINEAR decode. Whether the decision-relevant content survives NONLINEARLY, recoverable by an over-capacity decoder, is unmeasured by this run and by every run in the lineage. ONE FURTHER RESIDUE, surfaced by the Step 7c pass: the leg-2 VERDICT arm (ridge field-decode) is by far the worst-conditioned of the three re-bases -- per-seed condition numbers 2455-8902, against 68-102 for ZCA and 29.97-30.24 for LDA -- while the driver's own authoring-time calibration measures a random invertible reweighting of the raw field costing -0.025 at condition number 20 and -0.047 at 100, i.e. conditioning penalties of the same order as the entire effect under test. The conditioning gate was DEMOTED to a recorded witness (rebasis_witnesses) because it could not fire, so nothing in the run protects the verdict arm from a conditioning-induced suppression. This does not overturn the WEAKENED verdict (jointly gated on the content witness, which degrades 3/3) but it means the geometry contribution is bounded BELOW, not estimated",
+        "integration": "isolated by design -- the consumer is deliberately severed from the representation (BC from oracle labels removes credit assignment entirely). That is the manipulation, not a defect",
+        "scale": "adequate -- 3 seeds x 10 arms, 8.96 h, ADAPTER_PASSES 60, positive control converged at 0.973-0.985; no gate bound marginally"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM + ENVIRONMENT established, MEASURES partial) -- NOT chargeable to REE as a whole and NOT an 'REE failed' read. MECHANISM: the observation->z_world encoding is fully implemented, trained, non-collapsed, faithfully reproduced and read at the consumer's exact capacity, and it still does not carry the mapping -- established. ENVIRONMENT: the mapping is demonstrably present in the same stored steps and three non-REE readouts recover it above the bar -- established. MEASURES: only PARTIAL, because no run in this lineage measures whether the decision-relevant content survives NONLINEARLY in z_world (every leg-2 arm is function-class-preserving by algebra; the content witness is a linear decode). With MEASURES partial the fourth bucket is unreachable, so no organism-level 'REE failed' read is licensed by this artifact."
+      },
+      "biological_reference": {
+        "closest_mechanism": "DiCarlo-style ventral-stream manifold untangling: a population code carries a variable that is present yet unusable by a simple downstream readout until a cascade whose JOB is reshaping has flattened and separated the behaviourally relevant manifolds",
+        "dependencies": [
+          "an objective/architecture whose purpose is that reshaping",
+          "a dorsal, action-formatted stream distinct from the ventral recognition stream",
+          "downstream readouts matched to the format the reshaping produces"
+        ],
+        "is_formal_import": false,
+        "divergence": "REE's z_world is trained for sensory prediction (SD-056 e2 world-forward contrastive) plus the SD-018 auxiliary field head -- objectives with no pressure to preserve the ACTION-relevant variable -- and every consumer reads the one shared prediction-trained latent, with no separate action-formatted stream. 1002 read the failure as an untangling failure. THIS run narrows it further: an untangling failure would leave the content linearly present but badly arranged, and three independent linear re-bases plus a closed-form linear-content witness say the decision-relevant content is not linearly present. The signature is DISCARDING at encode time, which is a missing-dependency finding (no objective preserves it), not a falsification of the untangling reference.",
+        "lit_status": "present for the untangling principle (targeted_review_perceptual_manifold_adaptors 2026-06-12 dicarlo2012; targeted_review_sd_015 2026-04-02 dicarlo2007). ABSENT, as 1002 already recorded, for the specific architectural question 'does biology route action selection through a single shared prediction-trained latent, or maintain a separate action-formatted stream?' -- that gap is now MORE load-bearing than it was at 1002, because the discarding read points straight at it. Secondary route, not this autopsy's primary."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic on a fully green instrument. `standard` asserts no epistemic suppression, which is the correct verdict, and is what the enum offers for 'no category applies'. Deliberately NOT `substrate_ceiling`: that value sits in _EPI_SUPPRESS_PROPOSAL (suppresses GOV-GRAN-1 surfacing) and marks claims not-v3-testable, and this run does not assert the answer is gated on a build -- it asserts the opposite, that ONE cheap probe on already-banked data separates the two candidate builds. The failure-mode diagnosis lives in the note fields.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "Run-level manifest disposition for a claim-free diagnostic, matching the convention V3-EXQ-1002 set. The manifest currently carries `evidence_direction: \"unknown\"`, so this IS a storable change. The per-LEG directions (H-E discriminated away; H-C's linear form discriminated away) live in the frozen registry, not in a claim's evidence record -- this run must not enter any claim's scoring entries.",
+      "recommended_evidence_quality_note": "V3-EXQ-1008 (2026-09-07, diagnostic PASS, claim-free) executed the parallel two-leg portfolio commissioned by failure_autopsy_V3-EXQ-1002_2026-09-05 and returned BOTH legs. At identical width (32), identical reader (x734.PPOPolicyNet at PPO_TRUNK_HIDDEN, 21381 action-path params on every 32-dim arm), identical banked steps and identical standardiser, held-out top-1 oracle-action agreement is: raw 25-dim field 0.979 | uncompressed 250-dim world_state 0.939 | PCA-32 of that input 0.868 | random orthonormal 32-dim projection of that input 0.772 | LDA-whitened z_world 0.711 | ZCA-whitened z_world 0.708 | UNTRAINED z_world 0.695 | TRAINED (OFF) z_world 0.669 | field-decode re-based z_world 0.666, against a 0.80 bar and a 0.573 trivial baseline. LEG 1: H-E-channel-input-capacity is ELIMINATED -- a task-agnostic variance-optimal 32-dim LINEAR compression of the encoder's ACTUAL 250-dim input clears bar and elevation on 3/3 seeds, so the deficit is not a 250->32 channel-input bound and not dimensionality. (Plain, not strong, elimination: the random projection reaches 0.772 and does not clear 0.80. The PCA-minus-random margin cleared on 1/3 seeds and is REPORTED ATTRIBUTION only, deliberately not a conjunct of the verdict -- _adjudicate_leg1 takes four booleans and the margin is not among them.) LEG 2: H-C-geometry-mismatch is WEAKENED at its own pre-registered branch -- three independent information-preserving linear re-bases of the frozen latent (ridge field-decode, ZCA, Fisher/LDA whitening) are seed-majority FLAT, and the closed-form content witness (the oracle's own rule applied to the linearly decoded field, no adapter) DEGRADES to 0.593/0.591/0.607 against trivial 0.566/0.580/0.572, i.e. below what the learned reader already extracts. Read together: the deficit is neither channel WIDTH nor readout GEOMETRY; the observation->z_world encoding DISCARDS the decision-relevant content of its own input. Two qualifications recorded rather than smoothed: (a) the two whitening arms lift CONSISTENTLY 3/3 in the positive direction (ZCA +0.039, LDA +0.043 mean) -- a small REAL geometry effect, classified flat because it sits below the 0.05 marginal band, and roughly a third of the ~0.13 needed to reach the bar from 0.669; 'geometry contributes nothing' is too strong, 'geometry contributes about a third of what is needed' is right. (b) every leg-2 re-basis is an invertible linear 32x32 map, which by the driver's own stated algebra leaves the adapter's function class IDENTICAL, so leg 2 measures learning dynamics and the content witness measures LINEAR content only -- whether the content survives NONLINEARLY is unmeasured here and in every run of this lineage. Finally, and stated more weakly than the draft of this note first had it: the TRAINED latent is at or below its UNTRAINED control (0.669 vs 0.695, 3/3 seeds), as in V3-EXQ-1002 -- but this is NOT an independent replication. The warmup and dataset reproduce BIT-IDENTICALLY between the two runs (zworld_encoder_trained_in_p0 and zworld_not_collapsed match to full double precision; the rawfield_ceiling arm is bit-identical on 3/3 seeds), so only the adapter initialisation was re-drawn. The ordering is therefore robust to a READER-INIT re-draw and to an intervening substrate change, NOT to a warmup re-draw; it does not add a second independent instance behind H-D-warmup-not-the-locus, which continues to rest on V3-EXQ-1002 alone.",
+      "per_claim_recommendation": {
+        "INV-088": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "Claim-free diagnostic -- INV-088 is a bears_on relation here, not a tag, and this run must NOT enter its evidence record as a scoring entry. Its evaluator-bounded-by-z_world relation was not exercised (no E3 evaluator trained or read) and its own re-check stays gated on SD-e1-rollout-consistency-training ITEM 2, a different substrate route. The bears-on fact its evidence_quality_note should now carry, and which STRENGTHENS the constraining direction beyond what V3-EXQ-1002 recorded: z_world's differentiation deficit is not a width bound (an optimal linear 32-dim compression of the same 250-dim input reaches 0.868 against a 0.80 bar) and not a geometry bound (three information-preserving re-bases flat; closed-form linear-content witness degrades to ~0.59 against a ~0.57 trivial baseline) -- the encoding DISCARDS the decision-relevant content. epistemic_category is already `standard` and diagnostic_evidence_adjudicated is already true, so no storable field moves; record the disposition by citation -> stamp failure_autopsy_V3-EXQ-1008_2026-09-08",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-457": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "Claim-free diagnostic -- MECH-457 is a bears_on relation here, not a tag, and this run must NOT enter its evidence record as a scoring entry; its actor-critic substrate is absent by construction (the manipulation IS that no policy is learned by RL). Necessity untouched. The bears-on fact bears in the CONSTRAINING direction and is sharper than V3-EXQ-1002's: a dedicated actor-critic reading THIS frozen latent would inherit not a rotatable arrangement problem but a content deficit -- an unconstrained-width question aside, the decision-relevant content is not linearly present in the latent at all, so no amount of RPE teaching on a frozen z_world can recover it. This is direct empirical support for the existing `sd_actor_critic_action_learning` implementation_hint (the action-learning loss must CO-SHAPE the representation, not ride a frozen z_world). epistemic_category is already `standard` and diagnostic_evidence_adjudicated is already true, so no storable field moves; record the disposition by citation -> stamp failure_autopsy_V3-EXQ-1008_2026-09-08",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate/v3_pending"
+        }
+      },
+      "read_across_not_adjudicated": [
+        {
+          "bears_on": "SD-018 shape (b) hold -- ground (i) is WITHDRAWN by this run; the hold now rests on ground (ii) ALONE",
+          "detail": "failure_autopsy_V3-EXQ-1002_2026-09-05 held SD-018 shape (b) (side-channelling the raw field past z_world) on TWO grounds it explicitly said 'can come apart': (i) the predecessor's condition, that H-C is confirmed so shape (b) 'would raise the score without addressing the constraint'; and (ii) independently, that shape (b) BYPASSES the observation->z_world interface rather than repairing it, and that interface is the v3 binding constraint. This run WEAKENS H-C, so ground (i) no longer stands as stated. They have come apart exactly as anticipated. Ground (ii) is untouched and still holds the build. Governance must know the hold is now single-grounded before it ratifies or amends the docs/architecture/sd_018_resource_proximity_supervision.md line 94 override ('If it nulls, build shape (b)'). NOT adjudicated here -- flagged because this autopsy's change mechanically moves it."
+        },
+        {
+          "bears_on": "SD-018 failure_record item for v3_exq_978 (resolved: open) -- its stated target is now answered and superseded",
+          "detail": "That item's target is 'DISCRIMINATE FIRST, then build ... a frozen-latent SUPERVISED oracle adapter that either reproduces local_view_greedy actions from the frozen z_world (-> H-B, shape (b) is the right build) or cannot (-> H-C, shape (b) would raise the score without addressing the constraint)'. V3-EXQ-1002 took the CANNOT branch and V3-EXQ-1008 has now adjudicated the H-C branch itself. The item's two-way fork is superseded by a third answer neither branch anticipated: the content is discarded. Recommended `superseded`, not `resolved` -- nothing was fixed; a later, more specific run replaced the prior item's read."
+        },
+        {
+          "bears_on": "sd_zworld_warmup_optimizer_group / bears_on token `zworld_untrained_encoder_defect` (failure_autopsy_V3-EXQ-728_2026-07-20)",
+          "detail": "That line established a DEFECT: in the x734/737 driver family the P0/P1 warmup had no optimizer group covering latent_stack, so z_world was literally a frozen random projection (0 of 61 latent_stack tensors changed). Its status is `validated`, i.e. fixed, and in THIS driver family the encoder demonstrably trains (V3-EXQ-1002's `zworld_encoder_trained_in_p0` gate: weight delta 0.28159 against a 1e-06 floor). The read-across is that the FUNCTIONAL signature survived the fix: with the encoder genuinely training, the resulting latent is still at or slightly below an untrained random projection of the same input on this action readout (0.669 vs 0.695, 3/3 seeds). That is a strictly stronger statement than the 728 defect and is not the same finding -- training now happens and buys nothing here. NOT adjudicated: this autopsy does not re-open that SD entry."
+        }
+      ],
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-018",
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/agent.py::compute_resource_proximity_loss",
+          "ree_core/latent/stack.py",
+          "ree_core/latent/zworld_p0.py"
+        ],
+        "severity_and_paths_note": "UNCHANGED from what governance already has. This occurrence does not reclassify: the finding is a capability limitation (the encoding does not preserve decision-relevant content), not a defect that produces evidence which LOOKS valid but is not, so `degrading` stays and no Step 2.5c block on unrelated experiments is warranted. The three existing substrate_paths already cover the encoder path the finding implicates; no path is added.",
+        "note": "THE AMEND IS RECORD-KEEPING, NOT A BUILD AUTHORISATION. Routing is `queue-experiment` (see routing_note); no build is recommended by this autopsy. SD-018 currently carries NO failure_record entry for either V3-EXQ-1002 or V3-EXQ-1008 even though both were commissioned off its 978 record, and that record's stated target has now been answered. Two writes are recommended: (1) append the failure_record_entry below; (2) mark the existing v3_exq_978 item `superseded` per resolves_prior_failure_record. Governance should ALSO note that the shape-(b) hold recorded in `governance_2026_09_05` is now SINGLE-grounded -- see read_across_not_adjudicated[0].",
+        "failure_record_entry": {
+          "run_id": "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3",
+          "experiment_type": "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis",
+          "metric": "SD-018's OFF-arm latent, read at the consumer's exact capacity on oracle-labelled BC data: held-out top-1 action agreement 0.669 mean (0/3 seeds clear the 0.80 bar), against 0.868 for a task-agnostic PCA-32 of the SAME 250-dim input (3/3 clear), 0.772 for a random orthonormal 32-dim projection of it, 0.695 for the UNTRAINED latent, and 0.979 for the raw 25-dim field. Three information-preserving linear re-bases of the frozen latent are seed-majority FLAT (field-decode -0.003 mean, ZCA +0.039, LDA +0.043 against a 0.10 lift bar), and the closed-form linear-content witness DEGRADES to 0.593/0.591/0.607 against trivial 0.566/0.580/0.572.",
+          "target": "A z_world produced under SD-018 supervision, read at the consumer's capacity, should reach >= 0.80 held-out oracle-action agreement with >= 0.20 elevation over trivial on a strict majority of seeds -- a bar a fixed variance-optimal linear compression of the encoder's own input clears at 0.868. Until it does, the encoding is discarding decision-relevant content its input demonstrably carries.",
+          "resolved": "open",
+          "addressed_by": "Characterised by V3-EXQ-1008 (adjudicated by failure_autopsy_V3-EXQ-1008_2026-09-08). Not addressed by any build; the routing is a banked-data probe, not an implement-substrate.",
+          "run_role": "unknown",
+          "run_role_basis": "Deliberately `unknown`, not `post_build`. The run EXECUTED after SD-018's directional field head landed (2026-09-02) so the substrate existed -- but it reads the 978 OFF-arm latent, i.e. it characterises the latent WITHOUT SD-018's supervision, and is not a validation of the build. Stamping `post_build` would raise _substrate_landing_cutoff and let an OFF-arm characterisation satisfy 'a retest has run since the substrate landed' -- the exact wrong-HOLD failure the run_role schema note was added to prevent. SD-018's owed 948-shape OFF-vs-ON validation remains unrun."
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3",
+            "resolved": "superseded",
+            "addressed_by": "Nothing was fixed. That item's target was a two-way DISCRIMINATION ('reproduces -> H-B, shape (b) is the right build' vs 'cannot -> H-C, shape (b) would raise the score without addressing the constraint'). V3-EXQ-1002 took the CANNOT branch; V3-EXQ-1008 then adjudicated the H-C branch itself and WEAKENED it. The fork is superseded by a third answer neither branch anticipated -- neither the consumer nor the geometry is the constraint; the encoding discards the content. Recommended `superseded` rather than `resolved` for exactly that reason."
+          }
+        ],
+        "schema_note": "`addressed_by` is used rather than a minted `resolved_note` key: substrate_queue.json's own _schema_notes['failure_record[].resolved'] names addressed_by as the prose key for the resolving run/session."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "prior_hit_count_mech457": 13,
+        "prior_hit_count_inv088": 2,
+        "literal_count_meets_threshold": true,
+        "refused_requeue": true,
+        "route_to": "queue-experiment",
+        "upstream_substrate": "SD-018",
+        "note": "THIS TARGET IS CLAIM-FREE (claim_ids []), so the R1-R3 counter's `claim in target.claim_ids` test never reaches it and it adds NOTHING to either bears_on claim's count. Both counts re-run under the binding R1-R3 recipe on 2026-09-08 and are UNCHANGED from what V3-EXQ-978 and V3-EXQ-1002 recorded: MECH-457 13 hits, INV-088 2 hits. The standing brake on both claims therefore still refuses a same-claim lettered re-run against the same substrate, and this autopsy does not propose one. `refused_requeue` is true in that sense AND in one more, on this autopsy's own account: a lettered V3-EXQ-1008b that re-runs this design with more adapter passes, a wider adapter, more seeds or more episodes is REFUSED. The instrument converged (positive control 0.973-0.985, all ten criteria non-degenerate, both load-bearing criteria passed); the readings are not power problems, and more of the same is the loop the brake exists to stop. What is recommended is a NEW EXQ number asking a question no run in the lineage has asked (section 8)."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-F-content-discarded-at-encode (NEW, to be pre-registered by this autopsy as labelled fan-out growth, ALIVE): the decision-relevant content of the observation is DISCARDED by the observation->z_world encoding and is not recoverable from the frozen latent by ANY decoder at any capacity. This is the direct NEGATION of the just-weakened H-C, not a re-entry of it: H-C asserted the content is present and linearly decodable but badly arranged; H-F asserts it is not there to arrange.",
+          "COMPLEMENT (H-F's declared elimination branch, deliberately NOT registered as a separate leg): the content IS present in the frozen latent but only nonlinearly, above the consumer's 32->128 capacity and format, so the block is a consumer-side interface FORMAT/CAPACITY bound rather than an encode-time loss. If an over-capacity decoder clears the bar, H-F is eliminated and THIS becomes the next registered leg -- registered then, by the autopsy that adjudicates it, rather than now, so the frozen denominator is not double-counted for one measurement."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-F vs its complement",
+            "axis": "measurement",
+            "leg": "PRIMARY -- the single fact that gates both candidate builds",
+            "sketch": "AN OVER-CAPACITY DECODER SWEEP ON THE ALREADY-BANKED FROZEN LATENTS. Same V3-EXQ-1002/1008 dataset, same seeds, same held-out episode split, same standardiser; the ONLY thing varied is the decoder's capacity -- sweep the reader from the consumer's exact x734.PPOPolicyNet (32->128, the 1008 arm, known 0.669) up through progressively wider/deeper MLPs to a deliberately over-parameterised decoder, and report BOTH the oracle-action agreement AND a direct nonlinear decode of the five DECISION_WORLD_STATE_INDICES {232,236,237,238,242}. Anchor every rung against the SAME sweep applied to ws250_pca (known 0.868) so the capacity axis is calibrated on a representation known to carry the content. DECLARED NULL: even the over-parameterised decoder stays below the 0.80 bar on the seed majority -> H-F CONFIRMED, the content is destroyed at encode time and the only repair is at the ENCODER's objective (sd_actor_critic_action_learning's co-shaping hint, or an action-formatted stream). CLEARS -> H-F ELIMINATED, the content survives but is inaccessible at the consumer's capacity/format, and the repair is interface reformatting rather than encoder retraining -- an entirely different and much cheaper build. ADDED AT THE STEP 7c PASS -- A FITTED LINEAR READOUT ARM, to de-confound the one in-run hint that nonlinear content exists. This run's only evidence on that point is that zworld_off_diag (0.669) beats the closed-form content witness (0.593-0.607) by 0.054-0.083 -- but those two readers differ in TWO ways, learned-vs-fixed rule AND nonlinear-vs-linear, because the witness applies the oracle's hand-specified argmax to a noisy linear decode while the adapter is fitted. A FITTED linear softmax on the frozen latent, at the bottom rung of the sweep, separates them: if it also reaches ~0.67 the gap is the fitting, not the nonlinearity.",
+            "why_not_a_power_bump": "This is NOT the lettered re-run the brake refuses. The brake refuses re-running the SAME design at more power to re-ask the SAME question. Here the DV, the question and the manipulated variable all change: 1008 held capacity FIXED at the consumer's width by design (that was its capacity_match requirement) and varied the input representation; this probe holds the representation fixed and varies capacity, which no run in the lineage has done.",
+            "declared_null_note": "The capacity sweep's null is one-sided by design and that is deliberate: a decoder that clears only at absurd capacity still eliminates H-F, because H-F asserts the content is not recoverable AT ANY capacity. Report the capacity at which it clears, if it does -- that number is what sizes the interface-reformat build."
+          },
+          {
+            "hypothesis": "H-F (localisation, secondary -- run only if H-F is confirmed)",
+            "axis": "process",
+            "leg": "SECONDARY -- where in the encoder the content is lost",
+            "sketch": "A LAYER-WISE CONTENT PROBE. Decode the five decision coordinates from each intermediate tensor of the observation->z_world path (raw world_state -> each latent_stack stage -> z_world) on the banked episodes, and report the decode quality profile. DECLARED NULL: content is high at the input and falls monotonically with depth, with no single stage accounting for the loss (a distributed squeeze). A sharp single-stage drop instead NAMES the layer to change and converts the node from probe-gated to `complicated (buildable)` at that layer. Cheap: no ree_core change, no new warmup family, forward passes only."
+          }
+        ],
+        "note": "GOV-FANOUT-1. Two DIFFERENT design axes (measurement: capacity sweep; process: layer-wise localisation), each with a declared null, neither a power-bump of the braked design. Only ONE new registry leg (H-F) is pre-registered, deliberately: its complement is H-F's own declared elimination branch, and registering both would inflate the frozen denominator by two for what is a single measurement. The secondary probe adjudicates no new leg -- it localises a confirmed H-F -- so it adds no leg either.",
+        "registry_axis_for_H_F": "representation",
+        "axis_field_semantics_note": "IMPORTANT FOR WHOEVER APPLIES THIS: `suggested_probes[].axis` is the PROBE's DESIGN axis, not the registered leg's axis. H-F's registry axis is `representation` (see registry_axis_for_H_F above and the hypothesis_space_ledger_pending block), NOT `measurement`. The predecessor artifact's probe axes happened to coincide with its legs' registry axes, which makes this an easy and consequential misread -- the axis value is what the convergence classifier buckets on."
+      },
+      "learning_extracted": [
+        "AT IDENTICAL WIDTH AND IDENTICAL READER, A FIXED VARIANCE-OPTIMAL LINEAR COMPRESSION OF THE ENCODER'S OWN INPUT BEATS THE TRAINED ENCODER BY 0.20 HELD-OUT AGREEMENT (0.868 vs 0.669), AND A RANDOM ORTHONORMAL PROJECTION OF IT BEATS THE ENCODER BY 0.10 (0.772). The observation->z_world encoding is not merely failing to improve on its input -- it is destroying task-relevant structure that a fixed linear map preserves. This is the sharpest statement of the v3 binding constraint the corpus carries.",
+        "BULK LINEAR DECODABILITY IS NOT EVIDENCE THAT DECISION-RELEVANT CONTENT SURVIVES, AND THIS LINEAGE NEARLY ROUTED ON THAT INFERENCE. V3-EXQ-978 measured field decode r2 0.710 (sense) / 0.858 (encoder) from z_world and its own null table concluded 'z_world already carries the field, so the deficit is in the CONSUMER'. V3-EXQ-1008's closed-form witness -- the oracle's OWN argmax rule applied to that same linearly decoded field -- reaches 0.593 against a 0.566 trivial baseline. r2 averages over 25 field coordinates; the oracle reads 5 of them and takes an argmax, so a decode that is good on average can be worthless where the decision lives. GENERALISABLE GUARD: when a decode r2 is used to argue content adequacy, always report the decision-relevant projection of it, applied through the actual decision rule, not the aggregate.",
+        "A CRITERION THAT IS FUNCTION-CLASS-PRESERVING BY ALGEBRA CAN ONLY EVER MEASURE LEARNING DYNAMICS, AND THE DRIVER SAYING SO IS WHAT MAKES THE LEG READABLE. Every leg-2 arm is an invertible linear 32x32 re-basis, absorbable by the adapter's first layer (W' = W R^-1), so information content is identical BY ALGEBRA across leg-2 arms and a lift can come only from optimisation dynamics. The driver states this in its own docstring and correspondingly requires the closed-form content witness to be non-lifting before the WEAKENED branch may fire. Read the other way round, this is a standing caution: a 'flat re-basis' result is NOT by itself evidence about information, and an autopsy that read it as such would have over-claimed.",
+        "GEOMETRY CONTRIBUTES SOMETHING, ABOUT A THIRD OF WHAT IS NEEDED, AND THE SEED-MAJORITY BAND CLASSIFIES THAT AS 'FLAT'. Both whitening arms lift consistently in the positive direction on 3/3 seeds (ZCA +0.040/+0.030/+0.048, LDA +0.042/+0.033/+0.052) and are binned flat because only one seed reaches the 0.05 marginal band. Against the ~0.13 needed to lift 0.669 to the 0.80 bar, that is a real but insufficient effect. The verdict is correct on its pre-registered terms; the PROSE must not therefore say geometry contributes nothing.",
+        "THE TRAINED-BELOW-UNTRAINED ORDERING IS STABLE UNDER A READER RE-DRAW, NOT UNDER A WARMUP RE-DRAW -- AND THE DRIVER'S OWN PROVENANCE NOTE OVERSTATES THIS. V3-EXQ-1008's warmup and dataset are BIT-IDENTICAL to V3-EXQ-1002's, not an independent reproduction: both manifests carry zworld_encoder_trained_in_p0 = 0.28158509731292725 and zworld_not_collapsed = 4.222778806991767 (OFF) / 7.492851658629209 (untrained) to full double precision, an identical held-out split (2148/2061/1965), and a BIT-IDENTICAL rawfield_ceiling arm on all three seeds (0.984636843 / 0.979621530 / 0.973028004). The only thing re-drawn is the adapter initialisation (red-team F8's per-cell reset_all_rng), which is why only the z arms' final_ce_loss differs. So this run does NOT add a second independent sample of the quantity H-D-warmup-not-the-locus is about (what the warmup writes into z_world); it rules out a READER-INIT artifact, not a WARMUP-DRAW artifact. What IS newly established, and is worth recording: the ordering survives a SUBSTRATE CHANGE -- substrate_hash 5125cc63eb... (1002) vs 875d3044d5... (1008) -- while the warmup output stays bit-identical, so whatever landed between the two runs does not touch the observation->z_world path. GENERALISABLE GUARD: 'reproduced, not loaded from a checkpoint' is a statement about the MECHANISM of provenance, not evidence of INDEPENDENCE; before crediting a re-run as a second instance, diff the warmup-derived scalars at full precision. PROVENANCE DEFECT TO CARRY FORWARD: the driver docstring and the manifest's own frozen_latent_source.reproduced_not_loaded both justify 'not a bit-identical replay' partly on the ground that 'the machine class differ'. It does not -- both runs declare linux-x86_64-py3.10-torch2.12.0+cpu (ree-cloud-2 and ree-worker-3 are the same declared class). Later sessions will read that string as provenance; it is wrong and should be corrected at the source.",
+        "TWO GROUNDS RECORDED AS SEPARABLE CAME APART EXACTLY AS PREDICTED, ONE CYCLE LATER. failure_autopsy_V3-EXQ-1002 held SD-018 shape (b) on two grounds and said in terms that they 'can come apart'. This run withdrew ground (i) by weakening H-C. Because the prior artifact stated them separately instead of merging them into one justification, the hold survived the withdrawal on ground (ii) and the change was auditable in a single read. GENERALISABLE: when a hold rests on more than one ground, enumerate them separately and say which are independent."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "NODE CLASSIFICATION: `complex (probe-gated) / puzzle (known rules)`. The frame is well posed and ONE missing FACT -- is the decision-relevant content recoverable from the frozen latent at ANY capacity? -- gates two candidate builds that point in OPPOSITE directions and cost very differently: retrain/re-objective the encoder (expensive, ree_core, new warmup family) versus reformat the consumer-side interface (cheap, no encoder change). It is NOT `complicated (buildable)`: no single build is named by the evidence yet, and choosing one now is exactly the confident-but-wrong localisation GOV-FANOUT-1 exists to prevent. It is NOT `mystery (known data)`: the deciding measurement is absent from every run in the lineage -- 1008 held capacity FIXED at the consumer's width by design. It is NOT `aleatoric`: the readings are consistent across 3/3 seeds on a converged instrument.\n\nWHY ONE MORE PROBE RATHER THAN A BUILD, STATED AGAINST THE OBVIOUS OBJECTION. This is the fifth diagnostic on this locus (813 -> 948 -> 978 -> 1002 -> 1008) and a reader is entitled to ask whether the lineage is converting effort into information or circling. Three reasons it is converting: (a) each run has ELIMINATED a named rival rather than re-measuring -- H-B (consumer learning), H-E (channel width), H-C-linear (geometry) are now all closed, and the registry records exactly two live readings where it once had four; (b) the recommended probe costs no ree_core change, no new warmup family and no contract-gate exposure -- it is forward passes and decoder fits on data already banked; (c) it discriminates between two builds whose costs differ by more than an order of magnitude. GOV-DIAG-1 currently reports 0 actionable chains, and this target does not change that (its bears_on tokens carry verdict-bearing autopsies, not no-verdict ones) -- but the SPIRIT of that gate is live, and this autopsy states explicitly that if H-F's probe returns CONFIRMED, the next move is a BUILD and not a sixth diagnostic.\n\nWHAT IS REFUSED: a lettered V3-EXQ-1008b at more power (see re_derive_brake.note), and any build authorised off this run alone -- including SD-018 shape (b), whose hold is now SINGLE-grounded (see read_across_not_adjudicated[0]) but still standing.\n\nPER CLAUDE.md Session Land Protocol step 6, this autopsy does NOT spawn_task its own routing follow-on: the routing is a proposal until /governance Step 2b ratifies it, and governance is the session that chips it.",
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "Run with granularity_debt_cluster.py (targets whose OWN claim_ids name the claim, never a grep) on 2026-09-08. MECH-457: 31 targets across 21 files, alignment distribution intact=17 / strengthened=5 / unclear=2 / unstamped=2 / untested=2 / weakened=2 / other=1 -- and MECH-457 was already DECOMPOSED 2026-07-22 into MECH-475 / MECH-476 (user-approved), so the debt this trigger exists to surface has been discharged. INV-088: 9 targets across 9 files, intact=2 / other=2 / untested=2 / weakened=2 / unstamped=1. THIS RUN ADDS NO TARGET TO EITHER CLUSTER -- claim_ids is empty, so it is invisible to the reader by construction. Routing is not /claim-synthesis."
+      },
+      "diagnostic_chain_recurrence": {
+        "fires": false,
+        "note": "check_diagnostic_chain_recurrence.py (GOV-DIAG-1) on 2026-09-08: 26 bears_on work-streams carry pure-diagnostic no-verdict autopsies; 0 at the N>=3 ACTIONABLE threshold. This lineage's autopsies are verdict-BEARING (V3-EXQ-1002 resolved H-B/H-C/H-D; this one resolves H-E and H-C), so they are not no-verdict hits and the chain does not accumulate. Recorded so a later session does not re-derive it."
+      }
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "note": "APPLIED 2026-09-08 after the Step 8 gate, NOT still pending. The registry writes below were executed against evidence/planning/hypothesis_space_registry.v1.json in this same commit: H-E resolved to eliminated, H-C resolved to split, H-F added as labelled fan-out growth (3a), initial_frozen_count 4 -> 5 with initial_frozen_count_at_registration held at 2. build_hypothesis_space.py and check_hypothesis_space_integrity.py were re-run: flags a=0 b=0 c=0 d=0, the append is reported under 'Advisory -- labelled fan-out growth' with conditions (a)-(c) satisfied, and the git-witness check passed. The derived convergence_class for this question is CIRCLING ('a growth event added ONLY legs re-entering already-eliminated families'), exactly as this artifact disclosed in advance and as the gate ratified. The step-by-step patch is retained as registry_patch_1008.json for audit.",
+    "qid": "zworld_actor_adequacy_locus",
+    "growth_restriction": "ABSENT on this qid -> growth permitted without a gate",
+    "resolve_mode_B": {
+      "H-E-channel-input-capacity": {
+        "from": "alive",
+        "to": "eliminated",
+        "axis": "instrumentation",
+        "bar": {
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": true
+        },
+        "resolved_utc": "2026-09-07T23:38:26Z"
+      },
+      "H-C-geometry-mismatch": {
+        "from": "confirmed",
+        "to": "split (GATE-DEPENDENT; runners-up eliminated / alive)",
+        "axis": "representation",
+        "children": [
+          "linear re-basis restores accessibility -> eliminated",
+          "geometry contributes, far short of the gap -> confirmed"
+        ],
+        "bar": {
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": true
+        },
+        "resolved_utc": "2026-09-07T23:38:26Z"
+      }
+    },
+    "add_mode_A_labelled_fanout_3a": {
+      "H-F-content-discarded-at-encode": {
+        "axis": "representation",
+        "axis_family": "representation",
+        "convergence_consequence": "CIRCLING (re-enters a family holding resolved-out legs) -- disclosed, not engineered away",
+        "pre_registered_utc": "2026-09-08T05:31:03Z",
+        "pre_registration_source": "failure_autopsy_V3-EXQ-1008_2026-09-08.json",
+        "state": "alive"
+      }
+    },
+    "counters": {
+      "initial_frozen_count": {
+        "from": 4,
+        "to": 5
+      },
+      "initial_frozen_count_at_registration": {
+        "unchanged": 2
+      },
+      "fanout_growth_event_delta": 1
+    }
+  },
+  "red_team": {
+    "run": true,
+    "model": "claude-opus-5 (SESSION MODEL, same as the drafting model)",
+    "cross_model": false,
+    "cross_model_note": "The skill's preferred cross-model reviewer (Fable) was attempted FIRST and the spawn failed with an API rate_limit/out-of-credits error for claude-fable-5-1; per the skill the pass was re-spawned once on the session model. This is a valid pass but NOT a cross-model one -- recorded so a later reader does not credit it with independence from the drafting model's priors.",
+    "verdict": "CONTESTED",
+    "findings_file": "scratchpad/redteam_1008.md (407 lines)",
+    "defects": 1,
+    "qualifications": 4,
+    "hygiene": 4,
+    "findings_applied": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "defect_summary": "FINDING 1: the artifact credited this run as a 'second, independent instance' corroborating H-D-warmup-not-the-locus. It is not -- the warmup and dataset reproduce BIT-IDENTICALLY from V3-EXQ-1002 (17-significant-digit matches on warmup-derived scalars; bit-identical positive-control arm on 3/3 seeds; identical machine_class), and only the adapter init was re-drawn. INDEPENDENTLY VERIFIED by the autopsy author before applying. Corrected in learning_extracted[4] and recommended_evidence_quality_note.",
+    "arithmetic": "The reviewer independently recomputed every load-bearing figure from the manifest's own arm_results cells (not from the driver's metrics aggregation): all ten arm means, the 0.19978 PCA-vs-encoder gap, the 0.13140 gap-to-bar, the LDA lift 0.042754 = 0.3254 of the gap, every content-witness margin, and the granularity and brake counts. NO DISAGREEMENTS.",
+    "verified_sound": [
+      "Leg 1 H-E-eliminated is supported despite the random control failing -- _adjudicate_leg1 returns eliminated on pca_clears alone; rand_clears only selects strong-vs-plain",
+      "The H-E CONFIRMED branch was genuinely reachable (decision-subspace retention 0.289/0.424 against a 0.95 ceiling; compression lossiness 0.865 against 0.99)",
+      "Leg 2 H-C-weakened fires exactly as pre-registered, and the function-class-preserving objection is pre-empted by the driver's own content-witness conjunct",
+      "`split` is in RESOLVED_OUT_STATES in both the builder and the integrity checker, resolution.children is read, and check (d)'s bar requirements are met",
+      "`superseded` (not `resolved`) on SD-018's v3_exq_978 item matches the schema's own value_note verbatim",
+      "SD-018 really carries no failure_record entry for 1002 or 1008; severity and substrate_paths unchanged; the governance_2026_09_05 note really does enumerate grounds (i) and (ii) as separable",
+      "Both per-claim change-string tails are storable and NOT already true against live claims.yaml",
+      "recommended_evidence_direction non_contributory is storable (the manifest carries `unknown`)",
+      "'Not the lettered re-run the brake refuses' holds -- no run in the lineage varies reader capacity (both predecessors trunk_hidden 128 throughout)",
+      "Re-derive brake 13/2 and granularity clusters 31/21 and 9/9 reproduce on an independent scan of 489 autopsy JSONs",
+      "The dry-run gate and its reachability argument",
+      "Fifteen prose absolutes tested and unbroken (all gates green, no gate bound marginally, one distinct cell substrate hash, held-out step counts, demonstrator floor, oracle majority share)"
+    ],
+    "not_adjudicated_by_reviewer": "The scientific reading itself, and whether H-F belongs in the `representation` family as a matter of taxonomy -- the registry's own axis_families._authority assigns that judgement to the human, which is why it is put to the Step 8 gate."
+  },
+  "confirmed_utc": "2026-09-08T06:18:57Z",
+  "confirmed_by": "user gate (interactive, AskUserQuestion), session failure-autopsy-exq1008-20260908",
+  "step8_gate": {
+    "held": true,
+    "held_utc": "2026-09-08T06:18:57Z",
+    "decisions": {
+      "H-C registry state": "split (recommended option accepted) -- children: linear re-basis restores accessibility -> eliminated; geometry contributes far short of the gap -> confirmed",
+      "H-F axis": "representation, accepting the CIRCLING convergence verdict (recommended option accepted); the learning-signal / constitution re-label was offered and declined as a Goodhart move",
+      "SD-018 substrate write": "amend -- append the 1008 failure_record entry AND mark the v3_exq_978 item superseded (recommended option accepted)",
+      "Routing": "one more probe on already-banked data (recommended option accepted); the alternatives 'build now on the encoder objective' and 'release SD-018 shape (b) as a performance lever' were both offered and declined"
+    },
+    "recommendation_ledger_entries": [
+      148,
+      149,
+      150,
+      151
+    ],
+    "note": "All four questions carried a (Recommended) option and all four recommendations were accepted; outcomes logged via record_recommendation_outcome.py per CLAUDE.md."
+  }
+}
