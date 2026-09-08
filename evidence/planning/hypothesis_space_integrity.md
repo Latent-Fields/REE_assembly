@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-08T19:43:29Z
+Generated: 2026-09-08T19:50:37Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **56** open question(s) across **44** time-series snapshot(s). **0** flag(s) raised, **55** advisory note(s), **22** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
+Audited **56** open question(s) across **44** time-series snapshot(s). **1** flag(s) raised, **55** advisory note(s), **22** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -18,11 +18,11 @@ _The frozen initial enumeration grew WITHOUT a valid labelled fan-out record, or
 
 _None._
 
-## (c) Confirmed/superseded without a passed control (0)
+## (c) Confirmed/superseded without a passed control (1)
 
 _A `confirmed` or `superseded` hypothesis lacks control_passed == true._
 
-_None._
+- `sd_e1_var_bar_readout_crush`/`H-readout-saturation`: state=confirmed but control_passed=False -- a confirmed node needs a passed control.
 
 ## (d) Elimination-bar violation (0)
 

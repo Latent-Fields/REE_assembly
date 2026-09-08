@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-08T19:43:23Z",
+  "generated_at": "2026-09-08T19:50:33Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,15 +31,15 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 110,
+      "total_surviving": 112,
       "total_initial": 188,
       "total_initial_at_registration": 157,
       "total_fanout_added": 31,
       "total_resolved_out": 61,
-      "total_confirmed": 41,
+      "total_confirmed": 42,
       "total_superseded": 1,
       "reduction_pct_vs_current": 32.4,
-      "net_narrowing_pct": 29.9,
+      "net_narrowing_pct": 28.7,
       "convergence_classes": {
         "static": 27,
         "narrowing": 21,
@@ -48,12 +48,12 @@
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "110 alive against 157 originally enumerated, and against 188 including 31 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "112 alive against 157 originally enumerated, and against 188 including 31 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 56
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 20,
+      "ready": 21,
       "open_questions": 56
     }
   },
@@ -246,7 +246,7 @@
     },
     {
       "date": "2026-09-08",
-      "surviving": 110,
+      "surviving": 112,
       "closure_pct": 73.0,
       "build_pct": 80.8
     }
@@ -260,7 +260,7 @@
         "MECH-457",
         "INV-088"
       ],
-      "is_hero": true,
+      "is_hero": false,
       "initial_frozen_count": 20,
       "initial_frozen_count_at_registration": 7,
       "fanout_added": 13,
@@ -891,7 +891,7 @@
         "MECH-457",
         "ARC-065"
       ],
-      "is_hero": false,
+      "is_hero": true,
       "initial_frozen_count": 6,
       "initial_frozen_count_at_registration": 4,
       "fanout_added": 2,
@@ -1070,8 +1070,8 @@
         "readiness_state": "discriminative_ready",
         "evidence_decile": 7,
         "decision_question": "Root cause of the conversion / competence ceiling (four candidate roots, one live).",
-        "distance_phrase": "1 discriminative experiment -- the return-decomposition diagnostic (not yet queued)",
-        "live_gate": "H-objective-misspecification, via a return-decomposition diagnostic (per-term return attribution + consumption:survival weighting sweep). NOT yet queued. The former live gate V3-EXQ-737 has run and did not discriminate.",
+        "distance_phrase": "1 confirmed (H-observation-interface), 2 eliminated (H-reward-balance, H-policy-learning), 3 alive (H-substrate-ceiling, H-f-dominance, H-objective-misspecification). The confirmed leg has been refined into zworld_actor_adequacy_locus (4 of 5 legs resolved 2026-09-05..08, H-F alive): distance = that one decoder sweep, plus rung-3 validation before H-f-dominance is adjudicable. Rewritten 2026-09-08T19:50:33Z applying GFLAG-0115 -- the prior block named the return-decomposition diagnostic as 'NOT yet queued'; it RAN as V3-EXQ-808 (2026-07-24) and displaced, not refuted, H-objective-misspecification.",
+        "live_gate": "The H-F discriminator on the child question zworld_actor_adequacy_locus: an over-capacity decoder sweep on the already-banked V3-EXQ-1002/1008 frozen latents (same seeds, held-out split, standardiser; only decoder capacity varied), named by confirmed failure_autopsy_V3-EXQ-1008_2026-09-08. Unqueued as of 2026-09-08T19:50:33Z; /governance chips it after Step 2b ratification. H-observation-interface is CONFIRMED (813, 948) -- the open question is WHERE in the observation->z_world interface the decision-relevant content is lost, which the child question carries (H-B, H-E eliminated; H-D confirmed; H-C split; H-F alive). Secondary gate for H-f-dominance: validation of the E3 channel-commensurability operator (rung 3, ree-v3 c47b885, built 2026-09-07) -- per V3-EXQ-571b the F-monopoly premise on e3_fdominance_causal_discrimination is regime-dependent under the clamp, and H1-H4 there stay alive and untestable as posed until score scale is normalised.",
         "observation_bottleneck": null
       }
     },
@@ -5071,30 +5071,29 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.6667,
-      "bits_removed_vs_registration": 1.58,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
       "convergence": {
         "convergence_class": "static",
         "reason": "no fan-out growth; nothing ruled out yet",
         "families_closed": [
           "constitution",
+          "instrumentation",
           "representation"
         ],
         "families_touched": [],
-        "families_fresh": [
-          "instrumentation"
-        ],
+        "families_fresh": [],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 1,
-      "alive": 1,
+      "surviving": 3,
+      "alive": 0,
       "resolved_out": 0,
-      "confirmed": 2,
+      "confirmed": 3,
       "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
-      "bits_removed": 1.58,
+      "bits_removed": 0.0,
       "synthesis": null,
       "hypotheses": [
         {
@@ -5115,11 +5114,11 @@
           "label": "the 0.002 var bar, through the bounded 1/(1+d^2) readout, demands over-dispersion relative to real spread",
           "desc": "goal_proximity is bounded and flat for goal-distant states; in V3-EXQ-1000 the bar is reached only at spread 3-3.7x real (seed2024 h=10/20/30). The lineage never measured the readout's variance over its own REAL endpoint samples (108b: means 0.64-0.81 only). If real endpoints' variance is < 0.002, the bar is an instrument target to re-register, not a substrate target.",
           "axis": "measurement",
-          "state": "alive",
+          "state": "confirmed",
           "evidence_runs": [
             "V3-EXQ-1006"
           ],
-          "basis": "V3-EXQ-1006 RAN THIS LEG BUT DOES NOT ADJUDICATE IT -- the verdict INVERTS with the denominator, and both denominators are recorded in the manifest. Declared null: 'real-endpoint goal_proximity variance >= 0.002 on a majority of seeds'. On the FROM-RESET (Phase 4b) set, real_goal_prox_var_h1 = 0.0047-0.0196, 6/6 seeds clear 0.002 -> null MET -> leg would be ELIMINATED. On the SAME-START (Phase 4d) set the driver adopted, branched_endpoint_goal_prox_var_h1 = 0.001736/0.002262/0.023916/0.000033/0.000200/0.001071, 4/6 below -> null NOT met -> leg supported. The driver's geometric argument for same-start is sound (at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so same-start isolates rollout-attributable variance); note its EMPIRICAL form is false -- on seed7 same-start EXCEEDS from-reset (0.0239158 vs 0.0196255), holding 5/6. UNEXPLAINED ASYMMETRY for governance: interpretation.branched_same_start_note says 'the registered legs read Phase 4b', yet the substitution was applied to Leg B ONLY -- the one leg whose verdict it changes (checked: not results-driven; Leg C is unaffected either way). Settling this needs NO new run -- complex (probe-gated) / mystery (known data). User gate 2026-09-07: LEAVE ALIVE, record both.",
+          "basis": "V3-EXQ-1006 RAN THIS LEG BUT DOES NOT ADJUDICATE IT -- the verdict INVERTS with the denominator, and both denominators are recorded in the manifest. Declared null: 'real-endpoint goal_proximity variance >= 0.002 on a majority of seeds'. On the FROM-RESET (Phase 4b) set, real_goal_prox_var_h1 = 0.0047-0.0196, 6/6 seeds clear 0.002 -> null MET -> leg would be ELIMINATED. On the SAME-START (Phase 4d) set the driver adopted, branched_endpoint_goal_prox_var_h1 = 0.001736/0.002262/0.023916/0.000033/0.000200/0.001071, 4/6 below -> null NOT met -> leg supported. The driver's geometric argument for same-start is sound (at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so same-start isolates rollout-attributable variance); note its EMPIRICAL form is false -- on seed7 same-start EXCEEDS from-reset (0.0239158 vs 0.0196255), holding 5/6. UNEXPLAINED ASYMMETRY for governance: interpretation.branched_same_start_note says 'the registered legs read Phase 4b', yet the substitution was applied to Leg B ONLY -- the one leg whose verdict it changes (checked: not results-driven; Leg C is unaffected either way). Settling this needs NO new run -- complex (probe-gated) / mystery (known data). User gate 2026-09-07: LEAVE ALIVE, record both. || DECIDED 2026-09-08T19:50:33Z (user, /dual-insights 2026-09-08 rec 1; decision_log.v1.jsonl#2026-09-08T19:50:33Z): the SAME-START (Phase 4d) denominator settles Leg B. The geometric argument stands -- at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so the same-start set isolates rollout-attributable variance while from-reset adds start dispersion; the empirical 'upper bound' form is NOT relied on (seed7 inverts it). On that denominator 4/6 seeds sit below 0.002 -> declared null NOT met -> hypothesis SUPPORTED -> CONFIRMED: the 0.002 e1coe_score_var bar, through the bounded goal-proximity readout, is an INSTRUMENT target relative to real same-start spread, not a substrate target as registered by V3-EXQ-1000. Consequence carried to substrate_queue f_dominance_conversion_ceiling depends_on_unresolved item 2: re-register the bar relative to same-start real-endpoint variance (per-seed) before any further SD-e1 var-bar run; the Leg-B-only substitution asymmetry is recorded and is immaterial to Leg C's verdict (unchanged on either denominator).",
           "children": [],
           "met_elimination_bar": false
         },
@@ -5138,11 +5137,11 @@
         }
       ],
       "decision": {
-        "readiness_state": "observation_bottleneck",
-        "evidence_decile": 2,
+        "readiness_state": "decided",
+        "evidence_decile": 10,
         "decision_question": "Is the e1coe_score_var bar a substrate target (fidelity-anchored divergence objective), a goal-axis representation problem, or an instrument defect of the bounded proximity readout?",
-        "distance_phrase": "2 of 3 legs resolved (H-fidelity-anchor confirmed, H-goal-orthogonal-dispersion confirmed); H-readout-saturation ran but is denominator-contingent and stays alive pending a governance decision on the denominator. No new run owed.",
-        "live_gate": "Portfolio RAN (V3-EXQ-1006, 2026-09-06). The recorded observation_bottleneck ('real-endpoint goal_proximity variance never recorded') is DISCHARGED -- both denominators are now recorded. Remaining gate is a governance DECISION on which denominator settles Leg B, not a measurement.",
+        "distance_phrase": "DECIDED 2026-09-08T19:50:33Z: 3 of 3 legs resolved, all CONFIRMED (H-fidelity-anchor, H-goal-orthogonal-dispersion, H-readout-saturation). The e1coe_score_var bar is partly a substrate target (fidelity-anchored divergence objective) and partly an instrument target (bounded readout at real spread); the bar must be re-registered relative to same-start real-endpoint variance before MECH-135/INV-088 retest-readiness can be re-assessed.",
+        "live_gate": "DECIDED 2026-09-08T19:50:33Z -- no gate. Leg B settled on the same-start denominator (see H-readout-saturation.resolution.basis). No new run owed on this question; the follow-on is an instrument re-registration on the SD-e1 lineage, tracked on substrate_queue f_dominance_conversion_ceiling.",
         "observation_bottleneck": "DISCHARGED by V3-EXQ-1006 (both from-reset and same-start real-endpoint goal_proximity variance now recorded)."
       }
     },
