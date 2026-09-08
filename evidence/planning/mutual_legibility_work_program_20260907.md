@@ -3,7 +3,8 @@
 **Date:** 2026-09-07  
 **Status:** proposed staged work programme; no experiments queued, no claims registered, no task-ledger mutation performed here  
 **Parent thought:** `docs/thoughts/2026-09-07_mutual_legibility_communication_subspaces.md`  
-**Implementation companion:** `docs/thoughts/2026-09-07_mutual_legibility_implementation_assays.md`
+**Implementation companion:** `docs/thoughts/2026-09-07_mutual_legibility_implementation_assays.md`  
+**Amended:** 2026-09-08 -- ML-13 addendum (receiver-conditioned rung) and ML-15b (recurrence stability assay), the MECH-547 / MECH-548 diagnostic arms; numbering unchanged, items appended only
 
 ## Purpose
 
@@ -110,11 +111,31 @@ Implement frozen-endpoint:
 - orthogonal Procrustes;
 - affine linear;
 - low-rank affine;
-- narrow nonlinear upper bound.
+- narrow nonlinear upper bound;
+- receiver-conditioned `T(A, B)` (added 2026-09-08, MECH-547; see the addendum below).
 
 Record parameter counts and regularisation.
 
 **Acceptance:** synthetic rotation is recovered by Procrustes; nonlinear-only synthetic case is not falsely credited to the linear arms.
+
+### ML-13 addendum (2026-09-08) -- receiver-conditioned rung `T(A, B)` (MECH-547)
+
+A rung ABOVE the narrow nonlinear upper bound, not a replacement for it. `T(A, B)` takes the frozen sender state AND the frozen receiver's current state / position / context as inputs, so the communication subspace it exposes may be context-indexed (MECH-547 sharpening MECH-537). Endpoints stay frozen throughout, as for every rung.
+
+**Exposure-not-solving constraint.** The rung decides *which part* of already-present sender information is exposed and *how* it is expressed. It must not solve the task independently: a high-capacity `T(A, B)` can compute an arbitrary joint function of both endpoints and become a hidden cognitive module (MECH-538), so this rung carries a stricter evidence burden than any linear rung.
+
+**Mandatory arms whenever this rung is run:**
+
+- **sender-only matched-capacity baseline `T(A)`** -- same parameter count and regularisation as `T(A, B)`, receiver input withheld;
+- **receiver-state permutation control `T(A, B_perm)`** -- receiver states permuted across matched rows (episodes / contexts) so the receiver input carries no pairing with the sender row. This is the discriminator: if permutation barely changes the gain, the gain is capacity, not conditioning;
+- the ML-14 correct-vs-mismatched sender control (INV-105) and zero / moment-matched random controls, applied to the conditioned bridge exactly as to every other rung;
+- held-out environments / tasks -- required, not optional, for this rung.
+
+Report parameter counts and regularisation identically for `T(A)`, `T(A, B)` and `T(A, B_perm)` (Gate C capacity disclosure). The receiver-manifold guard applies at step one here and becomes longitudinal in ML-15b.
+
+**Acceptance (synthetic):** a planted receiver-indexed read surface (the sender exposes different subspaces under different receiver contexts) is recovered by `T(A, B)` and NOT by matched-capacity `T(A)`, and permuting the receiver context destroys that recovery; a planted context-free rotation is recovered equally by `T(A)` and `T(A, B)` and is permutation-insensitive, so the library does not falsely credit conditioning where none exists.
+
+**Readings:** `T(A, B) > T(A)` held-out and permutation destroys the gain -> receiver conditioning is genuinely useful (MECH-547 confirming signature). `T(A, B) > T(A)` but permutation barely matters -> extra capacity; evidence about the bridge (MECH-538), not about conditioning. Either reading is diagnostic output only; nothing here authorises a conditioned bridge in `ree_core`.
 
 ## ML-14 — Causal replacement library
 
@@ -133,6 +154,42 @@ Implement paired replacements:
 Implement one-step and multi-step bridge consistency metrics for action-conditioned transitions.
 
 **Acceptance:** known pointwise rotation with compatible dynamics passes; constructed static-fit/dynamic-mismatch case fails.
+
+## ML-15b -- Recurrence stability assay (MECH-548)
+
+Added 2026-09-08. **Distinct from ML-15:** ML-15 asks whether a bridge is compatible with the receiver's *native dynamics* (MECH-539); this item asks whether the bridge's *own output re-entering as its input* stays stable (MECH-548), which can fail with perfectly compatible dynamics and a fixed sender. Applies to every ML-13 rung that shows a one-step rescue, including the receiver-conditioned rung. Both endpoints frozen; capacity matched where possible. The clean-base arm is what separates the two: if recomputing against the clean receiver state restores stability, the failure is MECH-548, not MECH-539.
+
+**Arms** (application mode of the same bridge, repeated over the horizon the system actually traverses the interface):
+
+- **cumulative repeated application** -- each step operates on the previously translated receiver state, `B_0 -> T(A_0, B_0) = B_1' -> T(A_1, B_1') = B_2' -> ...`;
+- **clean-base / temporary-overlay application** -- each step computed against an unmodified native receiver state, the residual held as a gated overlay and discarded before the next step (state vs modulatory overlay at an interface; ARC-084 gated, gained coupling);
+- at each application mode: the ML-14 zero / moment-matched random and correct-vs-mismatched sender controls, and the ML-13 addendum permutation control where the bridge is receiver-conditioned.
+
+**Measures** (in addition to ML-13/ML-14 one-step consumer performance):
+
+- multi-step consumer performance curve over steps;
+- **receiver-manifold distance / drift over steps** -- the Gate C receiver-manifold guard made longitudinal; separates mechanism (a), off-manifold compounding;
+- **bridge output norm / gain over time** -- separates mechanism (b), semantic double-counting; escalating gain is the interface-level form of MECH-363's runaway, an analogy across levels;
+- **redundant re-injection of already-transmitted content** -- content the receiver already carries being re-amplified rather than recognised as present;
+- task-information calibration over steps;
+- dynamic compatibility with native receiver transitions (ML-15, MECH-539), recorded alongside so the two long-horizon failures are never conflated;
+- correct-pair specificity at horizon, not only at step one.
+
+**Readings** (from `docs/architecture/receiver_conditioned_translation.md`):
+
+| Reading | Interpretation |
+|---|---|
+| `T(A,B) > T(A)` held-out, permutation destroys the gain | receiver conditioning is genuinely useful (MECH-547) |
+| `T(A,B) > T(A)`, permutation barely matters | extra capacity, not conditioning (MECH-538) |
+| one-step rescue, cumulative collapse, clean-base stable | recurrent interface instability (MECH-548) |
+| cumulative stable with correct-pair specificity | functionally coherent recurrent bridge |
+| both bridges fail, richer source information succeeds | upstream representation deficiency more likely |
+
+**Acceptance (synthetic):** a constructed bridge that is one-step exact but drifts under cumulative application is flagged by the drift / gain measures and rescued by the clean-base arm; a constructed dynamics-incompatible bridge (the ML-15 failure case) fails under BOTH application modes, so the assay does not misattribute MECH-539 to MECH-548.
+
+**Sequencing:** ML-15b runs on a live locus only AFTER ML-20's waking metric has shown range and stability at that locus, and BEFORE any ML-60/61 sleep assay -- a sleep-induced change that improves a static probe but destabilises the next waking trajectory is a failure, not consolidation (MECH-548 sleep corollary for MECH-540), so the recurrence measures must exist before a sleep result can be read. Any proposed E1/E2 interface repair is tested over the same horizons used to judge predictive competence.
+
+**Scope note:** the ML-13 addendum and ML-15b together discharge the "diagnostic only" scope of MECH-547 / MECH-548 as registered (both `candidate`, `substrate_conditional`, "do not build in V3, do not queue"). They add no architectural option to Phase 7 or the ML-A* placeholders, queue no experiment, and change no claim. The diagnostic becomes v3-runnable once the ML-13 library exists; any architectural response stays v4 and routes through Gates A-D.
 
 ---
 
