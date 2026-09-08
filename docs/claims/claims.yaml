@@ -52072,6 +52072,12 @@
       verdict: flag_for_failure_autopsy/approved
   implementation_phase: v3
   v3_pending: true
+  diagnostic_evidence_adjudicated: true
+  experiment_gate:
+    gated: true
+    gating_claim: SD-056
+    release_condition: "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54."
+    set_by: "clever-joliot-bb5a54 (W5-S4 item 1, GOV-CONFIRM-1 confirm adjudicated DO-NOT-QUEUE 2026-09-08)"
   claim_level: architectural
   registered_utc: "2026-05-29"
   depends_on:
@@ -52196,6 +52202,38 @@
     B (rollout-landscape shift) is what's doing the work. substrate_queue.json's SD-056
     amend_history entry (status: implemented, ready: false) still lists the same
     next_validation text, untouched since 2026-05-31. See digestion_note below.
+
+    [2026-09-08, W5-S4 item 1, session clever-joliot-bb5a54 -- GOV-CONFIRM-1 confirm for SD-056
+    (workset IGW-20260908-244 / stable_hash 23d982d6d95e, lit 0.62, exp ~0) ADJUDICATED DO-NOT-QUEUE;
+    diagnostic_evidence_adjudicated set true, experiment_gate added, status/phase unchanged.] The
+    lane asks for a representation-level confirming DV. That DV already exists and has been
+    measured three times: V3-EXQ-613 (synthetic K=8 batches, cand_world_pairwise_dist 0 -> >= 0.05,
+    PASS), V3-EXQ-569d and V3-EXQ-569e (real training, t=1 cand_world_pairwise_dist ~0.05-0.07 on
+    ON arms vs ~0.014 on OFF and matched-noise arms, 3 and 5 seeds). The zero genuine_exp_count is a
+    TAGGING fact, not an evidence fact: 613/617 carry claim_ids [] (readiness diagnostics, non-
+    promoting by design) and 569c/d/e carry claim_ids [ARC-065, MECH-341] only. Re-measuring the
+    signature confirms nothing new. The only run that moves SD-056 is the pre-registered EXP-0585 /
+    EVB-0587 (569e-equivalent Pathway A vs B probe, 8 arms x 5 seeds at P1 budget, with the three
+    569e autopsy Section 6 script fixes and BOTH stability levers armed --
+    e2_action_contrastive_multistep_enabled and e2_rollout_output_norm_clamp_enabled, which per the
+    config.py measurement of 2026-09-01 have been true in ZERO runs across the corpus). That is an
+    evidence experiment under the wave pacing gate, i.e. a governance funding decision (GFLAG raised
+    this session), not background-fill confirmer work. TWO REGISTRY FINDINGS surfaced while checking.
+    (1) EXP-0585 reads status executed with executed_by v3_exq_210_mech156_theta_traversal_probe --
+    a 2026-04 MECH-156 run carrying no SD-056 tag. No SD-056 queue entry has existed since the
+    proposal was minted on 2026-08-07 and the 569e driver is unchanged since 2026-05-30 apart from
+    the pack_writer migration, so the run was never dispatched and the executed link is false.
+    (2) V3-EXQ-569d's own counters contradict the 569e autopsy Addendum 9 reading of 569d as
+    "rollout-stability signatures clean across every arm, e3_top2_class_gap_nan_fraction 0.0": on
+    every SD-056 ON arm the E3 top-2 gap tap was non-finite on 567/567, 3653/3653 and 139/148 P1
+    ticks (ARM_1 seeds 42/43/44), 218/237, 3505/3505, 114/174 (ARM_2) and 352/425, 3620/3620,
+    105/134 (ARM_3), with admitted-tick gap means of 1e33-1e35, while OFF and matched-noise arms
+    admitted every tick with gap means 0.27-1.0. E3 selection itself ran on those scores (the
+    driver's isfinite check bails only the diagnostic tap), so 569d's C3 selected-action-entropy
+    PASS was measured under the same overflow 569e was autopsied for and is not interpretable as
+    support in either direction; flagged for ARC-065 / MECH-341 (evidence_direction_per_claim
+    currently supports/supports). Consequence for SD-056: the t=1 representation signature stands;
+    NO behavioural evidence for the claim survives until EXP-0585 runs on the armed substrate.
   digestion_note: >
     [2026-08-07, thought-digestion] The falsifier this claim needs already exists in full
     (V3-EXQ-569e's own script + the three script-side acceptance-criteria fixes named in its
