@@ -191,6 +191,11 @@ REE-side control knobs remain out-of-scope for JEPA-like reference adapters and 
 - `latent_prediction_error_p95`
 - `latent_rollout_consistency_rate`
 - `latent_uncertainty_calibration_error` (if uncertainty head present)
+- `latent_uncertainty_horizon_dissipation_rate` (if uncertainty head present) --
+  signed change in the predictor's own uncertainty estimate per rollout step during a
+  BLIND rollout (no new observation ingested after step 0), reported over the declared
+  `prediction_horizon`. A negative value means the predictor became more certain purely
+  by being rolled forward. Report the per-step series, not only its mean.
 - `action_conditioned_delta_error` (if action-conditioned enabled)
 - `latent_residual_coverage_rate` (fraction of predictions with exported residual trace)
 - `precision_input_completeness_rate` (fraction of steps with all required PE/uncertainty fields)
@@ -208,10 +213,23 @@ REE-side control knobs remain out-of-scope for JEPA-like reference adapters and 
 - no direct commitment check: representation outputs cannot bypass E3;
 - attribution readiness check: outputs contain enough trace context for reafference comparison.
 - uncertainty provenance check: every uncertainty value must declare estimator type (`dispersion`/`ensemble`/`head`);
+- uncertainty non-dissipation check: under blind rollout, `latent_uncertainty_horizon_dissipation_rate`
+  must not be negative beyond a declared tolerance. A predictive state used for counterfactual action
+  comparison must not become more certain merely because it was rolled forward without new evidence.
+  NON-DEGENERACY: the check is vacuous unless the environment supplies genuinely ambiguous histories
+  (one observation history compatible with several hidden continuations); a fully observable domain
+  self-routes `substrate_not_ready` rather than reporting a PASS.
 - signed-PE boundary check: adapter does not emit control-plane valence labels as if they were representation-native authority labels.
 - proxy provenance check: every active control proxy has `proxy_bank` declaration fields.
 - confidence/residual separability check: confidence channel is not a direct alias of residual magnitude.
 - ablation utility check: at least one declared proxy improves control/attribution behavior under matched seeds.
+
+**Producer-side note:** `SD-063` (E2 conditional predictive-uncertainty head, provisional/v3) is the
+existing REE component that could emit the `latent_uncertainty_horizon_dissipation_rate` per-step
+series; nothing else currently does. `MECH-510` (generative vs error precision) is the adjacent claim.
+The `uncertainty_estimator` knob already contract-required above (`dispersion`/`ensemble`/`head`) is
+what makes the metric well-defined across profiles. Documentation/contract addition only -- not a
+build authorisation.
 
 ---
 
