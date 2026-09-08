@@ -1,249 +1,246 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "governing_claim": "GOV-CONTRACT-1",
   "contract_claim": "ARC-142",
-  "generated_utc": "2026-09-08T20:06:10Z",
-  "notes": "Scaffold seeded 2026-09-08 from the five MECH-545 lesion-named candidates only; the remaining ARC-142 inventory items are deliberately NOT recorded (GOV-CONTRACT-1: smallest defensible set, inventory is not a spec). Evidence fields: verdict in {unassessed, supports, absent, contradicts}; the >= 2-of-6-domain quorum is computed over linguistic, developmental, neural, comparative, artificial_agent, ree. classification in {architectural, embodied, cultural, uncertain}; status in {candidate, not_required, admitted}. Negative findings stay in the ledger as not_required, never deleted. No literature was assessed here (sibling lit-pull chip chip-20260908-cognitive-contract-litpull).",
+  "updated_utc": "2026-09-08",
+  "notes": "Updated after the first and second cognitive-contract literature pulls. Evidence verdicts are in {unassessed, supports, absent, contradicts}; classification in {architectural, embodied, cultural, uncertain}; status in {candidate, not_required, admitted}. 'Admitted' means the candidate currently clears the GOV-CONTRACT-1 multi-domain admissibility bar, not that its encoding or primitive status is fixed. Composite candidates remain candidate even when recurrence is strong. Negative/corrective findings are preserved.",
   "records": [
     {
       "record_id": "CCI-001",
       "candidate": "identity",
-      "definition": "Whether two representations concern the same entity (object, agent, self) is recoverable across an inter-engine boundary, so that persistence, credit assignment and memory integration refer to one thing rather than to duplicates.",
-      "linguistic": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "developmental": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "neural": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "comparative": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "artificial_agent": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "ree": {
-        "verdict": "supports",
-        "sources": [
-          "ARC-080"
-        ],
-        "note": "content-level owner; boundary form untested"
-      },
-      "lesion_prediction": "IDENTITY lesion (two representations cannot determine whether they concern the same entity) -> broken persistence, duplicated selves / objects, incoherent credit assignment, unstable memory integration",
-      "alternative_explanation": "",
-      "classification": "uncertain",
-      "confidence": "unassessed",
-      "registered_utc": "2026-09-08T20:06:10Z",
-      "source_claims": [
-        "ARC-142",
-        "MECH-545"
-      ],
-      "status": "candidate"
+      "definition": "Whether two representations concern the same token entity across time/state remains recoverable across an inter-engine boundary; identity is treated as continuity/equivalence evidence, not a predeclared object ID.",
+      "linguistic": {"verdict":"supports","sources":["NSM: THE SAME / OTHER; Goddard 2015 DOI 10.1093/oxfordhb/9780199677078.013.0018"],"note":"Language strongly preserves sameness/otherness, but lexical recurrence alone is insufficient."},
+      "developmental": {"verdict":"supports","sources":["Xu 1999 Acta Psychologica PMID 10504878","Croteau, Cheries & Xu 2026 DOI 10.1037/rev0000527"],"note":"Infant individuation relies early on spatiotemporal continuity and later integrates properties/kind."},
+      "neural": {"verdict":"unassessed","sources":[],"note":"Direct boundary-independent neural identity code still needs a dedicated pull."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"Object permanence/individual recognition likely relevant but not yet ledger-grade here."},
+      "artificial_agent": {"verdict":"supports","sources":["Bisimulation/state-abstraction family; Zhang et al. 2021 arXiv:2006.10742"],"note":"Functional equivalence can be learned while discarding surface differences; not identical to token identity."},
+      "ree": {"verdict":"supports","sources":["ARC-080"],"note":"Content-level owner; boundary form untested."},
+      "lesion_prediction": "Preserve content while deleting token identity across a boundary -> broken persistence, duplicated selves/objects, incoherent credit assignment and unstable memory integration.",
+      "alternative_explanation": "Continuity may be reconstructed from transition/topology plus provenance rather than requiring a dedicated primitive.",
+      "classification": "architectural",
+      "confidence": "moderate",
+      "source_claims": ["ARC-142","MECH-545"],
+      "status": "admitted"
     },
     {
       "record_id": "CCI-002",
       "candidate": "temporal_relation",
-      "definition": "The temporal relation of content (before / after, present vs anticipated, cause vs effect ordering) is recoverable across an inter-engine boundary, distinct from the content itself.",
-      "linguistic": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "developmental": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "neural": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "comparative": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "artificial_agent": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "ree": {
-        "verdict": "supports",
-        "sources": [
-          "INV-035",
-          "INV-104",
-          "MECH-539"
-        ],
-        "note": "content-level owner; boundary form untested"
-      },
-      "lesion_prediction": "TEMPORAL lesion (content without temporal relation) -> cause / effect inversion, present-state vs anticipated-state confusion, confused planning, memory / prediction contamination",
-      "alternative_explanation": "",
-      "classification": "uncertain",
-      "confidence": "unassessed",
-      "registered_utc": "2026-09-08T20:06:10Z",
-      "source_claims": [
-        "ARC-142",
-        "MECH-545"
-      ],
-      "status": "candidate"
+      "definition": "Before/after/current/anticipated and trajectory order remain recoverable across boundaries, without assuming human-style metric time or tense.",
+      "linguistic": {"verdict":"supports","sources":["NSM: NOW / BEFORE / AFTER / WHEN-TIME"],"note":"Strong recurrence, but human tense systems vary greatly."},
+      "developmental": {"verdict":"supports","sources":["Spelke core-knowledge programme; future/possibility developmental literature"],"note":"Temporal sequencing and anticipation precede mature linguistic tense."},
+      "neural": {"verdict":"supports","sources":["Eichenbaum 2014 DOI 10.1038/nrn3827","Epstein et al. 2017 DOI 10.1038/nn.4656"],"note":"Hippocampal sequence/time and trajectory structure support relational temporal coding."},
+      "comparative": {"verdict":"supports","sources":["Clayton, Bussey & Dickinson 2003 DOI 10.1038/nrn1180","Osvath & Martin-Ordas 2014 PMC4186238"],"note":"Future-oriented behaviour appears outside humans, although explicit mental-time-travel interpretations remain debated."},
+      "artificial_agent": {"verdict":"supports","sources":["Gershman 2018 DOI 10.1523/JNEUROSCI.0151-18.2018","multi-step invariant RL / bisimulation literature"],"note":"Predictive state representations preserve transition/future structure."},
+      "ree": {"verdict":"supports","sources":["INV-035","INV-104","MECH-539"],"note":"Content-level owners; boundary form remains to be lesioned."},
+      "lesion_prediction": "Content without temporal relation -> cause/effect inversion, present/anticipated confusion, planning failure and memory/prediction contamination.",
+      "alternative_explanation": "Some temporal information may be implicit in transition geometry rather than carried as a distinct coordinate.",
+      "classification": "architectural",
+      "confidence": "high",
+      "source_claims": ["ARC-142","MECH-545"],
+      "status": "admitted"
     },
     {
       "record_id": "CCI-003",
       "candidate": "reality_status",
-      "definition": "Whether a state is observed, remembered, simulated or counterfactual is recoverable across an inter-engine boundary, so that imagined states are not committed to as real and counterfactual learning stays separable from experience.",
-      "linguistic": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "developmental": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "neural": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "comparative": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "artificial_agent": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "ree": {
-        "verdict": "supports",
-        "sources": [
-          "MECH-094",
-          "MECH-365",
-          "MECH-271",
-          "ARC-092",
-          "MECH-430"
-        ],
-        "note": "content-level owner; boundary form untested"
-      },
-      "lesion_prediction": "REALITY-STATUS lesion (observed, remembered, simulated and counterfactual states indistinct across the boundary) -> confabulation-like behaviour, false commitment to imagined states, impaired counterfactual learning, psychosis-like representational error",
-      "alternative_explanation": "",
+      "definition": "The receiving system can recover whether content is externally constrained, remembered, simulated, counterfactual, candidate or currently treated as obtaining/committed.",
+      "linguistic": {"verdict":"supports","sources":["NSM: TRUE / MAYBE / CAN / IF; evidentiality and modality literature"],"note":"Languages repeatedly encode epistemic/modal distinctions, but packaging varies."},
+      "developmental": {"verdict":"supports","sources":["Leahy & Carey 2020 DOI 10.1016/j.tics.2019.11.004","Li et al. 2025 DOI 10.1111/bjdp.12523"],"note":"Source monitoring and explicit modal concepts develop; minimal alternative-state handling may precede them."},
+      "neural": {"verdict":"supports","sources":["Simons, Garrison & Johnson 2017 DOI 10.1016/j.tics.2017.03.012","Dijkstra, Kok & Fleming 2022 DOI 10.1016/j.neubiorev.2022.104557"],"note":"Perception/imagination overlap makes higher-order source/status inference necessary."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"Future planning is relevant but does not establish explicit reality-status representation."},
+      "artificial_agent": {"verdict":"unassessed","sources":[],"note":"World-model rollouts provide analogues; a dedicated source/status study is still needed."},
+      "ree": {"verdict":"supports","sources":["MECH-094","MECH-365","MECH-271","ARC-092","MECH-430"],"note":"Strong content-level lineage."},
+      "lesion_prediction": "Delete source/status while preserving content -> false commitment to imagined states, confabulation-like behaviour and counterfactual/experience contamination.",
+      "alternative_explanation": "Likely not one primitive: provenance/source and branch/actuality/commitment status may be separable coordinates.",
       "classification": "uncertain",
-      "confidence": "unassessed",
-      "registered_utc": "2026-09-08T20:06:10Z",
-      "source_claims": [
-        "ARC-142",
-        "MECH-545"
-      ],
+      "confidence": "moderate",
+      "source_claims": ["ARC-142","MECH-545"],
       "status": "candidate"
     },
     {
       "record_id": "CCI-004",
       "candidate": "agency",
-      "definition": "The actor relation and controllability of an event (self-caused vs external, controllable vs not) is recoverable across an inter-engine boundary, distinct from the event content.",
-      "linguistic": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "developmental": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "neural": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "comparative": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "artificial_agent": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "ree": {
-        "verdict": "supports",
-        "sources": [
-          "MECH-256"
-        ],
-        "note": "content-level owner; boundary form untested"
-      },
-      "lesion_prediction": "AGENCY lesion (events representable, controllability and actor relation lost) -> poor action learning, internal / external attribution errors, impaired responsibility assignment, failure of intentional planning",
-      "alternative_explanation": "",
+      "definition": "Actor/source, action, predicted consequence and controllability relations can be reconstructed across boundaries.",
+      "linguistic": {"verdict":"supports","sources":["NSM: I / YOU / DO / HAPPEN; recurrent argument/agent structure"],"note":"Language externalises agency strongly but does not show agency is atomic."},
+      "developmental": {"verdict":"supports","sources":["Sommerville et al. 2012 PMID 23205418","Spelke 2022 Agents chapter","Goal representation in the infant brain PMC3898941"],"note":"Goal-directed agent representations occur early."},
+      "neural": {"verdict":"supports","sources":["Haggard 2017 DOI 10.1038/nrn.2017.14"],"note":"Sense of agency is built from prospective and retrospective components."},
+      "comparative": {"verdict":"supports","sources":["Penn & Povinelli 2007 DOI 10.1146/annurev.psych.58.110405.085555","goal-directed outcome-devaluation literature"],"note":"Causal/goal-directed behaviour is cross-species, with inferential interpretation debated."},
+      "artificial_agent": {"verdict":"supports","sources":["Sequential action-induced invariant representation PMID 39096749"],"note":"Action structure can separate controllable/task-relevant from uncontrolled observation components."},
+      "ree": {"verdict":"supports","sources":["MECH-256","SD-005 / self-world separation","SD-003 / E2 counterfactual"],"note":"Agency is load-bearing in REE."},
+      "lesion_prediction": "Events remain representable but actor/control relation is lost -> poor action learning, attribution errors and failed responsibility/intentional planning.",
+      "alternative_explanation": "Evidence increasingly favors a composite of source/ownership + action + consequence + causal/control relation rather than an irreducible AGENCY primitive.",
       "classification": "uncertain",
-      "confidence": "unassessed",
-      "registered_utc": "2026-09-08T20:06:10Z",
-      "source_claims": [
-        "ARC-142",
-        "MECH-545"
-      ],
+      "confidence": "high-recurrence-composite",
+      "source_claims": ["ARC-142","MECH-545"],
       "status": "candidate"
     },
     {
       "record_id": "CCI-005",
       "candidate": "confidence_precision",
-      "definition": "The uncertainty or precision attached to content is recoverable across an inter-engine boundary, so that the receiver can weight, commit to or discount what it receives in proportion to its reliability.",
-      "linguistic": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "developmental": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "neural": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "comparative": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "artificial_agent": {
-        "verdict": "unassessed",
-        "sources": [],
-        "note": ""
-      },
-      "ree": {
-        "verdict": "supports",
-        "sources": [
-          "MECH-123"
-        ],
-        "note": "content-level owner; boundary form untested"
-      },
-      "lesion_prediction": "CONFIDENCE lesion (content translates, uncertainty does not) -> overcommitment, under-reaction to reliable predictions, inappropriate belief updating, failure of precision-sensitive integration",
-      "alternative_explanation": "",
+      "definition": "Reliability/uncertainty attached to content or status remains usable by the receiver; translation confidence may need to be represented separately from content confidence.",
+      "linguistic": {"verdict":"supports","sources":["NSM: MAYBE; modality/evidentiality families"],"note":"Human language repeatedly marks uncertainty but this is not enough to establish architecture."},
+      "developmental": {"verdict":"supports","sources":["Ronfard 2025 Child Development Perspectives","Leahy & Carey 2020 DOI 10.1016/j.tics.2019.11.004"],"note":"Possibility judgments interact with confidence/uncertainty monitoring across development."},
+      "neural": {"verdict":"supports","sources":["Fleming 2024 Annual Review of Psychology DOI 10.1146/annurev-psych-022423-032425"],"note":"Confidence/metacognition is separable from first-order content."},
+      "comparative": {"verdict":"supports","sources":["Smith, Couchman & Beran 2014 DOI 10.1037/a0033105","Carruthers 2008 skeptical review"],"note":"Metacognition-like behaviour exists but associative explanations remain live."},
+      "artificial_agent": {"verdict":"supports","sources":["uncertainty-aware world-model and Information Bottleneck literature"],"note":"Engineering precedent is strong, but direct emergent contract evidence is not yet available."},
+      "ree": {"verdict":"supports","sources":["MECH-123","control-plane precision lineage"],"note":"Content precision exists; translation confidence is a recorded substrate gap."},
+      "lesion_prediction": "Content translates but reliability does not -> overcommitment, underreaction to reliable predictions and failed precision-sensitive integration.",
+      "alternative_explanation": "May be control metadata rather than a semantic contract primitive; translation confidence may require a distinct meta-interface quantity.",
       "classification": "uncertain",
-      "confidence": "unassessed",
-      "registered_utc": "2026-09-08T20:06:10Z",
-      "source_claims": [
-        "ARC-142",
-        "MECH-545"
-      ],
+      "confidence": "moderate",
+      "source_claims": ["ARC-142","MECH-545"],
+      "status": "candidate"
+    },
+    {
+      "record_id": "CCI-006",
+      "candidate": "equivalence_similarity",
+      "definition": "Same/different/like relations among representations can be recovered independently of the specific entities filling the relation.",
+      "linguistic": {"verdict":"supports","sources":["NSM: THE SAME / OTHER / LIKE","Holden 2019 DOI 10.1086/700319 as corrective for broader prime claims"],"note":"Same/other/similarity is stronger than KIND/PART as a cross-linguistic relational family."},
+      "developmental": {"verdict":"supports","sources":["Ferry, Hespos & Gentner 2015 DOI 10.1111/cdev.12381","Current Opinion review 2021 DOI 10.1016/j.cobeha.2020.10.013"],"note":"Same/different abstraction emerges prelinguistically."},
+      "neural": {"verdict":"supports","sources":["Halford, Wilson & Phillips 2010 PMID 20884275"],"note":"Relational knowledge supports reasoning, categorisation, planning, quantification and language."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"A dedicated comparative same/different pull remains useful."},
+      "artificial_agent": {"verdict":"supports","sources":["Hansen-Estruch et al. 2022 PMLR 162:8407-8426"],"note":"Goal-conditioned bisimulation learns functional analogies/equivariance."},
+      "ree": {"verdict":"unassessed","sources":[],"note":"No dedicated REE contract owner yet; likely overlaps identity and mutual-legibility work."},
+      "lesion_prediction": "Preserve entity content but delete equivalence relations -> inability to transfer learned structure across exemplars, degraded analogy/generalisation and unnecessary duplication of schemas.",
+      "alternative_explanation": "Could be an operation over relational topology rather than a separate primitive; token identity and type-level similarity may share a deeper equivalence calculus.",
+      "classification": "architectural",
+      "confidence": "moderate-high",
+      "source_claims": ["ARC-142"],
+      "status": "admitted"
+    },
+    {
+      "record_id": "CCI-007",
+      "candidate": "relational_topology",
+      "definition": "Adjacency, transition and structural relations among states/entities remain recoverable even when sensory or engine-specific coordinates remap.",
+      "linguistic": {"verdict":"supports","sources":["Grambank hierarchical-universal result: Nature Human Behaviour s41562-025-02325-z"],"note":"Hierarchical relations survive stronger phylogenetic/geographic controls better than many surface universals; indirect evidence only."},
+      "developmental": {"verdict":"supports","sources":["prelinguistic relational-concept literature; DOI 10.1111/cdev.12381"],"note":"Infants can abstract relations beyond specific arguments."},
+      "neural": {"verdict":"supports","sources":["Epstein et al. 2017 DOI 10.1038/nn.4656","Whittington et al. 2020 TEM DOI 10.1016/j.cell.2020.10.024","Wikenheiser & Schoenbaum 2016 DOI 10.1038/nrn.2016.56"],"note":"Hippocampal/entorhinal map-like codes generalise beyond physical space; reusable structure can bind to remapped content."},
+      "comparative": {"verdict":"supports","sources":["spatial cognitive-map literature across animals"],"note":"Physical-map evidence is strong; abstraction to nonspatial relation is less established comparatively."},
+      "artificial_agent": {"verdict":"supports","sources":["Zhang et al. 2021 arXiv:2006.10742","Kemertas & Aumentado-Armstrong NeurIPS 2021","Gershman 2018 DOI 10.1523/JNEUROSCI.0151-18.2018"],"note":"Bisimulation and successor representations explicitly preserve behaviorally/predictively relevant transition structure while discarding surface detail."},
+      "ree": {"verdict":"supports","sources":["MECH-539","ARC-139","INV-104"],"note":"Direct convergence with mutual-legibility/transition-geometry programme."},
+      "lesion_prediction": "Preserve local feature content but scramble relational/transition topology -> poor transfer, planning failures and loss of cross-context structural generalisation despite intact recognition.",
+      "alternative_explanation": "Risk of becoming vacuous if formulated too broadly; must be operationalised by specific recoverable transition/adjacency relations.",
+      "classification": "architectural",
+      "confidence": "high",
+      "source_claims": ["ARC-142","ARC-139","MECH-539"],
+      "status": "admitted"
+    },
+    {
+      "record_id": "CCI-008",
+      "candidate": "magnitude_order",
+      "definition": "Ordered comparison such as more/less, larger/smaller or stronger/weaker can survive translation; exact numerosity is treated as a possible specialisation rather than the primitive.",
+      "linguistic": {"verdict":"supports","sources":["NSM: ONE / TWO / MUCH-MANY / LITTLE-FEW / MORE / BIG / SMALL"],"note":"Strong human semantic recurrence."},
+      "developmental": {"verdict":"supports","sources":["Spelke 2022 Number chapter"],"note":"Infants show abstract approximate number representations before language."},
+      "neural": {"verdict":"supports","sources":["Nieder 2016 DOI 10.1038/nrn.2016.40"],"note":"Abstract number coding generalises across modalities in primate parieto-frontal systems."},
+      "comparative": {"verdict":"supports","sources":["Lorenzi et al. 2021 DOI 10.3389/fpsyg.2021.641994","Nieder 2021 J Exp Biol review"],"note":"Numerosity/magnitude sensitivity is widespread across distant taxa."},
+      "artificial_agent": {"verdict":"supports","sources":["Testolin et al. 2020 PMID 31977137","NeurIPS 2020 On Numerosity of Deep Neural Networks corrective result"],"note":"Numerosity can emerge under some regimes but spontaneous DNN number-sense claims require strong controls."},
+      "ree": {"verdict":"unassessed","sources":[],"note":"Quantities are present in the substrate but no evidence yet that a generic magnitude relation is a boundary invariant."},
+      "lesion_prediction": "Delete ordered magnitude while preserving categorical identity -> failures in comparing resource amounts, confidence strengths and graded harms/benefits while nominal recognition remains intact.",
+      "alternative_explanation": "May be an ecological/agentic convenience of organisms operating over quantities rather than a requirement of unified cognition itself.",
+      "classification": "embodied",
+      "confidence": "high-recurrence-moderate-contract",
+      "source_claims": ["ARC-142"],
+      "status": "candidate"
+    },
+    {
+      "record_id": "CCI-009",
+      "candidate": "value_valence",
+      "definition": "Signed evaluative relation to an organism's viability/preferences (beneficial-harmful, appetitive-aversive) can be compared across represented outcomes.",
+      "linguistic": {"verdict":"supports","sources":["NSM: GOOD / BAD","Holden 2019 DOI 10.1086/700319 notes BAD as problematic in Dene"],"note":"Independent hypothesis family plus an important lexical-universality caution."},
+      "developmental": {"verdict":"supports","sources":["Hamlin, Wynn & Bloom 2007 DOI 10.1038/nature06288","Margoni & Surian 2018 DOI 10.1037/dev0000538","Scarf et al. 2012 DOI 10.1371/journal.pone.0042698 corrective"],"note":"Early evaluative preferences exist, but rich moral interpretation is contested."},
+      "neural": {"verdict":"supports","sources":["Levy & Glimcher 2012 PMID 22766486","O'Doherty 2014 PMID 24726573","Berridge 2012 PMID 22487042"],"note":"Common-currency value evidence is strong, while value, salience, learning and incentive motivation must be dissociated."},
+      "comparative": {"verdict":"supports","sources":["goal-directed outcome-devaluation literature; Dolan & Dayan 2013 PMID 24139036"],"note":"Animals alter action when represented outcome value changes."},
+      "artificial_agent": {"verdict":"supports","sources":["reinforcement-learning reward/value representations; bisimulation literature"],"note":"Common in agent design but usually supplied by task objective rather than spontaneously discovered."},
+      "ree": {"verdict":"supports","sources":["Axiom 2 / five_axioms_foundations.md","ARC-024 harm gradient","E3 harm-goal tradeoff"],"note":"Strong REE necessity for ethical/viability agency."},
+      "lesion_prediction": "Preserve outcome identity and transition structure but delete signed value -> coherent prediction without principled preference, impaired tradeoff and devaluation sensitivity.",
+      "alternative_explanation": "Likely mandatory for viability-regulating agents but not yet shown to be substrate-universal for every possible unified cognitive system.",
+      "classification": "embodied",
+      "confidence": "high-agentic",
+      "source_claims": ["ARC-142"],
+      "status": "candidate"
+    },
+    {
+      "record_id": "CCI-010",
+      "candidate": "goal_relation",
+      "definition": "A represented future/outcome state is marked as action-organising relative to value/need and controllability.",
+      "linguistic": {"verdict":"supports","sources":["NSM: WANT / DON'T WANT"],"note":"Strong linguistic recurrence but not evidence of atomicity."},
+      "developmental": {"verdict":"supports","sources":["Sommerville et al. 2012 PMID 23205418","Goal representation in the infant brain PMC3898941"],"note":"Goal-directed action representations are present in infancy."},
+      "neural": {"verdict":"supports","sources":["Dolan & Dayan 2013 PMID 24139036","O'Doherty et al. 2017 Annual Review of Psychology"],"note":"Goal-directed control depends on represented action-outcome structure and current outcome value."},
+      "comparative": {"verdict":"supports","sources":["outcome devaluation / contingency degradation literature"],"note":"Goal-directed action is robustly studied in rodents and other animals."},
+      "artificial_agent": {"verdict":"supports","sources":["Hansen-Estruch et al. 2022 goal-conditioned bisimulation"],"note":"Goal-conditioned agents can learn transferable state abstractions."},
+      "ree": {"verdict":"supports","sources":["z_goal / E3 viability-map lineage","ethical_agency_derivation.md"],"note":"Goals are explicit in REE trajectory evaluation."},
+      "lesion_prediction": "Preserve future-state and value content but delete target/action-organising relation -> intact prediction and valuation with aimless or unstable policy selection.",
+      "alternative_explanation": "Likely decomposes into prospective state + value/need + controllability + priority/commitment rather than being primitive.",
+      "classification": "uncertain",
+      "confidence": "high-recurrence-low-primitive",
+      "source_claims": ["ARC-142"],
+      "status": "candidate"
+    },
+    {
+      "record_id": "CCI-011",
+      "candidate": "negation_absence",
+      "definition": "A represented relation/state can be marked as not obtaining or an expected event can be represented as absent, distinct from mere lack of information.",
+      "linguistic": {"verdict":"supports","sources":["NSM: NOT","McDermott-Hinman et al. 2026 DOI 10.1037/xge0001938"],"note":"Negation is universal in human thought/language; acquisition study supports a linguistic rather than conceptual bottleneck for English negation words."},
+      "developmental": {"verdict":"supports","sources":["Szabó & Kovács 2025 DOI 10.1016/j.cognition.2024.105929","McDermott-Hinman et al. 2026 PMID 42241087"],"note":"Whether infancy begins with full logical negation or narrower rejection/non-existence remains open."},
+      "neural": {"verdict":"unassessed","sources":[],"note":"Dedicated neural-negation pull still owed."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"Critical next question: non-linguistic representation of non-occurrence/absence across species."},
+      "artificial_agent": {"verdict":"unassessed","sources":[],"note":"Could be tested directly in predictive agents via omitted expected events."},
+      "ree": {"verdict":"supports","sources":["language thought: prediction-error/correction 'no'; predictive error machinery"],"note":"No dedicated contract claim yet."},
+      "lesion_prediction": "Preserve positive content but delete non-obtaining/absence -> inability to reject hypotheses, represent missing expected events or distinguish not-X from unknown-X.",
+      "alternative_explanation": "May emerge from prediction-error plus alternative-state representation rather than requiring a standalone operator.",
+      "classification": "uncertain",
+      "confidence": "moderate",
+      "source_claims": ["ARC-142"],
+      "status": "candidate"
+    },
+    {
+      "record_id": "CCI-012",
+      "candidate": "alternative_branch_status",
+      "definition": "The system can distinguish an obtaining state from one or more generated alternatives and retain whether an alternative is merely candidate, counterfactual, hypothetical or impossible/ruled out.",
+      "linguistic": {"verdict":"supports","sources":["NSM: MAYBE / CAN / IF","modal-language literature"],"note":"Explicit modal packaging may be later than minimal alternative handling."},
+      "developmental": {"verdict":"supports","sources":["Leahy & Carey 2020 DOI 10.1016/j.tics.2019.11.004","Baumann et al. 2026 DOI 10.1016/j.jecp.2026.106594","Ronfard 2025"],"note":"Developmental dissociation between minimal alternatives and explicit modal concepts is highly informative."},
+      "neural": {"verdict":"supports","sources":["Armstrong, Veleshnja & Seghezzi 2026 DOI 10.1016/j.neubiorev.2025.106460"],"note":"Counterfactual networks represent alternative options/values and link them to control/planning."},
+      "comparative": {"verdict":"supports","sources":["Clayton et al. 2003 DOI 10.1038/nrn1180","Osvath & Martin-Ordas 2014 PMC4186238"],"note":"Future-oriented behaviour exists outside humans; explicit modal concepts remain unproven."},
+      "artificial_agent": {"verdict":"supports","sources":["model-based world models and rollout agents; successor/bisimulation families"],"note":"Alternative trajectories are standard computational objects, but status tagging varies."},
+      "ree": {"verdict":"supports","sources":["SD-003 E2 counterfactual","MECH-094 hypothesis tagging","E3 rehearsal vs commitment"],"note":"Strong internal requirement."},
+      "lesion_prediction": "Generated alternatives remain content-rich but lose branch/status -> imagined/counterfactual trajectories contaminate actual belief or are committed to prematurely.",
+      "alternative_explanation": "Likely a family of statuses rather than one modal primitive; explicit possibility/necessity concepts may be derived later.",
+      "classification": "uncertain",
+      "confidence": "moderate-high",
+      "source_claims": ["ARC-142"],
+      "status": "candidate"
+    },
+    {
+      "record_id": "CCI-013",
+      "candidate": "commitment_status",
+      "definition": "A trajectory/action representation carries whether it is exploratory, intended, socially relied upon or irreversibly committed, so receivers do not confuse rehearsal with enacted policy.",
+      "linguistic": {"verdict":"supports","sources":["speech-act/promising literature; language thought externalises commitments"],"note":"Commitment need not be linguistically explicit."},
+      "developmental": {"verdict":"supports","sources":["Michael, Sebanz & Knoblich 2016 DOI 10.3389/fpsyg.2015.01968","Just how joint is joint action in infancy? PMID 25164940"],"note":"Minimal/implicit commitment can be studied before mature explicit promises."},
+      "neural": {"verdict":"unassessed","sources":[],"note":"Dedicated neural commitment/irreversibility pull still useful."},
+      "comparative": {"verdict":"supports","sources":["Every product needs a process: unpacking joint commitment across species PMID 35876205"],"note":"Cross-species approach argues commitment is gradual and process-based; strength of non-human evidence varies."},
+      "artificial_agent": {"verdict":"unassessed","sources":[],"note":"Could be operationalised directly at policy/rehearsal boundaries."},
+      "ree": {"verdict":"supports","sources":["INV-012","E3 commit gate","pre-commit vs post-commit channels"],"note":"Boundary-critical in REE."},
+      "lesion_prediction": "Preserve trajectory content but delete commitment status -> rehearsal treated as action, unstable promises/policies, or inability to maintain action through transient preference changes.",
+      "alternative_explanation": "Probably a derived status over trajectory + agent + expectation + persistence, not a primitive; may only be mandatory at selected boundaries.",
+      "classification": "uncertain",
+      "confidence": "moderate",
+      "source_claims": ["ARC-142"],
+      "status": "candidate"
+    },
+    {
+      "record_id": "CCI-014",
+      "candidate": "priority_relevance",
+      "definition": "Representations can carry an attentional/resource-allocation priority distinct from signed value and from epistemic confidence.",
+      "linguistic": {"verdict":"unassessed","sources":[],"note":"Deixis and emphasis may externalise priority, but no dedicated typological case yet."},
+      "developmental": {"verdict":"supports","sources":["Neurodevelopment of Attention, Learning, and Memory Systems in Infancy DOI 10.1146/annurev-devpsych-120321-011300"],"note":"Attention and learning interact from infancy; priority systems develop on separable timescales."},
+      "neural": {"verdict":"supports","sources":["Fecteau & Munoz 2006 PMID 16843702","Rust & Cohen 2022 DOI 10.1038/s41583-022-00582-9","Kahnt & Tobler 2017 Reward, Value, and Salience"],"note":"Priority integrates bottom-up salience with goal relevance; value and salience dissociate experimentally."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"Likely broad but not yet ledger-grade."},
+      "artificial_agent": {"verdict":"supports","sources":["attention/priority mechanisms in learned agents; multi-task sufficient-representation literature"],"note":"Engineering analogy strong but emergent universality untested."},
+      "ree": {"verdict":"supports","sources":["ARC-005 precision routing","g_S / salience lineage"],"note":"REE already routes attention/gain, but cross-engine priority preservation is untested."},
+      "lesion_prediction": "Preserve value and confidence but delete relevance/priority -> correct beliefs and preferences remain available yet computational resources are persistently allocated to the wrong representations.",
+      "alternative_explanation": "Likely control metadata rather than semantic content; may be recomputed locally if enough value, surprise and goal information survives translation.",
+      "classification": "uncertain",
+      "confidence": "moderate",
+      "source_claims": ["ARC-142"],
       "status": "candidate"
     }
   ]
