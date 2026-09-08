@@ -1,6 +1,10 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-08_deriving_the_cognitive_contract.md
+Claims registered: ARC-142, GOV-CONTRACT-1, MECH-545, MECH-546, Q-104
+
 # Thought: Deriving the Cognitive Contract
 
-**Status:** active foundational thought / research programme  
+**Status:** active foundational thought / research programme (ingested 2026-09-08 -- see Intake above; Thoughts 2-4 of s.21 still to be written)  
 **Domain:** cognifold, inter-engine communication, representation, compression, language, developmental architecture  
 **Primary question:** What information must survive translation between specialised cognitive systems for them to constitute one unified mind?
 

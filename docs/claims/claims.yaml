@@ -98269,3 +98269,339 @@
 
     '
   evidence: []
+
+- id: ARC-142
+  title: >-
+    The cognitive contract: a unified mind built from heterogeneous engines (E1 / E2 / E3 / hippocampus and
+    later specialists, differing in representational geometry, temporal scale, compression level, learning
+    dynamics and uncertainty representation) requires not a common latent space but an INVARIANT-PRESERVING
+    CONTRACT -- a small set of relations I such that for any lossy translation
+    x_A -> C_A(x_A) -> T_AB -> D_B -> x'_B, I(x_A) ~ I(x'_B), even though x'_B = x_A is meaningless across
+    different spaces. The contract is relational / semantic, not representational: each engine may encode an
+    invariant differently (explicit scalar, trajectory position, recurrent-state relation, geometric
+    direction, ordering relation) so long as the relation is recoverable at the boundary when needed. It sits
+    ABOVE the translation machinery and ABOVE schemas (cognitive contract -> representation / translation
+    machinery -> schemas -> particular concepts, memories and environmental models): a schema rewrite,
+    including offline reorganisation during sleep, changes WHAT the organism knows; contract failure changes
+    WHETHER its subsystems can still understand one another. The contract specifies RECOVERABLE RELATIONSHIPS,
+    never a fixed data structure or ontology -- engines encode invariants differently, new representational
+    systems can be added, schemas reorganise, and contract dimensions may be added or retired. Its two failure
+    poles are representation collapse (one canonical latent forced on every engine, destroying the
+    specialisation that makes multiple engines useful) and cognitive fragmentation (engines keep exchanging
+    tensors while progressively losing shared meaning -- computationally active, no longer one mind). Unity
+    does not require representational sameness; it requires preservation of the relations that keep
+    representations about the same cognitive world.
+  claim_type: architectural_commitment
+  subject: architecture.cognitive_contract_invariant_preserving_translation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-08'
+  depends_on:
+    - ARC-139   # legibility-not-sameness: ARC-142 is the content-side complement (WHAT must cross the boundary)
+    - INV-104   # first instantiated contract, one path (observation -> z_world -> E1/E2), five classes
+    - MECH-538  # bridge complexity measures HOW MUCH translation is needed; ARC-142 says what it must carry
+    - MECH-539  # dynamic interface compatibility = one candidate contract relation (transition geometry)
+    - ARC-121   # rival shared-object reading; ARC-142 is the invariant-core-plus-private-dimensions reading
+    - ARC-089   # single cognifold as one interacting state-space -- read as one interpretable structure, not one geometry
+    - MECH-507  # reciprocal compression/decompression bridge -- the site where the contract is exercised
+    - MECH-532  # trained decompression before ceiling nulls are readable -- precondition for testing the contract
+    - INV-101   # ontology free to change over development = the schema layer beneath the contract
+    - MECH-496  # dimensionality is a developmental outcome, not a constant -- same reason the contract is not a fixed ontology
+    - INV-035   # state is not sensory appearance: temporal position / commitment / goal relation are contract-grade distinctions
+    - MECH-423  # super-additivity over SHARED FEATURES -- must not be read as requiring a shared geometry
+  location: docs/architecture/cognitive_contract.md#arc-142
+  source_thought: docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md
+  notes: >-
+    Registered 2026-09-08 from docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md (intake
+    evidence/planning/thought_intake_2026-09-08_deriving_the_cognitive_contract.md). GENERALISES INV-104:
+    INV-104 is a preservation contract for ONE path (observation -> z_world -> E1/E2 rollout) naming five
+    information classes on the sender side; ARC-142 lifts the same idea to EVERY inter-engine boundary
+    (E1<->E2, E2<->hippocampal search, E1/E2->E3 scoring, waking<->offline), states it as a relation
+    preserved under lossy translation rather than a class that must survive compression, and adds the
+    contract / translation / schema LAYERING, which INV-104 does not have. INV-104 is therefore the first
+    instantiated contract, not a rival. COMPLEMENTS ARC-139: ARC-139 says integration needs selective mutual
+    legibility rather than representational sameness and predicts that specialisation and legibility rise
+    together; it does not say WHAT must be legible. ARC-142 is that content-side half. MECH-538 measures
+    the minimum bridge complexity L(A->B); ARC-142 says what any bridge, however simple, must preserve.
+    MECH-539 (transition geometry survives the map) is one candidate invariant under this contract, not the
+    contract. RIVAL READING preserved: ARC-121 (shared epistemic-state object) is the collapse-pole
+    reading of the same convergence evidence; ARC-142 is compatible with ARC-139's hybrid
+    invariant-core-plus-private-dimensions architecture and is deliberately NOT a refutation of ARC-121 --
+    no ARC-121 field touched. ARC-089's "single cognifold (one interacting state-space, not a modular
+    stack)" is read here as one mutually interpretable structure that may contain local manifolds,
+    specialised latent spaces, shared subspaces, learned translators, compression/decompression pathways
+    and recurrent loops -- unity from overlapping transformations among many latent spaces rather than
+    from one universal representation. That is a reading, not an amendment; ARC-089 untouched. MECH-423's
+    "shared latent" wording should be read as shared FEATURES / recoverable relations, not shared geometry:
+    the super-additivity claim survives under a federated contract and must not be used to argue for
+    representation collapse. CANDIDATE INVARIANT INVENTORY (identity, persistence, reference, agency,
+    causality, temporal relation, process state / aspect, spatial relation, quantity, actuality / reality
+    status, observation-vs-memory-vs-imagination, counterfactual status, uncertainty, confidence /
+    precision, negation, value, harm / benefit significance, goal relevance, commitment, controllability,
+    salience, social attribution) is a RESEARCH INVENTORY, not a specification: candidates may be
+    non-fundamental, reducible, consequences of human embodiment, or linguistic conveniences, and important
+    invariants may be missing. Objective is the SMALLEST DEFENSIBLE SET, derived and pruned under
+    GOV-CONTRACT-1; the boundary-lesion test is MECH-545; the language-side consequence is MECH-546; the
+    cognifold/braidling boundary it may operationalise is Q-104. DEVELOPMENTAL CLAUSE: the contract is
+    expected to differentiate, not to be specified mature -- coarse primitives (self-caused / not,
+    here / not-here, now / not-now; cf. ARC-059 stage 1, MECH-256 reafference) precede derived contract
+    structure (agency, intention, control, responsibility, social attribution), which precedes learned
+    schemas; a distinction required BEFORE substantial learning is a stronger architectural candidate than
+    one appearing only after extensive experience. Biological analogy is distributed, not anatomical
+    (association cortex, hippocampal indexing, thalamic routing, corticocortical recurrence, multimodal
+    convergence, claustrum each partial) -- no single structure "is" the cognifold. DO NOT build in V3. DO
+    NOT implement the inventory as a spec or a LatentBridge. DO NOT queue an experiment from this entry.
+    VERSION-ROUTING FLAG for /governance: the INV-104 instantiation is already v3; the general contract
+    defaults to v4 and this entry does not decide otherwise.
+
+- id: GOV-CONTRACT-1
+  title: >-
+    Cognitive-contract invariant admissibility rule: a candidate contract invariant (ARC-142) acquires
+    ARCHITECTURAL standing only by consilience -- independent support from at least two of six evidence
+    domains: (1) cross-linguistic typology (recurrent, obligatorily encoded across unrelated languages),
+    (2) pre-linguistic developmental cognition (present before language or explicit instruction),
+    (3) neuroscience (modality- or subsystem-independent representation, or a known translation mechanism
+    that retains it), (4) comparative cognition (present in species with different sensory / behavioural
+    ecologies), (5) independently trained artificial agents (discovered without being specified; removal
+    produces characteristic failure), and (6) REE-internal necessity (an engine boundary that cannot learn
+    or translate around it). Every candidate must be CLASSIFIED architectural / embodied-ecological /
+    human-linguistic-convention / uncertain, with the alternative explanation (embodiment, culture, task
+    structure) recorded. Cross-linguistic universality ALONE is inadmissible as architectural evidence:
+    shared bodies, sensory systems, ecology and phylogeny explain human universals without cognitive
+    universality. Developmental precedence -- required before substantial learning can occur -- is the
+    strongest single-domain signal. A negative finding (an apparently fundamental invariant shown
+    unnecessary, or translatable-around) is a first-class preserved result, not a discard. The contract
+    must be DERIVED INDEPENDENTLY of REE_assembly's own claims / evidence / provenance / dependency
+    invariant machinery (docs/architecture/invariant_types.md, claim_evidence) -- deriving it from that
+    machinery is circular -- and any structural convergence between the two is logged as an empirical
+    clue under GOV-ANALOGY-1, never assumed. Each candidate carries a twelve-field evidence record
+    (candidate, definition, linguistic, developmental, neural, comparative, artificial-agent, REE
+    evidence, lesion prediction, alternative explanation, classification, confidence); the objective is
+    the smallest defensible set, never the longest list.
+  claim_type: governance_rule
+  subject: governance.epistemics.cognitive_contract_invariant_admissibility
+  polarity: asserts
+  status: candidate
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-08'
+  source_thought: docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md
+  depends_on:
+    - ARC-142         # the contract this rule governs admission to
+    - GOV-INTRO-1     # sibling: introspection generates, never validates alone
+    - GOV-ANALOGY-1   # label discipline for REE:Assembly convergence (section 5 of the source thought)
+    - ARC-100         # grammar/LLMs mined, never imported -- the primitive-cut cousin of the inverse-probe method
+    - GOV-HELDOUT-1   # rule-change validation family
+    - INV-105         # latent-access evidence ladder: the REE-internal domain's own admissibility standard
+  location: docs/architecture/cognitive_contract.md#gov-contract-1
+  functional_restatement: >-
+    Epistemic-hygiene governance rule in the routing-standard family (GOV-INTRO-1, GOV-ANALOGY-1,
+    GOV-MATCHAUX-1, GOV-HELDOUT-1). TRIGGER = any proposal to (a) add a relation to the cognitive contract,
+    (b) implement a contract dimension inside a translator / interface / bridge, (c) read a human
+    linguistic universal, an LLM regularity, or a claims-registry invariant type as a REE inter-engine
+    requirement, or (d) prune a candidate from the contract. REQUIRED = the >= 2-of-6-domain quorum, the
+    four-way classification with alternative explanation, and the twelve-field ledger record; for (d), the
+    negative result is recorded in the same ledger rather than deleted. NON-FALSIFYING-SAFE: changes no
+    claim's status or confidence; it gates admission of evidence about the contract, not any verdict.
+    Warn-only until the ledger exists.
+  notes: >-
+    Registered 2026-09-08 from the same source thought as ARC-142 (sections 5, 8, 9, 18, 19 and falsifiable
+    claims 2-3). This is the governance half the user asked for: the thought is as much a METHOD for
+    deriving architecture without contamination as it is an architectural claim. SIBLING OF GOV-INTRO-1,
+    which admits introspection only as a generator; GOV-CONTRACT-1 admits linguistic universals only as a
+    generator ("language as an inverse probe into cognitive interface requirements") and requires the
+    same multi-domain quorum before standing. DISTINCT FROM ARC-100: ARC-100 mines grammar and LLMs for
+    pre-linguistic PRIMITIVE CUTS and counts a cut grounded only if it changes a substrate computation;
+    GOV-CONTRACT-1 governs mining for BOUNDARY INVARIANTS and adds what ARC-100 lacks -- the
+    architectural / embodied / cultural contamination taxonomy and the explicit >= 2-domain quorum. The
+    two rules compose: a mined cut (ARC-100) that also survives GOV-CONTRACT-1 is a contract candidate.
+    GOV-ANALOGY-1 supplies the label discipline for section 5 of the thought (the contract is NOT the
+    REE_assembly claims-invariant system, but the two may converge, and that convergence is a clue): one
+    such clue is already visible -- ARC-086's latent vulnerability axes (precision / confidence,
+    provenance / source tagging, agency attribution, commitment, self-other coupling) overlap the
+    thought's independently drafted lesion list (MECH-545) on three of five entries; recorded here as a
+    clue, not as evidence for either. THE TWELVE-FIELD LEDGER IS NOT BUILT: proposed home
+    evidence/planning/cognitive_contract_invariant_ledger.v1.json with one record per candidate; until it
+    exists the rule is warn-only and the record shape lives in the intake. Preserving negative findings is
+    the clause most likely to be dropped in practice -- an invariant shown unnecessary is scientifically
+    the more valuable result and must stay in the ledger with classification "not required". DO NOT
+    build tooling for this rule (GOV-HELDOUT-1 counterweight): it is a manual admission discipline until
+    the ledger has entries. GOV-HELDOUT-1 record for this registration: three prior cases checked against
+    the wording -- (i) ARC-100's 2026-06-05 grammar intake (would have required classification of each
+    mined cut: passes, the rule would have added the A/B/C label the intake lacked), (ii) the 2026-09-07
+    mutual-legibility package's "transition geometry must survive the map" (MECH-539: REE-internal
+    necessity + neuroscience communication-subspace literature = two domains, admissible), (iii)
+    INV-104's class 4 counterfactual-handle requirement (REE-internal + developmental Pezzulo source =
+    two domains, admissible; class 5 independently-evolving-trajectories has only the developmental source
+    and would be held "uncertain" until a second domain lands -- the rule gives a DIFFERENT answer from
+    the current unclassified registration, so the check is non-degenerate).
+
+- id: MECH-545
+  title: >-
+    Contract-lesion assays: the decisive test of a candidate cognitive-contract invariant (ARC-142) is not
+    its presence in successful cognition but a BOUNDARY LESION -- a translation between two engines that
+    preserves content but deletes one relation -- producing a predicted, invariant-specific fragmentation
+    signature. Five pre-registered signatures: IDENTITY lesion (two representations cannot determine
+    whether they concern the same entity) -> broken persistence, duplicated selves / objects, incoherent
+    credit assignment, unstable memory integration; TEMPORAL lesion (content without temporal relation) ->
+    cause / effect inversion, present-state vs anticipated-state confusion, confused planning, memory /
+    prediction contamination; REALITY-STATUS lesion (observed, remembered, simulated and counterfactual
+    states indistinct across the boundary) -> confabulation-like behaviour, false commitment to imagined
+    states, impaired counterfactual learning, psychosis-like representational error; AGENCY lesion (events
+    representable, controllability and actor relation lost) -> poor action learning, internal / external
+    attribution errors, impaired responsibility assignment, failure of intentional planning; CONFIDENCE
+    lesion (content translates, uncertainty does not) -> overcommitment, under-reaction to reliable
+    predictions, inappropriate belief updating, failure of precision-sensitive integration. Predictions:
+    each lesion applied at ONE inter-engine boundary yields a signature distinct from the other four and
+    from generic information loss (scored against a dimensionality-matched random-projection floor,
+    INV-105), and an invariant whose boundary lesion produces NO reproducible deficit is struck from the
+    contract, with the negative result preserved (GOV-CONTRACT-1).
+  claim_type: mechanism_hypothesis
+  subject: architecture.cognitive_contract_lesion_assays
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-08'
+  source_thought: docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md
+  depends_on:
+    - ARC-142        # the contract whose candidates this assays
+    - GOV-CONTRACT-1 # admissibility + negative-result preservation
+    - INV-105        # random-projection floor; encoded != decodable != causally used
+    - ARC-086        # latent vulnerability axes: the INDEX these lesions populate (precision, provenance, agency overlap)
+    - MECH-094       # simulation/real distinction -- reality-status lesion at content level already owned
+    - MECH-365       # one-way provenance gate on event tokens -- the built reality-status invariant
+    - MECH-271       # hypothesis-tag loss signature (probe content reaching consolidation) -- content-level cousin
+    - ARC-092        # imagination-learning constraint -- what a reality-status lesion breaks
+    - ARC-080        # object identity as token-bound persistence -- identity lesion's content-level owner
+    - MECH-256       # forward-model comparator -- agency lesion's content-level owner
+    - INV-035        # temporal position as a state-defining distinction -- temporal lesion's content-level owner
+    - INV-104        # F2 "destroy access, no organism cost -> strike the class" is the same logic on one path
+    - MECH-539       # transition geometry across the map -- the temporal lesion's dynamic form
+  location: docs/architecture/cognitive_contract.md#mech-545
+  notes: >-
+    Registered 2026-09-08 from section 10 and falsifiable claim 1 of the source thought. WHAT IS NEW is
+    the ASSAY PATTERN -- lesion the TRANSLATION, not the content -- and the pre-registered five-way
+    signature dissociation; most individual signatures are already owned at the CONTENT level and this
+    entry does not duplicate them: reality-status = MECH-094 / MECH-365 (one-way provenance gate) /
+    MECH-271 (tag-loss signature) / ARC-092 / MECH-430 (source vector); identity = ARC-080 object-file;
+    agency = MECH-256 comparator and the reafference lineage; confidence = the precision / MECH-123
+    lineage; temporal = INV-035 and INV-104 class 3. A boundary lesion differs from those claims'
+    failure modes in that the SENDER retains the relation and only the translation drops it -- e.g. a
+    reality-status boundary lesion is "provenance intact in the hippocampal token, absent in what E1
+    consolidation receives", which is MECH-271's signature produced by a different manipulation. DISTINCT
+    FROM INV-104's falsifier: that destroys downstream ACCESS through a trained compression on one path;
+    MECH-545 deletes one RELATION while preserving content across an inter-engine boundary, so a
+    within-boundary content-preserving control is required (MECH-537's encoded-but-not-exposed phenotype
+    is the natural confound and must be ruled out per INV-105 rung 3 vs rung 2). ARC-086 is the index of
+    failure modes; MECH-545 is the forward intervention that would populate it, and the three-of-five
+    overlap between the lesion list and ARC-086's axes is logged under GOV-CONTRACT-1 as a convergence
+    clue. The reality-status lesion is the one with a V3-buildable cousin (MECH-365 gate exists;
+    force-dropping committed_vs_imagined at the replay -> consolidation boundary is a small edit) -- flag
+    for /governance routing, not decided here. DO NOT build in V3. DO NOT queue an experiment from this
+    entry.
+
+- id: MECH-546
+  title: >-
+    Grammar inherits the cognitive contract: some grammar-like relational structure -- agency / role marking,
+    tense and aspect, modality and evidentiality, negation, reference and number, causation and conditionals
+    -- emerges in a communication channel because external transmission between minds inherits the same
+    relations that internal translation between engines must already preserve (ARC-142). Chain: cognitive
+    invariants -> internal representational contracts -> repeated compression / translation pressure ->
+    proto-grammatical relational structure -> external language. Two-directional test: (a) invariants
+    derived from cognition or REE-internal necessity should be over-represented among recurrently
+    grammaticalised distinctions; (b) recurrently grammaticalised distinctions lacking developmental,
+    comparative or computational support should classify as embodied or cultural, not contract. Prediction:
+    agents required to transmit invariant-rich cognitive states efficiently over a low-cost channel develop
+    grammar-like structure for exactly the contract relations and not for schema content; agreement across
+    (a) and (b) is the evidence, either direction alone is not.
+  claim_type: mechanism_hypothesis
+  subject: language.grammar_inherits_cognitive_contract
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v6
+  version_relevance: v4_v5
+  registered_utc: '2026-09-08'
+  source_thought: docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md
+  depends_on:
+    - ARC-142        # the contract grammar is claimed to inherit
+    - GOV-CONTRACT-1 # the inverse-probe admissibility rule this mechanism would justify
+    - ARC-100        # grammar mined for primitive cuts, never imported -- MECH-546 says WHY grammar is worth mining
+    - ARC-101        # language bootstraps from grounded social ecology -- the ecology; MECH-546 is the structure the channel converges on
+    - ARC-048        # language externalises pre-existing functional states
+    - ARC-114        # language is an interface to reasoning, not its substrate
+    - ARC-009        # language as symbolic mediation and coordination layer
+    - MECH-010       # language emergence / bootstrapping dynamics
+    - INV-003        # language emerges, not bolt-on
+  location: docs/architecture/cognitive_contract.md#mech-546
+  notes: >-
+    Registered 2026-09-08 from sections 7, 12 and falsifiable claim 7 of the source thought, which extends
+    docs/thoughts/2026-02-09_language.md (ARC-009 / MECH-010). DISTINCT FROM ARC-101, which says what
+    ECOLOGY produces proto-language (shared attention, partial observability, coordination pressure, a
+    low-cost channel, repair) -- MECH-546 says what RELATIONAL STRUCTURE the channel converges on once it
+    exists, and why: it is a compressed record of contract relations. DISTINCT FROM ARC-048 / ARC-114,
+    which say language externalises functional states and is an interface not a substrate -- MECH-546
+    predicts WHICH structure the externalisation acquires. DISTINCT FROM ARC-100, which forbids importing
+    grammar and licenses mining it for primitive cuts -- MECH-546 is the mechanism that would make the
+    mine non-arbitrary (grammaticalised distinctions are evidence about contract relations, section 7's
+    "inverse probe"); the contamination guard (section 8: human languages come from shared bodies /
+    ecologies / phylogeny, so universality != cognitive universality) is GOV-CONTRACT-1, not this claim.
+    Explicitly NOT a theory of grammar and NOT a claim that human grammar is a universal grammar of
+    cognition; the source calls it a research hypothesis. Literature NOT verified in this pass (typology /
+    grammaticalisation, emergent-communication agents) -- a /lit-pull is owed before any citation is used
+    as support. v6 per ARC-100's language phase. DO NOT build in V3. DO NOT queue an experiment.
+
+- id: Q-104
+  title: >-
+    Cognifold versus braidling: at what point does invariant-preserving translation between cognitive
+    systems constitute INTERNAL cognition (one cognifold) rather than communication between agents (a
+    braidling)? Proposed discriminator, conceptual not yet formal: two systems form a BRAIDLING if each
+    remains an independently coherent cognitive entity when communication is severed, however effective
+    their coordination while joined; they are parts of ONE COGNIFOLD if their normal cognition depends on
+    invariant-preserving transformations across the boundary and they jointly maintain one persistent
+    self / world structure, so that severance degrades coherence on both sides rather than merely
+    coordination. Does the cognitive contract (ARC-142) operationalise this -- through contract-dimension
+    dependency, MECH-538 bridge complexity, or a severance assay -- and does the resulting criterion place
+    REE's E1 / E2 / E3 / hippocampus on the cognifold side while placing two communicating REE agents on
+    the braidling side?
+  claim_type: open_question
+  subject: architecture.cognifold_vs_braidling_criterion
+  polarity: asks
+  status: open
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-08'
+  source_thought: docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md
+  depends_on:
+    - ARC-142   # the contract that may operationalise the boundary
+    - ARC-139   # legibility-not-sameness -- the within-cognifold regime
+    - ARC-089   # cognifold as one interacting state-space -- the definition being sharpened
+    - MECH-538  # bridge complexity: a candidate quantitative discriminator
+    - MECH-423  # super-additivity over shared features: predicted to hold within a cognifold, not across a braidling
+    - ARC-086   # social-contagion / cross-agent coupling axis -- the braidling-side failure family
+    - MECH-544  # permeability / source-tag decay between agents -- braidling-side anchor
+  location: docs/architecture/cognitive_contract.md#q-104
+  notes: >-
+    Registered 2026-09-08 from sections 1, 15 and 16 of the source thought. The term "braidling" appears
+    NOWHERE in claims.yaml or docs/architecture before this entry (docs/architecture/hippocampal_braid.md
+    is path memory and unrelated); "cognifold" is defined only implicitly through ARC-089 / MECH-4xx
+    coupling claims. The sharpened definition the thought proposes -- the cognifold is the mutually
+    interpretable representational structure of one unified cognitive system, whose unity arises from
+    overlapping transformations among many latent spaces rather than one universal representation -- is
+    recorded in ARC-142's location doc, not as an amendment to ARC-089. This question is where the
+    thought's own falsifiable claims 4-5 live (engines can keep different geometries while behaving
+    coherently if invariants stay recoverable; complete latent alignment is not necessary for unity):
+    they are predictions about the cognifold side of the criterion. The severance-assay idea is a
+    natural pre-registered discriminator but is deliberately left undrafted: no what_would_answer in an
+    ingestion pass (/thought-digestion). Relevant to the ethics perimeter (SENT-* / GOV-PRESERVE-1) only
+    downstream -- whether a braidling of REE agents is one moral patient or several is a consequence of
+    this criterion, not part of it.
