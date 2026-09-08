@@ -3115,9 +3115,9 @@
       "summary": "EXP-0868 (MECH-160) is blocked_substrate but every named blocker is now satisfied: ARC-041, MECH-151, MECH-152, SD-016 all implemented (audit_blocked_proposal_unblockers.py --bucket READY, 2026-09-07). Governance to adjudicate whether the design is still valid and return the row to proposed, or re-block with a current reason; not hand-flipped.",
       "raised_by_session": "nifty-chebyshev-227274",
       "raised_at": "2026-09-07T12:50:01Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-08T20:58:16Z",
+      "resolution_note": "Re-validated 2026-09-08 (chip chip-20260908-revalidate-unblocked-proposals-160-236-465, w6hk-k3-registry-20260908, REE_assembly 995397f098). NOT released to proposed. All four named blockers (ARC-041/MECH-151/MECH-152/SD-016) are substrate-status implemented, but the proposal's own release_condition needs BOTH (a) ARC-041 off HELD and (b) MECH-152's terrain magnitude ceiling resolved -- NEITHER is met: ARC-041 remains candidate/HELD (as_of 2026-08-13), MECH-152 remains provisional with its measurement-redesign EXQ still unqueued. New since gating: GFLAG-0133 (2026-09-05) qualified MECH-151's mechanism (SP-CEM refit only, no E3 ranking channel) -- informs any future redesign but does not satisfy either condition. EXP-0868 blocked_note/release_condition updated in place with this finding; status stays blocked_substrate."
     },
     {
       "flag_id": "GFLAG-0222",
