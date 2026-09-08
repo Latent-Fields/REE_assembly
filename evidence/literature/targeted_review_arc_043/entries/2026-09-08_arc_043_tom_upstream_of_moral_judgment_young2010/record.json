@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_043",
+  "entry_id": "2026-09-08_arc_043_tom_upstream_of_moral_judgment_young2010",
+  "timestamp_utc": "2026-09-08T06:06:17Z",
+  "claim_ids_tested": ["ARC-043"],
+  "source": {
+    "title": "Disruption of the right temporoparietal junction with transcranial magnetic stimulation reduces the role of beliefs in moral judgments",
+    "authors": ["Liane Young", "Joan Albert Camprodon", "Marc Hauser", "Alvaro Pascual-Leone", "Rebecca Saxe"],
+    "year": 2010,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.0914826107",
+    "pmid": "20351278",
+    "pmc": "PMC2872442",
+    "volume": "107",
+    "issue": "15",
+    "pages": "6753-6758"
+  },
+  "evidence_class": "causal_intervention",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "A causal rather than correlational result, replicated across two stimulation protocols within one paper, published in PNAS -- that combination is what supports a directional (ordering) claim, which correlational data cannot. Held to 0.70 by a small sample (n=20 total across both experiments), by the accidental-harm effect not reaching independent significance, and by the fact that the paper licenses only ONE edge of ARC-043's nine-layer ordering (Layer 2 upstream of Layer 5) and is silent on every other edge.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The accidental-harm shift, though in the predicted direction, did not reach independent significance in item analyses -- so the causal claim rests mainly on the attempted-harm condition rather than on both arms of the belief-by-outcome design symmetrically.",
+    "Because a virtual lesion degrades rather than abolishes mental-state reasoning, the study shows that moral judgment DEGRADES toward outcome-based when other-minds inference is disrupted; it does not show that moral judgment is impossible without it, so it constrains the ordering weakly rather than establishing strict layer dependence."
+  ],
+  "tags": ["arc-043", "theory_of_mind", "moral_judgment", "layer_ordering", "rtpj", "conceptual_stack", "other_minds"],
+  "mapping": {
+    "source_claim_statement": "The right temporoparietal junction, a region involved in mental-state reasoning, is necessary for the normal contribution of beliefs to moral judgment: TMS to RTPJ before (offline) and during (online) moral judgment caused participants to rely less on the actor's mental states, judging attempted harms as more morally permissible relative to control-site stimulation.",
+    "ree_translation": "ARC-043 orders the ethical stack with other minds (Layer 2) below ethics (Layer 5). This provides causal, not merely correlational, evidence for that specific edge in the biological system REE is modelled on: disrupt the substrate that represents another agent's mental states, and moral judgment does not merely change, it regresses toward outcome-based evaluation -- exactly what a layer-dependency claim predicts when the layer beneath is degraded.",
+    "mapping_caveat": "This licenses one edge of a nine-layer ordering and nothing else. It says nothing about Layer 0 (epistemic ground), Layer 1 (existence), Layer 3 (shared world), Layer 4 (love/shared valence), or about Layers 6-9 (the decision system and the action-consequence-learning loop), and in particular gives no evidence for the ORDER of the layers below other-minds. It is also a claim about the human brain's functional organisation, not about the necessary architecture of any moral agent: the fact that biology implements moral judgment atop mental-state inference does not establish that an artificial system MUST, which is what ARC-043 asserts as an architectural commitment. Finally, RTPJ disruption reduced rather than eliminated belief use, so the dependency evidenced is graded, not strict.",
+    "source_context": "Healthy human adults (n=8 experiment 1, n=12 experiment 2); fMRI-localised RTPJ target with a control site 5 cm posterior; 1 Hz offline rTMS for 25 min and 10 Hz online rTMS for 500 ms; 2x2 belief (negative/neutral) by outcome (negative/neutral) moral vignette design."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "source_quality is high for the causal design and within-paper replication across two TMS protocols, discounted for n=20 and for one of the two predicted effects falling short of independent significance. transfer_risk is the human-neuroscience-to-artificial-architecture leap, which is the standard risk REE takes under its brain-like-construction principle rather than an unusual one."
+  }
+}

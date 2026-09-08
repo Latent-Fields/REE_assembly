@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_043",
+  "entry_id": "2026-09-08_arc_043_layered_ethical_cognitive_architecture_cervantes2020",
+  "timestamp_utc": "2026-09-08T06:06:17Z",
+  "claim_ids_tested": ["ARC-043"],
+  "source": {
+    "title": "Toward ethical cognitive architectures for the development of artificial moral agents",
+    "authors": ["Salvador Cervantes", "Sonia Lopez", "Jose-Antonio Cervantes"],
+    "year": 2020,
+    "venue": "Cognitive Systems Research",
+    "doi": "10.1016/j.cogsys.2020.08.010",
+    "pmid": "32901198",
+    "pmc": null,
+    "volume": "64",
+    "pages": "117-125"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Converges independently on ARC-043's central structural commitment -- that ethics is derived from lower cognitive layers rather than implemented as a separate ethics module -- and proposes a layering (perception/world model -> social cognition and theory of mind -> moral emotion -> moral judgment) whose middle and upper portions align closely with ARC-043's Layers 2-5. Capped at 0.62 because it is a position/review paper making an argument rather than reporting a result: convergent theoretical judgement, not evidence, and two theorists agreeing on an architecture is weaker than it feels.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review identifies the ethical cognitive architecture as an open challenge rather than an achieved design -- no surveyed architecture (Soar, LIDA, ACT-R, iCub) actually implements the proposed layering, so the ordering is a research proposal on both sides of the comparison and neither side is independently confirmed.",
+    "The proposed stack places moral emotion between social cognition and moral judgment, whereas ARC-043 places shared valence (Layer 4) between shared world (Layer 3) and ethics (Layer 5) but derives the whole from epistemic ground upward -- the two orderings agree on direction but not on which primitives sit at the bottom, so the convergence is partial."
+  ],
+  "tags": ["arc-043", "cognitive_architecture", "machine_ethics", "layer_ordering", "conceptual_stack", "artificial_moral_agents", "theory_of_mind"],
+  "mapping": {
+    "source_claim_statement": "Ethical behaviour in artificial agents should be achieved by extending cognitive architectures with the mechanisms moral decision-making requires, rather than by adding an ethics module: moral agency is presented as depending on foundational cognitive functions (perception, world modelling), then social-cognitive capacities (mental-state reasoning, the ability to take another's perspective), then moral-emotion mechanisms acting as regulators of ethical decision-making, with moral judgment emerging from the integration of those layers rather than from ethical rules alone.",
+    "ree_translation": "This is independent theoretical convergence on ARC-043's two structural commitments. First, that ethics is DERIVED (Layer 5 from Layers 0-4) rather than modular -- which is the same position REE holds under INV-001, that there is no explicit ethics module. Second, on the ordering itself: the review's sequence of world model -> theory of mind -> affective regulation -> moral judgment maps recognisably onto ARC-043's Layers 1/3 -> Layer 2 -> Layer 4 -> Layer 5, reached by authors with no exposure to REE.",
+    "mapping_caveat": "This is a position paper arguing for an architecture, not a study demonstrating one -- the review's own conclusion is that ethical cognitive architectures are a set of unsolved challenges, and it reports that none of the surveyed architectures (Soar, LIDA, ACT-R, iCub) implements the layering it proposes. So both ARC-043 and this paper are proposals, and their agreement is convergent theoretical judgement rather than mutual confirmation; two architectures agreeing is not one architecture verified. The alignment is also partial: the review bottoms out at perception and world modelling and does not posit anything answering to ARC-043's Layer 0 (epistemic ground) or Layer 1 (existence), and it says nothing about ARC-043's Layers 6-9 -- the decision system under uncertainty and the action-consequence-learning closure.",
+    "source_context": "Review and position paper in machine ethics / cognitive systems, surveying general cognitive architectures (Soar, LIDA, ACT-R, iCub) against the requirements of artificial moral agency; no implementation or empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.60,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "source_quality reflects a peer-reviewed but non-empirical position paper. transfer_risk is low because the source is already reasoning about artificial agents rather than requiring a biology-to-machine transfer -- this is the one entry in this pull for which the domains match natively. mapping_fidelity is the highest of the ARC-043 set because the source is arguing about layer ordering directly, which is what the claim asserts."
+  }
+}

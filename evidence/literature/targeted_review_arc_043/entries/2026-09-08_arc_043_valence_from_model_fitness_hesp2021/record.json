@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_043",
+  "entry_id": "2026-09-08_arc_043_valence_from_model_fitness_hesp2021",
+  "timestamp_utc": "2026-09-08T06:06:17Z",
+  "claim_ids_tested": ["ARC-043"],
+  "source": {
+    "title": "Deeply Felt Affect: The Emergence of Valence in Deep Active Inference",
+    "authors": ["Casper Hesp", "Ryan Smith", "Thomas Parr", "Micah Allen", "Karl J. Friston", "Maxwell J. D. Ramstead"],
+    "year": 2021,
+    "venue": "Neural Computation",
+    "doi": "10.1162/neco_a_01341",
+    "pmid": "33253028",
+    "pmc": "PMC8594962",
+    "volume": "33",
+    "issue": "2",
+    "pages": "398-446"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Genuinely double-edged, which is why the direction is mixed rather than supports. It strongly supports ARC-043's derivational premise -- that valence is not an architectural primitive but falls out of a hierarchical inference architecture sitting above perception and action -- while directly weakening the placement of shared valence at Layer 4, ABOVE other minds and shared world: Hesp et al. derive a fully functional valence with no representation of other agents anywhere in the model. Confidence is capped by the paper being simulation-only, with the authors themselves framing it as face validity pending model fitting.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A complete, behaviourally efficacious valence representation is derived with no other-agent representation in the generative model at all, so ARC-043's placement of valence ABOVE other minds (Layer 2) and shared world (Layer 3) is not architecturally necessary -- an asocial valence layer is sufficient for the adaptive function valence is usually invoked to explain.",
+    "Valence here is second-order (a belief about the precision of one's own action model), which places it structurally ABOVE the decision system rather than below it -- the inverse of ARC-043's ordering, where Layer 4 valence is an axiom feeding Layer 6, the decision system.",
+    "The account is simulation-only on a single T-maze reversal paradigm and is explicitly presented by its authors as face validity awaiting fitting to behavioural and neuronal data, so it constrains what an architecture CAN look like rather than what any real system does."
+  ],
+  "tags": ["arc-043", "valence", "active_inference", "layer_ordering", "conceptual_stack", "subjective_fitness", "shared_valence"],
+  "mapping": {
+    "source_claim_statement": "Emotional valence can be formally derived within deep active inference as an agent's inference about the expected precision of its own action model -- an internal estimate of overall model fitness ('subjective fitness') -- updated by an 'affective charge' term that signs otherwise unsigned divergences between predictions and outcomes; the resulting valence representation sits hierarchically above perception and policy selection and improves behavioural flexibility relative to a lesioned agent lacking it.",
+    "ree_translation": "Read against ARC-043 this cuts two ways. It supports the stack's derivational logic: valence is shown to be a derivable quantity emerging from an inference architecture built on epistemic foundations, not a primitive that must be posited -- which is what ARC-043 needs if Layers 0-4 are to function as axioms from which Layer 5 ethics is derived rather than as an arbitrary list. But it weakens ARC-043's specific ORDERING, because the derivation requires nothing social: no other minds (Layer 2), no shared world (Layer 3). If valence arises from purely self-directed model-fitness inference, then placing SHARED valence at Layer 4 above those layers is a substantive additional commitment that this formalism does not underwrite and arguably undercuts.",
+    "mapping_caveat": "ARC-043's Layer 4 is 'love/shared valence', and Hesp et al. model valence simpliciter -- the shared/intersubjective component is precisely what is absent, so the entry may be arguing against a target the claim does not quite present. It is possible that shared valence genuinely requires the social layers beneath it while individual valence does not, in which case the ordering survives intact and this paper is simply about a different quantity. That reading is available but is not established by anything here; the entry is scored as mixed on the honest reading that the formalism shows valence to be obtainable without the layers ARC-043 places beneath it. Additionally, this is a simulation of a rodent T-maze, with no ethical content at any point.",
+    "source_context": "In silico affective agent under deep active inference; T-maze paradigm requiring context learning followed by context reversal; comparison against a lesioned agent lacking valence representations."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "source_quality high for formal rigour and venue but discounted for being simulation-only with self-declared face-validity status. mapping_fidelity 0.60 reflects the shared-versus-individual valence ambiguity, which is the entry's main interpretive risk: the paper is squarely about valence but may not be about ARC-043's valence."
+  }
+}

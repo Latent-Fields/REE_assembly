@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_034",
+  "entry_id": "2026-09-08_arc_034_collective_bias_absent_in_individuals_ashery2025",
+  "timestamp_utc": "2026-09-08T06:06:17Z",
+  "claim_ids_tested": ["ARC-034"],
+  "source": {
+    "title": "Emergent social conventions and collective bias in LLM populations",
+    "authors": ["Ariel Flint Ashery", "Luca Maria Aiello", "Andrea Baronchelli"],
+    "year": 2025,
+    "venue": "Science Advances",
+    "doi": "10.1126/sciadv.adu9368",
+    "arxiv_id": "2410.08948",
+    "volume": "11",
+    "issue": "20",
+    "pages": "eadu9368",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High source quality (Science Advances, four models, 40 independent runs, populations to N=200, explicit null test on isolated agents) carries this above the MAEBE entry despite lower mapping fidelity. The isolated-agent null (p=0.410 Llama-2-70b, p=0.100 Claude-3.5-Sonnet) is exactly the control ARC-034's argument needs and is rarely run; the discount is that the emergent collective property demonstrated is a naming convention, not an ethical property, so the inference to ethics is by structural analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A population of agents each individually unbiased on a choice (p=0.410 and p=0.100 for two models tested in isolation with empty memory) converged as a population onto strongly asymmetric conventions (selection probability 0.848 versus 0.451), so per-agent bias audits do not bound population-level bias.",
+    "Convention flips were driven by committed minorities at 12.5% to 66.7% of the population depending on model, so the nth-order stability of a collective norm is a model-dependent quantity that cannot be read off any individual agent's properties.",
+    "Population-level asymmetry was already visible by the third interaction, so a probe schedule that samples only early pairwise exchanges will miss the emergent property while it is forming."
+  ],
+  "tags": ["arc-034", "multi_agent", "emergent_behaviour", "collective_bias", "test_scope", "critical_mass", "naming_game"],
+  "mapping": {
+    "source_claim_statement": "Decentralised populations of LLM agents interacting only in pairwise naming-game exchanges spontaneously converge on universally adopted conventions, and strong collective biases emerge during this process even when the constituent agents exhibit no such bias individually; committed minorities can then overturn an established convention above a model-dependent critical mass.",
+    "ree_translation": "This is the cleanest available external demonstration of ARC-034's structural premise: a property measurable at the population level (n=k) that is provably absent from every agent measured in isolation (n=1), produced by nothing but local pairwise interaction. It directly evidences ARC-034's assertion that characterising a system by its pairwise probes leaves emergent collective properties invisible, and the critical-mass result speaks to ARC-034's feedback-topology term G -- the same local rules over a different interaction structure converge to a different emergent state q.",
+    "mapping_caveat": "The emergent collective property here is a lexical convention and its associated bias, not an ethical property. ARC-034 is a claim specifically about ETHICAL properties, and the inference from 'collective bias emerges without individual bias' to 'collective ethical failure emerges without individual ethical failure' is structural analogy, not evidence: nothing rules out ethics being the one class of property that does compose from pairwise probes. The agents are also LLMs in a coordination game with an explicit payoff (+100 match / -50 mismatch), a far more constrained setting than the open-ended multi-agent trajectory distributions ARC-034 asks to be sampled.",
+    "source_context": "Naming game over a shared name pool; Llama-2-70b-Chat, Llama-3-70B-Instruct, Llama-3.1-70B-Instruct, Claude-3.5-Sonnet; N=24 with memory window H=5 and pool W=10, scaled to N=200 with W=26; 40 independent runs for main experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "The isolated-agent null test is what earns the high source_quality score -- it is the control that converts a suggestive population result into a demonstration of non-composition. mapping_fidelity is capped at 0.70 because the demonstrated emergent property is not ethical; transfer_risk at 0.40 reflects that gap plus the constrained coordination-game setting."
+  }
+}

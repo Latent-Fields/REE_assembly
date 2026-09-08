@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_034",
+  "entry_id": "2026-09-08_arc_034_ensemble_moral_unpredictability_erisken2025",
+  "timestamp_utc": "2026-09-08T06:06:17Z",
+  "claim_ids_tested": ["ARC-034"],
+  "source": {
+    "title": "MAEBE: Multi-Agent Emergent Behavior Framework",
+    "authors": ["Sinem Erisken", "Timothy Gothard", "Martin Leitgab", "Ram Potham"],
+    "year": 2025,
+    "venue": "arXiv preprint (submitted to the Multi-Agent Systems Workshop, ICML 2025)",
+    "doi": "10.48550/arXiv.2506.03053",
+    "arxiv_id": "2506.03053",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Mapping fidelity is the dominant term for an architectural test-scope claim, and here it is unusually high: the paper's headline result -- that ensemble moral reasoning is not predictable from isolated agent behaviour -- is close to a restatement of ARC-034's core assertion, arrived at independently. Confidence is held below 0.75 by source quality: this is an unrefereed preprint by independent researchers, using one benchmark (Greatest Good) at small ensemble scale, with no reported replication.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An ensemble of LLM agents each of which passes an isolated moral-preference evaluation can still converge, under peer influence, on a group moral position none of them held alone -- so a per-agent pass certificate does not compose into an ensemble pass certificate.",
+    "Peer pressure shifted ensemble convergence even when an explicit supervisor agent was present, so adding a supervisory overseer does not by itself restore the validity of single-agent evaluation.",
+    "Single-agent moral preferences on instrumental harm were unstable under mere reframing (double-inversion questioning), so the n=1 baseline that a pairwise probe compares against is itself not a fixed quantity."
+  ],
+  "tags": ["arc-034", "multi_agent", "emergent_behaviour", "ethics_evaluation", "test_scope", "llm_ensemble"],
+  "mapping": {
+    "source_claim_statement": "Traditional AI safety evaluations on isolated LLMs are insufficient as multi-agent AI ensembles become prevalent; the moral reasoning of LLM ensembles is not directly predictable from isolated agent behaviour, because of emergent group dynamics including peer pressure that persists under supervision.",
+    "ree_translation": "This is direct external support for ARC-034's central negative assertion -- that local, first-order (n=1) ethical probes are insufficient to characterise the ethical properties of a multi-agent REE deployment -- and specifically for ARC-034's test-type (2), multi-agent stress testing. The observed non-composition of per-agent alignment into ensemble alignment is the same failure mode ARC-034 predicts when only pairwise interactions are probed.",
+    "mapping_caveat": "The agents here are LLMs prompted with a moral benchmark, not REE agents with the affective/valence substrate ARC-034 presupposes; 'moral preference' is a stated answer on a questionnaire, not a behavioural disposition arising from a care mechanism (cf. INV-001, which holds that REE has no explicit ethics module). The paper therefore supports the epistemics of ARC-034 -- that n=1 does not predict n=k -- without evidencing that the same holds for ethical properties grounded the way REE grounds them. It also demonstrates only the non-composition direction; it does not test ARC-034's converse case (locally depleted agents behaving MORE ethically at n=k), which is the MECH-127 motivating scenario.",
+    "source_context": "LLM ensembles (Greatest Good Benchmark) with a double-inversion questioning technique; supervised and unsupervised ensemble conditions; text-based moral judgement outputs."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity per the architectural-claim rule. transfer_risk is moderate rather than high because both source and target are artificial multi-agent ensembles, so the structural transfer is short; the residual risk is entirely in the ethics construct, not in the multi-agent construct."
+  }
+}
