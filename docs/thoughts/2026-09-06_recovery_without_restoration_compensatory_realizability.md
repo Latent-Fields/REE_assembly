@@ -1,7 +1,11 @@
 # Recovery without restoration: compensatory realizability as a property of adaptive artificial organisms
 
 **Date:** 2026-09-06  
-**Status:** thought + experiment seed  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-06_recovery_without_restoration.md
+Claims registered: ARC-140, MECH-541
+
+**Document type:** thought + experiment seed
 **Primary source:** Grover S, Wen W, Reinhart RMG. *Neuromodulation for restoring and amplifying brain function.* Nature Neuroscience. Published 2026-09-04. DOI: 10.1038/s41593-026-02434-6  
 **Source URL:** https://www.nature.com/articles/s41593-026-02434-6
 

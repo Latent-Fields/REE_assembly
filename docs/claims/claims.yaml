@@ -97651,3 +97651,79 @@
     source package explicitly forbids queueing a sleep mutual-legibility experiment until a
     WAKING interface metric has demonstrated stability and range, because otherwise the assay
     measures the instrument. DO NOT queue an experiment from this entry.
+
+- id: ARC-140
+  title: "Compensatory realizability -- recovery without restoration: an adaptive organism should not be REQUIRED to recover by reconstructing its former internal state; the target property is the capacity to preserve or recover a useful function by REORGANIZING CAUSAL RESPONSIBILITY across internal processes rather than returning to one canonical implementation. Operational criterion: after perturbation, recovered behaviour must be accompanied by a demonstrably ALTERED DISTRIBUTION OF CAUSAL IMPORTANCE, not a hidden reconstruction of the original pathway -- evidenced by the original route remaining observably impaired, a different internal process becoming NECESSARY (selective re-ablation removes the recovered competence), and later restoration of the original route producing competition/redundancy/reorganisation rather than revealing it had silently returned. Requires a four-arm design -- no-intervention, restorative-normalization analogue, compensatory-amplification analogue (lesion left in place, the recruited substitute selectively strengthened), and a CONTROL-AMPLIFICATION arm strengthening a comparably sized non-compensatory process -- because without the fourth arm 'generic added capacity' is an unexcluded explanation of any recovery."
+  claim_type: architectural_commitment
+  subject: architecture.compensatory_realizability_recovery_without_restoration
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  depends_on:
+    - ARC-139   # federation/multiple-realizability of interfaces, the adjacent framing
+    - MECH-529  # sleep consolidation of a newly recruited substitute
+    - MECH-537  # an interface-level compensation route, if compensation proves interfacial
+  location: docs/architecture/compensatory_realizability.md#arc-140
+  notes: >
+    Registered 2026-09-08 from thought 2026-09-06_recovery_without_restoration_compensatory_realizability.md
+    (intake evidence/planning/thought_intake_2026-09-06_recovery_without_restoration.md).
+    EXTERNAL SOURCE AND ITS LIMIT: Grover, Wen & Reinhart, Nature Neuroscience 2026-09-04, DOI
+    10.1038/s41593-026-02434-6, distinguish restorative normalization from compensatory
+    amplification and name four enabling factors (multiple realizability, multiscale
+    neuroplasticity, precision readiness, activity selectivity). ONLY THE PUBLIC PREVIEW WAS
+    AVAILABLE to the source thought -- the framework is established by it, the authors' full
+    argument is not, and this registration is a DERIVED REE hypothesis, not a claim about what
+    that paper demonstrates. A lit-pull for the full text is owed before it is cited as support.
+    TERMINOLOGICAL TRAP, recorded deliberately: the source's "precision readiness" must NOT be
+    equated with REE's own precision/gain machinery -- the overlap is suggestive and the
+    technical meanings may differ. The testable residue is the question "what previously
+    available representation became newly CONSEQUENTIAL?", which is distinct from "what new
+    representation was learned?". DISTINCT FROM ARC-139: that claim is about coordination
+    between specialised systems in the intact organism; this is about reallocation of causal
+    responsibility after damage. They meet where compensation turns out to be interfacial
+    (rotating which dimensions a consumer sees, recruiting a new low-rank readout) rather than
+    representational -- which is itself a measurable question once MECH-537/538's instruments
+    exist. SEQUENCING: requires a V3 competence stable enough to lesion cleanly, and the source
+    thought is explicit that this must not distract from establishing that baseline. DO NOT
+    build in V3. DO NOT queue an experiment from this entry -- the assay is a five-phase
+    programme against substrate maturity REE does not yet have, and /governance owns whether
+    and when it starts.
+
+- id: MECH-541
+  title: "Maladaptive over-stabilized compensation as a distinct pathology mechanism: pathology may arise not only because an original mechanism is damaged, but because an ADAPTATION TO that damage becomes over-stabilized -- a workaround that was initially adaptive becomes over-strengthened, over-generalized or too persistent, trapping the organism in a distorted solution after the original problem has changed or resolved. Predicted routes: the compensatory pathway acquires excessive precision or gain, dominates ambiguous perception, becomes resistant to counterfactual correction, persists after the initiating lesion resolves, recruits memory and sleep processes that progressively stabilise the workaround, or reduces flexibility by making one emergency solution the default policy. REGISTERED DETECTION SIGNATURE: improved LOCAL performance accompanied by POORER generalization, flexibility, calibration or counterfactual revision -- a compensation that improves everything is not this failure mode. Diagnostic is hysteresis: the compensatory solution persisting even after the original route is restored."
+  claim_type: mechanism_hypothesis
+  subject: psychiatric.maladaptive_compensation_over_stabilisation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  depends_on:
+    - ARC-140   # the adaptive capacity whose over-expression this is
+    - MECH-529  # sleep/replay as one of the processes that progressively stabilises a workaround
+  location: docs/architecture/compensatory_realizability.md#mech-541
+  notes: >
+    Registered 2026-09-08 from thought 2026-09-06_recovery_without_restoration_compensatory_realizability.md.
+    WHY THIS IS REGISTERED SEPARATELY FROM ARC-140 rather than folded into it: they are
+    falsified by opposite results. ARC-140 is weakened if compensation never happens (every
+    recovery requires reconstructing the original state, or alternative routes prove causally
+    irrelevant); MECH-541 is weakened if compensation happens but never over-stabilises. An
+    experiment establishing ARC-140 says nothing about MECH-541, and the amplification sweep
+    that tests MECH-541 presupposes ARC-140 already holds. Merging them would produce a claim
+    that cannot be cleanly falsified in either direction. THIS IS A MECHANISTIC ACCOUNT OF
+    PATHOLOGY that REE does not currently hold: the existing psychiatric failure-mode claims
+    treat pathology as damage, dysregulation or a control-plane state, not as an
+    over-consolidated repair. It bears on REE's standing interest in attractor confidence,
+    precision/gain regulation, perception and psychiatric-like failure modes, and the
+    corresponding clinical intuition (a defence that outlives the threat it was built for) is
+    the user's own domain -- worth checking against the clinical literature in a later
+    lit-pull rather than asserted here. The experiment is the MIRROR IMAGE of ARC-140's
+    recovery assay: progressively amplify an initially useful substitute and locate the point
+    at which compensation stops being adaptive. DO NOT build in V3, DO NOT queue an
+    experiment -- it is downstream of ARC-140's assay, which is itself downstream of a stable
+    lesionable V3 competence.
