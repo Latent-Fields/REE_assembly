@@ -1569,9 +1569,9 @@ def apply_adjudications(host, graded, records):
     than needing to know about a second bucket.
 
     Motivating case (2026-08-09): a confirmed-benign divergence for
-    v3_exq_850 on ree-cloud-2 re-triggered the identical "diff both before
-    deleting EITHER" escalation on every probe run, forever, with no way to
-    record "this was already looked at". See
+    v3_exq_850 on ree-cloud-2 re-triggered the identical diff-before-you-
+    delete escalation on every probe run, forever, with no way to record
+    "this was already looked at". See
     evidence/planning/recovered_stranded_manifests/README_ree-cloud-2_2026-08-09.md
     section 2.
     """
@@ -1625,6 +1625,85 @@ def resolve_hosts(hosts):
         if key in FLEET:
             out[key] = FLEET[key]
     return out or None
+
+
+# ---- divergent-finding origin rendering -----------------------------------
+#
+# A DIVERGENT finding's whole value is that a human can go and diff the two
+# copies, so the finding MUST name what to diff against. Until 2026-09-08 the
+# three call sites in classify() rendered `origin_paths[0]` -- one candidate
+# of N -- as though it were THE counterpart (the gitignored site named none at
+# all). A run_id routinely has TWO origin candidates: the top-level flat
+# manifest `evidence/experiments/<run_id>.json` and the governance-scored pack
+# `evidence/experiments/<exp>/runs/<run_id>/manifest.json`. They are NOT
+# interchangeable -- the pack is a thin 35-75-leaf scored header, the flat
+# sibling carries the full 2,000-16,000-leaf payload -- and which one got
+# printed was list order, not relevance.
+#
+# The 2026-09-07 ree-cloud-4 findings printed the PACK. An investigator who
+# diffed the local file against the one path the message named saw ~16,000
+# leaf keys "only in local", correctly concluded the pack was not the
+# counterpart, and then WRONGLY concluded the payload existed nowhere in git
+# -- proposing to preserve and land files that were in fact strict SUBSETS of
+# tracked content, one of them byte-equal to a tracked commit. Landing them
+# would have regressed a governance override. Two chips were spent before the
+# flat sibling was noticed.
+#
+# grade_path/origin_match were never wrong: they iterate EVERY candidate and
+# clear on is_superset, which is why 7 of the 9 cloud-4 files were rightly not
+# flagged at all. This was a REPORTING defect only -- do not "fix" it by
+# narrowing the grader, and do not "simplify" this back to a single path.
+def _candidate_kind(path, run_id=None):
+    """Label an origin candidate the way build_index derived it.
+
+    run_id-aware on purpose: every pack path in the corpus has the basename
+    `manifest.json`, so a basename-only test would mislabel exactly the case
+    this exists to disambiguate. "other" is a real answer -- a copy parked in
+    evidence/planning/recovered_stranded_manifests/ matches on neither shape.
+
+    "pack-sibling" separates the pack's `manifest.json` from the other files
+    build_index registers against the same run_id (metrics.json, summary.md).
+    They ARE candidates -- origin_match tried each of them -- so they are
+    shown rather than filtered; hiding them would be the same withholding
+    this whole helper exists to undo. But only the manifest is a like-for-
+    like diff target, and the first live run of the fix (ree-cloud-3,
+    2026-09-08) surfaced a run with FOUR candidates of which two were a
+    metrics.json and a summary.md, so an unlabelled list reads as an
+    instruction to diff a manifest against a markdown file.
+    """
+    if run_id:
+        if path.rsplit("/", 1)[-1] == run_id + ".json":
+            return "flat"
+        if ("/runs/%s/" % run_id) in path:
+            return ("pack" if path.rsplit("/", 1)[-1] == "manifest.json"
+                    else "pack-sibling")
+        return "other"
+    return "pack" if "/runs/" in path else "flat"
+
+
+def _origin_candidates_report(paths, run_id=None, label=True):
+    """Render EVERY origin candidate of a divergent finding, never just one.
+
+    Returns ``(suffix, [lines])`` -- `suffix` completes the finding's own
+    line, `lines` are the per-candidate lines that follow it.
+
+    The COUNT is stated even in the single-candidate case, deliberately: the
+    defect this replaced was not that the report named a wrong path, it was
+    that "the only candidate" and "the first of several" rendered identically,
+    so nothing on the line told the reader there was more to diff.
+    """
+    paths = list(paths or [])
+    if not paths:
+        return "-- NO origin candidate recorded (use --json)", []
+
+    def _one(p):
+        return "%s [%s]" % (p, _candidate_kind(p, run_id)) if label else p
+
+    if len(paths) == 1:
+        return "vs 1 origin candidate: %s" % _one(paths[0]), []
+    return ("vs %d origin candidates -- DIFF THE LOCAL COPY AGAINST EVERY ONE, "
+            "they are NOT interchangeable:" % len(paths),
+            ["        %s" % _one(p) for p in paths])
 
 
 def classify(d):
@@ -1849,13 +1928,16 @@ def classify(d):
                 f"{len(div)} untracked run manifest(s) whose run_id IS on origin "
                 f"but with DIFFERENT content -- not a strand and not a duplicate. "
                 f"Two divergent manifests for one run_id is the phantom-completion "
-                f"/ partial-write shape. Diff both before deleting EITHER; do not "
+                f"/ partial-write shape. Diff the local copy against EVERY origin "
+                f"candidate named below before deleting ANY of them; do not "
                 f"assume the origin copy is the good one")
             for f in div[:5]:
-                op = (f.get("origin_paths") or ["?"])[0]
+                suffix, cand_lines = _origin_candidates_report(
+                    f.get("origin_paths"), f.get("run_id"))
                 reasons.append(
                     f"    {f.get('run_id', '?')} [{f.get('outcome', '?')}] "
-                    f"-- {f.get('path', '?')} vs origin {op}")
+                    f"-- {f.get('path', '?')} {suffix}")
+                reasons.extend(cand_lines)
             if len(div) > 5:
                 reasons.append(f"    ... and {len(div) - 5} more (use --json)")
 
@@ -1903,12 +1985,16 @@ def classify(d):
             reasons.append(
                 f"{len(lit_div)} untracked literature evidence entry(ies) "
                 f"whose slug IS on origin but with DIFFERENT content -- not a "
-                f"strand and not a duplicate. Diff both before deleting EITHER")
+                f"strand and not a duplicate. One slug can carry the same "
+                f"filename at more than one review path, so diff against EVERY "
+                f"candidate named below before deleting ANY of them")
             for f in lit_div[:5]:
-                op = (f.get("origin_paths") or ["?"])[0]
+                suffix, cand_lines = _origin_candidates_report(
+                    f.get("origin_paths"), label=False)
                 reasons.append(
                     f"    {f.get('slug', '?')} [{f.get('kind', '?')}] "
-                    f"-- {f.get('path', '?')} vs origin {op}")
+                    f"-- {f.get('path', '?')} {suffix}")
+                reasons.extend(cand_lines)
             if len(lit_div) > 5:
                 reasons.append(f"    ... and {len(lit_div) - 5} more (use --json)")
 
@@ -1951,9 +2037,18 @@ def classify(d):
                     f"run_id is on origin with DIFFERENT content -- adjudicate, "
                     f"do not delete on the assumption it is a stale backup")
                 for f in gd[:3]:
+                    # Named no origin path at all until 2026-09-08 -- the
+                    # zero-of-N variant of the same reporting defect, and
+                    # strictly worse: "adjudicate" is not actionable when the
+                    # report withholds what there is to diff against. The
+                    # payload has carried origin_paths all along, since
+                    # grade_ignored reuses grade_path's finding dict.
+                    suffix, cand_lines = _origin_candidates_report(
+                        f.get("origin_paths"), f.get("run_id"))
                     reasons.append(
                         f"    {f.get('run_id', '?')} [{f.get('outcome', '?')}] "
-                        f"-- {f.get('path', '?')}")
+                        f"-- {f.get('path', '?')} {suffix}")
+                    reasons.extend(cand_lines)
             if g.get("beyond_cap"):
                 reasons.append(
                     f"    ({g['beyond_cap']} ignored file(s) beyond the scan cap "
@@ -2338,6 +2433,26 @@ def _selftest_grader():
         write("evidence/experiments/kept_run_v3.json", origin_kept, compact=True)
         write("evidence/experiments/someexp/runs/pack_run_v3/manifest.json",
               flat("pack_run_v3"), compact=True)
+        # (b2) THE TWO-CANDIDATE SHAPE: one run_id carrying BOTH a flat
+        #      top-level manifest AND a scored pack. This is the ordinary case
+        #      in the live corpus, not an exotic one, and it is the
+        #      precondition for the reporting defect fixed 2026-09-08 -- a
+        #      report naming origin_paths[0] silently drops the other, and the
+        #      two are not interchangeable (the pack is a thin scored header,
+        #      the flat sibling carries the full payload). Committed here so
+        #      the assertions below run against what the REAL grader produces
+        #      rather than a hand-built candidate list.
+        write("evidence/experiments/dual_run_v3.json",
+              dict(flat("dual_run_v3"), queue_id="V3-EXQ-002"), compact=True)
+        write("evidence/experiments/dualexp/runs/dual_run_v3/manifest.json",
+              flat("dual_run_v3"), compact=True)
+        #      ...plus a pack SIBLING. build_index registers every file under
+        #      runs/<run_id>/ against that run_id, so these are real
+        #      candidates the grader really tries -- shown, not filtered, but
+        #      labelled apart from the manifest because only the manifest is a
+        #      like-for-like diff target.
+        write("evidence/experiments/dualexp/runs/dual_run_v3/metrics.json",
+              {"final_reward": 0.5}, compact=True)
         # (c) a NON-manifest json and a non-json file, to exercise the basename
         #     + de-.bak'd-stem path on its own. The manifest cases above all
         #     clear at the run_id step, so without these the superset and
@@ -2419,6 +2534,18 @@ def _selftest_grader():
         #      every already-recovered run.
         write("evidence/experiments/oldexp/parked_run_v3.json.bak.20260530",
               flat("parked_run_v3"))
+        #  6c. ...and the same divergence on a run_id with TWO origin
+        #      candidates (flat AND pack, both committed above). It must
+        #      disagree with BOTH -- origin_match clears on ANY candidate
+        #      matching -- so `outcome` differs from each, which is also what
+        #      makes it a genuine two-candidate divergence rather than a
+        #      partial match. Regression fixture for the 2026-09-07 defect:
+        #      the report used to name whichever candidate sorted first, so an
+        #      investigator who diffed only against that one could conclude
+        #      the payload existed nowhere in git -- and twice proposed
+        #      landing files that were strict SUBSETS of tracked content.
+        write("evidence/experiments/dual_run_v3.json.bak.divergent",
+              dict(flat("dual_run_v3"), outcome="FAIL", elapsed_seconds=999.0))
 
         r = subprocess.run(
             [sys.executable, "-", tmp, "REE_assembly:HEAD"],
@@ -2466,8 +2593,9 @@ def _selftest_grader():
         # (case 6b). Asserting divergence alone would pass a grader that had
         # simply stopped clearing on run_id at all.
         dids = sorted(f["run_id"] for f in got.get("divergent", []))
-        if dids != ["kept_run_v3"]:
-            print(f"  [FAIL] divergent {dids} != ['kept_run_v3'] -- a same-"
+        if dids != ["dual_run_v3", "kept_run_v3"]:
+            print(f"  [FAIL] divergent {dids} != ['dual_run_v3', 'kept_run_v3']"
+                  f" -- a same-"
                   f"run_id manifest with DIFFERENT content was cleared "
                   f"silently, or a subset/parked copy was wrongly flagged")
             bad += 1
@@ -2475,15 +2603,26 @@ def _selftest_grader():
             print("  [PASS] grader: same run_id + different content is "
                   "DIVERGENT, while the writer-superset copy and a copy parked "
                   "in recovered_stranded_manifests/ both still clear")
-        dpaths = [p for f in got.get("divergent", [])
-                  for p in (f.get("origin_paths") or [])]
-        if dpaths != ["evidence/experiments/kept_run_v3.json"]:
-            print(f"  [FAIL] divergent origin_paths {dpaths} -- the finding "
-                  f"must name the origin copy it disagrees with, or it is not "
-                  f"triageable")
+        dpaths = {f["run_id"]: sorted(f.get("origin_paths") or [])
+                  for f in got.get("divergent", [])}
+        want_cands = {
+            "kept_run_v3": ["evidence/experiments/kept_run_v3.json"],
+            # BOTH, never one: a finding that carries a single candidate for a
+            # run_id that has two is not triageable, it is misleading.
+            "dual_run_v3": ["evidence/experiments/dual_run_v3.json",
+                            "evidence/experiments/dualexp/runs/dual_run_v3/"
+                            "manifest.json",
+                            "evidence/experiments/dualexp/runs/dual_run_v3/"
+                            "metrics.json"],
+        }
+        if dpaths != want_cands:
+            print(f"  [FAIL] divergent origin_paths {dpaths} != {want_cands} "
+                  f"-- the finding must name EVERY origin copy it disagrees "
+                  f"with, or it is not triageable")
             bad += 1
         else:
-            print("  [PASS] grader: divergent finding names its origin copy")
+            print("  [PASS] grader: divergent finding carries EVERY origin "
+                  "candidate, flat and pack alike")
         # content_sha256 is what a later adjudication matches on -- a missing
         # or wrong hash here means an adjudication could never fire (silent,
         # not a crash), so it is pinned by comparing against the LOCAL
@@ -2492,7 +2631,8 @@ def _selftest_grader():
         exp_hash = hashlib.sha256(
             json.dumps(dict(kept, outcome="FAIL", elapsed_seconds=999.0)).encode(
                 "utf-8")).hexdigest()
-        dhashes = [f.get("content_sha256") for f in got.get("divergent", [])]
+        dhashes = [f.get("content_sha256") for f in got.get("divergent", [])
+                   if f["run_id"] == "kept_run_v3"]
         if dhashes != [exp_hash]:
             print(f"  [FAIL] divergent content_sha256 {dhashes} != [{exp_hash}] "
                   f"-- an adjudication keyed on this hash could never match")
@@ -2500,6 +2640,49 @@ def _selftest_grader():
         else:
             print("  [PASS] grader: divergent finding carries the LOCAL "
                   "copy's content_sha256, matching a direct hash of its bytes")
+        # ...and the RENDERED report, which is where the 2026-09-07 defect
+        # ACTUALLY lived. The grader above already carried both candidates;
+        # classify() then printed origin_paths[0] as though it were THE
+        # counterpart. Asserted against the REAL grader's output rather than a
+        # hand-built dict on purpose -- a fixture that supplied its own
+        # two-candidate list would still pass if build_index stopped recording
+        # the flat sibling, which is the other half of the same failure.
+        _, rreasons = classify(dict(
+            branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+            stashes="0", first="", untracked=got))
+        rblob = "\n".join(rreasons)
+        missing = [p for p in want_cands["dual_run_v3"] if p not in rblob]
+        if missing:
+            print(f"  [FAIL] report names only SOME of a divergent run's "
+                  f"origin candidates -- missing {missing}. Naming one of N as "
+                  f"though it were the counterpart is what produced two wrong "
+                  f"adjudications on 2026-09-07")
+            bad += 1
+        elif "[flat]" not in rblob or "[pack]" not in rblob:
+            print("  [FAIL] report does not label each candidate flat-vs-pack "
+                  "-- a thin scored pack header and a full-payload flat "
+                  "manifest are not interchangeable, and the path alone does "
+                  "not say which is which")
+            bad += 1
+        elif "[pack-sibling]" not in rblob:
+            print("  [FAIL] report does not separate the pack's manifest.json "
+                  "from its metrics.json/summary.md siblings -- an unlabelled "
+                  "list reads as an instruction to diff a manifest against a "
+                  "markdown file (seen live, ree-cloud-3, 2026-09-08)")
+            bad += 1
+        elif "vs 3 origin candidates" not in rblob:
+            print("  [FAIL] report does not state the candidate COUNT -- 'the "
+                  "only candidate' and 'the first of several' must never "
+                  "render identically again")
+            bad += 1
+        elif "vs 1 origin candidate:" not in rblob:
+            print("  [FAIL] the genuinely single-candidate divergence "
+                  "(kept_run_v3) stopped stating its count -- the count must "
+                  "be unconditional, or its absence is ambiguous again")
+            bad += 1
+        else:
+            print("  [PASS] report names EVERY origin candidate of a divergent "
+                  "run, with its count and its flat/pack kind")
         bad += _selftest_ignored_bucket(tmp, root)
         return bad
     except Exception as exc:                      # pragma: no cover - defensive
@@ -3352,7 +3535,7 @@ def _selftest_adjudicated_divergence():
         print("  [FAIL] adjudications: the adjudicated note does not name "
               "its review write-up in the report")
         bad += 1
-    elif "Diff both before deleting EITHER" not in blob:
+    elif "do not assume the origin copy is the good one" not in blob:
         print("  [FAIL] adjudications: the genuinely-still-divergent sibling "
               "stopped being escalated")
         bad += 1
