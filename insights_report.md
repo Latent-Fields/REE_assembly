@@ -14,6 +14,10 @@ Recommendations fixed at: 2026-09-08T07:17:33Z (REE_assembly `ca527de428`; last-
 
 ## Where the front moved since 2026-09-02
 
+### The live front is the encoder side of the observation -> z_world interface: H-F "content discarded at encode" is the one alive hypothesis on `zworld_actor_adequacy_locus`
+
+- **Ready & not-yet-implemented** (buildable now): none — the only 2 ready-and-unbuilt substrate entries are registration-only DVs, and the three builds the 2026-09-02 report named (SD-018 amend, SD-e1 ITEM 3, E3 rung 3) have all landed. The buildable-now item is an *experiment*: the over-capacity decoder sweep named by the V3-EXQ-1008 autopsy (unqueued; governance's to chip).
+
 The 2026-09-02 report named three items on the v3 critical path. All three have moved:
 
 | item (2026-09-02) | state on 2026-09-08 |
@@ -23,6 +27,17 @@ The 2026-09-02 report named three items on the v3 critical path. All three have 
 | E3 channel-scale normalisation (rung 3, MECH-439) — "to be decided with GFLAG-0051" | **Decided 2026-09-04 (V3-required) and BUILT** — ree-v3 `c47b885` (2026-09-07), chip `e3-channel-commensurability` `done`. |
 
 `f_dominance_conversion_ceiling` now **declares** all three as `depends_on_unresolved` with `node_class: complicated (buildable)` — the 2026-09-02 Recommendation 2 ("declare the gate") is applied.
+
+## The live campaign — what the front rests on, and what is in flight
+
+Nothing is queued on this front (queue empty since 2026-09-07T23:39Z). Lead first; the next run is unminted.
+
+| run | role | what it established |
+|---|---|---|
+| **V3-EXQ-1008** (2026-09-07, autopsy confirmed 2026-09-08) | **1 (lead)** | H-E (channel input capacity) ELIMINATED, H-C (geometry mismatch) SPLIT — the encoding discards decision-relevant content; names the over-capacity decoder sweep on the banked latents as the H-F discriminator |
+| V3-EXQ-1002 (2026-09-05) | 2 | H-B (consumer learning) ELIMINATED, H-D (warm-up is not the locus) CONFIRMED on the same frozen-latent dataset |
+| V3-EXQ-1006 (2026-09-06, cluster autopsy 09-07) | 3 | SD-e1 var-bar portfolio: fidelity-anchor and goal-orthogonal-dispersion CONFIRMED; both Leg-B denominators recorded; remaining gate is a decision |
+| V3-EXQ-978 (2026-09-03) | 4 | SD-018 directional-field head validation FAILed the behavioural precondition (above-random foraging still unmet); autopsied same day |
 
 The live question has moved one layer further in: `zworld_actor_adequacy_locus` (registered 2026-09-04, claims MECH-457 / INV-088). V3-EXQ-1002 (2026-09-05) eliminated H-B (consumer learning) and confirmed H-D (warm-up is not the locus); V3-EXQ-1008 (autopsy confirmed 2026-09-08, ~1 h before this report) eliminated H-E (channel input capacity) and **split H-C (geometry mismatch), leaving H-F "content discarded at encode" as the one alive, unadjudicated hypothesis**. The autopsy names the next gate: an over-capacity decoder sweep on the already-banked 1002/1008 latents. It is not queued, and per the standing rule it is `/governance`'s to chip after Step 2b ratification — `governance-20260908-0703` holds an active claim right now.
 
