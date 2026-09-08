@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_092",
+  "entry_id": "2026-09-08_inv_092_attentional_set_governs_noticing_most2005",
+  "timestamp_utc": "2026-09-08T03:09:17Z",
+  "claim_ids_tested": [
+    "INV-092"
+  ],
+  "source": {
+    "title": "What you see is what you set: sustained inattentional blindness and the capture of awareness",
+    "authors": [
+      "Steven B. Most",
+      "Brian J. Scholl",
+      "Erin R. Clifford",
+      "Daniel J. Simons"
+    ],
+    "year": 2005,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.112.1.217",
+    "pmid": "15631594",
+    "pmc": null,
+    "volume": "112",
+    "issue": "1",
+    "pages": "217-242"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Establishes the structural reason INV-092's constraint is needed rather than optional: what breaks through into awareness is governed by the observer's current attentional SET, not by the unexpected item's importance. That is exactly the mechanism by which a competent suppressor silences an important weak signal. Held at 0.68 because the unexpected objects studied are affectively neutral geometric shapes, so the specific inference to harm and other-agent signals is an extension rather than a demonstration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Noticing of an unexpected object is driven principally by its match to the current attentional set -- the observer's own goals -- rather than by the object's intrinsic salience or meaning. A suppression mechanism keyed on goal-relevance is therefore, by construction, blind in the dimension INV-092 cares about: importance is not a feature the set is matched against.",
+    "Because the phenomenon is measured as awareness rather than reaction time, it captures the specific failure mode a completion metric cannot see: the signal was never registered at all, so there is no slowed response, no error, and nothing in the goal-task record that indicates anything was missed. This is the same blind spot MECH-467 identifies for behavioural capture -- an intact goal that yields a clean-looking performance trace while the safety-relevant event went unreported.",
+    "The paper's unification of inattentional blindness with attention capture makes a direct prediction against a naive REE design: raising suppression to protect the active rule will raise the miss rate for OFF-SET inputs specifically, and an injected weak harm cue is by definition off-set. A falsifier sweep must therefore inject a signal that does NOT resemble the goal-relevant features, or it will measure nothing."
+  ],
+  "tags": [
+    "inv-092",
+    "mech-467",
+    "inattentional_blindness",
+    "attentional_set",
+    "attention_capture",
+    "awareness",
+    "theoretical_review"
+  ],
+  "mapping": {
+    "source_claim_statement": "The article unifies two traditionally separate literatures -- inattentional blindness (failures to notice unexpected objects when attention is engaged elsewhere, measured as awareness) and attention capture (automatic attentional shifts, measured implicitly via performance). Many but not all aspects of attention capture apply to inattentional blindness, and the two remain importantly distinct. The single most influential factor determining whether an unexpected object is noticed is the observer's own attentional goals -- their current attentional set.",
+    "ree_translation": "INV-092 asserts that a suppressor must distinguish four things: irrelevant distraction, legitimate interruption, urgent harm, and newly-relevant other-agent state. This paper explains why that discrimination will not emerge for free from a competently built suppressor. The organising variable in human suppression is SET MATCH -- does this input look like what I am currently looking for? -- and importance is orthogonal to set match. An urgent harm cue that happens not to resemble the current goal's features is, on this account, in exactly the same position as an irrelevant distractor, and will be treated identically. That is the failure INV-092 forbids, arriving not through bad design but through the normal operation of a set-based suppressor. Two consequences for REE. First, the four-way discrimination must be an explicit, separately-implemented gate -- it is not a property that a well-tuned salience/relevance mechanism will acquire. Second, the awareness-versus-performance distinction the paper draws is the same distinction MECH-467 draws between rule corruption and behavioural capture, and it argues for measuring the injected-signal REGISTRATION rate, not just downstream task performance, in the falsifier panel.",
+    "mapping_caveat": "The unexpected objects in this literature are affectively neutral moving shapes; nothing here shows that a genuinely threatening or socially urgent stimulus obeys the same set-match rule, and there is a competing literature (see the Pessoa 2002 entry and its noted dispute) arguing that affective stimuli have at least partially privileged access. The claim being transferred is therefore the DEFAULT -- suppression is set-keyed and importance-blind unless something is built to make it otherwise -- not a demonstration that harm cues are missed. The paradigm is also sustained visual monitoring in humans, which is a narrower control surface than REE's suppression of competing input to a committed goal.",
+    "source_context": "Theoretical unification plus supporting experiments in sustained inattentional blindness, using dynamic displays of moving shapes with an unexpected object crossing the display, published in Psychological Review."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Psychological Review target article by the field's principal investigators; source quality high. Mapping fidelity moderate because the demonstration uses neutral stimuli, so the step from 'set match governs noticing' to 'harm cues will be missed' is an inference REE is making, not a result the paper reports. Transfer risk moderate: the set-match principle is general enough to survive the move to an artificial suppressor, but the specific noticing rates certainly are not."
+  }
+}

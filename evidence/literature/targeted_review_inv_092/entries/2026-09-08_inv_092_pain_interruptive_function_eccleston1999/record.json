@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_092",
+  "entry_id": "2026-09-08_inv_092_pain_interruptive_function_eccleston1999",
+  "timestamp_utc": "2026-09-08T03:09:17Z",
+  "claim_ids_tested": [
+    "INV-092"
+  ],
+  "source": {
+    "title": "Pain demands attention: a cognitive-affective model of the interruptive function of pain",
+    "authors": [
+      "Christopher Eccleston",
+      "Geert Crombez"
+    ],
+    "year": 1999,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/0033-2909.125.3.356",
+    "pmid": "10349356",
+    "pmc": null,
+    "volume": "125",
+    "issue": "3",
+    "pages": "356-366"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical, heavily-cited Psychological Bulletin review that establishes the exact architectural posture INV-092 asserts: harm signals occupy a privileged interrupt channel whose job is to override the current goal, AND that channel's strength is a graded function of competing task demand rather than an absolute override. High source quality and high conceptual mapping fidelity; held below 0.8 because it is a theoretical synthesis rather than a suppression-strength sweep, and because it concerns nociception in humans rather than a suppression knob in an artificial agent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a REE suppression mechanism is tuned only against goal completion under distractor load, this literature predicts the tuning will find its optimum at a setting where the harm channel's interrupt threshold has been raised -- because raising that threshold is a direct and cheap route to better completion, and nothing in a completion metric penalises it.",
+    "Eccleston & Crombez's model makes the interrupt strength depend on the interaction between the signal's threat value AND the environmental demand. A REE suppressor that treats harm salience as a fixed per-channel constant, independent of current task load, cannot reproduce this and will mis-predict interruptibility exactly in the high-load regime where safety matters most.",
+    "The model's endpoint -- 'chronic pain as chronic interruption' -- is the opposite failure: a harm channel whose interrupt threshold is too LOW monopolises capacity and destroys goal completion entirely. An interruptibility metric with no upper bound rewards this degenerate setting."
+  ],
+  "tags": [
+    "inv-092",
+    "inv-093",
+    "interruptive_function_of_pain",
+    "attention_capture",
+    "harm_signal",
+    "suppression_permeability",
+    "theoretical_review"
+  ],
+  "mapping": {
+    "source_claim_statement": "Pain interrupts and demands attention. The interruptive function of pain is not fixed but depends on the relationship between pain-related characteristics (notably the threat value of the pain) and the characteristics of the competing environmental demand (notably its emotional arousal and difficulty). Pain is selected for action from within complex affective and motivational environments in order to urge escape. Chronic pain is reframed as chronic interruption.",
+    "ree_translation": "This is the biological existence proof for the channel INV-092 says must be preserved. Two things transfer. First, harm has a dedicated interrupt function -- it is not merely one more input competing on generic salience, it is a signal whose architectural purpose is to break an established commitment and reallocate action. That is precisely the 'must override' category in INV-092's four-way discrimination. Second, and more usefully for the falsifier, the interrupt is CONTINGENT: its efficacy is set by the ratio of threat value to competing demand. Which means the harm channel in a biological agent has, in effect, exactly the knob INV-092 warns about -- turn up the competing goal's demand and the harm interrupt weakens. A REE suppression mechanism therefore cannot claim the harm channel is safe by construction; permeability is a quantity to be measured at each suppression setting, not a property to be asserted once.",
+    "mapping_caveat": "This is a conceptual model of human nociception, not a computational suppression mechanism, and pain is only one instance of INV-092's harm category (the claim also covers other-agent urgency signals, which this paper does not address at all -- see the Pessoa 2002 entry in this directory for that leg). The paper also predates the suppression-specific attention literature it is being read alongside here; treating its threat-value-vs-demand interaction as a design specification for a REE knob is an extrapolation the authors do not make.",
+    "source_context": "Theoretical review and model synthesis over the human experimental and clinical pain-attention literature, published in Psychological Bulletin."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Psychological Bulletin review by the authors who defined the field's framing of this question; source quality is high for a synthesis. Mapping fidelity is high on the architecture (privileged-but-contingent harm interrupt) and lower on the mechanism (no suppression-strength parameter is defined). Transfer risk moderate: human nociception to an artificial agent's harm channel is a real leap, but INV-092 is itself a design constraint stated at the same level of abstraction as this model, so the two meet naturally."
+  }
+}

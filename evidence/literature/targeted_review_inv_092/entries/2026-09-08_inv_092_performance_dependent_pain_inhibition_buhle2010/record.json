@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_092",
+  "entry_id": "2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010",
+  "timestamp_utc": "2026-09-08T03:09:17Z",
+  "claim_ids_tested": [
+    "INV-092"
+  ],
+  "source": {
+    "title": "Performance-dependent inhibition of pain by an executive working memory task",
+    "authors": [
+      "Jason Buhle",
+      "Tor D. Wager"
+    ],
+    "year": 2010,
+    "venue": "Pain",
+    "doi": "10.1016/j.pain.2009.10.027",
+    "pmid": "20129735",
+    "pmc": "PMC4229048",
+    "volume": "149",
+    "issue": "1",
+    "pages": "19-26"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The closest thing in the human literature to the paired measurement INV-092's falsifier specifies: goal-task performance and harm-signal magnitude measured jointly, in the same subjects, across graded levels of both. Individually calibrated task difficulty and stimulus intensity, a within-subject dose-response, and a mediation model that ties the two axes together trial by trial. Held below 0.85 because N=24 with brief phasic heat is a narrow slice of the harm space, and because the paper's own framing is shared-resource competition rather than an engineered suppression knob.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pain report was lower under the 3-back working-memory task than under a visually matched control (F(1,768) = 48.3, p < .001), with a heat x task-demand interaction (F(1,768) = 12.64, p < .005). Read against INV-092: increasing goal engagement measurably attenuated the harm signal. A REE suppression sweep that reports only goal completion would score this direction as pure improvement.",
+    "The competition is bidirectional -- higher heat degraded task performance (F(1,378) = 9.24, p < .01), and pain fully mediated that effect (ab = -.03, Z = -3.91, p < .001). So the two axes INV-092 insists on measuring jointly are not independent: a suppression setting cannot be scored on completion without the harm channel's state confounding the completion number itself.",
+    "Trial-by-trial pain fluctuations predicted performance decrements within a fixed heat level (b = -.02, Z = -3.52, p < .001). A single averaged attention score would wash out precisely the within-condition coupling that carries the safety-relevant information."
+  ],
+  "tags": [
+    "inv-092",
+    "inv-093",
+    "cognitive_load",
+    "pain_attenuation",
+    "joint_measurement",
+    "dose_response",
+    "behavioral_human"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 24 healthy adults with individually calibrated task difficulty and noxious heat intensity, participants reported less pain during a demanding executive working-memory task (3-back) than during a visually matched no-load control, while increasing heat incrementally reduced task performance. Path analysis showed pain completely mediated the heat-to-performance effect, and trial-by-trial pain fluctuations predicted performance decrements even within a fixed heat level. The authors conclude that pain processing and executive working memory draw on overlapping, capacity-limited resources.",
+    "ree_translation": "This is INV-092's falsifier run, in a biological system, and it comes out the way the invariant fears. The manipulated variable is goal engagement (load on / load off, three heat levels); the two dependent measures are goal-task performance and harm-signal magnitude; both are recorded in the same trials. The result is a genuine trade: engaging the goal attenuates the harm report, and the attenuation is graded rather than all-or-none. For REE this does three things. (1) It supplies the paired-measurement panel shape INV-092 demands, empirically instantiated -- goal completion under load AND harm-signal reception, never collapsed to one number. (2) It satisfies the non-degeneracy guard in the only way that matters: the harm channel is demonstrably LIVE at zero suppression, because the no-load control produces robust pain report and robust heat-graded interference. (3) It warns that the trade may be structural rather than incidental -- if suppression and harm reception share a capacity pool, then in a REE substrate built the same way, permeability is not something a suppressor can be tuned to preserve for free; it costs completion, and the acceptance shape has to price that in rather than treat preserved interruptibility as a free rider on a good attention score.",
+    "mapping_caveat": "The measured quantity is subjective pain REPORT (plus task accuracy), not an interrupt event -- the paper does not measure whether the harm signal successfully broke off the ongoing task, which is the actual variable INV-092 cares about. Attenuated report is at best a proxy for reduced interruptibility. Brief phasic heat in a healthy laboratory sample also excludes the weak, ambiguous harm cue INV-092 is most concerned about ('sufficiently important WEAK evidence'), and the authors themselves flag that brief rapid-onset stimuli may behave differently from sustained pain. Finally, the shared-resource account is a mechanism the authors infer, not one they manipulate; importing it into REE as a prediction about a suppression knob goes beyond what was tested.",
+    "source_context": "Within-subject human psychophysics, N = 24 healthy right-handed volunteers (mean age 25.0, 15 female), 36 trials, 3-back working-memory load vs visually matched control crossed with three individually calibrated heat levels (mean 41.4 / 44.5 / 47.4 C)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.45,
+    "notes": "Well-controlled within-subject design in the field's leading journal, with per-subject calibration of both manipulated variables -- unusually careful, though N = 24 and the mediation analysis is correlational by the authors' own admission. Mapping fidelity is the highest in this pull for the falsifier SHAPE (paired axes, graded manipulation, non-degeneracy control) and lower for the dependent variable (report, not interrupt). Transfer risk moderate-to-high: human capacity-limited attention need not be the mechanism by which a REE suppressor trades off, so the direction transfers more safely than the mechanism."
+  }
+}

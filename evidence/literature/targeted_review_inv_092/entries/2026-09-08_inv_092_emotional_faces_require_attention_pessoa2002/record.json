@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_092",
+  "entry_id": "2026-09-08_inv_092_emotional_faces_require_attention_pessoa2002",
+  "timestamp_utc": "2026-09-08T03:09:17Z",
+  "claim_ids_tested": [
+    "INV-092"
+  ],
+  "source": {
+    "title": "Neural processing of emotional faces requires attention",
+    "authors": [
+      "Luiz Pessoa",
+      "Michael McKenna",
+      "Eva Gutierrez",
+      "Leslie G. Ungerleider"
+    ],
+    "year": 2002,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.172403899",
+    "pmid": "12177449",
+    "pmc": "PMC123278",
+    "volume": "99",
+    "issue": "17",
+    "pages": "11458-11463"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly evidences the hardest and least-covered leg of INV-092 -- the other-agent channel -- and evidences it in the alarming direction: under high attentional load, differential neural responses to fearful faces, amygdala included, were abolished. Strong source (PNAS, N=21, Ungerleider lab). Held at 0.70 rather than higher because this specific finding is genuinely contested in the field (Vuilleumier and colleagues report load-resistant amygdala responses), and because absence of a differential BOLD response is not the same as absence of an interrupt.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Every region responding differentially to emotional faces -- including the amygdala -- did so ONLY when attentional resources were available. Under high load, unattended-face responses were 'no significant difference from zero'. Directly falsifies the assumption INV-092 exists to block: that an other-agent affect signal is automatically immune to suppression.",
+    "The suppression here was produced by an ORDINARY competing task, not by an ethics-relevant design decision. The peripheral bar-orientation task was simply demanding (64% accuracy). So the failure mode does not require a badly-designed suppressor -- a well-tuned one, doing exactly its job, is sufficient to close the other-agent channel.",
+    "The finding is contested. Vuilleumier and colleagues report amygdala responses to fearful faces that survive comparable manipulations, and Pessoa's own 2005 Current Opinion review treats the question as open. A REE design that leans on either side of this dispute as settled will be wrong in one regime; the safe reading is that other-agent permeability is load-dependent to an uncertain degree and must therefore be measured per suppression setting."
+  ],
+  "tags": [
+    "inv-092",
+    "other_agent_signal",
+    "attentional_load",
+    "amygdala",
+    "emotional_face_processing",
+    "fmri"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using fMRI in 21 healthy subjects, the authors first localised regions responding differentially to emotional (fearful, happy) versus neutral faces, then measured those responses under a competing peripheral bar-orientation task with high attentional load. Contrary to the prevailing view that emotional stimuli activate the brain automatically and largely immune from attentional control, all such regions -- amygdala included -- showed differential responses only when sufficient attentional resources were available. Facial-expression processing therefore appears to be under top-down control.",
+    "ree_translation": "INV-092's four-way discrimination lists 'another agent's state becoming newly relevant' as the hardest category, and this paper is the reason it is hard. A facial expression is the canonical other-agent state signal, and the amygdala is the canonical privileged fast route for it -- and both were silenced by nothing more exotic than a demanding concurrent task. Translated into REE: if a suppression mechanism is set strongly enough to protect goal state against distractor load, the default expectation should be that the other-agent channel goes with it, not that it survives. This is the sharpest available argument against the design shortcut of tagging harm and other-agent inputs as 'high priority' and assuming priority alone buys permeability. Priority is a weight; suppression scales weights. It also tells the falsifier where to look: the other-agent leg is likely to break at a LOWER suppression setting than the goal-completion leg reaches its optimum, so the sweep must instrument it separately rather than folding it into a generic harm-interrupt rate.",
+    "mapping_caveat": "The dependent measure is a differential BOLD response, not an interrupt or a behavioural override -- a suppressed differential response does not prove the signal could not have interrupted had it needed to, which is the variable INV-092 actually constrains. The load manipulation is perceptual/spatial, not the goal-commitment suppression REE would implement. Most importantly, this result sits inside a live dispute: the opposing finding (load-resistant amygdala response to fear) is well attested, and Pessoa's own later review treats the extent of attention-independent emotional processing as unresolved. This entry should be read as establishing that the other-agent channel CAN be closed by load, not that it always is.",
+    "source_context": "Event-related fMRI, N = 21 healthy adults (8 women, ages 22-38), attended (gender-judgement) vs unattended (concurrent demanding peripheral bar-orientation task, 64% accuracy) blocks, fearful/happy/neutral faces."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.5,
+    "notes": "PNAS, Ungerleider lab, adequately powered for its era and heavily cited -- source quality high, though the finding's replication status is genuinely mixed rather than merely debated. Mapping fidelity capped at 0.65 by the dependent-variable gap (BOLD differential, not interrupt). Transfer risk moderate: the specific claim being transferred -- that a strong enough competing task closes the other-agent channel -- is a direction, not a parameter, and REE's suppressor is not a perceptual-load manipulation."
+  }
+}

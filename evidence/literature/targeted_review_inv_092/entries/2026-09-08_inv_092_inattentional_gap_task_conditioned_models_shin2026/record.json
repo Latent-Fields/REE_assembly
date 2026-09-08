@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_092",
+  "entry_id": "2026-09-08_inv_092_inattentional_gap_task_conditioned_models_shin2026",
+  "timestamp_utc": "2026-09-08T03:09:17Z",
+  "claim_ids_tested": [
+    "INV-092"
+  ],
+  "source": {
+    "title": "The inattentional gap in task conditioned AI models that omit otherwise reportable safety critical signals",
+    "authors": [
+      "Kwan Soo Shin"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint (not peer reviewed)",
+    "doi": null,
+    "arxiv_id": "2606.26529v3",
+    "url": "https://arxiv.org/abs/2606.26529"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "The single closest analogue to INV-092's falsifier that exists in an artificial system: task conditioning suppresses reporting of co-present safety-critical signals the same model can otherwise report, with the non-degeneracy control built in (an open-ended critic restored every omitted finding). Mapping fidelity is the highest in this pull. Confidence is nevertheless capped at 0.60 by source quality -- a single-author arXiv preprint at v3, not peer reviewed, in a domain where prompt-sensitivity results are notoriously fragile.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ordinary focused instructions suppressed reporting of co-present safety-critical signals by up to 0.92. The suppression required no adversarial prompt and no misconfiguration -- just a normally-worded narrow task. This is INV-092's failure mode reproduced in an artificial agent by the most ordinary possible means.",
+    "'A system can score near-perfectly on specified hazards while omitting co-present safety-critical hazards.' This is the precise argument for INV-092's acceptance shape: a single-axis score over the specified task is not merely insufficient, it is actively anti-correlated with the safety property, because the conditioning that maximises the score is the conditioning that closes the channel.",
+    "The gap 'did not vary monotonically with scale' and 'persisted in a reasoning model', while one flagship model showed a robust safety-reporting override. So permeability is an architectural or training-time property that some systems have and others do not -- it is not something that arrives with capability. A REE suppressor cannot be assumed to inherit it.",
+    "An independent open-ended critic restored every omitted finding in a 24-scenario probe. The information was present and reportable throughout; only the conditioned reporting path was closed. Translated to REE: a falsifier that only inspects downstream behaviour will read a closed channel as an absent signal, so the panel must separately establish that the signal was available."
+  ],
+  "tags": [
+    "inv-092",
+    "inv-093",
+    "inattentional_gap",
+    "task_conditioning",
+    "safety_critical_omission",
+    "reporting_completeness",
+    "llm_evaluation",
+    "preprint"
+  ],
+  "mapping": {
+    "source_claim_statement": "Conditioning a language or vision model on a narrow task suppresses its reporting of co-present, safety-critical signals it can otherwise report -- a behavioural analogue of human inattentional blindness. Across radiology text scenarios and thoracic-image vision tasks, ordinary focused instructions suppressed reporting by up to 0.92; the gap ranged from minimal to complete across seven models, did not vary monotonically with scale, and persisted in a reasoning model, while one flagship model showed a robust safety-reporting override. In a 24-scenario probe an independent open-ended critic restored every omitted finding. The author proposes reporting-complete evaluation as an admission criterion for safety-critical deployment.",
+    "ree_translation": "INV-092 says the falsifier 'becomes runnable when a suppression-strength knob exists'. This paper is evidence that in a language- or vision-model substrate the knob already exists and is called the task instruction -- narrowing the conditioning IS turning suppression up -- and that running the falsifier on it produces the failing result INV-092 predicts. Three parts map almost item-for-item. (1) The paired panel: specified-hazard score and co-present-hazard reporting, measured jointly, with the finding that the first can be near-perfect while the second collapses. That is INV-092's 'a single-axis attention score CANNOT express this', demonstrated rather than asserted. (2) The non-degeneracy guard: INV-092 demands the harm channel be shown LIVE at zero suppression, and the open-ended critic restoring every omitted finding is exactly that control, run correctly. (3) The proposed remedy -- reporting-complete evaluation as an ADMISSION CRITERION -- is INV-092's acceptance shape stated in another vocabulary: improved performance on the specified task is not sufficient for deployment without demonstrated preservation of the unspecified-hazard channel. The paper also supplies an instructive positive case: one flagship model overrode task conditioning to report the safety signal anyway, which means permeability is achievable and is a discriminable property of a system rather than a universal limit.",
+    "mapping_caveat": "This is a single-author, non-peer-reviewed arXiv preprint (v3, revised title, abstract and author metadata), reporting prompt-conditioning effects on commercial models -- a class of result that is well known to be sensitive to phrasing, model version, and decoding settings, and that can move substantially on re-measurement. The subject matter is REPORTING behaviour in a radiology workflow, not attentional suppression inside an agent architecture with a commitment to interrupt; a model that fails to mention a finding has not necessarily failed to represent or act on it, whereas INV-092 constrains the ability of a signal to INTERRUPT an established rule. The domain is also medical imaging, so 'safety-critical signal' means an incidental radiological finding, not an urgent harm cue or another agent's state -- the other-agent leg of INV-092 is untouched here. Use this entry as a strong methodological template for the falsifier and a real existence proof of the failure mode, not as calibrated evidence about REE's own substrate.",
+    "source_context": "Behavioural evaluation of seven commercial language and vision models across radiology text scenarios and thoracic-image vision tasks, with signal-detection and specified-task controls, cross-vendor and flagship validation, and a 24-scenario open-ended-critic probe. Reproducibility deposit at doi:10.5281/zenodo.20826823."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.4,
+    "notes": "Source quality is the binding constraint: single-author arXiv preprint, not peer reviewed, in a result class with a poor replication record. The paper does carry controls that raise it above a bare demonstration (signal-detection controls, specified-task controls, cross-vendor and flagship validation, a public reproducibility deposit), which is why this is 0.45 rather than lower. Mapping fidelity is the highest in this directory -- the experimental shape is INV-092's falsifier almost line for line, including the non-degeneracy control. Transfer risk is comparatively low because the substrate is already artificial; the residual risk is the reporting-versus-interrupting gap noted in the caveat."
+  }
+}
