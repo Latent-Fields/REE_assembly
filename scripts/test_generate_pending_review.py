@@ -866,5 +866,185 @@ class DryRunPredicateTests(unittest.TestCase):
         self.assertFalse(self.mod._is_dry_run({"run_id": None}))
 
 
+class LoadDegenerateEvidenceRunReasonsTests(unittest.TestCase):
+    """chip-20260908-pending-review-degenerate-evidence-pass, incident
+    V3-EXQ-1007: an experiment_purpose 'evidence' PASS/FAIL whose flat
+    manifest carries non_degenerate: false must be surfaced, not silently
+    scoring_excluded with no reader-side signal at all."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _with_manifests(self, manifests):
+        with tempfile.TemporaryDirectory() as td:
+            evidence = Path(td)
+            for name, body in manifests.items():
+                (evidence / name).write_text(json.dumps(body))
+            orig = self.mod.EVIDENCE_DIR
+            self.mod.EVIDENCE_DIR = evidence
+            try:
+                return self.mod.load_degenerate_evidence_run_reasons()
+            finally:
+                self.mod.EVIDENCE_DIR = orig
+
+    def test_top_level_non_degenerate_false_is_caught(self):
+        out = self._with_manifests({
+            "v3_exq_1007_x.json": {
+                "run_id": "v3_exq_1007_mech536_eval_persistence_discriminator_20260907T072349Z_v3",
+                "experiment_purpose": "evidence",
+                "non_degenerate": False,
+                "degeneracy_reason": "C2 pre-registered non-degeneracy check failed",
+            },
+        })
+        self.assertEqual(
+            out,
+            {"v3_exq_1007_mech536_eval_persistence_discriminator_20260907T072349Z_v3":
+             "C2 pre-registered non-degeneracy check failed"})
+
+    def test_per_claim_false_is_caught_even_when_top_level_absent(self):
+        out = self._with_manifests({
+            "a.json": {
+                "run_id": "run_a_20260101T000000Z_v3",
+                "experiment_purpose": "evidence",
+                "non_degenerate_per_claim": {"MECH-001": True, "MECH-002": False},
+                "degeneracy_reason": "MECH-002 criterion pinned at floor",
+            },
+        })
+        self.assertIn("run_a_20260101T000000Z_v3", out)
+
+    def test_missing_degeneracy_reason_still_flags_with_placeholder(self):
+        out = self._with_manifests({
+            "a.json": {
+                "run_id": "run_b_20260101T000000Z_v3",
+                "experiment_purpose": "evidence",
+                "non_degenerate": False,
+            },
+        })
+        self.assertIn("no degeneracy_reason", out["run_b_20260101T000000Z_v3"])
+
+    def test_diagnostic_purpose_is_not_double_counted(self):
+        """The diagnostic vacuous_pass net already covers this purpose;
+        this function is scoped to 'evidence' only."""
+        out = self._with_manifests({
+            "a.json": {
+                "run_id": "run_c_20260101T000000Z_v3",
+                "experiment_purpose": "diagnostic",
+                "non_degenerate": False,
+                "degeneracy_reason": "irrelevant here",
+            },
+        })
+        self.assertEqual(out, {})
+
+    def test_default_purpose_is_evidence(self):
+        """experiment_purpose absent defaults to 'evidence' -- same default
+        load_pending_entries and _accumulate_pending_run use."""
+        out = self._with_manifests({
+            "a.json": {
+                "run_id": "run_d_20260101T000000Z_v3",
+                "non_degenerate": False,
+                "degeneracy_reason": "x",
+            },
+        })
+        self.assertIn("run_d_20260101T000000Z_v3", out)
+
+    def test_true_or_absent_non_degenerate_is_not_flagged(self):
+        out = self._with_manifests({
+            "a.json": {"run_id": "run_e_20260101T000000Z_v3",
+                       "experiment_purpose": "evidence", "non_degenerate": True},
+            "b.json": {"run_id": "run_f_20260101T000000Z_v3",
+                       "experiment_purpose": "evidence"},
+        })
+        self.assertEqual(out, {})
+
+
+class DegenerateEvidenceSectionRenderTests(unittest.TestCase):
+    """The rendered section: non-exclusionary (stays in PASS/FAIL too), names
+    the reason, and does not fire on a clean or non-evidence corpus."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _run(self, run_id="v3_exq_1007_x_20260907T072349Z_v3", status="PASS", **kw):
+        r = {"run_id": run_id, "timestamp_utc": "2026-09-07T07:23:49Z",
+             "status": status, "claims": ["MECH-536"], "failure_signatures": [],
+             "adjudication": "n/a", "interpretation_label": "",
+             "recorded_preconditions_unmet": [], "preconditions_scope_note": "",
+             "z_goal_stream": {}}
+        r.update(kw)
+        return r
+
+    def _render(self, runs, manifests):
+        import io
+        from contextlib import redirect_stdout
+        written = {}
+
+        class _FakeOut:
+            def __init__(self, store):
+                self.store = store
+
+            def write_text(self, text):
+                self.store["text"] = text
+
+            def relative_to(self, _root):
+                return "evidence/experiments/pending_review.md"
+
+        with tempfile.TemporaryDirectory() as td:
+            evidence = Path(td)
+            for name, body in manifests.items():
+                (evidence / name).write_text(json.dumps(body))
+            orig_evidence = self.mod.EVIDENCE_DIR
+            orig_output = self.mod.OUTPUT
+            self.mod.EVIDENCE_DIR = evidence
+            self.mod.OUTPUT = _FakeOut(written)
+            try:
+                with redirect_stdout(io.StringIO()):
+                    self.mod.write_pending_review(
+                        list(runs), [], [], [], "2026-09-08T00:00:00Z")
+            finally:
+                self.mod.EVIDENCE_DIR = orig_evidence
+                self.mod.OUTPUT = orig_output
+        return written.get("text", "")
+
+    def test_degenerate_evidence_pass_gets_flagged_and_stays_in_pass_table(self):
+        rid = "v3_exq_1007_x_20260907T072349Z_v3"
+        text = self._render(
+            [self._run(run_id=rid)],
+            {"m.json": {"run_id": rid, "experiment_purpose": "evidence",
+                        "non_degenerate": False,
+                        "degeneracy_reason": "C2 check failed"}})
+        self.assertIn("flagged degenerate", text)
+        self.assertIn("route to /failure-autopsy", text.lower())
+        self.assertIn("C2 check failed", text)
+        # Non-exclusionary: still present in the plain PASS table too.
+        self.assertIn("## PASS (verify & close)", text)
+        pass_section = text.split("## PASS (verify & close)")[1].split("##")[0]
+        self.assertIn(rid, pass_section)
+
+    def test_clean_evidence_run_produces_no_section(self):
+        rid = "v3_exq_clean_20260101T000000Z_v3"
+        text = self._render(
+            [self._run(run_id=rid)],
+            {"m.json": {"run_id": rid, "experiment_purpose": "evidence",
+                        "non_degenerate": True}})
+        self.assertNotIn("flagged degenerate", text)
+
+    def test_no_manifest_on_disk_produces_no_section(self):
+        text = self._render([self._run()], {})
+        self.assertNotIn("flagged degenerate", text)
+
+    def test_section_does_not_change_pending_counts(self):
+        rid = "v3_exq_1007_x_20260907T072349Z_v3"
+        clean = self._render([self._run(run_id=rid)], {})
+        flagged = self._render(
+            [self._run(run_id=rid)],
+            {"m.json": {"run_id": rid, "experiment_purpose": "evidence",
+                        "non_degenerate": False, "degeneracy_reason": "x"}})
+        for text in (clean, flagged):
+            self.assertIn("Pending: **1** item(s)", text)
+            self.assertIn("1 PASS, 0 FAIL", text)
+
+
 if __name__ == "__main__":
     unittest.main()

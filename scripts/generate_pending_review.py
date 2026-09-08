@@ -31,6 +31,13 @@ SECTIONS GENERATED:
      by manifest stem (run_id with timestamp suffix) -- queue_id-level marking is unsafe
      because the same queue_id can have both an ERROR runner_status entry and a separate
      PASS manifest produced by the same run.
+  5. Evidence PASS/FAIL flagged degenerate -- experiment_purpose "evidence" results whose
+     flat manifest carries non_degenerate: false (or a false entry in
+     non_degenerate_per_claim). Non-exclusionary: the run still appears in section 1/2 too
+     (same pattern as the diagnostic-adjudication callouts). Route to /failure-autopsy
+     instead of verify-and-close (chip-20260908-pending-review-degenerate-evidence-pass,
+     incident V3-EXQ-1007: _compute_adjudication only fires for experiment_purpose in
+     {diagnostic, baseline}, so an evidence-purpose degenerate PASS had no net at all).
 """
 import json
 import re
@@ -154,6 +161,61 @@ def load_dry_run_run_ids() -> set:
             if rid:
                 ids.add(rid)
     return ids
+
+
+def load_degenerate_evidence_run_reasons() -> dict:
+    """run_id -> degeneracy_reason for on-disk EVIDENCE-purpose manifests
+    carrying a load-bearing `non_degenerate: false` (top-level, or any false
+    value in `non_degenerate_per_claim`).
+
+    Same rationale as load_dry_run_run_ids() just above: claim_evidence
+    entries do not carry `non_degenerate` / `non_degenerate_per_claim` /
+    `degeneracy_reason` at all -- the indexer keeps the FLAT manifest copy
+    authoritative for these fields (`_FLAT_AUTHORITATIVE_FIELDS`,
+    build_experiment_indexes.py) and does not propagate them into
+    claim_evidence.v1.json -- so a reader built from the index alone (like
+    load_pending_entries() below) cannot see them and needs this built
+    directly from disk.
+
+    Confirmed gap (chip-20260908-pending-review-degenerate-evidence-pass,
+    incident V3-EXQ-1007, 2026-09-07, confirmed
+    failure_autopsy_V3-EXQ-1007_2026-09-08): the indexer already excludes
+    such a run from SCORING (build_experiment_indexes.py ~L3731,
+    `scoring_excluded: "degenerate"`), but nothing routed it for review --
+    `_compute_adjudication` (build_experiment_indexes.py ~L600) only fires
+    for `experiment_purpose` in {diagnostic, baseline}, so an
+    `experiment_purpose: "evidence"` PASS with its own driver-declared
+    degeneracy sailed into the plain 'PASS (verify & close)' section with no
+    flag at all. Governance caught it only by reading the driver by hand.
+
+    Restricted to `experiment_purpose: "evidence"` on purpose: a diagnostic's
+    degenerate criterion is already covered by the existing
+    `adjudication: "vacuous_pass"` net (see BLOCKING_ADJUDICATIONS below) --
+    this function exists to close the gap for the purpose that net does not
+    cover.
+    """
+    reasons: dict[str, str] = {}
+    for f in _iter_manifest_paths():
+        try:
+            d = json.loads(f.read_text())
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        if str(d.get("experiment_purpose", "evidence")) != "evidence":
+            continue
+        degenerate = d.get("non_degenerate") is False
+        if not degenerate:
+            per_claim = d.get("non_degenerate_per_claim")
+            if isinstance(per_claim, dict):
+                degenerate = any(v is False for v in per_claim.values())
+        if not degenerate:
+            continue
+        rid = d.get("run_id")
+        if rid:
+            reasons[rid] = (d.get("degeneracy_reason")
+                            or "(no degeneracy_reason on manifest)")
+    return reasons
 
 
 def _iter_manifest_paths():
@@ -999,6 +1061,14 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     zgoal_dead = ([r for r in runs if _z_goal_writer_defect(r)]
                   + [r for r in unclaimed if _z_goal_writer_defect(r)])
 
+    # Evidence-purpose PASS/FAIL flagged degenerate -- another SEPARATE,
+    # non-exclusionary callout (same pattern as `flagged` /
+    # `needs_diagnostic_autopsy` above): the run stays in its normal PASS/FAIL
+    # table, this just makes sure governance does not verify-and-close it
+    # before routing to /failure-autopsy. See load_degenerate_evidence_run_reasons().
+    degenerate_reasons = load_degenerate_evidence_run_reasons()
+    degenerate_evidence = [r for r in runs if r["run_id"] in degenerate_reasons]
+
     total_pending = (len(runs) + len(runner_undiscussed) + len(unclaimed)
                      + len(error_manifests) + len(fail_needs_autopsy))
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -1023,7 +1093,9 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         + (f"; {len(recorded)} run(s) with recorded (non-gating) preconditions"
            if recorded else "")
         + (f"; {len(zgoal_dead)} run(s) with a DEAD z_goal stream"
-           if zgoal_dead else ""),
+           if zgoal_dead else "")
+        + (f"; {len(degenerate_evidence)} evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)"
+           if degenerate_evidence else ""),
         "",
     ]
 
@@ -1073,6 +1145,29 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                     f"| `{r['run_id']}` | {r['status']} | {label} | "
                     f"**{r['adjudication']}** |"
                 )
+            lines.append("")
+
+        if degenerate_evidence:
+            lines += ["## Evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)", ""]
+            lines += [
+                "These `experiment_purpose: \"evidence\"` results carry a manifest-level "
+                "`non_degenerate: false` (or a `false` entry in "
+                "`non_degenerate_per_claim`) -- the driver's own pre-registered "
+                "non-degeneracy check on its load-bearing criterion failed. The indexer "
+                "already excludes them from scoring (`scoring_excluded: \"degenerate\"`), "
+                "but nothing else routes them for review: `_compute_adjudication` only "
+                "fires for `experiment_purpose` in {diagnostic, baseline}, so an "
+                "evidence-purpose degenerate PASS/FAIL sails into the plain PASS/FAIL "
+                "table above with no flag (confirmed: V3-EXQ-1007). **Route to "
+                "`/failure-autopsy` (it accepts a PASS target too); do not verify-and-close.**",
+                "",
+                "| Run ID | Status | Claims | Degeneracy reason |",
+                "|--------|--------|--------|--------------------|",
+            ]
+            for r in degenerate_evidence:
+                claims = ", ".join(sorted(set(r["claims"])))
+                reason = degenerate_reasons.get(r["run_id"], "")[:120]
+                lines.append(f"| `{r['run_id']}` | {r['status']} | {claims} | {reason} |")
             lines.append("")
 
         if needs_diagnostic_autopsy:
