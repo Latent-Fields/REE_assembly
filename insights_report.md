@@ -16,7 +16,7 @@ Recommendations fixed at: 2026-09-08T07:17:33Z (REE_assembly `ca527de428`; last-
 
 ### The live front is the encoder side of the observation -> z_world interface: H-F "content discarded at encode" is the one alive hypothesis on `zworld_actor_adequacy_locus`
 
-- **Ready & not-yet-implemented** (buildable now): none — the only 2 ready-and-unbuilt substrate entries are registration-only DVs, and the three builds the 2026-09-02 report named (SD-018 amend, SD-e1 ITEM 3, E3 rung 3) have all landed. The buildable-now item is an *experiment*: the over-capacity decoder sweep named by the V3-EXQ-1008 autopsy (unqueued; governance's to chip).
+- **Ready & not-yet-implemented** (buildable now): none — the only 2 ready-and-unbuilt substrate entries are registration-only DVs, and the three builds the 2026-09-02 report named (SD-018 amend, SD-e1 ITEM 3, E3 rung 3) have all landed. The buildable-now item is an *experiment*: the over-capacity decoder sweep named by the V3-EXQ-1008 autopsy (queued 18:13Z as V3-EXQ-1010 by the Wave-5 fresh-fill session; running).
 
 The 2026-09-02 report named three items on the v3 critical path. All three have moved:
 
@@ -30,16 +30,17 @@ The 2026-09-02 report named three items on the v3 critical path. All three have 
 
 ## The live campaign — what the front rests on, and what is in flight
 
-Nothing is queued on this front (queue empty since 2026-09-07T23:39Z). Lead first; the next run is unminted.
+Snapshot 07:17Z: nothing queued (empty since 2026-09-07T23:39Z). Corrected at close: the lead run was queued at 18:13Z and is running. Lead first.
 
 | run | role | what it established |
 |---|---|---|
-| **V3-EXQ-1008** (2026-09-07, autopsy confirmed 2026-09-08) | **1 (lead)** | H-E (channel input capacity) ELIMINATED, H-C (geometry mismatch) SPLIT — the encoding discards decision-relevant content; names the over-capacity decoder sweep on the banked latents as the H-F discriminator |
-| V3-EXQ-1002 (2026-09-05) | 2 | H-B (consumer learning) ELIMINATED, H-D (warm-up is not the locus) CONFIRMED on the same frozen-latent dataset |
-| V3-EXQ-1006 (2026-09-06, cluster autopsy 09-07) | 3 | SD-e1 var-bar portfolio: fidelity-anchor and goal-orthogonal-dispersion CONFIRMED; both Leg-B denominators recorded; remaining gate is a decision |
-| V3-EXQ-978 (2026-09-03) | 4 | SD-018 directional-field head validation FAILed the behavioural precondition (above-random foraging still unmet); autopsied same day |
+| **V3-EXQ-1010** (queued 2026-09-08T18:13Z, RUNNING on DLAPTOP at 2026-09-08T19:58:53Z) | **1 (lead)** | Over-capacity decoder sweep on the banked 1002/1008 latents -- adjudicates H-F, the last alive hypothesis on `zworld_actor_adequacy_locus` |
+| V3-EXQ-1008 (2026-09-07, autopsy confirmed 2026-09-08) | 2 | H-E (channel input capacity) ELIMINATED, H-C (geometry mismatch) SPLIT — the encoding discards decision-relevant content; names the over-capacity decoder sweep on the banked latents as the H-F discriminator |
+| V3-EXQ-1002 (2026-09-05) | 3 | H-B (consumer learning) ELIMINATED, H-D (warm-up is not the locus) CONFIRMED on the same frozen-latent dataset |
+| V3-EXQ-1006 (2026-09-06, cluster autopsy 09-07) | 4 | SD-e1 var-bar portfolio: fidelity-anchor and goal-orthogonal-dispersion CONFIRMED; both Leg-B denominators recorded; remaining gate is a decision |
+| V3-EXQ-978 (2026-09-03) | 5 | SD-018 directional-field head validation FAILed the behavioural precondition (above-random foraging still unmet); autopsied same day |
 
-The live question has moved one layer further in: `zworld_actor_adequacy_locus` (registered 2026-09-04, claims MECH-457 / INV-088). V3-EXQ-1002 (2026-09-05) eliminated H-B (consumer learning) and confirmed H-D (warm-up is not the locus); V3-EXQ-1008 (autopsy confirmed 2026-09-08, ~1 h before this report) eliminated H-E (channel input capacity) and **split H-C (geometry mismatch), leaving H-F "content discarded at encode" as the one alive, unadjudicated hypothesis**. The autopsy names the next gate: an over-capacity decoder sweep on the already-banked 1002/1008 latents. It is not queued, and per the standing rule it is `/governance`'s to chip after Step 2b ratification — `governance-20260908-0703` holds an active claim right now.
+The live question has moved one layer further in: `zworld_actor_adequacy_locus` (registered 2026-09-04, claims MECH-457 / INV-088). V3-EXQ-1002 (2026-09-05) eliminated H-B (consumer learning) and confirmed H-D (warm-up is not the locus); V3-EXQ-1008 (autopsy confirmed 2026-09-08, ~1 h before this report) eliminated H-E (channel input capacity) and **split H-C (geometry mismatch), leaving H-F "content discarded at encode" as the one alive, unadjudicated hypothesis**. The autopsy names the next gate: an over-capacity decoder sweep on the already-banked 1002/1008 latents. It was not queued at 07:17Z; it was queued at 18:13Z as V3-EXQ-1010 and is running (correction at close).
 
 ---
 
@@ -156,7 +157,7 @@ Derived from 605 dated `WORKSPACE_STATE.md` blocks in window (peak days: 2026-08
 
 Each item below passed the four gates (liveness executed, named target is the autopsy's/registry's own, not already applied, not brake-refused) at 2026-09-08T07:17:33Z. The last-hour commit check found the 1008 autopsy (`3f86587d6d`) and the 09-08 thought-intake registrations; nothing supersedes the items below.
 
-1. **Queue the H-F over-capacity decoder sweep on `zworld_actor_adequacy_locus` — the one live gate on the conversion-ceiling root.** Named by confirmed `failure_autopsy_V3-EXQ-1008_2026-09-08`: same banked V3-EXQ-1002/1008 latents, seeds, held-out split and standardiser; only decoder capacity varied, from the consumer's exact 32->128 policy net up to a deliberately over-parameterised decoder. It adjudicates the last alive hypothesis (H-F, content discarded at encode). Per the standing rule it is `/governance`'s to chip after Step 2b ratification; the queue is empty. *(Gates: no chip or claim covers it as of 2026-09-08T19:50Z; target is the autopsy's own; not applied; not brake-refused — a fresh question, not a re-letter.)*
+1. **V3-EXQ-1010 — the H-F over-capacity decoder sweep on `zworld_actor_adequacy_locus` — is queued and running; it is the one live gate on the conversion-ceiling root, and nothing needs queueing.** *[Correction 2026-09-08T19:58:53Z: the 19:50Z version of this line said "queue it"; it had already been queued at 18:13Z by `w5-freshfill-20260908` (ree-v3 `203ad0b`) and was at 27% on DLAPTOP when this session re-checked the queue at close. Registry `live_gate` corrected in the same commit.]* Named by confirmed `failure_autopsy_V3-EXQ-1008_2026-09-08`: same banked V3-EXQ-1002/1008 latents, seeds, held-out split and standardiser; only decoder capacity varied, from the consumer's exact 32->128 policy net up to a deliberately over-parameterised decoder. It adjudicates the last alive hypothesis (H-F, content discarded at encode). Owner: `chip-20260908-w5-s1-zworld-front` (claimed by `xenodochial-austin-8c5984`). The rung-3 validation is likewise owned (`chip-20260907-e3-commensurability-validation`, claimed by `w5-freshfill-20260908`; its first target V3-EXQ-1012 was blocked as tautological, `088fbec4c9`). Next action for this session: none.
 2. **Applied 2026-09-08T19:50:33Z (user-approved, session `dual-insights-20260908-followup`) — the two items this report originally recommended here:**
    - *SD-e1 Leg-B denominator DECIDED: same-start.* Recorded in `decision_log.v1.jsonl#2026-09-08T19:50:33Z`; `H-readout-saturation` CONFIRMED, `sd_e1_var_bar_readout_crush` decided (3 of 3 legs). Consequence carried to `f_dominance_conversion_ceiling` item 2: the 0.002 var bar must be re-registered relative to same-start real-endpoint variance before any further SD-e1 var-bar run. `ready` stays false; all three dependency items re-worded to their current state (SD-018 landed, validation owed; rung 3 built, validation owed).
    - *Hero re-pointed to `conversion_ceiling_root`* and its decision block rewritten to name the decoder sweep (item 1 above) and the rung-3 validation; GFLAG-0115 resolved. `CURRENT_FRONT.md` now derives the correct live question.
