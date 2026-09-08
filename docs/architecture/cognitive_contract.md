@@ -109,8 +109,7 @@ inadmissible. Developmental precedence is the strongest single-domain signal. Ne
 preserved as first-class results. The contract is derived independently of the claims-registry
 invariant machinery; convergence between the two is logged as a clue under GOV-ANALOGY-1.
 
-**Ledger record shape (one per candidate; ledger not yet built -- proposed home
-`evidence/planning/cognitive_contract_invariant_ledger.v1.json`):**
+**Ledger record shape (one per candidate; ledger at `evidence/planning/cognitive_contract_invariant_ledger.v1.json`, seeded 2026-09-08 with five records):**
 
 | Field | Question |
 |---|---|

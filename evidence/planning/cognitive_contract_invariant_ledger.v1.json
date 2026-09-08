@@ -1,194 +1,250 @@
 {
   "schema_version": "1.0",
-  "created": "2026-09-08",
-  "status": "exploratory",
-  "parent_thought": "docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md",
-  "parent_intake": "evidence/planning/thought_intake_2026-09-08_deriving_the_cognitive_contract.md",
-  "literature_pull": "evidence/planning/cognitive_contract_literature_pull_2026-09-08.md",
-  "governance": "GOV-CONTRACT-1",
-  "note": "Entries are hypothesis records, not architecture. External corroboration does not automatically raise registered claim confidence. Language-derived evidence must not be used as a training oracle for latent-discovery experiments.",
+  "governing_claim": "GOV-CONTRACT-1",
+  "contract_claim": "ARC-142",
+  "generated_utc": "2026-09-08T20:06:10Z",
+  "notes": "Scaffold seeded 2026-09-08 from the five MECH-545 lesion-named candidates only; the remaining ARC-142 inventory items are deliberately NOT recorded (GOV-CONTRACT-1: smallest defensible set, inventory is not a spec). Evidence fields: verdict in {unassessed, supports, absent, contradicts}; the >= 2-of-6-domain quorum is computed over linguistic, developmental, neural, comparative, artificial_agent, ree. classification in {architectural, embodied, cultural, uncertain}; status in {candidate, not_required, admitted}. Negative findings stay in the ledger as not_required, never deleted. No literature was assessed here (sibling lit-pull chip chip-20260908-cognitive-contract-litpull).",
   "records": [
     {
-      "candidate": "individuation_identity_sameness",
-      "definition": "A recoverable relation allowing a cognitive system to treat representations as concerning the same entity across time, transformation, occlusion, remapping or engine-specific encoding. The candidate is an equivalence/continuity relation, not a fixed symbolic object identifier.",
-      "linguistic_evidence": {
-        "summary": "Natural Semantic Metalanguage proposes THIS, THE SAME, OTHER, SOMEONE, SOMETHING, KIND and PART among cross-linguistic semantic primes; semantic-map methods offer a way to test recurrent neighbourhood structure without assuming identical categories.",
-        "strength": "moderate",
-        "caveat": "NSM is a contested theory of human semantics and cannot establish substrate-neutral cognition."
+      "record_id": "CCI-001",
+      "candidate": "identity",
+      "definition": "Whether two representations concern the same entity (object, agent, self) is recoverable across an inter-engine boundary, so that persistence, credit assignment and memory integration refer to one thing rather than to duplicates.",
+      "linguistic": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "developmental_evidence": {
-        "summary": "Infant object-individuation work shows early use of spatiotemporal continuity for identity, with later integration of property and kind information; object permanence is present early but task-sensitive.",
-        "strength": "strong",
-        "sources": ["PMID:10504878", "DOI:10.1016/j.tics.2007.08.002", "DOI:10.1016/j.cognition.2013.05.006"]
+      "developmental": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "neural_evidence": {
-        "summary": "Hippocampal-entorhinal work supports relational maps and structural knowledge that can persist across changes in sensory particulars; this is compatible with identity being relationally maintained rather than stored as one surface feature.",
-        "strength": "moderate",
-        "sources": ["DOI:10.1016/j.neuron.2018.10.002", "DOI:10.1016/j.cell.2020.10.024"]
+      "neural": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "comparative_evidence": {
-        "summary": "Object permanence and related individuation capacities occur across non-human species, though developmental pathways and task performance vary.",
-        "strength": "moderate",
-        "sources": ["DOI:10.1016/j.tics.2005.01.004"]
+      "comparative": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "artificial_agent_evidence": {
-        "summary": "State-abstraction and bisimulation work formalises when distinct observations may map to the same functional abstract state while preserving downstream control-relevant structure.",
-        "strength": "moderate",
-        "sources": ["PMLR:108:1639-1650", "PMLR:162:8407-8426"]
+      "artificial_agent": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "ree_evidence": {
-        "summary": "REE already requires self/world distinction, persistent world modelling and later object/entity permanence; the cognitive-contract thought predicts identity-translation lesions causing duplicated or discontinuous entities.",
-        "references": ["ARC-142", "MECH-545", "SD-005", "V4 object/entity permanence"]
+      "ree": {
+        "verdict": "supports",
+        "sources": [
+          "ARC-080"
+        ],
+        "note": "content-level owner; boundary form untested"
       },
-      "lesion_prediction": "At an otherwise functioning translation boundary, selectively disrupting sameness/continuity should produce duplicate-entity representations, broken persistence, unstable memory integration or incoherent credit assignment while preserving unrelated content.",
-      "alternative_explanation": "Human and animal object continuity may be an embodied adaptation to persisting physical objects rather than a universal requirement of all possible minds. A more general invariant may be equivalence/class identity over state transitions.",
-      "classification": "architectural_candidate",
-      "confidence": "moderate_high",
-      "open_decomposition": ["spatiotemporal_continuity", "equivalence_relation", "kind_membership", "part_whole"]
+      "lesion_prediction": "IDENTITY lesion (two representations cannot determine whether they concern the same entity) -> broken persistence, duplicated selves / objects, incoherent credit assignment, unstable memory integration",
+      "alternative_explanation": "",
+      "classification": "uncertain",
+      "confidence": "unassessed",
+      "registered_utc": "2026-09-08T20:06:10Z",
+      "source_claims": [
+        "ARC-142",
+        "MECH-545"
+      ],
+      "status": "candidate"
     },
     {
-      "candidate": "temporal_order_persistence_trajectory",
-      "definition": "Recoverable ordering and temporal-context relations sufficient to distinguish present, prior and possible future states and to preserve trajectory structure across representations. Human clock units and tense morphology are not assumed primitive.",
-      "linguistic_evidence": {
-        "summary": "Cross-linguistic semantics recurrently encodes temporal relations; NSM proposes WHEN/TIME, NOW, BEFORE and AFTER as primes, while tense/aspect typology shows substantial variation in how languages package time.",
-        "strength": "moderate_high",
-        "caveat": "Specific tense systems are not universal and should not be equated with the cognitive invariant."
+      "record_id": "CCI-002",
+      "candidate": "temporal_relation",
+      "definition": "The temporal relation of content (before / after, present vs anticipated, cause vs effect ordering) is recoverable across an inter-engine boundary, distinct from the content itself.",
+      "linguistic": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "developmental_evidence": {
-        "summary": "Core-knowledge and event-representation literatures treat persistent objects and actions as temporally structured; the exact developmental status of metric time is less secure than ordering/continuity.",
-        "strength": "moderate"
+      "developmental": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "neural_evidence": {
-        "summary": "Hippocampal time cells and temporal-context coding organise sequential moments in memories and integrate with spatial/event representations.",
-        "strength": "strong",
-        "sources": ["DOI:10.1038/nrn3827", "PMID:28840180"]
+      "neural": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "comparative_evidence": {
-        "summary": "Temporal coding and episodic-like memory occur across animal species; hippocampal time coding has been observed across species and humans.",
-        "strength": "moderate_high"
+      "comparative": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "artificial_agent_evidence": {
-        "summary": "Successor representations, temporal abstraction and transition-preserving state abstractions show that future-state structure is a reusable basis for control and generalisation.",
-        "strength": "strong",
-        "sources": ["JMLR:24:80", "JMLR:21:196"]
+      "artificial_agent": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "ree_evidence": {
-        "summary": "REE explicitly requires temporal coherence, E2 rollout, hippocampal trajectory proposal and future-vs-present distinction; temporal translation lesion is pre-registered in MECH-545.",
-        "references": ["INV-035", "MECH-545", "E2 rollout", "hippocampal trajectory proposal"]
+      "ree": {
+        "verdict": "supports",
+        "sources": [
+          "INV-035",
+          "INV-104",
+          "MECH-539"
+        ],
+        "note": "content-level owner; boundary form untested"
       },
-      "lesion_prediction": "Preserve state content while scrambling temporal relation at a boundary. Expected dissociations include cause/effect inversion, present/future confusion, impaired planning and contamination between memory and prediction.",
-      "alternative_explanation": "Some observed temporal structure may derive from physical motion, memory sequencing or task requirements. The deeper invariant may be partial order/transition relation rather than a dedicated time coordinate.",
-      "classification": "architectural_candidate",
-      "confidence": "high_for_ordering_moderate_for_metric_time",
-      "open_decomposition": ["ordering", "duration", "temporal_context", "persistence", "trajectory_direction"]
+      "lesion_prediction": "TEMPORAL lesion (content without temporal relation) -> cause / effect inversion, present-state vs anticipated-state confusion, confused planning, memory / prediction contamination",
+      "alternative_explanation": "",
+      "classification": "uncertain",
+      "confidence": "unassessed",
+      "registered_utc": "2026-09-08T20:06:10Z",
+      "source_claims": [
+        "ARC-142",
+        "MECH-545"
+      ],
+      "status": "candidate"
     },
     {
-      "candidate": "agent_source_causal_control",
-      "definition": "Recoverable relations sufficient to determine whether a represented event/action is attributable to self, another agent or ambient dynamics, and whether an action causally controlled an outcome. This may be a derived bundle rather than one primitive agency scalar.",
-      "linguistic_evidence": {
-        "summary": "Language recurrently marks participant roles, action/event distinctions and causal/modal relations. NSM independently includes I/YOU/SOMEONE, DO/HAPPEN, CAN and BECAUSE.",
-        "strength": "moderate_high"
+      "record_id": "CCI-003",
+      "candidate": "reality_status",
+      "definition": "Whether a state is observed, remembered, simulated or counterfactual is recoverable across an inter-engine boundary, so that imagined states are not committed to as real and counterfactual learning stays separable from experience.",
+      "linguistic": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "developmental_evidence": {
-        "summary": "Infants identify goal-directed agents and reason about motivational, epistemic and counterfactual states; broad AGENT-like kind concepts appear early in object-individuation work.",
-        "strength": "strong",
-        "sources": ["DOI:10.1146/annurev-psych-010213-115033", "PMID:39666554"]
+      "developmental": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "neural_evidence": {
-        "summary": "Sense-of-agency research combines prospective action selection/prediction with retrospective comparison of predicted and observed effects; evidence argues for multiple dissociable mechanisms rather than a unitary faculty.",
-        "strength": "strong",
-        "sources": ["DOI:10.1038/nrn.2017.14", "DOI:10.1038/s44159-022-00030-6", "PMID:35447600"]
+      "neural": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "comparative_evidence": {
-        "summary": "Goal-directed action understanding and social prediction occur in non-human species, but self-attribution/control evidence is more uneven across taxa.",
-        "strength": "moderate"
+      "comparative": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "artificial_agent_evidence": {
-        "summary": "Forward models, counterfactual control and transition models provide direct computational decompositions of action -> consequence and controllability; no single standard 'agency latent' is required.",
-        "strength": "strong"
+      "artificial_agent": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "ree_evidence": {
-        "summary": "Self-attribution is already a necessary REE comparator requiring z_self/z_world separation plus counterfactual rollout; SELF_IMPACT and responsibility flow provide existing substrate-side analogues.",
-        "references": ["SD-005", "SD-003", "ARC-015", "MECH-545"]
+      "ree": {
+        "verdict": "supports",
+        "sources": [
+          "MECH-094",
+          "MECH-365",
+          "MECH-271",
+          "ARC-092",
+          "MECH-430"
+        ],
+        "note": "content-level owner; boundary form untested"
       },
-      "lesion_prediction": "At a translation boundary, preserve event and outcome content but corrupt actor/source or control relation. Expected failures: self/other misattribution, incorrect causal responsibility, impaired action learning, or intact event prediction with defective agency judgment.",
-      "alternative_explanation": "Agency may not be primitive at all; it may be reconstructed from provenance, action identity, transition prediction, temporal contiguity and counterfactual controllability.",
-      "classification": "architectural_candidate_for_acting_agents",
-      "confidence": "high_as_required_relation_moderate_as_primitive",
-      "open_decomposition": ["self_other_source", "action_identity", "predicted_effect", "causal_attribution", "controllability"]
+      "lesion_prediction": "REALITY-STATUS lesion (observed, remembered, simulated and counterfactual states indistinct across the boundary) -> confabulation-like behaviour, false commitment to imagined states, impaired counterfactual learning, psychosis-like representational error",
+      "alternative_explanation": "",
+      "classification": "uncertain",
+      "confidence": "unassessed",
+      "registered_utc": "2026-09-08T20:06:10Z",
+      "source_claims": [
+        "ARC-142",
+        "MECH-545"
+      ],
+      "status": "candidate"
     },
     {
-      "candidate": "provenance_actuality_representational_mode",
-      "definition": "Recoverable information allowing a system to distinguish where a representation came from and what status it currently has: externally constrained perception, recollection, internally generated simulation, prediction, counterfactual or committed/current belief. The working hypothesis is that provenance and actuality/commitment are separable coordinates.",
-      "linguistic_evidence": {
-        "summary": "Evidentiality encodes source of evidence and interacts with epistemic modality; NSM includes SEE, HEAR, THINK, KNOW, TRUE, MAYBE and related logical/modal primes.",
-        "strength": "strong",
-        "sources": ["DOI:10.1146/annurev-linguistics-011718-012625"]
+      "record_id": "CCI-004",
+      "candidate": "agency",
+      "definition": "The actor relation and controllability of an event (self-caused vs external, controllable vs not) is recoverable across an inter-engine boundary, distinct from the event content.",
+      "linguistic": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "developmental_evidence": {
-        "summary": "Source-monitoring abilities can be measured separately from content recognition in children and develop substantially across childhood.",
-        "strength": "strong",
-        "sources": ["DOI:10.1111/bjdp.12523", "DOI:10.1016/0022-0965(91)90065-z"]
+      "developmental": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "neural_evidence": {
-        "summary": "Reality-monitoring research shows substantial overlap between imagination and perception at first-order levels; higher-level systems infer internal versus external source from sensory/contextual/cognitive cues. Recent meta-analysis separates external source monitoring from reality monitoring.",
-        "strength": "strong",
-        "sources": ["DOI:10.1016/j.tics.2017.03.012", "DOI:10.1016/j.neubiorev.2022.104557", "DOI:10.1002/hbm.70614"]
+      "neural": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "comparative_evidence": {
-        "summary": "Direct cross-species evidence for human-like reality monitoring is limited; related self-generated/external discrimination and metamemory capacities offer partial analogues.",
-        "strength": "weak_moderate"
+      "comparative": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "artificial_agent_evidence": {
-        "summary": "World-model systems routinely require separation of observed data, imagined rollout and replay/training sources to avoid self-contamination, but this is more an engineering precedent than independent evidence of a universal primitive.",
-        "strength": "moderate"
+      "artificial_agent": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "ree_evidence": {
-        "summary": "REE already has hypothesis/provenance and committed-versus-imagined protections across replay/consolidation; the parent intake identified this as the cheapest V3-buildable contract-lesion cousin.",
-        "references": ["MECH-094", "MECH-365", "MECH-271", "ARC-092", "MECH-545"]
+      "ree": {
+        "verdict": "supports",
+        "sources": [
+          "MECH-256"
+        ],
+        "note": "content-level owner; boundary form untested"
       },
-      "lesion_prediction": "Hold represented content constant while corrupting provenance or actuality status separately. Provenance lesions should produce source confusions; actuality/commit lesions should produce belief-like uptake of simulations or failure to treat real evidence as committed. A double dissociation would support decomposition.",
-      "alternative_explanation": "Mode labels may be post-hoc judgments from sensory strength, temporal context, cognitive-operation cues and precision rather than stored coordinates. The contract may need only those cues plus a learned classifier.",
-      "classification": "architectural_candidate_conditional_on_internal_simulation",
-      "confidence": "high_that_distinction_is_needed_moderate_on_encoding_form",
-      "open_decomposition": ["provenance", "internal_external_generation", "actuality", "commitment", "memory_retrieval_status", "counterfactual_status"]
+      "lesion_prediction": "AGENCY lesion (events representable, controllability and actor relation lost) -> poor action learning, internal / external attribution errors, impaired responsibility assignment, failure of intentional planning",
+      "alternative_explanation": "",
+      "classification": "uncertain",
+      "confidence": "unassessed",
+      "registered_utc": "2026-09-08T20:06:10Z",
+      "source_claims": [
+        "ARC-142",
+        "MECH-545"
+      ],
+      "status": "candidate"
     },
     {
-      "candidate": "confidence_precision_translation_confidence",
-      "definition": "Recoverable uncertainty or confidence information governing how strongly content, source/status judgments or translations should constrain downstream cognition. Translation confidence is explicitly distinguished from confidence in the represented content.",
-      "linguistic_evidence": {
-        "summary": "Epistemic modality and evidential systems recurrently express possibility, necessity, evidence source and speaker commitment; NSM includes MAYBE, CAN, KNOW and TRUE.",
-        "strength": "moderate_high",
-        "caveat": "Language may externalise only selected portions of a richer internal uncertainty structure."
+      "record_id": "CCI-005",
+      "candidate": "confidence_precision",
+      "definition": "The uncertainty or precision attached to content is recoverable across an inter-engine boundary, so that the receiver can weight, commit to or discount what it receives in proportion to its reliability.",
+      "linguistic": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "developmental_evidence": {
-        "summary": "Confidence monitoring and source monitoring improve over childhood; recent developmental theory links limitations to incomplete representation of alternative possibilities.",
-        "strength": "moderate",
-        "sources": ["PMID:40533302"]
+      "developmental": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "neural_evidence": {
-        "summary": "Metacognition/confidence is supported by a substantial psychological and neural literature and can be partly dissociated from first-order task performance.",
-        "strength": "strong",
-        "sources": ["DOI:10.1146/annurev-psych-022423-032425"]
+      "neural": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "comparative_evidence": {
-        "summary": "Uncertainty-monitoring and metacognition-like behaviours have been reported in dolphins, monkeys, apes, rats and some birds, although associative accounts remain debated.",
-        "strength": "moderate",
-        "sources": ["DOI:10.1037/a0033105"]
+      "comparative": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "artificial_agent_evidence": {
-        "summary": "Probabilistic world models, calibration, information bottlenecks and uncertainty-aware state estimation provide computational precedents. No standard framework yet establishes translation confidence as a distinct invariant.",
-        "strength": "moderate"
+      "artificial_agent": {
+        "verdict": "unassessed",
+        "sources": [],
+        "note": ""
       },
-      "ree_evidence": {
-        "summary": "REE already has precision routing and uncertainty-sensitive commitment, but the cognitive-contract intake explicitly identifies absence of a distinct confidence-in-translation variable as a substrate gap.",
-        "references": ["MECH-123 lineage", "E3 commit gate", "ARC-142", "thought intake section 7"]
+      "ree": {
+        "verdict": "supports",
+        "sources": [
+          "MECH-123"
+        ],
+        "note": "content-level owner; boundary form untested"
       },
-      "lesion_prediction": "Preserve content and its nominal source/status while removing or miscalibrating confidence. Expected failures include overcommitment, underreaction to reliable evidence, inappropriate cross-engine update weight or failure to detect deteriorating translation quality despite intact content decoding.",
-      "alternative_explanation": "Precision may be a control-plane operation rather than part of the contract payload. Translation confidence may emerge from reconstruction error/bridge complexity rather than requiring an explicit latent coordinate.",
-      "classification": "uncertain_architectural_metadata_candidate",
-      "confidence": "moderate_high_for_uncertainty_moderate_for_explicit_translation_confidence",
-      "open_decomposition": ["content_confidence", "source_confidence", "translation_confidence", "precision_gain", "metacognitive_accuracy"]
+      "lesion_prediction": "CONFIDENCE lesion (content translates, uncertainty does not) -> overcommitment, under-reaction to reliable predictions, inappropriate belief updating, failure of precision-sensitive integration",
+      "alternative_explanation": "",
+      "classification": "uncertain",
+      "confidence": "unassessed",
+      "registered_utc": "2026-09-08T20:06:10Z",
+      "source_claims": [
+        "ARC-142",
+        "MECH-545"
+      ],
+      "status": "candidate"
     }
   ]
 }
