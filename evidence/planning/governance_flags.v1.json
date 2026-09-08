@@ -3331,6 +3331,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0238",
+      "claim_ids": [
+        "MECH-465"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-1015 (GFLAG-0136's warmup-budget sweep probe, ree-v3 4ffd472) landed FAIL: 0/3 seeds clear MECH-465's 0.51 IQR/median bar (max sweep DV 0.266), and the plateau-vs-climb discriminator is INDETERMINATE (pooled ln-gain per doubling 0.117, 95% CI [0.037,0.183] straddles the plateau bar ln(1.15)=0.140). The run's own interpretation.routing says verbatim: governance -- neither route exhausted nor extend budget is data-supported; record the CI and do not mint or close on it; more power is a 4th seed or a WARM1600 rung, not a re-run of this design. Governance to decide: extend the sweep (WARM1600 / 4th seed) via a new chip, or accept the indeterminate result and move EXP-0590/MECH465-COMMIT-GATE-HEADROOM from blocked_substrate to gated.",
+      "raised_by_session": "w6hk-k3-registry-20260908",
+      "raised_at": "2026-09-08T20:58:04Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
