@@ -2756,3 +2756,8 @@ One line per hourly tick. ASCII only.
 2026-09-08T17:54:35Z workset committed (regen -- 244 items, 28 ready, 0 in flight)
 2026-09-08T17:53:30Z SPAWN IGW-20260908-232 skill=/lit-pull prio=40 uuid=7e7404e0-4244-4159-b968-7c23025e751c pid=40890 worktree=igw-232-literature-proposal-for-inv-104
 2026-09-08T18:18:59Z auto-defer igw-232-literature-proposal-for-inv-104 hash=9bc13b513e6a for 48h (complete)
+2026-09-08T18:21:14Z complete igw-232-literature-proposal-for-inv-104 spawned->completed outcome=USEFUL_LANDED: lit-pull INV-104: 5 entries in evidence/literature/targeted_review_inv_104 lande
+2026-09-08T18:59:37Z GC removed worktree igw-232-literature-proposal-for-inv-104 (removed; branch deleted)
+2026-09-08T18:58:45Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-09-08T19:01:44Z workset committed (regen -- 245 items, 27 ready, 0 in flight)
+2026-09-08T18:58:45Z no eligible item (skipped 245): IGW-20260908-215:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260908-216:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229; IGW-20260908-219:status=blocked blocked_by=ready=false (no ready_blocked_by detail); SD-070 [no-substrate-entry]: SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
