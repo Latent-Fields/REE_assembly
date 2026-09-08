@@ -98780,3 +98780,145 @@
     ingestion pass (/thought-digestion). Relevant to the ethics perimeter (SENT-* / GOV-PRESERVE-1) only
     downstream -- whether a braidling of REE agents is one moral patient or several is a consequence of
     this criterion, not part of it.
+
+- id: MECH-547
+  title: >-
+    Receiver-conditioned translation: what a sender should expose to a consumer is a function of the
+    receiver's current state, not of the sender alone -- translated content = T(sender state, receiver
+    state, receiver position / context) -- so the communication subspace (MECH-537) is CONTEXT-INDEXED
+    rather than one globally fixed cross-system alignment. The sender may support several potential read
+    surfaces, and which one is active may depend on receiver mode, current goal or task-loop context,
+    uncertainty, the action or candidate under evaluation, retrieved episodic context, temporal phase and
+    the receiver's current predicted state. CONSTRAINT that keeps this from becoming a hidden cognitive
+    module: receiver-conditioning determines WHICH PART of already-present sender information is exposed
+    and HOW it is expressed; it must not let the bridge solve the task independently. Confirming
+    signature: T(A,B) > T(A) on held-out data at MATCHED capacity AND receiver-state permutation destroys
+    the gain; if permutation barely matters, the gain is extra capacity, not conditioning, and the result
+    is evidence about the bridge (MECH-538). Candidate REE loci: z_world -> E1 versus z_world -> E2
+    (different read surfaces of one sender), E1 <-> E2 conditioned on the candidate action / horizon under
+    evaluation, hippocampal retrieval -> consumer conditioned on the consumer's present query state,
+    ContextMemory -> downstream reader expressed relative to current context rather than injected as a
+    fixed latent message, and waking versus offline interfaces using different receiver-conditioned
+    geometry.
+  claim_type: mechanism_hypothesis
+  subject: representation.receiver_conditioned_context_indexed_translation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  source_thought: docs/thoughts/2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md
+  depends_on:
+    - ARC-139        # federation principle: legibility is selective; this says the selection is receiver-indexed
+    - MECH-537       # the communication subspace this makes conditional on receiver state
+    - MECH-538       # bridge ladder: a receiver-conditioned bridge is a higher-capacity rung with its own burden
+    - INV-105        # rung 5 pairing-specificity + mandatory mismatched controls; permutation control extends them
+    - MECH-539       # dynamic compatibility: the transition-geometry criterion a conditioned bridge must also meet
+    - ARC-142        # cognitive contract: conditioning governs HOW a recoverable relation is expressed at a boundary
+    - MECH-540       # sleep as interface maintenance: waking vs offline geometry is one candidate locus
+    - GOV-MATCHAUX-1 # matched-capacity control discipline the confirming signature inherits
+  location: docs/architecture/receiver_conditioned_translation.md#mech-547
+  notes: >-
+    Registered 2026-09-08 from docs/thoughts/2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md
+    (intake evidence/planning/thought_intake_2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md),
+    a child of the 2026-09-07 mutual-legibility package. SHARPENS MECH-537 rather than competing with it:
+    MECH-537 estimates ONE communication subspace per sender/consumer pair (cross-validated RRR, fixed
+    across contexts); MECH-547 says the relevant subspace may itself be conditional on the receiver's
+    state, so a fixed-subspace estimate can under-read an interface that is healthy but context-switched.
+    DISTINCT FROM INV-105 rung 5 (pairing-specific): that rung is an EVIDENCE standard -- a channel's
+    content matters only when the correct sender state meets the correct receiver situation -- whereas
+    MECH-547 is a MECHANISM claim about the translation itself taking the receiver state as an argument,
+    and it adds the control INV-105 does not name: receiver-state PERMUTATION at matched capacity, which
+    is the only thing that separates genuine conditioning from a bigger bridge. DISTINCT FROM MECH-538,
+    which already warns that a high-capacity bridge that succeeds may be doing new cognition; MECH-547
+    accepts that warning and states the exposure-not-solving constraint as a requirement on any
+    conditioned bridge, with a STRICTER evidence burden than a linear bridge: frozen endpoints, explicit
+    capacity reporting, a sender-only matched-capacity baseline, the permutation control, the
+    correct/mismatched sender control (INV-105), off-manifold and recurrence checks (MECH-548), held-out
+    environments, and a demonstration that the bridge exposes existing content rather than learning the
+    task. External motivation, NOT independently verified in this pass: XKV (Liu et al. 2026, dual-cache
+    latent communication between heterogeneous language models -- the translator reads both caches and
+    writes a gated residual into the receiver's native geometry) and the independent public kvloom
+    implementation; kvloom is exploratory (single seed, short runs, no confidence intervals) and upgrades
+    XKV from author-only demonstration toward EARLY independent replication, not settled replication.
+    Per feedback_lit_exp_decoupled these raise no claim's confidence. None of the candidate loci justify
+    adding a receiver-conditioned bridge to REE; they justify a DIAGNOSTIC comparison between fixed and
+    receiver-conditioned interface models over frozen endpoints (an extension of work-programme items
+    ML-13/ML-14 -- the arms are listed on the location doc). DO NOT build in V3. DO NOT queue an
+    experiment from this entry. /governance owns the routing: the diagnostic is v3-runnable once the
+    ML-13 bridge-ladder library exists; any architectural response is v4.
+
+- id: MECH-548
+  title: >-
+    Recurrent interface stability: an interface can be statically useful yet recurrently unstable -- a
+    bridge with one-step utility > 0 can fail repeated closed-loop application, and REE traverses most
+    interfaces repeatedly over trajectories, episodes and recurrent prediction loops. Two mechanisms, to
+    be distinguished experimentally: (a) OFF-MANIFOLD COMPOUNDING -- a bridge trained on native receiver
+    states emits a slightly off-distribution receiver state, the next application treats it as ordinary
+    input, and B_0 -> T(A_0,B_0) = B_1' -> T(A_1,B_1') = B_2' accumulates displacement into a regime the
+    bridge never saw; (b) SEMANTIC DOUBLE-COUNTING -- content already injected is not recognised as present
+    and is re-amplified, escalating gain. Design corollary: CUMULATIVE translation (each step operates on
+    the previously translated receiver state) versus CLEAN-BASE translation (each step computed against
+    an unmodified native receiver state, the residual held as a temporary gated overlay) -- translated
+    information should first be tested as an overlay or gated read surface, never as an irreversible
+    rewrite of the receiver's core latent state. Adds an EIGHTH rung to INV-105's ladder, RECURRENTLY
+    STABLE: repeated use preserves receiver-state validity, information calibration and functional
+    behaviour over the timescale the system actually uses the interface -- assessed BEFORE behavioural
+    usefulness is read as architecturally meaningful in a dynamical system. Sleep corollary for MECH-540:
+    offline interface recalibration must improve or preserve closed-loop stability when waking dynamics
+    resume; a sleep-induced change that improves a static probe but destabilises the next waking
+    trajectory is a failure, not consolidation. Signatures: one-step rescue + cumulative collapse +
+    clean-base stability = recurrent interface instability; cumulative stability + correct-pair
+    specificity = a functionally coherent recurrent bridge; both fixed and conditioned bridges failing
+    while richer source information succeeds = upstream representation deficiency remains more likely.
+  claim_type: mechanism_hypothesis
+  subject: representation.recurrent_interface_stability_closed_loop
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-08'
+  source_thought: docs/thoughts/2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md
+  depends_on:
+    - MECH-539   # dynamic compatibility -- the sibling long-horizon failure; separated by the clean-base arm
+    - INV-105    # the seven-rung ladder this proposes an eighth rung for
+    - MECH-538   # bridge ladder: every rung must also be recurrently stable
+    - MECH-547   # receiver-conditioned bridges are the case most exposed to this failure
+    - MECH-540   # sleep as interface maintenance: the closed-loop post-sleep metric is this claim's corollary
+    - ARC-139    # federation principle; recurrent stability is a condition on any bridge it licenses
+    - INV-088    # E1's own rollout consistency -- adjacent horizon-degradation lineage, different object
+    - ARC-084    # typed signed coupling with gain/gate fields -- the overlay is a gated coupling, not a rewrite
+    - MECH-363   # runaway resonance under all-cooperative coupling -- the double-counting mechanism's cognifold-level cousin
+  location: docs/architecture/receiver_conditioned_translation.md#mech-548
+  notes: >-
+    Registered 2026-09-08 from the same child thought as MECH-547. DISTINCT FROM MECH-539, and the
+    distinction is easy to lose because both produce "good one-step + degrading long-horizon": MECH-539 is
+    the bridge being INCOMPATIBLE WITH THE RECEIVER'S NATIVE DYNAMICS (map the initial state and let the
+    receiver evolve natively, versus re-mapping the sender rollout each step), whereas MECH-548 is the
+    bridge's OWN OUTPUT RE-ENTERING AS ITS OWN INPUT -- it can occur with perfectly compatible dynamics and
+    a fixed sender. The separating arm is clean-base translation: if recomputing each step against the
+    original clean receiver state restores stability, the failure is MECH-548, not MECH-539. DISTINCT FROM
+    INV-088 (E1's own multi-step fidelity) for the same reason MECH-539 is. The eighth-rung proposal is
+    deliberately NOT applied as an edit to INV-105 in this pass -- amending a registered invariant is a
+    /governance decision; a governance flag proposes it, and until governance rules the rung lives here.
+    The overlay-versus-rewrite corollary is the interface-level form of ARC-084's gated, gained coupling
+    edge: translated content enters as a gated overlay with its own gain, so escalating gain (mechanism
+    b) is the same failure family as MECH-363's all-cooperative runaway, at one interface instead of
+    across the cognifold; that is an analogy across levels, labelled as such, not evidence. External
+    motivation, NOT independently verified: the repeated-application collapse is reported by the
+    independent kvloom implementation (naive cumulative application degraded rapidly; recomputing against
+    the original clean receiver cache preserved the first-turn advantage) and does NOT appear in the
+    original XKV paper, so it is an EMERGING finding requiring replication and is tracked separately from
+    XKV's own evidence. Assay (diagnostic, frozen endpoints, matched capacity where possible -- arms
+    listed on the location doc): fixed T(A); receiver-conditioned T(A,B); T(A,B) with receiver-state
+    permutation; cumulative repeated application; clean-base / temporary-overlay application; zero and
+    moment-matched random controls; correct-vs-mismatched sender controls. Measures: one-step and
+    multi-step consumer performance, receiver-manifold drift, task-information calibration, bridge output
+    norm / gain over time, redundant re-injection of already-transmitted content, dynamic compatibility
+    with native receiver transitions, correct-pair specificity. Any proposed E1/E2 interface repair must
+    be tested over the SAME horizons used to judge predictive competence, because a snapshot-successful
+    bridge can corrupt rollout trajectories when applied repeatedly. DO NOT build in V3. DO NOT queue an
+    experiment from this entry; the source package's sequencing (waking metric with range and stability
+    first, then recurrence, then sleep) is part of the claim.

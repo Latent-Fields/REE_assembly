@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md
+Claims registered: MECH-547, MECH-548
+
 # Receiver-conditioned translation and recurrent interface stability
 
 **Date:** 2026-09-08  
-**Status:** child thought / falsifiable interface hypothesis  
+**Status:** child thought / falsifiable interface hypothesis (ingested 2026-09-08 -- see Intake above)  
 **Parent:** `2026-09-07_mutual_legibility_communication_subspaces.md`  
 **Companion:** `2026-09-07_mutual_legibility_implementation_assays.md`  
 **Trigger:** XKV (`Dual-Cache Latent Space Communication between Heterogeneous Language Models`, Liu et al., 2026) and the independent public `kvloom` implementation
