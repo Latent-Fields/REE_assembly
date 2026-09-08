@@ -4647,7 +4647,11 @@
       "task_claim_session_id": "igw-auto-igw-235-literature-proposal-for-inv-095-20260908T163953Z",
       "task_claim_claimed_at": "2026-09-08T16:39:53Z",
       "assigned_at": "2026-09-08T16:38:08Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-08T17:33:58Z",
+      "completion_summary": "lit-pull INV-095: 5 entries (4 supports + 1 mixed) landed REE_assembly 81f26cf49e; lit_conf 0.832, LIT-0721 satisfied",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull INV-095: 5 entries (4 supports + 1 mixed) landed REE_assembly 81f26cf49e; lit_conf 0.832, LIT-0721 satisfied"
     }
   ],
   "dispositions": [
@@ -6590,6 +6594,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-08T06:24:19Z",
       "re_eligible_after": "2026-09-10T06:24:19Z"
+    },
+    {
+      "stable_hash": "4e47ec8d5b54",
+      "igw_id_at_disposition": "IGW-20260908-235",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-095"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for INV-095",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T17:33:59Z",
+      "re_eligible_after": "2026-09-10T17:33:59Z"
     }
   ]
 }
