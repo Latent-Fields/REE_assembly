@@ -4722,6 +4722,30 @@
       "task_claim_session_id": "igw-auto-igw-233-proposal-for-inv-104-20260908T211352Z",
       "task_claim_claimed_at": "2026-09-08T21:13:52Z",
       "assigned_at": "2026-09-08T21:12:19Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-08T22:20:58Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0040 -> blocked_substrate (triage landed)"
+    },
+    {
+      "igw_id": "IGW-20260908-237",
+      "stable_hash": "56fd8fd0e513",
+      "skill": "/lit-pull",
+      "lane": "lit",
+      "priority": 40,
+      "claim_ids": [
+        "MECH-003"
+      ],
+      "owner_exq": null,
+      "title": "Literature proposal for MECH-003",
+      "worktree": ".claude/worktrees/igw-237-literature-proposal-for-mech-003",
+      "branch": "claude/igw-237-literature-proposal-for-mech-003",
+      "session_uuid": "963c22e0-02a6-4815-abfc-950ff6ef6fa2",
+      "pid": 47567,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-237-literature-proposal-for-mech-003 && claude --resume 963c22e0-02a6-4815-abfc-950ff6ef6fa2",
+      "task_claim_session_id": "igw-auto-igw-237-literature-proposal-for-mech-003-20260908T222120Z",
+      "task_claim_claimed_at": "2026-09-08T22:21:20Z",
+      "assigned_at": "2026-09-08T22:19:27Z",
       "status": "spawned"
     }
   ],
@@ -6707,6 +6731,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-08T20:35:59Z",
       "re_eligible_after": "2026-09-10T20:35:59Z"
+    },
+    {
+      "stable_hash": "b0b47de2de8b",
+      "igw_id_at_disposition": "IGW-20260908-233",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-104"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-104",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-08T22:21:15Z",
+      "re_eligible_after": "2026-09-10T22:20:58Z"
     }
   ]
 }
