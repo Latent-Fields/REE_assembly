@@ -8085,6 +8085,34 @@ def main():
                 print(f"[serve] git pull {repo.name}: {kind}; skipping{stale}.{detail}",
                       flush=True)
                 return
+            # NOT PORTED HERE, deliberately (chip-20260907-servepy-autopull-
+            # abort-no-recovery, decided 2026-09-08): ree-v3's
+            # experiment_runner.py gained a derive-only rebase-conflict
+            # RECOVERY (495381aaf2) after a 2026-09-07 REE_assembly wedge --
+            # both the Mac and the hub regenerate
+            # evidence/planning/inter_governance_workset.{md,v1.json} on
+            # every igw_routine_tick.py tick and commit them with an
+            # identical subject line, so a replay against a newer hub regen
+            # on origin conflicts every time. That commit's own message
+            # explains, and this session re-verified, why _pull_repo is NOT
+            # the same hazard: this function returns at the `if dirty:`
+            # branch above BEFORE ever reaching the rebase below, and
+            # REE_assembly's working tree is essentially always dirty
+            # (governance sessions plus the phase3 writers) -- confirmed by
+            # the incident's own reflog, where every abort followed a `pull
+            # --rebase --autostash` start, an option this function never
+            # passes. So the branch below is reachable only on a rare clean-
+            # tree cycle, not the routine path. Porting the recovery would
+            # also mean VENDORING it (serve.py is REE_assembly, the helper
+            # is ree-v3 -- cross-repo import is rejected here on purpose,
+            # see CLAUDE.md step 7a on vendored copies), a real third-copy
+            # maintenance cost for a latent rather than active hazard. The
+            # Phase-4 CAS cutover (igw_workset_suppress_git_write, not yet
+            # armed as of 2026-09-08) removes the second writer for these
+            # two paths structurally once flipped, which is the same
+            # eventual fix 495381aaf2 relies on. If this instance is ever
+            # found to actually fire in production, re-open the chip rather
+            # than re-deriving this analysis from scratch.
             rebase = subprocess.run(
                 ["git", "-C", str(repo), "pull", "--rebase"],
                 capture_output=True, text=True, timeout=60,
@@ -8093,10 +8121,24 @@ def main():
                 stuck_since.pop(repo.name, None)
                 print(f"[serve] git pull {repo.name}: rebased local commits onto origin", flush=True)
             else:
+                # Name the conflicting paths BEFORE aborting -- `rebase
+                # --abort` restores the pre-rebase state and clears the UU
+                # (unmerged) markers this depends on, so it must run first
+                # or the detail is gone. (The same ordering mistake made
+                # ree-v3's recovery helper silently inert before 495381aaf2;
+                # here it only costs a diagnosable log line, not a fix.)
+                unmerged = subprocess.run(
+                    ["git", "-C", str(repo), "diff", "--name-only",
+                     "--diff-filter=U"],
+                    capture_output=True, text=True, timeout=30,
+                ).stdout.split()
+                detail = (f" conflicting: {', '.join(unmerged[:6])}"
+                          + (f" (+{len(unmerged) - 6} more)" if len(unmerged) > 6 else "")
+                          ) if unmerged else ""
                 subprocess.run(["git", "-C", str(repo), "rebase", "--abort"],
                                capture_output=True, text=True, timeout=30)
                 print(f"[serve] git pull {repo.name}: diverged ({ahead} ahead/{behind} behind), "
-                      f"rebase conflict -- manual merge needed{stale}", flush=True)
+                      f"rebase conflict -- manual merge needed{stale}.{detail}", flush=True)
 
         # EVERY cycle is fault-isolated, per repo. This loop previously had NO
         # exception handling at all, so a single TimeoutExpired from any of the
