@@ -2032,9 +2032,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-353' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] V3-EXQ-642b's own manifest already contains the deciding statistic and it PASSES: swapping `z_block_peak` -> `z_block_mean` at the SAME pre-registered margins gives C1 and C2 on 3/3 seeds (separations 0.681 / 0.590 / 0.771 vs a 0.20 margin; BLOCK means 0.767-0.835 vs a 0.20 floor), while the recorded `outcome` is FAIL and `evidence_direction` is `non_contributory`.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:27Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-09T17:22:52Z",
+      "resolution_note": "ALREADY DISCHARGED -- no action owed, verified 2026-09-09 by /governance cycle governance-20260909 wave 4. This flag reports that V3-EXQ-642b's own manifest contains a deciding statistic that PASSES while the recorded outcome is FAIL. The finding is CORRECT and I re-verified the arithmetic independently: z_block_peak reads exactly 1.500 in BOTH arms on all 3 seeds (it is a max against the hard clamp z_block_cap=1.5), so z_block_separation is 0.0 by construction and C1/C2 are false regardless of behaviour; the same manifest's z_block_mean separates BLOCK 0.8119/0.7671/0.8345 against CONTROL 0.1313/0.1768/0.0636, i.e. 0.681/0.590/0.771 against a pre-registered C1_MARGIN of 0.20, with BLOCK means clearing the 0.20 Z_BLOCK_MIN floor on 3/3 seeds. BUT this was already caught and adjudicated: failure_autopsy_V3-EXQ-642b_2026-09-01 is CONFIRMED and names the same mechanism explicitly ('C1 and C2 read only z_block_peak, a max against the hard clamp z_block_cap=1.5. Both arms reach exactly 1.500 on all 3 seeds, so z_block_separation is 0.0 by arithmetic'), keeps severity at corrupting after explicitly withdrawing a proposed downgrade, and routes V3-EXQ-642c as a same-question successor with C1/C2 moved onto a headroom DV and margins RE-DERIVED for that statistic rather than transplanted from the peak-calibrated 0.20. Its recommended_evidence_quality_note is already applied to MECH-353 (the claim's note cites both 642b and z_block_mean). Nothing is mis-scoring either: the 642b manifest carries claim_ids: [] so it never weighted MECH-353. No further governance action; the owed work is the 642c re-queue, which is queue-experiment work."
     },
     {
       "flag_id": "GFLAG-0142",
