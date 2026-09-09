@@ -2813,3 +2813,6 @@ One line per hourly tick. ASCII only.
 2026-09-09T07:23:59Z SPAWN IGW-20260909-237 skill=/queue-experiment prio=40 uuid=dab12f94-55b8-4f9b-801e-6edde467466b pid=25492 worktree=igw-237-proposal-for-mech-005
 2026-09-09T08:41:52Z workset committed (regen -- 250 items, 28 ready, 0 in flight)
 2026-09-09T08:38:45Z no eligible item (skipped 250): IGW-20260909-004:skill /governance not allowed; IGW-20260909-219:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260909-220:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
+2026-09-09T09:48:28Z auto-defer IGW-20260909-237 hash=ac41fa3e1996 for 48h (reaped -> completed_resumable)
+2026-09-09T09:48:29Z reaped TASK_CLAIMS igw-auto-igw-237-proposal-for-mech-005-20260909T073009Z (ledger IGW-20260909-237 -> completed_resumable)
+2026-09-09T09:48:32Z GC removed worktree igw-237-proposal-for-mech-005 post-reap (ledger IGW-20260909-237 -> completed_resumable; removed; branch deleted)
