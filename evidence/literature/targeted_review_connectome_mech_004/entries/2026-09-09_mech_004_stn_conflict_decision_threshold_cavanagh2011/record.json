@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_004",
+  "entry_id": "2026-09-09_mech_004_stn_conflict_decision_threshold_cavanagh2011",
+  "timestamp_utc": "2026-09-09T06:25:05Z",
+  "claim_ids_tested": ["MECH-004"],
+  "source": {
+    "title": "Subthalamic nucleus stimulation reverses mediofrontal influence over decision threshold",
+    "authors": ["James F. Cavanagh", "Thomas V. Wiecki", "Michael X. Cohen", "Christina M. Figueroa", "Jon Samanta", "Scott J. Sherman", "Michael J. Frank"],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2925",
+    "pmid": "21946325",
+    "pmc": "PMC3394226",
+    "volume": "14",
+    "issue": "11",
+    "pages": "1462-1467"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "The strongest CAUSAL evidence in this pull, and the only entry bearing on the map's one explicitly-unbuilt signal class. A within-subject ON/OFF DBS manipulation in humans, with a model-based readout isolating a single parameter, is a much better warrant for a routing claim than correlation or anatomy. Held to 0.75 by a small clinical sample (n=14 Parkinson's patients), known DBS confounds the authors themselves name, and a real mismatch between the knob the evidence supports (an adaptive response threshold) and the knob MECH-004 routes S6 to (K10, a catastrophic hard veto).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The parameter that moves is a graded DECISION THRESHOLD -- accumulate more evidence before committing -- not a catastrophic interrupt. MECH-004 routes S6 to K10, defined as 'hard veto threshold: catastrophic interrupt trigger', and this evidence does not support that destination; it supports a route to something closer to K3 (commitment depth) or K9 (action readiness). Wiring selection-conflict to a hard veto on the strength of this literature would be a misrouting.",
+    "With STN stimulation active the mediofrontal-theta-to-threshold relationship does not merely weaken, it INVERTS (P=0.045): high conflict signal came to predict FASTER, more impulsive responding. A conflict-to-threshold pathway is therefore not fail-safe -- disrupting it is worse than not having it, because the upstream conflict signal is still generated and is now driving the gate the wrong way. Any REE implementation of S6 -> K10/K5 needs a defined behaviour for the degraded case.",
+    "The effect is measured in Parkinson's patients with implanted electrodes, a population with pre-existing basal ganglia pathology and chronic dopaminergic medication; the authors additionally note that field spread and antidromic cortical stimulation are possible side effects of STN-DBS, so the manipulation is not cleanly confined to STN.",
+    "Conflict here is induced by reinforcement-value similarity between two learned options (win-win, lose-lose), which is a decision-gap at selection time; whether the same mechanism engages for other senses of contestedness the map might want S6 to cover is untested."
+  ],
+  "tags": ["mech-004", "control_plane", "subthalamic_nucleus", "hyperdirect_pathway", "decision_threshold", "conflict", "s6", "k10", "k5", "mech-488", "dbs", "signal_knob_map"],
+  "mapping": {
+    "source_claim_statement": "Fourteen Parkinson's disease patients performed a reinforcement-learning and choice-conflict task on and off subthalamic nucleus deep brain stimulation, with EEG and drift-diffusion modelling. Off stimulation, greater mediofrontal theta power on high-conflict trials (win-win and lose-lose pairings, where the two options have similar learned value) predicted an elevated decision threshold and adaptive slowing (P = 0.01). On stimulation this relationship reversed (P = 0.045): greater theta now predicted a LOWER threshold and faster, more impulsive responding. The affected drift-diffusion parameter was specifically the decision threshold, not drift rate. The authors conclude that STN is a necessary link by which mediofrontal conflict signals raise the evidence requirement for commitment.",
+    "ree_translation": "MECH-004's S6 section proposes a selection-conflict signal -- the decision-gap between top candidates at commit time, already computed inside E3 as gap_norm -- as a fast escalation input to K5 and K10, and justifies it by explicit analogy to the STN hyperdirect pathway, citing Frank 2006 and Wiecki & Frank 2013. This paper is the causal human test of that analogy, and it comes out in favour: interrupting STN does not merely correlate with a loss of conflict-induced slowing, it abolishes and reverses it, which is what a necessary link looks like. That matters for REE specifically because S6 is the map's one openly unbuilt signal class, deferred under MECH-488 until MECH-439's F-dominance regime clears. This entry does not license building it -- that hold is about degeneracy in gap_norm and in the receiving gate, which no external paper can resolve -- but it does raise the prior that the proposed wiring is worth building once the hold lifts, and it moves S6 from architectural speculation to a route with causal human evidence behind it.",
+    "mapping_caveat": "The evidence supports a different destination knob than the map specifies, and this is the entry's most useful correction rather than a technicality. What STN disruption changes is a graded decision threshold within a drift-diffusion process -- how much evidence is required before committing. MECH-004 routes S6 to K10, which it defines as a hard veto and catastrophic interrupt trigger. Those are different mechanisms with different failure modes: raising an evidence requirement is continuous and recoverable, tripping a catastrophic veto is neither. On this evidence S6 should route to K3 (commitment depth) or K9 (action readiness), possibly with K5 escalation, and the K10 leg is not supported. Beyond that, the standard clinical-transfer caveats apply: a Parkinson's cohort with chronic dopaminergic treatment, a stimulation manipulation the authors acknowledge is not anatomically clean, and n=14.",
+    "source_context": "Human clinical study: 14 Parkinson's disease patients with implanted STN electrodes, tested within-subject on and off stimulation, plus healthy controls; probabilistic reinforcement-learning task with high- and low-conflict test pairs; scalp EEG with mediofrontal theta as the conflict index and hierarchical drift-diffusion modelling as the readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "source_quality 0.82: a within-subject causal manipulation in humans with a model-based single-parameter readout, in a top venue -- methodologically the strongest design in this pull -- discounted for n=14 and for the confounds inherent to a patient DBS cohort. mapping_fidelity 0.72: the SIGNAL side maps very well (value-similarity conflict is a decision-gap, which is what gap_norm computes), but the KNOB side is off by one, supporting a graded threshold rather than the hard veto the map names. transfer_risk 0.40 for clinical-population-to-healthy and human-to-artificial-agent, offset by the mechanism being a computational quantity (a threshold in an accumulator) that transfers more readily than an anatomical one."
+  }
+}

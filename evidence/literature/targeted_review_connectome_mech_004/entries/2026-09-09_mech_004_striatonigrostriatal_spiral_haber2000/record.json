@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_004",
+  "entry_id": "2026-09-09_mech_004_striatonigrostriatal_spiral_haber2000",
+  "timestamp_utc": "2026-09-09T06:25:05Z",
+  "claim_ids_tested": ["MECH-004"],
+  "source": {
+    "title": "Striatonigrostriatal pathways in primates form an ascending spiral from the shell to the dorsolateral striatum",
+    "authors": ["Suzanne N. Haber", "Julie L. Fudge", "Nikolaus R. McFarland"],
+    "year": 2000,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.20-06-02369.2000",
+    "pmid": "10704511",
+    "pmc": "PMC6772499",
+    "volume": "20",
+    "issue": "6",
+    "pages": "2369-2382"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Genuinely double-edged and scored accordingly. It supplies the anatomical warrant for the map's three-way loop partition (DA_L / DA_A / DA_M) -- those territories exist, in that order, with distinct dopaminergic innervation -- while directly weakening the map's treatment of them as a VECTOR of separable axes: the striato-nigro-striatal spiral makes them a directed cascade in which limbic state propagates into associative and then motor. Confidence held at 0.68 because the anatomy is well replicated and the mapping is close, but the inference from a monkey tracing study to constraints on an artificial control plane is a long step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The three loops are not independent axes but a directionally coupled cascade (shell -> core -> central -> dorsolateral striatum via midbrain dopamine cells), so setting DA_L propagates into DA_A and thence DA_M; a control plane exposing the three as orthogonal freely-settable scalars is not implementing what the anatomy does, and permits combinations (for example high motor-loop precision with a suppressed limbic loop) that the biological architecture has no path to reach.",
+    "INV-022's stated failure signature is 'single-scalar collapse / collinearity', but this anatomy predicts STRUCTURED, DIRECTED collinearity between DA_L, DA_A and DA_M as a design feature -- so a detector that flags loop-axis correlation as a non-collapse violation will fire on correct behaviour, and the map does not distinguish the two cases.",
+    "The coupling is asymmetric (ventral influences dorsal much more than the reverse), which the map's vector formulation cannot express at all: a vector of three precision scalars has no place to record a direction of influence between its own components.",
+    "This is anatomical connectivity from tracer injections, not a measurement of information flow under task; the functional claim that limbic state actually drives associative and motor precision in behaving animals is an inference from wiring, not a demonstration."
+  ],
+  "tags": ["mech-004", "control_plane", "basal_ganglia", "dopamine", "loop_precision", "da_l", "da_a", "da_m", "inv-022", "non_collapse", "striatonigrostriatal", "signal_knob_map"],
+  "mapping": {
+    "source_claim_statement": "Using retrograde and anterograde tracer injections in macaques, Haber, Fudge and McFarland show that striatal projections to the midbrain and midbrain dopaminergic projections back to striatum are not organised as three closed parallel loops. Each striatal region reciprocates with the dopamine cells innervating it, but also projects to dopamine cells lying ventral to that reciprocal zone, which in turn innervate a striatal territory situated more dorsolaterally. Iterated, this produces an ascending spiral in which the shell influences the core, the core influences the central striatum, and the central striatum influences the dorsolateral striatum, and the authors propose it as 'an anatomical basis for the limbic/cognitive/motor interface via the ventral midbrain'.",
+    "ree_translation": "MECH-004 asserts that loop precision must be treated as a vector rather than a scalar, naming P_value ~ DA_L (limbic valuation), P_cognitive ~ DA_A (associative/task-set) and P_motor ~ DA_M (motor execution). Haber et al. are the source of that tripartition and confirm the first half of the claim: these are real, anatomically distinguishable territories with their own dopaminergic innervation, and enumerating them in that order is correct rather than arbitrary. But they refute the independence the word 'vector' implies. The loops are wired into a directed cascade with a specific ventral-to-dorsal sense, so limbic valuation state does not sit alongside cognitive and motor precision -- it feeds them. For REE this converts a representational question into a design one: the control plane needs somewhere to put the coupling. It also directly complicates INV-022's monitoring story, because the invariant's stated failure signature (collinearity across loop axes) is, on this anatomy, partly what correct operation looks like.",
+    "mapping_caveat": "Two distinct transfer risks compound here. First, this is tract-tracing: it establishes what is connected to what, not what information flows under task, so the functional claim that limbic state actually modulates associative and motor precision in a behaving animal is inferred from wiring rather than measured. Second, and more important for governance, MECH-004 is explicit that it makes FUNCTIONAL rather than anatomical claims ('Anatomical mappings ... are intentionally not asserted here'), so a purely anatomical result can only ever constrain it by analogy. The entry is scored mixed on the reading that the spiral is nonetheless informative about the map because the map itself imported the DA_L/DA_A/DA_M tripartition from this literature -- having taken the partition, it inherits the coupling that comes with it. Someone could reasonably argue the functional-only disclaimer immunises the map against this result; I do not think that survives the map's own use of the anatomical vocabulary.",
+    "source_context": "Macaque (Macaca nemestrina and M. fascicularis) anatomical tract-tracing with retrograde and anterograde tracers, mapping striatal-midbrain-striatal connectivity; no behavioural or physiological measurement."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "source_quality 0.88: a foundational, extensively replicated primate anatomy paper whose spiral organisation is now standard in the basal-ganglia literature. mapping_fidelity 0.65 -- the tripartition maps exactly, but MECH-004 disclaims anatomical commitment while borrowing anatomical vocabulary, so what the result constrains is genuinely arguable. transfer_risk 0.45 is the highest in this pull: a monkey tracing study bears on an artificial control plane only through the analogy the map itself invites, and connectivity does not entail information flow."
+  }
+}

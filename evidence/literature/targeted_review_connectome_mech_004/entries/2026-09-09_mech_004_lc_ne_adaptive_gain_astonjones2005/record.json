@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_004",
+  "entry_id": "2026-09-09_mech_004_lc_ne_adaptive_gain_astonjones2005",
+  "timestamp_utc": "2026-09-09T06:25:05Z",
+  "claim_ids_tested": ["MECH-004"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": ["Gary Aston-Jones", "Jonathan D. Cohen"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "pmid": "16022602",
+    "pmc": null,
+    "volume": "28",
+    "pages": "403-450"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Solid support for the map's tonic-versus-phasic split in S4, for placing an NE-like modulator in the GLOBAL rather than stream-specific tier, and for a causal link from arousal state to exploration pressure (K4) -- all grounded in primate recordings with concurrent behaviour. Discounted to 0.72 because adaptive gain theory is a comparatively LOW-dimensional account: it derives K7, K4 and K8 effects from a single LC mode variable, which cuts against the map's presentation of ten independently-settable knobs even as it supports the particular couplings.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Adaptive gain theory generates arousal baseline, exploration pressure and interrupt bias from ONE underlying control variable (LC tonic/phasic mode), so K7, K4 and K8 are predicted to co-vary rather than to be independently settable -- a control plane that exposes them as three free parameters can be driven into states this account says are not reachable, and the map gives no coupling constraint between them.",
+    "LC projections are diffuse and near-global, so the gain change is largely non-selective across target streams; this is consistent with the map placing NE-like modulation in the global tier but means NE cannot supply the channel-specific selectivity the stream-specific precision planes (Pi_ext, Pi_int, Pi_prop, Pi_noc) require -- some other mechanism must, and the map does not name one.",
+    "The theory's utility-evaluation input comes from ACC and OFC assessing task utility; nothing in it evaluates provenance, authority, or identity continuity, so it offers no support for the S5 reality-coherence channel, which is the map's most distinctive and least evidenced signal class.",
+    "Elevated tonic LC produces distractibility and task disengagement rather than a clean, targeted widening of search -- so mapping tonic arousal onto 'increase K4 exploration pressure' imports a degradation the map's framing of exploration as adaptive breadth does not capture."
+  ],
+  "tags": ["mech-004", "control_plane", "locus_coeruleus", "noradrenaline", "adaptive_gain", "arousal", "exploration_exploitation", "k4", "k7", "k8", "s4", "signal_knob_map"],
+  "mapping": {
+    "source_claim_statement": "The locus coeruleus operates in two dissociable modes with different behavioural consequences. In phasic mode, tonic LC firing is moderate and task-relevant decision outcomes elicit brief phasic bursts; target neurons receive a transient gain increase, and performance on the current task is optimised -- exploitation. In tonic mode, baseline LC firing is elevated, phasic responsiveness is lost, behaviour becomes distractible and task performance degrades while the animal samples alternatives -- exploration. Aston-Jones and Cohen propose that LC-NE implements adaptive gain, that mode switching regulates the exploration-exploitation tradeoff, and that the switch is driven by ongoing utility assessment supplied by anterior cingulate and orbitofrontal cortex.",
+    "ree_translation": "This supports three separable pieces of MECH-004. First, the tonic/phasic decomposition inside S4: the map splits the safety signal into a tonic baseline component and a phasic volatility component routing to different knobs, and adaptive gain theory is a worked instance of exactly that architecture, in which the same nucleus carries two functionally distinct signals distinguished by timescale rather than by identity. Second, the map's tier assignment: NE-like modulation is listed among the GLOBAL modulators rather than among the stream-specific precision planes, and LC's diffuse projections make that placement correct rather than merely convenient. Third, and most usefully, it supplies a causal mechanism for the S4 -> K7 -> K4 route the map asserts but does not explain -- how a change in arousal baseline becomes a change in exploration pressure. In map vocabulary, adaptive gain theory says K7 and K4 are two readings of one underlying regime setting.",
+    "mapping_caveat": "The support is for couplings between knobs, and it comes at a cost to the map's framing of those knobs as independent. Adaptive gain theory is a one-variable account: LC mode moves, and arousal baseline, exploration pressure and interrupt bias all move with it. MECH-004 lists K4, K7 and K8 as three of ten separate meta-parameters and specifies no coupling constraint among them, so a control plane built literally to the map can occupy configurations (say, high arousal baseline with low exploration pressure and intact phasic responsiveness) that this account treats as unreachable. Reading the paper as vindicating the knob LIST rather than the knob COUPLINGS would invert what it actually shows. Separately, note that tonic-mode 'exploration' is empirically distractibility and performance degradation, not a targeted widening of search.",
+    "source_context": "Review integrating primate (macaque) and rodent locus coeruleus single-unit recording during signal-detection and vigilance tasks, with concurrent behavioural performance measures, plus computational modelling of the gain mechanism; theoretical synthesis rather than a single new experiment."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "source_quality 0.85 for a canonical, heavily-replicated Annual Review synthesis resting on the authors' own primate recordings; not higher because it is a review with modelling rather than new measurement. mapping_fidelity 0.65 is the pull's second-lowest: the phenomena map cleanly onto K7/K4/K8 but the paper's one-variable structure sits in tension with the map's ten-independent-knobs presentation, so it supports and corrects at once. transfer_risk 0.35 for the animal-to-artificial-agent step on what is partly a neuromodulatory-anatomy claim."
+  }
+}

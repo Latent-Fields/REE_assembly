@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_004",
+  "entry_id": "2026-09-09_mech_004_expected_unexpected_uncertainty_yu2005",
+  "timestamp_utc": "2026-09-09T06:25:05Z",
+  "claim_ids_tested": ["MECH-004"],
+  "source": {
+    "title": "Uncertainty, neuromodulation, and attention",
+    "authors": ["Angela J. Yu", "Peter Dayan"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.026",
+    "pmid": "15944135",
+    "pmc": null,
+    "volume": "46",
+    "issue": "4",
+    "pages": "681-692"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the closest thing in the literature to a direct source for the K6/K8 split MECH-004 asserts, and the map's own knob glosses ('expected uncertainty / channel-specific gain (acetylcholine-like)', 'unexpected uncertainty / volatility sensitivity (noradrenaline-like)') are recognisably this paper's vocabulary. Confidence is high on mapping fidelity because the correspondence is near-verbatim rather than analogical, and is held below 0.9 because the paper's own empirical grounding is a normative model plus a fit to Posner-style cueing data, not a direct measurement of two dissociable gain parameters under independent manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The two uncertainties are formally coupled in the model rather than independent: expected uncertainty is estimated under an assumed context, and unexpected uncertainty is what forces the context to be re-estimated, so a control plane that exposes K6 and K8 as two freely-settable scalars is a simplification of the source account and could be tuned into a combination the source model cannot reach.",
+    "The account is normative -- it says what an optimal system SHOULD compute and assigns the computations to ACh and NE by argument. A system can implement the K6/K8 dissociation and still be wrong about which physical signal drives which knob.",
+    "The empirical anchor is sustained attention and cue-validity in a narrow psychophysical setting; nothing here tests whether the same two-uncertainty decomposition governs commitment depth or veto thresholds, which is where MECH-004 does most of its architectural work."
+  ],
+  "tags": ["mech-004", "control_plane", "expected_uncertainty", "unexpected_uncertainty", "acetylcholine", "noradrenaline", "precision", "k6", "k8", "signal_knob_map"],
+  "mapping": {
+    "source_claim_statement": "Optimal inference in a changing, noisy environment requires representing at least two distinct forms of uncertainty, and these are not interchangeable: expected uncertainty is the known unreliability of cues within an assumed context, while unexpected uncertainty arises when the context itself shifts unanticipatedly. Yu and Dayan propose that acetylcholine signals the former and norepinephrine the latter, that the two interact (high unexpected uncertainty should trigger re-estimation of the context rather than mere reweighting within it), and they show that this decomposition accounts for pharmacological and behavioural findings in attentional cueing tasks.",
+    "ree_translation": "This is direct support for the specific knob separation MECH-004 asserts between K6 (expected uncertainty / channel-specific gain, ACh-like) and K8 (unexpected uncertainty / volatility sensitivity, NE-like), and for the more general architectural commitment that these are two axes rather than two settings of one 'confidence' dial. It also supports the map's signal-side story: S4 (safety baseline AND safety volatility, explicitly split into tonic and phasic components) routing differentially to K7 and K8 is the same move as Yu and Dayan's insistence that the rate of change of the world is a separately-represented quantity from the noise in the world. Most usefully for REE, the paper supplies a reason WHY the non-collapse matters that is stronger than parsimony: collapse the two and the system loses the ability to distinguish 'my cue is noisy, weight it less' from 'my model is wrong, rebuild it' -- which in MECH-004's terms is the distinction between adjusting K2 and escalating K5.",
+    "mapping_caveat": "The mapping is to the KNOB half of the wiring map only. Yu and Dayan say what two uncertainty quantities are for and which neuromodulators carry them; they say nothing about MECH-004's five-to-six signal classes, nothing about routing specificity from signal to knob, and nothing about commitment (K3), veto (K10), or the stream/loop/global precision decomposition. Treating this paper as evidence for the wiring MAP rather than for two of its ten knobs would substantially overstate it. There is also a live risk of circularity in citing it at all: the map's K6/K8 glosses appear to have been written with this framework already in view, so this entry partly documents the provenance of an REE design choice rather than independently testing it.",
+    "source_context": "Normative Bayesian model with a hierarchical hidden-Markov generative structure, fit against human attentional-cueing behaviour and against pharmacological and lesion data on cholinergic and noradrenergic manipulation; theoretical review with modelling, not a new experiment."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.25,
+    "notes": "Highly cited, formally careful, in a top venue, but a theory paper -- source_quality reflects influence and rigour rather than new measurement. mapping_fidelity is the highest of the five entries in this pull because MECH-004's own knob definitions use this paper's terms. transfer_risk is low: the claim being transferred is a computational decomposition, which travels across substrate much better than an anatomical one."
+  }
+}

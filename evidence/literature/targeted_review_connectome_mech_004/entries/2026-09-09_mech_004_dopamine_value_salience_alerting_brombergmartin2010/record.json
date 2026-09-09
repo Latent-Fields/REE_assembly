@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_004",
+  "entry_id": "2026-09-09_mech_004_dopamine_value_salience_alerting_brombergmartin2010",
+  "timestamp_utc": "2026-09-09T06:25:05Z",
+  "claim_ids_tested": ["MECH-004"],
+  "source": {
+    "title": "Dopamine in motivational control: rewarding, aversive, and alerting",
+    "authors": ["Ethan S. Bromberg-Martin", "Masayuki Matsumoto", "Okihide Hikosaka"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.11.022",
+    "pmid": "21144997",
+    "pmc": "PMC3032992",
+    "volume": "68",
+    "issue": "5",
+    "pages": "815-834"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong support for the load-bearing non-collapse commitment (INV-022) and for S1b's refusal to reduce valence to one scalar channel, resting on primate single-unit recordings rather than theory alone. Held below 0.85 because the paper's decomposition axis (value vs salience vs alerting) is not the same axis as MECH-004's (harm vs benefit channels, K2_H/K2_B), and because the salience population's excitation by aversive events sits awkwardly with the map's routing of aversive signal to a suppress-and-interrupt pathway.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Aversive events EXCITE the salience-coding dopamine population rather than only inhibiting a value channel, so an architecture that routes all aversive signal to precision-suppression and commitment-breaking (S3 -> K2 down, K3 break) is missing the empirically observed aversive-driven ENHANCEMENT of orienting and cognitive gain -- in map terms, harm should be raising K6/K9 on some channels at the same time as it is lowering K2 on others.",
+    "The value/salience split is orthogonal to the harm/benefit split MECH-004 encodes as K2_H and K2_B: a salience-coding neuron is indifferent to sign, so it cannot be reconstructed from any pair of signed channels, and a control plane built only from K2_H and K2_B has no state corresponding to it.",
+    "The authors explicitly caution that extracellular recording cannot definitively separate dopaminergic from non-dopaminergic neurons in VTA, and that the true population structure is likely more diverse than the dichotomy they propose -- so the specific number of channels is not fixed by this evidence, only the claim that it exceeds one.",
+    "Anatomical segregation of the two populations is partial and their projection targets overlap (both reach dorsal striatum), so physical separability of channels should not be assumed from functional separability."
+  ],
+  "tags": ["mech-004", "control_plane", "dopamine", "motivational_salience", "valence", "non_collapse", "inv-022", "s1b", "lateral_habenula", "alerting", "signal_knob_map"],
+  "mapping": {
+    "source_claim_statement": "Midbrain dopamine neurons do not form a single homogeneous reward-prediction-error channel. Primate recordings distinguish at least two populations: motivational-value-coding neurons, excited by rewarding and inhibited by aversive events, concentrated ventromedially (SNc/VTA) and projecting to ventromedial prefrontal cortex and nucleus accumbens shell; and motivational-salience-coding neurons, excited by rewarding AND aversive events alike, concentrated in dorsolateral SNc and medial VTA and projecting to dorsolateral prefrontal cortex and accumbens core. A third, faster alerting signal responds to unexpected sensory events at short latency, habituates with familiarity, and drives immediate orienting. The lateral habenula, via the RMTg, exerts potent inhibitory control over the value-coding population and is proposed as a principal source of negative prediction error.",
+    "ree_translation": "This is the most direct empirical support in this pull for MECH-004's central architectural refusal -- that control signals must not be collapsed into one scalar valence or one global precision number (INV-022, and the map's note that 'harm-channel spikes can elevate S3 and K10 without collapsing valence into a single scalar'). The brain the map is loosely modelled on does in fact run separate, anatomically biased, differently-projecting channels for signed value and for unsigned significance, and it does route them to different downstream targets. It also independently supports two specific pieces of the map: the habenula-like aversive gate named in S1b, which appears here as the LHb-RMTg pathway with exactly the proposed function of imposing negative control on the valuation channel; and the alerting signal, whose short latency, habituation and orienting role match what S4 volatility feeding K8 and K9 is supposed to do.",
+    "mapping_caveat": "The decomposition axes do not line up, and this is the entry's main interpretive risk. MECH-004 splits valence by SIGN (harm channel K2_H, benefit channel K2_B); Bromberg-Martin et al. split it by whether sign is represented at ALL (value-coding versus salience-coding). A salience channel is indifferent to valence and therefore cannot be reconstructed from any weighted combination of K2_H and K2_B -- so this paper supports the general principle 'more than one channel' while implying the map's particular channel set is incomplete rather than confirmed. Further, this is primate electrophysiology on classically-conditioned reward and airpuff/aversive paradigms; nothing in it addresses commitment, veto, or authority/provenance signals (S5), which is where MECH-004 is most speculative.",
+    "source_context": "Review of primate (macaque) midbrain single-unit electrophysiology during Pavlovian and instrumental tasks with rewarding and aversive outcomes, integrated with anatomical tracing and lateral habenula recording work; some rodent evidence included."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "source_quality is the highest in this pull: a major synthesis in Neuron built on the authors' own primate single-unit work, extensively replicated since. mapping_fidelity 0.70 because the paper's channel decomposition is genuinely a different cut than the map's, supporting the principle more strongly than the specific wiring. transfer_risk 0.35 for the usual macaque-to-artificial-agent step, moderated by the fact that the claim being carried over is architectural (channel multiplicity) rather than a parameter value."
+  }
+}
