@@ -4846,7 +4846,11 @@
       "task_claim_session_id": "igw-auto-igw-236-proposal-for-mech-004-20260909T045956Z",
       "task_claim_claimed_at": "2026-09-09T04:59:56Z",
       "assigned_at": "2026-09-09T04:54:11Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-09T06:05:23Z",
+      "completion_summary": "marked EVB-1380/EXP-0735 (MECH-004) blocked_substrate in both proposal files (REE_assembly 34b2d45024): E3 modulatory channel-route consumers inert -- 5/6 route sources route_range 0.0, live source changes 0/120 committed actions; lit twin LIT-0736 left proposed",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-1380/EXP-0735 (MECH-004) blocked_substrate in both proposal files (REE_assembly 34b2d45024): E3 modulatory channel-route consumers inert -- 5/6 route sources route_range 0.0, live source changes 0/120 committed actions; lit twin LIT-0736 left proposed"
     }
   ],
   "dispositions": [
@@ -6901,6 +6905,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-09T04:07:51Z",
       "re_eligible_after": "2026-09-11T04:07:51Z"
+    },
+    {
+      "stable_hash": "60bdcb59ef7b",
+      "igw_id_at_disposition": "IGW-20260909-236",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-004"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-004",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-09T06:05:25Z",
+      "re_eligible_after": "2026-09-11T06:05:25Z"
     }
   ]
 }
