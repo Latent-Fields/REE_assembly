@@ -3344,6 +3344,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0239",
+      "claim_ids": [
+        "MECH-235"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "W6-S6 item 2 (2026-09-09): the GFLAG-0080 disposition 'queue a z_harm_a-logged re-run of V3-EXQ-811a to test whether harm moves the SD-081 arbitration weight' is decided by construction and was REFUSED at design. w = sigmoid(gain*(u_habit_n - u_planned_n) + bias) (e3_selector.py :1775); u_habit is 1-familiarity (agent.py :9372) and u_planned is the z_world PE-MSE EMA (:4416); z_harm_a reaches only the blended score vectors (:1734), never w, so the partial correlation of w with harm given the two inputs is identically zero and the run would return a guaranteed null. MECH-235's harm/urgency leg is complicated (buildable): a harm-PE input to the arbitrator (two shapes recorded), route /implement-substrate. Record: evidence/planning/gflag0080_mech235_harm_arbitration_design_refusal_20260909.md (origin/master bb8f987842). Recommend: keep MECH-235 candidate, mark the harm leg substrate_conditional on that build, close GFLAG-0080 against the record + governance_flag_triage_20260901.md.",
+      "raised_by_session": "confident-panini-0cdba7",
+      "raised_at": "2026-09-09T00:32:18Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
