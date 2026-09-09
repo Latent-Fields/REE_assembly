@@ -2794,3 +2794,6 @@ One line per hourly tick. ASCII only.
 2026-09-09T03:48:26Z workset committed (regen -- 249 items, 28 ready, 0 in flight)
 2026-09-09T03:46:36Z SPAWN IGW-20260909-235 skill=/queue-experiment prio=40 uuid=88668658-cfb5-4d81-9081-6da8533495c1 pid=60427 worktree=igw-235-proposal-for-mech-003
 2026-09-09T04:07:51Z auto-defer igw-235-proposal-for-mech-003 hash=1157c6934f1c for 48h (complete)
+2026-09-09T06:14:30Z SPAWN IGW-20260909-236 skill=/lit-pull prio=40 uuid=53a7db39-4fe0-4517-92ae-87bec5ea4e46 pid=75277 worktree=igw-236-literature-proposal-for-mech-004
+2026-09-09T06:47:07Z auto-defer igw-236-literature-proposal-for-mech-004 hash=9fb7f60f06ad for 48h (complete)
+2026-09-09T06:49:53Z complete igw-236-literature-proposal-for-mech-004 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-004: 5 entries landed (REE_assembly a472fba929), literature_confid
