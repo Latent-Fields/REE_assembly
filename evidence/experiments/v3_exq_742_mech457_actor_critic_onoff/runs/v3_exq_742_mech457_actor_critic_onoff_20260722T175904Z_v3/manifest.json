@@ -600,5 +600,45 @@
   "machine": "ree-cloud-4",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "4374830357408fb0bf698c6deb58e13fe6a6224232e1c815ebaee7395cfc1982",
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 80434.378795,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rungs": [
+      "D0_baseline_724",
+      "D3_hazard_free"
+    ],
+    "arms": [
+      "actor_critic_frozen_plain",
+      "actor_critic_cotrain_plain",
+      "actor_critic_frozen_sf",
+      "actor_critic_cotrain_sf",
+      "bias_head_baseline",
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "zworld_p0_episodes": 60,
+    "p0_warmup_episodes": 200,
+    "ac_train_episodes": 1000,
+    "bias_head_p1_reinforce_episodes": 90,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "reward_teacher": "foraging (FORAGE_BONUS per resource + harm term + novelty)",
+    "ac_lr": 0.0003,
+    "ac_gamma": 0.99,
+    "sf_td_coef": 0.5,
+    "sf_reward_reg_coef": 0.5,
+    "competence_resource_floor": 1.0
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

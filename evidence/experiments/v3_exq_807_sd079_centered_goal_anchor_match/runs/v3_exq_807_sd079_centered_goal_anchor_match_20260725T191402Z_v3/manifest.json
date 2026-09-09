@@ -80,5 +80,81 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "959758ce3e5c98077cdaab484dafb2ea353890eacdd3368ed39994c8734069d7"
+  "substrate_hash": "959758ce3e5c98077cdaab484dafb2ea353890eacdd3368ed39994c8734069d7",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 196.97571545,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "n_episodes": 8,
+    "steps_per_episode": 32,
+    "anchor_every": 8,
+    "spread_floor": 0.2,
+    "off_spread_ceil": 0.1,
+    "min_gate_nonzero": 1,
+    "goal_match_floor": 0.05,
+    "outshine_pivot": 0.5,
+    "cone_min_cosine_floor": 0.9,
+    "seed_pass_fraction": 0.6666666666666666,
+    "arm_config_slice_off": {
+      "env": {
+        "size": 8,
+        "num_hazards": 0,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 8,
+        "steps": 32,
+        "anchor_every": 8
+      },
+      "alpha_world": 0.9,
+      "z_goal_enabled": true,
+      "drive_weight": 2.0,
+      "benefit_eval_enabled": true,
+      "forced_benefit": 0.5,
+      "forced_drive": 0.9,
+      "goal_cue_centering": false,
+      "goal_cue_baseline_alpha": 0.05,
+      "use_composite_cue_outshining": true,
+      "outshine_pivot": 0.5,
+      "goal_match_floor": 0.05
+    },
+    "arm_config_slice_on": {
+      "env": {
+        "size": 8,
+        "num_hazards": 0,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 8,
+        "steps": 32,
+        "anchor_every": 8
+      },
+      "alpha_world": 0.9,
+      "z_goal_enabled": true,
+      "drive_weight": 2.0,
+      "benefit_eval_enabled": true,
+      "forced_benefit": 0.5,
+      "forced_drive": 0.9,
+      "goal_cue_centering": true,
+      "goal_cue_baseline_alpha": 0.05,
+      "use_composite_cue_outshining": true,
+      "outshine_pivot": 0.5,
+      "goal_match_floor": 0.05
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ]
 }

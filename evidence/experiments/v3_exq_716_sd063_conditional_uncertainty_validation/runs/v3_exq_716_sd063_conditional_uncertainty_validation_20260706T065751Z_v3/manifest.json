@@ -131,5 +131,39 @@
         "cf_gap_off": 1.8819376230239868
       }
     ]
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "conditions": [
+      "HEAD_ON",
+      "HEAD_OFF"
+    ],
+    "world_dim": 128,
+    "self_dim": 32,
+    "alpha_world": 0.9,
+    "p0_episodes": 60,
+    "p1_episodes": 80,
+    "p2_episodes": 30,
+    "steps_per_episode": 120,
+    "quantile_levels": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "crps_improve_frac": 0.02,
+    "corr_floor": 0.15,
+    "c3_preserve_frac": 0.75,
+    "readiness_norm_residual_floor": 0.05,
+    "readiness_cf_gap_floor": 0.001
   }
 }

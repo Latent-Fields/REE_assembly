@@ -1,1 +1,139 @@
-{"schema_version": "experiment_pack/v1", "architecture_epoch": "ree_hybrid_guardrails_v1", "experiment_type": "v3_exq_655_inv074_crystallization_necessity_taskshift", "run_id": "v3_exq_655_inv074_crystallization_necessity_taskshift_20260613T070430Z_v3", "status": "FAIL", "timestamp_utc": "2026-06-13T07:04:30Z", "source_repo": {"name": "ree-v3", "commit": "", "branch": "main"}, "runner": {"name": "ree-v3-harness", "version": "3.0.0"}, "artifacts": {"metrics_path": "metrics.json", "summary_path": "summary.md"}, "stop_criteria_version": "stop_criteria/v1", "claim_ids_tested": ["INV-074", "MECH-334", "MECH-333", "MECH-341", "MECH-313"], "evidence_class": "simulation", "evidence_direction": "non_contributory", "evidence_direction_per_claim": {"INV-074": "non_contributory", "MECH-313": "non_contributory", "MECH-333": "non_contributory", "MECH-334": "non_contributory", "MECH-341": "non_contributory"}, "experiment_purpose": "evidence", "producer_capabilities": {"sd005_split_latent": true, "sd004_action_objects": true, "sd006_multirate_clock": true}, "environment": {"env_id": "ree.causal_grid_world_v3", "env_version": "3.0.0", "dynamics_hash": "unknown", "reward_hash": "unknown", "observation_hash": "unknown", "config_hash": "unknown", "tier": "causal_grid_world_v3"}, "failure_signatures": [], "evidence_direction_note": "Governance 2026-06-13T20:04:39Z: all 5 claims unknown->non_contributory per confirmed failure_autopsy_V3-EXQ-655_2026-06-13. 7th necessity-test iteration; the pre-registered route-(a) task-distribution-shift redesign re-FAILed D2 (stripped REINFORCE control did not collapse entropy; D1~0 sign-inconsistent; ARM_4 bit-identical to ARM_0). Decisive substrate-incapacity confirmation -> substrate_ceiling, NOT a falsification. pending_retest_after_substrate. User-confirmed: STOP the 610 cascade, accept INV-074 substrate_ceiling on its OD-critical-period grounding (lit 0.918); no re-queue, no substrate_queue entry."}
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_655_inv074_crystallization_necessity_taskshift",
+  "run_id": "v3_exq_655_inv074_crystallization_necessity_taskshift_20260613T070430Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-13T07:04:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-074",
+    "MECH-334",
+    "MECH-333",
+    "MECH-341",
+    "MECH-313"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-074": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-333": "non_contributory",
+    "MECH-334": "non_contributory",
+    "MECH-341": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Governance 2026-06-13T20:04:39Z: all 5 claims unknown->non_contributory per confirmed failure_autopsy_V3-EXQ-655_2026-06-13. 7th necessity-test iteration; the pre-registered route-(a) task-distribution-shift redesign re-FAILed D2 (stripped REINFORCE control did not collapse entropy; D1~0 sign-inconsistent; ARM_4 bit-identical to ARM_0). Decisive substrate-incapacity confirmation -> substrate_ceiling, NOT a falsification. pending_retest_after_substrate. User-confirmed: STOP the 610 cascade, accept INV-074 substrate_ceiling on its OD-critical-period grounding (lit 0.918); no re-queue, no substrate_queue entry.",
+  "config": {
+    "arm_table": [
+      {
+        "crystallize": false,
+        "entropy_bonus_phase3": 0.0,
+        "label": "ARM_0_stripped_control",
+        "use_e3_diversity": false,
+        "use_noise_floor": false
+      },
+      {
+        "crystallize": true,
+        "entropy_bonus_phase3": 0.0,
+        "label": "ARM_1_stripped_crystallize",
+        "use_e3_diversity": false,
+        "use_noise_floor": false
+      },
+      {
+        "crystallize": false,
+        "entropy_bonus_phase3": 0.005,
+        "label": "ARM_2_control_eb005",
+        "use_e3_diversity": false,
+        "use_noise_floor": false
+      },
+      {
+        "crystallize": false,
+        "entropy_bonus_phase3": 0.02,
+        "label": "ARM_3_control_eb02",
+        "use_e3_diversity": false,
+        "use_noise_floor": false
+      },
+      {
+        "crystallize": false,
+        "entropy_bonus_phase3": 0.0,
+        "label": "ARM_4_floor_on_control",
+        "use_e3_diversity": true,
+        "use_noise_floor": true
+      }
+    ],
+    "dacc_suppression_weight": 0.0,
+    "entropy_bonus_phase3_sweep": [
+      0.0,
+      0.005,
+      0.02
+    ],
+    "entropy_bonus_train_phases_0_2": 0.02,
+    "env_base_kwargs": {
+      "harm_history_len": 10,
+      "hazard_harm": 0.05,
+      "n_reef_patches": 3,
+      "num_hazards": 3,
+      "num_resources": 4,
+      "proximity_benefit_scale": 0.05,
+      "proximity_harm_scale": 0.1,
+      "reef_enabled": true,
+      "reef_patch_radius": 2,
+      "resource_respawn_on_consume": true,
+      "size": 12,
+      "toroidal": false,
+      "use_proxy_fields": true
+    },
+    "gated_bias_scale": 2.0,
+    "lr_policy": 0.0005,
+    "max_episodes": 2500,
+    "noise_floor_weight": 0.3,
+    "phase3_pressure": "task_distribution_shift",
+    "policy_gamma": 0.95,
+    "policy_temp": 1.0,
+    "residue_ewc_lambda": 0.1,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "steps_per_episode": 200,
+    "task_shift_phase3_env_kwargs": {
+      "harm_gradient_enabled": true,
+      "harm_gradient_scale": 0.3,
+      "hazard_food_attraction": 0.8,
+      "microhabitat_enabled": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_layout": true,
+      "transient_benefit_enabled": true
+    }
+  }
+}

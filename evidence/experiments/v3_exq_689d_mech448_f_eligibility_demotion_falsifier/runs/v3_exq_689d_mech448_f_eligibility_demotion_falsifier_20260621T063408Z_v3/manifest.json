@@ -110,5 +110,93 @@
       "demotion_disinhibits_harmful_classes": "WEAKENED -- the committed-entropy lift came from globally flattening F / admitting harmful classes (C_SAFETY fail), the design-note weaken condition"
     }
   },
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-689d_2026-07-20. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-689d_2026-07-20. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack.",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_warmup_episodes": 60,
+    "p1_measurement_episodes": 20,
+    "steps_per_episode": 200,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_PROPOSER_CTRL",
+        "label": "proposer_collapsed_channel_baseline_control",
+        "candidate_summary_source": "proposer",
+        "temperature": 1.0,
+        "use_f_eligibility_demotion": false
+      },
+      {
+        "arm_id": "ARM_MATCHED_NOISE",
+        "label": "proposer_matched_entropy_flat_temperature_negative_control",
+        "candidate_summary_source": "proposer",
+        "temperature": 2.5,
+        "use_f_eligibility_demotion": false
+      },
+      {
+        "arm_id": "ARM_OFF",
+        "label": "e2wf_hard_topk_eligibility_demotion_off_gapa_baseline",
+        "candidate_summary_source": "e2_world_forward",
+        "temperature": 1.0,
+        "use_f_eligibility_demotion": false
+      },
+      {
+        "arm_id": "ARM_ON",
+        "label": "e2wf_graded_dn_envelope_f_eligibility_demotion_on",
+        "candidate_summary_source": "e2_world_forward",
+        "temperature": 1.0,
+        "use_f_eligibility_demotion": true
+      }
+    ],
+    "sd056_weight": 0.05,
+    "matched_entropy_temperature": 2.5,
+    "f_eligibility_config": {
+      "f_eligibility_envelope_floor": 0.3,
+      "f_eligibility_dn_sigma": 0.0
+    },
+    "conversion_constant": {
+      "use_modulatory_channel_routing": true,
+      "modulatory_channel_route_source": "cand_world_summary",
+      "use_modulatory_selection_authority": true,
+      "modulatory_authority_gain": 2.0,
+      "modulatory_authority_normalize_basis": "std",
+      "use_modulatory_shortlist_then_modulate": true,
+      "modulatory_shortlist_mode": "top_k",
+      "modulatory_shortlist_k": 3
+    },
+    "thresholds": {
+      "route_range_floor": 0.01,
+      "c1_pairwise_dist_floor": 0.03,
+      "excluded_count_floor": 0.0,
+      "demotion_active_frac_floor": 0.8,
+      "rank_preserving_frac_required": 1.0,
+      "c3_selected_entropy_floor": 0.3,
+      "safety_harm_tol": 0.02,
+      "min_seeds_for_pass": 2
+    }
+  }
 }

@@ -96,5 +96,33 @@
       "kay_parsimonious_survives": "C1 FAIL -> Kay-2020 parsimonious outcome survives on REE's substrate; /failure-autopsy; joint clause NOT promotable; 2026-04-26 hold stands.",
       "substrate_not_ready_requeue": "G0/G1/non-vacuity FAIL -> packet degenerate (missing streams / V_s vintaging broken / shuffle-ties-joint). Route to the upstream blocker or re-queue; NOT a MECH-294 result."
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_episodes": 4,
+    "steps_per_ep": 40,
+    "grid_size": 8,
+    "num_hazards": 3,
+    "num_resources": 3,
+    "forced_benefit": 1.0,
+    "forced_drive": 0.9,
+    "arms": [
+      "ARM_0_OFF",
+      "ARM_1_JOINT",
+      "ARM_2_ALTERNATION",
+      "ARM_3_SHUFFLED"
+    ],
+    "read_only_first": true,
+    "thresholds": {
+      "G0_completeness_floor": 0.8,
+      "nonvacuity_floor": 0.001,
+      "structural_margin": 0.05,
+      "probe_hold_vs": 0.1,
+      "min_seeds_2of3": 2
+    }
   }
 }

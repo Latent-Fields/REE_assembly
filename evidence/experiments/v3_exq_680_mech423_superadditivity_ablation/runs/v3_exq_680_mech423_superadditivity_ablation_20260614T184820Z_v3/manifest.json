@@ -100,5 +100,25 @@
         "passed": false
       }
     ]
+  },
+  "elapsed_seconds": 465.361031293869,
+  "config": {
+    "arms": [
+      "ARM_ISOLATED",
+      "ARM_INTEGRATED_PAIR",
+      "ARM_INTEGRATED_TRIPLE"
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "train_episodes": 40,
+    "steps_per_episode": 80,
+    "p1_steps": 300,
+    "eval_steps": 300,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "num_resources": 3
   }
 }

@@ -199,5 +199,52 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 25639.970143362007,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "size": 6,
+    "num_hazards": 4,
+    "num_resources": 3,
+    "hazard_harm": 0.02,
+    "proximity_harm_scale": 0.05,
+    "use_proxy_fields": true,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "lr": 0.001,
+    "num_candidates": 32,
+    "warmup_episodes": 300,
+    "eval_episodes": 60,
+    "steps_per_episode": 200,
+    "unified_latent_mode": false,
+    "reafference_action_dim": 0,
+    "arms": [
+      "A0_DEPTH0",
+      "A1_SHALLOW",
+      "A2_FULL",
+      "A3_NOISE"
+    ],
+    "horizon_by_arm": {
+      "A0_DEPTH0": 1,
+      "A1_SHALLOW": 3,
+      "A2_FULL": 10,
+      "A3_NOISE": 10
+    },
+    "selection_rule": "argmin_over_candidate_rollout_scores",
+    "thresholds": {
+      "C2_effect_sd": 0.8,
+      "C3_min_seeds": 2,
+      "P1_e2_world_r2": 0.6,
+      "P2_rollout_score_range": 1e-06,
+      "P3_seeds_nonzero_advantage": 0.5
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ]
 }

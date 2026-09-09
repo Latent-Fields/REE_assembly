@@ -79,5 +79,47 @@
       "oracle_clears_floor_at_d3": true,
       "hcurriculum_vs_sparse_vs_anchor_spread": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 16347.275671,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rung": "D3_hazard_free",
+    "arms": [
+      "sparse_zw",
+      "hcurriculum_zw",
+      "sparse_raw",
+      "hcurriculum_raw"
+    ],
+    "anchors": [
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "p0_warmup_episodes": 200,
+    "rl_episodes": 1000,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "actor_critic_hidden": 128,
+    "cotrain_encoder": true,
+    "ac_lr": 0.0003,
+    "ac_gamma": 0.99,
+    "sparse_entropy_beta": 0.03,
+    "curriculum_entropy_beta": 0.1,
+    "goal_dim": 2,
+    "curriculum_d0": 1,
+    "curriculum_d_max": 12,
+    "goal_reach_reward": 1.0,
+    "lift_above_plateau": 7.83,
+    "competence_resource_floor": 1.0
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

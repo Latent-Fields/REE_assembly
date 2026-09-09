@@ -133,5 +133,81 @@
       "substrate_not_ready_requeue": "re-queue as V3-EXQ-653a (fix the linker wiring / raise the training budget); do NOT weaken SD-059/MECH-358.",
       "linker_readout_inert": "FAIL -> /failure-autopsy on THIS readiness diagnostic; localise to linker/readout learning (G1), E3 bias integration (G4), no-op/freeze exclusion (G2), hypothesis/simulation boundary (G6), detached-input safety (G8), or the reuse-E2 assumption. Do NOT rerun 603i; do NOT treat as bridge falsification."
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_train_rounds": 60,
+    "action_classes": {
+      "noop": 0,
+      "harm_worsen": 1,
+      "escape": 2,
+      "neutral": 3
+    },
+    "e2_proxy_features": {
+      "0": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "1": [
+        0.9,
+        -0.8,
+        0.1,
+        0.2
+      ],
+      "2": [
+        -0.7,
+        0.6,
+        -0.5,
+        0.4
+      ],
+      "3": [
+        0.1,
+        0.1,
+        0.1,
+        -0.1
+      ]
+    },
+    "forced_choice_outcomes": {
+      "0": 0.04,
+      "1": 0.95,
+      "2": 0.04,
+      "3": 0.6
+    },
+    "threat_prior": 0.6,
+    "linker_params": {
+      "n_action_classes": 4,
+      "hidden_dim": 32,
+      "action_embedding_dim": 6,
+      "learn_rate": 0.3,
+      "optimizer_lr": 0.02,
+      "leak_rate": 0.0,
+      "bias_scale": 0.2,
+      "threat_floor": 0.1,
+      "threat_ref": 0.5,
+      "noop_class": 0,
+      "relief_reward_floor": 0.05,
+      "harm_delta_scale": 0.6,
+      "prediction_floor": 0.02
+    },
+    "arms": [
+      "ARM_DISABLED_CONTROL",
+      "ARM_LINKER_READOUT_ONLY",
+      "ARM_LINKER_E3_BIAS",
+      "ARM_LINKER_TO_RELIEF_SAFETY"
+    ],
+    "thresholds": {
+      "g1_salience_delta": 0.05,
+      "min_seeds_2of3": 2,
+      "min_seeds_3of3": 3,
+      "proxy_distinct_floor": 0.1,
+      "outcome_range_floor": 0.1,
+      "optimizer_step_floor": 1.0
+    }
   }
 }

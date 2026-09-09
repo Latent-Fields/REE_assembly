@@ -78,5 +78,20 @@
       "benefit_tied_at_probe": true,
       "agent_navigates": false
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "episodes": 6,
+    "steps_per_ep": 120,
+    "grid_size": 11,
+    "value_w": 5.0,
+    "prior_w": 5.0,
+    "ec_ema_alpha": 0.05,
+    "asym_control": 0.5,
+    "c1_early_low_margin": 0.25
   }
 }

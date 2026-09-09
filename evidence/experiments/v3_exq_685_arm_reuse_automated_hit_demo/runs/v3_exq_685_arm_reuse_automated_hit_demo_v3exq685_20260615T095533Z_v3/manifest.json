@@ -63,5 +63,14 @@
         "threshold": 1
       }
     ]
+  },
+  "config": {
+    "baseline_id": "exq610_inv074_crystallization_off_v1",
+    "demo_seed": 42,
+    "needed_keys": [
+      "end_phase_3_entropy",
+      "mean_reward"
+    ],
+    "note": "arm_reuse_fingerprint:P1-auto -- first AUTOMATED index-HIT in the wild. Mints a False-mode (include_driver_script_in_hash=False) OFF baseline cell, runs the real indexer over a temp corpus, consumes via try_reuse_cell from a DIFFERENT driver (HIT), and confirms a one-byte config flip refuses. Self-contained: never touches the committed arm_fingerprint_index.json."
   }
 }

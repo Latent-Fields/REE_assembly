@@ -62,5 +62,21 @@
         "passed": false
       }
     ]
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 160,
+    "steps_per_episode": 200,
+    "grid_size": 12,
+    "h_pos_frac_of_max": 0.2,
+    "phase_0to1_threshold": 0.993963,
+    "h_pos_movement_floor": 0.2,
+    "arm": "InfantCurriculumScheduler (experiments/infant_curriculum.py)"
   }
 }

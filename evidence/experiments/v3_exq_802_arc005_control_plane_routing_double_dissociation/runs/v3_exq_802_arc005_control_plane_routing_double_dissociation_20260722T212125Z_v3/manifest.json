@@ -340,5 +340,160 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3150.8510736571625,
+  "config": {
+    "arena": {
+      "size": 10,
+      "toroidal": false,
+      "hazard_harm": 0.5,
+      "contaminated_harm": 0.4,
+      "resource_benefit": 0.3,
+      "energy_decay": 0.01,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.3,
+      "use_proxy_fields": true
+    },
+    "content_sets": {
+      "A": {
+        "num_hazards": 3,
+        "num_resources": 5,
+        "contamination_spread": 0.5,
+        "seed_offset": 0
+      },
+      "B": {
+        "num_hazards": 6,
+        "num_resources": 2,
+        "contamination_spread": 0.9,
+        "seed_offset": 10007
+      }
+    },
+    "channel_levels": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "channel_ladder": {
+      "0.0": {
+        "serotonin_seeding_gain": 0.9,
+        "serotonin_wanting_floor": 0.04,
+        "phasic_burst_temp_delta": -0.1,
+        "salience_external_task_bias": 1.0,
+        "pcc_stability_baseline": 0.5
+      },
+      "0.5": {
+        "serotonin_seeding_gain": 1.2,
+        "serotonin_wanting_floor": 0.06,
+        "phasic_burst_temp_delta": -0.55,
+        "salience_external_task_bias": 2.0,
+        "pcc_stability_baseline": 0.725
+      },
+      "1.0": {
+        "serotonin_seeding_gain": 1.5,
+        "serotonin_wanting_floor": 0.08,
+        "phasic_burst_temp_delta": -1.0,
+        "salience_external_task_bias": 3.0,
+        "pcc_stability_baseline": 0.95
+      }
+    },
+    "agent_kwargs_by_level": {
+      "0.0": {
+        "alpha_world": 0.9,
+        "tonic_5ht_enabled": true,
+        "use_phasic_burst": true,
+        "phasic_burst_temp_delta": -0.1,
+        "phasic_burst_signal_source": "instantaneous_pe",
+        "phasic_burst_baseline_continuity": "carry",
+        "use_salience_coordinator": true,
+        "use_dacc": true,
+        "dacc_weight": 0.5,
+        "dacc_foraging_weight": 0.5,
+        "use_aic_analog": true,
+        "salience_external_task_bias": 1.0,
+        "use_pcc_analog": true,
+        "pcc_stability_baseline": 0.5,
+        "salience_use_stability_temperature": true,
+        "salience_temperature_mu_alpha": 1.0,
+        "use_harm_stream": true,
+        "use_affective_harm_stream": true,
+        "use_support_preserving_cem": true,
+        "support_preserving_min_first_action_classes": 2,
+        "e2_rollout_output_norm_clamp_enabled": true,
+        "e2_rollout_output_norm_clamp_ratio": 4.0
+      },
+      "0.5": {
+        "alpha_world": 0.9,
+        "tonic_5ht_enabled": true,
+        "use_phasic_burst": true,
+        "phasic_burst_temp_delta": -0.55,
+        "phasic_burst_signal_source": "instantaneous_pe",
+        "phasic_burst_baseline_continuity": "carry",
+        "use_salience_coordinator": true,
+        "use_dacc": true,
+        "dacc_weight": 0.5,
+        "dacc_foraging_weight": 0.5,
+        "use_aic_analog": true,
+        "salience_external_task_bias": 2.0,
+        "use_pcc_analog": true,
+        "pcc_stability_baseline": 0.725,
+        "salience_use_stability_temperature": true,
+        "salience_temperature_mu_alpha": 1.0,
+        "use_harm_stream": true,
+        "use_affective_harm_stream": true,
+        "use_support_preserving_cem": true,
+        "support_preserving_min_first_action_classes": 2,
+        "e2_rollout_output_norm_clamp_enabled": true,
+        "e2_rollout_output_norm_clamp_ratio": 4.0
+      },
+      "1.0": {
+        "alpha_world": 0.9,
+        "tonic_5ht_enabled": true,
+        "use_phasic_burst": true,
+        "phasic_burst_temp_delta": -1.0,
+        "phasic_burst_signal_source": "instantaneous_pe",
+        "phasic_burst_baseline_continuity": "carry",
+        "use_salience_coordinator": true,
+        "use_dacc": true,
+        "dacc_weight": 0.5,
+        "dacc_foraging_weight": 0.5,
+        "use_aic_analog": true,
+        "salience_external_task_bias": 3.0,
+        "use_pcc_analog": true,
+        "pcc_stability_baseline": 0.95,
+        "salience_use_stability_temperature": true,
+        "salience_temperature_mu_alpha": 1.0,
+        "use_harm_stream": true,
+        "use_affective_harm_stream": true,
+        "use_support_preserving_cem": true,
+        "support_preserving_min_first_action_classes": 2,
+        "e2_rollout_output_norm_clamp_enabled": true,
+        "e2_rollout_output_norm_clamp_ratio": 4.0
+      }
+    },
+    "schedule": {
+      "warmup_ticks": 200,
+      "measure_ticks": 1800
+    },
+    "pre_registered_thresholds": {
+      "c1_sd_multiplier": 0.8,
+      "c1_abs_floor": 0.15,
+      "c2_occupancy_rho_floor": 0.6,
+      "c2_precision_abs_rho_floor": 0.6,
+      "c2_min_units": 7,
+      "c3_min_units": 7,
+      "p1_distinct_modes_floor": 1.5,
+      "p1_occupancy_fraction_diagnostic_only": 0.05,
+      "p2_precision_sd_floor": 1e-06,
+      "p3_channel_delta_floor": 0.05,
+      "p4_salience_tick_floor": 150.0
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

@@ -85,5 +85,50 @@
       "gapa_shared_channel_inert": "FAIL -> /failure-autopsy on the failing criterion"
     }
   },
-  "evidence_direction_note": "2026-06-07 governance (failure_autopsy_gapA-cluster-604b-648a-649): PASS substrate-readiness diagnostic (claim_ids=[]; does NOT weight claim confidence). Load-bearing C2 PASSED (ARM_1 consumed-summary spread 0.090 >= 0.05 floor) -> ARC-065 GAP-A shared candidate-summary channel VERIFIED READY; unblocks V3-EXQ-604c, MECH-341 committed-class diversity retest, ARC-062/063 GAP-B falsifier. precondition_unmet flag was an indexer upper-bound false-positive, fixed on origin."
+  "evidence_direction_note": "2026-06-07 governance (failure_autopsy_gapA-cluster-604b-648a-649): PASS substrate-readiness diagnostic (claim_ids=[]; does NOT weight claim confidence). Load-bearing C2 PASSED (ARM_1 consumed-summary spread 0.090 >= 0.05 floor) -> ARC-065 GAP-A shared candidate-summary channel VERIFIED READY; unblocks V3-EXQ-604c, MECH-341 committed-class diversity retest, ARC-062/063 GAP-B falsifier. precondition_unmet flag was an indexer upper-bound false-positive, fixed on origin.",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_warmup_episodes": 60,
+    "p1_measurement_episodes": 20,
+    "steps_per_episode": 200,
+    "measure_after_tick": 20,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 0,
+      "num_resources": 5,
+      "hazard_harm": 0.0,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_0_PROPOSER",
+        "label": "shared_summary_source_proposer_614e_baseline",
+        "candidate_summary_source": "proposer"
+      },
+      {
+        "arm_id": "ARM_1_E2_WORLD_FWD",
+        "label": "shared_summary_source_e2_world_forward_gapa_fix",
+        "candidate_summary_source": "e2_world_forward"
+      }
+    ],
+    "sd056_weight": 0.05,
+    "thresholds": {
+      "c0_spread_floor": 0.05,
+      "c0_magnitude_ceil": 1000000.0,
+      "c1_collapse_ceil": 0.05,
+      "min_seeds_for_pass": 2
+    }
+  }
 }

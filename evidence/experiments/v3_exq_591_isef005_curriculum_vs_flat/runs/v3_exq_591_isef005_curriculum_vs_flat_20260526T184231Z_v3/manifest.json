@@ -42,5 +42,45 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 2000,
+    "steps_per_episode": 200,
+    "rolling_window": 100,
+    "grid_size": 12,
+    "gate_thresholds": {
+      "C1_z_goal_min": 0.4,
+      "C2_h_pos_threshold": 3.230379,
+      "C3_residue_cov_min": 0.15,
+      "C4_entropy_global_min": 1.098612,
+      "C4_kl_min": 0.05,
+      "C5_hb_ratio_min": 0.2,
+      "C5_hb_ratio_max": 5.0,
+      "C6_retention_min": 0.85,
+      "C7_traj_cosine_min": 0.3
+    },
+    "pass_thresholds": {
+      "treatment_criteria_min": 6,
+      "treatment_seeds_min": 4,
+      "control_criteria_max": 4,
+      "control_seeds_below": 3
+    },
+    "arm0_env_kwargs": {
+      "harm_gradient_enabled": true,
+      "harm_gradient_scale": 0.3,
+      "transient_benefit_enabled": true,
+      "microhabitat_enabled": true
+    },
+    "arm0_novelty": 0.7,
+    "arm1_env_kwargs": {},
+    "arm1_novelty": 0.5,
+    "arm2": "InfantCurriculumScheduler (experiments/infant_curriculum.py)"
+  }
 }

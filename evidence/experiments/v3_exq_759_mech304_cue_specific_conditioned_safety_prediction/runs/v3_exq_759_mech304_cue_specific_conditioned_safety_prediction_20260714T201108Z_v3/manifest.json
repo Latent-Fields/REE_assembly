@@ -87,5 +87,37 @@
     "criteria_non_degenerate": {
       "C1": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 0.7470296169631183,
+  "config": {
+    "size": 12,
+    "num_hazards": 5,
+    "num_resources": 5,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "rollout_episodes": 6,
+    "steps_per_ep": 60,
+    "region_div": 2,
+    "n_cue_classes": 3,
+    "min_region_instances": 12,
+    "auc_confirm": 0.65,
+    "auc_anti": 0.35,
+    "directional_frac": 0.8,
+    "pos_control_floor_auc": 0.9,
+    "proto_norm_floor": 0.1,
+    "predict_spread_floor": 0.0001,
+    "env_seed_base": 80000,
+    "action_seed_base": 81000,
+    "use_conditioned_safety_store": true
+  },
+  "seeds": [
+    42,
+    7,
+    19,
+    3,
+    11,
+    23
+  ]
 }

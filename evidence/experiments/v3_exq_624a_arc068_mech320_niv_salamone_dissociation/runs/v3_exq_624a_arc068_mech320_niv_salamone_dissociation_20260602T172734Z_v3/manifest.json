@@ -52,5 +52,30 @@
   "pending_retest_after_substrate_per_claim": [
     "MECH-320",
     "ARC-068"
-  ]
+  ],
+  "elapsed_seconds": 5631.092746734619,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_warmup_episodes": 100,
+    "p1_eval_episodes": 30,
+    "steps_per_episode": 200,
+    "window_length": 50,
+    "grid_size": 8,
+    "n_hazards": 1,
+    "n_resources": 3,
+    "action_dim": 5,
+    "noop_class": 4,
+    "limb_damage_enabled_all_arms": true,
+    "tonic_vigor_form": "additive",
+    "v_t_floor": 0.05,
+    "free_damage_increment": 0.0,
+    "free_failure_prob_scale": 0.0,
+    "salamone_damage_increment": 0.3,
+    "salamone_failure_prob_scale": 0.6,
+    "dry_run": false
+  }
 }

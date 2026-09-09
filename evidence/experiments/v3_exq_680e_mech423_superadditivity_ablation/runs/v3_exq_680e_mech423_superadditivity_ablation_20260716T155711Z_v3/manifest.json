@@ -121,5 +121,37 @@
         "passed": true
       }
     ]
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 853.9821290969849,
+  "config": {
+    "arms": [
+      "ARM_ISOLATED",
+      "ARM_INTEGRATED_PAIR",
+      "ARM_INTEGRATED_TRIPLE"
+    ],
+    "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011
+    ],
+    "train_episodes": 40,
+    "steps_per_episode": 80,
+    "p1_steps": 300,
+    "eval_steps": 300,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "num_resources": 3,
+    "cosine_orthogonal_band": 0.15,
+    "min_seeds_net_negative": 3
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011
+  ]
 }

@@ -82,5 +82,29 @@
     ]
   },
   "epistemic_category": "competence_implementation_gap",
-  "evidence_direction_note": "2026-07-12 /governance IGW-20260712-001 (failure_autopsy_734-737-conversion-ceiling-competence, confirmed): pure diagnostic (claim_ids=[]); conversion-ceiling deficit localized to REE-latent action-adequacy -> routes MECH-457 actor-critic substrate (built). non_contributory; weights no claim."
+  "evidence_direction_note": "2026-07-12 /governance IGW-20260712-001 (failure_autopsy_734-737-conversion-ceiling-competence, confirmed): pure diagnostic (claim_ids=[]); conversion-ceiling deficit localized to REE-latent action-adequacy -> routes MECH-457 actor-critic substrate (built). non_contributory; weights no claim.",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rungs": [
+      "D0_baseline_724",
+      "D3_hazard_free"
+    ],
+    "arms": [
+      "ree_bias_head",
+      "ppo_ree_latent",
+      "ppo_raw_obs",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "p0_warmup_episodes": 200,
+    "p1_reinforce_episodes": 90,
+    "p1_ppo_episodes": 1000,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "competence_resource_floor": 1.0
+  }
 }

@@ -90,5 +90,46 @@
         "passed": true
       }
     ]
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 0.002325,
+  "config": {
+    "scale": "slow",
+    "n_regions": 4,
+    "l_levels": 8,
+    "dose": 0.15,
+    "leak_ticks": 30,
+    "leak_factor": 0.5,
+    "staleness_clip": 1.0,
+    "drop_epsilon": 1e-06,
+    "attribution_modes": [
+      "stream_overlap",
+      "equal"
+    ],
+    "steps_per_seed": 38,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "use_staleness_accumulator": true,
+    "thresholds": {
+      "monotone_tol": 1e-09,
+      "rise_margin": 0.5,
+      "locality_floor": 1e-09,
+      "spread_margin": 0.5,
+      "leak_decay_frac": 0.05,
+      "range_floor": 1e-06,
+      "vs_floor": 0.001
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

@@ -111,5 +111,48 @@
       "density_a_exceeds_b": true,
       "on_selection_ge_off": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 96.03690312500112,
+  "config": {
+    "world_dim": 16,
+    "num_centers": 256,
+    "kernel_bandwidth": 1.0,
+    "horizon": 8,
+    "da_signal": 1.0,
+    "da_allocation_scale": 3.0,
+    "da_jitter_radius": 0.12,
+    "n_reward_a": 24,
+    "n_sparse_b": 1,
+    "region_sep": 3.0,
+    "visit_jitter": 0.05,
+    "n_trials": 32,
+    "k_candidates": 16,
+    "target_jitter": 0.1,
+    "curiosity_weight": 1.0,
+    "familiarity_ema_alpha": 0.05,
+    "familiarity_bandwidth": 1.0,
+    "n_fam_rounds": 12,
+    "ctrl_curiosity_weight": 3.0,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ]
 }

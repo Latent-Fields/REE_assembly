@@ -111,5 +111,43 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1"
+  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 324.35784511499514,
+  "config": {
+    "grid_size": 8,
+    "num_hazards": 2,
+    "num_resources": 3,
+    "world_dim": 16,
+    "self_dim": 16,
+    "action_dim": 4,
+    "curiosity_weight": 0.5,
+    "alpha_world": 0.9,
+    "episodes": 12,
+    "benefit_terrain_enabled": true,
+    "use_da_modulated_rbf_density": true,
+    "da_allocation_scale": 4.0,
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "thresholds": {
+      "L1A_CENTERS_FLOOR": 1.0,
+      "L1B_EVENTS_FLOOR": 1.0,
+      "L2A_DENSITY_FLOOR": 1e-06,
+      "L3A_BONUS_FLOOR": 1e-09,
+      "L4A_RANGE_FLOOR": 1e-09,
+      "READINESS_RANGE_FLOOR": 1e-06
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    37
+  ]
 }

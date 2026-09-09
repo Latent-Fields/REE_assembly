@@ -224,5 +224,82 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.5.1+cu121",
-  "substrate_hash": "80b07db3842af621c72bca1e3d68604e3951cb964c7dc80b5b1cbd9424b5f2fe"
+  "substrate_hash": "80b07db3842af621c72bca1e3d68604e3951cb964c7dc80b5b1cbd9424b5f2fe",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3330.9489125739783,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "ticks_per_seed": 3000,
+    "regimes": [
+      {
+        "id": "residue_incumbent",
+        "entropy_bias_scale": 0.0,
+        "config_overrides": {
+          "rho_residue": 20.0
+        },
+        "expected_incumbent": "residue_weighted",
+        "expected_incumbent_share": 0.78,
+        "role": "primary",
+        "scan_note": "seeds 0/1/2: residue .585/.887/.868, harm survives at .358/.097/.123; harm channel stays ON -- a reweighting, not an ablation"
+      },
+      {
+        "id": "f_incumbent",
+        "entropy_bias_scale": 0.0,
+        "config_overrides": {
+          "lambda_ethical": 0.05
+        },
+        "expected_incumbent": "f",
+        "expected_incumbent_share": 0.831,
+        "role": "secondary_replication",
+        "scan_note": "seeds 0/1/2: f .825/.984/.683; seed 1 carries a NEGATIVE harm share and sits close to the forced boundary, so this is the weaker regime"
+      }
+    ],
+    "urgency_manipulation": "exogenous_iid_uniform_over_pre_registered_grid",
+    "urgency_levels": [
+      0.04,
+      0.1,
+      0.16,
+      0.22,
+      0.28,
+      0.34
+    ],
+    "urgency_weight_baseline": 0.12,
+    "modulatory_authority_gain": 0.5,
+    "alpha_world": 0.9,
+    "env": {
+      "cls": "CausalGridWorldV2",
+      "use_proxy_fields": true,
+      "hazard_harm": 0.5
+    },
+    "thresholds": {
+      "MONOTONIC_RHO_FLOOR": 0.6,
+      "GAP_ABS_FLOOR": 0.02,
+      "GAP_SD_MULTIPLIER": 2.0,
+      "LOG_VAR_GAP_FLOOR": 0.1,
+      "AUTHORITY_ACTIVE_FRAC_FLOOR": 0.05,
+      "CHANNEL_RANGE_FLOOR": 0.0001,
+      "SCORE_VARIANCE_FLOOR": 1e-12,
+      "COMMITTED_TICK_FLOOR": 150.0,
+      "INCUMBENT_MARGIN_FLOOR": 0.1,
+      "N_NONTRIVIAL_FLOOR": 1.5,
+      "NONTRIVIAL_SHARE_FLOOR": 0.01,
+      "FIDELITY_TOL": 1e-06,
+      "RANDOMISATION_CORR_CEILING": 0.25,
+      "MIN_TICKS_PER_LEVEL": 30,
+      "MIN_LEVELS_POPULATED": 5
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

@@ -166,5 +166,45 @@
     "n_agents": 6,
     "goal_state_present": true
   },
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828: evidence_direction adjudicated to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-603v_2026-08-28.json (dry_run_checked: true), ratified at this cycle's Step 2b walk. Manifest's top-level 'supports' is adjudicated DOWN: V3-EXQ-603v is an INSTRUMENT repair (eligibility-trace fix validated against its own pre-registered failure_record target), not claim evidence for MECH-357."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828: evidence_direction adjudicated to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-603v_2026-08-28.json (dry_run_checked: true), ratified at this cycle's Step 2b walk. Manifest's top-level 'supports' is adjudicated DOWN: V3-EXQ-603v is an INSTRUMENT repair (eligibility-trace fix validated against its own pre-registered failure_record target), not claim evidence for MECH-357.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 109889.448692153,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "budgets": {
+      "stage0": 20,
+      "stage0b": 10,
+      "p0": 100,
+      "hazard": 40,
+      "p1": 50,
+      "p2": 15,
+      "train_steps": 200
+    },
+    "hazard_stage": {
+      "num_hazards": 4,
+      "num_resources": 2,
+      "hazard_food_attraction": 0.0,
+      "proximity_harm_scale": 0.1,
+      "survival_gate_steps": 75,
+      "stability_window": 10,
+      "env_drift_interval": 1,
+      "env_drift_prob": 0.6,
+      "hazard_agent_pursuit": 0.9
+    },
+    "world_dim": 32,
+    "drive_weight": 2.0,
+    "arms": [
+      "ARM_INTACT_midline_pag_gate_combined_fix",
+      "ARM_POSCTRL_reefspawn_pag_gate_combined_fix"
+    ]
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

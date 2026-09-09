@@ -99,5 +99,116 @@
   },
   "machine": "DLAPTOP-5.local",
   "machine_class": "darwin-arm64-py3.13-torch2.12.0",
-  "substrate_hash": "40460396a9f362039b6d4c0055fd32b763b195731c26e63bb041c5d6d91c97bc"
+  "substrate_hash": "40460396a9f362039b6d4c0055fd32b763b195731c26e63bb041c5d6d91c97bc",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 124044.77738541598,
+  "config": {
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "conv_episodes": 60,
+    "meas_steps": 900,
+    "learn_steps": 900,
+    "steps_per_episode": 90,
+    "probe_steps": 100,
+    "probe_battery_size": 64,
+    "episodes_per_run": 80,
+    "arms": [
+      {
+        "arm_id": "ARM_0_NONE",
+        "level": 0,
+        "interval": 0,
+        "depth": 2,
+        "noise": 0.0,
+        "graded": true
+      },
+      {
+        "arm_id": "ARM_1_LOW",
+        "level": 1,
+        "interval": 60,
+        "depth": 2,
+        "noise": 0.0,
+        "graded": true
+      },
+      {
+        "arm_id": "ARM_2_MED",
+        "level": 2,
+        "interval": 25,
+        "depth": 2,
+        "noise": 0.0,
+        "graded": true
+      },
+      {
+        "arm_id": "ARM_3_HIGH",
+        "level": 3,
+        "interval": 10,
+        "depth": 2,
+        "noise": 0.0,
+        "graded": true
+      },
+      {
+        "arm_id": "ARM_4_NOISE_LO",
+        "level": 4,
+        "interval": 60,
+        "depth": 0,
+        "noise": 0.12,
+        "graded": false
+      },
+      {
+        "arm_id": "ARM_5_NOISE_HI",
+        "level": 5,
+        "interval": 60,
+        "depth": 0,
+        "noise": 0.24,
+        "graded": false
+      }
+    ],
+    "env_base": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "use_proxy_fields": true
+    },
+    "stable_drift": {
+      "env_drift_interval": 999,
+      "env_drift_prob": 0.0
+    },
+    "shock_drift": {
+      "env_drift_interval": 1,
+      "env_drift_prob": 0.8
+    },
+    "p0_loss": "recon_only",
+    "sd056_weight": 0.05,
+    "e2_lr": 0.001,
+    "conv_metric": "frozen_probe_battery",
+    "sleep_used": false,
+    "substrate": "SD-MEL-PRODUCER",
+    "binning_primary": "cycle_quartile",
+    "n_bins": 4,
+    "binning_secondary_abs_edges": [
+      2,
+      5,
+      12
+    ],
+    "c4_anchor_arm": "ARM_1_LOW",
+    "noise_control_order": [
+      "ARM_4_NOISE_LO",
+      "ARM_5_NOISE_HI"
+    ]
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ]
 }

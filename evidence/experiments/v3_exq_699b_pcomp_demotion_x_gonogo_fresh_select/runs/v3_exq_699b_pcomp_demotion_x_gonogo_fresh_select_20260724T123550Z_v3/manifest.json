@@ -193,5 +193,34 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "8a0dc379532c1028ffe34baf22dbe2c2ac343a8e72f162f6741fab90032c2f8e"
+  "substrate_hash": "8a0dc379532c1028ffe34baf22dbe2c2ac343a8e72f162f6741fab90032c2f8e",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 50900.735895,
+  "config": {
+    "design": "2x2 (MECH-448 demotion {OFF,ON} x MECH-449 Go/No-Go {OFF,ON})",
+    "arms": "ARM_OFF / ARM_DEM (demotion only) / ARM_GNG (Go/No-Go only) / ARM_BOTH (co-armed)",
+    "swept_variable": "lever combination (use_f_eligibility_demotion x use_go_nogo_constitution)",
+    "matched_constants": "use_candidate_rule_field=True (differentiated conversion source) + use_f_eligibility_adaptive_floor=True (689e; inert when demotion OFF) + use_dacc=True (MECH-260 perseveration No-Go feed) + top_k shortlist scaffold + modulatory authority/routing (643a) + MECH-341 + MECH-313 + V_s minimal + use_gated_policy + use_lateral_pfc_analog (lateral_pfc_train_rule_bias_head=True, TRAINED in P1 REINFORCE) + SD-056 all levers + the matured/maintained CRF pool",
+    "primary_dv": "committed-class entropy (the C2 DV, matched to 654i/654j)",
+    "secondary_negative_control": "within-class-representative entropy (expected ~null)",
+    "phases": "P0 e2-train (CRF matures) -> P1 frozen-encoder bias-head REINFORCE -> P2 frozen measurement",
+    "per_arm_conditional_readiness": "C1e (MECH-448 demotion live + excluding) checked ONLY on the demotion-armed arms (ARM_DEM, ARM_BOTH); C1f (MECH-449 active No-Go live + suppressing) checked ONLY on the gng-armed arms (ARM_GNG, ARM_BOTH); ARM_BOTH must satisfy both",
+    "demotion_validated_by": "V3-EXQ-689d PASS 2026-06-20 (committed entropy 0.938 vs hard-top-k 0.371); MECH-448 provisional",
+    "nogo_validated_by": "V3-EXQ-689g PASS 3/3 2026-06-21 (go_nogo_converts_gated_channel; MECH-449/ARC-107); MECH-449 provisional",
+    "adaptive_floor_validated_by": "V3-EXQ-689e PASS 2026-06-21 (channel-adaptive envelope excludes on the arc_062 bank)",
+    "cancellation_precedent": "Factor A x Factor B CANCELLED at V3-EXQ-689a (the destructive within-selection-face interaction this characterization guards the full-stack arm against)",
+    "z_goal_enabled": true,
+    "drive_weight": 2.0,
+    "alpha_world": 0.9,
+    "reef_enabled": true,
+    "reef_bipartite_layout": true,
+    "sd056_amend_active": true,
+    "sd056_output_norm_clamp": true,
+    "use_differentiable_cem": "NOT FLIPPED (default False; SD-055 safety note)"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

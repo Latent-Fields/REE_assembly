@@ -71,5 +71,26 @@
         "passed": true
       }
     ]
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "rungs": [
+      "D0_baseline_724",
+      "D1_food_decoupled",
+      "D2_proximity_layout_derisked",
+      "D3_hazard_free"
+    ],
+    "policies": [
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "competence_resource_floor": 1.0
   }
 }

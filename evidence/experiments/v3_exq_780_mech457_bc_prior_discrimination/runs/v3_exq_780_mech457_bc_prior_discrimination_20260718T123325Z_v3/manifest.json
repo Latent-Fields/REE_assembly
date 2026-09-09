@@ -77,5 +77,89 @@
       "oracle_clears_floor_at_d3": true,
       "boot_arm_vs_anchor_foraging_spread": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 25925.235209,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rung": "D3_hazard_free",
+    "arms": [
+      "bcprior_ctrl_zworld",
+      "bcprior_treat_zworld",
+      "bcprior_ctrl_raw",
+      "bcprior_treat_raw",
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "representations": [
+      "z_world",
+      "raw_view"
+    ],
+    "p0_warmup_episodes": 200,
+    "on_budget_episodes": 3000,
+    "bc_warmstart_episodes": 300,
+    "bc_aux_coef": 0.5,
+    "bc_demonstrator": "local_view_greedy",
+    "budget_multiplier": 3,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "ref_actor_critic_hidden": 128,
+    "ref_credit_replay_passes": 3,
+    "ref_credit_topk": 32,
+    "ref_cotrain_encoder": false,
+    "ac_lr": 0.0003,
+    "ac_gamma": 0.99,
+    "bc_lr": 0.001,
+    "ctrl_config": {
+      "use_rnd": true,
+      "intrinsic_coef_start": 1.0,
+      "intrinsic_coef_end": 0.05,
+      "anneal_fraction": 0.6,
+      "warm_start_fraction": 0.0,
+      "entropy_beta_start": 0.1,
+      "entropy_beta_end": 0.03,
+      "credit_replay": true,
+      "credit_replay_passes": 3,
+      "credit_topk": 32,
+      "n_episodes": 3000,
+      "actor_critic_hidden": 128,
+      "cotrain_encoder": false,
+      "bc_aux_coef": 0.0,
+      "use_approach_primitive": false,
+      "approach_coef": 0.0
+    },
+    "treat_config": {
+      "use_rnd": true,
+      "intrinsic_coef_start": 1.0,
+      "intrinsic_coef_end": 0.05,
+      "anneal_fraction": 0.6,
+      "warm_start_fraction": 0.0,
+      "entropy_beta_start": 0.1,
+      "entropy_beta_end": 0.03,
+      "credit_replay": true,
+      "credit_replay_passes": 3,
+      "credit_topk": 32,
+      "n_episodes": 3000,
+      "actor_critic_hidden": 128,
+      "cotrain_encoder": false,
+      "bc_aux_coef": 0.5,
+      "use_approach_primitive": false,
+      "approach_coef": 0.0
+    },
+    "lift_competence_target": 13.05,
+    "lift_margin": 7.83,
+    "competence_resource_floor": 1.0,
+    "portfolio": "GOV-FANOUT-1 MECH-457 (H-bc-prior learning-signal)",
+    "routed_by": "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

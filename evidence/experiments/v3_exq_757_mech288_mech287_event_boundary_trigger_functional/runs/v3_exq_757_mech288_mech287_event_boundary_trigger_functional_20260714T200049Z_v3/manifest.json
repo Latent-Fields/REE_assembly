@@ -93,5 +93,68 @@
         "passed": true
       }
     ]
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 0.6019929298199713,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "conditions": [
+      "boundaries",
+      "smooth",
+      "storm"
+    ],
+    "ticks_per_run": 600,
+    "warmup": 60,
+    "boundary_spacing": 20,
+    "storm_sparse_end": 200,
+    "storm_sparse_spacing": 20,
+    "storm_posterior": 0.9,
+    "dims": {
+      "w": 16,
+      "s": 16,
+      "g": 8
+    },
+    "seg_noise": 0.05,
+    "shift_w": 2.0,
+    "goal_noise": 0.02,
+    "goal_levels": [
+      5.0,
+      15.0,
+      25.0,
+      10.0,
+      20.0,
+      30.0
+    ],
+    "segmenter_config": "EventSegmenterConfig() canonical two-scale defaults",
+    "trigger_config": "InvalidationTriggerConfig() canonical defaults",
+    "thresholds": {
+      "TOL_SLOW": 6,
+      "HIT_RATE_MIN": 0.7,
+      "SMOOTH_SLOW_MAX": 1.0,
+      "SLOW_CONTRAST_MIN": 5.0,
+      "GRADED_POST_MIN": 0.5,
+      "GRADED_SPREAD_MIN": 0.05,
+      "GRADED_OPEN_FRAC_MIN": 0.2,
+      "PHASIC_FRAC_MIN": 0.7,
+      "DISSOC_BROADCAST_MAX": 0.0,
+      "STORM_SUPPRESS_MIN": 1.0,
+      "STORM_BROADCAST_MIN": 1.0,
+      "FAST_INPUT_CONTRAST_FLOOR": 3.0,
+      "SLOW_INPUT_SHIFT_FLOOR": 2.0,
+      "STORM_INPUT_DENSITY_FLOOR": 0.5
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

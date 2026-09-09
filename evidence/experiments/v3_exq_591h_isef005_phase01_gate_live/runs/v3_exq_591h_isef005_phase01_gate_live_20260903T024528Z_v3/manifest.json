@@ -245,5 +245,50 @@
     "ticks_total": 320000,
     "writer_calls": 320000,
     "writer_defect": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 17179.095606364077,
+  "config": {
+    "agent": {
+      "action_dim": 4,
+      "body_obs_dim": 12,
+      "drive_weight": 2.0,
+      "novelty_bonus_weight": 0.5,
+      "sleep_loop_episodes_K": 161,
+      "use_noise_floor": true,
+      "use_sleep_loop": true,
+      "use_structured_curiosity": true,
+      "world_obs_dim": 250,
+      "z_goal_enabled": true
+    },
+    "arms": {
+      "ARM_CROSSING": {
+        "h_pos_frac_of_max": 0.2,
+        "phase_0to1_crossing_count_min": 3,
+        "phase_0to1_use_crossing_count": true
+      },
+      "ARM_SPIKE": {
+        "h_pos_frac_of_max": 0.2,
+        "phase_0to1_crossing_count_min": 3,
+        "phase_0to1_use_crossing_count": false
+      }
+    },
+    "env": {
+      "pos_telemetry_enabled": true,
+      "resource_respawn_on_consume": true,
+      "size": 12,
+      "traj_telemetry_enabled": true
+    },
+    "schedule": {
+      "n_episodes": 160,
+      "steps_per_episode": 200
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ]
 }

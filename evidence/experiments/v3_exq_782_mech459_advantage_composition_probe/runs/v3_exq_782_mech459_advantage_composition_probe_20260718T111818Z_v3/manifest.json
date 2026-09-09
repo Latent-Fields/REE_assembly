@@ -102,5 +102,81 @@
       "demo_return_distribution_has_spread": true,
       "concentration_pre_post_spread": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 10831.708483,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rung": "D3_hazard_free",
+    "arms": [
+      "probeR_ctrl_zworld",
+      "probeR_ctrl_raw",
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "representations": [
+      "z_world",
+      "raw_view"
+    ],
+    "p0_warmup_episodes": 200,
+    "on_budget_episodes": 3000,
+    "measure_window_episodes": 200,
+    "demo_episodes": 20,
+    "pre_reward_horizon": 10,
+    "bc_demonstrator": "local_view_greedy",
+    "budget_multiplier": 3,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "ref_actor_critic_hidden": 128,
+    "ref_credit_replay_passes": 3,
+    "ref_credit_topk": 32,
+    "ref_cotrain_encoder": false,
+    "ac_lr": 0.0003,
+    "ac_gamma": 0.99,
+    "ppo_gamma": 0.99,
+    "ppo_gae_lambda": 0.95,
+    "forage_bonus": 1.0,
+    "novelty_coef": 0.1,
+    "ctrl_config": {
+      "use_rnd": true,
+      "intrinsic_coef_start": 1.0,
+      "intrinsic_coef_end": 0.05,
+      "anneal_fraction": 0.6,
+      "warm_start_fraction": 0.0,
+      "entropy_beta_start": 0.1,
+      "entropy_beta_end": 0.03,
+      "credit_replay": true,
+      "credit_replay_passes": 3,
+      "credit_topk": 32,
+      "n_episodes": 3000,
+      "actor_critic_hidden": 128,
+      "cotrain_encoder": false,
+      "bc_aux_coef": 0.0,
+      "use_approach_primitive": false,
+      "approach_coef": 0.0
+    },
+    "competence_resource_floor": 1.0,
+    "thresholds": {
+      "concentration_tiny_pre": 0.5,
+      "concentration_parity_post": 1.0,
+      "concentration_rescale_delta": 0.25,
+      "collapse_std_ratio": 0.25,
+      "mean_track_tol_in_return_sd": 0.5,
+      "separation_ratio_floor": 0.25,
+      "min_forage_steps": 30,
+      "min_return_std": 0.25
+    },
+    "probe": "MECH-459 probe R (advantage composition + critic calibration)",
+    "routed_by": "decision_MECH-459_registry_and_brake_2026-07-18 (Decision 2b)"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

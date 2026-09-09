@@ -49,5 +49,22 @@
   "failure_signatures": [],
   "evidence_direction_note": "2026-06-05 (governance, confirmed failure_autopsy_V3-EXQ-610e): non_contributory. First harness-fixed crystallization run (fix_verification confirms policy trained 0.410->0.491, expansion stepped 1249, ewc in loss 0.268) but d2_control_shows_collapse=FALSE -- negative control confounded by always-on MECH-313 noise floor + MECH-341 E3 diversity + policy entropy bonus 0.02 in BOTH arms, so collapse never instantiated. measurement_test_design_defect, NOT falsification of INV-074 (universal). pending_retest_after_substrate retained. Routing: V3-EXQ-610f true-negative control + entropy_bonus sweep.",
   "epistemic_category": "measurement_test_design_defect",
-  "failure_autopsy_ref": "evidence/planning/failure_autopsy_V3-EXQ-610e_2026-06-05.json (confirmed)"
+  "failure_autopsy_ref": "evidence/planning/failure_autopsy_V3-EXQ-610e_2026-06-05.json (confirmed)",
+  "config": {
+    "dacc_suppression_weight": 0.5,
+    "entropy_bonus_weight": 0.02,
+    "gated_bias_scale": 2.0,
+    "lr_policy": 0.0005,
+    "max_episodes": 2500,
+    "noise_floor_weight": 0.3,
+    "policy_gamma": 0.95,
+    "policy_temp": 1.0,
+    "residue_ewc_lambda": 0.1,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "steps_per_episode": 200
+  }
 }

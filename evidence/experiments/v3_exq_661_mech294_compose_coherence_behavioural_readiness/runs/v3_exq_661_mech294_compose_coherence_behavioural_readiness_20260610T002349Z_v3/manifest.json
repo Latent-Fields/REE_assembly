@@ -99,5 +99,33 @@
       "coherence_gating_not_load_bearing": "C3 FAIL -> alt-coh-ON == alt-coh-OFF; any C1/C2 difference is packet-presence / action-only, not co-binding coherence. /failure-autopsy; do NOT queue the joint-specificity successor.",
       "substrate_not_ready_requeue": "R0/R1/R2 unmet -> candidate pool collapsed / compose inert / gate not mode-distinct. Re-queue with a diversity-restoring regime; NOT a MECH-294 result."
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_episodes": 12,
+    "steps_per_ep": 60,
+    "grid_size": 8,
+    "num_hazards": 3,
+    "num_resources": 3,
+    "forced_benefit": 1.0,
+    "forced_drive": 0.9,
+    "arms": [
+      "ARM_0_OFF",
+      "ARM_1_JOINT",
+      "ARM_2_ALTERNATION",
+      "ARM_3_SHUFFLED",
+      "ARM_4_ALT_COH_OFF"
+    ],
+    "compose_on": true,
+    "thresholds": {
+      "tv_margin": 0.1,
+      "diversity_floor": 2.0,
+      "coherence_order_margin": 0.5,
+      "min_seeds_2of3": 2
+    }
   }
 }

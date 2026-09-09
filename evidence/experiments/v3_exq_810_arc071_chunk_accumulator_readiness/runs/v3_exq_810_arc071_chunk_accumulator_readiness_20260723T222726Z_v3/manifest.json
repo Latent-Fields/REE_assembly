@@ -98,5 +98,95 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "e228d8f303ccb09eb32c1eb6ef5e12b26abf08b81477278774a5034abb2e22ab"
+  "substrate_hash": "e228d8f303ccb09eb32c1eb6ef5e12b26abf08b81477278774a5034abb2e22ab",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2031.1097396528348,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_FORM",
+      "ARM_FULL"
+    ],
+    "n_episodes": 120,
+    "steps_per_episode": 24,
+    "chunk_min_repetitions": 5,
+    "chunk_window_trials": 60,
+    "chunk_crystallisation_min": 2,
+    "min_chunks_formed": 1,
+    "min_crystallised": 1,
+    "outcome_spread_floor": 0.05,
+    "seed_pass_fraction": 0.6666666666666666,
+    "arm_config_slices": {
+      "ARM_OFF": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": false,
+        "use_chunk_maintenance": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false
+      },
+      "ARM_FORM": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false
+      },
+      "ARM_FULL": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false
+      }
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ]
 }

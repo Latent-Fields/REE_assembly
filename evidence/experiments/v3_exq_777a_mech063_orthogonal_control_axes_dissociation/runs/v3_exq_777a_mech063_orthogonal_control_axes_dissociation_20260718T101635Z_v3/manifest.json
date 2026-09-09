@@ -220,5 +220,77 @@
       }
     },
     "summary": "MECH-063 rank-2 test on the production control plane (V3-EXQ-777a, supersedes V3-EXQ-777). Two independently-toggled regulators route to two E3-softmax parameters (score-bias vs temperature). PASS = their standardised behavioural effect vectors are non-collinear on a pool of seeds with demonstrated DV headroom and demonstrated per-seed axis authority (rank-2, control is NOT one scalar). FAIL/weakens = parallel on that same clean pool. FAIL/non_contributory = the run could not test the claim, with the binding cause named by the label (sample_starvation / dv_saturation / axis_authority_starvation / substrate_not_ready). The 777 artifact -- a saturated score-axis DV read as collinearity -- is structurally unreachable here."
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 8750.385844042,
+  "config": {
+    "seeds": [
+      11,
+      17,
+      23,
+      29,
+      37,
+      3,
+      5,
+      13,
+      19,
+      41,
+      53,
+      61,
+      71,
+      83
+    ],
+    "stopping_rule": "sample_driven_selects",
+    "target_selects": 250,
+    "min_selects": 200,
+    "max_env_steps_per_cell": 4000,
+    "max_episodes_per_cell": 400,
+    "steps_per_episode": 300,
+    "progress_ticks": 10,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 3
+    },
+    "noop_class": 4,
+    "tonic_vigor": {
+      "v_t_floor": 0.5,
+      "w_action": 0.5,
+      "w_passive": 0.5,
+      "bias_scale": 1.0,
+      "form": "additive"
+    },
+    "noise_floor": {
+      "alpha": 1.0,
+      "min_temperature": 2.0
+    },
+    "thresholds": {
+      "MIN_SELECTS": 200,
+      "TEMP_LIFT_FLOOR": 0.5,
+      "E_SAT_CEIL": 0.98,
+      "D_SAT_LOW": 0.05,
+      "D_SAT_HIGH": 0.95,
+      "EFFECT_FLOOR": 0.05,
+      "MIN_INFORMATIVE_SEEDS": 3,
+      "SIN_MARGIN": 0.5,
+      "C1_SEED_FRAC": 0.75
+    },
+    "supersedes": "V3-EXQ-777"
+  },
+  "seeds": [
+    11,
+    17,
+    23,
+    29,
+    37,
+    3,
+    5,
+    13,
+    19,
+    41,
+    53,
+    61,
+    71,
+    83
+  ]
 }

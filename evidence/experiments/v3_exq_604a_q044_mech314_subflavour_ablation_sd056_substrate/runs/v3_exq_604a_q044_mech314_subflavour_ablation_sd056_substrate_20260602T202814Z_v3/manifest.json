@@ -61,5 +61,86 @@
     "MECH-314a",
     "MECH-314b",
     "MECH-314c"
-  ]
+  ],
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_warmup_episodes": 60,
+    "p1_measurement_episodes": 20,
+    "steps_per_episode": 200,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_OFF",
+        "label": "structured_curiosity_off_parent_anchor",
+        "use_structured_curiosity": false,
+        "use_curiosity_novelty": false,
+        "use_curiosity_uncertainty": false,
+        "use_curiosity_learning_progress": false
+      },
+      {
+        "arm_id": "ARM_ALL_ON",
+        "label": "novelty_uncertainty_lp_all_on",
+        "use_structured_curiosity": true,
+        "use_curiosity_novelty": true,
+        "use_curiosity_uncertainty": true,
+        "use_curiosity_learning_progress": true
+      },
+      {
+        "arm_id": "ARM_NOVELTY_OFF",
+        "label": "mech314a_off",
+        "use_structured_curiosity": true,
+        "use_curiosity_novelty": false,
+        "use_curiosity_uncertainty": true,
+        "use_curiosity_learning_progress": true
+      },
+      {
+        "arm_id": "ARM_UNCERTAINTY_OFF",
+        "label": "mech314b_off",
+        "use_structured_curiosity": true,
+        "use_curiosity_novelty": true,
+        "use_curiosity_uncertainty": false,
+        "use_curiosity_learning_progress": true
+      },
+      {
+        "arm_id": "ARM_LP_OFF",
+        "label": "mech314c_off",
+        "use_structured_curiosity": true,
+        "use_curiosity_novelty": true,
+        "use_curiosity_uncertainty": true,
+        "use_curiosity_learning_progress": false
+      }
+    ],
+    "sd056_weight": 0.05,
+    "curiosity_bias_scale": 0.5,
+    "curiosity_weight": 0.25,
+    "c0_pairwise_dist_floor": 0.03,
+    "distinct_margin": 0.03,
+    "min_seeds_per_arm_for_pass": 2,
+    "e2_contrastive_lr": 0.001
+  }
 }

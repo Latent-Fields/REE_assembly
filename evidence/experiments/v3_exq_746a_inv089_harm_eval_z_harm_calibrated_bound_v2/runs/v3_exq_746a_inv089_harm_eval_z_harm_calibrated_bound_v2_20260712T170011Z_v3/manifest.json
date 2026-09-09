@@ -40,5 +40,78 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 33.829429322853684,
+  "config": {
+    "seeds": [
+      42,
+      7,
+      19,
+      3,
+      11,
+      23,
+      47,
+      101
+    ],
+    "onset_episodes": [
+      0,
+      1,
+      4,
+      12,
+      30
+    ],
+    "steps_per_ep": 50,
+    "collect_episodes": 14,
+    "dv_epochs": 40,
+    "dv_batch": 64,
+    "dv_lr": 0.001,
+    "dv_grad_clip": 1.0,
+    "heldout_frac": 0.3,
+    "ridge_lambda": 1.0,
+    "collect_seed_base": 70000,
+    "mature_seed_base": 60000,
+    "dv_train_seed": 90002,
+    "decode_split_seed": 90003,
+    "hazard_neighbourhood_radius": 2,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 5,
+      "num_resources": 5,
+      "use_proxy_fields": true,
+      "env_drift_prob": 0.3,
+      "env_drift_interval": 1,
+      "limb_damage_enabled": true,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "scheduled_external_hazard_enabled": false
+    },
+    "targets": {
+      "dens": "local_density",
+      "at": "at_agent",
+      "next": "next_step"
+    },
+    "primary_target": "dens",
+    "thresholds": {
+      "MONOTONE_RHO_MIN": 0.8,
+      "COUPLING_RHO_MIN": 0.8,
+      "DV_DELTA_SD_MULT": 2.0,
+      "DV_DECODABLE_FLOOR": 0.05,
+      "RAW_TARGET_STD_FLOOR": 0.008,
+      "ZWORLD_HARM_DECODE_740A_REF": 0.034
+    }
+  },
+  "seeds": [
+    42,
+    7,
+    19,
+    3,
+    11,
+    23,
+    47,
+    101
+  ]
 }

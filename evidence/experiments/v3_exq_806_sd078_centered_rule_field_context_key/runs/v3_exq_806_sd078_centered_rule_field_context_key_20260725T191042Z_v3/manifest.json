@@ -81,5 +81,68 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "b28e145baa8febde8f4aca255d42e87d08f12bc45e14d4cfdaef51bbd69f6547"
+  "substrate_hash": "b28e145baa8febde8f4aca255d42e87d08f12bc45e14d4cfdaef51bbd69f6547",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 299.268991685,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "n_episodes": 12,
+    "steps_per_episode": 32,
+    "dist_floor": 0.05,
+    "min_live_rules": 2,
+    "off_dist_ceil": 1e-09,
+    "cone_min_cosine_floor": 0.9,
+    "seed_pass_fraction": 0.6666666666666666,
+    "arm_config_slice_off": {
+      "env": {
+        "size": 8,
+        "num_hazards": 0,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 12,
+        "steps": 32
+      },
+      "alpha_world": 0.9,
+      "use_candidate_rule_field": true,
+      "use_lateral_pfc_analog": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_cue_centering": false,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "arm_config_slice_on": {
+      "env": {
+        "size": 8,
+        "num_hazards": 0,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 12,
+        "steps": 32
+      },
+      "alpha_world": 0.9,
+      "use_candidate_rule_field": true,
+      "use_lateral_pfc_analog": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_cue_centering": true,
+      "crf_cue_baseline_alpha": 0.02
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ]
 }

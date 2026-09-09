@@ -43,5 +43,29 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_episodes": 1000,
+    "steps_per_episode": 200,
+    "eval_window_episodes": 100,
+    "novelty_weights_swept": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "env_interoceptive_noise_enabled": true,
+    "env_microhabitat_enabled": true,
+    "env_harm_gradient_enabled": true,
+    "env_harm_gradient_scale": 0.3,
+    "env_resource_respawn_on_consume": true,
+    "agent_alpha_world": 0.9,
+    "novelty_ema_update": "per_step_via_compute_prediction_loss_no_grad"
+  }
 }

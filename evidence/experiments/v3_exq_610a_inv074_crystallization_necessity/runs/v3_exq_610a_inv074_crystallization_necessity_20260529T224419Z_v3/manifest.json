@@ -50,5 +50,17 @@
   },
   "failure_signatures": [],
   "evidence_direction_note": "2026-06-01T17:22:37Z governance: superseded by V3-EXQ-610b (fresh 2026-06-01 rerun, same design, identical D2-control-not-collapsing signature). Diagnosis preserved in failure_autopsy_V3-EXQ-610a_2026-06-01 (env/test-bed ceiling). Excluded from indexer scoring; live disposition carried by 610b.",
-  "superseded_by": "V3-EXQ-610b"
+  "superseded_by": "V3-EXQ-610b",
+  "config": {
+    "dacc_suppression_weight": 0.5,
+    "max_episodes": 2500,
+    "noise_floor_weight": 0.3,
+    "residue_ewc_lambda": 0.1,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "steps_per_episode": 200
+  }
 }

@@ -40,5 +40,10 @@
   },
   "failure_signatures": [],
   "evidence_direction_note": "V3-EXQ-629 (2026-06-03 autopsy): outcome FAIL, NO_NATURAL_COMMITMENT (C1 non-vacuity fail). The agent never naturally commits -- mean_score_margin 0.00074 is ~70x below the MECH-090 admission floor 0.05 in every window (nav axis fine at ~1.0), so the R-c admission AND never fires and there is no beta latch for MECH-342 to release. Compounded by an inert degradation driver (running_variance max 3.9e-5; env-side commit_readiness auto-drive unwired). NOT a MECH-342 falsification; claim_ids=[] so no claim weight. MECH-342 stays implemented_validated_v3_exq_592g, ecological validation BLOCKED. epistemic_category measurement_test_design_defect. Redesign queued (629b: establish commitment precondition -- recalibrate score_margin_floor or commitment-inducing curriculum -- AND fix the degradation driver). Score_margin degeneracy cross-linked to MECH-341 as an E3-selection-landscape watch item.",
-  "epistemic_category": "measurement_test_design_defect"
+  "epistemic_category": "measurement_test_design_defect",
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

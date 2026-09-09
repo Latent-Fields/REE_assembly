@@ -122,5 +122,26 @@
     "interaction_mean_nats": 0.01725,
     "interaction_pstdev_nats": 0.01495,
     "interaction_margin_nats": 0.1
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_banks": 80,
+    "k_candidates": 8,
+    "m_max_frac": 0.4,
+    "k_sd": 1.5,
+    "floor_nats": 0.1,
+    "f_range_floor": 0.1,
+    "e_off_floor": 0.05,
+    "dem_lift_floor": 0.2,
+    "arms": [
+      "ARM_OFF",
+      "ARM_DEM",
+      "ARM_GNG",
+      "ARM_BOTH"
+    ]
   }
 }

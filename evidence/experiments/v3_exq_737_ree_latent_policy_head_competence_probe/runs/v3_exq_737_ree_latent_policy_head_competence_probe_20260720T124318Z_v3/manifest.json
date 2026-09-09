@@ -208,5 +208,36 @@
   },
   "machine": "ree-cloud-4",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "3d99e3c3b772b1e831fed2303ced019abc8bccc24d51e8fb6aac6433c7385630"
+  "substrate_hash": "3d99e3c3b772b1e831fed2303ced019abc8bccc24d51e8fb6aac6433c7385630",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 25653.571603,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rungs": [
+      "D0_baseline_724",
+      "D3_hazard_free"
+    ],
+    "arms": [
+      "ree_bias_head",
+      "ppo_ree_latent",
+      "ppo_raw_obs",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "p0_warmup_episodes": 200,
+    "p1_reinforce_episodes": 90,
+    "p1_ppo_episodes": 1000,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "competence_resource_floor": 1.0
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

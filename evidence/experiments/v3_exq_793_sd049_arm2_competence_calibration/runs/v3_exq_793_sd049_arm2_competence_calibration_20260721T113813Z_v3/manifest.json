@@ -105,5 +105,101 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1"
+  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 87530.82930937302,
+  "config": {
+    "arms": [
+      {
+        "arm": "A00",
+        "label": "base_curriculum_density_off",
+        "curriculum_amended": false,
+        "density_on": false
+      },
+      {
+        "arm": "A10",
+        "label": "amended_curriculum_density_off",
+        "curriculum_amended": true,
+        "density_on": false
+      },
+      {
+        "arm": "A01",
+        "label": "base_curriculum_density_on",
+        "curriculum_amended": false,
+        "density_on": true
+      },
+      {
+        "arm": "A11",
+        "label": "amended_curriculum_density_on",
+        "curriculum_amended": true,
+        "density_on": true
+      }
+    ],
+    "base_curriculum": {
+      "sd049_on": true,
+      "n_resource_types": 3,
+      "curriculum_amended": false,
+      "density_on": false,
+      "stage0_budget": 20,
+      "stage0b_budget": 10,
+      "p0_budget": 100,
+      "hazard_stage_budget": 40,
+      "hazard_stage_num_resources": 2,
+      "hazard_stage_num_hazards": 4,
+      "hazard_stage_survival_gate_steps": 75,
+      "hazard_stage_stability_window": 10,
+      "p1_budget": 50,
+      "p2_budget": 15,
+      "behav_eval_episodes": 15,
+      "train_steps": 200,
+      "p0_num_hazards": 1,
+      "p1_hold_fraction": 0.3,
+      "p2_hfa_guard": 0.3,
+      "p1_reef_spawn_hold_fraction": 0.4,
+      "seed_gain": 1.5,
+      "seed_benefit_threshold": 0.02,
+      "seed_drive_floor": 0.9,
+      "cue_recall_gain": 0.2,
+      "world_dim": 32,
+      "alpha_world": 0.9,
+      "drive_weight": 2.0,
+      "dry_run": false
+    },
+    "amended_curriculum": {
+      "sd049_on": true,
+      "n_resource_types": 3,
+      "curriculum_amended": true,
+      "density_on": true,
+      "stage0_budget": 20,
+      "stage0b_budget": 10,
+      "p0_budget": 150,
+      "hazard_stage_budget": 80,
+      "hazard_stage_num_resources": 3,
+      "hazard_stage_num_hazards": 4,
+      "hazard_stage_survival_gate_steps": 75,
+      "hazard_stage_stability_window": 10,
+      "p1_budget": 50,
+      "p2_budget": 15,
+      "behav_eval_episodes": 15,
+      "train_steps": 200,
+      "p0_num_hazards": 1,
+      "p1_hold_fraction": 0.3,
+      "p2_hfa_guard": 0.3,
+      "p1_reef_spawn_hold_fraction": 0.4,
+      "seed_gain": 1.5,
+      "seed_benefit_threshold": 0.02,
+      "seed_drive_floor": 0.9,
+      "cue_recall_gain": 0.2,
+      "world_dim": 32,
+      "alpha_world": 0.9,
+      "drive_weight": 2.0,
+      "dry_run": false
+    },
+    "density_flag_supported": true
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

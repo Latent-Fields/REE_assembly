@@ -94,5 +94,27 @@
       }
     ]
   },
-  "evidence_direction_note": "V3-EXQ-680c substrate_not_ready_requeue (non_degenerate=false). failure_autopsy_V3-EXQ-680c CONFIRMED: readiness cosine NaN poisoned by 4/5 PAIR seeds diverging to the world_R2 clamp floor despite GRAD_CLIP_NORM=1.0 (the 680b grad-clip+bounded-score redesign did NOT cure the co-training instability); the one stable seed (789) shows a genuine net-negative shared-encoder cosine (-0.40). MECH-423 NOT weakened (the self-route is claim-designed). Route /queue-experiment 680d (stabilise PAIR co-training + guard the cosine aggregate); no substrate gap. Governance 2026-06-15."
+  "evidence_direction_note": "V3-EXQ-680c substrate_not_ready_requeue (non_degenerate=false). failure_autopsy_V3-EXQ-680c CONFIRMED: readiness cosine NaN poisoned by 4/5 PAIR seeds diverging to the world_R2 clamp floor despite GRAD_CLIP_NORM=1.0 (the 680b grad-clip+bounded-score redesign did NOT cure the co-training instability); the one stable seed (789) shows a genuine net-negative shared-encoder cosine (-0.40). MECH-423 NOT weakened (the self-route is claim-designed). Route /queue-experiment 680d (stabilise PAIR co-training + guard the cosine aggregate); no substrate gap. Governance 2026-06-15.",
+  "elapsed_seconds": 845.91353058815,
+  "config": {
+    "arms": [
+      "ARM_ISOLATED",
+      "ARM_INTEGRATED_PAIR",
+      "ARM_INTEGRATED_TRIPLE"
+    ],
+    "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011
+    ],
+    "train_episodes": 40,
+    "steps_per_episode": 80,
+    "p1_steps": 300,
+    "eval_steps": 300,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "num_resources": 3
+  }
 }

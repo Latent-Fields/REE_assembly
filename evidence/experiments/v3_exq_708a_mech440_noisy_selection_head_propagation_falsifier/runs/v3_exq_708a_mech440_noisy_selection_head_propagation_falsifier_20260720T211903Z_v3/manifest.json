@@ -138,5 +138,31 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "970948cec24c7854a0f3f96a4306d4efe4e42a10ed0d286bd56cf0a6b2968938"
+  "substrate_hash": "970948cec24c7854a0f3f96a4306d4efe4e42a10ed0d286bd56cf0a6b2968938",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 57353.336976,
+  "config": {
+    "design": "3-arm MECH-440 noise-injection-site falsifier (A0_OFF / ARM_TEMP / ARM_NOISE_SINGLE) on the 569i top-k + MECH-448 demotion SOTA conversion stack + per-seed-divergent gating + matched-pre-commit-variance non-vacuity + thrash-vs-carve pre-commit-vs-committed entropy discriminator; CORRECTED RE-RUN of V3-EXQ-708 with a fresh-select freshness guard on the pre-commit DV",
+    "swept_variables": "exploration-injection site only: none (A0_OFF) / softmax temperature (ARM_TEMP, MECH-313 noise_floor) / selection-head weight noise (ARM_NOISE_SINGLE, MECH-440)",
+    "instrument_repair_vs_708": "agent.e3.last_score_diagnostics and .last_precommit_probs are cleared to None immediately before EVERY agent.select_action, and a row is recorded ONLY if select() repopulated them. V3-EXQ-708 read both once per env step with no clear, so each vector was replicated by its hold duration under a 5-20-step MECH-093-modulated E3 cadence -- arm-dependently, hence directionally. n_fresh_select / n_latched / fresh_select_yield and per-arm-seed exposure_imbalance_vs_off are recorded in the manifest itself.",
+    "the_isolated_factor": "all arms run the SAME SOTA conversion stack; ARM_TEMP raises the softmax temperature (pre-commit only, the 687 non-propagating control); ARM_NOISE_SINGLE injects factorised-Gaussian weight noise into _modulatory_accum BEFORE the committed within-eligible argmin (propagates).",
+    "matched_constant_sota_stack": "use_f_eligibility_demotion=True + use_f_eligibility_adaptive_floor=True + use_go_nogo_constitution=True + use_modulatory_selection_authority=True + use_modulatory_channel_routing + top_k shortlist (k=3, 569i) + use_dacc + use_finer_channel_gating + use_learned_settling_step",
+    "primary_dv": "committed-action-class entropy (nats), divergent seeds only",
+    "secondary_dv": "pre-commit sampling-class entropy (nats) from e3.last_precommit_probs (thrash-vs-carve)",
+    "phases": "P0 e2-train (CRF matures, finer gating ON) -> P1 frozen-encoder bias-head REINFORCE -> P2 measure (e2+bias frozen; gating keeps adapting)",
+    "mech440_noise": "use_noisy_selection_head=True on the NOISE arms; sigma_init=1.0, weight=1.0, local confidence-EMA self-anneal",
+    "temp_control": "use_noise_floor=True on ARM_TEMP; alpha=1.5, min_temperature=1.0 (effective_T ~ 2.5)",
+    "alpha_world": 0.9,
+    "reef_enabled": true,
+    "reef_bipartite_layout": true,
+    "mech440_relationship": "this IS the MECH-440 injection-site falsifier; supports => weight noise propagates where temperature does not; weakens => the noise thrashes at pre-commit and washes at the committed argmax, so the injection site is not the binding constraint (NOT an ARC-110 route -- V3-EXQ-707b settled that branch)"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ]
 }

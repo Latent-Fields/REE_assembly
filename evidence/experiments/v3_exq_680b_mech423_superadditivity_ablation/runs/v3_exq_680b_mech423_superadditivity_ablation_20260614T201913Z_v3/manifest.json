@@ -102,5 +102,25 @@
     ]
   },
   "evidence_direction_note": "evidence_direction=superseded by V3-EXQ-680c (680c supersedes 680b per the EXQ supersession policy). 680b self-routed additive_below_margin/inconclusive (mean delta_pair +0.539>0, 0/3 seeds clear hardened margin 2.455); failure_autopsy_V3-EXQ-680b CONFIRMED the lone -1.19 seed (456) is a numerical-instability artifact (world head diverged, grad norm 46x stable; affordance head improved on the same seed), NOT negative transfer -- MECH-423 NOT weakened. Scoring-excluded. Governance 2026-06-15.",
-  "superseded_by": "v3_exq_680c_mech423_superadditivity_ablation"
+  "superseded_by": "v3_exq_680c_mech423_superadditivity_ablation",
+  "elapsed_seconds": 501.971964597702,
+  "config": {
+    "arms": [
+      "ARM_ISOLATED",
+      "ARM_INTEGRATED_PAIR",
+      "ARM_INTEGRATED_TRIPLE"
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "train_episodes": 40,
+    "steps_per_episode": 80,
+    "p1_steps": 300,
+    "eval_steps": 300,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "num_resources": 3
+  }
 }

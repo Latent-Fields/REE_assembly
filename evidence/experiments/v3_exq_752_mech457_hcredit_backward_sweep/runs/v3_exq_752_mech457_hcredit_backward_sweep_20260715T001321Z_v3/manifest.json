@@ -77,5 +77,45 @@
       "oracle_clears_floor_at_d3": true,
       "hcredit_vs_sparse_vs_anchor_spread": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 19350.325439,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rung": "D3_hazard_free",
+    "arms": [
+      "sparse_zw",
+      "hcredit_zw",
+      "sparse_raw",
+      "hcredit_raw"
+    ],
+    "anchors": [
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "p0_warmup_episodes": 200,
+    "rl_episodes": 1000,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "actor_critic_hidden": 128,
+    "cotrain_encoder": true,
+    "ac_lr": 0.0003,
+    "ac_gamma": 0.99,
+    "entropy_beta": 0.03,
+    "credit_replay_passes": 3,
+    "credit_topk": 32,
+    "credit_gamma": 0.9,
+    "lift_above_plateau": 7.83,
+    "competence_resource_floor": 1.0
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

@@ -141,5 +141,66 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10",
-  "substrate_hash": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b"
+  "substrate_hash": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 827.582003097,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "ticks_per_seed": 3000,
+    "regimes": [
+      {
+        "id": "harm_incumbent",
+        "entropy_bias_scale": 0.0,
+        "expected_incumbent": "harm_weighted",
+        "expected_incumbent_share": 0.9368
+      }
+    ],
+    "urgency_manipulation": "exogenous_iid_uniform_over_pre_registered_grid",
+    "urgency_levels": [
+      0.04,
+      0.1,
+      0.16,
+      0.22,
+      0.28,
+      0.34
+    ],
+    "urgency_weight_baseline": 0.12,
+    "modulatory_authority_gain": 0.5,
+    "alpha_world": 0.9,
+    "env": {
+      "cls": "CausalGridWorldV2",
+      "use_proxy_fields": true,
+      "hazard_harm": 0.5
+    },
+    "thresholds": {
+      "MONOTONIC_RHO_FLOOR": 0.6,
+      "GAP_ABS_FLOOR": 0.02,
+      "GAP_SD_MULTIPLIER": 2.0,
+      "LOG_VAR_GAP_FLOOR": 0.1,
+      "AUTHORITY_ACTIVE_FRAC_FLOOR": 0.05,
+      "CHANNEL_RANGE_FLOOR": 0.0001,
+      "SCORE_VARIANCE_FLOOR": 1e-12,
+      "COMMITTED_TICK_FLOOR": 150.0,
+      "INCUMBENT_MARGIN_FLOOR": 0.1,
+      "N_NONTRIVIAL_FLOOR": 1.5,
+      "NONTRIVIAL_SHARE_FLOOR": 0.01,
+      "FIDELITY_TOL": 1e-06,
+      "RANDOMISATION_CORR_CEILING": 0.25,
+      "MIN_TICKS_PER_LEVEL": 30,
+      "MIN_LEVELS_POPULATED": 5
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

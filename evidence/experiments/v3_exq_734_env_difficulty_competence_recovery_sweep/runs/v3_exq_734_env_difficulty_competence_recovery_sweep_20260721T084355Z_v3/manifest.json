@@ -349,5 +349,47 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "b7727b39daf4f35e900cae929601369ac1eff38130dbc647d65ab7f151e70a80",
   "evidence_direction_note": "SUPERSEDED 2026-07-22 (session gracious-austin-6eb2ae). This run's zworld_encoder_guard was RED: the world encoder was a frozen random projection, so the ree_trained_allon / actor-critic arms are uninterpretable as evidence about z_world. CAUSE: the run STRADDLED the SD-070 adoption commit ree-v3 b523b9c (landed 2026-07-20T19:04Z). The manifest timestamp is the manifest-WRITE time, not the start time; elapsed_seconds puts the actual start BEFORE the landing, corroborated by substrate_stability_detail.process_snapshot_drift resolved_at_utc and by the total absence of a zworld_p0_episodes key (post-fix code always emits it). This is NOT a per-copy gap in the adoption -- post-fix runs V3-EXQ-742m-b, V3-EXQ-728b and V3-EXQ-737b all carry zworld_p0_episodes=60 with a GREEN guard. Excluded from scoring so it cannot weight MECH-457 / INV-088 / Q-002 confidence. Flagged for governance rather than adjudicated here.",
-  "superseded_by_substrate": "sd_zworld_warmup_optimizer_group@2026-07-20"
+  "superseded_by_substrate": "sd_zworld_warmup_optimizer_group@2026-07-20",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 60576.522318,
+  "config": {
+    "design": "env-difficulty competence-recovery sweep; 4 difficulty rungs x 4 policy arms x 4 seeds; capability_eval 4-metric yardstick",
+    "difficulty_rungs": {
+      "D0_baseline_724": "control_reproduce",
+      "D1_food_decoupled": "derisk",
+      "D2_proximity_layout_derisked": "derisk",
+      "D3_hazard_free": "derisk_decisive"
+    },
+    "difficulty_sweep_axes": "hazard_food_attraction 0.7->0.0; proximity_harm_scale 0.1->0.0; reef_bipartite_layout True->False; num_hazards 4->0; reef_enabled True->False (+ n_reef_patches 3->0) at the hazard-free D3 rung so 'hazard-free' is genuine",
+    "arms": {
+      "random_walk": "uniform-random -- FLOOR anchor",
+      "ree_trained_allon": "all-ON REE stack (714 ARM_ON) trained on THIS rung's env with the 724-A0 recipe (P0 world-model warmup + P1 two-head REINFORCE, e2 frozen in P1), evaluated via the mechanism-agnostic yardstick REEForwardPolicy",
+      "vanilla_ppo": "matched-capacity NON-REE PPO actor-critic over the RAW observation vector (body_state (+) world_state (+) harm channels) -- learner-adequacy control on the SAME observation interface (folds in 732a); clipped-surrogate PPO + GAE + count-based novelty + running-std reward scaling; greedy unshaped eval",
+      "greedy_oracle": "nearest-resource greedy forager -- CEILING / per-rung readiness anchor"
+    },
+    "load_bearing_dv": "foraging_competence = capability_eval mean resources/episode",
+    "reported_metrics": [
+      "foraging_competence",
+      "survival_horizon",
+      "goal_reach_rate",
+      "planning_depth"
+    ],
+    "reusable_block": "experiments/_lib/capability_eval.py",
+    "all_on_config_sourced_from": "V3-EXQ-714 ARM_ON via V3-EXQ-724",
+    "training_recipe_sourced_from": "V3-EXQ-724 A0_baseline_allon_p1short_frozen",
+    "ppo_learner_sourced_from": "V3-EXQ-732a (power-fixed matched PPO)",
+    "p0_warmup_episodes": 200,
+    "p1_reinforce_episodes": 90,
+    "p1_ppo_episodes": 1000,
+    "e2_train_in_p1": false,
+    "strict_majority_seeds": 3,
+    "alpha_world": 0.9,
+    "use_sleep_loop": false
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ]
 }

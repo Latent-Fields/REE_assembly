@@ -150,5 +150,35 @@
   },
   "machine": "ree-cloud-4",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "77b72ca15cdbf936ed6da372fef29d3e04796fa1f58c10eed452e3960f5bce00"
+  "substrate_hash": "77b72ca15cdbf936ed6da372fef29d3e04796fa1f58c10eed452e3960f5bce00",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 11452.991868,
+  "config": {
+    "design": "trained all-ON capability point; 3 policy arms x 3 seeds",
+    "arms": {
+      "random_walk": "uniform-random action policy -- FLOOR anchor",
+      "ree_trained_allon": "all-ON REE stack (714 ARM_ON) trained with the 724 A0 recipe (P0 world-model warmup + P1 two-head REINFORCE, e2 encoder frozen in P1), evaluated via the yardstick REEForwardPolicy -- the trained-all-ON point",
+      "greedy_oracle": "nearest-resource greedy forager -- CEILING/achievability anchor"
+    },
+    "metrics": [
+      "foraging_competence",
+      "survival_horizon",
+      "goal_reach_rate",
+      "planning_depth"
+    ],
+    "reusable_block": "experiments/_lib/capability_eval.py",
+    "all_on_config_sourced_from": "V3-EXQ-714 ARM_ON via V3-EXQ-724",
+    "training_recipe_sourced_from": "V3-EXQ-724 A0_baseline_allon_p1short_frozen",
+    "p0_warmup_episodes": 200,
+    "p1_reinforce_episodes": 90,
+    "e2_train_in_p1": false,
+    "alpha_world": 0.9,
+    "reef_bipartite_layout": true,
+    "use_sleep_loop": false
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

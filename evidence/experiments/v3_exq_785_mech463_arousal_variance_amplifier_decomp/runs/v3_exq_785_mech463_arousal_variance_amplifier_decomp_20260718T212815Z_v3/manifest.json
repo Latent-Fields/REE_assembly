@@ -189,5 +189,58 @@
   "machine_class": "linux-x86_64-py3.10",
   "substrate_hash": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b",
   "superseded_by": "V3-EXQ-785a",
-  "evidence_direction_note": "Adjudicated by failure_autopsy_V3-EXQ-785_2026-07-19, then SUPERSEDED by V3-EXQ-785a on 2026-07-19. The autopsy had corrected this run to 'mixed' on the reading that AMPLIFICATION was confirmed (total cross-candidate variance 14.1x) while CONCENTRATION was contradicted (incumbent share 0.970 -> 0.831, rho -0.83). V3-EXQ-785a re-ran the decomposition with urgency set EXOGENOUSLY -- i.i.d. uniform over a pre-registered grid, so the endogeneity confound (high urgency == near hazard) is broken by construction rather than adjusted away -- across an 8.5x urgency range (0.04-0.34) vs this run's 1.8x endogenous range (0.070-0.125), with gate GREEN and non_degenerate true. BOTH halves vanish: var_total fold 0.970 (rho -0.086) and incumbent share 0.9375 -> 0.9411 (gap +0.0036, under 1 SE at SE ~0.0044, rho +0.31). The null is tight, not underpowered, and internal validity held (effective_threshold 0.3761 -> 0.2570, a real 32% reduction, with nothing downstream responding). So this run's entire profile is attributable to conditioning on an endogenous variable. Two further defects compound it: (a) ~9.0x pseudo-replication -- it read e3.last_score_diagnostics without clearing it, so latched ticks re-recorded the previous tick's diagnostics, making its '3959 committed ticks' ~440 genuine selections; (b) its declared per-tick sink was never transported (Phase 3 cloud workers POST only manifest_bytes), so no reanalysis path exists. Direction moved mixed -> superseded per the CLAUDE.md supersession policy; the indexer treats 'superseded' as inactive, so this run no longer weights MECH-463 confidence or conflict ratios."
+  "evidence_direction_note": "Adjudicated by failure_autopsy_V3-EXQ-785_2026-07-19, then SUPERSEDED by V3-EXQ-785a on 2026-07-19. The autopsy had corrected this run to 'mixed' on the reading that AMPLIFICATION was confirmed (total cross-candidate variance 14.1x) while CONCENTRATION was contradicted (incumbent share 0.970 -> 0.831, rho -0.83). V3-EXQ-785a re-ran the decomposition with urgency set EXOGENOUSLY -- i.i.d. uniform over a pre-registered grid, so the endogeneity confound (high urgency == near hazard) is broken by construction rather than adjusted away -- across an 8.5x urgency range (0.04-0.34) vs this run's 1.8x endogenous range (0.070-0.125), with gate GREEN and non_degenerate true. BOTH halves vanish: var_total fold 0.970 (rho -0.086) and incumbent share 0.9375 -> 0.9411 (gap +0.0036, under 1 SE at SE ~0.0044, rho +0.31). The null is tight, not underpowered, and internal validity held (effective_threshold 0.3761 -> 0.2570, a real 32% reduction, with nothing downstream responding). So this run's entire profile is attributable to conditioning on an endogenous variable. Two further defects compound it: (a) ~9.0x pseudo-replication -- it read e3.last_score_diagnostics without clearing it, so latched ticks re-recorded the previous tick's diagnostics, making its '3959 committed ticks' ~440 genuine selections; (b) its declared per-tick sink was never transported (Phase 3 cloud workers POST only manifest_bytes), so no reanalysis path exists. Direction moved mixed -> superseded per the CLAUDE.md supersession policy; the indexer treats 'superseded' as inactive, so this run no longer weights MECH-463 confidence or conflict ratios.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 459.793166633,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "ticks_per_seed": 800,
+    "regimes": [
+      {
+        "id": "harm_incumbent",
+        "entropy_bias_scale": 0.0,
+        "expected_incumbent": "harm_weighted",
+        "expected_incumbent_share": 0.823
+      },
+      {
+        "id": "entropy_incumbent",
+        "entropy_bias_scale": 1.0,
+        "expected_incumbent": "CH:mech341",
+        "expected_incumbent_share": 1.043
+      }
+    ],
+    "urgency_weight": 0.12,
+    "modulatory_authority_gain": 0.5,
+    "alpha_world": 0.9,
+    "env": {
+      "cls": "CausalGridWorldV2",
+      "use_proxy_fields": true,
+      "hazard_harm": 0.5
+    },
+    "thresholds": {
+      "MONOTONIC_RHO_FLOOR": 0.6,
+      "GAP_ABS_FLOOR": 0.02,
+      "GAP_SD_MULTIPLIER": 2.0,
+      "AUTHORITY_ACTIVE_FRAC_FLOOR": 0.05,
+      "CHANNEL_RANGE_FLOOR": 0.0001,
+      "URGENCY_STD_FLOOR": 0.001,
+      "COMMITTED_TICK_FLOOR": 150.0,
+      "INCUMBENT_MARGIN_FLOOR": 0.1,
+      "MIN_TICKS_PER_DECILE": 15,
+      "MIN_DECILES_POPULATED": 6
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

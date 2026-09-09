@@ -70,5 +70,60 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10",
-  "substrate_hash": "f8daed1ef73862bfb546e3271f528a2ad7b054887c0b2fbf4dc02500aa0d870f"
+  "substrate_hash": "f8daed1ef73862bfb546e3271f528a2ad7b054887c0b2fbf4dc02500aa0d870f",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7188.511324526742,
+  "config": {
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 3
+    },
+    "budget_checkpoints": [
+      0,
+      4,
+      10,
+      25
+    ],
+    "train_steps_per_episode": 100,
+    "read_steps_per_episode": 300,
+    "probe_selects": 150,
+    "probe_max_env_steps": 4000,
+    "probe_max_episodes": 4000,
+    "thresholds": {
+      "D_SAT_LOW": 0.05,
+      "D_SAT_HIGH": 0.95,
+      "YIELD_MAJORITY": 0.5,
+      "BASELINE_HEADROOM_777A": 0.35714285714285715,
+      "BASELINE_INFORMATIVE_777A": 0.2857142857142857,
+      "YIELD_MARGIN": 0.1,
+      "CONTROL_MIN_SATURATED_FRAC": 0.5,
+      "MIN_SELECTS_FOR_READ": 50,
+      "MIN_CELLS_READABLE_FRAC": 0.8
+    },
+    "warmup_recipe_reference": {
+      "num_episodes": 25,
+      "steps_per_episode": 100,
+      "regime": "target_env",
+      "probe_selections": 150,
+      "probe_max_env_steps": 4000,
+      "probe_max_episodes": 40
+    }
+  },
+  "seeds": [
+    11,
+    17,
+    23,
+    29,
+    37,
+    3,
+    5,
+    13,
+    19,
+    41,
+    53,
+    61,
+    71,
+    83
+  ]
 }

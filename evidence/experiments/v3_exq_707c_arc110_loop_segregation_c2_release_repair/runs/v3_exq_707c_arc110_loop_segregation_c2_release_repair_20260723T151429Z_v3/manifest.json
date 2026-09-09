@@ -791,5 +791,45 @@
   },
   "machine": "ree-cloud-4",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "172ba39e5e29b552f0cbaa6de3178544f94d8c58eb5d492785e9067115bbf23d"
+  "substrate_hash": "172ba39e5e29b552f0cbaa6de3178544f94d8c58eb5d492785e9067115bbf23d",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 76400.307371,
+  "config": {
+    "design": "4-arm ARC-110 loop-segregation validation (A0_SINGLE_ARENA / A1_LOOPS / ARM_NOISE in-layer null / ARM_DROP_LIMBIC) + per-seed-divergent gating + live-cross-loop-variance non-degeneracy gate + LIVE in-layer same-layer null gate (707a: null-liveness, not null-lift)",
+    "arms": "A0_SINGLE_ARENA (use_loop_segregation=False) / A1_LOOPS (ARC-110 motor/assoc/limbic + ARC-109 D1/D2 + MECH-452 loop-local traces) / ARM_NOISE (A1 + loop_segregation_noise_on) / ARM_DROP_LIMBIC (A1, limbic loop remapped into associative)",
+    "swept_variables": "use_loop_segregation (A0 off, loop arms on) + loop_segregation_noise_on (ARM_NOISE) + limbic-loop channel-map ablation (ARM_DROP_LIMBIC). Finer-channel gating + learned settling ON on ALL arms.",
+    "the_isolated_factor": "loop segregation only: A0 runs the single-arena within-eligible argmin over the finer channels; A1 partitions the SAME finer channels into motor=F / associative=dACC+lPFC / limbic=OFC+liking+vigour loops with within-loop competition first + Haber ascending-spiral arbitration after + per-loop zscore normalisation (strips F's magnitude advantage). D1/D2 + loop-local traces are inert without loops, so the functional swept variable IS loop segregation.",
+    "matched_constant_arithmetic_envelope": "use_f_eligibility_demotion=True + use_f_eligibility_adaptive_floor=True (689e) + use_go_nogo_constitution=True (689g) + use_modulatory_selection_authority=True (643a) + use_modulatory_channel_routing (cand_world_summary) + top_k shortlist (k=3, 569i)",
+    "matched_diversity_stack": "MECH-341 stratified + use_dacc (MECH-260 perseveration No-Go feed) + use_gated_policy + use_lateral_pfc_analog (lateral_pfc_train_rule_bias_head=True, TRAINED in P1 REINFORCE) + SD-056 all levers + the matured/maintained CRF pool + use_candidate_rule_field + use_finer_channel_gating=True + use_learned_settling_step=True",
+    "settling_W_lat": "ON on ALL arms (the within-loop settling each segregated loop runs; on A0 the legacy single-arena settling)",
+    "primary_dv": "committed-action-class entropy (nats), interpreted on divergent seeds only",
+    "phases": "P0 e2-train (CRF matures, finer gating ON) -> P1 frozen-encoder bias-head REINFORCE -> P2 e2+bias frozen, gating + loops KEEP adapting",
+    "learning_wiring": "w_chan_finer learns via e3.post_action_update driven by agent.update_residue every waking tick; on the loop arms credit is loop-local (MECH-452); the S2 null is selection-only (no learning write)",
+    "z_goal_enabled": true,
+    "drive_weight": 2.0,
+    "alpha_world": 0.9,
+    "reef_enabled": true,
+    "reef_bipartite_layout": true,
+    "sd056_amend_active": true,
+    "loop_segregation_normalize": "zscore",
+    "loop_segregation_noise_alpha": 1.0,
+    "loop_default_channel_map": "motor=F; associative=dACC+lPFC; limbic=OFC+liking+vigour (built-in _LOOP_DEFAULT_CHANNEL_MAP)",
+    "drop_limbic_channel_map": "limbic channels remapped into associative -> limbic loop empty (per-loop ablation)",
+    "reuse_baseline_from": null,
+    "reusable_arm_ids": [
+      "A0_SINGLE_ARENA"
+    ],
+    "use_differentiable_cem": "NOT FLIPPED (default False; SD-055 safety note)",
+    "arc110_relationship": "this IS the ARC-110 validation -- the gate cleared by 704b FAIL-to-convert; supports => single-arena collapse was a binding constraint, weakens => ceiling intrinsic"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ]
 }

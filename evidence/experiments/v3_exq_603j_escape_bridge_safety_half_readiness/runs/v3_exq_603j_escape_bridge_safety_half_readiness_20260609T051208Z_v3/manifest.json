@@ -94,5 +94,33 @@
       "substrate_not_ready_requeue": "re-queue as V3-EXQ-603k (fix the probe's predictor-population / retained-threat driver -- the positive control did not present a clear trained-safe signal, or no retained threat); do NOT weaken SD-059/MECH-358.",
       "safety_half_trained_signal_inert": "FAIL with readiness met -> /failure-autopsy on THIS readiness diagnostic: the agent fed a clear trained signal + the threat gate opened but the safety half did not credit -> a wiring regression in the bridge/agent safety-credit path. Do NOT rerun 603i; do NOT treat as bridge falsification."
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_train_rounds": 40,
+    "warmup_ticks": 8,
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "directed_class": 2,
+    "harm_a_high": 0.85,
+    "harm_a_low": 0.45,
+    "obs_dims": {
+      "world_obs_dim": 250,
+      "body_obs_dim": 12,
+      "harm_obs_dim": 50,
+      "harm_obs_a_dim": 50,
+      "action_dim": 5
+    },
+    "thresholds": {
+      "safety_signal_threshold": 0.5,
+      "escape_threat_floor": 0.1,
+      "min_seeds_2of3": 2
+    }
   }
 }

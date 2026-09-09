@@ -82,5 +82,36 @@
       "C1_auc_gated_above_pass": true,
       "C2_margin_gate_attributable": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 9.627123986370862,
+  "config": {
+    "grid_size": 7,
+    "num_hazards_safe": 0,
+    "num_hazards_unsafe": 8,
+    "num_resources": 2,
+    "k_safe": 3,
+    "k_unsafe": 3,
+    "accum_steps": 120,
+    "heldout_steps": 60,
+    "world_dim": 32,
+    "num_basis_functions": 1024,
+    "kernel_bandwidth": 1.0,
+    "safety_magnitude": 0.01,
+    "quiescent_threshold": 0.5,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      "gated_mech303",
+      "ungated_control"
+    ]
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

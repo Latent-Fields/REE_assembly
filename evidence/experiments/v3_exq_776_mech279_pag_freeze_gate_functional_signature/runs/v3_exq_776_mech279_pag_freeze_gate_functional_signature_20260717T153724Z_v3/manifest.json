@@ -83,5 +83,48 @@
       "S2_committed_state_hysteresis": true,
       "S3_gaba_tone_exit_control": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 0.21994624193757772,
+  "config": {
+    "experiment_type": "v3_exq_776_mech279_pag_freeze_gate_functional_signature",
+    "body_obs_dim": 12,
+    "world_obs_dim": 250,
+    "action_dim": 4,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_theta_freeze": 2.0,
+    "expected_duration_input_threshold": 0.4,
+    "s1_z_levels": [
+      0.6,
+      0.9,
+      1.3,
+      1.7,
+      2.5
+    ],
+    "s1_subthreshold_z": 0.35,
+    "s2_tone": 0.15,
+    "s2_z_hold_base": 0.35,
+    "s2_z_runup": 1.0,
+    "s2_hold_ticks": 8,
+    "s3_tones": [
+      0.5,
+      1.0,
+      1.5
+    ],
+    "s3_z0_base": 3.2,
+    "s3_decay_base": 0.2
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

@@ -93,5 +93,27 @@
       "C2": true,
       "C3": true
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_trials": 40,
+    "world_dim": 128,
+    "continuity_radius": 2.0,
+    "occlude_ticks": 3,
+    "arms": [
+      "ARM_INTACT",
+      "ARM_ABLATION_OFF",
+      "ARM_ABLATION_SHUFFLE"
+    ],
+    "thresholds": {
+      "G1_dcos_floor": 0.1,
+      "C1_reid_floor": 0.6,
+      "C2_shuffle_margin": 0.3,
+      "min_seeds_2of3": 2
+    }
   }
 }

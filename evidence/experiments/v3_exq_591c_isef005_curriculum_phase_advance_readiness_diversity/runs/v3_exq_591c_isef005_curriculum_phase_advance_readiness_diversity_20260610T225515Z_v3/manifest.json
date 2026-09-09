@@ -67,5 +67,29 @@
         "passed": false
       }
     ]
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 160,
+    "steps_per_episode": 200,
+    "grid_size": 12,
+    "h_pos_frac_of_max": 0.2,
+    "phase_0to1_threshold": 0.993963,
+    "h_pos_movement_floor": 0.2,
+    "genuine_exploration_h_pos_mean_floor": 0.2,
+    "genuine_exploration_min_crossings": 2,
+    "arm": "InfantCurriculumScheduler (experiments/infant_curriculum.py)",
+    "diversity_stack": {
+      "use_noise_floor": true,
+      "use_structured_curiosity": true,
+      "use_support_preserving_cem": "default-on (main-path since 2026-05-17)",
+      "magnitudes": "landed defaults (noise_floor_alpha=0.1, curiosity_weight=0.05)"
+    }
   }
 }

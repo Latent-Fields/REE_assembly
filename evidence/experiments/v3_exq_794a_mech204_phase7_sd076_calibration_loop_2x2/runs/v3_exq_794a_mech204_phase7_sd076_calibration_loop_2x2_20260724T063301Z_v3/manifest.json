@@ -440,5 +440,84 @@
   },
   "machine": "ree-cloud-4",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "f569f39451e9746adbc2a81be785826d3bf494e3a4c3a3809ad3d79d6e827969"
+  "substrate_hash": "f569f39451e9746adbc2a81be785826d3bf494e3a4c3a3809ad3d79d6e827969",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 6136.5131432170165,
+  "config": {
+    "grid_size": 12,
+    "steps_per_ep": 200,
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "n_seeds": 3,
+    "lr": 0.0005,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "sws_consolidation_steps": 8,
+    "rem_attribution_steps": 6,
+    "precision_zero_point_ema_alpha": 0.1,
+    "rem_precision_recalibration_step": 0.25,
+    "broadcast_gain": 0.01,
+    "inflation_asymmetry_lo": 0.6,
+    "inflation_asymmetry_hi": 0.8,
+    "inflation_rv_floor": 0.01,
+    "sleep_loop_episodes_K": 1,
+    "tonic_5ht_enabled": true,
+    "arms": [
+      {
+        "arm_id": "ARM_OFF_OFF",
+        "use_rem_precision_broadcast": false,
+        "use_waking_confidence_inflation": false,
+        "waking_confidence_inflation_asymmetry": 0.0
+      },
+      {
+        "arm_id": "ARM_BCAST_ONLY",
+        "use_rem_precision_broadcast": true,
+        "use_waking_confidence_inflation": false,
+        "waking_confidence_inflation_asymmetry": 0.0
+      },
+      {
+        "arm_id": "ARM_INFL_LO",
+        "use_rem_precision_broadcast": false,
+        "use_waking_confidence_inflation": true,
+        "waking_confidence_inflation_asymmetry": 0.6
+      },
+      {
+        "arm_id": "ARM_BOTH_LO",
+        "use_rem_precision_broadcast": true,
+        "use_waking_confidence_inflation": true,
+        "waking_confidence_inflation_asymmetry": 0.6
+      },
+      {
+        "arm_id": "ARM_INFL_HI",
+        "use_rem_precision_broadcast": false,
+        "use_waking_confidence_inflation": true,
+        "waking_confidence_inflation_asymmetry": 0.8
+      },
+      {
+        "arm_id": "ARM_BOTH_HI",
+        "use_rem_precision_broadcast": true,
+        "use_waking_confidence_inflation": true,
+        "waking_confidence_inflation_asymmetry": 0.8
+      }
+    ],
+    "env": {
+      "num_hazards": 3,
+      "num_resources": 3,
+      "hazard_harm": 0.04,
+      "proximity_harm_scale": 0.12,
+      "proximity_benefit_scale": 0.1,
+      "use_proxy_fields": true,
+      "resource_respawn_on_consume": true
+    },
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

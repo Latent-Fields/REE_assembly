@@ -40,5 +40,28 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "elapsed_seconds": 1380.5190358161926,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      {
+        "label": "ARM_0_off",
+        "step": 0.0
+      },
+      {
+        "label": "ARM_1_step_0_25",
+        "step": 0.25
+      }
+    ],
+    "episodes_per_run": 12,
+    "steps_per_episode": 150,
+    "sleep_loop_K": 1,
+    "use_sleep_aggregation_cluster": true,
+    "stepharness_waking": true
+  }
 }

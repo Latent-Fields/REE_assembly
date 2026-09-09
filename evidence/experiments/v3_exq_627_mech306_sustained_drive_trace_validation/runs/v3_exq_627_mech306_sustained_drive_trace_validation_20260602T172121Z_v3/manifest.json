@@ -40,5 +40,30 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "elapsed_seconds": 851.8493645191193,
+  "config": {
+    "arms": [
+      {
+        "label": "ARM_SUSTAINED",
+        "drive_floor": 0.9
+      },
+      {
+        "label": "ARM_OFF",
+        "drive_floor": 0.0
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "drive_ema_alpha": 1.0,
+    "drive_weight": 2.0,
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "n_steps": 200,
+    "grid_size": 12,
+    "dry_run": false
+  }
 }

@@ -85,5 +85,125 @@
       "substrate_not_ready_requeue": "re-queue at higher P0 / check route-range wiring + that the matched-noise control lifts; do NOT promote to 569h",
       "conversion_ceiling_persists_under_levers": "FAIL -> /failure-autopsy: the conversion ceiling survives gain/contrast + shortlist; do NOT auto-promote 569h"
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_warmup_episodes": 60,
+    "p1_measurement_episodes": 20,
+    "steps_per_episode": 200,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_PROPOSER",
+        "label": "proposer_collapsed_reference_additive_range_g0p5",
+        "role": "control_reference",
+        "candidate_summary_source": "proposer",
+        "temperature": 1.0,
+        "normalize_basis": "range",
+        "authority_gain": 0.5,
+        "use_authority": true,
+        "use_shortlist": false
+      },
+      {
+        "arm_id": "ARM_MATCHED_NOISE",
+        "label": "proposer_matched_entropy_temperature_control",
+        "role": "noise_control",
+        "candidate_summary_source": "proposer",
+        "temperature": 2.5,
+        "normalize_basis": "range",
+        "authority_gain": 0.5,
+        "use_authority": true,
+        "use_shortlist": false
+      },
+      {
+        "arm_id": "ARM_LEGACY_E2WF",
+        "label": "e2wf_additive_range_basis_g0p5_no_conversion_bar",
+        "role": "legacy_bar",
+        "candidate_summary_source": "e2_world_forward",
+        "temperature": 1.0,
+        "normalize_basis": "range",
+        "authority_gain": 0.5,
+        "use_authority": true,
+        "use_shortlist": false
+      },
+      {
+        "arm_id": "ARM_STD_G1",
+        "label": "e2wf_conversion_a_std_basis_g1p0",
+        "role": "conversion",
+        "candidate_summary_source": "e2_world_forward",
+        "temperature": 1.0,
+        "normalize_basis": "std",
+        "authority_gain": 1.0,
+        "use_authority": true,
+        "use_shortlist": false
+      },
+      {
+        "arm_id": "ARM_STD_G2",
+        "label": "e2wf_conversion_a_std_basis_g2p0",
+        "role": "conversion",
+        "candidate_summary_source": "e2_world_forward",
+        "temperature": 1.0,
+        "normalize_basis": "std",
+        "authority_gain": 2.0,
+        "use_authority": true,
+        "use_shortlist": false
+      },
+      {
+        "arm_id": "ARM_SHORTLIST",
+        "label": "e2wf_conversion_b_shortlist_then_modulate_m0p25",
+        "role": "conversion",
+        "candidate_summary_source": "e2_world_forward",
+        "temperature": 1.0,
+        "normalize_basis": "range",
+        "authority_gain": 0.5,
+        "use_authority": false,
+        "use_shortlist": true
+      }
+    ],
+    "conversion_arm_ids": [
+      "ARM_STD_G1",
+      "ARM_STD_G2",
+      "ARM_SHORTLIST"
+    ],
+    "treatment_arm_ids": [
+      "ARM_LEGACY_E2WF",
+      "ARM_STD_G1",
+      "ARM_STD_G2",
+      "ARM_SHORTLIST"
+    ],
+    "sd056_weight": 0.05,
+    "matched_entropy_temperature": 2.5,
+    "shortlist_margin": 0.25,
+    "thresholds": {
+      "route_range_floor": 0.01,
+      "c1_pairwise_dist_floor": 0.03,
+      "c3_selected_entropy_floor": 0.3,
+      "min_seeds_for_pass": 2
+    }
   }
 }

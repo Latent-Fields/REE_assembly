@@ -69,5 +69,63 @@
         "passed": true
       }
     ]
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "magnitude_scales": [
+      1.0,
+      2.0,
+      4.0,
+      8.0
+    ],
+    "default_noise_floor_alpha": 0.1,
+    "default_curiosity_weight": 0.05,
+    "swept_arms": [
+      {
+        "arm": "mag_1x",
+        "magnitude_scale": 1.0,
+        "noise_floor_alpha": 0.1,
+        "curiosity_weight": 0.05
+      },
+      {
+        "arm": "mag_2x",
+        "magnitude_scale": 2.0,
+        "noise_floor_alpha": 0.2,
+        "curiosity_weight": 0.1
+      },
+      {
+        "arm": "mag_4x",
+        "magnitude_scale": 4.0,
+        "noise_floor_alpha": 0.4,
+        "curiosity_weight": 0.2
+      },
+      {
+        "arm": "mag_8x",
+        "magnitude_scale": 8.0,
+        "noise_floor_alpha": 0.8,
+        "curiosity_weight": 0.4
+      }
+    ],
+    "n_episodes": 160,
+    "steps_per_episode": 200,
+    "grid_size": 12,
+    "h_pos_frac_of_max": 0.2,
+    "phase_0to1_threshold": 0.993963,
+    "genuine_exploration_h_pos_mean_floor": 0.2,
+    "genuine_exploration_min_crossings": 2,
+    "readiness_range_floor": 0.05,
+    "arm": "InfantCurriculumScheduler (experiments/infant_curriculum.py)",
+    "diversity_stack": {
+      "use_noise_floor": true,
+      "use_structured_curiosity": true,
+      "use_support_preserving_cem": "default-on (main-path since 2026-05-17)",
+      "swept_knobs": "noise_floor_alpha + curiosity_weight scaled jointly above landed defaults"
+    }
   }
 }

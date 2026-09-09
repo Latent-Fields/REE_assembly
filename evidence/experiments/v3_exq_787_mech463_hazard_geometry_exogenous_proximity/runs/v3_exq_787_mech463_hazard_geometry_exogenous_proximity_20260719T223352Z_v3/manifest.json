@@ -409,5 +409,140 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.11.0+cpu",
-  "substrate_hash": "f64a92fcfae87ffecb0fcb1ed17238dd3fbf98bda5a420f1cc91225c418e578c"
+  "substrate_hash": "f64a92fcfae87ffecb0fcb1ed17238dd3fbf98bda5a420f1cc91225c418e578c",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7140.677406819,
+  "config": {
+    "seeds_hazard_arms": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "seeds_expressivity_arm": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "ticks_per_seed": 2000,
+    "a3_ticks_per_seed": 1000,
+    "window_steps": 10,
+    "hazard_distances_far_to_near": [
+      7,
+      5,
+      3,
+      2,
+      1
+    ],
+    "hazard_prox_expected_by_level": [
+      0.222222,
+      0.285714,
+      0.4,
+      0.5,
+      0.666667
+    ],
+    "a3_fixed_distance": 3,
+    "a3_ao_std_floors": [
+      0.2,
+      0.6,
+      1.2
+    ],
+    "urgency_clamp": 0.16,
+    "urgency_weight_baseline": 0.12,
+    "alpha_world": 0.9,
+    "modulatory_authority_gain": 0.5,
+    "episode_start_cell": [
+      5,
+      5
+    ],
+    "env": {
+      "use_proxy_fields": true,
+      "hazard_harm": 0.5,
+      "num_hazards": 1,
+      "env_drift_prob": 0.0
+    },
+    "expected_incumbent": "harm_weighted",
+    "expected_incumbent_share": 0.9368,
+    "arms": [
+      {
+        "id": "hazard_exog_urgency_clamped",
+        "kind": "hazard_sweep",
+        "urgency_mode": "clamped",
+        "urgency_clamp": 0.16,
+        "ao_std_floor": 0.2
+      },
+      {
+        "id": "hazard_exog_urgency_free",
+        "kind": "hazard_sweep",
+        "urgency_mode": "free",
+        "urgency_clamp": null,
+        "ao_std_floor": 0.2
+      },
+      {
+        "id": "expressivity_positive_control",
+        "kind": "ao_sweep",
+        "urgency_mode": "clamped",
+        "urgency_clamp": 0.16,
+        "ao_std_floor": null
+      }
+    ],
+    "effect_floors": {
+      "log10_var_slope_abs_floor": 0.0287,
+      "incumbent_share_slope_abs_floor": 0.0035,
+      "se_multiplier": 2.0,
+      "small_effect_fraction": 0.25
+    },
+    "use_harm_variance_commit": false
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ]
 }

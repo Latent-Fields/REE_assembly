@@ -97,5 +97,45 @@
         "passed": true
       }
     ]
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 322.11954966699705,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "episodes_per_seed": 10,
+    "steps_per_ep": 80,
+    "world_dim": 32,
+    "self_dim": 32,
+    "alpha_world": 0.9,
+    "env_kwargs": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 2,
+      "proximity_harm_scale": 0.0
+    },
+    "replay_diversity_enabled": false,
+    "surprise_gated_replay": false,
+    "tonic_5ht_enabled": false,
+    "use_harm_stream": false,
+    "thresholds": {
+      "Q_MIN_PER_SEED": 3,
+      "S_MIN_PER_SEED": 1,
+      "REPLAY_N_MIN": 1.0,
+      "FIRE_HI": 0.99,
+      "FIRE_LO": 0.01
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

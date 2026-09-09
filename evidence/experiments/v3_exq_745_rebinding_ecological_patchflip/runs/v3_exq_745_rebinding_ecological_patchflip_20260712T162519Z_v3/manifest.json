@@ -42,5 +42,56 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 5077.712475277018,
+  "config": {
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.0,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "hazard_food_attraction": 0.0,
+      "resource_respawn_on_consume": false,
+      "reef_enabled": false,
+      "toroidal": false,
+      "harm_history_len": 10
+    },
+    "flip_kwargs": {
+      "size": 12,
+      "n_configs": 4,
+      "resources_per_config": 4,
+      "flip_period": 15
+    },
+    "size": 12,
+    "n_configs": 4,
+    "resources_per_config": 4,
+    "flip_period": 15,
+    "p0_episodes": 40,
+    "m_episodes": 20,
+    "steps_per_episode": 120,
+    "align_margin": 0.1,
+    "min_overtakes": 8,
+    "dv2_abs_margin": 0.15,
+    "min_seeds_for_pass": 4,
+    "min_seeds_completed": 4,
+    "binder_config": {
+      "cross_stream_binding_enabled": true,
+      "cross_stream_binding_learned": true,
+      "cross_stream_binding_strength": 0.5,
+      "cross_stream_binding_temperature": 0.2,
+      "cross_stream_binding_conv_frac": 0.85
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ]
 }

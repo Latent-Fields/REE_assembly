@@ -66,5 +66,59 @@
       "DV1_cue_specificity": true,
       "DV2_contextual_sparing": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 517.868251263164,
+  "config": {
+    "common_substrate": {
+      "alpha_world": 0.9,
+      "use_harm_stream": true,
+      "harm_obs_dim": 51,
+      "use_affective_harm_stream": true,
+      "harm_obs_a_dim": 7,
+      "use_suffering_derivative_comparator": true,
+      "safety_store_threshold": 0.6,
+      "safety_store_centered": true
+    },
+    "env_cue_teach": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 2,
+      "limb_damage_enabled": true,
+      "heal_rate": 0.4,
+      "scheduled_limb_damage_enabled": true,
+      "scheduled_limb_damage_interval": 15,
+      "scheduled_limb_damage_prob": 1.0,
+      "scheduled_limb_damage_magnitude": 0.5,
+      "scheduled_limb_damage_limb_selection": "all",
+      "safety_cue_enabled": true,
+      "safety_cue_on_relief": true,
+      "safety_cue_heal_floor": 0.02
+    },
+    "env_safe_teach": {
+      "size": 10,
+      "num_hazards": 1,
+      "num_resources": 3,
+      "limb_damage_enabled": true,
+      "heal_rate": 0.4
+    },
+    "store_threshold": 0.6,
+    "proto_min_norm": 0.05,
+    "readiness_floor": 0.34,
+    "dv1_margin": 0.34,
+    "dv2_margin": 0.34,
+    "teach_steps": 240,
+    "n_test_trials": 30,
+    "contextual_harm_threshold": 0.55,
+    "contextual_accum_weight": 0.05,
+    "contextual_release_threshold": 0.5
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
 }

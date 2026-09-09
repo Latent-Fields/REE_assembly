@@ -98,5 +98,50 @@
   "retest_queue_id": "V3-EXQ-777a",
   "evidence_quality_note": "Adjudicated by failure_autopsy_MECH-063-777-779-cluster_2026-07-18. The self-route `control_axes_collinear_toward_one_scalar` is an artifact and does not weaken MECH-063. C1 failed on seed-count (3/5 vs min 4) and dispersion, NOT on collinearity: mean_sin_angle 0.530 exceeds the 0.500 margin. The score axis's dependent variable (D_action_mass) was saturated at ceiling on seeds 11/29/37 (0.94-0.9997) and at floor on seed 23 (0.002-0.013), leaving no headroom for the axis to express itself; dD_score tracks D-headroom (largest, 0.054, on seed 17, the only mid-range seed). The P0 readiness gate passed because R5 axis_authority aggregates norm_v_score by MEAN across seeds (0.1046 > 0.05 floor) while seeds 23 (0.0423) and 29 (0.0346) were individually below floor, and because the design guards saturation on the temperature axis's readout (E_SAT_CEIL) with no equivalent guard on the score axis's. Compounding this, 3 of 5 seeds ran at 2-30% of the 900-step budget (untrained agent, hazard-terminating env), putting the worst cell exactly at MIN_SELECTS=20. The queueing session's seed-11 inline PASS (sin_angle 0.93) is not contradicted: identical script (single commit 3b270a1) and identical substrate (no ree_core commit in the window), with the temperature axis reproducing (+0.30 inline vs dE_temp 0.323 cloud) and only the score axis diverging, because cloud seed 11 was saturated at D=0.997. The verdict is knife-edge on per-seed saturation regime, which is machine-class sensitive. MECH-063 was not tested. Retest V3-EXQ-777a with sample-driven stopping, a D-saturation guard, and per-seed authority gating.",
   "evidence_direction_note": "Reclassified weakens -> non_contributory by failure_autopsy_MECH-063-777-779-cluster_2026-07-18 (section 8).",
-  "non_degenerate": true
+  "non_degenerate": true,
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 939.5187305789441,
+  "config": {
+    "seeds": [
+      11,
+      17,
+      23,
+      29,
+      37
+    ],
+    "n_episodes": 3,
+    "steps_per_episode": 300,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 3
+    },
+    "noop_class": 4,
+    "tonic_vigor": {
+      "v_t_floor": 0.5,
+      "w_action": 0.5,
+      "w_passive": 0.5,
+      "bias_scale": 1.0,
+      "form": "additive"
+    },
+    "noise_floor": {
+      "alpha": 1.0,
+      "min_temperature": 2.0
+    },
+    "thresholds": {
+      "MIN_SEEDS": 4,
+      "MIN_SELECTS": 20,
+      "TEMP_LIFT_FLOOR": 0.5,
+      "E_SAT_CEIL": 0.98,
+      "EFFECT_FLOOR": 0.05,
+      "SIN_MARGIN": 0.5
+    }
+  },
+  "seeds": [
+    11,
+    17,
+    23,
+    29,
+    37
+  ]
 }

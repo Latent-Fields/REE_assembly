@@ -98,5 +98,75 @@
       "dense_pair_matched_competent": false,
       "h_greedy_spread_across_cells": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 18443.597533,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rung": "D3_hazard_free",
+    "arms": [
+      "ac_zworld_sparse_rl",
+      "ac_zworld_dense_rl",
+      "ac_rawview_sparse_rl",
+      "ac_rawview_dense_rl",
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "treatment_cells": [
+      {
+        "arm_id": "ac_zworld_sparse_rl",
+        "representation": "z_world",
+        "teacher": "sparse",
+        "shaping_coef": 0.0,
+        "reference_leg": "V3-EXQ-742"
+      },
+      {
+        "arm_id": "ac_zworld_dense_rl",
+        "representation": "z_world",
+        "teacher": "dense",
+        "shaping_coef": 1.0,
+        "reference_leg": "V3-EXQ-748"
+      },
+      {
+        "arm_id": "ac_rawview_sparse_rl",
+        "representation": "raw_view",
+        "teacher": "sparse",
+        "shaping_coef": 0.0,
+        "reference_leg": "V3-EXQ-747"
+      },
+      {
+        "arm_id": "ac_rawview_dense_rl",
+        "representation": "raw_view",
+        "teacher": "dense",
+        "shaping_coef": 1.0,
+        "reference_leg": "V3-EXQ-749"
+      }
+    ],
+    "p0_warmup_episodes": 200,
+    "rl_episodes": 1000,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "actor_critic_hidden": 128,
+    "ac_lr": 0.0003,
+    "ac_gamma": 0.99,
+    "diversity_margin_bits": 0.2,
+    "readiness_diversity_spread_floor": 1.0,
+    "competence_resource_floor": 1.0,
+    "diversity_metrics": [
+      "h_greedy_bits",
+      "effective_actions",
+      "distinct_actions_used",
+      "mean_softmax_entropy_bits"
+    ]
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

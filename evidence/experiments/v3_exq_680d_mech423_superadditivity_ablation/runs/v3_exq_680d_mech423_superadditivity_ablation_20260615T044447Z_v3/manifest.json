@@ -104,5 +104,27 @@
       }
     ],
     "min_cos_over_usable_seeds": -0.03710304945707321
+  },
+  "elapsed_seconds": 771.82719373703,
+  "config": {
+    "arms": [
+      "ARM_ISOLATED",
+      "ARM_INTEGRATED_PAIR",
+      "ARM_INTEGRATED_TRIPLE"
+    ],
+    "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011
+    ],
+    "train_episodes": 40,
+    "steps_per_episode": 80,
+    "p1_steps": 300,
+    "eval_steps": 300,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "num_resources": 3
   }
 }

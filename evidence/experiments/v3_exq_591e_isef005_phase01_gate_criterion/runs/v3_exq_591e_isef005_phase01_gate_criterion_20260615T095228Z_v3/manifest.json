@@ -80,5 +80,33 @@
         "passed": false
       }
     ]
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 160,
+    "steps_per_episode": 200,
+    "grid_size": 12,
+    "h_pos_frac_of_max": 0.2,
+    "phase_0to1_spike_threshold": 0.993963,
+    "phase_0to1_ema_level_floor": 0.2,
+    "phase_0to1_ep_min": 100,
+    "h_pos_movement_floor": 0.2,
+    "genuine_exploration_h_pos_mean_floor": 0.2,
+    "genuine_exploration_min_crossings": 2,
+    "ema_alpha": 0.2,
+    "corrected_parameter_note": "591d -> 591e single corrected parameter: the EMA candidate is now compared against the genuine-explorer LEVEL floor (0.2000), NOT the single-episode SPIKE threshold (0.9940) the 591d candidates reused.",
+    "arm": "InfantCurriculumScheduler (experiments/infant_curriculum.py) -- OFFLINE criterion replay, scheduler NOT mutated",
+    "diversity_stack": {
+      "use_noise_floor": true,
+      "use_structured_curiosity": true,
+      "use_support_preserving_cem": "default-on (main-path since 2026-05-17)",
+      "magnitudes": "landed defaults (noise_floor_alpha=0.1, curiosity_weight=0.05)"
+    }
   }
 }

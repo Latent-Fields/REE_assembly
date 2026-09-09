@@ -355,5 +355,120 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882"
+  "substrate_hash": "12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 13191.761943489,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505,
+      606,
+      707,
+      808
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_FULL_TRAILING",
+      "ARM_FULL"
+    ],
+    "n_episodes": 120,
+    "steps_per_episode": 72,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "alpha_world": 0.9,
+    "chunk_min_repetitions": 5,
+    "chunk_window_trials": 60,
+    "chunk_crystallisation_min": 2,
+    "chunk_min_size": 2,
+    "chunk_max_size": 5,
+    "min_chunks_formed": 1,
+    "min_crystallised": 1,
+    "min_long_chunk_length": 4,
+    "seed_pass_fraction": 0.75,
+    "outcome_spread_floor": 0.05,
+    "symbols_per_trial_floor": 4.0,
+    "harm_step_fraction_floor": 0.01,
+    "arm_config_slices": {
+      "ARM_OFF": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": false,
+        "use_chunk_maintenance": false,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false
+      },
+      "ARM_FULL_TRAILING": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false
+      },
+      "ARM_FULL": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": true,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false
+      }
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    707,
+    808
+  ]
 }

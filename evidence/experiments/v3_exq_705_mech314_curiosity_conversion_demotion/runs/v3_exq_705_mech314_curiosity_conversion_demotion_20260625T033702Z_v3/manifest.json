@@ -97,5 +97,80 @@
       "mech314_curiosity_converts_under_demotion": "PASS (supports MECH-314); the demotion lifts the conversion ceiling for the curiosity channel",
       "conversion_ceiling_persists_despite_demotion": "non_contributory off-ramp -> MECH-449 Go/No-Go (double-gated) / V4; NOT a falsification of MECH-314"
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_warmup_episodes": 60,
+    "p1_measurement_episodes": 30,
+    "steps_per_episode": 200,
+    "measure_after_tick": 20,
+    "arms": [
+      {
+        "arm_id": "ARM_CURIOSITY",
+        "label": "mech314_curiosity_demotion_on_treatment",
+        "curiosity_novelty_weight": 0.25,
+        "temperature": 1.0,
+        "is_control": false
+      },
+      {
+        "arm_id": "ARM_FONLY",
+        "label": "demotion_on_f_only_control_curiosity_zero",
+        "curiosity_novelty_weight": 0.0,
+        "temperature": 1.0,
+        "is_control": true
+      },
+      {
+        "arm_id": "ARM_NOISE",
+        "label": "matched_noise_flat_hot_temperature_curiosity_zero",
+        "curiosity_novelty_weight": 0.0,
+        "temperature": 2.5,
+        "is_control": true
+      }
+    ],
+    "curiosity_weight_on": 0.25,
+    "matched_noise_temperature": 2.5,
+    "use_f_eligibility_demotion": true,
+    "f_eligibility_envelope_floor": 0.3,
+    "f_eligibility_dn_sigma": 0.0,
+    "modulatory_authority_gain": 1.0,
+    "modulatory_shortlist_k": 3,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 0,
+      "num_resources": 5,
+      "hazard_harm": 0.0,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "sd056_weight": 0.05,
+    "curiosity_bias_scale": 0.5,
+    "visitation_buffer_len": 256,
+    "thresholds": {
+      "cand_dist_floor": 0.02,
+      "bias_range_floor": 0.0001,
+      "excluded_count_floor": 0.0,
+      "demotion_active_frac_floor": 0.8,
+      "magnitude_ceil": 1000000.0,
+      "entropy_lift_margin": 0.05,
+      "entropy_floor": 0.3,
+      "min_seeds_for_pass": 2
+    }
   }
 }

@@ -132,5 +132,53 @@
       "pref_both_on_varies_across_seeds": false,
       "da_creates_density_gradient": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 22.486935509368777,
+  "config": {
+    "world_dim": 16,
+    "num_centers": 256,
+    "kernel_bandwidth": 1.0,
+    "horizon": 8,
+    "da_signal": 1.0,
+    "da_allocation_scale": 3.0,
+    "da_jitter_radius": 0.12,
+    "da_bandwidth_narrowing": 0.0,
+    "n_enc": 8,
+    "region_sep": 3.0,
+    "visit_jitter": 0.05,
+    "n_trials": 32,
+    "k_candidates": 16,
+    "target_jitter": 0.1,
+    "curiosity_weight": 1.5,
+    "ctrl_curiosity_weight": 3.0,
+    "familiarity_ema_alpha": 0.05,
+    "familiarity_bandwidth": 1.0,
+    "arms": [
+      "both_off",
+      "sd024_on_sd025_off",
+      "sd024_off_sd025_on",
+      "both_on"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ]
 }

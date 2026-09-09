@@ -83,5 +83,52 @@
         "passed": true
       }
     ]
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 0.18441217113286257,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "conditions": [
+      "safe",
+      "threat_low",
+      "threat_mid",
+      "threat_high"
+    ],
+    "context_targets": {
+      "safe": 0.2,
+      "threat_low": 0.65,
+      "threat_mid": 0.9,
+      "threat_high": 1.2
+    },
+    "ticks_per_run": 120,
+    "read_warmup": 20,
+    "z_harm_a_dim": 8,
+    "tick_noise": 0.02,
+    "cea_config": "REEConfig() ON-path canonical defaults (use_amygdala_analog+use_cea_analog=True)",
+    "coordinator_config": "SalienceCoordinatorConfig() canonical defaults + cea_mode_prior affinity weight",
+    "log_odds_cap": 0.8,
+    "thresholds": {
+      "PRESENT_MIN": 0.3,
+      "RANGE_MIN": 0.3,
+      "MONO_STEP_MIN": 0.05,
+      "REST_MAX": 0.02,
+      "COORD_WRITE_TOL": 1e-09,
+      "BOUND_EPS": 1e-06,
+      "INPUT_LOWFREQ_RANGE_FLOOR": 0.5,
+      "INPUT_MAX_LOWFREQ_FLOOR": 0.6
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

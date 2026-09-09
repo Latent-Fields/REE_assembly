@@ -41,5 +41,29 @@
   "failure_signatures": [],
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1"
+  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 26758.730106,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rungs": [
+      "D0_baseline_724",
+      "D3_hazard_free"
+    ],
+    "zworld_p0_episodes": 60,
+    "p0_warmup_episodes": 200,
+    "p1_reinforce_episodes": 90,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "competence_resource_floor": 1.0
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

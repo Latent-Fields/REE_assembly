@@ -101,5 +101,40 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "fa1f816cb4f17aee93d40f06c2a5a763e3d0461c5f6995cad205b5cc85164aca"
+  "substrate_hash": "fa1f816cb4f17aee93d40f06c2a5a763e3d0461c5f6995cad205b5cc85164aca",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 16169.819464,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rung": "D3_hazard_free",
+    "arms": [
+      "ac_zworld_shaped_rl",
+      "ac_zworld_bc",
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "p0_warmup_episodes": 200,
+    "zworld_p0_episodes": 60,
+    "rl_episodes": 1000,
+    "bc_episodes": 300,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "actor_critic_hidden": 128,
+    "cotrain_encoder": false,
+    "ac_lr": 0.0003,
+    "bc_lr": 0.001,
+    "ac_gamma": 0.99,
+    "shaping_coef": 1.0,
+    "competence_resource_floor": 1.0
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

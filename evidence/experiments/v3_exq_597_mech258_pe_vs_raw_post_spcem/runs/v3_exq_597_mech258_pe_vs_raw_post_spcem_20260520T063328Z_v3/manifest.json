@@ -42,5 +42,23 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "conditions": [
+      "PE_FORWARD",
+      "RAW_NORM_ABLATION"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 150,
+    "p1_eps": 100,
+    "p2_eps": 30,
+    "steps_per_ep": 150,
+    "sp_cem_defaults": true,
+    "env_size": 14,
+    "reef_enabled": true
+  }
 }

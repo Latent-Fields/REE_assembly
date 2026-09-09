@@ -103,5 +103,117 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "71a910958f99ae544f1d10454ae1aa48904778e4177a39f121583fa5b7b74318"
+  "substrate_hash": "71a910958f99ae544f1d10454ae1aa48904778e4177a39f121583fa5b7b74318",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 5394.885809333005,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "ao_inits": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "ao_init_seed_base": 90900,
+    "warmup_episodes": 40,
+    "eval_episodes": 15,
+    "steps_per_episode": 200,
+    "self_dim": 32,
+    "world_dim": 32,
+    "lr": 0.001,
+    "num_candidates_eval": 8,
+    "e3_temperature": 1.5,
+    "mech_bank_size": 40,
+    "mech_bank_every": 5,
+    "mech_rng_seed": 777000,
+    "tv_invariant_ceil": 0.05,
+    "init_effect_ratio_ceil": 0.5,
+    "ao_param_l2_floor": 0.1,
+    "cem_ao_seq_frac_floor": 0.9,
+    "seed_sd_floor": 0.02,
+    "env": "CausalGridWorld (EXQ-003 defaults; alpha_world NOT raised, see docstring)",
+    "arm_config_slices": {
+      "AO_INIT_0": {
+        "env": {
+          "class": "CausalGridWorld",
+          "defaults": true
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "eval_episodes": 15,
+          "steps_per_episode": 200
+        },
+        "self_dim": 32,
+        "world_dim": 32,
+        "lr": 0.001,
+        "num_candidates_eval": 8,
+        "e3_temperature": 1.5,
+        "ao_init": 0,
+        "ao_init_seed_base": 90900
+      },
+      "AO_INIT_1": {
+        "env": {
+          "class": "CausalGridWorld",
+          "defaults": true
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "eval_episodes": 15,
+          "steps_per_episode": 200
+        },
+        "self_dim": 32,
+        "world_dim": 32,
+        "lr": 0.001,
+        "num_candidates_eval": 8,
+        "e3_temperature": 1.5,
+        "ao_init": 1,
+        "ao_init_seed_base": 90900
+      },
+      "AO_INIT_2": {
+        "env": {
+          "class": "CausalGridWorld",
+          "defaults": true
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "eval_episodes": 15,
+          "steps_per_episode": 200
+        },
+        "self_dim": 32,
+        "world_dim": 32,
+        "lr": 0.001,
+        "num_candidates_eval": 8,
+        "e3_temperature": 1.5,
+        "ao_init": 2,
+        "ao_init_seed_base": 90900
+      },
+      "AO_INIT_3": {
+        "env": {
+          "class": "CausalGridWorld",
+          "defaults": true
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "eval_episodes": 15,
+          "steps_per_episode": 200
+        },
+        "self_dim": 32,
+        "world_dim": 32,
+        "lr": 0.001,
+        "num_candidates_eval": 8,
+        "e3_temperature": 1.5,
+        "ao_init": 3,
+        "ao_init_seed_base": 90900
+      }
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

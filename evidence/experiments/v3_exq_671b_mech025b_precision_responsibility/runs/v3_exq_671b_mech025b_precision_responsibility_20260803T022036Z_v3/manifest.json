@@ -153,5 +153,37 @@
     "writer_defect": null,
     "n_agents": 4,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 14651.26856422145,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "warmup_episodes": 500,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "harm_scale": 0.02,
+    "proximity_scale": 0.05,
+    "lr": 0.001,
+    "self_dim": 32,
+    "world_dim": 32,
+    "env": "CausalGridWorldV2",
+    "env_size": 12,
+    "env_num_hazards": 4,
+    "env_num_resources": 5,
+    "residue_floor": 1e-06,
+    "precision_variance_floor": 1.0
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3
+  ]
 }

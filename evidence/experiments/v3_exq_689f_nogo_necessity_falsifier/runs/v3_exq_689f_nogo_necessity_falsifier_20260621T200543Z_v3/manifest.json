@@ -96,5 +96,48 @@
       "rank_alteration_not_prefix_diagnose": "the live envelope is NOT an F-rank prefix on a demotion-active trial -> implementation/design fault -> /diagnose-errors; NOT a verdict",
       "nogo_reference_does_not_close_diagnose": "the No-Go reference still admits an undesirable (cannot happen by construction) -> instrumentation fault -> /diagnose-errors"
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_trials_per_seed": 400,
+    "k_candidates": 8,
+    "p_undesirable": 0.4,
+    "f_spread": 1.0,
+    "arms": [
+      {
+        "arm_id": "ARM_OFF",
+        "label": "demotion absent (baseline: all candidates eligible)",
+        "use_f_eligibility_demotion": false,
+        "use_f_eligibility_adaptive_floor": false
+      },
+      {
+        "arm_id": "ARM_DEMOTION_ADAPTIVE",
+        "label": "MECH-448 ON, channel-adaptive mean-relative floor (2026-06-21)",
+        "use_f_eligibility_demotion": true,
+        "use_f_eligibility_adaptive_floor": true
+      },
+      {
+        "arm_id": "ARM_DEMOTION_FIXED",
+        "label": "MECH-448 ON, fixed absolute floor 0.30 (the 689d config)",
+        "use_f_eligibility_demotion": true,
+        "use_f_eligibility_adaptive_floor": false
+      }
+    ],
+    "f_eligibility_config": {
+      "f_eligibility_envelope_floor": 0.3,
+      "f_eligibility_dn_sigma": 0.0,
+      "f_eligibility_adaptive_mean_factor": 1.0
+    },
+    "thresholds": {
+      "divergent_frac_floor": 0.5,
+      "regime_present_floor": 0.3,
+      "nogo_closes_ceil": 0.05,
+      "rank_preserving_frac_required": 1.0,
+      "min_seeds_for_pass": 2
+    }
   }
 }

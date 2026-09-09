@@ -93,5 +93,18 @@
       }
     ],
     "note": "R1/R2/R3 readouts are non-vacuous on a trained substrate. EXP-0380 would receive a meaningful reading; the readiness substrate is validated."
+  },
+  "config": {
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "warmup_episodes": 24,
+    "p0_end": 16,
+    "steps_per_episode": 100,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "num_resources": 3
   }
 }

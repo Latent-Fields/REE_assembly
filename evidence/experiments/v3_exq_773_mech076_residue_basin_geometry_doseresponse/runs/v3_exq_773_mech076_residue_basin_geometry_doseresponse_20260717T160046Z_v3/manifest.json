@@ -74,5 +74,46 @@
       "C1_peak_avoidance_monotone_in_depth": true,
       "C2_capture_avoidance_at_distance_graded": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 5.964844351,
+  "config": {
+    "grid_size": 7,
+    "num_hazards": 3,
+    "num_resources": 2,
+    "world_dim": 32,
+    "pool_steps": 400,
+    "n_candidates": 240,
+    "horizon": 6,
+    "n_directions": 16,
+    "num_basis_functions": 64,
+    "accumulation_rate": 1.0,
+    "dose_multipliers": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "peak_pct": 0.25,
+    "cap_lo_pct": 0.45,
+    "cap_hi_pct": 0.7,
+    "far_pct": 0.8,
+    "r_capture_mid": 2.0,
+    "seeds": [
+      42,
+      7,
+      13,
+      99,
+      17
+    ]
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    99,
+    17
+  ]
 }

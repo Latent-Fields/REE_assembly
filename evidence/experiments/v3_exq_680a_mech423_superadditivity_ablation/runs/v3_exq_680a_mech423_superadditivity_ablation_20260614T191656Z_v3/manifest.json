@@ -102,5 +102,25 @@
     ]
   },
   "evidence_direction_note": "SUPERSEDED by V3-EXQ-680b (queued 2026-06-14). This PASS rests on a methodologically weak super-additivity margin: it scaled the noise on the across-seed SD of the baseline LEVEL (margin = SUPERADD_SD_MULT * pstdev(iso_scores)), which collapses toward 0 on a reproducible substrate so a trivially-small consistent positive integrated-vs-isolated delta can clear an ~0 margin and falsely register super_additive/supports for MECH-423. On this run's OWN data the effect is NOT reliably positive: delta_pair = [+1.567, +1.236, -1.187] (two seeds strongly super-additive, one strongly sub-additive) yet it cleared the level-scaled margin 0.1024 on 2/3 seeds. V3-EXQ-680b re-runs the IDENTICAL 3-arm ablation + R1/R2/R3 readiness gate with the corrected criterion margin = max(SUPERADD_SD_MULT * pstdev(delta_pair), SUPERADD_MIN_EFFECT_FLOOR=0.02) -- noise on the SD of the DELTA itself, hard-floored by an absolute minimum super-additive effect size; under that gate this run's data routes to additive_below_margin/inconclusive. Excluded from MECH-423 confidence/conflict scoring as superseded.",
-  "superseded_by": "V3-EXQ-680b"
+  "superseded_by": "V3-EXQ-680b",
+  "elapsed_seconds": 507.554203748703,
+  "config": {
+    "arms": [
+      "ARM_ISOLATED",
+      "ARM_INTEGRATED_PAIR",
+      "ARM_INTEGRATED_TRIPLE"
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "train_episodes": 40,
+    "steps_per_episode": 80,
+    "p1_steps": 300,
+    "eval_steps": 300,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "num_resources": 3
+  }
 }

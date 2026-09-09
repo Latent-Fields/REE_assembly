@@ -98,5 +98,59 @@
   "pending_retest_after_substrate": true,
   "retest_queue_id": "V3-EXQ-779a",
   "evidence_quality_note": "Adjudicated by failure_autopsy_MECH-063-777-779-cluster_2026-07-18. Direction non_contributory is correct, but the self-route `substrate_not_ready_requeue` mislabels the cause: SD-069 is ready and working, and the failure is sample starvation. The arms DID set the sharp source (config.phasic_burst.signal_source = \"instantaneous_pe\"; script line 205), and bursts fired in every PHASIC-ON cell (burst_level_max 1.0; n_event_ticks 5-22). The failed precondition phasic_fires_real_events (measured 5, threshold 10) is a MIN across cells sourced entirely from seed 23 / T1P1, the cell that ran 19 env steps of a 900-step budget; sample_sufficiency (19 vs 20) has the same origin. Seeds 11/17/23 ran at 2-28% of budget while 29/37 ran at 100% - a seed-dependent early-termination pattern reproduced almost exactly in V3-EXQ-777, i.e. a property of the untrained agent in a hazard-terminating env rather than of this probe. mean_dR_phasic (-0.083) is computed over ~5 event ticks and carries no weight. MECH-063 sub-claim (ii) was not tested. Retest V3-EXQ-779a with sample-driven stopping guaranteeing MIN_EVENT_TICKS per PHASIC-ON cell, and a `sample_starvation_requeue` label distinct from substrate-capability failure.",
-  "non_degenerate": false
+  "non_degenerate": false,
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1051.833070482,
+  "config": {
+    "seeds": [
+      11,
+      17,
+      23,
+      29,
+      37
+    ],
+    "n_episodes": 3,
+    "steps_per_episode": 300,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 3,
+      "background_drift_enabled": true,
+      "n_drift_sources": 3,
+      "drift_policy": "random_walk"
+    },
+    "tonic_noise_floor": {
+      "alpha": 1.0,
+      "min_temperature": 2.0
+    },
+    "phasic_burst": {
+      "signal_source": "instantaneous_pe",
+      "trigger_ratio": 1.2,
+      "surprise_ema_decay": 0.1,
+      "temp_delta": -0.5,
+      "decay": 0.5,
+      "trigger_floor": 1e-06,
+      "min_temperature": 0.1,
+      "event_level_floor": 0.05
+    },
+    "thresholds": {
+      "MIN_SEEDS": 4,
+      "MIN_SELECTS": 20,
+      "MIN_EVENT_TICKS": 10,
+      "MIN_QUIESCENT_TICKS": 10,
+      "TEMP_LIFT_FLOOR": 0.5,
+      "E_SAT_LOW": 0.02,
+      "E_SAT_HIGH": 0.98,
+      "SUSTAINED_MARGIN": 0.05,
+      "TRANSIENT_MARGIN": 0.02,
+      "DOMINANCE_K": 2.0
+    }
+  },
+  "seeds": [
+    11,
+    17,
+    23,
+    29,
+    37
+  ]
 }

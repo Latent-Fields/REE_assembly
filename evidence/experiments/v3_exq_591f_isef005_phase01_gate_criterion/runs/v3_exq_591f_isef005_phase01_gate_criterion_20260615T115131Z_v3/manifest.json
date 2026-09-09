@@ -80,5 +80,42 @@
         "passed": true
       }
     ]
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 160,
+    "steps_per_episode": 200,
+    "grid_size": 12,
+    "h_pos_frac_of_max": 0.2,
+    "phase_0to1_spike_threshold": 0.993963,
+    "phase_0to1_level_floor": 0.2,
+    "phase_0to1_ep_min": 100,
+    "h_pos_movement_floor": 0.2,
+    "genuine_exploration_h_pos_mean_floor": 0.2,
+    "genuine_exploration_min_crossings": 2,
+    "ema_alpha": 0.2,
+    "window_w": 20,
+    "hold_h": 5,
+    "crossing_count_min": 3,
+    "candidate_preference_order": [
+      "ema_hold",
+      "window_mean",
+      "crossing_count",
+      "ema_level"
+    ],
+    "corrected_parameter_note": "591e -> 591f robust sustained-level SWEEP (user override of the EMA-only route via AskUserQuestion 2026-06-15). All four candidates compare a sustained-level statistic against the genuine-explorer LEVEL floor (0.2000), NOT the single-episode SPIKE threshold (0.9940) the 591d candidates reused. Plain EMA-of-level@floor (B1) is retained as the spike-vulnerable baseline candidate (591e's pick); B2 window-mean, B3 EMA-with-hold, and B4 crossing-count>=3 are the spike-robust forms (a single 1.453 spike pushes EMA(0.2) to ~0.37 > floor, re-admitting seed 45 -- confirmed in an offline unit-check on synthetic 591d-shaped traces).",
+    "arm": "InfantCurriculumScheduler (experiments/infant_curriculum.py) -- OFFLINE criterion replay, scheduler NOT mutated",
+    "diversity_stack": {
+      "use_noise_floor": true,
+      "use_structured_curiosity": true,
+      "use_support_preserving_cem": "default-on (main-path since 2026-05-17)",
+      "magnitudes": "landed defaults (noise_floor_alpha=0.1, curiosity_weight=0.05)"
+    }
   }
 }

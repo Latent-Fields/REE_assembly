@@ -69,5 +69,43 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10",
-  "substrate_hash": "67c01b2dbd8f536af31b68b05504ddcecd59276968dfab519e457fbc252827a4"
+  "substrate_hash": "67c01b2dbd8f536af31b68b05504ddcecd59276968dfab519e457fbc252827a4",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 5343.084128177725,
+  "config": {
+    "env_kwargs": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "use_proxy_fields": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "limb_damage_enabled": true,
+      "damage_increment": 0.15,
+      "failure_prob_scale": 0.3,
+      "heal_rate": 0.002,
+      "n_landmarks_b": 2
+    },
+    "steps_per_episode": 120,
+    "practice_episodes_per_layout": 20,
+    "probe_episodes_per_layout": 4,
+    "accum_episodes_per_layout": 6,
+    "total_training_episodes": 60,
+    "arm_id": "mech163_recruitment"
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

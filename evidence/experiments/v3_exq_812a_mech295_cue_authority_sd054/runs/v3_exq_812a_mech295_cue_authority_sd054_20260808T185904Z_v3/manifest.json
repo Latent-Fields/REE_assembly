@@ -139,5 +139,25 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 12666.778494033,
+  "config": {
+    "scaffold_cfg": "see _make_scaffold_cfg (curriculum budgets + landed levers, mirrors 603n)",
+    "world_dim": 32,
+    "drive_weight": 2.0,
+    "seed_gain": 1.5,
+    "seed_benefit_threshold": 0.02,
+    "seed_drive_floor": 0.9,
+    "cue_recall_gain": 0.2,
+    "harm_pathway_lr": 0.001,
+    "cue_gain_natural": 0.5,
+    "cue_gain_severed": 0.0,
+    "candidate_summary_source": "e2_world_forward"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

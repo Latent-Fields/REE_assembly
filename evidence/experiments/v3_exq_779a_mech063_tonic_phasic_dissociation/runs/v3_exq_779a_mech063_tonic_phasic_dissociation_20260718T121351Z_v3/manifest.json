@@ -365,5 +365,64 @@
       "double_dissociation_C1_and_C2": true
     },
     "summary": "MECH-063 sub-claim (ii) tonic-vs-phasic dissociation on the E3 softmax temperature. The TONIC lever (MECH-313 noise_floor) moves the SUSTAINED (quiescent-tick) baseline entropy; the PHASIC lever (SD-069 phasic_surprise_burst, sharp instantaneous_pe source) moves an EVENT-LOCKED entropy TRANSIENT; cross-legs ~0. PASS = both hold (independent tonic-baseline vs phasic-transient degrees of freedom on one readout); FAIL/weakens = they do not dissociate; FAIL/non_contributory = the run could not test the claim -- labelled sample_starvation_requeue when a SAMPLE COUNT was short (substrate present and firing; offending cell named) and substrate_not_ready_requeue only when a substrate CAPABILITY check failed. Supersedes V3-EXQ-779, whose fixed episode budget let a single 19-step cell veto readiness under the latter label."
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7033.27967503,
+  "config": {
+    "seeds": [
+      11,
+      17,
+      23,
+      29,
+      37
+    ],
+    "stopping_rule": "sample_driven_v1",
+    "target_selects": 800,
+    "target_event_ticks": 30,
+    "target_quiescent_ticks": 200,
+    "max_env_steps_per_cell": 2400,
+    "max_episodes_per_cell": 120,
+    "steps_per_episode": 300,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 3,
+      "background_drift_enabled": true,
+      "n_drift_sources": 3,
+      "drift_policy": "random_walk"
+    },
+    "tonic_noise_floor": {
+      "alpha": 1.0,
+      "min_temperature": 2.0
+    },
+    "phasic_burst": {
+      "signal_source": "instantaneous_pe",
+      "trigger_ratio": 1.2,
+      "surprise_ema_decay": 0.1,
+      "temp_delta": -0.5,
+      "decay": 0.5,
+      "trigger_floor": 1e-06,
+      "min_temperature": 0.1,
+      "event_level_floor": 0.05
+    },
+    "thresholds": {
+      "MIN_SEEDS": 4,
+      "MIN_SELECTS": 20,
+      "MIN_EVENT_TICKS": 10,
+      "MIN_QUIESCENT_TICKS": 10,
+      "TEMP_LIFT_FLOOR": 0.5,
+      "E_SAT_LOW": 0.02,
+      "E_SAT_HIGH": 0.98,
+      "SUSTAINED_MARGIN": 0.05,
+      "TRANSIENT_MARGIN": 0.02,
+      "DOMINANCE_K": 2.0
+    }
+  },
+  "seeds": [
+    11,
+    17,
+    23,
+    29,
+    37
+  ]
 }

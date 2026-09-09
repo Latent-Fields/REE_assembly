@@ -87,5 +87,68 @@
     "criteria_non_degenerate": {
       "cross_arm_overconfidence_score_spread": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 6172.7835528850555,
+  "config": {
+    "grid_size": 12,
+    "steps_per_ep": 200,
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "n_seeds": 3,
+    "lr": 0.0005,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "sws_consolidation_steps": 8,
+    "rem_attribution_steps": 6,
+    "precision_zero_point_ema_alpha": 0.1,
+    "rem_precision_recalibration_step": 0.25,
+    "sleep_loop_episodes_K": 1,
+    "tonic_5ht_enabled": true,
+    "arms": [
+      {
+        "arm_id": "ARM_FULL_SLEEP",
+        "sws_enabled": true,
+        "rem_enabled": true,
+        "use_rem_precision_recalibration": true
+      },
+      {
+        "arm_id": "ARM_REM_SUPPRESSED",
+        "sws_enabled": true,
+        "rem_enabled": false,
+        "use_rem_precision_recalibration": true
+      },
+      {
+        "arm_id": "ARM_RECALIB_OFF",
+        "sws_enabled": true,
+        "rem_enabled": true,
+        "use_rem_precision_recalibration": false
+      },
+      {
+        "arm_id": "ARM_SWS_SUPPRESSED",
+        "sws_enabled": false,
+        "rem_enabled": true,
+        "use_rem_precision_recalibration": true
+      }
+    ],
+    "env": {
+      "num_hazards": 3,
+      "num_resources": 3,
+      "hazard_harm": 0.04,
+      "proximity_harm_scale": 0.12,
+      "proximity_benefit_scale": 0.1,
+      "use_proxy_fields": true,
+      "resource_respawn_on_consume": true
+    },
+    "seeds": [
+      1803,
+      7964,
+      6890
+    ]
+  },
+  "seeds": [
+    1803,
+    7964,
+    6890
+  ]
 }

@@ -45,5 +45,20 @@
     "label": "residue_separable",
     "method": "offline_reranking_separability",
     "note": "salience is in-script z_world visitation-novelty (residue-INDEPENDENT); uncertainty is E3 _running_variance; measures per-candidate decision-selection separability, not downstream trajectory divergence"
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "p0_warmup_episodes": 60,
+    "eval_episodes": 25,
+    "steps_per_episode": 200,
+    "harm_gradient_enabled": true,
+    "harm_gradient_scale": 0.3,
+    "salience_source": "in_script_zworld_visitation_novelty"
   }
 }

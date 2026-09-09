@@ -69,5 +69,71 @@
       "C1": false,
       "C2": false
     }
+  },
+  "config": {
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "conv_episodes": 60,
+    "meas_episodes": 10,
+    "steps_per_episode": 90,
+    "probe_steps": 100,
+    "probe_battery_size": 64,
+    "episodes_per_run": 70,
+    "arms": [
+      {
+        "arm_id": "ARM_0_NONE",
+        "level": 0,
+        "env_drift_interval": 999,
+        "env_drift_prob": 0.0
+      },
+      {
+        "arm_id": "ARM_1_LOW",
+        "level": 1,
+        "env_drift_interval": 15,
+        "env_drift_prob": 0.15
+      },
+      {
+        "arm_id": "ARM_2_MED",
+        "level": 2,
+        "env_drift_interval": 6,
+        "env_drift_prob": 0.3
+      },
+      {
+        "arm_id": "ARM_3_HIGH",
+        "level": 3,
+        "env_drift_interval": 2,
+        "env_drift_prob": 0.5
+      }
+    ],
+    "env_base": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "use_proxy_fields": true
+    },
+    "stable_drift": {
+      "env_drift_interval": 999,
+      "env_drift_prob": 0.0
+    },
+    "shock_drift": {
+      "env_drift_interval": 1,
+      "env_drift_prob": 0.8
+    },
+    "p0_loss": "recon_primary+sd056_aux",
+    "sd056_weight": 0.05,
+    "e2_lr": 0.001,
+    "conv_metric": "frozen_probe_battery",
+    "sleep_used": false
   }
 }

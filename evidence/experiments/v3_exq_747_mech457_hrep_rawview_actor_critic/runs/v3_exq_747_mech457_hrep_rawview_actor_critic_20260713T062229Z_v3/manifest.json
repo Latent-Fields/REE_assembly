@@ -77,5 +77,35 @@
       "oracle_clears_floor_at_d3": true,
       "rawview_vs_anchor_foraging_spread": true
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 214.752798,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rung": "D3_hazard_free",
+    "arms": [
+      "ac_rawview_sparse_rl",
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk"
+    ],
+    "rl_episodes": 1000,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "actor_critic_hidden": 128,
+    "world_dim": 25,
+    "ac_lr": 0.0003,
+    "ac_gamma": 0.99,
+    "teacher": "sparse_foraging (FORAGE_BONUS per resource + harm + novelty)",
+    "competence_resource_floor": 1.0
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

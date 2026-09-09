@@ -291,5 +291,66 @@
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "66e422215d137734f0bb6fee6e039d150eb88fd427b2660a57c6de4210566d0b",
-  "decision": "competence_implementation_gap"
+  "decision": "competence_implementation_gap",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 13714.791546978988,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "arms": [
+      "STABLE_OFF",
+      "STABLE_ON",
+      "VOLATILE_OFF",
+      "VOLATILE_ON"
+    ],
+    "onboard_episodes": 235,
+    "measure_episodes": 20,
+    "measure_steps": 200,
+    "env_size": 12,
+    "stable": {
+      "num_resources": 8,
+      "num_hazards": 1,
+      "proximity_harm_scale": 0.05,
+      "hazard_food_attraction": 0.0,
+      "rest_interval": 50
+    },
+    "volatile": {
+      "num_resources": 2,
+      "num_hazards": 2,
+      "proximity_harm_scale": 0.1,
+      "hazard_food_attraction": 0.3,
+      "rest_interval": null
+    },
+    "thresholds": {
+      "mu_separation_floor": 0.15,
+      "mu_coupling_invariance_ceil": 0.02,
+      "dacc_bias_range_floor": 1e-06,
+      "mode_entropy_mu_response_floor": 0.0001,
+      "fresh_select_floor": 100,
+      "margin_sd": 1.0,
+      "c1_abs_floor": 0.02,
+      "c2_abs_floor": 0.02
+    },
+    "substrate_flags": {
+      "use_salience_coordinator": true,
+      "use_pcc_analog": true,
+      "use_dacc": true,
+      "salience_apply_to_dacc_bias": true,
+      "salience_temperature_mu_alpha": 1.0,
+      "salience_temperature_kappa_alpha": 0.0,
+      "salience_temperature_exponent_clip": 4.0
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ]
 }

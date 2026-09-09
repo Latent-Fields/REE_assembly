@@ -132,5 +132,49 @@
     "writer_defect": false,
     "n_agents": 9,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 40771.750019832,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "budgets": {
+      "stage0": 20,
+      "stage0b": 10,
+      "p0": 100,
+      "hazard": 40,
+      "p1": 50,
+      "p2": 15,
+      "train_steps": 200
+    },
+    "hazard_stage": {
+      "num_hazards": 4,
+      "num_resources": 2,
+      "hazard_food_attraction": 0.0,
+      "proximity_harm_scale": 0.1,
+      "survival_gate_steps": 75,
+      "stability_window": 10,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.3,
+      "scheduled_external_hazard_enabled": true,
+      "scheduled_external_hazard_interval": 20,
+      "scheduled_external_hazard_prob": 0.9,
+      "scheduled_external_hazard_adjacent_only": true
+    },
+    "world_dim": 32,
+    "drive_weight": 2.0,
+    "arms": [
+      "ARM_LESION_midline_pag_no_gate_combined_fix",
+      "ARM_INTACT_midline_pag_gate_combined_fix",
+      "ARM_POSCTRL_reefspawn_pag_gate_combined_fix"
+    ]
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

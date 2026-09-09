@@ -621,5 +621,99 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "17d74ad85e51630c5d8e5fb84eaa1bba71068287dfcaa19fc8153ce180c423f2"
+  "substrate_hash": "17d74ad85e51630c5d8e5fb84eaa1bba71068287dfcaa19fc8153ce180c423f2",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 38844.403401188,
+  "config": {
+    "arms": [
+      {
+        "label": "ARM_0_both_off",
+        "use_noise_floor": false,
+        "use_dacc": false
+      },
+      {
+        "label": "ARM_1_mech313_only",
+        "use_noise_floor": true,
+        "use_dacc": false
+      },
+      {
+        "label": "ARM_2_mech260_only",
+        "use_noise_floor": false,
+        "use_dacc": true
+      },
+      {
+        "label": "ARM_3_both_on",
+        "use_noise_floor": true,
+        "use_dacc": true
+      }
+    ],
+    "scaffold": {
+      "arm": "ARM_0_both_off",
+      "use_noise_floor": false,
+      "noise_floor_alpha": 0.1,
+      "use_dacc": false,
+      "dacc_suppression_weight": 0.0,
+      "dacc_suppression_memory": 8,
+      "candidate_summary_source": "e2_world_forward",
+      "modulatory_stack": [
+        2.0,
+        "std",
+        "top_k",
+        3,
+        1e-06
+      ],
+      "use_e3_score_diversity": false,
+      "use_gap_scaled_commit_temperature": false,
+      "use_gated_policy": true,
+      "use_pag_freeze_gate": true,
+      "use_instrumental_avoidance": true,
+      "use_escape_affordance_bridge": true,
+      "scaffold_train_harm_pathway": true,
+      "harm_pathway_lr": 0.001,
+      "harm_pathway_encoder_lr": 0.0003,
+      "harm_pathway_warmup_steps": 250,
+      "feed_harm_stream": true,
+      "world_dim": 32,
+      "drive_weight": 2.0,
+      "budgets": [
+        20,
+        10,
+        100,
+        40,
+        50,
+        200
+      ],
+      "hazard_stage": [
+        6,
+        2,
+        0.0,
+        0.1,
+        75
+      ],
+      "seeding": [
+        1.5,
+        0.02,
+        0.9
+      ],
+      "p2": [
+        30,
+        200,
+        16,
+        1.0
+      ],
+      "dry_run": false
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "eval_episodes": 30,
+    "p2_steps_per_episode": 200
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

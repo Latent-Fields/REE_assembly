@@ -384,5 +384,48 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "2e8ec679aab3448141c65a075eab0c684a3972649792a64547e5a85b0eb4eb5c"
+  "substrate_hash": "2e8ec679aab3448141c65a075eab0c684a3972649792a64547e5a85b0eb4eb5c",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 101419.448034,
+  "config": {
+    "design": "env-difficulty competence-recovery sweep; 4 difficulty rungs x 4 policy arms x 4 seeds; capability_eval 4-metric yardstick",
+    "difficulty_rungs": {
+      "D0_baseline_724": "control_reproduce",
+      "D1_food_decoupled": "derisk",
+      "D2_proximity_layout_derisked": "derisk",
+      "D3_hazard_free": "derisk_decisive"
+    },
+    "difficulty_sweep_axes": "hazard_food_attraction 0.7->0.0; proximity_harm_scale 0.1->0.0; reef_bipartite_layout True->False; num_hazards 4->0; reef_enabled True->False (+ n_reef_patches 3->0) at the hazard-free D3 rung so 'hazard-free' is genuine",
+    "arms": {
+      "random_walk": "uniform-random -- FLOOR anchor",
+      "ree_trained_allon": "all-ON REE stack (714 ARM_ON) trained on THIS rung's env with the 724-A0 recipe (P0 world-model warmup + P1 two-head REINFORCE, e2 frozen in P1), evaluated via the mechanism-agnostic yardstick REEForwardPolicy",
+      "vanilla_ppo": "matched-capacity NON-REE PPO actor-critic over the RAW observation vector (body_state (+) world_state (+) harm channels) -- learner-adequacy control on the SAME observation interface (folds in 732a); clipped-surrogate PPO + GAE + count-based novelty + running-std reward scaling; greedy unshaped eval",
+      "greedy_oracle": "nearest-resource greedy forager -- CEILING / per-rung readiness anchor"
+    },
+    "load_bearing_dv": "foraging_competence = capability_eval mean resources/episode",
+    "reported_metrics": [
+      "foraging_competence",
+      "survival_horizon",
+      "goal_reach_rate",
+      "planning_depth"
+    ],
+    "reusable_block": "experiments/_lib/capability_eval.py",
+    "all_on_config_sourced_from": "V3-EXQ-714 ARM_ON via V3-EXQ-724",
+    "training_recipe_sourced_from": "V3-EXQ-724 A0_baseline_allon_p1short_frozen",
+    "ppo_learner_sourced_from": "V3-EXQ-732a (power-fixed matched PPO)",
+    "zworld_p0_episodes": 60,
+    "p0_warmup_episodes": 200,
+    "p1_reinforce_episodes": 90,
+    "p1_ppo_episodes": 1000,
+    "e2_train_in_p1": false,
+    "strict_majority_seeds": 3,
+    "alpha_world": 0.9,
+    "use_sleep_loop": false
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ]
 }
