@@ -1,0 +1,78 @@
+{
+  "assay": "convergence_signal_synthetic_assay_001",
+  "status": "synthetic_measurement_run_only",
+  "date": "2026-09-09",
+  "seed": 7,
+  "p": 0.7,
+  "shared_rho": 0.7,
+  "calibration_trials": 100000,
+  "test_trials": 100000,
+  "source_driver": "scripts/convergence_signal_synthetic_assay_001.py",
+  "preregistration": "evidence/planning/convergence_signal_synthetic_assay_001.md",
+  "claim_ids": [],
+  "queue_mutation": false,
+  "creature_code_change": false,
+  "regimes": {
+    "independent": {
+      "p_est": 0.700406,
+      "rho_bar": 0.0,
+      "n_eff": 5.0,
+      "majority_accuracy": 0.83739,
+      "unanimity_rate": 0.1702,
+      "unanimity_accuracy": 0.9868390129259694,
+      "naive_unanimity_confidence": 1.0,
+      "reliability_only_unanimity_confidence": 0.9858830246265131,
+      "independence_aware_unanimity_confidence": 0.9858830246265131,
+      "independence_aware_brier": 0.1212147962565595
+    },
+    "copies": {
+      "p_est": 0.70154,
+      "rho_bar": 0.999,
+      "n_eff": 1.00080064051241,
+      "majority_accuracy": 0.70029,
+      "unanimity_rate": 1.0,
+      "unanimity_accuracy": 0.70029,
+      "naive_unanimity_confidence": 1.0,
+      "reliability_only_unanimity_confidence": 0.9862545956188494,
+      "independence_aware_unanimity_confidence": 0.7016832519230698,
+      "independence_aware_brier": 0.2098858570509211
+    },
+    "shared_bias": {
+      "p_est": 0.701694,
+      "rho_bar": 0.7003609128441619,
+      "n_eff": 1.3152897842348155,
+      "majority_accuracy": 0.73915,
+      "unanimity_rate": 0.74937,
+      "unanimity_accuracy": 0.7164685002068404,
+      "naive_unanimity_confidence": 1.0,
+      "reliability_only_unanimity_confidence": 0.986304367791482,
+      "independence_aware_unanimity_confidence": 0.7549278319423236,
+      "independence_aware_brier": 0.2002229353703493
+    },
+    "mixed": {
+      "p_est": 0.700458,
+      "rho_bar": 0.2094499450376695,
+      "n_eff": 2.7206445740188623,
+      "majority_accuracy": 0.74136,
+      "unanimity_rate": 0.31082,
+      "unanimity_accuracy": 0.9371662055208803,
+      "naive_unanimity_confidence": 1.0,
+      "reliability_only_unanimity_confidence": 0.9859002598748391,
+      "independence_aware_unanimity_confidence": 0.9097948418433717,
+      "independence_aware_brier": 0.16717140769403108
+    }
+  },
+  "criteria": {
+    "C1_duplicate_evidence_discrimination": true,
+    "C1_confidence_gap": 0.2841997727034433,
+    "C2_dependency_ordering": true,
+    "C3_endpoint_calibration": true,
+    "C3_independent_abs_error": 0.0009559882994563118,
+    "C3_copies_abs_error": 0.001393251923069827,
+    "C4_reliability_only_insufficiency_visible": true,
+    "C4_reliability_only_endpoint_delta": 0.00037157099233631197,
+    "measurement_pass_C1_to_C4": true,
+    "note_C5": "Rich joint-pattern/Bayes ceiling is intentionally reserved for the authoritative extension; M2 must not be claimed superior to exact Bayes."
+  },
+  "interpretation": "PASS as a synthetic measurement assay only. The cheap independence-aware confidence observable distinguishes independent unanimity from duplicated unanimity and preserves the intended dependency ordering. It does not establish a REE architectural claim, does not outperform exact Bayesian aggregation, and shows non-zero calibration error in intermediate dependency regimes that requires follow-up."
+}
