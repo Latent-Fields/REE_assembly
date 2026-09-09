@@ -15045,16 +15045,24 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1380",
+      "blocked_by": [
+        "modulatory-bias-selection-authority"
+      ],
+      "blocked_note": "modulatory channel-route consumers inert at the operating point: 5/6 route sources emit modulatory_channel_route_range == 0.0, and the one live source changes 0/120 committed actions (conversion ceiling, cf. V3-EXQ-569h). Measurement-only variant starved for the same reason.",
       "claim_id": "MECH-004",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-09T05:57:27Z",
+      "gated_by_session": "igw-236-proposal-for-mech-004",
+      "gating_reason": "Route path built but its CONSUMERS are inert -- MECH-004's signal->knob wire cannot carry a contributory per-candidate signal at any reachable operating point. STEP-2.5a PROBE (this session; fresh all-on agent on the v3_exq_728 config, 120 ticks x 6 modulatory_channel_route_source values): 5 of 6 sources (none, curiosity, mech295, lateral_pfc, cem_elite) give modulatory_channel_route_range == 0.0 EXACTLY; only cand_world_summary is live (0.045), and its committed action sequence is bit-identical to the routing-OFF arm on 120/120 ticks. Per-channel score-bias decomposition (e3.e3_score_decomp_enabled, set on the E3 INSTANCE -- not cfg.e3, which is inert) shows every channel except gated_policy (range 1.1e-3) flat at zero. RECORDED EVIDENCE AGREES ON TRAINED AGENTS: all five landed runs that have ever exercised this route are evidence_direction non_contributory -- V3-EXQ-569h (interpretation.label 'conversion_ceiling_persists_despite_routing': route_range 0.32-0.88 yet no conversion into committed action), V3-EXQ-851 and V3-EXQ-858 (both substrate_not_ready_requeue, route_range 0.0), V3-EXQ-863 (mixed_partial_result_needs_expert_review), V3-EXQ-945 (non_contributory). CONSEQUENCE: a behavioural route-source-specificity arm would re-derive the known conversion / F-dominance ceiling that 569h already named -- a vacuous result, not a MECH-004 verdict -- and the commitment-free alternative (cross-source collinearity of per-candidate bias vectors, i.e. the INV-022 single-scalar-collapse falsifier) is STARVED, because 5 of 6 sources emit no per-candidate bias to compare. SEPARATELY, MECH-004's knob side is already compromised: V3-EXQ-846 (PASS) attributed occupancy authority to exactly ONE of four control-plane channels (MODEPRIOR authority_mean 1.0; 5-HT, PHASIC and PCC all exactly 0.0), and the precision knob (K2) line V3-EXQ-848/848a/848b is CLOSED on its own autopsy's 'FINAL reading for this design line', effect ~180x smaller than cross-seed SD. NOTE the gap is NOT that no experiment is conceivable: route-source SPECIFICITY is genuinely untested (no manifest in the corpus configures two ACTIVE sources; every prior run uses one source plus 'none'). It is that the precondition for testing it is unmet.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-004 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0735",
       "proposal_type": "experimental",
+      "release_condition": "Re-open when >=2 modulatory route sources emit a non-trivial per-candidate bias SIMULTANEOUSLY in one config -- measured as modulatory_channel_route_range > 0 for each, read from agent.e3.last_score_diagnostics (NOT agent._last_control_vector, which has no such key). That is what gives a matched-range cross-source contrast something to compare. Node class: complicated (buildable) -- the named build is the untrained-CONSUMER gap, already recorded in arc_005_control_plane_routing_plan.md GAP-A-precision-diagnostic remedy_2026_07_31 as TRACK C ('retraining dacc_adapter on live goal_proximity', user-confirmed out of scope at the time), generalised from dACC to the channel bias heads. Route via /implement-substrate on modulatory-bias-selection-authority -- NOT another lettered /queue-experiment iteration. Re-run the Step-2.5a probe recipe above before re-queuing. The literature_review twin (LIT-0736) is deliberately left status=proposed: MECH-004 also carries missing_literature_evidence and a /lit-pull is NOT substrate-blocked.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -15067,7 +15075,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_004",
       "target_repo": "ree-v3",
       "why_now": [
