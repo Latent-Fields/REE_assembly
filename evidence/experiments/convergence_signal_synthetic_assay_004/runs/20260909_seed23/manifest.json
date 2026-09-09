@@ -1,0 +1,79 @@
+{
+  "assay": "convergence_signal_synthetic_assay_004",
+  "calibration_seed": 1404,
+  "calibration_trials_per_topology": 100000,
+  "candidates_per_episode": 6,
+  "criteria": {
+    "C1_M3_oracle_utility_fraction": 0.991516750388169,
+    "C1_M3_over_M0_regret_ratio": 0.024873272549905425,
+    "C1_factorization_defeats_conflation": true,
+    "C2_M3_over_M1_regret_ratio": 0.035994598589469136,
+    "C2_both_axes_necessary": true,
+    "C3_M3_over_M2_regret_ratio": 0.790834706613936,
+    "C3_hit_rate_gain": 0.008900000000000019,
+    "C3_topology_beyond_global_scalar": true,
+    "C4_M0_oracle_hit_rate": 0.16815,
+    "C4_M3_oracle_hit_rate": 1.0,
+    "C4_forced_anti_conflation": true,
+    "C5_oracle_ceiling": true,
+    "C5_oracle_violations": 0,
+    "measurement_pass_C1_to_C5": true
+  },
+  "episodes": 20000,
+  "execution_note": "Authoritative seed-23 calculation used the committed Assay-004 equations in an isolated local runtime with the Assay-002 aggregation primitives embedded verbatim because the runtime could not import the repository module directly. The probability-specified topology sampling from the pre-run amendment was used. No thresholds or criteria were changed after seed-23 inspection.",
+  "forced_pair": {
+    "M0_conflated": {
+      "mean_regret": 1.2790319441935425,
+      "oracle_hit_rate": 0.16815
+    },
+    "M1_leverage_only": {
+      "mean_regret": 0.6496624314794681,
+      "oracle_hit_rate": 0.5594
+    },
+    "M2_global_factorized": {
+      "mean_regret": 0.0,
+      "oracle_hit_rate": 1.0
+    },
+    "M3_topology_factorized": {
+      "mean_regret": 0.0,
+      "oracle_hit_rate": 1.0
+    },
+    "M4_oracle": {
+      "mean_regret": 0.0,
+      "oracle_hit_rate": 1.0
+    }
+  },
+  "forced_pair_episodes": 20000,
+  "main": {
+    "M0_conflated": {
+      "mean_regret": 0.6134345424532367,
+      "optimal_hit_rate": 0.44915,
+      "oracle_utility_fraction": 0.6589411548152208
+    },
+    "M1_leverage_only": {
+      "mean_regret": 0.42390039516734396,
+      "optimal_hit_rate": 0.56105,
+      "oracle_utility_fraction": 0.7643188160370659
+    },
+    "M2_global_factorized": {
+      "mean_regret": 0.019293696190061736,
+      "optimal_hit_rate": 0.9433,
+      "oracle_utility_fraction": 0.9892730433542131
+    },
+    "M3_topology_factorized": {
+      "mean_regret": 0.015258124565965887,
+      "optimal_hit_rate": 0.9522,
+      "oracle_utility_fraction": 0.991516750388169
+    },
+    "M4_oracle": {
+      "mean_regret": 0.0,
+      "optimal_hit_rate": 1.0,
+      "oracle_utility_fraction": 1.0
+    }
+  },
+  "preregistration": "evidence/planning/convergence_signal_synthetic_assay_004_evidence_vs_downstream_leverage.md",
+  "prerun_amendment": "evidence/planning/convergence_signal_synthetic_assay_004_prerun_amendment.md",
+  "reference_driver": "scripts/convergence_signal_synthetic_assay_004.py",
+  "seed": 23,
+  "status": "synthetic_measurement_result"
+}
