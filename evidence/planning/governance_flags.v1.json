@@ -2194,9 +2194,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-074 still carries `v3_pending: true` and a `live_status.evidence` of `decision:...@2026-04-25 hold_pending_v3_substrate/applied`, while its two stated release conditions (substrate lands; EXQ-A/B-equivalent evidence) are both discharged and it now holds a reviewed PASS of its own (888, exp_conf 0.705, `confirmed_established`). Recommend clearing `v3_pending` and refreshing `live_status.evidence` to point at 888.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:36Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-09T17:23:33Z",
+      "resolution_note": "APPLIED 2026-09-09 by /governance cycle governance-20260909 wave 4, REE_assembly 483a31d784 (verified on origin/master). live_status refreshed across the MECH-074 family to cite v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3 (reviewed, non-degenerate, evidence-purpose PASS, per-claim supports for MECH-074/074a/074b); MECH-074 and MECH-074b moved reading candidate/v3_pending -> candidate, MECH-074b gained an evidence block it did not have, MECH-074a names V3-EXQ-659 alongside 888 and had two wrong figures corrected (it claimed a single entry and exp_conf 0.775; there are two entries and it reads 0.745). CORRECTION TO THESE FLAGS' OWN PREMISE: v3_pending was ALREADY false in the field on all three claims, so 'still carries v3_pending: true' was itself stale -- what actually lagged was live_status. NO STATUS MOVED on any of the three: this is a citation refresh, and the promotion gate is a separate judgement nobody has made. See each claim's evidence_quality_note for the full record, including a recording-quality caveat that V3-EXQ-888's PASS is not re-derivable from its own manifest (criteria carry no measured values or thresholds, no combination_rule)."
     },
     {
       "flag_id": "GFLAG-0154",
