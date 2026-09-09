@@ -2818,3 +2818,8 @@ One line per hourly tick. ASCII only.
 2026-09-09T09:48:32Z GC removed worktree igw-237-proposal-for-mech-005 post-reap (ledger IGW-20260909-237 -> completed_resumable; removed; branch deleted)
 2026-09-09T09:47:03Z SPAWN IGW-20260909-239 skill=/lit-pull prio=40 uuid=d48c0c66-0ad2-4149-8713-858e1666c89f pid=6543 worktree=igw-239-literature-proposal-for-mech-005
 2026-09-09T10:23:53Z auto-defer igw-239-literature-proposal-for-mech-005 hash=7d6d9fa2011e for 48h (complete)
+2026-09-09T10:27:38Z complete igw-239-literature-proposal-for-mech-005 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-005: 5 literature entries landed (REE_assembly 51e46100b2), lit_co
+2026-09-09T10:57:22Z GC removed worktree igw-239-literature-proposal-for-mech-005 (removed; branch deleted)
+2026-09-09T10:56:30Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-09T10:58:04Z workset committed (regen -- 252 items, 29 ready, 0 in flight)
+2026-09-09T10:56:30Z no eligible item (skipped 252): IGW-20260909-001:skill /governance not allowed; IGW-20260909-006:skill /governance not allowed; IGW-20260909-221:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
