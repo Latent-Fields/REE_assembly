@@ -514,20 +514,37 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
 # from an explicit allowlist, and the VALUE still comes from build_runpack_docs
 # (no field is hand-authored here). It never overwrites and never deletes.
 
-# Manifest keys the heal is allowed to add. Deliberately just the four
-# Experimental Recording Standard always-core members that build_runpack_docs
-# started carrying on 2026-09-09 and that NOTHING in build_experiment_indexes
-# reads (verified 2026-09-09: zero references to recording_schema,
+# Manifest keys the heal is allowed to add -- the six Experimental Recording
+# Standard always-core members that build_runpack_docs started carrying on
+# 2026-09-09.
+#
+# The first four are safe because NOTHING in build_experiment_indexes reads
+# them (verified 2026-09-09: zero references to recording_schema,
 # elapsed_seconds or seeds, and no manifest read of config), so adding them
-# changes the pack's SELF-DESCRIPTION and the validate_recording verdict and
+# changes the pack's SELF-DESCRIPTION and its validate_recording verdict and
 # cannot move a score.
 #
-# substrate_hash and machine_class are the other two always-core provenance
-# members and are NOT in this list on purpose: the indexer reads both (17 and 18
-# references respectively -- SD-024 gate class and the arm-fingerprint reuse
-# key), so backfilling them is a scoring change that needs its own measurement
-# and its own governance disposition, not a ride on this one.
-HEAL_MANIFEST_KEYS = ("recording_schema", "elapsed_seconds", "config", "seeds")
+# substrate_hash and machine_class were held back that day pending their own
+# measurement, because the indexer DOES reference both (17 and 18 references --
+# the SD-024 gate class and the arm-fingerprint reuse key). That measurement ran
+# on 2026-09-09; see evidence/planning/runpack_always_core_heal_20260909.md
+# sec 5. It cleared them, for a reason worth stating here so it is not
+# re-litigated: build_experiment_indexes ALREADY backfills machine_class /
+# substrate_hash / machine onto the pack from the SAME flat sibling this heal
+# reads, unconditionally, via _FLAT_PROVENANCE_BACKFILL_FIELDS. Measured over
+# all 56 affected packs: the two resolvers select the identical flat file 56/56,
+# and the value the heal writes equals the value the indexer had already read
+# 112/112. Of the indexer's references, none is a comparison, grouping or gate --
+# they are the dataclass field, that backfill, and two emit-into-the-index sites;
+# the arm-fingerprint reuse key is a NESTED
+# arm_results[].arm_fingerprint.machine_class that this heal never touches.
+# Confirmed empirically by a full pre/post index rebuild against a run-to-run
+# noise control: derived `runs` rows byte-identical, zero status / direction /
+# outcome change corpus-wide, arm_fingerprint_index.json hash-identical.
+# So the heal makes the pack SELF-DESCRIBING instead of dependent on its flat
+# sibling still being reachable -- it does not move a score.
+HEAL_MANIFEST_KEYS = ("recording_schema", "elapsed_seconds", "config", "seeds",
+                      "substrate_hash", "machine_class")
 
 
 def heal_pack(flat_path: Path, evidence_dir: Path | None = None,
