@@ -2762,9 +2762,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'SD-024' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] SD-024 is `status: candidate` while carrying `experimental_confidence 0.715`, `evidence_quadrant confirmed_established`, `epistemic_stance: shown`, one reviewed evidence-purpose PASS (V3-EXQ-900, 2026-08-08) and one reviewed diagnostic PASS (V3-EXQ-795), zero conflicting runs. Its `live_status.as_of` is `2026-07-11`, i.e. it predates both live runs and the whole implementation. This is a promotion candidate that has never been put in front of a governance cycle. Recommend `/governance` read V3-EXQ-900 against SD-024 and either promote or record why not; digestion does not promote.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:29:04Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-09T14:44:25Z",
+      "resolution_note": "DECIDED -- governance cycle governance-20260909 wave 3, user-adjudicated: SD-024 is NOT promoted, and the reason is recorded, which is what this flag asked for ('read V3-EXQ-900 against SD-024 and either promote or record why not'). REE_assembly 48f9a9d3fc (verified on origin/master) carries the finding in SD-024's notes. The mandatory Step 2b driver skim of V3-EXQ-900 found that the run's PASS label asserts more than its criteria test: all three load-bearing criteria (C1 rho 0.5327, C2 rho 0.5166, C4 a 1403-call negative existential) are representational or absence-based, so nothing in 'PASS iff C1 AND C2 AND C4' tests the FUNCTIONAL half, while the one functional discriminator the run records is flat and ungated (0.5577261900901794 at cluster_size>=2 versus 0.5582475601224338 at cluster_size 1). The readiness floor R3 also cleared by exactly one event (6.0 vs 5.0). The skim positively CLEARED the thresholds themselves (pre-registered, not derived from the run, cleared by ~1.7x, attainable in either direction) and the non-degeneracy check. The functional gap is ROUTED TO /failure-autopsy and now has its own flag, GFLAG-0246, which is the autopsy target -- read that one, not this. Separately this cycle established that V3-EXQ-795, the second run cited here in support, is a diagnostic PASS with no confirmed autopsy and therefore cannot count toward a promotion under Step 1.5a."
     },
     {
       "flag_id": "GFLAG-0196",
