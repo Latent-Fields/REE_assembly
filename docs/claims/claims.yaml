@@ -9503,13 +9503,13 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-09-09
     needs_review: false
     evidence:
-      from: "decision:MECH-074@2026-04-25T15:42:09.107823Z"
-      as_of: 2026-04-25
-      verdict: hold_pending_v3_substrate/applied
+      from: v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3
+      as_of: 2026-08-04
+      verdict: supports/PASS
   implementation_phase: v3
   v3_pending: false
   depends_on:
@@ -9558,6 +9558,8 @@
     should primarily evaluate the children (MECH-074a-d); parent remains a
     cross-cutting umbrella. v3_pending until BLAAnalog + CeAAnalog substrate lands
     and EXQ-A/B (CeA mode-prior ablation; BLA encoding + remap) complete.
+
+    [2026-09-09 governance, cycle governance-20260909 wave 4] GFLAG-0153 applied. live_status refreshed: reading moved candidate/v3_pending -> candidate and evidence re-pointed from the stale decision record decision:MECH-074@2026-04-25 (hold_pending_v3_substrate/applied) to v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3 (supports/PASS, 2026-08-04). Note what was and was NOT stale: v3_pending was ALREADY false in the field -- some earlier pass cleared it -- so the flag's 'still carries v3_pending: true' was itself out of date; what actually lagged was live_status, which still READ 'candidate/v3_pending' and still cited an April hold decision. Both stated release conditions are discharged (substrate landed; EXQ-A/B-equivalent evidence), and V3-EXQ-888 is a reviewed, non-degenerate, evidence-purpose PASS carrying per-claim supports for MECH-074/074a/074b. STATUS DELIBERATELY NOT MOVED: this is a citation refresh, not a promotion, and the promotion gate is a separate judgement nobody has made. Recording-quality caveat on the cited run, since it is now the live pointer: V3-EXQ-888's four load-bearing criteria all record passed: true but carry no measured value and no threshold, and the manifest has no combination_rule -- the PASS is not re-derivable from the manifest alone.
 - id: MECH-074a
   title: "BLA analogue applies an arousal-dependent multiplicative gain to HippocampalModule write strength."
   claim_type: mechanism_hypothesis
@@ -9566,12 +9568,12 @@
   status: provisional
   live_status:
     reading: provisional
-    as_of: 2026-07-11
+    as_of: 2026-09-09
     needs_review: false
     evidence:
-      from: v3_exq_659_mech074a_bla_encoding_gain_replay_bias_20260609T200751Z_v3
-      as_of: 2026-06-09
-      verdict: supports/PASS
+      from: v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3
+      as_of: 2026-08-04
+      verdict: "supports/PASS -- second entry, alongside v3_exq_659_mech074a_bla_encoding_gain_replay_bias_20260609T200751Z_v3 (2026-06-09, supports/PASS)"
   implementation_phase: v3
   v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22
   registered_utc: 2026-04-21
@@ -9620,6 +9622,8 @@
     which traces enter replay. exp_conf now 0.775 (confirmed_established). Stays
     provisional -- provisional->stable needs exp_conf>=0.80 AND >=4 experimental
     entries; this is the first.
+
+    [2026-09-09 governance, cycle governance-20260909 wave 4] GFLAG-0154 applied -- note corrected, status deliberately unmoved. The prior note asserted 'this is the first [experimental entry]' and 'exp_conf now 0.775'; BOTH figures are wrong as of this cycle: there are now TWO entries (V3-EXQ-659 2026-06-09 and V3-EXQ-888 2026-08-04) and experimental_confidence reads 0.745, not 0.775. live_status.evidence re-pointed to 888 with 659 named alongside it in the verdict string, and the top-level as_of moved off 2026-07-11 (which predated 888). The promotion gate remains unmet, so status stays provisional -- only the record was wrong, not the disposition. See also GFLAG-0156, recorded on MECH-074b: the 2026-08-07 targeted_review_mech_074b lit pull contains an entry (Roozendaal and McGaugh 2011, evidence_direction mixed, confidence 0.62) that SUPPORTS this claim's encoding locus while weakening 074b's retrieval locus.
 - id: MECH-074b
   title: "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace retrieval weight vector (NOT a scalar gain) on hippocampal readout."
   claim_type: mechanism_hypothesis
@@ -9627,9 +9631,13 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-09-09
     needs_review: false
+    evidence:
+      from: v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3
+      as_of: 2026-08-04
+      verdict: supports/PASS
   implementation_phase: v3
   v3_pending: false
   registered_utc: 2026-04-21
@@ -9682,6 +9690,8 @@
     failure signature. Requires HippocampalModule to carry a per-trace
     arousal_tag field (implementation risk flagged in synthesis.md). v3_pending
     until substrate lands and EXQ-B+ follow-up is queued.
+
+    [2026-09-09 governance, cycle governance-20260909 wave 4] GFLAG-0155 and GFLAG-0156 applied. (1) live_status: reading moved candidate/v3_pending -> candidate and an evidence block ADDED (there was none at all) pointing at v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3 (supports/PASS, 2026-08-04, the reviewed 3/3-seed C2 result). As on the parent, v3_pending was ALREADY false in the field; it was live_status that lagged. Status deliberately NOT moved -- citation refresh only. (2) GFLAG-0156, the substantive half, recorded here rather than silently folded in: the 2026-08-07 targeted_review_mech_074b pull -- which this claim's source list omitted entirely -- contains Roozendaal and McGaugh 2011 (evidence_direction mixed, confidence 0.62), and that entry explicitly WEAKENS this claim's RETRIEVAL locus while SUPPORTING MECH-074a's encoding locus: the best-established amygdala memory effect is on CONSOLIDATION, whereas at RETRIEVAL the amygdala/glucocorticoid effect is documented as IMPAIRING. The claim text does not record this tension and is NOT rewritten here -- rewriting a claim's asserted locus on a single mixed lit entry is a claim-level change, not a note refresh, and it belongs to a /claim-synthesis or /failure-autopsy pass with the whole pull in front of it. Flagged so the next reader does not mistake the supports/PASS pointer above for an unqualified confirmation of the retrieval locus specifically.
 - id: MECH-074c
   title: "CeA analogue emits a fast subcortical priming signal (fast_prime) on low-frequency z_harm_a with an overridable decay window, distinct from MECH-046's cortical mode-prior write."
   claim_type: mechanism_hypothesis
