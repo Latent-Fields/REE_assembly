@@ -1,6 +1,6 @@
 # Daemon code drift -- /metaworker-learning root-cause pass
 
-**Status: AWAITING USER REVIEW**
+**Status: R1+R2 LANDED 2026-09-09. R3 (restart automation) DEFERRED by user decision.**
 
 - Date: 2026-09-09
 - Session: `metaworker-learning-daemondrift-20260909`
@@ -328,9 +328,50 @@ Found while researching; each is independent of the decision above.
 
 ---
 
-## Step 4 -- consent
+## Step 4 -- consent, and what was actually built
 
-Nothing here is built. The governing gate is the already-open
-`chip-20260908-decision-daemondrift-class-drift-aware-restart`. This pass does **not** raise a
-duplicate decision chip; it reports that the chip's scope needs widening (R1/R2 ordering, and
-the Mac subjects it does not currently cover) before Option A/B is acted on.
+The decision was put to the user live rather than through a second chip (a decision chip on
+this class was already open and unanswered; duplicating it would have been noise).
+
+**User decision, 2026-09-09: "R1+R2 first, restart deferred."** Recorded in the
+recommendation-agreement ledger (entry_id 195, recommendation matched).
+
+### Landed
+
+`REE_Working 3f9324f26` (on `origin/master`) -- `scripts/hygiene_routine_tick.py`,
+`scripts/test_hygiene_tick_daemon_drift.py`.
+
+- `_proc_start_dt` returns `_PROC_START_UNKNOWN` on lookup failure, distinct from `None`
+  ("not running", which is a real and clean observation).
+- `_mac_daemon_drift_rows` always emits one row per unit -- `DRIFT` / `CURRENT` / `INACTIVE` /
+  `UNKNOWN`. No silent drops.
+- `_hub_daemon_drift_rows` no longer pre-filters to stale, so hub subjects can also be
+  observed `CURRENT` (without this they could never be auto-resolved under the new rule).
+- `_daemon_drift_findings` classifies every row and exports `clean_bases` / `unknown_bases`.
+- `_episodic_update_clean_streaks` takes `positive_clean_bases`: for a listed prefix, the
+  absence of a finding **breaks** the streak instead of extending it. Other prefixes keep
+  absence-is-quiet semantics unchanged.
+
+**R2 is satisfied by the same mechanism rather than by a separate start-stamp comparison:**
+`CURRENT` means the process started *after* the newest import-surface commit, so an
+auto-resolution now requires positive evidence that a restart actually happened.
+
+**Verification against the live case** (the one that motivated the pass): on a simulated tick
+where the source scans OK but the mac-serve row is silently absent, the streak entry is now
+removed rather than credited -- so the false `-- remedied` auto-resolution cannot recur.
+Tests: 6 existing pins unchanged, 8 new (pins 5-6); 39/39 green across every `scripts/` test
+importing `hygiene_routine_tick`.
+
+### Deferred
+
+R3 (drift-aware restart) is NOT built. The open
+`chip-20260908-decision-daemondrift-class-drift-aware-restart` remains the governing gate for
+it, and this document is the evidence that its Option A must not be actioned as written --
+see the held-out check above, plus the missing in-tick marker (R3a).
+
+### GOV-HELDOUT-1 record
+
+Outcome: **caught an over-broad rule.** The held-out check rejected the proposed Option A on
+3 of 5 non-degenerate cases and surfaced a gate that does not exist. It also required a scope
+correction to its own corpus (A-62 disqualified as derivation-chain evidence). This is the
+claim's admissible evidence for this edit.
