@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-09T09:08:09Z`
+Generated: `2026-09-09T10:57:25Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
