@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_547_548_receiver_conditioned_recurrent_interface",
+  "entry_id": "2026-09-09_mech_547_indexing_rival_teyler_rudy2007",
+  "timestamp_utc": "2026-09-09T10:30:00Z",
+  "claim_ids_tested": ["MECH-547"],
+  "source": {
+    "title": "The hippocampal indexing theory and episodic memory: updating the index",
+    "authors": ["Timothy J. Teyler", "Jerry W. Rudy"],
+    "year": 2007,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.20350",
+    "pmid": "17696170",
+    "volume": "17",
+    "issue": "12",
+    "pages": "1158-1169"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Established hippocampal theory with extensive empirical grounding. It supports cue-conditioned access to distributed cortical representations, which is adjacent to MECH-547, but supplies a strong rival: hippocampus can coordinate heterogeneous downstream content by indexing and reinstating the appropriate cortical ensemble without computing a latent-to-latent receiver-conditioned translation. Mixed is deliberate: the paper strengthens the need for context-sensitive access while weakening any hippocampus-as-translator interpretation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If simple indexed reinstatement of the appropriate stored cortical/latent state reproduces the benefit attributed to T(A,B), MECH-547's translation-specific interpretation is unnecessary.",
+    "If receiver-state permutation leaves performance intact while cue/index identity matters, the data favour indexing over receiver-conditioned translation."
+  ],
+  "tags": ["mech-547", "hippocampus", "indexing", "retrieval", "pattern_completion", "cortical_reinstatement", "rival"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus stores an index over distributed neocortical activity patterns; partial cues can reactivate the relevant hippocampal index and thereby reinstate the associated cortical representation.",
+    "ree_translation": "Supports the general need for context/cue-selective access to distributed representations while supplying a lower-complexity rival to a learned receiver-conditioned bridge: index the correct relational/episodic state and reinstate it.",
+    "mapping_caveat": "The indexing theory is not a theory of latent-space coordinate transformation and predates modern population-geometry methods. Treat it as a rival mechanism, not direct disconfirmation of MECH-547.",
+    "source_context": "Review/update of hippocampal memory indexing theory and its empirical support."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.5,
+    "notes": "High conceptual relevance as a rival; no direct artificial-system transfer."
+  }
+}
