@@ -12759,10 +12759,10 @@
   claim_type: mechanism_hypothesis
   subject: control_plane.volatility_interrupt
   polarity: asserts
-  status: active
+  status: provisional
   epistemic_category: standard
   live_status:
-    reading: active
+    reading: provisional
     as_of: 2026-07-11
     needs_review: false
     evidence:
@@ -12856,6 +12856,8 @@
     mechanistic implementation for later V3 phases. Biological reference: Yu & Dayan
     (2005) Uncertainty, neuromodulation, and attention. Neuron 46(5):681-92.
     PMID 15944135. [DOI: 10.1016/j.neuron.2005.04.014]
+
+    [2026-09-09 governance, cycle governance-20260909 wave 4] DEMOTED active -> provisional (GFLAG-0162, user-adjudicated). The claim is NOT judged wrong and no evidence was excluded; 'active' was simply a stronger reading than the evidence supports, which is the flag's own wording. The reason: 'active' rested on a conjunction ACROSS runs that no single run establishes -- endogenous SELECTIVITY from V3-EXQ-204 plus driver-INJECTED SUFFICIENCY from V3-EXQ-061 / 062b / 623. The only endogenous magnitude ever measured is harm_spike_rv ~1.6-1.9e-6 against an rv-to-threshold gap of ~0.39, i.e. short by a factor of ~2.4e5 (five to six orders of magnitude, re-derived this cycle), and the injection path's own source comment at regulators/phasic_surprise_burst.py:32 describes those runs as experiments that 'poke to fake MECH-104'. So the sufficiency leg is real evidence about the mechanism given the input, and no evidence at all that the organism ever produces that input. What would restore 'active' is one run establishing both legs endogenously in the same rollout. GFLAG-0161 (the separate stale_note on this claim, that status_note stops at EXQ-365 and omits the later non-excluded PASSes including V3-EXQ-623) is left OPEN and is NOT discharged by this demotion.
 
 - id: MECH-105
   title: "Hippocampal sequence completion drives BG beta release via subiculum-NAc-VTA dopaminergic loop."
@@ -12972,10 +12974,10 @@
   claim_type: mechanism_hypothesis
   subject: control_plane.commitment_hysteresis_outcome_valence
   polarity: asserts
-  status: provisional
+  status: candidate
   epistemic_category: substrate_conditional
   live_status:
-    reading: provisional
+    reading: candidate
     as_of: 2026-07-11
     needs_review: false
     evidence:
@@ -12993,6 +12995,8 @@
     Three literature supports (Frank 2005 D1/D2 asymmetry; Frank et al. 2004 Go/NoGo;
     Jenkinson & Brown 2011 beta modulation). conflict_ratio=0. Promoted to provisional
     2026-04-06 governance.
+
+    [2026-09-09 governance, cycle governance-20260909 wave 4] DEMOTED provisional -> candidate (GFLAG-0163, user-adjudicated). Two independent problems with the single non-excluded run V3-EXQ-231a that carried the provisional. (1) DEGENERATE CRITERION, re-derived numerically this cycle: C2 (threshold_asymmetry > 1.20) is an arithmetic CONSEQUENCE of C1 (da_divergence > 0.20) under the driver's own symmetric linear map base * (1 + 1.2 * (da - 0.5)). At the C1 bar exactly -- da_divergence = 0.20 -- the implied asymmetry is already 1.2727, which clears the C2 bar of 1.20; it rises monotonically thereafter (1.3529 at 0.25, 1.4390 at 0.30). C2 therefore CANNOT FAIL whenever C1 passes, so the recorded '5/5 criteria' counts a derived quantity as independent evidence, and the asymmetry this claim is NAMED for was never actually tested. (2) SUBSTRATE ABSENCE: the mechanism was implemented in the driver, not the substrate -- 'valence_bias' appears nowhere in ree_core/ (verified by grep this cycle). epistemic_category left at substrate_conditional, which remains correct and is not what moved. SEE GFLAG-0164, DELIBERATELY LEFT OPEN as the live adjudication target: MECH-106 and SD-011 make OPPOSITE-SIGN predictions about how harm modulates effective_threshold on the same multiplicative chain in e3_selector.select() (e3_selector.py:3599-3625). SD-011's block was sign-flipped on 2026-08-26 to RAISE the threshold under accumulated threat ('D2 avoidance escape response', commit more readily) while MECH-106 asserts harm makes commitment HARDER. That conflict is NOT settled by this demotion and cannot be settled at a governance walk, because SD-011 is status: stable -- resolving it may have to move SD-011, which needs its own adjudication with both claims and the code chain in front of it.
   claim_level: mechanistic
   functional_restatement: >
     The threshold governing entry into and exit from committed states is asymmetric:
@@ -13212,6 +13216,8 @@
     /diagnose-errors complete.
 
     [2026-06-03 governance / autopsy failure_autopsy_604a-624a-630_2026-06-03] V3-EXQ-630 (across-tick nav_competence ecological) re-tagged non_contributory: C4 FAIL -- OFF baseline showed the same readiness-conditioned commitment collapse (arm0_baseline_delta 1.0) as the gated arms, so the gate contribution is unattributable (SD-022 limb-damage degrade drives commitment via running_variance independent of nav_competence). measurement_test_design_defect; does NOT weaken this claim. Redesign queued (confound-isolation arm). ARC-029 separately supported by V3-EXQ-063a PASS (committed-mode harm outcomes, R-c gate) 2026-06-02.
+
+    [2026-09-09 governance, cycle governance-20260909 wave 4] ROUTED TO /failure-autopsy; status deliberately UNCHANGED at provisional this cycle (GFLAG-0148, user-adjudicated; that flag is LEFT OPEN as the autopsy target). The charge is that ARC-029's provisional rests on a run whose ablation is CONFOUNDED and whose non-degeneracy gate passed VACUOUSLY. Governance is not the right place to settle that: it is an evidence adjudication on a specific run's internals, the same shape as SD-024's ungated functional half routed this cycle as GFLAG-0246. Corroborating context recorded so the autopsy does not have to re-derive it: ARC-029 currently reads status provisional while experimental_confidence is 0.4 and evidence_quadrant is plausible_unproven -- i.e. the stored status is already out of step with the scored evidence, independent of whether the confound charge holds. SEPARATELY, and already discharged this cycle: GFLAG-0150 asked for an explicit epistemic_category: standard so the claim would stop inferring substrate_coherence from claim_type: architectural_commitment and suppressing its own promote/demote gating. That field is now set explicitly, so the gating is live -- but making the gate work is not the same as adjudicating the evidence, and GFLAG-0149's two never-executed routing follow-ups (the 2026-06-03 confound-isolation redesign, ~3 months stale with no queue entry, manifest, substrate_queue row, chip or IGW assignment; and the 2026-04-05 EXQ-125a redesign) also remain OPEN and unowned.
   status_note: |
     Promoted candidate -> provisional 2026-03-23.
     Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
