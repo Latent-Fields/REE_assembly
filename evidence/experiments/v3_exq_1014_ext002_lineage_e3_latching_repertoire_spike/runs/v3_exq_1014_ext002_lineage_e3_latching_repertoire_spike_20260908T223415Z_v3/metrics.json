@@ -1,4 +1,255 @@
 {
   "schema_version": "metrics/v1",
-  "values": {}
+  "values": {
+    "latched_fraction": 0.25,
+    "casualty_latched_fraction": 0.16666666666666666,
+    "latching_dominant": false,
+    "latched_x_died_2x2": {
+      "latched_casualty": 1,
+      "latched_survivor": 1,
+      "diverse_casualty": 5,
+      "diverse_survivor": 1,
+      "unadjudicated": 0
+    },
+    "per_seed_top_class_share": {
+      "42": 0.7560975609756098,
+      "123": 0.7790697674418605,
+      "456": 0.8461538461538461,
+      "7": 0.4144144144144144,
+      "11": 0.41711229946524064,
+      "17": 0.5217391304347826,
+      "23": 0.9876543209876543,
+      "31": 1.0
+    },
+    "per_seed_top_class": {
+      "42": 4,
+      "123": 4,
+      "456": 3,
+      "7": 4,
+      "11": 1,
+      "17": 4,
+      "23": 4,
+      "31": 1
+    },
+    "per_seed_latched": {
+      "42": false,
+      "123": false,
+      "456": false,
+      "7": false,
+      "11": false,
+      "17": false,
+      "23": true,
+      "31": true
+    },
+    "survival_latching_association": [
+      {
+        "seed": 42,
+        "latched": false,
+        "top_class": 4,
+        "agent_mean_steps": 12.0,
+        "agent_harm_rate": 0.8125,
+        "stay_mean_steps": 10.0,
+        "random_mean_steps": 15.0,
+        "constant_mean_steps": {
+          "CONSTANT_0": 200.0,
+          "CONSTANT_1": 200.0,
+          "CONSTANT_2": 200.0,
+          "CONSTANT_3": 200.0
+        },
+        "control_harm_rates": {
+          "RANDOM_WALK": 0.7333333333333333,
+          "STAY": 1.0,
+          "CONSTANT_0": 0.01,
+          "CONSTANT_1": 0.005,
+          "CONSTANT_2": 0.005,
+          "CONSTANT_3": 0.01
+        },
+        "adjudicable": true,
+        "casualty": true,
+        "closest_control_profile": "RANDOM_WALK"
+      },
+      {
+        "seed": 123,
+        "latched": false,
+        "top_class": 4,
+        "agent_mean_steps": 14.2,
+        "agent_harm_rate": 0.8045774647887324,
+        "stay_mean_steps": 12.0,
+        "random_mean_steps": 16.333333333333332,
+        "constant_mean_steps": {
+          "CONSTANT_0": 200.0,
+          "CONSTANT_1": 200.0,
+          "CONSTANT_2": 200.0,
+          "CONSTANT_3": 200.0
+        },
+        "control_harm_rates": {
+          "RANDOM_WALK": 0.7346938775510204,
+          "STAY": 1.0,
+          "CONSTANT_0": 0.015,
+          "CONSTANT_1": 0.0,
+          "CONSTANT_2": 0.0,
+          "CONSTANT_3": 0.01
+        },
+        "adjudicable": true,
+        "casualty": true,
+        "closest_control_profile": "RANDOM_WALK"
+      },
+      {
+        "seed": 456,
+        "latched": false,
+        "top_class": 3,
+        "agent_mean_steps": 194.85,
+        "agent_harm_rate": 0.02155504234026174,
+        "stay_mean_steps": 12.0,
+        "random_mean_steps": 17.333333333333332,
+        "constant_mean_steps": {
+          "CONSTANT_0": 200.0,
+          "CONSTANT_1": 200.0,
+          "CONSTANT_2": 200.0,
+          "CONSTANT_3": 200.0
+        },
+        "control_harm_rates": {
+          "RANDOM_WALK": 0.6730769230769231,
+          "STAY": 1.0,
+          "CONSTANT_0": 0.005,
+          "CONSTANT_1": 0.005,
+          "CONSTANT_2": 0.01,
+          "CONSTANT_3": 0.0
+        },
+        "adjudicable": true,
+        "casualty": false,
+        "closest_control_profile": "CONSTANT_2"
+      },
+      {
+        "seed": 7,
+        "latched": false,
+        "top_class": 4,
+        "agent_mean_steps": 22.025,
+        "agent_harm_rate": 0.49943246311010214,
+        "stay_mean_steps": 10.0,
+        "random_mean_steps": 16.666666666666668,
+        "constant_mean_steps": {
+          "CONSTANT_0": 200.0,
+          "CONSTANT_1": 200.0,
+          "CONSTANT_2": 200.0,
+          "CONSTANT_3": 200.0
+        },
+        "control_harm_rates": {
+          "RANDOM_WALK": 0.68,
+          "STAY": 1.0,
+          "CONSTANT_0": 0.005,
+          "CONSTANT_1": 0.01,
+          "CONSTANT_2": 0.005,
+          "CONSTANT_3": 0.01
+        },
+        "adjudicable": true,
+        "casualty": true,
+        "closest_control_profile": "RANDOM_WALK"
+      },
+      {
+        "seed": 11,
+        "latched": false,
+        "top_class": 1,
+        "agent_mean_steps": 84.675,
+        "agent_harm_rate": 0.14821375848833776,
+        "stay_mean_steps": 14.0,
+        "random_mean_steps": 11.0,
+        "constant_mean_steps": {
+          "CONSTANT_0": 200.0,
+          "CONSTANT_1": 200.0,
+          "CONSTANT_2": 200.0,
+          "CONSTANT_3": 200.0
+        },
+        "control_harm_rates": {
+          "RANDOM_WALK": 0.8787878787878788,
+          "STAY": 1.0,
+          "CONSTANT_0": 0.0,
+          "CONSTANT_1": 0.015,
+          "CONSTANT_2": 0.0,
+          "CONSTANT_3": 0.01
+        },
+        "adjudicable": true,
+        "casualty": true,
+        "closest_control_profile": "CONSTANT_1"
+      },
+      {
+        "seed": 17,
+        "latched": false,
+        "top_class": 4,
+        "agent_mean_steps": 21.425,
+        "agent_harm_rate": 0.49008168028004667,
+        "stay_mean_steps": 12.0,
+        "random_mean_steps": 15.333333333333334,
+        "constant_mean_steps": {
+          "CONSTANT_0": 200.0,
+          "CONSTANT_1": 200.0,
+          "CONSTANT_2": 200.0,
+          "CONSTANT_3": 200.0
+        },
+        "control_harm_rates": {
+          "RANDOM_WALK": 0.6521739130434783,
+          "STAY": 1.0,
+          "CONSTANT_0": 0.0,
+          "CONSTANT_1": 0.01,
+          "CONSTANT_2": 0.005,
+          "CONSTANT_3": 0.01
+        },
+        "adjudicable": true,
+        "casualty": true,
+        "closest_control_profile": "RANDOM_WALK"
+      },
+      {
+        "seed": 23,
+        "latched": true,
+        "top_class": 4,
+        "agent_mean_steps": 11.225,
+        "agent_harm_rate": 0.9799554565701559,
+        "stay_mean_steps": 11.0,
+        "random_mean_steps": 17.0,
+        "constant_mean_steps": {
+          "CONSTANT_0": 200.0,
+          "CONSTANT_1": 200.0,
+          "CONSTANT_2": 200.0,
+          "CONSTANT_3": 200.0
+        },
+        "control_harm_rates": {
+          "RANDOM_WALK": 0.7647058823529411,
+          "STAY": 1.0,
+          "CONSTANT_0": 0.01,
+          "CONSTANT_1": 0.005,
+          "CONSTANT_2": 0.01,
+          "CONSTANT_3": 0.0
+        },
+        "adjudicable": true,
+        "casualty": true,
+        "closest_control_profile": "STAY"
+      },
+      {
+        "seed": 31,
+        "latched": true,
+        "top_class": 1,
+        "agent_mean_steps": 200.0,
+        "agent_harm_rate": 0.015,
+        "stay_mean_steps": 11.0,
+        "random_mean_steps": 14.0,
+        "constant_mean_steps": {
+          "CONSTANT_0": 200.0,
+          "CONSTANT_1": 200.0,
+          "CONSTANT_2": 200.0,
+          "CONSTANT_3": 200.0
+        },
+        "control_harm_rates": {
+          "RANDOM_WALK": 0.7857142857142857,
+          "STAY": 1.0,
+          "CONSTANT_0": 0.0,
+          "CONSTANT_1": 0.015,
+          "CONSTANT_2": 0.0,
+          "CONSTANT_3": 0.015
+        },
+        "adjudicable": true,
+        "casualty": false,
+        "closest_control_profile": "CONSTANT_1"
+      }
+    ]
+  }
 }
