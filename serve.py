@@ -1077,6 +1077,59 @@ def _ensure_explorer() -> dict | None:
 _runner_procs: dict[str, subprocess.Popen | None] = {"v3": None, "v2": None}
 # Track externally-detected PIDs per substrate
 _runner_ext_pids: dict[str, int | None] = {"v3": None, "v2": None}
+# PID of a runner THIS serve.py session asked to drain (SIGTERM / launchd
+# bootout), per substrate. See _runner_draining() for why this -- and not a
+# telemetry file or the coordinator -- is the source of truth for the flag.
+_runner_drain_pids: dict[str, int | None] = {"v3": None, "v2": None}
+
+
+def _runner_draining(ver: str, pid: int | None) -> bool:
+    """True when this serve.py session asked `pid` to drain and it is still up.
+
+    SOURCE OF TRUTH, and why it is this one
+    ---------------------------------------
+    A "draining" runner is one that has been sent SIGTERM (or launchd
+    bootout) and is finishing its current experiment before exiting. The
+    explorer uses the flag for exactly one thing: swap the Stop button for
+    Force Stop once a graceful stop is already in flight. serve.py is the
+    process that issues that signal, so its own record of having issued it
+    is both authoritative and free.
+
+    Two sources that look right and are NOT:
+
+    * `evidence/experiments/runner_status/<machine>.json`, which this
+      function used to glob. That per-machine git-telemetry render was
+      RETIRED 2026-09-06 (CLAUDE.md archaeology note A-93); the directory is
+      gone from master and the Mac runner runs under
+      PHASE3_RUNNER_TELEMETRY_OFF_GIT=1, whose gate short-circuits
+      experiment_runner.write_status() before it touches disk. The read
+      could therefore never return True -- it reported "not draining"
+      silently and forever. Do NOT restore it, and do NOT re-enable a
+      heartbeat/runner-status git writer to make it work again.
+
+    * The coordinator's DB-authoritative /shadow/status. Right instinct,
+      wrong field, in two ways. (1) Its per-machine `state` comes from the
+      runner heartbeat, and the mid-run heartbeat
+      (experiment_runner._push_remote_heartbeat) hardcodes state="running";
+      the runner only ever reports "draining" at an end-of-pass tick, i.e.
+      after the window this flag exists to describe. (2) The coordinator's
+      own "draining" verdict (coordinator/db.py) means a pending MACHINE
+      shutdown notice -- a different fact from "this runner process is
+      winding down". Repointing here would trade a never-true flag for a
+      nearly-never-true one, which is the harder bug to notice.
+    """
+    if pid is None:
+        return False
+    requested = _runner_drain_pids.get(ver)
+    if requested is None:
+        return False
+    if requested != pid:
+        # Different process now (respawn, or a restart after the drain
+        # finished) -- the old request does not describe it. Clear so a
+        # recycled PID can never resurrect a stale drain.
+        _runner_drain_pids[ver] = None
+        return False
+    return True
 
 
 # ── launchd supervision (Mac v3 runner) ──────────────────────────────────────
@@ -6004,6 +6057,7 @@ def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
         new_pid = _launchd_pid()
         print(f"[serve] {cfg['label']} runner started via launchd "
               f"(PID {new_pid}; {boot_note}; {kick_note})", flush=True)
+        _runner_drain_pids[ver] = None
         return {"status": "started", "pid": new_pid, "substrate": ver,
                 "supervisor": "launchd"}
 
@@ -6040,6 +6094,7 @@ def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
         popen_kwargs["env"] = _env
     proc = subprocess.Popen(cmd, **popen_kwargs)
     _runner_procs[ver] = proc
+    _runner_drain_pids[ver] = None
     print(f"[serve] {cfg['label']} runner started (PID {proc.pid})", flush=True)
     return {"status": "started", "pid": proc.pid, "substrate": ver}
 
@@ -6520,6 +6575,7 @@ def stop_runner(ver: str | None = None) -> dict:
                 print(f"[serve] {cfg['label']} drain requested via "
                       f"launchd bootout (PID {target_pid}; {note})",
                       flush=True)
+                _runner_drain_pids[v] = target_pid
                 return {"status": "draining", "pid": target_pid,
                         "substrate": v, "supervisor": "launchd"}
             # No launchd-managed runner -- fall through to legacy paths.
@@ -6531,6 +6587,7 @@ def stop_runner(ver: str | None = None) -> dict:
             proc.terminate()  # SIGTERM -> runner sets drain flag, finishes current experiment
             # Do NOT wait -- experiment may take minutes.  Runner will exit on its own.
             print(f"[serve] {cfg['label']} drain requested (PID {pid})", flush=True)
+            _runner_drain_pids[v] = pid
             return {"status": "draining", "pid": pid, "substrate": v}
 
         # Try a runner started outside this server session
@@ -6541,6 +6598,7 @@ def stop_runner(ver: str | None = None) -> dict:
                 _runner_ext_pids[v] = None
                 print(f"[serve] {cfg['label']} drain requested via signal (PID {target_pid})",
                       flush=True)
+                _runner_drain_pids[v] = target_pid
                 return {"status": "draining", "pid": target_pid, "substrate": v}
             except (ProcessLookupError, PermissionError) as e:
                 return {"status": "error", "message": str(e)}
@@ -6572,6 +6630,7 @@ def force_stop_runner(ver: str | None = None) -> dict:
                 ok, note = _launchd_bootout()
                 print(f"[serve] {cfg['label']} force-killed via launchd "
                       f"(PID {target_pid}; {note})", flush=True)
+                _runner_drain_pids[v] = None
                 return {"status": "stopped", "pid": target_pid,
                         "substrate": v, "supervisor": "launchd"}
             # No launchd-managed runner -- fall through to legacy paths.
@@ -6585,6 +6644,7 @@ def force_stop_runner(ver: str | None = None) -> dict:
             except subprocess.TimeoutExpired:
                 pass
             _runner_procs[v] = None
+            _runner_drain_pids[v] = None
             print(f"[serve] {cfg['label']} force-killed (PID {pid})", flush=True)
             return {"status": "stopped", "pid": pid, "substrate": v}
 
@@ -6593,6 +6653,7 @@ def force_stop_runner(ver: str | None = None) -> dict:
             try:
                 os.kill(target_pid, signal.SIGKILL)
                 _runner_ext_pids[v] = None
+                _runner_drain_pids[v] = None
                 print(f"[serve] {cfg['label']} force-killed via signal (PID {target_pid})",
                       flush=True)
                 return {"status": "stopped", "pid": target_pid, "substrate": v}
@@ -6604,21 +6665,6 @@ def force_stop_runner(ver: str | None = None) -> dict:
 
 def runner_status() -> dict:
     """Return status of all runners, including draining flag."""
-    # Read per-machine status files once to check for draining state.
-    draining_any = False
-    try:
-        if STATUS_DIR.is_dir():
-            for f in STATUS_DIR.glob("*.json"):
-                try:
-                    d = json.loads(f.read_text())
-                    if d.get("draining") and not d.get("idle", True):
-                        draining_any = True
-                        break
-                except Exception:
-                    pass
-    except Exception:
-        pass
-
     result = {}
     for ver in RUNNERS:
         pid = _runner_pid(ver)
@@ -6626,9 +6672,13 @@ def runner_status() -> dict:
             "running": pid is not None,
             "pid": pid,
             "label": RUNNERS[ver]["label"],
-            # draining: runner is alive but finishing current experiment before stopping.
-            # Only meaningful for V3 (V2 is archived); attached to the ver that is actually running.
-            "draining": draining_any and pid is not None,
+            # draining: runner is alive but finishing current experiment
+            # before stopping. Derived per-substrate from the drain request
+            # this serve.py session issued -- NOT from runner_status/*.json
+            # (retired 2026-09-06) and NOT from the coordinator's `state`.
+            # _runner_draining() carries the full reasoning; read it before
+            # repointing this at either.
+            "draining": _runner_draining(ver, pid),
         }
     return result
 
