@@ -1,0 +1,55 @@
+{
+  "schema_version": "reanalysis/v1",
+  "recording_schema": "rec/v1",
+  "artifact_type": "post_hoc_reanalysis",
+  "reanalysis_id": "reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z",
+  "generated_utc": "2026-09-08T21:29:33Z",
+  "gov_rule": "GOV-REUSE-1",
+  "question": "INV-104 class 1 (consequence / opportunity-and-threat), condition (i) DESTRUCTION IS REAL: through the SD-070-trained observation->z_world compression, is the retained fraction R_1 of oracle-relevant class-1 access at or below 0.25, while the raw-input ceiling (NDP-3) clears 0.90?",
+  "claim_ids": [
+    "INV-104"
+  ],
+  "decisive_readout": "R_1 = (oracle_action_agreement[zworld_off_diag] - oracle_action_agreement[zworld_untrained_diag]) / (oracle_action_agreement[rawfield_ceiling] - oracle_action_agreement[zworld_untrained_diag])",
+  "source_run_ids": [
+    "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3"
+  ],
+  "source_substrate_hashes": {
+    "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3": "875d3044d5e9f8794dbf57d0d25ddad023b1eb88c0de9fb30161f04a26093d99"
+  },
+  "substrate_compatibility": "matched",
+  "substrate_invariant_asserted": false,
+  "answer": {
+    "R_1_per_seed": {
+      "42": -0.0945,
+      "43": -0.026,
+      "44": -0.1607
+    },
+    "R_1_mean": -0.0937,
+    "seeds_at_or_below_0.25": "3 of 3",
+    "condition_i_destruction_is_real": "SATISFIED",
+    "raw_input_ceiling_NDP3_per_seed": {
+      "42": 0.9846,
+      "43": 0.9796,
+      "44": 0.973
+    },
+    "NDP3_met": true,
+    "untrained_floor_NDP4_per_seed": {
+      "42": 0.6988,
+      "43": 0.6812,
+      "44": 0.7038
+    },
+    "NDP4_met": true,
+    "zworld_participation_ratio_NDP2_per_seed": {
+      "42": 4.565,
+      "43": 4.223,
+      "44": 5.667
+    },
+    "NDP2_band": "[4.0, 6.5]",
+    "NDP2_met": true,
+    "sign_note": "R_1 is NEGATIVE on all three seeds: the trained compression yields LOWER oracle agreement than an untrained random projection of the same width."
+  },
+  "method_note": "Arithmetic over per-seed oracle_action_agreement in V3-EXQ-1008's arm_results; all three arms (ceiling / floor / compressed) are cells of the SAME run, so R_1 is computed within one substrate_hash with no cross-run mixing. The floor and compressed arms use the unrotated _diag variants (no re-basis), which is the form INV-104's R_k is defined on.",
+  "verdict": "inconclusive",
+  "notes": "Discharges ONE leg of INV-104 class 1 only. Conditions (ii) losses-blind, (iii) restoration-pays and (iv) not-just-more-supervision remain untested, so this is NOT support for INV-104 as a whole -- hence verdict inconclusive. NDP-1 (compression trained) holds: the SD-070 P0a warmup ran. NDP-6 (GOV-MATCHAUX-1 matched-arbitrary control) and NDP-7 are not applicable to this leg. NDP-5 (organism-level DV resolution) is NOT met on this substrate and is why the normative legs are blocked -- V3-EXQ-978 measured 0.2667 vs 0.2833 res/ep against a 1.0 competence floor (demonstrator anchor 45.75), an arm difference of one third of one 0.05 quantum with within-arm spread ~21x that difference. INTERPRETATION GATE: V3-EXQ-1002 returned H-C-geometry-mismatch, so per INV-104's conditional-interpretation clause the production readout is the admissible one; V3-EXQ-1008 then WEAKENED H-C to a linear content ceiling (no information-preserving re-basis -- zca, ldawhiten, fielddecode -- lifted agreement, while PCA-32 of the encoder's own 250-dim input reached 0.868). V3-EXQ-1010 (over-capacity decoder sweep, claimed/in flight at time of writing) is the outstanding corroborator: if it recovers the mapping at higher decoder capacity, R_1 at INV-104's own pinned 2x128 adapter capacity remains the defined statistic but its reading as content destruction rather than capacity limitation is contested.",
+  "caveat": ""
+}
