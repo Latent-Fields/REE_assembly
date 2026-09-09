@@ -2328,9 +2328,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-106' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-106 is `provisional` on a single non-excluded run (V3-EXQ-231a) in which (1) the mechanism was implemented in the driver, not the substrate (no `valence_bias` anywhere in `ree_core/`), and (2) criterion C2 (`threshold_asymmetry > 1.20`) is an arithmetic consequence of criterion C1 (`da_divergence > 0.20`) under that driver's own symmetric linear map `base * (1 + 1.2 * (da - 0.5))` -- reproduced numerically above -- so the \"5/5 criteria\" count over-states the independent evidence, and the asymmetry the claim is named for was never tested.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:42Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-09T17:45:51Z",
+      "resolution_note": "APPLIED 2026-09-09 by /governance cycle governance-20260909 wave 4, user-adjudicated. REE_assembly 5616443506 (verified on origin/master): MECH-106 DEMOTED provisional -> candidate. Both of this flag's legs were independently verified before acting, not taken on report. (1) The degenerate criterion was re-derived NUMERICALLY: under the driver's own symmetric linear map base * (1 + 1.2 * (da - 0.5)), a da_divergence of exactly 0.20 -- the C1 bar -- already implies a threshold_asymmetry of 1.2727, which clears the C2 bar of 1.20, and the implied asymmetry rises monotonically thereafter (1.3529 at da_divergence 0.25, 1.4390 at 0.30). So C2 cannot fail whenever C1 passes: it is an arithmetic consequence, the recorded '5/5 criteria' counts a derived quantity as independent evidence, and the asymmetry the claim is NAMED for was never tested. (2) The substrate-absence leg was verified by grep: 'valence_bias' appears nowhere under ree-v3/ree_core/, confirming the mechanism was implemented in the driver rather than the substrate. epistemic_category left at substrate_conditional -- that was correct and is not what moved. GFLAG-0164 is DELIBERATELY LEFT OPEN and is the live adjudication target for the remaining, larger question: MECH-106 and SD-011 make opposite-sign predictions on the same multiplicative chain in e3_selector.select() (:3599-3625), and because SD-011 is status: stable that conflict cannot be settled at a governance walk -- resolving it may have to move SD-011."
     },
     {
       "flag_id": "GFLAG-0164",
