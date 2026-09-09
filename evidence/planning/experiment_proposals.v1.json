@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-09T01:58:33.797001Z",
+  "generated_at_utc": "2026-09-09T09:07:27.366615Z",
   "items": [
     {
       "acceptance_checks": [
@@ -3032,6 +3032,56 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1712",
+      "blocked_by": [
+        "SD-070",
+        "GOV-MATCHAUX-1"
+      ],
+      "blocked_note": "blocked at /queue-experiment Step 2.5a: the SD-070 P0a objective weights (presence/distance/proximity/reconstruction/variance/covariance) and the proximity target are unreachable from run_zworld_p0 / _train_all_on_agent, so INV-104's F1 verdict arm (generic-only compression) and its GOV-MATCHAUX-1 matched-arbitrary control (NDP-6) are both unconstructible; condition (i) is already discharged by reanalysis reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z (R_1 = -0.094, 3/3 seeds)",
+      "claim_id": "INV-104",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "gated_at_utc": "2026-09-08T21:30:41Z",
+      "gated_by_session": "igw-233-proposal-for-inv-104",
+      "gating_reason": "BLOCKED at the /queue-experiment Step 2.5a empirical wiring probe (session igw-233-proposal-for-inv-104, IGW-20260908-233, 2026-09-08). INV-104's falsifier is instantiated for class 1 (consequence / opportunity-and-threat) at the observation->z_world encoder step, and EXP-1397's design needs five arms: A0 rawfield_ceiling, A1 zworld_untrained_projection, A2 zworld_p0_generic (the F1 verdict arm), A3 zworld_p0_plus_class1_scaffold, A4 matched_arbitrary_auxiliary. TWO of those five are UNBUILDABLE on the current substrate, and the gap is a missing driver-facing seam, not a missing mechanism.\n\nMEASURED THIS SESSION (runtime probe over ree_core.latent.zworld_p0 and experiments/_lib): ZWorldP0Config carries seven objective weights -- variance_weight=25.0, covariance_weight=50.0, reconstruction_weight=10.0, presence_weight=1.0, distance_weight=1.0, proximity_weight=0.5, resource_field_weight=0.0 -- but experiments/_lib/zworld_p0_warmup.run_zworld_p0 constructs ZWorldP0Config passing ONLY seed (plus batch_size/epochs on the dry-run path) and resource_field_weight, and experiments/_lib/allon_training._train_all_on_agent exposes only zworld_p0_resource_field_weight. The other six weights are therefore pinned at their defaults for every driver in the x724/734/737/808/948/978/1002/1008 family. Separately, the SD-018 proximity TARGET is a hardcoded call to resource_prox_target(obs_dict) inside run_zworld_p0's rollout loop, so there is no seam through which a caller can supply an alternative regression target.\n\nCONSEQUENCE 1 -- ARM A2, AND WITH IT ROUTE F1, CANNOT BE INSTANTIATED AT ALL. F1 (the vacuity route, and the ONLY one of INV-104's three falsifying routes that is both decisive and measurement-only) requires R_k measured through a compression trained on 'generic predictive / reconstruction objectives alone with NO class-specific pressure'. SD-070's grounding targets are hazard-in-view, resource-in-view, and bucketed Chebyshev distance to the nearest of each, with proximity_weight=0.5 on top -- these ARE class-1 (consequence / opportunity-and-threat) targets under INV-104's own taxonomy, and INV-104's notes already list SD-018's proximity head as an existing single-class instance of class 1. So every z_world this substrate can currently produce already carries class-1 supervision, and a generic-only compression -- the thing F1 is a statement about -- does not exist as a reachable configuration. This is not a power or tuning problem; the arm is unconstructible.\n\nCONSEQUENCE 2 -- ARM A4 IS UNBUILDABLE, SO NDP-6 IS UNMET AND ANY VERDICT WOULD BE VACUOUS. GOV-MATCHAUX-1, which INV-104 pins as non-degeneracy precondition NDP-6(i), requires a matched arbitrary-auxiliary control at equal head capacity, loss budget, update frequency and training examples, targeting learnable but organism-irrelevant structure. The natural zero-substrate-change construction is to inject an arbitrary deterministic scalar through the existing resource_proximity_target channel (same head, same MSE, same weight, same cadence -- differing only in what the target means), but that channel is hardcoded as above. INV-104's own text is explicit that 'any one [NDP] unmet makes the verdict vacuous rather than negative'. The ONE arm pair reachable today is resource_field_weight 0.0 vs 0.5, which is exactly V3-EXQ-978's ON/OFF contrast -- already run, already null (held-out field decode r2 0.7099 OFF vs 0.7093 ON; z_world participation ratio 3.986 vs 3.989; res/ep 0.2667 vs 0.2833) -- and re-reading those same latents through the V3-EXQ-1002 oracle adapter would still be vacuous under NDP-6, so it is not a lesser experiment worth queuing instead.\n\nCONSEQUENCE 3 -- SEPARATE AND INDEPENDENT: the organism-level legs are blocked on NDP-5, not on the seam. Confirming conditions (iii) and (iv), and falsifying route F2, all read a DV of resources/episode against the 1.0 D3 competence floor. V3-EXQ-978 measured 0.2667 / 0.2833 res/ep with the local_view_greedy demonstrator anchor at 45.75, an arm difference of one third of one 0.05 res/ep quantum and a within-arm seed spread ~21x that difference. NDP-5 (report the DV quantum and require the claimed effect to exceed one quantum) cannot be demonstrated at this operating point, so those three routes stay blocked even after the seam lands. Building the seam unblocks the MEASUREMENT-ONLY half (F1 plus the R_k legs), not the normative half.\n\nALREADY DISCHARGED, so the eventual build does not repeat it -- GOV-REUSE-1 reanalysis reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z (sources: v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3, compatibility matched, single run so no cross-substrate mixing). Condition (i) DESTRUCTION IS REAL is SATISFIED for class 1: R_1 = -0.0945 / -0.0260 / -0.1607 (mean -0.0937) on seeds 42/43/44, 3 of 3 at or below the 0.25 bar -- negative, i.e. the trained compression yields LOWER oracle agreement than an untrained random projection of the same width. NDP-2 met (participation ratio 4.565 / 4.223 / 5.667, band [4.0, 6.5]); NDP-3 met (raw-input ceiling 0.9846 / 0.9796 / 0.9730 against the 0.90 bar); NDP-4 met (untrained floor 0.6988 / 0.6812 / 0.7038); NDP-1 met (SD-070 P0a warmup ran).\n\nINTERPRETATION GATE, resolved but with a corroborator outstanding: V3-EXQ-1002 returned H-C-geometry-mismatch, so under INV-104's conditional-interpretation clause the production readout is the admissible one and F2 is admissible in principle (it is NDP-5, above, that blocks it in practice). V3-EXQ-1008 then WEAKENED H-C to a linear content ceiling -- no information-preserving re-basis (zca, ldawhiten, fielddecode) lifted agreement, while PCA-32 of the encoder's own 250-dim input reached 0.868. V3-EXQ-1010 (over-capacity decoder sweep on the banked 1002/1008 dataset) was status=claimed and in flight when this was written; it is the outstanding corroborator.\n\nNOT a re-derive-brake stop: 0 autopsies tag INV-104, so the Step 2.5b count is 0. Per EXP-1397's own design note this proposal must NOT be co-tagged INV-088 or MECH-457, on both of which the brake HAS fired.",
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for INV-104 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0040",
+      "proposal_type": "experimental",
+      "release_condition": "Release when the P0a OBJECTIVE-DECOMPOSITION SEAM exists. Route via /implement-substrate, NOT via another lettered experiment here. Concretely, three backwards-compatible pass-throughs: (a) run_zworld_p0 forwards presence_weight, distance_weight, proximity_weight, reconstruction_weight, variance_weight and covariance_weight to ZWorldP0Config, each defaulting to the current ZWorldP0Config default so every existing caller stays bit-identical; (b) run_zworld_p0 accepts a caller-supplied proximity-target callable defaulting to the existing resource_prox_target, which is what makes the GOV-MATCHAUX-1 matched-arbitrary arm constructible at equal head capacity, loss budget, update frequency and example count; (c) _train_all_on_agent forwards the same set. Note for whoever builds it: experiments/_lib/** is folded into substrate_hash, so this edit correctly busts existing arm-reuse fingerprints (a false MISS, which only costs compute) -- that is expected, and is not a reason to route the change around _lib.\n\nWHAT BECOMES RUNNABLE THE MOMENT THE SEAM LANDS: the measurement-only preservation ladder, 5 arms x >=3 seeds, no action-commitment substrate required and therefore NOT gated on the conversion / F-dominance ceiling -- A0 rawfield_ceiling (NDP-3), A1 untrained projection (NDP-4 floor), A2 generic-only (variance/covariance/reconstruction only, all four class-1 weights at 0.0) as the F1 verdict arm, A3 generic + class-1 scaffold, A4 generic + matched-arbitrary target through the new callable. Verdict statistic R_1 = (agreement_arm - agreement_A1) / (agreement_A0 - agreement_A1) via the V3-EXQ-1002 oracle adapter at its pinned 2x128 capacity. Pre-registered readings: F1 fires at R_1(A2) >= 0.75; condition (i) is already discharged (see gating_reason) and A2/A3 only need to replicate it; the R_k leg of (iii) is R_1(A3) - R_1(A2) >= 0.20 absolute; the GOV-MATCHAUX-1 discrimination of (iv) is R_1(A3) - R_1(A4) >= 2x SD of the seed-matched delta; condition (ii) losses-blind is delta world_obs reconstruction loss and delta E2 one-step prediction MSE between A3 and A2, each within 1 SD of the within-arm seed spread. Route F3 (scaffold dependence) is structurally non-applicable and should be reported as such rather than tested: SD-070's auxiliary heads belong to the TRAINER, not the substrate, and are discarded when train() returns, so NDP-6(ii) 'evaluation with the auxiliary head REMOVED' holds by construction.\n\nDO NOT queue the organism-level legs with that ladder. Conditions (iii)/(iv) read at the resources/episode DV, and route F2, stay blocked on NDP-5 until the competence floor is cleared -- the agent sits at ~0.27 res/ep against a 1.0 floor with the demonstrator anchor at 45.75, so a flat organism-level DV there is uninterpretable rather than negative, which is precisely the vacuous re-derivation of the known conversion ceiling. Split them into a separate proposal gated on the competence floor.\n\nTWO CHECKS TO RE-RUN AT QUEUE TIME rather than trusting this note: (1) Step 2.5c substrate-path overlap -- this session stopped at Step 2.5a and never reached a queue decision, and there are open corrupting entries (mode-governance-engagement, status implemented_pending_validation; SD-082) whose substrate_paths include ree_core/agent.py and ree_core/utils/config.py. They are almost certainly off a measurement-only driver's path (the ladder never runs the agent's decision loop -- no select_action, no sense(); the agent is an encoder container and the rollouts are oracle- or random-driven), but that is a judgement to make against the driver as actually written, not in advance. (2) V3-EXQ-1010's result: if the over-capacity decoder sweep recovers the oracle mapping at higher decoder capacity, R_1 at INV-104's own pinned adapter capacity remains the defined statistic, but its reading as content destruction rather than capacity limitation is contested, and the ladder's framing should say so explicitly.",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_inv_104",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "insufficient_experimental_replication",
+        "low_exp_conf"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-0059",
       "claim_id": "MECH-155",
       "decision_deadline_utc": "",
@@ -3611,7 +3661,6 @@
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
       "executed_by": "V3-EXQ-1011",
-      "executed_note_2026_09_09": "Marked executed by governance cycle governance-20260909. V3-EXQ-1011 (v3_exq_1011_arc021_h3_submargin_paired_ci_20260908T201117Z_v3) satisfies every acceptance check: a single claim-focused discriminative pair (SEPARATED vs MERGED channel arms), 96 MATCHED seed pairs per condition (far above the 2-seed minimum), pre-registered thresholds (MARGIN 0.15, SUBMARGIN_EFFECT 0.05, SEPARATED_SIGNAL_FLOOR 0.20) registered before execution and reported as deltas, and no broad profile sweep. Outcome PASS, direction weakens on ARC-021 and MECH-069 (sub-margin degradation ELIMINATED on both DVs in both hazard-density conditions). This closes the 'active_conflict' why_now that minted the proposal.",
       "executed_queue_id": "V3-EXQ-1011",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for ARC-021 with matched seeds and pre-registered thresholds.",
@@ -3824,6 +3873,51 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1199",
+      "claim_id": "ARC-054",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for ARC-054 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0463",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_arc_054",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1189",
       "blocked_by": [
         "z_goal_collapse_infant_curriculum_lineage",
@@ -3919,59 +4013,6 @@
       "why_now": [
         "active_conflict",
         "directional_conflict_alert",
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1712",
-      "blocked_by": [
-        "SD-070",
-        "GOV-MATCHAUX-1"
-      ],
-      "blocked_note": "blocked at /queue-experiment Step 2.5a: the SD-070 P0a objective weights (presence/distance/proximity/reconstruction/variance/covariance) and the proximity target are unreachable from run_zworld_p0 / _train_all_on_agent, so INV-104's F1 verdict arm (generic-only compression) and its GOV-MATCHAUX-1 matched-arbitrary control (NDP-6) are both unconstructible; condition (i) is already discharged by reanalysis reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z (R_1 = -0.094, 3/3 seeds)",
-      "claim_id": "INV-104",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "discriminative_pair",
-      "exclude_broad_profile_sweeps": true,
-      "gated_at_utc": "2026-09-08T21:30:41Z",
-      "gated_by_session": "igw-233-proposal-for-inv-104",
-      "gating_reason": "BLOCKED at the /queue-experiment Step 2.5a empirical wiring probe (session igw-233-proposal-for-inv-104, IGW-20260908-233, 2026-09-08). INV-104's falsifier is instantiated for class 1 (consequence / opportunity-and-threat) at the observation->z_world encoder step, and EXP-1397's design needs five arms: A0 rawfield_ceiling, A1 zworld_untrained_projection, A2 zworld_p0_generic (the F1 verdict arm), A3 zworld_p0_plus_class1_scaffold, A4 matched_arbitrary_auxiliary. TWO of those five are UNBUILDABLE on the current substrate, and the gap is a missing driver-facing seam, not a missing mechanism.\n\nMEASURED THIS SESSION (runtime probe over ree_core.latent.zworld_p0 and experiments/_lib): ZWorldP0Config carries seven objective weights -- variance_weight=25.0, covariance_weight=50.0, reconstruction_weight=10.0, presence_weight=1.0, distance_weight=1.0, proximity_weight=0.5, resource_field_weight=0.0 -- but experiments/_lib/zworld_p0_warmup.run_zworld_p0 constructs ZWorldP0Config passing ONLY seed (plus batch_size/epochs on the dry-run path) and resource_field_weight, and experiments/_lib/allon_training._train_all_on_agent exposes only zworld_p0_resource_field_weight. The other six weights are therefore pinned at their defaults for every driver in the x724/734/737/808/948/978/1002/1008 family. Separately, the SD-018 proximity TARGET is a hardcoded call to resource_prox_target(obs_dict) inside run_zworld_p0's rollout loop, so there is no seam through which a caller can supply an alternative regression target.\n\nCONSEQUENCE 1 -- ARM A2, AND WITH IT ROUTE F1, CANNOT BE INSTANTIATED AT ALL. F1 (the vacuity route, and the ONLY one of INV-104's three falsifying routes that is both decisive and measurement-only) requires R_k measured through a compression trained on 'generic predictive / reconstruction objectives alone with NO class-specific pressure'. SD-070's grounding targets are hazard-in-view, resource-in-view, and bucketed Chebyshev distance to the nearest of each, with proximity_weight=0.5 on top -- these ARE class-1 (consequence / opportunity-and-threat) targets under INV-104's own taxonomy, and INV-104's notes already list SD-018's proximity head as an existing single-class instance of class 1. So every z_world this substrate can currently produce already carries class-1 supervision, and a generic-only compression -- the thing F1 is a statement about -- does not exist as a reachable configuration. This is not a power or tuning problem; the arm is unconstructible.\n\nCONSEQUENCE 2 -- ARM A4 IS UNBUILDABLE, SO NDP-6 IS UNMET AND ANY VERDICT WOULD BE VACUOUS. GOV-MATCHAUX-1, which INV-104 pins as non-degeneracy precondition NDP-6(i), requires a matched arbitrary-auxiliary control at equal head capacity, loss budget, update frequency and training examples, targeting learnable but organism-irrelevant structure. The natural zero-substrate-change construction is to inject an arbitrary deterministic scalar through the existing resource_proximity_target channel (same head, same MSE, same weight, same cadence -- differing only in what the target means), but that channel is hardcoded as above. INV-104's own text is explicit that 'any one [NDP] unmet makes the verdict vacuous rather than negative'. The ONE arm pair reachable today is resource_field_weight 0.0 vs 0.5, which is exactly V3-EXQ-978's ON/OFF contrast -- already run, already null (held-out field decode r2 0.7099 OFF vs 0.7093 ON; z_world participation ratio 3.986 vs 3.989; res/ep 0.2667 vs 0.2833) -- and re-reading those same latents through the V3-EXQ-1002 oracle adapter would still be vacuous under NDP-6, so it is not a lesser experiment worth queuing instead.\n\nCONSEQUENCE 3 -- SEPARATE AND INDEPENDENT: the organism-level legs are blocked on NDP-5, not on the seam. Confirming conditions (iii) and (iv), and falsifying route F2, all read a DV of resources/episode against the 1.0 D3 competence floor. V3-EXQ-978 measured 0.2667 / 0.2833 res/ep with the local_view_greedy demonstrator anchor at 45.75, an arm difference of one third of one 0.05 res/ep quantum and a within-arm seed spread ~21x that difference. NDP-5 (report the DV quantum and require the claimed effect to exceed one quantum) cannot be demonstrated at this operating point, so those three routes stay blocked even after the seam lands. Building the seam unblocks the MEASUREMENT-ONLY half (F1 plus the R_k legs), not the normative half.\n\nALREADY DISCHARGED, so the eventual build does not repeat it -- GOV-REUSE-1 reanalysis reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z (sources: v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3, compatibility matched, single run so no cross-substrate mixing). Condition (i) DESTRUCTION IS REAL is SATISFIED for class 1: R_1 = -0.0945 / -0.0260 / -0.1607 (mean -0.0937) on seeds 42/43/44, 3 of 3 at or below the 0.25 bar -- negative, i.e. the trained compression yields LOWER oracle agreement than an untrained random projection of the same width. NDP-2 met (participation ratio 4.565 / 4.223 / 5.667, band [4.0, 6.5]); NDP-3 met (raw-input ceiling 0.9846 / 0.9796 / 0.9730 against the 0.90 bar); NDP-4 met (untrained floor 0.6988 / 0.6812 / 0.7038); NDP-1 met (SD-070 P0a warmup ran).\n\nINTERPRETATION GATE, resolved but with a corroborator outstanding: V3-EXQ-1002 returned H-C-geometry-mismatch, so under INV-104's conditional-interpretation clause the production readout is the admissible one and F2 is admissible in principle (it is NDP-5, above, that blocks it in practice). V3-EXQ-1008 then WEAKENED H-C to a linear content ceiling -- no information-preserving re-basis (zca, ldawhiten, fielddecode) lifted agreement, while PCA-32 of the encoder's own 250-dim input reached 0.868. V3-EXQ-1010 (over-capacity decoder sweep on the banked 1002/1008 dataset) was status=claimed and in flight when this was written; it is the outstanding corroborator.\n\nNOT a re-derive-brake stop: 0 autopsies tag INV-104, so the Step 2.5b count is 0. Per EXP-1397's own design note this proposal must NOT be co-tagged INV-088 or MECH-457, on both of which the brake HAS fired.",
-      "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for INV-104 with matched seeds and pre-registered thresholds.",
-      "priority": "medium",
-      "proposal_id": "EXP-0040",
-      "proposal_type": "experimental",
-      "release_condition": "Release when the P0a OBJECTIVE-DECOMPOSITION SEAM exists. Route via /implement-substrate, NOT via another lettered experiment here. Concretely, three backwards-compatible pass-throughs: (a) run_zworld_p0 forwards presence_weight, distance_weight, proximity_weight, reconstruction_weight, variance_weight and covariance_weight to ZWorldP0Config, each defaulting to the current ZWorldP0Config default so every existing caller stays bit-identical; (b) run_zworld_p0 accepts a caller-supplied proximity-target callable defaulting to the existing resource_prox_target, which is what makes the GOV-MATCHAUX-1 matched-arbitrary arm constructible at equal head capacity, loss budget, update frequency and example count; (c) _train_all_on_agent forwards the same set. Note for whoever builds it: experiments/_lib/** is folded into substrate_hash, so this edit correctly busts existing arm-reuse fingerprints (a false MISS, which only costs compute) -- that is expected, and is not a reason to route the change around _lib.\n\nWHAT BECOMES RUNNABLE THE MOMENT THE SEAM LANDS: the measurement-only preservation ladder, 5 arms x >=3 seeds, no action-commitment substrate required and therefore NOT gated on the conversion / F-dominance ceiling -- A0 rawfield_ceiling (NDP-3), A1 untrained projection (NDP-4 floor), A2 generic-only (variance/covariance/reconstruction only, all four class-1 weights at 0.0) as the F1 verdict arm, A3 generic + class-1 scaffold, A4 generic + matched-arbitrary target through the new callable. Verdict statistic R_1 = (agreement_arm - agreement_A1) / (agreement_A0 - agreement_A1) via the V3-EXQ-1002 oracle adapter at its pinned 2x128 capacity. Pre-registered readings: F1 fires at R_1(A2) >= 0.75; condition (i) is already discharged (see gating_reason) and A2/A3 only need to replicate it; the R_k leg of (iii) is R_1(A3) - R_1(A2) >= 0.20 absolute; the GOV-MATCHAUX-1 discrimination of (iv) is R_1(A3) - R_1(A4) >= 2x SD of the seed-matched delta; condition (ii) losses-blind is delta world_obs reconstruction loss and delta E2 one-step prediction MSE between A3 and A2, each within 1 SD of the within-arm seed spread. Route F3 (scaffold dependence) is structurally non-applicable and should be reported as such rather than tested: SD-070's auxiliary heads belong to the TRAINER, not the substrate, and are discarded when train() returns, so NDP-6(ii) 'evaluation with the auxiliary head REMOVED' holds by construction.\n\nDO NOT queue the organism-level legs with that ladder. Conditions (iii)/(iv) read at the resources/episode DV, and route F2, stay blocked on NDP-5 until the competence floor is cleared -- the agent sits at ~0.27 res/ep against a 1.0 floor with the demonstrator anchor at 45.75, so a flat organism-level DV there is uninterpretable rather than negative, which is precisely the vacuous re-derivation of the known conversion ceiling. Split them into a separate proposal gated on the competence floor.\n\nTWO CHECKS TO RE-RUN AT QUEUE TIME rather than trusting this note: (1) Step 2.5c substrate-path overlap -- this session stopped at Step 2.5a and never reached a queue decision, and there are open corrupting entries (mode-governance-engagement, status implemented_pending_validation; SD-082) whose substrate_paths include ree_core/agent.py and ree_core/utils/config.py. They are almost certainly off a measurement-only driver's path (the ladder never runs the agent's decision loop -- no select_action, no sense(); the agent is an encoder container and the rollouts are oracle- or random-driven), but that is a judgement to make against the driver as actually written, not in advance. (2) V3-EXQ-1010's result: if the over-capacity decoder sweep recovers the oracle mapping at higher decoder capacity, R_1 at INV-104's own pinned adapter capacity remains the defined statistic, but its reading as content destruction rather than capacity limitation is contested, and the ladder's framing should say so explicitly.",
-      "require_pre_registered_thresholds": true,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "matched_shared_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_inv_104",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
         "insufficient_experimental_replication",
         "lit_only_above_cap",
         "low_exp_conf",
@@ -4686,6 +4727,54 @@
       "suggested_experiment_type": "claim_probe_mech_002",
       "target_repo": "ree-v3",
       "why_now": [
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1380",
+      "blocked_by": [
+        "modulatory-bias-selection-authority"
+      ],
+      "blocked_note": "modulatory channel-route consumers inert at the operating point: 5/6 route sources emit modulatory_channel_route_range == 0.0, and the one live source changes 0/120 committed actions (conversion ceiling, cf. V3-EXQ-569h). Measurement-only variant starved for the same reason.",
+      "claim_id": "MECH-004",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-09T05:57:27Z",
+      "gated_by_session": "igw-236-proposal-for-mech-004",
+      "gating_reason": "Route path built but its CONSUMERS are inert -- MECH-004's signal->knob wire cannot carry a contributory per-candidate signal at any reachable operating point. STEP-2.5a PROBE (this session; fresh all-on agent on the v3_exq_728 config, 120 ticks x 6 modulatory_channel_route_source values): 5 of 6 sources (none, curiosity, mech295, lateral_pfc, cem_elite) give modulatory_channel_route_range == 0.0 EXACTLY; only cand_world_summary is live (0.045), and its committed action sequence is bit-identical to the routing-OFF arm on 120/120 ticks. Per-channel score-bias decomposition (e3.e3_score_decomp_enabled, set on the E3 INSTANCE -- not cfg.e3, which is inert) shows every channel except gated_policy (range 1.1e-3) flat at zero. RECORDED EVIDENCE AGREES ON TRAINED AGENTS: all five landed runs that have ever exercised this route are evidence_direction non_contributory -- V3-EXQ-569h (interpretation.label 'conversion_ceiling_persists_despite_routing': route_range 0.32-0.88 yet no conversion into committed action), V3-EXQ-851 and V3-EXQ-858 (both substrate_not_ready_requeue, route_range 0.0), V3-EXQ-863 (mixed_partial_result_needs_expert_review), V3-EXQ-945 (non_contributory). CONSEQUENCE: a behavioural route-source-specificity arm would re-derive the known conversion / F-dominance ceiling that 569h already named -- a vacuous result, not a MECH-004 verdict -- and the commitment-free alternative (cross-source collinearity of per-candidate bias vectors, i.e. the INV-022 single-scalar-collapse falsifier) is STARVED, because 5 of 6 sources emit no per-candidate bias to compare. SEPARATELY, MECH-004's knob side is already compromised: V3-EXQ-846 (PASS) attributed occupancy authority to exactly ONE of four control-plane channels (MODEPRIOR authority_mean 1.0; 5-HT, PHASIC and PCC all exactly 0.0), and the precision knob (K2) line V3-EXQ-848/848a/848b is CLOSED on its own autopsy's 'FINAL reading for this design line', effect ~180x smaller than cross-seed SD. NOTE the gap is NOT that no experiment is conceivable: route-source SPECIFICITY is genuinely untested (no manifest in the corpus configures two ACTIVE sources; every prior run uses one source plus 'none'). It is that the precondition for testing it is unmet.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-004 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0735",
+      "proposal_type": "experimental",
+      "release_condition": "Re-open when >=2 modulatory route sources emit a non-trivial per-candidate bias SIMULTANEOUSLY in one config -- measured as modulatory_channel_route_range > 0 for each, read from agent.e3.last_score_diagnostics (NOT agent._last_control_vector, which has no such key). That is what gives a matched-range cross-source contrast something to compare. Node class: complicated (buildable) -- the named build is the untrained-CONSUMER gap, already recorded in arc_005_control_plane_routing_plan.md GAP-A-precision-diagnostic remedy_2026_07_31 as TRACK C ('retraining dacc_adapter on live goal_proximity', user-confirmed out of scope at the time), generalised from dACC to the channel bias heads. Route via /implement-substrate on modulatory-bias-selection-authority -- NOT another lettered /queue-experiment iteration. Re-run the Step-2.5a probe recipe above before re-queuing. The literature_review twin (LIT-0736) is deliberately left status=proposed: MECH-004 also carries missing_literature_evidence and a /lit-pull is NOT substrate-blocked.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_004",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -6982,140 +7071,6 @@
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1198",
-      "claim_id": "ARC-053",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-053.",
-      "priority": "medium",
-      "proposal_id": "LIT-0460",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_053",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1199",
-      "claim_id": "ARC-054",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-054 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0463",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_arc_054",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1199",
-      "claim_id": "ARC-054",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-054.",
-      "priority": "medium",
-      "proposal_id": "LIT-0464",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_054",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
         "synthetic_signals_only"
       ]
     },
@@ -15031,101 +14986,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_003",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1380",
-      "blocked_by": [
-        "modulatory-bias-selection-authority"
-      ],
-      "blocked_note": "modulatory channel-route consumers inert at the operating point: 5/6 route sources emit modulatory_channel_route_range == 0.0, and the one live source changes 0/120 committed actions (conversion ceiling, cf. V3-EXQ-569h). Measurement-only variant starved for the same reason.",
-      "claim_id": "MECH-004",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-09T05:57:27Z",
-      "gated_by_session": "igw-236-proposal-for-mech-004",
-      "gating_reason": "Route path built but its CONSUMERS are inert -- MECH-004's signal->knob wire cannot carry a contributory per-candidate signal at any reachable operating point. STEP-2.5a PROBE (this session; fresh all-on agent on the v3_exq_728 config, 120 ticks x 6 modulatory_channel_route_source values): 5 of 6 sources (none, curiosity, mech295, lateral_pfc, cem_elite) give modulatory_channel_route_range == 0.0 EXACTLY; only cand_world_summary is live (0.045), and its committed action sequence is bit-identical to the routing-OFF arm on 120/120 ticks. Per-channel score-bias decomposition (e3.e3_score_decomp_enabled, set on the E3 INSTANCE -- not cfg.e3, which is inert) shows every channel except gated_policy (range 1.1e-3) flat at zero. RECORDED EVIDENCE AGREES ON TRAINED AGENTS: all five landed runs that have ever exercised this route are evidence_direction non_contributory -- V3-EXQ-569h (interpretation.label 'conversion_ceiling_persists_despite_routing': route_range 0.32-0.88 yet no conversion into committed action), V3-EXQ-851 and V3-EXQ-858 (both substrate_not_ready_requeue, route_range 0.0), V3-EXQ-863 (mixed_partial_result_needs_expert_review), V3-EXQ-945 (non_contributory). CONSEQUENCE: a behavioural route-source-specificity arm would re-derive the known conversion / F-dominance ceiling that 569h already named -- a vacuous result, not a MECH-004 verdict -- and the commitment-free alternative (cross-source collinearity of per-candidate bias vectors, i.e. the INV-022 single-scalar-collapse falsifier) is STARVED, because 5 of 6 sources emit no per-candidate bias to compare. SEPARATELY, MECH-004's knob side is already compromised: V3-EXQ-846 (PASS) attributed occupancy authority to exactly ONE of four control-plane channels (MODEPRIOR authority_mean 1.0; 5-HT, PHASIC and PCC all exactly 0.0), and the precision knob (K2) line V3-EXQ-848/848a/848b is CLOSED on its own autopsy's 'FINAL reading for this design line', effect ~180x smaller than cross-seed SD. NOTE the gap is NOT that no experiment is conceivable: route-source SPECIFICITY is genuinely untested (no manifest in the corpus configures two ACTIVE sources; every prior run uses one source plus 'none'). It is that the precondition for testing it is unmet.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-004 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0735",
-      "proposal_type": "experimental",
-      "release_condition": "Re-open when >=2 modulatory route sources emit a non-trivial per-candidate bias SIMULTANEOUSLY in one config -- measured as modulatory_channel_route_range > 0 for each, read from agent.e3.last_score_diagnostics (NOT agent._last_control_vector, which has no such key). That is what gives a matched-range cross-source contrast something to compare. Node class: complicated (buildable) -- the named build is the untrained-CONSUMER gap, already recorded in arc_005_control_plane_routing_plan.md GAP-A-precision-diagnostic remedy_2026_07_31 as TRACK C ('retraining dacc_adapter on live goal_proximity', user-confirmed out of scope at the time), generalised from dACC to the channel bias heads. Route via /implement-substrate on modulatory-bias-selection-authority -- NOT another lettered /queue-experiment iteration. Re-run the Step-2.5a probe recipe above before re-queuing. The literature_review twin (LIT-0736) is deliberately left status=proposed: MECH-004 also carries missing_literature_evidence and a /lit-pull is NOT substrate-blocked.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_004",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1380",
-      "claim_id": "MECH-004",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "executed_by": "igw-236-literature-proposal-for-mech-004",
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-004.",
-      "priority": "medium",
-      "proposal_id": "LIT-0736",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "executed",
-      "suggested_literature_type": "targeted_review_mech_004",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -35788,6 +35648,101 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
+      "backlog_id": "EVB-1396",
+      "claim_id": "MECH-027",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-027.",
+      "priority": "medium",
+      "proposal_id": "LIT-1241",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_027",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "insufficient_literature_grounding",
+        "low_exp_conf",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1446",
+      "claim_id": "MECH-161",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-161.",
+      "priority": "medium",
+      "proposal_id": "LIT-1243",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_161",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "low_exp_conf",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
       "backlog_id": "EVB-1193",
       "claim_id": "ARC-037",
       "decision_deadline_utc": "",
@@ -36087,142 +36042,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_inv_086",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "low_exp_conf",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1396",
-      "claim_id": "MECH-027",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-027.",
-      "priority": "medium",
-      "proposal_id": "LIT-1241",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_027",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "insufficient_literature_grounding",
-        "low_exp_conf",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1446",
-      "claim_id": "MECH-161",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "executed_by": "V3-EXQ-999",
-      "executed_queue_id": "V3-EXQ-999",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-161 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1242",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_161",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "low_exp_conf",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1446",
-      "claim_id": "MECH-161",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-161.",
-      "priority": "medium",
-      "proposal_id": "LIT-1243",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_161",
       "target_repo": "REE_assembly",
       "why_now": [
         "insufficient_experimental_replication",
@@ -43131,6 +42950,95 @@
       "source": "manual",
       "status": "blocked_substrate",
       "target_repo": "ree-v3"
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1380",
+      "claim_id": "MECH-004",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "executed_by": "igw-236-literature-proposal-for-mech-004",
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-004.",
+      "priority": "medium",
+      "proposal_id": "LIT-0736",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "executed",
+      "suggested_literature_type": "targeted_review_mech_004",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1446",
+      "claim_id": "MECH-161",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-999",
+      "executed_queue_id": "V3-EXQ-999",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-161 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1242",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_161",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "low_exp_conf",
+        "missing_literature_evidence"
+      ]
     },
     {
       "acceptance_checks": [

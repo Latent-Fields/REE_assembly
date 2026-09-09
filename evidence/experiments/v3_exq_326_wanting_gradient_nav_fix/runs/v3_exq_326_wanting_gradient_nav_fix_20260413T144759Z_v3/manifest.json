@@ -49,5 +49,24 @@
   "failure_signatures": [],
   "evidence_direction_note": "Superseded by EXQ-326a which corrects two bugs: (1) use_resource_encoder=True was never set via from_dims() kwarg, so ResourceEncoder was never instantiated; (2) seeding signal used pre-step EMA (near 0 at contact). EXQ-326a with correct wiring PASSES. Evidence from this run is invalid.",
   "superseded_by": null,
-  "supersedes_reason": null
+  "supersedes_reason": null,
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "WITH_WANTING",
+      "ABLATED"
+    ],
+    "wanting_weight": 0.5,
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 50,
+    "steps_per_ep": 200,
+    "grid_size": 8,
+    "num_hazards": 2,
+    "hazard_harm": 0.1
+  }
 }

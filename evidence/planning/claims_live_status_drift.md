@@ -1,6 +1,6 @@
 # Claims live_status Drift Report
 
-Generated: 2026-09-09T01:59:37Z
+Generated: 2026-09-09T09:08:31Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -311,8 +311,8 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | ARC-024 | `decision:ARC-024@2026-03-19T20:35:00Z` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
 | ARC-026 | `decision:ARC-026@2026-05-03T02:50:00Z` | `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` |
 | MECH-102 | `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
-| ARC-021 | `failure_autopsy_V3-EXQ-993a_2026-09-05` | `failure_autopsy_V3-EXQ-993a_2026-09-05` |
-| MECH-069 | `failure_autopsy_V3-EXQ-993a_2026-09-05` | `failure_autopsy_V3-EXQ-993a_2026-09-05` |
+| ARC-021 | `v3_exq_1011_arc021_h3_submargin_paired_ci_20260908T201117Z_v3` | `failure_autopsy_V3-EXQ-993a_2026-09-05` |
+| MECH-069 | `v3_exq_1011_arc021_h3_submargin_paired_ci_20260908T201117Z_v3` | `failure_autopsy_V3-EXQ-993a_2026-09-05` |
 | MECH-070 | `decision:MECH-070@2026-04-03T22:00:00Z` | `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` |
 | MECH-071 | `decision:MECH-071@2026-03-16T18:20:19.361137Z` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
 | MECH-072 | `v3_exq_213_mech072_foreseeable_harm_gating_20260403T202320Z_v3` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
