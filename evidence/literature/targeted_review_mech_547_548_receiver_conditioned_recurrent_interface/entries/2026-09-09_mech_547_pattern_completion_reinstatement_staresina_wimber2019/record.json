@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_547_548_receiver_conditioned_recurrent_interface",
+  "entry_id": "2026-09-09_mech_547_pattern_completion_reinstatement_staresina_wimber2019",
+  "timestamp_utc": "2026-09-09T10:31:00Z",
+  "claim_ids_tested": ["MECH-547"],
+  "source": {
+    "title": "A Neural Chronometry of Memory Recall",
+    "authors": ["Bernhard P. Staresina", "Maria Wimber"],
+    "year": 2019,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.09.011",
+    "pmid": "31672429",
+    "volume": "23",
+    "issue": "12",
+    "pages": "1071-1085"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "supports",
+  "confidence": 0.57,
+  "confidence_rationale": "Peer-reviewed review integrating human electrophysiology into a temporally ordered retrieval sequence: cue processing reaches medial temporal structures, hippocampal pattern completion begins, and target-specific cortical reinstatement follows. This supports the weaker MECH-547 principle that the active query/cue state governs which stored information is exposed and when. It does not distinguish receiver-conditioned translation from hippocampal indexing/pattern completion, so confidence is moderate rather than high.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A future REE result in which a fixed sender-only retrieval cue reproduces T(A,B) performance would fit this literature without supporting receiver-state conditioning.",
+    "If translated content can be injected at arbitrary phases with equal effect, the temporally structured biological analogue becomes less relevant."
+  ],
+  "tags": ["mech-547", "hippocampus", "pattern_completion", "cortical_reinstatement", "retrieval", "timing", "review"],
+  "mapping": {
+    "source_claim_statement": "Human electrophysiological evidence supports a retrieval sequence in which cues engage hippocampal pattern completion followed by target-memory reinstatement in cortex over a structured time course.",
+    "ree_translation": "Supports query/state-dependent exposure of stored information and reinforces the need to include temporal state in an interface assay. It is consistent with MECH-547 but also with simpler indexing/pattern-completion rivals.",
+    "mapping_caveat": "The review does not measure representational bridge complexity or explicitly compare fixed versus receiver-conditioned mappings.",
+    "source_context": "Review of human memory-retrieval electrophysiology and fMRI with emphasis on temporal dynamics."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.62,
+    "notes": "Strong retrieval evidence; only adjacent to the exact artificial-interface claim."
+  }
+}
