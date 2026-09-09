@@ -1,0 +1,30 @@
+{
+  "assay": "convergence_signal_synthetic_assay_003",
+  "status": "synthetic_measurement_run_only",
+  "date": "2026-09-09",
+  "seed": 17,
+  "episodes": 20000,
+  "candidates_per_episode": 6,
+  "source_driver": "scripts/convergence_signal_synthetic_assay_003.py",
+  "preregistration": "evidence/planning/convergence_signal_synthetic_assay_003_structured_divergence_query_allocation.md",
+  "claim_ids": [],
+  "queue_mutation": false,
+  "creature_code_change": false,
+  "methods": {
+    "raw_unc": {"mean_regret": 0.9424959240776081, "optimal_hit_rate": 0.30965, "irreducible_q05_select_rate": 0.2024, "oracle_utility_fraction": 0.5073246717732259},
+    "raw_dis": {"mean_regret": 0.9424959240776081, "optimal_hit_rate": 0.30965, "irreducible_q05_select_rate": 0.2024, "oracle_utility_fraction": 0.5073246717732259},
+    "reliability_voi": {"mean_regret": 0.13644719187462334, "optimal_hit_rate": 0.72335, "irreducible_q05_select_rate": 0.00005, "oracle_utility_fraction": 0.9286743174955995},
+    "global_neff_voi": {"mean_regret": 0.0196398552891891, "optimal_hit_rate": 0.9048, "irreducible_q05_select_rate": 0.00005, "oracle_utility_fraction": 0.9897335660518766},
+    "topology_voi": {"mean_regret": 0.004899163316339076, "optimal_hit_rate": 0.96645, "irreducible_q05_select_rate": 0.00005, "oracle_utility_fraction": 0.9974390373122549},
+    "oracle": {"mean_regret": 0.0, "optimal_hit_rate": 1.0, "irreducible_q05_select_rate": 0.00005, "oracle_utility_fraction": 1.0}
+  },
+  "criteria": {
+    "C1_topology_regret_gain": true,
+    "C2_hit_rate_gain": true,
+    "C3_irreducible_noise_avoidance": true,
+    "C4_oracle_ceiling": true,
+    "C5_beyond_reliability_consequence": true,
+    "measurement_pass_C1_to_C5": true
+  },
+  "interpretation": "PASS as a synthetic query-allocation measurement assay. Raw disagreement strongly chases irreducible noise. Value-of-information baselines that know query reducibility and consequence perform much better; retaining coarse provenance topology improves further over one global N_eff and approaches the exact oracle. The world deliberately equates provenance clusters with distinct downstream-view leverage, so the next assay must relax that convenience before any REE shadow or causal role."
+}
