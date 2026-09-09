@@ -190,5 +190,46 @@
       ],
       "note": "Read the three legs JOINTLY. This leg alone cannot resolve the parent H-rem-content-contingent: de-railing establishes only that the zero-target null was mis-operationalised, not that the readout tracks content. Resolution via /failure-autopsy Step 9b Mode B against the frozen ledger, not by this self-route."
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 406.2954861930011,
+  "config": {
+    "sigmas": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "warm_steps": 40,
+    "arms": [
+      "INJECTED",
+      "NULL_ZERO",
+      "NULL_UNPAIRED"
+    ],
+    "clean_target_precision": 2.0,
+    "unpaired_log_sd": 0.35,
+    "unpaired_seed_offset": 90001,
+    "null_slope_ratio_ceiling": 0.25,
+    "injected_slope_floor": 1e-06,
+    "derail_clamp_ceiling": 0.2,
+    "derail_min_distinct": 3,
+    "min_unclamped_sigmas": 3,
+    "rem_error_key": "calibration_error",
+    "shy_decay_rate": 0.85,
+    "body_obs_dim": 12,
+    "world_obs_dim": 250,
+    "action_dim": 4,
+    "harm_obs_dim": 51
+  },
+  "seeds": [
+    42,
+    7,
+    123,
+    2024,
+    99,
+    7777,
+    314,
+    1000
+  ]
 }

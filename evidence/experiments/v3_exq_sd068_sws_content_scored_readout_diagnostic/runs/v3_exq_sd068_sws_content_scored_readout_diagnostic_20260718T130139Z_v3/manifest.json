@@ -97,5 +97,48 @@
       "rem"
     ],
     "rem_leg_owner": "V3-EXQ-778d/e/f (GOV-FANOUT-1 portfolio)"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1160.8571398179993,
+  "config": {
+    "sigmas": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "warm_steps": 40,
+    "arms": [
+      "INJECTED",
+      "NULL"
+    ],
+    "ladder_scales": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "null_slope_ratio_ceiling": 0.25,
+    "injected_slope_floor": 1e-06,
+    "ladder_signal_ratio_note": "C3 uses RELATIVE tests only; an absolute zero-content floor was tried and rejected at authoring time (sigma=0 store-is-exactly-zero discontinuity)",
+    "ladder_signal_ratio": 3.0,
+    "ladder_spread_floor": 0.01,
+    "gated_phase": "sws",
+    "shy_decay_rate": 0.85,
+    "body_obs_dim": 12,
+    "world_obs_dim": 250,
+    "action_dim": 4,
+    "harm_obs_dim": 51
+  },
+  "seeds": [
+    42,
+    7,
+    123,
+    2024,
+    99,
+    7777,
+    314,
+    1000
+  ]
 }
