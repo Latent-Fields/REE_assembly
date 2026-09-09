@@ -4896,6 +4896,31 @@
       "task_claim_session_id": "igw-auto-igw-237-proposal-for-mech-005-20260909T073009Z",
       "task_claim_claimed_at": "2026-09-09T07:30:09Z",
       "assigned_at": "2026-09-09T07:23:59Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-09T09:48:09Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-09-09T09:48:32Z"
+    },
+    {
+      "igw_id": "IGW-20260909-239",
+      "stable_hash": "7d6d9fa2011e",
+      "skill": "/lit-pull",
+      "lane": "lit",
+      "priority": 40,
+      "claim_ids": [
+        "MECH-005"
+      ],
+      "owner_exq": null,
+      "title": "Literature proposal for MECH-005",
+      "worktree": ".claude/worktrees/igw-239-literature-proposal-for-mech-005",
+      "branch": "claude/igw-239-literature-proposal-for-mech-005",
+      "session_uuid": "d48c0c66-0ad2-4149-8713-858e1666c89f",
+      "pid": 6543,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-239-literature-proposal-for-mech-005 && claude --resume d48c0c66-0ad2-4149-8713-858e1666c89f",
+      "task_claim_session_id": "igw-auto-igw-239-literature-proposal-for-mech-005-20260909T094836Z",
+      "task_claim_claimed_at": "2026-09-09T09:48:36Z",
+      "assigned_at": "2026-09-09T09:47:03Z",
       "status": "spawned"
     }
   ],
@@ -6979,6 +7004,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-09T06:47:07Z",
       "re_eligible_after": "2026-09-11T06:47:07Z"
+    },
+    {
+      "stable_hash": "ac41fa3e1996",
+      "igw_id_at_disposition": "IGW-20260909-237",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-005"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-005",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-09T09:48:28Z",
+      "re_eligible_after": "2026-09-11T09:48:09Z"
     }
   ]
 }
