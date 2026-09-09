@@ -33388,6 +33388,8 @@
     Biologically grounded: Retailleau & Morris 2018 showed place cells reorient to reward
     features via D1 receptors; rats in uniform corridors still get sharper fields near
     reward end. The brain allocates more resources regardless of environmental justification.
+
+    [2026-09-09 governance, cycle governance-20260909 wave 3] GFLAG-0195 adjudicated: NOT PROMOTED this cycle; the functional gap is ROUTED TO /failure-autopsy first (user decision). Status stays candidate. The mandatory Step 2b driver skim of V3-EXQ-900 (v3_exq_900_sd024_da_cluster_allocation_representational_functional) was run and is the reason. What the skim CLEARS: thresholds are pre-registered and explicitly not derived from the run's own statistics; C1 rho=0.5327 and C2 rho=0.5166 both clear RHO_LIVE_MIN=0.30 by ~1.7x, so neither fires by construction and both were attainable in either direction; C4 (harm asymmetry) is well powered at 1403 harm calls with 0 cluster allocations; non_degenerate is True on a real input-spread check, not a count floor. What the skim FOUND, and what the autopsy is being asked to adjudicate: (i) the run's PASS label is 'da_cluster_allocation_representational_and_functional', but ALL THREE load-bearing criteria are representational or absence-based -- C1 and C2 are correlations among DA, cluster size and density, and C4 is a negative existential -- so NOTHING in the combination rule (PASS iff C1 AND C2 AND C4) tests the FUNCTIONAL half at all; (ii) the one functional discriminator the run does record is FLAT -- mean benefit magnitude at cluster_size>=2 is 0.5577261900901794 against 0.5582475601224338 at cluster_size 1, a difference of ~0.09% -- and it sits in the pooled block ungated by any criterion; (iii) the readiness floor R3 pooled_live_expansion_events cleared by exactly ONE event (measured 6.0 vs threshold 5.0), and mean_cluster_size is 1.316, so the whole cluster-expansion arm rests on 6 events. SEPARATELY: V3-EXQ-795, the second run cited in support, is a DIAGNOSTIC PASS with NO confirmed failure_autopsy artifact (verified this cycle via check_autopsy_coverage.py), so under the Step 1.5a rule it cannot count toward a promotion and did not.
   implementation_note: >
     IMPLEMENTED 2026-07-16 in ree-v3 (residue/field.py RBFLayer + ResidueField,
     hippocampal/module.py). Config (ResidueConfig): use_da_modulated_rbf_density (master,
@@ -84233,6 +84235,7 @@
       as_of: "2026-09-07"
       verdict: "supports the DESCRIPTIVE NEGATIVE clause only ('authority is never granted merely because a computation or mechanism exists'), at FRAMING level: three independent mechanisms -- MECH-314 curiosity bias (V3-EXQ-604a) and MECH-320 vigor penalty (V3-EXQ-624a), confirmed cluster autopsy reading substrate_enrichment_selection_authority, plus MECH-341 within-class temperature (V3-EXQ-614d, fires with no committed-class lift) -- each exist, are represented and locally operate yet acquire no authority over the committed argmax. The POSITIVE clause (authority CONDITIONED ON competence) is DESIGN-SPACE ONLY: in all three the absence has no competence predicate in its path, so the ordering is EMERGENT not ENFORCED; the sole enforced instance is the ARC-108 JOB-2 habenula de-commit gate (hypothesis_tag/beta, closure_operator.py, default-off), read from code. The GENERALISATION (four gates = one sequence) remains UNTESTED and un-posable in V3 (total verdict aliasing). No scored credit granted: claim_ids untouched on all three manifests, exp_count stays 0 by design. See evidence_quality_note + evidence/planning/claim_synthesis_ARC-120_2026-09-07.md"
   epistemic_category: standard
+  diagnostic_evidence_adjudicated: true
   claim_level: architectural
   implementation_phase: v3
   version_relevance: v3
@@ -84343,6 +84346,8 @@
     lane, having zero ree-v3 substrate footprint); the propose-only ladder narrowing is untouched;
     the route-(b) standing design-space audit is recommended as a /governance audit bucket but is
     NOT built. No experiment queued -- the three-gate refusal of 2026-09-03 stands.
+
+    [2026-09-09 governance, cycle governance-20260909 wave 3] GFLAG-0225 adjudicated, all three of its owed decisions taken (user-adjudicated); GFLAG-0179 resolved as answered by the same landing. (1) NOT PROMOTED -- deliberately. The landed cross-tag (REE_assembly 5a56e04ad6, evidence/planning/claim_synthesis_ARC-120_2026-09-07.md) supports only ARC-120's DESCRIPTIVE NEGATIVE clause; the POSITIVE clause (authority CONDITIONED ON competence) rests on a single ENFORCED instance which is a code reading of a DEFAULT-OFF path (ARC-108 JOB-2 habenula de-commit), and the generalisation stays un-posable in V3. (2) The deferred category flip to derivational is DELIBERATELY NOT taken on this landing: flipping now would re-freeze the promote/demote route in the same cycle it was unfrozen for, before the evidence the hold was waiting on has been adjudicated. Sequence it after (1), not on the landing. (3) diagnostic_evidence_adjudicated set TRUE (this edit). Grounds: EVB-1233 predicted the why_now signals would clear on their own once tagging landed, and they will not -- the cross-tag grants no scored credit by design (claim_ids untouched, exp_count stays 0), so all five signals would stand indefinitely without this. Exposure is low: EXP-0286 is already non-queueable and ARC-120 has zero ree-v3 substrate footprint, so it cannot enter the GOV-CONFIRM-1 lane. UNOWNED WORK, recorded here because nothing else tracks it: route (b), the standing design-space audit over claims.yaml + ree_core write/authority sites, is ARC-120's ONLY live instrument and has NO OWNER. It is recommended as a standing /governance audit bucket rather than an architecture doc (its trigger is a governance event, so a doc would go stale); section B5 of the claim_synthesis artifact is a worked first row. Not built, not chipped, not claimed by anyone as of this cycle.
   notes: >
     FRAMING CLAIM from the 2026-08-06 historical-archaeology thought intake (Observation
     4: "competence consistently precedes authority"). ARGUABLY IMPLIED by the depends_on
@@ -92857,10 +92862,10 @@
   claim_type: architectural_commitment
   subject: architecture.mechanism_causal_reach_ladder
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: "2026-09-07"
+    reading: provisional
+    as_of: "2026-09-09"
     needs_review: false
     evidence:
       from: "failure_autopsy_931-932-wanting-authority-cluster_2026-08-16#claim_synthesis_ARC-130_2026-09-07"
@@ -93026,6 +93031,8 @@
     PROMOTION RECOMMENDATION routed to /governance via a promotion_review flag: candidate -> provisional
     is warranted on the tagged evidence, conditional on confirming the open VERSION-ROUTING flag and a
     base-before-refinement decision relative to ARC-120 (candidate, exp_count 0). Status NOT changed here.
+
+    [2026-09-09 governance, cycle governance-20260909 wave 3] PROMOTED candidate -> provisional, GFLAG-0220 applied in full (user-adjudicated). Both of GFLAG-0220's conditions are now met: (b) base-before-refinement is answered by GFLAG-0225, which found the base ARC-120 should NOT move first, so ARC-130 need not hold a cycle for it; and (a) the open v3 VERSION-ROUTING deviation in notes is hereby CONFIRMED by governance -- the deviation's own stated grounds hold up on inspection: the claim proposes no new substrate (it is an audit/interpretation framework, and the source thought says verbatim that it 'does not presently justify a new cognitive module') and every motivating example is a live V3 mechanism, so implementation_phase v3 / version_relevance v3 is correct and this is not a default v4/v5 park. Evidence basis is unchanged and already recorded: rungs 5-6 supported by two independent mechanisms via the confirmed V3-EXQ-931/932 cluster autopsy plus the ARC-071 commit-latch probes. STANDING LIMIT, unchanged by this promotion: rungs 7-8 (ecological consequence, retention/generalisation) remain UNTESTED and must not be read as supported; no instrumentation is authorised. exp_count stays 0 by the diagnostic_evidence_adjudicated design decision and is correctly NOT the promotion gate here.
   evidence: []
 
 - id: ARC-131
