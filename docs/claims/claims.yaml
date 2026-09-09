@@ -9625,7 +9625,7 @@
 
     [2026-09-09 governance, cycle governance-20260909 wave 4] GFLAG-0154 applied -- note corrected, status deliberately unmoved. The prior note asserted 'this is the first [experimental entry]' and 'exp_conf now 0.775'; BOTH figures are wrong as of this cycle: there are now TWO entries (V3-EXQ-659 2026-06-09 and V3-EXQ-888 2026-08-04) and experimental_confidence reads 0.745, not 0.775. live_status.evidence re-pointed to 888 with 659 named alongside it in the verdict string, and the top-level as_of moved off 2026-07-11 (which predated 888). The promotion gate remains unmet, so status stays provisional -- only the record was wrong, not the disposition. See also GFLAG-0156, recorded on MECH-074b: the 2026-08-07 targeted_review_mech_074b lit pull contains an entry (Roozendaal and McGaugh 2011, evidence_direction mixed, confidence 0.62) that SUPPORTS this claim's encoding locus while weakening 074b's retrieval locus.
 - id: MECH-074b
-  title: "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace retrieval weight vector (NOT a scalar gain) on hippocampal readout."
+  title: "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace weight vector (NOT a scalar gain) as sampling priority over the hippocampal replay/reactivation path. Locus narrowed 2026-09-09 from 'on hippocampal readout'; retrieval-time item-level readout enhancement is now an unevidenced residual -- see evidence_quality_note."
   claim_type: mechanism_hypothesis
   subject: amygdala.bla_retrieval_bias_content_selective
   polarity: asserts
@@ -9666,6 +9666,33 @@
     retrieval-bias ON, and that this dissociation collapses under BLA OFF. A
     uniform retrieval boost across all traces falsifies the content-selective
     form.
+
+    LOCUS SCOPE (added 2026-09-09, claim-synthesis pass on GFLAG-0156; see
+    evidence/planning/claim_synthesis_MECH-074b_2026-09-09.md). The specification
+    above is retained verbatim and stays auditable, but its asserted LOCUS is
+    narrowed. Of the four entries in targeted_review_mech_074b/, 4/4 support the
+    CONTENT-SELECTIVITY (vector-not-scalar); 0/4 support the RETRIEVAL locus --
+    three are explicitly silent-to-contrary on it in their own mapping sections
+    (Adolphs 2001 describes an encoding-time filter; Mather & Sutherland 2011 is
+    "agnostic-to-contrary" on retrieval-time re-weighting; Sutherland & Mather
+    2012 tests short-term attentional memory only), and Roozendaal & McGaugh 2011
+    places the established selective effect at CONSOLIDATION and documents the
+    amygdala action AT RETRIEVAL as IMPAIRING -- the opposite sign to w_i >= 1.
+
+    What this claim now asserts: a content-selective per-trace priority over the
+    hippocampal REPLAY / REACTIVATION SAMPLE. That is the locus where the claim
+    has both literature warrant and its only experimental support -- V3-EXQ-888's
+    C2 (address_route_authority), which per that manifest's combination_rule is
+    "C2 alone is MECH-074b", measured the per-trace bias vector shifting arousal
+    over-representation in a WEIGHTED SAMPLE drawn from the exploration/replay
+    buffer. No item-level recall readout was measured.
+
+    What is now an UNEVIDENCED RESIDUAL, not an asserted mechanism: the
+    retrieval-time, item-level readout enhancement. It carries a contrary-signed
+    prior and must be demonstrated, not assumed. what_would_answer below already
+    encodes exactly this test and this narrowing (see its precondition (b) and
+    its FALSIFYING clause) and is therefore deliberately unchanged -- the test
+    design was already correct; only this scope text lagged.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: see MECH-074's own what_would_answer for the shared readiness block (n_traces, gt_arousal spread, buffer/label alignment, both route-nonuniformity floors, OFF-arm flatness) -- do not re-derive it. Two additions specific to this claim: (a) the arousal tag must be written AT ENCODING (`bla_retrieval_tag_at_encoding=True`); the module exposes False precisely to reproduce the named scalar failure signature, so that setting is the NEGATIVE CONTROL ARM, not a misconfiguration. (b) The environment/harness must expose CENTRAL/GIST vs PERIPHERAL items WITHIN the same episode, each with independently measurable recall. Without (b) the run re-measures 888's between-trace threat-vs-neutral contrast, which is already answered and is NOT the LaBar & Cabeza central/peripheral dissociation this claim is about; a "PASS" obtained that way would be vacuous with respect to the residual.
     CONFIRMING: three arms at matched seeds -- ARM_VECTOR (per-trace w_i = 1 + alpha*tag_i, alpha in [0.3, 1.0]), ARM_SCALAR (uniform w = 1 + alpha*mean(tag) across all traces; equivalently `bla_retrieval_tag_at_encoding=False`), ARM_OFF. Confirming requires ALL THREE of: (1) in ARM_VECTOR, central/gist recall advantage over peripheral items of 1.3x-2.0x relative to the neutral baseline (the claim's own registered target magnitude) on >= 2/3 seeds; (2) ARM_SCALAR's dissociation indistinguishable from ARM_OFF's (delta below 0.02) -- the scalar form must NOT reproduce it; (3) ARM_OFF's dissociation flat within |0.02|.
@@ -9692,6 +9719,8 @@
     until substrate lands and EXQ-B+ follow-up is queued.
 
     [2026-09-09 governance, cycle governance-20260909 wave 4] GFLAG-0155 and GFLAG-0156 applied. (1) live_status: reading moved candidate/v3_pending -> candidate and an evidence block ADDED (there was none at all) pointing at v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3 (supports/PASS, 2026-08-04, the reviewed 3/3-seed C2 result). As on the parent, v3_pending was ALREADY false in the field; it was live_status that lagged. Status deliberately NOT moved -- citation refresh only. (2) GFLAG-0156, the substantive half, recorded here rather than silently folded in: the 2026-08-07 targeted_review_mech_074b pull -- which this claim's source list omitted entirely -- contains Roozendaal and McGaugh 2011 (evidence_direction mixed, confidence 0.62), and that entry explicitly WEAKENS this claim's RETRIEVAL locus while SUPPORTING MECH-074a's encoding locus: the best-established amygdala memory effect is on CONSOLIDATION, whereas at RETRIEVAL the amygdala/glucocorticoid effect is documented as IMPAIRING. The claim text does not record this tension and is NOT rewritten here -- rewriting a claim's asserted locus on a single mixed lit entry is a claim-level change, not a note refresh, and it belongs to a /claim-synthesis or /failure-autopsy pass with the whole pull in front of it. Flagged so the next reader does not mistake the supports/PASS pointer above for an unqualified confirmation of the retrieval locus specifically.
+
+    [2026-09-09 claim-synthesis, session angry-pascal-6fd799, chip-20260909-mech074b-retrieval-locus-synthesis] GFLAG-0156 ADJUDICATED -- locus NARROWED, status deliberately NOT moved (a locus correction is not a promotion judgement). Full reasoning: evidence/planning/claim_synthesis_MECH-074b_2026-09-09.md. VERDICT (b): the mechanism is real and its content-selectivity is well-grounded, but the asserted locus was over-claimed. The wave-4 note above frames this as one mixed entry to be weighed against three supporting siblings; reading all four, that is a miscount. All three 'supports' entries score supports on CONTENT-SELECTIVITY and each explicitly declines to support the RETRIEVAL locus in its own mapping section. On selectivity the pull is 4/4 supports; on locus it is 0 supports, 3 silent-to-contrary, 1 contrary on sign -- Roozendaal is not an outlier outvoted by siblings, it is the only entry that addresses locus at all. Three further lines converge independently: GFLAG-0156's own suggested form ('sampling-priority rather than retrieval-enhancement'); this claim's own registered FALSIFYING clause ('narrowed to the sampling path rather than retained as a retrieval-weight claim'); and V3-EXQ-888 itself, whose combination_rule says 'C2 alone is MECH-074b' and whose C2 measured the per-trace vector shifting AOR in a WEIGHTED SAMPLE from the replay buffer -- the sampling path, not item-level readout. Applied: title and functional_restatement narrowed (LOCUS SCOPE block); what_would_answer deliberately unchanged because it already encodes this test and this narrowing. The 074a/074b split SURVIVES and is strengthened -- 074a is a scalar gain on write STRENGTH, 074b a per-trace vector over WHICH traces are selected; 888's C4 separability and Adolphs 2001's opposite-signed detail effect both keep them dissociable, and both now sit on the encoding/consolidation side Roozendaal actually supports. CORRECTION to the wave-4 note: (i) the source list does NOT omit the pull -- all four entries have been in source since the 2026-09-06 digestion apply, so 'omitted entirely' was true when the flag was raised and stale by the time it was restated; (ii) 888's manifest DOES carry a combination_rule (interpretation.combination_rule) -- the accurate caveat is that its PRECONDITIONS carry full measured/threshold/met triples while the four CRITERIA are bare booleans, so the instrument's readiness is auditable but the verdict's effect sizes are not. Nothing here leans on the latter. NEW residual, not part of GFLAG-0156: the substrate rule w_i = 1 + alpha*tag_i is always >= 1 and therefore cannot produce the ABSOLUTE peripheral suppression that Adolphs 2001 (the pull's highest-confidence entry, 0.75) actually shows -- detail memory went UP when the amygdala was removed. Mather & Sutherland 2011 states the consequence: this needs a competitive normalisation step, not an additive boost. So Adolphs supports 'not scalar' but not 'additive per-trace weight'. That is a substrate question (ree_core/amygdala/bla.py, SD-035 line 91), logged as residual R2, not actioned here.
 - id: MECH-074c
   title: "CeA analogue emits a fast subcortical priming signal (fast_prime) on low-frequency z_harm_a with an overridable decay window, distinct from MECH-046's cortical mode-prior write."
   claim_type: mechanism_hypothesis
