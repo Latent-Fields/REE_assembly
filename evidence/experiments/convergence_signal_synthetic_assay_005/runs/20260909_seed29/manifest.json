@@ -6,13 +6,13 @@
   "candidates_per_episode": 6,
   "calibration_examples_per_domain": 20000,
   "estimated_domain_accuracy": [
-    [0.7706, 0.66685, 0.66645],
-    [0.6685, 0.7675, 0.67035],
-    [0.66665, 0.66735, 0.7702],
-    [0.73505, 0.70025, 0.7002],
-    [0.70035, 0.73385, 0.70245]
+    [0.7707, 0.66695, 0.66955],
+    [0.66945, 0.7717, 0.6682],
+    [0.67325, 0.67185, 0.7697],
+    [0.73515, 0.7016, 0.6969],
+    [0.7029, 0.73775, 0.70095]
   ],
-  "estimated_global_accuracy": [0.7013, 0.7021166666666667, 0.7014, 0.7118333333333333, 0.7122166666666667],
+  "estimated_global_accuracy": [0.7024, 0.7031166666666667, 0.7049333333333333, 0.7112166666666666, 0.7138666666666666],
   "profiles": {
     "clean": {
       "L_hat_mae": 0.27640959595956366,
@@ -68,5 +68,5 @@
     "C6_oracle_ceiling": true,
     "measurement_pass_C1_to_C6": true
   },
-  "execution_note": "Authoritative thresholds and seed were frozen in the preregistration before the full run. The run used the same committed equations in an isolated local execution environment. No criterion or parameter was changed after observing the full seed-29 result."
+  "execution_note": "Authoritative thresholds and seed were frozen in the preregistration before the full run. The run used the same committed equations in an isolated local execution environment. No criterion or parameter was changed after observing the full seed-29 result. The first banked manifest copy contained stale calibration-summary metadata copied from a non-authoritative scratch table; verification caught this and commit  corrected only those metadata values. All result metrics, criteria, and run conclusions were unchanged."
 }
