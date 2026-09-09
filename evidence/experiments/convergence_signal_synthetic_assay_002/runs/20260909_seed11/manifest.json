@@ -1,0 +1,43 @@
+{
+  "assay": "convergence_signal_synthetic_assay_002",
+  "status": "synthetic_measurement_run_only",
+  "date": "2026-09-09",
+  "seed": 11,
+  "calibration_trials": 200000,
+  "test_trials": 200000,
+  "source_driver": "scripts/convergence_signal_synthetic_assay_002.py",
+  "preregistration": "evidence/planning/convergence_signal_synthetic_assay_002_bayes_ceiling.md",
+  "claim_ids": [],
+  "queue_mutation": false,
+  "creature_code_change": false,
+  "in_distribution_brier": {
+    "independent_5": {"M0": 0.120975, "M1": 0.120975, "M2": 0.120975, "M3_exact_bayes": 0.120971},
+    "copies_5": {"M0": 0.292145, "M1": 0.210192, "M2": 0.210192, "M3_exact_bayes": 0.210192},
+    "shared_cluster_5": {"M0": 0.240704, "M1": 0.199181, "M2": 0.199181, "M3_exact_bayes": 0.187568},
+    "two_clusters_3_2": {"M0": 0.191279, "M1": 0.173296, "M2": 0.171075, "M3_exact_bayes": 0.169183},
+    "mixed_3_plus_2": {"M0": 0.185940, "M1": 0.166967, "M2": 0.152273, "M3_exact_bayes": 0.150728},
+    "minority_expert": {"M0": 0.075463, "M1": 0.075463, "M2": 0.075463, "M3_exact_bayes": 0.075464}
+  },
+  "criteria": {
+    "C1_topology_beats_global_Neff": true,
+    "C1_two_clusters_brier_improvement_M1_minus_M2": 0.0022213418978072053,
+    "C1_mixed_brier_improvement_M1_minus_M2": 0.014694140794853261,
+    "C1_mean_brier_improvement": 0.008457741346330233,
+    "C2_exact_bayes_ceiling": true,
+    "C3_duplicate_trap": true,
+    "C3_empirical_copy_accuracy": 0.69952,
+    "C3_M0_copy_confidence": 0.9857945613140529,
+    "C3_M2_copy_confidence": 0.7002825147105485,
+    "C4_minority_expert_protection": true,
+    "C4_dissent_pattern_rate": 0.031605,
+    "C4_raw_majority_confidence": 0.8,
+    "C4_M0_majority_confidence": 0.5650908181371966,
+    "C4_M2_majority_confidence": 0.5650908181371966,
+    "C4_exact_majority_confidence": 0.5692844329280448,
+    "C5_shift_graceful": true,
+    "C5_alpha_0_3_M2_minus_M1_mean_brier_change": 0.004054275514629779,
+    "C5_alpha_0_9_M2_minus_M1_mean_brier_change": -0.0022656710868862824,
+    "measurement_pass_C1_to_C5": true
+  },
+  "interpretation": "PASS as a bounded synthetic dependency-topology measurement assay. Coarse per-cluster provenance retains useful second-order information lost by one global mean-correlation N_eff, especially when a correlated cluster coexists with independent routes. Exact joint Bayes remains the ceiling. This result does not establish a new REE architecture or action-selection mechanism."
+}
