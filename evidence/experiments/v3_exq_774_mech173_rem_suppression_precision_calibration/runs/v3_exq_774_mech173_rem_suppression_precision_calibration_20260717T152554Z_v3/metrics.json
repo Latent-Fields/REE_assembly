@@ -1,4 +1,60 @@
 {
   "schema_version": "metrics/v1",
-  "values": {}
+  "values": {
+    "arm_overconfidence_score": {
+      "ARM_FULL_SLEEP": -0.20974166979299994,
+      "ARM_REM_SUPPRESSED": -0.0001480821707946597,
+      "ARM_RECALIB_OFF": -0.0009184928146495006,
+      "ARM_SWS_SUPPRESSED": -0.2097322016350498
+    },
+    "arm_calibration_ratio": {
+      "ARM_FULL_SLEEP": 1.2911668587024785,
+      "ARM_REM_SUPPRESSED": 1.000148167509327,
+      "ARM_RECALIB_OFF": 1.00091949808313,
+      "ARM_SWS_SUPPRESSED": 1.2911491564720887
+    },
+    "arm_true_error_ref": {
+      "ARM_FULL_SLEEP": 0.0049516750843028225,
+      "ARM_REM_SUPPRESSED": 0.004944851419421175,
+      "ARM_RECALIB_OFF": 0.0049516750843028225,
+      "ARM_SWS_SUPPRESSED": 0.004951800623402017
+    },
+    "deltas": {
+      "delta_recalib_off_vs_full": {
+        "per_seed": [
+          0.0006647677352569323,
+          0.0020665800433295927,
+          0.6237381831564648
+        ],
+        "mean": 0.20882317697835043,
+        "sd": 0.293389772638465,
+        "significant_positive": false,
+        "significant_negative": false
+      },
+      "delta_rem_suppressed_vs_full": {
+        "per_seed": [
+          0.0012009048623953804,
+          0.002031290146414451,
+          0.625548567857806
+        ],
+        "mean": 0.20959358762220526,
+        "sd": 0.29412478255782215,
+        "significant_positive": false
+      },
+      "delta_sws_suppressed_vs_full": {
+        "per_seed": [
+          2.3140900647089513e-08,
+          1.9541526005868726e-09,
+          2.8379378797183108e-05
+        ],
+        "mean": 9.468157950143595e-06,
+        "sd": 1.3372255298781867e-05
+      }
+    },
+    "cross_arm_spread": 0.20959358762220529,
+    "suppressed_absolutely_overconfident": false,
+    "accuracy_dissociation": true,
+    "accuracy_spread_relative": 0.0014038794352923066,
+    "readiness_ok": true
+  }
 }
