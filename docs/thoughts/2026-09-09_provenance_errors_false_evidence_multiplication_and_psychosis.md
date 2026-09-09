@@ -61,17 +61,17 @@ This is a hypothesis for investigation, not an established account of psychosis.
 
 There is substantial prior literature linking psychosis, and hallucinations in particular, with impaired source monitoring.
 
-### Garrison et al. 2022
+### Damiani et al. 2022
 
-**Garrison JR et al. _Understanding source monitoring subtypes and their relation to psychosis: a systematic review and meta-analysis._ Psychiatry and Clinical Neurosciences (2022). PMID 35124869.**
+**Damiani S, Donadeo A, Bassetti N, Salazar-de-Pablo G, Guiot C, Politi P, Fusar-Poli P. _Understanding source monitoring subtypes and their relation to psychosis: a systematic review and meta-analysis._ Psychiatry and Clinical Neurosciences. 2022;76(5):162–171. DOI 10.1111/pcn.13338. PMID 35124869.**
 
 Across 44 studies, source-monitoring performance was impaired in psychosis relative to healthy controls. Internal source monitoring and imagined stimuli showed particularly marked impairment. Patients with hallucinations versus those without showed more externalising and imagined/auditory source-monitoring errors.
 
 This supports source attribution as a real computational vulnerability in psychosis, but does not establish the REE false-independence mechanism.
 
-### Damiani et al. 2023
+### Damiani et al. 2024 (online 2023)
 
-**Damiani S et al. _The noise in our brain: A systematic review and meta-analysis of neuroimaging and signal-detection studies on source monitoring in psychosis._ Journal of Psychiatric Research (2023). PMID 38039688.**
+**Damiani S et al. _The noise in our brain: A systematic review and meta-analysis of neuroimaging and signal-detection studies on source monitoring in psychosis._ Journal of Psychiatric Research. 2024;169:142–151. DOI 10.1016/j.jpsychires.2023.11.036. PMID 38039688.**
 
 The meta-analysis found substantial source-monitoring impairment in psychosis and argued that discrimination measures may capture the bidirectional internal/external confusion better than simple error counts.
 
