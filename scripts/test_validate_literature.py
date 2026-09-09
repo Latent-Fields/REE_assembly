@@ -18,6 +18,7 @@ import io
 import json
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -38,6 +39,18 @@ def _load_module(name, filename):
 
 
 V = _load_module("ree_validate_literature_under_test", "validate_literature.py")
+
+# validate_literature.py must import CLEANLY even where jsonschema is absent.
+# It used to sys.exit(3) at module level, and because _load_module() above runs
+# at IMPORT time that SystemExit escaped during pytest COLLECTION -- pytest
+# turned it into an INTERNALERROR and the whole REE_assembly suite died before a
+# single test ran (CI, up to 2026-09-09). The guard now lives in main(); here the
+# tests that genuinely need a validator skip instead of taking the suite with
+# them. MissingDependencyContractTest below stays UNSKIPPED and pins both halves.
+_HAS_JSONSCHEMA = V.jsonschema is not None
+_needs_jsonschema = unittest.skipUnless(
+    _HAS_JSONSCHEMA,
+    "jsonschema not installed; validator-backed tests cannot run")
 
 
 def valid_record(entry_id, literature_type):
@@ -62,6 +75,7 @@ def valid_record(entry_id, literature_type):
     }
 
 
+@_needs_jsonschema
 class LiteratureTreeTestCase(unittest.TestCase):
     """Builds a tempdir repo with the REAL v1 schema copied in."""
 
@@ -506,6 +520,7 @@ class CliTest(LiteratureTreeTestCase):
         self.assertIn("OK", out)
 
 
+@_needs_jsonschema
 class DegradedValidatorTest(unittest.TestCase):
     """The draft-07 fallback is deliberate; the guard against it hiding a miss is not."""
 
@@ -535,6 +550,7 @@ class DegradedValidatorTest(unittest.TestCase):
         self.assertIn("unevaluatedItems", str(ctx.exception))
 
 
+@_needs_jsonschema
 class LiveCorpusTest(unittest.TestCase):
     """One smoke test against the REAL corpus -- it must RUN, not that it is clean.
 
@@ -588,6 +604,64 @@ class LiveCorpusTest(unittest.TestCase):
         self.assertGreater(
             n_records, 0,
             "collect_findings saw zero records under %s" % REPO_ROOT)
+
+
+class MissingDependencyContractTest(unittest.TestCase):
+    """The missing-jsonschema contract, pinned from BOTH sides.
+
+    This class must never be skipped: it is the regression guard for the CI
+    collection abort, and skipping it in the one environment that reproduces the
+    bug (no jsonschema) would disarm it exactly when it matters.
+
+    Each test builds a throwaway scripts/ dir holding a copy of the real script
+    plus a sibling jsonschema.py that raises ImportError. Python puts a script's
+    own directory at sys.path[0], so that sibling shadows any real jsonschema and
+    the subprocess sees the dependency as genuinely absent -- no monkeypatching,
+    and it reproduces on a machine that HAS jsonschema installed.
+    """
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="ree_no_jsonschema_"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+        (self.tmp / "scripts").mkdir()
+        self.script = self.tmp / "scripts" / "validate_literature.py"
+        shutil.copyfile(SCRIPTS_DIR / "validate_literature.py", self.script)
+        (self.tmp / "scripts" / "jsonschema.py").write_text(
+            'raise ImportError("shadowed: jsonschema is absent for this test")\n',
+            encoding="utf-8")
+
+    def test_import_does_not_exit(self):
+        """Importing the module must not raise SystemExit -- the actual defect.
+
+        A module-level sys.exit() here is what pytest reports as INTERNALERROR,
+        which aborts collection for the ENTIRE suite, not just this file.
+        """
+        probe = (
+            "import importlib.util, sys\n"
+            "spec = importlib.util.spec_from_file_location('vl', sys.argv[1])\n"
+            "mod = importlib.util.module_from_spec(spec)\n"
+            "spec.loader.exec_module(mod)\n"
+            "assert mod.jsonschema is None, 'stub failed: jsonschema was importable'\n"
+            "print('imported')\n")
+        proc = subprocess.run(
+            [sys.executable, "-c", probe, str(self.script)],
+            capture_output=True, text=True, cwd=str(self.tmp / "scripts"))
+        self.assertEqual(
+            proc.returncode, 0,
+            "importing validate_literature.py without jsonschema must not exit; "
+            "stdout=%r stderr=%r" % (proc.stdout, proc.stderr))
+        self.assertIn("imported", proc.stdout)
+
+    def test_cli_still_exits_3_with_the_same_message(self):
+        """Moving the guard into main() must not change what the CLI does."""
+        proc = subprocess.run(
+            [sys.executable, str(self.script)],
+            capture_output=True, text=True, cwd=str(self.tmp / "scripts"))
+        self.assertEqual(proc.returncode, 3,
+                         "stdout=%r stderr=%r" % (proc.stdout, proc.stderr))
+        self.assertIn(
+            "validate_literature: jsonschema not installed; cannot validate",
+            proc.stderr)
 
 
 if __name__ == "__main__":

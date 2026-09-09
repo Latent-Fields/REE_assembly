@@ -115,12 +115,23 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+# The guard for a missing jsonschema lives in main(), NOT here. A module-level
+# sys.exit() in a file that a test imports escapes as SystemExit during pytest
+# COLLECTION, which pytest turns into an INTERNALERROR that kills the whole run
+# -- the entire suite then audits nothing while appearing to have run. (That is
+# exactly what happened in CI up to 2026-09-09, when the workflow installed only
+# pytest+pyyaml.) A missing optional dependency must degrade to a skipped test,
+# never to an aborted collection, so bind the name to None and let main() decide.
 try:
     import jsonschema
 except ImportError:  # pragma: no cover - environment guard
-    print("validate_literature: jsonschema not installed; cannot validate",
-          file=sys.stderr)
-    sys.exit(3)
+    jsonschema = None
+
+# Exact CLI contract for the missing-dependency case, kept identical to the
+# pre-2026-09-09 module-level guard: this text on stderr, exit status 3.
+# test_validate_literature.py pins both.
+_NO_JSONSCHEMA_MSG = "validate_literature: jsonschema not installed; cannot validate"
+_NO_JSONSCHEMA_RC = 3
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LITERATURE_REL = "evidence/literature"
@@ -470,6 +481,13 @@ def report(findings, n_records, list_failures=False, examples=3, stream=None):
 
 
 def main(argv=None):
+    # First statement in main(), before argument parsing, so EVERY invocation
+    # form (including --help) behaves exactly as it did when this guard sat at
+    # module level. Importing the module is now free of side effects.
+    if jsonschema is None:  # pragma: no cover - environment guard
+        print(_NO_JSONSCHEMA_MSG, file=sys.stderr)
+        return _NO_JSONSCHEMA_RC
+
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)

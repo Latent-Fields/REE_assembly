@@ -73,8 +73,17 @@ jobs:
       # The suite is otherwise stdlib-only. pyyaml is a genuine runtime
       # dependency of the subjects (export_public_explorer, generate_pending_review
       # and serve.py all import yaml to read docs/claims/claims.yaml).
+      #
+      # jsonschema is the same kind of dependency, for scripts/validate_literature.py
+      # and scripts/audit_literature_schema.py. Omitting it left every run from at
+      # least 2026-09-09 aborting during COLLECTION on a SystemExit escaping
+      # validate_literature's import guard, so the suite audited nothing while
+      # reporting red for an unrelated reason. The import guard was moved into
+      # main() as well -- BOTH halves are needed: the guard keeps a future missing
+      # dependency from taking the suite down, this line keeps the literature
+      # validators actually exercised rather than silently skipped.
       - name: Install dependencies
-        run: python -m pip install --upgrade pip pytest pyyaml
+        run: python -m pip install --upgrade pip pytest pyyaml jsonschema
 
       # No path arguments -- see the header. `-p no:cacheprovider` keeps the
       # runner from writing a .pytest_cache into the checkout.
