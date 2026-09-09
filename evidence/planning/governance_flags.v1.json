@@ -3413,6 +3413,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0244",
+      "claim_ids": [
+        "MECH-220",
+        "ARC-062",
+        "MECH-309"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "FIFTH instance of the GFLAG-0117/0120 dry-run filter blind spot (read GFLAG-0117 first). evidence/experiments/_dry_v3_exq_918a_sd_residue_valence_bound_validation_20260909T062139Z_v3.json is _dry_-PREFIXED (the earlier four instances were _dry-SUFFIXED), has NO top-level dry_run field at all, and carries an ASSERTING stamp: evidence_direction 'supports', outcome PASS, experiment_purpose diagnostic. Because the field is unset, generate_pending_review.load_dry_run_run_ids() does not exclude it and it surfaced in this cycle's pending_review.md as an 'Unclaimed manifest (PASS/FAIL with no claim tags)' inviting a mark-discussed. It is claim-free (claim_ids: []) so nothing is currently weighted, and GOV-DRY-1 Step 3i reported 0 actionable for the same reason -- its asserting-stamp sweep also keys on the unset field. That is the point: the two independent nets that exist for this both miss it by the same mechanism. The prefix variant is new evidence that a filename heuristic is not the fix; the fix is making the driver/stamper emit top-level dry_run: true. Landed 2026-09-09T06:21Z, so a live producer is still emitting the shape.",
+      "raised_by_session": "governance-20260909",
+      "raised_at": "2026-09-09T09:29:13Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
