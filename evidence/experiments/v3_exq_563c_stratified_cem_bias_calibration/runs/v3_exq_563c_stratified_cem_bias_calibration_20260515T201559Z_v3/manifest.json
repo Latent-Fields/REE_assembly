@@ -45,5 +45,25 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Diagnostic calibration run; tests 563c CEM flags and E3 bias diagnostics. Do not promote behavioural claims from this result alone."
+  "evidence_direction_note": "Diagnostic calibration run; tests 563c CEM flags and E3 bias diagnostics. Do not promote behavioural claims from this result alone.",
+  "config": {
+    "seeds": [
+      42,
+      43
+    ],
+    "eval_episodes": 30,
+    "steps_per_episode": 200,
+    "weak_forced_bias": -10.0,
+    "support_entropy_floor": 1e-06,
+    "std_floor": 0.2,
+    "arms": [
+      "ARM_0_normal_cem",
+      "ARM_1_current_support_preserving_cem",
+      "ARM_2_stratified_support_preserving_cem",
+      "ARM_3_stratified_plus_std_floor",
+      "ARM_4_stratified_std_floor_forced_bias",
+      "ARM_5_stratified_std_floor_bias_normalisation",
+      "ARM_6_scaffold_reference"
+    ]
+  }
 }

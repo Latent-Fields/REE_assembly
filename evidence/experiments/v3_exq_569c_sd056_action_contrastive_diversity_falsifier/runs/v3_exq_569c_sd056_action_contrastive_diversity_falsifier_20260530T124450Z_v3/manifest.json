@@ -45,5 +45,86 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "[2026-05-31 governance] evidence_direction overridden to superseded per supersession policy. V3-EXQ-569d (PASS, 2026-05-31T05:36Z, supersedes V3-EXQ-569c) is the floor-recalibrated successor (C1 floor 0.05->0.03 per autopsy V3-EXQ-569c Section 5 + e3_top2_class_gap NaN fix). 569c's per-claim 'supports' evidence applied 2026-05-30T18:20Z is replaced by 569d's PASS evidence. Indexer treats this manifest as scoring_excluded: superseded."
+  "evidence_direction_note": "[2026-05-31 governance] evidence_direction overridden to superseded per supersession policy. V3-EXQ-569d (PASS, 2026-05-31T05:36Z, supersedes V3-EXQ-569c) is the floor-recalibrated successor (C1 floor 0.05->0.03 per autopsy V3-EXQ-569c Section 5 + e3_top2_class_gap NaN fix). 569c's per-claim 'supports' evidence applied 2026-05-30T18:20Z is replaced by 569d's PASS evidence. Indexer treats this manifest as scoring_excluded: superseded.",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_warmup_episodes": 30,
+    "p1_measurement_episodes": 20,
+    "steps_per_episode": 200,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_0_OFF",
+        "label": "sd056_master_off_baseline",
+        "sd056_enabled": false,
+        "sd056_weight": 0.0,
+        "temperature": 1.0,
+        "train_e2": false
+      },
+      {
+        "arm_id": "ARM_1_W001",
+        "label": "sd056_on_weight_0p01",
+        "sd056_enabled": true,
+        "sd056_weight": 0.01,
+        "temperature": 1.0,
+        "train_e2": true
+      },
+      {
+        "arm_id": "ARM_2_W005",
+        "label": "sd056_on_weight_0p05",
+        "sd056_enabled": true,
+        "sd056_weight": 0.05,
+        "temperature": 1.0,
+        "train_e2": true
+      },
+      {
+        "arm_id": "ARM_3_W020",
+        "label": "sd056_on_weight_0p20",
+        "sd056_enabled": true,
+        "sd056_weight": 0.2,
+        "temperature": 1.0,
+        "train_e2": true
+      },
+      {
+        "arm_id": "ARM_4_MATCHED_NOISE",
+        "label": "sd056_off_matched_entropy_temperature_control",
+        "sd056_enabled": false,
+        "sd056_weight": 0.0,
+        "temperature": 2.5,
+        "train_e2": false
+      }
+    ],
+    "c1_pairwise_dist_floor": 0.05,
+    "c2_first_action_entropy_floor": 0.3,
+    "c3_selected_entropy_floor": 0.3,
+    "min_seeds_per_arm_for_pass": 2,
+    "matched_entropy_temperature": 2.5,
+    "e2_contrastive_lr": 0.001,
+    "e2_train_every_k_ticks": 1
+  }
 }

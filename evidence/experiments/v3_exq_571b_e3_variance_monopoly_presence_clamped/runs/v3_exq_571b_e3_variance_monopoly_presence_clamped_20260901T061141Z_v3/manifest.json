@@ -101,5 +101,257 @@
     "n_agents": 16,
     "goal_state_present": false
   },
-  "evidence_direction_note": "Ratified by governance cycle gov-cycle-20260901 (2026-09-01) from confirmed failure_autopsy_V3-EXQ-571b_2026-09-01 (autopsy confirmed in REE_assembly 5ff838702b). Diagnostic presence audit; PASSES its own criteria (clamped top-channel share 0.9368-0.9953 vs 0.85 bar, occupant shifts f_weighted -> harm_weighted 4/4 seeds) but contributes no claim weight to MECH-439. The 936a gate on the 936-family falsifiers does NOT clear: 936a measured the same premise ABSENT (F share 6.33e-06) in its own regime under the same clamp ratio, so the premise is REGIME-DEPENDENT and this run cannot apportion the residue-carried gap."
+  "evidence_direction_note": "Ratified by governance cycle gov-cycle-20260901 (2026-09-01) from confirmed failure_autopsy_V3-EXQ-571b_2026-09-01 (autopsy confirmed in REE_assembly 5ff838702b). Diagnostic presence audit; PASSES its own criteria (clamped top-channel share 0.9368-0.9953 vs 0.85 bar, occupant shifts f_weighted -> harm_weighted 4/4 seeds) but contributes no claim weight to MECH-439. The 936a gate on the 936-family falsifiers does NOT clear: 936a measured the same premise ABSENT (F share 6.33e-06) in its own regime under the same clamp ratio, so the premise is REGIME-DEPENDENT and this run cannot apportion the residue-carried gap.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2750.5720553270003,
+  "config": {
+    "seeds": [
+      42,
+      123,
+      456,
+      43
+    ],
+    "n_episodes": 20,
+    "steps_per_episode": 100,
+    "n_steps": 2000,
+    "grid_size": 8,
+    "num_hazards": 1,
+    "alpha_world": 0.9,
+    "clamp_ratio": 2.0,
+    "f_monopoly_threshold": 0.85,
+    "min_fresh_selections": 60,
+    "min_total_variance": 1e-09,
+    "arms": [
+      {
+        "id": "A0_baseline_clamp_off",
+        "stack": false,
+        "clamp": false,
+        "load_bearing": false
+      },
+      {
+        "id": "A1_baseline_clamp_on",
+        "stack": false,
+        "clamp": true,
+        "load_bearing": true
+      },
+      {
+        "id": "A2_divstack_clamp_off",
+        "stack": true,
+        "clamp": false,
+        "load_bearing": false
+      },
+      {
+        "id": "A3_divstack_clamp_on",
+        "stack": true,
+        "clamp": true,
+        "load_bearing": false
+      }
+    ],
+    "score_components": [
+      "f_weighted",
+      "harm_weighted",
+      "residue_weighted",
+      "benefit_weighted",
+      "novelty_weighted",
+      "goal_weighted"
+    ],
+    "legacy571_components": [
+      "f",
+      "harm_weighted",
+      "residue_weighted",
+      "benefit_weighted",
+      "novelty_weighted",
+      "goal_weighted"
+    ],
+    "arm_config_slices": {
+      "A0_baseline_clamp_off": {
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 1,
+          "use_proxy_fields": true,
+          "env_seed": null
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps_per_episode": 100,
+          "n_steps_total": 2000
+        },
+        "clamp": {
+          "e2_rollout_output_norm_clamp_enabled": false,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "score_composition_weights": {
+          "f_weight": 1.0,
+          "lambda_ethical": 1.0,
+          "rho_residue": 0.5
+        },
+        "substrate": {
+          "alpha_world": 0.9,
+          "use_support_preserving_cem": true,
+          "support_preserving_min_first_action_classes": 2,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "harm_obs_dim": 51
+        },
+        "cell_readout_constants": {
+          "f_monopoly_threshold": 0.85,
+          "min_fresh_selections": 60,
+          "min_total_variance": 1e-09,
+          "pin_eps": 1e-06
+        },
+        "arm_flags": {}
+      },
+      "A1_baseline_clamp_on": {
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 1,
+          "use_proxy_fields": true,
+          "env_seed": null
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps_per_episode": 100,
+          "n_steps_total": 2000
+        },
+        "clamp": {
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "score_composition_weights": {
+          "f_weight": 1.0,
+          "lambda_ethical": 1.0,
+          "rho_residue": 0.5
+        },
+        "substrate": {
+          "alpha_world": 0.9,
+          "use_support_preserving_cem": true,
+          "support_preserving_min_first_action_classes": 2,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "harm_obs_dim": 51
+        },
+        "cell_readout_constants": {
+          "f_monopoly_threshold": 0.85,
+          "min_fresh_selections": 60,
+          "min_total_variance": 1e-09,
+          "pin_eps": 1e-06
+        },
+        "arm_flags": {}
+      },
+      "A2_divstack_clamp_off": {
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 1,
+          "use_proxy_fields": true,
+          "env_seed": null
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps_per_episode": 100,
+          "n_steps_total": 2000
+        },
+        "clamp": {
+          "e2_rollout_output_norm_clamp_enabled": false,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "score_composition_weights": {
+          "f_weight": 1.0,
+          "lambda_ethical": 1.0,
+          "rho_residue": 0.5
+        },
+        "substrate": {
+          "alpha_world": 0.9,
+          "use_support_preserving_cem": true,
+          "support_preserving_min_first_action_classes": 2,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "harm_obs_dim": 51
+        },
+        "cell_readout_constants": {
+          "f_monopoly_threshold": 0.85,
+          "min_fresh_selections": 60,
+          "min_total_variance": 1e-09,
+          "pin_eps": 1e-06
+        },
+        "arm_flags": {
+          "use_noise_floor": true,
+          "noise_floor_alpha": 0.1,
+          "noise_floor_min_temperature": 1.0,
+          "use_structured_curiosity": true,
+          "use_curiosity_novelty": true,
+          "use_curiosity_uncertainty": true,
+          "use_curiosity_learning_progress": true,
+          "curiosity_novelty_weight": 0.05,
+          "curiosity_uncertainty_weight": 0.05,
+          "curiosity_learning_progress_weight": 0.05,
+          "curiosity_bias_scale": 0.1,
+          "use_tonic_vigor": true,
+          "tonic_vigor_half_life": 100.0,
+          "tonic_vigor_w_action": 0.1,
+          "tonic_vigor_w_passive": 0.1,
+          "tonic_vigor_bias_scale": 0.1
+        }
+      },
+      "A3_divstack_clamp_on": {
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 1,
+          "use_proxy_fields": true,
+          "env_seed": null
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps_per_episode": 100,
+          "n_steps_total": 2000
+        },
+        "clamp": {
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "score_composition_weights": {
+          "f_weight": 1.0,
+          "lambda_ethical": 1.0,
+          "rho_residue": 0.5
+        },
+        "substrate": {
+          "alpha_world": 0.9,
+          "use_support_preserving_cem": true,
+          "support_preserving_min_first_action_classes": 2,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "harm_obs_dim": 51
+        },
+        "cell_readout_constants": {
+          "f_monopoly_threshold": 0.85,
+          "min_fresh_selections": 60,
+          "min_total_variance": 1e-09,
+          "pin_eps": 1e-06
+        },
+        "arm_flags": {
+          "use_noise_floor": true,
+          "noise_floor_alpha": 0.1,
+          "noise_floor_min_temperature": 1.0,
+          "use_structured_curiosity": true,
+          "use_curiosity_novelty": true,
+          "use_curiosity_uncertainty": true,
+          "use_curiosity_learning_progress": true,
+          "curiosity_novelty_weight": 0.05,
+          "curiosity_uncertainty_weight": 0.05,
+          "curiosity_learning_progress_weight": 0.05,
+          "curiosity_bias_scale": 0.1,
+          "use_tonic_vigor": true,
+          "tonic_vigor_half_life": 100.0,
+          "tonic_vigor_w_action": 0.1,
+          "tonic_vigor_w_passive": 0.1,
+          "tonic_vigor_bias_scale": 0.1
+        }
+      }
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    43
+  ]
 }

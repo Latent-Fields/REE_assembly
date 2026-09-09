@@ -45,5 +45,142 @@
   },
   "status": "FAIL",
   "stop_criteria_version": "stop_criteria/v1",
-  "timestamp_utc": "2026-05-31T00:49:44Z"
+  "timestamp_utc": "2026-05-31T00:49:44Z",
+  "config": {
+    "argmin_temperature": 0.01,
+    "arms": [
+      {
+        "arm_id": "ARM_0_OFF",
+        "category": "off",
+        "label": "sd056_master_off_baseline",
+        "p0_temperature": 1.0,
+        "p1_temperature": 1.0,
+        "sd056_enabled": false,
+        "sd056_weight": 0.0,
+        "train_e2_p0": false,
+        "train_e2_p1": false
+      },
+      {
+        "arm_id": "ARM_1_W005_LIVE",
+        "category": "live",
+        "label": "sd056_on_w005_train_p0_p1",
+        "p0_temperature": 1.0,
+        "p1_temperature": 1.0,
+        "sd056_enabled": true,
+        "sd056_weight": 0.05,
+        "train_e2_p0": true,
+        "train_e2_p1": true
+      },
+      {
+        "arm_id": "ARM_2_W020_LIVE",
+        "category": "live",
+        "label": "sd056_on_w020_train_p0_p1",
+        "p0_temperature": 1.0,
+        "p1_temperature": 1.0,
+        "sd056_enabled": true,
+        "sd056_weight": 0.2,
+        "train_e2_p0": true,
+        "train_e2_p1": true
+      },
+      {
+        "arm_id": "ARM_3_W005_FROZEN_P1",
+        "category": "frozen",
+        "label": "sd056_on_w005_train_p0_only_frozen_at_p1",
+        "p0_temperature": 1.0,
+        "p1_temperature": 1.0,
+        "sd056_enabled": true,
+        "sd056_weight": 0.05,
+        "train_e2_p0": true,
+        "train_e2_p1": false
+      },
+      {
+        "arm_id": "ARM_4_W020_FROZEN_P1",
+        "category": "frozen",
+        "label": "sd056_on_w020_train_p0_only_frozen_at_p1",
+        "p0_temperature": 1.0,
+        "p1_temperature": 1.0,
+        "sd056_enabled": true,
+        "sd056_weight": 0.2,
+        "train_e2_p0": true,
+        "train_e2_p1": false
+      },
+      {
+        "arm_id": "ARM_5_W005_ARGMIN",
+        "category": "argmin",
+        "label": "sd056_on_w005_train_p0_p1_force_argmin_at_p1",
+        "p0_temperature": 1.0,
+        "p1_temperature": 0.01,
+        "sd056_enabled": true,
+        "sd056_weight": 0.05,
+        "train_e2_p0": true,
+        "train_e2_p1": true
+      },
+      {
+        "arm_id": "ARM_6_W020_ARGMIN",
+        "category": "argmin",
+        "label": "sd056_on_w020_train_p0_p1_force_argmin_at_p1",
+        "p0_temperature": 1.0,
+        "p1_temperature": 0.01,
+        "sd056_enabled": true,
+        "sd056_weight": 0.2,
+        "train_e2_p0": true,
+        "train_e2_p1": true
+      },
+      {
+        "arm_id": "ARM_7_MATCHED_NOISE",
+        "category": "noise",
+        "label": "sd056_off_matched_entropy_temperature_control",
+        "p0_temperature": 1.0,
+        "p1_temperature": 2.5,
+        "sd056_enabled": false,
+        "sd056_weight": 0.0,
+        "train_e2_p0": false,
+        "train_e2_p1": false
+      }
+    ],
+    "c1_min_ok_seeds": 3,
+    "c2_delta_floor": 0.05,
+    "c2_frozen_pres_delta": 0.25,
+    "c3_rollout_ratio_floor": 3.0,
+    "collapsed_ceil": 0.2,
+    "e2_contrastive_lr": 0.001,
+    "e2_train_every_k_ticks": 1,
+    "env_kwargs": {
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "harm_history_len": 10,
+      "hazard_field_decay": 0.5,
+      "hazard_food_attraction": 0.7,
+      "hazard_harm": 0.05,
+      "n_reef_patches": 3,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "proximity_approach_threshold": 0.2,
+      "proximity_benefit_scale": 0.05,
+      "proximity_harm_scale": 0.1,
+      "reef_bipartite_agent_band_radius": 1,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_layout": true,
+      "reef_enabled": true,
+      "reef_patch_radius": 2,
+      "resource_respawn_on_consume": true,
+      "size": 12,
+      "toroidal": false
+    },
+    "m3_nan_fraction_ceiling": 0.4,
+    "matched_entropy_temperature": 2.5,
+    "on_lift_c3_floor": 0.3,
+    "p0_warmup_episodes": 30,
+    "p1_measurement_episodes": 20,
+    "preserved_floor": 0.5,
+    "rollout_b_floor": 2.0,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "steps_per_episode": 200
+  }
 }

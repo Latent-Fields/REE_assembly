@@ -44,5 +44,17 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "module": "ree_core/cingulate/pcc_analog.py",
+    "default_pcc_config": {
+      "success_alpha": 0.02,
+      "success_init": 0.5,
+      "offline_recency_window": 500,
+      "success_weight": 0.5,
+      "fatigue_weight": 0.5,
+      "offline_weight": 0.3,
+      "stability_baseline": 0.5
+    }
+  }
 }

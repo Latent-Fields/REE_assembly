@@ -43,5 +43,27 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Dry-run artifact (config.dry_run=true, n_seeds=1). Script validation run, not a genuine discriminative-pair test. Reclassified 2026-05-04 governance session."
+  "evidence_direction_note": "Dry-run artifact (config.dry_run=true, n_seeds=1). Script validation run, not a genuine discriminative-pair test. Reclassified 2026-05-04 governance session.",
+  "elapsed_seconds": 39.88218712806702,
+  "config": {
+    "p0_episodes": 30,
+    "p1_episodes": 40,
+    "steps_per_episode": 150,
+    "env_size": 12,
+    "n_hazards": 3,
+    "n_resources": 2,
+    "body_obs_dim": 17,
+    "world_obs_dim": 250,
+    "harm_obs_a_dim": 7,
+    "action_dim": 5,
+    "comp_window_length": 5,
+    "comp_drop_threshold": 0.05,
+    "comp_min_initial_norm": 0.02,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "dry_run": true
+  }
 }

@@ -45,5 +45,26 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "elapsed_seconds": 13.173720836639404,
+  "config": {
+    "p0_episodes": 60,
+    "p1_episodes": 80,
+    "eval_episodes": 40,
+    "steps_per_episode": 150,
+    "self_dim": 32,
+    "world_dim": 32,
+    "grid_size": 12,
+    "n_hazards": 1,
+    "n_resources": 1,
+    "p_stay": 0.8,
+    "lr": 0.001,
+    "harm_fwd_lr": 0.0005,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "interoceptive_noise_scale": 1.0
+  }
 }

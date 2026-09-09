@@ -43,5 +43,31 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "[2026-05-08 governance reclassification] Reclassified weakens -> non_contributory. EXQ-490f tested the wired-but-inert cascade pattern under the pre-MECH-307 conjunction architecture. The four-gap conjunction wiring fault identified in the 2026-05-08 anticipatory-affect dialogue (signed VALENCE_SURPRISE + MECH-216 z_beta coupling + anticipatory VALENCE_LIKING write + write-at-predicted-location) confounds the cascade test: C2/C3/C4 zero is consistent with both 'cascade-genuinely-inert' and 'cascade-wiring-broken-upstream'. Re-test required after MECH-307 conjunction-fix substrate lands."
+  "evidence_direction_note": "[2026-05-08 governance reclassification] Reclassified weakens -> non_contributory. EXQ-490f tested the wired-but-inert cascade pattern under the pre-MECH-307 conjunction architecture. The four-gap conjunction wiring fault identified in the 2026-05-08 anticipatory-affect dialogue (signed VALENCE_SURPRISE + MECH-216 z_beta coupling + anticipatory VALENCE_LIKING write + write-at-predicted-location) confounds the cascade test: C2/C3/C4 zero is consistent with both 'cascade-genuinely-inert' and 'cascade-wiring-broken-upstream'. Re-test required after MECH-307 conjunction-fix substrate lands.",
+  "config": {
+    "arms": [
+      {
+        "id": "BASELINE",
+        "mech295_min_drive_to_fire": 0.1,
+        "mech295_min_z_goal_norm_to_fire": 0.05,
+        "mech295_drive_to_liking_gain": 1.0,
+        "mech295_liking_to_approach_cue_gain": 0.5
+      },
+      {
+        "id": "RELAXED",
+        "mech295_min_drive_to_fire": 0.01,
+        "mech295_min_z_goal_norm_to_fire": 0.005,
+        "mech295_drive_to_liking_gain": 2.0,
+        "mech295_liking_to_approach_cue_gain": 0.5
+      }
+    ],
+    "seeds": [
+      42,
+      7,
+      19
+    ],
+    "warmup_episodes": 80,
+    "eval_episodes": 5,
+    "steps_per_episode": 200
+  }
 }

@@ -43,5 +43,31 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "[update_z_goal_typeerror_swallowed] Diagnosed 2026-05-07: experiment script called agent.update_z_goal(latent, benefit_exposure=..., drive_level=...) which raised TypeError every tick; bare except wrapper silently swallowed it. GoalState.update never called -> goal_state.is_active() always False -> z_goal stayed at 0 -> MECH-295 bridge precondition unmet. Confirmed by per-seed results: goal_active_ticks=0, goal_norm_max=0, bridge_n_write_fires_total=0, approach_commit_count=0 across all 6 seeds even though base_drive_mean=0.75 and override_mean=0.56 -- the override regulator and drive accumulator were both functioning. Same cohort bugs as EXQ-471/475/483/483a/483b/490/490b/490c/490e/524: 2x agent.sense() per warmup step, agent.update_residue() never called, dACC bias diagnostic reading wrong tensor. Awaiting StepHarness re-run as EXQ-490g."
+  "evidence_direction_note": "[update_z_goal_typeerror_swallowed] Diagnosed 2026-05-07: experiment script called agent.update_z_goal(latent, benefit_exposure=..., drive_level=...) which raised TypeError every tick; bare except wrapper silently swallowed it. GoalState.update never called -> goal_state.is_active() always False -> z_goal stayed at 0 -> MECH-295 bridge precondition unmet. Confirmed by per-seed results: goal_active_ticks=0, goal_norm_max=0, bridge_n_write_fires_total=0, approach_commit_count=0 across all 6 seeds even though base_drive_mean=0.75 and override_mean=0.56 -- the override regulator and drive accumulator were both functioning. Same cohort bugs as EXQ-471/475/483/483a/483b/490/490b/490c/490e/524: 2x agent.sense() per warmup step, agent.update_residue() never called, dACC bias diagnostic reading wrong tensor. Awaiting StepHarness re-run as EXQ-490g.",
+  "config": {
+    "arms": [
+      {
+        "id": "BASELINE",
+        "mech295_min_drive_to_fire": 0.1,
+        "mech295_min_z_goal_norm_to_fire": 0.05,
+        "mech295_drive_to_liking_gain": 1.0,
+        "mech295_liking_to_approach_cue_gain": 0.5
+      },
+      {
+        "id": "RELAXED",
+        "mech295_min_drive_to_fire": 0.01,
+        "mech295_min_z_goal_norm_to_fire": 0.005,
+        "mech295_drive_to_liking_gain": 2.0,
+        "mech295_liking_to_approach_cue_gain": 0.5
+      }
+    ],
+    "seeds": [
+      42,
+      7,
+      19
+    ],
+    "warmup_episodes": 80,
+    "eval_episodes": 5,
+    "steps_per_episode": 200
+  }
 }

@@ -43,5 +43,23 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "2026-05-03 governance walk: kept evidence_direction=weakens. Borderline FAIL with C1+C2 PASS and C3 tight at threshold. Absolute discrimination is real; relative gap is small. ARC-033 already provisional with 55 entries; this adds 1 weakens to the strong-reading ablation, will not flip status. Successor direction: ARC-058 lit-pull (Wager 2013, Hofbauer 2001) on somatic/affective dissociation rather than another body-damage ablation."
+  "evidence_direction_note": "2026-05-03 governance walk: kept evidence_direction=weakens. Borderline FAIL with C1+C2 PASS and C3 tight at threshold. Absolute discrimination is real; relative gap is small. ARC-033 already provisional with 55 entries; this adds 1 weakens to the strong-reading ablation, will not flip status. Successor direction: ARC-058 lit-pull (Wager 2013, Hofbauer 2001) on somatic/affective dissociation rather than another body-damage ablation.",
+  "elapsed_seconds": 95.27965378761292,
+  "config": {
+    "warmup_episodes": 100,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "self_dim": 32,
+    "world_dim": 32,
+    "harm_dim": 32,
+    "num_hazards": 2,
+    "num_resources": 3,
+    "lr": 0.001,
+    "harm_fwd_lr": 0.0005,
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  }
 }

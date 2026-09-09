@@ -43,5 +43,27 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Calibration gap: comparator window (5 steps, drop_threshold=5%) cannot detect live z_harm_a healing dynamics (rate=0.002/step -> max drop 0.010 in window, below 5% of typical norm ~0.5). EXQ-516 PASS confirmed the comparator logic is correct. FAIL is a substrate calibration mismatch, not a mechanism failure. Reclassified non_contributory 2026-05-04. EXQ-517a to be queued with recalibrated comparator window."
+  "evidence_direction_note": "Calibration gap: comparator window (5 steps, drop_threshold=5%) cannot detect live z_harm_a healing dynamics (rate=0.002/step -> max drop 0.010 in window, below 5% of typical norm ~0.5). EXQ-516 PASS confirmed the comparator logic is correct. FAIL is a substrate calibration mismatch, not a mechanism failure. Reclassified non_contributory 2026-05-04. EXQ-517a to be queued with recalibrated comparator window.",
+  "elapsed_seconds": 2208.0988550186157,
+  "config": {
+    "p0_episodes": 30,
+    "p1_episodes": 40,
+    "steps_per_episode": 150,
+    "env_size": 12,
+    "n_hazards": 3,
+    "n_resources": 2,
+    "body_obs_dim": 17,
+    "world_obs_dim": 250,
+    "harm_obs_a_dim": 7,
+    "action_dim": 5,
+    "comp_window_length": 5,
+    "comp_drop_threshold": 0.05,
+    "comp_min_initial_norm": 0.02,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "dry_run": false
+  }
 }

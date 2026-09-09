@@ -38,5 +38,26 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "elapsed_seconds": 4533.660588502884,
+  "config": {
+    "alphas": [
+      0.01,
+      0.02,
+      0.2,
+      1.0
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "first_pass_alpha": 0.02,
+    "post_warmup_cut": 100,
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "n_steps": 200,
+    "grid_size": 12,
+    "dry_run": false
+  }
 }

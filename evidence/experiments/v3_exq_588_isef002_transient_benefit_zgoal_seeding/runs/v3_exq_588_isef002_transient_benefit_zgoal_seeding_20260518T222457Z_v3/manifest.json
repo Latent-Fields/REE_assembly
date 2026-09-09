@@ -43,5 +43,25 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 1000,
+    "steps_per_episode": 200,
+    "z_goal_crossing_threshold": 0.4,
+    "crossing_sentinel": 1001,
+    "c1_treatment_fraction": 0.7,
+    "arm0_transient_benefit_enabled": false,
+    "arm1_transient_benefit_enabled": true,
+    "arm1_transient_benefit_multiplier": 3.0,
+    "alpha_world": 0.9,
+    "z_goal_enabled": true,
+    "drive_weight": 2.0
+  }
 }

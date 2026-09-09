@@ -38,5 +38,21 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      17
+    ],
+    "ticks_per_seed": 400,
+    "episode_steps": 200,
+    "zero_variance_flag_threshold": 1e-06,
+    "single_arm": true,
+    "z_goal_enabled": false,
+    "v_s_circuit_on": true,
+    "sd029_scheduled_hazards": true,
+    "no_training": true,
+    "supersedes": null
+  }
 }

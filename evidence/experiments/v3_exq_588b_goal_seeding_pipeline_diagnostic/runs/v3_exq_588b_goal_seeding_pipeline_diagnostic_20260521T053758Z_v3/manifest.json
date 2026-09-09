@@ -38,5 +38,33 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_episodes": 300,
+    "warmup_episodes": 50,
+    "steps_per_episode": 200,
+    "arms": [
+      {
+        "name": "ARM_OFF",
+        "drive_floor": 0.0,
+        "transient_benefit_enabled": false
+      },
+      {
+        "name": "ARM_FLOOR",
+        "drive_floor": 0.9,
+        "transient_benefit_enabled": false
+      },
+      {
+        "name": "ARM_FLOOR_PATCH",
+        "drive_floor": 0.9,
+        "transient_benefit_enabled": true
+      }
+    ],
+    "z_goal_crossing_threshold": 0.4
+  }
 }

@@ -46,5 +46,20 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "conditions": [
+      "COORD_OFF",
+      "COORD_ON"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 50,
+    "p1_eps": 100,
+    "p2_eps": 50,
+    "steps_per_ep": 120
+  }
 }

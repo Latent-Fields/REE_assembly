@@ -44,5 +44,27 @@
   },
   "failure_signatures": [],
   "pending_retest_after_substrate": true,
-  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted."
+  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted.",
+  "elapsed_seconds": 3670.7566232681274,
+  "config": {
+    "p0_episodes": 30,
+    "p1_episodes": 40,
+    "steps_per_episode": 300,
+    "env_size": 12,
+    "n_hazards": 3,
+    "n_resources": 2,
+    "body_obs_dim": 17,
+    "world_obs_dim": 250,
+    "harm_obs_a_dim": 7,
+    "action_dim": 5,
+    "comp_window_length": 30,
+    "comp_drop_threshold": 0.005,
+    "comp_min_initial_norm": 0.01,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "dry_run": false
+  }
 }

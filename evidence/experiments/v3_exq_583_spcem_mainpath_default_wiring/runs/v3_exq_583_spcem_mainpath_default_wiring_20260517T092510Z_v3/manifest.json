@@ -39,5 +39,23 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "DIAGNOSTIC substrate-wiring check (experiment_purpose=diagnostic, claim_ids=[]). Validates that the 2026-05-17 SP-CEM main-path default flip wires through from_dims identically to the explicit V3-EXQ-567 ARM_1 flags (P1) and reproduces the diversity effect with zero flags passed (P2). Not governance evidence for ARC-065 (that is V3-EXQ-569's matched-entropy job). Pre-registered non_contributory -- excluded from confidence/conflict scoring; NOT a force-mapped FAIL."
+  "evidence_direction_note": "DIAGNOSTIC substrate-wiring check (experiment_purpose=diagnostic, claim_ids=[]). Validates that the 2026-05-17 SP-CEM main-path default flip wires through from_dims identically to the explicit V3-EXQ-567 ARM_1 flags (P1) and reproduces the diversity effect with zero flags passed (P2). Not governance evidence for ARC-065 (that is V3-EXQ-569's matched-entropy job). Pre-registered non_contributory -- excluded from confidence/conflict scoring; NOT a force-mapped FAIL.",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "equiv_tol": 1e-09,
+    "p2_entropy_margin": 0.05,
+    "p2_min_unique": 2.0,
+    "std_floor": 0.2,
+    "arms": [
+      "ARM_default",
+      "ARM_explicit_on",
+      "ARM_explicit_off"
+    ]
+  }
 }

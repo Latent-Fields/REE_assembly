@@ -91,5 +91,24 @@
     ],
     "evidence_direction": "supports",
     "routing_note": "EVIDENCE (claim_ids=[MECH-189, DEV-NEED-006]). trained_encoder_absolute_crossing_met -> the trained-encoder substrate clears the DEV-NEED-006 0.4 absolute gate; supports MECH-189 + DEV-NEED-006 and closes infant_substrate:GAP-11b (via /governance). absolute_crossing_ceiling_persists -> a genuine trained-encoder ceiling survives; weakens both claims + route substrate enrichment. substrate_not_ready_requeue -> readiness unmet (non_degenerate=False, scoring-excluded); re-queue with a longer/stronger P0, NEVER a verdict."
+  },
+  "config": {
+    "n_p0": 30,
+    "n_child": 8,
+    "n_adult": 6,
+    "steps": 100,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "forced_benefit": 0.5,
+    "forced_drive": 0.9,
+    "devneed006_gate_absolute": 0.4,
+    "rp_improve_min": 0.2,
+    "seed_pass_fraction": 0.6666666666666666,
+    "lr_enc": 0.001,
+    "lr_e1": 0.001,
+    "use_resource_proximity_head": true
   }
 }

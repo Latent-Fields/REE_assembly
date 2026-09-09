@@ -45,5 +45,33 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Diagnostic calibration run; do not promote behavioural agency claims from this result alone."
+  "evidence_direction_note": "Diagnostic calibration run; do not promote behavioural agency claims from this result alone.",
+  "config": {
+    "seeds": [
+      42,
+      43
+    ],
+    "eval_episodes": 30,
+    "steps_per_episode": 200,
+    "dose_episodes": 10,
+    "weak_forced_bias_vector": [
+      -10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "dose_biases_to_action_0": [
+      -100.0,
+      -30.0,
+      -10.0,
+      -3.0,
+      -1.0,
+      -0.3,
+      -0.1,
+      0.0
+    ],
+    "support_entropy_floor": 1e-06,
+    "action0_margin": 0.1
+  }
 }

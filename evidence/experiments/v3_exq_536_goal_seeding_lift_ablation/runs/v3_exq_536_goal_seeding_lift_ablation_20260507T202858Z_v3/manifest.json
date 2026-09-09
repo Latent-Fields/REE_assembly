@@ -52,5 +52,16 @@
   },
   "failure_signatures": [],
   "evidence_direction_note": "Substrate failure: experiment script does not call agent.update_residue() in its training/eval loops, so the running-variance / commit-gate subsystem is dormant (_running_variance pinned at 0.5, gate never fires). BG never commits -> agent never approaches resources during eval -> z_goal seeding never triggers (z_goal_active_fraction=0.0 all seeds) -> goal-lift comparison degenerates to 0/0. C1 benefit_eval_r2=0.22 is close to the 0.30 floor but cannot be cleanly attributed to SD-018 alone. Pipeline downstream of SD-018 (z_goal seeding, MECH-112, MECH-295, ARC-030) was not actually exercised. Reclassified non_contributory for all 5 claim_ids. Same root cause cluster as EXQ-514d/514e/530.",
-  "root_cause_tag": "rv_pinned_no_post_action_update"
+  "root_cause_tag": "rv_pinned_no_post_action_update",
+  "elapsed_seconds": 959.811901807785,
+  "config": {
+    "n_train_eps": 100,
+    "n_eval_eps": 40,
+    "n_steps": 200,
+    "n_seeds": 3,
+    "grid_size": 12,
+    "approach_thresh": 0.25,
+    "dry_run": false,
+    "e3_goal_weight_fix": "cfg.e3.goal_weight=1.0 (from_dims does not set E3Config.goal_weight)"
+  }
 }

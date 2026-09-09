@@ -42,5 +42,36 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "elapsed_seconds": 57.59368395805359,
+  "config": {
+    "warmup_episodes": 60,
+    "eval_episodes": 30,
+    "steps_per_episode": 150,
+    "capacity_levels": [
+      {
+        "label": "SMALL",
+        "world_dim": 16,
+        "self_dim": 16,
+        "hidden_dim": 64
+      },
+      {
+        "label": "MEDIUM",
+        "world_dim": 32,
+        "self_dim": 32,
+        "hidden_dim": 128
+      },
+      {
+        "label": "LARGE",
+        "world_dim": 64,
+        "self_dim": 32,
+        "hidden_dim": 256
+      }
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  }
 }

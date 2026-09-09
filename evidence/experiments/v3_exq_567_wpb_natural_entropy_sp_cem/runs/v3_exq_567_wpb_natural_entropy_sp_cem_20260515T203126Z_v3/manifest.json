@@ -41,5 +41,21 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "ARM_1 (SP-CEM + stratified + ao_std_floor) vs ARM_0 (normal CEM) on natural selected_action_entropy and candidate support. PASS = SP-CEM meaningfully diversifies natural action selection. FAIL = SP-CEM does not lift natural entropy above the baseline threshold."
+  "evidence_direction_note": "ARM_1 (SP-CEM + stratified + ao_std_floor) vs ARM_0 (normal CEM) on natural selected_action_entropy and candidate support. PASS = SP-CEM meaningfully diversifies natural action selection. FAIL = SP-CEM does not lift natural entropy above the baseline threshold.",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "p1_entropy_margin": 0.05,
+    "p2_support_margin": 0.5,
+    "std_floor": 0.2,
+    "arms": [
+      "ARM_0_normal_cem",
+      "ARM_1_support_preserving"
+    ]
+  }
 }

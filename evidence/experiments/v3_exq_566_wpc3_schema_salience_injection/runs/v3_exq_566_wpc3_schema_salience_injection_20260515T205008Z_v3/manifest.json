@@ -38,5 +38,17 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      7
+    ],
+    "train_episodes": 30,
+    "eval_episodes": 10,
+    "steps_per_episode": 120,
+    "drive_level": 1.0,
+    "forced_salience_mid": 0.5,
+    "forced_salience_high": 0.9
+  }
 }

@@ -46,5 +46,39 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "conditions": [
+      "DUAL_STD",
+      "DUAL_INTERVENTIONAL",
+      "DUAL_OFF_BASELINE"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 30,
+    "p1_eps": 80,
+    "p2_eps": 20,
+    "steps_per_ep": 120,
+    "harm_obs_dim": 51,
+    "harm_obs_a_dim": 50,
+    "harm_history_len": 10,
+    "z_harm_dim": 32,
+    "z_harm_a_dim": 16,
+    "action_dim": 4,
+    "env": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 3,
+      "hazard_harm": 0.04,
+      "proximity_harm_scale": 0.12
+    },
+    "thresholds": {
+      "c1_sep": 0.05,
+      "c2_corr": 0.15,
+      "c4_slack": 0.1
+    }
+  }
 }

@@ -38,5 +38,18 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_episodes": 40,
+    "n_steps": 120,
+    "residue_scale_factor": 0.1,
+    "expected_threshold": 0.002,
+    "n_basis_functions": 512,
+    "thresh_arm1_min_margin": 0.01
+  }
 }

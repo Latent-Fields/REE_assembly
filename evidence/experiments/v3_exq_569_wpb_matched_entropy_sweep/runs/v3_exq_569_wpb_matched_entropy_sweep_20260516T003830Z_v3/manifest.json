@@ -41,5 +41,28 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Reclassified non_contributory 2026-05-16 governance review. All 6 arms produced identical metrics (delta=0) because bias_fraction=0 for all diversity components (confirmed by EXQ-571 diagnostic: F dominates 88-89% of temporal variance, all bias components machine-epsilon). The structured-vs-random comparison was never activated -- the test condition was invalid. Original verdict: weakens."
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-16 governance review. All 6 arms produced identical metrics (delta=0) because bias_fraction=0 for all diversity components (confirmed by EXQ-571 diagnostic: F dominates 88-89% of temporal variance, all bias components machine-epsilon). The structured-vs-random comparison was never activated -- the test condition was invalid. Original verdict: weakens.",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "env_size": 8,
+    "p1_entropy_margin": 0.05,
+    "p2_state_coverage_margin": 0.02,
+    "p3_state_coverage_margin": 0.02,
+    "matched_entropy_temperature": 2.5,
+    "std_floor": 0.2,
+    "arms": [
+      "ARM_0_sp_cem_baseline",
+      "ARM_1_noise_floor",
+      "ARM_2_structured_curiosity",
+      "ARM_3_matched_entropy",
+      "ARM_4_mech_313_314_320",
+      "ARM_5_all_mechanisms"
+    ]
+  }
 }

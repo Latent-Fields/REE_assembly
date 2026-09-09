@@ -40,5 +40,39 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "elapsed_seconds": 180.21430921554565,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      {
+        "label": "ARM_0_off",
+        "step": 0.0
+      },
+      {
+        "label": "ARM_1_step_0_05",
+        "step": 0.05
+      },
+      {
+        "label": "ARM_2_step_0_10",
+        "step": 0.1
+      },
+      {
+        "label": "ARM_3_step_0_25",
+        "step": 0.25
+      },
+      {
+        "label": "ARM_4_step_0_50",
+        "step": 0.5
+      }
+    ],
+    "episodes_per_run": 8,
+    "steps_per_episode": 200,
+    "sleep_loop_K": 2,
+    "precision_zero_point_ema_alpha": 0.1
+  }
 }

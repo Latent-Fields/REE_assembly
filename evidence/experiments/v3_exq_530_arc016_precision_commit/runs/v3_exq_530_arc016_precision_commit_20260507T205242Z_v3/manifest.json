@@ -44,5 +44,31 @@
   },
   "failure_signatures": [],
   "evidence_direction_note": "Substrate failure: experiment script does not call agent.update_residue() in its training/eval loops, so e3.post_action_update() and update_running_variance() are never invoked. _running_variance stays at precision_init=0.5 for every step in every seed; current_precision = 1/(0.5+1e-6) = 1.999996 (matches manifest mean_precision exactly). ARC-016 was therefore not actually tested -- the precision signal was a constant in both arms, so dACC had nothing to differentiate. Reclassified non_contributory rather than 'weakens'. Same root cause cluster as EXQ-514d/514e/536 (rv pinned at 0.5).",
-  "root_cause_tag": "rv_pinned_no_post_action_update"
+  "root_cause_tag": "rv_pinned_no_post_action_update",
+  "config": {
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "n_seeds": 3,
+    "grid_size": 12,
+    "steps_per_ep": 200,
+    "lr": 0.0005,
+    "arms": [
+      {
+        "arm_id": 0,
+        "use_dacc": false,
+        "label": "ARM_0_no_dacc"
+      },
+      {
+        "arm_id": 1,
+        "use_dacc": true,
+        "label": "ARM_1_dacc"
+      }
+    ],
+    "reef_kwargs": {
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7
+    }
+  }
 }

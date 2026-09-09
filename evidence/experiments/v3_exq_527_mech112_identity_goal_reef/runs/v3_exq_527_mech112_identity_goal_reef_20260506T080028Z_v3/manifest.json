@@ -43,5 +43,26 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08, confirmed): mixed -> non_contributory for MECH-112 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08, confirmed): mixed -> non_contributory for MECH-112 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log).",
+  "config": {
+    "grid_size": 10,
+    "num_hazards": 3,
+    "num_resources": 8,
+    "n_resource_types": 2,
+    "reef_enabled": true,
+    "n_reef_patches": 3,
+    "reef_patch_radius": 2,
+    "hazard_food_attraction": 0.5,
+    "multi_resource_heterogeneity_enabled": true,
+    "p0_episodes": 100,
+    "p1_episodes": 150,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "lr": 0.0003
+  }
 }

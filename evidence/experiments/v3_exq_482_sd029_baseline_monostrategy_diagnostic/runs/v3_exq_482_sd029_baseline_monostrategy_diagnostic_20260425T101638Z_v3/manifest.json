@@ -43,5 +43,21 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Reclassified 2026-04-25 governance: weakens -> inconclusive. Diagnostic, not hypothesis test \u2014 mechanism fires (EXQ-479 PASS at hazard-event granularity); action-class entropy metric does not surface it."
+  "evidence_direction_note": "Reclassified 2026-04-25 governance: weakens -> inconclusive. Diagnostic, not hypothesis test \u2014 mechanism fires (EXQ-479 PASS at hazard-event granularity); action-class entropy metric does not surface it.",
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "seeds": [
+      42,
+      7
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "entropy_lift_min": 0.1,
+    "curriculum_interval": 50,
+    "curriculum_prob": 0.5,
+    "curriculum_adjacent_only": true
+  }
 }

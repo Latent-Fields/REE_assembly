@@ -38,5 +38,35 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 1000,
+    "steps_per_episode": 200,
+    "snapshot_episodes": [
+      99,
+      499,
+      999
+    ],
+    "arm_configs": {
+      "ARM_0_binary_contact": {
+        "harm_gradient_enabled": false
+      },
+      "ARM_1_harm_gradient": {
+        "harm_gradient_enabled": true,
+        "harm_gradient_scale": 0.3
+      }
+    },
+    "metric_primary": "mean_weight_ratio (ARM_1/ARM_0 at final episode)",
+    "metric_secondary": [
+      "residue_coverage_pct_ep100",
+      "harm_total_final"
+    ]
+  }
 }

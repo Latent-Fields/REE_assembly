@@ -56,5 +56,41 @@
     "MECH-314",
     "MECH-320"
   ],
-  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted."
+  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted.",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "eval_episodes": 30,
+    "steps_per_episode": 150,
+    "env_size": 8,
+    "std_floor": 0.2,
+    "p1_entropy_margin": 0.05,
+    "p2_entropy_threshold": 0.55,
+    "arms": [
+      "ARM_0_sp_cem_baseline",
+      "ARM_1_noise_floor_1x",
+      "ARM_2_noise_floor_5x",
+      "ARM_3_noise_floor_10x",
+      "ARM_4_curiosity_5x",
+      "ARM_5_curiosity_10x",
+      "ARM_6_tonic_vigor_5x",
+      "ARM_7_tonic_vigor_10x",
+      "ARM_8_combined_5x",
+      "ARM_9_combined_10x"
+    ],
+    "scale_factors": {
+      "noise_floor_1x_alpha": 0.1,
+      "noise_floor_5x_alpha": 0.5,
+      "noise_floor_10x_alpha": 1.0,
+      "curiosity_1x_bias_scale": 0.1,
+      "curiosity_5x_bias_scale": 0.5,
+      "curiosity_10x_bias_scale": 1.0,
+      "tonic_vigor_1x_bias_scale": 0.1,
+      "tonic_vigor_5x_bias_scale": 0.5,
+      "tonic_vigor_10x_bias_scale": 1.0
+    }
+  }
 }

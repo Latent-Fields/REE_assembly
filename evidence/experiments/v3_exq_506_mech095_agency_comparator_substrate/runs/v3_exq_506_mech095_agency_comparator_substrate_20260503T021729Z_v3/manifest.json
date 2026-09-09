@@ -44,5 +44,23 @@
   },
   "failure_signatures": [],
   "evidence_direction_note": "2026-05-03 governance walk: substrate-ceiling CONFIRMATION. C4-only-PASS (agent-caused vs env-correlated separation) while C1/C2/C3 fail is the exact substrate-ceiling signature predicted by MECH-095's EQN annotation (2026-05-02). Reclassified non_contributory: this is substrate-level signal, not negative evidence against MECH-095. Per Phase 3 wave 2, MECH-095 (epistemic_category=substrate_ceiling) suppresses promote/demote regardless. Excluded from claim scoring.",
-  "scoring_excluded": "substrate_ceiling_confirmation"
+  "scoring_excluded": "substrate_ceiling_confirmation",
+  "elapsed_seconds": 8.630534887313843,
+  "config": {
+    "z_harm_dim": 32,
+    "action_dim": 4,
+    "hidden_dim": 128,
+    "n_train_steps": 800,
+    "batch": 64,
+    "n_eval": 256,
+    "noise_scale": 0.05,
+    "interventional_margin": 0.1,
+    "interventional_fraction": 0.3,
+    "lr": 0.0005,
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  }
 }

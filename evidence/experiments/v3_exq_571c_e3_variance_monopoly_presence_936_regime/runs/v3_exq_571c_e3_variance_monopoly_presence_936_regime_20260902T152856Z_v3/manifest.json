@@ -423,5 +423,582 @@
     "n_agents": 16,
     "goal_state_present": true
   },
-  "evidence_direction_note": "[2026-09-02 governance, governance-20260902] Ratified from confirmed failure_autopsy_V3-EXQ-571c_2026-09-02.json (landed REE_assembly b98e2ccd45; autopsy Step 8 gate ratified 2026-09-02, user present). UNSCORED: the arm readiness gate fired on n_live_channels (1.0 vs threshold 2.0) in all four arms and precedes criterion evaluation, so criteria_non_degenerate is false for all six criteria and the load-bearing C1 PASS (modal xcand share 0.999992 vs 0.85 bar) is voided. Scores nothing against MECH-439; direction corrected diagnostic -> non_contributory."
+  "evidence_direction_note": "[2026-09-02 governance, governance-20260902] Ratified from confirmed failure_autopsy_V3-EXQ-571c_2026-09-02.json (landed REE_assembly b98e2ccd45; autopsy Step 8 gate ratified 2026-09-02, user present). UNSCORED: the arm readiness gate fired on n_live_channels (1.0 vs threshold 2.0) in all four arms and precedes criterion evaluation, so criteria_non_degenerate is false for all six criteria and the load-bearing C1 PASS (modal xcand share 0.999992 vs 0.85 bar) is voided. Scores nothing against MECH-439; direction corrected diagnostic -> non_contributory.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 13966.505042413,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      45,
+      46
+    ],
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "schedule": {
+      "p0_warmup_episodes": 60,
+      "p1_episode_cap": 40,
+      "steps_per_episode": 200,
+      "fresh_select_target": 200
+    },
+    "pre_registered_thresholds": {
+      "F_MONOPOLY_THRESHOLD": 0.85,
+      "MIN_FRESH_SELECTIONS": 60,
+      "MIN_TOTAL_VARIANCE": 1e-09,
+      "MIN_XCAND_TOTAL_VARIANCE": 1e-12,
+      "MIN_LIVE_CHANNEL_VARIANCE": 1e-12,
+      "MIN_LIVE_CHANNEL_SHARE": 0.001,
+      "FINAL_COMMIT_PRIMARY_FLOOR": 0.9,
+      "MIN_LIVE_CHANNELS": 2,
+      "PIN_EPS": 1e-06,
+      "F_COMPONENTS": [
+        "f_weighted",
+        "harm_weighted"
+      ],
+      "SCORE_COMPONENTS": [
+        "f_weighted",
+        "harm_weighted",
+        "residue_weighted",
+        "benefit_weighted",
+        "novelty_weighted",
+        "goal_weighted"
+      ],
+      "LEGACY_571_COMPONENTS": [
+        "f",
+        "harm_weighted",
+        "residue_weighted",
+        "benefit_weighted",
+        "novelty_weighted",
+        "goal_weighted"
+      ]
+    },
+    "structural_zero_reasons": {
+      "novelty_weighted": "hardcoded constant _dc_novelty_w = 0.0 (e3_selector.py:1295); the MECH-111 broadcast branch was deleted 2026-05-25 as argmin-invariant",
+      "benefit_weighted": "benefit branch gated on _benefit_samples_seen >= warmup, fed only by record_benefit_sample(), which has no callers in ree_core or any driver",
+      "goal_weighted": "gated on goal_state.is_active(); this driver seeds z_goal with benefit_exposure=0.0 (936a parity) so z_goal never leaves zero-init"
+    },
+    "arms": [
+      {
+        "id": "B1_936_regime_fed_warmup",
+        "feed_residue": true,
+        "warmup": true,
+        "load_bearing": true
+      },
+      {
+        "id": "B2_936_env_starved_warmup",
+        "feed_residue": false,
+        "warmup": true,
+        "load_bearing": false
+      },
+      {
+        "id": "B3_936_env_fed_no_warmup",
+        "feed_residue": true,
+        "warmup": false,
+        "load_bearing": false
+      },
+      {
+        "id": "B4_936_env_starved_no_warmup",
+        "feed_residue": false,
+        "warmup": false,
+        "load_bearing": false
+      }
+    ],
+    "arm_config_slices": {
+      "B1_936_regime_fed_warmup": {
+        "env_kwargs": {
+          "size": 12,
+          "num_hazards": 4,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.1,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "reef_enabled": true,
+          "n_reef_patches": 3,
+          "reef_patch_radius": 2,
+          "hazard_food_attraction": 0.7,
+          "reef_bipartite_layout": true,
+          "reef_bipartite_axis": "horizontal",
+          "reef_bipartite_agent_band_radius": 1
+        },
+        "sd056_training": {
+          "sd056_weight": 0.5,
+          "e2_contrastive_lr": 0.0001,
+          "contrastive_batch_k": 8,
+          "transition_buffer_max": 2000,
+          "e2_train_every_k_ticks": 4,
+          "max_grad_norm": 1.0
+        },
+        "config_flags": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "alpha_self": 0.3,
+          "use_harm_stream": true,
+          "z_harm_dim": 32,
+          "use_affective_harm_stream": true,
+          "z_harm_a_dim": 16,
+          "harm_history_len": 10,
+          "z_goal_enabled": true,
+          "goal_weight": 0.5,
+          "drive_weight": 2.0,
+          "e1_goal_conditioned": true,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "benefit_eval_enabled": true,
+          "benefit_weight": 1.0,
+          "use_support_preserving_cem": true,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "support_preserving_min_first_action_classes": 2,
+          "candidate_summary_source": "e2_world_forward",
+          "use_lateral_pfc_analog": true,
+          "use_mech295_liking_bridge": true,
+          "use_modulatory_channel_routing": true,
+          "modulatory_channel_route_source": "cand_world_summary",
+          "modulatory_channel_route_weight": 1.0,
+          "use_modulatory_selection_authority": true,
+          "use_modulatory_shortlist_then_modulate": true,
+          "modulatory_shortlist_conflict_graded": false,
+          "use_gap_scaled_commit_temperature": false,
+          "use_structured_curiosity": false,
+          "use_e3_score_diversity": false,
+          "use_noise_floor": false,
+          "use_tonic_vigor": false,
+          "use_dacc": false,
+          "use_ofc_analog": false,
+          "use_gated_policy": false,
+          "use_candidate_rule_field": false,
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "off_arm_flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        },
+        "schedule": {
+          "p0_warmup_episodes": 60,
+          "p1_episode_cap": 40,
+          "steps_per_episode": 200,
+          "fresh_select_target": 200
+        },
+        "protocol": {
+          "feed_residue_per_step": true,
+          "p0_warmup": true,
+          "update_z_goal_per_step": true
+        },
+        "cell_readout_constants": {
+          "f_monopoly_threshold": 0.85,
+          "min_fresh_selections": 60,
+          "min_total_variance": 1e-09,
+          "min_xcand_total_variance": 1e-12,
+          "min_live_channel_variance": 1e-12,
+          "min_live_channel_share": 0.001,
+          "final_commit_primary_floor": 0.9,
+          "min_live_channels": 2,
+          "pin_eps": 1e-06,
+          "score_components": [
+            "f_weighted",
+            "harm_weighted",
+            "residue_weighted",
+            "benefit_weighted",
+            "novelty_weighted",
+            "goal_weighted"
+          ],
+          "legacy571_components": [
+            "f",
+            "harm_weighted",
+            "residue_weighted",
+            "benefit_weighted",
+            "novelty_weighted",
+            "goal_weighted"
+          ]
+        }
+      },
+      "B2_936_env_starved_warmup": {
+        "env_kwargs": {
+          "size": 12,
+          "num_hazards": 4,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.1,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "reef_enabled": true,
+          "n_reef_patches": 3,
+          "reef_patch_radius": 2,
+          "hazard_food_attraction": 0.7,
+          "reef_bipartite_layout": true,
+          "reef_bipartite_axis": "horizontal",
+          "reef_bipartite_agent_band_radius": 1
+        },
+        "sd056_training": {
+          "sd056_weight": 0.5,
+          "e2_contrastive_lr": 0.0001,
+          "contrastive_batch_k": 8,
+          "transition_buffer_max": 2000,
+          "e2_train_every_k_ticks": 4,
+          "max_grad_norm": 1.0
+        },
+        "config_flags": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "alpha_self": 0.3,
+          "use_harm_stream": true,
+          "z_harm_dim": 32,
+          "use_affective_harm_stream": true,
+          "z_harm_a_dim": 16,
+          "harm_history_len": 10,
+          "z_goal_enabled": true,
+          "goal_weight": 0.5,
+          "drive_weight": 2.0,
+          "e1_goal_conditioned": true,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "benefit_eval_enabled": true,
+          "benefit_weight": 1.0,
+          "use_support_preserving_cem": true,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "support_preserving_min_first_action_classes": 2,
+          "candidate_summary_source": "e2_world_forward",
+          "use_lateral_pfc_analog": true,
+          "use_mech295_liking_bridge": true,
+          "use_modulatory_channel_routing": true,
+          "modulatory_channel_route_source": "cand_world_summary",
+          "modulatory_channel_route_weight": 1.0,
+          "use_modulatory_selection_authority": true,
+          "use_modulatory_shortlist_then_modulate": true,
+          "modulatory_shortlist_conflict_graded": false,
+          "use_gap_scaled_commit_temperature": false,
+          "use_structured_curiosity": false,
+          "use_e3_score_diversity": false,
+          "use_noise_floor": false,
+          "use_tonic_vigor": false,
+          "use_dacc": false,
+          "use_ofc_analog": false,
+          "use_gated_policy": false,
+          "use_candidate_rule_field": false,
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "off_arm_flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        },
+        "schedule": {
+          "p0_warmup_episodes": 60,
+          "p1_episode_cap": 40,
+          "steps_per_episode": 200,
+          "fresh_select_target": 200
+        },
+        "protocol": {
+          "feed_residue_per_step": false,
+          "p0_warmup": true,
+          "update_z_goal_per_step": true
+        },
+        "cell_readout_constants": {
+          "f_monopoly_threshold": 0.85,
+          "min_fresh_selections": 60,
+          "min_total_variance": 1e-09,
+          "min_xcand_total_variance": 1e-12,
+          "min_live_channel_variance": 1e-12,
+          "min_live_channel_share": 0.001,
+          "final_commit_primary_floor": 0.9,
+          "min_live_channels": 2,
+          "pin_eps": 1e-06,
+          "score_components": [
+            "f_weighted",
+            "harm_weighted",
+            "residue_weighted",
+            "benefit_weighted",
+            "novelty_weighted",
+            "goal_weighted"
+          ],
+          "legacy571_components": [
+            "f",
+            "harm_weighted",
+            "residue_weighted",
+            "benefit_weighted",
+            "novelty_weighted",
+            "goal_weighted"
+          ]
+        }
+      },
+      "B3_936_env_fed_no_warmup": {
+        "env_kwargs": {
+          "size": 12,
+          "num_hazards": 4,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.1,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "reef_enabled": true,
+          "n_reef_patches": 3,
+          "reef_patch_radius": 2,
+          "hazard_food_attraction": 0.7,
+          "reef_bipartite_layout": true,
+          "reef_bipartite_axis": "horizontal",
+          "reef_bipartite_agent_band_radius": 1
+        },
+        "sd056_training": {
+          "sd056_weight": 0.5,
+          "e2_contrastive_lr": 0.0001,
+          "contrastive_batch_k": 8,
+          "transition_buffer_max": 2000,
+          "e2_train_every_k_ticks": 4,
+          "max_grad_norm": 1.0
+        },
+        "config_flags": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "alpha_self": 0.3,
+          "use_harm_stream": true,
+          "z_harm_dim": 32,
+          "use_affective_harm_stream": true,
+          "z_harm_a_dim": 16,
+          "harm_history_len": 10,
+          "z_goal_enabled": true,
+          "goal_weight": 0.5,
+          "drive_weight": 2.0,
+          "e1_goal_conditioned": true,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "benefit_eval_enabled": true,
+          "benefit_weight": 1.0,
+          "use_support_preserving_cem": true,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "support_preserving_min_first_action_classes": 2,
+          "candidate_summary_source": "e2_world_forward",
+          "use_lateral_pfc_analog": true,
+          "use_mech295_liking_bridge": true,
+          "use_modulatory_channel_routing": true,
+          "modulatory_channel_route_source": "cand_world_summary",
+          "modulatory_channel_route_weight": 1.0,
+          "use_modulatory_selection_authority": true,
+          "use_modulatory_shortlist_then_modulate": true,
+          "modulatory_shortlist_conflict_graded": false,
+          "use_gap_scaled_commit_temperature": false,
+          "use_structured_curiosity": false,
+          "use_e3_score_diversity": false,
+          "use_noise_floor": false,
+          "use_tonic_vigor": false,
+          "use_dacc": false,
+          "use_ofc_analog": false,
+          "use_gated_policy": false,
+          "use_candidate_rule_field": false,
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "off_arm_flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        },
+        "schedule": {
+          "p0_warmup_episodes": 0,
+          "p1_episode_cap": 40,
+          "steps_per_episode": 200,
+          "fresh_select_target": 200
+        },
+        "protocol": {
+          "feed_residue_per_step": true,
+          "p0_warmup": false,
+          "update_z_goal_per_step": true
+        },
+        "cell_readout_constants": {
+          "f_monopoly_threshold": 0.85,
+          "min_fresh_selections": 60,
+          "min_total_variance": 1e-09,
+          "min_xcand_total_variance": 1e-12,
+          "min_live_channel_variance": 1e-12,
+          "min_live_channel_share": 0.001,
+          "final_commit_primary_floor": 0.9,
+          "min_live_channels": 2,
+          "pin_eps": 1e-06,
+          "score_components": [
+            "f_weighted",
+            "harm_weighted",
+            "residue_weighted",
+            "benefit_weighted",
+            "novelty_weighted",
+            "goal_weighted"
+          ],
+          "legacy571_components": [
+            "f",
+            "harm_weighted",
+            "residue_weighted",
+            "benefit_weighted",
+            "novelty_weighted",
+            "goal_weighted"
+          ]
+        }
+      },
+      "B4_936_env_starved_no_warmup": {
+        "env_kwargs": {
+          "size": 12,
+          "num_hazards": 4,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.1,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "reef_enabled": true,
+          "n_reef_patches": 3,
+          "reef_patch_radius": 2,
+          "hazard_food_attraction": 0.7,
+          "reef_bipartite_layout": true,
+          "reef_bipartite_axis": "horizontal",
+          "reef_bipartite_agent_band_radius": 1
+        },
+        "sd056_training": {
+          "sd056_weight": 0.5,
+          "e2_contrastive_lr": 0.0001,
+          "contrastive_batch_k": 8,
+          "transition_buffer_max": 2000,
+          "e2_train_every_k_ticks": 4,
+          "max_grad_norm": 1.0
+        },
+        "config_flags": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "alpha_self": 0.3,
+          "use_harm_stream": true,
+          "z_harm_dim": 32,
+          "use_affective_harm_stream": true,
+          "z_harm_a_dim": 16,
+          "harm_history_len": 10,
+          "z_goal_enabled": true,
+          "goal_weight": 0.5,
+          "drive_weight": 2.0,
+          "e1_goal_conditioned": true,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "benefit_eval_enabled": true,
+          "benefit_weight": 1.0,
+          "use_support_preserving_cem": true,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "support_preserving_min_first_action_classes": 2,
+          "candidate_summary_source": "e2_world_forward",
+          "use_lateral_pfc_analog": true,
+          "use_mech295_liking_bridge": true,
+          "use_modulatory_channel_routing": true,
+          "modulatory_channel_route_source": "cand_world_summary",
+          "modulatory_channel_route_weight": 1.0,
+          "use_modulatory_selection_authority": true,
+          "use_modulatory_shortlist_then_modulate": true,
+          "modulatory_shortlist_conflict_graded": false,
+          "use_gap_scaled_commit_temperature": false,
+          "use_structured_curiosity": false,
+          "use_e3_score_diversity": false,
+          "use_noise_floor": false,
+          "use_tonic_vigor": false,
+          "use_dacc": false,
+          "use_ofc_analog": false,
+          "use_gated_policy": false,
+          "use_candidate_rule_field": false,
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "off_arm_flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        },
+        "schedule": {
+          "p0_warmup_episodes": 0,
+          "p1_episode_cap": 40,
+          "steps_per_episode": 200,
+          "fresh_select_target": 200
+        },
+        "protocol": {
+          "feed_residue_per_step": false,
+          "p0_warmup": false,
+          "update_z_goal_per_step": true
+        },
+        "cell_readout_constants": {
+          "f_monopoly_threshold": 0.85,
+          "min_fresh_selections": 60,
+          "min_total_variance": 1e-09,
+          "min_xcand_total_variance": 1e-12,
+          "min_live_channel_variance": 1e-12,
+          "min_live_channel_share": 0.001,
+          "final_commit_primary_floor": 0.9,
+          "min_live_channels": 2,
+          "pin_eps": 1e-06,
+          "score_components": [
+            "f_weighted",
+            "harm_weighted",
+            "residue_weighted",
+            "benefit_weighted",
+            "novelty_weighted",
+            "goal_weighted"
+          ],
+          "legacy571_components": [
+            "f",
+            "harm_weighted",
+            "residue_weighted",
+            "benefit_weighted",
+            "novelty_weighted",
+            "goal_weighted"
+          ]
+        }
+      }
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46
+  ]
 }

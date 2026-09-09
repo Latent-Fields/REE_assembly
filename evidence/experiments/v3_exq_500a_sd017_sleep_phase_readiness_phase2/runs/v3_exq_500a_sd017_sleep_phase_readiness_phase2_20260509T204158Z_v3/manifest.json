@@ -42,5 +42,25 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "elapsed_seconds": 8.056741952896118,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "condition": "SLEEP_PHASE_READINESS_PHASE2",
+    "cycles_per_run": 3,
+    "wake_steps_per_cycle": 160,
+    "post_sleep_test_steps": 24,
+    "sws_consolidation_steps": 8,
+    "rem_attribution_steps": 6,
+    "sd016_writepath_mode": "off",
+    "sd016_diversification_weight": 0.5,
+    "use_per_stream_vs": true,
+    "use_anchor_sets": true,
+    "use_sd039_anchor_payload": true,
+    "use_sleep_loop": true
+  }
 }

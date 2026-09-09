@@ -43,5 +43,32 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "elapsed_seconds": 4743.470860958099,
+  "config": {
+    "p0_episodes": 30,
+    "p1_episodes": 40,
+    "steps_per_episode": 300,
+    "env_size": 12,
+    "n_hazards": 3,
+    "n_resources": 2,
+    "body_obs_dim": 17,
+    "world_obs_dim": 250,
+    "harm_obs_a_dim": 7,
+    "action_dim": 5,
+    "comp_window_length": 30,
+    "comp_drop_threshold": 0.005,
+    "comp_min_initial_norm": 0.01,
+    "scheduled_limb_damage_enabled": true,
+    "scheduled_limb_damage_interval": 50,
+    "scheduled_limb_damage_prob": 0.5,
+    "scheduled_limb_damage_magnitude": 0.4,
+    "scheduled_limb_damage_limb_selection": "random",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "dry_run": false
+  }
 }

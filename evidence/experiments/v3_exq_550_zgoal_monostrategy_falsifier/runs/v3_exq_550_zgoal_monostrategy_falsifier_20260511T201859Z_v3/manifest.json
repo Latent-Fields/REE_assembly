@@ -42,5 +42,22 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "seeds": [
+      42,
+      7,
+      17
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "entropy_delta_threshold": 0.1,
+    "seeds_required_to_pass": 2,
+    "sd029_scheduled_hazards": true,
+    "v_s_circuit_in_both_arms": true
+  }
 }
