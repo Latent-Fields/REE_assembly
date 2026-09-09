@@ -5592,13 +5592,18 @@
             "V3-EXQ-999a"
           ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-999a"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "agent_wall_hugging_unscorable",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-09-09T05:40:13Z",
+            "basis": "ELIMINATED, but on DIFFERENT evidence from the driver's own. The leg asserted the avoidance readout cannot express the contrast. The decisive evidence is that the readout expresses a real contrast ON A REAL AGENT: the decision-tick readout puts the AGENT above the HAZARD_BLIND_NULL at 4 of 5 heartbeat levels -- agent-minus-null +0.1388, +0.1132, +0.0989 (at P_train=10), +0.1617, and -0.0095 at P20 -- i.e. 12.4 to 21.3 per cent of the oracle-minus-null range. A readout on which a warmup-trained agent separates from a hazard-blind null does express the contrast. NOTE, from the Step 7c pass: the driver's own basis for this elimination -- oracle_null_separation 0.6984 against a 0.2 floor -- is NEAR-TAUTOLOGICAL and is NOT relied on here. The CONDITIONAL_ORACLE sets held_idx = avoidant while the DV asks whether held_idx == avoidant, giving ~1 - 2/A ~ 0.6 analytically; that gate cannot fail for any agent-attributable reason. It is a useful coverage canary, not evidence the instrument can measure an agent. The agent-above-null result is."
           }
         },
         {
@@ -5614,12 +5619,17 @@
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
+            "resolving_runs": [
+              "V3-EXQ-999a"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "agent_wall_hugging_unscorable",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
             "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "basis": "STAYS ALIVE AND IS NOW COUNTER-INDICATED -- the driver stamps it 'supported' and this autopsy does NOT uphold that. The run's OWN decision-tick readout puts the agent ABOVE the hazard-blind null at 4 of 5 levels (+0.0989 at P_train), so 'hazard-avoidant behaviour is genuinely absent' is contradicted by the same manifest. The supporting statistic is baseline_avoidance_clears_derived_bar, mean -0.1013 with cross-seed SD 0.3139 over 5 seeds (+0.2359, -0.0739, +0.0211, -0.6151, -0.0745): SE 0.1404, so the mean sits 0.72 standard errors from zero with two of five seeds POSITIVE. It is also computed over the same SAFE bin the run declared unscorable for the agent (3 executable decision ticks at the worst cell against a 10 floor; wall-clamp fraction 0.985). Cluster-mate V3-EXQ-981a does NOT corroborate it either: its HIGH-minus-SAFE margin changes SIGN with the normalisation (pooled additive -0.0958 FAIL, pooled ratio +0.0628 PASS, raw mean-of-seeds +0.0623 PASS), so it establishes nothing about avoidance in either direction. Weak avoidance is PRESENT; what is absent is a reliable way to read the HIGH-vs-SAFE band contrast. Neither driver enables use_instrumental_avoidance or use_escape_affordance_bridge (both built, both default-off), so the stronger-avoidance condition is untested. See failure_autopsy_hazard-avoidance-prerequisite-cluster_2026-09-09.json."
           }
         },
         {
@@ -5635,12 +5645,17 @@
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
+            "resolving_runs": [
+              "V3-EXQ-999a"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "agent_wall_hugging_unscorable",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
             "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "basis": "STAYS ALIVE, NARROWED -- the driver's own registry_adjudication stamps this leg 'eliminated' and the autopsy does NOT uphold that. The elimination rests on safe_cov_ok, a coverage count taken on the CONTROL arms (CONDITIONAL_ORACLE, 31 executable ticks at the worst cell). In the SAME run the AGENT-arm gate failed at 3 ticks, and the driver's own wall-clamp diagnostic reads 0.985 -- and clamp_ok is explicitly RECORDED and NOT gating, so the quantity that undercuts the coverage read was excluded from the gate that used it. Narrowed reading: the band is geometrically reachable by a policy that seeks it, and functionally unscorable for the agent under test. Whether that is a property of the ENVIRONMENT or of the agent's POLICY is precisely what is confounded here, so the leg cannot be cleanly eliminated or confirmed."
           }
         }
       ],
@@ -5655,7 +5670,11 @@
       "fanout_growth_events": [],
       "discovery_growth_events": [],
       "registered_by_session": "governance-20260904-1347",
-      "registered_from_pending_block": "failure_autopsy_V3-EXQ-999_2026-09-04.json"
+      "registered_from_pending_block": "failure_autopsy_V3-EXQ-999_2026-09-04.json",
+      "adjudication_sources": [
+        "failure_autopsy_hazard-avoidance-prerequisite-cluster_2026-09-09.json"
+      ],
+      "resolution_note_2026_09_09": "Resolved by failure_autopsy_hazard-avoidance-prerequisite-cluster_2026-09-09.json. initial_frozen_count UNCHANGED at 3 -- one leg eliminated, two narrowed and left alive; no leg added. A wall-hugging leg was CONSIDERED and DELIBERATELY NOT ADDED: the 2026-09-04 autopsy's own prose already anticipated it ('the designated avoidant action there is a wall/edge no-op in 93-100% of SAFE-bin steps'), so it is not a Mode C discovery, and it is properly part of the narrowed H-env-band-absent rather than a fifth hypothesis. Recording the declined growth so a later reader can see it was weighed."
     },
     {
       "qid": "zresource-zworld-planning-convergence",
@@ -6966,6 +6985,155 @@
         "decision_log_ref": null,
         "distance_phrase": "1 of 4 legs eliminated after 1 run (1.9 h) at the strict bar; the dominance reading reproduces the predecessor picture on 5/8 seeds; three legs await one manipulation each",
         "observation_bottleneck": "no manipulation of STAY availability or hold length in the lineage yet; yardstick profile uninformative"
+      }
+    },
+    {
+      "qid": "regulatory_anchoring_matched_aux",
+      "title": "Does the CHOICE of P0a training objective -- organism-relevant regulatory proximity versus a capacity-matched arbitrary target versus generic supervision -- decide what survives the encoder, and can a frozen sense-path adapter register that choice at all?",
+      "short_title": "Regulatory anchoring vs matched aux",
+      "claims": [
+        "INV-104",
+        "ARC-138"
+      ],
+      "registered_utc": "2026-09-09T09:37:25Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1017_2026-09-09.json"
+      ],
+      "pre_registration_note": "OWED, NOT LATE. The V3-EXQ-1017 manifest carries hypothesis_qid_status 'pre_registration_owed_at_queue_time': the authoring session was refused the registry file by the then-active fa-20260909-batch /failure-autopsy claim (closed 2026-09-09T00:58:01Z), correctly did not hand-edit around it, and recorded that the adjudicating autopsy would register the qid and hids before writing any resolution. This is that autopsy. The first four hids are the driver's own HYPOTHESIS_HIDS, verbatim.",
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "initial_frozen_count_at_registration": 5,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-RA-anchoring-organises",
+          "axis": "representation",
+          "label": "Anchoring z_world to organism-relevant structure organises it beyond equal-capacity generic supervision",
+          "desc": "agreement(regulatory_prox) exceeds both the matched-arbitrary control and generic-only by >= 0.05 (C1 and C2).",
+          "basis": "Driver-declared leg. NOT adjudicated: C0 short-circuited the verdict grid before C1/C2 could carry a verdict.",
+          "pre_registered_utc": "2026-09-09T05:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1017_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1017"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1017"
+            ],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "basis": "Unadjudicated. The DV could not register any objective choice, so the contrast this leg predicts was untestable in this run."
+          }
+        },
+        {
+          "hid": "H-RA-generic-supervision-effect",
+          "axis": "learning-signal",
+          "label": "Any extra supervision of equal capacity helps; the target's organism-relevance is not what matters",
+          "desc": "C2 without C1 -- anchoring beats generic-only but not the matched arbitrary control.",
+          "basis": "Driver-declared leg. NOT adjudicated: C0 short-circuited before this branch was reachable.",
+          "pre_registered_utc": "2026-09-09T05:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1017_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1017"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1017"
+            ],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "basis": "Unadjudicated, same reason."
+          }
+        },
+        {
+          "hid": "H-RA-matched-control-null",
+          "axis": "representation",
+          "label": "The class-1 regulatory scaffold does nothing an arbitrary matched target does not",
+          "desc": "C3 -- |agreement(C) - agreement(B)| < 0.02, the cluster's own 'reduces pressure to complicate z_world' reading.",
+          "basis": "Driver-declared leg. NOT adjudicated DESPITE C3 passing. C3's own non-degeneracy flag is conditioned on C0, and a flat C-versus-B contrast measured on a DV blind to the whole manipulation class is not evidence that the matched control matches anchoring -- it is evidence of nothing. Recording this explicitly: a passing criterion here is NOT a resolution.",
+          "pre_registered_utc": "2026-09-09T05:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1017_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1017"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1017"
+            ],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "basis": "Unadjudicated. C3 passed but is uninterpretable behind a failed C0."
+          }
+        },
+        {
+          "hid": "H-RA-generic-already-preserves",
+          "axis": "representation",
+          "label": "Generic supervision already preserves the INV-104 F1 width, so the preservation requirement is vacuous for class 1 here",
+          "desc": "C5 -- R(generic) >= 0.75.",
+          "basis": "Driver-declared leg. NOT adjudicated: C5's non-degeneracy flag is likewise conditioned on C0.",
+          "pre_registered_utc": "2026-09-09T05:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1017_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1017"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1017"
+            ],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "basis": "Unadjudicated, same reason."
+          }
+        },
+        {
+          "hid": "H-RA-dv-reads-sense-path-blind",
+          "axis": "measurement",
+          "label": "The sense-path adapter DV cannot register any P0a objective, because the supervision is not in the latent it reads",
+          "desc": "The DV is a frozen adapter reading SENSE-time z_world. own_target_r2_sense_path is NEGATIVE on every trained arm and seed while the same target reaches own_target_r2 0.40-0.74 through the encoder path, and sense_vs_encoder_relative_residual is 0.78-0.84.",
+          "basis": "Registered ALIVE. The first draft of the adjudicating autopsy registered this leg CONFIRMED and the Step 7c pass rejected that on three grounds, all accepted. Evidence originally cited, from this run's own manifest: matched_arbitrary sense-path R2 -1.418/-2.411/-0.572, regulatory_prox -0.628/-2.721/-0.380, sd070_default -0.009/-0.929/-0.049, against encoder-path R2 0.607/0.467/0.402, 0.480/0.401/0.409 and 0.745/0.713/0.657; relative residual 0.78-0.84 on every arm and seed. An R2 below zero means the target is not linearly recoverable from that latent at all. control_passed: the instrument's own positive control and width ceiling both behaved (rawfield 0.979, PCA 0.869 against an untrained floor of 0.695, a 0.17 spread an order of magnitude above the 0.05 bar). non_degenerate: the residual and R2 quantities are direct per-arm per-seed measurements and are non-degenerate in their own right -- -- BUT that evidence does not hold: the probe was applied off-path without refitting at 0.23-0.35 of training norm, so a collapsed constant predictor explains every value, and sense-path norm is cleanly arm-dependent while V3-EXQ-978 measured sense-path r2 0.710 POSITIVE with a probe fit on that path. Live reading, unproven.",
+          "pre_registered_utc": "2026-09-09T05:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1017_2026-09-09.json",
+          "discovery_source": "failure_autopsy_V3-EXQ-1017_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1017"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1017"
+            ],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "basis": "ALIVE, not confirmed. The Step 7c pass showed the sense-path diagnostic cannot support it: the probe is applied off-path unrefit at 0.23-0.35 of training norm and its nine negative R2 values are all reproduced by a constant predictor in [0.53, 0.72]. Decisive test: refit the probe on the path it is evaluated on. See failure_autopsy_V3-EXQ-1017_2026-09-09.json."
+          }
+        }
+      ],
+      "decision": {
+        "decision_question": "Does the choice of P0a objective decide what survives the encoder, and is any sense-path readout capable of showing it?",
+        "live_gate": "A DV read off the ENCODER path (or a recorded bound on the fraction of sense-time z_world any P0a objective can reach), so the four substantive legs become testable.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "one measurement change away -- not more arms and not more seeds",
+        "observation_bottleneck": "The DV reads sense-time z_world, in which the P0a supervision is absent (own_target_r2_sense_path < 0 on every trained arm and seed; ~80 per cent of the latent is non-encoder content the objective cannot touch)."
       }
     }
   ]

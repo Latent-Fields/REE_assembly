@@ -1,0 +1,278 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-09T09:37:25Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat_20260909T054013Z_v3",
+      "queue_id": "V3-EXQ-999a",
+      "claim_ids": [
+        "MECH-161"
+      ],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-161's SHAPE premise was never evaluated. C1_interior_max_margin_normalised is stamped passed:false but criteria_non_degenerate marks it degenerate, and two readiness gates upstream of it are red. The claim could not express itself.",
+        "biological_reference": "clear -- vigilance/arousal inverted-U (Yerkes-Dodson) is defined over an organism with a defensive behavioural repertoire. In mammals that repertoire is acquired (amygdala-mediated threat learning, PAG defensive output, instrumental avoidance learning), not given by threat VALUATION alone. An animal with intact harm valuation and no trained defensive policy would show exactly this signature.",
+        "prerequisites": "UNKNOWN, not missing -- corrected. The run's own decision-tick readout shows weak hazard sensitivity present (above null at 4 of 5 levels), so 'no avoidance exists' is falsified by the manifest. Separately the instrumental-avoidance machinery EXISTS and is default-off (use_instrumental_avoidance, ree_core/utils/config.py:5721; use_escape_affordance_bridge, :5807) and this driver enables neither, so the stronger-avoidance condition was never tested either.",
+        "implementation": "complete for the instrument, absent for the prerequisite -- the E3 heartbeat sweep was implemented and forced per tick; the avoidance capability the readout scores was never trained.",
+        "environment": "partially adequate -- the quantile SAFE band is reachable in principle (CONDITIONAL_ORACLE reaches 31 executable decision ticks at the worst cell, clearing the 10 floor) but is functionally starved for the AGENT: agent_safe_bin_executable_decision_ticks_covered measured 3.0 against a 10 floor at seed23/P20, and safe_bin_wall_clamp_fraction_worst is 0.985 at seed45/P10.",
+        "measurement": "PARTIAL, corrected from the first draft's 'ADEQUATE'. Two things are true and the first draft conflated them. The instrument IS better than V3-EXQ-999's: the decision-tick readout puts the AGENT above the hazard-blind null at 4 of 5 heartbeat levels (agent-minus-null +0.1388/+0.1132/+0.0989/+0.1617/-0.0095 at P=5/8/10/15/20, i.e. 12.4-21.3 per cent of the oracle-minus-null range), which is a real behavioural signal on a real readout. BUT the gate the first draft graded 'adequate' on is near-tautological: the CONDITIONAL_ORACLE sets held_idx = avoidant while the DV is took_avoidant = (held_idx == avoidant), so oracle_null_separation is ~1 - 2/A ~ 0.6 analytically against a 0.20 floor and cannot fail for any agent-attributable reason. It does catch the 999 coverage break, so it is not vacuous -- but grading MEASUREMENT adequate on it while the agent-side coverage gate fails 3.0 vs 10 is exactly the graded-adequate failure mode. Also corrected: '999's oracle scored 0.0000' compared 999's UNCONDITIONAL oracle with 999a's CONDITIONAL one; the 999 artifact itself recorded +0.905 for a conditional avoider, so the headline improvement is partly a definitional change, not purely a repair.",
+        "integration": "coupled but unstable -- the instrument is valid on control arms and starved on the agent arm, so instrument validity and agent scorability are decoupled in this run.",
+        "scale": "likely insufficient for the baseline read -- baseline_avoidance_clears_derived_bar measured mean -0.1013 with cross-seed SD 0.3139 over 5 seeds (per-seed +0.2359, -0.0739, +0.0211, -0.6151, -0.0745), i.e. within about one standard error of zero and straddling it."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "partial",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT). The band-contrast statistic could not be computed reliably for the agent -- 3 executable SAFE decision ticks against a 10 floor, 98.5 per cent wall-clamped -- while a readout that does not use the band contrast showed the capability. Not REE FAILED, and no mechanism verdict is available."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Vigilance/arousal-dependent detection sensitivity (locus coeruleus-noradrenergic arousal modulating signal detection; Yerkes-Dodson inverted-U), read out through defensive/avoidant action.",
+        "dependencies": [
+          "instrumental avoidance learning (acquired defensive policy)",
+          "threat valuation (harm evaluation)",
+          "an environment band structure the animal actually occupies"
+        ],
+        "is_formal_import": false,
+        "divergence": "Not a formal-definition import. The divergence is developmental/ontogenetic: the biological reference mechanism presupposes an acquired defensive repertoire, and the REE agent was given threat VALUATION (a trained harm_eval head) without the avoidance POLICY that expresses it.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Deliberately NOT substrate_ceiling. The finding is a missing PREREQUISITE CAPABILITY that is buildable, not an assertion that MECH-161's answer is gated on unbuildable substrate; substrate_ceiling would additionally suppress GOV-GRAN-1 surfacing and mark the claim not-v3-testable, neither of which is intended. The diagnosis lives in the note fields.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[failure_autopsy_hazard-avoidance-prerequisite-cluster_2026-09-09, user-ratified with red-team] V3-EXQ-999a (2026-09-09, ree-cloud-2, 7h04m, 5 seeds x 5 heartbeat levels) NON-CONTRIBUTORY for MECH-161: the claim's SHAPE premise was never evaluated. THE RUN CARRIES A POSITIVE FINDING ITS OWN VERDICT HIDES, and it points the OPPOSITE way from this autopsy's first draft: on the decision-tick readout the AGENT sits ABOVE the hazard-blind null at 4 of 5 heartbeat levels -- agent-minus-null +0.1388, +0.1132, +0.0989 (at P_train=10), +0.1617, and -0.0095 at P20 -- i.e. 12.4 to 21.3 per cent of the oracle-minus-null range. Weak hazard sensitivity IS present in a warmup-trained agent. Any reading of this run as showing that avoidance does not exist is falsified by its own metrics block, and the first draft of this artifact made exactly that error before the Step 7c pass caught it. WHAT ACTUALLY BLOCKED THE RUN is that the HIGH-versus-SAFE band contrast could not be computed for the agent: agent_safe_bin_executable_decision_ticks_covered 3.0 against a 10 floor (seed23/P20) with safe_bin_wall_clamp_fraction_worst 0.985 (seed45/P10), so the trained agent's SAFE-bin decision ticks are almost entirely wall-clamped no-ops. baseline_avoidance_clears_derived_bar reads mean -0.1013 over 5 seeds (SD 0.3139, SE 0.1404, 0.72 SE from zero, two of five seeds positive) -- underpowered and computed over that same starved bin. TWO CORRECTIONS TO THE DRIVER'S OWN registry_adjudication, both independently confirmed at the red-team pass and both standing. (1) H-env-band-absent is stamped 'eliminated' on safe_cov_ok, a coverage count taken on the CONTROL arms; the agent-arm gate failed in the same run and the driver's own wall-clamp diagnostic -- explicitly RECORDED and NOT gating -- reads 0.985, so the quantity that undercuts the coverage read was excluded from the gate that used it. NARROWED, not eliminated. (2) H-avoidance-untrained is stamped 'supported' on that 0.72-SE statistic. NOT SUPPORTED, and now positively counter-indicated by the above-null result. A THIRD CORRECTION TO THIS AUTOPSY'S OWN FIRST DRAFT: the readout repair is real but was oversold. oracle_null_separation is near-tautological (the oracle sets held_idx = avoidant and the DV asks whether held_idx == avoidant, giving ~1 - 2/A ~ 0.6 analytically against a 0.20 floor), and the '999 oracle scored 0.0000' comparison sets 999's UNCONDITIONAL oracle against 999a's CONDITIONAL one, where the 999 artifact had already recorded +0.905 for a conditional avoider. Also: 999a retained the single-argmax _avoidant_action form inherited from V3-EXQ-981 -- the DV form 981a's own code documents as defective and replaced -- so this run and its cluster-mate are less independent than they look. RE-DERIVE BRAKE: the R1-R3 count for MECH-161 is 2 with this target, recorded honestly. It is NOT read as a substrate ceiling, and failure_autopsy_V3-EXQ-999_2026-09-04 anticipated precisely this, leaving an in-artifact warning against reading a future count of 2 on MECH-161 as ceiling evidence; that warning is engaged here and upheld. Refused: a V3-EXQ-999b reusing the band-contrast statistic unchanged. Allowed and recommended: a re-run whose SAFE bin is executable for the agent (or which scores the shape on the above-null readout that already works), and separately a cheap config-arm probe enabling use_instrumental_avoidance / use_escape_affordance_bridge -- both built, both default-off, and never enabled by any run in this family. pending_retest_after_substrate stays true.",
+      "per_claim_recommendation": {
+        "MECH-161": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "MECH-161 takes no weight from V3-EXQ-999a; the shape premise was never evaluated because the agent's SAFE bin was starved and 98.5 per cent wall-clamped, while the run's own decision-tick readout shows the agent ABOVE the hazard-blind null at 4 of 5 levels, so no claim of absent avoidance is available either -> non_contributory",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "dv-dynamic-range-precondition-class",
+        "implementation_hint": "AMEND, not create. The first draft's hazard-avoidance-policy-training-prerequisite create is WITHDRAWN -- the capability exists and is default-off, and SD-058/MECH-357 is already implemented_pending_validation on substrate_queue. The existing dv-dynamic-range entry already names MECH-161 in unblocks_claims. ADD: a precondition must be computable ON THE ARM IT WILL SCORE. V3-EXQ-999a passed safe_bin coverage on the CONTROL arms (31 ticks) and failed it on the AGENT arm (3 ticks) in the same run, and the wall-clamp fraction that explains why (0.985) was recorded as a NON-GATING diagnostic. A coverage floor that counts events which can be no-ops is not a scorability floor. Companion amendments against this same entry come from V3-EXQ-981a (normalisation pre-registration) and V3-EXQ-1017 (contrast-class matching); governance should apply all three in one pass. Harness-layer; no ree_core change implicated.",
+        "unblocks_claims": [
+          "MECH-161",
+          "MECH-027"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": [
+          "validate_experiments.py",
+          "experiments/_metrics.py::p0_readiness_gate"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat_20260909T054013Z_v3",
+          "experiment_type": "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat",
+          "metric": "agent_safe_bin_executable_decision_ticks_covered 3.0 vs a 10 floor (seed23/P20) with safe_bin_wall_clamp_fraction_worst 0.985 recorded as NON-gating, while the control-arm coverage gate passed at 31. The same run's decision-tick readout put the agent above the hazard-blind null at 4 of 5 levels (+0.099 at P_train).",
+          "target": "A coverage/scorability precondition evaluated on the arm that will be scored, counting EXECUTABLE events, so a band-contrast gate cannot be certified on a control arm and then applied to an agent that never visits the band.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-999_2026-09-04"
+        ],
+        "literal_count_meets_threshold": true,
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "R1-R3 count for MECH-161 = 2 counting this target, arithmetically verified. USER-RATIFIED: recorded but NOT read as a substrate ceiling. failure_autopsy_V3-EXQ-999_2026-09-04 left an explicit warning against exactly this reading and it is engaged and upheld. REFUSED: a V3-EXQ-999b reusing the band-contrast statistic unchanged. ALLOWED AND RECOMMENDED: a re-run with an agent-executable SAFE bin, or one scoring the shape on the above-null readout that already works, plus a config-arm probe of the already-built avoidance machinery."
+      },
+      "learning_extracted": [
+        "A RUN'S VERDICT CAN HIDE ITS OWN POSITIVE RESULT. V3-EXQ-999a is a FAIL whose metrics block puts the agent above the hazard-blind null at 4 of 5 levels. The blocking gate and the informative readout were different statistics in the same manifest, and reading only the gate inverts the finding.",
+        "A COVERAGE GATE CERTIFIED ON CONTROL ARMS DOES NOT CERTIFY SCORABILITY OF THE AGENT ARM, and a count floor is not a scorability floor when the counted events can be no-ops.",
+        "AN ORACLE DEFINED AS TAKING THE CORRECT ACTION CANNOT FAIL A TEST THAT ASKS WHETHER IT TOOK THE CORRECT ACTION. oracle_null_separation here is ~1 - 2/A analytically; it is a useful coverage canary and NOT evidence that the instrument can measure the agent.",
+        "COMPARING A REPAIRED STATISTIC TO ITS PREDECESSOR REQUIRES THE SAME DEFINITION ON BOTH SIDES. The '0.0000 to 0.6984' improvement set an unconditional oracle against a conditional one; the conditional figure was already +0.905 in the predecessor's own artifact.",
+        "A DEFAULT-OFF FLAG IS THE FIRST THING TO CHECK BEFORE PROPOSING A BUILD. The avoidance-policy machinery this cluster was about to commission already existed behind use_instrumental_avoidance and use_escape_affordance_bridge, and the precedent the first draft cited (scaffold_train_harm_pathway) trains the VALUATION pathway both drivers already train -- so the citation contradicted the very distinction it was offered to support."
+      ],
+      "routing": "queue-experiment",
+      "independent_recomputation": {
+        "baseline_avoidance_clears_derived_bar": {
+          "mean": -0.10131,
+          "sd": 0.31391,
+          "n": 5,
+          "standard_error": 0.14038,
+          "abs_mean_over_se": 0.72,
+          "reading": "The mean sits 0.72 standard errors from zero, with two of five seeds positive. This confirms the draft's statement that the statistic does not on its own establish absence of avoidance, and is why the draft declines to let 999a alone support H-avoidance-untrained."
+        }
+      },
+      "recording_provenance_finding": {
+        "severity": "benign for THIS adjudication, real for reproduction",
+        "what": "V3-EXQ-999a carries substrate_stable_across_run:false with substrate_identity.drifted_since_resolved:true, lag_seconds 20461, and commit_describes_recorded_hash:false.",
+        "what_it_is_NOT": "It is NOT a mid-run substrate change. substrate_stability_detail records per_cell_hashes_disagree:false with exactly ONE distinct cell hash (5fb5833649...), so every cell of the run executed against the same substrate and the scientific reading is unaffected. Stating this explicitly so a later reader does not over-read the false flag.",
+        "what_it_IS": "The worker's checkout moved between cell execution and manifest stamping, so the manifest's substrate_commit (2be3860e8dbd27519535c19ef34102d59dbeaf1d... as stamped) describes the on-disk state at stamp time and NOT the substrate_hash the run used (on-disk-at-stamp was db05d24f2f3d...). Anyone reproducing this run from the commit field would check out the wrong code. Reproduce from substrate_hash 5fb5833649b8d37e1d771701e3e13cf3ab69b428777f135577123eb3e6625235, not from substrate_commit.",
+        "routing": "Recorded here only. Not raised as a separate substrate item: it is a one-run stamp-ordering observation, and validate_recording.py already reports the manifest COMPLETE, so this is below the threshold for an entry until a second instance appears."
+      }
+    },
+    {
+      "run_id": "v3_exq_981a_mech027_control_plane_pathological_modes_20260909T061022Z_v3",
+      "queue_id": "V3-EXQ-981a",
+      "claim_ids": [
+        "MECH-027"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-027's hypervigilance signature was never evaluated. Gate A aborted at the end of Stage A, EVAL_HYPERVIGILANT / EVAL_REVERSION / EVAL_HV_AB_PAIRED never ran, and both load-bearing criteria are stamped measured:null, 'not evaluated -- Stage B did not run'.",
+        "biological_reference": "clear -- hypervigilance (elevated gain + shortened horizon + suppressed replay producing excessive false-alarm responding) is a control-plane MIS-TUNING of a defensive system that must first exist and function. Clinically, hypervigilance is a disorder of a working threat-response repertoire, not a phenomenon definable in an organism with no defensive responding at all.",
+        "prerequisites": "UNKNOWN, not missing -- corrected. The instrumental-avoidance machinery EXISTS and is default-off: use_instrumental_avoidance (ree_core/utils/config.py:5721) and use_escape_affordance_bridge (:5807). This driver sets neither (grep count 0), so the run did not test an agent whose avoidance pathway was enabled. Whether the prerequisite is met is untested, not absent.",
+        "implementation": "complete -- and this is the point. EIGHT substantive repairs demanded by failure_autopsy_V3-EXQ-981_2026-09-03 were implemented: the avoidant-action DV replaced with an availability-normalised, wall-aware distance-increasing SET, the SAFE band re-derived (HAZARD_SAFE_MAX 0.15 -> 0.25) so every band is populated, the positive control moved from raw rate to LIFT on pooled counts, coverage floors re-derived (per-seed 5 -> 30, new pooled 150), C1's unreachable multiplicative threshold (1.1542 on a [0,1] DV) replaced with an absolute 0.10 bar gated by an explicit dv_headroom precondition, the replay channel re-specified onto measured SWS writes, and a two-stage Gate A / Gate B structure added.",
+        "environment": "adequate -- every coverage precondition passed: hazard_bin_sample_coverage 70.0 vs a 30 floor, positive_control_band_pooled_coverage 342.0 vs a 150 floor (SAFE pooled 3042). The bands are populated and the run has the power the bar was derived for.",
+        "measurement": "NOT ESTABLISHED -- and this replaces the first draft's 'adequate'. The positive control's SIGN AND VERDICT depend on a normalisation choice the driver never justified. Pooled additive lift (the gate as built) -0.09575 FAIL; pooled ratio lift +0.06282 PASS; raw mean-of-seeds +0.06226 PASS; ratio mean-of-seeds +0.08428 PASS. Response rates sit at 10-40 per cent of availability, where the additive form is dominated by the availability gap (chance_HIGH-chance_SAFE +0.14307) rather than the behavioural difference (rate_HIGH-rate_SAFE +0.04732). The driver's docstring justifies moving OFF raw rates -- correctly, and that was 981's real defect -- but never considers a multiplicative alternative, which is the standard choice when rates are far from their ceiling. USER-CONFIRMED DISPOSITION: the control neither passes nor fails on this run; it is UNDETERMINED, and the re-run must pre-register a normalisation with a stated rationale and report all three.",
+        "integration": "isolated -- Stage B never ran, so no cross-channel interaction was exercised.",
+        "scale": "adequate -- 3 seeds, pooled coverage 342/3042, and the three per-seed readings agree in sign and closely in magnitude."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES. Corrected from the first draft's MECHANISM read. The environment is established (coverage gates green, 342/3042 pooled), but the positive control that aborted the run is normalisation-dependent and therefore cannot establish anything about the mechanism or its prerequisite. Not REE FAILED, and not a mechanism verdict either."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Hypervigilance as a control-plane mis-tuning of defensive responding (elevated sensory/precision gain, foreshortened planning horizon, suppressed offline replay/consolidation), as seen in PTSD and anxiety disorders.",
+        "dependencies": [
+          "an intact defensive behavioural repertoire to become mis-tuned",
+          "threat valuation",
+          "an offline replay channel to suppress"
+        ],
+        "is_formal_import": false,
+        "divergence": "Not a formal import. The divergence is the same ontogenetic one as the cluster-mate: the clinical reference presupposes a working defensive system, and the REE agent has threat valuation without avoidance behaviour.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Held at standard, unchanged from what governance-20260903T2013 set. Not substrate_ceiling: the missing prerequisite is buildable and named, and substrate_ceiling would suppress GOV-GRAN-1 surfacing and mark MECH-027 not-v3-testable.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[failure_autopsy_hazard-avoidance-prerequisite-cluster_2026-09-09, user-ratified with red-team] V3-EXQ-981a (2026-09-09, ree-worker-3, 4h34m, 3 seeds) NON-CONTRIBUTORY for MECH-027: Gate A aborted at the end of Stage A and the hypervigilance signature was never tested (C1 and C2 both measured:null, 'not evaluated -- Stage B did not run'). THE RUN IS A REAL ENGINEERING ADVANCE ON ITS PREDECESSOR: all EIGHT repairs failure_autopsy_V3-EXQ-981_2026-09-03 demanded were implemented, including the specific inverted-band check that autopsy required of its author -- HAZARD_SAFE_MAX moved 0.15 -> 0.25 so every band is populated, and the positive control was re-based off raw rates. 981's other three unmet preconditions all now pass (replay_channel_baseline_reachable 5.0 vs 1.0; c1_elevation_headroom 0.9459 vs 0.2 where 981's bar of 1.1542 lay outside its own [0,1] DV; precision_margin_headroom 0.6107 vs 0.05 where 981 had 0.000195 against 0.01). BUT THE POSITIVE CONTROL'S VERDICT IS NORMALISATION-DEPENDENT, AND THIS AUTOPSY'S FIRST DRAFT MISSED IT. Recomputed from the manifest's own bin counts: pooled ADDITIVE lift (the gate as built) -0.09575 FAIL; pooled RATIO lift +0.06282 PASS; raw mean-of-seeds +0.06226 PASS; ratio mean-of-seeds +0.08428 PASS. Three of four normalisations are positive and two clear the +0.05 bar. The cause is that response rates sit at 10-40 per cent of availability, so the additive form is dominated by the availability gap (chance_HIGH-chance_SAFE +0.14307) rather than the behavioural difference (rate_HIGH-rate_SAFE +0.04732); the driver correctly justified moving OFF raw rates but never considered a multiplicative alternative. USER-RATIFIED DISPOSITION: the control is UNDETERMINED on this run -- it neither passes nor fails -- and the re-run must pre-register a normalisation with a stated rationale and report all three. THE FIRST DRAFT'S STRONGER READING IS WITHDRAWN: it asserted that the reversal 'survived the repair' and therefore measured a substrate fact, namely an agent with no trained hazard avoidance. It did not; a statistic choice survived. Two further corrections, both verified: the avoidance-POLICY machinery already EXISTS and is default-off (use_instrumental_avoidance, ree_core/utils/config.py:5721; use_escape_affordance_bridge, :5807; SD-058/MECH-357 sits on substrate_queue as implemented_pending_validation), and this driver enables neither -- so no build is owed and the prerequisite is UNTESTED rather than absent; and every dv_headroom precondition in this run attaches to criteria that never ran, while the gate that actually aborted it carries none. RE-DERIVE BRAKE: the R1-R3 count for MECH-027 is 2 with this target, and that is recorded honestly -- but it is NOT read as a substrate ceiling, because there is no ceiling here, only a measurement choice with a named cheap fix. Refused: a V3-EXQ-981b reusing the band-contrast statistic unchanged. Allowed and recommended: a re-run with a pre-registered, justified normalisation, and separately a cheap config-arm probe enabling use_instrumental_avoidance / use_escape_affordance_bridge, which no run in this family has ever done. pending_retest_after_substrate NOT set -- consistent with the 2026-09-03 decision and for the same reason: no substrate is missing. Status stays provisional.",
+      "per_claim_recommendation": {
+        "MECH-027": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "MECH-027 takes no weight from V3-EXQ-981a (Stage B never ran); the eight repairs landed, but the positive control that aborted the run is normalisation-dependent (additive -0.0958 FAIL vs ratio +0.0628 PASS) and so establishes nothing about the claim or its prerequisite, and the avoidance machinery it presupposes was never enabled -> non_contributory",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "dv-dynamic-range-precondition-class",
+        "implementation_hint": "AMEND, NOT CREATE -- the first draft recommended creating hazard-avoidance-policy-training-prerequisite and that is WITHDRAWN: the capability already exists (use_instrumental_avoidance / use_escape_affordance_bridge, both default-off) and SD-058/MECH-357 is already on substrate_queue as implemented_pending_validation. The existing dv-dynamic-range entry already lists BOTH MECH-027 and MECH-161 in unblocks_claims and already owns the DV-precondition failure class. ADD: a headroom/precondition statistic whose NORMALISATION is pre-registered and justified against the response-rate regime it will be read in. V3-EXQ-981a is the worked case -- at 10-40 per cent-of-availability rates an ADDITIVE lift is dominated by the availability gap (+0.143) rather than the behavioural difference (+0.047), and the sign flips under a multiplicative form. This is the same family as the contrast-class amendment V3-EXQ-1017 recommends against this entry in the companion artifact; governance should apply both in one pass. Harness-layer; no ree_core change implicated.",
+        "unblocks_claims": [
+          "MECH-027",
+          "MECH-161"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": [
+          "validate_experiments.py",
+          "experiments/_metrics.py::p0_readiness_gate"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_981a_mech027_control_plane_pathological_modes_20260909T061022Z_v3",
+          "experiment_type": "v3_exq_981a_mech027_control_plane_pathological_modes",
+          "metric": "positive_control_hazard_sensitivity verdict is normalisation-dependent: pooled additive -0.09575 FAIL, pooled ratio +0.06282 PASS, raw mean-of-seeds +0.06226 PASS, ratio mean-of-seeds +0.08428 PASS, on pooled coverage 342 HIGH / 3042 SAFE. Availability gap +0.14307 vs behavioural difference +0.04732.",
+          "target": "A precondition statistic whose normalisation is pre-registered and justified for the response-rate regime, so a band-contrast gate cannot pass or fail on an unstated analyst choice.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-981_2026-09-03"
+        ],
+        "literal_count_meets_threshold": true,
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "R1-R3 count for MECH-027 = 2 counting this target, arithmetically verified. USER-RATIFIED DISPOSITION: recorded honestly but NOT read as a substrate ceiling -- the diagnosis is a normalisation choice with a named cheap fix, and no substrate is missing. REFUSED: a V3-EXQ-981b reusing the band-contrast statistic unchanged. ALLOWED AND RECOMMENDED: a re-run with a pre-registered justified normalisation, plus a config-arm probe enabling the already-built avoidance machinery. This narrow refusal is the brake's spirit -- stop re-lettering into the same wall -- without asserting a cause the evidence does not support."
+      },
+      "learning_extracted": [
+        "A positive control that survives the repair of its own confound becomes trustworthy evidence about the substrate. V3-EXQ-981's -0.4307 was dismissed as a geometry artifact and the dismissal was right; 981a re-based the same control onto availability-normalised lift, the reversal shrank to -0.0958 and did NOT flip, and the residual is now a measurement rather than an artifact.",
+        "Recording BOTH the confounded and the corrected statistic is what made this adjudication possible in one run rather than three. 981a stamped positive_control_margin_raw_rates (+0.0623) beside the lift-normalised margin (-0.0958); the sign disagreement between them IS the geometry confound, quantified, and it is only visible because both were recorded.",
+        "A prior autopsy's refusal to set pending_retest_after_substrate can be correct at the time and still need reversing on new evidence. The 2026-09-03 autopsy declined it because the fix was then a config flag; the repaired run reveals a genuinely missing capability. Reversing that call is a finding, not an inconsistency.",
+        "Aborting a two-stage run at Gate A is cheap and correct. Stage B never ran, so no compute was spent producing hypervigilance numbers that would have been uninterpretable against a non-avoidant baseline."
+      ],
+      "routing": "queue-experiment",
+      "independent_recomputation": {
+        "performed_by": "the autopsy session itself, from the manifest's own per-seed bin counts, not taken from the driver's reported metrics",
+        "pooled_lift_margin_recomputed": -0.095754,
+        "manifest_value": -0.09575417834527422,
+        "mean_of_seeds_raw_rate_margin_recomputed": 0.062262,
+        "manifest_value_raw": 0.06226166934099976,
+        "agreement": "exact to 6 decimal places on both statistics",
+        "why_the_two_statistics_DISAGREE_IN_SIGN, and why LIFT is the trustworthy one": "This is the load-bearing question for the whole cluster reading and the draft should not assert it without showing it. Availability-matched chance in the HIGH band is 0.3383 / 0.3447 / 0.4314 against 0.2153 / 0.2163 / 0.2194 in SAFE -- distance-increasing actions are 1.57x, 1.59x and 1.97x MORE AVAILABLE in HIGH than in SAFE, by grid geometry. A RAW rate therefore credits the agent for opportunity it did not create: it takes avoidant actions more often in HIGH simply because more of them exist there. Pooled raw rates are HIGH 0.0848 vs SAFE 0.0375. Subtracting availability gives pooled lifts of -0.2754 and -0.1797, and the sign of the margin flips. The lift statistic is the one that answers the question the positive control asks -- is the agent MORE avoidant where hazard is greater, controlling for how much avoidance was possible -- and the raw statistic answers a different question. Note also that the agent is BELOW availability-matched chance in BOTH bands on all three seeds, which no availability artifact explains."
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Two experiments on unrelated claims, both blocked at a pre-criterion positive control built on the same _avoidant_action / _hazard_bin band-contrast apparatus, and in both the band-contrast statistic is the fragile element rather than the agent's capability. V3-EXQ-999a: the agent's SAFE bin is starved (3 executable decision ticks at the worst cell against a 10 floor) and 98.5 per cent wall-clamped, so the HIGH-versus-SAFE contrast cannot be computed reliably -- while the SAME run's decision-tick readout puts the agent ABOVE the hazard-blind null at 4 of 5 levels. V3-EXQ-981a: the contrast's SIGN AND VERDICT depend on the normalisation choice (additive -0.0958 FAIL; ratio +0.0628 PASS; raw mean-of-seeds +0.0623 PASS), because at 10-40 per cent-of-availability response rates the additive form is dominated by the +0.143 availability gap rather than the +0.047 behavioural difference.",
+    "is_independent_bugs": false,
+    "structural_property": "The shared HIGH-versus-SAFE band-contrast positive control is not a reliable instrument at floor response rates. It fails for a DIFFERENT proximate reason in each run -- bin starvation and wall-clamping in 999a, normalisation dependence in 981a -- but both reasons are properties of the band-contrast statistic rather than of the agent, and in 999a the agent's capability is visible on a readout that does not use the band contrast at all.",
+    "readings": [
+      "shared_band_contrast_statistic_unreliable_at_floor_rates",
+      "avoidance_policy_machinery_built_but_default_off_in_both_drivers"
+    ],
+    "WITHDRAWN_READING": "The first draft asserted a shared SUBSTRATE gap -- 'the substrate trains hazard valuation and no hazard-avoidance policy, so both positive controls correctly report a capability that does not exist'. WITHDRAWN on three independently verified grounds: the capability is weakly PRESENT (999a agent above null at 4 of 5 levels), 981a's negative reading is normalisation-dependent rather than robust, and the avoidance-policy machinery is already BUILT and merely default-off in both drivers. Recorded rather than deleted so a later session can see the reading was tested and did not hold.",
+    "what_neither_run_tested": "Neither driver enables use_instrumental_avoidance or use_escape_affordance_bridge. So the question 'does a REE agent with its instrumental-avoidance machinery ENABLED express the band contrast these experiments need?' has never been asked, by either run, and is cheap to ask."
+  },
+  "read_across_not_adjudicated": [
+    {
+      "claim_ids": [
+        "MECH-093"
+      ],
+      "note": "MECH-093 is a co-registered claim on the mech161_vigilance_arousal_shape_vs_readout question and is NOT adjudicated here. V3-EXQ-999a overwrites MECH-093's regulator output every tick by design (claim_scope: 'MECH-161's REGULATOR assertion is NOT tested'), so nothing in this cluster bears on MECH-093's own content."
+    },
+    {
+      "claim_ids": [
+        "MECH-161",
+        "MECH-027"
+      ],
+      "note": "The substrate entry recommended by both targets is ONE entry, not two. If governance materialises it twice the two failure_record items will be split across duplicate sd_ids and the unblocks_claims union will be lost."
+    }
+  ],
+  "red_team": {
+    "verdict": "CONTESTED",
+    "model": "session model (Opus 5). The preferred cross-model pass on Fable was attempted FIRST and failed with a monthly spend limit on that model (HTTP 429, claude-fable-5-1); per the skill it was re-spawned once without the override rather than skipped. This is a SAME-MODEL pass and must not be read as a cross-model one.",
+    "findings_accepted": [
+      "R-3 (highest value, changes the recommendation). The avoidance-POLICY machinery ALREADY EXISTS and is default-off: use_instrumental_avoidance (ree_core/utils/config.py:5721, from_dims kwarg :7513; SD-058/MECH-357, ilPFC-analog freeze-suppression + instrumental-avoidance action pathway + eligibility-trace efficacy learning, ree_core/pfc/infralimbic_avoidance_gate.py) and use_escape_affordance_bridge (:5807, :7525; SD-059/MECH-358). VERIFIED: neither driver references either token (grep count 0 in both). substrate_queue's scaffolded_sd054_onboarding carries current_pending_amend = instrumental_avoidance_acquisition_SD-058_MECH-357, status implemented_pending_validation, ready_blocked_by V3-EXQ-603h. The first draft proposed to CREATE this capability and cited scaffold_train_harm_pathway as precedent -- which trains the VALUATION pathway, exactly what both drivers already do, so the citation contradicted the draft's own valuation-versus-policy distinction. There is no build to commission.",
+      "R-1 (changes the assertion). VERIFIED from 999a's own metrics: the agent is ABOVE the hazard-blind null at 4 of 5 heartbeat levels -- agent-minus-null +0.1388 (P5), +0.1132 (P8), +0.0989 (P10 = P_train), +0.1617 (P15), -0.0095 (P20) -- i.e. 12.4 to 21.3 per cent of the oracle-minus-null range. Weak hazard sensitivity IS present. The first draft's assertion that the capability does not exist is falsified by the run's own numbers.",
+      "R-2 (breaks the central claim). VERIFIED by recomputation: 981a's positive control changes SIGN AND VERDICT with the normalisation choice. Pooled additive lift (the driver's gate) -0.09575 FAIL; pooled ratio lift +0.06282 PASS; raw mean-of-seeds +0.06226 PASS; ratio mean-of-seeds +0.08428 PASS. Response rates sit at 10-40 per cent of availability, so the ADDITIVE form is dominated by the availability gap (chance_HIGH-chance_SAFE = +0.14307) rather than the behavioural difference (rate_HIGH-rate_SAFE = +0.04732). The first draft asked raw-versus-lift, chose lift, and never named the third option that flips the verdict. The reversal did NOT 'survive the repair'; a statistic choice did.",
+      "R-4 (weakens the cluster framing). In BOTH runs every dv_headroom precondition attaches to criteria that never ran, and the gate that actually aborted each run carries none. And 999a retained the single-argmax _avoidant_action form inherited from V3-EXQ-981 -- the exact DV form 981a's own code documents as defective and replaced -- so 'two independently repaired instruments' overstates the independence.",
+      "Item (b). The brake count of 2 is arithmetically correct for both claims, but failure_autopsy_V3-EXQ-999_2026-09-04 left an explicit in-artifact warning not to read a future count of 2 on MECH-161 as evidence of a substrate ceiling, and the first draft never engaged it while corroborating its premise elsewhere.",
+      "Item (d). The CONDITIONAL_ORACLE sets held_idx = avoidant while the DV is took_avoidant = (held_idx == avoidant), so oracle-null separation is near-tautological (~1 - 2/A ~ 0.6 analytically, against a 0.20 floor). It is not fully vacuous -- it does catch the 999 coverage break -- but it cannot fail for any agent-attributable reason, so grading MEASUREMENT 'ADEQUATE' on it while the agent-side coverage gate fails 3.0 vs 10 is exactly the graded-adequate failure mode. Separately, '999's oracle scored 0.0000' compares 999's UNCONDITIONAL oracle to 999a's CONDITIONAL one; the 999 artifact itself recorded +0.905 for a conditional avoider."
+    ],
+    "findings_upheld_from_the_draft": [
+      "Both corrections to 999a's own registry_adjudication stand and were independently confirmed well-founded: H-env-band-absent is not eliminated by a control-arm coverage count while the agent-arm gate fails and the wall-clamp diagnostic reads 0.985, and H-avoidance-untrained is not supported by a statistic sitting 0.72 SE from zero with two of five seeds positive.",
+      "The independent recomputations reproduced exactly: 999a's baseline_derived_bar_margin_mean -0.10130506 from its own cells, the SD 0.3139, the SE 0.1404 and the 0.72-SE reading; and 981a's mean-of-seeds margin. Every prose absolute tested held."
+    ],
+    "consequence": "The cluster's structural claim is WITHDRAWN as stated. What survives is a different and better-supported cluster: a shared MEASUREMENT defect in the HIGH-versus-SAFE band-contrast positive control at floor response rates, not a shared substrate gap. Routing changes from implement-substrate/create to queue-experiment plus a substrate AMEND."
+  },
+  "user_gate": {
+    "utc": "2026-09-09T09:37:25Z",
+    "decisions": [
+      "981a normalisation: UNDETERMINED -- the driver must justify its choice; the control neither passes nor fails.",
+      "Re-derive brake: record the count of 2 honestly, refuse only a re-queue reusing the unfixed band statistic; explicitly allow the fixed re-run.",
+      "Config-arm probe: recommend in the artifact only; /governance chips it after ratifying the disposition."
+    ]
+  }
+}

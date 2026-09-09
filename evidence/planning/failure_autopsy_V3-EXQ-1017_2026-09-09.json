@@ -1,0 +1,207 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-09T09:37:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux_20260909T054654Z_v3",
+      "queue_id": "V3-EXQ-1017",
+      "claim_ids": [
+        "ARC-138",
+        "INV-104"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact for both claims -- neither was tested. C0, the pre-registered sensitivity witness, short-circuited the verdict grid before the two load-bearing discrimination criteria (C1 anchoring-beats-matched, C2 anchoring-beats-generic) could carry a verdict, and every criterion's non-degeneracy flag is conditioned on C0 and therefore false.",
+        "biological_reference": "partial -- the underlying regulation-first proposition (that anchoring a world-latent to ORGANISM-RELEVANT structure organises it differently from equal-capacity generic supervision) has a real biological reading in interoceptive/allostatic shaping of perceptual representation. This run does not reach it; the failure is upstream at the readout.",
+        "prerequisites": "present -- the P0a manipulation was delivered. own_target_r2 through the encoder path is 0.40-0.74 on every trained arm, and all four GOV-MATCHAUX-1 matching properties were certified on the training rollout itself (KS 0.1954 vs 0.25; |r| 0.1778 vs 0.20; oracle-action decodability elevation -0.0044 vs 0.04; own-target R2 gap 0.1268 vs 0.20).",
+        "implementation": "complete -- the matched-arbitrary control is a genuinely exacting one: same head, same MSE loss, same weight (P0A_PROX_WEIGHT 0.5), same cadence, same training examples, differing only in which scalar is piped through the resource_proximity_head channel. The target is a cell-permutation-invariant count functional, redesigned specifically so it cannot encode direction and therefore cannot leak the oracle's action.",
+        "environment": "adequate -- the instrument's own positive control and width ceiling both behaved: rawfield_ceiling 0.979, ws250_pca 0.869, zworld_untrained 0.695.",
+        "measurement": "PARTIAL. Two measurement defects, one verified and one identified only at the red-team pass. (1) VERIFIED: dv_headroom_pairwise_delta passed at 0.1745 against a 0.1 requirement, but its measured_cells are ALL ws250_pca-minus-zworld_untrained -- a width/information-content contrast, not the objective-CHOICE contrast the load-bearing criteria test, every one of which came in under 0.033. A headroom statistic computed over a different contrast class than the criterion it protects certifies a capability that criterion never uses. (2) IDENTIFIED AT RED-TEAM, and it refutes this artifact's own first draft: the driver's sense-path diagnostic is methodologically broken. `_own_target_r2_sense` (:497-510) applies the TRAINED sigmoid head cold to sense-path z WITHOUT REFITTING, at 0.23-0.35 of the input norm it trained on, so the head collapses toward its bias -- all nine of its negative R2 values are exactly reproduced by a constant predictor in [0.53, 0.72]. It also omits the pred_std its encoder-path sibling returns, so the collapse is invisible in the manifest. That statistic cannot support any conclusion about what the sense path carries, in EITHER direction.",
+        "integration": "unknown -- the relationship between the trainer path and the sense path is exactly what the broken diagnostic failed to measure. Positive evidence points the other way from the first draft's reading: sense-path norm is cleanly arm-dependent (sd070_default ~2.12 vs ~1.45 for the other trained arms, 3 of 3 seeds), and cos(theta) between the paths is 0.686-0.855.",
+        "scale": "adequate -- 3 paired seeds, and the per-seed objective-choice contrasts agree closely (all four contrasts under 0.033 on every seed), so this is a tight null rather than a noisy one."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES (partial). The manipulation was applied and certified and the environment behaved, but the measurement layer carries a verified contrast-class defect in the headroom gate and a broken sense-path diagnostic. Emphatically NOT a REE FAILED read: whether the P0a objective organises z_world remains fully OPEN and this run cannot settle it in either direction."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Allostatic / interoceptive shaping of perceptual representation -- organism-relevant regulatory structure organising what a sensory latent preserves.",
+        "dependencies": [
+          "a latent whose organisation is actually read by the downstream measure",
+          "an auxiliary objective with capacity to reshape that latent"
+        ],
+        "is_formal_import": false,
+        "divergence": "No biology divergence is adjudicated here, because the run did not reach the biological question. Recording this explicitly so a later reader does not mistake C0's failure for evidence against the regulation-first proposition.",
+        "lit_status": "present",
+        "lit_status_note": "CORRECTED at the Step 7b mechanical pre-routing check, which fired C3 against an earlier draft of this artifact that had declared the literature missing for the sense-path question. That fire was a TRUE POSITIVE and it improved the finding; the wording here deliberately avoids the trigger token so the shipped artifact does not carry a standing false fire. evidence/literature/targeted_review_inv_104/entries/2026-09-08_inv_104_v_usable_information_presence_vs_usability_ethayarajh2022 (Ethayarajh, Choi & Swayamdipta, ICML 2022, V-usable information; entry dated 2026-09-08, the day before this run) is directly on point: it is the formal statement of why information can be PRESENT in a representation and not USABLE by a given family of readers, and its own text already records the sense-path/encoder-path split in this corpus -- 'V3-EXQ-978 found the class-1 field linearly decodable at r2 0.710 (sense path) / 0.858 (encoder path)'. Six INV-104 entries and one ARC-138 entry existed at this artifact's time. No /lit-pull is owed."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-104": "standard",
+        "ARC-138": "substrate_conditional"
+      },
+      "recommended_epistemic_category_per_claim_note": "INV-104 stays standard (its current value); the finding is a measurement-path defect, which the CLAUDE.md mapping puts at standard with the diagnosis in the note fields. ARC-138 KEEPS its existing substrate_conditional -- it is an implementation_phase v4 architectural commitment and this v3 run neither strengthens nor weakens the substrate-conditionality that category records. Neither claim is re-categorised on the strength of a run that could not see its own manipulation.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[failure_autopsy_V3-EXQ-1017_2026-09-09, user-ratified with red-team] V3-EXQ-1017 (2026-09-09, ree-cloud-2, 4m35s, 3 seeds, 7 arms) NON-CONTRIBUTORY for both ARC-138 and INV-104. The pre-registered sensitivity witness C0 failed -- max objective-choice contrast 0.0326/0.0078/0.0041 per seed against a 0.05 bar, 0 of 3 -- short-circuiting the verdict grid before either load-bearing criterion could carry a verdict. THE DRIVER'S SELF-ROUTE IS UPHELD IN FULL, INCLUDING ITS REFUSAL TO CHOOSE: it routes to p0a_objective_invisible_to_adapter_dv on the ground that 'matched control matches anchoring' and 'the DV cannot see any objective' are indistinguishable, and records neither. THIS AUTOPSY FIRST TRIED TO RESOLVE THAT AMBIGUITY AND WAS WRONG; the attempt was REFUTED at the Step 7c pass, the refutation independently verified, and recording it is part of the finding. The attempted resolution rested on own_target_r2_sense_path being negative on the trained arms. That statistic cannot bear the weight: `_own_target_r2_sense` (driver :497-510) applies the TRAINED resource_proximity_head cold to sense-path z WITHOUT REFITTING at 0.23-0.35 of the input norm it trained on (recorded: mean_norm_encoder_path 4.53-8.18 vs mean_norm_sense_path 1.36-2.30), so its sigmoid collapses toward bias -- and all nine negative values (-0.0088 to -2.7215) are exactly reproduced by a CONSTANT predictor in [0.53, 0.72], needing no claim about missing information. The companion statistic was also misread: cos(theta) between the paths is 0.686-0.855, so the 0.749-0.835 relative residual is dominated by the norm ratio, and 69-86 per cent of the sense-path DIRECTION is the encoder's output. Pointing the other way, sense-path norm is cleanly ARM-DEPENDENT (sd070_default 1.847/2.210/2.301 vs ~1.45 for both other trained arms, 3 of 3 seeds), which is direct evidence that the sense path DOES track the P0a objective; and the corpus already holds the disconfirming measurement, V3-EXQ-978's sense-path r2 of 0.710 POSITIVE from a probe fit ON that path. WHAT THIS RUN DOES ESTABLISH, AND IT IS WORTH HAVING: (a) VERIFIED -- dv_headroom_pairwise_delta passed at 0.1745 vs 0.1 with measured_cells entirely ws250_pca-minus-zworld_untrained, a width contrast, not the objective-CHOICE contrast C1/C2 test; a headroom gate computed over a different contrast class than its criterion certifies a capability the criterion never uses. (b) NEW -- the sense-path diagnostic is broken as described, and omits the pred_std its encoder-path sibling records, so the collapse is undetectable downstream. Until that probe is refit on the path it is evaluated on, NO conclusion about what sense-time z_world carries is supportable from this driver family in either direction. NEITHER CLAIM IS WEAKENED and the substantive question -- does the P0a objective choice organise z_world -- remains fully OPEN. C0 nonetheless earned its cost: without it a four-arm cluster spanning 0.669-0.679 would have been written up as 'organism-relevant anchoring does nothing'. Routing: queue-experiment, a same-question re-run whose changes are (i) refit the own-target probe on the path it is evaluated on and record pred_std, (ii) compute DV headroom over the objective-CHOICE contrast class. Substrate: AMEND dv-dynamic-range-precondition-class, NOT a create.",
+      "per_claim_recommendation": {
+        "INV-104": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "INV-104 takes no weight from V3-EXQ-1017; C0 short-circuited before C5/C6 could bear on the preservation and destruction conditions, and the run's two measurement defects -- a headroom gate certified on the width contrast rather than the objective-choice contrast, and an own-target probe applied off-path unrefit whose negative R2 values are reproduced by a collapsed constant predictor -- mean the run cannot settle its question in either direction -> non_contributory",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "ARC-138": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_conditional",
+          "change": "ARC-138 takes no weight from V3-EXQ-1017; it is an implementation_phase v4 commitment probed only through a v3 proxy DV, and the run's two measurement defects -- a headroom gate certified on the width contrast rather than the objective-choice contrast, and an own-target probe applied off-path unrefit whose negative R2 values are reproduced by a collapsed constant predictor -- mean the run cannot settle its question in either direction -> non_contributory",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "dv-dynamic-range-precondition-class",
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "AMEND, NOT CREATE -- the first draft recommended a create and the Step 7c pass correctly rejected it. The existing entry is status implemented_pending_validation, severity degrading, and its substrate_paths are already ['validate_experiments.py', 'experiments/_metrics.py::p0_readiness_gate'] -- the same module a new entry would have named. Its own governance_2026_09_04 note records a PRIOR red-team withdrawing a create in favour of an amend on this very entry, for a readout/IV-confound defect at least as distinct from DV-range as 'DV contrast class' is. The first draft cited that same governance episode for its substrate_paths-narrowing lesson and MISSED the create-versus-amend lesson, which is the more directly applicable half. TWO ADDITIONS. (1) A headroom statistic must be computed over the SAME CONTRAST CLASS as the criterion it protects. V3-EXQ-1017 passed at 0.1745 vs 0.1 measured entirely on ws250_pca-minus-zworld_untrained cells while every objective-CHOICE contrast came in under 0.033. This generalises the entry's remit from 'does the DV have RANGE' to 'does the DV have range FOR THIS CONTRAST', a natural extension of dv_headroom's existing achievable-statistic family. (2) A probe used as a readiness or diagnostic statistic must be FITTED ON THE REPRESENTATION IT IS EVALUATED ON, and must record its prediction spread. `_own_target_r2_sense` (experiments/v3_exq_1017_...py:497-510) applies a trained sigmoid head cold to a representation at 0.23-0.35 of its training norm and reports the R2 as if it measured information content; the encoder-path sibling at :470-481 returns pred_mean/pred_std, the sense-path variant returns neither. NO NEW SUBSTRATE GAP IS FOUND and no ree_core change is implicated -- harness/diagnostic discipline only. Companion amendments against this same entry come from V3-EXQ-999a (agent-arm scorability) and V3-EXQ-981a (normalisation pre-registration) in the cluster artifact; governance should apply all three in one pass.",
+        "unblocks_claims": [
+          "INV-104",
+          "ARC-138"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": [
+          "validate_experiments.py",
+          "experiments/_metrics.py::p0_readiness_gate"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux_20260909T054654Z_v3",
+          "experiment_type": "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux",
+          "metric": "dv_headroom_pairwise_delta green at 0.1745 vs 0.1, measured entirely on ws250_pca-minus-zworld_untrained cells, while every objective-CHOICE contrast the load-bearing criteria test measured under 0.033 (C0 failed 0 of 3 vs a 0.05 bar). Separately the run's sense-path own-target probe is applied off-path unrefit at 0.23-0.35 of training norm and omits pred_std, so its nine negative R2 values (-0.0088 to -2.7215) are reproduced by a constant predictor in [0.53,0.72] and are uninterpretable.",
+          "target": "A headroom precondition computed over the same contrast class as the criterion it protects, plus a probe-discipline rule requiring an own-target probe to be fitted on the representation it is evaluated on and to record its prediction spread.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "R1-R3 count for INV-104 = 0 and for ARC-138 = 0 (recipe run 2026-09-09; no confirmed autopsy target has previously tagged either claim). First autopsy for both. Brake does not fire, and a same-question re-run with an encoder-path DV is explicitly ALLOWED and recommended."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "live_hypotheses": [],
+        "suggested_probes": [],
+        "note": "DELIBERATELY EMPTY, with the reasoning recorded so a later reader does not read the omission as an oversight. Two hypotheses are live after this run -- that the P0a objective choice genuinely does not organise z_world, and that it does but the sense-path DV cannot see it -- but they are separated by ONE unambiguous measurement change (read the DV off the encoder path), not by a portfolio of probes on different design axes. GOV-FANOUT-1's own exemption applies: a bottleneck that routes to one unambiguous build is built, not fanned out. Fanning out here would spend a portfolio to answer a question one re-read settles."
+      },
+      "hypothesis_space_ledger_pending": {
+        "action": "register_new_question_all_legs_alive",
+        "qid": "regulatory_anchoring_matched_aux",
+        "why_owed": "The manifest carries hypothesis_qid_status 'pre_registration_owed_at_queue_time'. The authoring session was refused the registry file by the then-active fa-20260909-batch autopsy claim (closed 2026-09-09T00:58:01Z) and correctly did not hand-edit around it, recording instead that 'the adjudicating autopsy registers the qid + the four hids above (Step 9b) before writing any resolution'. This autopsy is that adjudicating autopsy.",
+        "initial_frozen_count": 5,
+        "hypotheses": [
+          {
+            "hid": "H-RA-anchoring-organises",
+            "axis": "representation",
+            "state": "alive",
+            "basis": "Not adjudicated. C0 short-circuited before C1/C2 could bear on it."
+          },
+          {
+            "hid": "H-RA-generic-supervision-effect",
+            "axis": "learning-signal",
+            "state": "alive",
+            "basis": "Not adjudicated. C0 short-circuited before C2-without-C1 could bear on it."
+          },
+          {
+            "hid": "H-RA-matched-control-null",
+            "axis": "representation",
+            "state": "alive",
+            "basis": "Not adjudicated. C3 passed but is uninterpretable: its non-degeneracy flag is conditioned on C0, and a flat C-versus-B contrast on a DV blind to the manipulation class is not evidence that the matched control matches anchoring."
+          },
+          {
+            "hid": "H-RA-generic-already-preserves",
+            "axis": "representation",
+            "state": "alive",
+            "basis": "Not adjudicated. C5's non-degeneracy flag is likewise conditioned on C0."
+          },
+          {
+            "hid": "H-RA-dv-reads-sense-path-blind",
+            "axis": "measurement",
+            "state": "alive",
+            "basis": "Registered ALIVE, not confirmed. It remains a genuinely live reading of C0's failure, but the run's own sense-path diagnostic cannot support it: the probe is applied off-path unrefit at 0.23-0.35 of training norm and its nine negative R2 values are all reproduced by a constant predictor in [0.53, 0.72]. Counter-evidence is on the record too -- sense-path norm is cleanly arm-dependent across 3 of 3 seeds, and V3-EXQ-978 measured sense-path r2 0.710 positive with a probe fit on that path. Decisive test: refit the probe on the path it is evaluated on."
+          }
+        ],
+        "note": "All five legs ALIVE. No leg is resolved by this run, so this is pure pre-registration on a NEW question: no denominator-growth question arises, invariant 2 is trivially satisfied (no resolved_utc anywhere), and initial_frozen_count == len(hypotheses) == 5.",
+        "revision_note": "The first draft registered the fifth leg as CONFIRMED. The Step 7c pass rejected that on three independent grounds and this session accepts all three: the state-mapping table routes a non_contributory, non-discriminating result with manifest non_degenerate:false to ALIVE; `confirmed` requires control_passed true and this run's FAILED criterion IS its negative control; and the sense-path diagnostic has no control condition at all, which is exactly why its scale artefact went undetected. Registered ALIVE."
+      },
+      "learning_extracted": [
+        "A PROBE MUST BE FITTED ON THE REPRESENTATION IT IS EVALUATED ON. Applying a head trained on one path cold to another at a third of the input norm produces a collapsed constant predictor whose R2 is arbitrarily negative, and that negative number is indistinguishable, from the manifest alone, from genuine absence of information. This is the transferable lesson and it cost this autopsy its first central inference.",
+        "RECORD THE PREDICTION SPREAD, not only the score. `_own_target_r2` returns pred_mean and pred_std; `_own_target_r2_sense` returns neither. One float would have made the collapse visible immediately -- to the driver author and to this autopsy.",
+        "A DV-HEADROOM GATE CERTIFIES HEADROOM FOR THE CONTRAST IT IS MEASURED ON, not the contrast the criterion tests. This gate passed at 0.1745 on a width contrast while every objective-choice contrast came in under 0.033. Both facts true; gate green for the wrong one.",
+        "A RATIO OF NORMS IS NOT A MEASURE OF DIFFERENT CONTENT. A relative residual of 0.78 reads as 'mostly not the same signal' and here meant 'the same direction at a third of the scale' -- cos(theta) 0.69-0.86. Decompose a residual into scale and angle before glossing it.",
+        "WHEN A DRIVER DECLINES TO CHOOSE BETWEEN TWO READINGS, TEST THE DECLINE BEFORE OVERRIDING IT. This driver explicitly refused to record either 'matched control matches anchoring' or 'the DV cannot see any objective', and that refusal was better calibrated than this autopsy's first attempt to resolve it.",
+        "A pre-registered sensitivity witness earns its cost precisely on the run where it fires: without C0, a four-arm cluster spanning 0.669-0.679 would have been written up as evidence that organism-relevant anchoring does nothing."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "read_across_not_adjudicated": [
+    {
+      "claim_ids": [
+        "INV-104"
+      ],
+      "note": "Two sessions held active claims on INV-104 work while this run was in flight: igw-233-inv104-exq-1016 (queue-experiment V3-EXQ-1016, INV-104 class-1 R_k preservation ladder) and igw-233-inv104-reanalysis (GOV-REUSE-1 reanalysis for INV-104 condition (i); marking EVB-1712 blocked_substrate). V3-EXQ-1017's queue note records that EXP-1397 / EVB-1712 sits on this same seam and shares arms A1/A4 with this run, and that its status update was owed to governance. Not adjudicated here -- flagged so governance does not apply this artifact's disposition without reconciling it against whatever those two sessions landed. VERIFIED BY THIS AUTOPSY, because it changes what governance should assume: V3-EXQ-1016 was RESERVED but never materialised -- it is absent from experiment_queue.json, `git log -S \"V3-EXQ-1016\" -- experiment_queue.json` in ree-v3 returns nothing, and no experiments/*1016* driver exists. Its claim igw-233-inv104-exq-1016 (2026-09-08T21:23:19Z) is now stale by the 6h rule. So the id is unburned and the ladder it was reserved for was never run: V3-EXQ-1017 is currently the ONLY completed run on this seam, and nothing should be read as corroborated by 1016."
+    },
+    {
+      "claim_ids": [
+        "MECH-520",
+        "SD-018",
+        "SD-070"
+      ],
+      "note": "The sense-path finding bears on the wider z_world interface thread (INV-104 is emergent_from SD-018/SD-070/SD-056, and both claims depend on MECH-520). If sense-time z_world does not carry encoder-trained content, that is relevant to any claim whose evidence route reads z_world at sense time. Not adjudicated here; recorded as a bears-on so the substrate entry is not scoped to this one experiment family by default."
+    }
+  ],
+  "user_gate": {
+    "utc": "2026-09-09T09:37:25Z",
+    "note": "Confirmed at the Step 8 gate together with the companion cluster artifact."
+  },
+  "red_team": {
+    "verdict": "REFUTED",
+    "model": "session model (Opus 5). The preferred cross-model pass on Fable was attempted FIRST and failed with a monthly spend limit on that model (HTTP 429, claude-fable-5-1); per the skill it was re-spawned once without the override rather than skipped. This is a SAME-MODEL pass and must not be read as a cross-model one.",
+    "what_it_refuted": "The first draft's central inference -- that the P0a objective is invisible to the adapter DV because the supervision is absent from the sense-path latent. REFUTED, and independently verified by this session before acceptance.",
+    "verified_by_this_session": [
+      "MECHANISM, by direct code read: `_own_target_r2_sense` (driver :497-510) applies the TRAINED resource_proximity_head COLD to sense-path z with no refitting, while `_own_target_r2` (:470-481) evaluates the same head on the path it trained on. The sense-path variant also OMITS pred_mean/pred_std, which the encoder-path variant returns -- so the one diagnostic that would expose a collapsed predictor is precisely the one not recorded.",
+      "SCALE, from the manifest's own arm_results[*].sense_vs_encoder_path: mean_norm_encoder_path 4.53-8.18 against mean_norm_sense_path 1.36-2.30, i.e. the head is fed vectors at 0.23-0.35 of the norm it trained on. Through a sigmoid head that collapses the prediction toward its bias.",
+      "ARITHMETIC, by recomputation: for a CONSTANT predictor c, R2 = -(c-mu)^2/sigma^2. Solved against each recorded target_mean/target_std this reproduces ALL NINE observed negative sense-path R2 values (-0.0088 to -2.7215) with implied constants 0.530, 0.552, 0.571, 0.596, 0.612, 0.654, 0.668, 0.669, 0.715 -- squarely a sigmoid's mid-range. No claim about missing information is needed to explain any of them.",
+      "DIRECTION: cos(theta) between the two paths is 0.686-0.855, so the 0.749-0.835 relative residual is dominated by the NORM RATIO, not by directional divergence. The first draft's gloss -- 'about 80 per cent of what the adapter reads is NOT the encoder's output' -- was WRONG; 69-86 per cent of the DIRECTION is the encoder's output, scaled down.",
+      "POSITIVE COUNTER-EVIDENCE: sense-path norm is cleanly ARM-DEPENDENT (zworld_p0_sd070_default 1.847/2.210/2.301, mean 2.119, against ~1.45 for both other trained arms, separated on 3 of 3 seeds). If the sense path were blind to the P0a objective its norm could not track the objective this way.",
+      "PRIOR ART, decisive: V3-EXQ-978 measured sense-path r2 0.710 POSITIVE using a probe FIT ON that path. The 978-versus-1017 gap is a METHOD difference, not the extreme magnitude the first draft claimed."
+    ],
+    "what_survived": "The headroom criticism, independently verified: the dv_headroom measured_cells are all ws250_pca-minus-zworld_untrained and the recomputed 0.17445 matches exactly. Also the C0 numbers, the corrected literature status, both claim categories, the brake count of 0, the fan-out reasoning, and the Mode B registration mechanics.",
+    "prose_corrections_accepted": [
+      "'every trained arm' was 3 of 4 -- zworld_p0_generic ran P0a but carries no own-target diagnostic on EITHER path, and it is in the C2 contrast, so the omission matters.",
+      "relative residual range is 0.749-0.835, not 0.78-0.84.",
+      "'every non-degeneracy flag false' was wrong: C0_objective_reaches_dv is true (it stores gate_green, not C0's own pass).",
+      "the substrate entry quoted an R2 range of -1.418 to -0.009 while the artifact's own listing has a true minimum of -2.721."
+    ],
+    "cheap_confirmer_named": "V3-EXQ-978's existing sense-path r2 of 0.710 -- no re-run needed. Or one line at :510 returning pred_std."
+  }
+}
