@@ -306,6 +306,33 @@ def build_runpack_docs(data: dict, experiment_type: str):
         if _val is not None:
             manifest[_prov] = _val
 
+    # Remaining Experimental Recording Standard always-core keys (2026-09-09).
+    # manifest_core.ALWAYS_CORE_KEYS is (recording_schema, substrate_hash, machine,
+    # machine_class, elapsed_seconds, config, seeds). The four provenance members
+    # are carried by the loops above; these are the other three plus
+    # recording_schema, and until now NO code path put them in a converted pack.
+    # The sanctioned writer (ree-v3 experiments/pack_writer.write_pack, via
+    # stamp_recording_core / MANDATORY_CORE_KEYS) stamps all of them into the
+    # MANIFEST, so a pack_writer pack and a converted pack disagreed on where --
+    # in fact whether -- the always-core lives. Measured 2026-09-09 across the
+    # 2931 packs in the tree: 2929 carried no recording_schema at all, so
+    # validate_recording.check_manifest reported an always-core gap on essentially
+    # every converted pack in the corpus -- a check that can never pass, which is
+    # a dead check rather than a signal. The flat sibling carried the fields the
+    # whole time; this is the same whitelist-omission shape as machine_class
+    # (fixed 2026-07-16) and enabled_default_off_flags (fixed 2026-09-01).
+    # `is not None` rather than a truthiness test, for the enabled_default_off_flags
+    # reason given above: `config: {}` / `seeds: []` / `elapsed_seconds: 0` are
+    # measurements, not absences. Nothing in build_experiment_indexes reads any of
+    # these four (confirmed 2026-09-09: zero references to recording_schema,
+    # elapsed_seconds or seeds, and no manifest read of config), so this changes
+    # the pack's SELF-DESCRIPTION and the recording-standard verdict, never a
+    # score.
+    for _core in ("recording_schema", "elapsed_seconds", "config", "seeds"):
+        _val = data.get(_core)
+        if _val is not None:
+            manifest[_core] = _val
+
     # z_goal-stream liveness (2026-07-27). Carry the runtime backstop's counter
     # block (ree-v3 experiments/_lib/z_goal_stream.py) through to the pack, which
     # is what build_experiment_indexes scores -- this mapping is a WHITELIST, so
@@ -338,6 +365,26 @@ def build_runpack_docs(data: dict, experiment_type: str):
         summ = data.get("summary_metrics")
         if isinstance(summ, dict) and summ:
             raw_metrics = dict(summ)
+    if not raw_metrics:
+        # Fourth spelling: `readout` (2026-09-09). Same scalar-dict shape as
+        # `aggregates`, paired with `pre_registered_thresholds` instead of
+        # `thresholds` -- confirmed on v3_exq_1014_ext002_lineage_e3_latching_
+        # repertoire_spike, whose pack scored with values={} while its flat
+        # sibling carried latched_fraction / casualty_latched_fraction /
+        # floor_fresh_action_count. An empty `values` is not merely cosmetic on
+        # the scored artifact: build_experiment_indexes reads ONLY numeric
+        # metrics.values entries, so with none of them (a) no `fail_if` stop
+        # threshold can ever fire -- `run.metrics.get(metric)` is None, the check
+        # is skipped, and final_status falls back to the manifest's self-declared
+        # status, which is what claim_evidence.v1.json records and what drives
+        # auto-inferred evidence direction; (b) the duplicate-emission
+        # fingerprint is skipped entirely, so a byte-identical re-emission is
+        # never auto-superseded and both copies score; (c) no deltas and no
+        # key-metrics columns. 1007 of 2931 packs sat at values={} when this was
+        # measured; `readout` accounts for the 1014 shape specifically.
+        ro = data.get("readout")
+        if isinstance(ro, dict) and ro:
+            raw_metrics = dict(ro)
     if not isinstance(raw_metrics, dict):
         raw_metrics = {}
     metrics_doc = {
