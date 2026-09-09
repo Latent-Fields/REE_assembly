@@ -1,0 +1,173 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-09T00:26:26Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session": "fa-20260909-batch (interactive /failure-autopsy batch, DLAPTOP main checkout)",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py over the target run_id and --family v3_exq_1015: 0 dry / 1 real. The driver's --dry-run block (N_POST_FLOOR_DRY, P0A_HOLDOUT_LIFT_FLOOR_DRY, P0B_MIN_STEPS_DRY) never touches a real run; validate_experiments.py --checks dry_run_unreachable_criterion names no warning for this driver.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep_20260908T202858Z_v3",
+      "queue_id": "V3-EXQ-1015",
+      "claim_ids": [
+        "MECH-465"
+      ],
+      "bears_on": [
+        "MECH465-COMMIT-GATE-HEADROOM"
+      ],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "p2_below_bar_trend_indeterminate",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "C1_p2_clears_at_some_budget (load-bearing): 0/3 seeds reached P2_BAR 0.51 (max sweep DV 0.2662 at WARM200/s3). C2 plateau and C2b climbing both false on the POOLED slope: ln-gain per doubling 0.1168, bootstrap CI95 [0.0375, 0.1828] straddles ln(1.15)=0.1398. Per seed (ladder_by_seed): seeds 0 and 1 satisfy the driver's own climbing branch (0.207 [0.084, 0.299]; 0.211 [0.060, 0.384]); seed 3 is flat/negative (-0.068 [-0.188, 0.044]). Every readiness precondition (57) met; all 15 cells green.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-465's own assertion (conjunct 3, the residual-DV experiment) was not tested and the run never claims to. Of the claim's registered NON-DEGENERACY PRECONDITION conjunct (1), TWO of its THREE clauses -- commit rate at every urgency level in [0.05, 0.95], and median gate margin in [0.5, 2.0] on >= 50% of fresh ticks -- are met in 6 of 15 cells (WARM800/s0, PHASED400/s0, WARM200/s3, WARM400/s3, WARM800/s3, PHASED400/s3); the THIRD clause (urgency-off baseline commit rate in [0.2, 0.8]) is NOT measured by this design, which has no urgency-off arm (red-team F1). The informative clause is the commit-rate band: the margin clause is satisfied in 15/15 cells including the point-mass COLD cells, because the driver defines the threshold from the cell's own calibration median (thr = cal_median/(1+U_MID)), so margin ~1 is the calibration arithmetic, not a regime finding (red-team F2). Commit rate rises monotonically with urgency in 5 of the 6 band cells (WARM800/s0 0.13/0.38/0.59/0.77/0.86/0.93; PHASED400/s0 0.40/0.62/0.70/0.81/0.87/0.91; WARM400/s3 0.39/0.65/0.79/0.84/0.89/0.95); WARM200/s3 is graded but non-monotone (0.19/0.28/0.50/0.47/0.45/0.71) (red-team F3). The regime the lineage exists to find is present -- narrowly, on 2/3 seeds and 2/3 clauses -- in the run's own cells; the load-bearing bar that says otherwise is the one the claim's what_would_answer (revised 2026-09-01) forbids.",
+        "biological_reference": "clear -- LC-NE adaptive gain (Aston-Jones & Cohen 2005; jepma2010 in targeted_review_connectome_mech_463). A biological decision threshold is set RELATIVE to the running statistics of its input; REE's commit gate is a FIXED absolute threshold (REEConfig.from_dims default 0.4 against a free-running rv median of 0.003-0.038, 10-120x apart), and the graded cells are exactly the ones where the driver recalibrated the threshold to the per-cell median on a WARMED z_world. e3_selector.py:822 returns config.commitment_threshold unchanged, so the post-construction override reaches the same gate the organism uses (red-team H, F10). The divergence is load-bearing for the substrate design, not for the claim.",
+        "prerequisites": "present -- SD-070 run_zworld_p0 warmup (validated 2026-07-22) engaged: world_encoder tensor fraction changed > 0.5 and holdout lift >= 0.23 in every WARM/PHASED cell; SD-056 e2 contrastive P0b engaged (>= 200 steps) in PHASED400. MECH-463 (depends_on) is the parent; SD-011 present.",
+        "implementation": "complete -- the commit gate, the urgency modulation (post-2023589 sign: threshold*(1+u); commit rate rises with urgency as the cells show) and the warmup recipes all ran as designed; urgency instrument fidelity <= 1e-6 in every cell. The from_dims default threshold is a design limitation the driver worked around per cell (threshold_calibrated 0.0052 vs from_dims 0.4), not a failure of this run.",
+        "environment": "adequate -- CausalGridWorldV2 under the 785a exogenous-urgency configuration; the manipulation (warmup budget and recipe) moved the DV 3-6x on 3/3 seeds.",
+        "measurement": "misleading -- (i) the load-bearing bar P2_BAR=0.51 is the 785a POOLED-across-seeds IQR/median, which MECH-465's what_would_answer (revised 2026-09-01, GFLAG-0056/0057) states 'MUST NOT be used as a per-seed bar ... SCORE IT PER SEED, and set the floor from within-seed data' -- and the very next sentence forbids the mirror move: 'Do NOT simply lower the floor to make it passable'; this driver (line 288, whose own comment calls it the '785a pooled figure'), the 2026-09-04 spike, the substrate entry and GFLAG-0136 all score it per seed. (ii) The driver's arithmetic premise ('graded once IQR/median is comparable to the +/-13% bracket') HOLDS -- the six band cells sit at 0.10-0.27, the bracket is 0.126 wide -- and only its trailing gloss 'i.e. as P2 approaches its bar' (equating ~0.13 with 0.51) is wrong (red-team F7). (iii) No per-seed floor separates in-band from out-of-band cells across seeds: seed 1 stays at 5/6 levels (misses u=0.04 at 0.03) at IQR/median 0.125, 0.152 and 0.179, while seed 0 reaches 6/6 at 0.101; gradedness at the lowest level tracks the LOWER TAIL of the rv trace (P(rv < 0.874 x median) 0.032 at WARM800/s0 vs 0.121 at WARM800/s1), not IQR/median (red-team F4). (iv) The record-only projection to the 0.51 bar (10.3 doublings from WARM800, CI [6.6, 32.2]) is a function of the invalid bar only.",
+        "integration": "coupled -- z_world warmup -> e2 forward-model prediction error -> E3 running variance -> commit gate move together; PHASED400's P0b is an independent lever on rv dispersion in 2/3 seeds (C3: seed 0 ln-ratio 0.926 CI [0.565, 1.167]; seed 1 0.359 CI [0.007, 0.880], fragile; seed 3 -0.215 CI [-0.542, 0.074]).",
+        "scale": "adequate for the question the cells answer; the budget lever is slow on the pooled slope (0.117/doubling; arm means 0.144, 0.131, 0.162 over WARM200/400/800) but climbing with confidence on seeds 0 and 1 and declining on seed 3."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES -- single bucket, not chargeable to REE. Implementation reads complete and Environment adequate, but neither is a failure location: the run's own cells reach two of three clauses of the claim's registered headroom precondition on 2/3 seeds; the FAIL is the load-bearing bar, which the claim's own what_would_answer disallows."
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE adaptive gain on a decision threshold (commit gate = precision-variance below an urgency-modulated threshold)",
+        "dependencies": [
+          "a trained world model whose prediction-error variance is dispersed within-seed (SD-070 warmup)",
+          "a threshold set relative to the running input statistics (adaptive gain / divisive normalisation)",
+          "graded urgency input (785a exogenous grid)"
+        ],
+        "is_formal_import": true,
+        "divergence": "REE's commit threshold is a fixed absolute constant (from_dims 0.4) rather than a running-statistics-relative quantity; per-cell recalibration to median/(1+U_MID) in this driver is the biological move and, together with a warmed z_world, is what makes the six graded cells graded. Load-bearing for the substrate design (an adaptive commit threshold), not for MECH-465's truth value.",
+        "lit_status": "present (targeted_review_connectome_mech_463: jepma2010, astonjones2005); no /lit-pull owed"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-465": "substrate_ceiling"
+      },
+      "recommended_epistemic_category_note": "HOLD substrate_ceiling THIS CYCLE; flip to standard when EXP-0590 is amended and the conjunct-3 experiment is queued (governance action, same disposition, sequenced). Direction of the eventual move is defensible: the ceiling's stated basis (digestion_note 2026-09-01: 'reachability OPEN and measured NEGATIVE'; blocker sd_zworld_warmup_optimizer_group shared with MECH-457/INV-088/Q-002) no longer describes MECH-465 -- the blocker is validated, this run used it, and the commit-rate band clause is reachable per seed on 2/3 seeds via validated substrate plus the WWA-endorsed post-construction threshold idiom. But the premise is NARROWER than 'headroom regime reached': 2 of 3 clauses of conjunct (1) are met, the urgency-off baseline is unmeasured, and conjunct (2)'s per-seed floor is unregistered with no value in these cells that separates seed 1 from seeds 0/3. The 2026-08-26 move to standard was reversed on 2026-09-01 for exactly the shape 'reachability CLOSED on over-read data'; a second over-read must not be handed to the next digestion pass (red-team F10). ALTERNATIVE for the gate: move to standard now, on the discriminator alone (substrate not too coarse; no build gates the experiment) -- the autopsy's original draft recommendation, retained as the user's option.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-465": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-09-09 failure_autopsy_V3-EXQ-1015_2026-09-09, Fable cross-model red-team CONTESTED on assertions + routing, ten findings folded in] V3-EXQ-1015 (diagnostic, GFLAG-0136 warmup-budget sweep, FAIL, ree-cloud-2, 33 min) is non_contributory to MECH-465's assertion by design (conjunct 3 not run) and ADJUDICATED: the self-route p2_below_bar_trend_indeterminate is a frame error. Its load-bearing bar P2_BAR 0.51 is the 785a POOLED IQR/median that this claim's what_would_answer (2026-09-01) forbids as a per-seed bar (the driver's own comment calls it the '785a pooled figure'); the same bar is carried per seed by the 2026-09-04 spike, the substrate entry and GFLAG-0136, so the '2.7-5.8x shortfall' those cite (0.51/0.190, 0.51/0.088) is distance to a forbidden bar, not a shortfall. Scored against the claim's registered conjunct (1) instead: the commit-rate band clause (every urgency level in [0.05, 0.95]) holds in 6/15 cells -- seed 0 at WARM800 and PHASED400, seed 3 at every sweep budget -- with commit rate monotone in urgency in 5 of those 6 (e.g. 0.13->0.93, 0.40->0.91, 0.39->0.95; n 27-65 per level; WARM200/s3 graded but non-monotone). Seed 1 reaches 5/6 levels at every budget (u=0.04 at ~0.03). The gate-margin clause is met in 15/15 cells BY CONSTRUCTION (threshold calibrated to the cell's own median) and is not evidence; the urgency-off baseline clause was NOT measured (no OFF arm). Conjunct (2): the WWA's 'max 0.085 per seed' is stale -- within-seed IQR/median reaches 0.266 (WARM200/s3), 0.10-0.27 in the band cells -- but NO per-seed floor derived from these cells separates in-band from out-of-band across seeds (seed 1 fails at 0.125-0.179; seed 0 passes at 0.101), and the WWA forbids choosing a floor from the cells that pass; the lowest-level gradedness tracks the rv lower-tail mass (P(rv < 0.874 x median) 0.032 vs 0.121), not IQR/median, so the floor statistic itself may need re-specifying. Budget lever: pooled ln-gain 0.117/doubling (CI [0.037, 0.183]) = seeds 0 and 1 climbing with confidence (0.207, 0.211) plus seed 3 declining (-0.068); 6.6-32 doublings FROM WARM800 to 0.51 (~77,000 to 3e12 P0a episodes) -- impractically far from a bar that is invalid anyway; a WARM1600 rung is refused on both grounds. P0b e2-contrastive warmup is an independent lever (C3 2/3 seeds; seed 0 x2.5, seed 1 x1.4 with a CI lower bound of 0.007, seed 3 x0.8). Recalibration is necessary, not sufficient: recalibrated COLD gives 2/6, 3/6, 4/6 levels in band (seeds 0, 1, 3), never 6/6. Disposition: HOLD substrate_ceiling this cycle, flip to standard when the conjunct-3 experiment is queued; pending_retest_after_substrate -> false (no substrate build gates the experiment); resolve OPEN GFLAG-0238 with the THIRD option (neither extend nor accept: re-frame the bar and run conjunct 3); AMEND EXP-0590 (the existing conjunct-3 proposal, blocked_substrate on the 0.51-per-seed release condition) rather than minting a new proposal; append the 1015 record to MECH465-COMMIT-GATE-HEADROOM without superseding the route_retired item.",
+      "per_claim_recommendation": {
+        "MECH-465": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "change": "Diagnostic run, non_contributory to the assertion; category HELD at substrate_ceiling this cycle (flip to standard is sequenced behind the EXP-0590 amend and the conjunct-3 queue), but the substrate-gating flag no longer holds -- the commit-rate band clause is reachable on validated substrate on 2/3 seeds -> set pending_retest_after_substrate false",
+          "pending_retest_after_substrate": false,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH465-COMMIT-GATE-HEADROOM",
+        "note": "Amend, do not create; do NOT supersede the route_retired item (red-team F9: its OUTCOME -- no static gate-rescale build -- stands and is in this artifact's own explicitly_not_recommended; only its BASIS is partly stale, and a flipped resolved field is what IGW auto-discovery reads as 'build again'). Governance should (a) append the failure_record_entry below; (b) append ONE LINE to the route_retired item: 'basis partially stale (untrained z_world, and the 1.455x span is the pre-2023589 sign -- under threshold*(1+u) the grid span is 1.288x); outcome (no static rescale build) stands per failure_autopsy_V3-EXQ-1015_2026-09-09'; (c) rewrite status to 'commit-rate band clause of MECH-465 conjunct (1) REACHED by warmup + per-cell recalibration on seeds 0 and 3 (V3-EXQ-1015); urgency-off baseline clause unmeasured; per-seed dispersion floor unregistered; no build gates the conjunct-3 experiment (EXP-0590, to be amended); optional substrate-side adaptive commit threshold is a SEPARATE decision'; (d) leave ready=false; (e) correct the '2.7-5.8x' magnitude wherever cited (it measures against the forbidden bar). node_class stays complex (probe-gated).",
+        "severity": null,
+        "substrate_paths": [],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep_20260908T202858Z_v3",
+          "experiment_type": "v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep",
+          "metric": "C1 P2_BAR 0.51 (pooled-derived; forbidden per seed by MECH-465 WWA 2026-09-01) unmet 0/3, max within-seed IQR/median 0.266; pooled ln-gain 0.117/doubling CI [0.037,0.183] (seeds 0/1 climbing 0.207/0.211 with CI>0; seed 3 -0.068); 6.6-32 doublings from WARM800 to 0.51. WWA conjunct (1) commit-rate band clause MET in 6/15 cells (seed 0: WARM800, PHASED400; seed 3: all four sweep arms), monotone in 5/6; seed 1 5/6 at every budget; urgency-off baseline clause UNMEASURED (no OFF arm); gate-margin clause satisfied in 15/15 by construction. Recalibrated COLD: 2/6, 3/6, 4/6.",
+          "target": "headroom regime = all three clauses of WWA conjunct (1) per seed on >= 2/3 seeds, including an urgency-off baseline arm, plus a REGISTERED per-seed conjunct-(2) floor (not derived from the passing cells; consider the rv lower-tail mass as the statistic) -- never 0.51",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "recount_note": "R1-R3 recipe over confirmed failure_autopsy_*.json, 2026-09-09: MECH-465 hits = 0 (no prior autopsy target tags MECH-465; granularity_debt_cluster.py: 0 tagging targets). This target is stamped substrate_ceiling (HELD, not a new ceiling reading -- the category is retained for sequencing, the substrate-gating flag is cleared) with an amend that owes no build; under the R1-R3 recipe it COUNTS (clause 1: a literal substrate_ceiling category). Hits after this artifact: 1 < threshold 2. Governance should note the count moves to 1 and that the eventual flip to standard will decrement it (R2 supersession applies to a later re-adjudication only; the flip is a claims.yaml write, not a new autopsy).",
+        "refused_requeue": true,
+        "refused_requeue_note": "REFUSED: a WARM1600 rung, a fourth seed, or any lettered re-run of this design against the 0.51 bar (GFLAG-0238's 'extend' option). Seeds 0/1 climb with confidence but sit 5.7-7.8 doublings from 0.51 (40k-180k P0a episodes) and the bar is invalid per seed. LICENSED: the conjunct-3 residual-DV experiment via an AMENDED EXP-0590 (a different question, the one this diagnostic exists to unlock).",
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "A registered rule that lives in one claim field does not propagate: MECH-465's what_would_answer was corrected on 2026-09-01 (0.51 is POOLED; must not be scored per seed; do not simply lower the floor either) and three artifacts written after it -- the 2026-09-04 spike, GFLAG-0136, and this driver (whose own comment calls 0.51 the '785a pooled figure') -- score 0.51 per seed; the 2026-08-27 probe pre-registered it before the correction. The spike's '2.7-5.8x shortfall' and this run's C1 measure distance to a bar the claim forbids.",
+        "The driver's arithmetic premise is right and its gloss is wrong: graded commit response across the six urgency levels appears once within-seed IQR/median is comparable to the +/-13% bracket (0.10-0.27 in the six band cells), not 'as P2 approaches 0.51'. But no IQR/median floor derived from these cells separates seeds: seed 1 stays at 5/6 levels at 0.125-0.179 while seed 0 passes at 0.101; the lowest-level gradedness tracks the rv lower-tail mass (P(rv < 0.874 x median) 0.032 vs 0.121). The per-seed floor must be REGISTERED, not chosen from passing cells, and possibly re-specified as a tail statistic.",
+        "Two of conjunct (1)'s three clauses are measured here; the urgency-off baseline is not (no OFF arm), and the gate-margin clause passes in 15/15 cells by construction under per-cell recalibration. Only the commit-rate band clause carries information in this design.",
+        "The warmup-budget lever is climbing with confidence on seeds 0 and 1 (0.207, 0.211 ln-gain per doubling) and declining on seed 3 (-0.068); the pooled indeterminate label averages two climbs and a decline. Against 0.51 the climb is impractical (5.7-7.8 doublings on the climbing seeds; 10.3 [6.6, 32.2] pooled from WARM800, i.e. ~77,000 P0a episodes at the optimistic end); against any defensible per-seed floor the question is moot.",
+        "P0b e2-contrastive warmup on the warmed z_world is an independent lever on rv dispersion (C3 2/3 seeds with CI): seed 0 x2.5, seed 1 x1.4 (CI lower bound 0.007, fragile), seed 3 x0.8. Read with the disclosed asymmetry (PHASED400 accumulates residue over ~4000 P0b ticks).",
+        "Recalibration is necessary but not sufficient: the recalibrated COLD gate gives 2/6, 3/6 and 4/6 levels in band (a point-mass rv), never 6/6; the boundary regime needs BOTH a warmed z_world and a threshold set relative to the free-running median.",
+        "Biology divergence, load-bearing for the substrate: REE's commit threshold is a fixed absolute constant (from_dims default 0.4 vs free-running rv median 0.003-0.038) whereas biological gain control is relative to running input statistics; every '25-68x below the gate' figure in the MECH-463/465 lineage is a measurement of that constant. The '1.455x urgency bar' in the substrate entry is on the pre-2023589 sign (span now 1.288x).",
+        "Coordination: an OPEN governance flag (GFLAG-0238, raised 2026-09-08T20:58Z) and an existing proposal (EXP-0590, blocked_substrate on the 0.51-per-seed release condition) already own the decision and the experiment this autopsy routes; an autopsy that mints a 'new EXQ' without naming them creates a second owner and a proposal that can never release.",
+        "Recording (hygiene): the run-pack manifest.json is thin -- metrics.json is empty and recording_schema/config/seeds/elapsed_seconds exist only in the flat JSON; the index reads the pack."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "node_class": "complex (probe-gated) / mystery (known data) for the label: the data to decide GFLAG-0238 are in this manifest and the frame (0.51 per-seed bar) is wrong; no further rungs. complex (probe-gated) / puzzle (known rules) for one missing fact before conjunct 3 can be pre-registered honestly: a per-seed conjunct-(2) floor statistic that separates graded from non-graded cells (candidate: rv lower-tail mass), which the recorded rv traces of this run can settle OFFLINE -- no new compute.",
+        "recommended_action": "1. /governance: RESOLVE GFLAG-0238 with a THIRD option -- neither 'extend the sweep' nor 'accept indeterminate and move EXP-0590 to gated' -- namely: the bar is invalid per seed, the commit-rate band clause is reachable on 2/3 seeds, re-frame and run conjunct 3. 2. /governance: AMEND EXP-0590 (do not mint a new proposal): replace the release_condition's '0.51 floor' clause with per-seed conjunct-(1) readiness INCLUDING an urgency-off baseline arm, plus a per-seed conjunct-(2) floor registered from an OFFLINE re-analysis of V3-EXQ-1015's recorded rv traces (statistic to be chosen so that it separates the 6 band cells from the 9 non-band cells across all three seeds; if no IQR/median value does, register a lower-tail statistic and say why); keep P3 (the residual DV) mandatory; set blocked_by to [] and status to gated on that offline re-analysis; write the design against WARM800/PHASED400 warmup with per-cell recalibration exactly as V3-EXQ-1015. 3. /queue-experiment against the amended EXP-0590, NEW EXQ number, claim_ids [MECH-465], seeds 0 and 3 plus new seeds screened per seed by conjunct (1). 4. /governance: substrate amend as specified (append record; annotate, do not supersede, the route_retired item; correct 2.7-5.8x wherever cited; update the WWA's stale 'max 0.085' sentence); category HELD this cycle, flip to standard when step 3 lands; pending_retest_after_substrate -> false now. 5. OPTIONAL substrate decision (not owed): an adaptive, running-median-relative commit threshold in ree_core; complicated (buildable) if elected.",
+        "explicitly_not_recommended": [
+          "WARM1600 rung or fourth seed of this design (GFLAG-0238 option 1)",
+          "accepting the indeterminate label and gating EXP-0590 on the 0.51 bar (GFLAG-0238 option 2 as worded)",
+          "closing the route as exhausted on the 0.51 bar",
+          "minting the retired static gate-rescale build",
+          "choosing the per-seed floor from the cells that pass (WWA: 'Do NOT simply lower the floor')",
+          "/implement-substrate (nothing gates the experiment)",
+          "/lit-pull (present)",
+          "governance demotion (diagnostic; nothing tested)"
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "mode": "B-new-question, applied at Step 9b after the gate",
+    "qid": "mech465_commit_gate_headroom_reachability",
+    "title": "Can a commit-gate boundary regime (commit rate graded across the urgency grid per seed) be reached on the current substrate, and by which lever -- z_world warmup budget, the e2-contrastive recipe, or threshold recalibration?",
+    "claims": [
+      "MECH-465"
+    ],
+    "hypotheses": [
+      {
+        "hid": "H-warmup-plus-recalibration-reaches-band",
+        "axis": "process",
+        "state": "confirmed",
+        "basis": "Commit-rate band clause of conjunct (1) met in 6/15 cells on seeds 0 and 3; negative control = recalibrated COLD (2/6, 3/6, 4/6 levels; no COLD cell 6/6); non_degenerate true. Scope: two of three conjunct-(1) clauses; urgency-off baseline unmeasured."
+      },
+      {
+        "hid": "H-budget-alone-reaches-0.51",
+        "axis": "curriculum",
+        "state": "alive",
+        "basis": "Pre-registered pooled plateau test indeterminate; per seed: 0 and 1 climb with confidence, 3 declines; 5.7-32 doublings to 0.51. The bar is forbidden per seed by the WWA, so the leg is ill-posed as written; kept alive rather than eliminated because no adjudicated direction exists on it."
+      },
+      {
+        "hid": "H-p0b-recipe-independent-lever",
+        "axis": "process",
+        "state": "confirmed",
+        "basis": "C3: |ln(PHASED400/WARM400)| >= ln 1.25 with bootstrap CI excluding 0 on 2/3 seeds (seed 0 x2.5 CI [0.565,1.167]; seed 1 x1.4 CI [0.007,0.880]; seed 3 x0.8 CI [-0.542,0.074])."
+      }
+    ],
+    "applied_at_step_9b": true
+  },
+  "mechanical_checks": {
+    "dry_run_gate": "clean",
+    "validate_recording": "pack manifest missing recording_schema, elapsed_seconds, config, seeds (all present in the flat JSON)",
+    "dry_run_unreachable_criterion_lint": "no warning for this driver",
+    "granularity_debt_trigger": {
+      "fires": false,
+      "routing": null,
+      "note": "granularity_debt_cluster.py MECH-465: 0 tagging targets."
+    },
+    "step_7b": "0 fires on draft and on the revised pair (C5 applicable once the .md existed)",
+    "step_7c": "RUN -- model Fable 5.1 (cross-model), verdict CONTESTED, 10 verdict-relevant findings F1-F10 all applied (see .md Section 9); findings file redteam_1015.md in the session scratchpad"
+  },
+  "confirmed_utc": "2026-09-09T00:55:13Z",
+  "confirmed_by": "fa-20260909-batch (user gate, interactive; recommended option chosen on all three questions; ledger recorded)",
+  "step8_gate_decision": "Hold substrate_ceiling, flip when conjunct 3 is queued (Recommended) -- pending_retest_after_substrate -> false now; resolve GFLAG-0238 with the third option; amend EXP-0590; flip to standard when the conjunct-3 EXQ lands."
+}

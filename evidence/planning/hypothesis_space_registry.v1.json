@@ -6391,13 +6391,26 @@
       ],
       "registered_utc": "2026-09-05T09:56:19Z",
       "fanout_sources": [
-        "failure_autopsy_V3-EXQ-822e_2026-09-05.json"
+        "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+        "failure_autopsy_V3-EXQ-822f_2026-09-09.json"
       ],
       "is_hero": false,
-      "initial_frozen_count": 5,
+      "initial_frozen_count": 7,
       "initial_frozen_count_at_registration": 5,
       "note_on_count": "5 = the four legs drafted by failure_autopsy_V3-EXQ-822e_2026-09-05 plus H-init-structure, added at that artifact's Step 7c red team and ratified at its Step 8 gate. Mode A throughout: no leg has been adjudicated, so the denominator is frozen BEFORE the adjudicating run exists. initial_frozen_count_at_registration is set here and never moves.",
-      "fanout_growth_events": [],
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-09-09T00:56:42Z",
+          "pre_registered_utc": "2026-09-09T00:56:42Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+          "added_hids": [
+            "H-learning-signal-noisy",
+            "H-learning-signal-sign"
+          ],
+          "delta": 2,
+          "note": "V3-EXQ-822f rejected H1 at adequate power while showing the head was shaped by training (flips halved 10/10); the two learning-signal legs are the rivals its cells opened, adjudicated together by the routed learning-signal probe."
+        }
+      ],
       "discovery_growth_events": [],
       "hypotheses": [
         {
@@ -6413,15 +6426,17 @@
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
+            "resolving_runs": [
+              "V3-EXQ-822f"
+            ],
+            "evidence_direction": "inconclusive",
+            "epistemic_category": "standard",
+            "self_route_label": "discrimination_within_init_head_spread_inconclusive",
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": null
+            "resolved_utc": "2026-09-08T23:11:45Z",
+            "basis": "Rejected at adequate power on the index: paired trained-minus-init D mean 0.063 sd 0.20 n=5, t(4) = -4.9 against the pre-registered 0.5 (criterion reachable: positive control 5.28). Not eliminated: the pre-registered weakens branch was foreclosed by the dead-ReLU control on this run (4/5 ON cells >= 0.50) and the learning-signal rivals are unmeasured."
           }
         },
         {
@@ -6437,15 +6452,17 @@
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
+            "resolving_runs": [
+              "V3-EXQ-822f"
+            ],
+            "evidence_direction": "inconclusive",
+            "epistemic_category": "standard",
+            "self_route_label": "discrimination_within_init_head_spread_inconclusive",
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": null
+            "resolved_utc": "2026-09-08T23:11:45Z",
+            "basis": "Consistent on the INDEX: trained index within the init head's spread on every ON seed; init head clears C1 4/5. Not confirmed as the account of the READOUT: the trained head flips the argmax less than the init head in 10/10 cells (p = 0.001) and moved the OFF-arm index by up to -2.95, so training shaped it; the signal rivals are live."
           }
         },
         {
@@ -6513,6 +6530,44 @@
             "resolved_utc": null,
             "basis": null
           }
+        },
+        {
+          "hid": "H-learning-signal-noisy",
+          "label": "The P1 REINFORCE signal has weakly persistent direction, so the readout cannot converge on a discriminating function whatever its capacity",
+          "desc": "Per-update gradient on rule_bias_head has low step-direction persistence and the episode-summed harm return has low variance; a dense-credit positive control moves D past 0.5 with persistence near 1.",
+          "axis": "learning-signal",
+          "basis": "Last-layer Frobenius movement 0.023-0.045 over 69-70 Adam steps at lr 5e-4 matches a direction-inconsistent walk (random-sign ~0.025; SNR ~1 ~0.041) and uses 12-23% of the consistent-sign budget; a zero gradient would move Adam 0. Provenance: 822f driver red-team note N6 (a flat P1 reward reads as instrument), whose shipped training_signal_absent class fires only at zero updates.",
+          "pre_registered_utc": "2026-09-09T00:56:42Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-learning-signal-sign",
+          "label": "REINFORCE on this return learns to REDUCE the bias's candidate-dependent consequence (a rule-driven argmax change is on average penalised), so the readout converges toward a less rule-sensitive function",
+          "desc": "The advantage on flip selections is negative on average and the trained-head flip rate falls across P1 episodes while the discrimination index stays flat.",
+          "axis": "learning-signal",
+          "basis": "Surfaced by V3-EXQ-822f's own cells: trained head flips fewer selections than the init head in 10/10 cells (260 vs 493 pooled; p = 0.001) at unchanged index. Not born resolved (needs the advantage-sign and flip-trajectory recordings), hence Mode A, not Mode C.",
+          "pre_registered_utc": "2026-09-09T00:56:42Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
         }
       ],
       "synthesis": null,
@@ -6526,7 +6581,8 @@
       },
       "growth_restriction": "",
       "registered_by_session": "governance-20260905",
-      "registered_from_pending_block": "failure_autopsy_V3-EXQ-822e_2026-09-05.json"
+      "registered_from_pending_block": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
+      "fanout_growth_note": "Grew 5 -> 7 on 2026-09-09 (labelled fan-out from failure_autopsy_V3-EXQ-822f); the question has not converged; read the narrowing ratio against initial_frozen_count_at_registration 5."
     },
     {
       "qid": "residue_error_persistence_readout",
@@ -6692,6 +6748,224 @@
         "decision_log_ref": null,
         "distance_phrase": "one non-degenerate run away; 1007 measured the right arms with a test that could not see exposure",
         "observation_bottleneck": "The pre-registered non-degeneracy test (outlive greedy AND +3 unique cells) cannot separate 'straight run then boundary press' (the claim's own predicted stupor) from 'lengthened lethal orbit'; and the 978 phenotype is seed-specific (1 cycle-present seed of 3)."
+      }
+    },
+    {
+      "qid": "mech465_commit_gate_headroom_reachability",
+      "title": "Can a commit-gate boundary regime (commit rate graded across the urgency grid per seed) be reached on the current substrate, and by which lever -- z_world warmup budget, the e2-contrastive recipe, or threshold recalibration?",
+      "short_title": "MECH-465 commit-gate headroom reachability",
+      "claims": [
+        "MECH-465"
+      ],
+      "registered_utc": "2026-09-09T00:56:42Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1015_2026-09-09.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-warmup-plus-recalibration-reaches-band",
+          "label": "SD-070 z_world warmup plus per-cell threshold recalibration reaches the commit-rate band clause of MECH-465 conjunct (1)",
+          "desc": "With z_world warmed (run_zworld_p0, 200-800 P0a episodes, optionally P0b e2-contrastive) and the commit threshold recalibrated per cell to cal_median/(1+U_MID), commit rate sits in [0.05, 0.95] at every urgency level on a seed majority.",
+          "axis": "process",
+          "basis": "Confirmed on the band clause: 6/15 cells (seed 0 at WARM800/PHASED400; seed 3 at every sweep budget), monotone in urgency in 5/6; seed 1 5/6 at every budget. Negative control = recalibrated COLD (2/6, 3/6, 4/6; never 6/6). Scope: two of conjunct (1)'s three clauses; the urgency-off baseline clause is unmeasured (no OFF arm); the gate-margin clause is satisfied 15/15 by construction.",
+          "pre_registered_utc": "2026-09-08T20:28:58Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1015_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1015"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-1015"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "substrate_ceiling",
+            "self_route_label": "p2_below_bar_trend_indeterminate",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-08T20:28:58Z",
+            "basis": "Band clause met on 2/3 seeds against a recalibrated-COLD negative control; confirmed for the clause measured, not for the full conjunct (urgency-off baseline unmeasured)."
+          }
+        },
+        {
+          "hid": "H-budget-alone-reaches-0.51",
+          "label": "Increasing the P0a warmup budget alone drives within-seed IQR(rv)/median to the 0.51 bar",
+          "desc": "The pooled ln-gain per budget doubling over WARM200/400/800 climbs with confidence and projects to the 0.51 P2 bar within a feasible budget.",
+          "axis": "curriculum",
+          "basis": "Alive, ill-posed as written: the pre-registered pooled plateau test is indeterminate (0.117 [0.037, 0.183] vs ln 1.15); per seed, 0 and 1 climb with confidence (0.207, 0.211) and 3 declines (-0.068); 5.7-32 doublings to 0.51 from WARM800 (~77,000+ P0a episodes). The 0.51 per-seed bar is forbidden by MECH-465's what_would_answer (pooled figure), so the leg needs a registered per-seed floor before it can be adjudicated.",
+          "pre_registered_utc": "2026-09-08T20:28:58Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1015_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1015"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1015"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "substrate_ceiling",
+            "self_route_label": "p2_below_bar_trend_indeterminate",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-08T20:28:58Z",
+            "basis": "Not discriminated: pooled CI straddles the plateau bar; the bar itself is invalid per seed; kept alive for want of an adjudicated direction."
+          }
+        },
+        {
+          "hid": "H-p0b-recipe-independent-lever",
+          "label": "P0b e2-contrastive warmup on a warmed z_world is an independent lever on rv dispersion",
+          "desc": "|ln(DV(PHASED400)/DV(WARM400))| >= ln 1.25 with a bootstrap CI excluding 0 on a seed majority.",
+          "axis": "process",
+          "basis": "Confirmed on 2/3 seeds: seed 0 ln-ratio 0.926 CI [0.565, 1.167] (x2.5); seed 1 0.359 CI [0.007, 0.880] (x1.4, fragile); seed 3 -0.215 CI [-0.542, 0.074] (x0.8). Disclosed asymmetry: PHASED400 accumulates residue over ~4000 P0b ticks.",
+          "pre_registered_utc": "2026-09-08T20:28:58Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1015_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1015"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-1015"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "substrate_ceiling",
+            "self_route_label": "p2_below_bar_trend_indeterminate",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-08T20:28:58Z",
+            "basis": "C3 pre-registered lever criterion met on 2/3 seeds with CI; seed 1 marginal."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is MECH-465 conjunct (3), the residual-DV experiment (EXP-0590), designable now on validated substrate -- and with what registered per-seed dispersion floor?",
+        "live_gate": "GFLAG-0238 resolution (third option): amend EXP-0590 with per-seed conjunct-(1) readiness including an urgency-off arm and a per-seed floor registered from an offline re-analysis of V3-EXQ-1015's recorded rv traces; the category flip substrate_ceiling -> standard is sequenced behind that queue.",
+        "decidable": true,
+        "decision_log_ref": null,
+        "distance_phrase": "2 of 3 legs confirmed after 1 run (33 min); the band clause is reached on 2/3 seeds; the per-seed floor statistic is the one missing fact, obtainable offline",
+        "observation_bottleneck": "no urgency-off arm in V3-EXQ-1015; no per-seed floor registered; the gate-margin clause is uninformative under per-cell recalibration"
+      }
+    },
+    {
+      "qid": "ext002_lineage_survival_lever",
+      "title": "What governs the 6/8-seed casualty split on the 983-lineage pinned boards under the canonical E3 policy -- strict single-class fresh-decision latching, a dominant STAY selection, held-commitment lethality, or an uninformative actor?",
+      "short_title": "983-lineage survival lever",
+      "claims": [
+        "EXT-002",
+        "ARC-013"
+      ],
+      "registered_utc": "2026-09-09T00:56:42Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1014_2026-09-09.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-latch-single-class-strict",
+          "label": "E3 latches a single action class (>= 0.95 of fresh decisions) per seed, and that latch is the survival lever",
+          "desc": "Fresh-decision repertoire is one class on >= 0.5 of adjudicable seeds (or of adjudicable casualties).",
+          "axis": "selection",
+          "basis": "Eliminated at the pre-registered >= 0.95 bar only: latched 2/8, casualty-latched 1/6, latched seeds split 1 die / 1 survive. BAR-QUALIFIED: the label flips at 0.75-0.78.",
+          "pre_registered_utc": "2026-09-08T22:34:15Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1014_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1014"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-1014"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "repertoire_exists_stage2_proceeds",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-09-08T22:34:15Z",
+            "basis": "Discriminating at the strict bar: 2/8 latched, split on survival; yardstick controls ran on every board; non_degenerate true (adjudicability 8/8). Direction is the diagnostic's discriminating non_contributory read; claim-free run."
+          }
+        },
+        {
+          "hid": "H-stay-selection-dominance",
+          "label": "A dominant fresh STAY selection inside the proximity field is the survival lever (983a's picture)",
+          "desc": "Stay-dominant seeds die and constant-move-dominant seeds survive; masking STAY from the candidate set rescues survival.",
+          "axis": "selection",
+          "basis": "Supported 5/8 under a dominance reading: 42 (0.76), 123 (0.78), 23 (0.99) die; 456 (0.85 on right), 31 (1.0 on down) survive; pure-STAY episodes match the STAY control exactly; casualty longevity orders with falling STAY share. Not manipulated.",
+          "pre_registered_utc": "2026-09-08T22:34:15Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1014_2026-09-09.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-held-commitment-lethality",
+          "label": "The ~10-tick hold adds lethality beyond the selection it repeats",
+          "desc": "Survival improves when E3 re-selects every tick (e3_steps_per_tick = 1) or de-commits on harm.",
+          "axis": "timescale-realised",
+          "basis": "Cells lean against: harm-on-held share (0.65-0.85) equals the held-tick base rate (0.82-0.89); per-tick harm is lower on held ticks on 6/6 casualties; re-deliberation at step 10 re-selects STAY. Undiscriminated without the hold manipulation.",
+          "pre_registered_utc": "2026-09-08T22:34:15Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1014_2026-09-09.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-actor-uninformative",
+          "label": "The executed policy carries no world information (routes to zworld_actor_adequacy_locus, not to stage 2)",
+          "desc": "Decision-tick-only scoring of executed action against the local hazard gradient is indistinguishable from a hazard-blind null.",
+          "axis": "measurement",
+          "basis": "Unmeasured: the closest_control_profile RANDOM_WALK labels are a harm-rate artefact and executed histograms are far from uniform.",
+          "pre_registered_utc": "2026-09-08T22:34:15Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1014_2026-09-09.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is the 983-lineage bed usable for the residue-persistence rider (stage 2) as ratified -- seeds drawn until MIN_POOLED_SEEDS 3 under divergence + diversity gates -- given the ~1/8 per-seed pass rate V3-EXQ-1014 measures and the constant-mover selection effect that implies?",
+        "live_gate": "User decision 2026-09-09: stage 2 proceeds as ratified with the priced draw accepted; the three casualty-mechanism probes are optional chips.",
+        "decidable": true,
+        "decision_log_ref": null,
+        "distance_phrase": "1 of 4 legs eliminated after 1 run (1.9 h) at the strict bar; the dominance reading reproduces the predecessor picture on 5/8 seeds; three legs await one manipulation each",
+        "observation_bottleneck": "no manipulation of STAY availability or hold length in the lineage yet; yardstick profile uninformative"
       }
     }
   ]

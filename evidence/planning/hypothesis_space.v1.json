@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-08T19:58:53Z",
+  "generated_at": "2026-09-09T00:56:42Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,222 +31,229 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 112,
-      "total_initial": 188,
-      "total_initial_at_registration": 157,
-      "total_fanout_added": 31,
-      "total_resolved_out": 61,
-      "total_confirmed": 42,
+      "total_surviving": 118,
+      "total_initial": 197,
+      "total_initial_at_registration": 164,
+      "total_fanout_added": 33,
+      "total_resolved_out": 62,
+      "total_confirmed": 44,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 32.4,
-      "net_narrowing_pct": 28.7,
+      "reduction_pct_vs_current": 31.5,
+      "net_narrowing_pct": 28.0,
       "convergence_classes": {
         "static": 27,
-        "narrowing": 21,
+        "narrowing": 22,
         "circling": 5,
         "refining": 2,
-        "mixed": 1
+        "mixed": 1,
+        "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "112 alive against 157 originally enumerated, and against 188 including 31 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 56
+      "honest_pair_note": "118 alive against 164 originally enumerated, and against 197 including 33 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 58
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 21,
-      "open_questions": 56
+      "ready": 23,
+      "open_questions": 58
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 187,
+      "surviving": 196,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-11",
-      "surviving": 186,
+      "surviving": 195,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-13",
-      "surviving": 184,
+      "surviving": 193,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-15",
-      "surviving": 180,
+      "surviving": 189,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-16",
-      "surviving": 179,
+      "surviving": 188,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-17",
-      "surviving": 176,
+      "surviving": 185,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-18",
-      "surviving": 170,
+      "surviving": 179,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-19",
-      "surviving": 166,
+      "surviving": 175,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-20",
-      "surviving": 165,
+      "surviving": 174,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-24",
-      "surviving": 164,
+      "surviving": 173,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-27",
-      "surviving": 162,
+      "surviving": 171,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-29",
-      "surviving": 161,
+      "surviving": 170,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-07-31",
-      "surviving": 160,
+      "surviving": 169,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-01",
-      "surviving": 158,
+      "surviving": 167,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-02",
-      "surviving": 152,
+      "surviving": 161,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-04",
-      "surviving": 151,
+      "surviving": 160,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-06",
-      "surviving": 150,
+      "surviving": 159,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-08",
-      "surviving": 148,
+      "surviving": 157,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-09",
-      "surviving": 146,
+      "surviving": 155,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-10",
-      "surviving": 145,
+      "surviving": 154,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-11",
-      "surviving": 144,
+      "surviving": 153,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-12",
-      "surviving": 143,
+      "surviving": 152,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-14",
-      "surviving": 141,
+      "surviving": 150,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-17",
-      "surviving": 140,
+      "surviving": 149,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-20",
-      "surviving": 139,
+      "surviving": 148,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-24",
-      "surviving": 138,
+      "surviving": 147,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-29",
-      "surviving": 135,
+      "surviving": 144,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-08-30",
-      "surviving": 133,
+      "surviving": 142,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-02",
-      "surviving": 132,
+      "surviving": 141,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-05",
-      "surviving": 131,
+      "surviving": 140,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-07",
-      "surviving": 127,
+      "surviving": 136,
       "closure_pct": 73.0,
       "build_pct": 80.8
     },
     {
       "date": "2026-09-08",
-      "surviving": 112,
+      "surviving": 135,
+      "closure_pct": 73.0,
+      "build_pct": 80.8
+    },
+    {
+      "date": "2026-09-09",
+      "surviving": 118,
       "closure_pct": 73.0,
       "build_pct": 80.8
     }
@@ -5862,16 +5869,28 @@
         "SD-078"
       ],
       "is_hero": false,
-      "initial_frozen_count": 5,
+      "initial_frozen_count": 7,
       "initial_frozen_count_at_registration": 5,
-      "fanout_added": 0,
-      "fanout_growth_events": [],
-      "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "fanout_added": 2,
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-09-09T00:56:42Z",
+          "pre_registered_utc": "2026-09-09T00:56:42Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+          "added_hids": [
+            "H-learning-signal-noisy",
+            "H-learning-signal-sign"
+          ],
+          "delta": 2,
+          "note": "V3-EXQ-822f rejected H1 at adequate power while showing the head was shaped by training (flips halved 10/10); the two learning-signal legs are the rivals its cells opened, adjudicated together by the routed learning-signal probe."
+        }
+      ],
+      "fanout_growth_note": "Grew 5 -> 7 on 2026-09-09 (labelled fan-out from failure_autopsy_V3-EXQ-822f); the question has not converged; read the narrowing ratio against initial_frozen_count_at_registration 5.",
+      "net_narrowing_ratio": -0.4,
+      "bits_removed_vs_registration": -0.49,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
+        "convergence_class": "scattering",
+        "reason": "legs added across families but no family has been closed out",
         "families_closed": [],
         "families_touched": [],
         "families_fresh": [
@@ -5879,10 +5898,28 @@
           "representation"
         ],
         "unclassified_axes": [],
-        "growth_events": []
+        "growth_events": [
+          {
+            "recorded_utc": "2026-09-09T00:56:42Z",
+            "fanout_source": "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+            "event_class": "refining",
+            "added": [
+              {
+                "hid": "H-learning-signal-noisy",
+                "family": "constitution"
+              },
+              {
+                "hid": "H-learning-signal-sign",
+                "family": "constitution"
+              }
+            ],
+            "re_entered": [],
+            "families_already_dead": []
+          }
+        ]
       },
-      "surviving": 5,
-      "alive": 5,
+      "surviving": 7,
+      "alive": 7,
       "resolved_out": 0,
       "confirmed": 0,
       "superseded": 0,
@@ -5900,7 +5937,7 @@
           "evidence_runs": [
             "V3-EXQ-822f"
           ],
-          "basis": null,
+          "basis": "Rejected at adequate power on the index: paired trained-minus-init D mean 0.063 sd 0.20 n=5, t(4) = -4.9 against the pre-registered 0.5 (criterion reachable: positive control 5.28). Not eliminated: the pre-registered weakens branch was foreclosed by the dead-ReLU control on this run (4/5 ON cells >= 0.50) and the learning-signal rivals are unmeasured.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -5913,7 +5950,7 @@
           "evidence_runs": [
             "V3-EXQ-822f"
           ],
-          "basis": null,
+          "basis": "Consistent on the INDEX: trained index within the init head's spread on every ON seed; init head clears C1 4/5. Not confirmed as the account of the READOUT: the trained head flips the argmax less than the init head in 10/10 cells (p = 0.001) and moved the OFF-arm index by up to -2.95, so training shaped it; the signal rivals are live.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -5944,6 +5981,28 @@
           "label": "The consumer head's capacity caps the achievable discrimination",
           "desc": "Over half the head's hidden ReLU units are dead in both arms (`hidden_dead_relu_frac_p2_mean` 0.5140 ON / 0.5127 OFF), so the mapping from rule_state to per-candidate bias runs through roughly half the intended width. On this reading the index is real but systematically depressed, and the pre-registered bars are read against a handicapped head. PROBE SKETCH (not assigned to V3-EXQ-822f): an initialisation or activation-function variation that MOVES the dead fraction, asking whether the index moves with it -- a variation 822f does not perform.",
           "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-learning-signal-noisy",
+          "label": "The P1 REINFORCE signal has weakly persistent direction, so the readout cannot converge on a discriminating function whatever its capacity",
+          "desc": "Per-update gradient on rule_bias_head has low step-direction persistence and the episode-summed harm return has low variance; a dense-credit positive control moves D past 0.5 with persistence near 1.",
+          "axis": "learning-signal",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-learning-signal-sign",
+          "label": "REINFORCE on this return learns to REDUCE the bias's candidate-dependent consequence (a rule-driven argmax change is on average penalised), so the readout converges toward a less rule-sensitive function",
+          "desc": "The advantage on flip selections is negative on average and the trained-head flip rate falls across P1 episodes while the discrimination index stays flat.",
+          "axis": "learning-signal",
           "state": "alive",
           "evidence_runs": [],
           "basis": null,
@@ -6107,9 +6166,233 @@
         "live_gate": "V3-EXQ-1007a with a re-posed exposure DV (pooled non-stationary steps + cells traversed vs random_walk per-step coverage), verdict grid gated on non-degeneracy, verdict k from a per-k orbit reach check, >= 2 cycle-present seeds, stochastic_sample_persist_k arm.",
         "observation_bottleneck": "The pre-registered non-degeneracy test (outlive greedy AND +3 unique cells) cannot separate 'straight run then boundary press' (the claim's own predicted stupor) from 'lengthened lethal orbit'; and the 978 phenotype is seed-specific (1 cycle-present seed of 3)."
       }
+    },
+    {
+      "qid": "mech465_commit_gate_headroom_reachability",
+      "title": "Can a commit-gate boundary regime (commit rate graded across the urgency grid per seed) be reached on the current substrate, and by which lever -- z_world warmup budget, the e2-contrastive recipe, or threshold recalibration?",
+      "short_title": "MECH-465 commit-gate headroom reachability",
+      "claims": [
+        "MECH-465"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.6667,
+      "bits_removed_vs_registration": 1.58,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 0,
+      "confirmed": 2,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 1.58,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-warmup-plus-recalibration-reaches-band",
+          "label": "SD-070 z_world warmup plus per-cell threshold recalibration reaches the commit-rate band clause of MECH-465 conjunct (1)",
+          "desc": "With z_world warmed (run_zworld_p0, 200-800 P0a episodes, optionally P0b e2-contrastive) and the commit threshold recalibrated per cell to cal_median/(1+U_MID), commit rate sits in [0.05, 0.95] at every urgency level on a seed majority.",
+          "axis": "process",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1015"
+          ],
+          "basis": "Band clause met on 2/3 seeds against a recalibrated-COLD negative control; confirmed for the clause measured, not for the full conjunct (urgency-off baseline unmeasured).",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-budget-alone-reaches-0.51",
+          "label": "Increasing the P0a warmup budget alone drives within-seed IQR(rv)/median to the 0.51 bar",
+          "desc": "The pooled ln-gain per budget doubling over WARM200/400/800 climbs with confidence and projects to the 0.51 P2 bar within a feasible budget.",
+          "axis": "curriculum",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-1015"
+          ],
+          "basis": "Not discriminated: pooled CI straddles the plateau bar; the bar itself is invalid per seed; kept alive for want of an adjudicated direction.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-p0b-recipe-independent-lever",
+          "label": "P0b e2-contrastive warmup on a warmed z_world is an independent lever on rv dispersion",
+          "desc": "|ln(DV(PHASED400)/DV(WARM400))| >= ln 1.25 with a bootstrap CI excluding 0 on a seed majority.",
+          "axis": "process",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1015"
+          ],
+          "basis": "C3 pre-registered lever criterion met on 2/3 seeds with CI; seed 1 marginal.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Is MECH-465 conjunct (3), the residual-DV experiment (EXP-0590), designable now on validated substrate -- and with what registered per-seed dispersion floor?",
+        "distance_phrase": "2 of 3 legs confirmed after 1 run (33 min); the band clause is reached on 2/3 seeds; the per-seed floor statistic is the one missing fact, obtainable offline",
+        "live_gate": "GFLAG-0238 resolution (third option): amend EXP-0590 with per-seed conjunct-(1) readiness including an urgency-off arm and a per-seed floor registered from an offline re-analysis of V3-EXQ-1015's recorded rv traces; the category flip substrate_ceiling -> standard is sequenced behind that queue.",
+        "observation_bottleneck": "no urgency-off arm in V3-EXQ-1015; no per-seed floor registered; the gate-margin clause is uninformative under per-cell recalibration"
+      }
+    },
+    {
+      "qid": "ext002_lineage_survival_lever",
+      "title": "What governs the 6/8-seed casualty split on the 983-lineage pinned boards under the canonical E3 policy -- strict single-class fresh-decision latching, a dominant STAY selection, held-commitment lethality, or an uninformative actor?",
+      "short_title": "983-lineage survival lever",
+      "claims": [
+        "EXT-002",
+        "ARC-013"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.25,
+      "bits_removed_vs_registration": 0.42,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family",
+        "families_closed": [],
+        "families_touched": [
+          "process"
+        ],
+        "families_fresh": [
+          "instrumentation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 1,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.25,
+      "bits_removed": 0.42,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-latch-single-class-strict",
+          "label": "E3 latches a single action class (>= 0.95 of fresh decisions) per seed, and that latch is the survival lever",
+          "desc": "Fresh-decision repertoire is one class on >= 0.5 of adjudicable seeds (or of adjudicable casualties).",
+          "axis": "selection",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-1014"
+          ],
+          "basis": "Discriminating at the strict bar: 2/8 latched, split on survival; yardstick controls ran on every board; non_degenerate true (adjudicability 8/8). Direction is the diagnostic's discriminating non_contributory read; claim-free run.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-stay-selection-dominance",
+          "label": "A dominant fresh STAY selection inside the proximity field is the survival lever (983a's picture)",
+          "desc": "Stay-dominant seeds die and constant-move-dominant seeds survive; masking STAY from the candidate set rescues survival.",
+          "axis": "selection",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-held-commitment-lethality",
+          "label": "The ~10-tick hold adds lethality beyond the selection it repeats",
+          "desc": "Survival improves when E3 re-selects every tick (e3_steps_per_tick = 1) or de-commits on harm.",
+          "axis": "timescale-realised",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-actor-uninformative",
+          "label": "The executed policy carries no world information (routes to zworld_actor_adequacy_locus, not to stage 2)",
+          "desc": "Decision-tick-only scoring of executed action against the local hazard gradient is indistinguishable from a hazard-blind null.",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Is the 983-lineage bed usable for the residue-persistence rider (stage 2) as ratified -- seeds drawn until MIN_POOLED_SEEDS 3 under divergence + diversity gates -- given the ~1/8 per-seed pass rate V3-EXQ-1014 measures and the constant-mover selection effect that implies?",
+        "distance_phrase": "1 of 4 legs eliminated after 1 run (1.9 h) at the strict bar; the dominance reading reproduces the predecessor picture on 5/8 seeds; three legs await one manipulation each",
+        "live_gate": "User decision 2026-09-09: stage 2 proceeds as ratified with the priced draw accepted; the three casualty-mechanism probes are optional chips.",
+        "observation_bottleneck": "no manipulation of STAY availability or hold length in the lineage yet; yardstick profile uninformative"
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-822f",
+      "all_runs": [
+        "V3-EXQ-822f"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "sd082_candidate_discriminating_readout_locus",
+      "claims": [
+        "SD-082",
+        "SD-078"
+      ],
+      "moved": "Rejected at adequate power on the index: paired trained-minus-init D mean 0.063 sd 0.20 n=5, t(4) = -4.9 against the pre-registered 0.5 (criterion reachable: positive control 5.28). Not eliminated: the pre-registered weakens branch was foreclosed by the dead-ReLU control on this run (4/5 ON cells >= 0.50) and the learning-signal rivals are unmeasured.",
+      "resolved_utc": "2026-09-08T23:11:45Z",
+      "evidence_direction": "inconclusive"
+    },
+    {
+      "run": "V3-EXQ-1014",
+      "all_runs": [
+        "V3-EXQ-1014"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "ext002_lineage_survival_lever",
+      "claims": [
+        "EXT-002",
+        "ARC-013"
+      ],
+      "moved": "Discriminating at the strict bar: 2/8 latched, split on survival; yardstick controls ran on every board; non_degenerate true (adjudicability 8/8). Direction is the diagnostic's discriminating non_contributory read; claim-free run.",
+      "resolved_utc": "2026-09-08T22:34:15Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-1015",
+      "all_runs": [
+        "V3-EXQ-1015"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech465_commit_gate_headroom_reachability",
+      "claims": [
+        "MECH-465"
+      ],
+      "moved": "Band clause met on 2/3 seeds against a recalibrated-COLD negative control; confirmed for the clause measured, not for the full conjunct (urgency-off baseline unmeasured).",
+      "resolved_utc": "2026-09-08T20:28:58Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-1008",
       "all_runs": [

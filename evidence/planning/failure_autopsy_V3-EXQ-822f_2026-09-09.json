@@ -1,0 +1,245 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-09T00:26:26Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session": "fa-20260909-batch (interactive /failure-autopsy batch, DLAPTOP main checkout)",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py over the target run_id and --family v3_exq_822: 0 dry / 2 real (822e, 822f). The --dry-run block (2 seeds, 3/3/3 episodes) relocates its manifest to scratch and its starvation reds are pre-classed instrument; no detector is gated on an unreachable index; the lint names no warning for this driver.",
+  "targets": [
+    {
+      "run_id": "v3_exq_822f_sd082_candidate_discriminating_init_head_control_20260908T231145Z_v3",
+      "queue_id": "V3-EXQ-822f",
+      "claim_ids": [
+        "SD-078",
+        "SD-082"
+      ],
+      "experiment_purpose": "evidence",
+      "supersedes": "V3-EXQ-822e",
+      "self_route_label": "discrimination_within_init_head_spread_inconclusive",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C1' (load-bearing, SD-082): trained-minus-init raw discrimination index, paired per tick, per-cell median, ARM_ON: D = +0.3227, -0.0880, -0.0009, +0.2206, -0.1410 (seeds 611/622/633/644/655); mean 0.0627, sample sd 0.2005, se 0.0897, paired t 0.699, two-sided 95% CI [-0.186, 0.312]; requirement max(0.5, sd_D) = 0.5; seeds D>0: 2/5 (4 required). Mirrored weakens clause not fired -- and could not have fired (see measurement). C4 (load-bearing for SD-078 only): ON-minus-OFF index contrast 2/5 seeds clear 0.25 (4 required), mean 0.0694, sd 0.898, t-like 0.173 vs SD078_T_DETECT 2.132 -> inconclusive by construction (detectable effect 0.856 at n=5; ~59 seeds for the 0.25 margin). ABSOLUTE criteria passed: C1 raw index >= 1.0 on 4/5 ON seeds (init head also 4/5, same failing seed 622); C2 pooled argmax flips 260/1701 = 0.153 (init head 493/1701 = 0.290). Readiness 19/19 met incl. dv_headroom_trained_minus_init_index 0.625 vs 0.5 and the ARM_ON liveness gate (worst total param distance 0.188 vs 1e-3; 69-70 P1 optimizer updates per cell).",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (SD-082) -- for the first time in this lineage the readiness conjunction held, the control the 822e autopsy demanded was present, and the criterion was reachable (the in-loop positive control reaches an index of 5.28; the index ceiling is K = 32), so the run DID let registry leg H1 -- 'the TRAINED rule->bias readout adds candidate-discrimination beyond its initialisation' -- express itself. H1 is NULL at adequate power for rejection: the observed mean D 0.063 sits 4.9 standard errors below the pre-registered 0.5 (t(4) = -4.88, p < 0.005 one-sided). That null is on H1, a proposition the claim text does not assert: SD-082's three registered predicates -- common-mode-invariant (centering engaged), gradient-trainable (every tensor moved; 69-70 updates), maps rule_state to a per-candidate bias (argmax flips on 15% of ticks) -- were each POSITIVELY observed. It is NOT stamped weakens because (a) the pre-registered rule reserves weakens for D <= -0.5 (training REMOVES discrimination), which is not the negation of H1; (b) that branch was UNREACHABLE on this run by construction -- the weakens_route_controls (dead-ReLU masks comparable on every ON cell, AND trained head failing absolute C1) both read false, because 4/5 ON cells exceed the 0.50 dead-ReLU floor and C1 passed -- so the rule was two-valued (supports / inconclusive) whatever D was (red-team F3); and (c) the learning signal's CONTENT is unmeasured (only the update count is recorded). unclear (SD-078) -- co-tag; C4 emits inconclusive by its own detectability clause (|t| 0.17 < 2.13).",
+        "biological_reference": "clear -- corticostriatal rule-to-action readout (targeted_review_sd_082, targeted_review_sd_078 present). Not implicated by this run; the live divergence is on the LEARNING SIGNAL (a biological readout is shaped by dense, temporally local credit; REINFORCE on an episode-summed harm return applied to every selection in the episode is the formal-import half). No /lit-pull owed.",
+        "prerequisites": "present -- SD-078 rule pool differentiates on ARM_ON in 5/5 seeds (rule_state_diff 0.62-0.77; OFF pinned at 0.0), z_world cone 0.933 >= 0.9, SD-082's per-candidate-summary amend engaged (summary spread survives centering, 0 fallbacks, 0 degenerate ticks), raw-stage replica matches substrate to 7.5e-9.",
+        "implementation": "partial -- the readout IS wired, gradient-trainable and candidate-discriminating; but its scale-free discrimination INDEX after training is statistically indistinguishable from the init head's on ARM_ON (D ~ 0), while the init head already clears the absolute C1 floor on the same 4/5 seeds. The trained head is nevertheless NOT the init head: it is a measurably different function -- training reduced argmax flips relative to the init head in 10 of 10 cells (pooled 260 vs 493; sign test p = 0.001; ON 148 vs 194, OFF 112 vs 299), and on the pinned-pool ARM_OFF the index moved by up to -2.95 (seed 633 init 4.70 -> trained 1.69); last-layer weights moved 16-32% of their init norm (red-team F2). So the readout was shaped by training, in a direction that halves the rate at which rule_state changes the cross-candidate argmax without changing the index. Hidden ReLU dead fraction 0.44-0.66 on ARM_ON (H4) -- the same fractions that foreclosed the weakens branch.",
+        "environment": "adequate -- unchanged; not implicated.",
+        "measurement": "partial -- the instrument's inputs are sound (in-run init distribution measured, paired per tick, real Frobenius liveness distance scoped to ARM_ON, all five 822e requirements implemented). Two defects in what it can EMIT: (i) the weakens branch was unreachable on this run by construction (weakens_route_controls both false: dead_relu_masks_comparable_all_on_cells false with 4/5 ON cells >= 0.50 dead; trained_head_fails_absolute_c1 false), so one of the claim's three pre-registered outcomes was foreclosed before D was read; (ii) the rule has no branch for the outcome it found -- H1 rejected at adequate power (D ~ 0, CI excluding +0.5) -- and labels it inconclusive. Also: the supports rule (mean D >= 0.5 AND D>0 on 4/5) has only ~50% power at a true D of 0.5 (99% at 0.7), so 'a consistent 0.5 would have registered' is not a claim this design supports (red-team F5); what IS well-powered is rejecting D >= 0.5 on the observed sd. Recording gaps for the next run: per-update gradient norm, per-episode return variance, per-episode flip-rate trajectory, step-direction persistence (||sum of steps|| / sum of ||steps||).",
+        "integration": "coupled -- E2 rollout -> candidate summaries -> centered rule readout -> raw bias -> tanh -> E3 argmax; flips occur (rule_flip_observed true).",
+        "scale": "adequate for REJECTING H1 at 0.5 (t(4) = -4.9 on the observed sd); the supports rule itself is under-powered at exactly 0.5 (50%) and adequate at 0.7 (99%); C4 by design inconclusive at n=5 (contrast_sd 0.90; ~59 seeds for the 0.25 margin)."
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM partial: H1 rejected at adequate power, the head demonstrably shaped by training in a flip-reducing direction, the signal's content unmeasured; MEASURES established: the weakens branch was foreclosed by the dead-ReLU control and the rule has no branch for the outcome found). Not chargeable to REE."
+      },
+      "biological_reference": {
+        "closest_mechanism": "corticostriatal rule-to-action readout (lateral PFC rule state biasing striatal action selection)",
+        "dependencies": [
+          "a differentiated rule state (SD-078: present)",
+          "a readout shaped by dense, temporally local credit (here: an episode-summed harm return assigned to every selection in the episode, one Adam step per P1 episode, 69-70 steps)",
+          "a candidate set with summary-level structure to read (present; the init head already reads it)"
+        ],
+        "is_formal_import": true,
+        "divergence": "The learning rule, not the readout topology. Under REINFORCE with an episode-summed return the per-step gradient direction is weakly persistent: the last layer's measured Frobenius movement (0.023-0.045 over 69-70 steps) matches a direction-inconsistent walk at lr 5e-4 (random-sign ~0.025; SNR ~1 ~0.041) and uses 12-23% of the consistent-sign budget (0.198); a zero gradient would move Adam not at all. Biological readouts of this kind are shaped by dense credit with a persistent direction. Load-bearing for the next probe (learning-signal axis), not for the claim's truth.",
+        "lit_status": "present (targeted_review_sd_082, targeted_review_sd_078); no /lit-pull owed"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "SD-078": "standard",
+        "SD-082": "standard"
+      },
+      "recommended_epistemic_category_note": "Both claims already store standard; confirmed, not moved. The finding is a null on registry leg H1 (not on the claim's assertion) plus an unmeasured learning-signal question -- a probe, not a substrate ceiling; stamping substrate_ceiling / substrate_conditional would strip the v3-testable lane on a question one cheap diagnostic can settle.",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_direction_per_claim": {
+        "SD-078": "inconclusive",
+        "SD-082": "inconclusive"
+      },
+      "recommended_evidence_quality_note": "[2026-09-09 failure_autopsy_V3-EXQ-822f_2026-09-09, Fable cross-model red-team CONTESTED on assertions, five findings folded in] V3-EXQ-822f (evidence, design-changed successor to 822e per its confirmed autopsy: init-head control, trained-minus-init index load-bearing, new seeds 611-655, ARM_ON-scoped Frobenius liveness gate, C4 detectability-scoped; FAIL, ree-worker-3, 2h58m) ran with readiness 19/19 met for the first time in the lineage. SD-082: inconclusive per the pre-registered rule. Content: registry leg H1 -- 'the TRAINED readout adds candidate-discrimination beyond its initialisation' -- is REJECTED at adequate power: paired trained-minus-init index on ARM_ON D = +0.32/-0.09/-0.00/+0.22/-0.14, mean 0.063 (sd 0.20, se 0.09; t(4) = -4.9 against the pre-registered 0.5; the criterion was reachable: positive control 5.28, index ceiling 32); the init head clears the absolute C1 floor on the same 4/5 seeds as the trained head. This is a null on H1, NOT on SD-082's own text: its three predicates (common-mode-invariant; gradient-trainable; maps rule_state to a per-candidate bias) were each positively observed (centering engaged; every tensor moved over 69-70 updates; argmax flips on 15% of ticks). Nor is it 'training did nothing': the trained head flips the argmax LESS than the init head in 10/10 cells (260 vs 493 pooled, p = 0.001) and moved the pinned-pool OFF-arm index by up to -2.95 -- training shaped the readout toward a LESS rule-sensitive function at unchanged index. Not weakens because (i) the mirrored clause tests 'training removes discrimination', not H1's negation, and (ii) that branch was unreachable on this run by construction: the weakens_route_controls both read false (4/5 ON cells above the 0.50 dead-ReLU floor; absolute C1 passed), so the rule was two-valued here. Learning signal: an episode-summed harm return assigned to every P1 selection; the last layer's 0.023-0.045 Frobenius movement matches a direction-inconsistent gradient walk (random-sign ~0.025 at lr 5e-4 over 70 steps; zero gradient would move Adam 0), and return variance is unrecorded (n_p1_updates 69-70 is not evidence the return varied: the EMA baseline starts at 0 so stale buffer entries carry advantage under a constant return). SD-078: co-tag; C4 inconclusive by its own detectability clause (2/5 seeds clear 0.25, mean 0.069, sd 0.90, t-like 0.17 < 2.13; ~59 seeds for the margin). Neither claim moves. REFUSED: 822g or any same-design letter -- the missing axis is signal content and sign, not P1 length (a direction-inconsistent walk grows as sqrt(steps)). OWED: a learning-signal diagnostic under a NEW EXQ (per-update gradient norm and direction persistence, per-episode return variance and flip-rate trajectory, sign of the advantage on flip vs non-flip selections, a dense-credit positive control), and the registry's unassigned legs H2/H3/H4 each need their own probe -- H4 (dead ReLU) now with raised priority, since the same fractions foreclosed the weakens branch.",
+      "per_claim_recommendation": {
+        "SD-082": {
+          "recommended_evidence_direction": "inconclusive",
+          "recommended_epistemic_category": "standard",
+          "change": "NOTE-ONLY. SD-082 stores epistemic_category standard, pending_retest_after_substrate false, status candidate_substrate_landed and none moves; the run's per-claim direction is inconclusive (pre-registered rule), read as H1 rejected at adequate power with the claim's own three predicates positively observed and the learning-signal question open. Governance writes the note and the citation, so live_status.evidence.from should point here -> stamp this artifact",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        },
+        "SD-078": {
+          "recommended_evidence_direction": "inconclusive",
+          "recommended_epistemic_category": "standard",
+          "change": "NOTE-ONLY. Co-tag; C4 inconclusive by construction (t-like 0.17; ~59 seeds for the 0.25 margin). Nothing stored moves. Citation should point here -> stamp this artifact",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-082",
+        "note": "No build owed; amend for the record. (a) Append the failure_record_entry below. (b) The OPEN 822d item ('cross-candidate SPREAD of the propagated bias, ON > OFF -- prop_delta cannot answer this') is SUPERSEDED by 822f as the more specific read: its discriminating-vs-uniform half is answered (discriminating: C1 4/5, C2 0.153; index init-like); its ON > OFF half is INCONCLUSIVE BY CONSTRUCTION at n=5 (C4 detectable effect 0.86 vs margin 0.25; ~59 seeds needed) and is not carried forward as owed. (c) Advance validation_experiment from 822f to the learning-signal probe once queued. (d) SEVERITY REVISIT REQUESTED, with new information: governance_2026_09_05 deliberately left severity 'corrupting' and substrate_paths (agent.py, compute_bias) describing the RESOLVED 822c defect. Since then the Step 2.5c gate has surfaced SD-082 as an open corrupting overlap to an unrelated experiment (V3-EXQ-1015's queue note, ree-v3 4ffd472, disposed of it as NOT REACHABLE -- a warning it had to record, not a block). Governance should decide whether a resolved defect should keep gating other work: clear severity, or annotate the paths as describing a resolved defect. Leave status implemented_pending_validation / ready false.",
+        "severity": null,
+        "substrate_paths": [],
+        "failure_record_entry": {
+          "run_id": "v3_exq_822f_sd082_candidate_discriminating_init_head_control_20260908T231145Z_v3",
+          "experiment_type": "v3_exq_822f_sd082_candidate_discriminating_init_head_control",
+          "metric": "C1' trained-minus-init raw discrimination index, ARM_ON, paired per tick: mean D 0.0627 (sd 0.2005; t(4) -4.9 vs 0.5) vs requirement 0.5; seeds D>0 2/5; init head clears absolute C1 floor 4/5 (trained 4/5); pooled flips trained 260 vs init 493 of 1701 (trained < init in 10/10 cells, p 0.001); last-layer Frobenius movement 0.023-0.045 over 69-70 REINFORCE updates (direction-inconsistent-walk scale); weakens branch foreclosed (dead-ReLU 0.44-0.66 on 4/5 ON cells)",
+          "target": "H1: D >= 0.5 with D>0 on >= 4/5 seeds -- or a measured P1 gradient signal (norm, direction persistence, return variance, advantage sign on flips) that explains why training reduces flips without adding index",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "822d's open item asked (i) whether the propagated bias is candidate-DISCRIMINATING or uniform and (ii) whether ON > OFF, noting prop_delta could answer neither. 822f answers (i) with the raw index plus an in-run init-head control: discriminating (C1 4/5, C2 0.153) at an index indistinguishable from init structure (D ~ 0). Half (ii) is inconclusive by construction at n=5 (C4 detectable 0.86 vs margin 0.25; ~59 seeds needed) and is NOT answered. Superseded by a more specific read; nothing fixed; the ON > OFF question is not carried forward as owed on this entry."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": true,
+        "prior_substrate_ceiling_autopsies": {
+          "SD-082": [
+            "failure_autopsy_2026-07-28-sweep | v3_exq_822b",
+            "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c",
+            "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d"
+          ],
+          "SD-078": [
+            "failure_autopsy_816c-822_2026-07-26 | v3_exq_822",
+            "failure_autopsy_batch-822a-826-817a-827_2026-07-26 | v3_exq_822a",
+            "failure_autopsy_2026-07-28-sweep | v3_exq_822b",
+            "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c",
+            "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d"
+          ]
+        },
+        "recount_utc": "2026-09-09T00:12:00Z",
+        "recount_note": "R1-R3 recipe, 2026-09-09: SD-082 = 3, SD-078 = 5 (identical to the 822e autopsy's recount, independently reproduced by the red team; 822e itself does not count: per-claim standard). This target: per-claim standard and direction inconclusive -> counts() returns False on the first test; the brake does not fire mechanically.",
+        "release_basis": "Not a ceiling reading: the instrument's inputs worked (control present, criterion reachable, readiness 19/19) and it returned a well-powered rejection of H1 with a cheap unmeasured rival (learning-signal content and sign). R3 clause 2 in spirit -- instrument/probe, not build.",
+        "refused_requeue": true,
+        "refused_requeue_note": "REFUSED: V3-EXQ-822g or any same-design letter (more seeds, longer P1) against the same C1'. Not on power grounds -- the supports rule has only ~50% power at a true D of 0.5 -- but because the missing axis is the SIGNAL: a direction-inconsistent gradient walk grows as sqrt(steps), so a longer P1 at the same signal buys ~1.4x displacement per doubling and no directional gain, and the head used only 12-23% of its consistent-sign budget. This is the SIXTH letter on this claim pair; the design axis must change. LICENSED: a NEW EXQ on the learning-signal axis, and separate probes for H2/H3/H4.",
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "supersedes_autopsy": null
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-init-structure: the discrimination INDEX is set by the init structure of a random first layer + ReLU (CONSISTENT on the index dimension: D ~ 0; init head clears C1 4/5) -- but the head is a different function after training (flips halved 10/10), so 'init structure' explains the index, not the readout.",
+          "H-learning-signal-noisy (NEW, pre-register; provenance: 822f driver red-team note N6 'a flat P1 reward reads as instrument', whose shipped training_signal_absent class fires only at zero updates -- the degenerate form): the episode-summed harm return delivers a gradient with weakly persistent direction (last-layer movement at the random-walk scale), so the readout cannot converge on a discriminating function whatever its capacity.",
+          "H-learning-signal-sign (NEW, discovered by this run's own cells; pre-register for the same probe): REINFORCE on this return learns to REDUCE the bias's candidate-dependent consequence -- a rule-driven argmax change is on average penalised by the return -- so the readout converges toward a less rule-sensitive function: index flat, flip rate down (10/10 cells, p = 0.001).",
+          "H4-dead-head-capacity (registered, unassigned; PRIORITY RAISED): 44-66% dead hidden ReLUs on ARM_ON cap the achievable trained increment AND are what foreclosed the weakens branch on this run.",
+          "H3-upstream-summary-starvation (registered, unassigned): the index is set by summary/mask homogeneity upstream.",
+          "H2-uniform-common-mode (registered, unassigned): remaining tanh-manufactured spread."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-learning-signal-noisy / H-learning-signal-sign",
+            "axis": "learning-signal",
+            "sketch": "Diagnostic, no arm contrast needed, 3-5 seeds: record per-P1-update gradient norm on rule_bias_head, per-tensor step direction persistence (||sum of steps|| / sum of ||steps||), per-episode return variance, per-episode trained-head flip rate (trajectory), and the sign of the advantage on flip vs non-flip selections; positive control = the same head trained on a dense synthetic credit (a known candidate-discriminating function of rule_state) must move D past 0.5 with persistence near 1. Nulls: (noisy) persistence and return variance are non-trivial; (sign) the advantage on flip selections is not negative and the flip-rate trajectory is flat."
+          },
+          {
+            "hypothesis": "H4-dead-head-capacity",
+            "axis": "intrinsic-architecture",
+            "sketch": "Re-initialise the head with a smaller dead fraction (LeakyReLU or init scale) and re-measure the init-head index spread, D, and whether the weakens_route_controls become live; null: D and the dead-mask comparability are unchanged when dead fraction drops below 0.25."
+          },
+          {
+            "hypothesis": "H3-upstream-summary-starvation",
+            "axis": "representation",
+            "sketch": "Hidden-mask decomposition of the raw index: hold the head fixed, permute candidate summaries across candidates; null: the index collapses to the iid reference when summaries are shuffled (summary geometry, not rule information, carries it)."
+          }
+        ],
+        "note": "GOV-FANOUT-1: the bottleneck is a discrimination (init index vs noisy signal vs signal sign vs capacity vs upstream geometry), not a build. The learning-signal probe adjudicates two legs under one measurement and should go first; do not re-pose C1' with more seeds."
+      },
+      "learning_extracted": [
+        "The lineage's discrimination INDEX is init-like: the deep-copied init head clears the absolute C1 floor on the same 4/5 ON seeds as the trained head (same failing seed, 622); on a pinned single-rule pool (OFF/seed633, rule_state_diff 0.0) the init index is 4.70 against an iid reference of 5.15 -- the raw index reads summary geometry through a random projection, not rule information. But the trained head is NOT the init head: training reduced argmax flips in 10 of 10 cells (260 vs 493 pooled; p = 0.001) and moved the OFF-arm index by up to -2.95; last-layer weights moved 16-32% of their init norm. 'Within the init spread' describes the index, not the function.",
+        "The head moved as an optimiser with a direction-INCONSISTENT gradient would: last-layer Frobenius movement 0.023-0.045 over 69-70 Adam steps at lr 5e-4 matches a random-sign walk (~0.025) to SNR~1 (~0.041) and uses 12-23% of the consistent-sign budget (0.198); a zero gradient would not move Adam at all. The update count (69-70) is not evidence the return varied -- the EMA baseline starts at 0, so stale buffer entries carry advantage under a constant return. Gradient content and direction persistence are unrecorded.",
+        "The three-valued rule was two-valued on this run: the weakens branch requires dead-ReLU masks comparable on every ON cell (4/5 cells were above the 0.50 floor) AND the trained head failing absolute C1 (it passed), so weakens could not have fired for any D. A pre-registered branch that a control can foreclose must report the foreclosure as an outcome, and a one-sided requirement needs a branch for 'no trained increment at adequate power' (D ~ 0, CI excluding +0.5), which is what was found.",
+        "The supports rule (mean D >= 0.5 AND D>0 on 4/5) has ~50% power at a true D of 0.5 and ~99% at 0.7; what the design does well is REJECT D >= 0.5 on the observed sd (t(4) = -4.9). State power claims against the rule that fires, not against the t critical value.",
+        "Six letters (822, a, b, c, d, e, f) on one claim pair, five of them instrument defects and the sixth a clean rejection of H1 with the claim's own predicates positively observed: the brake's count (SD-082 3, SD-078 5) does not fire because none is a ceiling reading -- correct -- but the lettered burn is real and the next probe must change axis (signal content and sign), not power.",
+        "A resolved defect left with severity 'corrupting' on the substrate entry (a deliberate 2026-09-05 choice) keeps warning unrelated experiments through Step 2.5c: V3-EXQ-1015's queue note recorded SD-082 as an open corrupting overlap on agent.py and disposed of it as NOT REACHABLE. Worth revisiting with that new information.",
+        "Recording: complete for this adjudication (per-cell trained and init indices, flips for both heads, head_diag_by_phase, per-tensor param distances, n_p1_optimizer_updates); this is what made the flip-reduction and init-index reads provable offline. Gaps for the NEXT run: per-update gradient norm, step-direction persistence, per-episode return variance and flip-rate trajectory, advantage sign on flips. Driver docstring L74-77 still describes the C1' headroom as a tick-range statistic that the code (F2 fix) no longer uses -- stale, do not re-import."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "node_class": "complex (probe-gated) / puzzle (known rules): the missing facts are the P1 gradient's direction persistence and the sign of the advantage on rule-driven flips; both obtainable by named measurements in the existing loop. NOT a same-question re-run.",
+        "recommended_action": "1. /queue-experiment NEW EXQ number, learning-signal diagnostic per fanout probe 1 (gradient norm + direction persistence + return variance + flip-rate trajectory + advantage sign on flips + dense-credit positive control), claim_ids [SD-082] (SD-078 dropped: not exercised), experiment_purpose diagnostic; adjudicates H-learning-signal-noisy and H-learning-signal-sign under one measurement. 2. /governance: apply note-only dispositions; substrate amend (822f record; 822d item superseded with the half-answered note; severity revisit); Step 9b: Mode B resolve H1 alive (rejected at adequate power on the index; not eliminated because the weakens branch was foreclosed and the signal rival is open) and H-init-structure alive (consistent on the index; the head is nonetheless a different function after training); Mode A pre-register H-learning-signal-noisy (provenance N6) and H-learning-signal-sign (this run's cells) on sd082_candidate_discriminating_readout_locus with the probe's future queue_id, as ONE labelled fan-out growth event (+2). 3. Do not queue H2/H3/H4 off this artifact; governance chips them per the registry sketches, H4 first among the three.",
+        "explicitly_not_recommended": [
+          "V3-EXQ-822g or any same-design power bump",
+          "weakens on SD-082 (its own predicates were positively observed; the mirrored branch was foreclosed by construction)",
+          "supports on SD-082 off absolute C1/C2 (init-like index)",
+          "/implement-substrate (no ree_core gap identified; the readout is wired and trainable)",
+          "/lit-pull (present)",
+          "/claim-synthesis (granularity reader: unclear=4 / 6, no weakened; instrument debt)",
+          "governance demotion"
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "mode": "B-resolve on existing question sd082_candidate_discriminating_readout_locus (growth_restriction empty) + A-pre-register two new legs as ONE labelled fan-out growth event; applied at Step 9b after the gate",
+    "resolve": {
+      "H1-trained-discriminating-readout": {
+        "state": "alive",
+        "resolving_runs": [
+          "V3-EXQ-822f"
+        ],
+        "evidence_direction": "inconclusive",
+        "control_passed": true,
+        "non_degenerate": true,
+        "met_elimination_bar": false,
+        "basis": "Rejected at adequate power on the index: D mean 0.063 sd 0.20 n=5, t(4) = -4.9 against the pre-registered 0.5 (criterion reachable: positive control 5.28). Not eliminated because the pre-registered weakens branch was foreclosed by the dead-ReLU control on this run (4/5 ON cells >= 0.50) and the learning-signal rival is unmeasured."
+      },
+      "H-init-structure": {
+        "state": "alive",
+        "resolving_runs": [
+          "V3-EXQ-822f"
+        ],
+        "evidence_direction": "inconclusive",
+        "control_passed": true,
+        "non_degenerate": true,
+        "met_elimination_bar": false,
+        "basis": "Consistent on the INDEX: trained index within the init head's spread on every ON seed; init head clears C1 4/5. Not confirmed as the account of the READOUT: the trained head flips the argmax less than the init head in 10/10 cells (p = 0.001) and moved the OFF-arm index by up to -2.95, so training shaped it; the signal rivals are live."
+      }
+    },
+    "pre_register": [
+      {
+        "hid": "H-learning-signal-noisy",
+        "axis": "learning-signal",
+        "adjudicating_runs": [
+          "<queue_id of the learning-signal probe, once queued>"
+        ],
+        "basis": "Last-layer Frobenius movement 0.023-0.045 over 69-70 Adam steps matches a direction-inconsistent walk at lr 5e-4 (random-sign ~0.025); gradient content and persistence unrecorded; the shipped training_signal_absent class detects only zero updates (driver red-team note N6)."
+      },
+      {
+        "hid": "H-learning-signal-sign",
+        "axis": "learning-signal",
+        "adjudicating_runs": [
+          "<queue_id of the learning-signal probe, once queued>"
+        ],
+        "basis": "Trained head flips fewer selections than the init head in 10/10 cells (260 vs 493; p = 0.001) at unchanged index: consistent with the return penalising rule-driven argmax changes on average. Surfaced by this run's own cells; not born resolved (needs the advantage-sign and flip-trajectory recordings), hence Mode A, not Mode C."
+      }
+    ],
+    "applied_at_step_9b": true
+  },
+  "mechanical_checks": {
+    "dry_run_gate": "clean",
+    "validate_recording": "pack manifest missing recording_schema, elapsed_seconds, config, seeds (all present in the flat JSON; source_repo.commit empty string). Driver docstring L74-77 describes a superseded (tick-range) C1' headroom statistic -- stale, not the artifact's.",
+    "dry_run_unreachable_criterion_lint": "no warning for this driver",
+    "granularity_debt_trigger": {
+      "fires": false,
+      "routing": null,
+      "note": "granularity_debt_cluster.py: SD-082 4 targets unclear=4; SD-078 6 targets unclear=6; no weakened; six measurement/instrument shapes in a row = instrument debt, not a coarse claim."
+    },
+    "step_7b": "0 fires on draft and on the revised pair (C6/C7 inapplicable: per_seed_rows is not a top-level arm_results array of the shape the checks read)",
+    "step_7c": "RUN -- model Fable 5.1 (cross-model), verdict CONTESTED, 5 verdict-moving findings F1-F5 all applied, 9 hygiene notes applied (see .md Section 9); findings file redteam_822f.md in the session scratchpad"
+  },
+  "confirmed_utc": "2026-09-09T00:55:13Z",
+  "confirmed_by": "fa-20260909-batch (user gate, interactive; recommended option chosen on all three questions; ledger recorded)",
+  "step8_gate_decision": "Accept: inconclusive/standard note-only; learning-signal probe; 822g refused (Recommended)."
+}
