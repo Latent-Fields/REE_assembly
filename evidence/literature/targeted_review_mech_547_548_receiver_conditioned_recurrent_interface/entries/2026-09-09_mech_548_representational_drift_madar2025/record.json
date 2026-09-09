@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_547_548_receiver_conditioned_recurrent_interface",
+  "entry_id": "2026-09-09_mech_548_representational_drift_madar2025",
+  "timestamp_utc": "2026-09-09T10:35:00Z",
+  "claim_ids_tested": ["MECH-548"],
+  "source": {
+    "title": "Synaptic plasticity rules driving representational shifting in the hippocampus",
+    "authors": ["Antoine D. Madar", "Anqi Jiang", "Can Dong", "Mark E. J. Sheffield"],
+    "year": 2025,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-025-01894-6",
+    "pmid": "40113934",
+    "volume": "28",
+    "issue": "4",
+    "pages": "848-860"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.48,
+  "confidence_rationale": "Peer-reviewed experimental/model-comparison work shows continuing trial-by-trial hippocampal place-field shifting driven by behavioural-timescale synaptic plasticity, including population-level representational drift during familiarisation. This supports the broad premise behind MECH-548 that a useful interface cannot assume perfectly stationary endpoint coordinates. It does not show recurrent bridge-induced drift, semantic double-counting or the clean-base remedy, so confidence is deliberately below 0.5 for the exact claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Biological endpoint drift by itself is not evidence that a bridge causes drift; a REE test must separate native representation change from translation-induced off-manifold compounding.",
+    "If cumulative and clean-base arms drift equally because the sender/receiver themselves are changing, that does not support MECH-548's recursive contamination mechanism."
+  ],
+  "tags": ["mech-548", "hippocampus", "representational_drift", "btsp", "plasticity", "ca1", "ca3", "dynamic_interface"],
+  "mapping": {
+    "source_claim_statement": "Behavioural-timescale synaptic plasticity best explains ongoing place-field shifting in CA1/CA3, and rare plasticity events continually drive population-level representational drift during exploration.",
+    "ree_translation": "Provides a biological reason to require interface diagnostics that remain valid as endpoint representations change, and to measure drift relative to native dynamics rather than assuming a fixed coordinate system.",
+    "mapping_caveat": "The source concerns intrinsic hippocampal representational plasticity, not an inter-system bridge recursively consuming its own transformed output.",
+    "source_context": "Mouse hippocampal place-field data plus computational comparison of BTSP and STDP models in familiar and novel environments."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.42,
+    "transfer_risk": 0.7,
+    "notes": "Strong evidence that endpoints drift; weak evidence for MECH-548's specific causal mechanism."
+  }
+}
