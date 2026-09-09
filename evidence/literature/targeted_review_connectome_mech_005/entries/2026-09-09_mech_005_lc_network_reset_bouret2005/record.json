@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_005",
+  "entry_id": "2026-09-09_mech_005_lc_network_reset_bouret2005",
+  "timestamp_utc": "2026-09-09T09:58:42Z",
+  "claim_ids_tested": [
+    "MECH-005"
+  ],
+  "source": {
+    "title": "Network reset: a simplified overarching theory of locus coeruleus noradrenaline function",
+    "authors": [
+      "Sebastien Bouret",
+      "Susan J. Sara"
+    ],
+    "year": 2005,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2005.09.002",
+    "pmid": "16165227",
+    "pmc": null,
+    "volume": "28",
+    "issue": "11",
+    "pages": "574-582"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Canonical, heavily cited TiNS review synthesising rat and monkey LC single-unit data recorded in controlled behavioural tasks. The core proposal -- that phasic LC-NE activation coincides with cognitive shifts and facilitates dynamic reorganisation of target networks -- is close to MECH-005's second functional pillar (interruptibility and reorientation), and the paper is explicit that this is NOT a learning signal, matching MECH-005's architectural prohibitions. Docked because 'network reset' is a claim about what happens DOWNSTREAM in target networks, whereas nu in MECH-005 is a weighting over candidate path extensions; the correspondence is structural rather than exact, and the evidence is temporal-coincidence electrophysiology rather than causal manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The reset account is grounded in temporal coincidence between phasic LC firing and behavioural shifts, not in causal manipulation; if LC phasic activity were shown to follow rather than enable the shift, it would be a consequence of reorientation and could not serve as the path-authority controller MECH-005 requires.",
+    "Bouret and Sara locate the functional work in the target networks' response to a nonspecific reset pulse. If reset is genuinely nonspecific, it cannot implement MECH-005's selective weighting of current path versus recently validated paths versus newly generated alternatives -- nu would be a trigger, not an authority function."
+  ],
+  "tags": [
+    "mech005",
+    "connectome",
+    "locus-coeruleus",
+    "norepinephrine",
+    "network-reset",
+    "interruptibility",
+    "path-authority",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Phasic activation of noradrenergic locus coeruleus neurons, occurring in time with cognitive shifts, abruptly interrupts ongoing activity in target neural networks and provokes or facilitates their dynamic reorganisation into new functional configurations, permitting rapid behavioural adaptation to changing environmental imperatives. The account is explicitly offered as an alternative to theories casting NE as a prediction-error or unexpected-uncertainty signal.",
+    "ree_translation": "This is the biological precedent for MECH-005's second pillar: nu controls whether local prediction errors remain local updates or escalate into theta-scale path reevaluation. Bouret and Sara's 'interrupt then reorganise' is REE's 'high nu -> small mismatches can force reorientation; low nu -> local errors are absorbed and the system stays the course'. Critically, the paper also supports MECH-005's prohibitions: it argues against NE as a prediction-error carrier and against NE as a learning signal, which is exactly REE's position that nu 'is not learning; it is allocation of attention and urgency'.",
+    "mapping_caveat": "Network reset is a claim about the state of TARGET networks after an LC pulse; MECH-005's nu is a weighting term over candidate paths within the agent's own commitment machinery. The two are compatible but not identical, and nothing in this review establishes that the reset is graded in the way REE's Authority(P_i) proportional to A(P_i) g(nu, context) requires -- the reviewed data are largely consistent with a more binary interrupt. The invertebrate crustacean model that inspired the theory is itself a substantial transfer, layered under the rodent-and-monkey-to-REE transfer.",
+    "source_context": "Review and reanalysis of extensive single-unit electrophysiological recordings from locus coeruleus in behaving rats and monkeys, across controlled behavioural tasks involving reversal, extinction, and attentional set shifts."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (canonical review, primary electrophysiology, still standard reading two decades on). Mapping fidelity good on the interruptibility pillar and on the prohibitions, weaker on the graded-authority formalism. Transfer risk moderate: rodent/monkey LC to an artificial control plane, with the invertebrate analogy stacked underneath."
+  }
+}

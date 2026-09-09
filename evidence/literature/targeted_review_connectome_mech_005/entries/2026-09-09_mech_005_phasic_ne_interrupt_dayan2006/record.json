@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_005",
+  "entry_id": "2026-09-09_mech_005_phasic_ne_interrupt_dayan2006",
+  "timestamp_utc": "2026-09-09T09:58:42Z",
+  "claim_ids_tested": [
+    "MECH-005"
+  ],
+  "source": {
+    "title": "Phasic norepinephrine: a neural interrupt signal for unexpected events",
+    "authors": [
+      "Peter Dayan",
+      "Angela J. Yu"
+    ],
+    "year": 2006,
+    "venue": "Network: Computation in Neural Systems",
+    "doi": "10.1080/09548980601004024",
+    "pmid": "17162459",
+    "pmc": null,
+    "volume": "17",
+    "issue": "4",
+    "pages": "335-350"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The closest thing in the literature to a formal statement of MECH-005's interrupt function: a Bayesian model in which phasic NE signals unexpected within-task changes and is fit against sub-second noradrenergic response profiles from a well-studied visual discrimination task. Mapping fidelity is the highest in this pull. Confidence is held below 0.8 because the venue is modest, the validation is a model fit to previously published response repertoires rather than a new causal test, and -- most importantly for governance -- the paper's Bayesian framing puts NE in the business of representing uncertainty, which sits uncomfortably close to the precision register MECH-005 explicitly forbids nu from touching.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model derives the interrupt from a Bayesian posterior over task state, i.e. NE reports a form of uncertainty. MECH-005 prohibits nu from updating precision registers (pi-tau) and from encoding prediction error. If the interrupt is only definable as a function of posterior uncertainty, then nu is not architecturally separable from precision and the dopamine-like / norepinephrine-like fragmentation MECH-005 rests on is a redescription rather than a distinction.",
+    "The interrupt in this model is triggered by unexpected changes in the WORLD within task context. MECH-005 additionally privileges post-commit error -- errors after the system has acted. Nothing in this model distinguishes pre-commitment from post-commitment surprise, so the third pillar of MECH-005 is untested here."
+  ],
+  "tags": [
+    "mech005",
+    "computational-model",
+    "bayesian",
+    "norepinephrine",
+    "interrupt-signal",
+    "unexpected-uncertainty",
+    "interruptibility",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Unexpected changes in the world, evaluated within the context of the current task, activate a noradrenergic interrupt signal. Formalised as a Bayesian model of a visual discrimination task, this account reproduces a rich repertoire of locus coeruleus response profiles at sub-second temporal resolution, including modulation by engagement, by sensory input, and by temporally extended internal decision processes.",
+    "ree_translation": "MECH-005 asserts that nu governs interruptibility -- whether a gamma/beta-scale mismatch is absorbed locally or escalates to theta-scale path reevaluation. Dayan and Yu give that escalation an explicit computational form and, crucially, make it CONTEXT-RELATIVE: the interrupt fires on surprise evaluated against the current task, not on raw sensory novelty. That is precisely REE's requirement that nu act on 'what must now matter' rather than on stimulus salience. Their finding that LC activity is modulated by internal decision processes, not only by sensory input, supports nu being a control-plane variable rather than a perceptual one.",
+    "mapping_caveat": "The model's currency is Bayesian unexpected uncertainty. REE's architecture deliberately fragments precision (dopamine-like, tau-scoped) from path authority (norepinephrine-like, urgency-scoped), and MECH-005 states flatly that nu does not update precision registers. Adopting this paper as support for the interrupt function means accepting a source whose own formalism blurs the very boundary the claim asserts -- the mapping holds at the functional level (when does the system reorient) and breaks at the representational level (what quantity nu carries). Nothing here speaks to the post-commitment asymmetry.",
+    "source_context": "Computational modelling paper; Bayesian model fit to previously reported locus coeruleus unit responses from a monkey visual discrimination task, at sub-second resolution."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Source quality moderate: influential and by leading theorists, but a modelling paper in a specialist venue, validating against existing data rather than new experiments. Mapping fidelity is the highest of this pull -- 'neural interrupt signal' is close to a restatement of MECH-005's second pillar. Transfer risk low-to-moderate because the target is already a computational abstraction, which is the same kind of object REE is."
+  }
+}

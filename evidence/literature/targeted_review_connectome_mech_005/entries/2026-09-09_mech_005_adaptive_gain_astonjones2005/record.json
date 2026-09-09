@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_005",
+  "entry_id": "2026-09-09_mech_005_adaptive_gain_astonjones2005",
+  "timestamp_utc": "2026-09-09T09:58:42Z",
+  "claim_ids_tested": [
+    "MECH-005"
+  ],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": [
+      "Gary Aston-Jones",
+      "Jonathan D. Cohen"
+    ],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "pmid": "16022602",
+    "pmc": null,
+    "volume": "28",
+    "pages": "403-450"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "The foundational statement of adaptive gain theory and the single most cited account of LC-NE in cognitive control. Its phasic/tonic distinction -- phasic LC facilitating the current task (exploitation), tonic LC accompanying disengagement and search for alternatives (exploration) -- is a direct biological analogue of MECH-005's high-nu 'sticky commitment' versus low-nu 'alternative paths gain voice'. Confidence is docked substantially, and deliberately, for a governance-relevant reason rather than a quality one: adaptive gain theory routes LC control through ACC/OFC utility monitoring, and MECH-005 explicitly prohibits nu from determining value or reward. The strongest available support for pillar one arrives coupled to a violation of one of the claim's own prohibitions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Adaptive gain theory makes LC activity mode a function of task utility computed in anterior cingulate and orbitofrontal cortex. MECH-005 states that nu does not determine value or reward. If path authority is set downstream of a utility evaluation, nu is not an independent control axis and REE's separation of coherence-based viability A(P_i) from reward is not the arrangement biology uses.",
+    "The theory's exploitation/exploration axis is defined over task engagement and is polarity-inverted relative to a naive reading of MECH-005: tonic (high baseline) LC produces MORE exploration, whereas high nu in MECH-005 produces stickier commitment. Any REE implementation that maps a single scalar nu onto 'NE level' without preserving the phasic/tonic distinction will get the sign wrong.",
+    "The reviewed data are predominantly monkey and rat LC recordings in tasks with explicit reward structure. MECH-005's commitment pressure is meant to operate under coherence and viability pressure with no reward term at all; this literature cannot distinguish the two because reward is never absent from its tasks."
+  ],
+  "tags": [
+    "mech005",
+    "connectome",
+    "locus-coeruleus",
+    "adaptive-gain",
+    "phasic-tonic",
+    "exploration-exploitation",
+    "path-authority",
+    "commitment-pressure",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The LC-NE system operates in two dissociable activity modes. Phasic LC activation, driven by outcomes of task-related decision processes, facilitates ensuing behaviours and optimises performance on the current task (exploitation). Tonic LC activation is associated with disengagement from the current task and a search for alternative behaviours (exploration). Frontal structures monitoring task utility -- anterior cingulate and orbitofrontal cortex -- are proposed to regulate which mode the LC occupies, so as to optimise utility over both short and long timescales.",
+    "ree_translation": "This is the empirical backbone for MECH-005's first pillar. REE's 'high nu: recent path endings dominate, deviation is costly, commitment becomes sticky' is the phasic mode; 'low nu: alternative paths gain voice, branching is tolerated' is the tonic mode. The claim that a single neuromodulatory axis sets how tightly the system is bound to its current trajectory -- without itself generating the candidate trajectories -- is what adaptive gain theory demonstrates for the LC. It also supports MECH-005's insistence that nu does not select temporal depth: gain modulation in this theory changes the influence of representations, not which representations exist.",
+    "mapping_caveat": "Two boundaries, and the first is serious. (1) Adaptive gain theory makes LC mode a servant of utility computed in ACC/OFC; MECH-005 forbids nu from encoding value. Importing this paper as support for path authority means importing a value-driven control loop that the claim disavows -- either MECH-005 needs a non-reward substitute for the ACC/OFC regulator, or the prohibition needs revisiting. (2) The nu-to-NE mapping is not monotone: high nu in REE corresponds to the PHASIC mode, not to high tonic level, and confusing the two inverts the predicted behaviour. Any experimental operationalisation of nu must fix which mode it is manipulating.",
+    "source_context": "Annual Reviews synthesis of two decades of locus coeruleus single-unit recording in behaving monkeys and rats, plus human pupillometry and computational gain-modulation modelling, across signal detection, vigilance, and reversal tasks with explicit reward structure."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high -- Annual Review of Neuroscience, foundational, extensively replicated phasic/tonic dissociation. Mapping fidelity held down by the utility-routing conflict with MECH-005's value prohibition and by the non-monotone nu-to-NE correspondence. Transfer risk moderate: reward-structured animal tasks to a reward-free coherence architecture is exactly the confound the claim would need to control."
+  }
+}

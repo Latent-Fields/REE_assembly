@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_005",
+  "entry_id": "2026-09-09_mech_005_pupil_arousal_learning_rate_nassar2012",
+  "timestamp_utc": "2026-09-09T09:58:42Z",
+  "claim_ids_tested": [
+    "MECH-005"
+  ],
+  "source": {
+    "title": "Rational regulation of learning dynamics by pupil-linked arousal systems",
+    "authors": [
+      "Matthew R. Nassar",
+      "Katherine M. Rumsey",
+      "Robert C. Wilson",
+      "Kinjan Parikh",
+      "Benjamin Heasly",
+      "Joshua I. Gold"
+    ],
+    "year": 2012,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3130",
+    "pmid": "22660479",
+    "pmc": "PMC3386464",
+    "volume": "15",
+    "issue": "7",
+    "pages": "1040-1046"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.63,
+  "confidence_rationale": "Strong paper, genuinely two-directional for this claim. It supports MECH-005's third pillar -- arousal gating how strongly incoming error reshapes the model -- with a normative model, human pupillometry, and a luminance-independent pupil manipulation that predictably altered the influence of new data, which is closer to a causal test than anything else in this pull. It simultaneously weakens one of MECH-005's architectural prohibitions: the quantity pupil-linked arousal was found to set is the weight on new evidence in belief updating, which in predictive-processing terms IS a precision term. MECH-005 asserts nu does not update precision registers. Confidence reflects an indirect LC proxy and the fact that the strongest reading of the result cuts against the claim's own boundary conditions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pupil-linked arousal predicted the influence of new data on subsequent inference, and manipulating pupil diameter predictably altered that influence. This is precision-weighting by another name. MECH-005 states that nu does not update precision registers (pi-tau) and that 'any architecture where stress or surprise directly rewrites confidence is already collapsed' -- the paper reports approximately that architecture operating in humans, adaptively rather than pathologically.",
+    "Baseline pupil diameter tracked the reliability of recent data and individual expectations about the rate of environmental instability. If nu's tonic level encodes an estimate of volatility, nu carries a belief about the world, not merely an urgency allocation, contradicting 'nu does not encode prediction error' in spirit if not in letter.",
+    "Pupil diameter is a downstream, multi-determined proxy for LC activity, also modulated by acetylcholine, superior colliculus and effort. A dissociation between pupil and direct LC recording would leave the precision-conflict unresolved rather than settled."
+  ],
+  "tags": [
+    "mech005",
+    "behavioral-human",
+    "pupillometry",
+    "arousal",
+    "learning-rate",
+    "belief-updating",
+    "precision",
+    "post-commit-error",
+    "mixed",
+    "prohibition-tension"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a predictive-inference task, non-luminance-mediated changes in human pupil diameter reflected normatively defined assessments of the stability and reliability of a noisy data-generating process. Brief pupil changes tracked assessed instability; baseline diameter tracked the reliability of recent data and individual expectations about instability rate. Together these metrics predicted how strongly new data influenced subsequent inferences, and a task- and luminance-independent manipulation of pupil diameter predictably altered that influence.",
+    "ree_translation": "Read one way, this is direct support for MECH-005's third pillar: 'high nu -> post-commit errors strongly drive theta-level restructuring; low nu -> post-commit errors are damped, treated as noise'. Nassar and colleagues show an arousal signal doing exactly that gating job in humans, and show it causally. Read the other way, it is the sharpest available challenge to the claim's prohibitions. REE fragments precision (dopamine-like) from path authority (norepinephrine-like) precisely so that surprise cannot rewrite confidence; this paper reports a noradrenergic-proxy signal setting the gain on belief update. Both readings should be carried forward -- the entry is filed as mixed for that reason, not from indecision.",
+    "mapping_caveat": "The pillar this supports and the prohibition it strains are the same finding described at two levels of description, so an implementation cannot straightforwardly take the support and discard the challenge. The task also has no commitment structure: subjects predict, they do not act irreversibly, so 'post-commit' in the REE sense is not instantiated and the privileged status of after-action error is untested here. Pupil is an indirect LC index with known non-noradrenergic contributions, and the manipulation altered pupil diameter rather than LC firing directly.",
+    "source_context": "Human behavioural study with pupillometry; predictive-inference task with change points in a noisy generative process; normative Bayesian model; plus a task- and luminance-independent pupil manipulation used as a causal probe."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: Nature Neuroscience, normative model plus human data plus a causal-direction manipulation. Mapping fidelity low-to-moderate because the measured quantity lands in the register MECH-005 fences off, and because the task instantiates no commitment. Transfer risk moderate-to-high: pupil is a multi-determined LC proxy, and prediction without action is not the regime the claim is about."
+  }
+}
