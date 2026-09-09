@@ -48191,6 +48191,7 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
+  implementation_phase: v5
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -48242,12 +48243,21 @@
     SD-022 + SD-011 (both IMPLEMENTED).
 
     The ARC-061 claim is not testable as a whole until all three constituent levels
-    have substrate-level evidence. Current state: Level 3 (MECH-094) confirmed_established;
-    Level 1 (MECH-095) substrate_ceiling, SD-047 pending; Level 2 (ARC-058) V3-tractable
-    but no calibration SD. Governance rule: do not promote ARC-061 until all three
-    dependent levels have supporting experimental evidence.
+    have substrate-level evidence. Current state (corrected 2026-09-09 governance, cycle
+    governance-20260909, per GFLAG-0145 -- the previous wording was stale on two counts and
+    is superseded, not merely annotated): Level 3 (MECH-094) confirmed_established; Level 1
+    (MECH-095) substrate_ceiling, and its ceiling was RE-POINTED away from SD-047 to
+    multi_agent_ecology_v5:MAE-3 on 2026-07-12 with implementation_phase reassigned v3 -> v5
+    (SD-047 itself has been implemented since 2026-05-03, so "SD-047 pending" was wrong);
+    Level 2 (ARC-058) V3-tractable WITH a calibration SD -- SD-048, implemented and
+    ready: true, naming ARC-058/ARC-033/ARC-061 in unblocks_claims (the earlier "no
+    calibration SD" contradicted this claim's own paragraph two above it). Governance rule:
+    do not promote ARC-061 until all three dependent levels have supporting experimental
+    evidence.
 
     [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] SCOPE CORRECTIONS owed before any test (all currency findings, none requiring an experiment): (i) Level 1 is specified via the two-pass counterfactual gap through 'the SD-003/SD-029 pipeline' -- SD-003 was superseded 2026-04-18; re-point Level 1 to the single-pass comparator family (MECH-256; SD-029 on z_harm_s, SD-031 on z_world). (ii) The family omits the encoder-level instantiation MECH-098 (ReafferencePredictor, live at ree_core/latent/stack.py:42), the best-evidenced member. (iii) 'SD-047 pending' and 'Level 2 has no calibration SD' are both stale: SD-047 and SD-048 are implemented (2026-05-03) and SD-048's queue entry names ARC-061 in unblocks_claims. epistemic_category set explicitly to substrate_conditional over the inferred substrate_coherence.
+
+    [2026-09-09 governance, cycle governance-20260909] GFLAG-0145 and GFLAG-0147 APPLIED (user-adjudicated). (1) The 'Current state:' sentence above was REWRITTEN, not merely annotated: it asserted 'Level 1 (MECH-095) substrate_ceiling, SD-047 pending' (SD-047 has been implemented since 2026-05-03, and MECH-095's ceiling was re-pointed to multi_agent_ecology_v5:MAE-3 on 2026-07-12) and 'Level 2 (ARC-058) V3-tractable but no calibration SD' (contradicted by this claim's own paragraph two above it, which names SD-048 as the calibration SD, and by substrate_queue.json where SD-048 is implemented/ready with ARC-058, ARC-033 and ARC-061 in unblocks_claims). The 2026-09-06 digestion paragraph already RECORDED both as stale but left the stale text standing above it, which is exactly the condition GFLAG-0145 flagged. (2) implementation_phase set to v5, following the standing 'phase label follows dependency' rule: Level 1 is bound to MAE-3 and the MAE-1 -> MAE-2 -> MAE-3 chain is entirely blocked with nothing built, so ARC-061 cannot be closed inside V3. Low-risk as the flag notes -- fan-in 0, so no reverse-dependency repointing is required. This DOES move ARC-061 out of the V3-completion denominator; that is the intended effect.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION. ARC-061 asserts that three (see the note below on four) comparators are one motif, not three independent mechanisms. Its distinctive content is therefore cross-level, and a test is non-vacuous only if every level it quantifies over is simultaneously live and independently manipulable in the *same* run. Concretely, all four conditions must hold and be reported:
     (1) Level 1 live -- for the motor comparator this requires a structurally-distinct OTHER. Do not re-derive this: see MECH-095's own `what_would_answer` NON-DEGENERACY PRECONDITION (HARD), including its two mandatory guards (probe-partition non-degeneracy AND self/world training-label balance, both reported, mirroring V3-EXQ-741) and its explicit refusal of any further single-agent SD-047 letter. As of 2026-09-04 this is bound to `multi_agent_ecology_v5:MAE-3`, which is `blocked` on MAE-2 on MAE-1; none of the three is built.
@@ -49469,14 +49479,15 @@
   claim_type: design_decision
   subject: environment.multi_source_dynamics
   polarity: asserts
-  status: provisional
+  status: candidate
   live_status:
-    reading: provisional
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-09-09
     needs_review: false
     evidence:
-      from: v3_exq_509_sd047_multi_source_substrate_readiness_20260503T103241Z_v3
-      verdict: supports/PASS
+      from: v3_exq_510_sd047_mech095_live_env_comparator_gap_20260504T074619Z_v3
+      as_of: 2026-05-04
+      verdict: weakens/FAIL
   implementation_phase: v3
   claim_level: architectural
   registered_utc: 2026-05-03
@@ -49581,6 +49592,8 @@
     parallel bookkeeping lists (rather than getting a new ENTITY_TYPES
     entry that would change NUM_ENTITY_TYPES from 7 to 8 and break
     local_view shape). Per-source bit-identical OFF preserved.
+
+    [2026-09-09 governance, cycle governance-20260909] GFLAG-0143 APPLIED (user-adjudicated). live_status.evidence re-pointed from v3_exq_509_sd047_multi_source_substrate_readiness_20260503T103241Z_v3 (verdict supports/PASS) to v3_exq_510_sd047_mech095_live_env_comparator_gap_20260504T074619Z_v3 (verdict weakens/FAIL), and status DEMOTED provisional -> candidate. Grounds, all verified this cycle: v3_exq_509 is experiment_purpose DIAGNOSTIC -- a substrate-READINESS smoke -- so its PASS says the substrate switched on, not that SD-047's assertion holds; the behavioural sweep landed the very next day, is experiment_purpose EVIDENCE, outcome FAIL, and records evidence_direction_per_claim SD-047: weakens. The provisional reading rested entirely on the readiness diagnostic being read as support, so once the citation points at the actual evidence there is nothing behind provisional. The sign disagreement had stood since 2026-05-04. Neither manifest is dry. GFLAG-0144 resolved separately as already-settled: governance kept MECH-095 at substrate_ceiling and re-pointed it to multi_agent_ecology_v5:MAE-3 on 2026-07-12 (v3 -> v5), which is the disposition that flag asked about. GFLAG-0146 applied against substrate_queue.json, not here.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION. SD-047 asserts two separable things, and they have separate preconditions. (A) The build clause -- three concurrent stochastic sources at *distinct* spatial/temporal scales, bit-identically OFF, sweepable on one lever. Non-degenerate only if, per arm: all three sources demonstrably fire (non-zero weather-field delta, non-zero transient appear/disappear count, non-zero drift-move count -- the `_multi_source_n_env_events` decomposition, reported per source, not pooled), the OFF arm draws no RNG and is bit-identical to the pre-SD-047 env, and the env-caused : agent-caused event ratio sits in the pre-registered 1:1-2:1 band. (B) The enabling clause -- that this background is "dense enough for agency-detection comparators (MECH-095) and reafference cancellation (MECH-098) to be honestly tested at substrate level". Non-degenerate only if the consumer test additionally reports a minimum class count per attribution condition (agent_caused / env_caused / agent_collateral / env_correlated) and the ratio stays inside the calibration band *in the arm being read*. This second guard was absent from V3-EXQ-510 -- its only check is pool-non-emptiness (`c*_evaluable = ratio is not None`, driver lines 415-452) -- and the pools duly collapsed (seed 42: `agent_caused` 1410 / 933 / 150 / 85 against `env_caused` 66 / 165 / 376 / 362 for ARM_0..ARM_3, i.e. the band is met near ARM_1 and inverts to ~1:2.5 at ARM_2 and ~1:4.3 at ARM_3). Any future reading of clause (B) must carry the guard; for the consumer-side precondition itself, do not re-derive -- see MECH-095's own `what_would_answer` NON-DEGENERACY PRECONDITION (HARD) and its two mandatory guards.
 
