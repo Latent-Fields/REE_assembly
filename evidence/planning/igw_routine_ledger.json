@@ -4821,7 +4821,11 @@
       "task_claim_session_id": "igw-auto-igw-235-proposal-for-mech-003-20260909T034853Z",
       "task_claim_claimed_at": "2026-09-09T03:48:53Z",
       "assigned_at": "2026-09-09T03:46:36Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-09T04:07:49Z",
+      "completion_summary": "marked EVB-1379/EXP-0733 (MECH-003) blocked_substrate: no tau-scoped precision registers or cross-tau projection operator in ree-v3 (REE_assembly bb16001279); chipped the /implement-substrate build; LIT-0734 left proposed",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-1379/EXP-0733 (MECH-003) blocked_substrate: no tau-scoped precision registers or cross-tau projection operator in ree-v3 (REE_assembly bb16001279); chipped the /implement-substrate build; LIT-0734 left proposed"
     }
   ],
   "dispositions": [
@@ -6862,6 +6866,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-09T03:05:41Z",
       "re_eligible_after": "2026-09-11T03:05:41Z"
+    },
+    {
+      "stable_hash": "1157c6934f1c",
+      "igw_id_at_disposition": "IGW-20260909-235",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-003"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-003",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-09T04:07:51Z",
+      "re_eligible_after": "2026-09-11T04:07:51Z"
     }
   ]
 }
