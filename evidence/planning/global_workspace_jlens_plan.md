@@ -4,7 +4,7 @@ closure_plan:
   title: "Global Workspace + J-lens (SD-064 access channel)"
   owner_claim: SD-064
   registered: 2026-07-08
-  last_updated: 2026-07-10
+  last_updated: 2026-09-08
   scope_claims: [SD-064, SD-027, MECH-254, MECH-191, MECH-089, MECH-287, SD-037, MECH-007]
   sibling_plans: [conversion_ceiling_campaign, behavioral_diversity_isolation]
   retrofit_note: "closure_plan frontmatter RETROFITTED 2026-07-09 (session frosty-thompson-d8f490; frontmatter-only, PROMOTES NOTHING, no claims.yaml/queue touch). Before this the plan carried no closure_plan block, so it was one of the two plans invisible to the closure map (flagged in closure_status.md 'Plans WITHOUT closure_plan frontmatter') even though its Experiment A (V3-EXQ-723) had already run. Snapshot regen (generate_closure_snapshot.py) left to the next governance cycle -- the shared REE_assembly checkout currently holds other sessions' uncommitted derived closure_status/closure_drift churn, so this session lands the plan .md only and does not regenerate/commit snapshots."
