@@ -25,6 +25,19 @@ def _load_module():
     return mod
 
 
+# The OTHER implementation of the same predicate, in a different repo subtree.
+# chip-20260909-isdryrun-parity-gap pins the two against each other.
+SYNC_PATH = (SCRIPT_PATH.parent.parent
+             / "evidence" / "experiments" / "scripts" / "sync_v3_results.py")
+
+
+def _load_sync_v3_results():
+    spec = importlib.util.spec_from_file_location("ree_sync_v3_results", SYNC_PATH)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 # Shape of the 728 manifest: dict `result` AND a top-level string `outcome`.
 DICT_RESULT_MANIFEST = {
     "run_id": "v3_exq_728_trained_allon_capability_point_20260720T155414Z_v3",
@@ -1044,6 +1057,141 @@ class DegenerateEvidenceSectionRenderTests(unittest.TestCase):
         for text in (clean, flagged):
             self.assertIn("Pending: **1** item(s)", text)
             self.assertIn("1 PASS, 0 FAIL", text)
+
+
+class DryRunArmParityTests(unittest.TestCase):
+    """chip-20260909-isdryrun-parity-gap: the two dryness checks over the SAME
+    corpus had DIFFERENT arms, and diverged silently for months.
+
+    sync_v3_results._is_dry_run had three arms (flag / `_dry_` FILENAME prefix /
+    bare `_dry` run_id suffix); generate_pending_review._is_dry_run had two
+    (flag / `_dry_<stamp>` run_id regex). Measured 2026-09-09: 15 dry manifests
+    leaked past pending_review and GOV-DRY-1 while sync kept every one of them
+    out of claim_evidence.v1.json -- 14 carried an ASSERTING evidence_direction
+    and 14 were already in reviewed_run_ids.
+
+    The parity test below is the load-bearing one: pinning each arm separately
+    would not have caught this defect, because each implementation was
+    internally consistent. Only comparing them against each other does.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+        cls.sync = _load_sync_v3_results()
+
+    # --- the two arms generate_pending_review was missing -------------------
+
+    def test_bare_dry_suffix_run_id_is_dry(self):
+        """No timestamp at all -- `_DRY_RUN_ID_RE` cannot express this."""
+        for rid in ("v3_exq_324b_sd020_harm_surprise_pe_dry",
+                    "v3_exq_259_wanting_gradient_navigation_dry",
+                    "v3_exq_321a_mech090_bistable_gate_dry"):
+            self.assertTrue(self.mod._is_dry_run({"run_id": rid}), rid)
+
+    def test_dry_filename_prefix_is_dry_even_when_run_id_is_clean(self):
+        """`pack_writer.write_flat_manifest` marks a smoke by PREFIXING the
+        filename and leaves the run_id untouched -- the live 918a shape. No
+        key-based arm can see it, which is why the path parameter exists."""
+        rid = "v3_exq_918a_sd_residue_valence_bound_validation_20260909T062139Z_v3"
+        d = {"run_id": rid}
+        self.assertFalse(self.mod._is_dry_run(d), "run_id alone is clean")
+        self.assertTrue(self.mod._is_dry_run(d, Path("_dry_%s.json" % rid)))
+
+    def test_path_argument_is_optional(self):
+        """Pre-existing callers pass no path; they must keep working."""
+        self.assertTrue(self.mod._is_dry_run({"dry_run": True}))
+        self.assertFalse(self.mod._is_dry_run({"run_id": "x_20260101T000000Z_v3"}))
+
+    def test_widening_does_not_swallow_the_harm_hub_dry_near_miss(self):
+        """`harm_hub_dry` is a real experiment_type STEM. It is always followed
+        by the run's timestamp, so a genuine run never ENDS in `_dry` -- the
+        documented false-positive risk for the bare-suffix arm."""
+        for rid in ("v3_exq_395_mech220_harm_hub_20260418T101010Z_v3",
+                    "v3_exq_9_dryness_probe_20260418T101010Z_v3",
+                    "v3_exq_9_dry_v3", "v3_exq_9_dry_1775167807_v3"):
+            self.assertFalse(self.mod._is_dry_run({"run_id": rid}), rid)
+            self.assertFalse(
+                self.mod._is_dry_run({"run_id": rid}, Path("%s.json" % rid)), rid)
+
+    # --- the parity itself, which is the actual regression -----------------
+
+    def test_the_two_implementations_agree_on_every_shape(self):
+        """THE defect was silent divergence -- pin the agreement, not the arms.
+
+        Any future edit that adds an arm to one side and not the other fails
+        here, naming the shape it disagreed on.
+        """
+        stems = [
+            # dry: bare suffix / timestamped / filename-prefixed / flagged
+            "v3_exq_324b_sd020_harm_surprise_pe_dry",
+            "v3_exq_395_mech220_harm_hub_dry_20260413T074905Z",
+            "v3_exq_329_arc033_e2_harm_s_counterfactual_dry_20260410T155945Z_v3",
+            # not dry, including the near-misses
+            "v3_exq_395_mech220_harm_hub_20260418T101010Z_v3",
+            "v3_exq_9_dryness_probe_20260418T101010Z_v3",
+            "v3_exq_9_dry_v3",
+            "v3_exq_9_dry_1775167807_v3",
+            "",
+        ]
+        disagreements = []
+        for rid in stems:
+            for flag in ({}, {"dry_run": True}, {"dry_run": False}):
+                for name in ("%s.json" % rid, "_dry_%s.json" % rid):
+                    d = dict(flag)
+                    if rid:
+                        d["run_id"] = rid
+                    p = Path(name)
+                    mine = self.mod._is_dry_run(d, p)
+                    theirs = self.sync._is_dry_run(d, p)
+                    if mine != theirs:
+                        disagreements.append(
+                            "run_id=%r file=%r flag=%r: pending_review=%s sync=%s"
+                            % (rid, name, flag.get("dry_run"), mine, theirs))
+        self.assertEqual(disagreements, [], "\n".join(disagreements))
+
+    def test_sync_arms_are_a_subset_of_ours(self):
+        """Directional guard: whatever sync calls dry, we must call dry.
+
+        sync is the side that (correctly) kept all 15 leakers out of
+        claim_evidence.v1.json, so its arms are the floor.
+        """
+        for rid, name in (
+                ("v3_exq_324b_sd020_harm_surprise_pe_dry", "x.json"),
+                ("clean_run_20260909T000000Z_v3", "_dry_clean.json"),
+        ):
+            d = {"run_id": rid}
+            p = Path(name)
+            self.assertTrue(self.sync._is_dry_run(d, p), (rid, name))
+            self.assertTrue(self.mod._is_dry_run(d, p), (rid, name))
+
+
+class DryRunSharedHelperTests(unittest.TestCase):
+    """"One truthiness check, three consumers" -- no inline re-spellings.
+
+    `flat_only_silent_drop_guard` carried a FOURTH divergent copy of this
+    predicate (flag + bare-suffix only) until chip-20260909-isdryrun-parity-gap.
+    """
+
+    def test_generate_pending_review_has_exactly_one_dryness_predicate(self):
+        src = SCRIPT_PATH.read_text()
+        self.assertEqual(src.count("def _is_dry_run"), 1)
+        # the inline spelling: a dry_run truthiness test not routed through the helper
+        self.assertNotIn('or str(run_id).endswith("_dry")', src)
+
+    def test_every_call_site_passes_the_path(self):
+        """The filename arm is unreachable from a call that drops the path."""
+        import re as _re
+        src = SCRIPT_PATH.read_text()
+        calls = _re.findall(r"[^f]_is_dry_run\(([^)]*)\)", src)
+        bare = [c for c in calls
+                if c.strip() and "," not in c and "flat_path" not in c]
+        self.assertEqual(bare, [], "call sites dropping the path: %r" % bare)
+
+    def test_check_dry_run_citations_passes_the_path(self):
+        """GOV-DRY-1 reads dryness transitively through this module."""
+        p = SCRIPT_PATH.parent / "check_dry_run_citations.py"
+        self.assertIn("_is_dry_run(d, f)", p.read_text())
 
 
 if __name__ == "__main__":

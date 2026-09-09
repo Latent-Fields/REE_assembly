@@ -115,8 +115,8 @@ def load_tracker() -> tuple[set, set, str]:
 _DRY_RUN_ID_RE = re.compile(r"_dry_\d{8}T\d{6}Z")
 
 
-def _is_dry_run(d: dict) -> bool:
-    """True if a manifest is a --dry-run smoke: flag set, OR run_id of dry shape.
+def _is_dry_run(d: dict, flat_path: Path | None = None) -> bool:
+    """True if a manifest is a --dry-run smoke: flag set, OR dry-shaped name.
 
     A --dry-run smoke writes a real flat/pack manifest to evidence/experiments/
     (e.g. V3-EXQ-696: 1 seed, 4 toy episodes, elapsed 29.9s) but is NOT evidence
@@ -134,10 +134,43 @@ def _is_dry_run(d: dict) -> bool:
     carried `supports` from unflagged smokes. The run_id shape is the producer's
     own declaration and predates the flag; episode counts cannot be used
     instead (395 writes module constants, not the reduced dry values).
+
+    ARM PARITY WITH sync_v3_results._is_dry_run (chip-20260909-isdryrun-parity-gap).
+    Two dryness checks existed over the same corpus with DIFFERENT arms, and the
+    two this one was missing are exactly the ones the timestamped regex cannot
+    express:
+
+      * `flat_path.name.startswith("_dry_")` -- `pack_writer.write_flat_manifest`
+        marks a smoke by PREFIXING the FILENAME and leaves the run_id untouched,
+        so no key-based arm can ever see it. This is why the parameter exists;
+        it is optional so the pre-existing call sites keep working.
+      * `run_id.endswith("_dry")` -- a bare `_dry` suffix with no timestamp at
+        all, which `_DRY_RUN_ID_RE` (which REQUIRES `_dry_<stamp>`) misses.
+
+    Measured 2026-09-09 before the fix: of 41 dry-named manifests carrying no
+    top-level dry_run field, 26 were caught by the regex and 15 leaked past
+    every arm -- 14 of them with an ASSERTING evidence_direction (13
+    does_not_support, 1 supports) against SD-011/013/015/019/020/021/022,
+    MECH-090/112, ARC-028, Q-036 -- and 14 were already in reviewed_run_ids,
+    i.e. a past session had mark-discussed a smoke. sync_v3_results kept all of
+    them out of claim_evidence.v1.json; pending_review and GOV-DRY-1 did not.
+    That divergence is the defect, so the regression test pins the two
+    implementations against each other, not merely each arm separately.
+
+    The bare-suffix arm is safe against the `harm_hub_dry` near-miss the note
+    above warns of: that is an experiment_type STEM, always followed by the
+    run's timestamp, so a real 395 run_id never ENDS in `_dry` (verified across
+    the whole corpus 2026-09-09 -- the widening excludes exactly the 15 leakers
+    and nothing else).
     """
     if str(d.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
         return True
-    return bool(_DRY_RUN_ID_RE.search(str(d.get("run_id") or "")))
+    if flat_path is not None and Path(flat_path).name.startswith("_dry_"):
+        return True
+    run_id = str(d.get("run_id") or "")
+    if run_id.endswith("_dry"):
+        return True
+    return bool(_DRY_RUN_ID_RE.search(run_id))
 
 
 def load_dry_run_run_ids() -> set:
@@ -156,7 +189,7 @@ def load_dry_run_run_ids() -> set:
             d = json.loads(f.read_text())
         except Exception:
             continue
-        if isinstance(d, dict) and _is_dry_run(d):
+        if isinstance(d, dict) and _is_dry_run(d, f):
             rid = d.get("run_id")
             if rid:
                 ids.add(rid)
@@ -844,7 +877,7 @@ def load_unclaimed_manifests(reviewed: set, discussed: set,
             continue
         if not isinstance(d, dict):
             continue
-        if _is_dry_run(d):
+        if _is_dry_run(d, f):
             continue
         run_id = d.get("run_id")
         if not run_id:
@@ -914,7 +947,7 @@ def load_error_manifests(reviewed: set, discussed: set,
             continue
         if not isinstance(d, dict):
             continue
-        if _is_dry_run(d):
+        if _is_dry_run(d, f):
             continue
         run_id = d.get("run_id")
         if not run_id:
@@ -977,8 +1010,11 @@ def flat_only_silent_drop_guard(indexed_run_ids: set) -> list[str]:
         if not (isinstance(cids, list) and any(str(c).strip() for c in cids)):
             continue
         # Dry-run / smoke artifacts are never scored by design -- skip.
-        if (str(d.get("dry_run", "")).strip().lower() in ("true", "1", "yes")
-                or str(run_id).endswith("_dry")):
+        # Was an inline FOURTH spelling of this predicate (flag + bare-suffix
+        # only, no filename arm and no `_dry_<stamp>` regex) until
+        # chip-20260909-isdryrun-parity-gap. "One truthiness check, three
+        # consumers" is the intent -- do not re-inline it.
+        if _is_dry_run(d, f):
             continue
         et = d.get("experiment_type") or ""
         has_pack = bool(et) and (EVIDENCE_DIR / et / "runs" / run_id / "manifest.json").exists()

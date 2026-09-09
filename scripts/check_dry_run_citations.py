@@ -93,7 +93,10 @@ def build_index():
         rid = d.get("run_id")
         if not rid:
             continue
-        dry = _is_dry_run(d)
+        # Pass the PATH: `_is_dry_run`'s filename arm is the only one that can
+        # see a `_dry_`-PREFIXED flat manifest whose run_id is clean
+        # (pack_writer.write_flat_manifest). chip-20260909-isdryrun-parity-gap.
+        dry = _is_dry_run(d, f)
         rec = by_run.get(rid)
         if rec is None:
             rec = {

@@ -46,18 +46,48 @@ SKIP_NAMES = {
 _V3_MIDSTRING_RE = re.compile(r"_v3_\d{8}T\d{6,}Z?$")
 
 
+# The PRODUCER naming convention for a --dry-run smoke: drivers write
+# run_id = f"{EXPERIMENT_TYPE}_dry_{timestamp}" (a literal `_dry_` segment
+# followed by the compact UTC stamp). Anchored on that whole shape, NOT on a
+# bare "dry" substring: `harm_hub_dry` is a real experiment_type stem
+# (v3_exq_395) and would match a loose scan. Shared verbatim with
+# generate_pending_review.py and build_experiment_indexes.py.
+_DRY_RUN_ID_RE = re.compile(r"_dry_\d{8}T\d{6}Z")
+
+
 def _is_dry_run(data: dict, flat_path: Path | None = None) -> bool:
     """True for a dry-run / smoke artifact that must never be scored.
 
-    `flat_path` adds the third spelling: `pack_writer.write_flat_manifest`
-    marks a smoke by PREFIXING the filename `_dry_<run_id>.json` and leaves the
-    run_id itself untouched, so neither key-based arm sees it.
+    FOUR spellings, and all four are load-bearing -- see the parity test in
+    scripts/test_generate_pending_review.py::DryRunArmParityTests, which pins
+    this function against generate_pending_review._is_dry_run shape-for-shape.
+
+      1. the top-level `dry_run` flag (the pack_writer chokepoint, 2026-07-12);
+      2. `flat_path.name.startswith("_dry_")` -- `write_flat_manifest` marks a
+         smoke by PREFIXING the filename and leaves the run_id untouched, so no
+         key-based arm can see it;
+      3. `run_id.endswith("_dry")` -- a bare suffix with no timestamp;
+      4. `_DRY_RUN_ID_RE` -- the `_dry_<stamp>` shape, where the stamp TRAILS
+         the marker so arm 3 cannot fire.
+
+    ARM 4 WAS MISSING HERE UNTIL 2026-09-09 (chip-20260909-isdryrun-parity-gap),
+    and the divergence ran in BOTH directions: generate_pending_review had 4 but
+    not 2/3, this side had 1/2/3 but not 4. Measured on the live corpus, 14
+    run_ids were dry to pending_review and NOT dry here -- 3 of them carrying an
+    asserting `does_not_support`. That is the dangerous direction for THIS
+    module specifically: `_is_flat_v3` consults this predicate to REFUSE
+    converting a smoke into a runs/ pack, and the pack is what the indexer
+    scores. A false negative here is exactly the MECH-245 contamination the
+    docstring below describes.
     """
     if str(data.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
         return True
-    if flat_path is not None and flat_path.name.startswith("_dry_"):
+    if flat_path is not None and Path(flat_path).name.startswith("_dry_"):
         return True
-    return str(data.get("run_id", "")).endswith("_dry")
+    run_id = str(data.get("run_id", ""))
+    if run_id.endswith("_dry"):
+        return True
+    return bool(_DRY_RUN_ID_RE.search(run_id))
 
 
 def _is_evidence_grade(data: dict) -> bool:
