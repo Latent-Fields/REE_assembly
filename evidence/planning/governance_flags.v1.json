@@ -3456,6 +3456,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0247",
+      "claim_ids": [
+        "SD-084",
+        "MECH-288",
+        "MECH-527",
+        "MECH-343"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "CROSS-CUTTING ATTRIBUTION GAP -- recorded once by governance cycle governance-20260909 wave 3 (user decision) as the single owner of a defect that GFLAG-0193, GFLAG-0191 and GFLAG-0202 each describe one instance of. Those three flags are DELIBERATELY LEFT OPEN pointing here rather than resolved, because the underlying defect is unfixed. THE SHAPE: a diagnostic experiment correctly carries claim_ids: [] (the deliberate convention that stops a diagnostic weighting a claim), the run then PASSes cleanly and is confirmed and reviewed, and the claim it actually validates is left reading as evidence-free -- so a validated design decision is indistinguishable, to every downstream consumer, from one nobody ever tested. THE THREE INSTANCES: (i) SD-084 is status candidate_substrate_landed with evidence: [] and returns null from claim_evidence.v1.json, while its validating diagnostic V3-EXQ-839 PASSed cleanly (415 vs 0, attributability 4/4 as pre-registered, negative control held, non_degenerate), was CONFIRMED by failure_autopsy_V3-EXQ-839_2026-07-30, and was ratified by governance on 2026-08-10. (ii) MECH-288 sits at experimental_confidence 0.649 from genuine_exp_count 1 (V3-EXQ-757, an action-free synthetic isolation test) while its substrate ran live inside 22 further indexed experiments, none of which names MECH-288 in claim_ids. (iii) V3-EXQ-694 (v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness) is a reviewed PASS with claim_ids: [], is the ONLY exercise of the SD-061 substrate, and its entropy result (ON-arm first_action_entropy fell -0.0812/-0.0734/-0.0953 on 3/3 seeds while control drift was mixed in sign) is load-bearing for BOTH MECH-343 and MECH-527 -- currently attributable to neither. WHY THIS NEEDS A DECISION RATHER THAN THREE EDITS: the honest fix is not to back-tag claim_ids on diagnostics (that would defeat the convention and let diagnostics weight claims, which is the thing the convention exists to prevent). It is a cross-tag mechanism that records 'this diagnostic validated that claim' WITHOUT granting scored credit -- exactly what the ARC-120 and ARC-130 claim_synthesis passes did by hand in 2026-09-07, and what diagnostic_evidence_adjudicated: true marks after the fact. The open question for governance is whether that hand pattern should become a standing, mechanised route, and if so what reads it. Until then every validated-but-untagged claim will keep re-surfacing as a promotion_review flag, one claim at a time, forever.",
+      "raised_by_session": "governance-20260909-w3",
+      "raised_at": "2026-09-09T14:42:43Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
