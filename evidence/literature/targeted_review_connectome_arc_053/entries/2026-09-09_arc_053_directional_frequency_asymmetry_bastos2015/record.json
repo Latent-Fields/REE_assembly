@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_053",
+  "entry_id": "2026-09-09_arc_053_directional_frequency_asymmetry_bastos2015",
+  "timestamp_utc": "2026-09-09T07:02:27Z",
+  "claim_ids_tested": ["ARC-053"],
+  "source": {
+    "title": "A DCM study of spectral asymmetries in feedforward and feedback connections between visual areas V1 and V4 in the monkey",
+    "authors": ["Andre M. Bastos", "Vladimir Litvak", "Rosalyn Moran", "Conrado A. Bosman", "Pascal Fries", "Karl J. Friston"],
+    "year": 2015,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2014.12.081",
+    "pmid": "25585017",
+    "pmc": "PMC4334664",
+    "volume": "108",
+    "pages": "460-475"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Methodologically strong (monkey ECoG plus biophysically-grounded DCM with laminar-specific pyramidal populations) and squarely on target for the ascending/descending distinction ARC-053 depends on. Direction is MIXED rather than supports because the finding cuts both ways: it confirms that ascending and descending traffic are carried in separable, dynamically regulated rhythmic channels (which a coherence loop is needed to co-register), while complicating the claim's literal phrasing that the two must 'meet in the same phase channel'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ascending and descending influences occupy DIFFERENT frequency bands (gamma forward, alpha/beta backward), so a naive reading of ARC-053 in which prediction and input must share one phase channel is not what the anatomy does; a cross-frequency formulation is required and ARC-053 does not currently specify one.",
+    "The directional-asymmetry result is a model-comparison inference from DCM, so it inherits the assumptions of the neural mass model; a different generative model could in principle account for the same ECoG data without the laminar-frequency mapping."
+  ],
+  "tags": ["arc-053", "arc_053", "predictive_coding", "feedforward_gamma", "feedback_beta", "cross_frequency", "support_tag:channel_separation_confirmed", "candidate:phase_channel_reformulation"],
+  "mapping": {
+    "source_claim_statement": "Dynamic causal modelling of V1-V4 electrocorticography in macaque showed that forward (ascending) connections were mediated predominantly by higher, gamma-band frequencies while backward (descending) connections were mediated by lower, alpha/beta-band frequencies -- a spectral asymmetry consistent with predictive coding accounts in which prediction error ascends and prediction descends.",
+    "ree_translation": "ARC-053 asserts that V(t) requires ascending and descending signals to meet in the same phase channel at the right moment, and that without a coherence mechanism they 'miss each other in time'. This paper confirms the premise that the two directions ARE carried in distinct, rhythmically-organised channels -- which is what makes a co-registration problem exist at all, and therefore what makes a TCL necessary rather than decorative. But it also shows those channels are at DIFFERENT frequencies by default, so the co-registration the TCL must perform is a cross-frequency one (plausibly phase-amplitude coupling), not the alignment of two signals within a single band.",
+    "mapping_caveat": "This is the sharpest mapping caveat in the pull, and it is a specification finding rather than a confirmation: ARC-053's phrase 'the same phase channel' is under-specified against the anatomy this paper describes, and the claim should be read as requiring a cross-frequency alignment operation. The paper does not test any coherence-maintaining loop, so it says nothing about whether a TCL exists -- only about the structure of the problem such a loop would have to solve.",
+    "source_context": "Macaque V1 and V4 electrocorticography during visual stimulation, analysed with dynamic causal modelling using a canonical microcircuit neural mass model with laminar-specific pyramidal populations."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.80: primate ECoG plus a principled generative model, and the forward-gamma/backward-beta asymmetry has since been replicated across species and methods, though the specific result here is a model-comparison inference. Mapping fidelity 0.72 -- higher than the other two ARC-053 entries because this paper is directly about the ascending/descending distinction ARC-053 turns on, even though it bears on the claim's FORM rather than its truth. Transfer risk 0.35. Recorded as mixed because its net effect on the claim is to support the necessity of the loop while requiring the claim's phrasing to be tightened."
+  }
+}

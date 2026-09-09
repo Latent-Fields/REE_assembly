@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_054",
+  "entry_id": "2026-09-09_arc_054_branching_time_active_inference_champion2022",
+  "timestamp_utc": "2026-09-09T07:02:27Z",
+  "claim_ids_tested": ["ARC-054"],
+  "source": {
+    "title": "Branching Time Active Inference: The theory and its generality",
+    "authors": ["Theophile Champion", "Lancelot Da Costa", "Howard Bowman", "Marek Grzes"],
+    "year": 2022,
+    "venue": "Neural Networks",
+    "doi": "10.1016/j.neunet.2022.03.036",
+    "pmid": "35468491",
+    "volume": "151",
+    "pages": "295-316"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "A rigorous formal treatment establishing that horizon-discounted accumulation of a coherence-like quantity over a tree of imagined futures is a well-posed and tractable objective, which is the computational form ARC-054 asserts. Held at 0.60 because it establishes the FORM's coherence and tractability rather than providing evidence that this objective outperforms reward maximisation in REE's setting -- a formal-possibility result, not an empirical one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper demonstrates that the objective class is well-posed and computable; it does not show that a coherence-persistence objective selects better trajectories than expected-reward maximisation on any task REE cares about, so it cannot discharge ARC-054's substantive claim that instantaneous-V optimisation creates coherence traps.",
+    "Tree-search over expected free energy is exponential in horizon without the paper's pruning strategy; if REE's H is large and its branching factor high, the tractability result may not transfer and ARC-054's J(pi) computation could be the bottleneck rather than the benefit."
+  ],
+  "tags": ["arc-054", "arc_054", "active_inference", "expected_free_energy", "planning_horizon", "tree_search", "support_tag:objective_form_well_posed"],
+  "mapping": {
+    "source_claim_statement": "Planning can be cast as structure learning over a tree of imagined future states, with expected free energy propagated forward toward the leaves and backward toward the root; the forward and backward propagations correspond respectively to active inference and sophisticated inference, and the resulting framework generalises to habit formation and curiosity-driven exploration.",
+    "ree_translation": "ARC-054 asserts J(pi) = sum over k of gamma^k times V_hat_pi(t+k), with selection pi* = argmax J subject to survival and harm constraints, and claims this generalises reward maximisation because reward becomes a special case of coherence preservation. This paper provides the formal warrant for that shape of objective: it shows that accumulating a non-reward, epistemic-plus-pragmatic quantity across a discounted tree of futures is well-posed, that it can be computed by tree search with backward propagation from the leaves, and that the resulting agent recovers reward-seeking behaviour as one regime among others -- exactly the generalisation relation ARC-054 asserts.",
+    "mapping_caveat": "Expected free energy is NOT D_V. The two objectives share a form -- horizon-discounted accumulation of an internally-computed quantity over imagined trajectories -- but differ in content: EFE accumulates ambiguity plus risk relative to preferred outcomes, while D_V accumulates temporal-depth verisimilitude derived from MECH-269 per-region V_s. This entry therefore evidences that ARC-054's OBJECTIVE FORM is coherent and computable, and evidences nothing about whether D_V is the right quantity to put in it. The tractability result is also conditional on the paper's pruning strategy.",
+    "source_context": "Formal derivation plus simulation in a computational neuroscience / machine learning venue; no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Source quality 0.72: peer-reviewed in a solid venue with rigorous derivation, but a single-framework theoretical contribution whose empirical validation is limited to simulations chosen by the authors. Mapping fidelity 0.65 -- the objective FORM matches ARC-054's J(pi) closely, the objective CONTENT does not. Transfer risk 0.30, low because this is computation-to-computation rather than biology-to-computation. Aggregate 0.60 reflects that a formal-possibility result is genuine but weak support for an architectural commitment that asserts a specific quantity is the right one."
+  }
+}

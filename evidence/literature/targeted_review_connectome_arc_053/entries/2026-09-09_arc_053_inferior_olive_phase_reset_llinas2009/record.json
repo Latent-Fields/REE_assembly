@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_053",
+  "entry_id": "2026-09-09_arc_053_inferior_olive_phase_reset_llinas2009",
+  "timestamp_utc": "2026-09-09T07:02:27Z",
+  "claim_ids_tested": ["ARC-053"],
+  "source": {
+    "title": "Inferior olive oscillation as the temporal basis for motricity and oscillatory reset as the basis for motor error correction",
+    "authors": ["Rodolfo R. Llinas"],
+    "year": 2009,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2009.04.045",
+    "pmid": "19393291",
+    "pmc": "PMC2861300",
+    "volume": "162",
+    "issue": "3",
+    "pages": "797-804"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "A canonical, mechanistically detailed review by the investigator who characterised the inferior olive's subthreshold oscillation and electrotonic coupling, and it directly evidences the specific biophysical substrate ARC-053's own notes name first. Downweighted from the source quality it would otherwise earn because it is a review advancing a particular theoretical position rather than a single controlled test, and because the domain is motor timing rather than the perceptual prediction/input coupling ARC-053 cares about.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The mechanism is demonstrated for motor sequencing and motor error correction; the paper offers no evidence that inferior olive phase reset governs coupling between descending predictions and ascending input in perceptual or imaginative modes.",
+    "The 1-10 Hz olivary oscillation is a slow timing signal. If REE's V(t) phase-alignment term ends up requiring alignment at gamma-band or faster timescales, this substrate is the wrong frequency and the connectome hypothesis in ARC-053's notes would need revision rather than support."
+  ],
+  "tags": ["arc-053", "arc_053", "inferior_olive", "cerebellum", "phase_reset", "temporal_binding", "support_tag:phase_alignment_substrate_exists"],
+  "mapping": {
+    "source_claim_statement": "Inferior olivary neurons are electrotonically coupled and generate subthreshold membrane-potential oscillations at 1-10 Hz that impose a common temporal frame on distributed motor commands; the same circuitry can rapidly RESET oscillatory phase, and this reset is proposed as the substrate for on-line motor error correction.",
+    "ree_translation": "ARC-053's notes name 'inferior olive + cerebellum + thalamus + cortical networks (MECH-226)' as the biophysical substrate hypothesis for the TCL. This paper is the primary evidence for the olivary leg of that hypothesis, and it supplies something the thalamic literature does not: an explicit PHASE-RESET operation. That maps onto TCL function (2) 'adjusts timing windows and synchrony' -- the TCL is not only a passive clock but something that can be re-aligned on the basis of error, which is precisely what a control loop maintaining coherence would need.",
+    "mapping_caveat": "The entire demonstration is in the motor domain -- timing of movement and correction of movement error. ARC-053 asserts a coherence loop in service of a verisimilitude readout over prediction/input coupling, which is a perceptual and cross-modal claim. Importing the olivary mechanism into that role is an architectural ANALOGY (an error-driven phase-reset controller is what the TCL would need to be), not a measured finding. There is also a frequency-band commitment hidden in the transfer: 1-10 Hz.",
+    "source_context": "Review of in vitro and in vivo rodent and cat inferior olive electrophysiology, synthesised into a theoretical account of olivo-cerebellar timing; single-author position paper."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.75: authoritative and mechanistically specific, but a theory-advancing review rather than a controlled test, and the olivo-cerebellar timing hypothesis remains contested in parts of the cerebellar literature. Mapping fidelity 0.60: it evidences the named substrate and supplies the phase-reset primitive, but in the wrong task domain. Transfer risk 0.45 is the highest of this pull -- motor-to-perceptual transfer plus an implicit frequency-band commitment. Aggregate reflects that this entry supports the SUBSTRATE hypothesis in ARC-053's notes more than it supports ARC-053's core assertion."
+  }
+}

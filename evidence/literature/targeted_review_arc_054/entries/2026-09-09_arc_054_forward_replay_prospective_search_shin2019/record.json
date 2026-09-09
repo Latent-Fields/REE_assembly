@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_054",
+  "entry_id": "2026-09-09_arc_054_forward_replay_prospective_search_shin2019",
+  "timestamp_utc": "2026-09-09T07:02:27Z",
+  "claim_ids_tested": ["ARC-054"],
+  "source": {
+    "title": "Dynamics of Awake Hippocampal-Prefrontal Replay for Spatial Learning and Memory-Guided Decision Making",
+    "authors": ["Justin D. Shin", "Wenbo Tang", "Shantanu P. Jadhav"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.09.012",
+    "pmid": "31677957",
+    "pmc": "PMC6923537",
+    "volume": "104",
+    "issue": "6",
+    "pages": "1110-1125.e7"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "High-quality simultaneous dual-region ensemble recording with a learning-stage manipulation, directly evidencing that the brain runs forward trajectory rollouts coordinated with prefrontal cortex during decision making -- the ROLLOUT half of ARC-054's mechanism. Held below 0.75 because the paper evidences that rollouts occur and are read by a downstream evaluator, not that they are SCORED by a temporal-depth criterion, which is ARC-054's actual distinguishing assertion.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper establishes that forward replay exists and is coordinated with prefrontal cortex, but does not measure any scoring function over the replayed trajectory; it is equally consistent with rollouts being scored by expected reward, which is exactly the alternative ARC-054 claims is insufficient.",
+    "The retrospective-to-prospective shift is observed across learning stages within a task; it is not a demonstration that prospective rollout is the mechanism by which any trajectory is SELECTED, since replay content is not shown to precede or predict the specific trajectory taken."
+  ],
+  "tags": ["arc-054", "arc_054", "hippocampal_replay", "forward_replay", "prefrontal", "rollout", "support_tag:rollout_substrate_exists"],
+  "mapping": {
+    "source_claim_statement": "Awake hippocampal sharp-wave-ripple replay is coordinated with prefrontal cortical ensembles during spatial learning; reverse and forward replay together support an internal cognitive search over past and possible future trajectories, with reverse replay dominating early retrospective evaluation and forward replay becoming prominent for prospective, memory-guided decision making.",
+    "ree_translation": "ARC-054 asserts that E3 trajectory selection evaluates candidate trajectories by a criterion computed over a rollout across a planning horizon H, rather than over the instantaneous state. That presupposes a rollout mechanism -- something that generates candidate future trajectories internally and hands them to an evaluator. This paper is direct biological evidence for that presupposition: the hippocampus generates forward trajectory sequences, and crucially they are COORDINATED WITH a downstream structure (prefrontal cortex) that is the natural candidate for the evaluator. The claim's framing of hippocampal rollout evaluation as an architectural requirement is supported at the level of mechanism availability.",
+    "mapping_caveat": "Rollout GENERATION is evidenced; rollout SCORING is not. ARC-054's distinguishing content is the scoring function -- that trajectories are ranked by predicted temporal-depth verisimilitude D_V over horizon H rather than by predicted reward. Nothing in this paper discriminates between those two scoring rules, so this entry supports the architectural precondition while leaving the claim's actual novelty untested. Rodent spatial navigation to REE's E3 selection over arbitrary trajectories is also a substantial domain extrapolation.",
+    "source_context": "Rats learning a W-track spatial alternation task; simultaneous tetrode ensemble recordings from dorsal CA1 and medial prefrontal cortex, analysed across learning stages."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Source quality 0.85: dual-region simultaneous ensemble recording with a within-animal learning-stage comparison, in Neuron, from a group whose replay methodology is well established. Mapping fidelity 0.60 because the paper evidences the rollout SUBSTRATE rather than ARC-054's scoring criterion. Transfer risk 0.40 for rodent-spatial to general-trajectory extrapolation. Aggregate weighted toward mapping fidelity, since ARC-054 is an arch_commitment about a selection rule."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_054",
+  "entry_id": "2026-09-09_arc_054_replay_decoupled_from_choice_gillespie2021",
+  "timestamp_utc": "2026-09-09T07:02:27Z",
+  "claim_ids_tested": ["ARC-054"],
+  "source": {
+    "title": "Hippocampal replay reflects specific past experiences rather than a plan for subsequent choice",
+    "authors": ["Anna K. Gillespie", "Daniela A. Astudillo Maya", "Eric L. Denovellis", "Daniel F. Liu", "David B. Kastner", "Michael E. Coulter", "Demetris K. Roumis", "Uri T. Eden", "Loren M. Frank"],
+    "year": 2021,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2021.07.029",
+    "pmid": "34450026",
+    "pmc": "PMC8497431",
+    "volume": "109",
+    "issue": "19",
+    "pages": "3149-3163.e6"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "A well-powered, methodologically careful trial-level test of exactly the inference ARC-054's biological framing depends on, using a dynamic task designed to dissociate past experience from future choice -- the dissociation earlier replay studies could not make. Confidence is high for a WEAKENING entry because the study is specifically constructed to test this question rather than answering it incidentally, though it constrains ARC-054's biological grounding rather than its computational content.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay content was decoupled from the animal's subsequent choice and instead reflected previously rewarded locations -- so on this evidence hippocampal replay is not the trajectory-selection mechanism ARC-054's 'hippocampal rollout evaluation' framing assumes.",
+    "If replay serves memory consolidation and credit assignment rather than prospective selection, then ARC-054's D_V criterion, if real, must be computed somewhere other than over hippocampal replay content, and the claim's named substrate is wrong even if its selection rule is right.",
+    "A null coupling between replay content and subsequent choice is compatible with rollout evaluation happening at a timescale or in a structure this recording does not capture, so the finding constrains the substrate attribution more strongly than it refutes rollout-based selection as such."
+  ],
+  "tags": ["arc-054", "arc_054", "hippocampal_replay", "counter_evidence", "substrate_attribution", "support_tag:weakens_hippocampal_rollout_framing"],
+  "mapping": {
+    "source_claim_statement": "In a dynamic spatial task in which past experience and future choice could be dissociated, hippocampal awake replay content was decoupled from the animal's subsequent choice and instead preferentially represented previously rewarded locations, indicating that replay reflects specific past experiences rather than constituting a plan for the upcoming decision.",
+    "ree_translation": "ARC-054 frames its selection rule as 'hippocampal rollout evaluation': candidate trajectories are generated and then scored by predicted D_V over horizon H. This paper attacks the biological warrant for the first half of that framing. If replay content does not predict the choice actually made, then replay is not functioning as the candidate-generation-for-selection step, and the appeal to hippocampal rollout as the biological grounding for ARC-054's E3 mechanism is not supported by the best-designed test of it.",
+    "mapping_caveat": "This weakens ARC-054's BIOLOGICAL FRAMING, not its computational content. ARC-054's V3 form (per v3_form_note) reads V_hat from MECH-269 per-region V_s walked over a rollout by the MECH-288 segmenter and adds J(pi) as a bias on the existing E3 score -- an engineering commitment that stands or falls on V3 experimental evidence (V3-EXQ-491), not on whether rat CA1 replay predicts rat choice. The honest reading is that this removes a support the claim was leaning on, rather than falsifying the claim. Note also that a null result at the trial level cannot exclude rollout evaluation occurring in an unrecorded structure or timescale.",
+    "source_context": "Rats performing a dynamic spatial bandit-like task with changing reward contingencies; high-density CA1 ensemble recording with state-space clusterless decoding of replay content, analysed at the level of individual replay events against individual subsequent choices."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.88 is the highest in this pull: the task was purpose-built to dissociate past from future, the decoding is state-space clusterless rather than template-matching, and the analysis is at the individual-event level where the competing hypotheses actually differ. Mapping fidelity 0.70 -- it targets ARC-054's named substrate directly, but the claim's V3 form has already partly decoupled from that substrate. Transfer risk 0.35. Recorded as weakens with relatively high confidence because a purpose-built dissociation returning a null on the prospective account is strong evidence about the substrate attribution."
+  }
+}

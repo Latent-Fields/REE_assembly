@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_053",
+  "entry_id": "2026-09-09_arc_053_pulvinar_synchrony_gating_saalmann2012",
+  "timestamp_utc": "2026-09-09T07:02:27Z",
+  "claim_ids_tested": ["ARC-053"],
+  "source": {
+    "title": "The pulvinar regulates information transmission between cortical areas based on attention demands",
+    "authors": ["Yuri B. Saalmann", "Mark A. Pinsk", "Liang Wang", "Xin Li", "Sabine Kastner"],
+    "year": 2012,
+    "venue": "Science",
+    "doi": "10.1126/science.1223082",
+    "pmid": "22879517",
+    "pmc": "PMC3714098",
+    "volume": "337",
+    "issue": "6095",
+    "pages": "753-756"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong primate electrophysiology in a high-prestige venue with diffusion-tractography-guided electrode placement, directly demonstrating that a subcortical hub regulates cortico-cortical coupling by adjusting synchrony rather than by changing rate. Mapping fidelity is good but not perfect: this evidences the EXISTENCE and CAUSAL DIRECTION of a distributed synchrony-regulating loop (TCL functions 1 and 3), not the specific claim that such a loop is a precondition for a verisimilitude quantity V(t).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The pulvinar's causal role is inferred from Granger-causal directionality in LFP/spike data, not from a lesion or inactivation, so a common-driver account of the cortico-pulvino-cortical synchrony is not fully excluded.",
+    "Effects are demonstrated in the visual attention domain only; the paper provides no evidence that the same loop governs coupling in imagination or offline (sleep) modes, which ARC-053 explicitly requires (TCL function 4)."
+  ],
+  "tags": ["arc-053", "arc_053", "pulvinar", "thalamocortical", "phase_synchrony", "coupling_gating", "support_tag:distributed_loop_exists"],
+  "mapping": {
+    "source_claim_statement": "The pulvinar synchronised activity between interconnected cortical areas (V4 and TEO) according to attentional allocation, and directional analyses indicated the pulvinar influenced cortical synchrony rather than merely reflecting it -- so the thalamus regulates information transmission across cortex according to behavioural priorities.",
+    "ree_translation": "This is direct biological evidence for the class of object ARC-053 posits: a non-modular, distributed control loop whose job is to set phase relationships BETWEEN subsystems, and thereby to enable or prevent effective coupling between them. It supports TCL function (1) 'aligns phase relationships across subsystems' and function (3) 'enables or prevents coupling between prediction and input' -- and it supports the architectural commitment that this function is not a property of either cortical area alone but of a loop through a third structure.",
+    "mapping_caveat": "The paper shows synchrony gating between two FEEDFORWARD-CONNECTED SENSORY areas under attention. ARC-053 needs the loop to align ASCENDING prediction-error with DESCENDING prediction specifically, and to do so in service of a verisimilitude readout. Neither the prediction/input asymmetry nor any verisimilitude-like quantity is measured here, so the transfer is from 'thalamus gates cortico-cortical coupling' to 'a TCL is required for V(t)' -- a real inferential gap that this entry does not close.",
+    "source_context": "Two macaque monkeys, spatial attention task; simultaneous LFP and spike recordings from V4, TEO and interconnected pulvinar sites, with recording sites selected by diffusion tensor imaging tractography."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is high (primate, causal-directionality analysis, Science, well replicated conceptually by the subsequent pulvinar literature). Mapping fidelity is held at 0.70 because the paper evidences the mechanism CLASS but not the V(t) precondition that is the actual content of ARC-053. Transfer risk is moderate rather than low: macaque visual attention to a human-scale architectural claim about imagination and sleep modes is a real extrapolation. Aggregate weighted toward mapping_fidelity because ARC-053 is an arch_commitment, not an empirical claim."
+  }
+}
