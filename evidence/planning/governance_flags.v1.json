@@ -2207,9 +2207,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074a' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] the `evidence_quality_note` asserts \"this is the first [experimental entry]\" and `exp_conf now 0.775`; there are now two entries (659, 888) and `exp_conf` is 0.755. The promotion gate is still unmet so status does not move; only the note needs refreshing, plus a `live_status.evidence` pointer to 888 alongside 659.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:36Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-09T17:23:53Z",
+      "resolution_note": "APPLIED 2026-09-09 by /governance cycle governance-20260909 wave 4, REE_assembly 483a31d784 (verified on origin/master). live_status refreshed across the MECH-074 family to cite v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3 (reviewed, non-degenerate, evidence-purpose PASS, per-claim supports for MECH-074/074a/074b); MECH-074 and MECH-074b moved reading candidate/v3_pending -> candidate, MECH-074b gained an evidence block it did not have, MECH-074a names V3-EXQ-659 alongside 888 and had two wrong figures corrected (it claimed a single entry and exp_conf 0.775; there are two entries and it reads 0.745). CORRECTION TO THESE FLAGS' OWN PREMISE: v3_pending was ALREADY false in the field on all three claims, so 'still carries v3_pending: true' was itself stale -- what actually lagged was live_status. NO STATUS MOVED on any of the three: this is a citation refresh, and the promotion gate is a separate judgement nobody has made. See each claim's evidence_quality_note for the full record, including a recording-quality caveat that V3-EXQ-888's PASS is not re-derivable from its own manifest (criteria carry no measured values or thresholds, no combination_rule)."
     },
     {
       "flag_id": "GFLAG-0155",
