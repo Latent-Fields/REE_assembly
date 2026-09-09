@@ -2794,6 +2794,22 @@ One line per hourly tick. ASCII only.
 2026-09-09T03:48:26Z workset committed (regen -- 249 items, 28 ready, 0 in flight)
 2026-09-09T03:46:36Z SPAWN IGW-20260909-235 skill=/queue-experiment prio=40 uuid=88668658-cfb5-4d81-9081-6da8533495c1 pid=60427 worktree=igw-235-proposal-for-mech-003
 2026-09-09T04:07:51Z auto-defer igw-235-proposal-for-mech-003 hash=1157c6934f1c for 48h (complete)
+2026-09-09T04:09:44Z complete igw-235-proposal-for-mech-003 spawned->completed outcome=USEFUL_LANDED: marked EVB-1379/EXP-0733 (MECH-003) blocked_substrate: no tau-scoped precision r
+2026-09-09T04:55:18Z GC removed worktree igw-235-proposal-for-mech-003 (removed; branch deleted)
+2026-09-09T04:54:11Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-09T04:58:25Z workset committed (regen -- 249 items, 28 ready, 0 in flight)
+2026-09-09T04:54:11Z SPAWN IGW-20260909-236 skill=/queue-experiment prio=40 uuid=def1ac1e-f8c8-484e-83f7-3fa45f9e91ba pid=67592 worktree=igw-236-proposal-for-mech-004
+2026-09-09T06:05:25Z auto-defer igw-236-proposal-for-mech-004 hash=60bdcb59ef7b for 48h (complete)
+2026-09-09T06:07:42Z complete igw-236-proposal-for-mech-004 spawned->completed outcome=USEFUL_LANDED: marked EVB-1380/EXP-0735 (MECH-004) blocked_substrate in both proposal files (RE
+2026-09-09T06:14:54Z GC removed worktree igw-236-proposal-for-mech-004 (removed; branch deleted)
+2026-09-09T06:14:30Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-09T06:15:50Z workset committed (regen -- 249 items, 28 ready, 0 in flight)
 2026-09-09T06:14:30Z SPAWN IGW-20260909-236 skill=/lit-pull prio=40 uuid=53a7db39-4fe0-4517-92ae-87bec5ea4e46 pid=75277 worktree=igw-236-literature-proposal-for-mech-004
 2026-09-09T06:47:07Z auto-defer igw-236-literature-proposal-for-mech-004 hash=9fb7f60f06ad for 48h (complete)
 2026-09-09T06:49:53Z complete igw-236-literature-proposal-for-mech-004 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-004: 5 entries landed (REE_assembly a472fba929), literature_confid
+2026-09-09T07:26:00Z GC removed worktree igw-236-literature-proposal-for-mech-004 (removed; branch deleted)
+2026-09-09T07:23:59Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-09T07:29:53Z workset committed (regen -- 250 items, 28 ready, 0 in flight)
+2026-09-09T07:23:59Z SPAWN IGW-20260909-237 skill=/queue-experiment prio=40 uuid=dab12f94-55b8-4f9b-801e-6edde467466b pid=25492 worktree=igw-237-proposal-for-mech-005
+2026-09-09T08:41:52Z workset committed (regen -- 250 items, 28 ready, 0 in flight)
+2026-09-09T08:38:45Z no eligible item (skipped 250): IGW-20260909-004:skill /governance not allowed; IGW-20260909-219:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260909-220:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
