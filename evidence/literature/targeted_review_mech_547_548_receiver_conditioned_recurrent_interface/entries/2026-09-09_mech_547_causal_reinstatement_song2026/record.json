@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_547_548_receiver_conditioned_recurrent_interface",
+  "entry_id": "2026-09-09_mech_547_causal_reinstatement_song2026",
+  "timestamp_utc": "2026-09-09T10:32:00Z",
+  "claim_ids_tested": ["MECH-547"],
+  "source": {
+    "title": "Cortical reinstatement of causally related events sparks narrative insights by updating neural representation patterns",
+    "authors": ["Hayoung Song", "Jin Ke", "Rhea Madhogarhia", "Yuan Chang Leong", "Monica D. Rosenberg"],
+    "year": 2026,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-026-73914-3",
+    "pmid": "42270596",
+    "pmc": "PMC13402326",
+    "volume": "17",
+    "pages": "7362"
+  },
+  "evidence_class": "human_fmri",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Peer-reviewed human fMRI study. During insight in a scrambled narrative, representations of causally relevant prior events were reinstated across cortex before a shift in the current situational representation. This supports the relational/context-sensitive selection part of MECH-547: the useful prior representation is selected because of its relation to the current problem, not merely global similarity. The study does not isolate hippocampus as the translator or compare T(A,B) with T(A), so the mapping remains adjacent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a REE bridge benefits equally from causally unrelated but distribution-matched past states, this literature analogue does not support the bridge's content-specific interpretation.",
+    "If receiver-state permutation preserves the gain, the result can still be explained by sender-side selection of relevant memories rather than MECH-547."
+  ],
+  "tags": ["mech-547", "reinstatement", "causal_relations", "context", "situational_representation", "human", "fmri"],
+  "mapping": {
+    "source_claim_statement": "Causally relevant past-event representations are reinstated before narrative insight and are associated with abrupt updating of the current cortical situational representation.",
+    "ree_translation": "Supports the idea that cross-system access should be relational and problem-conditioned: the same memory store exposes different content depending on the current causal context.",
+    "mapping_caveat": "The study is cortical/fMRI and does not identify the bridge, receiver-state variable, or hippocampal causal locus. It supports relational selection, not the full translation mechanism.",
+    "source_context": "Human fMRI; temporally scrambled television narrative; self-reported insight events."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.65,
+    "notes": "Strong recent source; exact MECH-547 mechanism remains one inferential step beyond the experiment."
+  }
+}
