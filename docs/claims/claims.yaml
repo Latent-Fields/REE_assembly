@@ -6656,6 +6656,7 @@
   subject: control_plane.orthogonal_axes_tonic_phasic
   polarity: asserts
   status: provisional
+  diagnostic_evidence_adjudicated: false
   epistemic_category: standard
   pending_retest_after_substrate: true
   evidence_quality_note: >
@@ -6674,6 +6675,8 @@
     claim carried none).
 
     [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_V3-EXQ-963a_2026-09-02] via the GOV-APPLY-1 ACTIONABLE bucket (run already in reviewed_run_ids, invisible to the pending-review walk): the recommended storable move (pending_retest_after_substrate true) was ALREADY satisfied on this claim, so no field changed; recorded here so the 963a substrate hold has an auditable citation rather than resting on an unapplied-looking row. MECH-063 stays provisional/standard. PROMOTES/DEMOTES NOTHING.
+
+    [2026-09-09 governance, cycle governance-20260909] diagnostic_evidence_adjudicated set false per confirmed failure_autopsy_V3-EXQ-963a_2026-09-02 (GOV-APPLY-1 unapplied_disposition; the claim carried no field). epistemic_category standard and pending_retest_after_substrate true were already correct.
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -13309,6 +13312,7 @@
   subject: architecture.approach_avoidance_symmetry
   polarity: asserts
   status: candidate
+  diagnostic_evidence_adjudicated: false
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -13404,6 +13408,8 @@
     A retest queued now would likely be premature against the unsatisfied half.
     pending_retest_after_substrate deliberately LEFT true; expect this claim to re-flag each cycle
     until mech457's discrimination resolves, at which point the retest becomes genuinely due.
+
+    [2026-09-09 governance, cycle governance-20260909] diagnostic_evidence_adjudicated set false per confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 (GOV-APPLY-1 unapplied_disposition; the claim carried no field). substrate_ceiling and pending_retest_after_substrate both STAND; the only move was the v3_exq_259 manifest entry -> superseded, already applied 2026-09-02.
   depends_on:
     - ARC-021
     - MECH-069
@@ -15037,6 +15043,8 @@
   subject: drive.goal_state_attractor
   polarity: asserts
   status: candidate
+  diagnostic_evidence_adjudicated: false
+  epistemic_category: standard
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -15159,6 +15167,8 @@
     gated on SD-012). MECH-112 deprecated -- use MECH-229 and MECH-230 for new experiments.
 
     [2026-05-08 governance]: EXQ-536a/b diagnostic non_contributory; same crossed-wiring read as ARC-030 sibling.
+
+    [2026-09-09 governance, cycle governance-20260909] epistemic_category set to standard and diagnostic_evidence_adjudicated set false per confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 (GOV-APPLY-1 unapplied_disposition; the claim carried neither field). Status deliberately NOT changed: the autopsy's status_change reads 'none -- already deprecated' and the claim already carries deprecated: true + split_into [MECH-229, MECH-230], so 'candidate' alongside 'deprecated' is the existing convention, not a drift. The v3_exq_259 weakens entry -> superseded was applied 2026-09-02.
   split_into:
     - MECH-229
     - MECH-230
@@ -18440,6 +18450,7 @@
   subject: environment.homeostatic_drive
   polarity: asserts
   status: provisional
+  diagnostic_evidence_adjudicated: false
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -18569,6 +18580,8 @@
     drive_floor (default OFF). Option-1 EMA remains landed but not the discriminative
     winner. GAP-4 Tier-1 cascade retests should enable drive_floor unless pre-registered
     otherwise.
+
+    [2026-09-09 governance, cycle governance-20260909] diagnostic_evidence_adjudicated set false per confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 (GOV-APPLY-1 unapplied_disposition; the claim carried no field). The only move was the v3_exq_259 manifest entry -> superseded, already applied 2026-09-02.
 
 - id: SD-013
   title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
@@ -18896,6 +18909,7 @@
   subject: goal_representation.z_resource_encoder
   polarity: asserts
   status: candidate
+  diagnostic_evidence_adjudicated: false
   live_status:
     reading: candidate/substrate_ceiling
     as_of: 2026-07-11
@@ -19047,6 +19061,8 @@
     probed by the active V3-EXQ-622/626/626a object-binding ladder. FLAG ONLY: if governance wants to
     mark the cohort, substrate_conditional (planned object-bound incentive-salience substrate) fits
     better than substrate_ceiling. No reclassification made here.
+
+    [2026-09-09 governance, cycle governance-20260909] diagnostic_evidence_adjudicated set false per confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 (GOV-APPLY-1 unapplied_disposition; the claim carried no field). substrate_ceiling and pending_retest_after_substrate both STAND; the only move was the v3_exq_259 manifest entry -> superseded, already applied 2026-09-02.
   implementation_note: >
     IMPLEMENTED 2026-04-10. ResourceEncoder class in ree_core/latent/stack.py:
     world_obs [250] -> Linear(250,64) -> ReLU -> Linear(64,32) -> z_resource [32];
@@ -19272,6 +19288,8 @@
     - ARC-021
   evidence_quality_note: >-
     [2026-09-04 governance, cycle governance-20260904-1347] V3-EXQ-1001: non_contributory to ARC-037 (per-claim; confirmed failure_autopsy_V3-EXQ-1001_2026-09-04). ARC-037 asserts an anterior-insula-analogue ROUTING circuit that classifies prediction errors and gates them into E3 vs E1; this run instantiates no routing at all -- the agent is constructed and never driven, and the comparator is scored offline on RandomPolicy transitions, which the manifest's own claim_scope.what_this_run_measures states verbatim ('ARC-037's own E3/E1 routing/gating is NOT exercised here'). Direction non_contributory, and the claim carries no epistemic_category field at all today, so set one -> epistemic_category: standard
+
+    [2026-09-09 governance, cycle governance-20260909] epistemic_category DELIBERATELY HELD at substrate_conditional against confirmed failure_autopsy_V3-EXQ-1001_2026-09-04's recommended standard (GOV-APPLY-1 unapplied_disposition row; user-adjudicated this cycle). Grounds: ARC-037's own what_would_answer declares a four-part non-degeneracy PRECONDITION whose failure yields substrate_not_ready rather than a verdict, which is what substrate_conditional records; and check_unapplied_autopsy_recommendations.py's own docstring states recommended_epistemic_category is a per-autopsy snapshot that later independent governance work may legitimately supersede. The autopsy's non_contributory direction for V3-EXQ-1001 STANDS and is already recorded above. This divergence is deliberate -- do not re-apply it from the autopsy on a later cycle.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (four parts; all four must be reported in the manifest, else `substrate_not_ready`, NOT a verdict).
     (P1) The ground-truth agency partition must be PROXIMAL-AVOIDABILITY, not `transition_type`. Confirmed
@@ -33600,6 +33618,7 @@
   subject: harm_stream.cross_stream_hub
   polarity: asserts
   status: candidate
+  diagnostic_evidence_adjudicated: false
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -33624,6 +33643,8 @@
     row; the claim carried no field). The only experimental weakens were the three
     v3_exq_395 dry-run smokes, contained 2026-09-02 (dry_run true, non_contributory);
     MECH-220's evidence is otherwise literature.
+
+    [2026-09-09 governance, cycle governance-20260909] diagnostic_evidence_adjudicated set false per confirmed failure_autopsy_V3-EXQ-395-cluster_2026-09-02 (GOV-APPLY-1 unapplied_disposition; the claim carried no field). epistemic_category standard was already applied 2026-09-03.
   description: >
     A lightweight cross-stream coordination mechanism (harm hub) allows z_harm_s and
     z_harm_a to share context without collapsing into a single stream. The hub implements
@@ -73671,6 +73692,7 @@
   subject: control_plane.phasic_surprise_burst
   polarity: asserts
   status: candidate
+  diagnostic_evidence_adjudicated: false
   pending_retest_after_substrate: true
   evidence_quality_note: >
     [2026-08-30 governance, cycle governance-20260830-0630] Confirmed failure_autopsy_V3-EXQ-963_2026-08-30
@@ -73688,6 +73710,8 @@
     decay/carry-mode fix -> set pending_retest_after_substrate true' -- the field already holds that
     value (set by the 963 autopsy), so no field changed; recorded so the 963a hold has an auditable
     citation.
+
+    [2026-09-09 governance, cycle governance-20260909] diagnostic_evidence_adjudicated set false per confirmed failure_autopsy_V3-EXQ-963a_2026-09-02 (GOV-APPLY-1 unapplied_disposition; the claim carried no field). epistemic_category standard and the pending_retest_after_substrate hold on the burst-decay/carry-mode fix were already correct.
   live_status:
     reading: candidate
     as_of: 2026-07-17
@@ -88176,6 +88200,7 @@
   subject: drive.epistemic_deficit_accumulator
   polarity: asserts
   status: candidate
+  diagnostic_evidence_adjudicated: true
   pending_retest_after_substrate: true
   evidence_quality_note: >
     [2026-08-30 governance, cycle governance-20260830-0630] Confirmed failure_autopsy_V3-EXQ-964_2026-08-30
@@ -88187,6 +88212,8 @@
     cycle (flat + run pack). epistemic_category stays substrate_conditional (SD-102 is implemented but its
     selection-relevance is unvalidated) and status stays candidate; retest owed once a reachable multi-
     target regime exists (substrate_queue sd_epistemic_deficit_multitarget_readiness).
+
+    [2026-09-09 governance, cycle governance-20260909] diagnostic_evidence_adjudicated set true per confirmed failure_autopsy_V3-EXQ-964_2026-08-30 (GOV-APPLY-1 unapplied_disposition; the claim carried no field). epistemic_category STAYS substrate_conditional and status STAYS candidate, both already correct; the C2-structurally-unsatisfiable finding is already recorded above.
   live_status:
     reading: candidate/v3_pending/substrate_conditional
     as_of: '2026-08-07'

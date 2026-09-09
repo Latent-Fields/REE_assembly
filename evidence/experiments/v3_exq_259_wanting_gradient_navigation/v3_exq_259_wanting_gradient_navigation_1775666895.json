@@ -9,10 +9,10 @@
     "SD-012"
   ],
   "evidence_direction_per_claim": {
-    "SD-015": "does_not_support",
-    "MECH-112": "does_not_support",
-    "ARC-030": "does_not_support",
-    "SD-012": "does_not_support"
+    "SD-015": "superseded",
+    "MECH-112": "superseded",
+    "ARC-030": "superseded",
+    "SD-012": "superseded"
   },
   "evidence_direction": "superseded",
   "outcome": "FAIL",
@@ -716,5 +716,5 @@
     "steps_per_ep": 200
   },
   "timestamp": "2026-04-08T16:53:01.788251Z",
-  "evidence_direction_note": "[2026-09-02 governance, governance-20260902] Applied from confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 via the GOV-APPLY-1 ACTIONABLE bucket (the run was already in reviewed_run_ids, so the pending-review walk could not see it). MECH-112 is deprecated and split into MECH-229/MECH-230, so 259's weakens entry must stop counting against it; ARC-030 keeps substrate_ceiling and only this entry moves. Direction does_not_support -> superseded."
+  "evidence_direction_note": "[2026-09-02 governance, governance-20260902] Applied from confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 via the GOV-APPLY-1 ACTIONABLE bucket (the run was already in reviewed_run_ids, so the pending-review walk could not see it). MECH-112 is deprecated and split into MECH-229/MECH-230, so 259's weakens entry must stop counting against it; ARC-030 keeps substrate_ceiling and only this entry moves. Direction does_not_support -> superseded.\n\n[2026-09-09 governance, cycle governance-20260909] evidence_direction_per_claim set to superseded for all four claims (SD-015, MECH-112, ARC-030, SD-012), completing the 2026-09-02 apply. The run-level field already read superseded, but the per-claim block still read does_not_support, and a per-claim entry BEATS the run-level field in build_experiment_indexes.py -- so the ratified disposition from confirmed failure_autopsy_V4-EXQ-002-003_2026-09-02 was inert. Not currently scoring (claim_evidence.v1.json carries no 259 entry for any of the four, and GOV-APPLY-1 reports unapplied evidence direction LIVE = 0), so this closes a latent contradiction rather than correcting a live mis-score. Flat-only manifest; no run pack exists for this run_id."
 }
