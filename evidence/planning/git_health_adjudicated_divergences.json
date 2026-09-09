@@ -14,6 +14,30 @@
       "adjudicated_by": "process-goal-topology-thoughts-262b36",
       "note": "Confirmed benign: origin's experiment_pack/v1 packed manifest carries the identical interpretation block (preconditions, measured/threshold/met triples) plus a 2026-08-01 governance disposition (evidence_direction: superseded, V3-EXQ-850/853 superseded by V3-EXQ-860) that cloud-2's untracked pre-pack raw runner dump predates (evidence_direction: inconclusive, no disposition note). Diffed structurally, not eyeballed; origin holds strictly more/equally-informative content. Untracked copy deliberately left in place, not deleted -- non-evidence residue, not a loss risk.",
       "reference": "evidence/planning/recovered_stranded_manifests/README_ree-cloud-2_2026-08-09.md"
+    },
+    {
+      "host": "ree-cloud-2",
+      "repo": "REE_assembly",
+      "run_id": "v3_exq_603v_mech357_eligibility_trace_repair_validation_20260827T184708Z_v3",
+      "content_sha256": "16aa4b947ae0c264998d981e55de08c3423f8a445273a2e5c8780fe9bdeb464d",
+      "content_sha256_confirmed_at": "2026-09-09T09:06:33Z",
+      "content_sha256_confirmed_by": "`shasum -a 256` on a scp'd byte-identical copy, cross-checked against `sha256sum` on ree-worker-2 itself (ree-worker-2 woken briefly for this read; powered back off by the cloud scaler immediately after)",
+      "adjudicated_at": "2026-09-09T09:06:33Z",
+      "adjudicated_by": "xenodochial-austin-8c5984",
+      "note": "Confirmed benign: origin is a STRICT SUPERSET. Deep structural diff of the cloud-2 untracked copy against ALL FOUR origin candidates gives only_local=[] against the top-level flat manifest -- the local copy carries ZERO content origin lacks. The sole differences are (1) evidence_direction: local 'supports' (the runner's pre-registered self-declaration) vs origin 'non_contributory' (the governance adjudication), and (2) evidence_direction_note, present only on origin. outcome is 'PASS' on BOTH sides -- the divergence did NOT change a recorded PASS/FAIL, so no governance_flag is implied. Origin's value is ratified: failure_autopsy_V3-EXQ-603v_2026-08-28 (status=confirmed, on origin) applied at governance-cycle-20260828. Untracked copy deliberately left in place, not deleted (CLAUDE.md remedy (a) -- never drop on a judgement call); it is pre-governance runner residue at an untracked path shape (evidence/experiments/<dir>/<run_id>.json) that origin has never tracked.",
+      "reference": "evidence/planning/recovered_stranded_manifests/README_ree-cloud-2_2026-09-09.md"
+    },
+    {
+      "host": "ree-cloud-2",
+      "repo": "REE_assembly",
+      "run_id": "v3_exq_862b_q040c_dacc_pe_weight_delta_correlation_20260828T223750Z_v3",
+      "content_sha256": "286bafd0f18df5d0588a70b101d77314a7146b1fca08dd986cd6f7a140e9bbf3",
+      "content_sha256_confirmed_at": "2026-09-09T09:06:33Z",
+      "content_sha256_confirmed_by": "`shasum -a 256` on a scp'd byte-identical copy, cross-checked against `sha256sum` on ree-worker-2 itself (ree-worker-2 woken briefly for this read; powered back off by the cloud scaler immediately after)",
+      "adjudicated_at": "2026-09-09T09:06:33Z",
+      "adjudicated_by": "xenodochial-austin-8c5984",
+      "note": "Confirmed benign: origin is a STRICT SUPERSET. Deep structural diff against ALL FOUR origin candidates gives only_local=[] against the top-level flat manifest. Sole differences: (1) evidence_direction: local 'weakens' (the driver's pre-registered direction) vs origin 'non_contributory'; (2) evidence_direction_note, origin-only. outcome is 'FAIL' on BOTH sides -- no recorded PASS/FAIL was changed, so no governance_flag is implied. Origin's value is ratified: failure_autopsy_V3-EXQ-862b_2026-08-29 (status=confirmed, landed REE_assembly f3a2aa2aa6) ratified at the /governance walk 2026-08-29T15:46Z, which explicitly OVERRIDES the driver's pre-registered 'weakens' -- so the local file is precisely the pre-override copy. Untracked copy deliberately left in place, not deleted.",
+      "reference": "evidence/planning/recovered_stranded_manifests/README_ree-cloud-2_2026-09-09.md"
     }
   ]
 }
