@@ -1,0 +1,212 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat",
+  "run_id": "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat_20260909T054013Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-161"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-161": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "agent_wall_hugging_unscorable",
+    "preconditions": [
+      {
+        "name": "hazard_field_replica_matches_obs",
+        "kind": "readiness",
+        "description": "max |hazard_field_view[12] - env.hazard_field[agent cell]/max| over every step of every arm -- the quantile bins are taken from env.hazard_field, so it must be the quantity the agent observes",
+        "control": "env's own field, normalised exactly as the view is",
+        "measured": 1.3279961241785543e-08,
+        "threshold": 0.0001,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "high_bin_decision_ticks_covered",
+        "kind": "readiness",
+        "description": "min over (seed, level) of the CONTROL arms' HIGH-bin DECISION ticks (non-negotiables (3)/(4)); the AGENT arm is gated separately (red-team F7)",
+        "control": "quantile bins on the env's own field distribution",
+        "measured": 111.0,
+        "threshold": 10.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "offending_cell": "seed45/P20/HAZARD_BLIND_NULL",
+        "met": true
+      },
+      {
+        "name": "safe_bin_executable_decision_ticks_covered",
+        "kind": "readiness",
+        "description": "min over (seed, level) of the CONTROL arms' SAFE-bin DECISION ticks whose designated avoidant action is EXECUTABLE (not a wall no-op) -- the H-env-band-absent leg; the false-alarm rate is scored over these ticks only; the AGENT arm is gated separately (red-team F7)",
+        "control": "quantile SAFE bin, wall-clamped ticks excluded",
+        "measured": 31.0,
+        "threshold": 10.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "offending_cell": "seed11/P15/CONDITIONAL_ORACLE",
+        "met": true
+      },
+      {
+        "name": "oracle_null_separation",
+        "kind": "readiness",
+        "description": "worst (seed, level) of CONDITIONAL_ORACLE minus HAZARD_BLIND_NULL decision-tick sensitivity -- the instrument can register threat-gated avoidance (non-negotiable (2))",
+        "control": "measured positive and negative control arms on the same env, seed and decision schedule",
+        "measured": 0.6983585108956175,
+        "threshold": 0.2,
+        "comparator": ">=",
+        "direction": "lower",
+        "offending_cell": "seed11/P15",
+        "met": true
+      },
+      {
+        "name": "decision_schedule_matches_P",
+        "kind": "readiness",
+        "description": "AGENT realised decision ticks / (steps / P), every (seed, level): must sit within 1 +/- SCHEDULE_TOL -- the forced period IS the agent's schedule only if no MECH-091 phase reset fires (red-team F1, BLOCKING in the first draft)",
+        "control": "the forced-period arithmetic",
+        "measured": 1.0,
+        "threshold": 1.25,
+        "direction": "upper",
+        "offending_cell": "seed11/P5",
+        "met": true,
+        "measured_low": 0.9,
+        "offending_cell_low": "seed11/P15"
+      },
+      {
+        "name": "agent_high_bin_decision_ticks_covered",
+        "kind": "readiness",
+        "description": "min over (seed, level) of the AGENT's HIGH-bin decision ticks -- an avoider that never enters HIGH is classed agent_starves_high_bin, not instrument",
+        "control": "agent arm only",
+        "measured": 24.0,
+        "threshold": 10.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "offending_cell": "seed53/P20",
+        "met": true
+      },
+      {
+        "name": "agent_safe_bin_executable_decision_ticks_covered",
+        "kind": "readiness",
+        "description": "min over (seed, level) of the AGENT's executable SAFE-bin decision ticks -- classed agent_starves_safe_bin when only the agent starves",
+        "control": "agent arm only",
+        "measured": 3.0,
+        "threshold": 10.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "offending_cell": "seed23/P20",
+        "met": false
+      },
+      {
+        "name": "null_sensitivity_flat_in_P_RECORDED",
+        "kind": "diagnostic",
+        "description": "range across the 5 levels of the null's mean decision-tick sensitivity -- decision-tick scoring must remove the hold-period confound (999 red-team F2: the all-step null was monotone in P)",
+        "control": "hazard-blind null across P; RECORDED ONLY (red-team F5: tautologically flat in expectation, fails by noise)",
+        "measured": 0.039208032189290226,
+        "threshold": 0.10540649865111203,
+        "direction": "upper",
+        "met": true,
+        "raw_met": true,
+        "gating": false
+      },
+      {
+        "name": "baseline_avoidance_clears_derived_bar",
+        "kind": "readiness",
+        "description": "mean over seeds of AGENT sensitivity at P_train minus [null + BAR_FRACTION*(oracle - null)] at P_train, decision ticks -- the DERIVED positive control replacing 999's hand-picked +0.05 (H-avoidance-untrained if unmet with a valid instrument)",
+        "control": "bar derived from the measured oracle/null separation at the same P",
+        "measured": -0.10130506344598227,
+        "measured_sd": 0.3139087302582634,
+        "threshold": 0.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "dv_headroom_interior_margin",
+        "kind": "dv_headroom",
+        "measured": 0.7606342867063897,
+        "threshold": 0.06,
+        "direction": "lower",
+        "dv_name": "raw (oracle - null) decision-tick separation per level -- the instrument's dynamic range the normalised C1 margin is scaled by",
+        "achievable_statistic": "floor_headroom",
+        "criterion_threshold": 0.03,
+        "headroom_margin": 2.0,
+        "n_control_values": 5,
+        "headroom_ratio": 12.677238111773162,
+        "measured_cells": [
+          "P5",
+          "P8",
+          "P10",
+          "P15",
+          "P20"
+        ],
+        "headroom_reason": "DV headroom met: raw (oracle - null) decision-tick separation per level -- the instrument's dynamic range the normalised C1 margin is scaled by can reach 0.760634 (floor_headroom over 5 finite value(s); cells: P5, P8, P10, P15, P20), against a required 0.06 (criterion threshold 0.03 x margin 2).",
+        "dv_bounds": [
+          0.0,
+          2.0
+        ],
+        "met": true,
+        "offending_cell": "worst level"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_interior_max_margin_normalised": false
+    },
+    "gate_green": false
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5fb5833649b8d37e1d771701e3e13cf3ab69b428777f135577123eb3e6625235",
+  "substrate_commit": {
+    "commit": "2be3860e8dbd6a1d5e06818ce122f3f921683d0e",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "latent.use_event_classifier": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 128426,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 5,
+    "goal_state_present": false
+  }
+}
