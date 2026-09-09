@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-08T15:28:35Z",
+  "last_review_utc": "2026-09-09T02:18:08Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1279,7 +1279,12 @@
     "v3_exq_970a_contextmemory_write_content_h1_mi_instrument",
     "v3_exq_972a_sd070_write_stream_heldout_linear_probe",
     "v3_exq_1009_mech267_elite_channel_ceiling_spike",
-    "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis"
+    "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis",
+    "v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep",
+    "v3_exq_822f_sd082_candidate_discriminating_init_head_control",
+    "v3_exq_1013_sd031_shortcut_vs_model_portfolio",
+    "v3_exq_1011_arc021_h3_submargin_paired_ci",
+    "v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4221,7 +4226,12 @@
     "v3_exq_970a_contextmemory_write_content_h1_mi_instrument_20260907T152212Z_v3",
     "v3_exq_972a_sd070_write_stream_heldout_linear_probe_20260907T162343Z_v3",
     "v3_exq_1009_mech267_elite_channel_ceiling_spike_20260907T171115Z_v3",
-    "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3"
+    "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis_20260907T233826Z_v3",
+    "v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep_20260908T202858Z_v3",
+    "v3_exq_822f_sd082_candidate_discriminating_init_head_control_20260908T231145Z_v3",
+    "v3_exq_1013_sd031_shortcut_vs_model_portfolio_20260908T190906Z_v3",
+    "v3_exq_1011_arc021_h3_submargin_paired_ci_20260908T201117Z_v3",
+    "v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike_20260908T223415Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6892,6 +6902,18 @@
         "v3_exq_972a_sd070_write_stream_heldout_linear_probe",
         "v3_exq_1009_mech267_elite_channel_ceiling_spike",
         "v3_exq_1008_zworld_adequacy_portfolio_ws250_rebasis"
+      ]
+    },
+    {
+      "utc": "2026-09-09T02:18:08Z",
+      "session": "governance-20260909",
+      "note": "governance 2026-09-09: five pending results, ZERO needing autopsy before apply (Step 1.5b -- one-pass cycle). THREE carried confirmed autopsies from the fa-20260909-batch (REE_assembly 4b38934a0b, user gate 00:55:13Z), all accepted as recommended: V3-EXQ-1015 (MECH-465 diagnostic FAIL) non_contributory, epistemic_category HELD substrate_ceiling with the flip to standard sequenced behind the EXP-0590 amend + conjunct-3 queue, pending_retest_after_substrate -> false because the 0.51 IQR/median bar is the pooled 785a figure MECH-465's own WWA forbids per seed and the LEGITIMATE commit-rate band clause succeeds in 6/15 cells (2/3 seeds), so no build gates conjunct-3; GFLAG-0238 resolved with a THIRD option (f4c4e00e0d); substrate MECH465-COMMIT-GATE-HEADROOM amended (route_retired item annotated, NOT superseded, per red-team F9); '2.7-5.8x' and '11-19x' magnitudes declared VOID (they measure against the forbidden bar). V3-EXQ-822f (SD-078/SD-082 evidence FAIL) inconclusive both, note-only, nothing stored moved; citations re-pointed at the 822f artifact; substrate SD-082 amended -- 822d item SUPERSEDED (half-answered), and the autopsy's SEVERITY REVISIT actioned by user decision: substrate_paths emptied (preserved as substrate_paths_resolved_2026_09_09) so the resolved 822c defect stops gating unrelated work via GOV-SUBPATH-1 / Step 2.5c, severity 'corrupting' retained as historical record. V3-EXQ-1014 (claim-free diagnostic PASS) diagnostic_no_direction, no claim writes, stage 2 proceeds as ratified. TWO claim-tagged evidence PASSes, both given the MANDATORY DRIVER SKIM. SKIM LOG: V3-EXQ-1013 (SD-031, supports) = FINDING, verdict unaffected -- the H1-PARTIAL load-bearing leg clears its ABSOLUTE floor by only 9% (0.005448 vs 0.005) with 2/5 seeds BELOW the floor, and since sd (0.00093) << floor the sd-scaled clause is inert; H1 is OR-combined by design (red-team F3) and the full-weights leg passes at 1.9x, so `supports` stands but the strong 'non-action structure carried' reading is margin-limited; H3 pre-registered untestable in CausalGridWorldV2 and moot (H1 refuted), no build owed; V3-pending gate still bars promotion. V3-EXQ-1011 (ARC-021/MECH-069, weakens) = TWO FINDINGS, verdict unaffected -- (a) FRAGILITY: adjudicability rests on readiness precondition harm_head_action_sensitivity_present measuring 0.050518 against a 0.050 threshold, clearing by 1.0% at the worst cell; one hair lower and the correct reading is 'substrate not ready', not a negative. (b) LEGIBILITY DEFECT: criteria named C1/C2_*_merged_degrades_vs_separated report passed:true meaning degradation was ELIMINATED, and the driver docstring quotes a -MARGIN + all-96-seeds-sign-consistency criterion inherited from the 993a lineage that is NOT this leg's test (paired CI vs -SUBMARGIN_EFFECT); establishing polarity required reading the driver, not the manifest -- chipped so a later reader cannot invert the result. Both DVs read `eliminated` in both conditions at n=96 seed pairs; ARC-021/MECH-069 citations re-pointed at the 1011 run_id. MANIFEST WRITES: flat AND pack on all three autopsied runs (1015, 822f, 1014) with evidence_direction_note carrying the ratifying artifact + sha; 1013/1011 manifests already carried correct driver-set directions and were left alone (no autopsy ratified them). DRY-RUN CHECK: check_dry_run_citations.py over all five -- 5 clean, 0 dry, 0 ambiguous. AUDITS: substrate-ceiling 0 orphaned / 0 lifted / 0 exhausted; GOV-DIAG-1 0 actionable; GOV-FROZEN-1 a=0 b=0 c=1 (pre-existing) d=0, fan-out recurrence 0; GOV-APPLY-1 unapplied evidence direction LIVE = 0 but 14 unapplied claim dispositions outstanding (reported, next cycle).",
+      "discussed_experiment_dirs": [
+        "v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep",
+        "v3_exq_822f_sd082_candidate_discriminating_init_head_control",
+        "v3_exq_1013_sd031_shortcut_vs_model_portfolio",
+        "v3_exq_1011_arc021_h3_submargin_paired_ci",
+        "v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike"
       ]
     }
   ]

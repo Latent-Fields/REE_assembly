@@ -24,7 +24,9 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "non_contributory",
-  "evidence_direction_per_claim": {},
+  "evidence_direction_per_claim": {
+    "MECH-465": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -1287,5 +1289,164 @@
     "writer_defect": null,
     "n_agents": 15,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance-ratified from failure_autopsy_V3-EXQ-1015_2026-09-09 (confirmed; landed REE_assembly 4b38934a0b; Fable 5.1 cross-model red-team CONTESTED, contests folded in; user gate 2026-09-09T00:55:13Z), applied by governance cycle governance-20260909. Diagnostic FAIL, non_contributory to MECH-465: the 0.51 IQR/median bar the run was scored against is the pooled 785a figure, which MECH-465's own what_would_answer FORBIDS per seed. Against the legitimate clause -- conjunct (1)'s commit-rate band -- the run succeeds in 6/15 cells (seed 0: WARM800, PHASED400; seed 3: all four sweep arms), so the band clause is reachable on validated substrate on 2/3 seeds and no build gates the conjunct-3 experiment. Plateau-vs-climb INDETERMINATE (pooled ln-gain 0.117/doubling, CI [0.037,0.183] straddles ln(1.15)). Any '2.7-5.8x' headroom magnitude derived here measures against the forbidden bar and must not be reused.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2003.2874795740001,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      3
+    ],
+    "arms": [
+      {
+        "arm_id": "COLD",
+        "p0a_episodes": 0,
+        "p0b_episodes": 0
+      },
+      {
+        "arm_id": "WARM200",
+        "p0a_episodes": 200,
+        "p0b_episodes": 0
+      },
+      {
+        "arm_id": "WARM400",
+        "p0a_episodes": 400,
+        "p0b_episodes": 0
+      },
+      {
+        "arm_id": "WARM800",
+        "p0a_episodes": 800,
+        "p0b_episodes": 0
+      },
+      {
+        "arm_id": "PHASED400",
+        "p0a_episodes": 400,
+        "p0b_episodes": 100
+      }
+    ],
+    "schedule": {
+      "cal_ticks": 360,
+      "cal_exclude_ticks": 180,
+      "scored_ticks": 1200,
+      "warmup_exclude_ticks": 90,
+      "p0_steps_per_episode": 40,
+      "p0b_steps_per_episode": 40,
+      "p0b_buffer_maxlen": 512,
+      "cal_sentinel_threshold": 1e-09
+    },
+    "urgency_grid": [
+      0.04,
+      0.1,
+      0.16,
+      0.22,
+      0.28,
+      0.34
+    ],
+    "baseline_slice": {
+      "lineage": "mech465_zworld_warmup_dispersion",
+      "env_kwargs": {
+        "use_proxy_fields": true,
+        "hazard_harm": 0.5
+      },
+      "agent_kwargs_static": {
+        "alpha_world": 0.9,
+        "use_harm_stream": true,
+        "use_affective_harm_stream": true,
+        "urgency_weight": 0.12,
+        "use_support_preserving_cem": true,
+        "support_preserving_min_first_action_classes": 2,
+        "support_preserving_stratified_elites": true,
+        "support_preserving_ao_std_floor": 0.2,
+        "use_per_stream_vs": true,
+        "use_per_region_vs": true,
+        "use_event_segmenter": true,
+        "use_invalidation_trigger": true,
+        "use_anchor_sets": true,
+        "e2_action_contrastive_enabled": true,
+        "e2_action_contrastive_weight": 0.1,
+        "e2_rollout_output_norm_clamp_enabled": true,
+        "e2_rollout_output_norm_clamp_ratio": 4.0,
+        "use_structured_curiosity": true,
+        "use_curiosity_novelty": true,
+        "curiosity_bias_scale": 0.1,
+        "curiosity_novelty_weight": 0.05,
+        "use_modulatory_selection_authority": true,
+        "modulatory_authority_gain": 0.5,
+        "modulatory_authority_min_range_floor": 1e-06,
+        "use_e3_score_diversity": false,
+        "use_e3_diversity_entropy_bonus": false
+      },
+      "e3_use_finer_channel_gating": true,
+      "e3_score_decomp_enabled": true,
+      "urgency_grid": [
+        0.04,
+        0.1,
+        0.16,
+        0.22,
+        0.28,
+        0.34
+      ],
+      "schedule": {
+        "cal_ticks": 360,
+        "cal_exclude_ticks": 180,
+        "scored_ticks": 1200,
+        "warmup_exclude_ticks": 90,
+        "cal_sentinel_threshold": 1e-09,
+        "calibration": "free_running_trace_second_half_median",
+        "threshold_placement": "cal_median_over_1_plus_u_mid",
+        "u_mid": 0.19,
+        "p0_steps_per_episode": 40
+      },
+      "readout_constants": {
+        "P1_BAND": [
+          0.05,
+          0.95
+        ],
+        "GATE_MARGIN_BAND": [
+          0.5,
+          2.0
+        ],
+        "P0B_BUFFER_MAXLEN": 512,
+        "BOOT_BLOCK_TICKS": 40,
+        "BOOT_REPLICATES": 400,
+        "CI_LEVEL": 0.95,
+        "dv_source": "every_tick_rv_trace"
+      },
+      "p0a_episodes": 0,
+      "p0b_episodes": 0,
+      "p0b_steps_per_episode": 0,
+      "rv_update": "manual_e2_world_forward_residual_every_tick"
+    },
+    "thresholds": {
+      "P2_BAR": 0.51,
+      "PLATEAU_GAIN": 1.15,
+      "PLATEAU_LOG_GAIN": 0.13976194237515863,
+      "CI_LEVEL": 0.95,
+      "BOOT_BLOCK_TICKS": 40,
+      "BOOT_REPLICATES": 400,
+      "U_MID": 0.19,
+      "SEED_MAJORITY": 2,
+      "PHASED_LEVER_RATIO": 1.25,
+      "P1_BAND": [
+        0.05,
+        0.95
+      ],
+      "GATE_MARGIN_BAND": [
+        0.5,
+        2.0
+      ],
+      "N_POST_FLOOR": 40,
+      "P0A_TENSOR_FRACTION_FLOOR": 0.5,
+      "P0A_HOLDOUT_LIFT_FLOOR": 0.23,
+      "P0B_MIN_STEPS": 200,
+      "URGENCY_FIDELITY_CEILING": 1e-06
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    3
+  ]
 }

@@ -113,5 +113,57 @@
     "writer_defect": null,
     "n_agents": 8,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance-ratified from failure_autopsy_V3-EXQ-1014_2026-09-09 (confirmed; landed REE_assembly 4b38934a0b; Fable 5.1 cross-model red-team CONTESTED, contests folded in; user gate 2026-09-09T00:55:13Z), applied by governance cycle governance-20260909. Claim-free diagnostic PASS (claim_ids []): carries no direction against any claim by construction. Strict latching refuted 6/8 but bar-sensitive (flips at 0.75-0.78); 983a's stay-vs-move picture reproduced 5/8; held-tick harm is base rate. Stage 2 proceeds as ratified. epistemic_category standard.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 6785.024302162001,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "size": 6,
+    "num_hazards": 4,
+    "num_resources": 3,
+    "hazard_harm": 0.02,
+    "proximity_harm_scale": 0.05,
+    "use_proxy_fields": true,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "lr": 0.001,
+    "num_candidates": 32,
+    "train_episodes": 40,
+    "steps_per_episode": 200,
+    "unified_latent_mode": false,
+    "reafference_action_dim": 0,
+    "selection_rule": "argmin_over_candidate_residue_scores (983a verbatim)",
+    "residue": "intact (983a A0 semantics)",
+    "lineage": "V3-EXQ-983 / V3-EXQ-983a (stage-1 spike; NOT a letter, NOT a supersession)",
+    "control_policies": [
+      "RANDOM_WALK",
+      "STAY",
+      "CONSTANT_0",
+      "CONSTANT_1",
+      "CONSTANT_2",
+      "CONSTANT_3"
+    ],
+    "control_episodes": 3,
+    "single_class_share": 0.95,
+    "latched_fraction_split": 0.5,
+    "floor_fresh_decisions": 30,
+    "floor_e3_used": 0.9,
+    "casualty_early_end_fraction": 0.5,
+    "min_adjudicable_seeds": 4,
+    "min_casualty_seeds_for_clause": 3,
+    "min_seeds_non_degenerate": 4
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    7,
+    11,
+    17,
+    23,
+    31
+  ]
 }
