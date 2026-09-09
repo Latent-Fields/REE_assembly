@@ -326,6 +326,23 @@ Found while researching; each is independent of the decision above.
 4. **The two import surfaces for the same process class disagree** (Mac names
    `experiment_protocol.py`, canonical names `runner_checkpoint.py`; neither names both).
 
+### Both incidental defects were fixed the same day
+
+- **Item 1** -- `REE_Working 77f0b3ba1`. The drift chip recipe is now **per-subject**; the retired
+  hub `ree-runner` restart step is gone and a `ree-runner` row explicitly says DO NOT RESTART.
+  Pin 7 added, with a non-degeneracy check (6 of its assertions fail against pre-change code).
+- **Item 2** -- `REE_assembly e8ac729495`. `runner_status()`'s `draining` no longer globs the
+  retired `runner_status/` dir. **Note the fix rejected this document's own suggestion, correctly:**
+  it was NOT repointed at the coordinator, because the mid-run heartbeat hardcodes `state=running`
+  and the coordinator's `draining` means *machine shutdown notice*, not runner drain. It was
+  repointed at `_runner_drain_pids` -- serve.py's own record of the SIGTERM/bootout it issued --
+  and NOT removed, because `explorer.html` consumes it. `tests/test_runner_draining_flag.py` pins
+  that the flag can now be both true and false. A follow-on chip
+  (`chip-20260909-runner-midrun-heartbeat-drain-state`) owns the heartbeat half.
+
+Items 3 and 4 remain open as known debt, folded into the deferred R3 design rather than chipped
+separately.
+
 ---
 
 ## Step 4 -- consent, and what was actually built
@@ -361,6 +378,15 @@ where the source scans OK but the mac-serve row is silently absent, the streak e
 removed rather than credited -- so the false `-- remedied` auto-resolution cannot recur.
 Tests: 6 existing pins unchanged, 8 new (pins 5-6); 39/39 green across every `scripts/` test
 importing `hygiene_routine_tick`.
+
+### The pending decision chip was ANNOTATED, not answered
+
+`chip-20260908-decision-daemondrift-class-drift-aware-restart` stays **open** -- answering it is
+the user's call, not this pass's. But its text recommended Option A, which this pass disproved,
+and a session clicking it cold would have seen that recommendation and none of the evidence. So
+its prompt was amended (`chip_ledger.py amend-prompt`, 2026-09-09T20:50:28Z) with a correction
+**prepended above the options**, pointing here and naming the three findings that postdate it.
+The original text is preserved verbatim below the correction and in `prompt_history`.
 
 ### Deferred
 
