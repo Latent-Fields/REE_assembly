@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_547_548_receiver_conditioned_recurrent_interface",
+  "entry_id": "2026-09-09_mech_548_interface_plasticity_stability_gonzalez2026",
+  "timestamp_utc": "2026-09-09T10:33:00Z",
+  "claim_ids_tested": ["MECH-548"],
+  "source": {
+    "title": "Subspace communication in the hippocampal-retrosplenial axis",
+    "authors": ["Joaquin Gonzalez", "Mihaly Voroslakos", "Deren Aykan", "Nina Soto", "Noam Nitzan", "Rachel Swanson", "Mursel Karadas", "Zhe Sage Chen", "Gyorgy Buzsaki"],
+    "year": 2026,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-026-10481-z",
+    "pmid": "42129569",
+    "pmc": "PMC13317024",
+    "volume": "655",
+    "issue": "8121",
+    "pages": "192-201"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.54,
+  "confidence_rationale": "Peer-reviewed large-scale multi-region recordings directly demonstrate that interareal communication subspaces are experience- and state-dependent and exhibit a plasticity-stability balance during post-experience sleep. This biologically motivates MECH-548's requirement that an interface be judged dynamically rather than from a one-step static probe. However, the paper does not test recursive application of translated states, off-manifold compounding, semantic double-counting, or clean-base versus cumulative application. It is therefore adjacent/mixed rather than direct support for the registered mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper cannot be cited as evidence that repeated application of a bridge causes off-manifold drift or semantic double-counting; those are still REE-specific hypotheses.",
+    "If a REE interface remains stable under cumulative recurrence despite changing subspace geometry, MECH-548's specific failure mechanism is weakened even though Gonzalez et al.'s biological result remains true."
+  ],
+  "tags": ["mech-548", "communication_subspace", "hippocampus", "retrosplenial", "sleep", "replay", "plasticity_stability", "dynamic_interface"],
+  "mapping": {
+    "source_claim_statement": "Distinct hippocampal-retrosplenial communication subspaces reconfigure across experience and brain state, with different sleep reactivation/stability profiles for intrahippocampal versus hippocampal-cortical interfaces.",
+    "ree_translation": "Supports the need to measure an interface across time and recurrence rather than treating one-step decoder success as sufficient. It supplies a biological plasticity-stability analogue for MECH-548.",
+    "mapping_caveat": "No translated state is recursively fed back as the next receiver input in this experiment; the two specific MECH-548 mechanisms are not directly observed.",
+    "source_context": "Mouse; large-scale recordings across DG/CA3/CA2/CA1/RSC during tasks and pre/post NREM sleep; partial canonical correlation analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.48,
+    "transfer_risk": 0.62,
+    "notes": "Excellent source for dynamic interface geometry; only indirect for recursive bridge instability."
+  }
+}
