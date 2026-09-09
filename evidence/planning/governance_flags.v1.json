@@ -2155,9 +2155,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-029' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-029 has no explicit `epistemic_category`, so it infers `substrate_coherence` from `claim_type: architectural_commitment`, which suppresses promote/demote gating -- while the claim is in fact managed as experiment-gated (promoted on `conf=0.774` from EXQ-063; five experimental entries; `exp_conf` tracked in `claim_evidence.v1.json`). Setting `epistemic_category: standard` explicitly would align the dispatch with how the claim is actually governed, but it *un-suppresses* promote/demote and so is a governance decision, not a digestion edit. Flagged for ratification, not applied.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-09T17:23:14Z",
+      "resolution_note": "ALREADY DONE -- verified 2026-09-09 by /governance cycle governance-20260909 wave 4. This flag asks that ARC-029 be given an explicit epistemic_category: standard, on the grounds that it otherwise INFERS substrate_coherence from claim_type: architectural_commitment, which suppresses promote/demote gating while the claim is in fact managed as experiment-gated. ARC-029 now carries epistemic_category: standard explicitly in claims.yaml, so the inference no longer applies and the promote/demote route is live. Some pass between the 2026-09-04 digestion and today applied it. NOTE for anyone reading this as an all-clear: it is not one. GFLAG-0148 remains OPEN on the same claim and is the substantive one -- ARC-029 sits at status provisional while its experimental_confidence is 0.4 and its evidence_quadrant is plausible_unproven, and GFLAG-0148's charge is that the provisional rests on a run whose ablation is confounded and whose non-degeneracy gate passed vacuously. Making the category explicit un-suppressed the gating; it did not adjudicate the evidence."
     },
     {
       "flag_id": "GFLAG-0151",
