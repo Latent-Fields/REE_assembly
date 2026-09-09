@@ -124,3 +124,80 @@ re-propose one.
 - The probe script is committed and re-runnable: `/opt/local/bin/python3 experiments/_scratch/exq_wpfield_h2_probe_dvrange.py --seeds 42 43 44 45 46 --episodes 40 --steps 200` (~2 min on the Mac).
 - Carry the autopsy's standing caveat: the driver docstring's A2C 0.00/0.10 visits/ep figure is single-seed, pre-SD-094-gate, self-contaminating-env -- it MOTIVATES H1, it is not evidence, and must not be cited as a baseline.
 - Claims INV-086 and MECH-428 stay **read-across only**; neither is exercised by a decodability probe.
+
+## 7c. AMENDMENT 2026-09-09T00:35Z -- the TRAINED encoder was measured at probe scale, on BOTH paths; H2's "training discards the field" has no achievable range, so the leg is REFUSED as a queueable run
+
+Session `confident-panini-0cdba7` (campaign W6-S6 item 1, `science_wave_campaign_plan_20260908b.md`
+section 3; chip `chip-20260905-waypoint-consumer-reach-portfolio`). Section 7b's stated remaining work
+was "measure a TRAINED encoder at probe scale". Done, with two probe scripts (ree-v3
+`experiments/_scratch/exq_wpfield_h2_probe_dvrange_trained.py` and `..._sensepath.py`, same `_scratch`
+convention as section 8): the x1002/x1008 all-ON agent (`x1002._make_agent`, built exactly as
+V3-EXQ-978/1002/1008 built theirs) on the 1004 bench with the field ON (275-dim `world_state`), warmed
+with the SD-070 P0a recipe (`run_zworld_p0`, 60 episodes x 200 steps, random policy,
+`resource_field_weight=0.0` = the 978 OFF arm). P0a is the ONLY phase that steps the world encoder
+(P0b/P1 own no `latent_stack` optimizer group -- `zworld_p0_warmup.py` docstring), so this IS the
+z_world the REE consumer would read. Same 40 x 200-step random-walk episodes per seed (n = 8000
+states), same 70/30 split, same LINEAR probe, same zero-ablation of `[250:275]`. Encoder trained on
+every seed (`world_encoder_max_abs_delta` 0.71-0.77).
+
+**Encoder path** (`world_encoder(w)`, comparable to the section-3 table):
+
+| seed | raw lift | randproj lift | untrained (agent init) | **TRAINED** | trained - untrained | trained - randproj | PR untrained -> trained |
+|---|---|---|---|---|---|---|---|
+| 42 | +0.265 | +0.188 | +0.146 | **+0.167** | +0.021 | -0.021 | 5.1 -> 14.1 |
+| 43 | +0.267 | +0.220 | +0.174 | **+0.192** | +0.018 | -0.028 | 4.7 -> 12.9 |
+| 44 | +0.228 | +0.186 | +0.113 | **+0.126** | +0.013 | -0.060 | 4.8 -> 13.0 |
+| 45 | +0.310 | +0.258 | +0.196 | **+0.212** | +0.016 | -0.046 | 5.0 -> 14.2 |
+| 46 | +0.277 | +0.202 | +0.163 | **+0.178** | +0.015 | -0.024 | 4.7 -> 12.7 |
+| **mean** | +0.269 | +0.211 | +0.158 | **+0.175** | **+0.017** | **-0.036** | |
+
+**Sense path** (what the consumer actually reads: `agent.sense()` z_world with top-down conditioning and
+`alpha_world=0.9` smoothing, replayed per stored episode via `x737._agent_zworld`, ON and OFF as separate
+replays):
+
+| seed | untrained lift | **TRAINED** lift | trained - untrained | trained ON acc | trained OFF acc |
+|---|---|---|---|---|---|
+| 42 | +0.140 | **+0.115** | -0.025 | 0.674 | 0.559 |
+| 43 | +0.145 | **+0.153** | +0.008 | 0.705 | 0.552 |
+| 44 | +0.105 | **+0.110** | +0.005 | 0.710 | 0.600 |
+| 45 | +0.188 | **+0.131** | -0.057 | 0.647 | 0.515 |
+| 46 | +0.097 | **+0.084** | -0.013 | 0.647 | 0.562 |
+| **mean** | +0.135 | **+0.119** | **-0.016** | 0.676 | 0.558 |
+
+**Reading.** (1) Training does NOT discard the field. On the encoder path the trained lift is ABOVE the
+untrained floor on 5/5 seeds (+0.013..+0.021, a tight paired spread of 0.008) and sits 0.02-0.06 below the
+random-projection isometry floor -- the same gap the untrained encoder shows, i.e. the cost of the 275->
+128->ReLU->32 architecture, not of learning. Training raises the participation ratio from ~5 to ~13 (the
+SD-070 anti-collapse terms doing their job) and preserves the field with it. (2) At the sense path the lift
+is lower (~0.12 vs ~0.175: top-down conditioning and smoothing cost both arms ~0.06 of accuracy), still
+far from zero (ON 0.68 vs OFF 0.56), and the trained-minus-untrained difference is -0.016 mean with 3/5
+seeds negative and 2/5 positive -- seed noise, not a systematic drop. (3) Therefore the corrected criterion
+of section 4 ("H2 CONFIRMED iff the trained lift falls materially below the random floor") has NO
+achievable range on this configuration: the measured trained arm never drops below its own untrained
+floor by more than 0.057 on any seed/path, against section 7b's required drop of 0.147; and any drop
+threshold placed INSIDE the measured band (e.g. 0.02) would be chosen from the data it is meant to test.
+`dv_headroom_check` fails on the honest numbers exactly as 7b predicted, for the right reason: the effect
+is absent, not under-powered.
+
+**Disposition -- leg H-wpfield-zworld-interface is REFUSED as a queueable run; it is probe-resolved
+toward ELIMINATED.** The registry leg stays `alive` with `adjudicating_runs` empty (a `_scratch` probe
+cannot adjudicate a registry hypothesis, and a manifest-writing re-run of the same measurement would
+carry a criterion its own data already shows unreachable -- the campaign's "queue only with a criterion
+the measured range can fail" rule). Recommended governance reading: the observation-to-z_world interface
+preserves the pending waypoint's direction, at ~65% (encoder path) / ~45% (sense path) of the raw lift,
+through the lineage's P0a training; the residual blockage on navigation-dependent subgoal DVs is
+therefore NOT at the encoder, which relocates the whole question onto leg H1
+(`H-wpfield-objective-sparsity` -- reward sparsity / exploration in the consumer's learning signal).
+**H1's DV range (visits/ep under the REE consumer) is still unmeasured** and is the chip's remaining
+work; it needs a REINFORCE-consumer probe on the 1004 bench, which this session did not run. INV-086 and
+MECH-428 remain read-across only; nothing here is evidence for or against either.
+
+**Caveats, stated.** Both probes use random-walk state distributions (the decodability question's
+honest distribution, section 3); a navigating policy's visitation could differ. The "untrained" column
+here is the AGENT's own encoder at init (275-dim SplitEncoder inside the all-ON stack), not section 3's
+standalone SplitEncoder, hence +0.158 vs +0.167 -- same architectural floor, different init draw. The
+1004 bench has zero hazards and resources, so SD-070's grounding heads (presence/distance/proximity) see
+constant targets there and the P0a objective reduces to variance/covariance/reconstruction; on a bench
+WITH resources the grounding heads add class-1 pressure, which would if anything favour resource over
+waypoint content -- the direction section 5 anticipated, and a reason the sense-path number, not the
+encoder-path one, is the conservative reading.
