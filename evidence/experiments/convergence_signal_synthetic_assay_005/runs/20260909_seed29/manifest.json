@@ -1,0 +1,72 @@
+{
+  "assay": "convergence_signal_synthetic_assay_005",
+  "status": "synthetic_reference_run_only",
+  "seed": 29,
+  "episodes_per_profile": 10000,
+  "candidates_per_episode": 6,
+  "calibration_examples_per_domain": 20000,
+  "estimated_domain_accuracy": [
+    [0.7706, 0.66685, 0.66645],
+    [0.6685, 0.7675, 0.67035],
+    [0.66665, 0.66735, 0.7702],
+    [0.73505, 0.70025, 0.7002],
+    [0.70035, 0.73385, 0.70245]
+  ],
+  "estimated_global_accuracy": [0.7013, 0.7021166666666667, 0.7014, 0.7118333333333333, 0.7122166666666667],
+  "profiles": {
+    "clean": {
+      "L_hat_mae": 0.27640959595956366,
+      "oracle_ordering_violations": 0,
+      "methods": {
+        "M0_conflated": {"mean_regret": 0.48788189161937645, "optimal_hit_rate": 0.4599, "oracle_utility_fraction": 0.6816266652832075},
+        "M1_global_factorised": {"mean_regret": 0.16732245047499522, "optimal_hit_rate": 0.6978, "oracle_utility_fraction": 0.8908116750267412},
+        "M2_domain_factorised": {"mean_regret": 0.15505773362006983, "optimal_hit_rate": 0.7184, "oracle_utility_fraction": 0.8988151670020199},
+        "M3_hard_provenance": {"mean_regret": 0.023091583613400187, "optimal_hit_rate": 0.8729, "oracle_utility_fraction": 0.9849313028313295},
+        "M4_soft_provenance": {"mean_regret": 0.023091583613400187, "optimal_hit_rate": 0.8729, "oracle_utility_fraction": 0.9849313028313295},
+        "A_trueprov_learnedL": {"mean_regret": 0.023091583613400187, "optimal_hit_rate": 0.8729, "oracle_utility_fraction": 0.9849313028313295},
+        "A_softprov_trueL": {"mean_regret": 0.017237538661769837, "optimal_hit_rate": 0.8947, "oracle_utility_fraction": 0.9887514319339832},
+        "M5_exact_oracle": {"mean_regret": 0.0, "optimal_hit_rate": 1.0, "oracle_utility_fraction": 1.0}
+      }
+    },
+    "moderate": {
+      "L_hat_mae": 0.4023960784313614,
+      "oracle_ordering_violations": 0,
+      "methods": {
+        "M0_conflated": {"mean_regret": 0.4728581941215366, "optimal_hit_rate": 0.48, "oracle_utility_fraction": 0.6944160687318519},
+        "M1_global_factorised": {"mean_regret": 0.18188105906820898, "optimal_hit_rate": 0.694, "oracle_utility_fraction": 0.8824596258577505},
+        "M2_domain_factorised": {"mean_regret": 0.16875462523620383, "optimal_hit_rate": 0.7147, "oracle_utility_fraction": 0.8909425649371224},
+        "M3_hard_provenance": {"mean_regret": 0.07866303434541265, "optimal_hit_rate": 0.7958, "oracle_utility_fraction": 0.9491641266248793},
+        "M4_soft_provenance": {"mean_regret": 0.06457604194270797, "optimal_hit_rate": 0.7886, "oracle_utility_fraction": 0.9582678253059606},
+        "A_trueprov_learnedL": {"mean_regret": 0.029104683232706156, "optimal_hit_rate": 0.8601, "oracle_utility_fraction": 0.9811911401110689},
+        "A_softprov_trueL": {"mean_regret": 0.05309258487150025, "optimal_hit_rate": 0.8194, "oracle_utility_fraction": 0.9656889930048458},
+        "M5_exact_oracle": {"mean_regret": 0.0, "optimal_hit_rate": 1.0, "oracle_utility_fraction": 1.0}
+      }
+    },
+    "harsh": {
+      "L_hat_mae": 0.8151866666668243,
+      "oracle_ordering_violations": 0,
+      "methods": {
+        "M0_conflated": {"mean_regret": 0.4441228982960267, "optimal_hit_rate": 0.4805, "oracle_utility_fraction": 0.7080705539170429},
+        "M1_global_factorised": {"mean_regret": 0.20573483793090522, "optimal_hit_rate": 0.653, "oracle_utility_fraction": 0.8647670329371269},
+        "M2_domain_factorised": {"mean_regret": 0.1956260931124231, "optimal_hit_rate": 0.6653, "oracle_utility_fraction": 0.8714116808189982},
+        "M3_hard_provenance": {"mean_regret": 0.15164971063183427, "optimal_hit_rate": 0.7012, "oracle_utility_fraction": 0.9003180961998444},
+        "M4_soft_provenance": {"mean_regret": 0.10283679219515948, "optimal_hit_rate": 0.7315, "oracle_utility_fraction": 0.9324036479594683},
+        "A_trueprov_learnedL": {"mean_regret": 0.050454634249177836, "optimal_hit_rate": 0.8124, "oracle_utility_fraction": 0.9668353208420611},
+        "A_softprov_trueL": {"mean_regret": 0.07044016812292805, "optimal_hit_rate": 0.7852, "oracle_utility_fraction": 0.9536984935003097},
+        "M5_exact_oracle": {"mean_regret": 0.0, "optimal_hit_rate": 1.0, "oracle_utility_fraction": 1.0}
+      }
+    }
+  },
+  "criteria": {
+    "C1_moderate_useful": true,
+    "C2_harsh_graceful": true,
+    "C3_soft_beats_hard": true,
+    "C4_learned_leverage_adequate": true,
+    "C5_domain_competence_earns_representation": true,
+    "C5_mean_domain_regret": 0.17314615065623226,
+    "C5_mean_global_regret": 0.18497944915803646,
+    "C6_oracle_ceiling": true,
+    "measurement_pass_C1_to_C6": true
+  },
+  "execution_note": "Authoritative thresholds and seed were frozen in the preregistration before the full run. The run used the same committed equations in an isolated local execution environment. No criterion or parameter was changed after observing the full seed-29 result."
+}
