@@ -149,6 +149,13 @@ so `unapplied_disposition` can only see targets that adopt it. The audit prints
 its own coverage (`N of M confirmed targets carry a machine-readable per-claim
 disposition`) rather than silently implying it checked everything.
 
+The same principle governs the `UNRESOLVED` line added 2026-09-09 (GFLAG-0243):
+a target naming a run with NO manifest reachable by any of `ManifestResolver`'s
+four steps is counted and its run_id NAMED, never folded into the coverage
+figure. Silence about such a target reads exactly like "applied", which is the
+one reading this audit exists to make impossible -- and the flag was raised
+precisely because a resolver gap had been wearing that disguise.
+
 NO CORPUS COUNTS ARE INLINED IN THIS FILE'S PROSE, AND THAT IS DELIBERATE. Every
 coverage figure is printed at run time by the `coverage:` block in main(); read it
 there. Hardcoded counts were removed on 2026-08-20 after three disagreeing values
@@ -487,6 +494,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 AUTOPSY_GLOB = "evidence/planning/failure_autopsy_*.json"
 CLAIMS_YAML = "docs/claims/claims.yaml"
 EVIDENCE_DIR = "evidence/experiments"
+# How many unresolvable run_ids the header names before deferring to --full.
+UNRESOLVED_DISPLAY_LIMIT = 10
 CLAIM_EVIDENCE = "evidence/experiments/claim_evidence.v1.json"
 
 STANDS = "STANDS"
@@ -678,6 +687,26 @@ class Effective:
         return self.direction
 
 
+# Mirrors build_experiment_indexes._FLAT_ONLY_NON_MANIFEST_NAMES (:1785): a
+# file that lives in the flat namespace but is not a run manifest.
+_FLAT_ONLY_NON_MANIFEST_NAMES = {"claim_evidence.v1.json"}
+# Mirrors build_experiment_indexes._DRY_RUN_ID_RE / _is_dry_run (:1333/:1336),
+# kept in sync by hand as the rest of this module's indexer mirrors are.
+_DRY_RUN_ID_RE = re.compile(r"_dry_\d{8}T\d{6}Z")
+
+
+def _is_dry_run(manifest) -> bool:
+    """True for a `--dry-run` smoke: the flag set, or a run_id of dry shape.
+
+    The str-cast tolerates the bool / int / str spellings the corpus carries.
+    """
+    if not isinstance(manifest, dict):
+        return False
+    if str(manifest.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
+        return True
+    return bool(_DRY_RUN_ID_RE.search(str(manifest.get("run_id") or "")))
+
+
 class ManifestResolver:
     """Resolves a run_id to the manifest copy the indexer scores.
 
@@ -689,22 +718,66 @@ class ManifestResolver:
         FIRST, then `<base>/<type>/<run_id>.json` (:1553 `_resolve_flat_sibling`,
         whose docstring records that this order is load-bearing);
       * the flat copy overrides the direction fields ONLY when
-        `_is_annotated(flat) and not _is_annotated(pack)` (:1517).
+        `_is_annotated(flat) and not _is_annotated(pack)` (:1517); and
+      * a run with NO pack anywhere is discovered by the indexer's SECOND,
+        LATER-ADDED path -- `_scan_flat_only_orphans` (:1813, added
+        2026-09-01), which globs `<base>/*.json` then
+        `<base>/<experiment_type>/[!_]*.json` and keys each file by the
+        `run_id` FIELD it carries, NOT by filename.
 
-    Deliberately NOT "any file whose run_id field matches". That looser rule
-    finds corrections the indexer itself cannot reach -- a flat file whose
-    FILENAME omits the run_id's `_v3` suffix is invisible to `_resolve_flat_
-    sibling`, so its correction never applies while a reader keying on the
-    run_id field concludes it did. Measured 2026-08-20: 7 live (claim, run)
-    rows differ on exactly this, all in the direction of under-reporting.
+    PRECEDENCE, and why the field match is correct in exactly one of the two
+    places (the subtlety this class got wrong until 2026-09-09):
+
+      1. run pack                                    -- exact path
+      2. flat sibling `<base>/<run_id>.json`         -- exact path
+      3. flat sibling `<base>/<type>/<run_id>.json`  -- exact path, and only
+         reachable when a pack exists to name `<type>`
+      4. flat-only orphan, by run_id FIELD           -- consulted ONLY when
+         1-3 all miss
+
+    Steps 2-3 are the flat SIBLING of a pack, and there a field match would be
+    WRONG. That lookup is `_resolve_flat_sibling`, which reads EXACT PATHS, so
+    a flat file whose FILENAME omits the run_id's `_v3` suffix is invisible to
+    the indexer and its correction never applies -- while a reader keying on
+    the run_id field would conclude it did. Measured 2026-08-20: 7 live
+    (claim, run) rows differ on exactly this, all in the direction of
+    under-reporting. That rule is unchanged and its test is unchanged.
+
+    Step 4 is a DIFFERENT discovery path with a DIFFERENT rule, and there the
+    field match is what the indexer itself does -- so declining to follow it
+    is the under-report. It is consulted LAST, only once 1-3 have found
+    nothing, which makes it strictly additive: every run_id that resolved
+    before this step existed resolves bit-identically, by the same source.
+
+    Step 4 was missing until 2026-09-09 (GFLAG-0243). The indexer grew its
+    flat-only path on 2026-09-01 to close GFLAG-0111 -- flat-only manifests
+    written via `pack_writer.write_flat_manifest` with no `write_pack`, which
+    were carrying real scored evidence while being structurally invisible --
+    and this class, whose whole contract is to follow the indexer, was not
+    brought along. Same root cause, one repo apart.
+
+    HOW MUCH OF THE UNRESOLVABLE POPULATION THIS IS (measured 2026-09-09, and
+    a split the script does not compute -- for the population size itself read
+    the `UNRESOLVED` line main() prints, never a number restated here): the
+    great majority of then-unresolvable targets had no manifest on disk at
+    all. EXACTLY TWO were this shape --
+    v3_exq_259_wanting_gradient_navigation, the concrete GFLAG-0243 instance,
+    and v3_exq_472_sd011_platform_stability_pilot, whose flat file is named
+    `..._output.json` and so is reachable ONLY by the field match, never by
+    any exact path. Both were already present in claim_evidence.v1.json, i.e.
+    the indexer was scoring them while this audit could not see them at all.
 
     Manifests are loaded LAZILY -- the pack corpus runs to thousands of files
-    and this audit needs only the subset that a confirmed target names.
+    and this audit needs only the subset that a confirmed target names. The
+    step-4 index is the one eager read (it must open each flat file to see its
+    run_id field), so it is built only on the first step-1-to-3 miss and then
+    cached.
     """
 
     def __init__(self, root: Path):
         self.base = root / EVIDENCE_DIR
         self._packs = None
+        self._flat_only = None
         self._cache = {}
 
     def _pack_index(self):
@@ -717,6 +790,52 @@ class ManifestResolver:
                     index.setdefault(path.parent.name, path)
             self._packs = index
         return self._packs
+
+    def _flat_only_index(self):
+        """run_id FIELD -> path, over the indexer's flat-only orphan globs.
+
+        Step 4 of the PRECEDENCE list in the class docstring. Mirrors
+        `build_experiment_indexes._scan_flat_only_orphans` (:1813) deliberately
+        and by hand, including its glob ORDER -- `<base>/*.json` first, then
+        `<base>/<experiment_type>/[!_]*.json` -- so that where more than one
+        flat file claims a run_id the top-level copy wins, the same
+        top-level-first precedence `_resolve_flat_sibling` documents at length.
+        First writer of a given run_id wins; `setdefault` is what enforces it.
+
+        DRY-RUN SMOKES ARE SKIPPED, which the two exact-path lookups above do
+        not do, and the asymmetry is deliberate rather than an oversight. Steps
+        1-3 name a file the indexer would reach for THIS run_id, so declining
+        to read it would invent a blind spot. Step 4 instead SEARCHES for a
+        file, and a dry manifest is one the indexer provably never scores
+        (`_scan_runs` skips it) -- resolving to one would certify a direction
+        against something that is not the scoring source. Measured 2026-09-09:
+        27 run_ids on the corpus have no exact top-level flat copy and only dry
+        candidates, so this is load-bearing, not hypothetical.
+
+        The scan opens every flat file, so it is built lazily -- only on a
+        step-1-to-3 miss -- and cached for the life of the resolver.
+        """
+        if self._flat_only is None:
+            index = {}
+            if self.base.is_dir():
+                paths = (sorted(self.base.glob("*.json"))
+                         + sorted(self.base.glob("*/[!_]*.json")))
+                for path in paths:
+                    if path.name in _FLAT_ONLY_NON_MANIFEST_NAMES:
+                        continue
+                    if "runs" in path.parts:
+                        continue
+                    manifest = _load_json(path)
+                    if not isinstance(manifest, dict):
+                        continue
+                    run_id = manifest.get("run_id")
+                    if not isinstance(run_id, str) or not run_id.strip():
+                        continue
+                    if _is_dry_run(manifest):
+                        continue
+                    index.setdefault(run_id.strip(), path)
+            self._flat_only = index
+        return self._flat_only
 
     def _flat_for(self, run_id, pack_path):
         candidates = [self.base / ("%s.json" % run_id)]
@@ -737,6 +856,14 @@ class ManifestResolver:
         pack_path = self._pack_index().get(run_id)
         pack = _load_json(pack_path) if pack_path is not None else None
         flat_path = self._flat_for(run_id, pack_path)
+        orphan = False
+        if pack_path is None and flat_path is None:
+            # Steps 1-3 all missed, so the indexer's flat-only orphan path is
+            # the only one that could still be scoring this run. Consulted
+            # LAST, which is what keeps this strictly additive -- see the
+            # PRECEDENCE list in the class docstring.
+            flat_path = self._flat_only_index().get(run_id)
+            orphan = flat_path is not None
         flat = _load_json(flat_path) if flat_path is not None else None
 
         if not isinstance(pack, dict) and not isinstance(flat, dict):
@@ -744,8 +871,12 @@ class ManifestResolver:
             return None
 
         if not isinstance(pack, dict):
-            # No pack at all: nothing for the indexer's run scan to pick up.
-            merged, source = flat, "flat_only"
+            # No pack at all: the indexer's pack glob sees nothing, and only
+            # its flat-only orphan scan can score this run. The two labels are
+            # kept apart so a report can tell an exact-path flat copy from one
+            # found by the run_id field match.
+            merged = flat
+            source = "flat_only_orphan" if orphan else "flat_only"
         elif isinstance(flat, dict) and _is_annotated(flat) and not _is_annotated(pack):
             merged = dict(pack)
             for field in _FLAT_DIRECTION_FIELDS:
@@ -1079,7 +1210,29 @@ def _reflects(claim, change, recommended_direction, slug,
     if not target_state:
         return False
 
-    if field_hint is None and target_state.strip().lower() in _DIRECTION_VOCAB:
+    # `evidence_direction` is a MANIFEST field, not a claims.yaml one -- the
+    # routing note above says exactly that -- so BOTH prose spellings of it
+    # must go to the manifest: the bare `-> superseded`, and the explicit
+    # `-> evidence_direction: superseded`. Until 2026-09-09 only the bare form
+    # did. Naming the field fell through to the named-claims.yaml-field branch
+    # below, which returns False on `"evidence_direction" not in claim`. That
+    # is true of EVERY claim in the corpus: it is a manifest field, and not
+    # one claim carried the key when this was measured (2026-09-09). So the
+    # more explicit spelling could NEVER certify, whatever the manifest said.
+    # That is the SECOND half of GFLAG-0243; the first is the resolver
+    # blind spot step 4 of ManifestResolver's precedence closes, and neither
+    # fix clears the flag's four v3_exq_259 rows alone: this branch needs a
+    # resolvable manifest, and the resolver needs a branch that consults it.
+    #
+    # Strictly additive, for the same reason the resolver's step 4 is: a
+    # branch that was unconditionally False can only gain True verdicts, never
+    # lose one. Measured 2026-09-09 (a distribution the script does not
+    # compute): four per-claim dispositions use this spelling, all four in
+    # failure_autopsy_V4-EXQ-002-003_2026-09-02, and all four already matched
+    # the manifest -- so every case this newly certifies is one governance had
+    # genuinely applied, and none is a finding it stops reporting.
+    if (field_hint is None or field_hint == "evidence_direction") \
+            and target_state.strip().lower() in _DIRECTION_VOCAB:
         return _direction_matches(claim, target_state, claim_id, run_id, resolver)
 
     if not isinstance(claim, dict) or not claim:
@@ -1175,6 +1328,8 @@ def scan(root: Path) -> dict:
     n_with_pcr = 0
     n_with_recommended_direction = 0
     n_direction_checkable = 0
+    n_direction_unresolved = 0
+    unresolved_run_ids = set()
     n_over_excluded = 0
 
     # Pass 1 -- collect every per-claim recommendation, keyed by CLAIM rather
@@ -1279,7 +1434,15 @@ def scan(root: Path) -> dict:
         n_with_recommended_direction += 1
         resolved = resolver.resolve(run_id)
         if resolved is None:
-            continue  # no manifest on disk -- nothing to compare against
+            # No manifest on disk by ANY of the four resolution steps --
+            # nothing to compare against. Counted and named rather than folded
+            # into the coverage figure: a recommendation against a run with no
+            # manifest can never be certified applied, so silence here reads
+            # exactly like "applied" (GFLAG-0243, where the silence was a
+            # resolver blind spot rather than a genuinely absent manifest).
+            n_direction_unresolved += 1
+            unresolved_run_ids.add(run_id)
+            continue
         n_direction_checkable += 1
         for cid in _scoped_claims(target, resolved):
             recommended = _recommended_for_claim(target, cid)
@@ -1341,6 +1504,8 @@ def scan(root: Path) -> dict:
         "n_with_per_claim_recommendation": n_with_pcr,
         "n_with_recommended_direction": n_with_recommended_direction,
         "n_direction_checkable": n_direction_checkable,
+        "n_direction_unresolved": n_direction_unresolved,
+        "unresolved_run_ids": sorted(unresolved_run_ids),
         "n_over_excluded": n_over_excluded,
         "liveness_available": live_pairs is not None,
     }
@@ -1357,7 +1522,10 @@ def main() -> int:
                         help="exit 1 if any LIVE unapplied_evidence_direction is found")
     parser.add_argument("--full", action="store_true",
                         help="list every unapplied_evidence_direction row "
-                             "(default: the first %d runs)" % DIRECTION_DISPLAY_LIMIT)
+                             "(default: the first %d runs) and every "
+                             "unresolvable run_id (default: the first %d)"
+                             % (DIRECTION_DISPLAY_LIMIT,
+                                UNRESOLVED_DISPLAY_LIMIT))
     parser.add_argument("--root", default=str(REPO_ROOT),
                         help="REE_assembly root (default: this script's parent)")
     args = parser.parse_args()
@@ -1372,6 +1540,8 @@ def main() -> int:
     n_pcr = buckets["n_with_per_claim_recommendation"]
     n_rec_dir = buckets["n_with_recommended_direction"]
     n_dir_checkable = buckets["n_direction_checkable"]
+    n_dir_unresolved = buckets["n_direction_unresolved"]
+    unresolved_run_ids = buckets["unresolved_run_ids"]
     live_rows = [d for d in directions if d["live"]]
     other_rows = [d for d in directions if not d["live"]]
 
@@ -1392,6 +1562,21 @@ def main() -> int:
     print("            (-> unapplied_evidence_direction), of which %d resolve"
           % n_dir_checkable)
     print("            to a manifest and are checked.")
+    if n_dir_unresolved:
+        print("  UNRESOLVED (not checked): %d target(s) across %d run(s) name a"
+              % (n_dir_unresolved, len(unresolved_run_ids)))
+        print("        run with NO manifest reachable by any of the resolver's four")
+        print("        steps (pack; flat `<run_id>.json`; flat `<type>/<run_id>.json`;")
+        print("        flat-only orphan by run_id field). A recommendation against")
+        print("        one of these can NEVER be certified applied, so it is named")
+        print("        here rather than folded into the coverage count above.")
+        shown = unresolved_run_ids if args.full \
+            else unresolved_run_ids[:UNRESOLVED_DISPLAY_LIMIT]
+        for rid in shown:
+            print("          - %s" % rid)
+        if len(shown) < len(unresolved_run_ids):
+            print("          ... and %d more; re-run with --full to list them."
+                  % (len(unresolved_run_ids) - len(shown)))
     if not buckets["liveness_available"]:
         print("  NOTE: claim_evidence.v1.json unreadable -- every direction row is")
         print("        reported as WARN because liveness could not be established.")

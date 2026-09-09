@@ -113,9 +113,11 @@ class Fixture:
         (d / "manifest.json").write_text(json.dumps(body, indent=1))
 
     def flat(self, run_id=RUN, direction="weakens", claim_ids=(CLAIM,), note=None,
-             per_claim=None, filename=None, exp_type=None):
+             per_claim=None, filename=None, exp_type=None, dry_run=None):
         body = {"run_id": run_id, "evidence_direction": direction,
                 "claim_ids": list(claim_ids)}
+        if dry_run is not None:
+            body["dry_run"] = dry_run
         if note:
             body["evidence_direction_note"] = note
         if per_claim is not None:
@@ -881,6 +883,252 @@ class ResolutionTests(Base):
         self.assertEqual(buckets["unapplied_evidence_direction"], [])
         self.assertEqual(buckets["n_with_recommended_direction"], 1)
         self.assertEqual(buckets["n_direction_checkable"], 0)
+
+
+# =========================================================================
+# GFLAG-0243 -- the two coupled blind spots that kept a genuinely-applied
+# recommendation reporting forever. BOTH halves are needed; each test below
+# that asserts a CLEARED row fails if either fix is reverted.
+#
+# Half 1: ManifestResolver had no step 4 -- a run with no pack and no
+#         exact-path flat copy resolved to None even when the indexer's own
+#         flat-only orphan scan was scoring it.
+# Half 2: `_reflects` routed the prose `-> evidence_direction: <dir>` to the
+#         claims.yaml named-field branch, where it could never certify.
+# =========================================================================
+class FlatOnlyOrphanResolutionTests(Base):
+    """Step 4 of the ManifestResolver precedence list."""
+
+    def _one_target(self, recommended="non_contributory"):
+        self.fx.autopsy(targets=[self.fx.target(recommended=recommended)])
+        self.fx.live()
+
+    def test_subdirectory_only_manifest_resolves_with_no_pack(self):
+        """THE GFLAG-0243 INSTANCE, in miniature: the manifest exists ONLY at
+        `<base>/<type>/<run_id>.json` -- no pack, no top-level flat copy. The
+        indexer scores it via `_scan_flat_only_orphans`; before step 4 existed
+        this resolved to None and the recommendation reported forever."""
+        self._one_target()
+        self.fx.flat(direction="non_contributory", exp_type=TYPE)
+        resolved = M.ManifestResolver(self.fx.root).resolve(RUN)
+        self.assertIsNotNone(resolved)
+        self.assertEqual(resolved.source, "flat_only_orphan")
+        self.assertEqual(resolved.for_claim(CLAIM), "non_contributory")
+        self.assertEqual(self.directions(), [])
+
+    def test_orphan_is_matched_by_run_id_field_not_filename(self):
+        """The v3_exq_472 shape: the file is named `..._output.json`, so no
+        exact-path lookup can reach it. The indexer's flat-only path keys on
+        the run_id FIELD, so this one IS scored and must be checked."""
+        self._one_target()
+        self.fx.flat(direction="non_contributory", exp_type=TYPE,
+                     filename="v3_exq_914_output.json")
+        resolved = M.ManifestResolver(self.fx.root).resolve(RUN)
+        self.assertIsNotNone(resolved)
+        self.assertEqual(resolved.source, "flat_only_orphan")
+        self.assertEqual(self.directions(), [])
+
+    def test_orphan_still_reports_when_the_direction_disagrees(self):
+        """NEGATIVE CONTROL, and the load-bearing one: newly RESOLVING a run
+        must not mean newly CERTIFYING it. A resolvable orphan that still
+        carries the old direction fires exactly as a pack would."""
+        self._one_target()
+        self.fx.flat(direction="weakens", exp_type=TYPE)
+        rows = self.directions()
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["effective_direction"], "weakens")
+        self.assertEqual(rows[0]["manifest_source"], "flat_only_orphan")
+
+    def test_a_pack_still_wins_over_a_field_matched_orphan(self):
+        """PRECEDENCE: step 4 is consulted ONLY when 1-3 miss. With a pack
+        present the orphan index is never reached, so the pack's stale
+        direction still fires -- this is what makes the change additive."""
+        self._one_target()
+        self.fx.pack(direction="weakens")
+        self.fx.flat(direction="non_contributory", exp_type=TYPE,
+                     filename="something_else.json")
+        rows = self.directions()
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["effective_direction"], "weakens")
+        self.assertEqual(rows[0]["manifest_source"], "pack")
+
+    def test_exact_path_top_level_flat_still_wins_over_the_orphan_index(self):
+        """PRECEDENCE, step 2 before step 4: the top level is the surface
+        governance annotates, and preferring a subdirectory copy would
+        suppress a correction that applies today (indexer :1553)."""
+        self._one_target()
+        self.fx.flat(direction="non_contributory")           # <base>/<run_id>.json
+        self.fx.flat(direction="weakens", exp_type=TYPE)     # subdirectory copy
+        self.assertEqual(self.directions(), [])
+
+    def test_top_level_orphan_wins_over_the_subdirectory_orphan(self):
+        """Within step 4 the glob order is top level first, mirroring
+        `_scan_flat_only_orphans`. Both files are field-matched only (neither
+        is named for the run_id), so only the ORDER can decide."""
+        self._one_target()
+        self.fx.flat(direction="non_contributory", filename="aaa_top.json")
+        self.fx.flat(direction="weakens", exp_type=TYPE, filename="zzz_sub.json")
+        self.assertEqual(self.directions(), [])
+
+    def test_dry_run_smokes_are_not_resolved_by_the_orphan_index(self):
+        """A dry smoke is never scored by the indexer, so resolving to one
+        would certify against something that is not the scoring source. The
+        run stays unresolvable -- counted, named, never certified."""
+        self._one_target()
+        self.fx.flat(direction="non_contributory", exp_type=TYPE,
+                     filename="dry_smoke.json", dry_run=True)
+        self.assertIsNone(M.ManifestResolver(self.fx.root).resolve(RUN))
+        buckets = self.scan()
+        self.assertEqual(buckets["n_direction_checkable"], 0)
+        self.assertEqual(buckets["n_direction_unresolved"], 1)
+
+    def test_claim_evidence_index_is_not_read_as_a_manifest(self):
+        """`claim_evidence.v1.json` lives in the flat namespace and is not a
+        run manifest (indexer `_FLAT_ONLY_NON_MANIFEST_NAMES`)."""
+        self._one_target()
+        self.assertIsNone(M.ManifestResolver(self.fx.root).resolve(RUN))
+
+    def test_run_pack_manifests_are_not_reachable_via_the_orphan_index(self):
+        """`runs/` is excluded from the orphan globs. A pack whose run_id
+        FIELD differs from its directory name must not be field-matched into
+        step 4 -- step 1 is the only path that may reach a pack."""
+        self.fx.autopsy(targets=[self.fx.target(run_id="ghost_run_v3")])
+        self.fx.live(run_id="ghost_run_v3")
+        self.fx.pack(run_id="ghost_run_v3", exp_type=TYPE)
+        # relabel the pack's run_id field, leaving the directory name alone
+        d = self.fx.experiments / TYPE / "runs" / "ghost_run_v3" / "manifest.json"
+        body = json.loads(d.read_text())
+        body["run_id"] = "ghost_run_v3"
+        d.write_text(json.dumps(body))
+        resolved = M.ManifestResolver(self.fx.root).resolve("ghost_run_v3")
+        self.assertEqual(resolved.source, "pack")
+
+
+class EvidenceDirectionProseRoutingTests(Base):
+    """Half 2: `-> evidence_direction: <dir>` is a MANIFEST assertion."""
+
+    def _disposition(self, change):
+        self.fx.autopsy(targets=[self.fx.target(
+            per_claim_recommendation={CLAIM: {
+                "change": change,
+                "recommended_evidence_direction": "non_contributory"}})])
+        self.fx.live()
+
+    def test_named_evidence_direction_is_checked_against_the_manifest(self):
+        """The GFLAG-0243 prose shape. `evidence_direction` is not a
+        claims.yaml field -- no claim in the corpus carries the key -- so
+        routing it to the named-field branch could never certify."""
+        self._disposition("only the 259 entry moves -> "
+                          "evidence_direction: non_contributory")
+        self.fx.pack(direction="non_contributory")
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_named_evidence_direction_still_fires_when_the_manifest_disagrees(self):
+        """NEGATIVE CONTROL: the routing change moves WHERE the assertion is
+        checked, never whether it must hold. A stale manifest still fires."""
+        self._disposition("only the 259 entry moves -> "
+                          "evidence_direction: non_contributory")
+        self.fx.pack(direction="weakens")
+        self.assertEqual([r["claim_id"] for r in self.scan()["unapplied_disposition"]],
+                         [CLAIM])
+
+    def test_named_evidence_direction_cannot_certify_without_a_manifest(self):
+        """NEGATIVE CONTROL: unverifiable reports as unapplied, per the
+        module's stated bias. No manifest anywhere -> still fires."""
+        self._disposition("-> evidence_direction: non_contributory")
+        self.assertEqual([r["claim_id"] for r in self.scan()["unapplied_disposition"]],
+                         [CLAIM])
+
+    def test_a_non_direction_named_field_still_routes_to_claims_yaml(self):
+        """SCOPE BOUND: only `evidence_direction` moves. `epistemic_category`
+        is a genuine claims.yaml field and must keep its own branch."""
+        self._disposition("-> epistemic_category: substrate_ceiling")
+        self.fx.pack(direction="non_contributory")
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate",
+                               "epistemic_category": "substrate_ceiling"}])
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_named_evidence_direction_with_a_non_vocabulary_value_is_unchanged(self):
+        """SCOPE BOUND: the manifest route is gated on the direction
+        VOCABULARY, exactly as the bare-prose branch is. A value outside it
+        keeps the old claims.yaml routing and cannot certify."""
+        self._disposition("-> evidence_direction: not_a_direction")
+        self.fx.pack(direction="not_a_direction")
+        self.assertEqual([r["claim_id"] for r in self.scan()["unapplied_disposition"]],
+                         [CLAIM])
+
+    def test_both_halves_are_required_together(self):
+        """THE FULL GFLAG-0243 SHAPE end to end: subdirectory-only manifest
+        (needs half 1) named by prose as `evidence_direction:` (needs half 2).
+        Reverting either fix re-breaks this."""
+        self._disposition("only the 259 entry moves -> "
+                          "evidence_direction: non_contributory")
+        self.fx.flat(direction="non_contributory", exp_type=TYPE)
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+
+# =========================================================================
+# UNRESOLVED reporting -- the class must not be able to hide again
+# =========================================================================
+class UnresolvedReportingTests(Base):
+
+    def test_unresolvable_targets_are_counted_separately(self):
+        """They are NOT folded into the coverage figure: a recommendation
+        against a run with no manifest can never be certified applied, so
+        silence there reads exactly like `applied`."""
+        self.fx.autopsy(targets=[self.fx.target()])
+        self.fx.live()
+        buckets = self.scan()
+        self.assertEqual(buckets["n_with_recommended_direction"], 1)
+        self.assertEqual(buckets["n_direction_checkable"], 0)
+        self.assertEqual(buckets["n_direction_unresolved"], 1)
+        self.assertEqual(buckets["unresolved_run_ids"], [RUN])
+
+    def test_a_resolvable_run_is_not_counted_unresolved(self):
+        """NEGATIVE CONTROL."""
+        self.fx.autopsy(targets=[self.fx.target()])
+        self.fx.live()
+        self.fx.pack(direction="weakens")
+        buckets = self.scan()
+        self.assertEqual(buckets["n_direction_unresolved"], 0)
+        self.assertEqual(buckets["unresolved_run_ids"], [])
+
+    def test_the_report_names_the_unresolvable_run_ids(self):
+        self.fx.autopsy(targets=[self.fx.target()])
+        self.fx.live()
+        rc, out = self.run_main()
+        self.assertEqual(rc, 0)
+        self.assertIn("UNRESOLVED (not checked): 1 target(s) across 1 run(s)", out)
+        self.assertIn(RUN, out)
+
+    def test_the_report_says_nothing_when_everything_resolves(self):
+        """NEGATIVE CONTROL: a line that always prints is noise, and noise is
+        how a finding hides."""
+        self.fx.autopsy(targets=[self.fx.target()])
+        self.fx.live()
+        self.fx.pack(direction="non_contributory")
+        rc, out = self.run_main()
+        self.assertNotIn("UNRESOLVED", out)
+
+    def test_the_listing_is_capped_until_full(self):
+        n = M.UNRESOLVED_DISPLAY_LIMIT + 3
+        runs = ["v3_exq_%03d_unresolvable_v3" % i for i in range(n)]
+        self.fx.autopsy(targets=[self.fx.target(run_id=r) for r in runs])
+        for r in runs:
+            self.fx.live(run_id=r)
+        rc, out = self.run_main()
+        self.assertIn("... and 3 more; re-run with --full", out)
+        rc, out_full = self.run_main("--full")
+        self.assertNotIn("re-run with --full to list them", out_full)
+        for r in runs:
+            self.assertIn(r, out_full)
+
+    def test_unresolvable_targets_do_not_affect_the_strict_exit(self):
+        """CONTRACT: governance.sh Step 3h's invocation predates this bucket."""
+        self.fx.autopsy(targets=[self.fx.target()])
+        self.fx.live()
+        self.assertEqual(self.run_main("--strict")[0], 0)
+        self.assertEqual(self.run_main("--strict-direction")[0], 0)
 
 
 # =========================================================================
