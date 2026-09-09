@@ -23,9 +23,9 @@
     "MECH-294"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-294": "weakens"
+    "MECH-294": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -333,5 +333,6 @@
     49,
     50,
     51
-  ]
+  ],
+  "evidence_direction_note": "[2026-09-09 governance, cycle governance-20260909 wave 5] Re-dispositioned weakens -> non_contributory (GFLAG-0183, user-adjudicated at the /governance walk). Grounds, verified this cycle rather than taken on report: this run was measured with the ARC-065 SP-CEM candidate pool pinned at its floor -- driver line 485 sets support_preserving_min_first_action_classes=2, and the run's own recorded worst_diversity_joint / worst_diversity_alt / worst_diversity_shuf are all 2.0022, i.e. sitting exactly at that floor -- against the mean_distinct_first_action_classes >= 4.5 that this lineage's own falsifier (MECH-341, claims.yaml falsifying route (i)) treats as a GENUINELY DIVERSE pool. A weakens collected at a floor-clamped pool is not evidence that the binding mechanism fails; it is a run in which the mechanism was never given a pool to bind over, so the result cannot discriminate. ATTRIBUTION CORRECTION to GFLAG-0183's own wording: the >= 4.5 figure is MECH-341's stated bar, not ARC-065's -- ARC-065's record carries no such number. What line 485 supplies is the ARC-065 SP-CEM clamp at 2, which is the verified half. Retest needs the pool raised to >= 4.5 with the substrate measured operative. Not dry (verified). Written to the flat manifest AND the run pack, since the claims.yaml edit does not reach the scoring path."
 }

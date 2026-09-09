@@ -4401,7 +4401,7 @@
     "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "amygdala.bla_retrieval_bias_content_selective",
-    "title": "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace retrieval weight vector (NOT a scalar gain) on hippocampal readout.",
+    "title": "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace weight vector (NOT a scalar gain) as sampling priority over the hippocampal replay/reactivation path. Locus narrowed 2026-09-09 from 'on hippocampal readout'; retrieval-time item-level readout enhancement is now an unevidenced residual -- see evidence_quality_note.",
     "type": "mechanism_hypothesis",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: see MECH-074's own what_would_answer for the shared readiness block (n_traces, gt_arousal spread, buffer/label alignment, both route-nonuniformity floors, OFF-arm flatness) -- do not re-derive it. Two additions specific to this claim: (a) the arousal tag must be written AT ENCODING (`bla_retrieval_tag_at_encoding=True`); the module exposes False precisely to reproduce the named scalar failure signature, so that setting is the NEGATIVE CONTROL ARM, not a misconfiguration. (b) The environment/harness must expose CENTRAL/GIST vs PERIPHERAL items WITHIN the same episode, each with independently measurable recall. Without (b) the run re-measures 888's between-trace threat-vs-neutral contrast, which is already answered and is NOT the LaBar & Cabeza central/peripheral dissociation this claim is about; a \"PASS\" obtained that way would be vacuous with respect to the residual.\nCONFIRMING: three arms at matched seeds -- ARM_VECTOR (per-trace w_i = 1 + alpha*tag_i, alpha in [0.3, 1.0]), ARM_SCALAR (uniform w = 1 + alpha*mean(tag) across all traces; equivalently `bla_retrieval_tag_at_encoding=False`), ARM_OFF. Confirming requires ALL THREE of: (1) in ARM_VECTOR, central/gist recall advantage over peripheral items of 1.3x-2.0x relative to the neutral baseline (the claim's own registered target magnitude) on >= 2/3 seeds; (2) ARM_SCALAR's dissociation indistinguishable from ARM_OFF's (delta below 0.02) -- the scalar form must NOT reproduce it; (3) ARM_OFF's dissociation flat within |0.02|.\nFALSIFYING: ARM_SCALAR reproduces ARM_VECTOR's dissociation within the margin -- the content-selective form is not load-bearing and the claim collapses to a scalar retrieval gain, which is the failure signature the claim was registered to exclude. Independently falsifying: ARM_VECTOR's dissociation misses the floor with all preconditions green -- the per-trace weight then has composition authority over the replay SAMPLE (888) but no authority over item-level READOUT, and the claim should be narrowed to the sampling path rather than retained as a retrieval-weight claim. NOT falsified by, and not testable as, the \"BLA contribution grows with trace age\" leg: no age term exists in the substrate, so that leg is substrate_conditional on an unbuilt trace-age input and must not be scored in this run.\n"
   },
@@ -6753,7 +6753,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-294": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "enriching",
     "assembly_status": "built",
     "awaiting": "modulatory-bias-selection-authority",
     "coupled_with": [],
