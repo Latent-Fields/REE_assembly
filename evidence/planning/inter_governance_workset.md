@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-09T04:56:05Z`
+Generated: `2026-09-09T06:15:12Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -12,11 +12,9 @@ UI: http://localhost:8000/workset
 - Items: **249** (ready 28, in_flight 0, blocked 167)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 83, v4 76, v5 38, v6 25
 - Pending review: **0**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-1010, V3-EXQ-906c, V3-EXQ-981a, V3-EXQ-999a
-
-- Auto-absorbed retests (queued, suppressed from workset): MECH-161 -> V3-EXQ-999a
+- Live EXQs: V3-EXQ-1010, V3-EXQ-906c
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): ARC-021 -> v3_exq_1011_arc021_h3_submargin_paired_ci_20260908T201117Z_v3, MECH-152 -> v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3, MECH-162 -> v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3, Q-081 -> v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3
 
@@ -1032,7 +1030,7 @@ Instructions:
 
 </details>
 
-### IGW-20260909-215 -- Queue depth low (1 pending)
+### IGW-20260909-215 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1041,7 +1039,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260909-215
-Title: Queue depth low (1 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -2712,31 +2710,7 @@ Instructions:
 
 </details>
 
-### IGW-20260909-236 -- Proposal for MECH-004
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260909-236
-Title: Proposal for MECH-004
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: MECH-004
-Proposal backlog id (stable): EVB-1380
-Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260909-237 -- Literature proposal for MECH-004
+### IGW-20260909-236 -- Literature proposal for MECH-004
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2744,7 +2718,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260909-237
+REE inter-governance work item: IGW-20260909-236
 Title: Literature proposal for MECH-004
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2754,6 +2728,30 @@ Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_s
 
 Instructions:
 - Use /lit-pull for the claim cluster named.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260909-237 -- Proposal for MECH-005
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260909-237
+Title: Proposal for MECH-005
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: MECH-005
+Proposal backlog id (stable): EVB-1381
+Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
 - Workset: http://localhost:8000/workset
 ```
 
