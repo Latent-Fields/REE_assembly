@@ -3494,6 +3494,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0249",
+      "claim_ids": [
+        "SD-024",
+        "SD-034",
+        "MECH-074",
+        "MECH-465"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "PIPELINE / RECORDING-STANDARD DEFECT, corpus-wide (the four named claims are instances this cycle tripped over, not the scope). MEASURED 2026-09-09 across all non-dry flat manifests in evidence/experiments/: of 534 manifests that declare a load-bearing criteria list, 486 (91.0 percent) record ZERO load-bearing criteria carrying BOTH a measured value and a threshold -- not merely some missing, none at all -- and 180 of those 486 are outcome PASS. Only 40 (7.5 percent) are fully re-derivable. Separately, 489 carry no combination_rule at all. CONSEQUENCE, and why this is a governance problem and not a tidiness one: a criterion recorded as passed: true with no measured value and no bar cannot be checked from the manifest, so the /governance Step 2b MANDATORY DRIVER SKIM -- specifically its 2026-08-30 threshold-arithmetic clause, 'given the magnitudes this run actually measured, is the bar attainable in both directions, or does one branch fire BY CONSTRUCTION' -- cannot be discharged by reading the artifact. It requires opening the driver source every time. That is exactly how V3-EXQ-936a's absolute bar, ~7,900x above the maximum attainable effect, was logged clean for three consecutive cycles. This cycle alone the gap forced a driver read three separate times, and each read found something the manifest could not have shown: V3-EXQ-900's PASS label asserts a FUNCTIONAL half that no criterion tests while the one functional discriminator recorded is flat to 0.09 percent (GFLAG-0246); V3-EXQ-642b's C1/C2 read a DV clamped at 1.5 in both arms so the separation is 0.0 by construction (GFLAG-0141, already autopsied); V3-EXQ-231a's C2 is an arithmetic consequence of its C1 under the driver's own linear map, so it cannot fail when C1 passes (GFLAG-0163, MECH-106 demoted on it). None of those three were visible in the manifest. SUGGESTED DIRECTION, not prescribed: this is the same shape as the flat-scalar-readout gap the Experimental Recording Standard v0.2 closed on 2026-09-09 (REE_assembly d2da351f03, ree-v3 f204ee02ce), and the precedent there is instructive in BOTH directions -- that check was deliberately made ADVISORY in every mode, including --strict, precisely because the corpus gap was too large to gate on (802 of 1008 flat manifests lacked the field). A 91 percent gap is larger still, so a blocking gate is not the move; an advisory validate_recording check plus a standard section requiring measured + threshold on every load-bearing criterion, forward-only, is. Whether the 180 already-PASSING manifests get backfilled is a separate and much bigger question that should NOT be assumed.",
+      "raised_by_session": "governance-20260909-w5",
+      "raised_at": "2026-09-09T18:26:10Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
