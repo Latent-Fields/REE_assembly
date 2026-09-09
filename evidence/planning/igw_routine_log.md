@@ -2788,3 +2788,7 @@ One line per hourly tick. ASCII only.
 2026-09-09T02:41:25Z workset committed (regen -- 249 items, 28 ready, 0 in flight)
 2026-09-09T02:40:04Z SPAWN IGW-20260909-234 skill=/queue-experiment prio=40 uuid=abb3ec0e-d731-40b1-9535-098c244b5f9b pid=32805 worktree=igw-234-proposal-for-mech-002
 2026-09-09T03:05:41Z auto-defer igw-234-proposal-for-mech-002 hash=5647c0a2bf55 for 48h (complete)
+2026-09-09T03:07:24Z complete igw-234-proposal-for-mech-002 spawned->completed outcome=USEFUL_LANDED: marked EVB-1378 blocked_substrate (MECH-002): regime DV bang-bang + precision DV
+2026-09-09T03:46:56Z GC removed worktree igw-234-proposal-for-mech-002 (removed; branch deleted)
+2026-09-09T03:46:36Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-09T03:48:26Z workset committed (regen -- 249 items, 28 ready, 0 in flight)
