@@ -3397,6 +3397,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0243",
+      "claim_ids": [
+        "ARC-030",
+        "MECH-112",
+        "SD-012",
+        "SD-015"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "PIPELINE DEFECT (GOV-APPLY-1 ManifestResolver blind spot; the four v3_exq_259 claims are the concrete instance). check_unapplied_autopsy_recommendations.py's ManifestResolver.resolve() returns None for run_id v3_exq_259_wanting_gradient_navigation_1775666895, because that manifest exists ONLY at evidence/experiments/v3_exq_259_wanting_gradient_navigation/<run_id>.json -- inside its experiment-type subdirectory, with no top-level flat copy and no runs/<run_id>/manifest.json pack. The resolver looks only for the flat top-level path and packs. Consequence: _STRUCTURED_REC_CHECKS' recommended_evidence_direction check calls _direction_matches, which cannot see the manifest, returns False, and the four per-claim rows report as unapplied_disposition FOREVER regardless of what the manifest actually says. Verified this cycle: after setting evidence_direction_per_claim to superseded on all four (REE_assembly 676cc9ac62), matching the already-correct run-level superseded, GOV-APPLY-1 still reports all four. The audit's own header quantifies the population: 1208 targets carry a recommended_evidence_direction, of which only 1171 resolve -- so 37 targets are unresolvable this way, not just these. This is a DETECTOR blind spot, not owed governance work; the claim-layer applies are complete. Cross-reference GFLAG-0111, which already names V3-EXQ-259 among the flat-only manifests carrying real scored evidence. Fix direction is the resolver (teach it the experiment-type-subdirectory path), NOT relocating manifests.",
+      "raised_by_session": "governance-20260909",
+      "raised_at": "2026-09-09T09:29:08Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
