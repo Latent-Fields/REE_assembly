@@ -259,6 +259,30 @@ except ImportError:  # pragma: no cover -- yaml is a hard dep of the pipeline
     yaml = None
 
 REPO_ROOT = Path(__file__).resolve().parents[1]  # REE_assembly root
+
+# ---------------------------------------------------------------------------
+# THE DRYNESS PREDICATE IS IMPORTED, NOT RE-SPELLED
+# (chip-20260909-isdryrun-sixway-divergence).
+#
+# SIX independent definitions of "is this manifest a --dry-run smoke?" existed
+# over ONE corpus, each with a different arm subset. Each was internally
+# consistent, so nothing ever failed -- the divergence was only visible by
+# comparing them. Measured against the 136 canonical dry manifests on
+# 2026-09-09, this module MISSED 41 of them -- it carried the flag arm ALONE.
+#
+# generate_pending_review._is_dry_run is the canonical four-arm predicate
+# (flag / `_dry_` FILENAME prefix / bare `_dry` run_id suffix / `_dry_<stamp>`
+# run_id regex). It is small, side-effect-free and sits in this directory;
+# scripts/check_dry_run_citations.py already imports the same helper.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    from generate_pending_review import _is_dry_run
+except ImportError as exc:  # pragma: no cover -- environment problem, be loud
+    raise SystemExit(
+        "cannot import _is_dry_run from scripts/generate_pending_review.py: %s" % exc
+    )
+
 DEFAULT_EXP_DIR = REPO_ROOT / "evidence" / "experiments"
 DEFAULT_REE_V3_ROOT = REPO_ROOT.parent / "ree-v3"
 DEFAULT_CLAIMS_YAML = REPO_ROOT / "docs" / "claims" / "claims.yaml"
@@ -289,15 +313,6 @@ def _load_json(path: Path) -> Optional[Dict[str, Any]]:
         return None
 
 
-def _is_dry_run(manifest: Dict[str, Any]) -> bool:
-    val = manifest.get("dry_run")
-    if isinstance(val, bool):
-        return val
-    if isinstance(val, str):
-        return val.strip().lower() in ("true", "1", "yes")
-    return False
-
-
 def _already_actioned(manifest: Dict[str, Any]) -> bool:
     if str(manifest.get("evidence_direction", "")) == "superseded":
         return True
@@ -323,7 +338,9 @@ def load_flat_claim_tagged_manifests(exp_dir: Path) -> List[Tuple[Path, Dict[str
         claim_ids = manifest.get("claim_ids") or []
         if not claim_ids:
             continue
-        if _is_dry_run(manifest):
+        # PASS THE PATH: the `_dry_` filename-prefix arm is the only one that
+        # can see a smoke whose run_id was left untouched by pack_writer.
+        if _is_dry_run(manifest, path):
             continue
         out.append((path, manifest))
     return out

@@ -73,6 +73,30 @@ from typing import Any
 ROOT = Path(__file__).resolve().parent.parent
 EVIDENCE_DIR = ROOT / "evidence" / "experiments"
 
+# ---------------------------------------------------------------------------
+# THE DRYNESS PREDICATE IS IMPORTED, NOT RE-SPELLED
+# (chip-20260909-isdryrun-sixway-divergence).
+#
+# SIX independent definitions of "is this manifest a --dry-run smoke?" existed
+# over ONE corpus, each with a different arm subset. Each was internally
+# consistent, so nothing ever failed -- the divergence was only visible by
+# comparing them. Measured against the 136 canonical dry manifests on
+# 2026-09-09, this module MISSED 26 of them.
+#
+# generate_pending_review._is_dry_run is the canonical four-arm predicate
+# (flag / `_dry_` FILENAME prefix / bare `_dry` run_id suffix / `_dry_<stamp>`
+# run_id regex). It is small, side-effect-free and sits in this directory;
+# scripts/check_dry_run_citations.py already imports the same helper.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    from generate_pending_review import _is_dry_run as _canonical_is_dry_run
+except ImportError as exc:  # pragma: no cover -- environment problem, be loud
+    raise SystemExit(
+        "cannot import _is_dry_run from scripts/generate_pending_review.py: %s" % exc
+    )
+
+
 # Filenames at the top of evidence/experiments/ that are indexes/reports, not
 # manifests -- must not be read as one.
 _NON_MANIFEST_NAMES = {
@@ -90,10 +114,19 @@ def _load_json(path: Path) -> dict[str, Any] | None:
 
 
 def _is_dry_run(manifest: dict[str, Any], path: Path) -> bool:
-    if str(manifest.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
-        return True
-    stem = path.stem
-    return stem.startswith("_dry_") or stem.endswith("_dry")
+    """Canonical four-arm dryness, plus the FILENAME-suffix arm this reader keeps.
+
+    The local addition is `path.stem.endswith("_dry")` -- a FILENAME suffix.
+    The canonical predicate does NOT carry it (its bare-suffix arm reads the
+    RUN_ID), but build_experiment_indexes._load_dry_run_run_ids (:1451) does,
+    and this audit exists to mirror the indexer's orphan discovery. Keeping it
+    is additive-only: measured over the whole corpus on 2026-09-09 it never
+    fires where the canonical predicate does not (0 extra), so it changes
+    nothing today and is cheap insurance against a `<run_id>_dry.json` whose
+    run_id is clean. Pinned as a SUPERSET of canonical by
+    test_generate_pending_review.py::DryRunConsumerParityTests.
+    """
+    return _canonical_is_dry_run(manifest, path) or path.stem.endswith("_dry")
 
 
 def _resolve_flat_status(manifest: dict[str, Any]) -> str | None:

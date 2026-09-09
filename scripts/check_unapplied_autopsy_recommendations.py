@@ -492,6 +492,30 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 AUTOPSY_GLOB = "evidence/planning/failure_autopsy_*.json"
+
+# ---------------------------------------------------------------------------
+# THE DRYNESS PREDICATE IS IMPORTED, NOT RE-SPELLED
+# (chip-20260909-isdryrun-sixway-divergence).
+#
+# SIX independent definitions of "is this manifest a --dry-run smoke?" existed
+# over ONE corpus, each with a different arm subset. Each was internally
+# consistent, so nothing ever failed -- the divergence was only visible by
+# comparing them. Measured against the 136 canonical dry manifests on
+# 2026-09-09, this module MISSED 15 of them.
+#
+# generate_pending_review._is_dry_run is the canonical four-arm predicate
+# (flag / `_dry_` FILENAME prefix / bare `_dry` run_id suffix / `_dry_<stamp>`
+# run_id regex). It is small, side-effect-free and sits in this directory;
+# scripts/check_dry_run_citations.py already imports the same helper.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    from generate_pending_review import _is_dry_run
+except ImportError as exc:  # pragma: no cover -- environment problem, be loud
+    raise SystemExit(
+        "cannot import _is_dry_run from scripts/generate_pending_review.py: %s" % exc
+    )
+
 CLAIMS_YAML = "docs/claims/claims.yaml"
 EVIDENCE_DIR = "evidence/experiments"
 # How many unresolvable run_ids the header names before deferring to --full.
@@ -690,21 +714,18 @@ class Effective:
 # Mirrors build_experiment_indexes._FLAT_ONLY_NON_MANIFEST_NAMES (:1785): a
 # file that lives in the flat namespace but is not a run manifest.
 _FLAT_ONLY_NON_MANIFEST_NAMES = {"claim_evidence.v1.json"}
-# Mirrors build_experiment_indexes._DRY_RUN_ID_RE / _is_dry_run (:1333/:1336),
-# kept in sync by hand as the rest of this module's indexer mirrors are.
-_DRY_RUN_ID_RE = re.compile(r"_dry_\d{8}T\d{6}Z")
-
-
-def _is_dry_run(manifest) -> bool:
-    """True for a `--dry-run` smoke: the flag set, or a run_id of dry shape.
-
-    The str-cast tolerates the bool / int / str spellings the corpus carries.
-    """
-    if not isinstance(manifest, dict):
-        return False
-    if str(manifest.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
-        return True
-    return bool(_DRY_RUN_ID_RE.search(str(manifest.get("run_id") or "")))
+# DRYNESS IS THE ONE MIRROR IN THIS BLOCK THAT IS IMPORTED RATHER THAN COPIED.
+# The block above declines to import build_experiment_indexes (7900 lines,
+# executes work at import) and names drift as the price. Dryness is where that
+# price came due: this module copied only the indexer's per-manifest
+# `_is_dry_run` (:1336, flag + `_dry_<stamp>` regex) and NOT the four-arm
+# `dry_run_ids` set (:1361) the indexer ORs alongside it at every call site
+# (:1451, :2104, :8680). So it mirrored half the predicate and missed 15 dry
+# manifests. The indexer's EFFECTIVE dryness -- `_is_dry_run` OR-ed with `run_id in
+# dry_run_ids` -- was measured on 2026-09-09 to agree with
+# generate_pending_review._is_dry_run on the whole corpus EXACTLY (0 missed,
+# 0 extra), so importing the canonical predicate restores the mirror instead
+# of breaking it, without importing the indexer.
 
 
 class ManifestResolver:
@@ -831,7 +852,9 @@ class ManifestResolver:
                     run_id = manifest.get("run_id")
                     if not isinstance(run_id, str) or not run_id.strip():
                         continue
-                    if _is_dry_run(manifest):
+                    # PASS THE PATH: the `_dry_` filename-prefix arm is the only
+                    # one that can see a smoke with an untouched run_id.
+                    if _is_dry_run(manifest, path):
                         continue
                     index.setdefault(run_id.strip(), path)
             self._flat_only = index

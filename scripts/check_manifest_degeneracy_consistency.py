@@ -159,6 +159,31 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENTS_DIR = REPO_ROOT / "evidence" / "experiments"
 
+# ---------------------------------------------------------------------------
+# THE DRYNESS PREDICATE IS IMPORTED, NOT RE-SPELLED
+# (chip-20260909-isdryrun-sixway-divergence).
+#
+# SIX independent definitions of "is this manifest a --dry-run smoke?" existed
+# over ONE corpus, each with a different arm subset. Each was internally
+# consistent, so nothing ever failed -- the divergence was only visible by
+# comparing them. Measured against the 136 canonical dry manifests on
+# 2026-09-09, this module MISSED 41 of them -- it carried `dry_run is True` ALONE,
+# without even the str-cast that tolerates the corpus's int/str spellings.
+#
+# generate_pending_review._is_dry_run is the canonical four-arm predicate
+# (flag / `_dry_` FILENAME prefix / bare `_dry` run_id suffix / `_dry_<stamp>`
+# run_id regex). It is small, side-effect-free and sits in this directory;
+# scripts/check_dry_run_citations.py already imports the same helper.
+# ---------------------------------------------------------------------------
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    from generate_pending_review import _is_dry_run as _canonical_is_dry_run
+except ImportError as exc:  # pragma: no cover -- environment problem, be loud
+    raise SystemExit(
+        "cannot import _is_dry_run from scripts/generate_pending_review.py: %s" % exc
+    )
+
+
 # --- shape discovery ---------------------------------------------------------
 
 # Shape A key: `arm_a_slot_diversity` -> arm 'a', metric 'slot_diversity'.
@@ -514,8 +539,24 @@ def _covered_by_per_claim(manifest: dict) -> bool:
     return any(v is False for v in per_claim.values())
 
 
-def _is_dry_run(manifest: dict) -> bool:
-    if manifest.get("dry_run") is True:
+def _is_dry_run(manifest: dict, path: Path | None = None) -> bool:
+    """Canonical four-arm dryness, plus the NESTED `params.dry_run` arm.
+
+    `params.dry_run` is a live SHAPE that no other reader carries: 41 manifests
+    in the corpus have the key (measured 2026-09-09), but NONE has it True, and
+    none is dry by that arm alone. So it is kept as a documented LOCAL addition
+    rather than promoted into the canonical predicate -- promoting an arm with
+    zero corpus evidence would widen pending_review, GOV-DRY-1 and
+    sync_v3_results on speculation, and would make the canonical predicate
+    diverge from the indexer's effective one (measured exactly equal today).
+    Here it is free: this checker only uses dryness to SUPPRESS a
+    degenerate-but-unflagged finding, where over-firing costs one missed
+    finding on a smoke that is not evidence anyway.
+
+    Pinned as a SUPERSET of canonical by
+    test_generate_pending_review.py::DryRunConsumerParityTests.
+    """
+    if _canonical_is_dry_run(manifest, path):
         return True
     params = manifest.get("params")
     return isinstance(params, dict) and params.get("dry_run") is True
@@ -678,7 +719,13 @@ def check_run(run_id: str, forms: dict[str, tuple[Path, dict]],
 
     # --- (a) DEGENERATE-BUT-UNFLAGGED ---------------------------------------
     if all_exact and not differing:
-        if _is_dry_run(annotation) or any(_is_dry_run(m) for m in (flat, pack) if m):
+        # PASS EACH FORM ITS OWN PATH -- the `_dry_` filename-prefix arm is the
+        # only one that can see a smoke whose run_id pack_writer left untouched,
+        # and `forms` carries the path alongside each parsed manifest. The old
+        # pathless `annotation` term is dropped as REDUNDANT, not narrowed:
+        # effective_annotation returns flat, pack or {}, so testing BOTH
+        # forms covers every manifest it could have returned.
+        if any(_is_dry_run(m, p) for p, m in forms.values() if m):
             res["notes"].append(
                 f"arms identical across {res['n_comparisons']} comparison(s) but this is a "
                 "dry_run smoke pack -- not a finding")

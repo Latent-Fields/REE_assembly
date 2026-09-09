@@ -11,6 +11,7 @@ v3_exq_728_trained_allon_capability_point_20260720T155414Z_v3.
 
 import importlib.util
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -1192,6 +1193,186 @@ class DryRunSharedHelperTests(unittest.TestCase):
         """GOV-DRY-1 reads dryness transitively through this module."""
         p = SCRIPT_PATH.parent / "check_dry_run_citations.py"
         self.assertIn("_is_dry_run(d, f)", p.read_text())
+
+
+def _load_consumer(name):
+    """Load one of the scripts/ modules that consume the dryness predicate."""
+    path = SCRIPT_PATH.parent / name
+    spec = importlib.util.spec_from_file_location("ree_consumer_%s" % path.stem, path)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+class DryRunConsumerParityTests(unittest.TestCase):
+    """chip-20260909-isdryrun-sixway-divergence: the SAME defect, wider scope.
+
+    chip-20260909-isdryrun-parity-gap brought the two PRIMARY dryness checks
+    (generate_pending_review, sync_v3_results) to four-arm parity. FOUR more
+    independent definitions of the same predicate remained, each with a
+    different arm subset. Measured against the 136 canonical dry manifests in
+    the live corpus on 2026-09-09:
+
+        audit_flat_only_orphaned_manifests    arms 1,2,3'   MISSED 26
+        check_substrate_staleness_candidates  arm 1 only    MISSED 41
+        check_unapplied_autopsy_recommendations arms 1,4    MISSED 15
+        check_manifest_degeneracy_consistency arm 1 (no str-cast)
+                                              + params.dry_run  MISSED 41
+
+    Two consumers now IMPORT the canonical predicate outright and have no local
+    definition at all. Two keep a thin local wrapper because each carries ONE
+    arm the canonical predicate does not:
+
+      * audit_flat_only_orphaned_manifests -- `path.stem.endswith("_dry")`, a
+        FILENAME suffix (canonical's bare-suffix arm reads the RUN_ID). Kept
+        because build_experiment_indexes._load_dry_run_run_ids (:1451) carries
+        it and this audit mirrors that discovery path.
+      * check_manifest_degeneracy_consistency -- nested `params.dry_run`. A live
+        SHAPE (41 manifests carry the key) that is never True anywhere in the
+        corpus, so it is kept local rather than promoted into canonical.
+
+    Both wrappers are pinned below as SUPERSETS of canonical: never narrower,
+    and the extra arm must stay demonstrably additive.
+    """
+
+    WRAPPER_CONSUMERS = (
+        "audit_flat_only_orphaned_manifests.py",
+        "check_manifest_degeneracy_consistency.py",
+    )
+    IMPORTING_CONSUMERS = (
+        "check_substrate_staleness_candidates.py",
+        "check_unapplied_autopsy_recommendations.py",
+    )
+
+    # Every shape the six implementations disagreed on, plus the near-misses.
+    SHAPES = (
+        # (run_id, filename, dry_run flag) -> canonical verdict is the oracle
+        ("v3_exq_324b_sd020_harm_surprise_pe_dry", "x.json", None),
+        ("v3_exq_259_wanting_gradient_navigation_dry", "x.json", None),
+        ("v3_exq_395_mech220_harm_hub_dry_20260413T074905Z", "x.json", None),
+        ("v3_exq_329_arc033_e2_harm_s_counterfactual_dry_20260410T155945Z_v3",
+         "x.json", None),
+        ("v3_exq_918a_sd_residue_valence_bound_validation_20260909T062139Z_v3",
+         "_dry_v3_exq_918a.json", None),
+        ("clean_run_20260909T000000Z_v3", "clean_run.json", None),
+        ("clean_run_20260909T000000Z_v3", "clean_run.json", True),
+        ("clean_run_20260909T000000Z_v3", "clean_run.json", "yes"),
+        ("clean_run_20260909T000000Z_v3", "clean_run.json", 1),
+        ("clean_run_20260909T000000Z_v3", "clean_run.json", False),
+        # the documented false-positive risks for the bare-suffix arm
+        ("v3_exq_395_mech220_harm_hub_20260418T101010Z_v3", "x.json", None),
+        ("v3_exq_9_dryness_probe_20260418T101010Z_v3", "x.json", None),
+        ("v3_exq_9_dry_v3", "x.json", None),
+        ("v3_exq_9_dry_1775167807_v3", "x.json", None),
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _cases(self):
+        for rid, name, flag in self.SHAPES:
+            d = {"run_id": rid}
+            if flag is not None:
+                d["dry_run"] = flag
+            yield d, Path(name)
+
+    # --- the two that import outright --------------------------------------
+
+    def test_importing_consumers_have_no_local_definition(self):
+        """A local `def _is_dry_run` here IS the divergence -- there must be none."""
+        for name in self.IMPORTING_CONSUMERS:
+            src = (SCRIPT_PATH.parent / name).read_text()
+            self.assertEqual(
+                src.count("def _is_dry_run"), 0,
+                "%s re-spelled the predicate instead of importing it" % name)
+            self.assertIn("from generate_pending_review import", src, name)
+
+    def test_importing_consumers_bind_the_canonical_code(self):
+        """Not merely a same-named function -- code DEFINED IN the canonical file.
+
+        Identity against `_load_module()` cannot be used: that loads the canonical
+        file under a fresh module name, so it yields a different function object
+        than the consumer's real `import generate_pending_review`. Comparing the
+        defining filename is both correct and stronger -- it fails for a local
+        re-spelling that happens to share the name.
+        """
+        for name in self.IMPORTING_CONSUMERS:
+            mod = _load_consumer(name)
+            self.assertEqual(
+                Path(mod._is_dry_run.__code__.co_filename).resolve(), SCRIPT_PATH,
+                "%s binds a _is_dry_run defined outside the canonical module" % name)
+
+    # --- the two that keep a documented local arm --------------------------
+
+    def test_wrappers_are_supersets_of_canonical(self):
+        """Whatever canonical calls dry, the wrapper must call dry.
+
+        This is the direction that matters: a wrapper NARROWER than canonical is
+        exactly the defect (a smoke read as evidence). Wider is allowed only for
+        the one documented extra arm each.
+        """
+        failures = []
+        for name in self.WRAPPER_CONSUMERS:
+            mod = _load_consumer(name)
+            for d, p in self._cases():
+                if self.mod._is_dry_run(d, p) and not mod._is_dry_run(d, p):
+                    failures.append("%s: %r %r" % (name, d, str(p)))
+        self.assertEqual(failures, [], "\n".join(failures))
+
+    def test_wrapper_extra_arms_are_the_documented_ones_only(self):
+        """A wrapper may be WIDER than canonical only where it is documented.
+
+        Any other over-firing shape means an undocumented arm crept in.
+        """
+        audit = _load_consumer("audit_flat_only_orphaned_manifests.py")
+        degen = _load_consumer("check_manifest_degeneracy_consistency.py")
+
+        # audit: the ONE extra arm is a filename stem ending `_dry`.
+        clean = {"run_id": "clean_run_20260909T000000Z_v3"}
+        self.assertFalse(self.mod._is_dry_run(clean, Path("some_run_dry.json")))
+        self.assertTrue(audit._is_dry_run(clean, Path("some_run_dry.json")))
+        for d, p in self._cases():
+            if audit._is_dry_run(d, p) and not self.mod._is_dry_run(d, p):
+                self.assertTrue(p.stem.endswith("_dry"),
+                                "undocumented extra arm in audit: %r %r" % (d, str(p)))
+
+        # degeneracy: the ONE extra arm is nested params.dry_run is True.
+        self.assertFalse(self.mod._is_dry_run({"params": {"dry_run": True}}, Path("x.json")))
+        self.assertTrue(degen._is_dry_run({"params": {"dry_run": True}}, Path("x.json")))
+        for d, p in self._cases():
+            if degen._is_dry_run(d, p) and not self.mod._is_dry_run(d, p):
+                params = d.get("params")
+                self.assertTrue(isinstance(params, dict) and params.get("dry_run") is True,
+                                "undocumented extra arm in degeneracy: %r" % (d,))
+
+    def test_degeneracy_wrapper_gained_the_str_cast(self):
+        """It checked `dry_run is True` ONLY -- the corpus carries int/str too."""
+        degen = _load_consumer("check_manifest_degeneracy_consistency.py")
+        for flag in (True, 1, "true", "True", "yes", "1"):
+            self.assertTrue(degen._is_dry_run({"dry_run": flag}, Path("x.json")), flag)
+        for flag in (False, 0, "false", "no", ""):
+            self.assertFalse(degen._is_dry_run({"dry_run": flag}, Path("x.json")), flag)
+
+    # --- every consumer passes the path ------------------------------------
+
+    def test_every_consumer_call_site_passes_the_path(self):
+        """The `_dry_` FILENAME-prefix arm is unreachable from a pathless call.
+
+        That arm is the only one that can see a smoke whose run_id pack_writer
+        left untouched -- the live 918a shape, and one of the 15 leakers.
+        """
+        import re as _re
+        offenders = []
+        for name in self.WRAPPER_CONSUMERS + self.IMPORTING_CONSUMERS:
+            src = (SCRIPT_PATH.parent / name).read_text()
+            for call in _re.findall(r"[^f_]_is_dry_run\(([^)]*)\)", src):
+                call = call.strip()
+                if not call or "," in call or call.startswith("manifest: "):
+                    continue
+                offenders.append("%s: _is_dry_run(%s)" % (name, call))
+        self.assertEqual(offenders, [], "\n".join(offenders))
 
 
 if __name__ == "__main__":
