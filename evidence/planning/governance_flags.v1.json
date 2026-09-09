@@ -3371,6 +3371,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0241",
+      "claim_ids": [
+        "ARC-053"
+      ],
+      "flag_type": "stale_note",
+      "summary": "ARC-053's assertion that ascending and descending signals must 'meet in the same phase channel' is under-specified against the anatomy, and this blocks a buildable P_i term. Bastos et al. 2015 (NeuroImage, DCM of macaque V1-V4, PMID 25585017, landed this session at evidence/literature/targeted_review_connectome_arc_053/) shows forward connections are carried predominantly by gamma and backward connections by alpha/beta -- i.e. the two directions occupy DIFFERENT frequency bands by default, so whatever the Temporal Coherence Loop does must be a CROSS-FREQUENCY alignment operation (plausibly phase-amplitude coupling, where descending beta phase gates the window admitting ascending gamma), not the alignment of two signals within one band. Recommended disposition: revise the claim's notes to commit to a cross-frequency formulation before any P_i implementation is attempted. This sharpens rather than contradicts the non-degeneracy precondition already recorded in ARC-053's what_would_answer field.",
+      "raised_by_session": "lit-pull-am-b-arc053-054",
+      "raised_at": "2026-09-09T07:15:49Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
