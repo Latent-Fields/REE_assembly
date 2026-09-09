@@ -1,0 +1,26 @@
+{
+  "assay": "convergence_signal_synthetic_assay_006",
+  "status": "synthetic_reference_run_only",
+  "seed": 37,
+  "episodes": 10000,
+  "candidates_per_episode": 6,
+  "methods": {
+    "M0_static_count": {"mean_regret": 0.04968585658037033, "optimal_hit_rate": 0.7717, "oracle_utility_fraction": 0.9487066706561904},
+    "M0b_static_overlap": {"mean_regret": 0.0384066239366358, "optimal_hit_rate": 0.8017, "oracle_utility_fraction": 0.9603508171912197},
+    "M1_dynamicE_count": {"mean_regret": 0.02582849757015885, "optimal_hit_rate": 0.8434, "oracle_utility_fraction": 0.9733358801980417},
+    "M2_staticE_dynamicL": {"mean_regret": 0.03221766992639344, "optimal_hit_rate": 0.8152, "oracle_utility_fraction": 0.9667400007172738},
+    "M3_dynamic_both": {"mean_regret": 0.011069265608568959, "optimal_hit_rate": 0.8982, "oracle_utility_fraction": 0.9885726135054916},
+    "M4_exact_oracle": {"mean_regret": 0.0, "optimal_hit_rate": 1.0, "oracle_utility_fraction": 1.0}
+  },
+  "criteria": {
+    "C1_dynamic_graph_useful": true,
+    "C2_dynamic_evidence_matters": true,
+    "C3_dynamic_overlap_matters": true,
+    "C4_both_axes_hit_gain": true,
+    "C5_static_average_insufficient": true,
+    "C6_oracle_ceiling": true,
+    "measurement_pass_C1_to_C6": true
+  },
+  "oracle_ordering_violations": 0,
+  "execution_note": "Authoritative seed and thresholds were frozen before the seed-37 run. The local execution used the same equations as the committed reference driver. No thresholds or parameters were changed after observing the result."
+}
