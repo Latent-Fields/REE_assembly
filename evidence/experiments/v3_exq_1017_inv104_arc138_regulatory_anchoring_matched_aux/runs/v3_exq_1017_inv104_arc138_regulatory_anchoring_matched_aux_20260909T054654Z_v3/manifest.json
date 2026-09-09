@@ -26,8 +26,8 @@
   "evidence_class": "simulation",
   "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-138": "non_contributory",
-    "INV-104": "non_contributory"
+    "INV-104": "non_contributory",
+    "ARC-138": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -775,5 +775,6 @@
     "writer_defect": null,
     "n_agents": 15,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-09-09 governance, cycle governance-20260909 wave 3] Applied from confirmed failure_autopsy_V3-EXQ-1017_2026-09-09 (dry_run_checked: true) at the /governance walk, user-adjudicated. evidence_direction non_contributory on the run and per claim {\"INV-104\": \"non_contributory\", \"ARC-138\": \"non_contributory\"}. The run is also manifest-flagged non_degenerate: false, so the indexer already excluded it as scoring_excluded: degenerate; this write records the ratified disposition on the scoring path itself, which the claims.yaml edit does not reach."
 }

@@ -1,1 +1,1091 @@
-{"run_id": "v3_exq_981a_mech027_control_plane_pathological_modes_20260909T061022Z_v3", "experiment_type": "v3_exq_981a_mech027_control_plane_pathological_modes", "queue_id": "V3-EXQ-981a", "supersedes": "V3-EXQ-981", "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["MECH-027"], "experiment_purpose": "evidence", "outcome": "FAIL", "timestamp_utc": "20260909T061022Z", "evidence_direction": "non_contributory", "dry_run": false, "metrics": {"positive_control_margin": -0.09575417834527422, "positive_control_margin_mean_of_seeds": -0.09221302962061192, "positive_control_margin_raw_rates": 0.06226166934099976, "mean_base_ambiguous_lift": -0.21380266185905836, "mean_base_ambiguous_chance": 0.26787179796021116, "positive_control_high_lift_mean": -0.2712280701754381, "positive_control_safe_lift_mean": -0.17901504055482617, "min_bin_coverage_steps": 70.0, "positive_control_band_pooled_coverage_min": 342.0, "positive_control_band_pooled_coverage_high": 342.0, "positive_control_band_pooled_coverage_safe": 3042.0, "coverage_floor_per_seed_applied": 30.0, "coverage_floor_pooled_applied": 150.0, "eval_tick_scale": 1.0, "sleep_sws_writes_base_min": 5.0, "mean_base_ambiguous_rate": 0.05406913610115279, "per_seed_base_ambiguous_lift": [-0.24574669187145112, -0.21050228310502, -0.18515901060070397], "per_seed_positive_control_high_lift": [-0.2549999999999995, -0.2986842105263152, -0.2599999999999996], "per_seed_positive_control_safe_lift": [-0.19458483754512215, -0.171616294349539, -0.17084398976981727], "base_ambiguous_rate_max_across_seeds": 0.06625441696113074, "c1_elevation_headroom_available": 0.9459308638988472, "c1_elevation_headroom_available_max_based": 0.9337455830388692, "precision_margin_norm_base_mean": 0.3893402591638641, "precision_margin_headroom_available": 0.6106597408361358, "precision_margin_headroom_available_max_based": 0.49749585345884584, "sleep_mech285_draws_base_min": 0.0, "total_fatal_errors_stage_a": 0.0, "criteria_met": 0.0, "seed11_base_ambiguous_rate": 0.04914933837429111, "seed23_base_ambiguous_rate": 0.04680365296803653, "seed37_base_ambiguous_rate": 0.06625441696113074}, "criteria": [{"name": "C1_false_alarm_elevation", "load_bearing": true, "passed": false, "measured": null, "threshold": 0.1, "note": "not evaluated -- Stage B did not run"}, {"name": "C2_reversion_recovery", "load_bearing": true, "passed": false, "measured": null, "threshold": 0.5, "note": "not evaluated -- Stage B did not run"}], "combination_rule": "Gate A (the DV/env pairing gate) is evaluated after EVAL_BASELINE and BEFORE EVAL_HYPERVIGILANT / EVAL_REVERSION are run at all. Any unmet Gate A precondition routes to substrate_not_ready_requeue and the hypervigilance blocks are skipped.", "arm_results": [{"seed": 11, "world_forward_r2": 0.9628148674964905, "sleep_fires_warmup": 8, "commit_threshold_calibration": {"running_variance_post_warmup": 2.4100760855153393e-05, "commitment_threshold_before": 0.4, "commitment_threshold_after": 9.640304342061357e-05}, "blocks_run": ["EVAL_BASELINE"], "block_rates": {"EVAL_BASELINE": {"SAFE": 0.02075812274368231, "AMBIGUOUS": 0.04914933837429111, "HIGH": 0.08333333333333333}}, "block_chance": {"EVAL_BASELINE": {"SAFE": 0.21534296028880445, "AMBIGUOUS": 0.29489603024574224, "HIGH": 0.3383333333333328}}, "block_lifts": {"EVAL_BASELINE": {"SAFE": -0.19458483754512215, "AMBIGUOUS": -0.24574669187145112, "HIGH": -0.2549999999999995}}, "block_bins": {"EVAL_BASELINE": {"SAFE": {"n": 1108, "avoidant": 23, "n_unscorable": 550, "avail_frac_sum": 238.59999999999533}, "AMBIGUOUS": {"n": 1058, "avoidant": 52, "n_unscorable": 155, "avail_frac_sum": 311.9999999999953}, "HIGH": {"n": 120, "avoidant": 10, "n_unscorable": 9, "avail_frac_sum": 40.59999999999994}}}, "block_precision_mean": {"EVAL_BASELINE": 120602.01796496061}, "block_effective_horizon_mean": {"EVAL_BASELINE": 30.0}, "block_draws_per_cycle": {"EVAL_BASELINE": 50}, "block_fatal_errors": {"EVAL_BASELINE": 0}, "block_precision_margin_norm_mean": {"EVAL_BASELINE": 0.5025041465411542}, "block_commit_temperature_eff_mean": {"EVAL_BASELINE": 1.212713094908354}, "block_precision_scaled_commit_engaged_count": {"EVAL_BASELINE": 257}, "block_e3_selection_count": {"EVAL_BASELINE": 437}, "block_sleep_fires": {"EVAL_BASELINE": 25}, "block_sleep_mech285_draws_max": {"EVAL_BASELINE": 50}, "block_sleep_mech285_draws_min": {"EVAL_BASELINE": 0}, "block_offline_passes_enabled": {"EVAL_BASELINE": true}, "block_sleep_boundary_calls": {"EVAL_BASELINE": 25}, "block_sleep_cycle_none_returns": {"EVAL_BASELINE": 0}, "block_sleep_sws_writes": {"EVAL_BASELINE": [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]}, "block_sleep_sws_writes_min": {"EVAL_BASELINE": 5}, "block_sleep_sws_writes_max": {"EVAL_BASELINE": 5}, "block_sleep_rem_rollouts_mean": {"EVAL_BASELINE": 10.0}, "block_sleep_mech285_draws": {"EVAL_BASELINE": [50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, "block_n_ticks": {"EVAL_BASELINE": 3000}, "block_per_episode_ambiguous_lift": {"EVAL_BASELINE": [-0.22689075630252037, -0.29310344827586166, -0.34047619047619004, 0.7333333333333334, 0.6, 0.1333333333333333, -0.33043478260869585, 0.7, -0.2571428571428571, NaN, -0.2933333333333335, -0.29230769230769194, 0.3600000000000001, 0.4666666666666667, -0.2000000000000001, -0.3052631578947364, -0.18426966292134797, 0.65, 0.26666666666666666, 0.46666666666666656, -0.22647058823529403, 0.35, -0.25535714285714217, -0.13548387096774203, -0.3227272727272722]}, "block_per_episode_ambiguous_n": {"EVAL_BASELINE": [119, 116, 84, 3, 1, 3, 46, 2, 7, 0, 30, 104, 5, 3, 35, 95, 89, 4, 6, 3, 68, 4, 112, 31, 88]}, "block_unscorable_in_safe": {"EVAL_BASELINE": 550}, "block_unscorable_total": {"EVAL_BASELINE": 714}, "block_precision_scaled_pick_nonargmin_frac": {"EVAL_BASELINE": 0.7821011673151751}, "block_precision_scaled_pick_active_count": {"EVAL_BASELINE": 257}, "paired_n_detached": 0, "base_ambiguous_rate": 0.04914933837429111, "base_ambiguous_lift": -0.24574669187145112, "base_ambiguous_chance": 0.29489603024574224, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "325bec298a151e869a675720bc383699eb9d2029ac871dbbf1e18d3000967a9e", "substrate_hash": "b21cd56ca87abdf00ac2b67dcd635a176c456f92ecdc0f6c1f477e84433ecb7e", "substrate_n_files": 208, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 11, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c2cf261a43d036f7ea3967801b3befb054f36ebc35c61c26181c1b0a58dea85f", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-09T06:10:22Z"}}, {"seed": 23, "world_forward_r2": 0.9670497179031372, "sleep_fires_warmup": 8, "commit_threshold_calibration": {"running_variance_post_warmup": 1.658115218722695e-05, "commitment_threshold_before": 0.4, "commitment_threshold_after": 6.63246087489078e-05}, "blocks_run": ["EVAL_BASELINE"], "block_rates": {"EVAL_BASELINE": {"SAFE": 0.04467805519053877, "AMBIGUOUS": 0.04680365296803653, "HIGH": 0.046052631578947366}}, "block_chance": {"EVAL_BASELINE": {"SAFE": 0.21629434954007778, "AMBIGUOUS": 0.2573059360730565, "HIGH": 0.34473684210526256}}, "block_lifts": {"EVAL_BASELINE": {"SAFE": -0.171616294349539, "AMBIGUOUS": -0.21050228310502, "HIGH": -0.2986842105263152}}, "block_bins": {"EVAL_BASELINE": {"SAFE": {"n": 761, "avoidant": 34, "n_unscorable": 998, "avail_frac_sum": 164.5999999999992}, "AMBIGUOUS": {"n": 876, "avoidant": 41, "n_unscorable": 197, "avail_frac_sum": 225.3999999999975}, "HIGH": {"n": 152, "avoidant": 7, "n_unscorable": 16, "avail_frac_sum": 52.39999999999991}}}, "block_precision_mean": {"EVAL_BASELINE": 93231.12601684393}, "block_effective_horizon_mean": {"EVAL_BASELINE": 30.0}, "block_draws_per_cycle": {"EVAL_BASELINE": 50}, "block_fatal_errors": {"EVAL_BASELINE": 0}, "block_precision_margin_norm_mean": {"EVAL_BASELINE": 0.4354883182583149}, "block_commit_temperature_eff_mean": {"EVAL_BASELINE": 1.2884119438309785}, "block_precision_scaled_commit_engaged_count": {"EVAL_BASELINE": 135}, "block_e3_selection_count": {"EVAL_BASELINE": 426}, "block_sleep_fires": {"EVAL_BASELINE": 25}, "block_sleep_mech285_draws_max": {"EVAL_BASELINE": 50}, "block_sleep_mech285_draws_min": {"EVAL_BASELINE": 0}, "block_offline_passes_enabled": {"EVAL_BASELINE": true}, "block_sleep_boundary_calls": {"EVAL_BASELINE": 25}, "block_sleep_cycle_none_returns": {"EVAL_BASELINE": 0}, "block_sleep_sws_writes": {"EVAL_BASELINE": [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]}, "block_sleep_sws_writes_min": {"EVAL_BASELINE": 5}, "block_sleep_sws_writes_max": {"EVAL_BASELINE": 5}, "block_sleep_rem_rollouts_mean": {"EVAL_BASELINE": 10.0}, "block_sleep_mech285_draws": {"EVAL_BASELINE": [0, 0, 0, 0, 0, 50, 0, 0, 50, 50, 50, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, "block_n_ticks": {"EVAL_BASELINE": 3000}, "block_per_episode_ambiguous_lift": {"EVAL_BASELINE": [0.0444444444444444, 0.6, -0.22142857142857122, NaN, -0.1999999999999996, -0.23684210526315744, 0.19999999999999996, 0.20000000000000007, 0.6, -0.3814814814814812, -0.32203389830508466, -0.20917431192660502, -0.05263157894736853, -0.07096774193548397, NaN, -0.4, -0.24166666666666645, NaN, -0.30476190476190484, -0.16744186046511628, -0.06896551724137939, -0.23703703703703705, -0.0833333333333334, -0.14285714285714302, -0.1999999999999997]}, "block_per_episode_ambiguous_n": {"EVAL_BASELINE": [9, 1, 56, 0, 109, 114, 2, 5, 1, 54, 59, 109, 19, 31, 0, 13, 48, 0, 21, 43, 29, 27, 12, 35, 79]}, "block_unscorable_in_safe": {"EVAL_BASELINE": 998}, "block_unscorable_total": {"EVAL_BASELINE": 1211}, "block_precision_scaled_pick_nonargmin_frac": {"EVAL_BASELINE": 0.725925925925926}, "block_precision_scaled_pick_active_count": {"EVAL_BASELINE": 135}, "paired_n_detached": 0, "base_ambiguous_rate": 0.04680365296803653, "base_ambiguous_lift": -0.21050228310502, "base_ambiguous_chance": 0.2573059360730565, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "03363ebdae738bf92ad53215bc20b8220a1b92e7dbe070d82369042f317c6c50", "substrate_hash": "b21cd56ca87abdf00ac2b67dcd635a176c456f92ecdc0f6c1f477e84433ecb7e", "substrate_n_files": 208, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 23, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c2cf261a43d036f7ea3967801b3befb054f36ebc35c61c26181c1b0a58dea85f", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-09T06:10:22Z"}}, {"seed": 37, "world_forward_r2": 0.982040524482727, "sleep_fires_warmup": 8, "commit_threshold_calibration": {"running_variance_post_warmup": 3.902493298226342e-06, "commitment_threshold_before": 0.4, "commitment_threshold_after": 1.5609973192905368e-05}, "blocks_run": ["EVAL_BASELINE"], "block_rates": {"EVAL_BASELINE": {"SAFE": 0.04859335038363171, "AMBIGUOUS": 0.06625441696113074, "HIGH": 0.17142857142857143}}, "block_chance": {"EVAL_BASELINE": {"SAFE": 0.21943734015344898, "AMBIGUOUS": 0.2514134275618347, "HIGH": 0.43142857142857105}}, "block_lifts": {"EVAL_BASELINE": {"SAFE": -0.17084398976981727, "AMBIGUOUS": -0.18515901060070397, "HIGH": -0.2599999999999996}}, "block_bins": {"EVAL_BASELINE": {"SAFE": {"n": 1173, "avoidant": 57, "n_unscorable": 223, "avail_frac_sum": 257.39999999999566}, "AMBIGUOUS": {"n": 1132, "avoidant": 75, "n_unscorable": 91, "avail_frac_sum": 284.5999999999969}, "HIGH": {"n": 70, "avoidant": 12, "n_unscorable": 68, "avail_frac_sum": 30.199999999999974}}}, "block_precision_mean": {"EVAL_BASELINE": 104019.21761773762}, "block_effective_horizon_mean": {"EVAL_BASELINE": 30.0}, "block_draws_per_cycle": {"EVAL_BASELINE": 50}, "block_fatal_errors": {"EVAL_BASELINE": 0}, "block_precision_margin_norm_mean": {"EVAL_BASELINE": 0.2300283126921231}, "block_commit_temperature_eff_mean": {"EVAL_BASELINE": 1.403842654666816}, "block_precision_scaled_commit_engaged_count": {"EVAL_BASELINE": 232}, "block_e3_selection_count": {"EVAL_BASELINE": 643}, "block_sleep_fires": {"EVAL_BASELINE": 25}, "block_sleep_mech285_draws_max": {"EVAL_BASELINE": 50}, "block_sleep_mech285_draws_min": {"EVAL_BASELINE": 0}, "block_offline_passes_enabled": {"EVAL_BASELINE": true}, "block_sleep_boundary_calls": {"EVAL_BASELINE": 25}, "block_sleep_cycle_none_returns": {"EVAL_BASELINE": 0}, "block_sleep_sws_writes": {"EVAL_BASELINE": [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]}, "block_sleep_sws_writes_min": {"EVAL_BASELINE": 5}, "block_sleep_sws_writes_max": {"EVAL_BASELINE": 5}, "block_sleep_rem_rollouts_mean": {"EVAL_BASELINE": 10.0}, "block_sleep_mech285_draws": {"EVAL_BASELINE": [50, 0, 0, 50, 0, 50, 50, 50, 50, 0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]}, "block_n_ticks": {"EVAL_BASELINE": 2757}, "block_per_episode_ambiguous_lift": {"EVAL_BASELINE": [-0.10370370370370385, 0.2571428571428572, -0.06666666666666665, -0.16761904761904722, NaN, 0.6, -0.15135135135135147, -0.16363636363636325, -0.16106194690265435, -0.23999999999999977, -0.19473684210526268, 0.0222222222222222, -0.23157894736842075, -0.21509433962264124, -0.14444444444444404, -0.30793650793650756, -0.07619047619047625, NaN, NaN, -0.2703296703296699, NaN, -0.2, 0.35, -0.03333333333333344, -0.20851063829787198]}, "block_per_episode_ambiguous_n": {"EVAL_BASELINE": [27, 7, 6, 105, 0, 1, 37, 88, 113, 90, 114, 18, 76, 53, 108, 63, 21, 0, 0, 91, 0, 4, 4, 12, 94]}, "block_unscorable_in_safe": {"EVAL_BASELINE": 223}, "block_unscorable_total": {"EVAL_BASELINE": 382}, "block_precision_scaled_pick_nonargmin_frac": {"EVAL_BASELINE": 0.7974137931034483}, "block_precision_scaled_pick_active_count": {"EVAL_BASELINE": 232}, "paired_n_detached": 0, "base_ambiguous_rate": 0.06625441696113074, "base_ambiguous_lift": -0.18515901060070397, "base_ambiguous_chance": 0.2514134275618347, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "cb67d68655680900e2ddfe8c6214dcff57a11ea73c86bb7ade8863fb90ee777b", "substrate_hash": "b21cd56ca87abdf00ac2b67dcd635a176c456f92ecdc0f6c1f477e84433ecb7e", "substrate_n_files": 208, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 37, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c2cf261a43d036f7ea3967801b3befb054f36ebc35c61c26181c1b0a58dea85f", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-09T06:10:22Z"}}], "non_degenerate": false, "degeneracy_reason": "gate_a_unmet: positive_control_hazard_sensitivity", "sleep_driver_pattern": "manual-multi (force_cycle() every SLEEP_EVERY_N_EPISODES during warmup; force_sleep_cycle_at_eval_boundary() at every eval episode boundary; EVAL_HYPERVIGILANT disables the SWS/REM passes so its boundary calls are recorded None returns)", "interpretation": {"label": "substrate_not_ready_requeue", "preconditions": [{"name": "positive_control_hazard_sensitivity", "measured": -0.09575417834527422, "threshold": 0.05, "direction": "lower", "control": "EVAL_BASELINE avoidance LIFT (rate minus availability-matched chance) in the HIGH hazard band minus the SAFE band, on POOLED COUNTS across seeds (the statistic the 150 pooled floor was derived for -- red-team F6; the mean-of-seeds reading is recorded as positive_control_margin_mean_of_seeds). LIFT, not raw rate: the number of distance-increasing actions available differs systematically between bands by grid geometry, and comparing raw rates across bands is what produced V3-EXQ-981's -0.4307 reversal. The DV/env pairing must be hazard-sensitive before ANY hypervigilance block is run -- this gate is evaluated at the end of Stage A and EVAL_HYPERVIGILANT / EVAL_REVERSION do not run if it is unmet.", "met": false, "kind": "readiness"}, {"name": "hazard_bin_sample_coverage", "measured": 70.0, "threshold": 30.0, "direction": "lower", "control": "the smallest per-seed EVAL_BASELINE (hazard-bin) count of SCORABLE steps against the per-seed NON-VACUITY floor (MIN_BIN_COVERAGE_STEPS_PER_SEED = 30, scaled x1 by the eval-tick budget). 981's floor of 5 admitted a 38-step HIGH bin; the 981a draft's 150 per seed was unmet on all three seeds by 981's own measured HIGH counts 139/38/52 (docstring B3).", "met": true, "kind": "readiness"}, {"name": "positive_control_band_pooled_coverage", "measured": 342.0, "threshold": 150.0, "direction": "lower", "control": "the smaller of the HIGH and SAFE band scorable-step counts POOLED across seeds in EVAL_BASELINE, against the POWER floor (MIN_BIN_COVERAGE_STEPS_POOLED = 150, scaled x1). Derived from the positive-control bar: a binary-rate SE is <= 0.5/sqrt(n) and a +0.05 lift margin needs pooled SE ~0.04, i.e. n >= 150. This is the statistic the positive control is actually read on (pooled lift).", "met": true, "kind": "readiness"}, {"name": "replay_channel_baseline_reachable", "measured": 5.0, "threshold": 1.0, "direction": "lower", "control": "MEASURED sws_n_writes (from force_sleep_cycle_at_eval_boundary()'s own return) across every EVAL_BASELINE firing on every seed -- the SD-017 SWS schema pass wrote E1.ContextMemory on every firing, so the offline replay channel that EVAL_HYPERVIGILANT will suppress is engaged for real. Deterministically = sws_consolidation_steps once the world-experience buffer is populated (2026-09-09 probe: 5/5). Replaces the 981a-draft mech285_n_draws min>=1 gate, which the per-episode anchor-pool reset made unsatisfiable (docstring B1); mech285_n_draws is still recorded as sleep_mech285_draws_base_min.", "met": true, "kind": "readiness"}, {"name": "no_fatal_action_selection_errors_stage_a", "measured": 0.0, "threshold": 0.5, "direction": "upper", "control": "total _agent_tick exceptions in Stage A -- each substitutes a RANDOM action into the DV stream, injecting near-chance noise into the baseline the whole run is calibrated against.", "met": true, "kind": "readiness"}, {"control": "C1 registers an ABSOLUTE elevation of 0.1 of the AMBIGUOUS-band avoidance LIFT (rate minus availability-matched chance; red-team F1), read on POOLED MEANS. The room above the mean baseline lift is (1 - chance) - lift = 1 - mean(EVAL_BASELINE rate), the same statistic C1 aggregates with, and must be at least 2.0x the bar. V3-EXQ-981 set 2 x 0.5771 = 1.1542 on this same bounded DV -- outside its range at any outcome. Falsified from the run's own data at emit time by dv_headroom_observation_check (headroom_ceiling_exceeded_by_observation).", "name": "c1_elevation_headroom", "kind": "dv_headroom", "measured": 0.9459308638988472, "threshold": 0.2, "direction": "lower", "dv_name": "ambiguous_band_avoidant_rate", "achievable_statistic": "explicit", "criterion_threshold": 0.1, "headroom_margin": 2.0, "n_control_values": 0, "headroom_ratio": 4.7296543194942355, "headroom_reason": "DV headroom met: ambiguous_band_avoidant_rate can reach 0.945931 (analytic ceiling supplied by the caller, not measured from a sample), against a required 0.2 (criterion threshold 0.1 x margin 2).", "met": true}, {"control": "Verifies the post-warmup commitment_threshold calibration actually opened range in the graded consumer's input. V3-EXQ-981's uncalibrated baseline margin was 0.99980, leaving 0.000195 of ceiling headroom against a 0.01 floor -- a 51x shortfall no manipulation could close, and the reason commit_temperature_eff was pinned within 2e-4 of base_temperature.", "name": "precision_margin_headroom", "kind": "dv_headroom", "measured": 0.6106597408361358, "threshold": 0.05, "direction": "lower", "dv_name": "precision_margin_norm", "achievable_statistic": "explicit", "criterion_threshold": 0.05, "headroom_margin": 1.0, "n_control_values": 0, "headroom_ratio": 12.213194816722716, "headroom_reason": "DV headroom met: precision_margin_norm can reach 0.61066 (analytic ceiling supplied by the caller, not measured from a sample), against a required 0.05 (criterion threshold 0.05 x margin 1).", "met": true}], "criteria_non_degenerate": {"C1_false_alarm_elevation": false, "C2_reversion_recovery": false}}, "custom_information": {"scope_note": "Scoped single-signature probe (hypervigilance only) per MECH-027's what_would_answer and the source proposal EXP-0761/EVB-1396 dispatch_mode=targeted_probe. The other four named pathological labels are out of scope.", "gov_reuse_1_note": "GOV-REUSE-1 re-checked at 981a authoring time (2026-09-04): the decisive readout is the AMBIGUOUS-band availability-normalised avoidance rate under a forced-precision/short-horizon/suppressed-replay regime. The only manifest that has ever tagged MECH-027 is V3-EXQ-981's, and it recorded that readout under the OLD single-argmax DV, the OLD band cutpoints, an EMPTY replay anchor pool and an UNCALIBRATED commit threshold -- four differences each of which changes the quantity itself. Not recoverable by reanalysis; the run is required.", "inverted_band_ruling": "governance-20260903 red-team amendment 3, discharged: 981's reversed positive control (-0.4307 on 3/3 seeds) is NOT an inverted hazard-band assignment. _hazard_bin's direction, the (x,y) axis convention shared by np.argwhere(env.grid) / hazard_field / step(), and the sign of the away-vector all verify correct at source. The cause is band-population imbalance plus a boundary-geometry confound in the old SAFE band (d > 11.33 = the wall-adjacent far corner, where the single-argmax avoidant action is a wall-blocked no-op): per-seed BASELINE bins were SAFE 123/132/157, AMBIGUOUS 2738/2830/2747, HIGH 139/38/52. See the module docstring's 'WHAT CHANGED FROM 981' fix (2).", "channel_forcing_note": "All three channels are forced/reverted on the SAME trained agent per seed. The ARC-016 commit threshold is calibrated once after warmup and held identical in all three blocks.", "red_team_disposition_note": "981a red-team (see queue entry note for verdict + model). Carried forward from 981's own red-team (fable, 2026-09-02): F1 fixed (no_fatal_action_selection_errors); F3 fixed (engagement FRACTION gate); F6 fixed (C2 on pooled rates); F8 fixed. F2 verified and dismissed at source (agent.e2_harm_s is None because use_e2_harm_s_forward is never set, so SleepLoopManager's offline_gradient_pass writeback cannot reach the DV). F4 (fixed BASELINE->HV->REVERSION block order is an order confound) ACKNOWLEDGED, NOT MITIGATED -- it is the direct consequence of MECH-027 Build 2's mandate that replay suppression be an exercised lever; C2's reversion requirement is the guard, and the C1-and-not-C2 cell already reads as partial. F5 (REVERSION restores the scale but not the compounded _running_variance) ACKNOWLEDGED, NOT MITIGATED BY DESIGN -- reversion is deliberately natural recovery, matching the claim's own 'returned to its normal range'. F7 (SAFE bin structurally empty for a central hazard placement) is now FIXED, not acknowledged: it was the root of the reversed positive control, and 981a re-derives the cutpoints (HAZARD_SAFE_MAX 0.15 -> 0.25) so every band is populated for every hazard placement, re-derives the coverage floors (per-seed 30 non-vacuity, pooled 150 power, from the positive-control bar; the draft's flat 150 per seed was unmet by 981's own HIGH counts -- docstring B3), and replaces the single-argmax DV with an availability-normalised, wall-aware set membership test. 2026-09-09 REPAIR (campaign W6-S5b item 1): B1/B2 -- channel (c) re-specified from the mech285 draw count (sign-inverted consumer, intermittently-populated pool) onto the SD-017 offline passes themselves (sws_enabled/rem_enabled per block), with the replay gates read off sws_n_writes; B3 -- coverage floors re-derived; dry-run Stage B positive control added. Repair red-team: CONTESTED (fable, 2026-09-09; 6 findings, none BLOCKING; all six FIXED, none dismissed). F1 C1/C2 read raw rate while within-band availability shifts with the manipulation (smoke chance 0.329 BASE vs 0.378 HV) -> C1/C2 now read the AMBIGUOUS-band LIFT, chance shift recorded. F2 HV can empty the C1 band / hide in unscorable corners, ticks are not decisions -> Gate B floors the pooled AMBIGUOUS n in HV/REVERSION/HV_AB (150 scaled) and the per-block E3 selection count (30 scaled); unscorable_in_safe recorded. F3 no time control, an upward drift lands in the mixed cell -> per-episode AMBIGUOUS lift series recorded per block; |BASELINE half-drift| >= 0.05 routes the C1-and-not-C2 cell to non_contributory. F4 channel (c) contrast inert by construction (waking ContextMemory writes off, HV inherits BASELINE's memory) -> a PAIRED block EVAL_HV_AB_PAIRED on a deep copy of the post-Stage-A agent+env from the same RNG state, (a)+(b) forced, passes ON; PASS with |lift(HV)-lift(HV_AB)| < 0.02 routes to 'mixed' (channels a+b only, c inert). F5 channel (a)'s only consumer spans ~12% temperature -> BASELINE non-argmin fraction of graded picks recorded; a weakens null under a fraction < 0.10 routes to non_contributory (range-limited); engagement gate now per block. F6 positive control was a mean of per-seed lifts while the 150 floor was derived for pooled counts -> computed on pooled counts, mean-of-seeds recorded. CLEAR-nits: effective-horizon sampled only on proposal ticks; docstring geometry corrected (walled 8x8 interior)."}, "ethics_preflight": {"involves_negative_valence": true, "involves_suffering_like_state": false, "involves_self_model": false, "involves_inescapability_or_helplessness": false, "involves_offline_replay_over_harm": true, "involves_social_mind_or_language": false, "involves_human_data_or_clinical_context": false, "decision": "allow"}, "summary_markdown": "# V3-EXQ-981a -- MECH-027 (Stage A abort)\n\n**Overall Status:** FAIL (label `substrate_not_ready_requeue`)\n**Unmet Gate A preconditions:** ['positive_control_hazard_sensitivity']\n**Seeds:** [11, 23, 37]\n\n## Gate A preconditions\n\n- positive_control_hazard_sensitivity: measured=-0.0957542 threshold=0.05 met=False\n- hazard_bin_sample_coverage: measured=70 threshold=30 met=True\n- positive_control_band_pooled_coverage: measured=342 threshold=150 met=True\n- replay_channel_baseline_reachable: measured=5 threshold=1 met=True\n- no_fatal_action_selection_errors_stage_a: measured=0 threshold=0.5 met=True\n- c1_elevation_headroom: measured=0.945931 threshold=0.2 met=True\n- precision_margin_headroom: measured=0.61066 threshold=0.05 met=True\n\nGate A (the DV/env pairing gate) is evaluated after EVAL_BASELINE and BEFORE EVAL_HYPERVIGILANT / EVAL_REVERSION are run at all. Any unmet Gate A precondition routes to substrate_not_ready_requeue and the hypervigilance blocks are skipped.\n", "recording_schema": "rec/v1", "substrate_hash": "b21cd56ca87abdf00ac2b67dcd635a176c456f92ecdc0f6c1f477e84433ecb7e", "substrate_commit": {"commit": "0a32db605926e8eeaf83d0df67592dd70908da24", "dirty": false, "branch": "main"}, "substrate_stable_across_run": true, "substrate_identity": {"source": "per_cell_fingerprint_hoist", "resolved_at_utc": "2026-09-09T06:10:22Z", "commit_source": "manifest_write_disk_read", "commit_resolved_at_utc": "2026-09-09T06:10:22Z", "stamped_at_utc": "2026-09-09T06:10:22Z", "lag_seconds": 0, "stability_snapshots": 1, "drifted_since_resolved": false}, "z_goal_stream": {"ticks_total": 0, "ticks_active": 0, "writer_calls": 41299, "active_frac": null, "writer_defect": null, "n_agents": 3, "goal_state_present": false}, "enabled_default_off_flags": {"latent.reafference_action_dim": 5, "latent.use_event_classifier": true, "e3.goal_weight": 1.0, "e3.use_precision_scaled_commit_temperature": true, "hippocampal.mode_conditioning_enabled": true, "hippocampal.use_event_segmenter": true, "hippocampal.use_anchor_sets": true, "heartbeat.breath_period": 50, "sws_enabled": true, "rem_enabled": true, "use_sleep_loop": true, "use_mech285_sampler": true, "use_mech272_routing": true}, "enabled_default_off_flags_source": "agent", "machine": "ree-worker-3", "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "elapsed_seconds": 16469.351915837, "config": {"seeds": [11, 23, 37], "env": "CausalGridWorldV2", "env_size": 10, "num_hazards": 1, "num_resources": 2, "hazard_harm": 0.05, "hazard_field_decay": 0.5, "world_dim": 32, "self_dim": 32, "warmup_episodes": 200, "steps_per_episode": 120, "eval_episodes_per_block": 25, "hv_precision_scale": 0.05, "hv_horizon_frac": 0.2, "mech285_baseline_draws": 50, "mech285_hv_draws": 0, "sws_consolidation_steps": 5, "rem_attribution_steps": 10, "hv_offline_passes_enabled": false, "base_offline_passes_enabled": true, "blocks": ["EVAL_BASELINE", "EVAL_HYPERVIGILANT", "EVAL_REVERSION", "EVAL_HV_AB_PAIRED"], "c1_c2_statistic": "ambiguous_band_lift", "hazard_safe_max": 0.25, "hazard_high_min": 0.5, "use_event_segmenter": true, "commit_threshold_variance_multiple": 4.0, "use_precision_scaled_commit_temperature": true, "precision_scaled_commit_entropy_alpha": 1.0, "precision_scaled_commit_harm_floor": 0.25, "thresholds": {"FALSE_ALARM_ELEVATION_ABS": 0.1, "HEADROOM_MARGIN_C1": 2.0, "REVERSION_RECOVERY_FLOOR": 0.5, "PRECISION_RATIO_FLOOR": 5.0, "HORIZON_RATIO_CEIL": 0.5, "POSITIVE_CONTROL_MARGIN": 0.05, "MIN_BIN_COVERAGE_STEPS_PER_SEED": 30, "MIN_BIN_COVERAGE_STEPS_POOLED": 150, "PRECISION_MARGIN_HV_ELEVATION_FLOOR": 0.05, "PRECISION_SCALED_COMMIT_ENGAGED_FRACTION_FLOOR": 0.05, "SLEEP_CYCLE_FIRE_FLOOR": 1, "SWS_WRITES_HV_CEIL": 0, "SWS_WRITES_BASELINE_FLOOR": 1, "HV_OFFLINE_PASSES_SUPPRESSED_FRACTION_FLOOR": 1.0, "SWS_CONSOLIDATION_STEPS": 5, "REM_ATTRIBUTION_STEPS": 10, "COMMIT_THRESHOLD_VARIANCE_MULTIPLE": 4.0, "MIN_E3_SELECTIONS_PER_BLOCK": 30, "ORDER_DRIFT_FLOOR": 0.05, "CHANNEL_C_CONTRAST_FLOOR": 0.02, "CHANNEL_A_RANGE_FLOOR": 0.1, "HAZARD_SAFE_MAX": 0.25, "HAZARD_HIGH_MIN": 0.5}}, "seeds": [11, 23, 37]}
+{
+  "run_id": "v3_exq_981a_mech027_control_plane_pathological_modes_20260909T061022Z_v3",
+  "experiment_type": "v3_exq_981a_mech027_control_plane_pathological_modes",
+  "queue_id": "V3-EXQ-981a",
+  "supersedes": "V3-EXQ-981",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-027"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260909T061022Z",
+  "evidence_direction": "non_contributory",
+  "dry_run": false,
+  "metrics": {
+    "positive_control_margin": -0.09575417834527422,
+    "positive_control_margin_mean_of_seeds": -0.09221302962061192,
+    "positive_control_margin_raw_rates": 0.06226166934099976,
+    "mean_base_ambiguous_lift": -0.21380266185905836,
+    "mean_base_ambiguous_chance": 0.26787179796021116,
+    "positive_control_high_lift_mean": -0.2712280701754381,
+    "positive_control_safe_lift_mean": -0.17901504055482617,
+    "min_bin_coverage_steps": 70.0,
+    "positive_control_band_pooled_coverage_min": 342.0,
+    "positive_control_band_pooled_coverage_high": 342.0,
+    "positive_control_band_pooled_coverage_safe": 3042.0,
+    "coverage_floor_per_seed_applied": 30.0,
+    "coverage_floor_pooled_applied": 150.0,
+    "eval_tick_scale": 1.0,
+    "sleep_sws_writes_base_min": 5.0,
+    "mean_base_ambiguous_rate": 0.05406913610115279,
+    "per_seed_base_ambiguous_lift": [
+      -0.24574669187145112,
+      -0.21050228310502,
+      -0.18515901060070397
+    ],
+    "per_seed_positive_control_high_lift": [
+      -0.2549999999999995,
+      -0.2986842105263152,
+      -0.2599999999999996
+    ],
+    "per_seed_positive_control_safe_lift": [
+      -0.19458483754512215,
+      -0.171616294349539,
+      -0.17084398976981727
+    ],
+    "base_ambiguous_rate_max_across_seeds": 0.06625441696113074,
+    "c1_elevation_headroom_available": 0.9459308638988472,
+    "c1_elevation_headroom_available_max_based": 0.9337455830388692,
+    "precision_margin_norm_base_mean": 0.3893402591638641,
+    "precision_margin_headroom_available": 0.6106597408361358,
+    "precision_margin_headroom_available_max_based": 0.49749585345884584,
+    "sleep_mech285_draws_base_min": 0.0,
+    "total_fatal_errors_stage_a": 0.0,
+    "criteria_met": 0.0,
+    "seed11_base_ambiguous_rate": 0.04914933837429111,
+    "seed23_base_ambiguous_rate": 0.04680365296803653,
+    "seed37_base_ambiguous_rate": 0.06625441696113074
+  },
+  "criteria": [
+    {
+      "name": "C1_false_alarm_elevation",
+      "load_bearing": true,
+      "passed": false,
+      "measured": null,
+      "threshold": 0.1,
+      "note": "not evaluated -- Stage B did not run"
+    },
+    {
+      "name": "C2_reversion_recovery",
+      "load_bearing": true,
+      "passed": false,
+      "measured": null,
+      "threshold": 0.5,
+      "note": "not evaluated -- Stage B did not run"
+    }
+  ],
+  "combination_rule": "Gate A (the DV/env pairing gate) is evaluated after EVAL_BASELINE and BEFORE EVAL_HYPERVIGILANT / EVAL_REVERSION are run at all. Any unmet Gate A precondition routes to substrate_not_ready_requeue and the hypervigilance blocks are skipped.",
+  "arm_results": [
+    {
+      "seed": 11,
+      "world_forward_r2": 0.9628148674964905,
+      "sleep_fires_warmup": 8,
+      "commit_threshold_calibration": {
+        "running_variance_post_warmup": 2.4100760855153393e-05,
+        "commitment_threshold_before": 0.4,
+        "commitment_threshold_after": 9.640304342061357e-05
+      },
+      "blocks_run": [
+        "EVAL_BASELINE"
+      ],
+      "block_rates": {
+        "EVAL_BASELINE": {
+          "SAFE": 0.02075812274368231,
+          "AMBIGUOUS": 0.04914933837429111,
+          "HIGH": 0.08333333333333333
+        }
+      },
+      "block_chance": {
+        "EVAL_BASELINE": {
+          "SAFE": 0.21534296028880445,
+          "AMBIGUOUS": 0.29489603024574224,
+          "HIGH": 0.3383333333333328
+        }
+      },
+      "block_lifts": {
+        "EVAL_BASELINE": {
+          "SAFE": -0.19458483754512215,
+          "AMBIGUOUS": -0.24574669187145112,
+          "HIGH": -0.2549999999999995
+        }
+      },
+      "block_bins": {
+        "EVAL_BASELINE": {
+          "SAFE": {
+            "n": 1108,
+            "avoidant": 23,
+            "n_unscorable": 550,
+            "avail_frac_sum": 238.59999999999533
+          },
+          "AMBIGUOUS": {
+            "n": 1058,
+            "avoidant": 52,
+            "n_unscorable": 155,
+            "avail_frac_sum": 311.9999999999953
+          },
+          "HIGH": {
+            "n": 120,
+            "avoidant": 10,
+            "n_unscorable": 9,
+            "avail_frac_sum": 40.59999999999994
+          }
+        }
+      },
+      "block_precision_mean": {
+        "EVAL_BASELINE": 120602.01796496061
+      },
+      "block_effective_horizon_mean": {
+        "EVAL_BASELINE": 30.0
+      },
+      "block_draws_per_cycle": {
+        "EVAL_BASELINE": 50
+      },
+      "block_fatal_errors": {
+        "EVAL_BASELINE": 0
+      },
+      "block_precision_margin_norm_mean": {
+        "EVAL_BASELINE": 0.5025041465411542
+      },
+      "block_commit_temperature_eff_mean": {
+        "EVAL_BASELINE": 1.212713094908354
+      },
+      "block_precision_scaled_commit_engaged_count": {
+        "EVAL_BASELINE": 257
+      },
+      "block_e3_selection_count": {
+        "EVAL_BASELINE": 437
+      },
+      "block_sleep_fires": {
+        "EVAL_BASELINE": 25
+      },
+      "block_sleep_mech285_draws_max": {
+        "EVAL_BASELINE": 50
+      },
+      "block_sleep_mech285_draws_min": {
+        "EVAL_BASELINE": 0
+      },
+      "block_offline_passes_enabled": {
+        "EVAL_BASELINE": true
+      },
+      "block_sleep_boundary_calls": {
+        "EVAL_BASELINE": 25
+      },
+      "block_sleep_cycle_none_returns": {
+        "EVAL_BASELINE": 0
+      },
+      "block_sleep_sws_writes": {
+        "EVAL_BASELINE": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "block_sleep_sws_writes_min": {
+        "EVAL_BASELINE": 5
+      },
+      "block_sleep_sws_writes_max": {
+        "EVAL_BASELINE": 5
+      },
+      "block_sleep_rem_rollouts_mean": {
+        "EVAL_BASELINE": 10.0
+      },
+      "block_sleep_mech285_draws": {
+        "EVAL_BASELINE": [
+          50,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          50,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "block_n_ticks": {
+        "EVAL_BASELINE": 3000
+      },
+      "block_per_episode_ambiguous_lift": {
+        "EVAL_BASELINE": [
+          -0.22689075630252037,
+          -0.29310344827586166,
+          -0.34047619047619004,
+          0.7333333333333334,
+          0.6,
+          0.1333333333333333,
+          -0.33043478260869585,
+          0.7,
+          -0.2571428571428571,
+          NaN,
+          -0.2933333333333335,
+          -0.29230769230769194,
+          0.3600000000000001,
+          0.4666666666666667,
+          -0.2000000000000001,
+          -0.3052631578947364,
+          -0.18426966292134797,
+          0.65,
+          0.26666666666666666,
+          0.46666666666666656,
+          -0.22647058823529403,
+          0.35,
+          -0.25535714285714217,
+          -0.13548387096774203,
+          -0.3227272727272722
+        ]
+      },
+      "block_per_episode_ambiguous_n": {
+        "EVAL_BASELINE": [
+          119,
+          116,
+          84,
+          3,
+          1,
+          3,
+          46,
+          2,
+          7,
+          0,
+          30,
+          104,
+          5,
+          3,
+          35,
+          95,
+          89,
+          4,
+          6,
+          3,
+          68,
+          4,
+          112,
+          31,
+          88
+        ]
+      },
+      "block_unscorable_in_safe": {
+        "EVAL_BASELINE": 550
+      },
+      "block_unscorable_total": {
+        "EVAL_BASELINE": 714
+      },
+      "block_precision_scaled_pick_nonargmin_frac": {
+        "EVAL_BASELINE": 0.7821011673151751
+      },
+      "block_precision_scaled_pick_active_count": {
+        "EVAL_BASELINE": 257
+      },
+      "paired_n_detached": 0,
+      "base_ambiguous_rate": 0.04914933837429111,
+      "base_ambiguous_lift": -0.24574669187145112,
+      "base_ambiguous_chance": 0.29489603024574224,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "325bec298a151e869a675720bc383699eb9d2029ac871dbbf1e18d3000967a9e",
+        "substrate_hash": "b21cd56ca87abdf00ac2b67dcd635a176c456f92ecdc0f6c1f477e84433ecb7e",
+        "substrate_n_files": 208,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "c2cf261a43d036f7ea3967801b3befb054f36ebc35c61c26181c1b0a58dea85f",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:10:22Z"
+      }
+    },
+    {
+      "seed": 23,
+      "world_forward_r2": 0.9670497179031372,
+      "sleep_fires_warmup": 8,
+      "commit_threshold_calibration": {
+        "running_variance_post_warmup": 1.658115218722695e-05,
+        "commitment_threshold_before": 0.4,
+        "commitment_threshold_after": 6.63246087489078e-05
+      },
+      "blocks_run": [
+        "EVAL_BASELINE"
+      ],
+      "block_rates": {
+        "EVAL_BASELINE": {
+          "SAFE": 0.04467805519053877,
+          "AMBIGUOUS": 0.04680365296803653,
+          "HIGH": 0.046052631578947366
+        }
+      },
+      "block_chance": {
+        "EVAL_BASELINE": {
+          "SAFE": 0.21629434954007778,
+          "AMBIGUOUS": 0.2573059360730565,
+          "HIGH": 0.34473684210526256
+        }
+      },
+      "block_lifts": {
+        "EVAL_BASELINE": {
+          "SAFE": -0.171616294349539,
+          "AMBIGUOUS": -0.21050228310502,
+          "HIGH": -0.2986842105263152
+        }
+      },
+      "block_bins": {
+        "EVAL_BASELINE": {
+          "SAFE": {
+            "n": 761,
+            "avoidant": 34,
+            "n_unscorable": 998,
+            "avail_frac_sum": 164.5999999999992
+          },
+          "AMBIGUOUS": {
+            "n": 876,
+            "avoidant": 41,
+            "n_unscorable": 197,
+            "avail_frac_sum": 225.3999999999975
+          },
+          "HIGH": {
+            "n": 152,
+            "avoidant": 7,
+            "n_unscorable": 16,
+            "avail_frac_sum": 52.39999999999991
+          }
+        }
+      },
+      "block_precision_mean": {
+        "EVAL_BASELINE": 93231.12601684393
+      },
+      "block_effective_horizon_mean": {
+        "EVAL_BASELINE": 30.0
+      },
+      "block_draws_per_cycle": {
+        "EVAL_BASELINE": 50
+      },
+      "block_fatal_errors": {
+        "EVAL_BASELINE": 0
+      },
+      "block_precision_margin_norm_mean": {
+        "EVAL_BASELINE": 0.4354883182583149
+      },
+      "block_commit_temperature_eff_mean": {
+        "EVAL_BASELINE": 1.2884119438309785
+      },
+      "block_precision_scaled_commit_engaged_count": {
+        "EVAL_BASELINE": 135
+      },
+      "block_e3_selection_count": {
+        "EVAL_BASELINE": 426
+      },
+      "block_sleep_fires": {
+        "EVAL_BASELINE": 25
+      },
+      "block_sleep_mech285_draws_max": {
+        "EVAL_BASELINE": 50
+      },
+      "block_sleep_mech285_draws_min": {
+        "EVAL_BASELINE": 0
+      },
+      "block_offline_passes_enabled": {
+        "EVAL_BASELINE": true
+      },
+      "block_sleep_boundary_calls": {
+        "EVAL_BASELINE": 25
+      },
+      "block_sleep_cycle_none_returns": {
+        "EVAL_BASELINE": 0
+      },
+      "block_sleep_sws_writes": {
+        "EVAL_BASELINE": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "block_sleep_sws_writes_min": {
+        "EVAL_BASELINE": 5
+      },
+      "block_sleep_sws_writes_max": {
+        "EVAL_BASELINE": 5
+      },
+      "block_sleep_rem_rollouts_mean": {
+        "EVAL_BASELINE": 10.0
+      },
+      "block_sleep_mech285_draws": {
+        "EVAL_BASELINE": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          50,
+          0,
+          0,
+          50,
+          50,
+          50,
+          0,
+          0,
+          50,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "block_n_ticks": {
+        "EVAL_BASELINE": 3000
+      },
+      "block_per_episode_ambiguous_lift": {
+        "EVAL_BASELINE": [
+          0.0444444444444444,
+          0.6,
+          -0.22142857142857122,
+          NaN,
+          -0.1999999999999996,
+          -0.23684210526315744,
+          0.19999999999999996,
+          0.20000000000000007,
+          0.6,
+          -0.3814814814814812,
+          -0.32203389830508466,
+          -0.20917431192660502,
+          -0.05263157894736853,
+          -0.07096774193548397,
+          NaN,
+          -0.4,
+          -0.24166666666666645,
+          NaN,
+          -0.30476190476190484,
+          -0.16744186046511628,
+          -0.06896551724137939,
+          -0.23703703703703705,
+          -0.0833333333333334,
+          -0.14285714285714302,
+          -0.1999999999999997
+        ]
+      },
+      "block_per_episode_ambiguous_n": {
+        "EVAL_BASELINE": [
+          9,
+          1,
+          56,
+          0,
+          109,
+          114,
+          2,
+          5,
+          1,
+          54,
+          59,
+          109,
+          19,
+          31,
+          0,
+          13,
+          48,
+          0,
+          21,
+          43,
+          29,
+          27,
+          12,
+          35,
+          79
+        ]
+      },
+      "block_unscorable_in_safe": {
+        "EVAL_BASELINE": 998
+      },
+      "block_unscorable_total": {
+        "EVAL_BASELINE": 1211
+      },
+      "block_precision_scaled_pick_nonargmin_frac": {
+        "EVAL_BASELINE": 0.725925925925926
+      },
+      "block_precision_scaled_pick_active_count": {
+        "EVAL_BASELINE": 135
+      },
+      "paired_n_detached": 0,
+      "base_ambiguous_rate": 0.04680365296803653,
+      "base_ambiguous_lift": -0.21050228310502,
+      "base_ambiguous_chance": 0.2573059360730565,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "03363ebdae738bf92ad53215bc20b8220a1b92e7dbe070d82369042f317c6c50",
+        "substrate_hash": "b21cd56ca87abdf00ac2b67dcd635a176c456f92ecdc0f6c1f477e84433ecb7e",
+        "substrate_n_files": 208,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 23,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "c2cf261a43d036f7ea3967801b3befb054f36ebc35c61c26181c1b0a58dea85f",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:10:22Z"
+      }
+    },
+    {
+      "seed": 37,
+      "world_forward_r2": 0.982040524482727,
+      "sleep_fires_warmup": 8,
+      "commit_threshold_calibration": {
+        "running_variance_post_warmup": 3.902493298226342e-06,
+        "commitment_threshold_before": 0.4,
+        "commitment_threshold_after": 1.5609973192905368e-05
+      },
+      "blocks_run": [
+        "EVAL_BASELINE"
+      ],
+      "block_rates": {
+        "EVAL_BASELINE": {
+          "SAFE": 0.04859335038363171,
+          "AMBIGUOUS": 0.06625441696113074,
+          "HIGH": 0.17142857142857143
+        }
+      },
+      "block_chance": {
+        "EVAL_BASELINE": {
+          "SAFE": 0.21943734015344898,
+          "AMBIGUOUS": 0.2514134275618347,
+          "HIGH": 0.43142857142857105
+        }
+      },
+      "block_lifts": {
+        "EVAL_BASELINE": {
+          "SAFE": -0.17084398976981727,
+          "AMBIGUOUS": -0.18515901060070397,
+          "HIGH": -0.2599999999999996
+        }
+      },
+      "block_bins": {
+        "EVAL_BASELINE": {
+          "SAFE": {
+            "n": 1173,
+            "avoidant": 57,
+            "n_unscorable": 223,
+            "avail_frac_sum": 257.39999999999566
+          },
+          "AMBIGUOUS": {
+            "n": 1132,
+            "avoidant": 75,
+            "n_unscorable": 91,
+            "avail_frac_sum": 284.5999999999969
+          },
+          "HIGH": {
+            "n": 70,
+            "avoidant": 12,
+            "n_unscorable": 68,
+            "avail_frac_sum": 30.199999999999974
+          }
+        }
+      },
+      "block_precision_mean": {
+        "EVAL_BASELINE": 104019.21761773762
+      },
+      "block_effective_horizon_mean": {
+        "EVAL_BASELINE": 30.0
+      },
+      "block_draws_per_cycle": {
+        "EVAL_BASELINE": 50
+      },
+      "block_fatal_errors": {
+        "EVAL_BASELINE": 0
+      },
+      "block_precision_margin_norm_mean": {
+        "EVAL_BASELINE": 0.2300283126921231
+      },
+      "block_commit_temperature_eff_mean": {
+        "EVAL_BASELINE": 1.403842654666816
+      },
+      "block_precision_scaled_commit_engaged_count": {
+        "EVAL_BASELINE": 232
+      },
+      "block_e3_selection_count": {
+        "EVAL_BASELINE": 643
+      },
+      "block_sleep_fires": {
+        "EVAL_BASELINE": 25
+      },
+      "block_sleep_mech285_draws_max": {
+        "EVAL_BASELINE": 50
+      },
+      "block_sleep_mech285_draws_min": {
+        "EVAL_BASELINE": 0
+      },
+      "block_offline_passes_enabled": {
+        "EVAL_BASELINE": true
+      },
+      "block_sleep_boundary_calls": {
+        "EVAL_BASELINE": 25
+      },
+      "block_sleep_cycle_none_returns": {
+        "EVAL_BASELINE": 0
+      },
+      "block_sleep_sws_writes": {
+        "EVAL_BASELINE": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "block_sleep_sws_writes_min": {
+        "EVAL_BASELINE": 5
+      },
+      "block_sleep_sws_writes_max": {
+        "EVAL_BASELINE": 5
+      },
+      "block_sleep_rem_rollouts_mean": {
+        "EVAL_BASELINE": 10.0
+      },
+      "block_sleep_mech285_draws": {
+        "EVAL_BASELINE": [
+          50,
+          0,
+          0,
+          50,
+          0,
+          50,
+          50,
+          50,
+          50,
+          0,
+          0,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      },
+      "block_n_ticks": {
+        "EVAL_BASELINE": 2757
+      },
+      "block_per_episode_ambiguous_lift": {
+        "EVAL_BASELINE": [
+          -0.10370370370370385,
+          0.2571428571428572,
+          -0.06666666666666665,
+          -0.16761904761904722,
+          NaN,
+          0.6,
+          -0.15135135135135147,
+          -0.16363636363636325,
+          -0.16106194690265435,
+          -0.23999999999999977,
+          -0.19473684210526268,
+          0.0222222222222222,
+          -0.23157894736842075,
+          -0.21509433962264124,
+          -0.14444444444444404,
+          -0.30793650793650756,
+          -0.07619047619047625,
+          NaN,
+          NaN,
+          -0.2703296703296699,
+          NaN,
+          -0.2,
+          0.35,
+          -0.03333333333333344,
+          -0.20851063829787198
+        ]
+      },
+      "block_per_episode_ambiguous_n": {
+        "EVAL_BASELINE": [
+          27,
+          7,
+          6,
+          105,
+          0,
+          1,
+          37,
+          88,
+          113,
+          90,
+          114,
+          18,
+          76,
+          53,
+          108,
+          63,
+          21,
+          0,
+          0,
+          91,
+          0,
+          4,
+          4,
+          12,
+          94
+        ]
+      },
+      "block_unscorable_in_safe": {
+        "EVAL_BASELINE": 223
+      },
+      "block_unscorable_total": {
+        "EVAL_BASELINE": 382
+      },
+      "block_precision_scaled_pick_nonargmin_frac": {
+        "EVAL_BASELINE": 0.7974137931034483
+      },
+      "block_precision_scaled_pick_active_count": {
+        "EVAL_BASELINE": 232
+      },
+      "paired_n_detached": 0,
+      "base_ambiguous_rate": 0.06625441696113074,
+      "base_ambiguous_lift": -0.18515901060070397,
+      "base_ambiguous_chance": 0.2514134275618347,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "cb67d68655680900e2ddfe8c6214dcff57a11ea73c86bb7ade8863fb90ee777b",
+        "substrate_hash": "b21cd56ca87abdf00ac2b67dcd635a176c456f92ecdc0f6c1f477e84433ecb7e",
+        "substrate_n_files": 208,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 37,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "c2cf261a43d036f7ea3967801b3befb054f36ebc35c61c26181c1b0a58dea85f",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:10:22Z"
+      }
+    }
+  ],
+  "non_degenerate": false,
+  "degeneracy_reason": "gate_a_unmet: positive_control_hazard_sensitivity",
+  "sleep_driver_pattern": "manual-multi (force_cycle() every SLEEP_EVERY_N_EPISODES during warmup; force_sleep_cycle_at_eval_boundary() at every eval episode boundary; EVAL_HYPERVIGILANT disables the SWS/REM passes so its boundary calls are recorded None returns)",
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "positive_control_hazard_sensitivity",
+        "measured": -0.09575417834527422,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "EVAL_BASELINE avoidance LIFT (rate minus availability-matched chance) in the HIGH hazard band minus the SAFE band, on POOLED COUNTS across seeds (the statistic the 150 pooled floor was derived for -- red-team F6; the mean-of-seeds reading is recorded as positive_control_margin_mean_of_seeds). LIFT, not raw rate: the number of distance-increasing actions available differs systematically between bands by grid geometry, and comparing raw rates across bands is what produced V3-EXQ-981's -0.4307 reversal. The DV/env pairing must be hazard-sensitive before ANY hypervigilance block is run -- this gate is evaluated at the end of Stage A and EVAL_HYPERVIGILANT / EVAL_REVERSION do not run if it is unmet.",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "hazard_bin_sample_coverage",
+        "measured": 70.0,
+        "threshold": 30.0,
+        "direction": "lower",
+        "control": "the smallest per-seed EVAL_BASELINE (hazard-bin) count of SCORABLE steps against the per-seed NON-VACUITY floor (MIN_BIN_COVERAGE_STEPS_PER_SEED = 30, scaled x1 by the eval-tick budget). 981's floor of 5 admitted a 38-step HIGH bin; the 981a draft's 150 per seed was unmet on all three seeds by 981's own measured HIGH counts 139/38/52 (docstring B3).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "positive_control_band_pooled_coverage",
+        "measured": 342.0,
+        "threshold": 150.0,
+        "direction": "lower",
+        "control": "the smaller of the HIGH and SAFE band scorable-step counts POOLED across seeds in EVAL_BASELINE, against the POWER floor (MIN_BIN_COVERAGE_STEPS_POOLED = 150, scaled x1). Derived from the positive-control bar: a binary-rate SE is <= 0.5/sqrt(n) and a +0.05 lift margin needs pooled SE ~0.04, i.e. n >= 150. This is the statistic the positive control is actually read on (pooled lift).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_channel_baseline_reachable",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "MEASURED sws_n_writes (from force_sleep_cycle_at_eval_boundary()'s own return) across every EVAL_BASELINE firing on every seed -- the SD-017 SWS schema pass wrote E1.ContextMemory on every firing, so the offline replay channel that EVAL_HYPERVIGILANT will suppress is engaged for real. Deterministically = sws_consolidation_steps once the world-experience buffer is populated (2026-09-09 probe: 5/5). Replaces the 981a-draft mech285_n_draws min>=1 gate, which the per-episode anchor-pool reset made unsatisfiable (docstring B1); mech285_n_draws is still recorded as sleep_mech285_draws_base_min.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "no_fatal_action_selection_errors_stage_a",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "total _agent_tick exceptions in Stage A -- each substitutes a RANDOM action into the DV stream, injecting near-chance noise into the baseline the whole run is calibrated against.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "control": "C1 registers an ABSOLUTE elevation of 0.1 of the AMBIGUOUS-band avoidance LIFT (rate minus availability-matched chance; red-team F1), read on POOLED MEANS. The room above the mean baseline lift is (1 - chance) - lift = 1 - mean(EVAL_BASELINE rate), the same statistic C1 aggregates with, and must be at least 2.0x the bar. V3-EXQ-981 set 2 x 0.5771 = 1.1542 on this same bounded DV -- outside its range at any outcome. Falsified from the run's own data at emit time by dv_headroom_observation_check (headroom_ceiling_exceeded_by_observation).",
+        "name": "c1_elevation_headroom",
+        "kind": "dv_headroom",
+        "measured": 0.9459308638988472,
+        "threshold": 0.2,
+        "direction": "lower",
+        "dv_name": "ambiguous_band_avoidant_rate",
+        "achievable_statistic": "explicit",
+        "criterion_threshold": 0.1,
+        "headroom_margin": 2.0,
+        "n_control_values": 0,
+        "headroom_ratio": 4.7296543194942355,
+        "headroom_reason": "DV headroom met: ambiguous_band_avoidant_rate can reach 0.945931 (analytic ceiling supplied by the caller, not measured from a sample), against a required 0.2 (criterion threshold 0.1 x margin 2).",
+        "met": true
+      },
+      {
+        "control": "Verifies the post-warmup commitment_threshold calibration actually opened range in the graded consumer's input. V3-EXQ-981's uncalibrated baseline margin was 0.99980, leaving 0.000195 of ceiling headroom against a 0.01 floor -- a 51x shortfall no manipulation could close, and the reason commit_temperature_eff was pinned within 2e-4 of base_temperature.",
+        "name": "precision_margin_headroom",
+        "kind": "dv_headroom",
+        "measured": 0.6106597408361358,
+        "threshold": 0.05,
+        "direction": "lower",
+        "dv_name": "precision_margin_norm",
+        "achievable_statistic": "explicit",
+        "criterion_threshold": 0.05,
+        "headroom_margin": 1.0,
+        "n_control_values": 0,
+        "headroom_ratio": 12.213194816722716,
+        "headroom_reason": "DV headroom met: precision_margin_norm can reach 0.61066 (analytic ceiling supplied by the caller, not measured from a sample), against a required 0.05 (criterion threshold 0.05 x margin 1).",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_false_alarm_elevation": false,
+      "C2_reversion_recovery": false
+    }
+  },
+  "custom_information": {
+    "scope_note": "Scoped single-signature probe (hypervigilance only) per MECH-027's what_would_answer and the source proposal EXP-0761/EVB-1396 dispatch_mode=targeted_probe. The other four named pathological labels are out of scope.",
+    "gov_reuse_1_note": "GOV-REUSE-1 re-checked at 981a authoring time (2026-09-04): the decisive readout is the AMBIGUOUS-band availability-normalised avoidance rate under a forced-precision/short-horizon/suppressed-replay regime. The only manifest that has ever tagged MECH-027 is V3-EXQ-981's, and it recorded that readout under the OLD single-argmax DV, the OLD band cutpoints, an EMPTY replay anchor pool and an UNCALIBRATED commit threshold -- four differences each of which changes the quantity itself. Not recoverable by reanalysis; the run is required.",
+    "inverted_band_ruling": "governance-20260903 red-team amendment 3, discharged: 981's reversed positive control (-0.4307 on 3/3 seeds) is NOT an inverted hazard-band assignment. _hazard_bin's direction, the (x,y) axis convention shared by np.argwhere(env.grid) / hazard_field / step(), and the sign of the away-vector all verify correct at source. The cause is band-population imbalance plus a boundary-geometry confound in the old SAFE band (d > 11.33 = the wall-adjacent far corner, where the single-argmax avoidant action is a wall-blocked no-op): per-seed BASELINE bins were SAFE 123/132/157, AMBIGUOUS 2738/2830/2747, HIGH 139/38/52. See the module docstring's 'WHAT CHANGED FROM 981' fix (2).",
+    "channel_forcing_note": "All three channels are forced/reverted on the SAME trained agent per seed. The ARC-016 commit threshold is calibrated once after warmup and held identical in all three blocks.",
+    "red_team_disposition_note": "981a red-team (see queue entry note for verdict + model). Carried forward from 981's own red-team (fable, 2026-09-02): F1 fixed (no_fatal_action_selection_errors); F3 fixed (engagement FRACTION gate); F6 fixed (C2 on pooled rates); F8 fixed. F2 verified and dismissed at source (agent.e2_harm_s is None because use_e2_harm_s_forward is never set, so SleepLoopManager's offline_gradient_pass writeback cannot reach the DV). F4 (fixed BASELINE->HV->REVERSION block order is an order confound) ACKNOWLEDGED, NOT MITIGATED -- it is the direct consequence of MECH-027 Build 2's mandate that replay suppression be an exercised lever; C2's reversion requirement is the guard, and the C1-and-not-C2 cell already reads as partial. F5 (REVERSION restores the scale but not the compounded _running_variance) ACKNOWLEDGED, NOT MITIGATED BY DESIGN -- reversion is deliberately natural recovery, matching the claim's own 'returned to its normal range'. F7 (SAFE bin structurally empty for a central hazard placement) is now FIXED, not acknowledged: it was the root of the reversed positive control, and 981a re-derives the cutpoints (HAZARD_SAFE_MAX 0.15 -> 0.25) so every band is populated for every hazard placement, re-derives the coverage floors (per-seed 30 non-vacuity, pooled 150 power, from the positive-control bar; the draft's flat 150 per seed was unmet by 981's own HIGH counts -- docstring B3), and replaces the single-argmax DV with an availability-normalised, wall-aware set membership test. 2026-09-09 REPAIR (campaign W6-S5b item 1): B1/B2 -- channel (c) re-specified from the mech285 draw count (sign-inverted consumer, intermittently-populated pool) onto the SD-017 offline passes themselves (sws_enabled/rem_enabled per block), with the replay gates read off sws_n_writes; B3 -- coverage floors re-derived; dry-run Stage B positive control added. Repair red-team: CONTESTED (fable, 2026-09-09; 6 findings, none BLOCKING; all six FIXED, none dismissed). F1 C1/C2 read raw rate while within-band availability shifts with the manipulation (smoke chance 0.329 BASE vs 0.378 HV) -> C1/C2 now read the AMBIGUOUS-band LIFT, chance shift recorded. F2 HV can empty the C1 band / hide in unscorable corners, ticks are not decisions -> Gate B floors the pooled AMBIGUOUS n in HV/REVERSION/HV_AB (150 scaled) and the per-block E3 selection count (30 scaled); unscorable_in_safe recorded. F3 no time control, an upward drift lands in the mixed cell -> per-episode AMBIGUOUS lift series recorded per block; |BASELINE half-drift| >= 0.05 routes the C1-and-not-C2 cell to non_contributory. F4 channel (c) contrast inert by construction (waking ContextMemory writes off, HV inherits BASELINE's memory) -> a PAIRED block EVAL_HV_AB_PAIRED on a deep copy of the post-Stage-A agent+env from the same RNG state, (a)+(b) forced, passes ON; PASS with |lift(HV)-lift(HV_AB)| < 0.02 routes to 'mixed' (channels a+b only, c inert). F5 channel (a)'s only consumer spans ~12% temperature -> BASELINE non-argmin fraction of graded picks recorded; a weakens null under a fraction < 0.10 routes to non_contributory (range-limited); engagement gate now per block. F6 positive control was a mean of per-seed lifts while the 150 floor was derived for pooled counts -> computed on pooled counts, mean-of-seeds recorded. CLEAR-nits: effective-horizon sampled only on proposal ticks; docstring geometry corrected (walled 8x8 interior)."
+  },
+  "ethics_preflight": {
+    "involves_negative_valence": true,
+    "involves_suffering_like_state": false,
+    "involves_self_model": false,
+    "involves_inescapability_or_helplessness": false,
+    "involves_offline_replay_over_harm": true,
+    "involves_social_mind_or_language": false,
+    "involves_human_data_or_clinical_context": false,
+    "decision": "allow"
+  },
+  "summary_markdown": "# V3-EXQ-981a -- MECH-027 (Stage A abort)\n\n**Overall Status:** FAIL (label `substrate_not_ready_requeue`)\n**Unmet Gate A preconditions:** ['positive_control_hazard_sensitivity']\n**Seeds:** [11, 23, 37]\n\n## Gate A preconditions\n\n- positive_control_hazard_sensitivity: measured=-0.0957542 threshold=0.05 met=False\n- hazard_bin_sample_coverage: measured=70 threshold=30 met=True\n- positive_control_band_pooled_coverage: measured=342 threshold=150 met=True\n- replay_channel_baseline_reachable: measured=5 threshold=1 met=True\n- no_fatal_action_selection_errors_stage_a: measured=0 threshold=0.5 met=True\n- c1_elevation_headroom: measured=0.945931 threshold=0.2 met=True\n- precision_margin_headroom: measured=0.61066 threshold=0.05 met=True\n\nGate A (the DV/env pairing gate) is evaluated after EVAL_BASELINE and BEFORE EVAL_HYPERVIGILANT / EVAL_REVERSION are run at all. Any unmet Gate A precondition routes to substrate_not_ready_requeue and the hypervigilance blocks are skipped.\n",
+  "recording_schema": "rec/v1",
+  "substrate_hash": "b21cd56ca87abdf00ac2b67dcd635a176c456f92ecdc0f6c1f477e84433ecb7e",
+  "substrate_commit": {
+    "commit": "0a32db605926e8eeaf83d0df67592dd70908da24",
+    "dirty": false,
+    "branch": "main"
+  },
+  "substrate_stable_across_run": true,
+  "substrate_identity": {
+    "source": "per_cell_fingerprint_hoist",
+    "resolved_at_utc": "2026-09-09T06:10:22Z",
+    "commit_source": "manifest_write_disk_read",
+    "commit_resolved_at_utc": "2026-09-09T06:10:22Z",
+    "stamped_at_utc": "2026-09-09T06:10:22Z",
+    "lag_seconds": 0,
+    "stability_snapshots": 1,
+    "drifted_since_resolved": false
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 41299,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 3,
+    "goal_state_present": false
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "latent.use_event_classifier": true,
+    "e3.goal_weight": 1.0,
+    "e3.use_precision_scaled_commit_temperature": true,
+    "hippocampal.mode_conditioning_enabled": true,
+    "hippocampal.use_event_segmenter": true,
+    "hippocampal.use_anchor_sets": true,
+    "heartbeat.breath_period": 50,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_sleep_loop": true,
+    "use_mech285_sampler": true,
+    "use_mech272_routing": true
+  },
+  "enabled_default_off_flags_source": "agent",
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "elapsed_seconds": 16469.351915837,
+  "config": {
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "env": "CausalGridWorldV2",
+    "env_size": 10,
+    "num_hazards": 1,
+    "num_resources": 2,
+    "hazard_harm": 0.05,
+    "hazard_field_decay": 0.5,
+    "world_dim": 32,
+    "self_dim": 32,
+    "warmup_episodes": 200,
+    "steps_per_episode": 120,
+    "eval_episodes_per_block": 25,
+    "hv_precision_scale": 0.05,
+    "hv_horizon_frac": 0.2,
+    "mech285_baseline_draws": 50,
+    "mech285_hv_draws": 0,
+    "sws_consolidation_steps": 5,
+    "rem_attribution_steps": 10,
+    "hv_offline_passes_enabled": false,
+    "base_offline_passes_enabled": true,
+    "blocks": [
+      "EVAL_BASELINE",
+      "EVAL_HYPERVIGILANT",
+      "EVAL_REVERSION",
+      "EVAL_HV_AB_PAIRED"
+    ],
+    "c1_c2_statistic": "ambiguous_band_lift",
+    "hazard_safe_max": 0.25,
+    "hazard_high_min": 0.5,
+    "use_event_segmenter": true,
+    "commit_threshold_variance_multiple": 4.0,
+    "use_precision_scaled_commit_temperature": true,
+    "precision_scaled_commit_entropy_alpha": 1.0,
+    "precision_scaled_commit_harm_floor": 0.25,
+    "thresholds": {
+      "FALSE_ALARM_ELEVATION_ABS": 0.1,
+      "HEADROOM_MARGIN_C1": 2.0,
+      "REVERSION_RECOVERY_FLOOR": 0.5,
+      "PRECISION_RATIO_FLOOR": 5.0,
+      "HORIZON_RATIO_CEIL": 0.5,
+      "POSITIVE_CONTROL_MARGIN": 0.05,
+      "MIN_BIN_COVERAGE_STEPS_PER_SEED": 30,
+      "MIN_BIN_COVERAGE_STEPS_POOLED": 150,
+      "PRECISION_MARGIN_HV_ELEVATION_FLOOR": 0.05,
+      "PRECISION_SCALED_COMMIT_ENGAGED_FRACTION_FLOOR": 0.05,
+      "SLEEP_CYCLE_FIRE_FLOOR": 1,
+      "SWS_WRITES_HV_CEIL": 0,
+      "SWS_WRITES_BASELINE_FLOOR": 1,
+      "HV_OFFLINE_PASSES_SUPPRESSED_FRACTION_FLOOR": 1.0,
+      "SWS_CONSOLIDATION_STEPS": 5,
+      "REM_ATTRIBUTION_STEPS": 10,
+      "COMMIT_THRESHOLD_VARIANCE_MULTIPLE": 4.0,
+      "MIN_E3_SELECTIONS_PER_BLOCK": 30,
+      "ORDER_DRIFT_FLOOR": 0.05,
+      "CHANNEL_C_CONTRAST_FLOOR": 0.02,
+      "CHANNEL_A_RANGE_FLOOR": 0.1,
+      "HAZARD_SAFE_MAX": 0.25,
+      "HAZARD_HIGH_MIN": 0.5
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    37
+  ],
+  "evidence_direction_note": "[2026-09-09 governance, cycle governance-20260909 wave 3] Applied from confirmed failure_autopsy_band-contrast-instrument-cluster_2026-09-09 (dry_run_checked: true) at the /governance walk, user-adjudicated. evidence_direction non_contributory on the run and per claim {\"MECH-027\": \"non_contributory\"}. The run is also manifest-flagged non_degenerate: false, so the indexer already excluded it as scoring_excluded: degenerate; this write records the ratified disposition on the scoring path itself, which the claims.yaml edit does not reach.",
+  "evidence_direction_per_claim": {
+    "MECH-027": "non_contributory"
+  }
+}

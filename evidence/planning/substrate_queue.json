@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "governance-20260905",
-  "last_updated_utc": "2026-09-09T09:44:00Z",
+  "last_updated_utc": "2026-09-09T14:50:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -9261,6 +9261,27 @@
           "metric": "P0 baseline_avoidance_discrimination_margin -0.2608 vs +0.05 (abort at seed 11 of 3; C1 never evaluated). Readout confounded with the action-hold IV: conditional oracle +0.905 unheld vs +0.038 held at P=10; sensitivity(P) monotone in P under a hazard-blind null.",
           "target": "A readout scored at E3 decision ticks (hold-invariant) on which a conditional-avoider oracle passes AND a hazard-blind null fails at EVERY P in the sweep, with P0 gated on coverage_ok over all seeds; then MECH-161 C1 (interior maximum over P) becomes testable.",
           "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat_20260909T054013Z_v3",
+          "experiment_type": "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat",
+          "metric": "agent_safe_bin_executable_decision_ticks_covered 3.0 vs a 10 floor (seed23/P20) with safe_bin_wall_clamp_fraction_worst 0.985 recorded as NON-gating, while the control-arm coverage gate passed at 31. The same run's decision-tick readout put the agent above the hazard-blind null at 4 of 5 levels (+0.099 at P_train).",
+          "target": "A coverage/scorability precondition evaluated on the arm that will be scored, counting EXECUTABLE events, so a band-contrast gate cannot be certified on a control arm and then applied to an agent that never visits the band.",
+          "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_981a_mech027_control_plane_pathological_modes_20260909T061022Z_v3",
+          "experiment_type": "v3_exq_981a_mech027_control_plane_pathological_modes",
+          "metric": "positive_control_hazard_sensitivity verdict is normalisation-dependent: pooled additive -0.09575 FAIL, pooled ratio +0.06282 PASS, raw mean-of-seeds +0.06226 PASS, ratio mean-of-seeds +0.08428 PASS, on pooled coverage 342 HIGH / 3042 SAFE. Availability gap +0.14307 vs behavioural difference +0.04732.",
+          "target": "A precondition statistic whose normalisation is pre-registered and justified for the response-rate regime, so a band-contrast gate cannot pass or fail on an unstated analyst choice.",
+          "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux_20260909T054654Z_v3",
+          "experiment_type": "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux",
+          "metric": "dv_headroom_pairwise_delta green at 0.1745 vs 0.1, measured entirely on ws250_pca-minus-zworld_untrained cells, while every objective-CHOICE contrast the load-bearing criteria test measured under 0.033 (C0 failed 0 of 3 vs a 0.05 bar). Separately the run's sense-path own-target probe is applied off-path unrefit at 0.23-0.35 of training norm and omits pred_std, so its nine negative R2 values (-0.0088 to -2.7215) are reproduced by a constant predictor in [0.53,0.72] and are uninterpretable.",
+          "target": "A headroom precondition computed over the same contrast class as the criterion it protects, plus a probe-discipline rule requiring an own-target probe to be fitted on the representation it is evaluated on and to record its prediction spread.",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "Every readiness gate in this corpus certifies the INTERVENTION (was the channel perturbed, did the head train, were there enough samples) and none certifies that the DV had room to move. Across the seven 2026-09-03 pending-review runs, six passed all preconditions and still could not discriminate, because the registered pass threshold lay outside the range the configuration could produce: V3-EXQ-981 C1 threshold 1.154 on a DV bounded in [0,1]; V3-EXQ-981 precision-margin elevation ceiling 0.000195 vs floor 0.01 (51x); V3-EXQ-951c gate_caused with zero possible ticks; V3-EXQ-983 repeat_rate range 0.0468 vs 0.15 (3.2x); V3-EXQ-993 calibration_gap max 0.00152 vs 0.02 (13.1x); V3-EXQ-994 retention spread 0.00078 vs 0.02 (25.6x); V3-EXQ-978 arm-mean difference one third of the DV's 0.05 quantum. BUILD: extend ree-v3/validate_experiments.py with a `criterion_exceeds_achievable_range` check in the same WARN-only family as the existing `dry_run_unreachable_criterion` lint, plus a runtime `dv_headroom` precondition kind in experiments/_metrics.py p0_readiness_gate() that measures the control arm's realised DV range and routes to substrate_not_ready_requeue when the registered threshold exceeds it. Two specific sub-cases the lint must catch: a multiplicative threshold on a bounded DV (981's 2x on [0,1]), and a threshold above the arithmetic ceiling implied by a saturated baseline (981's 0.01 floor against 0.000195 available).",
@@ -9273,7 +9294,7 @@
       "severity_change_note": "Autopsy recommended 'corrupting' with substrate_paths including ree_core/environment/causal_grid_world.py. Governance governance-20260903T2013 set DEGRADING and dropped the environment path on a user-ratified red-team finding: 1,201 drivers import causal_grid_world, and Step 2.5c blocks at module level, so the recommendation as written would have blocked every new experiment fleet-wide. This entry is a HARNESS lint/precondition build (validate_experiments.py + p0_readiness_gate), not a substrate defect in the environment; 'degrading' keeps the WARN on the two harness paths.",
       "created_by": "governance governance-20260903T2013 from confirmed failure_autopsy_ext-claim-probe-cluster_2026-09-03 target V3-EXQ-993 (REE_assembly af8d2cabde)",
       "added_session": "governance-20260903T2013",
-      "last_seen_session": "governance-20260906-1604",
+      "last_seen_session": "governance-20260909-w3",
       "added_utc": "2026-09-03T20:45:22Z",
       "governance_2026_09_04": "AMEND (create withdrawn at the red-team pass: a test-bed/readout defect entry whose substrate_paths were experiment DRIVER files could never fire the Step 2.5c gate, which matches on ree_core imports, and 'corrupting' failed the skill's own definition since both uses were caught by P0 and nothing was invalidated). The existing dv-dynamic-range-precondition-class entry (pending, degrading, MECH-027, cites V3-EXQ-981) already owns this failure class. Add the 999 instance: the hazard-avoidance SDT readout of the 981/999 driver family is confounded with the E3 action-hold period -- a per-step response readout on a held walker reads geometry, not decision -- so any driver reusing _avoidant_action/_hazard_bin MUST score at E3 decision ticks only (or use an IV-independent DV) and must gate P0 on coverage_ok across all seeds. severity stays degrading; substrate_paths unchanged (this is a driver-family readout class, recorded here so the IGW workset's _retest_blockers sees MECH-161 alongside MECH-027).",
       "implementation_status": "implemented",
