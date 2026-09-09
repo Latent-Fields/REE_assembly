@@ -4673,7 +4673,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_002",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4681,7 +4681,16 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "mode-governance-engagement",
+        "sd105_frozen_shared_entropy_floor_multiplier"
+      ],
+      "gated_at_utc": "2026-09-09T02:56:26Z",
+      "gated_by_session": "igw-234-proposal-for-mech-002",
+      "gating_reason": "Both candidate DVs for MECH-002 (\"precision control analogues induce qualitatively distinct cognitive regimes\") are unusable on the current substrate. (1) REGIME DV: the salience-coordinator mode register is bang-bang -- in V3-EXQ-802 (the ARC-005 control-plane run, same channel set) 26 of 30 cells are exactly one-hot and only 2 of 4 modes are EVER occupied (internal_replay and offline_consolidation are 0.0 in every cell), so occupancy space affords a single direction and cannot represent \"distinct control axes\" even in principle. Open corrupting defect mode-governance-engagement (substrate_paths include ree_core/cingulate/salience_coordinator.py) covers exactly this readout; per /queue-experiment Step 2.5c a corrupting overlap is a hard stop. (2) PRECISION DV: in V3-EXQ-802 log10_precision_mean is BIT-IDENTICAL across all three channel levels (0.0/0.5/1.0 each yield [2.2104, 2.251, 2.179, 2.472, 2.574, ...] verbatim) -- the manipulation is invariant under the DV (the /queue-experiment DV-symmetry class), which is why C2 rho_log10_precision was exactly 0.0 on all 10 units of 802 and 1/10 in V3-EXQ-848a. (3) Selection entropy, the remaining regime proxy, is behind open corrupting sd105_frozen_shared_entropy_floor_multiplier, whose own title states a live closed-loop entropy set-point cannot be armed in a difference-of-arms design whose DV is the entropy it regulates -- which is precisely the channel-dissociation shape MECH-002 needs. Queuing now would produce a guaranteed non-contributory result, not a verdict. NOTE: this is NOT the conversion/F-dominance ceiling; the blocking facts are measured and specific.",
+      "release_condition": "Either (a) mode-governance-engagement reaches implemented_validated with a demonstrated MIXED regime -- per-arm mode occupancy strictly inside (0.1, 0.9) on >=2/3 seeds at a configuration reachable from production defaults (its own open failure_record target, still unmet at V3-EXQ-934: no cap value achieved this on more than 1 of 3 seeds) -- so the regime DV can express more than one direction; OR (b) a precision readout is wired that demonstrably MOVES with the control channels (the current E3 log10_precision is provably invariant to them, see gating_reason), re-measured by re-running the V3-EXQ-802 ladder and confirming rho_log10_precision != 0. Until one holds, route MECH-002 substrate work through /implement-substrate on mode-governance-engagement (priority 1), NOT another /queue-experiment iteration.",
+      "blocked_note": "Adjudicated by IGW-20260909-234 at the /queue-experiment Step 2.5c substrate-defect gate. Not queued. Evidence is V3-EXQ-802 + V3-EXQ-848a manifests (both FAIL); no new run required to establish the block."
     },
     {
       "acceptance_checks": [
