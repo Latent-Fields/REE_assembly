@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-08T20:28:32.485244Z",
+  "generated_at_utc": "2026-09-09T01:58:33.797001Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -414,6 +414,23 @@
       ]
     },
     {
+      "backlog_id": "EVB-0467",
+      "claim_id": "SD-078",
+      "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-806",
+      "executed_queue_id": "V3-EXQ-806",
+      "objective": "Run a discriminative support-vs-ablation pair for SD-078 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0058",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_sd_078",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "directional_conflict_alert"
+      ]
+    },
+    {
       "backlog_id": "EVB-0598",
       "claim_id": "MECH-143",
       "dispatch_mode": "discriminative_pair",
@@ -428,23 +445,6 @@
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
-        "directional_conflict_alert"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0467",
-      "claim_id": "SD-078",
-      "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-806",
-      "executed_queue_id": "V3-EXQ-806",
-      "objective": "Run a discriminative support-vs-ablation pair for SD-078 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0058",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_sd_078",
-      "target_repo": "ree-v3",
-      "why_now": [
         "directional_conflict_alert"
       ]
     },
@@ -10435,21 +10435,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-1580",
-      "claim_id": "MECH-465",
-      "objective": "Improve literature grounding and confidence for MECH-465.",
-      "priority": "medium",
-      "proposal_id": "LIT-1069",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1581",
       "claim_id": "MECH-468",
       "dispatch_mode": "targeted_probe",
@@ -13084,6 +13069,21 @@
       "target_repo": "REE_assembly",
       "why_now": [
         "insufficient_experimental_replication",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1580",
+      "claim_id": "MECH-465",
+      "objective": "Improve literature grounding and confidence for MECH-465.",
+      "priority": "medium",
+      "proposal_id": "LIT-1069",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "low_exp_conf",
         "missing_literature_evidence"
       ]
     },
@@ -17703,7 +17703,7 @@
     }
   ],
   "n_executed": 236,
-  "n_proposed_exp": 207,
+  "n_proposed_exp": 205,
   "n_proposed_lit": 477,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"

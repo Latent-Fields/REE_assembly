@@ -1,12 +1,12 @@
 # Claims live_status Drift Report
 
-Generated: 2026-09-08T07:16:03Z
+Generated: 2026-09-09T01:59:37Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Claims in registry: 1117
+Claims in registry: 1124
 
 ## Reading drift -- HARD (172)
 
@@ -187,7 +187,7 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | MECH-535 | `candidate/standard` | `candidate` | reading: stored='candidate/standard' derived='candidate' |
 | MECH-536 | `candidate/standard` | `candidate` | reading: stored='candidate/standard' derived='candidate' |
 
-## Unstamped -- SOFT (46)
+## Unstamped -- SOFT (53)
 
 Registered claims with no `live_status` block. Run `scripts/apply_live_status.py`.
 
@@ -239,6 +239,13 @@ Registered claims with no `live_status` block. Run `scripts/apply_live_status.py
 | ARC-141 | `candidate/substrate_conditional` |
 | MECH-543 | `candidate/substrate_conditional` |
 | MECH-544 | `candidate/substrate_conditional` |
+| ARC-142 | `candidate/substrate_conditional` |
+| GOV-CONTRACT-1 | `candidate` |
+| MECH-545 | `candidate/substrate_conditional` |
+| MECH-546 | `candidate/substrate_conditional` |
+| Q-104 | `open/substrate_conditional` |
+| MECH-547 | `candidate/substrate_conditional` |
+| MECH-548 | `candidate/substrate_conditional` |
 
 ## Internal inconsistency -- REVIEW (2)
 
@@ -249,7 +256,7 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 | SD-016 | `implemented/substrate_ceiling` | promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 | SD-017 | `stable/substrate_ceiling` | promoted status 'stable' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 
-## Event-provenance drift -- SOFT (318)
+## Event-provenance drift -- SOFT (323)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
@@ -315,9 +322,9 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-074c | `v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3` | `v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3` |
 | MECH-074d | `failure_autopsy_V3-EXQ-894c_2026-08-11` | `failure_autopsy_V3-EXQ-894c_2026-08-11` |
 | MECH-075 | `decision:MECH-075@2026-04-03T22:00:00Z` | `failure_autopsy_mech075-second-cluster_2026-08-10#V3-EXQ-905a` |
-| ... | | (+258 more) |
+| ... | | (+263 more) |
 
-## Never reviewed (no `last_reviewed`) -- INFO (1096 of 1117)
+## Never reviewed (no `last_reviewed`) -- INFO (1103 of 1124)
 
 Claims with no `last_reviewed` history value -- not yet reviewed under the history plane. `last_reviewed` is record-once and legitimately absent for most claims (seeded from `adjudicated_at_utc`, or set with `apply_live_status.py --mark-reviewed <ID>`). Count + sample only.
 

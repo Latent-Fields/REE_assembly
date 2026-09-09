@@ -595,13 +595,13 @@
       "timestamp_utc": "2026-08-08T08:30:41.615663Z"
     },
     "INV-088": {
-      "actor": "governance-86e36f (user-approved)",
-      "decision_needed": "Conflict resolution before promotion",
+      "actor": "dual-insights-20260908-followup (user)",
+      "decision_needed": "Which real-endpoint goal_proximity variance denominator settles Leg B: from-reset (Phase 4b; 6/6 seeds clear 0.002, leg eliminated) or same-start (Phase 4d; 4/6 below, leg supported)?",
       "decision_status": "applied",
-      "rationale": "Reconfirmation path 770/771/772 all FAILED (confirmed cluster autopsy, non_contributory/competence_implementation_gap) -- second consecutive non-reconfirmation after 769. No new evidence on the real-but-weak 744a coupling. pending_substrate_reconfirmation stays true; re-routed to H-bc-prior vs H-approach-primitive. No status change.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "keep hold; re-route reconfirmation onto the successor MECH-457 portfolio",
-      "timestamp_utc": "2026-07-18T06:40:45.302684Z"
+      "rationale": "SAME-START. At h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so the same-start set isolates rollout-attributable variance while the from-reset set adds start dispersion; the empirical 'upper bound' form of the argument is not relied on (seed7 inverts it, 5/6 hold). The Leg-B-only substitution asymmetry (Leg C still reads Phase 4b) is recorded; the autopsy checked it is not results-driven and Leg C's verdict is unchanged on either denominator. Consequence: H-readout-saturation CONFIRMED -- the 0.002 e1coe_score_var bar is partly an instrument target; it must be re-registered relative to same-start real-endpoint variance before any further SD-e1 var-bar run. No claims.yaml status change.",
+      "recommendation": "same_start_denominator",
+      "selected_option": "same_start_denominator",
+      "timestamp_utc": "2026-09-08T19:50:33Z"
     },
     "INV-089": {
       "actor": "governance/wizardly-sutherland-efdfc7",
@@ -2971,7 +2971,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-08T17:06:21.031778Z",
+  "generated_at_utc": "2026-09-08T20:28:32.485244Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

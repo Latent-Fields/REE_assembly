@@ -1,10 +1,31 @@
 # Pending Experiment Review
 
-Generated: `2026-09-08T15:31:20Z`  
+Generated: `2026-09-09T01:58:57Z`  
 Last review: `2026-09-08T15:28:35Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **5** item(s) -- 3 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 run(s) with recorded (non-gating) preconditions
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep_20260908T202858Z_v3` | 2026-09-08T20:28 | MECH-465 | — |
+| `v3_exq_822f_sd082_candidate_discriminating_init_head_control_20260908T231145Z_v3` | 2026-09-08T23:11 | SD-078, SD-082 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_1013_sd031_shortcut_vs_model_portfolio_20260908T190906Z_v3` | 2026-09-08T19:09 | SD-031 |
+| `v3_exq_1011_arc021_h3_submargin_paired_ci_20260908T201117Z_v3` | 2026-09-08T20:11 | ARC-021, MECH-069 |
+| `v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike_20260908T223415Z_v3` | 2026-09-08T22:34 | (no claim tags) |
+
+## Recorded (non-gating) preconditions
+
+**No action is required on account of this section.** These runs declare a readiness finding in `interpretation.recorded_preconditions[]` that did NOT hold -- but the author deliberately did not gate the run on it, because the run's premise survives the finding (e.g. a shared symmetric prior that biases every arm identically, or a readout-side question with an unaffected control). The entries are kept out of the adjudicating `interpretation.preconditions[]` on purpose: that list is read flat and arm-blind, so an entry there would return a whole-run `precondition_unmet` and bury a valid result. Each run's own `preconditions_scope_note` states the reasoning. Read this as an audit trail when interpreting the run -- it is NOT an adjudication flag, does not block a governance action, and does not exclude the run from scoring. See evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md.
+
+| Run ID | Status | Recorded precondition(s) not met | Scope note |
+|--------|--------|----------------------------------|------------|
+| `v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep_20260908T202858Z_v3` | FAIL | COLD/s0::cold_reproduces_spike_dispersion_band, COLD/s0::p1_all_levels_in_band, COLD/s1::p1_all_levels_in_band, COLD/s3::p1_all_levels_in_band, PHASED400/s1::p1_all_levels_in_band, WARM200/s0::p1_all_levels_in_band, WARM200/s1::p1_all_levels_in_band, WARM400/s0::p1_all_levels_in_band, WARM400/s1::p1_all_levels_in_band, WARM800/s1::p1_all_levels_in_band | — |
 
 ---
 
