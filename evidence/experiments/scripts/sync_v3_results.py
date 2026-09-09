@@ -628,10 +628,42 @@ def _flat_candidates():
         yield json_path
 
 
+def _dirty_paths(repo_root: Path) -> set:
+    """Repo-relative paths with uncommitted changes, for the skip-dirty guard.
+
+    A pack manifest that is ALREADY dirty is carrying another session's
+    uncommitted work (typically a live /governance or /failure-autopsy
+    adjudication). Healing it is a read-modify-write of that session's content:
+    the heal's write-back preserves their edit, and the next commit that names
+    the path lands their unfinished work early, under the wrong message and the
+    wrong task -- the contamination hazard in CLAUDE.md "Concurrency Rules".
+    Confirmed live 2026-09-09: two packs were mid-adjudication when this heal
+    first ran. Skipping is the cheap fix -- the pack simply gets healed on a
+    later run, once its owner has committed.
+    """
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(repo_root), "status", "--porcelain"],
+            capture_output=True, text=True, timeout=120)
+    except Exception:
+        return set()
+    if out.returncode != 0:
+        return set()
+    dirty = set()
+    for line in out.stdout.splitlines():
+        if len(line) > 3:
+            dirty.add(line[3:].strip().strip('"'))
+    return dirty
+
+
 def run_heal(only=None, fill_metrics=False, apply=False, limit=None,
-             exclude_run_ids=()):
+             exclude_run_ids=(), skip_dirty=True):
     """Drive heal_pack over the corpus. Returns the list of change records."""
     exclude = set(exclude_run_ids or ())
+    repo_root = EVIDENCE_DIR.parents[1]  # REE_assembly
+    dirty = _dirty_paths(repo_root) if skip_dirty else set()
+    n_skipped_dirty = 0
     records = []
     for flat_path in _flat_candidates():
         rec = heal_pack(flat_path, fill_metrics=fill_metrics, apply=False)
@@ -643,6 +675,13 @@ def run_heal(only=None, fill_metrics=False, apply=False, limit=None,
         if only and not (fnmatch.fnmatch(rec["run_id"], only)
                          or fnmatch.fnmatch(rec["experiment_type"], only)):
             continue
+        if dirty:
+            rel = Path(rec["run_dir"]).relative_to(repo_root)
+            if any(str(rel / n) in dirty for n in ("manifest.json", "metrics.json")):
+                print(f"  [skip dirty] {rec['run_id']} -- uncommitted work present",
+                      flush=True)
+                n_skipped_dirty += 1
+                continue
         if limit is not None and len(records) >= limit:
             break
         if apply:
@@ -650,6 +689,9 @@ def run_heal(only=None, fill_metrics=False, apply=False, limit=None,
             if rec is None:
                 continue
         records.append(rec)
+    if n_skipped_dirty:
+        print(f"  ({n_skipped_dirty} pack(s) skipped as dirty -- another session "
+              f"has uncommitted work there; re-run later)", flush=True)
     return records
 
 
@@ -676,6 +718,11 @@ def main(argv=None):
         "--exclude-run-id", action="append", default=[], metavar="RUN_ID",
         help="With --heal, skip this run_id (repeatable).")
     parser.add_argument(
+        "--no-skip-dirty", action="store_true",
+        help="With --heal, do NOT skip packs that already have uncommitted "
+             "changes. Off by default; healing a dirty pack read-modify-writes "
+             "another session's in-progress work.")
+    parser.add_argument(
         "--apply", action="store_true",
         help="With --heal, actually write. Without it the heal is a dry run.")
     args = parser.parse_args(argv)
@@ -683,7 +730,8 @@ def main(argv=None):
     if args.heal:
         records = run_heal(only=args.only, fill_metrics=args.fill_metrics,
                            apply=args.apply, limit=args.limit,
-                           exclude_run_ids=args.exclude_run_id)
+                           exclude_run_ids=args.exclude_run_id,
+                           skip_dirty=not args.no_skip_dirty)
         n_keys = sum(len(r["added_manifest_keys"]) for r in records)
         n_met = sum(1 for r in records if r["metrics_values_filled"])
         verb = "healed" if args.apply else "would heal"
