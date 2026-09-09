@@ -41,5 +41,54 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "conditions": {
+      "BASELINE": {
+        "shy_enabled": false,
+        "decay": 0.85,
+        "writes": 20
+      },
+      "SHY_090_W20": {
+        "shy_enabled": true,
+        "decay": 0.9,
+        "writes": 20
+      },
+      "SHY_090_W40": {
+        "shy_enabled": true,
+        "decay": 0.9,
+        "writes": 40
+      },
+      "SHY_095_W20": {
+        "shy_enabled": true,
+        "decay": 0.95,
+        "writes": 20
+      },
+      "SHY_095_W40": {
+        "shy_enabled": true,
+        "decay": 0.95,
+        "writes": 40
+      },
+      "SHY_098_W20": {
+        "shy_enabled": true,
+        "decay": 0.98,
+        "writes": 20
+      },
+      "SHY_098_W40": {
+        "shy_enabled": true,
+        "decay": 0.98,
+        "writes": 40
+      }
+    },
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "training_episodes": 100,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 20,
+    "seeds": [
+      42,
+      7,
+      13
+    ]
+  }
 }

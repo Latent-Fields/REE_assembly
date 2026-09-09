@@ -45,5 +45,24 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "LIMB_DAMAGE_ENABLED",
+      "LIMB_DAMAGE_DISABLED"
+    ],
+    "warmup_episodes": 150,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "thresh_r2_s_to_a_max": 0.5,
+    "thresh_harm_obs_a_var_min": 0.001,
+    "pass_min_seeds": 2,
+    "harm_obs_a_dim_enabled": 7,
+    "harm_obs_a_dim_disabled": 50
+  }
 }

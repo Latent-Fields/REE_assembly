@@ -46,5 +46,17 @@
   "failure_signatures": [],
   "evidence_direction_prior": "supports",
   "superseded_by": null,
-  "supersedes_reason": null
+  "supersedes_reason": null,
+  "config": {
+    "warmup_episodes": 150,
+    "fwd_collect_episodes": 80,
+    "fwd_train_epochs": 10,
+    "fwd_batch_size": 128,
+    "dissociation_episodes": 40,
+    "steps_per_episode": 200,
+    "harm_obs_dim": 51,
+    "harm_obs_a_dim": 50,
+    "z_harm_s_dim": 32,
+    "z_harm_a_dim": 16
+  }
 }

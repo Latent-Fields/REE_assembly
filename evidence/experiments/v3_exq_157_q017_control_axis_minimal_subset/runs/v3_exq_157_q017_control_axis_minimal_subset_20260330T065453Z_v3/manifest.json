@@ -39,5 +39,28 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "PARTIAL_COLLAPSE_ADEQUATE: task complexity insufficient to discriminate axis structures (8x8 grid); axes likely degenerate (C4 fail); substrate inadequate to test Q-017. Does not falsify claim."
+  "evidence_direction_note": "PARTIAL_COLLAPSE_ADEQUATE: task complexity insufficient to discriminate axis structures (8x8 grid); axes likely degenerate (C4 fail); substrate inadequate to test Q-017. Does not falsify claim.",
+  "config": {
+    "total_episodes": 400,
+    "measurement_episodes": 100,
+    "steps_per_episode": 200,
+    "window_size": 20,
+    "tonic_tau": 50.0,
+    "lr": 0.0003,
+    "ent_bonus": 0.005,
+    "seeds": [
+      42,
+      123
+    ],
+    "conditions": [
+      "FULL_AXES",
+      "COLLAPSED_SCALAR",
+      "MINIMAL_SUBSET"
+    ],
+    "control_dims": {
+      "FULL_AXES": 3,
+      "COLLAPSED_SCALAR": 1,
+      "MINIMAL_SUBSET": 2
+    }
+  }
 }

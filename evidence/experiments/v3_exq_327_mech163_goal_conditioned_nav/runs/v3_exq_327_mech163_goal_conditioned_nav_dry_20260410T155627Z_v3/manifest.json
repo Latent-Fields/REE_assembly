@@ -45,5 +45,22 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "GOAL_CONDITIONED",
+      "GOAL_ABLATED"
+    ],
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 50,
+    "steps_per_ep": 200,
+    "goal_weight": 1.0,
+    "drive_weight": 2.0
+  }
 }

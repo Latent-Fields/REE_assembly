@@ -39,5 +39,30 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "experiment_purpose": "evidence"
+  "experiment_purpose": "evidence",
+  "config": {
+    "total_episodes": 400,
+    "measurement_episodes": 100,
+    "steps_per_episode": 200,
+    "lr": 0.0003,
+    "ent_bonus": 0.005,
+    "seeds": [
+      42,
+      123
+    ],
+    "conditions": [
+      "LOW_THRESH",
+      "HIGH_THRESH",
+      "ADAPTIVE_THRESH"
+    ],
+    "rc_thresh_low": 0.05,
+    "rc_thresh_high": 0.4,
+    "rc_sigma_mult": 2.0,
+    "rc_ema_tau": 50.0,
+    "spoofing_prob": 0.1,
+    "spoof_magnitude": 3.0,
+    "base_commit_thresh": 0.1,
+    "suppression_weight": 2.0,
+    "gate_fire_thresh": 0.15
+  }
 }

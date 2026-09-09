@@ -45,5 +45,25 @@
   "failure_signatures": [],
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "5bc774d6e542730d13bc539461cc0c578224bdd498964f23ea76253c41a8c7ce"
+  "substrate_hash": "5bc774d6e542730d13bc539461cc0c578224bdd498964f23ea76253c41a8c7ce",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 434.042272561,
+  "config": {
+    "seed": 0,
+    "seeds": [
+      0
+    ],
+    "warmup_episodes": 500,
+    "eval_episodes": 100,
+    "steps_per_episode": 300,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "harm_scale": 0.02,
+    "proximity_scale": 0.05,
+    "policy": "random",
+    "fix_vs_032b": "adds agent._e1_tick() on e1_tick cadence + one-step-lagged agent.record_transition(); no other change"
+  },
+  "seeds": [
+    0
+  ]
 }

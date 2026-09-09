@@ -831,5 +831,118 @@
     "goal_state_present": false
   },
   "epistemic_category": "standard",
-  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED (claim-free diagnostic portfolio) by the confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07 (REE_assembly cb4a71fbd9). Legs A (H-fidelity-anchor) and C (H-goal-orthogonal-dispersion) confirmed 6/6; Leg B (H-readout-saturation) LEFT ALIVE with both denominators recorded (from-reset: null met 6/6; same-start: not met 4/6) -- user decision 2026-09-08: leave alive, both denominators recorded; the Leg-B-only same-start substitution is recorded as an open design asymmetry. epistemic_category standard. No new experiment owed."
+  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED (claim-free diagnostic portfolio) by the confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07 (REE_assembly cb4a71fbd9). Legs A (H-fidelity-anchor) and C (H-goal-orthogonal-dispersion) confirmed 6/6; Leg B (H-readout-saturation) LEFT ALIVE with both denominators recorded (from-reset: null met 6/6; same-start: not met 4/6) -- user decision 2026-09-08: leave alive, both denominators recorded; the Leg-B-only same-start substitution is recorded as an open design asymmetry. epistemic_category standard. No new experiment owed.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2122.756026501,
+  "config": {
+    "seeds": [
+      42,
+      123,
+      7,
+      2024,
+      17,
+      31
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_RSD",
+      "ARM_RSD_ANCHOR_EP",
+      "ARM_RSD_ANCHOR_RC"
+    ],
+    "arm_configs": {
+      "ARM_OFF": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": false,
+        "e1_rollout_sequence_divergence_enabled": false,
+        "e1_loss": "single_step_depth0",
+        "anchor": null
+      },
+      "ARM_RSD": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": false,
+        "e1_rollout_sequence_divergence_enabled": true,
+        "e1_loss": "rollout_sequence_divergence",
+        "anchor": null
+      },
+      "ARM_RSD_ANCHOR_EP": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": false,
+        "e1_rollout_sequence_divergence_enabled": true,
+        "e1_loss": "rollout_sequence_divergence",
+        "anchor": "endpoint_mse"
+      },
+      "ARM_RSD_ANCHOR_RC": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": true,
+        "e1_rollout_sequence_divergence_enabled": true,
+        "e1_loss": "rollout_sequence_divergence",
+        "anchor": "rollout_consistency"
+      }
+    },
+    "world_dim": 32,
+    "self_dim": 32,
+    "n_train_episodes": 100,
+    "steps_per_episode": 200,
+    "n_sequences": 40,
+    "rollout_horizon": 30,
+    "n_warmup_steps": 20,
+    "goal_max_steps": 2000,
+    "zworld_p0_episodes": 60,
+    "n_real_samples": 40,
+    "rc_horizon": 5,
+    "rc_decay": 0.5,
+    "anchor_w_rc": 1.0,
+    "anchor_w_ep": 1.0,
+    "anchor_grad_authority": 1.0,
+    "anchor_w_clamp": [
+      0.001,
+      10000.0
+    ],
+    "anchor_authority_floor": 0.5,
+    "rsd_horizon": 5,
+    "rsd_temperature": 0.1,
+    "rsd_min_batch_classes": 2,
+    "rsd_weight": 1.0,
+    "rsd_batch_k": 8,
+    "rsd_buffer_max": 256,
+    "train_window_h": 5,
+    "cr_real_floor": 0.0001,
+    "cr_rollout_collapse_ratio": 0.1,
+    "c3_var_threshold": 0.002,
+    "centroid_band": [
+      0.75,
+      1.3333333333333333
+    ],
+    "var_lift_factor": 2.0,
+    "goal_axis_within_factor": 2.0,
+    "min_real_samples_per_horizon_floor": 10,
+    "dv_headroom": {
+      "dv_name": "e1coe_score_var_h1",
+      "control_arm": "SAME-START real endpoints (Phase 4d); from-reset Phase 4b recorded",
+      "statistic": "explicit (majority-order over seeds)",
+      "margin": 1.0,
+      "criterion_threshold": 0.002,
+      "gating": false,
+      "adjudicating": false
+    },
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "unified_latent_mode": false
+  },
+  "seeds": [
+    42,
+    123,
+    7,
+    2024,
+    17,
+    31
+  ]
 }

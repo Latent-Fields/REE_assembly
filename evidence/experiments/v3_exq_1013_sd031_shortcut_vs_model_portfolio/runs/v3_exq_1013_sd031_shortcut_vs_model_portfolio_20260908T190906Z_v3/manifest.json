@@ -414,5 +414,110 @@
     "writer_defect": null,
     "n_agents": 5,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 789.191116886,
+  "config": {
+    "env_kwargs": {
+      "size": 8,
+      "num_hazards": 3,
+      "num_resources": 3,
+      "contamination_spread": 0.0,
+      "env_drift_interval": 2,
+      "env_drift_prob": 1.0,
+      "use_proxy_fields": true
+    },
+    "world_dim": 128,
+    "alpha_world": 0.9,
+    "episodes_per_phase": 250,
+    "post_episodes_per_phase": 150,
+    "p0a_steps_per_episode": 100,
+    "n_transitions_pre": 40000,
+    "n_transitions_post": 24000,
+    "heldout_fraction_pre": 0.3,
+    "readapt_pool_fraction": 0.5,
+    "ladder_epochs": [
+      1,
+      2,
+      8,
+      30,
+      60,
+      140
+    ],
+    "ladder_pool_fractions": [
+      0.05,
+      0.3,
+      1.0
+    ],
+    "b0_epochs": 8,
+    "b0_pool_fraction": 0.3,
+    "head_epochs": 60,
+    "head_batch": 256,
+    "head_lr": 0.0003,
+    "n_shuffle_draws": 5,
+    "derangements": [
+      [
+        1,
+        0,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        3,
+        0
+      ],
+      [
+        1,
+        3,
+        0,
+        2
+      ],
+      [
+        2,
+        0,
+        3,
+        1
+      ],
+      [
+        2,
+        3,
+        0,
+        1
+      ],
+      [
+        2,
+        3,
+        1,
+        0
+      ],
+      [
+        3,
+        0,
+        1,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        1
+      ],
+      [
+        3,
+        2,
+        1,
+        0
+      ]
+    ],
+    "dry_run": false
+  },
+  "seeds": [
+    43,
+    45,
+    46,
+    47,
+    48
+  ]
 }

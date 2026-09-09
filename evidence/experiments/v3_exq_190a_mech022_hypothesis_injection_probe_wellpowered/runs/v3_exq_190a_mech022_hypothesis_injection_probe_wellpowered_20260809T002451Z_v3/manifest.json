@@ -58,5 +58,34 @@
     "n_agents": 6,
     "goal_state_present": false
   },
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-190a_2026-08-09. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-190a_2026-08-09. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7019.628759102001,
+  "config": {
+    "seeds": [
+      42,
+      123,
+      7
+    ],
+    "warmup_episodes": 220,
+    "eval_episodes": 100,
+    "steps_per_episode": 200,
+    "self_dim": 32,
+    "world_dim": 32,
+    "lr": 0.001,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "nav_bias": 0.4,
+    "num_hazards": 5,
+    "num_resources": 5,
+    "conditions": [
+      "HYPOTHESIS_INJECTION_ON",
+      "HYPOTHESIS_INJECTION_OFF"
+    ]
+  },
+  "seeds": [
+    42,
+    123,
+    7
+  ]
 }

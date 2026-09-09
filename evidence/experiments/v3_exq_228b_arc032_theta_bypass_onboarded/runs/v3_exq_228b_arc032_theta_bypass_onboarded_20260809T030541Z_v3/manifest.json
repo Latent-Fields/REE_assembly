@@ -57,5 +57,49 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 13292.044176714,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      45
+    ],
+    "conditions": [
+      "THETA_ACTIVE",
+      "THETA_ZEROED"
+    ],
+    "stage0_budget": 20,
+    "stage0b_budget": 10,
+    "p0_budget": 100,
+    "hazard_budget": 40,
+    "p1_budget": 50,
+    "p2_budget": 30,
+    "steps_per_ep": 200,
+    "p0_num_hazards": 1,
+    "hazard_stage_regime": [
+      6,
+      2,
+      0.0,
+      0.1
+    ],
+    "seeding": [
+      1.5,
+      0.02,
+      0.9,
+      3
+    ],
+    "drive_weight": 2.0,
+    "p2_hfa_guard": 0.3,
+    "goal_norm_thresh": 0.05,
+    "lift_thresh": 0.05,
+    "harm_ratio_max": 1.5,
+    "design": "shared_training_deepcopy_split_at_p2"
+  },
+  "seeds": [
+    42,
+    43,
+    45
+  ]
 }

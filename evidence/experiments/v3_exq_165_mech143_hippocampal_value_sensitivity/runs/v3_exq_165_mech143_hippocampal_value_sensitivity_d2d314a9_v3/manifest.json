@@ -45,5 +45,35 @@
     "MECH-143": "inconclusive",
     "MECH-144": "inconclusive"
   },
-  "evidence_direction_note": "INCONCLUSIVE (2026-08-29, failure_autopsy_20260329-legacy-cluster_2026-08-08, confirmed): mixed -> inconclusive for MECH-143, MECH-144 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
+  "evidence_direction_note": "INCONCLUSIVE (2026-08-29, failure_autopsy_20260329-legacy-cluster_2026-08-08, confirmed): mixed -> inconclusive for MECH-143, MECH-144 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log).",
+  "config": {
+    "grid_size": 8,
+    "n_hazards": 4,
+    "n_resources": 2,
+    "n_episodes": 400,
+    "n_eval_episodes": 100,
+    "steps_per_episode": 200,
+    "k_shuffle": 50,
+    "hazard_harm": 0.05,
+    "nav_bias": 0.6,
+    "goal_a_pos": [
+      2,
+      2
+    ],
+    "goal_b_pos": [
+      6,
+      6
+    ],
+    "goal_a_reward_high": 1.0,
+    "goal_a_reward_low": 0.5,
+    "lr": 0.001,
+    "hidden_dim": 32,
+    "world_dim": 32,
+    "self_dim": 16,
+    "harm_dim": 8,
+    "seeds": [
+      42,
+      123
+    ]
+  }
 }

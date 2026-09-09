@@ -43,5 +43,28 @@
   "evidence_direction_per_claim": {
     "ARC-018": "non_contributory"
   },
-  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_20260329-legacy-cluster_2026-08-08, confirmed): weakens -> non_contributory for ARC-018 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_20260329-legacy-cluster_2026-08-08, confirmed): weakens -> non_contributory for ARC-018 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log).",
+  "config": {
+    "env_size": 8,
+    "num_hazards": 3,
+    "num_resources": 3,
+    "hazard_harm": 0.5,
+    "world_dim": 32,
+    "self_dim": 32,
+    "action_dim": 4,
+    "action_object_dim": 16,
+    "n_train_episodes": 400,
+    "steps_per_episode": 150,
+    "n_eval_episodes": 40,
+    "eval_steps": 150,
+    "cem_candidates": 16,
+    "cem_iterations": 3,
+    "cem_horizon": 8,
+    "lr": 0.0003
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ]
 }

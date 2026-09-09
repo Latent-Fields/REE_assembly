@@ -41,5 +41,28 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "REM_ONLY",
+      "REM_THEN_SWS",
+      "SWS_THEN_REM",
+      "SWS_THEN_REM_RECAL"
+    ],
+    "sleep_interval": 10,
+    "sws_write_steps": 20,
+    "context_switch_every": 5,
+    "training_episodes": 150,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 20,
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "discrimination_eps": 0.01,
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
 }

@@ -47,5 +47,29 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Reclassified diagnostic (governance 2026-04-19): sleep conditions (SWS_ONLY, SWS_THEN_REM) produce slot metrics identical to WAKING_ONLY across 5 seeds. Shared anomaly with EXQ-418a. Zero differential signal suggests context-conditioning substrate not wired. Treated as diagnostic of substrate wiring rather than test of the three claims' hypotheses."
+  "evidence_direction_note": "Reclassified diagnostic (governance 2026-04-19): sleep conditions (SWS_ONLY, SWS_THEN_REM) produce slot metrics identical to WAKING_ONLY across 5 seeds. Shared anomaly with EXQ-418a. Zero differential signal suggests context-conditioning substrate not wired. Treated as diagnostic of substrate wiring rather than test of the three claims' hypotheses.",
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "SWS_ONLY",
+      "SWS_THEN_REM"
+    ],
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "training_episodes": 200,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 30,
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "base_harm_threshold": 0.05,
+    "context_beta": 0.8,
+    "slot_danger_ema_alpha": 0.05,
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
 }

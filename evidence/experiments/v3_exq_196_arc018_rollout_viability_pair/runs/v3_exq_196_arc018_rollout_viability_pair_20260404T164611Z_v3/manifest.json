@@ -41,5 +41,28 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "env_size": 8,
+    "num_hazards": 3,
+    "num_resources": 3,
+    "hazard_harm": 0.5,
+    "world_dim": 32,
+    "self_dim": 32,
+    "action_dim": 4,
+    "action_object_dim": 16,
+    "n_train_episodes": 400,
+    "steps_per_episode": 150,
+    "n_eval_episodes": 40,
+    "eval_steps": 150,
+    "cem_candidates": 16,
+    "cem_iterations": 3,
+    "cem_horizon": 8,
+    "lr": 0.0003
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ]
 }

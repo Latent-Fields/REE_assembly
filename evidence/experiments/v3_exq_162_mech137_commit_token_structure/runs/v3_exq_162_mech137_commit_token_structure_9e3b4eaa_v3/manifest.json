@@ -42,5 +42,29 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "conditions": [
+      "THREE_PHASE",
+      "TWO_PHASE"
+    ],
+    "seeds": [
+      42,
+      123
+    ],
+    "n_episodes": 400,
+    "n_eval_episodes": 100,
+    "steps_per_episode": 200,
+    "commit_step_frac": 0.5,
+    "n_cancel_window": 20,
+    "cancel_thresh": 0.3,
+    "grid_size": 8,
+    "n_hazards": 4,
+    "n_resources": 2,
+    "hazard_harm": 0.05,
+    "lr": 0.001,
+    "world_dim": 32,
+    "self_dim": 16,
+    "hidden_dim": 32
+  }
 }

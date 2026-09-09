@@ -40,5 +40,24 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "experiment_purpose": "evidence"
+  "experiment_purpose": "evidence",
+  "config": {
+    "total_episodes": 500,
+    "measurement_episodes": 125,
+    "steps_per_episode": 200,
+    "k_candidates": 5,
+    "lr": 0.0003,
+    "ent_bonus": 0.005,
+    "seeds": [
+      42,
+      123
+    ],
+    "conditions": [
+      "VALUE_FLAT",
+      "VALUE_FLAT_NO_RESIDUE",
+      "VALUE_LADEN"
+    ],
+    "residue_lambda": 2.0,
+    "residue_decay": 0.95
+  }
 }

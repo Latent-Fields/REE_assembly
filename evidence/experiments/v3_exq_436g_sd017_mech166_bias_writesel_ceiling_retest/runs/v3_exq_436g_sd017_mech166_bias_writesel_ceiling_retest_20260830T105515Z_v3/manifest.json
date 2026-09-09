@@ -126,5 +126,53 @@
     "n_agents": 15,
     "goal_state_present": false
   },
-  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). weakens WITHDRAWN -> non_contributory for all three claims. The NO_WRITES calibration arm (0 write calls) sits at mean pairwise slot cosine 0.000 vs 0.9992 once written, so the ONLINE write path alone collapses the bank to near-rank-1: the BIAS build fixed ADDRESSING (16/16 occupancy, confirmed) and left CONTENT untouched, and offline consolidation had no differentiable structure to act on. ARC-045's absolute prediction (cosine_sim < 0.95 after sleep) and MECH-166's SWS-analog comparison are both unscoreable on a bank the write path has already homogenised. SD-017's OWN stated prediction (undifferentiated without the phases, slot_cosine_sim -> 1.0) is CONFIRMED by WAKING_ONLY = 0.9993. Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b."
+  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). weakens WITHDRAWN -> non_contributory for all three claims. The NO_WRITES calibration arm (0 write calls) sits at mean pairwise slot cosine 0.000 vs 0.9992 once written, so the ONLINE write path alone collapses the bank to near-rank-1: the BIAS build fixed ADDRESSING (16/16 occupancy, confirmed) and left CONTENT untouched, and offline consolidation had no differentiable structure to act on. ARC-045's absolute prediction (cosine_sim < 0.95 after sleep) and MECH-166's SWS-analog comparison are both unscoreable on a bank the write path has already homogenised. SD-017's OWN stated prediction (undifferentiated without the phases, slot_cosine_sim -> 1.0) is CONFIRMED by WAKING_ONLY = 0.9993. Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2383.752002954483,
+  "config": {
+    "conditions": [
+      "NO_WRITES",
+      "WAKING_ONLY",
+      "SWS_THEN_REM"
+    ],
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "training_episodes": 200,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 30,
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8,
+    "sd016_writepath_mode_by_condition": {
+      "NO_WRITES": "off",
+      "WAKING_ONLY": "sense_only",
+      "SWS_THEN_REM": "sense_only"
+    },
+    "sd016_diversification_weight": 0.5,
+    "contextmemory_gated_content_write": true,
+    "contextmemory_write_usage_balancing": true,
+    "contextmemory_write_usage_bias_weight": 1.0,
+    "contextmemory_write_usage_decay": 0.99,
+    "context_memory_memory_requires_grad": false,
+    "use_per_stream_vs": true,
+    "use_anchor_sets": true,
+    "use_sd039_anchor_payload": true,
+    "use_sleep_loop_in_sleep_arms": true,
+    "use_noise_floor": true,
+    "noise_floor_alpha": 0.1,
+    "noise_floor_min_temperature": 1.0
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    100,
+    200
+  ]
 }

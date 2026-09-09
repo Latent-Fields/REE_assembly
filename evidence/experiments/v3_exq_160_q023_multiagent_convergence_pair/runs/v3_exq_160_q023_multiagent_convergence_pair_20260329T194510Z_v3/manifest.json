@@ -42,5 +42,24 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "experiment_purpose": "evidence"
+  "experiment_purpose": "evidence",
+  "config": {
+    "total_episodes": 600,
+    "measurement_episodes": 100,
+    "steps_per_episode": 200,
+    "n_phases": 3,
+    "lr": 0.0003,
+    "ent_bonus": 0.005,
+    "seeds": [
+      42,
+      123
+    ],
+    "conditions": [
+      "SYMMETRIC_COUPLING",
+      "MECH127_COUNTERFACTUAL",
+      "ASYMMETRIC_COUPLING"
+    ],
+    "alpha_other": 0.3,
+    "other_cost_buf_len": 30
+  }
 }

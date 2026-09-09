@@ -125,5 +125,55 @@
     "writer_defect": null,
     "n_agents": 15,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1328.5046145915985,
+  "config": {
+    "conditions": [
+      "NO_WRITES",
+      "WAKING_ONLY",
+      "SWS_THEN_REM"
+    ],
+    "context_memory_memory_requires_grad": false,
+    "context_switch_every": 5,
+    "contextmemory_gated_content_write": true,
+    "env_dangerous_num_hazards": 8,
+    "env_safe_num_hazards": 1,
+    "eval_episodes_each": 30,
+    "noise_floor_alpha": 0.1,
+    "noise_floor_min_temperature": 1.0,
+    "sd016_context_divergence_weight": 0.5,
+    "sd016_ctxdiv_batch_size": 64,
+    "sd016_cue_slot_tagger": true,
+    "sd016_cue_slot_tagger_selection": "gumbel",
+    "sd016_diversification_weight": 0.5,
+    "sd016_enabled": true,
+    "sd016_writepath_mode_by_condition": {
+      "NO_WRITES": "off",
+      "SWS_THEN_REM": "sense_only",
+      "WAKING_ONLY": "sense_only"
+    },
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "sleep_interval": 10,
+    "steps_per_episode": 150,
+    "training_episodes": 200,
+    "use_anchor_sets": true,
+    "use_noise_floor": true,
+    "use_per_stream_vs": true,
+    "use_sd039_anchor_payload": true,
+    "use_sleep_loop_in_sleep_arms": true
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    100,
+    200
+  ]
 }

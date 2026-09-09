@@ -90,5 +90,44 @@
     "n_agents": 10,
     "goal_state_present": false
   },
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1658.4998795986176,
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "SWS_THEN_REM"
+    ],
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "training_episodes": 200,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 30,
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8,
+    "sd016_writepath_mode": "off",
+    "sd016_diversification_weight": 0.5,
+    "contextmemory_gated_content_write": true,
+    "use_per_stream_vs": true,
+    "use_anchor_sets": true,
+    "use_sd039_anchor_payload": true,
+    "use_sleep_loop_in_sleep_arms": true,
+    "use_noise_floor": true,
+    "noise_floor_alpha": 0.1,
+    "noise_floor_min_temperature": 1.0
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    100,
+    200
+  ]
 }

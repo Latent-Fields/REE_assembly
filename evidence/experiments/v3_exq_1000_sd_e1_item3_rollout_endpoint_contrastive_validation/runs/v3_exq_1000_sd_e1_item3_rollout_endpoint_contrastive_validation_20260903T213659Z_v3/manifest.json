@@ -204,5 +204,93 @@
     "goal_state_present": false
   },
   "evidence_direction_note": "[2026-09-04T14:12:08Z governance, cycle governance-20260904-1347] Applied from confirmed failure_autopsy_V3-EXQ-1000_2026-09-04 (user-confirmed at its Step 8 gate 2026-09-04T13:48:34Z, REE_assembly 44d03637a2; red-team CONTESTED then accepted). Diagnostic, claim-free (unblocks MECH-135/INV-088). evidence_direction non_contributory RETAINED; epistemic_category standard. Self-route rollout_endpoint_contrastive_lifts_cr_ratio_h1 adjudicated ACCURATE: ARM_RSD clears the cr_ratio(h=1) >= 0.1 bar 6/6 (0.771-1.81; 7.7x-18x over the bar; 56x-2714x over the depth-0 incumbent; centroid-corrected 0.115/0.081/0.080/0.167/0.138/0.103, 4/6 >= 0.1) while e1coe_score_var(h=1) stays 36x-1700x short of 0.002 on 6/6. The indexer's vacuous_pass is a manifest-grammar hit (PASS assigned unconditionally on readiness while C2_rsd_absolute_bars is load_bearing and false), not scientific vacuity. The PASS token does NOT certify substrate readiness for MECH-135/INV-088. Ledger: H-objective-class-divergence confirmed on sd_e1_residual_crush_locus; new question sd_e1_var_bar_readout_crush registered (3 legs, fidelity-anchor lead). Routing ratified: /queue-experiment portfolio (arms OFF / RSD / RSD+anchor, both bars at every horizon) + substrate_queue amend of SD-e1-rollout-consistency-training; a lettered re-run of 1000 on the same h=1 bars is REFUSED.",
-  "epistemic_category": "standard"
+  "epistemic_category": "standard",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 904.2680898250001,
+  "config": {
+    "seeds": [
+      42,
+      123,
+      7,
+      2024,
+      17,
+      31
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ANCHOR",
+      "ARM_RC_DECAY",
+      "ARM_RSD"
+    ],
+    "arm_configs": {
+      "ARM_OFF": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": false,
+        "e1_rollout_sequence_divergence_enabled": false,
+        "e1_loss": "single_step_depth0"
+      },
+      "ARM_ANCHOR": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": true,
+        "e1_rollout_consistency_enabled": false,
+        "e1_rollout_sequence_divergence_enabled": false,
+        "e1_loss": "single_step_stateful"
+      },
+      "ARM_RC_DECAY": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": true,
+        "e1_rollout_sequence_divergence_enabled": false,
+        "e1_loss": "rollout_consistency"
+      },
+      "ARM_RSD": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": false,
+        "e1_rollout_sequence_divergence_enabled": true,
+        "e1_loss": "rollout_sequence_divergence"
+      }
+    },
+    "world_dim": 32,
+    "self_dim": 32,
+    "n_train_episodes": 100,
+    "steps_per_episode": 200,
+    "n_sequences": 40,
+    "rollout_horizon": 30,
+    "n_warmup_steps": 20,
+    "goal_max_steps": 2000,
+    "zworld_p0_episodes": 60,
+    "n_real_samples": 40,
+    "rc_horizon": 5,
+    "rc_decay": 0.5,
+    "rc_weight": 1.0,
+    "rsd_horizon": 5,
+    "rsd_temperature": 0.1,
+    "rsd_min_batch_classes": 2,
+    "rsd_weight": 1.0,
+    "rsd_batch_k": 8,
+    "rsd_buffer_max": 256,
+    "train_window_h": 5,
+    "cr_real_floor": 0.0001,
+    "cr_rollout_collapse_ratio": 0.1,
+    "c3_var_threshold": 0.002,
+    "lift_bar": 3.0,
+    "min_real_samples_per_horizon_floor": 10,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "unified_latent_mode": false
+  },
+  "seeds": [
+    42,
+    123,
+    7,
+    2024,
+    17,
+    31
+  ]
 }

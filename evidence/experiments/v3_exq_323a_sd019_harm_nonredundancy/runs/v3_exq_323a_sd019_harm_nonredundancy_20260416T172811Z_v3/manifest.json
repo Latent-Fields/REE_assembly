@@ -46,5 +46,24 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "warmup_episodes": 120,
+    "steps_per_episode": 200,
+    "pre_damage_transits": 20,
+    "eval_steps": 300,
+    "num_hazards": 6,
+    "heal_rate": 0.001,
+    "limb_damage_enabled": true,
+    "harm_obs_a_dim": 7,
+    "nonredundancy_weight_nr": 1.0,
+    "enc_a_loss": "MSE on harm_obs_a[5] (mean_damage)"
+  }
 }

@@ -69,5 +69,51 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 21421.086975530954,
+  "config": {
+    "env": {
+      "name": "CausalGridWorldV2",
+      "size": 6,
+      "num_hazards": 4,
+      "num_resources": 3,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_approach_threshold": 0.15,
+      "hazard_field_decay": 0.5,
+      "use_proxy_fields": true
+    },
+    "self_dim": 32,
+    "world_dim": 32,
+    "lr": 0.001,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "hazard_harm": 0.02,
+    "proximity_harm_scale": 0.05,
+    "reafference_action_dim": 0,
+    "unified_latent_mode": false,
+    "num_candidates": 32,
+    "schedule": {
+      "warmup_episodes": 150,
+      "eval_episodes": 40,
+      "steps_per_episode": 200,
+      "control_probe_steps": 25
+    },
+    "thresholds": {
+      "C1_harm_per_episode_reduction": 0.15,
+      "C2_effect_sd": 0.8,
+      "C2_abs_floor_harm_per_episode": 0.25,
+      "C3_seed_consistency": "all",
+      "C4_min_harm_events": 20,
+      "P1_floor_candidate_action_classes": 1.5,
+      "static_action_idx": 4,
+      "diag_step_denominator_ratio_max": 3.0
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ]
 }

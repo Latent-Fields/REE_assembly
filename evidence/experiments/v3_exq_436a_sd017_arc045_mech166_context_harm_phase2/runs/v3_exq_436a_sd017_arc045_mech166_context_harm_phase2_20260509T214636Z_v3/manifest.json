@@ -47,5 +47,33 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Reclassified non_contributory 2026-05-10T10:11Z (was weakens FAIL across SD-017/ARC-045/MECH-166). All three pass criteria registered n_seeds_passed=0/5. Per-seed diagnostics show waking and SWS_THEN_REM produced bit-identical metrics for every seed: seed 42 waking_slot_cosine_sim = sws_then_rem_slot_cosine_sim = 0.000966 (signed_diff = 0.0); waking_harm_rate_dangerous = sws_then_rem_harm_rate_dangerous = 0.003697 (signed_diff = 0.0); waking_harm_rate_safe = sws_then_rem_harm_rate_safe = 0.000638. Sleep refinement of context-conditioned harm threshold cannot register a signal when the waking phase produces no behavioural variation for sleep to refine. Without an upstream behavioral-diversity-generation pathway (ARC-065 cluster registered 2026-05-10: ARC-065 anchor + MECH-313 stochastic_noise_floor + MECH-314/314a/b/c structured curiosity + MECH-312 multi-channel arbitration), the agent's waking policy is monomodal and slot/harm-rate trajectories are deterministic. Sleep applied to bit-identical waking content can only produce bit-identical sleep content. The SD-017 / ARC-045 / MECH-166 cross-frequency / context-conditioned-harm tests are non_contributory pending ARC-065 substrate (V3-EXQ-543b/c falsifier path). Re-queue as V3-EXQ-436b after ARC-065 substrate lands and waking phase exhibits non-degenerate per-seed variation across slot_cosine_sim and harm_rate_dangerous."
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-10T10:11Z (was weakens FAIL across SD-017/ARC-045/MECH-166). All three pass criteria registered n_seeds_passed=0/5. Per-seed diagnostics show waking and SWS_THEN_REM produced bit-identical metrics for every seed: seed 42 waking_slot_cosine_sim = sws_then_rem_slot_cosine_sim = 0.000966 (signed_diff = 0.0); waking_harm_rate_dangerous = sws_then_rem_harm_rate_dangerous = 0.003697 (signed_diff = 0.0); waking_harm_rate_safe = sws_then_rem_harm_rate_safe = 0.000638. Sleep refinement of context-conditioned harm threshold cannot register a signal when the waking phase produces no behavioural variation for sleep to refine. Without an upstream behavioral-diversity-generation pathway (ARC-065 cluster registered 2026-05-10: ARC-065 anchor + MECH-313 stochastic_noise_floor + MECH-314/314a/b/c structured curiosity + MECH-312 multi-channel arbitration), the agent's waking policy is monomodal and slot/harm-rate trajectories are deterministic. Sleep applied to bit-identical waking content can only produce bit-identical sleep content. The SD-017 / ARC-045 / MECH-166 cross-frequency / context-conditioned-harm tests are non_contributory pending ARC-065 substrate (V3-EXQ-543b/c falsifier path). Re-queue as V3-EXQ-436b after ARC-065 substrate lands and waking phase exhibits non-degenerate per-seed variation across slot_cosine_sim and harm_rate_dangerous.",
+  "elapsed_seconds": 343.89874029159546,
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "SWS_ONLY",
+      "SWS_THEN_REM"
+    ],
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "training_episodes": 200,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 30,
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8,
+    "sd016_writepath_mode": "off",
+    "sd016_diversification_weight": 0.5,
+    "use_per_stream_vs": true,
+    "use_anchor_sets": true,
+    "use_sd039_anchor_payload": true,
+    "use_sleep_loop_in_sleep_arms": true
+  }
 }

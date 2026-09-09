@@ -40,5 +40,29 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "experiment_purpose": "evidence"
+  "experiment_purpose": "evidence",
+  "config": {
+    "n_episodes": 400,
+    "n_eval_episodes": 100,
+    "steps_per_episode": 200,
+    "commit_step_frac": 0.5,
+    "ema_tau_slow": 30.0,
+    "w_slow": 0.5,
+    "w_fast": 0.5,
+    "gate_reg": 0.001,
+    "grid_size": 8,
+    "n_hazards": 4,
+    "n_resources": 2,
+    "hazard_harm": 0.05,
+    "lr": 0.001,
+    "hidden_dim": 32,
+    "world_dim": 32,
+    "self_dim": 16,
+    "harm_dim": 8,
+    "conflict_thresh": 0.2
+  },
+  "seeds": [
+    42,
+    123
+  ]
 }

@@ -40,5 +40,28 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "FORWARD_ONLY_REPLAY",
+      "BALANCED_REPLAY"
+    ],
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "replay_steps": 64,
+    "mono_threshold": 0.6,
+    "training_episodes": 200,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 30,
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
 }

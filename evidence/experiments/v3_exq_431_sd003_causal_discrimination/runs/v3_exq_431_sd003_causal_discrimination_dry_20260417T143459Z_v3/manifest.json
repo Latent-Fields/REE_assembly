@@ -47,5 +47,28 @@
   },
   "failure_signatures": [],
   "superseded_by": null,
-  "supersedes_reason": null
+  "supersedes_reason": null,
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "TRAINED",
+      "RANDOM"
+    ],
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 100,
+    "steps_per_ep": 200,
+    "grid_size": 8,
+    "num_hazards": 3,
+    "hazard_harm": 0.3,
+    "interventional_fraction": 0.5,
+    "c2_sign_correct_env_thresh": 0.65,
+    "c3_learned_lift": 0.1,
+    "c4_min_env_events": 20,
+    "c4_min_approach_events": 20
+  }
 }

@@ -39,5 +39,9 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "SD-006 (async execution) and MECH-091 (salient event phase-reset) prerequisites unmet. Commit locus gate fires at wrong moments in synchronous substrate; downstream phase-reset absorbed by stale E3 state. Experiment premature. Does not weaken MECH-097."
+  "evidence_direction_note": "SD-006 (async execution) and MECH-091 (salient event phase-reset) prerequisites unmet. Commit locus gate fires at wrong moments in synchronous substrate; downstream phase-reset absorbed by stale E3 state. Experiment premature. Does not weaken MECH-097.",
+  "seeds": [
+    42,
+    123
+  ]
 }

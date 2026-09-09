@@ -42,5 +42,28 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "experiment_purpose": "evidence"
+  "experiment_purpose": "evidence",
+  "config": {
+    "total_episodes": 500,
+    "measurement_episodes": 125,
+    "steps_per_episode": 200,
+    "lr": 0.0003,
+    "ent_bonus": 0.005,
+    "seeds": [
+      42,
+      123
+    ],
+    "conditions": [
+      "DESCRIPTIVE",
+      "PRESCRIPTIVE",
+      "DIAGNOSTIC"
+    ],
+    "lyap_weight": 0.5,
+    "mono_margin": 0.005,
+    "te_lag_steps": [
+      1,
+      5,
+      10
+    ]
+  }
 }

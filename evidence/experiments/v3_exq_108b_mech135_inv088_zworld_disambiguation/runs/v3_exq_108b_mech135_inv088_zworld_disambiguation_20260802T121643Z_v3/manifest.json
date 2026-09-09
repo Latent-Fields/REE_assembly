@@ -88,5 +88,35 @@
     "commit": "f7d4354d3a14124768298dc72abe40d6efcd18f4",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 69.38269204000244,
+  "config": {
+    "seeds": [
+      42,
+      123
+    ],
+    "world_dim": 32,
+    "self_dim": 32,
+    "n_train_episodes": 100,
+    "steps_per_episode": 200,
+    "n_sequences": 40,
+    "rollout_horizon": 30,
+    "n_warmup_steps": 20,
+    "goal_max_steps": 2000,
+    "zworld_p0_episodes": 60,
+    "n_real_samples": 40,
+    "steps_per_real_sample": 30,
+    "c1_threshold": 0.05,
+    "c3_var_threshold": 0.002,
+    "cr_real_floor": 0.0001,
+    "cr_rollout_collapse_ratio": 0.1,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "unified_latent_mode": false
+  },
+  "seeds": [
+    42,
+    123
+  ]
 }

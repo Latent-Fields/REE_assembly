@@ -49,5 +49,27 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13,
+      99
+    ],
+    "p0_eps": 200,
+    "p1_eps": 200,
+    "steps_per_ep": 200,
+    "interventional_fraction": 0.7,
+    "interventional_margin": 0.2,
+    "target_trials_per_type": 20,
+    "curriculum_interval": 10,
+    "curriculum_prob": 1.0,
+    "curriculum_adjacent_only": true,
+    "grid_size": 8,
+    "num_hazards": 2,
+    "num_resources": 3,
+    "hazard_harm": 0.02,
+    "proximity_harm_scale": 0.1
+  }
 }

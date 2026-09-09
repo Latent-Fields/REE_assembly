@@ -46,5 +46,19 @@
     "ARC-033": "superseded"
   },
   "superseded_by": null,
-  "supersedes_reason": null
+  "supersedes_reason": null,
+  "config": {
+    "seeds": [
+      42,
+      123
+    ],
+    "warmup_episodes": 150,
+    "fwd_train_episodes": 80,
+    "dissociation_episodes": 40,
+    "steps_per_episode": 200,
+    "harm_obs_dim": 51,
+    "harm_obs_a_dim": 50,
+    "z_harm_s_dim": 32,
+    "z_harm_a_dim": 16
+  }
 }

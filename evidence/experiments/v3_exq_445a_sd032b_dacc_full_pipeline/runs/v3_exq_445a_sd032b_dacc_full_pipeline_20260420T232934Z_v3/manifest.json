@@ -46,5 +46,20 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Ratified by /governance 2026-08-29 (session governance-20260829-mac, GOV-APPLY-1 live-backlog apply, user-approved) from failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 (confirmed): prior scoring direction voided -> non_contributory. Applied flat+pack per the manifest-write rule; index regen deferred to the next full governance regen."
+  "evidence_direction_note": "Ratified by /governance 2026-08-29 (session governance-20260829-mac, GOV-APPLY-1 live-backlog apply, user-approved) from failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 (confirmed): prior scoring direction voided -> non_contributory. Applied flat+pack per the manifest-write rule; index regen deferred to the next full governance regen.",
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON_INDEPENDENT"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 150,
+    "p1_eps": 100,
+    "p2_eps": 30,
+    "steps_per_ep": 120
+  }
 }

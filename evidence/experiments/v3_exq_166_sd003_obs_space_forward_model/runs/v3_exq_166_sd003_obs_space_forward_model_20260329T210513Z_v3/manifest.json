@@ -46,5 +46,24 @@
     "SD-003": "superseded",
     "ARC-033": "superseded",
     "SD-011": "superseded"
+  },
+  "config": {
+    "seeds": [
+      42,
+      123
+    ],
+    "phase0_episodes": 50,
+    "phase1_episodes": 80,
+    "phase2_episodes": 30,
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "world_dim": 32,
+    "self_dim": 16,
+    "nav_bias": 0.65,
+    "harm_obs_dim": 51,
+    "z_harm_dim": 32,
+    "fwd_hidden_dim": 128,
+    "grid_size": 6,
+    "num_hazards": 4
   }
 }

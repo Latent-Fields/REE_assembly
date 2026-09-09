@@ -48,5 +48,30 @@
     "commit": "14f50a0fc167ab64038da3cf54b6438cd5dbc58d",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 33.28291356799309,
+  "config": {
+    "seeds": [
+      42,
+      123
+    ],
+    "world_dim": 32,
+    "self_dim": 32,
+    "n_train_episodes": 100,
+    "steps_per_episode": 200,
+    "n_sequences": 40,
+    "rollout_horizon": 30,
+    "n_warmup_steps": 20,
+    "goal_max_steps": 2000,
+    "c1_threshold": 0.05,
+    "c3_var_threshold": 0.002,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "unified_latent_mode": false
+  },
+  "seeds": [
+    42,
+    123
+  ]
 }

@@ -65,5 +65,37 @@
   "evidence_direction_note": "2026-09-05 (failure autopsy, V3-EXQ-1004, confirmed): NON_CONTRIBUTORY for both tagged claims. This run is a BUILD validation of the SD-WAYPOINT-FIELD observable, not claim evidence. It instantiates no REE agent, no z_goal, no E1/E2/E3 path, no feedback-channel ablation and no forced-seed control, so neither INV-086 nor MECH-428 was exercised; the driver says so itself ('claim_ids are carried as read-across only ... a PASS lifts the substrate block those claims' experiments were failing under, it does not score them'). The PASS itself is real and non-vacuous (C1 ON-minus-OFF visit lift met 5/5 seeds, realised ~53.6 against a 15.0 threshold, dv_headroom denominated on an ORACLE control that never reads the field) but LOW-SURPRISE by construction: the field is an analytic function of the same ground truth the demonstrator oracle uses. The manifest's self-routed claim_directions of 'supports' must not be applied -- and mechanically could not be: build_experiment_indexes.py reads evidence_direction / evidence_direction_per_claim and contains no reference to claim_directions anywhere, so this run otherwise lands in the index at evidence_direction 'unknown', which the indexer drops. Writing these fields is what puts the adjudication on the record. Full adjudication: REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-1004_2026-09-05.md and .json (confirmed 2026-09-05).",
   "epistemic_category": "standard",
   "diagnostic_evidence_adjudicated": true,
-  "adjudicated_utc": "2026-09-05T10:00:13Z"
+  "adjudicated_utc": "2026-09-05T10:00:13Z",
+  "recording_schema": "rec/v1",
+  "config": {
+    "grid_size_declared": 12,
+    "n_waypoints_declared": 3,
+    "steps_per_episode_declared": 400,
+    "waypoint_visit_reward_declared": 0.2,
+    "waypoint_field_decay_declared": 0.25,
+    "num_hazards_declared": 0,
+    "num_resources_declared": 0,
+    "energy_decay_declared": 0.0,
+    "hazard_free_contamination_gate_declared": true,
+    "waypoint_completion_reward_declared": 0.8,
+    "sequence_commitment_timeout_declared": 20,
+    "hidden_dim_declared": 128,
+    "lr_declared": 0.001,
+    "grad_clip_declared": 1.0,
+    "demo_episodes_declared": 60,
+    "bc_steps_declared": 300,
+    "bc_batch_declared": 256,
+    "eval_episodes_declared": 20,
+    "c1_visit_lift_declared": 15.0,
+    "c2_seq_lift_declared": 5.0,
+    "c3_bc_acc_lift_declared": 0.05,
+    "min_seeds_declared": 3
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ]
 }

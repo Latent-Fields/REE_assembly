@@ -45,5 +45,32 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13,
+      91
+    ],
+    "conditions": [
+      "TRAINED"
+    ],
+    "p0_episodes": 80,
+    "p1_episodes": 100,
+    "p2_base_episodes": 100,
+    "p2_extend_episodes": 25,
+    "p2_cap_episodes": 200,
+    "steps_per_ep": 200,
+    "grid_size": 8,
+    "num_hazards": 4,
+    "hazard_harm": 0.3,
+    "interventional_fraction": 0.5,
+    "c1_forward_r2_thresh": 0.9,
+    "c2_ratio_low": 0.3,
+    "c2_ratio_high": 0.7,
+    "c3_approach_snr_thresh": 3.0,
+    "c4_min_events_per_type": 20,
+    "min_seeds_pass": 3
+  }
 }

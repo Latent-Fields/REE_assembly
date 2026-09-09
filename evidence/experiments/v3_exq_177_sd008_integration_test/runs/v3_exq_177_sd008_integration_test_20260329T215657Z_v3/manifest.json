@@ -39,5 +39,20 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_zworld-integration-cluster_2026-06-06. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_zworld-integration-cluster_2026-06-06. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack.",
+  "config": {
+    "alpha_world": 0.9,
+    "world_dim": 32,
+    "warmup_episodes": 300,
+    "warmup_steps_per_ep": 100,
+    "eval_episodes": 50,
+    "eval_steps_per_ep": 100,
+    "sd007_reafference": true,
+    "sd008_alpha_correction": true,
+    "sd003_counterfactual": true
+  },
+  "seeds": [
+    42,
+    123
+  ]
 }
