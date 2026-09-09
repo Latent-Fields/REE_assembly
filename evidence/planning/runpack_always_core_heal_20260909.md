@@ -114,6 +114,12 @@ Both clusters carry a **blank `queue_id`**, so they group only with other blanks
 because a blank-queue_id grouping is the weakest form of the identity match that
 `_detect_and_mark_duplicate_emissions` documents as load-bearing.
 
+**OWNER: `GFLAG-0245`** (`evidence_discrepancy`, claims Q-002 + MECH-033), raised
+2026-09-09T14:37Z so this does not live only in a planning note. Note MECH-033's pair
+is PASS/`supports` on both runs, so accepting the supersession REMOVES one supporting
+entry for that claim -- which is why it is a `/governance` decision and not housekeeping.
+To accept: re-run the additive heal without the `--exclude-run-id` guards.
+
 ## 4. What a future session should pick up
 
 1. `/governance` disposition on the 2 duplicate-emission clusters in 3b; if
