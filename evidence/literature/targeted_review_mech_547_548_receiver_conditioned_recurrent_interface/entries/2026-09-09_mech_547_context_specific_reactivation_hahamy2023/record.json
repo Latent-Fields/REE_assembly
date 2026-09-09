@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_547_548_receiver_conditioned_recurrent_interface",
+  "entry_id": "2026-09-09_mech_547_context_specific_reactivation_hahamy2023",
+  "timestamp_utc": "2026-09-09T10:29:00Z",
+  "claim_ids_tested": ["MECH-547"],
+  "source": {
+    "title": "The human brain reactivates context-specific past information at event boundaries of naturalistic experiences",
+    "authors": ["Avital Hahamy", "Haim Dubossarsky", "Timothy E. J. Behrens"],
+    "year": 2023,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-023-01331-6",
+    "volume": "26",
+    "pages": "1080-1089"
+  },
+  "evidence_class": "human_fmri",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Peer-reviewed human fMRI with replication across two naturalistic datasets. Past-event representations reactivated in hippocampus and default-mode regions at event boundaries, and reactivation was selective for past events relevant to the current narrative context. This directly supports the weaker biological analogue of MECH-547 -- current context determines which already-stored information is exposed/reinstated -- while not demonstrating a learned latent T(sender,receiver) mapping or proving receiver-side state is the conditioning variable.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a REE T(A,B) gain survives receiver-state permutation, this paper does not rescue MECH-547: context-selective biological reactivation is not evidence that receiver state causally conditions the bridge.",
+    "If sender-side cue selection T(A) explains the same gain as T(A,B), the biological result is compatible with cue-conditioned indexing rather than receiver-conditioned translation."
+  ],
+  "tags": ["mech-547", "hippocampus", "context", "reactivation", "event_boundaries", "retrieval", "human", "fmri"],
+  "mapping": {
+    "source_claim_statement": "During naturalistic narrative comprehension, neural representations of relevant past events reactivate at event boundaries in hippocampus and default-mode regions; reactivation is selective for contextually relevant past events.",
+    "ree_translation": "Adjacent biological support for MECH-547: the current state of an ongoing process can select which part of stored information becomes exposed to downstream systems. The result motivates receiver/context-conditioned read surfaces rather than a universal fixed readout.",
+    "mapping_caveat": "The experiment measures selective reactivation, not an explicit cross-representational translation function; current narrative context may operate as a sender-side retrieval cue rather than receiver-state conditioning in the MECH-547 sense.",
+    "source_context": "Human fMRI; naturalistic narratives; event-boundary reactivation; replicated across two datasets."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.63,
+    "transfer_risk": 0.58,
+    "notes": "Strong source and clean context-selectivity result; moderate mapping because translation and receiver-state causality are not directly tested."
+  }
+}
