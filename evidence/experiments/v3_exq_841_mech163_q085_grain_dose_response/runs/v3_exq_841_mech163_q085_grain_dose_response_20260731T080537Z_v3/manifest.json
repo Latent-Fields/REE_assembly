@@ -635,5 +635,238 @@
     "writer_defect": null,
     "n_agents": 48,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 53797.833490586985,
+  "config": {
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "schedule": {
+      "n_episodes_train": 120,
+      "steps_per_episode": 72,
+      "n_episodes_probe": 30,
+      "deval_step": 36
+    },
+    "arms": [
+      "A_OFF",
+      "A_FLAT",
+      "A_HIER_S2",
+      "A_HIER_S3",
+      "A_HIER_S5",
+      "A_FLATCHUNK_S5"
+    ],
+    "arm_config_slices": {
+      "A_OFF": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": false,
+        "use_chunk_maintenance": false,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false,
+        "use_maintenance_release": false,
+        "use_natural_commit_urgency_release": false,
+        "use_vs_commit_release": false,
+        "use_closure_decommit": false,
+        "probe": {
+          "n_episodes_probe": 30,
+          "deval_step": 36,
+          "devaluation_route": "env_resource_benefit_to_zero"
+        }
+      },
+      "A_FLAT": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": false,
+        "use_chunk_maintenance": false,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false,
+        "use_maintenance_release": false,
+        "use_natural_commit_urgency_release": false,
+        "use_vs_commit_release": false,
+        "use_closure_decommit": false,
+        "use_dualsystem_arbitration": true,
+        "probe": {
+          "n_episodes_probe": 30,
+          "deval_step": 36,
+          "devaluation_route": "env_resource_benefit_to_zero"
+        }
+      },
+      "A_HIER_S2": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": true,
+        "use_chunk_proposal_injection": true,
+        "use_chunk_replay_origin_path": false,
+        "use_maintenance_release": false,
+        "use_natural_commit_urgency_release": false,
+        "use_vs_commit_release": false,
+        "use_closure_decommit": false,
+        "chunk_max_size": 2,
+        "probe": {
+          "n_episodes_probe": 30,
+          "deval_step": 36,
+          "devaluation_route": "env_resource_benefit_to_zero"
+        }
+      },
+      "A_HIER_S3": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": true,
+        "use_chunk_proposal_injection": true,
+        "use_chunk_replay_origin_path": false,
+        "use_maintenance_release": false,
+        "use_natural_commit_urgency_release": false,
+        "use_vs_commit_release": false,
+        "use_closure_decommit": false,
+        "chunk_max_size": 3,
+        "probe": {
+          "n_episodes_probe": 30,
+          "deval_step": 36,
+          "devaluation_route": "env_resource_benefit_to_zero"
+        }
+      },
+      "A_HIER_S5": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": true,
+        "use_chunk_proposal_injection": true,
+        "use_chunk_replay_origin_path": false,
+        "use_maintenance_release": false,
+        "use_natural_commit_urgency_release": false,
+        "use_vs_commit_release": false,
+        "use_closure_decommit": false,
+        "chunk_max_size": 5,
+        "probe": {
+          "n_episodes_probe": 30,
+          "deval_step": 36,
+          "devaluation_route": "env_resource_benefit_to_zero"
+        }
+      },
+      "A_FLATCHUNK_S5": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": true,
+        "use_chunk_proposal_injection": true,
+        "use_chunk_replay_origin_path": false,
+        "use_maintenance_release": false,
+        "use_natural_commit_urgency_release": false,
+        "use_vs_commit_release": false,
+        "use_closure_decommit": false,
+        "chunk_max_size": 5,
+        "use_dualsystem_arbitration": true,
+        "probe": {
+          "n_episodes_probe": 30,
+          "deval_step": 36,
+          "devaluation_route": "env_resource_benefit_to_zero"
+        }
+      }
+    },
+    "thresholds": {
+      "MIN_COMMITTED_CHUNKS": 1,
+      "MIN_REALISED_LENGTH_SPREAD": 0.5,
+      "MAX_POST_DEVAL_DELIVERED_BENEFIT": 1e-09,
+      "MIN_PRE_DEVAL_DELIVERED_BENEFIT": 0.05,
+      "MIN_POST_DEVAL_STEPS": 200,
+      "MIN_PRE_DEVAL_APPROACH_RATE": 0.05,
+      "MONOTONIC_RHO_FLOOR": 0.6,
+      "MONOTONIC_ABS_MARGIN": 0.05,
+      "SEED_PASS_FRACTION": 0.75
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    707,
+    808
+  ]
 }

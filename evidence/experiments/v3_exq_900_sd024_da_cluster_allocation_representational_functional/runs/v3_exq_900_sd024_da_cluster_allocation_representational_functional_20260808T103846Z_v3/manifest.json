@@ -131,5 +131,48 @@
     "writer_defect": null,
     "n_agents": 3,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 956.5235182360001,
+  "config": {
+    "grid_size": 8,
+    "num_hazards": 2,
+    "num_resources": 4,
+    "world_dim": 16,
+    "alpha_world": 0.9,
+    "hazard_harm": 0.4,
+    "resource_benefit": 0.5,
+    "episodes": 30,
+    "steps_per_episode": 60,
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "da_allocation_scale": 40.0,
+    "da_jitter_radius": 0.3,
+    "da_bandwidth_narrowing": 0.0,
+    "da_benefit_num_centers": 256,
+    "kernel_bandwidth": 1.0,
+    "benefit_terrain_live_producer": true,
+    "thresholds": {
+      "RHO_CONTROL_FLOOR": 0.9,
+      "RHO_LIVE_MIN": 0.3,
+      "N_EXPANSION_MIN": 5,
+      "N_HARM_MIN": 5
+    },
+    "da_sweep": [
+      0.0,
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      1.0
+    ]
+  },
+  "seeds": [
+    11,
+    23,
+    37
+  ]
 }

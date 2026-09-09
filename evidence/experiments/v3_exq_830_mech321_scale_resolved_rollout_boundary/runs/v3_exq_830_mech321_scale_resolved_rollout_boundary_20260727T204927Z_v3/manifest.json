@@ -160,5 +160,127 @@
   },
   "machine": "DLAPTOP-5.local",
   "machine_class": "darwin-arm64-py3.13-torch2.12.0",
-  "substrate_hash": "6b5f1090fa2aeddb94462b685b6419d101c6fa9377d39236b8195962022d7ce2"
+  "substrate_hash": "6b5f1090fa2aeddb94462b685b6419d101c6fa9377d39236b8195962022d7ce2",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 8540.540480375057,
+  "config": {
+    "seeds": [
+      11,
+      23,
+      47,
+      71,
+      97
+    ],
+    "arms": [
+      "ARM_PROBE_OFF",
+      "ARM_PROBE_ON"
+    ],
+    "warmup_episodes": 40,
+    "measure_episodes": 20,
+    "steps_per_episode": 24,
+    "max_sweep_ticks": 8,
+    "decomposition_vs_threshold": 0.5,
+    "decomposition_depth_cap": 3,
+    "goal_benefit_threshold": 0.05,
+    "goal_benefit_threshold_provenance": {
+      "value_source": "REEConfig.enable_goal_stream default (config.py:5095)",
+      "from_dims_default_rejected": 0.1,
+      "measured_steps": 2941,
+      "measured_max_benefit_exposure": 0.10177,
+      "measured_frac_steps_above_0p1": 0.0003,
+      "measured_frac_steps_above_0p05": 0.0813
+    },
+    "harsh_env_drift_interval": 1,
+    "harsh_world_rule_shift_enabled": true,
+    "harsh_world_rule_shift_interval": 12,
+    "harsh_world_rule_shift_depth": 2,
+    "seeded_chunk_sequence": [
+      0,
+      1,
+      2
+    ],
+    "zgoal_norm_std_floor": 0.0001,
+    "zgoal_present_frac_floor": 0.1,
+    "instrumentation_coverage_floor": 0.99,
+    "fast_fire_min": 1,
+    "slow_fire_min_sweeps": 5,
+    "slow_fire_min_seeds": 2,
+    "cofire_max_frac": 0.5,
+    "slow_only_min_sweeps": 3,
+    "arm_config_slices": {
+      "ARM_PROBE_OFF": {
+        "env": {
+          "size": 8,
+          "num_hazards": 3,
+          "num_resources": 6,
+          "use_proxy_fields": true,
+          "env_drift_interval": 1,
+          "world_rule_shift_enabled": true,
+          "world_rule_shift_interval": 12,
+          "world_rule_shift_depth": 2
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "measure_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "z_goal_enabled": true,
+        "benefit_threshold": 0.05,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3,
+        "use_decomposition_scale_resolved_probe": false
+      },
+      "ARM_PROBE_ON": {
+        "env": {
+          "size": 8,
+          "num_hazards": 3,
+          "num_resources": 6,
+          "use_proxy_fields": true,
+          "env_drift_interval": 1,
+          "world_rule_shift_enabled": true,
+          "world_rule_shift_interval": 12,
+          "world_rule_shift_depth": 2
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "measure_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "z_goal_enabled": true,
+        "benefit_threshold": 0.05,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3,
+        "use_decomposition_scale_resolved_probe": true
+      }
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    47,
+    71,
+    97
+  ]
 }

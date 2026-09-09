@@ -75,5 +75,38 @@
     "n_agents": 26096,
     "goal_state_present": false
   },
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_dacc-cluster-862a-870a_2026-08-03. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_dacc-cluster-862a-870a_2026-08-03. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3533.070831,
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "size": 10,
+    "num_hazards": 2,
+    "num_resources": 4,
+    "steps_per_ep": 80,
+    "switch_step": 40,
+    "p1_eps": 90,
+    "p2_eps": 20,
+    "dacc_weight": 3.0,
+    "dacc_suppression_weight": 1.5,
+    "dacc_interaction_weight": 0.8,
+    "dacc_foraging_weight": 0.5,
+    "dacc_bias_max_abs": 2.0,
+    "outcome_sensitivity_margin": 0.15,
+    "execution_strength_equivalence_margin": 0.05,
+    "margin_variance_floor": 0.0001
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ]
 }

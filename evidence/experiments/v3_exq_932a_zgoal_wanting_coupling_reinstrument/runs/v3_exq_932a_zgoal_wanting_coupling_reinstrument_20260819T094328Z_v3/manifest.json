@@ -422,5 +422,73 @@
     "goal_state_present": true
   },
   "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_V3-EXQ-932a_2026-08-20.json: V3-EXQ-932a is claim-free (claim_ids []), diagnostic-purpose, promotes nothing and weights no governance; no claim-layer disposition is owed and none is offered. Its GOV-FAILLOC-1 exposure -- a claim-free run's prose making an organism-level competence assertion with no claims.yaml gate in front of it -- is ABSENT: the driver contains exactly one organism-level mention and it is a question, the manifest note independently disclaims causal inference, and the predecessor cluster's standing prohibition against paraphrasing any of this as 'wanting does not work in REE' is respected. Two findings bound how the run should be read. (1) Its label is carried by the NON-PRODUCTION arm: z_goal_seeding_gain ships at 1.0, and in that arm NO wanting coupling clears the 0.15 floor on r -- the only one flagged nontrivial qualifies on |rho| and is NEGATIVE (r -0.132, rho -0.219), opposite to the incentive-salience reading the label evokes, with a within-seed pooled r of +0.541, opposite again. All positive floor-clearing couplings live in the gain-4.0 arm. The label logic is an any() across BOTH arms, sign-agnostic, and ungated (the PASS would be identical had every coupling come back trivial). This is a FIFTH instance of the pattern the 2026-08-16 human gate flagged as CROSS-CLUSTER decision 4 and should be routed to that already-authorised warn-only lint. (2) The production arm does NOT reproduce the predecessor autopsy's sole surviving finding: wanting -> moved pooled r fell +0.373 -> +0.081 and its partial on z_goal +0.432 -> +0.070, from 3/3 seeds replicated to 2/3 settled, and it no longer clears the floor. That comparison is CONFOUNDED and cannot be attributed to instrument repair: the queue note calls g1_emergent 'byte-identical' to 932's operating point, which is true of the knob and false of the substrate -- substrate_commit moved c38e083d -> 196869ee, total_eval_steps fell 1013 -> 753 (-26%) at identical env settings, and z_goal liveness moved from seed 2 at active_frac 0.0087 to seed 0 at 0.4691. 932's measurement-validity PASS stands and is NOT superseded; what is in doubt is the coupling narrative at the production operating point, and this run cannot settle it.",
-  "epistemic_category": "standard"
+  "epistemic_category": "standard",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 4955.602888663299,
+  "config": {
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "scheduled_action_block_enabled": true,
+      "scheduled_action_block_interval": 10,
+      "scheduled_action_block_prob": 0.4,
+      "use_proxy_fields": true
+    },
+    "warmup_episodes": 50,
+    "eval_episodes": 5,
+    "steps_per_episode": 200,
+    "arms": {
+      "g1_emergent": {
+        "z_goal_seeding_gain": 1.0
+      },
+      "g4_seeded": {
+        "z_goal_seeding_gain": 4.0
+      }
+    },
+    "coupling_floor_r": 0.15,
+    "min_coupling_n": 200,
+    "min_dv_positives": 20,
+    "min_dv_base_rate": 0.05,
+    "min_coupling_n_per_seed": 50,
+    "min_dv_positives_per_seed": 10,
+    "channel_std_floor": 0.0001,
+    "z_goal_dose_separation_floor": 0.05,
+    "approach_raw_thresh": 0.01,
+    "lag_horizons": {
+      "approach": 1,
+      "benefit": 3,
+      "moved": 1,
+      "reef_exit": 1
+    },
+    "core_channels": [
+      "z_harm_a",
+      "z_harm_un",
+      "drive"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

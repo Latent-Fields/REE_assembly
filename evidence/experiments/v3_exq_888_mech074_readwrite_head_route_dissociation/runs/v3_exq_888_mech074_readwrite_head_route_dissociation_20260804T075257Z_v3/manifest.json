@@ -699,5 +699,107 @@
     "writer_defect": null,
     "n_agents": 12,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2096.217704253999,
+  "config": {
+    "threat_env_kwargs": {
+      "size": 10,
+      "num_hazards": 4,
+      "num_resources": 4,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "use_proxy_fields": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "limb_damage_enabled": true,
+      "damage_increment": 0.15,
+      "failure_prob_scale": 0.3,
+      "heal_rate": 0.002,
+      "scheduled_limb_damage_enabled": true,
+      "scheduled_limb_damage_interval": 8,
+      "scheduled_limb_damage_prob": 1.0,
+      "scheduled_limb_damage_magnitude": 0.25,
+      "scheduled_limb_damage_limb_selection": "all"
+    },
+    "neutral_env_kwargs": {
+      "size": 10,
+      "num_hazards": 0,
+      "num_resources": 4,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "use_proxy_fields": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "limb_damage_enabled": true,
+      "damage_increment": 0.15,
+      "failure_prob_scale": 0.3,
+      "heal_rate": 0.002,
+      "scheduled_limb_damage_enabled": false,
+      "scheduled_limb_damage_interval": 8,
+      "scheduled_limb_damage_prob": 1.0,
+      "scheduled_limb_damage_magnitude": 0.25,
+      "scheduled_limb_damage_limb_selection": "all"
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_FULL",
+        "gain_max": 2.5,
+        "tag_on": true
+      },
+      {
+        "arm_id": "ARM_TAG_OFF",
+        "gain_max": 2.5,
+        "tag_on": false
+      },
+      {
+        "arm_id": "ARM_GAIN_FLAT",
+        "gain_max": 1.0,
+        "tag_on": true
+      },
+      {
+        "arm_id": "ARM_OFF",
+        "gain_max": 1.0,
+        "tag_on": false
+      }
+    ],
+    "collect_episodes": 40,
+    "steps_per_episode": 60,
+    "readout_samples": 20000,
+    "world_dim": 32,
+    "self_dim": 32,
+    "harm_dim": 32,
+    "harm_a_dim": 16,
+    "bla_arousal_threshold_on": 0.4,
+    "bla_arousal_peak": 0.7,
+    "bla_window_steps": 5,
+    "bla_retrieval_bias_alpha": 0.6,
+    "thresholds": {
+      "MIN_TRACES": 8,
+      "GT_AROUSAL_STD_FLOOR": 0.02,
+      "MS_RANGE_FLOOR": 0.05,
+      "RB_RANGE_FLOOR": 0.01,
+      "AOR_Z_MARGIN": 0.03,
+      "OFF_AOR_Z_FLAT_MAX": 0.02,
+      "SEEDS_PASS_MIN": 2
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    45
+  ]
 }

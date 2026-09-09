@@ -721,5 +721,127 @@
     "writer_defect": null,
     "n_agents": 15,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1850.2514129649999,
+  "config": {
+    "threat_env_kwargs": {
+      "size": 10,
+      "num_hazards": 4,
+      "num_resources": 4,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "use_proxy_fields": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "limb_damage_enabled": true,
+      "damage_increment": 0.15,
+      "failure_prob_scale": 0.3,
+      "heal_rate": 0.002,
+      "scheduled_limb_damage_enabled": true,
+      "scheduled_limb_damage_interval": 8,
+      "scheduled_limb_damage_prob": 1.0,
+      "scheduled_limb_damage_magnitude": 0.25,
+      "scheduled_limb_damage_limb_selection": "all"
+    },
+    "neutral_env_kwargs": {
+      "size": 10,
+      "num_hazards": 0,
+      "num_resources": 4,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "use_proxy_fields": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "limb_damage_enabled": true,
+      "damage_increment": 0.15,
+      "failure_prob_scale": 0.3,
+      "heal_rate": 0.002,
+      "scheduled_limb_damage_enabled": false,
+      "scheduled_limb_damage_interval": 8,
+      "scheduled_limb_damage_prob": 1.0,
+      "scheduled_limb_damage_magnitude": 0.25,
+      "scheduled_limb_damage_limb_selection": "all"
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_REMAP_OFF",
+        "remap_sigma": 1000000000.0,
+        "remap_live": false
+      },
+      {
+        "arm_id": "ARM_SIGMA_10",
+        "remap_sigma": 1.0,
+        "remap_live": true
+      },
+      {
+        "arm_id": "ARM_SIGMA_15",
+        "remap_sigma": 1.5,
+        "remap_live": true
+      },
+      {
+        "arm_id": "ARM_SIGMA_20",
+        "remap_sigma": 2.0,
+        "remap_live": true
+      },
+      {
+        "arm_id": "ARM_SIGMA_25",
+        "remap_sigma": 2.5,
+        "remap_live": true
+      }
+    ],
+    "p0_episodes": 20,
+    "measure_episodes": 16,
+    "steps_per_episode": 60,
+    "episodes_per_run": 36,
+    "measurement_baseline_restore": "ContextMemory restored to the end-of-P0 snapshot at the start of EVERY measurement episode, identically in ALL arms",
+    "remap_sigma_sweep": [
+      1.0,
+      1.5,
+      2.0,
+      2.5
+    ],
+    "supersedes": "v3_exq_894_mech074d_bla_remap_attribution_selectivity_20260808T005219Z_v3",
+    "world_dim": 32,
+    "self_dim": 32,
+    "harm_dim": 32,
+    "harm_a_dim": 16,
+    "use_e2_harm_a": true,
+    "bla_arousal_threshold_on": 0.4,
+    "bla_arousal_peak": 0.7,
+    "bla_window_steps": 5,
+    "bla_remap_code_fraction": 0.33,
+    "bla_context_remap_blend": 0.5,
+    "bla_remap_requires_attribution": true,
+    "remap_sigma_p0_all_arms": 1000000000.0,
+    "thresholds": {
+      "MIN_REMAP_EVENTS": 20,
+      "SLOT_DIFF_STD_FLOOR": 0.02,
+      "PE_SPREAD_FLOOR": 1e-06,
+      "MIN_WINDOWS_PER_CONTEXT": 4,
+      "ATTR_MASS_EXCESS_MARGIN": 0.05,
+      "CONTEXT_JACCARD_GAP_MARGIN": 0.05,
+      "SLOT_DIFF_RATIO_FLOOR": 0.5,
+      "FIRE_FRAC_CEIL": 0.25,
+      "SEEDS_PASS_MIN": 2
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    45
+  ]
 }

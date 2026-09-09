@@ -93,5 +93,38 @@
     "commit": "2c70b6dc06187a229cfc1d01842d6e7fe98459d2",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_CONSTITUTION",
+      "ARM_SHUFFLED"
+    ],
+    "n_banks": 32,
+    "k_candidates": 4,
+    "world_dim": 8,
+    "action_dim": 4,
+    "horizon": 3,
+    "perseverated_class": "per-bank raw-F argmin (probed, not fixed)",
+    "dominant_repeats": 6,
+    "history_depth": 8,
+    "gng_perseveration_floor": 0.5,
+    "conversion_floor": 0.5,
+    "seed_majority": 2,
+    "specificity_gap_floor": 0.3,
+    "f_eligibility_envelope_floor": 0.1,
+    "suppression_range_floor": 0.25,
+    "envelope_size_floor": 2.0
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

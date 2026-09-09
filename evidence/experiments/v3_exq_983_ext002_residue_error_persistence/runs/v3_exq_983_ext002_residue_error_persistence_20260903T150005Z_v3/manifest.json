@@ -198,5 +198,44 @@
     "n_agents": 6,
     "goal_state_present": false
   },
-  "evidence_direction_note": "Governance 2026-09-03 (cycle governance-20260903T2013): ratified confirmed autopsy failure_autopsy_ext-claim-probe-cluster_2026-09-03 (REE_assembly af8d2cabde) at this cycle's Step 2b, user present, cross-model red-team applied. weakens WITHDRAWN -> non_contributory. The DV (decline_gap) realised a range of 0.0468 across all six cells against a C1 threshold of 0.15 (3.2x short), and the three seeds differ ~31x in realised harm_rate_train (0.024 vs 0.73/0.74), so no effect of the registered size could have been observed. Residual carried per this cycle's red-team, not erased: the P3 positive control passed at 51x margin and the residue ablation reached behaviour (action-stream divergence 0.19-0.30) while decline_gap did not move -- a WEAK null the redesign must pre-register a headroom-derived bar against, plus a training-completion gate before pooling seeds."
+  "evidence_direction_note": "Governance 2026-09-03 (cycle governance-20260903T2013): ratified confirmed autopsy failure_autopsy_ext-claim-probe-cluster_2026-09-03 (REE_assembly af8d2cabde) at this cycle's Step 2b, user present, cross-model red-team applied. weakens WITHDRAWN -> non_contributory. The DV (decline_gap) realised a range of 0.0468 across all six cells against a C1 threshold of 0.15 (3.2x short), and the three seeds differ ~31x in realised harm_rate_train (0.024 vs 0.73/0.74), so no effect of the registered size could have been observed. Residual carried per this cycle's red-team, not erased: the P3 positive control passed at 51x margin and the residue ablation reached behaviour (action-stream divergence 0.19-0.30) while decline_gap did not move -- a WEAK null the redesign must pre-register a headroom-derived bar against, plus a training-completion gate before pooling seeds.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 33972.57313389995,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "size": 6,
+    "num_hazards": 4,
+    "num_resources": 3,
+    "hazard_harm": 0.02,
+    "proximity_harm_scale": 0.05,
+    "use_proxy_fields": true,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "lr": 0.001,
+    "num_candidates": 32,
+    "warmup_episodes": 300,
+    "steps_per_episode": 200,
+    "unified_latent_mode": false,
+    "reafference_action_dim": 0,
+    "arms": [
+      "A0_INTACT",
+      "A1_RESIDUE_FROZEN"
+    ],
+    "selection_rule": "argmin_over_candidate_residue_scores",
+    "repeat_error_key": "(pre_action_grid_x, pre_action_grid_y, executed_action_class)",
+    "control_probe_steps": 25,
+    "thresholds": {
+      "C1_decline_gap": 0.15,
+      "C2_effect_sd": 0.8,
+      "C3_min_seeds": 2,
+      "C4_min_revisits": 20
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ]
 }

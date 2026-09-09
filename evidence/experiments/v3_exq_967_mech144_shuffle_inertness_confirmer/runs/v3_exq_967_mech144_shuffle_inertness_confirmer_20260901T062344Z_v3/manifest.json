@@ -119,5 +119,156 @@
     "n_agents": 2,
     "goal_state_present": true
   },
-  "evidence_direction_note": "Ratified by governance cycle gov-cycle-20260901 (2026-09-01) from confirmed failure_autopsy_V3-EXQ-967_2026-09-01 (autopsy confirmed in REE_assembly 5ff838702b). Cheap confirmer; establishes the agent_energy route is OPEN and REFUTES the 966-cluster note's third closed route (agent_energy floor-clamped at 0.0 under a dominating 0.01/step decay): energy_mean 0.4892/0.4845, at floor on only 10.2% of steps, arms differ by up to 0.99 across 709 of 2400 matched steps. The other two routes remain open. Claimless diagnostic."
+  "evidence_direction_note": "Ratified by governance cycle gov-cycle-20260901 (2026-09-01) from confirmed failure_autopsy_V3-EXQ-967_2026-09-01 (autopsy confirmed in REE_assembly 5ff838702b). Cheap confirmer; establishes the agent_energy route is OPEN and REFUTES the 966-cluster note's third closed route (agent_energy floor-clamped at 0.0 under a dominating 0.01/step decay): energy_mean 0.4892/0.4845, at floor on only 10.2% of steps, arms differ by up to 0.99 across 709 of 2400 matched steps. The other two routes remain open. Claimless diagnostic.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1074.028341313,
+  "config": {
+    "seed": 42,
+    "seeds": [
+      42
+    ],
+    "arms": [
+      "ARM_FIXED_VALUE",
+      "ARM_SHUFFLED_VALUE"
+    ],
+    "block_high_idx": {
+      "ARM_FIXED_VALUE": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ARM_SHUFFLED_VALUE": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "logged_blocks": [
+      2,
+      3
+    ],
+    "warmup_episodes": 12,
+    "n_blocks": 4,
+    "episodes_per_block": 10,
+    "steps_per_episode": 120,
+    "grid_size": 9,
+    "num_hazards": 0,
+    "num_resources": 6,
+    "resource_benefit": 0.3,
+    "high_amp": 1.0,
+    "low_amp": 0.15,
+    "wanting_weight": 5.0,
+    "min_logged_contacts": 4,
+    "min_unclamped_frac": 0.5,
+    "energy_tol": 1e-09,
+    "min_post_divergence_steps": 20,
+    "p0_lr": 0.0003,
+    "arm_config_slices": {
+      "ARM_FIXED_VALUE": {
+        "env_kwargs": {
+          "size": 9,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "resource_benefit": 0.3,
+          "high_amp": 1.0,
+          "low_amp": 0.15,
+          "n_resource_types": 2,
+          "per_axis_drive_enabled": false,
+          "resource_respawn_on_consume": true,
+          "max_episode_steps": 120
+        },
+        "schedule": {
+          "warmup_episodes": 12,
+          "n_blocks": 4,
+          "episodes_per_block": 10,
+          "steps_per_episode": 120,
+          "logged_blocks": [
+            2,
+            3
+          ]
+        },
+        "agent": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "wanting_weight": 5.0,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "z_goal_enabled": true,
+          "use_incentive_token_bank": true,
+          "incentive_use_per_axis_drive": false,
+          "use_resource_encoder": true
+        },
+        "readout_constants": {
+          "min_logged_contacts": 4,
+          "min_unclamped_frac": 0.5,
+          "energy_tol": 1e-09,
+          "min_post_divergence_steps": 20,
+          "p0_lr": 0.0003
+        },
+        "block_high_idx": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "arm": "ARM_FIXED_VALUE"
+      },
+      "ARM_SHUFFLED_VALUE": {
+        "env_kwargs": {
+          "size": 9,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "resource_benefit": 0.3,
+          "high_amp": 1.0,
+          "low_amp": 0.15,
+          "n_resource_types": 2,
+          "per_axis_drive_enabled": false,
+          "resource_respawn_on_consume": true,
+          "max_episode_steps": 120
+        },
+        "schedule": {
+          "warmup_episodes": 12,
+          "n_blocks": 4,
+          "episodes_per_block": 10,
+          "steps_per_episode": 120,
+          "logged_blocks": [
+            2,
+            3
+          ]
+        },
+        "agent": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "wanting_weight": 5.0,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "z_goal_enabled": true,
+          "use_incentive_token_bank": true,
+          "incentive_use_per_axis_drive": false,
+          "use_resource_encoder": true
+        },
+        "readout_constants": {
+          "min_logged_contacts": 4,
+          "min_unclamped_frac": 0.5,
+          "energy_tol": 1e-09,
+          "min_post_divergence_steps": 20,
+          "p0_lr": 0.0003
+        },
+        "block_high_idx": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "arm": "ARM_SHUFFLED_VALUE"
+      }
+    }
+  },
+  "seeds": [
+    42
+  ]
 }

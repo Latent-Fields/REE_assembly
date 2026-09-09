@@ -92,5 +92,91 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "8fa72cb724060044c3bfc7a8c6de72d6e693acee35170608afeba51b1f17df8d"
+  "substrate_hash": "8fa72cb724060044c3bfc7a8c6de72d6e693acee35170608afeba51b1f17df8d",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 12862.356745975092,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "p0": 60,
+    "p1": 70,
+    "p2": 40,
+    "steps_per_episode": 48,
+    "cone_min_cosine_floor": 0.9,
+    "dist_floor": 0.05,
+    "min_live_rules": 2,
+    "off_max_live_ceil": 1,
+    "frac_active_floor": 0.1,
+    "prop_nonvac_floor": 0.001,
+    "diff_delta_margin": 0.05,
+    "diff_floor": 0.05,
+    "seed_pass_fraction": 0.6666666666666666,
+    "lr_lpfc_bias": 0.0005,
+    "arm_config_slice_off": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": false,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "arm_config_slice_on": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": true,
+      "crf_cue_baseline_alpha": 0.02
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ]
 }

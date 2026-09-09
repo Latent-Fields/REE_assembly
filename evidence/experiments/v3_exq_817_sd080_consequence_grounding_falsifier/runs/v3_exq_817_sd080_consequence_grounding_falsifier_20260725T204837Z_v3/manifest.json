@@ -76,5 +76,47 @@
   },
   "machine": "DLAPTOP-5.local",
   "machine_class": "darwin-arm64-py3.13-torch2.12.0",
-  "substrate_hash": "3d938bd225a64263455af0a68cedbbb1321b62679c67dddcfb98fa34e3d4bdba"
+  "substrate_hash": "3d938bd225a64263455af0a68cedbbb1321b62679c67dddcfb98fa34e3d4bdba",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7642.570094375056,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "env_size": 6,
+    "alpha_world": 0.9,
+    "world_dim": 32,
+    "self_dim": 32,
+    "action_object_dim": 16,
+    "warmup_episodes": 40,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "n_states": 120,
+    "grounding_transitions": 2400,
+    "grounding_steps": 300,
+    "grounding_batch": 64,
+    "grounding_lr": 0.001,
+    "warmup_lr": 0.001,
+    "gate_m5_r2_ceil": 0.95,
+    "gate_m6_spearman_floor": 0.15,
+    "behav_rel_margin": 0.15,
+    "behav_seed_consistency": 0.8,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "arms": [
+      "ARM_0",
+      "ARM_1",
+      "ARM_2"
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

@@ -91,5 +91,34 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "04bdcb1ca4644163143cd74dfcd3927dfd81ea2ba5dd35018ea4fc81adcd0a91",
   "epistemic_category": "measurement_test_design_defect",
-  "evidence_direction_note": "Self-routed wired_gates_only_landmark_invariant (weakens) but the only enabled consumer flag (use_invalidation_trigger) has no causal reach to z_world/operating_mode in this codebase (source-trace confirmed). Non_contributory, not weakens."
+  "evidence_direction_note": "Self-routed wired_gates_only_landmark_invariant (weakens) but the only enabled consumer flag (use_invalidation_trigger) has no causal reach to z_world/operating_mode in this codebase (source-trace confirmed). Non_contributory, not weakens.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2453.4802129268646,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "world_dim": 32,
+    "self_dim": 32,
+    "alpha_world": 0.9,
+    "env_size": 6,
+    "warmup_episodes": 20,
+    "rec_episodes": 20,
+    "steps_per_episode": 200,
+    "primary_pair": [
+      "z_world",
+      "operating_mode"
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

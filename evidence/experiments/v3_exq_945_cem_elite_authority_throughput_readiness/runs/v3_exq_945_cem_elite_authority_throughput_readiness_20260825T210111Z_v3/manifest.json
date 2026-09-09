@@ -101,5 +101,101 @@
     "n_agents": 4,
     "goal_state_present": false
   },
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828: evidence_direction adjudicated to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-945_2026-08-28.json (dry_run_checked: true), ratified at this cycle's Step 2b walk. Claim-free diagnostic; substrate_queue amend -> modulatory-bias-selection-authority."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828: evidence_direction adjudicated to non_contributory per CONFIRMED failure_autopsy_V3-EXQ-945_2026-08-28.json (dry_run_checked: true), ratified at this cycle's Step 2b walk. Claim-free diagnostic; substrate_queue amend -> modulatory-bias-selection-authority.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 320.659311112,
+  "config": {
+    "env": {
+      "size": 16,
+      "num_resources": 3,
+      "num_hazards": 1,
+      "hazard_harm": 0.1
+    },
+    "schedule": {
+      "n_episodes": 10,
+      "steps": 40
+    },
+    "arms": {
+      "ARM_OFF": {
+        "use_cem_modulatory_authority": false,
+        "cem_modulatory_authority_gain": 0.5,
+        "cem_modulatory_authority_normalize_basis": "range",
+        "use_cem_modulatory_throughput": false,
+        "use_modulatory_channel_routing": false,
+        "modulatory_channel_route_source": "none"
+      },
+      "ARM_AUTH_RANGE": {
+        "use_cem_modulatory_authority": true,
+        "cem_modulatory_authority_gain": 0.5,
+        "cem_modulatory_authority_normalize_basis": "range",
+        "use_cem_modulatory_throughput": false,
+        "use_modulatory_channel_routing": false,
+        "modulatory_channel_route_source": "none"
+      },
+      "ARM_AUTH_STD": {
+        "use_cem_modulatory_authority": true,
+        "cem_modulatory_authority_gain": 0.5,
+        "cem_modulatory_authority_normalize_basis": "std",
+        "use_cem_modulatory_throughput": false,
+        "use_modulatory_channel_routing": false,
+        "modulatory_channel_route_source": "none"
+      },
+      "ARM_AUTH_THROUGHPUT": {
+        "use_cem_modulatory_authority": true,
+        "cem_modulatory_authority_gain": 0.5,
+        "cem_modulatory_authority_normalize_basis": "range",
+        "use_cem_modulatory_throughput": true,
+        "use_modulatory_channel_routing": true,
+        "modulatory_channel_route_source": "cem_elite"
+      }
+    },
+    "mode_conditioning_enabled": true,
+    "mode_value_weight": {
+      "explore": [
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    "operating_mode": {
+      "explore": 1.0
+    },
+    "alpha_world": 0.9
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46,
+    47
+  ]
 }

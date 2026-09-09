@@ -95,5 +95,51 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 8.249636137043126,
+  "config": {
+    "n_encode": 12,
+    "n_interfere": 12,
+    "steps_per_episode": 60,
+    "seeds": [
+      42,
+      49,
+      56
+    ],
+    "grid_size": 8,
+    "context_a_hazards": [
+      [
+        3,
+        3
+      ]
+    ],
+    "context_a_resources": [
+      [
+        6,
+        6
+      ]
+    ],
+    "context_b_hazards": [
+      [
+        6,
+        3
+      ]
+    ],
+    "context_b_resources": [
+      [
+        3,
+        6
+      ]
+    ],
+    "write_floor_frac": 0.5,
+    "disturbance_ceiling": 0.98,
+    "sd016_writepath_mode": "sense_only",
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    49,
+    56
+  ]
 }

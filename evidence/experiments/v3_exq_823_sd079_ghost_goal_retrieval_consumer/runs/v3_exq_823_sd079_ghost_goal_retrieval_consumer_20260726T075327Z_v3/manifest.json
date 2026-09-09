@@ -90,5 +90,86 @@
   },
   "machine": "DLAPTOP-5.local",
   "machine_class": "darwin-arm64-py3.13-torch2.12.0",
-  "substrate_hash": "0cedd6d723e5c208585d5cc0d278ae29481265acf05a35e0537c503834abbf11"
+  "substrate_hash": "0cedd6d723e5c208585d5cc0d278ae29481265acf05a35e0537c503834abbf11",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 326.0762621250469,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "n_episodes": 8,
+    "steps_per_episode": 32,
+    "anchor_every": 4,
+    "margin": 0.1,
+    "discr_delta_margin": 0.15,
+    "discr_floor": 0.2,
+    "off_discr_ceil": 0.1,
+    "guard_floor": 0.3,
+    "min_pool": 6,
+    "goal_match_floor": 0.05,
+    "outshine_pivot": 0.5,
+    "cone_min_cosine_floor": 0.9,
+    "seed_pass_fraction": 0.6666666666666666,
+    "arm_config_slice_off": {
+      "env": {
+        "size": 8,
+        "num_hazards": 0,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 8,
+        "steps": 32,
+        "anchor_every": 4
+      },
+      "alpha_world": 0.9,
+      "z_goal_enabled": true,
+      "drive_weight": 2.0,
+      "benefit_eval_enabled": true,
+      "forced_benefit": 0.5,
+      "forced_drive": 0.9,
+      "goal_cue_centering": false,
+      "goal_cue_baseline_alpha": 0.05,
+      "use_composite_cue_outshining": true,
+      "outshine_pivot": 0.5,
+      "goal_match_floor": 0.05,
+      "margin": 0.1
+    },
+    "arm_config_slice_on": {
+      "env": {
+        "size": 8,
+        "num_hazards": 0,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 8,
+        "steps": 32,
+        "anchor_every": 4
+      },
+      "alpha_world": 0.9,
+      "z_goal_enabled": true,
+      "drive_weight": 2.0,
+      "benefit_eval_enabled": true,
+      "forced_benefit": 0.5,
+      "forced_drive": 0.9,
+      "goal_cue_centering": true,
+      "goal_cue_baseline_alpha": 0.05,
+      "use_composite_cue_outshining": true,
+      "outshine_pivot": 0.5,
+      "goal_match_floor": 0.05,
+      "margin": 0.1
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ]
 }

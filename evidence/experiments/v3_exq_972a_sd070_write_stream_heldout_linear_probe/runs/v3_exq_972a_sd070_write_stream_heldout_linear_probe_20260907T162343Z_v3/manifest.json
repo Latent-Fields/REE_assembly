@@ -331,5 +331,89 @@
     "goal_state_present": false
   },
   "epistemic_category": "standard",
-  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED for SD-070 by the confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07 (REE_assembly cb4a71fbd9) on OUT-OF-SCOPE grounds: T3 is a genuine, adequately-ranged null on a readout SD-070 does not assert (SD-070's own validation is V3-EXQ-783); SD-070 is NOT weakened. Load-bearing finding elsewhere: the write stream IS linearly decodable (probe excess 0.335, 84.4% balanced accuracy, 8/8 seeds), overturning V3-EXQ-972's uncentred-cosine read; and the 970/971/972/970a drivers train on detached buffered latents so latent_stack never moves (LINEAGE hash-identical to UNTRAINED_ENCODER 8/8). epistemic_category standard; SD-070 pending_retest_after_substrate true; contextmemory-write-path-addressing-degeneracy amended (stays corrupting)."
+  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED for SD-070 by the confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07 (REE_assembly cb4a71fbd9) on OUT-OF-SCOPE grounds: T3 is a genuine, adequately-ranged null on a readout SD-070 does not assert (SD-070's own validation is V3-EXQ-783); SD-070 is NOT weakened. Load-bearing finding elsewhere: the write stream IS linearly decodable (probe excess 0.335, 84.4% balanced accuracy, 8/8 seeds), overturning V3-EXQ-972's uncentred-cosine read; and the 970/971/972/970a drivers train on detached buffered latents so latent_stack never moves (LINEAGE hash-identical to UNTRAINED_ENCODER 8/8). epistemic_category standard; SD-070 pending_retest_after_substrate true; contextmemory-write-path-addressing-degeneracy amended (stays corrupting).",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1685.0071478520001,
+  "config": {
+    "arms": [
+      {
+        "name": "UNTRAINED_ENCODER",
+        "online_training": false,
+        "sd070_warmup": false
+      },
+      {
+        "name": "LINEAGE",
+        "online_training": true,
+        "sd070_warmup": false
+      },
+      {
+        "name": "SD070_WARMED",
+        "online_training": true,
+        "sd070_warmup": true
+      }
+    ],
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200,
+      300,
+      400,
+      500
+    ],
+    "training_episodes": 100,
+    "collect_episodes": 60,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "zworld_p0_episodes": 60,
+    "step_match_max": 4,
+    "write_selection": "gumbel_learned",
+    "write_addressing_loss_weight": 0.5,
+    "contextmemory_gated_content_write": true,
+    "sd016_writepath_mode": "sense_only",
+    "alpha_world": 0.9,
+    "use_noise_floor": true,
+    "num_slots": 16,
+    "latent_dim": 64,
+    "feature_sets": {
+      "full64": [
+        0,
+        64
+      ],
+      "zworld32": [
+        32,
+        64
+      ],
+      "zself32": [
+        0,
+        32
+      ]
+    },
+    "probe_train_frac": 0.6666666666666666,
+    "min_test_per_class": 24,
+    "load_bearing_features": "zworld32",
+    "collect_env_seed_offset": 50000,
+    "collect_policy_seed_offset": 900000,
+    "warmup_env": "alternating_safe_dangerous",
+    "min_adequate_seeds": 7,
+    "n_probe_shuffle": 50,
+    "probe_l2": 0.01,
+    "probe_lbfgs_iters": 200,
+    "probe_margin": 0.15,
+    "alpha_corrected": 0.0125,
+    "n_tests": 4,
+    "write_calls_floor": 200.0,
+    "sep_subsample_max": 500
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    100,
+    200,
+    300,
+    400,
+    500
+  ]
 }

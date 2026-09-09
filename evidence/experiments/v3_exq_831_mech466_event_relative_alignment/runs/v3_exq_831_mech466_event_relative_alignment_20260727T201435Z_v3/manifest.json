@@ -94,5 +94,43 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "a2520a588a0c1a485b14acb64283d043c80364d2888ee3893614c9d79c5d6a25",
   "epistemic_category": "standard",
-  "evidence_direction_note": "First test of MECH-466 (waking-only scope): event-locked coordination does not exceed clock-locked (delta=-0.091 vs 0.171 floor); all four non-degeneracy preconditions clear cleanly. Clean weakens on the waking-only version. Sleep-engagement (use_sleep_loop=True) follow-up recommended before the full claim is adequately tested."
+  "evidence_direction_note": "First test of MECH-466 (waking-only scope): event-locked coordination does not exceed clock-locked (delta=-0.091 vs 0.171 floor); all four non-degeneracy preconditions clear cleanly. Clean weakens on the waking-only version. Sleep-engagement (use_sleep_loop=True) follow-up recommended before the full claim is adequately tested.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2026.1280682086945,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "world_dim": 32,
+    "self_dim": 32,
+    "alpha_world": 0.9,
+    "env_size": 6,
+    "warmup_episodes": 20,
+    "rec_episodes": 20,
+    "steps_per_episode": 200,
+    "primary_pair": [
+      "z_world",
+      "operating_mode"
+    ],
+    "w_ticks": 3,
+    "boundary_rate_floor": 0.001,
+    "boundary_rate_ceil": 0.6,
+    "min_event_anchors": 6,
+    "min_pool_samples": 16,
+    "surr_shifts": 199,
+    "effect_size_k": 1.5,
+    "effect_size_abs_floor": 0.03,
+    "use_sleep_loop": false
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

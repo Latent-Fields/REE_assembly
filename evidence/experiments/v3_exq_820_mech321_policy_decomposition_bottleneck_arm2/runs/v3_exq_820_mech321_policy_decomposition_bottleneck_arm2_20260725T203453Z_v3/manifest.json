@@ -104,5 +104,132 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "2e2f0d27231b57de046b15cf5c48fbfb0d94e64f963f4ce43579d0bfb979f7bd"
+  "substrate_hash": "2e2f0d27231b57de046b15cf5c48fbfb0d94e64f963f4ce43579d0bfb979f7bd",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 4724.343499371,
+  "config": {
+    "seeds": [
+      11,
+      23,
+      47,
+      71,
+      97
+    ],
+    "arms": [
+      "ARM_0",
+      "ARM_1",
+      "ARM_2"
+    ],
+    "warmup_episodes": 40,
+    "measure_episodes": 20,
+    "steps_per_episode": 24,
+    "decomposition_vs_threshold": 0.5,
+    "decomposition_depth_cap": 3,
+    "bottleneck_min_visits": 3,
+    "bottleneck_min_distinct_neighbors": 2,
+    "bottleneck_region_quant": 1.0,
+    "bottleneck_region_dims": 8,
+    "seeded_chunk_sequence": [
+      0,
+      1,
+      2
+    ],
+    "high_vs_decomp_floor": 0.2,
+    "dissociation_margin": 0.1,
+    "min_low_vs_steps": 5,
+    "min_decomp_events": 5,
+    "seed_fire_fraction": 0.6,
+    "reuse_baseline_from": null,
+    "arm_config_slices": {
+      "ARM_0": {
+        "env": {
+          "size": 8,
+          "num_hazards": 3,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "measure_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": false
+      },
+      "ARM_1": {
+        "env": {
+          "size": 8,
+          "num_hazards": 3,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "measure_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3,
+        "decomposition_trigger_mode": "vs_boundary"
+      },
+      "ARM_2": {
+        "env": {
+          "size": 8,
+          "num_hazards": 3,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "measure_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3,
+        "decomposition_trigger_mode": "bottleneck",
+        "decomposition_bottleneck_min_visits": 3,
+        "decomposition_bottleneck_min_distinct_neighbors": 2,
+        "decomposition_bottleneck_region_quant": 1.0,
+        "decomposition_bottleneck_region_dims": 8
+      }
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    47,
+    71,
+    97
+  ]
 }

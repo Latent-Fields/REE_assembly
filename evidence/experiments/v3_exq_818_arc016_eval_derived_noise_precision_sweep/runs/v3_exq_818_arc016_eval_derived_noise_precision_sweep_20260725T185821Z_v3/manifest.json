@@ -96,5 +96,62 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "37da8de61f3e4c33f8371e54d91007a6dfaa09dab95aba445ef96552ea2229c0"
+  "substrate_hash": "37da8de61f3e4c33f8371e54d91007a6dfaa09dab95aba445ef96552ea2229c0",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 754.4983231699999,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "train_episodes": 250,
+    "cal_episodes": 30,
+    "eval_episodes_per_level": 40,
+    "eval_settle_episodes": 10,
+    "steps_per_episode": 100,
+    "cal_tail_episodes": 20,
+    "rv_target_multiples": [
+      1.0,
+      1.5,
+      2.5,
+      4.0,
+      7.0
+    ],
+    "n_levels": 5,
+    "calibration_factor": 2.0,
+    "e3_decision_interval": 10,
+    "num_candidates": 16,
+    "candidate_horizon": 5,
+    "alpha_world": 0.9,
+    "select_temperature": 1.0,
+    "lr": 0.001,
+    "env": {
+      "cls": "CausalGridWorldV2",
+      "use_proxy_fields": true,
+      "hazard_harm": 0.02,
+      "env": {
+        "size": 12,
+        "num_hazards": 4,
+        "num_resources": 5,
+        "env_drift_interval": 200,
+        "env_drift_prob": 0.0
+      }
+    },
+    "thresholds": {
+      "MANIP_TOOK_REL_FLOOR": 1.0,
+      "COMMIT_RANGE_FLOOR": 0.3,
+      "MIN_COMMIT_DECISIONS": 200.0,
+      "THRESHOLD_FLOOR": 0.0,
+      "RHO_FLOOR": 0.8,
+      "RHO_SEED_FLOOR": 0.5
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3
+  ]
 }

@@ -514,5 +514,60 @@
     "n_agents": 6,
     "goal_state_present": true
   },
-  "evidence_direction_note": "Governance 2026-09-03 (cycle governance-20260903T2013): ratified confirmed autopsy failure_autopsy_V3-EXQ-978_2026-09-03 (REE_assembly af8d2cabde) at this cycle's Step 2b, user present, cross-model red-team applied. mixed WITHDRAWN -> non_contributory. SD-018 shape (a) validation nulled cleanly on a fully green 8/8 gate (directional head trained, field r2 0.68/0.63/0.65) but BOTH arms forage at or below the random-walk anchor (OFF 0.0/0.25/0.55, ON 0.3/0.3/0.25 vs 0.85-1.05), the OFF arm already decodes the field from z_world (r2 0.71 sense / 0.86 encoder), and the arm-mean difference (+0.017) is one third of the DV's 0.05 quantum. Neither INV-088's evaluator/z_world relation nor MECH-457's actor-critic substrate was exercised (downstream-beneficiary co-tags). Routed /queue-experiment: frozen-latent supervised oracle-adapter discriminator (H-B consumer vs H-C geometry), capacity-matched to the policy head per this cycle's red-team; SD-018 amend_status -> validated-negative-for-shape-(a)."
+  "evidence_direction_note": "Governance 2026-09-03 (cycle governance-20260903T2013): ratified confirmed autopsy failure_autopsy_V3-EXQ-978_2026-09-03 (REE_assembly af8d2cabde) at this cycle's Step 2b, user present, cross-model red-team applied. mixed WITHDRAWN -> non_contributory. SD-018 shape (a) validation nulled cleanly on a fully green 8/8 gate (directional head trained, field r2 0.68/0.63/0.65) but BOTH arms forage at or below the random-walk anchor (OFF 0.0/0.25/0.55, ON 0.3/0.3/0.25 vs 0.85-1.05), the OFF arm already decodes the field from z_world (r2 0.71 sense / 0.86 encoder), and the arm-mean difference (+0.017) is one third of the DV's 0.05 quantum. Neither INV-088's evaluator/z_world relation nor MECH-457's actor-critic substrate was exercised (downstream-beneficiary co-tags). Routed /queue-experiment: frozen-latent supervised oracle-adapter discriminator (H-B consumer vs H-C geometry), capacity-matched to the policy head per this cycle's red-team; SD-018 amend_status -> validated-negative-for-shape-(a).",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 62783.153021221995,
+  "config": {
+    "rung": {
+      "rung_id": "D3_hazard_free",
+      "role": "derisk_decisive",
+      "overrides": {
+        "hazard_food_attraction": 0.0,
+        "proximity_harm_scale": 0.0,
+        "reef_bipartite_layout": false,
+        "reef_enabled": false,
+        "n_reef_patches": 0,
+        "num_hazards": 0
+      }
+    },
+    "level_id": "W3_survival_zeroed",
+    "w_consume": 1.0,
+    "w_survival": 0.0,
+    "p0a_field_weight": 0.5,
+    "zworld_p0_episodes": 60,
+    "p0_warmup_episodes": 200,
+    "p1_ppo_episodes": 1000,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "participation_ratio_floor": 2.0,
+    "decode_r2_lift_min": 0.05,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 0,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": false,
+      "n_reef_patches": 0,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.0,
+      "reef_bipartite_layout": false,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

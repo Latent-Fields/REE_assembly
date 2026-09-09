@@ -91,5 +91,50 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 19872.17188803,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "conditions": [
+      "FULL_M307_ON",
+      "FULL_M307_OFF",
+      "RANDOM"
+    ],
+    "stage0_budget": 20,
+    "stage0b_budget": 10,
+    "p0_budget": 100,
+    "hazard_budget": 40,
+    "p1_budget": 50,
+    "p2_budget": 30,
+    "steps_per_ep": 200,
+    "p0_num_hazards": 1,
+    "hazard_stage_regime": [
+      6,
+      2,
+      0.0,
+      0.1
+    ],
+    "seeding": [
+      1.5,
+      0.02,
+      0.9,
+      3
+    ],
+    "drive_weight": 2.0,
+    "p2_hfa_guard": 0.3,
+    "g0_margin": 0.05,
+    "c6_zgoal_floor": 0.4,
+    "p2_window_contact_floor": 0.005,
+    "ab_variable": "use_mech307_conjunction"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

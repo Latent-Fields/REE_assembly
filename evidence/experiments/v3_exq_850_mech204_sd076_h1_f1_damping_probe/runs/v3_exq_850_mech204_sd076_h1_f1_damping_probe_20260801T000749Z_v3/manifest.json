@@ -200,5 +200,71 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2433.529179579,
+  "config": {
+    "grid_size": 12,
+    "steps_per_ep": 200,
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "n_seeds": 3,
+    "lr": 0.0005,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "sws_consolidation_steps": 8,
+    "rem_attribution_steps": 6,
+    "precision_zero_point_ema_alpha": 0.1,
+    "rem_precision_recalibration_step": 0.25,
+    "use_rem_precision_recalibration": false,
+    "use_rem_precision_broadcast": false,
+    "rem_precision_broadcast_gain": 0.0,
+    "inflation_asymmetry_lo": 0.6,
+    "inflation_asymmetry_hi": 0.8,
+    "inflation_rv_floor": 0.01,
+    "waking_confidence_rv_floor_relative_frac": 0.2,
+    "waking_confidence_rv_floor_mode": "soft",
+    "waking_confidence_rv_floor_softness": 0.25,
+    "sleep_loop_episodes_K": 1,
+    "tonic_5ht_enabled": true,
+    "arms": [
+      {
+        "arm_id": "ARM_INFL_LO",
+        "waking_confidence_inflation_asymmetry": 0.6
+      },
+      {
+        "arm_id": "ARM_INFL_HI",
+        "waking_confidence_inflation_asymmetry": 0.8
+      }
+    ],
+    "env": {
+      "num_hazards": 3,
+      "num_resources": 3,
+      "hazard_harm": 0.04,
+      "proximity_harm_scale": 0.12,
+      "proximity_benefit_scale": 0.1,
+      "use_proxy_fields": true,
+      "resource_respawn_on_consume": true
+    },
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "reference_points": {
+      "ref_794a_rv_final": {
+        "LO": 0.003997733405264173,
+        "HI": 0.003870367272153275
+      },
+      "smoke_rv_final": {
+        "LO": 0.0025377,
+        "HI": 0.0021031
+      }
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

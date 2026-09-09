@@ -114,5 +114,101 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "7c8b689ae01ce3b262c2a3ac02ceb8aaf6fa121f94a0857e3e93a3b81c5788e3",
   "epistemic_category": "competence_implementation_gap",
-  "evidence_direction_note": "precondition_unmet was a false alarm on the two NEW per-tick diagnostics only; the four unconditional phase-boundary weight-norm snapshots show head_untrained -- REINFORCE never updates rule_bias_head's last linear layer. Root cause for SD-082's still-zero propagation. See SD-082 substrate amend."
+  "evidence_direction_note": "precondition_unmet was a false alarm on the two NEW per-tick diagnostics only; the four unconditional phase-boundary weight-norm snapshots show head_untrained -- REINFORCE never updates rule_bias_head's last linear layer. Root cause for SD-082's still-zero propagation. See SD-082 substrate amend.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3815.9584876569998,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "p0": 60,
+    "p1": 70,
+    "p2": 40,
+    "steps_per_episode": 48,
+    "cone_min_cosine_floor": 0.9,
+    "dist_floor": 0.05,
+    "min_live_rules": 2,
+    "off_max_live_ceil": 1,
+    "frac_active_floor": 0.1,
+    "prop_nonvac_floor": 0.001,
+    "head_diag_sample_floor": 5,
+    "dead_relu_high_floor": 0.9,
+    "dead_relu_med_floor": 0.5,
+    "last_layer_weight_delta_floor": 0.001,
+    "magnitude_ratio_low": 0.001,
+    "magnitude_ratio_high": 1000.0,
+    "seed_pass_fraction": 0.6666666666666666,
+    "lr_lpfc_bias": 0.0005,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "arm_config_slice_off": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "lateral_pfc_rule_readout_consumer": true,
+      "lateral_pfc_capture_head_diagnostics": true,
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": false,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "arm_config_slice_on": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "lateral_pfc_rule_readout_consumer": true,
+      "lateral_pfc_capture_head_diagnostics": true,
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": true,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "supersedes_note": "not a supersession of v3_exq_822a_sd078_rule_selection_consumer -- an instrumentation-only diagnostic companion run"
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ]
 }

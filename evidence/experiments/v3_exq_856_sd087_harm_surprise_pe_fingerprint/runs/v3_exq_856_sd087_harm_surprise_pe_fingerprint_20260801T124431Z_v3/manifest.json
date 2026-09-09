@@ -89,5 +89,30 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2220.6055632749994,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "cov_floor": 0.05,
+    "min_mode_samples": 10,
+    "pe_ema_floor": 0.0001,
+    "lineage": "affective_fishtank",
+    "warmup_episodes": 50,
+    "eval_episodes": 5,
+    "steps_per_episode": 200
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

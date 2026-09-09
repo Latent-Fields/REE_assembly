@@ -95,5 +95,86 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "4e3d9ef8ba282d1969f1f1f51da57bce7e6cf3fc9f56b4b8f423beadce126f50"
+  "substrate_hash": "4e3d9ef8ba282d1969f1f1f51da57bce7e6cf3fc9f56b4b8f423beadce126f50",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 371.1021860369983,
+  "config": {
+    "seeds": [
+      11,
+      23,
+      47
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "n_episodes": 20,
+    "steps_per_episode": 24,
+    "decomposition_vs_threshold": 0.5,
+    "decomposition_depth_cap": 3,
+    "seeded_chunk_sequence": [
+      0,
+      1,
+      2
+    ],
+    "min_evaluated": 1,
+    "seed_pass_fraction": 0.6666666666666666,
+    "arm_config_slices": {
+      "ARM_OFF": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": false,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3
+      },
+      "ARM_ON": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3
+      }
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    47
+  ]
 }

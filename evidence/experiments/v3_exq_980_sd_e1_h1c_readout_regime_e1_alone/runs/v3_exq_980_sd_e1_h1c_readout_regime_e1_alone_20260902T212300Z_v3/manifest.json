@@ -233,5 +233,86 @@
     "writer_defect": null,
     "n_agents": 16,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 497.1161745529389,
+  "config": {
+    "seeds": [
+      42,
+      123,
+      7,
+      2024
+    ],
+    "arms": [
+      "ARM_single_step",
+      "ARM_single_step_stateful",
+      "ARM_rc_flat",
+      "ARM_rc_decay"
+    ],
+    "arm_configs": {
+      "ARM_single_step": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": false,
+        "e1_loss": "single_step",
+        "rc_horizon": 1,
+        "rc_decay": 1.0
+      },
+      "ARM_single_step_stateful": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": false,
+        "e1_loss": "single_step_stateful",
+        "rc_horizon": 1,
+        "rc_decay": 1.0
+      },
+      "ARM_rc_flat": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": true,
+        "e1_loss": "rollout_consistency",
+        "rc_horizon": 5,
+        "rc_decay": 1.0
+      },
+      "ARM_rc_decay": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false,
+        "e1_rollout_consistency_enabled": true,
+        "e1_loss": "rollout_consistency",
+        "rc_horizon": 5,
+        "rc_decay": 0.5
+      }
+    },
+    "world_dim": 32,
+    "self_dim": 32,
+    "n_train_episodes": 100,
+    "steps_per_episode": 200,
+    "n_sequences": 40,
+    "rollout_horizon": 30,
+    "n_warmup_steps": 20,
+    "goal_max_steps": 2000,
+    "zworld_p0_episodes": 60,
+    "n_real_samples": 40,
+    "rc_horizon": 5,
+    "rc_decay": 0.5,
+    "rc_weight": 1.0,
+    "rc_non_vacuity_floor": 0.01,
+    "cr_real_floor": 0.0001,
+    "grad_cos_vacuity_ceiling": 0.95,
+    "grad_cos_sample_every": 10,
+    "min_real_samples_per_horizon_floor": 10,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "unified_latent_mode": false
+  },
+  "seeds": [
+    42,
+    123,
+    7,
+    2024
+  ]
 }

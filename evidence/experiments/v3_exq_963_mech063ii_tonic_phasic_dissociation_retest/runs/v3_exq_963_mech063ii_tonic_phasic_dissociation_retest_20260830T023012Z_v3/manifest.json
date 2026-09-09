@@ -433,5 +433,68 @@
     "writer_defect": null,
     "n_agents": 20,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 31028.958404999925,
+  "config": {
+    "seeds": [
+      11,
+      17,
+      23,
+      29,
+      37
+    ],
+    "stopping_rule": "sample_driven_v1",
+    "target_selects": 800,
+    "target_event_ticks": 30,
+    "target_quiescent_ticks": 200,
+    "max_env_steps_per_cell": 2400,
+    "max_episodes_per_cell": 2400,
+    "steps_per_episode": 300,
+    "warmup_episodes": 40,
+    "warmup_steps_per_episode": 300,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 3,
+      "background_drift_enabled": true,
+      "n_drift_sources": 3,
+      "drift_policy": "random_walk"
+    },
+    "tonic_noise_floor": {
+      "alpha": 1.0,
+      "min_temperature": 2.0
+    },
+    "phasic_burst": {
+      "signal_source": "instantaneous_pe",
+      "trigger_ratio": 1.2,
+      "surprise_ema_decay": 0.1,
+      "temp_delta": -0.5,
+      "decay": 0.5,
+      "trigger_floor": 1e-06,
+      "min_temperature": 0.1,
+      "event_level_floor": 0.05,
+      "baseline_continuity": "carry",
+      "warmup_ticks": -1
+    },
+    "thresholds": {
+      "MIN_SEEDS": 4,
+      "MIN_SELECTS": 20,
+      "MIN_EVENT_TICKS": 10,
+      "MIN_QUIESCENT_TICKS": 10,
+      "TEMP_LIFT_FLOOR": 0.5,
+      "E_SAT_LOW": 0.02,
+      "E_SAT_HIGH": 0.98,
+      "SUSTAINED_MARGIN": 0.05,
+      "TRANSIENT_MARGIN": 0.02,
+      "DOMINANCE_K": 2.0
+    }
+  },
+  "seeds": [
+    11,
+    17,
+    23,
+    29,
+    37
+  ]
 }

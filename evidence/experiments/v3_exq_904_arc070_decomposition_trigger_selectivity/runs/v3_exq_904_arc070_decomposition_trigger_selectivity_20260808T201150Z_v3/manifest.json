@@ -111,5 +111,147 @@
     "writer_defect": null,
     "n_agents": 1,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 945.4639258779971,
+  "config": {
+    "seeds": [
+      11,
+      23,
+      47,
+      71
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON_LOWVS",
+      "ARM_ON_HIGHVS",
+      "ARM_ON_DEPTHCAP"
+    ],
+    "n_episodes": 20,
+    "steps_per_episode": 24,
+    "decomposition_vs_threshold": 0.5,
+    "depth_cap_default": 3,
+    "depth_cap_degenerate": 1,
+    "region_vs_low": 0.1,
+    "region_vs_high": 0.9,
+    "seeded_chunk_sequence": [
+      0,
+      1,
+      2
+    ],
+    "seed_pass_fraction": 0.75,
+    "grain_tiles_min": 2,
+    "arm_config_slices": {
+      "ARM_OFF": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "region_vs_override": null,
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": false,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3
+      },
+      "ARM_ON_LOWVS": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "region_vs_override": 0.1,
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3
+      },
+      "ARM_ON_HIGHVS": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "region_vs_override": 0.9,
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3
+      },
+      "ARM_ON_DEPTHCAP": {
+        "env": {
+          "size": 8,
+          "num_hazards": 0,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "region_vs_override": 0.1,
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 1
+      }
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    47,
+    71
+  ]
 }

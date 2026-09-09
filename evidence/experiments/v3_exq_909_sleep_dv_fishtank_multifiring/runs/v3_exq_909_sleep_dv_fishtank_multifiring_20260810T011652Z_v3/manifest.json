@@ -142,5 +142,46 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 22254.79478877317,
+  "config": {
+    "size": 12,
+    "num_hazards": 4,
+    "num_resources": 5,
+    "hazard_harm": 0.05,
+    "env_drift_interval": 5,
+    "env_drift_prob": 0.3,
+    "proximity_harm_scale": 0.02,
+    "proximity_benefit_scale": 0.03,
+    "proximity_approach_threshold": 0.4,
+    "hazard_field_decay": 2.5,
+    "resource_respawn_on_consume": false,
+    "toroidal": false,
+    "harm_history_len": 0,
+    "limb_damage_enabled": true,
+    "reef_enabled": true,
+    "n_reef_patches": 3,
+    "reef_patch_radius": 2,
+    "reef_bipartite_layout": true,
+    "hazard_food_attraction": 0.3,
+    "scheduled_action_block_enabled": true,
+    "scheduled_action_block_interval": 10,
+    "scheduled_action_block_prob": 0.4,
+    "scheduled_limb_damage_enabled": true,
+    "scheduled_limb_damage_interval": 50,
+    "scheduled_limb_damage_prob": 0.5,
+    "scheduled_external_hazard_enabled": true,
+    "scheduled_external_hazard_interval": 50,
+    "scheduled_external_hazard_prob": 0.5,
+    "world_rule_shift_enabled": true,
+    "world_rule_shift_interval": 250,
+    "world_rule_shift_depth": 1,
+    "contamination_spread": 0.0
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

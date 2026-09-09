@@ -120,5 +120,86 @@
     "writer_defect": null,
     "n_agents": 24,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 629.929576958,
+  "config": {
+    "arms": [
+      "A_safe_gate_natural",
+      "B_safe_gate_forced_closed",
+      "C_hazard_gate_natural",
+      "D_hazard_gate_forced_open"
+    ],
+    "arm_spec": {
+      "A_safe_gate_natural": {
+        "num_hazards": 0,
+        "proximity_threshold": 0.25
+      },
+      "B_safe_gate_forced_closed": {
+        "num_hazards": 0,
+        "proximity_threshold": 0.0
+      },
+      "C_hazard_gate_natural": {
+        "num_hazards": 8,
+        "proximity_threshold": 0.25
+      },
+      "D_hazard_gate_forced_open": {
+        "num_hazards": 8,
+        "proximity_threshold": 2.0
+      }
+    },
+    "env_kwargs_safe": {
+      "size": 10,
+      "num_hazards": 0,
+      "num_resources": 3,
+      "use_proxy_fields": true,
+      "limb_damage_enabled": true,
+      "heal_rate": 0.4,
+      "safety_proximity_signal_enabled": true
+    },
+    "env_kwargs_hazard": {
+      "size": 10,
+      "num_hazards": 8,
+      "num_resources": 3,
+      "use_proxy_fields": true,
+      "limb_damage_enabled": true,
+      "heal_rate": 0.4,
+      "safety_proximity_signal_enabled": true
+    },
+    "substrate_common": {
+      "alpha_world": 0.9,
+      "use_harm_stream": true,
+      "harm_obs_dim": 51,
+      "use_affective_harm_stream": true,
+      "harm_obs_a_dim": 7
+    },
+    "gate_source": "proximity_signal",
+    "proximity_threshold_natural": 0.25,
+    "proximity_threshold_forced_closed": 0.0,
+    "proximity_threshold_forced_open": 2.0,
+    "contextual_safety_accum_weight": 0.05,
+    "contextual_safety_release_threshold": 0.5,
+    "safety_terrain_bandwidth": 0.03,
+    "p0_episodes": 60,
+    "p0_steps_per_episode": 40,
+    "exposure_steps": 240,
+    "n_test_trials": 90,
+    "bridge_window": 30,
+    "settle_steps": 8,
+    "dv_margin": 0.34,
+    "readiness_floor_mean": 0.34,
+    "per_seed_release_rate_floor": 0.3333333333333333,
+    "accum_steps_floor": 20,
+    "min_valid_seeds": 4,
+    "seed_base": 1000,
+    "test_seed_offset": 500
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
 }

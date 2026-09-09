@@ -138,5 +138,37 @@
     "writer_defect": null,
     "n_agents": 5,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 244.667321443,
+  "config": {
+    "env_kwargs": {
+      "size": 8,
+      "num_hazards": 3,
+      "num_resources": 3,
+      "contamination_spread": 0.0,
+      "env_drift_interval": 2,
+      "env_drift_prob": 1.0,
+      "use_proxy_fields": true
+    },
+    "world_dim": 128,
+    "alpha_world": 0.9,
+    "episodes_per_phase": 250,
+    "p0a_steps_per_episode": 100,
+    "n_transitions": 40000,
+    "heldout_fraction": 0.3,
+    "head_epochs": 60,
+    "head_batch": 256,
+    "head_lr": 0.0003,
+    "interventional_fraction": 0.3,
+    "interventional_margin": 0.1,
+    "dry_run": false
+  },
+  "seeds": [
+    43,
+    45,
+    46,
+    47,
+    48
+  ]
 }

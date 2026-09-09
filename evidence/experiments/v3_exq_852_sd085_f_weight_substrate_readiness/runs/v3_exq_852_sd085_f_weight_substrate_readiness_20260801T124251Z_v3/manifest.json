@@ -92,5 +92,56 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 17.28788824658841,
+  "config": {
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "arms": [
+      "ARM_DEFAULT",
+      "ARM_ATTENUATED"
+    ],
+    "n_episodes": 2,
+    "steps_per_episode": 15,
+    "diff_floor": 1e-06,
+    "f_weight_by_arm": {
+      "ARM_DEFAULT": 1.0,
+      "ARM_ATTENUATED": 0.5
+    },
+    "arm_config_slice_default": {
+      "env": {
+        "size": 6,
+        "num_hazards": 1,
+        "num_resources": 4,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 2,
+        "steps": 15
+      },
+      "f_weight": 1.0
+    },
+    "arm_config_slice_attenuated": {
+      "env": {
+        "size": 6,
+        "num_hazards": 1,
+        "num_resources": 4,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 2,
+        "steps": 15
+      },
+      "f_weight": 0.5
+    }
+  },
+  "seeds": [
+    11,
+    22,
+    33
+  ]
 }

@@ -47,5 +47,50 @@
   "failure_signatures": [],
   "machine": "DLAPTOP-5.local",
   "machine_class": "darwin-arm64-py3.13-torch2.12.0",
-  "substrate_hash": "af30d00c33b8e16864ccdef49af8513d0b30e5779a3a4015dc728f466ca69f98"
+  "substrate_hash": "af30d00c33b8e16864ccdef49af8513d0b30e5779a3a4015dc728f466ca69f98",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 416.2389392500045,
+  "config": {
+    "arm_label": "(multi-arm)",
+    "a_frac": -1.0,
+    "supervised": true,
+    "warmup_episodes": 60,
+    "collect_episodes": 40,
+    "probe_episodes": 20,
+    "steps_per_episode": 60,
+    "p1_steps": 300,
+    "batch": 64,
+    "lr": 0.001,
+    "alpha_world": 0.9,
+    "alpha_self": 0.1,
+    "self_dim": 32,
+    "world_dim": 64,
+    "num_hazards": 1,
+    "ctx_a_thresh": 0.7,
+    "ctx_b_thresh": 0.33,
+    "arms": [
+      {
+        "label": "ARM_CHILDHOOD",
+        "a_frac": 0.5,
+        "supervised": true
+      },
+      {
+        "label": "ARM_ADULT",
+        "a_frac": 0.05,
+        "supervised": true
+      },
+      {
+        "label": "ARM_CHILDHOOD_UNSUP",
+        "a_frac": 0.5,
+        "supervised": false
+      }
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

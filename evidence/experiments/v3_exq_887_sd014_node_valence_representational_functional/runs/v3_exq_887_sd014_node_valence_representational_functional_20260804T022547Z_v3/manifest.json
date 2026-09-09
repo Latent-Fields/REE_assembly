@@ -110,5 +110,47 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1459.781068418175,
+  "config": {
+    "tau_max": 0.85,
+    "rho_max": 0.9,
+    "jaccard_max": 0.8,
+    "top_k": 5,
+    "channel_nodes_floor": 8,
+    "node_floor": 8,
+    "comparable_pairs_floor": 10,
+    "tau_control_ceil": 0.5,
+    "control_nodes": 16,
+    "rollout_episodes": 40,
+    "steps_per_episode": 120,
+    "seeds": [
+      42,
+      137,
+      2026
+    ],
+    "env": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 6,
+      "hazard_harm": 0.5,
+      "resource_benefit": 0.3,
+      "use_proxy_fields": true
+    },
+    "alpha_world": 0.9,
+    "tonic_5ht_enabled": true,
+    "valence_harm_enabled": true,
+    "valence_liking_enabled": true,
+    "liking_threshold": 0.02,
+    "surprise_gated_replay": true,
+    "pe_surprise_threshold": 0.001,
+    "drive_vector_width": 6,
+    "drive_vector_note": "drive vectors are width VALENCE_DIM=6 with the MECH-307 split-surprise slots (4,5) held at zero -- i.e. SD-014's 4-component prioritisation embedded in the widened field. A 4-element vector no longer raises against the 6-wide store: as of ree-v3 32edd553 (2026-08-04) ResidueField.get_valence_priority zero-PADS a legacy narrow vector and records having done so (valence_priority_pad_count / last_valence_priority_pad_width + a one-shot RuntimeWarning), while still refusing longer-than-VALENCE_DIM and non-1-D vectors. The vectors built here are full width, so they never take that path; do_replay_drive_state_width_probe records the pad counter per seed as the regression witness."
+  },
+  "seeds": [
+    42,
+    137,
+    2026
+  ]
 }

@@ -94,5 +94,94 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "a69e4f2a31c8008029d9c1d419e35ed9a1d659ec9bb334c8e0f73157b4e96532",
   "epistemic_category": "competence_implementation_gap",
-  "evidence_direction_note": "Second consecutive identical failure of readiness gate (d) propagation_non_vacuity despite SD-082's fix correctly engaged and a strong upstream rule_state signal (0.644). Non_contributory, not evidence against SD-078 -- root cause unverified (routed to SD-082 substrate amend)."
+  "evidence_direction_note": "Second consecutive identical failure of readiness gate (d) propagation_non_vacuity despite SD-082's fix correctly engaged and a strong upstream rule_state signal (0.644). Non_contributory, not evidence against SD-078 -- root cause unverified (routed to SD-082 substrate amend).",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 4377.941874875,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "p0": 60,
+    "p1": 70,
+    "p2": 40,
+    "steps_per_episode": 48,
+    "cone_min_cosine_floor": 0.9,
+    "dist_floor": 0.05,
+    "min_live_rules": 2,
+    "off_max_live_ceil": 1,
+    "frac_active_floor": 0.1,
+    "prop_nonvac_floor": 0.001,
+    "diff_delta_margin": 0.05,
+    "diff_floor": 0.05,
+    "seed_pass_fraction": 0.6666666666666666,
+    "lr_lpfc_bias": 0.0005,
+    "lateral_pfc_rule_readout_consumer": true,
+    "arm_config_slice_off": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "lateral_pfc_rule_readout_consumer": true,
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": false,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "arm_config_slice_on": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "lateral_pfc_rule_readout_consumer": true,
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": true,
+      "crf_cue_baseline_alpha": 0.02
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ]
 }

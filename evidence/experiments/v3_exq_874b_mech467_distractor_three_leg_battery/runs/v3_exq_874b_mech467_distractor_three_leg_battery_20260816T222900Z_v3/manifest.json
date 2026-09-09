@@ -333,5 +333,233 @@
     "writer_defect": true,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3500.873134607,
+  "config": {
+    "env_p0_kwargs": {
+      "SIMPLE": {
+        "size": 6,
+        "num_hazards": 0,
+        "num_resources": 12,
+        "num_waypoints": 2,
+        "max_episode_steps": 1500,
+        "resource_respawn_on_consume": true,
+        "multi_resource_heterogeneity_enabled": true,
+        "per_axis_drive_enabled": false,
+        "n_resource_types": 2,
+        "resource_type_names": [
+          "goal",
+          "distractor_a"
+        ],
+        "resource_type_drive_axes": [
+          "goal_need",
+          "d_a_need"
+        ],
+        "resource_type_benefit_curves": [
+          "sigmoidal_saturating",
+          "sigmoidal_saturating"
+        ],
+        "resource_type_distribution": [
+          1.0,
+          0.0
+        ],
+        "resource_type_benefit_amplitudes": [
+          1.0,
+          0.0
+        ],
+        "dual_cue_enabled": false,
+        "dual_cue_min_active_ticks": 10,
+        "dual_cue_replace_on_early_consume": false,
+        "dual_cue_type_tags": [
+          1,
+          2
+        ]
+      },
+      "COMPLEX": {
+        "size": 6,
+        "num_hazards": 0,
+        "num_resources": 12,
+        "num_waypoints": 2,
+        "max_episode_steps": 1500,
+        "resource_respawn_on_consume": true,
+        "multi_resource_heterogeneity_enabled": true,
+        "per_axis_drive_enabled": false,
+        "n_resource_types": 4,
+        "resource_type_names": [
+          "goal",
+          "distractor_a",
+          "distractor_b",
+          "distractor_c"
+        ],
+        "resource_type_drive_axes": [
+          "goal_need",
+          "d_a_need",
+          "d_b_need",
+          "d_c_need"
+        ],
+        "resource_type_benefit_curves": [
+          "sigmoidal_saturating",
+          "sigmoidal_saturating",
+          "sigmoidal_saturating",
+          "sigmoidal_saturating"
+        ],
+        "resource_type_distribution": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "resource_type_benefit_amplitudes": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dual_cue_enabled": false,
+        "dual_cue_min_active_ticks": 10,
+        "dual_cue_replace_on_early_consume": false,
+        "dual_cue_type_tags": [
+          1,
+          2
+        ]
+      }
+    },
+    "env_target_kwargs": {
+      "SIMPLE": {
+        "size": 6,
+        "num_hazards": 0,
+        "num_resources": 12,
+        "num_waypoints": 2,
+        "max_episode_steps": 1500,
+        "resource_respawn_on_consume": true,
+        "multi_resource_heterogeneity_enabled": true,
+        "per_axis_drive_enabled": false,
+        "n_resource_types": 2,
+        "resource_type_names": [
+          "goal",
+          "distractor_a"
+        ],
+        "resource_type_drive_axes": [
+          "goal_need",
+          "d_a_need"
+        ],
+        "resource_type_benefit_curves": [
+          "sigmoidal_saturating",
+          "sigmoidal_saturating"
+        ],
+        "resource_type_distribution": [
+          1.0,
+          1.0
+        ],
+        "resource_type_benefit_amplitudes": [
+          1.0,
+          0.0
+        ],
+        "dual_cue_enabled": true,
+        "dual_cue_min_active_ticks": 10,
+        "dual_cue_replace_on_early_consume": false,
+        "dual_cue_type_tags": [
+          1,
+          2
+        ]
+      },
+      "COMPLEX": {
+        "size": 6,
+        "num_hazards": 0,
+        "num_resources": 12,
+        "num_waypoints": 2,
+        "max_episode_steps": 1500,
+        "resource_respawn_on_consume": true,
+        "multi_resource_heterogeneity_enabled": true,
+        "per_axis_drive_enabled": false,
+        "n_resource_types": 4,
+        "resource_type_names": [
+          "goal",
+          "distractor_a",
+          "distractor_b",
+          "distractor_c"
+        ],
+        "resource_type_drive_axes": [
+          "goal_need",
+          "d_a_need",
+          "d_b_need",
+          "d_c_need"
+        ],
+        "resource_type_benefit_curves": [
+          "sigmoidal_saturating",
+          "sigmoidal_saturating",
+          "sigmoidal_saturating",
+          "sigmoidal_saturating"
+        ],
+        "resource_type_distribution": [
+          1.5,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "resource_type_benefit_amplitudes": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dual_cue_enabled": true,
+        "dual_cue_min_active_ticks": 10,
+        "dual_cue_replace_on_early_consume": false,
+        "dual_cue_type_tags": [
+          1,
+          2
+        ]
+      }
+    },
+    "agent_kwargs": {
+      "body_obs_dim": 12,
+      "action_dim": 4,
+      "use_dacc": true,
+      "use_salience_coordinator": true,
+      "use_lateral_pfc_analog": true,
+      "z_goal_enabled": true,
+      "beta_gate_bistable": false
+    },
+    "arms": {
+      "ARM_PRECOMMIT_SIMPLE": {
+        "operating_mode": "internal_planning",
+        "ruleset": "SIMPLE"
+      },
+      "ARM_REPLAY_SIMPLE": {
+        "operating_mode": "internal_replay",
+        "ruleset": "SIMPLE"
+      },
+      "ARM_PRECOMMIT_COMPLEX": {
+        "operating_mode": "internal_planning",
+        "ruleset": "COMPLEX"
+      },
+      "ARM_REPLAY_COMPLEX": {
+        "operating_mode": "internal_replay",
+        "ruleset": "COMPLEX"
+      }
+    },
+    "schedule": {
+      "p0_budget": 60,
+      "p0_steps_per_episode": 80,
+      "n_warmup_steps": 80,
+      "n_eval_steps": 900,
+      "enc_probe_every": 5,
+      "max_episode_steps": 1500
+    },
+    "thresholds": {
+      "rule_drift_floor": 0.05,
+      "operative_rule_fidelity_floor": 0.9,
+      "wrong_target_excess_min": 0.1,
+      "min_events_pooled": 15,
+      "encoding_index_floor": 0.01,
+      "chance_baseline_ceiling": 0.95
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

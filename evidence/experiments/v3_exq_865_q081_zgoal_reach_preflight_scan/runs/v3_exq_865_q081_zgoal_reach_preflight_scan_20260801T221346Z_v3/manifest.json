@@ -82,5 +82,42 @@
     "commit": "373e5e8d3ce02de5848c48aba5603a9073e4143c",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 4530.898840427399,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "env_size": 6,
+    "levers": [
+      "iei_permute",
+      "jitter"
+    ],
+    "min_boundary_events": 1,
+    "min_active_ticks": 1,
+    "zgoal_n_episodes": 30,
+    "zgoal_steps_per_episode": 300,
+    "zharm_a_n_episodes": 3,
+    "zharm_a_steps_per_episode": 200,
+    "primary_pair": [
+      "z_world",
+      "z_goal"
+    ],
+    "fallback_pair": [
+      "z_world",
+      "z_harm_a"
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

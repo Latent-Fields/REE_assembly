@@ -213,5 +213,127 @@
     "goal_state_present": true
   },
   "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_940-941-mech467-cluster_2026-08-20.json: V3-EXQ-940 (GOV-FANOUT-1 H-energy leg, environment axis) is a denominator diagnostic and does not exercise MECH-467's falsifier; it bears on the claim in neither direction. Its load-bearing C1 passed (window completeness lift 0.167037 vs 0.15) but at a 0.017 margin resting on 2 of 3 cells. Its C2 did NOT return a null: measured_ratio is null because the ratio divides by ARM_STOCK's event rate of exactly 0.0, so the criterion is arithmetically undefined, while its non-degeneracy guard (total_events_all_arms > 0) tests the pooled numerator rather than the denominator arm and therefore stamps it non_degenerate true. The emitted label window_restored_rate_unchanged and its note ('the residual rate problem is not an energy problem') are contradicted by the run's own per_arm_pooled: 0 events/2249 ticks (ARM_STOCK, rate 0.0), 2/2700 (ARM_CONTAM_OFF, 0.00074), 4/2700 (ARM_HEALTH_DECOUPLED, 0.00148) -- the rate rises monotonically with decoupling strength from exactly zero. On 4 events that is not significant either, so the honest state is unresolved. What the run DOES establish is decisive and should be preserved: a fully-realised 2700-tick window with contamination gated AND health clamped still produced only 4 events, so neither survival nor contamination explains the missing denominator, and 874b's arithmetic (8380-17200 ticks/arm needed against 2700 budgeted) is independently reconfirmed.",
-  "epistemic_category": "standard"
+  "epistemic_category": "standard",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2176.444532368332,
+  "config": {
+    "grid_size": 6,
+    "num_resources": 12,
+    "num_hazards": 0,
+    "max_episode_steps": 1500,
+    "n_warmup_steps": 80,
+    "n_eval_steps": 900,
+    "p0_budget": 60,
+    "p0_steps_per_episode": 80,
+    "health_clamp_floor": 0.5,
+    "pinned_mode": "internal_planning",
+    "arms": {
+      "ARM_STOCK": {
+        "contam_gate": false,
+        "clamp_health": false
+      },
+      "ARM_CONTAM_OFF": {
+        "contam_gate": true,
+        "clamp_health": false
+      },
+      "ARM_HEALTH_DECOUPLED": {
+        "contam_gate": true,
+        "clamp_health": true
+      }
+    },
+    "env_kwargs_stock": {
+      "size": 6,
+      "num_hazards": 0,
+      "num_resources": 12,
+      "num_waypoints": 2,
+      "max_episode_steps": 1500,
+      "resource_respawn_on_consume": true,
+      "multi_resource_heterogeneity_enabled": true,
+      "per_axis_drive_enabled": false,
+      "n_resource_types": 2,
+      "resource_type_names": [
+        "goal",
+        "distractor_a"
+      ],
+      "resource_type_drive_axes": [
+        "goal_need",
+        "d_a_need"
+      ],
+      "resource_type_benefit_curves": [
+        "sigmoidal_saturating",
+        "sigmoidal_saturating"
+      ],
+      "resource_type_distribution": [
+        1.0,
+        1.0
+      ],
+      "resource_type_benefit_amplitudes": [
+        1.0,
+        0.0
+      ],
+      "dual_cue_enabled": true,
+      "dual_cue_min_active_ticks": 10,
+      "dual_cue_replace_on_early_consume": false,
+      "dual_cue_type_tags": [
+        1,
+        2
+      ]
+    },
+    "env_kwargs_gated": {
+      "size": 6,
+      "num_hazards": 0,
+      "num_resources": 12,
+      "num_waypoints": 2,
+      "max_episode_steps": 1500,
+      "resource_respawn_on_consume": true,
+      "multi_resource_heterogeneity_enabled": true,
+      "per_axis_drive_enabled": false,
+      "n_resource_types": 2,
+      "resource_type_names": [
+        "goal",
+        "distractor_a"
+      ],
+      "resource_type_drive_axes": [
+        "goal_need",
+        "d_a_need"
+      ],
+      "resource_type_benefit_curves": [
+        "sigmoidal_saturating",
+        "sigmoidal_saturating"
+      ],
+      "resource_type_distribution": [
+        1.0,
+        1.0
+      ],
+      "resource_type_benefit_amplitudes": [
+        1.0,
+        0.0
+      ],
+      "dual_cue_enabled": true,
+      "dual_cue_min_active_ticks": 10,
+      "dual_cue_replace_on_early_consume": false,
+      "dual_cue_type_tags": [
+        1,
+        2
+      ],
+      "hazard_free_contamination_gate": true
+    },
+    "thresholds": {
+      "window_completeness_lift_min": 0.15,
+      "event_rate_lift_min": 1.5,
+      "min_realised_ticks": 20,
+      "min_health_samples": 20,
+      "contam_gate_ceiling": 0.001
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

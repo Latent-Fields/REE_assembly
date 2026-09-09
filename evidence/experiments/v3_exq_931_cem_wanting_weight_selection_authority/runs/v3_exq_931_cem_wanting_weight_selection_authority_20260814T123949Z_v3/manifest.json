@@ -163,5 +163,39 @@
     "n_agents": 25,
     "goal_state_present": true
   },
-  "evidence_direction_note": "[2026-09-07, /claim-synthesis tagging, evidence/planning/claim_synthesis_ARC-130_2026-09-07.md, GFLAG-0134 decision (b)]: evidence_direction_per_claim ARC-130: supports -- this run is the direct demonstration of ARC-130's rung-5/rung-6 dissociation (competitive authority at the CEM elite boundary forced to 80.3 pct argmin flips at w=5000 while committed behaviour stays bit-identical to ablation). Per-claim override only: claim_ids stays [] by the driver's design, so this stamp is an audit trail and adds no scored credit (indexer membership is claim_ids-gated). The claim was registered 2026-08-25, after this run."
+  "evidence_direction_note": "[2026-09-07, /claim-synthesis tagging, evidence/planning/claim_synthesis_ARC-130_2026-09-07.md, GFLAG-0134 decision (b)]: evidence_direction_per_claim ARC-130: supports -- this run is the direct demonstration of ARC-130's rung-5/rung-6 dissociation (competitive authority at the CEM elite boundary forced to 80.3 pct argmin flips at w=5000 while committed behaviour stays bit-identical to ablation). Per-claim override only: claim_ids stays [] by the driver's design, so this stamp is an audit trail and adds no scored credit (indexer membership is claim_ids-gated). The claim was registered 2026-08-25, after this run.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1446.7485905439999,
+  "config": {
+    "alpha_world": 0.9,
+    "arms": {
+      "ARM_W0": 0.0,
+      "ARM_W05": 0.5,
+      "ARM_W50": 50.0,
+      "ARM_W500": 500.0,
+      "ARM_W5000": 5000.0
+    },
+    "drive_weight": 2.0,
+    "env": {
+      "hazard_harm": 0.1,
+      "num_hazards": 1,
+      "num_resources": 3,
+      "size": 16,
+      "use_proxy_fields": true
+    },
+    "forced_benefit": 0.5,
+    "forced_drive": 0.9,
+    "schedule": {
+      "n_episodes": 10,
+      "steps": 40
+    },
+    "tonic_5ht_enabled": true
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46,
+    47
+  ]
 }

@@ -57,5 +57,44 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2191.4752494860004,
+  "config": {
+    "dose_grid": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9
+    ],
+    "surprise_weight": 0.3,
+    "rho_min": 0.9,
+    "margin": 0.15,
+    "min_discrim": 0.1,
+    "window_len": 12,
+    "n_windows": 200,
+    "rollout_episodes": 40,
+    "steps_per_episode": 120,
+    "seeds": [
+      42,
+      137,
+      2026
+    ],
+    "env": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 3,
+      "hazard_harm": 0.05,
+      "resource_benefit": 0.05,
+      "use_proxy_fields": true
+    },
+    "alpha_world": 0.9,
+    "tonic_5ht_enabled": true
+  },
+  "seeds": [
+    42,
+    137,
+    2026
+  ]
 }

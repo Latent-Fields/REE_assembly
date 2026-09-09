@@ -332,5 +332,68 @@
     "commit": "1d1bae8695848f62a2ddb9a512cdb7e6cc2f83e2",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 67.7118967139977,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "world_dim": 128,
+    "p0a_episodes": 60,
+    "p1_episodes": 40,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "lambda_terrain": 0.1,
+    "lambda_cue_action": 0.5,
+    "eval_batch_size": 32,
+    "readiness_batch_size": 16,
+    "lr": 0.0001,
+    "arms": [
+      {
+        "label": "A0_OFF",
+        "cue_slot_tagger": false,
+        "selection": "soft",
+        "topk_k": 1
+      },
+      {
+        "label": "A1_tagger_soft",
+        "cue_slot_tagger": true,
+        "selection": "soft",
+        "topk_k": 1
+      },
+      {
+        "label": "A2_tagger_gumbel",
+        "cue_slot_tagger": true,
+        "selection": "gumbel",
+        "topk_k": 1
+      },
+      {
+        "label": "A3a_topk_k1",
+        "cue_slot_tagger": true,
+        "selection": "topk",
+        "topk_k": 1
+      },
+      {
+        "label": "A3b_topk_k2",
+        "cue_slot_tagger": true,
+        "selection": "topk",
+        "topk_k": 2
+      }
+    ],
+    "sd016_enabled": true,
+    "sd016_writepath_mode": "off",
+    "p0a_recipe": "sd070",
+    "sws_enabled": false,
+    "rem_enabled": false,
+    "shy_enabled": false,
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

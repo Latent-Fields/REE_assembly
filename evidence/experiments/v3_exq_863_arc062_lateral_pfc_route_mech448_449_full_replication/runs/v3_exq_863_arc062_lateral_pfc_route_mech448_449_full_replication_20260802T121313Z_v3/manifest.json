@@ -91,5 +91,26 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 58151.629641,
+  "config": {
+    "arms": "ARM_LPFC (route_source='lateral_pfc') vs ARM_NONE (route_source='none')",
+    "swept_variable": "modulatory_channel_route_source",
+    "use_candidate_rule_field": "True on BOTH arms (matched constant)",
+    "use_f_eligibility_demotion": true,
+    "use_go_nogo_constitution": true,
+    "use_dacc": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true,
+    "p0_warmup_episodes": 200,
+    "p1_bias_train_episodes": 90,
+    "p2_measurement_episodes": 60,
+    "budget_note": "IDENTICAL to V3-EXQ-851's own P0=200/P1=90/P2=60 schedule (350 episodes/cell x 200 steps x 3 seeds x 2 arms = 420000 ticks, ~7.67h on the cloud fleet per 851's own measured elapsed_seconds =27623) -- 20x longer P0 and 6x longer P2 than V3-EXQ-859's short-budget probe, with a P1 REINFORCE bias-head training phase 859 did not run at all. See module docstring 'WHAT CHANGED'."
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

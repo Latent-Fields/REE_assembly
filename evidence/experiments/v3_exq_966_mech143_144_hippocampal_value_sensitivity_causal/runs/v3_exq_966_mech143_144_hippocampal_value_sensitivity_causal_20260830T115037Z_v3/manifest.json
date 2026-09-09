@@ -53,5 +53,58 @@
     "dirty": false,
     "branch": "main"
   },
-  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). Both per-claim readings WITHDRAWN -> non_contributory. block_contacts is BIT-IDENTICAL between ARM_FIXED and ARM_SHUFFLED on 4/4 seeds x 4/4 blocks, so frac_high_SHUFFLED = 1 - frac_high_FIXED by construction and MECH-144's equivalence test read a pure relabelling as supports; C2's bound is max(2*pstdev, 0.10) = 0.640 on a [0,1] DV, and 2 of its 3 branches map to supports. MECH-143's weakens came from failing the driver's OWN declared POSITIVE CONTROL (C1 flip_differs) on 1 seed, which establishes nothing about the claim. NOTE (red-team upheld): the manipulation is NOT observably inert -- agent_energy is open and amp-scaled for most of each episode -- so the mechanism is UNRESOLVED and the substrate proposal was withdrawn; a cheap confirmer runs first. Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b."
+  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). Both per-claim readings WITHDRAWN -> non_contributory. block_contacts is BIT-IDENTICAL between ARM_FIXED and ARM_SHUFFLED on 4/4 seeds x 4/4 blocks, so frac_high_SHUFFLED = 1 - frac_high_FIXED by construction and MECH-144's equivalence test read a pure relabelling as supports; C2's bound is max(2*pstdev, 0.10) = 0.640 on a [0,1] DV, and 2 of its 3 branches map to supports. MECH-143's weakens came from failing the driver's OWN declared POSITIVE CONTROL (C1 flip_differs) on 1 seed, which establishes nothing about the claim. NOTE (red-team upheld): the manipulation is NOT observably inert -- agent_energy is open and amp-scaled for most of each episode -- so the mechanism is UNRESOLVED and the substrate proposal was withdrawn; a cheap confirmer runs first. Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7663.557114945001,
+  "config": {
+    "seeds": [
+      42,
+      47,
+      53,
+      61
+    ],
+    "arms": [
+      "ARM_FIXED_VALUE",
+      "ARM_SHUFFLED_VALUE"
+    ],
+    "grid_size": 9,
+    "num_hazards": 0,
+    "num_resources": 6,
+    "resource_benefit": 0.3,
+    "high_amp": 1.0,
+    "low_amp": 0.15,
+    "warmup_episodes": 12,
+    "n_blocks": 4,
+    "episodes_per_block": 10,
+    "steps_per_ep": 120,
+    "block_high_idx": {
+      "ARM_FIXED_VALUE": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ARM_SHUFFLED_VALUE": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "pre_block": 1,
+    "post_block": 3,
+    "wanting_weight": 5.0,
+    "world_dim": 32,
+    "self_dim": 32,
+    "alpha_world": 0.9,
+    "p0_lr": 0.0003,
+    "k_effect": 2.0,
+    "abs_floor": 0.1
+  },
+  "seeds": [
+    42,
+    47,
+    53,
+    61
+  ]
 }

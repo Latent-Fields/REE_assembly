@@ -64,5 +64,34 @@
     "commit": "c4baf80cab17e1fd9b27fd301066e4c0bcaad83e",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 0.3190429029999997,
+  "config": {
+    "bounding_arms": {
+      "OFF": {
+        "valence_bounding_enabled": false
+      },
+      "ON": {
+        "valence_bounding_enabled": true,
+        "valence_decay_rate": 0.02,
+        "valence_clamp_abs": 5.0
+      }
+    },
+    "channels": [
+      "positive_surprise",
+      "negative_surprise",
+      "wanting_sensitized"
+    ],
+    "writes_per_cell": 200,
+    "value": 1.0,
+    "world_dim": 8,
+    "unbounded_frac": 0.8,
+    "exact_tol": 0.0001
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

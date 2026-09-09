@@ -79,5 +79,51 @@
   },
   "machine": "ree-cloud-4",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "b63854ec13267295838f83a915c9656488b88fb39fd2efc4630d232bd230f704"
+  "substrate_hash": "b63854ec13267295838f83a915c9656488b88fb39fd2efc4630d232bd230f704",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 189.663777007,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "lambda_grid": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "rho_grid": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "baseline_lambda": 1.0,
+    "baseline_rho": 0.5,
+    "burnin_episodes": 8,
+    "capture_episodes": 10,
+    "max_steps": 80,
+    "grid_size": 8,
+    "num_hazards": 4,
+    "flip_rate_floor": 0.05,
+    "channel_range_floor": 0.0001,
+    "min_candidates_floor": 2.0,
+    "affective_harm_scale": 0.0,
+    "e3_score_decomp_enabled": true,
+    "e1_frozen_during_capture": true
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

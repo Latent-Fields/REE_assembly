@@ -91,5 +91,65 @@
     "writer_defect": null,
     "n_agents": 2,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1081.552964449,
+  "config": {
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "schedule": {
+      "n_episodes_train": 120,
+      "steps_per_episode": 72,
+      "n_episodes_probe": 10
+    },
+    "arm": "A_HIER_S2",
+    "arm_config_slice": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 120,
+        "steps_per_episode": 72
+      },
+      "alpha_world": 0.9,
+      "chunk_min_repetitions": 5,
+      "chunk_window_trials": 60,
+      "chunk_crystallisation_min": 2,
+      "use_policy_chunking": true,
+      "use_chunk_maintenance": true,
+      "use_chunk_all_position_credit": true,
+      "use_chunk_proposal_injection": true,
+      "use_chunk_replay_origin_path": false,
+      "use_maintenance_release": false,
+      "use_natural_commit_urgency_release": false,
+      "use_vs_commit_release": false,
+      "use_closure_decommit": false,
+      "chunk_max_size": 2,
+      "use_persistent_committed_program_handle": true,
+      "probe": {
+        "n_episodes_probe": 10,
+        "instrumented": true,
+        "diagnostic": "mech090_commit_latch_persistence_h1_h2"
+      }
+    },
+    "thresholds": {
+      "MIN_PERSISTENT_PRESENT_TICKS": 10,
+      "PERSISTENCE_RESTORED_MEAN_LENGTH_FLOOR": 3.0,
+      "PERSISTENCE_STILL_PINNED_MEAN_LENGTH_CEIL": 1.5,
+      "H2_MEAN_TRUE_DWELL_FLOOR_supplementary": 3.0,
+      "H2_FROZEN_FRACTION_FLOOR_supplementary": 0.8,
+      "H1_MEAN_TRUE_DWELL_CEIL_supplementary": 1.5
+    }
+  },
+  "seeds": [
+    101,
+    505
+  ]
 }

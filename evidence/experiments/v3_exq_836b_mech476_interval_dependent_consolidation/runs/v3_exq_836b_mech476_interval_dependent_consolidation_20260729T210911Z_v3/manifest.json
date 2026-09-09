@@ -117,5 +117,42 @@
   "supersession_state": {
     "superseded_by": "V3-EXQ-836e",
     "prior_evidence_direction": "non_contributory"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 14015.716476024,
+  "config": {
+    "window_steps": [
+      0,
+      150,
+      400,
+      900
+    ],
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ],
+    "fixed_bc_dose": 300,
+    "rl_budget_per_cell": 3000,
+    "eval_episodes": 20,
+    "steps_per_episode": 60,
+    "retention_probe_every": 250,
+    "offline_ewc_max_coef": 100.0,
+    "offline_capture_tau": 200.0,
+    "offline_capture_max": 1.0,
+    "offline_fisher_samples": 256,
+    "representation": "raw_view",
+    "reference_budget_multiplier": 3
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ]
 }

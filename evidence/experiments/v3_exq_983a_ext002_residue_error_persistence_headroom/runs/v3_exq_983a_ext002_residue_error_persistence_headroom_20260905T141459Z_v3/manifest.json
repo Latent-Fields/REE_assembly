@@ -246,5 +246,64 @@
     "goal_state_present": false
   },
   "evidence_direction_note": "[governance-20260906-1604, 2026-09-06, REE_assembly 71694d5b01] non_contributory RATIFIED for EXT-002 and ARC-013 by the confirmed failure_autopsy_V3-EXQ-983a_2026-09-06 (user-ratified at the Step 8 gate; Fable cross-model red-team CONTESTED on routing, folded). Test-design grounds, no verdict on the rider: world-pinned conditional DV (repeat_rate 1.000 both halves, both arms, 6/8 seeds; heterogeneity 0.00 vs 0.10), fresh-tick-only key registration (seed 31: 330 harms, 0 keys), seed population at the MIN_POOLED_SEEDS=2 floor after 6/8 seeds died to single-action latching (control-policy probe: constant mover survives all 8 boards, random walker dies on all 8). dv_headroom refusal path fired correctly (first production firing; n=1 finite seed; the dv_headroom_gate.reason string 'A1 over pooled seeds [456, 31]' is mis-generated -- interpretation.preconditions[dv_headroom].measured_over is correct). Re-derive brake released as a producer decision; same-DV 983-lineage letters refused; successor = NEW EXQ, stage-1 latching spike then avoidance-DV re-pose.",
-  "adjudicated_by_autopsy": "failure_autopsy_V3-EXQ-983a_2026-09-06"
+  "adjudicated_by_autopsy": "failure_autopsy_V3-EXQ-983a_2026-09-06",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 65334.85096182,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "size": 6,
+    "num_hazards": 4,
+    "num_resources": 3,
+    "hazard_harm": 0.02,
+    "proximity_harm_scale": 0.05,
+    "use_proxy_fields": true,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "lr": 0.001,
+    "num_candidates": 32,
+    "warmup_episodes": 110,
+    "steps_per_episode": 200,
+    "unified_latent_mode": false,
+    "reafference_action_dim": 0,
+    "arms": [
+      "A0_INTACT",
+      "A1_RESIDUE_FROZEN"
+    ],
+    "selection_rule": "argmin_over_candidate_residue_scores",
+    "repeat_error_key": "(pre_action_grid_x, pre_action_grid_y, executed_action_class)",
+    "control_probe_steps": 25,
+    "supersedes": "V3-EXQ-983",
+    "thresholds": {
+      "C1_decline_gap": 0.04,
+      "C2_effect_sd": 0.8,
+      "C3_min_seeds": 2,
+      "C4_min_revisits": 20
+    },
+    "dv_headroom": {
+      "dv_name": "decline_gap",
+      "control_arm": "A1_RESIDUE_FROZEN",
+      "statistic": "range",
+      "margin": 1.0,
+      "criterion_threshold": 0.04,
+      "predecessor_run_id": "v3_exq_983_ext002_residue_error_persistence_20260903T150005Z_v3",
+      "predecessor_control_range": 0.0467896501434286
+    },
+    "training_completion_gate": {
+      "floor_steps_realized_frac": 0.6,
+      "ceiling_harm_rate_train": 0.35,
+      "min_pooled_seeds": 2
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    7,
+    11,
+    17,
+    23,
+    31
+  ]
 }

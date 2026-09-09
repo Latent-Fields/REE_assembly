@@ -354,5 +354,122 @@
   "evidence_direction_note": "[2026-09-05 governance, confirmed failure_autopsy_V3-EXQ-822e_2026-09-05]: Corrected from the driver-emitted `unknown` (both claims), on TWO independent grounds established by failure_autopsy_V3-EXQ-822e_2026-09-05 and its cross-model Step 7c red team. (1) INSTRUMENT-VOIDED READINESS: the run scored FAIL on one of nineteen readiness preconditions, `bias_head_actually_trained`, whose statistic is a SIGNED difference of last-layer weight NORMS compared against a 1e-3 LOWER floor over the MINIMUM cell -- so a head that trained inward (ARM_OFF/seed101, -0.003772) reads as untrained. All ten cells clear the floor on the absolute delta (min 0.002076) and the driver's own sibling diagnostic `head_untrained_last_layer_static` reads false. No per-claim direction was earned. (2) C1 IS UNCREDITABLE WITHOUT AN INIT CONTROL: the gate's text names a trained-vs-random-structure test, but a 1e-3 movement floor on a 32-parameter last layer is an optimizer-liveness test (one Adam step at lr 5e-4 moves it ~2.8e-3), and a random-init head of this driver's shape clears C1's 1.0 floor in 99 percent of Monte-Carlo trials (median index 3.93, p95 5.41) -- above the measured 1.846. So even a repaired-gate re-score could not attribute C1/C2 to a trained coupling. SD-082's C1/C2 passed and SD-078's C4 failed on its mean clause alone at t-like 0.0714; neither claim is supported and neither is weakened: non_contributory on both. `non_degenerate` stays false. Diagnosis: failure_autopsy_V3-EXQ-822e_2026-09-05.",
   "epistemic_category": "standard",
   "governance_override_utc": "2026-09-05T11:07:55Z",
-  "governance_override_from": "unknown"
+  "governance_override_from": "unknown",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7450.286838389002,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "p0": 60,
+    "p1": 70,
+    "p2": 40,
+    "steps_per_episode": 48,
+    "candidate_summary_source": "proposer_post_action",
+    "cone_min_cosine_floor": 0.9,
+    "dist_floor": 0.05,
+    "min_live_rules": 2,
+    "off_max_live_ceil": 1,
+    "frac_active_floor": 0.1,
+    "seed_pass_fraction": 0.6,
+    "prop_nonvac_floor": 0.001,
+    "contrast_margin": 0.001,
+    "raw_ratio_floor": 1.0,
+    "flip_frac_floor": 0.02,
+    "flip_ticks_floor": 200,
+    "ratio_seed_majority": 3,
+    "sd078_contrast_margin": 0.25,
+    "sd078_contrast_seeds": 4,
+    "uniform_verdict_ceil": 0.25,
+    "dv_headroom_margin": 2.0,
+    "raw_replica_tol": 0.0001,
+    "prop_sample_floor": 20,
+    "summary_spread_ratio_floor": 0.001,
+    "head_diag_sample_floor": 5,
+    "magnitude_ratio_low": 0.001,
+    "magnitude_ratio_high": 1000.0,
+    "dead_relu_high_floor": 0.9,
+    "dead_relu_med_floor": 0.5,
+    "last_layer_weight_delta_floor": 0.001,
+    "lr_lpfc_bias": 0.0005,
+    "reinforce_batch_size": 32,
+    "adv_min_threshold": 0.005,
+    "arm_config_slice_off": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "lateral_pfc_rule_readout_consumer": true,
+      "lateral_pfc_capture_head_diagnostics": true,
+      "candidate_summary_source": "proposer_post_action",
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": false,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "arm_config_slice_on": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "lateral_pfc_rule_readout_consumer": true,
+      "lateral_pfc_capture_head_diagnostics": true,
+      "candidate_summary_source": "proposer_post_action",
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": true,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "validates_substrate": "SD-082 per-candidate-summary amend, ree-v3 ef88faa (2026-08-30); routed by failure_autopsy_V3-EXQ-822c_2026-08-29 Section 6",
+    "supersedes_note": "SUPERSEDES V3-EXQ-822d, whose DV (prop_delta, an ablation magnitude) could not separate a candidate-DISCRIMINATING propagated bias from a candidate-UNIFORM one, and whose C1 was an ON-arm-only absolute floor the negative control cleared more strongly. Does NOT supersede v3_exq_822c -- 822c is the diagnostic that measured the original defect and its failure_record is marked resolved (not superseded) by the substrate fix 822d validated. The SD-082 BUILD is not re-opened by this run."
+  },
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ]
 }

@@ -202,5 +202,248 @@
     "writer_defect": null,
     "n_agents": 89,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 36988.184,
+  "config": {
+    "arms": [
+      "ARM_SELECTION_OFF",
+      "ARM_SELECTION_ON"
+    ],
+    "candidate_seeds": [
+      11,
+      23,
+      47,
+      71,
+      3,
+      29,
+      89,
+      97,
+      17,
+      53,
+      5,
+      7,
+      13,
+      19,
+      31,
+      37,
+      41,
+      43,
+      59,
+      61,
+      67,
+      73,
+      79,
+      83,
+      101,
+      103,
+      107,
+      109,
+      113,
+      127,
+      2,
+      6,
+      8,
+      12,
+      14,
+      18,
+      22,
+      26,
+      33,
+      39,
+      51,
+      57,
+      63,
+      69,
+      77,
+      81,
+      87,
+      93
+    ],
+    "measurement_seeds": [
+      31,
+      41,
+      103,
+      8,
+      22,
+      51,
+      77,
+      19,
+      11,
+      23
+    ],
+    "episodes": 12,
+    "steps_per_episode": 60,
+    "screen_episodes": 4,
+    "measure_matched_slots": 8,
+    "measure_control_slots": 2,
+    "env_kwargs_per_seed": {
+      "31": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 31
+      },
+      "41": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 41
+      },
+      "103": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 103
+      },
+      "8": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 8
+      },
+      "22": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 22
+      },
+      "51": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 51
+      },
+      "77": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 77
+      },
+      "19": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 19
+      },
+      "11": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 11
+      },
+      "23": {
+        "scheduled_external_hazard_enabled": true,
+        "scheduled_external_hazard_interval": 20,
+        "scheduled_external_hazard_prob": 0.7,
+        "scheduled_external_hazard_adjacent_only": true,
+        "hazard_harm": 0.2,
+        "proximity_harm_scale": 0.2,
+        "seed": 23
+      }
+    },
+    "self_dim": 32,
+    "world_dim": 32,
+    "seeded_chunk_sequence": [
+      0,
+      1,
+      2
+    ],
+    "decomposition_vs_threshold": 0.99,
+    "decomposition_depth_cap": 3,
+    "hazard_tuned_stream_flags": {
+      "use_affective_harm_stream": true,
+      "use_harm_stream": true,
+      "valence_harm_enabled": true
+    },
+    "harm_aware_selection_params": {
+      "decomposition_harm_bias_gain": 0.1,
+      "decomposition_harm_bias_scale": 0.1,
+      "decomposition_harm_threat_floor": 0.1,
+      "decomposition_harm_threat_ref": 0.5,
+      "decomposition_harm_override_w_threshold": 0.9
+    },
+    "arm_flags": {
+      "ARM_SELECTION_OFF": {
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.99,
+        "decomposition_depth_cap": 3,
+        "use_persistent_committed_program_handle": true,
+        "use_affective_harm_stream": true,
+        "use_harm_stream": true,
+        "valence_harm_enabled": true
+      },
+      "ARM_SELECTION_ON": {
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.99,
+        "decomposition_depth_cap": 3,
+        "use_persistent_committed_program_handle": true,
+        "use_affective_harm_stream": true,
+        "use_harm_stream": true,
+        "valence_harm_enabled": true,
+        "decomposition_use_harm_aware_selection": true,
+        "decomposition_harm_bias_gain": 0.1,
+        "decomposition_harm_bias_scale": 0.1,
+        "decomposition_harm_threat_floor": 0.1,
+        "decomposition_harm_threat_ref": 0.5,
+        "decomposition_harm_override_w_threshold": 0.9
+      }
+    },
+    "thresholds": {
+      "MULTI_ACTION_COMMIT_FLOOR": 0.0,
+      "PRECOMMIT_EVAL_FLOOR": 0.0,
+      "MIDEXEC_DECOMP_FLOOR": 0.0,
+      "HARM_BIAS_ENGAGE_FLOOR": 0.0,
+      "PE_VARIANCE_FLOOR": 1e-12,
+      "PE_SANITY_CEIL": 1000000.0,
+      "EFFECT_SIZE_K_SIGMA": 1.0,
+      "REL_IMPROVEMENT_FLOOR": 0.0,
+      "MIN_DECOMPOSING_SEEDS": 6
+    }
+  },
+  "seeds": [
+    31,
+    41,
+    103,
+    8,
+    22,
+    51,
+    77,
+    19,
+    11,
+    23
+  ]
 }

@@ -340,5 +340,122 @@
     "writer_defect": null,
     "n_agents": 9,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3606.315820980002,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_STRICT_FLAG_OFF",
+      "ARM_REPLAY_ON"
+    ],
+    "n_episodes": 120,
+    "steps_per_episode": 72,
+    "sleep_checkpoint_episode": 90,
+    "replay_corroboration_episodes": 15,
+    "replay_value_quantile": 0.75,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "alpha_world": 0.9,
+    "chunk_min_repetitions": 5,
+    "chunk_window_trials": 60,
+    "chunk_crystallisation_min": 2,
+    "chunk_min_size": 2,
+    "chunk_max_size": 5,
+    "seed_pass_fraction": 1.0,
+    "outcome_spread_floor": 0.05,
+    "symbols_per_trial_floor": 4.0,
+    "harm_step_fraction_floor": 0.01,
+    "arm_config_slices": {
+      "ARM_OFF": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72
+        },
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "use_policy_chunking": false,
+        "use_chunk_maintenance": false,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false
+      },
+      "ARM_STRICT_FLAG_OFF": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72,
+          "sleep_checkpoint_episode": 90
+        },
+        "replay_corroboration_episodes": 15,
+        "replay_value_quantile": 0.75,
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "chunk_replay_value_quantile": 0.75,
+        "chunk_replay_corroboration_episodes": 15,
+        "tonic_5ht_enabled": true,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": false
+      },
+      "ARM_REPLAY_ON": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72,
+          "sleep_checkpoint_episode": 90
+        },
+        "replay_corroboration_episodes": 15,
+        "replay_value_quantile": 0.75,
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "chunk_replay_value_quantile": 0.75,
+        "chunk_replay_corroboration_episodes": 15,
+        "tonic_5ht_enabled": true,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": true
+      }
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ]
 }

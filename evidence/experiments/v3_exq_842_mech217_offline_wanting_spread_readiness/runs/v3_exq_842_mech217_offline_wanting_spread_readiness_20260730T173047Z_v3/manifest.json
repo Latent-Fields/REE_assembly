@@ -97,5 +97,42 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "efa9578629f2dce7615155b64d8726642436cfca98eb65dce545db881474994c"
+  "substrate_hash": "efa9578629f2dce7615155b64d8726642436cfca98eb65dce545db881474994c",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 6.715799727,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_cycles": 6,
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "grid_size": 8,
+    "agent_start": [
+      1,
+      1
+    ],
+    "resource_pos": [
+      6,
+      6
+    ],
+    "control_pos": [
+      1,
+      6
+    ],
+    "sws_consolidation_steps": 5,
+    "rem_attribution_steps": 8,
+    "waypoint_center_seed": 0.001,
+    "contact_seed_wanting": 2.0,
+    "num_basis_functions": 256
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

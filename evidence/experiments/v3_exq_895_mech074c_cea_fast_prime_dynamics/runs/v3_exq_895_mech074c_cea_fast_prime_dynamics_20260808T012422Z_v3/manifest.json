@@ -130,5 +130,63 @@
     "writer_defect": null,
     "n_agents": 1,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 217.049717318,
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13,
+      23,
+      45
+    ],
+    "conditions": [
+      "ARM_CONF_ABSENT",
+      "ARM_CONF_PRESENT",
+      "SELECTIVITY_PROBE"
+    ],
+    "trials_per_run": 12,
+    "probe_steps_per_ep": 60,
+    "drive_protocol": {
+      "z_harm_a_dim": 16,
+      "cea_fast_route_threshold": 0.5,
+      "cea_fast_route_input_is_lowfreq": true,
+      "cea_mode_prior_log_odds_max": 0.8,
+      "cea_mode_prior_gain": 1.0,
+      "cea_fast_prime_amplitude": 0.6,
+      "cea_fast_prime_decay_tau_steps": 4,
+      "cea_fast_prime_override_window_steps": 8,
+      "cea_cortical_confirmation_weight": 1.0,
+      "n_quiet_pre": 5,
+      "n_post": 14,
+      "quiet_range": [
+        0.05,
+        0.4
+      ],
+      "fire_range": [
+        0.7,
+        2.2
+      ],
+      "trials_per_run": 12
+    },
+    "thresholds": {
+      "ONSET_MAX_STEPS": 2,
+      "TAU_MIN": 3.0,
+      "TAU_MAX": 5.0,
+      "WINDOW_MAX_RETAINED": 0.5,
+      "HOLD_MIN_RETAINED": 0.9,
+      "OVERRIDE_SEPARATION_MIN": 0.4,
+      "FP_PEAK_FLOOR": 0.05,
+      "DRIVE_MATCH_EPS": 1e-09,
+      "BOUND_EPS": 1e-06
+    }
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    23,
+    45
+  ]
 }

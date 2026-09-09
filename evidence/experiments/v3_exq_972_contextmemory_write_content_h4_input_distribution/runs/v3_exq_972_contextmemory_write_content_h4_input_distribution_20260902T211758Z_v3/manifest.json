@@ -132,5 +132,44 @@
     "writer_defect": null,
     "n_agents": 5,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 397.06970248200014,
+  "config": {
+    "arm": "GUMBEL_TRAINED",
+    "write_selection": "gumbel_learned",
+    "contextmemory_write_addressing_loss_weight": 0.5,
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "training_episodes": 100,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "contextmemory_gated_content_write": true,
+    "sd016_writepath_mode": "sense_only",
+    "alpha_world": 0.9,
+    "use_noise_floor": true,
+    "num_slots": 16,
+    "write_calls_floor": 200.0,
+    "h4_seed_readiness_floor": 50,
+    "h4_n_seeds_required": 3,
+    "h4_noise_floor": 0.05,
+    "sep_subsample_max": 500,
+    "max_state_buf": 4000,
+    "probe_n": 1500,
+    "probe_jitter": 0.0078,
+    "probe_clusters": 2,
+    "latent_dim": 64
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    100,
+    200
+  ]
 }

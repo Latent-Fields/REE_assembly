@@ -104,5 +104,36 @@
   "supersession_state": {
     "superseded_by": "V3-EXQ-836a",
     "prior_evidence_direction": "non_contributory"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 6586.036388591,
+  "config": {
+    "doses": [
+      300,
+      600,
+      900
+    ],
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ],
+    "rl_budget_per_cell": 3000,
+    "eval_episodes": 20,
+    "steps_per_episode": 60,
+    "retention_probe_every": 250,
+    "representation": "raw_view",
+    "reference_budget_multiplier": 3
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ]
 }

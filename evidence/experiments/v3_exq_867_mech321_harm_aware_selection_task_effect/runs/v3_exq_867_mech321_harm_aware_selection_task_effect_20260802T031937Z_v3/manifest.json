@@ -150,5 +150,113 @@
     "writer_defect": null,
     "n_agents": 12,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2333.063,
+  "config": {
+    "arms": [
+      "ARM_SELECTION_OFF",
+      "ARM_SELECTION_ON"
+    ],
+    "seeds": [
+      3,
+      47,
+      71,
+      89,
+      23,
+      53
+    ],
+    "episodes": 12,
+    "steps_per_episode": 60,
+    "env_kwargs_per_seed": {
+      "3": {
+        "seed": 3
+      },
+      "47": {
+        "seed": 47
+      },
+      "71": {
+        "seed": 71
+      },
+      "89": {
+        "seed": 89
+      },
+      "23": {
+        "seed": 23
+      },
+      "53": {
+        "seed": 53
+      }
+    },
+    "self_dim": 32,
+    "world_dim": 32,
+    "seeded_chunk_sequence": [
+      0,
+      1,
+      2
+    ],
+    "decomposition_vs_threshold": 0.99,
+    "decomposition_depth_cap": 3,
+    "harm_aware_selection_params": {
+      "decomposition_harm_bias_gain": 0.1,
+      "decomposition_harm_bias_scale": 0.1,
+      "decomposition_harm_threat_floor": 0.1,
+      "decomposition_harm_threat_ref": 0.5,
+      "decomposition_harm_override_w_threshold": 0.9
+    },
+    "arm_flags": {
+      "ARM_SELECTION_OFF": {
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.99,
+        "decomposition_depth_cap": 3,
+        "use_persistent_committed_program_handle": true
+      },
+      "ARM_SELECTION_ON": {
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.99,
+        "decomposition_depth_cap": 3,
+        "use_persistent_committed_program_handle": true,
+        "decomposition_use_harm_aware_selection": true,
+        "decomposition_harm_bias_gain": 0.1,
+        "decomposition_harm_bias_scale": 0.1,
+        "decomposition_harm_threat_floor": 0.1,
+        "decomposition_harm_threat_ref": 0.5,
+        "decomposition_harm_override_w_threshold": 0.9
+      }
+    },
+    "thresholds": {
+      "MULTI_ACTION_COMMIT_FLOOR": 0.0,
+      "PRECOMMIT_EVAL_FLOOR": 0.0,
+      "MIDEXEC_DECOMP_FLOOR": 0.0,
+      "HARM_BIAS_ENGAGE_FLOOR": 0.0,
+      "PE_VARIANCE_FLOOR": 1e-12,
+      "PE_SANITY_CEIL": 1000000.0,
+      "EFFECT_SIZE_K_SIGMA": 1.0,
+      "REL_IMPROVEMENT_FLOOR": 0.0,
+      "MIN_DECOMPOSING_SEEDS": 2
+    },
+    "reuse_baseline_from": "v3_exq_844_mech321_r4_midexec_task_effect_20260801T013315Z_v3",
+    "reuse_log": [
+      "seed=3: reuse_refused (fingerprint mismatch -- likely machine-class or substrate drift vs 844's mint) -- running fresh",
+      "seed=47: reuse_refused (fingerprint mismatch -- likely machine-class or substrate drift vs 844's mint) -- running fresh",
+      "seed=71: reuse_refused (fingerprint mismatch -- likely machine-class or substrate drift vs 844's mint) -- running fresh",
+      "seed=89: reuse_refused (fingerprint mismatch -- likely machine-class or substrate drift vs 844's mint) -- running fresh",
+      "seed=23: reuse_refused (fingerprint mismatch -- likely machine-class or substrate drift vs 844's mint) -- running fresh",
+      "seed=53: reuse_refused (fingerprint mismatch -- likely machine-class or substrate drift vs 844's mint) -- running fresh"
+    ]
+  },
+  "seeds": [
+    3,
+    47,
+    71,
+    89,
+    23,
+    53
+  ]
 }

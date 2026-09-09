@@ -61,5 +61,33 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 21004.849306856,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "conditions": [
+      "FULL",
+      "AVOIDANCE_ONLY",
+      "RANDOM"
+    ],
+    "drive_floor": 0.9,
+    "drive_ema_alpha": 1.0,
+    "drive_weight": 2.0,
+    "goal_weight": 1.0,
+    "benefit_threshold": 0.1,
+    "p0_episodes": 100,
+    "p1_episodes": 150,
+    "p2_episodes": 50,
+    "steps_per_ep": 200
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

@@ -116,5 +116,35 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3771.1478277714923,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "arms": [
+      "ARM_HARSH",
+      "ARM_GENTLE"
+    ],
+    "gentle_env": {
+      "num_hazards": 1,
+      "hazard_food_attraction": 0.2
+    },
+    "cov_floor": 0.05,
+    "level_drop_frac": 0.2,
+    "z_harm_s_snr_k": 2.0,
+    "min_eval_steps": 100,
+    "lineage": "affective_fishtank",
+    "warmup_episodes": 50,
+    "eval_episodes": 5,
+    "steps_per_episode": 200
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

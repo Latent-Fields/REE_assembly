@@ -95,5 +95,73 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 17372.632480582222,
+  "config": {
+    "env_kwargs": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "use_proxy_fields": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "limb_damage_enabled": true,
+      "damage_increment": 0.15,
+      "failure_prob_scale": 0.3,
+      "heal_rate": 0.002,
+      "n_landmarks_b": 2
+    },
+    "schedule": {
+      "p0_warmup_episodes": 40,
+      "p1_main_episodes": 40,
+      "total_train_episodes": 80,
+      "steps_per_episode": 200,
+      "eval_steps": 300
+    },
+    "tone_sweep": [
+      0.3,
+      0.5,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "baseline_tone": 1.0,
+    "arms": [
+      "decay_off_legacy",
+      "decay_on"
+    ],
+    "thresholds": {
+      "C1_RHO_MAX": -0.9,
+      "C1_SPREAD_FLOOR": 0.01,
+      "C1_SEEDS_REQUIRED": 2,
+      "C2_SEEDS_REQUIRED": 2,
+      "C3_SEEDS_REQUIRED": 2,
+      "VACUITY_CEILING": 1e-05,
+      "READINESS_SPREAD_FLOOR": 0.001
+    },
+    "use_pag_freeze_gate": false,
+    "latent_dims": {
+      "self_dim": 32,
+      "world_dim": 32,
+      "harm_dim": 32,
+      "z_harm_a_dim": 16,
+      "harm_history_len": 10,
+      "alpha_world": 0.9,
+      "alpha_self": 0.3
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

@@ -139,5 +139,126 @@
     "commit": "8aa975e9cc8d7335c298963c4185cea95ff66790",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 31.862594957463443,
+  "config": {
+    "acceptance_quantity": "across_seed_mean_broad_minus_tight_gap",
+    "action_dim": 4,
+    "action_object_dim": 16,
+    "arm_definitions": {
+      "BOTH": {
+        "mode_conditioning_enabled": true,
+        "mode_partitioned_cem": true,
+        "mode_value_weight_set": true
+      },
+      "H2": {
+        "mode_conditioning_enabled": true,
+        "mode_partitioned_cem": false,
+        "mode_value_weight_set": true
+      },
+      "H3": {
+        "mode_conditioning_enabled": true,
+        "mode_partitioned_cem": true,
+        "mode_value_weight_set": false
+      },
+      "OFF": {
+        "mode_conditioning_enabled": true,
+        "mode_partitioned_cem": false,
+        "mode_value_weight_set": false
+      }
+    },
+    "arms": [
+      "OFF",
+      "H2",
+      "H3",
+      "BOTH"
+    ],
+    "broad_mode": "internal_planning",
+    "floor_production": 0.01,
+    "horizon": 4,
+    "mode_value_weight_scale": 1.0,
+    "mode_value_weight_seed": 2672,
+    "modes_in_predicted_order": [
+      "internal_planning",
+      "external_task",
+      "internal_replay",
+      "offline_consolidation"
+    ],
+    "num_candidates": 16,
+    "num_cem_iterations": 3,
+    "primary_dv": "mean_raw_std_by_dim",
+    "related_exq": [
+      "V3-EXQ-869",
+      "V3-EXQ-869a",
+      "V3-EXQ-923"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "self_dim": 16,
+    "tight_mode": "offline_consolidation",
+    "world_dim": 32
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29
+  ]
 }

@@ -78,5 +78,40 @@
     "commit": "5bb112223d94806e53036b3a93b60e339c5981c2",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7380.002524591,
+  "config": {
+    "body_obs_dim": 12,
+    "world_obs_dim": 250,
+    "action_dim": 5,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "env": {
+      "size": 10,
+      "num_hazards": 2,
+      "num_resources": 3,
+      "hazard_harm": 0.02,
+      "env_drift_interval": 10,
+      "env_drift_prob": 0.2
+    },
+    "train_episodes": 150,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "p0_episodes": 20,
+    "lc_gain": 80.0,
+    "lc_ema_alpha": 0.1,
+    "novelty_reduction": "sum",
+    "p0_min_magnitude": 0.001,
+    "c1_thresh": 0.001,
+    "c2_rel_floor": 0.15,
+    "mode_key": "lc_arousal"
+  },
+  "seeds": [
+    42,
+    7,
+    123
+  ]
 }

@@ -185,5 +185,175 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "40460396a9f362039b6d4c0055fd32b763b195731c26e63bb041c5d6d91c97bc"
+  "substrate_hash": "40460396a9f362039b6d4c0055fd32b763b195731c26e63bb041c5d6d91c97bc",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 196024.48860769346,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61
+    ],
+    "arms": [
+      "ARM_LEGACY",
+      "ARM_STRICT"
+    ],
+    "manipulated_variable": "ScaffoldedSD054OnboardingConfig.scaffold_strict_goal_isolation",
+    "arm_config_slice_legacy": {
+      "lineage": "stageh_strict_goal_isolation",
+      "scaffold_strict_goal_isolation": false,
+      "world_dim": 32,
+      "alpha_world": 0.9,
+      "drive_weight": 2.0,
+      "harm_dims": [
+        16,
+        7,
+        10
+      ],
+      "budgets": [
+        20,
+        10,
+        100,
+        40,
+        200,
+        1
+      ],
+      "hazard_stage": [
+        6,
+        2,
+        0.0,
+        0.1,
+        75,
+        10
+      ],
+      "seeding": [
+        1.5,
+        0.02,
+        0.9,
+        3,
+        0.2
+      ],
+      "avoidance": [
+        0.8,
+        0.0,
+        0.35,
+        0.8,
+        0.2
+      ],
+      "harm_pathway": [
+        0.001,
+        0.0003,
+        250
+      ],
+      "escape_bridge": false,
+      "truncated_after_stage_h": true,
+      "dry_run": false
+    },
+    "arm_config_slice_strict": {
+      "lineage": "stageh_strict_goal_isolation",
+      "scaffold_strict_goal_isolation": true,
+      "world_dim": 32,
+      "alpha_world": 0.9,
+      "drive_weight": 2.0,
+      "harm_dims": [
+        16,
+        7,
+        10
+      ],
+      "budgets": [
+        20,
+        10,
+        100,
+        40,
+        200,
+        1
+      ],
+      "hazard_stage": [
+        6,
+        2,
+        0.0,
+        0.1,
+        75,
+        10
+      ],
+      "seeding": [
+        1.5,
+        0.02,
+        0.9,
+        3,
+        0.2
+      ],
+      "avoidance": [
+        0.8,
+        0.0,
+        0.35,
+        0.8,
+        0.2
+      ],
+      "harm_pathway": [
+        0.001,
+        0.0003,
+        250
+      ],
+      "escape_bridge": false,
+      "truncated_after_stage_h": true,
+      "dry_run": false
+    },
+    "episodes_per_cell": 170,
+    "curriculum": "stage0 -> stage0b -> p0 -> stage_h (P1/P2 dropped)",
+    "train_steps_per_episode": 200,
+    "hazard_stage_budget": 40,
+    "hazard_stage_stability_window": 10,
+    "hazard_stage_survival_gate_steps": 75,
+    "pre_registered_gates": {
+      "STAGE0_ZGOAL_GATE": 0.4,
+      "HARM_DISC_RANGE_FLOOR": 0.02,
+      "SURVIVAL_FLOOR_STEPS": 8.0,
+      "MIN_FRACTION": 0.6666666666666666,
+      "MIN_PAIRED_SEEDS": 12,
+      "K_SE": 2.0,
+      "ABS_FLOOR_STEPS": 5.0,
+      "NULL_PRECISION_CEILING_STEPS": 25.0
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ]
 }

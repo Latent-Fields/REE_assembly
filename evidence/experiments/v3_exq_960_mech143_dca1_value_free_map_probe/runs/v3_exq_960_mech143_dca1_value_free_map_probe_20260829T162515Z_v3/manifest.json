@@ -63,5 +63,81 @@
     "n_agents": 6,
     "goal_state_present": true
   },
-  "evidence_direction_note": "Governance governance-20260830-0630 ratified failure_autopsy_V3-EXQ-960-961-cluster_2026-08-30.json (confirmed at 28d14475a5): V3-EXQ-960 does NOT bear on MECH-143 and its recorded does_not_support is corrected to non_contributory. The driver pre-registers MIN_DISPERSION=0.02 on cross-position z_world dispersion and states that below it the 8 probe positions are not distinguishable, so any low map_drift is a representation-collapse artifact rather than evidence of value-invariance. Measured pre_dispersion was 0.009649 / 0.007550 / 0.000256 -- every cell 2x to 78x BELOW its own pre-registered floor -- so NEITHER criterion is interpretable and the run must not weigh in either direction."
+  "evidence_direction_note": "Governance governance-20260830-0630 ratified failure_autopsy_V3-EXQ-960-961-cluster_2026-08-30.json (confirmed at 28d14475a5): V3-EXQ-960 does NOT bear on MECH-143 and its recorded does_not_support is corrected to non_contributory. The driver pre-registers MIN_DISPERSION=0.02 on cross-position z_world dispersion and states that below it the 8 probe positions are not distinguishable, so any low map_drift is a representation-collapse artifact rather than evidence of value-invariance. Measured pre_dispersion was 0.009649 / 0.007550 / 0.000256 -- every cell 2x to 78x BELOW its own pre-registered floor -- so NEITHER criterion is interpretable and the run must not weigh in either direction.",
+  "recording_schema": "rec/v1",
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "arms": [
+      "VALUE_CHANGE",
+      "LOCATION_CHANGE"
+    ],
+    "p0_episodes": 60,
+    "p1a_episodes": 60,
+    "p1b_episodes": 60,
+    "steps_per_ep": 150,
+    "grid_size": 8,
+    "agent_start": [
+      1,
+      1
+    ],
+    "hazard_pos": [
+      [
+        4,
+        4
+      ]
+    ],
+    "resource_pos_a": [
+      6,
+      6
+    ],
+    "resource_pos_b": [
+      2,
+      2
+    ],
+    "low_value": 0.2,
+    "high_value": 1.0,
+    "probe_positions": [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        5
+      ]
+    ]
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ]
 }

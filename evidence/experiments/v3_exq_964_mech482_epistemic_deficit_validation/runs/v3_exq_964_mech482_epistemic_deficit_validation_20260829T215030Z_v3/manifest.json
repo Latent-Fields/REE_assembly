@@ -122,5 +122,28 @@
     "n_agents": 6,
     "goal_state_present": false
   },
-  "evidence_direction_note": "Governance governance-20260830-0630 ratified failure_autopsy_V3-EXQ-964_2026-08-30.json (confirmed at 28d14475a5): V3-EXQ-964's C2 was STRUCTURALLY UNSATISFIABLE, so the run is not a negative result for MECH-482 and its recorded mixed is corrected to non_contributory. EpistemicDeficitAccumulator.reset() clears all persistent targets every episode, so in 60-step episodes n_targets never exceeds 1; with all 32 candidates matched the epistemic-deficit readout is a CONSTANT vector, and a constant cannot move an argmax. C1's PASS bar sits exactly where C2 must fail."
+  "evidence_direction_note": "Governance governance-20260830-0630 ratified failure_autopsy_V3-EXQ-964_2026-08-30.json (confirmed at 28d14475a5): V3-EXQ-964's C2 was STRUCTURALLY UNSATISFIABLE, so the run is not a negative result for MECH-482 and its recorded mixed is corrected to non_contributory. EpistemicDeficitAccumulator.reset() clears all persistent targets every episode, so in 60-step episodes n_targets never exceeds 1; with all 32 candidates matched the epistemic-deficit readout is a CONSTANT vector, and a constant cannot move an argmax. C1's PASS bar sits exactly where C2 must fail.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 319.025957373,
+  "config": {
+    "seeds": [
+      71,
+      101,
+      202
+    ],
+    "episodes": 3,
+    "steps_per_episode": 60,
+    "world_dim": 16,
+    "self_dim": 32,
+    "e2_world_uncertainty_warmup_steps": 60,
+    "e2_world_uncertainty_batch_size": 16,
+    "thresholds": {
+      "VACUOUS_READOUT_RATE_CEILING": 0.5
+    }
+  },
+  "seeds": [
+    71,
+    101,
+    202
+  ]
 }

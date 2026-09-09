@@ -129,5 +129,50 @@
     "writer_defect": null,
     "n_agents": 10,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 850.7885951290009,
+  "config": {
+    "arms": [
+      "H3_UNTRAINED",
+      "H3_TRAINED"
+    ],
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "training_episodes": 100,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "contextmemory_gated_content_write": true,
+    "contextmemory_write_selection": "gumbel_learned",
+    "contextmemory_write_addressing_loss_weight": 0.0,
+    "sd016_writepath_mode": "sense_only",
+    "alpha_world": 0.9,
+    "use_noise_floor": true,
+    "num_slots": 16,
+    "tau_st": 1.0,
+    "lambda_h3_by_arm": {
+      "H3_UNTRAINED": 0.0,
+      "H3_TRAINED": 1.0
+    },
+    "h3_jaccard_margin": 0.25,
+    "write_calls_floor": 200.0,
+    "probe_n": 1500,
+    "probe_jitter": 0.0078,
+    "probe_clusters": 2,
+    "latent_dim": 64,
+    "world_dim": 32,
+    "memory_dim": 128
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    100,
+    200
+  ]
 }

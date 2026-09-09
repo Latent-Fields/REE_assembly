@@ -302,5 +302,40 @@
     "writer_defect": null,
     "n_agents": 20,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1934.6206273632124,
+  "config": {
+    "seeds": [
+      71,
+      101,
+      202,
+      303,
+      404
+    ],
+    "episodes": 4,
+    "steps_per_episode": 80,
+    "world_dim": 32,
+    "self_dim": 32,
+    "action_dim": 5,
+    "floor": 5,
+    "modulatory_authority_gain": 0.5,
+    "e2_world_uncertainty_warmup_steps": 100,
+    "e2_world_uncertainty_batch_size": 32,
+    "thresholds": {
+      "YOKED_DIVERGENCE_FLOOR": 0.02,
+      "INTERACTION_MARGIN": 0.02,
+      "HEAD_REL_SPREAD_FLOOR": 1.0,
+      "DIVERSITY_TOLERANCE": 0.5,
+      "AUTHORITY_ENGAGEMENT_REL_DEVIATION_FLOOR": 0.05,
+      "AUTHORITY_NULL_REL_DEVIATION_CEILING": 0.01
+    }
+  },
+  "seeds": [
+    71,
+    101,
+    202,
+    303,
+    404
+  ]
 }

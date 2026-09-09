@@ -95,5 +95,109 @@
   },
   "machine": "DLAPTOP-5.local",
   "machine_class": "darwin-arm64-py3.13-torch2.12.0",
-  "substrate_hash": "97780328933eee30a783f68b3dd1e506b4893906b0982a6dc7f820c1fb8f8148"
+  "substrate_hash": "97780328933eee30a783f68b3dd1e506b4893906b0982a6dc7f820c1fb8f8148",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7222.133764207945,
+  "config": {
+    "seeds": [
+      11,
+      23,
+      47,
+      71,
+      97
+    ],
+    "arms": [
+      "ARM_0",
+      "ARM_1"
+    ],
+    "warmup_episodes": 40,
+    "measure_episodes": 20,
+    "steps_per_episode": 24,
+    "decomposition_vs_threshold": 0.5,
+    "decomposition_depth_cap": 3,
+    "harsh_env_drift_interval": 3,
+    "harsh_world_rule_shift_enabled": true,
+    "harsh_world_rule_shift_interval": 24,
+    "harsh_world_rule_shift_depth": 1,
+    "seeded_chunk_sequence": [
+      0,
+      1,
+      2
+    ],
+    "min_low_vs_steps": 5,
+    "pe_elevated_floor": 0.01,
+    "pe_var_floor": 1e-09,
+    "rel_improvement_floor": 0.05,
+    "effect_size_k_sigma": 2.0,
+    "seed_fire_fraction": 0.6,
+    "vs_hist_bins": 10,
+    "pe_hist_bins": 12,
+    "arm_config_slices": {
+      "ARM_0": {
+        "env": {
+          "size": 8,
+          "num_hazards": 3,
+          "num_resources": 6,
+          "use_proxy_fields": true,
+          "env_drift_interval": 3,
+          "world_rule_shift_enabled": true,
+          "world_rule_shift_interval": 24,
+          "world_rule_shift_depth": 1
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "measure_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": false
+      },
+      "ARM_1": {
+        "env": {
+          "size": 8,
+          "num_hazards": 3,
+          "num_resources": 6,
+          "use_proxy_fields": true,
+          "env_drift_interval": 3,
+          "world_rule_shift_enabled": true,
+          "world_rule_shift_interval": 24,
+          "world_rule_shift_depth": 1
+        },
+        "schedule": {
+          "warmup_episodes": 40,
+          "measure_episodes": 20,
+          "steps": 24
+        },
+        "alpha_world": 0.9,
+        "seeded_chunk_sequence": [
+          0,
+          1,
+          2
+        ],
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_per_stream_vs": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.5,
+        "decomposition_depth_cap": 3
+      }
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    47,
+    71,
+    97
+  ]
 }

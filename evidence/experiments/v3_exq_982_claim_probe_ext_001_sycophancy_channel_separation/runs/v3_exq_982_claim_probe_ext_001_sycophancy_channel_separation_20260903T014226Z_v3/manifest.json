@@ -116,5 +116,36 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1568.339303049259,
+  "config": {
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "arms": [
+      "ARM_SEPARATED",
+      "ARM_COLLAPSED"
+    ],
+    "n_episodes_p0": 2,
+    "n_episodes_p1": 4,
+    "steps_per_episode": 40,
+    "harm_relief_gain": 2.0,
+    "benefit_threshold_default": 0.1,
+    "goal_weighted_epsilon": 1e-09,
+    "env_kwargs": {
+      "size": 8,
+      "num_hazards": 1,
+      "num_resources": 1,
+      "use_proxy_fields": true,
+      "resource_benefit": 1.0
+    }
+  },
+  "seeds": [
+    11,
+    22,
+    33
+  ]
 }

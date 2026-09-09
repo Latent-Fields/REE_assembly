@@ -198,5 +198,113 @@
     "n_agents": 10,
     "goal_state_present": false
   },
-  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). mixed WITHDRAWN -> non_contributory for both claims. SD-082's recorded supports came off C1, an ON-arm-only absolute floor (on_prop_delta_mean 0.001556 >= 1e-3) that the negative control clears MORE strongly (off_prop_delta_mean 0.001912) and that was never applied to it; prop_delta is an ablation MAGNITUDE and cannot distinguish candidate-DISCRIMINATING from candidate-UNIFORM coupling, which is SD-082's whole substance. C2 shows an ON-over-OFF contrast on 1/5 seeds with a NEGATIVE mean contrast (-3.56e-4). SD-078 is a co-tag here, not the subject (the criteria_to_claims note's own conditional): its rule-pool differentiation passed decisively as a readiness precondition (16 rules, max pairwise dist 1.711, rule_state_diff 0.650 vs 3.24e-10). Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b."
+  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). mixed WITHDRAWN -> non_contributory for both claims. SD-082's recorded supports came off C1, an ON-arm-only absolute floor (on_prop_delta_mean 0.001556 >= 1e-3) that the negative control clears MORE strongly (off_prop_delta_mean 0.001912) and that was never applied to it; prop_delta is an ablation MAGNITUDE and cannot distinguish candidate-DISCRIMINATING from candidate-UNIFORM coupling, which is SD-082's whole substance. C2 shows an ON-over-OFF contrast on 1/5 seeds with a NEGATIVE mean contrast (-3.56e-4). SD-078 is a co-tag here, not the subject (the criteria_to_claims note's own conditional): its rule-pool differentiation passed decisively as a readiness precondition (16 rules, max pairwise dist 1.711, rule_state_diff 0.650 vs 3.24e-10). Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7363.428889381,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON"
+    ],
+    "p0": 60,
+    "p1": 70,
+    "p2": 40,
+    "steps_per_episode": 48,
+    "candidate_summary_source": "proposer_post_action",
+    "cone_min_cosine_floor": 0.9,
+    "dist_floor": 0.05,
+    "min_live_rules": 2,
+    "off_max_live_ceil": 1,
+    "frac_active_floor": 0.1,
+    "seed_pass_fraction": 0.6,
+    "prop_nonvac_floor": 0.001,
+    "contrast_margin": 0.001,
+    "prop_sample_floor": 20,
+    "summary_spread_ratio_floor": 0.001,
+    "head_diag_sample_floor": 5,
+    "magnitude_ratio_low": 0.001,
+    "magnitude_ratio_high": 1000.0,
+    "dead_relu_high_floor": 0.9,
+    "dead_relu_med_floor": 0.5,
+    "last_layer_weight_delta_floor": 0.001,
+    "lr_lpfc_bias": 0.0005,
+    "reinforce_batch_size": 32,
+    "adv_min_threshold": 0.005,
+    "arm_config_slice_off": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "lateral_pfc_rule_readout_consumer": true,
+      "lateral_pfc_capture_head_diagnostics": true,
+      "candidate_summary_source": "proposer_post_action",
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": false,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "arm_config_slice_on": {
+      "env": {
+        "size": 8,
+        "num_hazards": 2,
+        "num_resources": 6,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "p0": 60,
+        "p1": 70,
+        "p2": 40,
+        "steps": 48
+      },
+      "alpha_world": 0.9,
+      "use_lateral_pfc_analog": true,
+      "lateral_pfc_train_rule_bias_head": true,
+      "lateral_pfc_rule_readout_consumer": true,
+      "lateral_pfc_capture_head_diagnostics": true,
+      "candidate_summary_source": "proposer_post_action",
+      "use_gated_policy": true,
+      "use_candidate_rule_field": true,
+      "crf_persist_rules_across_episode_reset": true,
+      "crf_mature_pool_dynamics": true,
+      "crf_availability_maintenance": true,
+      "crf_maintenance_floor": 0.45,
+      "crf_maintenance_couple_to_theta": true,
+      "crf_tolerance_conflict_cap": 3,
+      "crf_cue_centering": true,
+      "crf_cue_baseline_alpha": 0.02
+    },
+    "validates_substrate": "SD-082 per-candidate-summary amend, ree-v3 ef88faa (2026-08-30); routed by failure_autopsy_V3-EXQ-822c_2026-08-29 Section 6",
+    "supersedes_note": "does NOT supersede v3_exq_822c -- 822c is the diagnostic that measured the defect and its failure_record is marked resolved (not superseded) by the substrate fix this run validates"
+  },
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ]
 }

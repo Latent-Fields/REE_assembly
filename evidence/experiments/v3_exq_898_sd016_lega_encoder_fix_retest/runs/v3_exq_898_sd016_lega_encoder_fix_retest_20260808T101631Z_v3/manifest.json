@@ -164,5 +164,46 @@
     "commit": "46fc4f78baa4f6d0e1038cdd32f175aa66dac48f",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 27.10649130999991,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "world_dim": 128,
+    "p0a_episodes": 60,
+    "p1_episodes": 40,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "lambda_terrain": 0.1,
+    "lambda_cue_action": 0.5,
+    "eval_batch_size": 32,
+    "readiness_batch_size": 16,
+    "lr": 0.0001,
+    "arms": [
+      {
+        "label": "A0_OFF",
+        "cue_slot_tagger": false
+      },
+      {
+        "label": "A1_ON",
+        "cue_slot_tagger": true
+      }
+    ],
+    "sd016_enabled": true,
+    "sd016_writepath_mode": "off",
+    "p0a_recipe": "sd070",
+    "sws_enabled": false,
+    "rem_enabled": false,
+    "shy_enabled": false,
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

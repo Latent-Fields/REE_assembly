@@ -165,5 +165,90 @@
     "writer_defect": true,
     "n_agents": 15,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 12516.436086036001,
+  "config": {
+    "arms": [
+      {
+        "arm_id": "ARM_0_NONE_ON",
+        "interval": 0,
+        "level": 0,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_1_LOW_ON",
+        "interval": 60,
+        "level": 1,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_2_MED_ON",
+        "interval": 25,
+        "level": 2,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_3_HIGH_ON",
+        "interval": 10,
+        "level": 3,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_4_HIGH_OFF",
+        "interval": 10,
+        "level": 3,
+        "mel_on": false
+      }
+    ],
+    "calib_draws": 5,
+    "calib_episodes": 30,
+    "calib_episodes_per_draw": 6,
+    "conv_episodes": 60,
+    "env_base": {
+      "harm_history_len": 10,
+      "hazard_field_decay": 0.5,
+      "hazard_harm": 0.05,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "proximity_approach_threshold": 0.2,
+      "proximity_benefit_scale": 0.05,
+      "proximity_harm_scale": 0.1,
+      "resource_respawn_on_consume": true,
+      "size": 12,
+      "toroidal": false,
+      "use_proxy_fields": true
+    },
+    "factor_max": 3.0,
+    "factor_min": 0.5,
+    "k_calib_margin": 2.0,
+    "meas_cycles": 6,
+    "mech122_spindle_selection_gain": 1.0,
+    "mel_gain": 1.0,
+    "mel_relative_floor": 1e-06,
+    "prior_lineage_seeds": [
+      42,
+      123,
+      456
+    ],
+    "rem_steps": 10,
+    "scored_dvs": [
+      "sws_power",
+      "replay_rate"
+    ],
+    "steps_per_episode": 90,
+    "sws_steps": 5,
+    "touched_slot_l2_eps": 1e-06,
+    "unscored_dvs": [
+      "spindle_density"
+    ],
+    "use_mech122_spindle_content_selection": false,
+    "wake_episodes_per_cycle": 2,
+    "world_rule_shift_depth": 2
+  },
+  "seeds": [
+    7,
+    271,
+    883
+  ]
 }

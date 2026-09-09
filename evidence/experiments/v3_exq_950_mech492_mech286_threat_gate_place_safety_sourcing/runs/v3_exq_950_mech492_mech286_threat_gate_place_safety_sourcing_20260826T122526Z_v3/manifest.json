@@ -130,5 +130,56 @@
     "writer_defect": null,
     "n_agents": 24,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 738.3721723919734,
+  "config": {
+    "n_seeds": 12,
+    "episode_ticks": 400,
+    "grid_size": 10,
+    "num_hazards": 4,
+    "num_resources": 3,
+    "seed_base": 4950,
+    "sourcing_modes": {
+      "damage_sourced": {
+        "limb_damage_enabled": true,
+        "heal_rate": 0.4,
+        "harm_obs_a_dim": 7
+      },
+      "proximity_ema_sourced": {
+        "limb_damage_enabled": false,
+        "harm_obs_a_dim": 50
+      }
+    },
+    "substrate_common": {
+      "use_harm_stream": true,
+      "harm_obs_dim": 51,
+      "use_affective_harm_stream": true
+    },
+    "gate_flags": {
+      "use_mech286_sleep_onset_gate": true,
+      "use_anchor_sets": true,
+      "use_staleness_accumulator": true,
+      "use_broadcast_override": true
+    },
+    "auc_bar": 0.6,
+    "invariance_eps": 0.02,
+    "min_class_frac": 0.1,
+    "hazard_near_dist": 1,
+    "hazard_far_dist": 3
+  },
+  "seeds": [
+    4950,
+    4951,
+    4952,
+    4953,
+    4954,
+    4955,
+    4956,
+    4957,
+    4958,
+    4959,
+    4960,
+    4961
+  ]
 }

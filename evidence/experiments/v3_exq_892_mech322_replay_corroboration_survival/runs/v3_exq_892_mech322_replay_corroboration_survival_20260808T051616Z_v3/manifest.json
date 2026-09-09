@@ -483,5 +483,143 @@
     "writer_defect": null,
     "n_agents": 24,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 26024.863491591066,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505,
+      606,
+      707,
+      808
+    ],
+    "arms": [
+      "ARM_DEADLINE_15",
+      "ARM_DEADLINE_75",
+      "ARM_DEADLINE_200"
+    ],
+    "n_episodes": 120,
+    "steps_per_episode": 72,
+    "sleep_checkpoint_episode": 20,
+    "arm_deadline_n": {
+      "ARM_DEADLINE_15": 15,
+      "ARM_DEADLINE_75": 75,
+      "ARM_DEADLINE_200": 200
+    },
+    "replay_value_quantile": 0.75,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "alpha_world": 0.9,
+    "chunk_min_repetitions": 5,
+    "chunk_window_trials": 60,
+    "chunk_crystallisation_min": 2,
+    "chunk_min_size": 2,
+    "chunk_max_size": 5,
+    "readiness_seed_fraction_floor": 0.4,
+    "c1_mint_fraction": 1.0,
+    "outcome_spread_floor": 0.05,
+    "symbols_per_trial_floor": 4.0,
+    "harm_step_fraction_floor": 0.01,
+    "arm_config_slices": {
+      "ARM_DEADLINE_15": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72,
+          "sleep_checkpoint_episode": 20
+        },
+        "replay_corroboration_episodes": 15,
+        "replay_value_quantile": 0.75,
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "chunk_replay_value_quantile": 0.75,
+        "chunk_replay_corroboration_episodes": 15,
+        "tonic_5ht_enabled": true,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": true
+      },
+      "ARM_DEADLINE_75": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72,
+          "sleep_checkpoint_episode": 20
+        },
+        "replay_corroboration_episodes": 75,
+        "replay_value_quantile": 0.75,
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "chunk_replay_value_quantile": 0.75,
+        "chunk_replay_corroboration_episodes": 75,
+        "tonic_5ht_enabled": true,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": true
+      },
+      "ARM_DEADLINE_200": {
+        "env": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 120,
+          "steps_per_episode": 72,
+          "sleep_checkpoint_episode": 20
+        },
+        "replay_corroboration_episodes": 200,
+        "replay_value_quantile": 0.75,
+        "alpha_world": 0.9,
+        "chunk_min_repetitions": 5,
+        "chunk_window_trials": 60,
+        "chunk_crystallisation_min": 2,
+        "chunk_replay_value_quantile": 0.75,
+        "chunk_replay_corroboration_episodes": 200,
+        "tonic_5ht_enabled": true,
+        "use_policy_chunking": true,
+        "use_chunk_maintenance": true,
+        "use_chunk_all_position_credit": false,
+        "use_chunk_proposal_injection": false,
+        "use_chunk_replay_origin_path": true
+      }
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    707,
+    808
+  ]
 }

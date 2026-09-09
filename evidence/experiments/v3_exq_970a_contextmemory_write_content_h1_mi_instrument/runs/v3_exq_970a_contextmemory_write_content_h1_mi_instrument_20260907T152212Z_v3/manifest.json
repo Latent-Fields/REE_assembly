@@ -462,5 +462,95 @@
     "goal_state_present": false
   },
   "epistemic_category": "standard",
-  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED (claim-free diagnostic) by the confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07 (REE_assembly cb4a71fbd9). Instrument redesign discharged the 2026-09-03 cluster demand (NMI-excess readout, 8.7x headroom, p-floor below alpha); contrastive objective raises content conditioning in both regimes; necessity refuted (content-blind diversity matched it on synthetic). Scope limit: the tagger's z_world input is a FROZEN projection (buffered-detach harness pattern, measured by V3-EXQ-972a). epistemic_category standard. Routing governance-record only."
+  "evidence_direction_note": "[governance-20260908-0703, 2026-09-08] non_contributory RATIFIED (claim-free diagnostic) by the confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07 (REE_assembly cb4a71fbd9). Instrument redesign discharged the 2026-09-03 cluster demand (NMI-excess readout, 8.7x headroom, p-floor below alpha); contrastive objective raises content conditioning in both regimes; necessity refuted (content-blind diversity matched it on synthetic). Scope limit: the tagger's z_world input is a FROZEN projection (buffered-detach harness pattern, measured by V3-EXQ-972a). epistemic_category standard. Routing governance-record only.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3387.786840189,
+  "config": {
+    "arms": [
+      {
+        "name": "UNTRAINED",
+        "write_selection": "gumbel_learned",
+        "lambda_h1": 0.0,
+        "waddr_w": 0.0,
+        "trained": false,
+        "objective": null
+      },
+      {
+        "name": "H1_CONTRASTIVE",
+        "write_selection": "gumbel_learned",
+        "lambda_h1": 0.5,
+        "waddr_w": 0.0,
+        "trained": true,
+        "objective": "contrastive"
+      },
+      {
+        "name": "DIVERSITY_956",
+        "write_selection": "gumbel_learned",
+        "lambda_h1": 0.0,
+        "waddr_w": 0.5,
+        "trained": true,
+        "objective": "addressing_diversity"
+      },
+      {
+        "name": "REFRACTORY_K2",
+        "write_selection": "refractory",
+        "lambda_h1": 0.0,
+        "waddr_w": 0.0,
+        "trained": false,
+        "objective": null
+      }
+    ],
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200,
+      300,
+      400,
+      500
+    ],
+    "lambda_h1": 0.5,
+    "write_addressing_loss_weight_956": 0.5,
+    "refractory_k": 2,
+    "training_episodes": 100,
+    "heldout_episodes": 40,
+    "heldout_frac": 0.4,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "n_steps_b": 15000,
+    "min_heldout_per_class": 24,
+    "min_paired_seeds": 7,
+    "step_match_max": 4,
+    "contextmemory_gated_content_write": true,
+    "sd016_writepath_mode": "sense_only",
+    "alpha_world": 0.9,
+    "use_noise_floor": true,
+    "num_slots": 16,
+    "latent_dim": 64,
+    "write_calls_floor": 200.0,
+    "nmi_margin": 0.1,
+    "alpha_corrected": 0.0125,
+    "n_tests": 4,
+    "conv_min_decrease_frac": 0.02,
+    "conv_edge_frac": 0.05,
+    "probe_clusters": 8,
+    "probe_jitter": 0.078,
+    "probe_n": 1500,
+    "cluster_base_scale": 0.078,
+    "mi_n_shuffle": 200,
+    "h1_batch_per_side": 32,
+    "h1_inject_every_n_steps": 1,
+    "min_h1_buf": 8
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    100,
+    200,
+    300,
+    400,
+    500
+  ]
 }

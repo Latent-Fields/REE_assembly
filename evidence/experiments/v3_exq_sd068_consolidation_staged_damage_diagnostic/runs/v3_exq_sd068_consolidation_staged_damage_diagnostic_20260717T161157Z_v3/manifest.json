@@ -88,5 +88,27 @@
       "n_seeds_matching_prediction": 1,
       "note": "staging match is REPORTED, not gated; a partial-match/inversion is a valid diagnostic outcome."
     }
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 152.60634709894657,
+  "config": {
+    "sigmas": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "warm_steps": 40,
+    "shy_decay_rate": 0.85,
+    "body_obs_dim": 12,
+    "world_obs_dim": 250,
+    "action_dim": 4,
+    "harm_obs_dim": 51
+  },
+  "seeds": [
+    42,
+    7,
+    123
+  ]
 }

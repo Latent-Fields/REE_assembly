@@ -363,5 +363,242 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882",
   "epistemic_category": "measurement_test_design_defect",
-  "evidence_direction_note": "precondition_unmet (chunks_formed) traced to a gate-strictness mismatch (readiness evaluated at worst-cell/100%, scoring criteria use seed_pass_fraction=0.6): 4/5 seeds formed chunks robustly. Not a substrate defect -- V3-EXQ-810a already validated the mechanism on the identical substrate build. Gate-logic fix only, no substrate action."
+  "evidence_direction_note": "precondition_unmet (chunks_formed) traced to a gate-strictness mismatch (readiness evaluated at worst-cell/100%, scoring criteria use seed_pass_fraction=0.6): 4/5 seeds formed chunks robustly. Not a substrate defect -- V3-EXQ-810a already validated the mechanism on the identical substrate build. Gate-logic fix only, no substrate action.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 26264.799224226,
+  "config": {
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "arms": [
+      "STATIC_H50",
+      "BOTH_H30",
+      "SIZE_H50",
+      "DEPTH_H50",
+      "BOTH_H50"
+    ],
+    "conditions": [
+      {
+        "arm": "STATIC_H50",
+        "grow_size": false,
+        "grow_depth": false,
+        "horizon": 50
+      },
+      {
+        "arm": "BOTH_H30",
+        "grow_size": true,
+        "grow_depth": true,
+        "horizon": 30
+      },
+      {
+        "arm": "SIZE_H50",
+        "grow_size": true,
+        "grow_depth": false,
+        "horizon": 50
+      },
+      {
+        "arm": "DEPTH_H50",
+        "grow_size": false,
+        "grow_depth": true,
+        "horizon": 50
+      },
+      {
+        "arm": "BOTH_H50",
+        "grow_size": true,
+        "grow_depth": true,
+        "horizon": 50
+      }
+    ],
+    "n_episodes": 100,
+    "steps_per_episode": 60,
+    "anchor_horizon": 30,
+    "treat_horizon": 50,
+    "expected_derived": {
+      "30": {
+        "size": 5,
+        "depth": 3
+      },
+      "50": {
+        "size": 8,
+        "depth": 5
+      }
+    },
+    "start_size_ceiling": 5,
+    "start_depth_ceiling": 3,
+    "pinned_structural_max_depth": 4,
+    "seed_pass_fraction": 0.6,
+    "outcome_spread_floor": 0.05,
+    "min_formed_floor": 0.5,
+    "gain_evaluable_floor": 0.5,
+    "symbol_buffer_floor": 7.5,
+    "baseline_module": "arc071_chunk_budget_fixed_ceilings_v1",
+    "arm_config_slices": {
+      "STATIC_H50": {
+        "baseline_id": "arc071_chunk_budget_fixed_ceilings_v1",
+        "lineage": "arc071_chunk_budget",
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 100,
+          "steps_per_episode": 60
+        },
+        "agent": {
+          "alpha_world": 0.9,
+          "use_policy_chunking": true,
+          "use_chunk_maintenance": true,
+          "use_chunk_proposal_injection": false,
+          "use_chunk_replay_origin_path": false,
+          "use_chunk_all_position_credit": true,
+          "chunk_min_repetitions": 5,
+          "chunk_window_trials": 60,
+          "chunk_crystallisation_min": 2,
+          "chunk_min_size": 2,
+          "chunk_max_size": 5,
+          "chunk_max_depth": 3,
+          "use_growable_chunk_ceiling": false,
+          "use_growable_chunk_depth": false,
+          "chunk_deliberation_horizon": 50
+        }
+      },
+      "BOTH_H30": {
+        "baseline_id": "arc071_chunk_budget_fixed_ceilings_v1",
+        "lineage": "arc071_chunk_budget",
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 100,
+          "steps_per_episode": 60
+        },
+        "agent": {
+          "alpha_world": 0.9,
+          "use_policy_chunking": true,
+          "use_chunk_maintenance": true,
+          "use_chunk_proposal_injection": false,
+          "use_chunk_replay_origin_path": false,
+          "use_chunk_all_position_credit": true,
+          "chunk_min_repetitions": 5,
+          "chunk_window_trials": 60,
+          "chunk_crystallisation_min": 2,
+          "chunk_min_size": 2,
+          "chunk_max_size": 5,
+          "chunk_max_depth": 3,
+          "use_growable_chunk_ceiling": true,
+          "use_growable_chunk_depth": true,
+          "chunk_deliberation_horizon": 30
+        }
+      },
+      "SIZE_H50": {
+        "baseline_id": "arc071_chunk_budget_fixed_ceilings_v1",
+        "lineage": "arc071_chunk_budget",
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 100,
+          "steps_per_episode": 60
+        },
+        "agent": {
+          "alpha_world": 0.9,
+          "use_policy_chunking": true,
+          "use_chunk_maintenance": true,
+          "use_chunk_proposal_injection": false,
+          "use_chunk_replay_origin_path": false,
+          "use_chunk_all_position_credit": true,
+          "chunk_min_repetitions": 5,
+          "chunk_window_trials": 60,
+          "chunk_crystallisation_min": 2,
+          "chunk_min_size": 2,
+          "chunk_max_size": 5,
+          "chunk_max_depth": 3,
+          "use_growable_chunk_ceiling": true,
+          "use_growable_chunk_depth": false,
+          "chunk_deliberation_horizon": 50
+        }
+      },
+      "DEPTH_H50": {
+        "baseline_id": "arc071_chunk_budget_fixed_ceilings_v1",
+        "lineage": "arc071_chunk_budget",
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 100,
+          "steps_per_episode": 60
+        },
+        "agent": {
+          "alpha_world": 0.9,
+          "use_policy_chunking": true,
+          "use_chunk_maintenance": true,
+          "use_chunk_proposal_injection": false,
+          "use_chunk_replay_origin_path": false,
+          "use_chunk_all_position_credit": true,
+          "chunk_min_repetitions": 5,
+          "chunk_window_trials": 60,
+          "chunk_crystallisation_min": 2,
+          "chunk_min_size": 2,
+          "chunk_max_size": 5,
+          "chunk_max_depth": 3,
+          "use_growable_chunk_ceiling": false,
+          "use_growable_chunk_depth": true,
+          "chunk_deliberation_horizon": 50
+        }
+      },
+      "BOTH_H50": {
+        "baseline_id": "arc071_chunk_budget_fixed_ceilings_v1",
+        "lineage": "arc071_chunk_budget",
+        "env_kwargs": {
+          "size": 8,
+          "num_hazards": 2,
+          "num_resources": 6,
+          "use_proxy_fields": true
+        },
+        "schedule": {
+          "n_episodes": 100,
+          "steps_per_episode": 60
+        },
+        "agent": {
+          "alpha_world": 0.9,
+          "use_policy_chunking": true,
+          "use_chunk_maintenance": true,
+          "use_chunk_proposal_injection": false,
+          "use_chunk_replay_origin_path": false,
+          "use_chunk_all_position_credit": true,
+          "chunk_min_repetitions": 5,
+          "chunk_window_trials": 60,
+          "chunk_crystallisation_min": 2,
+          "chunk_min_size": 2,
+          "chunk_max_size": 5,
+          "chunk_max_depth": 3,
+          "use_growable_chunk_ceiling": true,
+          "use_growable_chunk_depth": true,
+          "chunk_deliberation_horizon": 50
+        }
+      }
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ]
 }

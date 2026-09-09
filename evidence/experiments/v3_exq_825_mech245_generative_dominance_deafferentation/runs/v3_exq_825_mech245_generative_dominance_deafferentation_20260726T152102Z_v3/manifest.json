@@ -45,5 +45,34 @@
   "failure_signatures": [],
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "ef7f39e80d28715ce215d9af3c473cbf09c2ea2fa64161fcee8e8da23fbf339f"
+  "substrate_hash": "ef7f39e80d28715ce215d9af3c473cbf09c2ea2fa64161fcee8e8da23fbf339f",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 6.8335347175598145,
+  "config": {
+    "world_dim": 32,
+    "hidden_dim": 32,
+    "momentum_decay": 0.9,
+    "process_noise_std": 0.05,
+    "train_base_seed": 10000,
+    "train_batch_size": 32,
+    "train_seq_len": 30,
+    "train_iters": 150,
+    "train_lr": 0.01,
+    "t0_grounding_ticks": 50,
+    "t1_deafferentation_ticks": 30,
+    "eval_seeds": [
+      0,
+      1,
+      2
+    ],
+    "conditions": [
+      "mismatch_check_intact",
+      "generative_dominance_bypass"
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

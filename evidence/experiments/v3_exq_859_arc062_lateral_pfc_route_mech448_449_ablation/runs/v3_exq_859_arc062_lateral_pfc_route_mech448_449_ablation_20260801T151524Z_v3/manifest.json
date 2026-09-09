@@ -91,5 +91,26 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2077.988682,
+  "config": {
+    "arms": "ARM_LPFC (route_source='lateral_pfc') vs ARM_NONE (route_source='none')",
+    "swept_variable": "modulatory_channel_route_source",
+    "use_candidate_rule_field": "True on BOTH arms (matched constant, unlike 851)",
+    "use_f_eligibility_demotion": true,
+    "use_go_nogo_constitution": true,
+    "use_dacc": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true,
+    "p0_warmup_episodes": 10,
+    "p2_measurement_episodes": 10,
+    "p1_phase": "SKIPPED (structural engagement question, not a trained-bias behavioural question)",
+    "budget_note": "Much shorter than V3-EXQ-851/654j's P0=200/P1=90/P2=60 -- see the module docstring BUDGET section for the timing-probe-derived justification and the explicit false-null risk this accepts."
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

@@ -349,5 +349,91 @@
     "goal_state_present": true
   },
   "evidence_direction_note": "[2026-08-25 governance, f-dominance-regime-retest-ddbe10, confirmed failure_autopsy_861f-mech180-cluster-a_2026-08-25, closing the inv050_mech180_861e_producer_vs_intervention_isolation portfolio]: diagnostic H1 isolation, non-voting. H1 NOT supported per driver's own declared null (reseeded 0.9475, unreseeded 0.8845, both below 1.0, collapse survives RNG isolation). Combined with 861g (H3 supported via substrate change, machine confound resolved) and 861h (CONTROL passed): a genuine SUBSTRATE change between f810969 and 17befb8c is responsible, not measurement RNG/machine/write-lock. WHICH commit is unresolved -- see substrate_queue candidate (76cbf84 ContextMemory.write() single-slot-fixed-point repair). Claims status/confidence/v3_pending do not move. Duplicate execution (chip-20260824-exq861f-duplicate-run-stale-claim-reap) is a separately-tracked infra defect.",
-  "epistemic_category": "standard"
+  "epistemic_category": "standard",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 33347.35778946098,
+  "config": {
+    "env_base": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "use_proxy_fields": true
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_0_NONE_ON",
+        "level": 0,
+        "interval": 0,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_1_LOW_ON",
+        "level": 1,
+        "interval": 60,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_2_MED_ON",
+        "level": 2,
+        "interval": 25,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_3_HIGH_ON",
+        "level": 3,
+        "interval": 10,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_4_HIGH_OFF",
+        "level": 3,
+        "interval": 10,
+        "mel_on": false
+      }
+    ],
+    "world_rule_shift_depth": 2,
+    "conv_episodes": 60,
+    "calib_episodes": 60,
+    "calib_draws": 10,
+    "calib_episodes_per_draw": 6,
+    "k_calib_margin": 2.0,
+    "max_calib_rel_sd_of_mean": 0.15,
+    "meas_cycles": 6,
+    "wake_episodes_per_cycle": 2,
+    "steps_per_episode": 90,
+    "sws_steps": 5,
+    "rem_steps": 10,
+    "mel_gain": 1.0,
+    "factor_min": 0.5,
+    "factor_max": 3.0,
+    "mel_relative_floor": 1e-06,
+    "touched_slot_l2_eps": 1e-06,
+    "use_mech122_spindle_content_selection": false,
+    "mech122_spindle_selection_gain": 1.0,
+    "prior_lineage_seeds": [
+      42,
+      123,
+      456
+    ],
+    "scored_dvs": [
+      "sws_power",
+      "replay_rate"
+    ],
+    "unscored_dvs": [
+      "spindle_density"
+    ]
+  },
+  "seeds": [
+    7,
+    271,
+    883
+  ]
 }

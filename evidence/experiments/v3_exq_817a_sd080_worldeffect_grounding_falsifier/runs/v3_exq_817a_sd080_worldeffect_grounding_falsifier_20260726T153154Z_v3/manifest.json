@@ -173,5 +173,52 @@
   "machine_class": "darwin-arm64-py3.13-torch2.12.0",
   "substrate_hash": "1b098527cf10e5a1ea66b26b489b2f550abfb14df20bbbea4831557db01498de",
   "epistemic_category": "standard",
-  "evidence_direction_note": "Dedicated consequence-grounding objective made O state-dependent/consequence-structured (resolves 817's gap) but produced no behavioural benefit. SD-004's efficiency rationale weakened; SD-080's default-substrate framing not contradicted (this run's objective is itself a bespoke addition) -- non_contributory."
+  "evidence_direction_note": "Dedicated consequence-grounding objective made O state-dependent/consequence-structured (resolves 817's gap) but produced no behavioural benefit. SD-004's efficiency rationale weakened; SD-080's default-substrate framing not contradicted (this run's objective is itself a bespoke addition) -- non_contributory.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 9858.652659874992,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "env_size": 6,
+    "alpha_world": 0.9,
+    "world_dim": 32,
+    "self_dim": 32,
+    "action_object_dim": 16,
+    "warmup_episodes": 40,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "n_states": 150,
+    "grounding_objective": "worldeffect_nextstate_code_regression",
+    "grounding_transitions": 3000,
+    "grounding_steps": 600,
+    "grounding_batch": 128,
+    "grounding_lr": 0.001,
+    "warmup_lr": 0.001,
+    "gate_m5_ceil": 0.9,
+    "gate_m5_paired_drop": 0.1,
+    "gate_fit_ceil": 0.85,
+    "gate_state_dep_margin": 0.1,
+    "m6_gated": false,
+    "behav_rel_margin": 0.15,
+    "behav_seed_consistency": 0.8,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "arms": [
+      "ARM_0",
+      "ARM_1",
+      "ARM_2"
+    ],
+    "supersedes": "v3_exq_817_sd080_consequence_grounding_falsifier"
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

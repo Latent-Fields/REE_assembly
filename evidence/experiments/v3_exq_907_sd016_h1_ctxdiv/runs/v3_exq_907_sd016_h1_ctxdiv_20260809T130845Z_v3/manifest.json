@@ -334,5 +334,69 @@
     "writer_defect": null,
     "n_agents": 15,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 71.40238779100036,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "world_dim": 128,
+    "p0a_episodes": 60,
+    "p1_episodes": 40,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "lambda_terrain": 0.1,
+    "lambda_cue_action": 0.5,
+    "ctxdiv_lambdas": [
+      0.1,
+      0.5,
+      2.0
+    ],
+    "eval_batch_size": 32,
+    "readiness_batch_size": 16,
+    "div_batch_size": 64,
+    "lr": 0.0001,
+    "arms": [
+      {
+        "label": "A0_OFF",
+        "cue_slot_tagger": false,
+        "ctxdiv_lambda": null
+      },
+      {
+        "label": "A1_tagger",
+        "cue_slot_tagger": true,
+        "ctxdiv_lambda": 0.0
+      },
+      {
+        "label": "A2_ctxdiv_l0p1",
+        "cue_slot_tagger": true,
+        "ctxdiv_lambda": 0.1
+      },
+      {
+        "label": "A2_ctxdiv_l0p5",
+        "cue_slot_tagger": true,
+        "ctxdiv_lambda": 0.5
+      },
+      {
+        "label": "A2_ctxdiv_l2p0",
+        "cue_slot_tagger": true,
+        "ctxdiv_lambda": 2.0
+      }
+    ],
+    "sd016_enabled": true,
+    "sd016_writepath_mode": "off",
+    "p0a_recipe": "sd070",
+    "sws_enabled": false,
+    "rem_enabled": false,
+    "shy_enabled": false,
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

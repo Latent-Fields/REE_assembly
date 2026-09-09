@@ -79,5 +79,44 @@
     "writer_defect": null,
     "n_agents": 9,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3.499417543411255,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_capture": 20,
+    "harm_mag": 1.0,
+    "env": {
+      "size": 5,
+      "num_hazards": 1,
+      "num_resources": 1,
+      "use_proxy_fields": true
+    },
+    "agent_config_shared": {
+      "use_simulation_mode_rule_gate": true,
+      "simulation_mode_rule_gate_admit_writes": false,
+      "use_gated_policy": true,
+      "use_lateral_pfc_analog": true,
+      "action_dim": 4,
+      "self_dim": 16,
+      "world_dim": 16
+    },
+    "thresholds": {
+      "EPS_RULE": 1e-07,
+      "RULE_DELTA_THRESHOLD": 0.0001,
+      "RULE_DIVERGENCE_THRESHOLD": 0.0001,
+      "EPS_RESIDUE": 1e-06,
+      "RESIDUE_DELTA_THRESHOLD": 1.0,
+      "RESIDUE_DIVERGENCE_THRESHOLD": 1.0
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

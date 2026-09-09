@@ -60,5 +60,88 @@
     "writer_defect": null,
     "n_agents": 12,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 547.0001962305978,
+  "config": {
+    "arms": {
+      "ARM_BOTH": {
+        "use_e2_harm_s_forward": true,
+        "use_aic_analog": true,
+        "harm_descending_mod_enabled": true
+      },
+      "ARM_E2_ONLY": {
+        "use_e2_harm_s_forward": true,
+        "use_aic_analog": false,
+        "harm_descending_mod_enabled": false
+      },
+      "ARM_AIC_ONLY": {
+        "use_e2_harm_s_forward": false,
+        "use_aic_analog": true,
+        "harm_descending_mod_enabled": true
+      },
+      "ARM_NEITHER": {
+        "use_e2_harm_s_forward": false,
+        "use_aic_analog": false,
+        "harm_descending_mod_enabled": false
+      }
+    },
+    "schedule": {
+      "steps_per_ep": 150,
+      "p0_eps": 80,
+      "p1_eps": 100,
+      "eval_max_eps": 50,
+      "target_trials_per_type": 12
+    },
+    "arena": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 3,
+      "hazard_harm": 0.02,
+      "proximity_harm_scale": 0.1,
+      "use_proxy_fields": true,
+      "limb_damage_enabled": true,
+      "harm_history_len": 10,
+      "scheduled_external_hazard_enabled": true,
+      "scheduled_external_hazard_interval": 10,
+      "scheduled_external_hazard_prob": 1.0,
+      "scheduled_external_hazard_adjacent_only": true
+    },
+    "agent_common_kwargs": {
+      "self_dim": 32,
+      "world_dim": 32,
+      "alpha_world": 0.9,
+      "alpha_self": 0.3,
+      "use_harm_stream": true,
+      "z_harm_dim": 32,
+      "use_affective_harm_stream": true,
+      "z_harm_a_dim": 16,
+      "limb_damage_enabled": true,
+      "harm_history_len": 10,
+      "descending_attenuation_factor": 0.5,
+      "aic_baseline_alpha": 0.02,
+      "aic_drive_coupling": 1.0,
+      "aic_base_attenuation": 0.5,
+      "aic_drive_protect_weight": 1.0
+    },
+    "lr": 0.001,
+    "harm_fwd_lr": 0.0005,
+    "interventional_fraction": 0.3,
+    "interventional_margin": 0.15,
+    "pre_registered_thresholds": {
+      "D1_NEAR_EQUAL_TOL": 0.2,
+      "D1_ATTENUATION_MARGIN": 0.03,
+      "D2_NEAR_EQUAL_TOL": 0.6,
+      "D2_DISCRIM_FLOOR": 1.15,
+      "D3_TOL": 0.15,
+      "PASS_MIN_SEEDS": 2,
+      "N_COMMITTED_FLOOR": 8,
+      "n_event_floor": 6
+    }
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ]
 }

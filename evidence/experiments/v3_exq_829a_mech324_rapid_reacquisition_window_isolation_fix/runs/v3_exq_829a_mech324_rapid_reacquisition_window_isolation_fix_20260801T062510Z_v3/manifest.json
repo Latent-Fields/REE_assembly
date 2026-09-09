@@ -26813,5 +26813,644 @@
     "commit": "e39cc54f1fdeb6bf6732f9d26d27bcd9904532f3",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2.5090345507487655,
+  "config": {
+    "r_min": 20,
+    "variance_low": 0.15,
+    "variance_high": 0.45,
+    "evaluative_margin": 0.05,
+    "crystallisation_min": 5,
+    "dissolve_trials": 50,
+    "max_library_size": 256,
+    "max_tracked_sequences": 512,
+    "outcome_span": 2.0,
+    "outcome_max_variance": 1.0,
+    "target_outcome": 1.6,
+    "filler_outcome": 0.4,
+    "consistent_noise_sd": 0.02,
+    "dissolve_severe": [
+      2.0,
+      0.0
+    ],
+    "f_reacq_sweep": [
+      1.0,
+      0.5,
+      0.25,
+      0.1
+    ],
+    "f_reacq_default": 0.25,
+    "window_default": 100,
+    "window_short": 30,
+    "scaling_rho_floor": 0.8,
+    "p0_max_trials": 400,
+    "p1_max_trials": 400,
+    "p2_cap_trials": 250,
+    "trials_per_run": 1050,
+    "arm_config_slices": {
+      "ARM_OFF_W30": {
+        "arm_id": "ARM_OFF_W30",
+        "retention": false,
+        "window_isolation": false,
+        "f_reacq": 0.25,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_OFF_W100": {
+        "arm_id": "ARM_OFF_W100",
+        "retention": false,
+        "window_isolation": false,
+        "f_reacq": 0.25,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F100_W30_ISOOFF": {
+        "arm_id": "ARM_ON_F100_W30_ISOOFF",
+        "retention": true,
+        "window_isolation": false,
+        "f_reacq": 1.0,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F050_W30_ISOOFF": {
+        "arm_id": "ARM_ON_F050_W30_ISOOFF",
+        "retention": true,
+        "window_isolation": false,
+        "f_reacq": 0.5,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F025_W30_ISOOFF": {
+        "arm_id": "ARM_ON_F025_W30_ISOOFF",
+        "retention": true,
+        "window_isolation": false,
+        "f_reacq": 0.25,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F010_W30_ISOOFF": {
+        "arm_id": "ARM_ON_F010_W30_ISOOFF",
+        "retention": true,
+        "window_isolation": false,
+        "f_reacq": 0.1,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F100_W100_ISOOFF": {
+        "arm_id": "ARM_ON_F100_W100_ISOOFF",
+        "retention": true,
+        "window_isolation": false,
+        "f_reacq": 1.0,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F050_W100_ISOOFF": {
+        "arm_id": "ARM_ON_F050_W100_ISOOFF",
+        "retention": true,
+        "window_isolation": false,
+        "f_reacq": 0.5,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F025_W100_ISOOFF": {
+        "arm_id": "ARM_ON_F025_W100_ISOOFF",
+        "retention": true,
+        "window_isolation": false,
+        "f_reacq": 0.25,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F010_W100_ISOOFF": {
+        "arm_id": "ARM_ON_F010_W100_ISOOFF",
+        "retention": true,
+        "window_isolation": false,
+        "f_reacq": 0.1,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F100_W30_ISOON": {
+        "arm_id": "ARM_ON_F100_W30_ISOON",
+        "retention": true,
+        "window_isolation": true,
+        "f_reacq": 1.0,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F050_W30_ISOON": {
+        "arm_id": "ARM_ON_F050_W30_ISOON",
+        "retention": true,
+        "window_isolation": true,
+        "f_reacq": 0.5,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F025_W30_ISOON": {
+        "arm_id": "ARM_ON_F025_W30_ISOON",
+        "retention": true,
+        "window_isolation": true,
+        "f_reacq": 0.25,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F010_W30_ISOON": {
+        "arm_id": "ARM_ON_F010_W30_ISOON",
+        "retention": true,
+        "window_isolation": true,
+        "f_reacq": 0.1,
+        "window_trials": 30,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F100_W100_ISOON": {
+        "arm_id": "ARM_ON_F100_W100_ISOON",
+        "retention": true,
+        "window_isolation": true,
+        "f_reacq": 1.0,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F050_W100_ISOON": {
+        "arm_id": "ARM_ON_F050_W100_ISOON",
+        "retention": true,
+        "window_isolation": true,
+        "f_reacq": 0.5,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F025_W100_ISOON": {
+        "arm_id": "ARM_ON_F025_W100_ISOON",
+        "retention": true,
+        "window_isolation": true,
+        "f_reacq": 0.25,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      },
+      "ARM_ON_F010_W100_ISOON": {
+        "arm_id": "ARM_ON_F010_W100_ISOON",
+        "retention": true,
+        "window_isolation": true,
+        "f_reacq": 0.1,
+        "window_trials": 100,
+        "min_repetitions": 20,
+        "variance_low": 0.15,
+        "variance_high": 0.45,
+        "evaluative_margin": 0.05,
+        "crystallisation_min": 5,
+        "dissolve_trials": 50,
+        "max_library_size": 256,
+        "max_tracked_sequences": 512,
+        "outcome_span": 2.0,
+        "target_outcome": 1.6,
+        "filler_outcome": 0.4,
+        "consistent_noise_sd": 0.02,
+        "target_sequence": [
+          1,
+          2,
+          3
+        ],
+        "filler_sequence": [
+          0,
+          4
+        ],
+        "schedule": {
+          "p0_max": 400,
+          "p1_max": 400,
+          "p2_cap": 250
+        }
+      }
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    37,
+    43,
+    59,
+    71
+  ]
 }

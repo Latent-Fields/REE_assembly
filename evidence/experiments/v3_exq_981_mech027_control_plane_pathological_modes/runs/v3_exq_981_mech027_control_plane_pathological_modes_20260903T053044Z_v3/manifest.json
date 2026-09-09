@@ -183,5 +183,47 @@
     "writer_defect": null,
     "n_agents": 3,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 9914.204152686987,
+  "config": {
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "env": "CausalGridWorldV2",
+    "env_size": 10,
+    "num_hazards": 1,
+    "num_resources": 2,
+    "hazard_harm": 0.05,
+    "hazard_field_decay": 0.5,
+    "world_dim": 32,
+    "self_dim": 32,
+    "warmup_episodes": 200,
+    "steps_per_episode": 120,
+    "eval_episodes_per_block": 25,
+    "hv_precision_scale": 0.05,
+    "hv_horizon_frac": 0.2,
+    "mech285_baseline_draws": 50,
+    "mech285_hv_draws": 0,
+    "hazard_safe_max": 0.15,
+    "hazard_high_min": 0.5,
+    "use_precision_scaled_commit_temperature": true,
+    "precision_scaled_commit_entropy_alpha": 1.0,
+    "precision_scaled_commit_harm_floor": 0.25,
+    "thresholds": {
+      "FALSE_ALARM_ELEVATION_MULTIPLIER": 2.0,
+      "REVERSION_RECOVERY_FLOOR": 0.5,
+      "PRECISION_RATIO_FLOOR": 5.0,
+      "HORIZON_RATIO_CEIL": 0.5,
+      "POSITIVE_CONTROL_MARGIN": 0.05,
+      "MIN_BIN_COVERAGE_STEPS": 5
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    37
+  ]
 }

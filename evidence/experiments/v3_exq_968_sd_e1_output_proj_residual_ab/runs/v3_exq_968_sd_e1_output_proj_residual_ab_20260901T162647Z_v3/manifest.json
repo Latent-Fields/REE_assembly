@@ -127,5 +127,52 @@
     "writer_defect": null,
     "n_agents": 4,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 103.586868132,
+  "config": {
+    "seeds": [
+      42,
+      123
+    ],
+    "arms": [
+      "ARM_absolute",
+      "ARM_residual"
+    ],
+    "arm_configs": {
+      "ARM_absolute": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": false
+      },
+      "ARM_residual": {
+        "action_conditioned_transition": true,
+        "action_cond_unzero_self_slot": true,
+        "output_proj_residual": true
+      }
+    },
+    "world_dim": 32,
+    "self_dim": 32,
+    "n_train_episodes": 100,
+    "steps_per_episode": 200,
+    "n_sequences": 40,
+    "rollout_horizon": 30,
+    "n_warmup_steps": 20,
+    "goal_max_steps": 2000,
+    "zworld_p0_episodes": 60,
+    "n_real_samples": 40,
+    "cr_real_floor": 0.0001,
+    "cr_rollout_collapse_ratio": 0.1,
+    "c3_var_threshold": 0.002,
+    "lift_factor_abs_floor": 3.0,
+    "lift_factor_noise_multiple": 2.0,
+    "min_real_samples_per_horizon_floor": 10,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "unified_latent_mode": false
+  },
+  "seeds": [
+    42,
+    123
+  ]
 }

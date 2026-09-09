@@ -131,5 +131,58 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "config": {
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "scheduled_action_block_enabled": true,
+      "scheduled_action_block_interval": 10,
+      "scheduled_action_block_prob": 0.4,
+      "use_proxy_fields": true
+    },
+    "warmup_episodes": 50,
+    "eval_episodes": 5,
+    "steps_per_episode": 200,
+    "coupling_floor_r": 0.15,
+    "min_coupling_n": 200,
+    "lag_horizons": {
+      "approach": 1,
+      "benefit": 3,
+      "moved": 1,
+      "reef_exit": 1
+    },
+    "std_floor": 0.0001,
+    "core_channels": [
+      "z_harm_a",
+      "z_harm_un",
+      "drive"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
 }

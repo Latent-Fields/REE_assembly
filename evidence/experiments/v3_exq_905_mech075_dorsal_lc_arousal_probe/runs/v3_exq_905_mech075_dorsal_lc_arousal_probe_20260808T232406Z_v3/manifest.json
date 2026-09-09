@@ -79,5 +79,40 @@
     "dirty": false,
     "branch": "main"
   },
-  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_mech075-vta-lc-cluster_2026-08-09. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_mech075-vta-lc-cluster_2026-08-09. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 11532.036836619998,
+  "config": {
+    "body_obs_dim": 12,
+    "world_obs_dim": 250,
+    "action_dim": 5,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "env": {
+      "size": 10,
+      "num_hazards": 2,
+      "num_resources": 3,
+      "hazard_harm": 0.02,
+      "env_drift_interval": 10,
+      "env_drift_prob": 0.2
+    },
+    "train_episodes": 150,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "p0_episodes": 20,
+    "lc_gain": 2.0,
+    "lc_ema_alpha": 0.1,
+    "novelty_reduction": "sum",
+    "p0_min_magnitude": 0.001,
+    "c1_thresh": 0.001,
+    "c2_rel_floor": 0.15,
+    "mode_key": "lc_arousal"
+  },
+  "seeds": [
+    42,
+    7,
+    123
+  ]
 }

@@ -356,5 +356,54 @@
     "writer_defect": null,
     "n_agents": 540,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 5280.775423144922,
+  "config": {
+    "arms": [
+      "ALIGNED",
+      "RATE_MATCHED",
+      "NO_RESET"
+    ],
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200,
+      45
+    ],
+    "env_kwargs": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "warmup_episodes": 60,
+    "measure_episodes": 30,
+    "steps_per_episode": 72,
+    "alpha_world": 0.9,
+    "beta_gate_bistable": true,
+    "decouple_k_range": [
+      1,
+      2
+    ],
+    "p0_min_episode_len_in_k": 2.0,
+    "p1_min_salient_events": 20,
+    "p2_no_reset_straddle_floor": 0.5,
+    "p3_rate_match_tolerance": 0.35,
+    "c2_aligned_straddle_ceiling": 0.05,
+    "c3_straddle_delta_floor": 0.5,
+    "c4_lag_delta_floor": 3.0,
+    "gate_unit": "seed",
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    7,
+    13,
+    100,
+    200,
+    45
+  ]
 }

@@ -93,5 +93,123 @@
     "writer_defect": false,
     "n_agents": 15,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3725.9469144064933,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      45,
+      46,
+      47
+    ],
+    "arms": [
+      "ARM_NOGOAL",
+      "ARM_CLOSED",
+      "ARM_OPEN"
+    ],
+    "n_episodes": 10,
+    "steps_per_episode": 40,
+    "grid_size": 16,
+    "num_resources": 3,
+    "num_hazards": 0,
+    "hazard_harm": 0.1,
+    "drive_weight": 2.0,
+    "forced_benefit": 0.5,
+    "forced_drive": 0.9,
+    "anchor_proximity_threshold": 0.8,
+    "proximity_gap_floor": 0.015,
+    "contact_gap_floor": 0.05,
+    "zgoal_norm_floor": 0.1,
+    "seed_pass_fraction": 0.6,
+    "arm_config_slice_nogoal": {
+      "env": {
+        "size": 16,
+        "num_resources": 3,
+        "num_hazards": 0,
+        "hazard_harm": 0.1,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 10,
+        "steps": 40
+      },
+      "alpha_world": 0.9,
+      "z_goal_enabled": false,
+      "drive_weight": 0.0,
+      "benefit_eval_enabled": false,
+      "wanting_weight": 0.0,
+      "use_per_stream_vs": false,
+      "use_event_segmenter": false,
+      "use_invalidation_trigger": false,
+      "use_anchor_sets": false,
+      "use_sd039_anchor_payload": false,
+      "use_mech292_ghost_bank": false,
+      "use_mech293_ghost_probes": false,
+      "forced_benefit": null,
+      "forced_drive": null
+    },
+    "arm_config_slice_closed": {
+      "env": {
+        "size": 16,
+        "num_resources": 3,
+        "num_hazards": 0,
+        "hazard_harm": 0.1,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 10,
+        "steps": 40
+      },
+      "alpha_world": 0.9,
+      "z_goal_enabled": true,
+      "drive_weight": 2.0,
+      "benefit_eval_enabled": true,
+      "wanting_weight": 0.0,
+      "use_per_stream_vs": false,
+      "use_event_segmenter": false,
+      "use_invalidation_trigger": false,
+      "use_anchor_sets": false,
+      "use_sd039_anchor_payload": false,
+      "use_mech292_ghost_bank": false,
+      "use_mech293_ghost_probes": false,
+      "forced_benefit": 0.5,
+      "forced_drive": 0.9
+    },
+    "arm_config_slice_open": {
+      "env": {
+        "size": 16,
+        "num_resources": 3,
+        "num_hazards": 0,
+        "hazard_harm": 0.1,
+        "use_proxy_fields": true
+      },
+      "schedule": {
+        "n_episodes": 10,
+        "steps": 40
+      },
+      "alpha_world": 0.9,
+      "z_goal_enabled": true,
+      "drive_weight": 2.0,
+      "benefit_eval_enabled": true,
+      "wanting_weight": 0.0,
+      "use_per_stream_vs": true,
+      "use_event_segmenter": true,
+      "use_invalidation_trigger": true,
+      "use_anchor_sets": true,
+      "use_sd039_anchor_payload": true,
+      "use_mech292_ghost_bank": true,
+      "use_mech293_ghost_probes": true,
+      "forced_benefit": 0.5,
+      "forced_drive": 0.9
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46,
+    47
+  ]
 }

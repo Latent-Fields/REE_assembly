@@ -87,5 +87,104 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "d06e25747a417f257c737e451b8e6962bc11105bb69e1d78004e9ff9e01b138a",
   "epistemic_category": "standard",
-  "evidence_direction_note": "E1-tick-bug fix over 826 confirms the fix works (pe_precision_manipulation_took now passes) -- first non-buggy readiness read for MECH-244. Two readiness gates still fail despite 240000 E1 ticks; MECH-244 remains untested (exp_conf=0.0)."
+  "evidence_direction_note": "E1-tick-bug fix over 826 confirms the fix works (pe_precision_manipulation_took now passes) -- first non-buggy readiness read for MECH-244. Two readiness gates still fail despite 240000 E1 ticks; MECH-244 remains untested (exp_conf=0.0).",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 29898.935573455878,
+  "config": {
+    "grid_size": 10,
+    "hazard_harm": 0.3,
+    "proximity_harm_scale": 0.05,
+    "proximity_benefit_scale": 0.03,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "lr": 0.001,
+    "agent_start": [
+      5,
+      5
+    ],
+    "regime_a_hazards": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "regime_b_hazards": [
+      [
+        5,
+        1
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        5,
+        8
+      ]
+    ],
+    "resource_positions": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        6,
+        6
+      ]
+    ],
+    "arms": {
+      "ARM_CONTROL": 1.0,
+      "ARM_LOW": 0.15,
+      "ARM_VERYLOW": 0.03
+    },
+    "n_a": 250,
+    "n_b": 150,
+    "steps_per_episode": 40,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "reduction_floor": 0.25,
+    "spike_floor": 1.15,
+    "drift_ratio_floor": 1.5,
+    "delta_floor": 0.15,
+    "min_seeds_majority": 4,
+    "fix_vs_826": "calls agent._e1_tick(latent) on e1_tick cadence; no other change"
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

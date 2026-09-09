@@ -97,5 +97,25 @@
     "writer_defect": null,
     "n_agents": 1,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 0.20761516690254211,
+  "config": {
+    "body_obs_dim": 12,
+    "world_obs_dim": 250,
+    "action_dim": 4,
+    "use_sleep_loop": true,
+    "sleep_loop_episodes_K": 10000,
+    "sws_enabled": true,
+    "rem_enabled": false,
+    "use_staleness_accumulator": true,
+    "use_e2_harm_a": true,
+    "use_broadcast_override": true,
+    "use_mech286_sleep_onset_gate": true
+  },
+  "seeds": [
+    42,
+    43,
+    45
+  ]
 }

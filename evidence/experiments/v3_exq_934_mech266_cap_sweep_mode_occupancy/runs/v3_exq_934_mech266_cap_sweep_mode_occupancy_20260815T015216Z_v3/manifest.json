@@ -125,5 +125,51 @@
     "writer_defect": false,
     "n_agents": 33,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 23800.853358367,
+  "config": {
+    "affinity_input_cap_train": 2.0,
+    "arms": [
+      "ARM_SYMMETRIC",
+      "ARM_ASYM_STICKY_TASK"
+    ],
+    "cap_sweep": [
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      1.75
+    ],
+    "contact_gate": 0.0,
+    "loose_exit": 0.9,
+    "margin_floor": 0.05,
+    "min_fraction": 0.6666666666666666,
+    "mode_eval_episodes_per_cell": 15,
+    "occupancy_ceiling": 0.9,
+    "occupancy_floor": 0.1,
+    "p2_zgoal_gate": 0.4,
+    "scaffold_curriculum": {
+      "config_basis": "V3-EXQ-603n",
+      "hazard_stage_budget": 40,
+      "n_resource_types": 3,
+      "p0_budget": 100,
+      "p1_budget": 50,
+      "p2_budget": 15,
+      "stage0_budget": 20,
+      "stage0b_budget": 10
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "sticky_exit": 0.05,
+    "train_steps": 200
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

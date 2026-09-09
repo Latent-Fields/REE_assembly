@@ -114,5 +114,56 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "config": {
+    "budgets": {
+      "stage0": 20,
+      "stage0b": 10,
+      "p0": 100,
+      "hazard": 40,
+      "p1": 50,
+      "p2": 15,
+      "steps_per_episode": 200
+    },
+    "hazard_stage": {
+      "num_hazards": 6,
+      "num_resources": 2,
+      "hazard_food_attraction": 0.0,
+      "proximity_harm_scale": 0.1,
+      "survival_gate_steps": 75,
+      "stability_window": 10
+    },
+    "substrate_fixes": {
+      "harm_pathway_lr": 0.001,
+      "harm_pathway_encoder_lr": 0.0003,
+      "harm_pathway_warmup_steps": 250,
+      "escape_safety_signal_threshold": 0.5
+    },
+    "encoder_dims": {
+      "world_dim": 32,
+      "harm_a_dim": 16,
+      "harm_obs_a_dim": 7,
+      "harm_history_len": 10,
+      "drive_weight": 2.0,
+      "alpha_world": 0.9
+    },
+    "seeding": {
+      "seed_gain": 1.5,
+      "benefit_threshold": 0.02,
+      "drive_floor": 0.9,
+      "n_resource_types": 3
+    },
+    "regression_decision": {
+      "reference_base_mean_survival": 37.725,
+      "survival_reproduce_frac": 0.5,
+      "survival_reproduce_floor": 18.8625
+    },
+    "arm": "ARM_BASE_IA_ONLY"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

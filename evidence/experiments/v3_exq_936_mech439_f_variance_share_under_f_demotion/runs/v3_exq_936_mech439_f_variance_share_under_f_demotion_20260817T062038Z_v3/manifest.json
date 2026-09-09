@@ -117,5 +117,88 @@
     "goal_state_present": true
   },
   "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_V3-EXQ-936_2026-08-18.json: [2026-08-18, failure_autopsy_V3-EXQ-936_2026-08-18]: V3-EXQ-936's manifest direction `weakens` should be changed to `non_contributory`. The load-bearing C2 criterion (per-seed paired reduction of f_variance_share >= 0.05) was ARITHMETICALLY UNREACHABLE, not merely unmet: the share is 1.0 to float64 resolution in all 8 cells (exactly 1.0, paired delta exactly 0.0, in 2 of 4 ARM_DEMOTION seeds), and firing C2 would have required var(non-F) to be 3.7e14 to 2.5e43 times larger. Cause: an unbounded E2 imagination rollout. F = compute_reality_cost is the SQUARED z_world step norm while every modulatory channel is at most linear in latent scale, so var(F) ~ var(non-F)^2 -- measured across the run's own 8 cells, OLS slope 2.020, R^2 0.978 over 54 orders of magnitude, against a predicted 2.000. Back-solved rollout magnitude reaches ||dz_world|| ~ 1.42e18, inside the 1e16-1e18 band V3-EXQ-569e measured on 2026-05-31 for this identical code path (SD-056 substrate_queue failure_record; clean ARM_0 baseline there was 0.39-0.77). The repair was BUILT for that incident (SD-056 amend lever (b), per-step rollout output norm clamp, e2_fast.py:694-747, validated V3-EXQ-617 PASS) and ships default-OFF; this run's declared parity ancestor V3-EXQ-689i arms it (True, ratio 2.0) and this lineage's baseline module contains zero occurrences of the flag. In float32 the consequence is stronger than dominance: std(non-F)/std(F) is below float32 eps in 7 of 8 cells, so the harm/residue/benefit/novelty/goal terms are ADDITIVELY ANNIHILATED in the score sum -- C1's conversion result survives only because MECH-448 acts on eligibility rather than on the additive sum. The claim was not tested; MECH-439 is neither supported nor weakened by this run. Status unchanged (candidate); epistemic_category standard (NOT substrate_ceiling -- see the autopsy's Section 9 for why a null instrument must not be counted as a ceiling hit).",
-  "epistemic_category": "standard"
+  "epistemic_category": "standard",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 6299.641717423,
+  "config": {
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "schedule": {
+      "p0_warmup_episodes": 60,
+      "p1_episode_cap": 40,
+      "steps_per_episode": 200,
+      "fresh_select_target": 200
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_OFF",
+        "flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        }
+      },
+      {
+        "arm_id": "ARM_DEMOTION",
+        "flags": {
+          "use_f_eligibility_demotion": true,
+          "use_go_nogo_constitution": false
+        }
+      }
+    ],
+    "pre_registered_thresholds": {
+      "F_MONOPOLY_THRESHOLD": 0.85,
+      "MIN_F_SHARE_REDUCTION": 0.05,
+      "F_SHARE_REFERENCE_571": 0.886,
+      "SCORE_COMPONENTS": [
+        "f",
+        "harm_weighted",
+        "residue_weighted",
+        "benefit_weighted",
+        "novelty_weighted",
+        "goal_weighted"
+      ],
+      "MIN_SEEDS_CONVERTING": 3,
+      "MIN_FRESH_SELECT_PER_CELL": 60,
+      "MIN_F_VARIANCE": 1e-09,
+      "MIN_NONF_VARIANCE": 1e-09,
+      "MIN_DEMOTION_ACTIVE_FRAC": 0.5,
+      "F_COMPONENTS": [
+        "f",
+        "harm_weighted"
+      ]
+    },
+    "sd056": {
+      "weight": 0.5,
+      "lr": 0.0001,
+      "batch_k": 8,
+      "train_every_k_ticks": 4
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46
+  ]
 }

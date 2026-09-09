@@ -207,5 +207,141 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "c0e6399454a24159b89a0eea43dd91f071b1148e6bc28a9d327f526f0d271927",
   "epistemic_category": "standard",
-  "evidence_direction_note": "MECH-475's own decisive, pre-registered reversal test (what_would_answer (a)): substituting a distributional critic for the scalar one, the destructive treatment-below-control inversion got 3.4x WORSE, not better, on all 6 scorable seeds, every gate green. Claim falsified on its own most decisive, self-nominated prediction -- WITHDRAWN, not narrowed."
+  "evidence_direction_note": "MECH-475's own decisive, pre-registered reversal test (what_would_answer (a)): substituting a distributional critic for the scalar one, the destructive treatment-below-control inversion got 3.4x WORSE, not better, on all 6 scorable seeds, every gate green. Claim falsified on its own most decisive, self-nominated prediction -- WITHDRAWN, not narrowed.",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 23262.638308766,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "rung": "D3_hazard_free",
+    "arms": [
+      "ref_ctrl_scalar",
+      "ref_ctrl_dist",
+      "cap_treat_scalar",
+      "cap_treat_dist",
+      "appr_treat_scalar",
+      "appr_treat_dist",
+      "metab_decouple_scalar",
+      "metab_decouple_dist",
+      "metab_treat_scalar",
+      "metab_treat_dist",
+      "local_view_greedy",
+      "greedy_oracle",
+      "random_walk",
+      "local_view_greedy_metab",
+      "greedy_oracle_metab",
+      "random_walk_metab"
+    ],
+    "representation": "raw_view",
+    "budget_ref_episodes": 3000,
+    "budget_cap_episodes": 5000,
+    "ref_budget_multiplier": 3,
+    "cap_budget_multiplier": 5,
+    "retention_probe_every": 250,
+    "late_readings": 3,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "ref_actor_critic_hidden": 128,
+    "cap_actor_critic_hidden": 256,
+    "ref_credit_replay_passes": 3,
+    "ref_credit_topk": 32,
+    "ref_cotrain_encoder": false,
+    "approach_coef": 1.0,
+    "ac_lr": 0.0003,
+    "ac_gamma": 0.99,
+    "dist_critic_n_bins": 41,
+    "dist_critic_limit": 10.0,
+    "dist_critic_sigma": 0.75,
+    "competence_floor": 1.0,
+    "inversion_margin": 1.0,
+    "flatten_margin": 1.0,
+    "flatten_fraction": 0.5,
+    "min_trajectory_readings": 1.5,
+    "families": [
+      "capacity",
+      "approach",
+      "metabolic"
+    ],
+    "family_map": {
+      "capacity": {
+        "manipulation": "actor_critic_hidden 128->256 + budget 3x->5x (make_on_config; 769 ON arm)",
+        "env_anchor": "standard",
+        "control": {
+          "scalar": "ref_ctrl_scalar",
+          "dist": "ref_ctrl_dist"
+        },
+        "treat": {
+          "scalar": "cap_treat_scalar",
+          "dist": "cap_treat_dist"
+        }
+      },
+      "approach": {
+        "manipulation": "non-extinguishing appetitive-approach drive (approach_coef=1.0; 781 treat)",
+        "env_anchor": "standard",
+        "control": {
+          "scalar": "ref_ctrl_scalar",
+          "dist": "ref_ctrl_dist"
+        },
+        "treat": {
+          "scalar": "appr_treat_scalar",
+          "dist": "appr_treat_dist"
+        }
+      },
+      "metabolic": {
+        "manipulation": "MetabolicForageWrapper energy->health starvation coupling (771 treat)",
+        "env_anchor": "metabolic",
+        "control": {
+          "scalar": "metab_decouple_scalar",
+          "dist": "metab_decouple_dist"
+        },
+        "treat": {
+          "scalar": "metab_treat_scalar",
+          "dist": "metab_treat_dist"
+        }
+      }
+    },
+    "on_config": {
+      "use_rnd": true,
+      "intrinsic_coef_start": 1.0,
+      "intrinsic_coef_end": 0.05,
+      "anneal_fraction": 0.6,
+      "warm_start_fraction": 0.2,
+      "entropy_beta_start": 0.1,
+      "entropy_beta_end": 0.03,
+      "credit_replay": true,
+      "credit_replay_passes": 6,
+      "credit_topk": 64,
+      "n_episodes": 5000,
+      "actor_critic_hidden": 256,
+      "cotrain_encoder": false,
+      "bc_aux_coef": 0.0,
+      "bc_aux_coef_end": null,
+      "bc_aux_anneal_fraction": 0.0,
+      "use_approach_primitive": false,
+      "approach_coef": 0.0,
+      "approach_extinguishes_on_contact": false,
+      "use_distributional_critic": false,
+      "use_policy_kl_anchor": false,
+      "kl_anchor_coef": 0.0,
+      "measure_policy_drift": false,
+      "retention_probe_every": null
+    },
+    "metabolic_env_extra": {
+      "metabolic_energy_decay": 0.02,
+      "metabolic_energy_threshold": 0.0,
+      "metabolic_health_drain": 0.05,
+      "metabolic_contaminated_harm": 0.0,
+      "forage_shaping_coef": 1.0,
+      "forage_shaping_gamma": 0.99
+    },
+    "supersedes": null
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

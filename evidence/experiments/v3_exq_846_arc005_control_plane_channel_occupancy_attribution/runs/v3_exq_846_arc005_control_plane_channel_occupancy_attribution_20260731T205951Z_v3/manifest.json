@@ -277,5 +277,63 @@
     "writer_defect": null,
     "n_agents": 30,
     "goal_state_present": false
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3121.143254671,
+  "config": {
+    "arena": {
+      "size": 10,
+      "toroidal": false,
+      "hazard_harm": 0.5,
+      "contaminated_harm": 0.4,
+      "resource_benefit": 0.3,
+      "energy_decay": 0.01,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.3,
+      "use_proxy_fields": true
+    },
+    "content": "A",
+    "channel_ladder": {
+      "ARM_ALL_ON": {
+        "serotonin_seeding_gain": 1.5,
+        "serotonin_wanting_floor": 0.08,
+        "phasic_burst_temp_delta": -1.0,
+        "salience_external_task_bias": 3.0,
+        "pcc_stability_baseline": 0.95
+      },
+      "ARM_ALL_OFF": {
+        "serotonin_seeding_gain": 0.9,
+        "serotonin_wanting_floor": 0.04,
+        "phasic_burst_temp_delta": -0.1,
+        "salience_external_task_bias": 1.0,
+        "pcc_stability_baseline": 0.5
+      }
+    },
+    "arms": [
+      "ARM_ALL_ON",
+      "ARM_5HT_OFF",
+      "ARM_PHASIC_OFF",
+      "ARM_MODEPRIOR_OFF",
+      "ARM_PCC_OFF",
+      "ARM_ALL_OFF"
+    ],
+    "schedule": {
+      "warmup_ticks": 200,
+      "measure_ticks": 1800
+    },
+    "pre_registered_thresholds": {
+      "c1_sd_multiplier": 0.8,
+      "c1_abs_floor": 0.15,
+      "p1_distinct_modes_floor": 1.5,
+      "p2_channel_ablation_delta_floor": 0.05,
+      "p3_salience_tick_floor": 150.0
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
 }

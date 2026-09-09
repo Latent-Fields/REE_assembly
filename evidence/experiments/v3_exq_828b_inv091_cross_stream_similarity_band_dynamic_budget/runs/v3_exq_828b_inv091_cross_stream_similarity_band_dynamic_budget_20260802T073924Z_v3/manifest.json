@@ -52,5 +52,81 @@
     "commit": "deb441eb00eb4025915f2043c41c3d50002ba1f1",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 15244.714749018662,
+  "config": {
+    "env_kwargs": {
+      "size": 10,
+      "num_hazards": 1,
+      "num_resources": 5,
+      "harm_history_len": 10
+    },
+    "q081_profile": {
+      "use_harm_stream": true,
+      "use_affective_harm_stream": true,
+      "use_salience_coordinator": true,
+      "use_event_segmenter": true,
+      "use_invalidation_trigger": true,
+      "use_tpj_comparator": true,
+      "use_sleep_loop": true,
+      "z_goal_enabled": true
+    },
+    "alpha_world": 0.9,
+    "use_anchor_sets": true,
+    "warmup_episodes": 40,
+    "steps_per_episode": 150,
+    "pilot_episodes": 6,
+    "similarity_pairs": [
+      [
+        "z_world",
+        "z_self"
+      ],
+      [
+        "z_world",
+        "operating_mode"
+      ],
+      [
+        "e1_hidden",
+        "e3_commitment"
+      ],
+      [
+        "z_world",
+        "z_goal"
+      ],
+      [
+        "z_harm",
+        "z_harm_a"
+      ]
+    ],
+    "thresholds": {
+      "similarity_move_floor": 0.02,
+      "composite_margin": 0.15,
+      "base_max_lag_ticks": 8,
+      "rate_random_e2_range": [
+        1,
+        6
+      ],
+      "rate_random_e3_range": [
+        3,
+        18
+      ]
+    },
+    "dynamic_budget_policy": {
+      "mechanism": "per_arm_per_seed_pilot",
+      "pilot_episodes": 6,
+      "margin_multiplier": 2.0,
+      "unreliable_pilot_extra_multiplier": 1.5,
+      "min_pilot_fresh_samples": 8,
+      "floor_steps": 2848,
+      "real_max_episodes_cap": 400,
+      "any_cap_hit": false,
+      "any_dry_run_pilot_fallback": false
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    37
+  ]
 }

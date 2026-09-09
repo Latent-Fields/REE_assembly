@@ -105,5 +105,47 @@
     "commit": "b767af4665217999a9d4bf85c23820ff37b819e2",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "recording_schema": "rec/v1",
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      "ARM_OFF",
+      "ARM_CONSTITUTION",
+      "ARM_SHUFFLED"
+    ],
+    "envelope_floors": [
+      0.3,
+      0.25,
+      0.2,
+      0.15,
+      0.1,
+      0.05
+    ],
+    "n_banks": 128,
+    "k_candidates": 4,
+    "world_dim": 8,
+    "action_dim": 4,
+    "horizon": 3,
+    "perseverated_class": "per-bank committed incumbent (probed, not fixed)",
+    "dominant_repeats": 6,
+    "history_depth": 8,
+    "gng_perseveration_floor": 0.5,
+    "dose_lift_floor": 0.4,
+    "seed_majority": 2,
+    "monotone_tol": 0.1,
+    "suppression_range_floor": 0.25,
+    "envelope_dose_separation_floor": 1.0,
+    "stock_floor": 0.3,
+    "reference_floor": 0.1
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ]
 }

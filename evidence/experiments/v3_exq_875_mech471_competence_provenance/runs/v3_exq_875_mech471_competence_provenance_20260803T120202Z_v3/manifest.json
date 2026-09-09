@@ -57,5 +57,79 @@
     "writer_defect": false,
     "n_agents": 12,
     "goal_state_present": true
-  }
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 73643.656122118,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      45
+    ],
+    "strengths": [
+      0,
+      25,
+      50,
+      150
+    ],
+    "p0_warmup_episodes": 120,
+    "p1_acquire_episodes": 50,
+    "eval_episodes": 12,
+    "steps_per_episode": 150,
+    "env_kwargs_a": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.0,
+      "reef_bipartite_layout": false,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "env_kwargs_b": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.0,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "survival_floor_frac": 0.6,
+    "random_margin_frac": 0.15,
+    "targeted_move_floor_frac": 0.05,
+    "interference_abs_floor_frac": 0.05,
+    "interference_sd_mult": 2.0,
+    "confirm_strong_frac": 0.5
+  },
+  "seeds": [
+    42,
+    43,
+    45
+  ]
 }

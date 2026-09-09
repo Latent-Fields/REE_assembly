@@ -143,5 +143,87 @@
   },
   "machine": "ree-cloud-4",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "4cada0bb7cb81844b885b7902b2f0a8012f3b4fa1046a9d43eeeb3ee665bd372"
+  "substrate_hash": "4cada0bb7cb81844b885b7902b2f0a8012f3b4fa1046a9d43eeeb3ee665bd372",
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1580.234,
+  "config": {
+    "arms": [
+      "ARM_HANDLE_OFF",
+      "ARM_HANDLE_ON"
+    ],
+    "seeds": [
+      3,
+      47,
+      71,
+      89,
+      23,
+      53
+    ],
+    "episodes": 12,
+    "steps_per_episode": 60,
+    "env_kwargs_per_seed": {
+      "3": {
+        "seed": 3
+      },
+      "47": {
+        "seed": 47
+      },
+      "71": {
+        "seed": 71
+      },
+      "89": {
+        "seed": 89
+      },
+      "23": {
+        "seed": 23
+      },
+      "53": {
+        "seed": 53
+      }
+    },
+    "env_seeded_per_cell": true,
+    "self_dim": 32,
+    "world_dim": 32,
+    "seeded_chunk_sequence": [
+      0,
+      1,
+      2
+    ],
+    "decomposition_vs_threshold": 0.99,
+    "decomposition_depth_cap": 3,
+    "arm_flags": {
+      "ARM_HANDLE_OFF": {
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.99,
+        "decomposition_depth_cap": 3,
+        "use_persistent_committed_program_handle": false
+      },
+      "ARM_HANDLE_ON": {
+        "use_event_segmenter": true,
+        "use_policy_chunking": true,
+        "use_chunk_proposal_injection": true,
+        "use_policy_decomposition": true,
+        "decomposition_vs_threshold": 0.99,
+        "decomposition_depth_cap": 3,
+        "use_persistent_committed_program_handle": true
+      }
+    },
+    "thresholds": {
+      "MIDEXEC_FLOOR": 0.0,
+      "MULTI_ACTION_COMMIT_FLOOR": 0.0,
+      "PRECOMMIT_EVAL_FLOOR": 0.0,
+      "BEHAVIOURAL_DIVERGENCE_FLOOR": 0.0
+    }
+  },
+  "seeds": [
+    3,
+    47,
+    71,
+    89,
+    23,
+    53
+  ]
 }
