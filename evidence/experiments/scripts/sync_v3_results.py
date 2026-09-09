@@ -18,6 +18,8 @@ Usage (from REE_assembly root):
     python evidence/experiments/scripts/sync_v3_results.py
 """
 
+import argparse
+import fnmatch
 import json
 import re
 import sys
@@ -478,20 +480,225 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
     return run_id
 
 
-def main():
+# ---------------------------------------------------------------------------
+# Opt-in heal of ALREADY-CONVERTED packs (2026-09-09)
+# ---------------------------------------------------------------------------
+#
+# Every mapping fix in build_runpack_docs above is FORWARD-ONLY: both
+# convert_flat_to_runpack and sync_daemon._materialize_runpacks skip when the
+# pack already exists, so a pack converted before a fix keeps the gap forever.
+# This section is the explicit, opt-in backfill for that.
+#
+# WHY THIS IS AN ADDITIVE MERGE AND NOT A REGENERATION -- read before "simplifying"
+# it into a `--force` that just rewrites the pack from build_runpack_docs.
+#
+# build_runpack_docs is a WHITELIST: it emits exactly the keys it names. But a
+# run-pack manifest is NOT a pure function of its flat sibling once it exists --
+# /governance and /failure-autopsy write their adjudications directly onto the
+# PACK, and the flat manifest stays the raw as-emitted artifact. Measured
+# 2026-09-09 over the 1638 packs that still have a reachable flat source, a
+# full regeneration would have:
+#   - DROPPED 1124 pack-only key occurrences across 77 keys, including
+#     evidence_direction_note (643), epistemic_category (94), superseded_by (62),
+#     scoring_excluded (15), governance_applied_utc (11), source_autopsy (8),
+#     failure_autopsy_ref (6), governance_override_from/utc, adjudicated_by_autopsy,
+#     claim_tag_removed_by_governance;
+#   - REVERTED 619 values, including evidence_direction (238) and status (27) --
+#     e.g. status SUPERSEDED -> FAIL on v3_exq_085h, evidence_direction
+#     supports -> mixed on v3_exq_033, and evidence_direction_per_claim
+#     {MECH-071: weakens, ...} -> {} on v3_exq_026.
+# That is a wholesale revert of governance state wearing the costume of a
+# housekeeping backfill, so the destructive form is deliberately NOT offered.
+#
+# The heal therefore only ever ADDS a key that the pack does not already have,
+# from an explicit allowlist, and the VALUE still comes from build_runpack_docs
+# (no field is hand-authored here). It never overwrites and never deletes.
+
+# Manifest keys the heal is allowed to add. Deliberately just the four
+# Experimental Recording Standard always-core members that build_runpack_docs
+# started carrying on 2026-09-09 and that NOTHING in build_experiment_indexes
+# reads (verified 2026-09-09: zero references to recording_schema,
+# elapsed_seconds or seeds, and no manifest read of config), so adding them
+# changes the pack's SELF-DESCRIPTION and the validate_recording verdict and
+# cannot move a score.
+#
+# substrate_hash and machine_class are the other two always-core provenance
+# members and are NOT in this list on purpose: the indexer reads both (17 and 18
+# references respectively -- SD-024 gate class and the arm-fingerprint reuse
+# key), so backfilling them is a scoring change that needs its own measurement
+# and its own governance disposition, not a ride on this one.
+HEAL_MANIFEST_KEYS = ("recording_schema", "elapsed_seconds", "config", "seeds")
+
+
+def heal_pack(flat_path: Path, evidence_dir: Path | None = None,
+              manifest_keys=HEAL_MANIFEST_KEYS,
+              fill_metrics: bool = False,
+              apply: bool = False) -> dict | None:
+    """Additively backfill one already-converted pack from its flat sibling.
+
+    Returns None when there is nothing to do (not an eligible V3 flat, no pack
+    on disk, or the pack already carries everything). Otherwise returns a record
+    describing the change; the change is only WRITTEN when `apply` is True.
+
+    `fill_metrics` additionally copies metrics.values when -- and only when --
+    the pack's current `values` is EMPTY and build_runpack_docs produces a
+    non-empty one. That is a SCORING-RELEVANT edit (an empty `values` makes
+    every fail_if rule unevaluable and suppresses the duplicate-emission
+    fingerprint), which is why it is off by default and separately flagged.
+    """
+    evidence_dir = Path(evidence_dir) if evidence_dir is not None else EVIDENCE_DIR
+    try:
+        data = json.loads(flat_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if not _is_flat_v3(data, flat_path):
+        return None
+    run_id = str(data.get("run_id", ""))
+    if not run_id:
+        return None
+
+    experiment_type, exp_dir = _derive_experiment_type_and_dir(
+        flat_path, data, evidence_dir)
+    run_dir = exp_dir / "runs" / run_id
+    manifest_path = run_dir / "manifest.json"
+    if not manifest_path.is_file():
+        return None  # nothing converted yet -- that is convert_flat_to_runpack's job
+
+    try:
+        old_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+    new_manifest, new_metrics, _summary = build_runpack_docs(data, experiment_type)
+
+    added = {}
+    for key in manifest_keys:
+        if key in new_manifest and key not in old_manifest:
+            added[key] = new_manifest[key]
+
+    metrics_path = run_dir / "metrics.json"
+    metrics_before = None
+    metrics_after = None
+    if fill_metrics and metrics_path.is_file():
+        try:
+            old_metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+        except Exception:
+            old_metrics = None
+        if isinstance(old_metrics, dict) and (old_metrics.get("values") or {}) == {}:
+            candidate = new_metrics.get("values") or {}
+            if candidate:
+                metrics_before = {}
+                metrics_after = candidate
+
+    if not added and metrics_after is None:
+        return None
+
+    record = {
+        "run_id": run_id,
+        "experiment_type": experiment_type,
+        "run_dir": str(run_dir),
+        "flat": str(flat_path),
+        "added_manifest_keys": sorted(added),
+        "metrics_values_filled": sorted(metrics_after) if metrics_after else [],
+    }
+
+    if apply:
+        if added:
+            merged = dict(old_manifest)
+            merged.update(added)
+            manifest_path.write_text(
+                json.dumps(merged, indent=2) + "\n", encoding="utf-8")
+        if metrics_after is not None:
+            doc = json.loads(metrics_path.read_text(encoding="utf-8"))
+            doc["values"] = metrics_after
+            metrics_path.write_text(
+                json.dumps(doc, indent=2) + "\n", encoding="utf-8")
+
+    return record
+
+
+def _flat_candidates():
+    """The same file set main()'s conversion scan walks."""
+    all_json = sorted(set(EVIDENCE_DIR.glob("*.json")) | set(EVIDENCE_DIR.glob("*/*.json")))
+    for json_path in all_json:
+        if json_path.name in SKIP_NAMES:
+            continue
+        if "runs" in json_path.parts:
+            continue
+        yield json_path
+
+
+def run_heal(only=None, fill_metrics=False, apply=False, limit=None,
+             exclude_run_ids=()):
+    """Drive heal_pack over the corpus. Returns the list of change records."""
+    exclude = set(exclude_run_ids or ())
+    records = []
+    for flat_path in _flat_candidates():
+        rec = heal_pack(flat_path, fill_metrics=fill_metrics, apply=False)
+        if rec is None:
+            continue
+        if rec["run_id"] in exclude:
+            print(f"  [excluded] {rec['run_id']}", flush=True)
+            continue
+        if only and not (fnmatch.fnmatch(rec["run_id"], only)
+                         or fnmatch.fnmatch(rec["experiment_type"], only)):
+            continue
+        if limit is not None and len(records) >= limit:
+            break
+        if apply:
+            rec = heal_pack(flat_path, fill_metrics=fill_metrics, apply=True)
+            if rec is None:
+                continue
+        records.append(rec)
+    return records
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(
+        description="Convert V3 flat JSON results into run-packs; "
+                    "optionally heal already-converted packs.")
+    parser.add_argument(
+        "--heal", action="store_true",
+        help="Additively backfill always-core keys onto EXISTING packs. "
+             "Off by default: governance.sh and the hub sync_daemon call this "
+             "script bare and must keep the pure skip-if-exists behaviour.")
+    parser.add_argument(
+        "--only", metavar="GLOB",
+        help="With --heal, restrict to run_ids or experiment_types matching GLOB.")
+    parser.add_argument(
+        "--limit", type=int, metavar="N",
+        help="With --heal, stop after N packs (batching).")
+    parser.add_argument(
+        "--fill-metrics", action="store_true",
+        help="With --heal, also populate metrics.json values when currently "
+             "empty. SCORING-RELEVANT -- quantify before landing.")
+    parser.add_argument(
+        "--exclude-run-id", action="append", default=[], metavar="RUN_ID",
+        help="With --heal, skip this run_id (repeatable).")
+    parser.add_argument(
+        "--apply", action="store_true",
+        help="With --heal, actually write. Without it the heal is a dry run.")
+    args = parser.parse_args(argv)
+
+    if args.heal:
+        records = run_heal(only=args.only, fill_metrics=args.fill_metrics,
+                           apply=args.apply, limit=args.limit,
+                           exclude_run_ids=args.exclude_run_id)
+        n_keys = sum(len(r["added_manifest_keys"]) for r in records)
+        n_met = sum(1 for r in records if r["metrics_values_filled"])
+        verb = "healed" if args.apply else "would heal"
+        print(f"sync_v3_results --heal: {verb} {len(records)} pack(s); "
+              f"{n_keys} manifest key(s) added, {n_met} metrics.values filled.",
+              flush=True)
+        return 0
+
     converted = []
     skipped_norun = 0
 
     # Scan flat JSON files -- both at top level and one dir deep
     # Top-level: evidence/experiments/*.json
     # Sub-level:  evidence/experiments/{exp_type}/*.json
-    all_json = sorted(set(EVIDENCE_DIR.glob("*.json")) | set(EVIDENCE_DIR.glob("*/*.json")))
-    for json_path in all_json:
-        if json_path.name in SKIP_NAMES:
-            continue
-        # Skip files inside runs/ subdirectories (already converted)
-        if "runs" in json_path.parts:
-            continue
+    for json_path in _flat_candidates():
         run_id = convert_flat_to_runpack(json_path)
         if run_id:
             print(f"  converted: {run_id}", flush=True)
@@ -502,7 +709,8 @@ def main():
     print(f"\nsync_v3_results: {len(converted)} new run-pack(s) created, "
           f"{skipped_norun} file(s) skipped (already converted or non-run).",
           flush=True)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
