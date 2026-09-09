@@ -4796,7 +4796,11 @@
       "task_claim_session_id": "igw-auto-igw-234-proposal-for-mech-002-20260909T024153Z",
       "task_claim_claimed_at": "2026-09-09T02:41:53Z",
       "assigned_at": "2026-09-09T02:40:04Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-09T03:05:39Z",
+      "completion_summary": "marked EVB-1378 blocked_substrate (MECH-002): regime DV bang-bang + precision DV bit-identical across channel ladder; chipped V3-EXQ-935a as the unblocking path",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-1378 blocked_substrate (MECH-002): regime DV bang-bang + precision DV bit-identical across channel ladder; chipped V3-EXQ-935a as the unblocking path"
     }
   ],
   "dispositions": [
@@ -6823,6 +6827,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-09T00:33:50Z",
       "re_eligible_after": "2026-09-11T00:33:34Z"
+    },
+    {
+      "stable_hash": "5647c0a2bf55",
+      "igw_id_at_disposition": "IGW-20260909-234",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-002"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-002",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-09T03:05:41Z",
+      "re_eligible_after": "2026-09-11T03:05:41Z"
     }
   ]
 }
