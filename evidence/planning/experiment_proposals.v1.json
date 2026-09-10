@@ -20957,14 +20957,20 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_222",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "MECH-221",
+        "MECH-222",
+        "SD-070"
+      ],
+      "blocked_note": "No queue entry created (V3-EXQ-1018 reserved then released). MECH-222's testable content needs a downstream consumer of z_world to distinguish an EXOGENOUS world event from self-caused change, but z_world carries no such signal: ree_core/latent/zworld_p0.py records (2026-07-18, this substrate) that transition-type information is AT OR BELOW CHANCE in the world_obs channel z_world encodes (-0.014 3-class / -0.060 6-class held-out macro-recall minus chance), because z_world is a STATIC SINGLE-FRAME encoding and SD-005's split encoder routes the informative body delta to z_self. Reproduced independently 2026-09-10 across 4 measurement rounds (frozen and trained encoder; binary and graded DV; clock-locked and clock-independent exogenous channel) -- all at chance (probe AUC 0.53-0.63, Spearman -0.03..0.20). The MANIPULATION is fine: the SD-007 ReafferencePredictor trains to held-out R2 0.34-0.40 and is genuinely action-sensitive. It is the DV that does not exist. SD-070 is the existing z_world P0 repair recipe but targets STATIC single-frame properties by construction, so it likely does not clear this gate either -- confirm rather than assume. Route: /implement-substrate on the z_world exogenous-event channel, NOT another /queue-experiment iteration. Full evidence + red-team dispositions: REE_assembly/evidence/planning/mech222_zworld_event_channel_blocked_staged_20260910.md . Reviewed driver left on trunk, deliberately UNQUEUED: ree-v3/experiments/v3_exq_1018_mech222_self_attribution_contamination.py"
     },
     {
       "acceptance_checks": [
