@@ -780,7 +780,7 @@
         "ARC-062"
       ],
       "flag_type": "stale_note",
-      "summary": "closure_plan node arc_062_rule_apprehension:GAP-B carries a blocker note stale by two runs: it reads 'V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3)', but 654h ran on 2026-06-21 (manifest v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3) and a further 654i ran on 2026-06-22 (\u2026_20260622T014706Z_v3). GAP-B remains genuinely blocked -- it closes only on a PASS C2 entropy lift, which needs the MECH-439 F-dominance rebalance -- so this is a note-accuracy correction, NOT a signal that GAP-B is now actionable. Worth fixing because GAP-B is the load-bearing keystone that GAP-I, GAP-J and behavioral_diversity_isolation:GAP-G all block on, so a reader triaging the closure map is currently told the keystone is waiting on a run that finished two months ago.",
+      "summary": "closure_plan node arc_062_rule_apprehension:GAP-B carries a blocker note stale by two runs: it reads 'V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3)', but 654h ran on 2026-06-21 (manifest v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3) and a further 654i ran on 2026-06-22 (…_20260622T014706Z_v3). GAP-B remains genuinely blocked -- it closes only on a PASS C2 entropy lift, which needs the MECH-439 F-dominance rebalance -- so this is a note-accuracy correction, NOT a signal that GAP-B is now actionable. Worth fixing because GAP-B is the load-bearing keystone that GAP-I, GAP-J and behavioral_diversity_isolation:GAP-G all block on, so a reader triaging the closure map is currently told the keystone is waiting on a run that finished two months ago.",
       "raised_by_session": "metaworker-chip-20260823-queue-refill-fresh-design",
       "raised_at": "2026-08-26T12:15:29Z",
       "status": "resolved",
@@ -929,9 +929,9 @@
       "summary": "All three claims list SD-003 in depends_on, but SD-003 has been status: superseded (by MECH-256/SD-029) since 2026-04-18 -- five weeks before INV-076/MECH-341 were even registered (2026-05-25), and predating SD-013's own registration only by weeks (2026-03-28). No scientific content is wrong, but the edges point at a retired node instead of MECH-256 (general)/SD-029 (concrete instantiation). Recommend repointing depends_on on all three. Surfaced by thought-digestion 2026-08-27 (grouped mode, group A).",
       "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
       "raised_at": "2026-08-27T19:28:20Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:40Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). At raise time all three claims did list SD-003. All three were repointed on 2026-09-01 and no claim in the registry now depends on SD-003. The closing commit b0fe4f9d12 states verbatim 'This closes GFLAG-0064's full 16-claim scope: 6 handled by sd003-groupAC-20260901, 5 by sd003-groupB-20260901, these final 5'. Citations: REE_assembly 79deb9fb27, REE_assembly e2834a1529, REE_assembly b0fe4f9d12, docs/claims/claims.yaml:13837. RESIDUAL NOTED: Two corrections to the flag's own framing: (1) the actual scope was 16 claims, not 3; (2) INV-076 and MECH-341 were repointed to MECH-257, NOT the MECH-256/SD-029 the flag recommended. SD-013's edge was DROPPED, not repointed."
     },
     {
       "flag_id": "GFLAG-0065",
@@ -1084,9 +1084,9 @@
       "summary": "MECH-205's shipped default is the known-vacuous value. pe_surprise_threshold still defaults to 0.001 (ree-v3 ree_core/utils/config.py:3035) -- the exact value this claim's own evidence_quality_note root-causes as the EXQ-258a failure (~53x too high vs observed mean_surprise 1.86e-5). The EXQ-258b PASS used 1e-5, set in the experiment and never promoted to the default. pe_ema_alpha WAS fixed (0.1 -> 0.02); the threshold was not. Any future run enabling surprise_gated_replay and inheriting the default writes ZERO VALENCE_SURPRISE entries and reads vacuously green.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:50:18Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:40Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). The default was promoted on 2026-09-01 by ree-v3 2fdf721 ('MECH-205: fix vacuous pe_surprise_threshold default (GFLAG-0075)'), silently reverted by a bad rebase, and restored on 2026-09-02 by 26ae2a7 (verified an ancestor of HEAD). Current HEAD reads `pe_surprise_threshold: float = 1e-5` at ree-v3/ree_core/utils/config.py:3438, with the promotion rationale in the adjacent comment at :3435-3437 and the per-call-site default matched at :7163. pe_ema_alpha is 0.02 at :3428, as the flag already said. Citations: /Users/dgolden/REE_Working/ree-v3/ree_core/utils/config.py:3438, /Users/dgolden/REE_Working/ree-v3/ree_core/utils/config.py:7163, 2fdf721cdcf39e8ca9588c6b7c9e911c4953114d, 26ae2a7e87f33e977e67ad4e0a1884119e0141d5. RESIDUAL NOTED: Worth recording in the resolution_note that this fix was lost once to a rebase and needed a second landing -- a regression test pinning the default would be cheap. NOT a duplicate of GFLAG-0203: 0075's remedy was the config default (landed); 0203's remedy is MECH-205's claim text (still owed). They are the two ends of the same string, which is why they read alike."
     },
     {
       "flag_id": "GFLAG-0076",
@@ -1141,9 +1141,9 @@
       "summary": "MECH-090's routed substrate fix landed TWO DAYS BEFORE the autopsy that routed it, and the owed retest was never queued. The 2026-08-03 autopsy routed /implement-substrate create mech090-arc071-attick-persistent-handle-fix; substrate_queue records it already implemented under sibling sd_id arc071_e3_reselection_on_committed_program, AT-E3-tick short-circuit landed 2026-08-01 (ree-v3 main 31ed78e), status implemented_validated, 7 contract tests pass. The behavioural retest with the autopsy's own prescribed tick-rate-normalised DV (n_genuine_commits / n_e3_ticks, explicitly NOT raw mean segment length) has never been queued or run. pending_retest_after_substrate should flip to false once that retest lands.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:50:38Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:40Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). The structural half is right -- the substrate_queue entry reads duplicate_superseded status with 'Landed 2026-08-01: ree-v3 31ed78e'. But the owed retest HAS since been queued and run: v3_exq_871b (2026-09-01, four days after this flag was raised) is PASS with MECH-090 supports, and MECH-090 already carries pending_retest_after_substrate: false. Citations: evidence/planning/substrate_queue.json (sd_id mech090-arc071-attick-persistent-handle-fix), evidence/experiments/v3_exq_871b_mech090_e3_reselection_shortcircuit_retest_20260901T212042Z_v3.json, docs/claims/claims.yaml MECH-090, ree-v3 31ed78e. RESIDUAL NOTED: One substantive divergence: 871b deliberately did NOT route on the autopsy's prescribed DV. It routes on opportunity_continuation_rate, because a Step 4.5 red-team pass found the autopsy's statistic diluted by non-opportunity ticks. If governance wants the flag discharged strictly as written, the DV substitution is what needs ratifying."
     },
     {
       "flag_id": "GFLAG-0080",
@@ -1339,9 +1339,9 @@
       "summary": "chip-20260827-competence-final-discriminator (dispatched to queue the next MECH-457 competence-floor discriminating experiment) found the discrimination is ALREADY COMPLETE, not pending: hypothesis_space_registry.v1.json qid competence_floor has all 20 hypotheses (and every split child) terminally resolved as of V3-EXQ-821b (2026-08-08, eliminates H-consummation-binding, closing the 4-leg retention portfolio); the registry's own decision block already states the discrimination phase is complete and growth_restriction is CLOSED TO FURTHER FAN-OUT. Two derived documents still read the space as open with a stale '1 of 20 rivals standing' figure that traces to generate_current_front.py reading a hero.surviving/reduction_ratio/bits_removed field that no longer exists anywhere in the registry (grep returns zero hits) -- so CURRENT_FRONT.md (stamped regenerated 2026-08-25) and evidence/planning/work_graph_debt_classification_20260827.md's U1 entry (2026-08-27) both cite a number the current registry cannot produce. substrate_queue.json's mech457_competence_bootstrap_explorer entry (status/blocked_note) was corrected in place this session to state the discrimination outcome and re-point the real remaining blocker at the MECH-229 dependency (still provisional/v3_pending). No experiment was queued -- doing so would violate the re-derive brake and the qid's own growth_restriction. Recommend: (1) fix or retire generate_current_front.py's hero-question renderer (it silently prints a stale cached count instead of deriving surviving/eliminated/confirmed from hypotheses[].resolution.state, or failing loud when the expected fields are absent) and regenerate CURRENT_FRONT.md; (2) governance decide whether mech457's node_class ('complex (probe-gated)') should become something reflecting 'dependency-blocked, discrimination done' once MECH-229 clears -- not decided here.",
       "raised_by_session": "metaworker-chip-20260827-competence-final-discriminator",
       "raised_at": "2026-08-28T21:51:49Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:40Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). Recommendation (1) is fully executed and I verified the content, not just the commits. scripts/generate_current_front.py:181-193 now carries an explicit comment 'Deliberately does NOT read hero.surviving / .reduction_ratio / .bits_removed' naming GFLAG-0093 as the reason, and the renderer derives its line from a direct tally of alive/confirmed/resolved_out/superseded with a self-consistency check that degrades to 'derive_failed' + needs_review rather than printing a plausible wrong number (:195-215); the fix landed in 16816efdfe, 2026-09-01, 'gflag-0093: fix generate_current_front.py stale hero-question renderer'. docs/CURRENT_FRONT.md was regenerated (latest 5aa873dc65, 2026-09-09) and now reads 'conversion-ceiling root -- 3 alive, 1 confirmed, 2 resolved out (of 6 total)' with no '1 of 20' anywhere. evidence/planning/work_graph_debt_classification_20260827.md carries a struck-through U1 entry with '[CORRECTED 2026-09-01 -- see Addendum v1.2 correction 1]' at lines 14, 29 and 106, and its Addendum (line 156) states it was added by 'chip-20260901-gflag0093-current-front-stale-renderer, closing out GFLAG-0093'. The underlying registry reading is confirmed: qid competence_floor has 20 hypotheses, 14 eliminated / 4 confirmed / 2 split, none alive, with growth_restriction 'CLOSED TO FURTHER FAN-OUT (2026-08-08)', and the registry contains zero occurrences of surviving/reduction_ratio/bits_removed. Citations: scripts/generate_current_front.py:181, 16816efdfe, docs/CURRENT_FRONT.md:16, evidence/planning/work_graph_debt_classification_20260827.md:156. RESIDUAL NOTED: artifact_changed_since_raised was true and the change IS the discharge. The residual node_class question is genuinely open but is a one-line judgement ('complex (probe-gated)' describes a node whose probe is finished), not a reason to keep this flag open. Not a duplicate of GFLAG-0131 despite sharing claim_ids -- entirely different subject matter."
     },
     {
       "flag_id": "GFLAG-0094",
@@ -1541,9 +1541,9 @@
       "summary": "PIPELINE DEFECT (GOV-APPLY-1 detector; the five claims are the concrete instances). All 8 rows in check_unapplied_autopsy_recommendations.py's unapplied_disposition ACTIONABLE bucket were VERIFIED APPLIED on 2026-09-01 and are FALSE POSITIVES. Cause: _target_state() cannot parse the free-prose per_claim_recommendation[].change text recent autopsies write -- every one of the 8 returns field_hint=None with a target_state that is a sentence fragment ('set pending_retest_after_substrate false', 'non_contributory. Nothing storable moves -- apply the corrected note', \"1.0) is CONFIRMED by WAKING_ONLY = 0.9993...\"), so no compare can certify it. _STAMP_RE also misses a citation recommendation phrased 'stamp ... this artifact' instead of naming the slug (the V3-EXQ-571b MECH-439 row, applied this cycle). Verified per row: ARC-045/SD-017 carry the 966-cluster note + WRITE-PATH-CONTENT re-scoping and live_status cites the cluster; SD-078/SD-082 both read pending_retest_after_substrate false with the withdrawals recorded; MECH-439 cites failure_autopsy_V3-EXQ-571b_2026-09-01. The two 436e rows are additionally superseded by the 966-cluster, which superseded_disposition cannot detect because certifying a supersession requires the LATER recommendation to be parseable and it is not -- the defect cascades. This is the alarm-fatigue Goodhart vector the codebase warns about: a warn bucket that re-reports applied work every cycle gets accepted by default, and a real unapplied disposition would hide among them. Fix is two-sided: (a) producer -- /failure-autopsy should end every per_claim_recommendation.change on a machine-checkable tail ('-> <field>: <value>' or 'stamp <literal-slug>'); (b) detector -- treat an unparseable change as UNCERTIFIABLE and report it in its own bucket rather than as ACTIONABLE. Do NOT fix by re-applying: a mechanical apply pass would have double-appended five evidence_quality_notes.",
       "raised_by_session": "gov-cycle-20260901",
       "raised_at": "2026-09-01T07:58:52Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:40Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). Ran the live detector: the unapplied_disposition ACTIONABLE bucket is now 1 row, not 8. Both halves of the recommended fix landed -- producer at failure-autopsy/SKILL.md:632, detector at 69060999b0 (whose docstring section names GFLAG-0107) plus 2d5451429d. All five named claims verify applied. Citations: REE_assembly 69060999b0, REE_assembly 2d5451429d, scripts/check_unapplied_autopsy_recommendations.py:325-392, /Users/dgolden/REE_Working/.claude/skills/failure-autopsy/SKILL.md:632. RESIDUAL NOTED: RESIDUAL, deliberately not treated as keeping the flag open: recommendation (b) -- treat an unparseable change as UNCERTIFIABLE in its own bucket -- was NOT adopted. What landed instead is shape-by-shape parser extension, the Goodhart-fragile direction the flag itself warned about. If governance wants (b), raise it as its own flag."
     },
     {
       "flag_id": "GFLAG-0108",
@@ -1606,9 +1606,9 @@
       "summary": "6 flat-only V3 experiment manifests (V3-EXQ-542, 544, 544a supports; V3-EXQ-395 x2 weakens; V3-EXQ-259 does_not_support) carry real scored evidence for these claims but are structurally invisible to claim_evidence.v1.json because build_experiment_indexes.py only discovers runs via a runs/<id>/manifest.json pack glob and these manifests were written only via pack_writer.write_flat_manifest (a sanctioned flat-only chokepoint), never via write_pack. See REE_assembly/evidence/planning/flat_only_manifest_indexer_invisibility_staged_20260901.md for full corpus scan (23 findings, 3 buckets) and two candidate remediations (indexer-side pack-less discovery vs backfilling packs) -- a scoring-semantics choice left for /governance.",
       "raised_by_session": "metaworker-chip-20260830-exq547-runid-index-invisible",
       "raised_at": "2026-09-01T16:00:44Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:40Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). Indexer-side pack-less discovery was chosen over pack backfill and landed the same day the flag was raised: commit 76921a56ce 'indexer: discover flat-only orphaned manifests directly (GFLAG-0111)' adds _scan_flat_only_orphans + _resolve_flat_only_status. The named manifests are now visible in claim_evidence.v1.json. Citations: REE_assembly 76921a56ce, evidence/experiments/scripts/build_experiment_indexes.py:2175-2200, evidence/experiments/scripts/build_experiment_indexes.py:1815-1880, evidence/experiments/claim_evidence.v1.json. RESIDUAL NOTED: The scoring-semantics choice the flag left to governance was in effect made by the implementation: rows enter with scoring_excluded 'diagnostic_probe', visible but non-weighting. Defensible default but never explicitly ratified -- worth a line in the resolution note so it is not later mistaken for a governance decision."
     },
     {
       "flag_id": "GFLAG-0112",
@@ -1638,9 +1638,9 @@
       "summary": "CROSS-REFERENCE for GFLAG-0109 (still open) -- read that one first. GFLAG-0109 speculated the user's GFLAG-0105 reading ('MECH-274/276/278/ARC-031 may likewise be v3 prerequisites rather than V4') might mean phase labels have drifted from dependencies GENERALLY, i.e. option (i) there (let MECH-479 follow dependency to v3) could be one instance of a broader pattern. GFLAG-0105 is now resolved and the answer is NOT a uniform pattern: 3 of 4 claims (MECH-274, MECH-278, ARC-031) were confirmed genuinely V4 (relabeled, phase_locked) -- their v3 labels were mechanical/stale, not independently-assessed drift toward v4 dependency. Only 1 of 4 (MECH-276) was genuinely mislabeled the OTHER direction: it should have stayed/is correctly v3, because real V3 substrate for it landed 2026-06-23 (ree_core/attribution/scientist_attribution_buffer.py) that the v4_spec.md cohort table never got updated to reflect. So the lesson for MECH-479 is narrower than 'apply option (i) broadly': check MECH-479's OWN substrate/dependency reality specifically (does real V3-tractable substrate for its prosocial-planning leg exist independent of ARC-083 others-as-slots, the way MECH-276 found an existing single-agent path?) rather than treating GFLAG-0105's outcome as a precedent that phase-follows-dependency always resolves toward v3. Full per-claim evidence in GFLAG-0105's resolution_note and the new GFLAG-0112 (ARC-059 depends_on breadth, out-of-scope follow-on).",
       "raised_by_session": "metaworker-chip-20260901-v4cut-f5-are-these-v3-prerequisites",
       "raised_at": "2026-09-01T16:25:09Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:40Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). GFLAG-0113 (raised 2026-09-01T16:25:09Z) described GFLAG-0109 as 'still open' and asked that MECH-479 be checked on its own substrate/dependency reality before generalising GFLAG-0105's v3-leaning pattern. GFLAG-0109 resolved the same day at 20:06:55Z, doing exactly that: ree-v3's environment package has zero multi-agent support (only causal_grid_world.py), so MECH-479's second-agent precondition is genuinely unmeetable in V3, not merely hard. claims.yaml confirms MECH-479 stayed/moved to implementation_phase v4. Citations: evidence/planning/governance_flags.v1.json GFLAG-0109 resolved_at 2026-09-01T20:06:55Z (after GFLAG-0113's 16:25:09Z raise), docs/claims/claims.yaml:86668 (MECH-479 implementation_phase: v4), docs/claims/claims.yaml:86710-86712 (governance_2026_09_01 note citing GFLAG-0109). RESIDUAL NOTED: Not a duplicate of GFLAG-0112 -- different claim (MECH-479 vs ARC-059) and different underlying finding."
     },
     {
       "flag_id": "GFLAG-0114",
@@ -1703,9 +1703,9 @@
       "summary": "PIPELINE DEFECT (dry-run filter blind spot; the three V3-EXQ-395 smokes are the concrete instance). generate_pending_review.load_dry_run_run_ids() and check_dry_run_citations.build_index() both enumerate only TWO manifest shapes -- EVIDENCE_DIR.glob('*.json') (top-level flat) and EVIDENCE_DIR.glob('*/runs/*/manifest.json') (canonical packs). A THIRD shape exists in the corpus and matches NEITHER: the per-experiment-type flat manifest at evidence/experiments/<type>/<run_id>.json, one directory deep with no pack. Consequence: for a manifest of that shape, setting dry_run:true has NO EFFECT on any guard -- pending_review's dry exclusion cannot see it, check_dry_run_citations reports 'no manifest on disk', and GOV-DRY-1 (which keys on the same index) reports 0 asserting dry stamps while an asserting dry stamp is live. Confirmed 2026-09-02: the three v3_exq_395_mech220_harm_hub_dry_* manifests had dry_run UNSET and two carried evidence_direction weakens against MECH-220 with scoring_excluded None -- the ONLY experimental rows against that claim, alongside three literature supports, which is what generated its hold_candidate_resolve_conflict. Governance contained them (dry_run true, non_contributory, note; REE_assembly 20ac9d7cab) and they STILL appear in the regenerated pending_review FAIL bucket, because the glob cannot reach them. GFLAG-0111's six flat-only manifests (V3-EXQ-542/544/544a supports, 395 x2 weakens, 259 does_not_support) are the same shape and the same exposure. Recommend: add EVIDENCE_DIR.glob('*/*.json') (excluding runs/ and _NON_MANIFEST_FILES) to both enumerators, with a regression test pinning all three shapes; then re-run GOV-DRY-1, which is currently reporting a false 0.",
       "raised_by_session": "governance-20260902-0548",
       "raised_at": "2026-09-02T12:49:13Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:41Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). All three recommended items landed. The shared three-shape enumerator exists as generate_pending_review._iter_manifest_paths:280-299; check_dry_run_citations IMPORTS it rather than keeping a copy. The regression test pins all three shapes by name. GOV-DRY-1 was re-run and no longer reports the false 0 (441f3ec099: 30 -> 0). Citations: scripts/generate_pending_review.py:280-299, scripts/check_dry_run_citations.py:59-66,82-99, scripts/test_generate_pending_review.py:799-847, REE_assembly 441f3ec099. RESIDUAL NOTED: This flag is the parent of GFLAG-0120 and shares its manifest population with GFLAG-0111, but the three are genuinely different defects: 0111 = indexer discovery, 0117 = dry-run suppression enumeration, 0120 = one corpus instance. Do not fold them."
     },
     {
       "flag_id": "GFLAG-0118",
@@ -2275,9 +2275,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-074d' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-153's own registration says of the identical failure signature: \"This is an implementation precondition, not a claim that MECH-150 is false.\" By that precedent MECH-074d's four weakens results measure an absent input, not a false mechanism.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:40Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:41Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). The recommendation -- re-tag MECH-074d epistemic_category standard -> substrate_conditional because the four weakens results measure an absent input (MECH-153's unbuilt supervised context-labeling objective), not a false mechanism -- has already been applied. docs/claims/claims.yaml:9824 now reads epistemic_category: substrate_conditional, depends_on (lines 9836-9837) now includes MECH-153 and SD-016, and the notes field (line 9870) records this exact rationale as applied 2026-09-06, session thought-digestion-v3-20260904-apply. Citations: docs/claims/claims.yaml:9824, docs/claims/claims.yaml:9836-9837, docs/claims/claims.yaml:9870, evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md:226-238."
     },
     {
       "flag_id": "GFLAG-0160",
@@ -2355,9 +2355,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-234' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-234 has sat at `candidate` since 2026-04-15 with zero evidence rows and zero reverse-deps while its operative content (a design ruling: do not build Layer 3) was applied long ago. It is either (a) a `literature_synthesis` whose REE consequence has been discharged, or (b) a `substrate_conditional` mechanism awaiting a multi-effector environment that is not on any roadmap I could find. Leaving it as an undifferentiated `candidate` mechanism_hypothesis costs governance a recurring adjudication with no possible next step.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:44Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:41Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). MECH-234 now carries epistemic_category: substrate_conditional explicitly (claims.yaml:36872) -- option (b) from the flag's own framing -- set by commit ada5d97af02 ('thought-digestion v3-closure: APPLY 47 user-approved falsifiers ... + epistemic_category changes', 2026-09-06 20:27:13+0100), which lands about an hour AFTER this flag was raised (2026-09-06T19:28:44Z). The claim's what_would_answer already spells out the exact substrate precondition (a multi-effector environment, not on the current roadmap) that makes substrate_conditional the correct category, giving governance a clear next step rather than a recurring no-op adjudication. Citations: REE_assembly/docs/claims/claims.yaml:36872 (epistemic_category: substrate_conditional), REE_assembly commit ada5d97af02 (git blame on line 36872; timestamp 2026-09-06T20:27:13+01:00), REE_assembly/docs/claims/claims.yaml:36881-36887 (what_would_answer non-degeneracy precondition). RESIDUAL NOTED: Second case in this batch where artifact_changed_since_raised:false in the batch metadata is incorrect -- claims.yaml changed within ~1 hour of this flag's raise time, discharging it."
     },
     {
       "flag_id": "GFLAG-0166",
@@ -2466,9 +2466,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-057' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] INV-057 is `claim_type: invariant` / `invariant_type: universal`, so with no explicit `epistemic_category` the indexer resolves `substrate_coherence` and suppresses promote/demote as if it were a foundational REE design choice. It is not: it is an argument from comparative ethology with 5 literature entries and zero experimental entries, and its architectural half is already owned by MECH-191.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:49Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:41Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). The flag's premise (INV-057 has no explicit epistemic_category, so the indexer infers substrate_coherence) was true BEFORE commit ada5d97af0 but is no longer true: git show ada5d97af0^:docs/claims/claims.yaml confirms INV-057 had no epistemic_category field at that point (status/live_status jumps straight to depends_on). The same commit ada5d97af0 (2026-09-06T20:27:13+01:00, the thought-digestion-v3-20260904-apply session's own apply commit, landed ~1 hour after this flag was raised at 19:28:49Z) added 'epistemic_category: out_of_domain' at claims.yaml:28427, which is confirmed present in the current file. out_of_domain is the semantically correct category per CLAUDE.md's table (matches INV-057's own what_would_answer text at claims.yaml:28451-28452, 'THE EVIDENTIAL PREMISE X ... is a literature observation ... out of REE's domain. No substrate at any level helps') and correctly suppresses promote/demote without treating INV-057 as a foundational architectural commitment. Citations: REE_assembly commit ada5d97af0 (git show ada5d97af0^:docs/claims/claims.yaml, no epistemic_category on INV-057), REE_assembly/docs/claims/claims.yaml:28427 (git blame: ada5d97af0), REE_assembly/docs/claims/claims.yaml:28451-28452. RESIDUAL NOTED: SURPRISE: the batch metadata says artifact_changed_since_raised=false for this flag, but the fix landed in the very same session/commit that raised it (58 minutes later), so the flag is stale despite that flag being false -- a live illustration of the instructions' warning that 'artifact_changed_since_raised' cannot be trusted at face value."
     },
     {
       "flag_id": "GFLAG-0174",
@@ -2479,9 +2479,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-182' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-182's registered mechanism (\"this cross-modal association is learned from self-experience by the harm attribution stream\") presumes an attribution learner that is (a) default-off (`ree_core/utils/config.py:6017`, `bla_attribution_head = \"contribution_threshold\"`, the fixed non-trainable rule) and (b) at a documented competence floor (V3-EXQ-894 / V3-EXQ-894a both FAIL/weakens, autopsy `failure_autopsy_V3-EXQ-894a_2026-08-08` = `competence_implementation_gap`). Neither fact is recorded against MECH-182, and either alone would make a Leg A run vacuous.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:50Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:41Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). The flag asserts 'Neither fact is recorded against MECH-182'; both are, and were written into the claim by the very commit whose session raised the flag. MECH-182's what_would_answer gate (2) (claims.yaml:27009-27019) reads verbatim: 'bla_attribution_head must be set to \"trainable\" -- it defaults to \"contribution_threshold\" (ree_core/utils/config.py:6017), a fixed rule which by its own module docstring cannot acquire a cue-outcome association at all' and continues 'the head's attribution selectivity must clear the V3-EXQ-894a competence floor on at least 2/3 seeds (autopsy failure_autopsy_V3-EXQ-894a_2026-08-08, competence_implementation_gap)'. That text was added by ada5d97af0 (2026-09-06T19:27:13Z), 98 seconds before the flag was raised at 19:28:50Z. The two underlying substrate facts are themselves true: ree-v3 ree_core/utils/config.py:6090 still reads `bla_attribution_head: str = \"contribution_threshold\"` and ree_core/amygdala/attribution_head.py:15-30 records the 894/894a FAILs and the competence_implementation_gap diagnosis. Citations: docs/claims/claims.yaml:27009, ada5d97af0, ree-v3 ree_core/utils/config.py:6090, ree-v3 ree_core/amygdala/attribution_head.py:15. RESIDUAL NOTED: artifact_changed_since_raised was true; the change is the discharge itself, not incidental churn. The stale line number is the only thing left and is cosmetic -- the substance (default-off, non-trainable, at a documented competence floor) is unchanged."
     },
     {
       "flag_id": "GFLAG-0175",
@@ -2561,9 +2561,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-120' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-120 acquired a 5-entry literature pull on 2026-09-02 (`evidence/literature/targeted_review_arc_120/`, `lit_conf 0.852`, one `mixed`: blumberg2013 twitch-bootstrapped authority) with no SYNTHESIS.md and no reflection in the claim's `notes`, which still read as though the claim had never been evidenced.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:54Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:42Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). The flag's literal technical premise (no SYNTHESIS.md in evidence/literature/targeted_review_arc_120/) is still true -- the folder holds only entries/, unlike most peer targeted_review folders. But its substantive worry -- that ARC-120's notes 'still read as though the claim had never been evidenced' -- is now false: a 2026-09-07 claim-synthesis pass (evidence/planning/claim_synthesis_ARC-120_2026-09-07.md, landed REE_assembly 5a56e04ad6) and a 2026-09-09 governance note in docs/claims/claims.yaml's ARC-120 block extensively cross-reference and reflect the 5-entry lit-pull, explicitly citing entry 2026-09-02_arc_120_protracted_control_maturation_luna2015 and adjudicating promotion / epistemic_category sequencing / diagnostic_evidence_adjudicated. Citations: evidence/literature/targeted_review_arc_120/entries/ (5 entries, still no synthesis.md), evidence/planning/claim_synthesis_ARC-120_2026-09-07.md, REE_assembly 5a56e04ad6, docs/claims/claims.yaml ARC-120 evidence_quality_note (2026-09-07 cross-tag note and 2026-09-09 governance note). RESIDUAL NOTED: Confidence medium rather than high because the missing-file half of the premise is literally still true, even though the risk it was raised to guard against (un-reflected evidence) is resolved."
     },
     {
       "flag_id": "GFLAG-0181",
@@ -2574,9 +2574,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'ARC-121' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] ARC-121 is a FUSED claim and its literature pull is scoring the wrong leg. Its title and its stated falsifier are both about REE's own architecture (\"REE's mechanisms increasingly converge...\", falsified by \"REE's future substrate development\"), which is a code-auditable, derivational question.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:54Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:42Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). The recommended re-tag -- ARC-121 epistemic_category standard/unset -> derivational, because its stated falsifier is a code-auditable census of ree_core rather than an experimental question -- is already applied. docs/claims/claims.yaml:84438 reads epistemic_category: derivational, and the what_would_answer field (lines 84450-84491) plus notes (line 84510) carry the full census-based falsifier and baseline described in the flag, applied 2026-09-06 per the note. Citations: docs/claims/claims.yaml:84438, docs/claims/claims.yaml:84450-84491, docs/claims/claims.yaml:84510, evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md:3639-3663."
     },
     {
       "flag_id": "GFLAG-0182",
@@ -2669,9 +2669,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-206' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-206's functional slot has an incumbent from within its own dependency graph. The claim argues a graded CA1 PE readout is required to rank episodes for replay (\"a binary match/mismatch flag would not support the priority ordering MECH-205 requires\"). The only replay-priority ranker actually built, `ree_core/sleep/replay_sampler.py` (MECH-285 Phase B), ranks by MECH-284 staleness keyed on MECH-288 `(scale, segment_id)` -- a different signal for the same job.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:59Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:42Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). Verified against ree-v3/ree_core/sleep/replay_sampler.py: it ranks by MECH-284 StalenessAccumulator's region-keyed map, RegionKey = (scale, segment_id) matching MECH-284/288's addressing -- confirming the flag's premise that the only built replay-priority ranker uses a different signal than MECH-206's proposed graded CA1 PE readout. docs/claims/claims.yaml:30249-30281 (MECH-206 notes) already records this exact finding, applied 2026-09-06 ('Its replay-priority slot has an INCUMBENT from its own dependency graph (MECH-285's replay_sampler ranks by MECH-284 staleness keyed on MECH-288 segment ids)...'), and the what_would_answer field (lines 30212-30226) already writes Leg A's falsifier to be discriminative against the incumbent staleness ranker as arm (ii). Citations: ree-v3/ree_core/sleep/replay_sampler.py:5-9,50, docs/claims/claims.yaml:30212-30226, docs/claims/claims.yaml:30249-30281, evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md (MECH-206 section)."
     },
     {
       "flag_id": "GFLAG-0189",
@@ -2956,9 +2956,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'INV-104' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] INV-104 carries a single `epistemic_category: substrate_conditional` over five preservation classes whose substrate readiness differs by years of roadmap. Verified: class 1 built and exercised three times (SD-018 directional head landed 2026-09-02, V3-EXQ-978 ran it on an 8/8 green precondition gate); class 2's primitive built and default-OFF (`ree_core/utils/config.py:884`); class 3 blocked on the untrained ARC-004 depth cascade (MECH-523 site b); class 4 on MECH-430 (v4); class 5 on ARC-047 (v4-v5, unbuilt, and the causal-compression intake deliberately declined to chip it).",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:29:13Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:42Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). The flag's recommended disposition was applied on 2026-09-06 by the same apply session. INV-104 now carries `epistemic_category: standard` (claims.yaml:97313), and the per-class readiness table the flag asked for is in notes at claims.yaml:97482: 'PER-CLASS READINESS (category standard at claim level; the blanket substrate_conditional froze a V3-tractable class-1 pilot): class 1 ... BUILT and exercised (SD-018 directional head 2026-09-02, V3-EXQ-978); class 2 primitive built, default-OFF (e2_action_contrastive_enabled); class 3 substrate_conditional on the untrained ARC-004 depth cascade (MECH-523 site b); class 4 on MECH-430 (v4); class 5 on ARC-047 (v4-v5, unbuilt).' The 2026-09-09 governance note at claims.yaml:97484 independently reconfirms 'epistemic_category standard already correct'. Citations: /Users/dgolden/REE_Working/REE_assembly/docs/claims/claims.yaml:97313, /Users/dgolden/REE_Working/REE_assembly/docs/claims/claims.yaml:97482, /Users/dgolden/REE_Working/REE_assembly/docs/claims/claims.yaml:97484. RESIDUAL NOTED: The flag's conditional tail -- 're-tag to substrate_ceiling for the class-1 row only if V3-EXQ-1002 returns H-C' -- has since been overtaken and should NOT be executed. Per substrate_queue.json SD-018 failure_record[1].resolved_note, V3-EXQ-1002 did take the CANNOT (H-C) branch, but V3-EXQ-1008 then adjudicated H-C itself and WEAKENED it; the fork is marked `superseded`. Separately, V3-EXQ-1017 was applied non_contributory on 2026-09-09 and `pending_retest_after_substrate` was SET TRUE on INV-104 (claims.yaml:97484) -- that is the live INV-104 constraint now, not the category."
     },
     {
       "flag_id": "GFLAG-0210",
@@ -3023,9 +3023,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-485' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] The 2026-08-09 governance note on MECH-485 (GFLAG-0009 resolution) records that the what_would_answer drafted 2026-08-07 was 'applied verbatim' -- it was NOT: at that commit (REE_assembly d8ccbce59e) and in every commit since, the MECH-485 block had no what_would_answer, and the same commit DELETED the staging file evidence/planning/thought_digestion_staged_2026-08-07_mech485_q090.md while applying only the sibling Q-090 draft, so Q-090's live falsifier pointed at a non-existent field. Re-derived from the recovered draft and applied 2026-09-06; the note should be corrected and the Q-090 pointer re-checked.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:29:17Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:04:42Z",
+      "resolution_note": "ALREADY-DISCHARGED -- verified by the gov-flagbacklog-20260909 adjudication pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user-cleared spot-check gate 2026-09-10). Confirmed: at commit d8ccbce59e (2026-08-09) a note was added to MECH-485 claiming the 2026-08-07 what_would_answer draft was 'applied verbatim,' but the diff shows only that note was added -- no what_would_answer field was written for MECH-485 at that commit (only Q-090 gained one), and the staging file was deleted in the same commit. This exact correction has ALREADY been made, in the very commit/session that raised this flag: docs/claims/claims.yaml:89225-89226 (added by REE_assembly ada5d97af0, 2026-09-06, session thought-digestion-v3-20260904-apply) states verbatim that the 2026-08-09 'applied verbatim' claim 'was not' true and that the field now present was re-derived 2026-09-04. Citations: REE_assembly d8ccbce59e (git show: docs/claims/claims.yaml diff adds MECH-485 note only, Q-090 gains what_would_answer field, staging file deleted -322 lines), docs/claims/claims.yaml:89225-89226 (2026-09-06 CORRECTION note), REE_assembly ada5d97af0. RESIDUAL NOTED: Cluster-mate GFLAG-0215 is a distinct, still-open finding about the same claim -- not a duplicate."
     },
     {
       "flag_id": "GFLAG-0215",
