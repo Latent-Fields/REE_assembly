@@ -5,7 +5,7 @@
 **Audits:** [campaign adjudication](../../docs/thoughts/2026-09-09_hippocampal_campaign_adjudication.md) section 7C.
 **Parents:** [campaign scaffold](hippocampal_translation_maps_biology_campaign_20260909.md); [developmental overcapacity thought](../../docs/thoughts/2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md) sections 7, 11, 12, 14.
 **Lineage:** MECH-362 / Q-057 ([architecture compass](../../docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md)), ARC-019, MECH-537-540, MECH-547/548, INV-105.
-**Readiness base:** [developmental readiness investigation](developmental_readiness_investigation_2026-08-12.md) section 19.
+**Readiness base:** [developmental readiness investigation](developmental_readiness_investigation_2026-08-12.md) section 19, **read together with** the [developmental-life definition decision](developmental_life_definition_decision_2026-08-12.md), which answers its item 1.
 
 ---
 
@@ -231,11 +231,11 @@ Stated so each can fail independently. Several are falsifiers of the *hypothesis
 
 ## 11. Readiness gates
 
-Anchored to the existing readiness investigation's section 19 rather than to new vocabulary. Every gate is currently **open** except G-SOURCE and G-LADDER.
+Anchored to existing readiness vocabulary rather than to new terms. G-SOURCE and G-LADDER are closed; **G-LIFE is decided against the branch Assay C needs**; the rest are open.
 
 | Gate | Requirement | State |
 |---|---|---|
-| **G-LIFE** (hard) | Readiness section 19 item 1 decided: what a developmental life demonstrates -- gradient learning versus non-parametric practice-based competence. **Assay C requires the gradient-learning branch.** The observational-life driver family runs entirely under `torch.no_grad()`, so cumulative learning updates are **zero by construction**; on that family B and D0 are literally the same object and the assay is undefined, not merely underpowered. | **OPEN.** The readiness investigation records this decision as having no owner. |
+| **G-LIFE** (hard) | A driver architecture in which the interface's weights actually change over the curriculum. **Assay C requires the gradient-learning branch.** The observational-life driver family runs entirely under `torch.no_grad()`, so cumulative learning updates are **zero by construction**; on that family B and D0 are literally the same object and the assay is undefined, not merely underpowered. | **DECIDED, AND DECIDED AGAINST THIS BRANCH.** Readiness section 19 item 1 is no longer unowned: the [developmental-life definition decision](developmental_life_definition_decision_2026-08-12.md) (2026-08-12) section 4 answers it and recommends **(b) non-parametric practice via MECH-357**, holding **(a) gradient learning as a contingent future decision**. Its finding on (a) is the operative constraint: "No driver architecture exists for a long, non-frozen (gradient-updating) single life... Building an alternative would be a genuinely new, unscoped architecture project -- no design doc, no owner, no estimate exists anywhere in this corpus." **Assay C is therefore gated behind an architecture project that has not been scoped, and the memo sequences the decision to scope it behind the MECH-357 fair test's outcome.** |
 | **G-ENDPOINTS** | Two specialised endpoints exist, each separately competent, with a genuinely narrow identifiable interface between them. | **OPEN.** |
 | **G-CURRICULUM** | A staged curriculum with at least two stages that measurably change endpoint representations, including a **subtractive** stage. This is MECH-362's proposed amendment to ARC-019 (currently additive) and it is not built. | **OPEN.** |
 | **G-SOURCE** | The sender must carry the decision-relevant content. | **CLOSED, with a binding answer.** V3-EXQ-1010 confirmed H-F: content is destroyed at encode. Assay C must therefore use a **known information-preserving source** -- the raw-field or PCA control validated in that lineage -- not the live `z_world` latent. Using the live latent would test the encoder deficit, not the interface hypothesis. |
@@ -244,7 +244,11 @@ Anchored to the existing readiness investigation's section 19 rather than to new
 | **G-SLEEP** | Readiness section 19 item 2: GAP-9 (sleep unreachable in true single-continuous-life) fixed or explicitly bracketed. | **OPEN, and required only for the replay-coupled pruning variant** (source thought section 9). Not required for C1 core. Do not let it block C1. |
 | **G-ENV** | Readiness section 19 item 5: the environment's cue/resource-location conflation corrected, if exploration-driven curriculum variation is a readout. | **OPEN, conditional.** |
 
-**Gate discipline.** G-LIFE is the hard precondition. The other open gates can be bracketed with a stated assumption; G-LIFE cannot, because failing it makes the manipulated variable non-existent rather than noisy.
+**Gate discipline.** G-LIFE is the hard precondition, and it is the one that actually sets Assay C's horizon. The other open gates can be bracketed with a stated assumption; G-LIFE cannot, because failing it makes the manipulated variable non-existent rather than noisy -- under `no_grad` the pruned and reinitialised arms are the same object.
+
+**Consequence, stated plainly: Assay C is further out than the campaign dossier's routing implies.** "Later developmental substrate" reads as a scheduling note; the actual position is that C sits behind an unscoped architecture project, whose scoping decision the 2026-08-12 memo sequences behind the MECH-357 fair test -- itself five inconclusive-by-design-defect attempts deep (603h, 603k, 603r, 603s, 603t) as of that memo. This is not an argument for dropping C. It is an argument for **not** spending build effort on C's substrate now, and for treating this specification as the artifact that keeps the design intact until the gate moves. In the work-graph vocabulary: G-LIFE is `complex (probe-gated)` on the MECH-357 result, not `complicated (buildable)`.
+
+**If G-LIFE ever moves, re-read this section before designing.** The memo's own sequencing means the trigger is a MECH-357 verdict -- pass or clean falsification -- not the passage of time.
 
 ---
 
@@ -256,7 +260,8 @@ Anchored to the existing readiness investigation's section 19 rather than to new
 4. **`k*` has no prior.** No published work measures a rewind depth for an interareal bridge. The ladder's resolution and range are guesses until the history-positive control calibrates them.
 5. **Q-057's mechanism leg remains open** until section 8's probe runs. Until then any Assay C implementation silently commits REE to deletion.
 6. **Interface-complexity measurement is itself contested.** `L(A->B)` is a minimum over a *declared, finite* ladder. A finite probe family failing is not proof of information-theoretic absence -- the same caution 1008 and 1010 already carry (INV-105).
-7. **S2 clamping may not be achievable without perturbing S1.** If matched k-winners cannot be imposed without changing effective connectivity, F5 becomes unavailable and the engram-allocation rival cannot be retired. This needs checking before the design is committed.
+7. **The readiness investigation's section 19 is partly superseded and does not say so.** Item 1 is answered by the 2026-08-12 decision memo, but the investigation still reads as though the decision is unowned, and this specification's first draft inherited that error. Anyone citing readiness section 19 should check the decision memo alongside it. Reported here; not fixed, because editing that document is outside this session's claim.
+8. **S2 clamping may not be achievable without perturbing S1.** If matched k-winners cannot be imposed without changing effective connectivity, F5 becomes unavailable and the engram-allocation rival cannot be retired. This needs checking before the design is committed.
 
 ---
 
