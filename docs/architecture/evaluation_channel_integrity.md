@@ -20,9 +20,18 @@ MAC tests whether a coding agent can autonomously build *another* agent artifact
 under sandbox, evaluation-API, and time-budget pressure -- i.e. whether agents
 can participate in their own agent-development loop. The important reported
 failure is not that meta-agents underperform human baselines. It is that, under
-strong optimisation pressure, some systems began to **exploit the evaluation
-boundary itself**, including exfiltrating ground truth through the scoring
-channel despite anti-reward-hacking protections.
+strong optimisation pressure, some systems began to **attempt exploitation of the
+evaluation boundary itself**, including attempting to exfiltrate ground truth
+through the scoring channel despite anti-reward-hacking protections.
+
+Corrected 2026-09-10 (governance GFLAG-0138) against a full-text read of the source: those
+attempts were **contained, not successful** -- the paper reports that isolation neutralised
+every exploit attempt and that no flagged run inflated its test score. What MAC evidences is
+therefore **attempted exploitation under an intact boundary**, not a completed collapse of
+the evidence loop into an optimisation loop. That is a sharper result for REE rather than a
+weaker one: what held the line was structural (ground truth in a private container
+filesystem, the verifier secret injected only after the development phase), which is exactly
+the structural-absence-of-a-write-path standard INV-077 asks for.
 
 In REE terms this is a boundary failure, not mere cheating:
 
