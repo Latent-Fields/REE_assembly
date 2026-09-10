@@ -794,6 +794,22 @@ closure_plan:
         remains an actively git-written file after this flip; the flip
         removes only the tick's own duplicate write.
 
+        POST-FLIP VERIFICATION 2026-09-10T18:56Z, by content-identical
+        no-op probe -- the same technique as the 2026-09-07 activation
+        probe (id 221), and preferable to waiting on the hourly tick, which
+        writes these two paths only on a material workset change or an IGW
+        status flip and so can pass without exercising either. Submitted
+        each path's ORIGIN blob back at base_sha=ff1a51240a (origin/master)
+        via submit_intent_replace: workset .v1.json id 372, workset .md id
+        373, experiment_proposals.v1.json id 374 -- all three verdict
+        'applied', and origin/master unchanged at ff1a51240a afterwards,
+        i.e. genuine no-ops. That is direct live proof that all three paths
+        are configured and routable server-side under the flipped config,
+        and it takes proposals to n=2 post-fix. NOTE for anyone repeating
+        this: per trap (1) above the LOCAL files no longer update, so do
+        not verify by watching them; and a BEFORE/AFTER Mac commit count
+        needs a window long enough to contain a real tick write.
+
         FAIL-OPEN, verified in code rather than assumed: _ree_commit skips
         the local git commit ONLY when EVERY path in the batch comes back
         'suppressed' (coordinator-applied AND its flag on). Any other
