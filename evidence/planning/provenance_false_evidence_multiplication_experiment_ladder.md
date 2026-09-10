@@ -4,6 +4,19 @@
 **Status:** planning scaffold; no claim registration, no creature code change, no queue mutation  
 **Parent thought:** `docs/thoughts/2026-09-09_provenance_errors_false_evidence_multiplication_and_psychosis.md`
 
+## Refinements to this ladder (added 2026-09-10; no rung, condition, readout or stop condition below is modified)
+
+The rungs below stand as written. Six companion artifacts refine them and are **not** duplicates of them; read the relevant one before implementing any rung.
+
+| Artifact | Refines | Contributes |
+|---|---|---|
+| [`provenance_psychosis_literature_pull_20260909.md`](provenance_psychosis_literature_pull_20260909.md) | whole ladder | the clinical source-monitoring baseline; its "not directly established" row on dependent-descendants-as-votes is **corrected** by the supplement below |
+| [`provenance_false_evidence_multiplication_campaign_supplement_20260910.md`](provenance_false_evidence_multiplication_campaign_supplement_20260910.md) | P1, P2, P3, P6 | hippocampal-campaign audit; the six evidence classes; Break A (nothing joins ancestry-loss mechanisms to cardinality readouts) and Break B; controls `P1-R1`–`P1-R4`, `P3-R1`–`P3-R3` |
+| [`provenance_harness_generated_ancestry_design.md`](provenance_harness_generated_ancestry_design.md) | P1 | the generated-ancestry harness: descendant generators, the genealogy representation and its degradation processes, the four conditions defined on that state, and the genealogy contract P3 consumes |
+| [`provenance_p3_replay_amplification_design.md`](provenance_p3_replay_amplification_design.md) | P3 | the replay loop, the design matrix, accumulation-versus-compounding split, and the preregistered signatures |
+| [`provenance_judgment_class_literature_tranche.md`](provenance_judgment_class_literature_tranche.md) | P1, P3 | the judgment-class sweep; normative counterweights to the engineering rule; the fluency-versus-cardinality control |
+| [`provenance_branch_hippocampal_audit_verification_20260910.md`](provenance_branch_hippocampal_audit_verification_20260910.md) | P1, P3 | verification of the audit; the `MECH-544` demarcation on readout 3; the internally-generated-repetition evidence class; controls `P1-R5`, `P1-R6`, `P3-R4`–`P3-R7` |
+
 ## Purpose
 
 Test whether a provenance error can cause one causal lineage to be counted as several independent reasons, thereby raising confidence without adding world evidence.
