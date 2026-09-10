@@ -24358,6 +24358,8 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1507",
+      "blocked_by": ["MECH-330"],
+      "blocked_note": "blocked at /queue-experiment Step 2.5: MECH-330 (idle_aversion_acute_restlessness_accumulator) has zero substrate implementation in ree-v3/ree_core as of 2026-09-10 -- no engagement-rate estimator (commit-transition rate, E3 deliberation depth, residue-write rate), no EWMA boredom_t accumulator, and no z_harm_a boredom-routing hook. z_harm_a itself exists (SD-011 affective harm stream, ree_core/amygdala/), but nothing writes a boredom term into it. This is complicated (buildable), not probe-gated: route to /implement-substrate for MECH-330 (the tonic_vigor.py EWMA pattern at ree_core/policy/tonic_vigor.py is a reusable template) before re-offering this proposal.",
       "claim_id": "MECH-330",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -24380,7 +24382,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_330",
       "target_repo": "ree-v3",
       "why_now": [
