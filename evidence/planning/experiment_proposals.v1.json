@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-09T09:25:11.475474Z",
+  "generated_at_utc": "2026-09-10T20:23:09.747281Z",
   "items": [
     {
       "acceptance_checks": [
@@ -1139,6 +1139,47 @@
       "suggested_experiment_type": "claim_probe_mech_489",
       "target_repo": "ree-v3",
       "why_now": [
+        "directional_conflict_alert",
+        "low_exp_conf"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0609",
+      "claim_id": "MECH-025b",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-025b with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-1283",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_025b",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
         "directional_conflict_alert",
         "low_exp_conf"
       ]
@@ -3495,46 +3536,6 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0075",
-      "claim_id": "MECH-294",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "discriminative_pair",
-      "exclude_broad_profile_sweeps": true,
-      "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-294 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0234",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": true,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "matched_shared_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_294",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "low_exp_conf"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
       "backlog_id": "EVB-0065",
       "claim_id": "ARC-018",
       "decision_deadline_utc": "",
@@ -4022,6 +4023,99 @@
     },
     {
       "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1381",
+      "claim_id": "MECH-005",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-005 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0737",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_005",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1200",
+      "blocked_by": [
+        "ARC-053",
+        "ARC-054"
+      ],
+      "blocked_note": "Substrate-readiness check (2026-09-02, /queue-experiment Step 2.5, dispatched as chip-proposal-exp-0451 -- note: that chip title cites EXP-0451, which no longer exists in the current proposals file after a governance regen; EXP-0448/EVB-1200 is the current experimental-lane proposal for this same claim). ARC-055 claims.yaml implementation_phase is v4 (candidate status), deliberately staged AFTER its v3-phase prerequisites ARC-053 and ARC-054 (both phase v3, candidate). Confirmed empirically: MECH-269/MECH-269b implement per-stream/per-region verisimilitude scoring (V_s) inside HippocampalModule, but ARC-055 requires V(t) and D_V EXPLICITLY available as consumable signals to (1) E3 trajectory selection, (2) E1 state representation, (3) E2 transition-model prediction, and (4) learning-update prioritisation -- grep of ree_core/predictors/e3_selector.py and the E1/E2 predictor modules for D_V/verisimilitude found zero consumption call sites. No substrate_queue.json entry covers this gap. ARC-055s own notes field describes a 3-stage implementation plan (Stage 1: prediction-error-only V; Stage 2: + global phase coherence; Stage 3: level-specific hierarchical V) none of which is built. This matches the disposition already given to this claims prior proposal iteration (chip-proposal-exp-0510, 2026-09-01 massmint triage, NOT V3-TESTABLE bucket, implementation_phase v4). Route via /implement-substrate once ARC-053/ARC-054 (E3 selection + E1/E2 wiring) are built and a design exists for exposing V(t)/D_V as explicit signals; until then this is architecturally out of reach for V3, not a missing-script gap.",
+      "claim_id": "ARC-055",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for ARC-055 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0465",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_arc_055",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
         "At least 2 additional runs with distinct seeds.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
@@ -4394,58 +4488,6 @@
       "seed_policy": "distinct_seeds",
       "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_077",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1233",
-      "blocked_by": [
-        "ARC-120-no-runtime-discriminator-framing-claim",
-        "ARC-107-eligibility-constitution-default-off",
-        "SD-032b-dacc-zero-weighted",
-        "MECH-094-simulation-mode-rule-gate-default-off",
-        "MECH-261-mode-conditioned-write-gating"
-      ],
-      "blocked_note": "queue-experiment 2026-09-03T06:57:54Z (IGW-20260903-243): ARC-120 is an architectural_commitment FRAMING claim over four already-registered authority gates; it introduces no new mechanism and its own claims.yaml notes state it is 'Not directly falsifiable by a single experiment'. Three independent gates, any one sufficient: (1) no runtime discriminator -- 'one sequence' vs 'four ad hoc gates' predict bit-identical telemetry (total verdict aliasing), and the claim's registered falsifier is a claims-registry event found by audit, not a measurement; (2) all four instance gates are DEFAULT-OFF or inert at runtime (live probe 2026-09-03: e3.use_go_nogo_constitution / e3.use_f_eligibility_demotion / e3.use_modulatory_selection_authority / use_simulation_mode_rule_gate / use_commit_readiness / use_mech090_readiness_conjunction all False; dacc_weight=dacc_bias_max_abs=0.0), so the sequence is not instantiated in the running organism; (3) the sequence TERMINATES in 'behavioural influence', which sits behind the known conversion / F-dominance ceiling, so a full-sequence run FAILs for the already-understood reason -- vacuous. Re-derive brake does not fire (0 autopsies): ARC-120 is not braked, it is un-posable as an experiment. ARC-120 appears in ZERO ree-v3 files and ZERO run manifests; exp=0 / lit=5 entries. Route: /claim-synthesis framing-level evidence tagging over the four instances, plus a design-space audit for the registered falsifier -- see release_condition. Family precedent: ARC-121/EVB-1234, ARC-130/EVB-0633, ARC-131/EVB-1242 all already declined at this same guardrail. No script written, no queue entry added, no experiment run.",
-      "claim_id": "ARC-120",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-03T06:57:54Z",
-      "gated_by_session": "igw-243-proposal-for-arc-120",
-      "gating_reason": "EVB-1233 / EXP-0286 (auto-generated generic 'Reduce uncertainty for ARC-120 via targeted experiment runs') DECLINED at the /queue-experiment substrate-readiness guardrail by headless IGW session IGW-20260903-243 (2026-09-03). Three independent gates, any ONE of which is sufficient.\n\n(1) ARC-120 HAS NO RUNTIME DISCRIMINATOR -- ITS OWN REGISTERED FALSIFIER IS A DESIGN-SPACE EVENT, NOT A MEASUREMENT. ARC-120 is an architectural_commitment FRAMING claim. Its novelty is the GENERALISATION that four already-registered gates (ARC-107, SD-032b, MECH-261, MECH-094) are instances of ONE developmental sequence (existence -> representation -> competence -> authority -> behavioural influence) rather than unrelated ad hoc gates; its own claims.yaml notes state it 'introduces no new mechanism', is 'LOWER PRIORITY than its instances', and is 'Not directly falsifiable by a single experiment ... falsified in the design sense by any future accepted mechanism that grants behavioural or write authority WITHOUT a competence-like gate.' That falsifier is an event in the CLAIMS REGISTRY, discovered by audit, not a reading off an agent run. The two live hypotheses -- 'one sequence' vs 'four independent gates that each happen to carry a precondition' -- predict BIT-IDENTICAL telemetry on every observable the substrate exposes, because they differ in the EXPLANATION, not in the trajectory. That is total verdict aliasing in the Step 2.5b / GOV-FANOUT-1 sense: every leg one could design aliases, so no portfolio closes the gap either. An experiment that instead ablates one gate and shows authority is conditioned on competence would re-derive that gate's OWN claim (ARC-107 / MECH-261 / MECH-094, each separately registered and evidenced) and tag it to ARC-120 -- exactly the peripheral-co-tag mis-attribution the sibling ARC-130 gating (EVB-0633, 2026-08-26) identified and refused.\n\n(2) THE SEQUENCE IS NOT INSTANTIATED IN THE RUNNING ORGANISM -- ALL FOUR INSTANCE GATES ARE DEFAULT-OFF OR INERT. Live runtime probe 2026-09-03 (REEConfig.from_dims + E3Config, ree-v3 working tree; 702 top-level + 131 E3 fields enumerated), NOT a doc read: e3.use_go_nogo_constitution=False, e3.use_f_eligibility_demotion=False, e3.use_modulatory_selection_authority=False (ARC-107's three levers -- MECH-449 opponency, MECH-448 demotion, selection authority); use_simulation_mode_rule_gate=False and simulation_mode_rule_gate_admit_writes=False (MECH-094 real-vs-simulated write gate); dacc_weight=0.0, dacc_bias_max_abs=0.0, dacc_suppression_weight=0.0, dacc_drive_coupling=0.0 (SD-032b dACC IMPLEMENTED per ree-v3/CLAUDE.md but zero-weighted, i.e. inert -- consistent with its claims.yaml v3_pending=true/candidate); use_commit_readiness=False and use_mech090_readiness_conjunction=False (the nav_competence -> authority readiness conjunction, the ONE surface that directly instruments 'competence gates authority'). This is the default-off-knob distinction of memory reference-claim-status-vs-default-off-flag: the builds EXIST, they are simply not running. Forcing all four ON simultaneously would place the organism in an operating regime no other evidence characterises, so any reading would be uninterpretable -- which is ARC-131's installability point, and ARC-131 (EVB-1242) is itself blocked_substrate for a related reason.\n\n(3) THE TERMINAL RUNG IS BEHIND THE KNOWN CONVERSION / F-DOMINANCE CEILING. ARC-120's sequence TERMINATES in 'behavioural influence'. Any run testing the sequence as stated must reach that rung, and it sits squarely behind the known conversion / F-dominance ceiling -- so the run FAILs for the already-understood reason, which is a vacuous result rather than a verdict (the exact ground on which ARC-130's 'ecological consequence' rung was refused). Truncating the test below that rung leaves only the rungs the four instance claims already cover, collapsing back into gate (1).\n\nSUPPORTING (not independently sufficient): (a) Zero experimental evidence and zero substrate footprint -- ARC-120 appears in NO file in ree-v3 (git grep across the tracked tree returns nothing: no substrate, no experiment, no test) and in NO run manifest under evidence/experiments/ (only the derived indexes claim_evidence.v1.json, promotion_demotion_recommendations.md, substrate_status_snapshot.json). claim_evidence.v1.json records exp=0 entries / lit=5 entries, experimental_confidence=0.0, literature_confidence=0.852, evidence_quadrant=plausible_unproven. (b) The why_now signals that minted this proposal (missing_experimental_evidence, lit_only_above_cap, synthetic_signals_only, low_exp_conf, insufficient_experimental_replication) are EXPECTED-AND-BENIGN for an architectural_commitment framing claim whose evidence is a targeted literature review (evidence/literature/targeted_review_arc_120/, 5 entries, 2026-09-02) -- they indicate claim TYPE, not a remediable evidence defect. (c) One of ARC-120's own literature entries (2026-09-02_arc_120_protracted_control_maturation_luna2015) independently records the same problem from the other side: 'a system can exhibit ARC-120's sequence without containing any competence-gating mechanism at all -- the sequence is evidence for the principle only where the ordering is ENFORCED rather than merely EMERGENT.' Enforced-vs-emergent is the real discrimination, and it is a fact about the DESIGN, not about a trajectory. (d) Family precedent: all three sibling framing claims from the same 2026-08 intake lineage have already been declined at this same guardrail -- ARC-121/EVB-1234 blocked_substrate, ARC-130/EVB-0633 gated, ARC-131/EVB-1242 blocked_substrate. (e) Re-derive brake (Step 2.5b) does NOT fire: ARC-120 has ZERO autopsies (brake count 0). It is not braked; it is un-posable. (f) No reach/ladder/stage instrumentation exists anywhere in REEConfig/E3Config (0 matching fields), independently reconfirming the 2026-08-26 ARC-130 finding eight days later. NO EXPERIMENT RUN; no script written; no queue entry added.\n\n[2026-09-07 RELEASE_CONDITION ROUTE (a) DISCHARGED -- PROPOSAL RETIRED, session recursing-engelbart-dfdf02, campaign W4-S4 item 2, chip-20260903-arc120-framing-evidence-tagging.] The framing-level cross-tag this proposal's release_condition (a) asked for has LANDED: evidence/planning/claim_synthesis_ARC-120_2026-09-07.md. Set A (authority-ABSENT findings at ARC-120's own competence->authority transition) is stamped on V3-EXQ-604a / V3-EXQ-624a / V3-EXQ-614d as evidence_direction_per_claim ARC-120: supports, flat + pack, with claim_ids deliberately NOT extended so no scored credit is granted. Set B (the four instance gates) is cited as the design-space corpus in ARC-120's new evidence_quality_note and deliberately NOT stamped -- that is the peripheral-co-tag refusal this release_condition names as its load-bearing half. TWO CORRECTIONS TO THIS PROPOSAL'S OWN TEXT, recorded so the next reader does not re-derive them. (i) Route (a) did NOT discharge the claim's experimental debt in the sense the release_condition anticipated: the tagged evidence supports only ARC-120's descriptive NEGATIVE clause (existence does not confer authority); the POSITIVE clause (authority conditioned on competence) has design-space support only, because in all three tagged runs the absence of authority has no competence predicate in its path -- EMERGENT, not ENFORCED -- and the generalisation remains un-posable exactly as gate (1) says. (ii) The why_now signals do NOT 'clear on their own': the tag grants no scored credit by design, so exp_count stays 0 and all five signals stand unless claims.yaml gains diagnostic_evidence_adjudicated: true, which is RECOMMENDED to /governance, not applied. STATUS DELIBERATELY UNCHANGED at blocked_substrate (already in the workset's _PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES, so never re-offered) and blocked_by left intact (every token still literally true; the no-runtime-discriminator token is permanently true, not a blocker awaiting discharge). DO NOT QUEUE: the three-gate refusal of 2026-09-03 stands unchanged and this pass names no readout on which 'one sequence' and 'four independent gates' differ. Route (b) -- the standing design-space audit -- remains the claim's only live instrument and is unowned; recommended to /governance as an audit bucket.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-120 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0286",
-      "proposal_type": "experimental",
-      "release_condition": "Do NOT re-offer ARC-120 as an experiment proposal. Its experimental debt is not dischargeable by a V3 run, and two NON-EXPERIMENT routes are what it actually owes; the first may retire this proposal outright.\n\n(a) EVIDENCE TAGGING / SYNTHESIS FIRST (route: /claim-synthesis or /governance, NOT /queue-experiment). ARC-120 generalises over four gates that are each separately registered and separately evidenced (ARC-107 with the MECH-448 rank-preserving demotion and MECH-449 Go/No-Go opponency builds; SD-032b dACC; MECH-261 mode-conditioned write gating; MECH-094 real-vs-simulated write distinction). Cross-tag that EXISTING instance evidence to ARC-120 as framing-level support and re-assess. If tagging discharges the debt -- the likely outcome for a claim that 'introduces no new mechanism' -- this proposal should move to executed/gated rather than ever being queued, and the why_now signals (missing_experimental_evidence, synthetic_signals_only, lit_only_above_cap) will clear on their own. CAUTION, and it is the load-bearing half: tag at FRAMING level and say so explicitly. Do NOT let an instance's evidence be read as a direct test of the generalisation -- that is the peripheral-co-tag error ARC-130's gating names.\n\n(b) A DESIGN-SPACE AUDIT, not a run, is the only thing that can falsify this claim. ARC-120's registered falsifier is 'any future accepted mechanism that grants behavioural or write authority WITHOUT a competence-like gate'. The corresponding standing check is an audit over claims.yaml + the ree_core write/authority sites, asking of each newly-accepted authority-granting mechanism whether it carries a competence-like precondition. That is a governance/architecture practice (candidate route: a /governance audit bucket, or an architecture doc alongside docs/architecture/causal_reach_and_installability.md), NOT an experiment. Note it is ALSO the natural home for the enforced-vs-emergent discrimination that the luna2015 literature entry flags.\n\nIF a future session nevertheless believes an ARC-120 experiment is warranted, it must FIRST clear all three gates above -- in particular it must name a readout on which 'one sequence' and 'four independent gates' make DIFFERENT predictions. If it cannot name one, the claim is un-posable as an experiment and this gate stands. Any such run must additionally not depend on the 'behavioural influence' rung while the conversion / F-dominance ceiling stands, and must first turn on the four instance gates that are currently default-off -- which is an /implement-substrate + characterisation task, not a probe.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_arc_120",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -6018,50 +6060,6 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0106",
-      "claim_id": "MECH-193",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-07-08T07:20:26Z",
-      "gated_by_session": "IGW-20260708-195",
-      "gating_reason": "blocked_substrate: MECH-193 (social reward signals -- affiliative touch / oxytocin-gaze loop -- REINFORCE empathic coupling STRENGTH, creating a self-strengthening coordination loop: successful coordination -> affiliative exchange -> stronger self<->other coupling -> more sensitive state-matching -> better coordination) is substrate-blocked on ree-v3 (verified 2026-07-08, IGW-20260708-195). It needs the entire multi-agent/other-model stack that is ALL absent from ree_core PLUS an affiliative social-reward channel that MODULATES coupling strength -- an even higher bar than the base coupling that is already blocked. Its dependency chain is unbuilt: MECH-192 (signal-legibility empathy prerequisite) is status=blocked_substrate (EVB-0105); MECH-183 (z_beta LEAKAGE from an attributed other-model, the coupling MECH-193 proposes to strengthen) is status=deferred_substrate_not_ready (EVB-0081); MECH-191 (cross-arch signal legibility, the multi-agent-legibility gate) is blocked_substrate (EVB-0091). grep of ree_core for other_model / attributed_other / OTHER_SELFLIKE / attribution_stream / affiliativ / oxytocin / c_tactile / gaze_loop / coupling_strength returns NOTHING; z_beta exists only as a SELF valence stream (gaba module), never other-referenced, and there is no reward pathway that reads an affiliative signal or writes a coupling-strength variable. The only multi-agent tokens in the tree are a config comment reserving 'V5 multi-agent social synchronisation'. Direct sibling of MECH-184 (EVB-0104, blocked_substrate 2026-07-07), MECH-182 (EVB-0103), and MECH-192 (EVB-0105) in the same 2026-04-06_steve_signal_legibility_language_bootstrap / 2026-04-05_steve_dog_emotional_mirroring social cluster. A commitment-free measurement-only diagnostic is NOT runnable either: the DV is coupling-strength being reinforced by affiliative reward over a self-strengthening loop, which requires (a) a measurable self<->other coupling and (b) a reward channel modulating it -- neither exists. Any synthetic affiliative proxy would be circular (labels = thresholds on the same self z-channels, the V3-EXQ-686 anti-pattern already de-risked to failure across 5 configs for MECH-191). A FAIL would only re-derive the known no-multi-agent / self-only-signal ceiling -- vacuous, not a PASS-or-FAIL verdict.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-193 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0346",
-      "proposal_type": "experimental",
-      "release_condition": "A V4/V5-class substrate providing: (a) a multi-agent PERCEPTUAL ecology with a coupled OTHER-model built via an attribution stream + OTHER_SELFLIKE tagging and z_beta LEAKAGE (the MECH-183/MECH-191/MECH-192 multi-agent-legibility gate, currently deferred/blocked); AND (b) an AFFILIATIVE social-reward channel (C-tactile / oxytocin-gaze analogue) wired so that successful coordination emits a reward that writes an increase to a self<->other coupling-strength variable. Once built, run the MECH-193 evidence battery: arm A = coordination WITHOUT affiliative-reward feedback (coupling strength static); arm B = coordination WITH affiliative-reward feedback -> verify coupling strength rises over episodes and state-matching sensitivity + coordination performance rise WITH it (self-strengthening loop); control = affiliative reward decoupled from coordination success (reward on random/rotated partner) must NOT strengthen coupling or improve coordination, ruling out a generic reward-tonic effect. Shares the MECH-183/MECH-191/MECH-192 release gate. Not a V3 EXQ.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_193",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
       "backlog_id": "EVB-0307",
       "claim_id": "Q-061",
       "decision_deadline_utc": "",
@@ -7071,145 +7069,6 @@
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1200",
-      "blocked_by": [
-        "ARC-053",
-        "ARC-054"
-      ],
-      "blocked_note": "Substrate-readiness check (2026-09-02, /queue-experiment Step 2.5, dispatched as chip-proposal-exp-0451 -- note: that chip title cites EXP-0451, which no longer exists in the current proposals file after a governance regen; EXP-0448/EVB-1200 is the current experimental-lane proposal for this same claim). ARC-055 claims.yaml implementation_phase is v4 (candidate status), deliberately staged AFTER its v3-phase prerequisites ARC-053 and ARC-054 (both phase v3, candidate). Confirmed empirically: MECH-269/MECH-269b implement per-stream/per-region verisimilitude scoring (V_s) inside HippocampalModule, but ARC-055 requires V(t) and D_V EXPLICITLY available as consumable signals to (1) E3 trajectory selection, (2) E1 state representation, (3) E2 transition-model prediction, and (4) learning-update prioritisation -- grep of ree_core/predictors/e3_selector.py and the E1/E2 predictor modules for D_V/verisimilitude found zero consumption call sites. No substrate_queue.json entry covers this gap. ARC-055s own notes field describes a 3-stage implementation plan (Stage 1: prediction-error-only V; Stage 2: + global phase coherence; Stage 3: level-specific hierarchical V) none of which is built. This matches the disposition already given to this claims prior proposal iteration (chip-proposal-exp-0510, 2026-09-01 massmint triage, NOT V3-TESTABLE bucket, implementation_phase v4). Route via /implement-substrate once ARC-053/ARC-054 (E3 selection + E1/E2 wiring) are built and a design exists for exposing V(t)/D_V as explicit signals; until then this is architecturally out of reach for V3, not a missing-script gap.",
-      "claim_id": "ARC-055",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-055 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0465",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_arc_055",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1200",
-      "claim_id": "ARC-055",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-055.",
-      "priority": "medium",
-      "proposal_id": "LIT-0466",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_055",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1201",
-      "claim_id": "ARC-056",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-056.",
-      "priority": "medium",
-      "proposal_id": "LIT-0469",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_056",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
         "synthetic_signals_only"
       ]
     },
@@ -14859,6 +14718,54 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
+      "backlog_id": "EVB-1745",
+      "claim_id": "INV-106",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for INV-106.",
+      "priority": "medium",
+      "proposal_id": "LIT-0130",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_inv_106",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
       "backlog_id": "EVB-1377",
       "claim_id": "MECH-001",
       "decision_deadline_utc": "",
@@ -14986,92 +14893,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_003",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1381",
-      "claim_id": "MECH-005",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-005 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0737",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_005",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1381",
-      "claim_id": "MECH-005",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-005.",
-      "priority": "medium",
-      "proposal_id": "LIT-0738",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_005",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -21592,6 +21413,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1468",
+      "blocked_by": [
+        "MECH-225"
+      ],
+      "blocked_note": "MECH-228 (field-level/ephaptic coherence supporting phase alignment across populations) is implementation_phase=v4 in claims.yaml, as is its direct dependency MECH-225 (oscillatory coupling multiplexing). No ree_core substrate implements MECH-228 or references it in ree-v3 today (zero grep hits for MECH-228/ephaptic in ree_core/ or experiments/, and ree-v3/CLAUDE.md SD Design Decisions Implemented has no matching entry). A related but DISTINCT claim, MECH-270 (Ephaptic field coherence in CA1/CA3 pyramidal layers, a specific anchor-selection readout mechanism), is implementation_phase=v3 and already has substrate (cross_stream_binding_substrate, E2Config.cross_stream_binding_enabled) exercised by V3-EXQ-720/725/733/641/641a -- but that substrate is explicitly documented (ree-v3-spec.md line 93: 'V4 ephaptic-field-strength routing remains v4-by-design') as testing MECH-270, not the broader MECH-228 claim. Route via /implement-substrate once MECH-225/MECH-228 substrate is built for V3.",
       "claim_id": "MECH-228",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -21614,7 +21439,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_228",
       "target_repo": "ree-v3",
       "why_now": [
@@ -22816,6 +22641,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1484",
+      "blocked_by": [
+        "SD-026",
+        "SD-014"
+      ],
+      "blocked_note": "MECH-251 depends_on SD-026 (attention.prospective_precision_write_channel), which is not implemented in ree-v3/ree_core (no dan_feedback channel, template_proj, or sd026_enabled toggle found anywhere in the substrate). substrate_queue.json SD-026 entry: ready=false, node_class='complicated (buildable)'. Its own implementation_hint additionally gates: 'Do not queue SD-026 validation EXQ until SD-014 is at least provisional' (z_resource separation) -- SD-014 is still status:candidate in claims.yaml, so that gate is also unmet. Route to /implement-substrate for SD-026 (and SD-014 first if not already prioritized), not another experiment queue attempt.",
       "claim_id": "MECH-251",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -22838,7 +22668,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_251",
       "target_repo": "ree-v3",
       "why_now": [
@@ -31014,102 +30844,6 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
-      "backlog_id": "EVB-1742",
-      "claim_id": "MECH-547",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-547.",
-      "priority": "medium",
-      "proposal_id": "LIT-0108",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_547",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1743",
-      "claim_id": "MECH-548",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-548.",
-      "priority": "medium",
-      "proposal_id": "LIT-0127",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_548",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
       "backlog_id": "EVB-1624",
       "claim_id": "Q-048",
       "decision_deadline_utc": "",
@@ -37316,42 +37050,6 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0609",
-      "claim_id": "MECH-025b",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-025b via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1283",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_025b",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "low_exp_conf"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
       "backlog_id": "EVB-0086",
       "claim_id": "MECH-057b",
       "decision_deadline_utc": "",
@@ -37726,6 +37424,56 @@
       "suggested_experiment_type": "claim_probe_sd_018",
       "target_repo": "ree-v3",
       "why_now": [
+        "low_exp_conf"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1233",
+      "blocked_by": [
+        "ARC-120-no-runtime-discriminator-framing-claim",
+        "ARC-107-eligibility-constitution-default-off",
+        "SD-032b-dacc-zero-weighted",
+        "MECH-094-simulation-mode-rule-gate-default-off",
+        "MECH-261-mode-conditioned-write-gating"
+      ],
+      "blocked_note": "queue-experiment 2026-09-03T06:57:54Z (IGW-20260903-243): ARC-120 is an architectural_commitment FRAMING claim over four already-registered authority gates; it introduces no new mechanism and its own claims.yaml notes state it is 'Not directly falsifiable by a single experiment'. Three independent gates, any one sufficient: (1) no runtime discriminator -- 'one sequence' vs 'four ad hoc gates' predict bit-identical telemetry (total verdict aliasing), and the claim's registered falsifier is a claims-registry event found by audit, not a measurement; (2) all four instance gates are DEFAULT-OFF or inert at runtime (live probe 2026-09-03: e3.use_go_nogo_constitution / e3.use_f_eligibility_demotion / e3.use_modulatory_selection_authority / use_simulation_mode_rule_gate / use_commit_readiness / use_mech090_readiness_conjunction all False; dacc_weight=dacc_bias_max_abs=0.0), so the sequence is not instantiated in the running organism; (3) the sequence TERMINATES in 'behavioural influence', which sits behind the known conversion / F-dominance ceiling, so a full-sequence run FAILs for the already-understood reason -- vacuous. Re-derive brake does not fire (0 autopsies): ARC-120 is not braked, it is un-posable as an experiment. ARC-120 appears in ZERO ree-v3 files and ZERO run manifests; exp=0 / lit=5 entries. Route: /claim-synthesis framing-level evidence tagging over the four instances, plus a design-space audit for the registered falsifier -- see release_condition. Family precedent: ARC-121/EVB-1234, ARC-130/EVB-0633, ARC-131/EVB-1242 all already declined at this same guardrail. No script written, no queue entry added, no experiment run.",
+      "claim_id": "ARC-120",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-03T06:57:54Z",
+      "gated_by_session": "igw-243-proposal-for-arc-120",
+      "gating_reason": "EVB-1233 / EXP-0286 (auto-generated generic 'Reduce uncertainty for ARC-120 via targeted experiment runs') DECLINED at the /queue-experiment substrate-readiness guardrail by headless IGW session IGW-20260903-243 (2026-09-03). Three independent gates, any ONE of which is sufficient.\n\n(1) ARC-120 HAS NO RUNTIME DISCRIMINATOR -- ITS OWN REGISTERED FALSIFIER IS A DESIGN-SPACE EVENT, NOT A MEASUREMENT. ARC-120 is an architectural_commitment FRAMING claim. Its novelty is the GENERALISATION that four already-registered gates (ARC-107, SD-032b, MECH-261, MECH-094) are instances of ONE developmental sequence (existence -> representation -> competence -> authority -> behavioural influence) rather than unrelated ad hoc gates; its own claims.yaml notes state it 'introduces no new mechanism', is 'LOWER PRIORITY than its instances', and is 'Not directly falsifiable by a single experiment ... falsified in the design sense by any future accepted mechanism that grants behavioural or write authority WITHOUT a competence-like gate.' That falsifier is an event in the CLAIMS REGISTRY, discovered by audit, not a reading off an agent run. The two live hypotheses -- 'one sequence' vs 'four independent gates that each happen to carry a precondition' -- predict BIT-IDENTICAL telemetry on every observable the substrate exposes, because they differ in the EXPLANATION, not in the trajectory. That is total verdict aliasing in the Step 2.5b / GOV-FANOUT-1 sense: every leg one could design aliases, so no portfolio closes the gap either. An experiment that instead ablates one gate and shows authority is conditioned on competence would re-derive that gate's OWN claim (ARC-107 / MECH-261 / MECH-094, each separately registered and evidenced) and tag it to ARC-120 -- exactly the peripheral-co-tag mis-attribution the sibling ARC-130 gating (EVB-0633, 2026-08-26) identified and refused.\n\n(2) THE SEQUENCE IS NOT INSTANTIATED IN THE RUNNING ORGANISM -- ALL FOUR INSTANCE GATES ARE DEFAULT-OFF OR INERT. Live runtime probe 2026-09-03 (REEConfig.from_dims + E3Config, ree-v3 working tree; 702 top-level + 131 E3 fields enumerated), NOT a doc read: e3.use_go_nogo_constitution=False, e3.use_f_eligibility_demotion=False, e3.use_modulatory_selection_authority=False (ARC-107's three levers -- MECH-449 opponency, MECH-448 demotion, selection authority); use_simulation_mode_rule_gate=False and simulation_mode_rule_gate_admit_writes=False (MECH-094 real-vs-simulated write gate); dacc_weight=0.0, dacc_bias_max_abs=0.0, dacc_suppression_weight=0.0, dacc_drive_coupling=0.0 (SD-032b dACC IMPLEMENTED per ree-v3/CLAUDE.md but zero-weighted, i.e. inert -- consistent with its claims.yaml v3_pending=true/candidate); use_commit_readiness=False and use_mech090_readiness_conjunction=False (the nav_competence -> authority readiness conjunction, the ONE surface that directly instruments 'competence gates authority'). This is the default-off-knob distinction of memory reference-claim-status-vs-default-off-flag: the builds EXIST, they are simply not running. Forcing all four ON simultaneously would place the organism in an operating regime no other evidence characterises, so any reading would be uninterpretable -- which is ARC-131's installability point, and ARC-131 (EVB-1242) is itself blocked_substrate for a related reason.\n\n(3) THE TERMINAL RUNG IS BEHIND THE KNOWN CONVERSION / F-DOMINANCE CEILING. ARC-120's sequence TERMINATES in 'behavioural influence'. Any run testing the sequence as stated must reach that rung, and it sits squarely behind the known conversion / F-dominance ceiling -- so the run FAILs for the already-understood reason, which is a vacuous result rather than a verdict (the exact ground on which ARC-130's 'ecological consequence' rung was refused). Truncating the test below that rung leaves only the rungs the four instance claims already cover, collapsing back into gate (1).\n\nSUPPORTING (not independently sufficient): (a) Zero experimental evidence and zero substrate footprint -- ARC-120 appears in NO file in ree-v3 (git grep across the tracked tree returns nothing: no substrate, no experiment, no test) and in NO run manifest under evidence/experiments/ (only the derived indexes claim_evidence.v1.json, promotion_demotion_recommendations.md, substrate_status_snapshot.json). claim_evidence.v1.json records exp=0 entries / lit=5 entries, experimental_confidence=0.0, literature_confidence=0.852, evidence_quadrant=plausible_unproven. (b) The why_now signals that minted this proposal (missing_experimental_evidence, lit_only_above_cap, synthetic_signals_only, low_exp_conf, insufficient_experimental_replication) are EXPECTED-AND-BENIGN for an architectural_commitment framing claim whose evidence is a targeted literature review (evidence/literature/targeted_review_arc_120/, 5 entries, 2026-09-02) -- they indicate claim TYPE, not a remediable evidence defect. (c) One of ARC-120's own literature entries (2026-09-02_arc_120_protracted_control_maturation_luna2015) independently records the same problem from the other side: 'a system can exhibit ARC-120's sequence without containing any competence-gating mechanism at all -- the sequence is evidence for the principle only where the ordering is ENFORCED rather than merely EMERGENT.' Enforced-vs-emergent is the real discrimination, and it is a fact about the DESIGN, not about a trajectory. (d) Family precedent: all three sibling framing claims from the same 2026-08 intake lineage have already been declined at this same guardrail -- ARC-121/EVB-1234 blocked_substrate, ARC-130/EVB-0633 gated, ARC-131/EVB-1242 blocked_substrate. (e) Re-derive brake (Step 2.5b) does NOT fire: ARC-120 has ZERO autopsies (brake count 0). It is not braked; it is un-posable. (f) No reach/ladder/stage instrumentation exists anywhere in REEConfig/E3Config (0 matching fields), independently reconfirming the 2026-08-26 ARC-130 finding eight days later. NO EXPERIMENT RUN; no script written; no queue entry added.\n\n[2026-09-07 RELEASE_CONDITION ROUTE (a) DISCHARGED -- PROPOSAL RETIRED, session recursing-engelbart-dfdf02, campaign W4-S4 item 2, chip-20260903-arc120-framing-evidence-tagging.] The framing-level cross-tag this proposal's release_condition (a) asked for has LANDED: evidence/planning/claim_synthesis_ARC-120_2026-09-07.md. Set A (authority-ABSENT findings at ARC-120's own competence->authority transition) is stamped on V3-EXQ-604a / V3-EXQ-624a / V3-EXQ-614d as evidence_direction_per_claim ARC-120: supports, flat + pack, with claim_ids deliberately NOT extended so no scored credit is granted. Set B (the four instance gates) is cited as the design-space corpus in ARC-120's new evidence_quality_note and deliberately NOT stamped -- that is the peripheral-co-tag refusal this release_condition names as its load-bearing half. TWO CORRECTIONS TO THIS PROPOSAL'S OWN TEXT, recorded so the next reader does not re-derive them. (i) Route (a) did NOT discharge the claim's experimental debt in the sense the release_condition anticipated: the tagged evidence supports only ARC-120's descriptive NEGATIVE clause (existence does not confer authority); the POSITIVE clause (authority conditioned on competence) has design-space support only, because in all three tagged runs the absence of authority has no competence predicate in its path -- EMERGENT, not ENFORCED -- and the generalisation remains un-posable exactly as gate (1) says. (ii) The why_now signals do NOT 'clear on their own': the tag grants no scored credit by design, so exp_count stays 0 and all five signals stand unless claims.yaml gains diagnostic_evidence_adjudicated: true, which is RECOMMENDED to /governance, not applied. STATUS DELIBERATELY UNCHANGED at blocked_substrate (already in the workset's _PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES, so never re-offered) and blocked_by left intact (every token still literally true; the no-runtime-discriminator token is permanently true, not a blocker awaiting discharge). DO NOT QUEUE: the three-gate refusal of 2026-09-03 stands unchanged and this pass names no readout on which 'one sequence' and 'four independent gates' differ. Route (b) -- the standing design-space audit -- remains the claim's only live instrument and is unowned; recommended to /governance as an audit bucket.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for ARC-120 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0286",
+      "proposal_type": "experimental",
+      "release_condition": "Do NOT re-offer ARC-120 as an experiment proposal. Its experimental debt is not dischargeable by a V3 run, and two NON-EXPERIMENT routes are what it actually owes; the first may retire this proposal outright.\n\n(a) EVIDENCE TAGGING / SYNTHESIS FIRST (route: /claim-synthesis or /governance, NOT /queue-experiment). ARC-120 generalises over four gates that are each separately registered and separately evidenced (ARC-107 with the MECH-448 rank-preserving demotion and MECH-449 Go/No-Go opponency builds; SD-032b dACC; MECH-261 mode-conditioned write gating; MECH-094 real-vs-simulated write distinction). Cross-tag that EXISTING instance evidence to ARC-120 as framing-level support and re-assess. If tagging discharges the debt -- the likely outcome for a claim that 'introduces no new mechanism' -- this proposal should move to executed/gated rather than ever being queued, and the why_now signals (missing_experimental_evidence, synthetic_signals_only, lit_only_above_cap) will clear on their own. CAUTION, and it is the load-bearing half: tag at FRAMING level and say so explicitly. Do NOT let an instance's evidence be read as a direct test of the generalisation -- that is the peripheral-co-tag error ARC-130's gating names.\n\n(b) A DESIGN-SPACE AUDIT, not a run, is the only thing that can falsify this claim. ARC-120's registered falsifier is 'any future accepted mechanism that grants behavioural or write authority WITHOUT a competence-like gate'. The corresponding standing check is an audit over claims.yaml + the ree_core write/authority sites, asking of each newly-accepted authority-granting mechanism whether it carries a competence-like precondition. That is a governance/architecture practice (candidate route: a /governance audit bucket, or an architecture doc alongside docs/architecture/causal_reach_and_installability.md), NOT an experiment. Note it is ALSO the natural home for the enforced-vs-emergent discrimination that the luna2015 literature entry flags.\n\nIF a future session nevertheless believes an ARC-120 experiment is warranted, it must FIRST clear all three gates above -- in particular it must name a readout on which 'one sequence' and 'four independent gates' make DIFFERENT predictions. If it cannot name one, the claim is un-posable as an experiment and this gate stands. Any such run must additionally not depend on the 'behavioural influence' rung while the conversion / F-dominance ceiling stands, and must first turn on the four instance gates that are currently default-off -- which is an /implement-substrate + characterisation task, not a probe.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_arc_120",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "diagnostic_evidence_adjudicated",
+        "insufficient_experimental_replication",
         "low_exp_conf"
       ]
     },
@@ -38529,54 +38277,6 @@
       "suggested_experiment_type": "claim_probe_sd_055",
       "target_repo": "ree-v3",
       "why_now": [
-        "low_exp_conf"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-0633",
-      "blocked_by": [
-        "evidence/planning/claim_synthesis_ARC-130_2026-09-07.md",
-        "ARC-071",
-        "ARC-120"
-      ],
-      "blocked_note": "No per-stage causal-reach instrumentation exists in ree-v3 (verified by grep + runtime REEConfig probe, 2026-08-26) and ARC-130's own notes record that schema as UNBUILT and NOT AUTHORISED without a separate build decision. The claim's testable core (authority != committed throughput) is already demonstrated by the confirmed V3-EXQ-931 autopsy and three prior convergent instances, so a new run would re-derive rather than inform; the owed action is evidence tagging via /claim-synthesis. Committed throughput is itself behind four default-off knobs and known pinned at _committed_step_idx=1 (ARC-071 H1 confirmed). [2026-09-07: evidence tagging LANDED -- see evidence/planning/claim_synthesis_ARC-130_2026-09-07.md; blocker resolved, proposal retired, no run.]",
-      "claim_id": "ARC-130",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-08-26T20:23:33Z",
-      "gated_by_session": "igw-234-proposal-for-arc-130",
-      "gating_reason": "EVB-0633 / EXP-0379 (auto-generated generic 'reduce uncertainty for ARC-130 via targeted experiment runs') DECLINED at the /queue-experiment substrate-readiness guardrail by headless IGW session IGW-20260826-234 (2026-08-26). Three independent gates, any one of which is sufficient.\n\n(1) NO MEASUREMENT SURFACE FOR THE LADDER, AND BUILDING ONE IS EXPLICITLY UNAUTHORISED BY THE CLAIM ITSELF. ARC-130's unit of analysis is the furthest causal-reach STAGE demonstrated (existence / representation / endogenous recruitment / local operation / competitive authority / committed throughput / ecological consequence / retention). Verified 2026-08-26 that no such per-stage instrumentation exists anywhere in ree-v3: grep for mechanism_reach|reach_trace|reach_stage|causal_reach|ladder_stage|furthest_stage across ree_core/ and experiments/ returns nothing, ARC-130 appears in no substrate/experiment/test file, and a runtime probe (REEConfig.from_dims, ree-v3 afc6986) returns an EMPTY list of reach/ladder/throughput/*_stage fields. ARC-130's own claims.yaml notes then close the obvious route: 'DO NOT build a new \"MechanismReachTrace\" runtime object or dedicated telemetry schema from this claim without a separate build decision ... recorded as an UNBUILT instrumentation proposal here, not authorised.' Any experiment measuring the ladder must first build that schema, so queuing one now would breach the claim's own registered gate.\n\n(2) THE CLAIM'S TESTABLE EMPIRICAL CORE IS ALREADY DEMONSTRATED FOUR TIMES OVER -- a new run would re-derive, not inform. ARC-130's post-ARC-120 contribution is the assertion that competitive authority at an internal selection boundary does NOT entail committed throughput. The confirmed, human-gated failure_autopsy_931-932-wanting-authority-cluster_2026-08-16 (V3-EXQ-931) already establishes exactly that dissociation quantitatively: (a) AUTHORITY -- wanting_authority_ratio ~= 0.0037, selection_flip_rate 0.0 in 5/5 seeds at the documented operating weight; (b) THROUGHPUT -- at w=5000, 80.3 pct of genuine refits flip the CEM elite argmin while mean_resource_proximity is BIT-IDENTICAL to ablation (0.6229773644254133), because select_action re-scores the pool with e3.last_scores independently of the CEM's pick. That is authority achieved and throughput exactly zero. ree-v3 1a4b6be records it as the FOURTH convergent instance of 'scoring-layer signals do not reach the committed argmax', after MECH-314 curiosity bias, MECH-320 vigor penalty and MECH-341 within-class temperature. Note the formal Step 2.5b re-derive brake does NOT fire (ARC-130 has zero autopsies -- it was registered 2026-08-25), but the condition that brake protects against is present here in a stronger form: the phenomenon is established, so the marginal information of a fifth instance is ~nil. The owed action is EVIDENCE TAGGING of the existing cluster to ARC-130, not a new run -- see release_condition.\n\n(3) THE LADDER'S UPPER STAGES ARE BEHAVIOURALLY BLOCKED, AND ITS DISTINCTIVE STAGE IS DEFAULT-OFF AND KNOWN-BROKEN. 'Ecological consequence' (the changed behaviour has a valid opportunity to matter) sits squarely behind the known conversion / F-dominance ceiling, so a run reaching for it FAILs for the already-understood reason -- a vacuous result, not a verdict. One stage down, 'committed throughput' is gated behind four default-OFF knobs (probe 2026-08-26: use_natural_commit_latch_hold=False, use_closure_commit_entry=False, use_closure_commit_entry_trajectory=False, use_persistent_committed_program_handle=False) and, per diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md (H1 CONFIRMED, H2 REFUTED), _committed_step_idx never advances past 1 across 80 ticks and 8-10 full E3 re-deliberation cycles -- 'there is no genuinely multi-step-persisting commitment to misread'. The companion diagnostic_arc071_e3_reselection_probe_2026-08-01.md confirms the separate E3 unconditional-re-commit defect as a REAL, named, still-open build. So the ladder rung ARC-130 uniquely contributes is not merely unmeasured, it is not reliably instantiated in the running organism.\n\nSUPPORTING (not independently sufficient): all four depends_on claims (ARC-120, MECH-480, GOV-FAILLOC-1, ARC-131) are status=candidate with ZERO evidence, and MECH-480 is v3_pending=true. ARC-130 refines ARC-120's post-authority granularity, but ARC-120 itself has no experimental evidence, so testing the refinement ahead of the base is out of order. ARC-130 also carries its own unresolved VERSION-ROUTING FLAG asking a future /governance session to confirm v3 scoping vs a v4/v4_v5 park like sibling ARC-128; queuing a V3 run now would pre-empt that decision. The why_now signals that generated this proposal (missing_experimental_evidence, lit_only_above_cap, synthetic_signals_only, low_exp_conf) are expected-and-benign for an architectural_commitment AUDIT-PROJECTION claim whose own source thought states 'It does not presently justify a new cognitive module' -- they indicate claim TYPE, not a remediable evidence defect.\n\n[2026-08-26 UPDATE, chip-20260826-arc130-authority-throughput-evidence-tagging]: release_condition (a) is now satisfied. The existing V3-EXQ-931/932 cluster autopsy and the two ARC-071 diagnostics (H1/H2 commit-latch persistence, E3 reselection) are cross-tagged into ARC-130's claims.yaml evidence_quality_note (diagnostic_evidence_adjudicated=true), adjudicated CONFIRMED-SUPPORTS for the claim's testable core. MECH-314/MECH-320/MECH-341 were checked and deliberately NOT tagged -- they instantiate the earlier, ARC-120-owned local-operation-vs-competitive-authority rung, not this claim's post-authority contribution; tagging them would have been the peripheral-co-tag mis-attribution this ladder exists to prevent. Status moves blocked_substrate -> gated per release_condition (a)'s own instruction; this proposal should not be re-offered. release_condition (b) (the reach-stage instrumentation build decision + version-routing governance ruling) remains open and unresolved but is now moot for THIS proposal -- (a) alone retires it, per release_condition's own text (\"neither is an experiment, and the first may retire the proposal outright\"). No experiment run.\n\n[2026-09-07 UPDATE, campaign W4-S4 item 1, session serene-leavitt-f8ccf5, evidence/planning/claim_synthesis_ARC-130_2026-09-07.md]: GFLAG-0134 resolved 2026-09-05 by user decision (b): ARC-130 CLOSES on the existing convergent evidence via /claim-synthesis evidence tagging; NO reach-stage instrumentation is authorised. The blocked_by token ARC-130-reach-stage-instrumentation-unauthorised is therefore resolved against the synthesis artifact (first element of blocked_by), not against a build. ARC-071 and ARC-120 stay listed as the standing prerequisites for any FUTURE run reaching for rungs 7-8 (ecological consequence, retention), which remain untested and behaviourally/instrumentation blocked. Tagging landed: claims.yaml ARC-130 live_status.evidence + evidence_quality_note addendum; V3-EXQ-931 manifest (flat + pack) evidence_direction_per_claim ARC-130: supports (audit-trail override, claim_ids stays [], no scored credit). MECH-314/320/341 deliberately NOT tagged to ARC-130 (ARC-120's rung; GFLAG-0179 / campaign S4 item 2 own that cross-tag). This proposal is RETIRED per release_condition (a) and GFLAG-0134 (b); status stays gated (adjudicated-not-queueable in the IGW workset) because nothing ran and executed would be false. Promotion recommendation for ARC-130 routed to /governance via a promotion_review flag.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-130 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1344",
-      "proposal_type": "experimental",
-      "release_condition": "Do NOT re-offer this as an experiment proposal until BOTH of the following resolve; neither is an experiment, and the first may retire the proposal outright.\n\n(a) EVIDENCE TAGGING FIRST (route: /claim-synthesis or /governance, NOT /queue-experiment). ARC-130's authority-does-not-entail-throughput core is already demonstrated by the confirmed V3-EXQ-931/932 wanting-authority cluster autopsy plus the three prior convergent instances (MECH-314 curiosity bias, MECH-320 vigor penalty, MECH-341 within-class temperature) and the ARC-071 commit-latch H1/H2 + E3-reselection diagnostics. Cross-tag that existing evidence to ARC-130 and re-assess. If the tagged evidence discharges the claim's experimental debt -- the likely outcome -- this proposal should move from blocked_substrate to gated/executed rather than ever being queued, and the why_now signals (missing_experimental_evidence, synthetic_signals_only) will clear on their own.\n\n(b) A SEPARATE, EXPLICIT BUILD DECISION on the per-stage causal-reach instrumentation that ARC-130's own notes record as UNBUILT and NOT AUTHORISED, taken together with the governance ruling the claim's VERSION-ROUTING FLAG requests (confirm implementation_phase v3, or park v4/v4_v5 alongside ARC-128). If governance parks it v4/v4_v5, this proposal is moot on the V3 substrate and should be retired, not re-queued. If governance confirms v3 AND authorises the instrumentation, the node is 'complicated (buildable)' -- a named build with no open question -- so the correct next route is /implement-substrate for the reach-stage telemetry, NOT an experiment. Only once that telemetry exists and can distinguish competitive authority from committed throughput per-mechanism at runtime does an ARC-130 experiment become 'complex (probe-gated)' and therefore queueable.\n\nAdditionally, any future ARC-130 experiment must NOT depend on the 'ecological consequence' or 'retention/generalisation' rungs while the conversion / F-dominance ceiling stands -- a FAIL there re-derives the known ceiling and is non-contributory by construction. Scope any such run to rungs at or below committed throughput, and only after the ARC-071 E3 unconditional-re-commit defect (diagnostic_arc071_e3_reselection_probe_2026-08-01.md, named fix, still open) is closed so that committed throughput is reliably instantiated rather than pinned at _committed_step_idx=1.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "gated",
-      "suggested_experiment_type": "claim_probe_arc_130",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "diagnostic_evidence_adjudicated",
-        "insufficient_experimental_replication",
         "low_exp_conf"
       ]
     },
@@ -41770,18 +41470,25 @@
       ],
       "added_utc": "2026-08-07",
       "backlog_id": "EVB-0587",
+      "blocked_by": [
+        "SD-056"
+      ],
+      "blocked_note": "Born blocked by build_experiment_indexes: SD-056 carries a claims.yaml experiment queue gate (gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.). Not a substrate-readiness finding of this proposal's own; the row lifts back to 'proposed' automatically once the gate is removed from the claim (chip-20260904-indexer-mints-gated-claims-as-blocked).",
       "claim_id": "SD-056",
       "design": "Re-run the original V3-EXQ-569e 8-arm Pathway A vs Pathway B mechanism probe (SP-CEM main-path ON, MECH-341 OFF, MECH-313 OFF, MECH-269 default) at behavioural-runtime P1 budget (50 episodes / 200 steps) on the amended substrate (multistep contrastive horizon + output-norm clamp, both now available), with the three script-side acceptance-criteria fixes from the 569e autopsy Section 6 applied: (i) a genuine per-tick NaN-fix gate for C1 rather than 'at least one finite value per seed'; (ii) a sanity ceiling on the C3 rollout-divergence gate so numeric overflow cannot register as 'operative' divergence; (iii) resolution of the acceptance_criteria-dict-vs-verdict_cell contradiction the autopsy flagged.",
       "dispatch_mode": "discriminative_pair",
+      "gated_by_session": "build_experiment_indexes:claim_queue_gate",
+      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment. [2026-09-10 GFLAG-0231 registry repair] The 'executed' status and the executed_by link to 'v3_exq_210_mech156_theta_traversal_probe' were FALSE and are removed. That run's own manifest (evidence/experiments/v3_exq_210_mech156_theta_traversal_probe/v3_exq_210_mech156_theta_traversal_probe_1775168257.json) carries claim_ids ['MECH-156'] and timestamp 2026-04-02T22:17:37Z -- no SD-056 tag, and four months BEFORE this proposal was minted (added_utc 2026-08-07). No SD-056 queue entry has existed since minting and the 569e driver is unchanged since 2026-05-30 (pack_writer migration aside), so the run was never dispatched; ree-v3/experiment_queue.json holds 0 items for SD-056. Status restored to a live lifecycle value: this is GATED, not done. SD-056 carries a claims.yaml experiment_gate set 2026-09-08 by clever-joliot-bb5a54 (DO-NOT-QUEUE; W5-S4 item 1, REE_assembly 5819a55ae1, diagnostic_evidence_adjudicated true) -- the representation-level DV is already measured three times (V3-EXQ-613 synthetic; 569d and 569e real training, t=1 cand_world_pairwise_dist ~0.05 ON vs ~0.014 OFF) and the zero genuine_exp_count is a tagging fact, so the ONLY run that moves the claim is this pre-registered EXP-0585 / EVB-0587 569e-equivalent Pathway A vs B probe (8 arms x 5 seeds, P1 budget) with the three 569e autopsy Section 6 script fixes and BOTH stability levers armed (e2_action_contrastive_multistep_enabled + e2_rollout_output_norm_clamp_enabled, true in ZERO runs as of 2026-09-01). That is a wave-budget FUNDING decision for governance, not background fill. Do NOT mint a GOV-CONFIRM-1 confirmer. Because the claim is gated, build_experiment_indexes.py may re-derive this row to 'blocked' with a blocked_note on the next pass (chip-20260904-indexer-mints-gated-claims-as-blocked) -- that is correct and expected; it lifts back to 'proposed' automatically when the gate is removed from the claim. If governance declines to fund it this wave, write the DO-NOT-QUEUE marker via scripts/confirmer_verdict.py rather than reinstating a false 'executed'.",
       "objective": "Re-queue of the V3-EXQ-569e-equivalent Pathway A vs Pathway B mechanism probe SD-056's own evidence_quality_note names as its closing gate. The numerical-stability precondition (V3-EXQ-617, multi-step contrastive horizon h=5 + per-step output norm clamp) PASSED 2026-05-31, but the re-run itself was never queued -- ~7 weeks elapsed. The downstream target this was meant to unblock (ARC-065 GAP-A) closed 2026-06-17 via a DIFFERENT mechanism (V3-EXQ-569i, E3-side top-k shortlist conversion), which does NOT answer SD-056's own mechanism-attribution question (is it per-candidate z_world divergence from SD-056's contrastive training [Pathway A], or E2 rollout-landscape shift [Pathway B], or solely the independent shortlist fix, that produces the selected-action-entropy lift over the matched-noise control).",
       "priority": "medium",
       "proposal_id": "EXP-0585",
       "proposal_type": "experimental",
+      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "require_pre_registered_thresholds": true,
       "seed_policy": "matched_shared_seeds",
       "source": "manual",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "target_repo": "ree-v3"
     },
     {
@@ -42949,6 +42656,138 @@
       "source": "manual",
       "status": "blocked_substrate",
       "target_repo": "ree-v3"
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0075",
+      "claim_id": "MECH-294",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-294 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0234",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_294",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "low_exp_conf"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0106",
+      "claim_id": "MECH-193",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-07-08T07:20:26Z",
+      "gated_by_session": "IGW-20260708-195",
+      "gating_reason": "blocked_substrate: MECH-193 (social reward signals -- affiliative touch / oxytocin-gaze loop -- REINFORCE empathic coupling STRENGTH, creating a self-strengthening coordination loop: successful coordination -> affiliative exchange -> stronger self<->other coupling -> more sensitive state-matching -> better coordination) is substrate-blocked on ree-v3 (verified 2026-07-08, IGW-20260708-195). It needs the entire multi-agent/other-model stack that is ALL absent from ree_core PLUS an affiliative social-reward channel that MODULATES coupling strength -- an even higher bar than the base coupling that is already blocked. Its dependency chain is unbuilt: MECH-192 (signal-legibility empathy prerequisite) is status=blocked_substrate (EVB-0105); MECH-183 (z_beta LEAKAGE from an attributed other-model, the coupling MECH-193 proposes to strengthen) is status=deferred_substrate_not_ready (EVB-0081); MECH-191 (cross-arch signal legibility, the multi-agent-legibility gate) is blocked_substrate (EVB-0091). grep of ree_core for other_model / attributed_other / OTHER_SELFLIKE / attribution_stream / affiliativ / oxytocin / c_tactile / gaze_loop / coupling_strength returns NOTHING; z_beta exists only as a SELF valence stream (gaba module), never other-referenced, and there is no reward pathway that reads an affiliative signal or writes a coupling-strength variable. The only multi-agent tokens in the tree are a config comment reserving 'V5 multi-agent social synchronisation'. Direct sibling of MECH-184 (EVB-0104, blocked_substrate 2026-07-07), MECH-182 (EVB-0103), and MECH-192 (EVB-0105) in the same 2026-04-06_steve_signal_legibility_language_bootstrap / 2026-04-05_steve_dog_emotional_mirroring social cluster. A commitment-free measurement-only diagnostic is NOT runnable either: the DV is coupling-strength being reinforced by affiliative reward over a self-strengthening loop, which requires (a) a measurable self<->other coupling and (b) a reward channel modulating it -- neither exists. Any synthetic affiliative proxy would be circular (labels = thresholds on the same self z-channels, the V3-EXQ-686 anti-pattern already de-risked to failure across 5 configs for MECH-191). A FAIL would only re-derive the known no-multi-agent / self-only-signal ceiling -- vacuous, not a PASS-or-FAIL verdict.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-193 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0346",
+      "proposal_type": "experimental",
+      "release_condition": "A V4/V5-class substrate providing: (a) a multi-agent PERCEPTUAL ecology with a coupled OTHER-model built via an attribution stream + OTHER_SELFLIKE tagging and z_beta LEAKAGE (the MECH-183/MECH-191/MECH-192 multi-agent-legibility gate, currently deferred/blocked); AND (b) an AFFILIATIVE social-reward channel (C-tactile / oxytocin-gaze analogue) wired so that successful coordination emits a reward that writes an increase to a self<->other coupling-strength variable. Once built, run the MECH-193 evidence battery: arm A = coordination WITHOUT affiliative-reward feedback (coupling strength static); arm B = coordination WITH affiliative-reward feedback -> verify coupling strength rises over episodes and state-matching sensitivity + coordination performance rise WITH it (self-strengthening loop); control = affiliative reward decoupled from coordination success (reward on random/rotated partner) must NOT strengthen coupling or improve coordination, ruling out a generic reward-tonic effect. Shares the MECH-183/MECH-191/MECH-192 release gate. Not a V3 EXQ.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_193",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0633",
+      "blocked_by": [
+        "evidence/planning/claim_synthesis_ARC-130_2026-09-07.md",
+        "ARC-071",
+        "ARC-120"
+      ],
+      "blocked_note": "No per-stage causal-reach instrumentation exists in ree-v3 (verified by grep + runtime REEConfig probe, 2026-08-26) and ARC-130's own notes record that schema as UNBUILT and NOT AUTHORISED without a separate build decision. The claim's testable core (authority != committed throughput) is already demonstrated by the confirmed V3-EXQ-931 autopsy and three prior convergent instances, so a new run would re-derive rather than inform; the owed action is evidence tagging via /claim-synthesis. Committed throughput is itself behind four default-off knobs and known pinned at _committed_step_idx=1 (ARC-071 H1 confirmed). [2026-09-07: evidence tagging LANDED -- see evidence/planning/claim_synthesis_ARC-130_2026-09-07.md; blocker resolved, proposal retired, no run.]",
+      "claim_id": "ARC-130",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-08-26T20:23:33Z",
+      "gated_by_session": "igw-234-proposal-for-arc-130",
+      "gating_reason": "EVB-0633 / EXP-0379 (auto-generated generic 'reduce uncertainty for ARC-130 via targeted experiment runs') DECLINED at the /queue-experiment substrate-readiness guardrail by headless IGW session IGW-20260826-234 (2026-08-26). Three independent gates, any one of which is sufficient.\n\n(1) NO MEASUREMENT SURFACE FOR THE LADDER, AND BUILDING ONE IS EXPLICITLY UNAUTHORISED BY THE CLAIM ITSELF. ARC-130's unit of analysis is the furthest causal-reach STAGE demonstrated (existence / representation / endogenous recruitment / local operation / competitive authority / committed throughput / ecological consequence / retention). Verified 2026-08-26 that no such per-stage instrumentation exists anywhere in ree-v3: grep for mechanism_reach|reach_trace|reach_stage|causal_reach|ladder_stage|furthest_stage across ree_core/ and experiments/ returns nothing, ARC-130 appears in no substrate/experiment/test file, and a runtime probe (REEConfig.from_dims, ree-v3 afc6986) returns an EMPTY list of reach/ladder/throughput/*_stage fields. ARC-130's own claims.yaml notes then close the obvious route: 'DO NOT build a new \"MechanismReachTrace\" runtime object or dedicated telemetry schema from this claim without a separate build decision ... recorded as an UNBUILT instrumentation proposal here, not authorised.' Any experiment measuring the ladder must first build that schema, so queuing one now would breach the claim's own registered gate.\n\n(2) THE CLAIM'S TESTABLE EMPIRICAL CORE IS ALREADY DEMONSTRATED FOUR TIMES OVER -- a new run would re-derive, not inform. ARC-130's post-ARC-120 contribution is the assertion that competitive authority at an internal selection boundary does NOT entail committed throughput. The confirmed, human-gated failure_autopsy_931-932-wanting-authority-cluster_2026-08-16 (V3-EXQ-931) already establishes exactly that dissociation quantitatively: (a) AUTHORITY -- wanting_authority_ratio ~= 0.0037, selection_flip_rate 0.0 in 5/5 seeds at the documented operating weight; (b) THROUGHPUT -- at w=5000, 80.3 pct of genuine refits flip the CEM elite argmin while mean_resource_proximity is BIT-IDENTICAL to ablation (0.6229773644254133), because select_action re-scores the pool with e3.last_scores independently of the CEM's pick. That is authority achieved and throughput exactly zero. ree-v3 1a4b6be records it as the FOURTH convergent instance of 'scoring-layer signals do not reach the committed argmax', after MECH-314 curiosity bias, MECH-320 vigor penalty and MECH-341 within-class temperature. Note the formal Step 2.5b re-derive brake does NOT fire (ARC-130 has zero autopsies -- it was registered 2026-08-25), but the condition that brake protects against is present here in a stronger form: the phenomenon is established, so the marginal information of a fifth instance is ~nil. The owed action is EVIDENCE TAGGING of the existing cluster to ARC-130, not a new run -- see release_condition.\n\n(3) THE LADDER'S UPPER STAGES ARE BEHAVIOURALLY BLOCKED, AND ITS DISTINCTIVE STAGE IS DEFAULT-OFF AND KNOWN-BROKEN. 'Ecological consequence' (the changed behaviour has a valid opportunity to matter) sits squarely behind the known conversion / F-dominance ceiling, so a run reaching for it FAILs for the already-understood reason -- a vacuous result, not a verdict. One stage down, 'committed throughput' is gated behind four default-OFF knobs (probe 2026-08-26: use_natural_commit_latch_hold=False, use_closure_commit_entry=False, use_closure_commit_entry_trajectory=False, use_persistent_committed_program_handle=False) and, per diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md (H1 CONFIRMED, H2 REFUTED), _committed_step_idx never advances past 1 across 80 ticks and 8-10 full E3 re-deliberation cycles -- 'there is no genuinely multi-step-persisting commitment to misread'. The companion diagnostic_arc071_e3_reselection_probe_2026-08-01.md confirms the separate E3 unconditional-re-commit defect as a REAL, named, still-open build. So the ladder rung ARC-130 uniquely contributes is not merely unmeasured, it is not reliably instantiated in the running organism.\n\nSUPPORTING (not independently sufficient): all four depends_on claims (ARC-120, MECH-480, GOV-FAILLOC-1, ARC-131) are status=candidate with ZERO evidence, and MECH-480 is v3_pending=true. ARC-130 refines ARC-120's post-authority granularity, but ARC-120 itself has no experimental evidence, so testing the refinement ahead of the base is out of order. ARC-130 also carries its own unresolved VERSION-ROUTING FLAG asking a future /governance session to confirm v3 scoping vs a v4/v4_v5 park like sibling ARC-128; queuing a V3 run now would pre-empt that decision. The why_now signals that generated this proposal (missing_experimental_evidence, lit_only_above_cap, synthetic_signals_only, low_exp_conf) are expected-and-benign for an architectural_commitment AUDIT-PROJECTION claim whose own source thought states 'It does not presently justify a new cognitive module' -- they indicate claim TYPE, not a remediable evidence defect.\n\n[2026-08-26 UPDATE, chip-20260826-arc130-authority-throughput-evidence-tagging]: release_condition (a) is now satisfied. The existing V3-EXQ-931/932 cluster autopsy and the two ARC-071 diagnostics (H1/H2 commit-latch persistence, E3 reselection) are cross-tagged into ARC-130's claims.yaml evidence_quality_note (diagnostic_evidence_adjudicated=true), adjudicated CONFIRMED-SUPPORTS for the claim's testable core. MECH-314/MECH-320/MECH-341 were checked and deliberately NOT tagged -- they instantiate the earlier, ARC-120-owned local-operation-vs-competitive-authority rung, not this claim's post-authority contribution; tagging them would have been the peripheral-co-tag mis-attribution this ladder exists to prevent. Status moves blocked_substrate -> gated per release_condition (a)'s own instruction; this proposal should not be re-offered. release_condition (b) (the reach-stage instrumentation build decision + version-routing governance ruling) remains open and unresolved but is now moot for THIS proposal -- (a) alone retires it, per release_condition's own text (\"neither is an experiment, and the first may retire the proposal outright\"). No experiment run.\n\n[2026-09-07 UPDATE, campaign W4-S4 item 1, session serene-leavitt-f8ccf5, evidence/planning/claim_synthesis_ARC-130_2026-09-07.md]: GFLAG-0134 resolved 2026-09-05 by user decision (b): ARC-130 CLOSES on the existing convergent evidence via /claim-synthesis evidence tagging; NO reach-stage instrumentation is authorised. The blocked_by token ARC-130-reach-stage-instrumentation-unauthorised is therefore resolved against the synthesis artifact (first element of blocked_by), not against a build. ARC-071 and ARC-120 stay listed as the standing prerequisites for any FUTURE run reaching for rungs 7-8 (ecological consequence, retention), which remain untested and behaviourally/instrumentation blocked. Tagging landed: claims.yaml ARC-130 live_status.evidence + evidence_quality_note addendum; V3-EXQ-931 manifest (flat + pack) evidence_direction_per_claim ARC-130: supports (audit-trail override, claim_ids stays [], no scored credit). MECH-314/320/341 deliberately NOT tagged to ARC-130 (ARC-120's rung; GFLAG-0179 / campaign S4 item 2 own that cross-tag). This proposal is RETIRED per release_condition (a) and GFLAG-0134 (b); status stays gated (adjudicated-not-queueable in the IGW workset) because nothing ran and executed would be false. Promotion recommendation for ARC-130 routed to /governance via a promotion_review flag.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for ARC-130 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1344",
+      "proposal_type": "experimental",
+      "release_condition": "Do NOT re-offer this as an experiment proposal until BOTH of the following resolve; neither is an experiment, and the first may retire the proposal outright.\n\n(a) EVIDENCE TAGGING FIRST (route: /claim-synthesis or /governance, NOT /queue-experiment). ARC-130's authority-does-not-entail-throughput core is already demonstrated by the confirmed V3-EXQ-931/932 wanting-authority cluster autopsy plus the three prior convergent instances (MECH-314 curiosity bias, MECH-320 vigor penalty, MECH-341 within-class temperature) and the ARC-071 commit-latch H1/H2 + E3-reselection diagnostics. Cross-tag that existing evidence to ARC-130 and re-assess. If the tagged evidence discharges the claim's experimental debt -- the likely outcome -- this proposal should move from blocked_substrate to gated/executed rather than ever being queued, and the why_now signals (missing_experimental_evidence, synthetic_signals_only) will clear on their own.\n\n(b) A SEPARATE, EXPLICIT BUILD DECISION on the per-stage causal-reach instrumentation that ARC-130's own notes record as UNBUILT and NOT AUTHORISED, taken together with the governance ruling the claim's VERSION-ROUTING FLAG requests (confirm implementation_phase v3, or park v4/v4_v5 alongside ARC-128). If governance parks it v4/v4_v5, this proposal is moot on the V3 substrate and should be retired, not re-queued. If governance confirms v3 AND authorises the instrumentation, the node is 'complicated (buildable)' -- a named build with no open question -- so the correct next route is /implement-substrate for the reach-stage telemetry, NOT an experiment. Only once that telemetry exists and can distinguish competitive authority from committed throughput per-mechanism at runtime does an ARC-130 experiment become 'complex (probe-gated)' and therefore queueable.\n\nAdditionally, any future ARC-130 experiment must NOT depend on the 'ecological consequence' or 'retention/generalisation' rungs while the conversion / F-dominance ceiling stands -- a FAIL there re-derives the known ceiling and is non-contributory by construction. Scope any such run to rungs at or below committed throughput, and only after the ARC-071 E3 unconditional-re-commit defect (diagnostic_arc071_e3_reselection_probe_2026-08-01.md, named fix, still open) is closed so that committed throughput is reliably instantiated rather than pinned at _committed_step_idx=1.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "gated",
+      "suggested_experiment_type": "claim_probe_arc_130",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "diagnostic_evidence_adjudicated",
+        "insufficient_experimental_replication",
+        "low_exp_conf"
+      ]
     },
     {
       "acceptance_checks": [
