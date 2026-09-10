@@ -51,12 +51,17 @@ recent mtimes are old runs whose timestamps were refreshed by a git operation, n
 
 - **Total pending: 0 — the queue is EMPTY (`items: []`).** Nothing for the fleet to run.
   Last materialised by the phase3 queue writer at 2026-09-09T19:56Z (`ree-v3` `3a24525`).
-- **ALERT: Queue low — 0 pending, threshold is 3.** This is the single highest-value action today.
+- **ALERT: Queue low — 0 pending, threshold is 3.** Already chipped as
+  `chip-queuefloor-fleet-g9` ("Experiment queue STARVED: depth 1 < floor 3") — note that chip was
+  raised at depth **1**; the queue has since fallen to **0**, so the condition has worsened since
+  it was filed. **No new chip spawned** (would duplicate).
 - Fleet-idle watcher: `status: OK`, snapshot 2026-09-10T04:13:33Z (fresh, 54 min old).
   `idle_risk: true`, `claimable_backlog: 0` (threshold 3), **`ready_sd_validation_candidates`: 0**.
   Exclusions: `validation_already_ran: 37`, `no_queueable_validation: 39`, `known_churn: 4`.
-  **An empty candidate list against 37 already-run validations means refill needs a fresh
-  `/queue-experiment` DESIGN, not a re-queue.** There is no shelf of ready validation work left.
+  **Read that scope narrowly.** The watcher only counts *SD-validation* candidates, so its zero
+  means "no built-SD validation left on the shelf" -- it does **not** mean there is nothing to
+  queue. The chip ledger holds at least eight open chips carrying concrete queueable experiments
+  (see Chip Ledger below), so **refill is a dispatch problem, not a design problem.**
 - Consistent with this: `ree-cloud-2` and `ree-cloud-3` are UNREACHABLE (powered off) — expected
   with an empty queue, not a fault.
 - **Owed successors: none.** All three plan `owner_exq` ids passed the Step 7c gate as **ran**,
@@ -293,6 +298,53 @@ same-run_id-different-content, 0 stranded literature entries. UNREACHABLE is not
 
 ---
 
+## Chip Ledger — everything below is ALREADY in flight (92 open chips)
+
+**This section is the most actionable thing in today's digest.** Before spawning any follow-on,
+this run checked the ledger and found that **every item it was about to chip already has an open
+chip**. It therefore spawned **nothing** and withdrew the one chip it had minted
+(`chip-20260910-assembly-reconcile-1010`, withdrawn same-turn). The bottleneck is not discovery.
+
+**Two recurrence gates are tripped — both say STOP ADDING WORK:**
+
+- **`chip-pausepressure-dlaptop-g6` — GENERATION 6.** "Structural PAUSE window recommended."
+  Authored, undischarged work: **291 recorded in 7 days against a threshold of 150** (of 679
+  total). The gate's own text: this class "has been resolved and re-fired 5 time(s) before …
+  that recurrence count says the SYMPTOM fixes are not holding: route this to
+  `/metaworker-learning` for a root-cause pass INSTEAD of re-fixing the instance."
+- **`chip-refwedge-dlaptop-ree-assembly-master-g5` — GENERATION 5**, raised 2026-09-10T01:06Z.
+  **This is the same `REE_assembly` divergence this digest hit.** Its text: "cannot adopt
+  origin/master (ahead 11, refusing for 3.7h) — its whole tracked tree is frozen, so guards
+  landed on origin since then are not deployed there. `reconcile --check`: REFUSED." Resolved and
+  re-fired 4 times before; also routed to `/metaworker-learning` for root cause, **not** another
+  instance fix.
+
+Coverage of today's other findings — all already chipped, none needing a new one:
+
+| Finding | Existing open chip |
+|---|---|
+| V3-EXQ-1010 (the headline) | `chip-autopsy-v3-exq-1010` — autopsy staging, 2026-09-09T20:45Z |
+| V3-EXQ-999a FAIL | `chip-autopsy-v3-exq-999a` |
+| V3-EXQ-1017 FAIL | `chip-autopsy-v3-exq-1017` |
+| V3-EXQ-981a FAIL | `chip-autopsy-v3-exq-981a` |
+| Empty queue | `chip-queuefloor-fleet-g9` |
+| Diverged checkout | `chip-refwedge-dlaptop-ree-assembly-master-g5` |
+| All 6 stale claims | `chip-staleclaim-*` — one per claim, all six present |
+
+Queueable experiments already sitting in open chips (contradicting "nothing left to queue"):
+`chip-20260909-mech465-conjunct3-queue` (EXP-0590, substrate block lifted),
+`chip-20260909-sd082-learning-signal-probe`, `chip-20260909-ext002-latching-stage2`
+(ratified at a user gate, ~27–38 h, cloud fleet), `chip-20260909-exq935a-margin-cap-rerun`,
+`chip-20260908-mech002-precision-monotonicity`, plus proposal chips
+`chip-proposal-exp-0893` (MECH-221), `-0904` (MECH-227), `-0934` (MECH-250), `-0936` (MECH-251).
+
+**Suggested reading of the day:** the fleet is idle, the queue is empty, and there are ~8 ready
+experiment chips plus 92 open chips overall with a tripped pause gate. That is a **dispatch and
+discharge** bottleneck, not a shortage of work or ideas. The two generation-5/6 gates both ask
+for `/metaworker-learning` rather than another instance fix.
+
+---
+
 ## Blocked Items
 
 1. **`REE_assembly` checkout is diverged: ahead 14 / behind 17.** `git pull --ff-only origin
@@ -301,8 +353,11 @@ same-run_id-different-content, 0 stranded literature entries. UNREACHABLE is not
    `daemon-drift learning pass`, `serve.py: repoint the dead runner draining flag`, plus
    igw-ledger churn), i.e. an upstream rebase, not lost work. **But it is not this run's job to
    repair, and it should not be repaired with a reset** — the tree is dirty with other sessions'
-   work and `--autostash` on a rebase is the documented stash-orphaning hazard. Recommended:
-   reconcile deliberately in a session that can attend to it.
+   work and `--autostash` on a rebase is the documented stash-orphaning hazard.
+   **Already tracked as `chip-refwedge-dlaptop-ree-assembly-master-g5` (generation 5)**, which
+   routes to `/metaworker-learning` for a root-cause pass rather than a fifth instance fix.
+   Note the consequence that chip spells out and this digest confirms: the tracked tree is frozen,
+   so **guards and code landed on origin since the wedge began are NOT deployed in this checkout.**
 2. **The index holds another writer's staged, uncommitted governance output** — `pending_review.md`
    (+32 lines), `substrate_status_snapshot.json` (+6), `claim_evidence.v1.json` — staged
    2026-09-09 and never committed. This is why `governance.sh` was skipped and why **only
@@ -310,7 +365,9 @@ same-run_id-different-content, 0 stranded literature entries. UNREACHABLE is not
    work is complete and land it, or clear it.
 3. **V3-EXQ-1010's manifest is untracked and unindexed** (see Headlines). Until it is committed
    and the indexer runs, a 25.6-hour decision-flipping result is invisible to every downstream
-   consumer.
-4. **The experiment queue is empty with no ready validation candidates.** Refill requires a fresh
-   `/queue-experiment` design pass, not a re-queue — 37 SD validations have already been
-   attempted.
+   consumer. `chip-autopsy-v3-exq-1010` covers *autopsying* it; note that landing/indexing the
+   manifest is blocked behind item 1 (the checkout cannot cleanly commit while wedged).
+4. **The experiment queue is empty (0 pending) while ~8 open chips carry ready, concrete
+   experiments.** This is a dispatch gap, not a design gap — see Chip Ledger above. The
+   fleet-idle watcher's "0 candidates" is scoped to SD-validation only and should not be read as
+   "nothing to queue".
