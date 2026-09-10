@@ -53,7 +53,10 @@
           "c2_criterion_revised": "corr(pe_component, model_pe) > corr(raw_component, model_pe) + 0.05 in >=2/3 seeds with C1 R2 > 0.3",
           "guard": "assert bias_clip_saturation_frac < 0.1 per seed before scoring C2; flag inconclusive for saturating seeds"
         }
-      }
+      },
+      "routing_status": "withdrawn",
+      "routing_withdrawn_utc": "2026-09-10T06:45:00Z",
+      "routing_withdrawn_note": "WITHDRAWN 2026-09-10 by governance (GFLAG-0211, user decision option A). The routing below was never acted on: V3-EXQ-597c was not authored, queued or run in the three and a half months after this autopsy was confirmed, and later measurement invalidated redesign fix2 -- per failure_autopsy_V3-EXQ-862b_2026-08-29 and MECH-258's what_would_answer P3, a pe-isolated / per-component readout is an identity rather than a measurement, because control_required is a deterministic linear function of pe. MECH-258 is meanwhile parked ceiling_decision: deferred behind the shared MECH-439 F-dominance blocker (committed-action diversity 0.0). The surviving element of the spec -- fix1, raising dacc_bias_max_abs above the 2.0 clip -- was moved into MECH-258's what_would_answer P4 in the same edit so it is not lost. routing and routing_detail below are retained as HISTORY and must not be read as a live obligation; a fresh letter may be routed once the F-dominance blocker lifts."
     }
   ],
   "cluster_pattern": null

@@ -2,7 +2,7 @@
 
 **Substrate entry:** `f_dominance_conversion_ceiling` (rung 3, "E3 channel-scale normalisation")
 **Primary claim:** MECH-439
-**Status:** IMPLEMENTED 2026-09-07
+**Status:** IMPLEMENTED 2026-09-07 -- but **UNVALIDATABLE AS SPECIFIED** as of 2026-09-10 (see "Amendment 2026-09-10"): the rung's pre-registered acceptance condition is an arithmetic identity of this operator, so the rung cannot be validated against it. This is materially different from 'validation owed'.
 **Depends on:** MECH-448 (BUILT/VALIDATED), MECH-449 (BUILT/VALIDATED), V3-EXQ-571c instrument
 **Blocks:** MECH-439, ARC-062, MECH-309, MECH-341
 
@@ -149,6 +149,13 @@ assume it.
 
 ## Readiness target
 
+> **AMENDED 2026-09-10 -- the condition quoted immediately below is the ORIGINAL
+> pre-registered target, preserved verbatim. It is NO LONGER the acceptance condition:
+> it is an arithmetic identity of the operator. See "Amendment 2026-09-10" below.**
+
+ORIGINAL (pre-registered by `failure_autopsy_V3-EXQ-571c_2026-09-02`, confirmed; SUPERSEDED
+2026-09-10):
+
 > **>= 2 E3 score channels simultaneously above a 1e-3 relative cross-candidate share in the
 > 936 regime**, so that "which channel holds authority" is a contest rather than a
 > restatement of units.
@@ -165,6 +172,16 @@ The suppressed channel (`harm_weighted`) moves 4.82e-04 -> 5.00e-01. This is a b
 measurement, not the 936 regime; the **regime-level** validation experiment is owed and is
 tracked separately (it was pacing-gated at build time — see the implementation log on the
 substrate entry).
+
+## Amendment 2026-09-10 (rung status: IMPLEMENTED but UNVALIDATABLE AS SPECIFIED)
+
+**AMENDED 2026-09-10 (/governance GFLAG-0234, option A, user-approved).** Ratified by the user on 2026-09-10 as option A of GFLAG-0234; the ORIGINAL target above is an ARITHMETIC IDENTITY of the operator it is meant to validate. The operator divides each channel's per-candidate term by an EMA of THAT CHANNEL'S OWN cross-candidate SD, and the DV is the cross-candidate variance partition over those same post-division terms (e3_selector.py's own comment: 'EFFECTIVE (post-commensurability) terms -- what actually entered the score'). Var(term/s) = Var(term)/s^2 ~= 1 per channel, so shares tend to 1/k and every channel above the 1e-12 ABSOLUTE floor clears the 1e-3 RELATIVE floor by three orders of magnitude. NO EXPERIMENT ADOPTING THE ORIGINAL TARGET CAN FAIL; the build-time ON row (n_live 2, top_share 0.500000 = exactly 1/2) is the identity's fingerprint, not an effect. AMENDED TARGET: a SELECTION-level DV -- commit-flip rate under shadow OFF/ON scoring on the same tick and the same candidate set -- which is what the spec's own argmin-invariance argument is actually about. STATUS OF THE RUNG: IMPLEMENTED but UNVALIDATABLE AS SPECIFIED, which differs materially from 'validation owed'. MECH-439's direction does NOT move: nothing here says the operator does or does not work, only that the registered target cannot tell. The owed validation V3-EXQ-1012 is authored and smoke-green but sits UNQUEUED as a .blocked scratch file and must NOT be queued against the original target. Also refuted, separately: the natural control gate 'the monopoly means n_live==1' is a misreading of a worst-cell verdict -- 571c's env_starved_warmup arm measures n_live 1/2/1/3 across seeds 42/43/45/46 and n_live==1 holds in 8 of its 16 cells (the flag says 7; either figure refutes it). Derivation, citations and successor recipe: evidence/planning/exq1012_blocked_readiness_target_tautological_20260908.md. Amending a CONFIRMED autopsy's pre-registered acceptance condition was done under explicit governance authority; the original text is preserved verbatim everywhere it appears and all four carriers were amended together: docs/architecture/sd_e3_channel_commensurability.md, evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.md, evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json and evidence/planning/substrate_queue.json.
+
+Read the table above accordingly: the ON row is what the identity predicts (1/k with k=2 live
+channels), so it is not evidence that the operator achieved commensurability. The honest
+statement of this rung's status is IMPLEMENTED but UNVALIDATABLE AS SPECIFIED -- NOT
+'validation owed', which would wrongly imply that running the registered target could settle
+anything.
 
 ## Backward compatibility
 

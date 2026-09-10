@@ -230,3 +230,49 @@ The cleanest fix is Option 1 (multi-step contrastive); the lit-pull may anchor i
 **Implication for the 569c routing:** unchanged. 569c reads at t=1 only and the t=1 substrate is sound; the ~2.4x C3 lift over matched-noise is the load-bearing finding and the autopsy's primary recommendation (amend SD-056) does not change it.
 
 **Implication for the per-claim direction recommendation:** unchanged. ARC-065 / MECH-341 stay mixed (diagnostic, non-weighting) on 569e. The 569d PASS recorded by the morning governance walk is the actual evidence-weighting on this surface for the current cycle.
+
+---
+
+## 9a. AMENDMENT (2026-09-10, governance GFLAG-0232, user-approved) -- Section 9's 569d reading was asserted, not measured
+
+**Nothing above is deleted.** Sections 1-9 are preserved verbatim as the 2026-05-31 record; this
+amendment states what is now known to be false in Section 9 and what replaces it.
+
+**What Section 9 asserts.** The comparison table above reports 569d as "rollout-stability signatures
+clean across every arm", with an `e3_top2_class_gap_nan_fraction` column reading `0.0` for all five
+arms.
+
+**What is actually in the 569d manifest.** There is no field named `e3_top2_class_gap_nan_fraction`
+in `v3_exq_569d_sd056_action_contrastive_diversity_falsifier_floor_recal_20260531T053648Z_v3.json` at
+all -- that column was asserted, not read. The counters the run DOES carry say the opposite on every
+SD-056 ON arm:
+
+| 569d arm | n_top2_gap_skipped_nonfinite / n_p1_ticks (seeds 42/43/44) | admitted-tick e3_top2_class_gap_mean |
+|---|---|---|
+| ARM_0 OFF | 0 skipped | 0.27-1.00 |
+| ARM_1 W=0.01 | 567/567, 3653/3653, 139/148 | 1.85e35-2.86e35 |
+| ARM_2 W=0.05 | 218/237, 3505/3505, 114/174 | 1.85e35-2.86e35 |
+| ARM_3 W=0.20 | 352/425, 3620/3620, 105/134 | 1.85e35-2.86e35 |
+| ARM_4 NOISE | 0 skipped | 0.27-1.00 |
+
+The driver's `isfinite` check (v3_exq_569d driver ~line 397) bails only the diagnostic tap, so E3
+SELECTION itself ran on non-finite scores. 569d was measured under the same E2 rollout overflow this
+autopsy was written for -- the sister run was not the clean control this section took it to be.
+
+**What changes.** (1) The Section 9 sentence "569d PASSed with rollout-stability signatures clean
+across every arm" and the `e3_top2_class_gap_nan_fraction 0.0` column are WITHDRAWN. (2) The closing
+line of Section 9 -- "The 569d PASS ... is the actual evidence-weighting on this surface for the
+current cycle" -- no longer holds: 569d's manifest (flat and pack) is moved to
+`evidence_direction: non_contributory` for both ARC-065 and MECH-341 in the same pass, mirroring what
+was already done to 569e. ARC-065 drops 6 -> 5 scoring supports, MECH-341 3 -> 2 (leaving V3-EXQ-614a
+and V3-EXQ-660); neither status is moved.
+
+**What still stands.** Everything Section 9 says about the t=1-vs-iterated-rollout diagnosis, the
+three amend options, and the 569c routing is untouched -- those readings do not depend on 569d's
+top-2 gap tap. The 569c ~2.4x C3 lift remains the load-bearing finding on ARC-065 GAP-A.
+
+**Why this was possible.** The 569d manifest's own `evidence_direction_note` closes with
+"n_top2_gap_admitted and n_top2_gap_skipped_nonfinite surfaced per arm for post-hoc verification" --
+the counters were emitted for exactly this check and the check was never run until W5-S4 item 1
+(REE_assembly 5819a55ae1) ran it. The autopsy status stays CONFIRMED; a confirmed autopsy is amendable
+on the record, not silently editable.

@@ -24,10 +24,10 @@
     "MECH-341"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-065": "supports",
-    "MECH-341": "supports"
+    "ARC-065": "non_contributory",
+    "MECH-341": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -45,7 +45,7 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "SD-056 matched-entropy FP-2 falsifier (569d, floor-recalibrated successor to 569c). Recalibrated C1 floor 0.05 -> 0.03 per autopsy Section 5 (clean separation noise 0.015 vs substrate-operative 0.045). C3 acceptance tightened to require strict-above matched-noise (not just >0.3 floor) so a PASS forecloses the 'entropy-only artefact' interpretation cell that 569c's grid missed. PASS = SD-056 substrate-operative at behavioural runtime AND that variance propagates through hippocampal scoring + E3 aggregation into selected-action diversity strictly above the matched-entropy random-noise control -> R1.b fires, ARC-065 GAP-A unblocked. FAIL with C1 holding under 0.03 floor + C3 lift NOT strictly above matched-noise = diversity is entropy-only artefact, route to substrate revisit. FAIL with C1 failing under 0.03 floor = substrate not operative at behavioural runtime even at extended P0=60, route to /diagnose-errors on the contrastive head's training. NaN bug on e3_top2_class_gap that blocked dissociation in 569c is fixed in 569d (input non-finite filter in _per_class_score_stats + math.isfinite() check in caller); n_top2_gap_admitted and n_top2_gap_skipped_nonfinite surfaced per arm for post-hoc verification.",
+  "evidence_direction_note": "SD-056 matched-entropy FP-2 falsifier (569d, floor-recalibrated successor to 569c). Recalibrated C1 floor 0.05 -> 0.03 per autopsy Section 5 (clean separation noise 0.015 vs substrate-operative 0.045). C3 acceptance tightened to require strict-above matched-noise (not just >0.3 floor) so a PASS forecloses the 'entropy-only artefact' interpretation cell that 569c's grid missed. PASS = SD-056 substrate-operative at behavioural runtime AND that variance propagates through hippocampal scoring + E3 aggregation into selected-action diversity strictly above the matched-entropy random-noise control -> R1.b fires, ARC-065 GAP-A unblocked. FAIL with C1 holding under 0.03 floor + C3 lift NOT strictly above matched-noise = diversity is entropy-only artefact, route to substrate revisit. FAIL with C1 failing under 0.03 floor = substrate not operative at behavioural runtime even at extended P0=60, route to /diagnose-errors on the contrastive head's training. NaN bug on e3_top2_class_gap that blocked dissociation in 569c is fixed in 569d (input non-finite filter in _per_class_score_stats + math.isfinite() check in caller); n_top2_gap_admitted and n_top2_gap_skipped_nonfinite surfaced per arm for post-hoc verification. [AMENDED 2026-09-10, governance GFLAG-0232, user-approved: NEUTRALISED to non_contributory for BOTH ARC-065 and MECH-341. The post-hoc verification this note itself asks for was run and FAILS: on every SD-056 ON arm the E3 top-2 gap tap was non-finite (n_top2_gap_skipped_nonfinite / n_p1_ticks 567/567, 3653/3653, 139/148 on ARM_1_W001; 218/237, 3505/3505, 114/174 on ARM_2_W005; 352/425, 3620/3620, 105/134 on ARM_3_W020), with admitted-tick e3_top2_class_gap_mean 1.85e35-2.86e35, while ARM_0_OFF and ARM_4_MATCHED_NOISE admitted every tick at 0.27-1.00. The driver isfinite check (v3_exq_569d driver ~line 397) bails only the diagnostic tap, so E3 selection itself ran on non-finite scores and the C3 selected-action-entropy lift over matched-noise that carried the PASS is not interpretable as support in either direction -- the same E2 rollout overflow its sister V3-EXQ-569e was autopsied for (failure_autopsy_V3-EXQ-569e_2026-05-31, confirmed; that autopsy's Section 9 reading of 569d as clean is amended in the same pass). outcome stays PASS as recorded and no measurement is altered; only the DIRECTION moves. Pre-amendment values, preserved: evidence_direction 'supports', evidence_direction_per_claim ARC-065 'supports' / MECH-341 'supports'. Effect: ARC-065 6 -> 5 scoring supports, MECH-341 3 -> 2; neither status is moved.]",
   "config": {
     "seeds": [
       42,

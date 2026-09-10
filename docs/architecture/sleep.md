@@ -82,7 +82,19 @@ Sleep/offline phases MAY update:
 
 - representational parameters used for prediction and abstraction,
 - residue/viability integration structures,
-- precision priors and replay prioritization fields.
+- precision priors and replay prioritization fields,
+- access-route quantities: retrieval-cue mappings, model-to-policy readouts, proposal
+  distributions, and eligibility/competitive-gain mappings.
+
+The fourth class was added 2026-09-10 by governance (GFLAG-0128, user decision, option (a)).
+Offline **behavioural access repair** (ARC-137, Q-102) writes access ROUTES, not authority:
+repairing which route reaches an already-stored competence is a representational/indexing
+operation and stays inside this boundary. It was previously neither permitted nor forbidden
+here, and that silence -- not a rival claim -- is what created the ambiguity. This does NOT
+license anything on the MUST NOT list below: an access-route change that would mint a
+commitment token, execute an external action, or reach `POL`/`ID`/`CAPS` is an
+authority-affecting change and re-enters online operation through typed commit-boundary
+routing exactly like any other.
 
 Sleep/offline phases MUST NOT:
 

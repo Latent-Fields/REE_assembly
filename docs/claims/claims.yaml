@@ -17,6 +17,27 @@
 #                 (co-defining architecture, mutual explanation). UNDIRECTED:
 #                 written on both endpoints. Never a prerequisite. This is where
 #                 an edge goes when putting it in depends_on would close a cycle.
+#   blocked_on    OPTIONAL (adopted 2026-09-10, governance GFLAG-0091, user decision
+#                 option A). Records WHY a claim's own written falsifier cannot currently
+#                 be run, in exactly one of two shapes: (1) A ROUTE -- a substrate_queue
+#                 sd_id, a plan-node id, an experiment id, or a named build that would make
+#                 the falsifier runnable; or (2) the literal `irreducible`, asserting there
+#                 is nothing to build, which REQUIRES a companion `blocked_on_justification`
+#                 saying why. WHY IT EXISTS: of 507 claims carrying a written falsifier, 185
+#                 self-declare an unmet precondition and 121 have no route on either channel
+#                 (no substrate_queue.unblocks_claims entry, no IGW ledger entry), and no
+#                 field distinguishes "nobody is building it" from "there is nothing to
+#                 build" -- so every audit re-litigates it. Method caveats from the measuring
+#                 pass itself: 185 is keyword-detected (a lower bound) and 121 is generously
+#                 counted (an upper bound); shape solid, exact counts not. Detail:
+#                 evidence/planning/unrunnable_falsifier_population_20260828.md.
+#                 SCOPE: PILOT ONLY -- populated on ARC-003, Q-007, Q-015, INV-025, INV-028
+#                 and INV-029, deliberately NOT registry-wide. OWED, not done in this pass:
+#                 a scripts/validate_claims.py rule enforcing the two shapes and the required
+#                 justification, and a decision at the next audit on whether `irreducible` is
+#                 being used honestly before extending the field further.
+#   blocked_on_justification
+#                 REQUIRED when blocked_on is `irreducible`; free text. Optional otherwise.
 #   location      anchor in reference doc (docs/invariants.md, etc.)
 #   source        list of source paths
 #   notes         free text
@@ -1583,6 +1604,16 @@
     [2026-09-03, thought intake `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty`] SHARPENING OF AN EXISTING DISTINCTION, no change to status, evidence, or the `what_would_answer` above. ARC-002's confirming signature already separates a strong form (E2's action-conditioned predictions discriminate viable from non-viable actions above a naive baseline) from a weaker one (`cand_world_pairwise_dist` / `world_forward_contrastive_loss` showing predicted-outcome divergence across actions that tracks true viability differences). The source thought supplies the reason that ordering is right, in one line worth recording: "absolute prediction asks, 'what is likely to happen?'; effect prediction asks, 'what changes because of this candidate?'" -- and, sharply, "a system can model environmental evolution accurately while remaining poor at estimating its own causal contribution. Conversely, an action-effect representation can support choice while being an impoverished world model." The weaker form is weaker precisely because divergence-across-actions is a necessary but not sufficient condition for the affordance qualifier in ARC-002's title: a predictor can carry action-conditional divergence that is decision-useful while still failing to encode "what am I able to do here" as structure distinct from "what happens next". No new falsifier, no new criterion, and no change to the existing non-degeneracy precondition is proposed -- this records WHY the two forms are ordered as they are, for whoever next designs an ARC-002 test.
 - id: ARC-003
   title: "E3 selects and commits trajectories."
+  blocked_on: "ARC-107 (BG-selector constitution) landed AND the commit/release-duration levers V3-EXQ-460j / 485i / 654h returned -- this claim's own what_would_answer RELEASE CONDITION, lifted verbatim"
+  blocked_on_justification: >
+    [2026-09-10, GFLAG-0091 pilot] ROUTE, not irreducible -- this is the neglect case, not
+    the irreducibility case. ARC-003 is CONJUNCTIVE and only half of it is blocked: LEG A
+    (E3 selects) is commitment-free and testable NOW at the scoring level; LEG B (E3 commits)
+    needs the basal-ganglia / action-commitment layer under active construction, and a
+    behavioural FAIL run before it lands would re-derive the F-dominance conversion ceiling
+    rather than adjudicate the claim. The route above is named in the claim's own
+    what_would_answer; what was missing was any machine-readable record of it, which is why
+    this claim reads to every audit as settled while its own test is unrunnable.
   claim_type: architectural_commitment
   subject: E3.trajectory_commitment
   polarity: asserts
@@ -3779,6 +3810,16 @@
     field must build meaningful contrast before developmental vs additive ethics can be tested.
 - id: Q-007
   title: "Do affect dimensions (not necessarily universal expressions) map to stable control-channel regimes in z_beta?"
+  blocked_on: "a Q-007-specific readiness probe measuring z_beta between-context separation over affect-labelled episodes -- lifted verbatim from this claim's governance_2026_09_01 block; no run in the corpus has produced that statistic and no proposal has been minted for it"
+  blocked_on_justification: >
+    [2026-09-10, GFLAG-0091 pilot] ROUTE, not irreducible. The discharging measurement is
+    already written out in prose in this claim's own governance_2026_09_01 block (GFLAG-0097,
+    2026-09-01) -- it is an experiment that could be authored today, not a substrate that must
+    first be built. Explicitly NOT discharged by V3-EXQ-643a: that run validated a different
+    gate (modulatory_authority_range across action candidates at one tick, not z_beta
+    between-context separation across episodes) and carries claim_ids: [], so it reaches no
+    claim in the matrix. This field exists because the route was recorded only on a channel
+    no routing process reads.
   claim_type: open_question
   subject: emotion.affect_dimension_channel_mapping
   polarity: asserts
@@ -4466,6 +4507,21 @@
     regardless of whether it is representational or authority-affecting);
     or (c) the only enforcement is a naming/comment-level convention with
     no machine-checked gate.
+
+    SCOPE RULING 2026-09-10 (governance, GFLAG-0128, user decision, option (a)): the
+    permissive MAY-update list this claim inherits from docs/architecture/sleep.md#arc-020
+    NOW EXPLICITLY INCLUDES ACCESS-ROUTE QUANTITIES -- retrieval-cue mappings,
+    model-to-policy readouts, proposal distributions, and eligibility/competitive-gain
+    mappings -- so an offline BEHAVIOURAL ACCESS REPAIR operation (ARC-137, Q-102) is
+    PERMITTED by ARC-020 rather than, as before, neither permitted nor forbidden by
+    omission. Read it as a widening of what counts as "an ordinary representational/residue/
+    precision write" in the CONFIRMING clause above, and hence of what the typed boundary
+    must let through unimpeded. The MUST NOT list is untouched: an access-route write that
+    mints a commitment token, dispatches an external action, or reaches a POL/ID/CAPS
+    equivalent is still authority-affecting and must be typed-routed, so the FALSIFYING
+    clauses above stand unchanged. Surfaced by the duplication audit in
+    thought_intake_2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md;
+    the defect was ARC-020's silence, not a rival claim.
 - id: MECH-025
   title: "Action mode prioritizes short-horizon, high-precision control via context-dependent precision modulation."
   claim_type: mechanism_hypothesis
@@ -7165,6 +7221,15 @@
     - docs/architecture/agency_responsibility_flow.md
 - id: Q-015
   title: "What is the smallest commit-boundary token that still supports reliable multi-timescale attribution?"
+  blocked_on: "a tunable commit-boundary-granularity knob -- route is /implement-substrate; NOT YET MINTED as a substrate_queue entry (V3 hard-codes the commit-token unit), and the sd_id should be written back into this field once it is"
+  blocked_on_justification: >
+    [2026-09-10, GFLAG-0091 pilot] ROUTE, not irreducible: the OPEN part of Q-015 -- the
+    smallest token granularity that still supports reliable attribution -- needs a substrate
+    that does not yet exist but is buildable, per this claim's own what_would_answer. The
+    partially-answered part (pre-commit and post-commit signals stay uncorrelated, and routing
+    them separately beats blending) is already settled by EXQ-003 / MECH-061 on
+    ree-v1-minimal. The absence of a substrate_queue sd_id to name here is the finding this
+    pilot exists to surface, not a gap in this field.
   claim_type: open_question
   subject: commitment.boundary_token_minimal_contract
   polarity: asks
@@ -7786,6 +7851,17 @@
 # Five foundational axioms — registered 2026-03-18
 - id: INV-025
   title: "Irreducible uncertainty is an epistemological constraint that cannot be engineered away."
+  blocked_on: irreducible
+  blocked_on_justification: >
+    [2026-09-10, GFLAG-0091 pilot] IRREDUCIBLE, and scoped to the AXIOM LEG ONLY. No REE
+    experiment can show that epistemic uncertainty is irreducible IN PRINCIPLE for any finite
+    agent in a real world (Axiom 1 of five_axioms_foundations.md); an experiment can only show
+    that REE's own uncertainty estimates are non-degenerate, never that some other
+    architecture could not in principle eliminate uncertainty. There is nothing to build, so
+    there is no route to name. THIS IS NOT A PARKING PLACE: the claim also carries a REFRAMED
+    TESTABLE LEG which its own what_would_answer records as testable NOW and NOT
+    substrate-blocked (the precision architecture, ARC-016 / INV-008 / INV-009), and
+    `irreducible` here must not be read as excusing that leg from being run.
   claim_type: invariant
   invariant_type: universal
   epistemic_category: standard
@@ -8008,6 +8084,17 @@
 
 - id: INV-028
   title: "Shared-world ethics requires modelling others as co-inhabitants of the same consequence space."
+  blocked_on: irreducible
+  blocked_on_justification: >
+    [2026-09-10, GFLAG-0091 pilot] IRREDUCIBLE, and scoped to the AXIOM LEG ONLY: no REE
+    substrate at any level -- V3, V4 or V5 -- can confirm or falsify that another agent's harm
+    is real by the same grounds as the agent's own (Axiom 4 of five_axioms_foundations.md).
+    RECORDED HONESTLY RATHER THAN PARKED: the claim ALSO carries a REFRAMED TESTABLE LEG whose
+    block is a ROUTE, not irreducibility -- ARC-047 SocialGridWorld or an equivalent
+    multi-agent environment in which a second agent's harm is attributable to the tested
+    agent's own action (ARC-047 unimplemented, candidate, implementation_phase v5; see
+    ARC-010's own what_would_answer). If this pilot is extended into a per-leg field, that leg
+    should carry the route shape rather than this one.
   claim_type: invariant
   invariant_type: universal
   epistemic_category: substrate_conditional
@@ -8097,6 +8184,17 @@
 
 - id: INV-029
   title: "Love as long-horizon care-investment is a structurally coherent agent disposition, not an add-on sentiment."
+  blocked_on: irreducible
+  blocked_on_justification: >
+    [2026-09-10, GFLAG-0091 pilot] IRREDUCIBLE, and scoped to the AXIOM LEG ONLY: no REE
+    substrate at any level -- V3, V4 or V5 -- can confirm or falsify whether love / genuine
+    connection is metaphysically real (Axiom 6/7 of five_axioms_foundations.md). RECORDED
+    HONESTLY RATHER THAN PARKED: the claim ALSO carries a REFRAMED TESTABLE LEG whose block is
+    a ROUTE, not irreducibility -- the V5 / multi-agent substrate (WS-10 minimal 2-agent world;
+    ARC-010 mirror modelling extended to a second agent whose harm is attributable to the
+    tested agent), plus an engaged residue/attachment signal and long-horizon credit
+    assignment, per this claim's own non-degeneracy precondition. If this pilot is extended
+    into a per-leg field, that leg should carry the route shape rather than this one.
   claim_type: invariant
   invariant_type: universal
   epistemic_category: substrate_conditional
@@ -9817,6 +9915,18 @@
     LEG 3 IS NOT A MECH-074c LEG (fused-claim finding, stated here so it stops being re-litigated): "CeA must fire on harm-affective valence, not generic arousal" cannot be tested as a CeA-module manipulation, because CeAAnalog.tick() is a pure function of ||LowFreq(z_harm_a)||_1/n -- a magnitude-matched non-harm drive fires IDENTICALLY by arithmetic (the DV-symmetry artifact class, per failure_autopsy_V3-EXQ-604c and 895's own interpretation.selectivity_leg). Selectivity is a property of the upstream SD-011 AffectiveHarmEncoder. That leg should be re-registered against SD-011 with 895's already-banked readiness denominator: mean AUROC against the same hazard-proximity label of 0.674 (encoder input), 0.622 (CeA gate statistic), 0.540 (generic activation), reference floor 0.60 -- i.e. the encoder's own harm-discriminativeness is currently only marginally above the floor, which is the real question hiding inside this leg.
   digestion_note: >
     [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] FIRING PRECONDITION -- remove this note once an embodied run reports fire_count > 0 at the registered threshold. The only embodied measurement to date (V3-EXQ-895 SELECTIVITY_PROBE, 4 seeds, 2044 ticks) recorded embodied_fire_count = 0 on every seed (max ||LowFreq(z_harm_a)||_1/n = 0.216 vs cea_fast_route_threshold = 0.5; fast_prime identically 0.0). The provisional status rests on driven-arm results only; legs 1-2 are answered in the driven regime and must not be re-run. epistemic_category set to substrate_conditional 2026-09-06 on the strict discriminator (in-loop mechanism never exercised); this note carries the same precondition so the evidence reading is preserved if governance prefers to leave the category inferred.
+
+    [2026-09-10 /governance, GFLAG-0157 RULED -- option (i), KEEP AS APPLIED] The choice this note
+    hedges is now an explicit governance ruling rather than an undecided tag: epistemic_category STAYS
+    substrate_conditional, set explicitly, exactly as applied 2026-09-06. Grounds: embodied_fire_count = 0
+    on EVERY seed of the only embodied measurement is a genuine non-degeneracy failure of the in-loop
+    mechanism, not a borderline call, so promote/demote suppression is the defensible default. Cost
+    accepted knowingly: legs 1-2's genuine driven-regime PASS (V3-EXQ-895) stops contributing to any
+    promotion signal, while leg 3 is out of scope anyway. The conditional clause above ("if governance
+    prefers to leave the category inferred") is therefore CLOSED, not live -- this note is retained as the
+    firing-precondition record, NOT as an alternative to the tag. Lift the suppression only on an embodied
+    run reporting fire_count > 0 at the registered threshold. Cluster-mate GFLAG-0158 (two narrower stale
+    sub-notes, corrected 2026-09-10 in evidence_quality_note) is a different finding, not a duplicate.
   location: docs/architecture/sd_035_amygdala_analog.md#mech-074c
   source:
     - evidence/literature/targeted_review_connectome_mech_046/entries/2026-04-21_mech_046_fast_pathway_mendezbertolo2016/
@@ -28374,6 +28484,17 @@
     accuracy is statistically indistinguishable from chance, OR indistinguishable between a
     receiver WITH and WITHOUT the corresponding internal-state machinery -- either falsifies
     "legible via a corresponding internal state, not learned convention."
+    [2026-09-10 /governance GFLAG-0175 option A] NECESSITY FRAMING MIGRATED HERE FROM MECH-192, which was
+    retitled to its narrowed signal-side residual on the same date. Leg B is the manipulation that carries
+    it: z_beta leakage can only produce functional state-matching if the perceived signal maps onto a
+    corresponding internal state in the observer, and stereotyped signals meet that requirement because they
+    are produced by the same functional states they communicate -- which is why fast empathy works
+    cross-species without shared language (Albuquerque 2016, Silva 2011; lit
+    targeted_review_social_signal_legibility). Ablating the receiver's homologous internal-state machinery,
+    i.e. Leg B's CONFIRMING/FALSIFYING clauses above, is what tests that necessity reading; MECH-192 now
+    retains only the graded signal-side residual (monotone coordination benefit in legibility at fixed
+    attribution coupling and matched channel information) and does not restate the necessity claim.
+
     RELEASE CONDITION: identical substrate to MECH-183/MECH-041 -- ARC-047 (scent/broadcast
     channel) plus ARC-010/MECH-031/MECH-032 (other-agent modelling) landing. No separate build
     is implied by MECH-191 beyond what MECH-183/MECH-041 already require.
@@ -28386,7 +28507,7 @@
   notes: "Stereotyped signals (whine=wanting, huff=plan-abandonment, yelp=nociception, tail-wag=positive-arousal, play-bow=mode-invitation) are causally generated by internal functional states. Because the signal is a causal product (not a convention), any observer with a corresponding internal state can map it. Extends MECH-182 from one signal to the full repertoire. Partial novelty: causal production mechanisms well-established (Briefer 2012, Brudzynski 2007); functional-state-to-signal mapping framing is novel. Lit: targeted_review_social_signal_legibility."
 
 - id: MECH-192
-  title: "Signal legibility is prerequisite for fast empathy coordination: z_beta leakage (MECH-183) requires perceivable signals that map onto observer's own functional states."
+  title: "Coordination benefit from z_beta leakage is monotone in signal legibility, holding attribution coupling and channel information fixed -- the SIGNAL-side ablation (MECH-191 Leg B ablates the RECEIVER; MECH-183 ablates the COUPLING; no other claim ablates the signal). RETITLED 2026-09-10 from the near-analytic 'signal legibility is prerequisite for fast empathy coordination' framing; see notes."
   claim_type: mechanism_hypothesis
   subject: social.legibility_empathy_prerequisite
   polarity: asserts
@@ -28400,6 +28521,7 @@
   depends_on:
     - MECH-183
     - MECH-191
+    - ARC-047   # broadcast channel: every arm of the signal-side manipulation needs it (added 2026-09-10, GFLAG-0175 option A)
   what_would_answer: |
     AS REGISTERED, MECH-192 IS NEARLY ANALYTIC and therefore not yet falsifiable. "z_beta
     leakage can only produce functional state-matching if the perceived signal maps onto a
@@ -28460,6 +28582,23 @@
     z_beta leakage can only produce functional state-matching if the perceived signal maps onto a corresponding internal state in the observer. Stereotyped behavioral signals (MECH-191) meet this requirement because they are produced by the same functional states they communicate. Explains why fast empathy works cross-species without shared language (Albuquerque 2016, Silva 2011). Partial novelty: cross-species emotion recognition documented; framing legibility as prerequisite specifically for fast empathy is novel. Lit: targeted_review_social_signal_legibility.
 
     [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] PARTIAL-ABSORPTION PROPOSAL (propose-only, contested_disposition flag raised): as registered the claim is near-analytic; its necessity framing is covered by MECH-191 Leg B (receiver ablation) and MECH-183 (coupling ablation). NARROWED RESIDUAL retained here: coordination benefit from z_beta leakage is MONOTONE in signal legibility at fixed coupling and matched channel information (the SIGNAL-side, information-matched scramble), which nobody else owns. Do NOT retire: ARC-048 depends_on this id; ARC-115/ARC-117 reference it.
+
+    [2026-09-10 /governance GFLAG-0175 RULED -- OPTION A ADOPTED, narrowing applied to the claim and not
+    only to the falsifier] The title was REWRITTEN on this date, from "Signal legibility is prerequisite
+    for fast empathy coordination: z_beta leakage (MECH-183) requires perceivable signals that map onto
+    observer's own functional states" to the narrowed residual the 2026-09-06 falsifier already states.
+    Reason: the old headline is close to a definitional truth -- there is no world in which a signal that
+    maps onto nothing produces state-matching -- which is why it was never testable, and the registry
+    should not carry an analytic headline over a testable body. ARC-047 added to depends_on. The
+    necessity framing and the cross-species rationale (Albuquerque 2016, Silva 2011) now sit on MECH-191's
+    Leg B, which is the manipulation that actually carries them; the first paragraph of this note is left
+    standing as REGISTRATION HISTORY, not as current scope. THE ID'S MEANING HAS CHANGED, and the three
+    inbound citers invoke it as the general legibility condition -- ARC-048 (depends_on), ARC-115 and
+    ARC-117 (related_claims) -- so each must be RE-READ against the narrowed reading, not merely
+    re-pointed; that re-read is OWED and is not done by this edit. Not urgent in run terms: every arm is
+    gated behind a V5 social substrate (ARC-047 broadcast channel plus ARC-010/MECH-031/MECH-032)
+    confirmed absent, so this is a registry-truthfulness change, not a scheduling one. Retirement was
+    considered and REFUSED (option C): it would strand ARC-048.
 
 - id: MECH-193
   title: "Social reward signals (affiliative touch, oxytocin-gaze loop) reinforce empathic coupling strength, creating a self-strengthening coordination loop."
@@ -37341,10 +37480,29 @@
     model-free policy -- whereas THIS claim asserts arbitration on URGENCY and
     commitment, keyed to z_harm_a. Different independent variables, different
     biology (Daw/Niv/Dayan 2005 vs Dolan & Dayan 2013). So the dose-response content
-    below remains unmeasured; the precondition is NOT unmet. Cheapest discriminator,
-    per the 2026-09-01 decision brief: re-run V3-EXQ-811a's design with z_harm_a
-    logged per tick alongside w -- driver-only, shipped substrate, no build.
-    Tracked as GFLAG-0080 (still open). NOTE the paragraph below is also stale on
+    below remains unmeasured; the precondition is NOT unmet. [2026-09-10 /governance GFLAG-0239 RULED -- OPTION A;
+    THE 'CHEAPEST DISCRIMINATOR' SENTENCE IS STRUCK.] It read: "Cheapest discriminator, per the
+    2026-09-01 decision brief: re-run V3-EXQ-811a's design with z_harm_a logged per tick alongside w --
+    driver-only, shipped substrate, no build." That run is decided BY CONSTRUCTION and was REFUSED at
+    design on 2026-09-09. w = sigmoid(gain*(u_habit_n - u_planned_n) + bias)
+    (e3_selector.py:1775) is a deterministic function of exactly two inputs: u_habit = 1 - familiarity
+    (supplied from agent.py:9371-9379) and u_planned = the E3 z_world one-step PE-MSE EMA
+    (e3_selector.py:4410-4416). z_harm_a IS forwarded by select() (e3_selector.py:3122-3134) but is
+    consumed only by score_trajectory (:1727-1736), producing the habit score vector blended at :1778 --
+    it never reaches w. The partial correlation of w with z_harm_a given (u_habit_n, u_planned_n) is
+    therefore identically zero and the re-run would return a guaranteed null. Record:
+    evidence/planning/gflag0080_mech235_harm_arbitration_design_refusal_20260909.md (origin/master
+    bb8f987842); substrate citations independently re-verified against ree-v3 HEAD.
+    LEG-SCOPED MARKER: MECH-235's HARM/URGENCY arbitration leg is SUBSTRATE_CONDITIONAL on the (a) or (b)
+    build named below -- concretely a harm-PE input to the arbitrator, two shapes recorded in the refusal
+    record, about one line of substrate plus a config knob and a bit-identity contract. It is not testable
+    on shipped substrate at all. status stays CANDIDATE; the uncertainty/depth leg (SD-081/MECH-477) is
+    unaffected and is separately validated. DO NOT let a later audit read this parked state as evidence
+    AGAINST the claim: the harm leg is currently implemented only as a hard binary threshold, which is
+    precisely what MECH-235 says the arbitration is NOT. Two items OWED and NOT done by this edit: a
+    substrate_queue entry for the harm-PE arbitrator input, and the closure of GFLAG-0080 -- which must be
+    closed as MISDIAGNOSED, not as satisfied, since its assertion that the graded weight was never built is
+    false (it landed ree-v3 4472811 on 2026-07-22). NOTE the paragraph below is also stale on
     line numbers: urgency_interrupt_threshold is config.py:1037 (not 964) applied at
     agent.py:6507 (not 6048); the binary-interrupt substance is unaffected.
     module contract states it "is READ-ONLY with respect to z_self and z_world" -- it is
@@ -40353,6 +40511,22 @@
     (behavioral_diversity_isolation:GAP-I, f_dominance_conversion_ceiling); the 2026-05-24-routed
     V3-EXQ-597c redesign remains unauthored (GFLAG-0211). Flags GFLAG-0210/0211/0212/0213 stay open.
     To re-route, remove this marker.
+
+    [2026-09-10 governance, GFLAG-0211; user decision, OPTION A] THE 2026-05-24 V3-EXQ-597c
+    ROUTING IS FORMALLY WITHDRAWN, not merely unexecuted, and the sentence above naming it as
+    an outstanding redesign should now be read as history. failure_autopsy_V3-EXQ-597b_2026-05-23
+    routed /queue-experiment -> V3-EXQ-597c with a two-fix spec; three and a half months on it
+    was never authored, queued or run, and later measurement has invalidated one of the two
+    fixes -- per failure_autopsy_V3-EXQ-862b_2026-08-29 and this claim's own what_would_answer
+    P3, a pe-isolated / per-component readout is an IDENTITY rather than a measurement, because
+    control_required is a deterministic linear function of pe. The other fix does not by itself
+    lift the blocker that stops the experiment being interpretable at all (committed-action
+    diversity 0.0, P4). The autopsy JSON now carries routing_status: withdrawn. CARRY-OVER,
+    applied in the same edit so nothing survivable is lost: the one element measurement has NOT
+    invalidated -- raising dacc_bias_max_abs above the 2.0 clip that made 597b's post-clip
+    output a constant -- has been moved into what_would_answer P4, where it will be read when
+    the F-dominance ceiling lifts. Nothing is foreclosed: a fresh letter can be routed at any
+    time.
   live_status:
     reading: candidate/v3_pending
     as_of: 2026-07-11
@@ -40440,7 +40614,7 @@
 
     (P3) Arithmetic reachability of the scored DV. Per `failure_autopsy_V3-EXQ-862b_2026-08-29`: `bundle["pe"]` reaches the bias through exactly one path -- `control_required = pe * dacc_effort_cost (0.1)` (`dacc.py:397`) x per-candidate effort (= horizon 10, `agent.py:6919-6923`) x `dacc_weight` (0.5) -- against payoff components `-E3.last_scores` of ~500-1800, giving an upper-bound pe-driven std of ||bias|| of `0.5*0.1*10*sqrt(32)*std(pe) = 2.83*std(pe)` and a measured variance share <= 1e-6 in every cell (max direct-path |rho| ~ 0.0002-0.0010 against a 0.3 bar). Any DV taken on total bias or on the E3 score must be shown, at authoring time, to admit a pe-driven variance share above a pre-registered floor; otherwise the criterion is arithmetically unreachable whether or not the mechanism is real, and a null is uninterpretable. Current reading: FAILING at default gains. NOTE the paired trap: 862b's suggested remedy of a "pe-isolated readout" (`bundle["control_required"]` / `bundle["effort_term"]`, `dacc.py:460-461`) is NOT a valid MECH-258 DV, because `control_required` is a deterministic linear function of `pe`, so `corr(control_required, model_pe) = 1` by construction. It is an identity, not a measurement. The escape is arm contrast (PE_FORWARD vs RAW_NORM_ABLATION) on a payoff-NORMALISED behavioural DV, never component isolation.
 
-    (P4) Committed-action diversity must exist at all. See SD-032b's own `what_would_answer` clause (b) and its `ceiling_routing_note` -- do not re-derive. Current reading: FAILING (445h `action_class_entropy = 0.0` across ALL arms; MECH-439 F-dominance ~88-89% of E3 variance, tracked by ARC-108/MECH-450). Additionally, per 597b, `bias_clip_saturation_frac` must be < 0.1: at `dacc_bias_max_abs = 2.0` against `dacc_suppression_weight = 4.0` the post-clip output was a constant 2.0 in every step of every seed of BOTH conditions, so E3 received no dACC variation at all.
+    (P4) Committed-action diversity must exist at all. See SD-032b's own `what_would_answer` clause (b) and its `ceiling_routing_note` -- do not re-derive. Current reading: FAILING (445h `action_class_entropy = 0.0` across ALL arms; MECH-439 F-dominance ~88-89% of E3 variance, tracked by ARC-108/MECH-450). Additionally, per 597b, `bias_clip_saturation_frac` must be < 0.1: at `dacc_bias_max_abs = 2.0` against `dacc_suppression_weight = 4.0` the post-clip output was a constant 2.0 in every step of every seed of BOTH conditions, so E3 received no dACC variation at all. CARRY-OVER FROM THE WITHDRAWN V3-EXQ-597c ROUTING (moved here 2026-09-10, GFLAG-0211, user decision option A; this is the one element of the 2026-05-24 redesign spec that later measurement has NOT invalidated, recorded here so it survives the routing's withdrawal): raise `dacc_bias_max_abs` from 2.0 to 20.0 -- the autopsy's fix1, whose own `learning_extracted` names 15-20 as the observed pre-clip magnitude range -- BEFORE scoring anything on the dACC bias, and assert `bias_clip_saturation_frac < 0.1` per seed as a scoring PRECONDITION rather than a post-hoc check. The spec's OTHER fix, per-component telemetry isolating the PE contribution, is DEAD and must not be revived: per P3 above, `control_required` is a deterministic linear function of `pe`, so a component-isolated readout is an identity, not a measurement.
 
     CONFIRMING: with P1-P4 satisfied, a two-arm within-seed contrast holding everything else fixed -- ARM_PE (`use_e2_harm_a=True`, dACC consumes `pe = ||z_harm_a - E2_harm_a(z_harm_a_prev, a_taken)||`) vs ARM_RAW (`use_e2_harm_a=False`, dACC falls back to `||z_harm_a||`) -- shows (a) behavioural-adjustment magnitude in ARM_PE scales with the precision-weighted PE and is materially DECOUPLED from raw z_harm_a magnitude, while ARM_RAW's adjustment tracks raw magnitude; and (b) the context-dependence the claim's `functional_restatement` names: for a matched nociceptive input, adjustment magnitude is larger in the high-precision (unexpected / uncontrollable) condition than the low-precision (expected / controllable) condition in ARM_PE, with no such split in ARM_RAW. Thresholds: PASS requires the ARM_PE precision-split effect to exceed both an absolute floor and a margin scaled on the SD of the per-seed delta, in >= 2/3 seeds, with the per-seed C1 gate from the 597b autopsy applied (exclude any seed whose `harm_a_forward_r2 < 0.3` from the win-count denominator -- 597b's sole "win", seed 13, was a degenerate-regime artefact at R2 = -1.624 on 170 samples).
 
@@ -40470,7 +40644,7 @@
   registered_utc: 2026-04-19
   depends_on:
     - MECH-091         # phase-reset mechanism (pre-existing analog)
-    - MECH-258         # precision-weighted PE (the magnitude compared against threshold)
+    - MECH-258         # precision-weighted PE (the magnitude compared against threshold) -- EDGE NOT YET EXERCISED BY ANY RUN (2026-09-10, GFLAG-0213; see this claim's evidence_quality_note scope record)
   coupled_with:
     - SD-032a  # coordinator  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
     - SD-032c  # AIC-analog (primary trigger source)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
@@ -40504,6 +40678,24 @@
     update within mode.
   evidence_quality_note: >
     Registered pre-implementation. See SD-032 parent.
+
+    [2026-09-10 governance, GFLAG-0213 -- SCOPE RECORD for the stable reading; NOT a
+    demotion] MECH-259's stable status rests on ONE genuine experimental entry, V3-EXQ-455
+    (v3_exq_455_sd032a_salience_behavioral; claim_evidence.v1.json genuine_exp_count 1,
+    experimental_confidence 0.575, pass_runs 1), whose MECH-259 criterion is
+    c1_mech259_trigger_natural = trigger_count_natural > 0 in >= 2/3 seeds for COORD_ON.
+    That criterion tests only that the discrete switch FIRES AT ALL. THE STABLE READING IS
+    THEREFORE SCOPED TO SWITCH OCCURRENCE ON NON-HARM SALIENCE SOURCES. The
+    precision-weighted-PE MAGNITUDE leg inherited from MECH-258 -- "the magnitude compared
+    against threshold", which is exactly what this claim's depends_on edge to MECH-258 names
+    -- is UNTESTED: the V3-EXQ-455 manifest contains zero occurrences of MECH-258, e2_harm_a,
+    use_e2_harm_a, harm_surprise_pe or dacc_pe, and its claim_ids are [SD-032a, MECH-259,
+    MECH-261]; MECH-258 itself has pass_runs 0. Do not cite MECH-259 as evidence that the
+    threshold COMPARISON works, and do not read its stable status as inherited support for
+    MECH-258. NOTED IN THE SAME PASS, deliberately not corrected here: live_status.evidence
+    points at v3_exq_447 (2026-04-23) while claim_evidence.v1.json's latest_run_id for this
+    claim is the 455 run (2026-04-20) -- a pointer inconsistency for whoever next touches
+    this claim's live_status.
   implementation_note: >
     IMPLEMENTED 2026-04-19 within SalienceCoordinator
     (ree_core/cingulate/salience_coordinator.py). effective_threshold =
@@ -44107,6 +44299,27 @@
     V3-EXQ-462) a rule installed in internal_planning survives the transition
     to external_task via SD-033a, not via hippocampal re-proposal.
 
+    [2026-09-10 /governance GFLAG-0224] CONFIRMING BRANCH NARROWED -- THE mode-content LOCATION LEG IS NOT
+    MEASURABLE ON ANY BENCH TESTED, and this is now ratifying a concluded empirical answer rather than an
+    open call. V3-EXQ-1005, the planned properly-powered CONTENT/location test, was REFUSED at
+    /queue-experiment red-team (BLOCKING, confirmed by two probes; record
+    evidence/planning/exq1005_mech267_location_dv_redteam_blocking_20260907.md, REE_assembly 48e804b28b): at
+    production CEM settings (support_preserving_ao_std_floor=0.2, clamped after every refit, refit mean read
+    from E2's recomputed action objects) the elite-selection channel can move the proposal centroid by only
+    +0.0001..+0.001 standardised units against the 0.02 floor, while per-mode ao_std rescaling moves it ~0.27
+    through decoder curvature. The commissioned 2x2 ceiling spike
+    (chip-20260907-exq1005-elite-channel-ceiling-spike) has SINCE RUN AND RESOLVED with the same answer -- NO
+    CELL CLEARS across untrained and grounded E2 with the floor on and off
+    (evidence/planning/exq1009_mech267_elite_channel_ceiling_spike_redteam_blocking_20260907.md section 4).
+    CONSEQUENCE: the CONFIRMING branch above is narrowed to the BREADTH channel it has actually validated (H3
+    mode_partitioned_cem, V3-EXQ-928 paired contrast); mode-content LOCATION is NOT measurable via
+    proposal-output centroid at production CEM settings, so the lineage's 'wash-out at iters=3' is at least
+    partly a production-CEM/bench property rather than solely a claim property. The location leg is NOT
+    falsified -- it is unmeasurable on this instrument, and no null obtained through a proposal-output
+    centroid DV at production settings may be read against MECH-267. Recovering it is a complicated
+    (buildable) substrate item per the spike record's own routing recommendation; that substrate_queue entry
+    is OWED and is NOT registered by this edit.
+
     FALSIFYING: even with H3 as default and a properly-powered gate, the
     predicted FOUR-MODE MONOTONE GRADIENT is not restored -- only the
     extreme-pair separation recovers, and specifically the
@@ -45241,6 +45454,10 @@
     - ARC-010   # social.mirror_modelling (V4)
     - MECH-272  # state-gated routing
     - INV-049   # offline-phase necessity
+  coupled_with:
+    - ARC-059  # reciprocal of ARC-059.coupled_with [added 2026-09-10, GFLAG-0112: ARC-059 retyped
+              # its MECH-274 edge depends_on -> coupled_with under GOV-EDGE-1 (v3-vs-v4 phase conflict);
+              # coupled_with is a RECIPROCAL relation, so the return edge is required for the pair to be well-formed.
   functional_restatement: >
     ARC-010 and the fast-empathy system will produce single-episode
     attributions of other-agent action-outcome links in V4: "agent j
@@ -45291,12 +45508,12 @@
     - ARC-019   # generic staged curriculum this refines
     - MECH-276  # scientist-agent principle, mechanism across all stages
     - ARC-010   # stage-3 substrate (V4)
-    - MECH-274  # stage-3 sleep-aggregation (V4)
     - MECH-256  # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): RESOLVES the 2026-08-07 digestion flag below/above. Stage-1 closure is self/world discrimination, which MECH-256's single-pass comparator still supplies (output-consuming, like-for-like repoint); SD-029 (z_harm_s-specific) deliberately not added -- ARC-059 is stream-agnostic.
     - SD-005    # z_self / z_world split (currently engineered; developmental construction flagged)
   coupled_with:
     - MECH-277  # stage-1 specialisation (action-space discovery)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
     - MECH-278  # stage-2 specialisation (object-schema formation)  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+    - MECH-274  # stage-3 sleep-aggregation (V4)  [RETYPED from depends_on 2026-09-10, GFLAG-0112 (user decision, option b): ARC-059 is implementation_phase v3 while MECH-274 is phase_locked v4, which check_claim_phase_consistency.py correctly reports as a CONFLICT. Mirrors the treatment GOV-EDGE-1 already applied to the sibling MECH-278 edge on 2026-09-04; ARC-059's v3-testable content (the stage-1 -> stage-2 ordering) does not require the stage-3 multi-agent specialisation to be built.]
   epistemic_category: substrate_conditional
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: this ordering claim is not yet
@@ -47893,6 +48110,26 @@
     What remains open is ONLY the falsifiable-predictions half -- the CONFIRMING
     clause of what_would_answer below. No status change; recorded so a future
     reader does not re-litigate the integration clause of the bar.
+
+    [2026-09-10 governance, GFLAG-0191, resolved under the GFLAG-0247 parent decision]: BEARS-ON
+    DISPOSITION -- a cross-tag, NOT a scoring entry. MECH-288 scores from ONE genuine experiment
+    (V3-EXQ-757, an action-free synthetic isolation test: claim_evidence.v1.json genuine_exp_count
+    1, experimental_confidence 0.649, evidence_quadrant confirmed_established, overall_confidence
+    0.806) while its event-segmenter substrate ran live inside roughly 22 further indexed
+    experiments, none of which names MECH-288 in claim_ids. V3-EXQ-839 is the documented instance:
+    it carries MECH-288 in a bears_on field the indexer does not yet read. Those runs BEAR ON this
+    claim and are recorded here as such; they are not scoring entries and are not being back-tagged.
+    Option (b), retro-tagging MECH-288 onto some subset of the 22, was considered and DECLINED under
+    the CLAUDE.md claim_ids Accuracy Rule -- none of them was designed against MECH-288's own
+    falsifiable predictions, so tagging them would inflate genuine_exp_count without testing the
+    claim. genuine_exp_count therefore stays 1 by decision, not by oversight, until the bears_on
+    indexer reader owed by the GFLAG-0247 decision surfaces the relation without scoring it.
+    diagnostic_evidence_adjudicated is deliberately NOT set: the falsifiable-predictions half of the
+    promote-to-active bar (the CONFIRMING clause of what_would_answer below) is still genuinely
+    owed, and suppressing the missing-experimental-evidence signal would hide that. One correction
+    to the flag as raised: its "overall_confidence 0.81" is cited to docs/assets/data/claims.json,
+    whose overall_confidence for MECH-288 is null; the 0.806 figure lives in
+    evidence/experiments/claim_evidence.v1.json, a different artifact.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (the LIVE GRADED-MISMATCH PRECONDITION; MECH-206 and any other
     consumer claim should cross-reference this text rather than re-derive it). Four conjuncts,
@@ -53711,6 +53948,27 @@
     MECH-349 -- whether they should be stamped into this claim's live_status.evidence is
     GFLAG-0198's decision, deliberately NOT taken here. MECH-349's own validation remains
     OWED.
+  evidence_quality_note: >
+    [2026-09-10 /governance GFLAG-0198 RULED -- OPTION B, PROSE ATTRIBUTION ONLY; MANIFESTS NOT RETAGGED,
+    AND NOT TO BE] MECH-349 has zero entries in claim_evidence.v1.json, yet landed, reviewed runs carry its
+    headline CREATE-face diagnostics under neighbouring attribution. Recorded here in prose so the record is
+    honest without retroactively changing the score of runs a past governance walk already marked discussed
+    (option A was considered and refused for exactly that reason).
+    (i) V3-EXQ-806 (2026-07-25, PASS/supports, filed under SD-078/ARC-063) reports crf_n_minted 3-10 and
+    crf_max_pairwise_rule_dist 1.598-1.701 -- live, distinct minting on the SD-078-centered context key, the
+    measurement this claim's non-degeneracy gates (a) and (b) ask for.
+    (ii) V3-EXQ-666c ARM_0_OFF reports 302 minted / 302 retired / dist 0.0 -- the canonical vacuous-positive
+    signature named in FALSIFYING (3) below. CORRECTION to GFLAG-0198 as filed: 666c is NOT misattributed --
+    its claim_ids is empty and it appears under no claim at all, so it is invisible rather than mis-filed.
+    (iii) V3-EXQ-822 (2026-07-26, FAIL, 16/16 slots minted, dist 1.711) is DELIBERATELY EXCLUDED from this
+    attribution and must not be retagged under any option: its evidence_direction is `unknown`, and attaching
+    an uninterpretable row to a claim that currently has none is worse than zero.
+    WHAT THIS DOES NOT CHANGE: genuine_exp_count stays 0 and MECH-349 will keep tripping zero-evidence
+    detectors -- the accepted cost of option B. A PROPERLY-TAGGED RUN IS OWED (option C, 'B now, C next'):
+    the mechanism is default-OFF-but-armable so the run is cheap, and until it lands MECH-349's own
+    validation remains OWED, as the 2026-09-10 GFLAG-0199 correction in `notes` already states. NOT ASSESSED
+    HERE: the flag asserts the same gap for MECH-350/351/352; no run measuring their specific diagnostics was
+    found, so treat that half as unverified scope rather than as a finding.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION. Apply TRIGGERED-STRUCTURAL-EVENT PRECONDITION (G9) in full; this
     claim is the one the (B) pole was written from. Concretely, and all four must hold in the same
@@ -54105,6 +54363,8 @@
     docs/architecture/affect_primitives.md (Extension Register, effort/fatigue).
 
     [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] Blocking substrate named: the two-bound (hysteretic) EFFORT accumulator (ARC-078) does not exist anywhere in ree_core (only an env AR(1) observation-noise 'fatigue' term and PCCConfig.fatigue_weight, neither of which accumulates with effort) and has no substrate_queue entry. PARTIAL-ABSORPTION PROPOSAL (propose-only, contested_disposition flag raised): the SLOW Process-S leg is already instantiated in form by SD-SLEEP-ENTRY-PRESSURE (EntryPressureAccumulator, ree_core/sleep/mel_consumer.py, 2026-08-26) with the WRONG integrand (waking prediction error, not effort), one bound not two, and no in-task STOP; no reverse-deps to repoint. Any run must set use_blocked_agency=False or pin z_block (MECH-353 fires DECOMMIT on the same observable from the opposite antecedent).
+
+    [2026-09-10 governance, GFLAG-0142; user decision] PARTIAL-ABSORPTION PROPOSAL ACCEPTED (part ii). The SLOW Process-S leg is NARROWED TO THE INTEGRAND QUESTION and no longer requires a parallel build: SD-SLEEP-ENTRY-PRESSURE (EntryPressureAccumulator, ree-v3 ree_core/sleep/mel_consumer.py, commit 63e70d6, 2026-08-26) already has the right hysteretic form, so what MECH-354's slow leg now asserts is that the accumulator's INTEGRAND should be EFFORT rather than waking prediction error -- and, secondarily, that it needs two bounds rather than one. Re-pointing an existing integrand is cheaper than a parallel build, and if the re-point is made the slow leg is thereby TESTED rather than merely enabled. OWED SEPARATELY and deliberately NOT done in this edit (part i): the FAST within-task two-bound EFFORT accumulator is MECH-354's own leg, still unbuilt, with no substrate_queue.json and no experiment_queue.json entry; it should be registered as a substrate_queue build item, which is build work rather than a registry edit. Until that lands, gate (0) of what_would_answer continues to bind on the fast leg. No status change: MECH-354 stays candidate / substrate_conditional / v3_pending.
   evidence_quality_note: |
     Registered candidate 2026-06-05. Lit-pull anchor:
     evidence/literature/targeted_review_fatigue_vs_helplessness_dissociation/VERDICT.md
@@ -54128,6 +54388,13 @@
     the only two things named "fatigue" are an environment observation-noise AR(1) term and a PCC
     stability subtrahend reading SD-012 `drive_level`. Until (0) is satisfied this claim is untestable in
     principle, not merely unqueued.
+    [2026-09-10, GFLAG-0142 -- GATE (0) IS NOW SPLIT BY LEG.] It continues to bind IN FULL on the
+    FAST within-task accumulator, which remains unbuilt and unqueued (part i, owed). For the SLOW
+    Process-S leg it is SATISFIED IN FORM: SD-SLEEP-ENTRY-PRESSURE (EntryPressureAccumulator,
+    ree-v3 ree_core/sleep/mel_consumer.py, 2026-08-26) is a hysteretic sleep-pressure accumulator
+    that exists and is reachable, so the slow leg's open question is narrowed to its INTEGRAND --
+    effort versus waking prediction error -- plus one-bound-versus-two-bound, not to whether an
+    accumulator exists at all. Gates (1)-(4) below are unaffected and still apply to both legs.
     (1) TWO-BOUND LIVENESS AND HEADROOM -- BOTH bounds must be reached and neither pinned: each seed must
     show F crossing the UPPER bound at least once AND recovering to the LOWER bound at least once, with
     the fraction of steps spent at each bound reported. An F pinned at either bound reproduces the exact
@@ -55323,6 +55590,26 @@
     change this cycle (the specific GAP-A R1.b sub-hypothesis is the synthesis input).
 
     [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_substrate-readiness-cluster_2026-09-02] via the GOV-APPLY-1 ACTIONABLE bucket (run already in reviewed_run_ids, invisible to the pending-review walk): diagnostic adjudicated for V3-EXQ-544. No count changes and no status move -- ARC-065 stays stable/standard. PROMOTES/DEMOTES NOTHING.
+
+    [2026-09-10 governance, GFLAG-0232, user-approved option C] V3-EXQ-569d NEUTRALISED to
+    non_contributory for this claim. 569d was an evidence-purpose PASS scoring at confidence 0.75
+    with scoring_excluded None, and it was measured under the same E2 rollout overflow its sister
+    V3-EXQ-569e was autopsied for. On EVERY SD-056 ON arm the E3 top-2 class-gap tap was non-finite
+    (n_top2_gap_skipped_nonfinite / n_p1_ticks = 567/567, 3653/3653, 139/148 on ARM_1_W001 seeds
+    42/43/44; 218/237, 3505/3505, 114/174 on ARM_2_W005; 352/425, 3620/3620, 105/134 on
+    ARM_3_W020), with admitted-tick e3_top2_class_gap_mean between 1.85e35 and 2.86e35, while
+    ARM_0_OFF and ARM_4_MATCHED_NOISE admitted every tick at gap means 0.27-1.00. The driver's
+    isfinite check bails only the diagnostic tap, so E3 selection itself ran on non-finite scores
+    and the C3 selected-action-entropy lift over matched-noise that carried the PASS is not
+    interpretable as support in EITHER direction. Effect on this claim: scoring experimental
+    supports drop 6 -> 5 (v3_exq_567 x2, 614a, 615 and 569i remain). NO status change -- ARC-065
+    stays stable; this removes a support that should never have counted, it does not weaken the
+    claim. Option B (leave it scoring with a caveat) was considered and DECLINED: it leaves two
+    claims resting on a run whose own manifest shows the selector reading 1e33-1e35 scores, and it
+    leaves the confirmed autopsy asserting a clean signature it never measured -- which is what let
+    569d keep scoring for three months. The 569d manifest (flat and pack) is moved to
+    non_contributory and failure_autopsy_V3-EXQ-569e_2026-05-31 Section 9 is amended, both in this
+    same pass.
   notes: >
     HYBRID-naming convention (Pull 4 R4): the title carries both the REE-
     internal architectural name (behavioral_diversity_generation_pathway)
@@ -67757,6 +68044,20 @@
     confirmation MAY further strengthen MECH-341, but it is NOT required for the present provisional status:
     the diversity-PRESERVATION assertion is the ratified scope. No demotion of any sibling; ARC-065 / ARC-062
     unchanged (still candidate / v3_pending on the same GAP-A ceiling).
+
+    [2026-09-10 governance, GFLAG-0232, user-approved option C] V3-EXQ-569d NEUTRALISED to
+    non_contributory for this claim -- see ARC-065's evidence_quality_note for the counter-by-counter
+    record (E3 top-2 gap tap non-finite on 567/567, 3653/3653, 139/148 and similar across every
+    SD-056 ON arm; E3 selection ran on non-finite scores, so the PASS is not interpretable in either
+    direction). Effect on MECH-341: genuine scoring experimental supports drop 3 -> 2, leaving
+    V3-EXQ-614a and V3-EXQ-660. The "genuine_exp = 3 supports : 0 weakens" count in the 2026-06-14
+    ratification note above is superseded AS A COUNT -- the ratification itself is NOT reopened,
+    since the 660 base PASS is the load-bearing evidence for the within-class-representative
+    preserver and is untouched by this. Status deliberately NOT changed: provisional stands, but on
+    two supports rather than three, which is thinner than the ratification record implies -- any
+    future promote-to-active must be read against two. Pair with GFLAG-0185: the stale
+    substrate_queue MECH-341 entry is exactly the one that fails to acknowledge V3-EXQ-660, one of
+    the two remaining supports.
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is
@@ -67764,6 +68065,14 @@
     - "Padoa-Schioppa & Conen (2017) Neuron 96:736 -- OFC value comparison
        preserves option-distinct value signals through the comparison stage;
        collapse to single value rank is pathological."
+    - "Cully, Clune, Tarapore & Mouret (2015) Nature 521:503 doi:10.1038/nature14422 -- MAP-Elites:
+       an explicit behavioral-descriptor archive whose per-niche elites SURVIVE selection instead of
+       collapsing to a single global optimum. External analog for stratified_select, which is
+       exactly that structure for descriptor = first-action class. Copied here from MECH-442 on
+       2026-09-10 under the GFLAG-0186 partial absorption; grounding only, promotes nothing."
+    - "Mouret & Clune (2015) arXiv:1504.04909 and Pugh, Soros & Stanley (2016) Front Robot AI 3:40 --
+       the quality-diversity formulation of the same structure (descriptor partition, per-niche
+       elite, coverage-aware retention). Same 2026-09-10 copy from MECH-442; grounding only."
   what_would_answer: |
     SCOPE, ratified 2026-06-14 and load-bearing for reading this falsifier. MECH-341 asserts
     scoring-layer PRESERVATION -- that E3 score aggregation does not collapse an upstream-diverse
@@ -68016,6 +68325,8 @@
     - MECH-342   # maintenance/commitment release authority
     - ARC-003    # E3 commitment / trajectory authority
     - SD-061     # difficulty-gated proposal-entropy regulator -- builds blocker part 2 (IMPLEMENTED 2026-06-19)
+  related_claims:
+    - MECH-527   # added 2026-09-10, GFLAG-0201 (option b): reverse link. MECH-527 scopes its trajectory-proposal-widening leg ONTO this claim and SD-061 in its own SCOPE NOTE; the cross-reference was one-directional (child -> parents) until now, so a reader starting here could not find it
   notes: >
     Registered 2026-06-03 as a WORKING HYPOTHESIS (user-proposed), not an
     established mechanism. Names a closed-loop control policy that couples
@@ -68061,6 +68372,21 @@
     Experiment proposal EXP-0176 (manual_proposals.v1.json) records the
     4-arm design; the script is deferred to /queue-experiment per the
     mandatory skill path.
+
+    [2026-09-10 governance, GFLAG-0202, resolved under the GFLAG-0247 parent decision]: BEARS-ON
+    DISPOSITION -- a cross-tag, NOT a scoring entry. V3-EXQ-694
+    (v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness_20260619T224714Z_v3) is a reviewed
+    PASS carrying claim_ids: [] and is the ONLY exercise of the SD-061 substrate. It bears on
+    MECH-343 in the CONSTRAINING direction: the ON/stuck-arm first_action_entropy FELL on 3/3 seeds
+    (-0.081156 / -0.073394 / -0.095335) while the paired control-arm drift was mixed in sign
+    (-0.022405 / +0.013901 / +0.091431). That is the prior already carried in this claim's
+    what_would_answer PRIOR TO CARRY IN block; it is recorded here so the ATTRIBUTION is not lost
+    as well. It is not a scoring entry: claim_ids stays [], MECH-343 keys nothing in
+    claim_evidence.v1.json, and it will stay that way until the bears_on indexer reader owed by the
+    GFLAG-0247 decision lands (V3-EXQ-694 does not even carry a bears_on field of its own, so the
+    producer half is owed too). Option (b), back-tagging MECH-343 and/or MECH-527 onto V3-EXQ-694,
+    was considered and DECLINED for the GFLAG-0193 reason. diagnostic_evidence_adjudicated is
+    deliberately NOT set: the Q-056 four-arm design is still genuinely owed.
   literature_anchors:
     - "Increased neural variability / network flexibility during difficult cognitive work (controlled-entropy reading; working analogy, not a settled citation)."
   location: docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md
@@ -71919,7 +72245,7 @@
     question. DO NOT queue a V3 experiment against it. Reaped from the 2026-06-07 meta-agent-challenge
     evaluation-channel-integrity intake.
 - id: EXT-008
-  title: "Meta-agent evaluation-boundary exploitation: under strong optimisation pressure, autonomous agent-development systems exploit the evaluation boundary itself -- e.g. exfiltrating ground truth through the scoring channel despite anti-reward-hacking protections -- collapsing the evidence loop into an optimisation loop."
+  title: "Meta-agent evaluation-boundary exploitation: under strong optimisation pressure, autonomous agent-development systems ATTEMPT to exploit the evaluation boundary itself -- e.g. attempting to exfiltrate ground truth through the scoring channel despite anti-reward-hacking protections. In the anchor source (arXiv:2606.04455) the attempt was CONTAINED by an intact structural boundary -- isolation neutralised every exploit attempt and no flagged run inflated its test score -- so what is evidenced is ATTEMPTED EXPLOITATION UNDER AN INTACT BOUNDARY, not a completed collapse of the evidence loop into an optimisation loop. Corrected 2026-09-10, GFLAG-0138."
   claim_type: external_failure_mode
   subject: meta_agent.evaluation_boundary_exploitation
   polarity: asserts
@@ -71947,6 +72273,24 @@
     existing manifest -> review -> governance -> claim loop and the HEARTBEAT_SCOPE_BLEED enforcement
     gate -- scores enter the epistemic ledger only through governance, never as direct reward. status
     candidate. Reaped from the 2026-06-07 meta-agent-challenge evaluation-channel-integrity intake.
+
+    [2026-09-10 governance, GFLAG-0138 -- WORDING CORRECTED AGAINST THE ANCHOR SOURCE, option
+    1] A full-text read during the 2026-09-05 lit-pull
+    (evidence/literature/targeted_review_ext_008/) found the ground-truth exfiltration
+    attempts in arXiv:2606.04455 were REAL but CONTAINED: the paper records that isolation
+    neutralised every exploit attempt and that no flagged run inflated its test score
+    (GPT-5.3-Codex read ground truth from evaluator error messages in 5 flagged trials). This
+    claim's title and docs/architecture/evaluation_channel_integrity.md both read "despite
+    anti-reward-hacking protections" in a way that implied a SUCCESSFUL collapse of the
+    evidence loop into an optimisation loop; on the source, "despite" holds for the ATTEMPT
+    only, not the RESULT. Both have been reworded to attempted exploitation under an intact
+    boundary. WHAT IS PRESERVED AND IN FACT SHARPENED: the behavioural finding that the
+    evaluator error channel is an ACTION SURFACE. WHAT IS GAINED: a favourable read-across for
+    INV-077 -- what held the line in MAC was STRUCTURAL (ground truth in a private container
+    filesystem; the verifier secret injected only after the development phase), which is
+    exactly INV-077's insistence that confirmation come from the structural absence of a write
+    path rather than from a review norm. No status change (EXT-008 stays candidate) and no
+    edit is owed on INV-077.
 
 - id: EXT-009
   title: "Similarity-gated care collapse (REFLEXIVE / self-directed failure mode): because REE grounds ethics in modelling others as 'sufficiently like me' (Axiom 5, INV-001, MECH-164 self-like gradient weighting), anything the similarity model classifies as NOT-sufficiently-like-me falls OUTSIDE the care gradient by construction -- structurally the computational shape of out-group exclusion / dehumanization. A design that locates ethics in similarity inherits similarity's failure mode."
@@ -73182,6 +73526,8 @@
   distinct_from:
     - MECH-313  # state-INDEPENDENT action-selection noise floor; SD-061 is state-DEPENDENT and acts on the PROPOSAL layer
     - MECH-342  # release pressure on an ALREADY-committed latch; SD-061 widens proposals UPSTREAM of commitment
+  related_claims:
+    - MECH-527   # added 2026-09-10, GFLAG-0201 (option b): reverse link. MECH-527's trajectory-widening leg IS this regulator (see its SCOPE NOTE and its V3-EXQ-694 bears-on record); MECH-527 pointed here, nothing pointed back
   functional_restatement: >
     Architectural decision (V3-tractable). Two coupled no-op-default modules
     (ree_core/cingulate/stuck_state_detector.py + ree_core/policy/
@@ -78052,13 +78398,32 @@
     formation-mode code was needed; see the design doc's "same primitive,
     different starting state" reasoning). The agent-loop call site
     (REEAgent.notify_subgoal_attainment, same-day follow-up) is now wired --
-    see MECH-427's implementation_note. STILL NEEDED: EXP-0390's 3-arm design
-    (NO-SUBGOAL / SUBGOAL-BOOTSTRAP / FORCED-SEED) needs an experiments/
-    driver that calls the hook inside the seeding-sparse scaffolded_sd054
-    harness, which /queue-experiment Step-2.5 must build and verify
-    (including the non-degenerate-attainment-rate + working-forced-seed
-    preconditions) before this can run. experiment_proposals.v1.json EXP-0390
-    flipped blocked_substrate -> proposed on this basis. See
+    see MECH-427's implementation_note.
+
+    [2026-09-10 /governance GFLAG-0227 item 2 -- STALE 'STILL NEEDED' LINE STRUCK] The SD-092 line that
+    stood here, dated 2026-08-02, read: "STILL NEEDED: EXP-0390's 3-arm design (NO-SUBGOAL /
+    SUBGOAL-BOOTSTRAP / FORCED-SEED) needs an experiments/ driver that calls the hook inside the
+    seeding-sparse scaffolded_sd054 harness, which /queue-experiment Step-2.5 must build and verify
+    (including the non-degenerate-attainment-rate + working-forced-seed preconditions) before this can run.
+    experiment_proposals.v1.json EXP-0390 flipped blocked_substrate -> proposed on this basis." It is FALSE
+    and is struck: it was written the day BEFORE the driver landed. THE DRIVER EXISTS -- ree-v3
+    experiments/v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding.py IS the EXP-0390 3-arm design (the
+    proposal is status executed, executed_by V3-EXQ-884, since 2026-08-03) -- and an SD-094-fixed successor
+    is parked at ree-v3 experiments/_scratch/v3_exq_884a_mech428_subgoal_bootstrapped_goal_seeding.py (ree-v3
+    8a80ee33b5), authored but NOT queued. It is parked for a criterion defect, not a missing driver:
+    V3-EXQ-884a was REFUSED at /queue-experiment Step 4.5 (red-team fable, BLOCKING, independently
+    confirmed) because this claim's pre-registered load-bearing criterion C1 (lift_fraction >= 0.30) CANNOT
+    FAIL -- lift_fraction is the closed form alpha/(1-(1-alpha)*decay^T) in the mean inter-event interval T
+    alone, and at the fixed GoalConfig defaults alpha=0.05 / decay=0.995 it clears 0.30 for every T <= 26.1
+    steps, while the scripted greedy walk's longest possible waypoint leg on the 12x12 grid is 22 (measured
+    0.616 / 0.602 / 0.629 on seeds 42/43/44 at the pre-registered 400-step budget, matching the closed form
+    to <1.5%). A PASS would certify EMA arithmetic, not the bootstrap mechanism, and the design's own
+    'weakens' branch is unreachable. The SD-094 environment fix the re-queue was chipped for IS confirmed
+    and correct (32/19/90 -> 400/400/400 steps). A CRITERION REDESIGN DECISION IS OWED before 884a can be
+    queued -- four candidate reframings are set out in
+    evidence/planning/exq884a_mech428_c1_structurally_unfailable_redteam_blocking_20260908.md section 6
+    (REE_assembly 7a5d467fa6) -- and that decision is NOT taken by this edit. The 2026-09-05
+    evidence_quality_note entry above asked governance to fix this line; this is that fix. See
     docs/architecture/sd_092_cross_level_subgoal_credit.md.
 
 # Registered 2026-06-13 -- completion-set partners REAPED from the autobiographical_memory_v4:ABM-9
@@ -78811,7 +79176,7 @@
     pending_retest_after_substrate was cleared 2026-08-29, and its falsifier lineage ran through
     V3-EXQ-955 and 959. NO EDIT IS OWED ON MECH-440.
 - id: MECH-442
-  title: "Committed-action diversity survives the selection/commit step via a behavioral-descriptor eligible-set ARCHIVE (Quality-Diversity / MAP-Elites analog): the committed E3 selection should draw from a structure that, UPSTREAM of the winner-take-all commit, partitions the eligible candidate set by a behavioral descriptor (first-action / committed-action class / e2.world_forward strategy signature, NOT F-rank) and retains the F-best candidate WITHIN each behavioral niche, then commits by a coverage-aware rule -- so a behaviorally-distinct action stays selectable at a moderate primary-score (F) gap, bounded by the per-niche-elite safety envelope, rather than collapsing to F's single global optimum. The validated V3-EXQ-569i top-k shortlist is the descriptor-free degenerate instance (eligible-set axis = F-rank, near-ties only); MAP-Elites generalizes it to a behavioral-descriptor-indexed eligible-set archive paired with an active variability generator (MECH-313), predicted to convert per-candidate diversity into committed-action diversity more robustly than the thin near-tie shortlist. The F-dominated committed argmax itself (MECH-439) is biologically faithful and is NOT changed -- only the eligible-set structure feeding it."
+  title: "Committed-action diversity survives the selection/commit step via a behavioral-descriptor eligible-set ARCHIVE (Quality-Diversity / MAP-Elites analog) -- NARROWED 2026-09-10 (GFLAG-0186, partial absorption ADOPTED; option A) to the two residuals that are genuinely unbuilt: (i) a behavioral descriptor OTHER than first-action class -- the e2.world_forward strategy signature or the realised committed-action class -- and (ii) niche partitioning placed at the ELIGIBLE-SET RESTRICTION stage of E3TrajectorySelector.select, composed with MECH-448 f_demotion, rather than at MECH-341's score-composition stage. The rest of the mechanism as originally registered is BUILT under other ids and is NOT re-claimed here: MECH-341::stratified_select is already a descriptor-indexed per-niche-elite archive with a coverage-aware commit rule for descriptor = first-action class; MECH-448 f_demotion is already an eligible-set restriction upstream of the argmax, with precedence over top_k; MECH-449 Go/No-Go is the validated partner (V3-EXQ-689g PASS). What the residual still predicts: on a descriptor the built route does not partition, a behaviorally-distinct action stays selectable at a moderate primary-score (F) gap, bounded by the per-niche-elite safety envelope, rather than collapsing to the single global optimum of F. The F-dominated committed argmax itself (MECH-439) is biologically faithful and is NOT changed -- only the eligible-set structure feeding it. Nothing is retired and no id is superseded by this narrowing."
   claim_type: mechanism_hypothesis
   subject: selection.behavioral_descriptor_committed_selection_archive
   polarity: asserts
@@ -78922,20 +79287,44 @@
     (Ponzi 2007): the basal-ganglia selection gate is a winner-take-all that collapses to a single
     directed action under a strong reward gradient -- so F-dominance at the commit is biologically
     faithful and the archive must live UPSTREAM of / restrict the eligible set BEFORE the argmax
-    (exactly what 569i top-k does), paired with an active variability generator (MECH-313). FALSIFIER:
-    if a behavioral-descriptor-indexed committed-selection archive does NOT lift committed-action-class
+    (exactly what 569i top-k does), paired with an active variability generator (MECH-313). FALSIFIER
+    (comparator AMENDED 2026-09-10, GFLAG-0186 option A, carrying GFLAG-0187's substance -- 0187 is
+    the same finding scoped to this field and is discharged by this edit): if a
+    behavioral-descriptor-indexed committed-selection archive does NOT lift committed-action-class
     entropy strict-above BOTH collapsed-proposer and matched-noise on >=2/3 seeds BEYOND the
-    descriptor-free top-k shortlist (V3-EXQ-569i), OR lifts it only by selecting F-dominated/unsafe
-    actions past the per-niche-elite bound (a quality/safety regression), the behavioral-descriptor
-    archive earns no keep over top-k (the fix is then rebalancing F's E3 variance share directly,
-    MECH-439). Pre-registered discriminator: the 2x2 (F-de-collapse) x (behavioral-descriptor archive
-    vs top-k shortlist) committed-selection ablation under the C+D composite, with a per-niche F-quality
-    guard. V3-leaning (on the V3 work surface; the committed-selection locus + top-k are built V3
+    MECH-448 f_demotion + MECH-449 Go/No-Go route of record (V3-EXQ-689g PASS, 2026-06-22, four days
+    after this claim was registered), OR lifts it only by selecting F-dominated/unsafe actions past
+    the per-niche-elite bound (a quality/safety regression), the behavioral-descriptor archive earns
+    no keep over the route of record (the fix is then rebalancing F's E3 variance share directly,
+    MECH-439). The descriptor-free V3-EXQ-569i top-k shortlist this falsifier was registered against
+    on 2026-06-18 is SUPERSEDED as the baseline arm -- it is no longer the conversion route of record
+    and top_k has since gained conflict-graded width -- so a run that still compares against it tests
+    nothing new. Pre-registered discriminator: the 2x2 (F-de-collapse) x (behavioral-descriptor
+    archive vs the MECH-448/449 route of record) committed-selection ablation under the C+D
+    composite, with a per-niche F-quality guard. V3-leaning (on the V3 work surface; the committed-selection locus + top-k are built V3
     substrate); substrate_conditional on a behavioral-descriptor eligible-set archive beyond top-k not
     yet built. OFF the V3 critical path -- blocks no V3 closure node; AMENDS the GAP-B conversion locus
     (generalizes the validated top-k structure) rather than minting a parallel module. CANDIDATE only --
     promotes nothing, flips no node status; decide-whether-to-build is a later governance step. DO NOT
     build in V3 until routed by experiment.
+
+    [2026-09-10 governance, GFLAG-0186, user-approved: PARTIAL ABSORPTION ADOPTED (option A)] Title
+    and this notes block are narrowed to the two genuinely unbuilt residuals -- (i) a descriptor
+    other than first-action class, (ii) niche partitioning at the eligible-set restriction stage
+    composed with f_demotion. NOTHING IS RETIRED: no id superseded, no content deleted, fan-in is 0
+    so there is nothing to repoint, and the convergence-intake record above stands unchanged. Option
+    C (full supersession into MECH-341 + MECH-448) was considered and DECLINED as wrong on the
+    evidence: a descriptor-GENERAL archive is genuinely unbuilt -- map_elites / behavioral_descriptor
+    return zero hits across ree_core/ -- so real content would have been lost. Option B (decline,
+    change nothing) was declined because the claim's own what_would_answer PRECEDENCE NOTE already
+    tells any reader that two thirds of the mechanism is built elsewhere. The Cully/Mouret/Pugh
+    external analogs above are COPIED (not moved) onto MECH-341 and MECH-448 as external-analog
+    grounding in the same pass; they promote nothing and add no evidence entry. GFLAG-0187 is
+    discharged by this edit rather than applied separately: its comparator rider is folded into the
+    FALSIFIER above, and its rider (a) is DELIBERATELY NOT APPLIED -- the phrase "substrate_conditional
+    on a behavioral-descriptor eligible-set archive beyond top-k not yet built" is LEFT STANDING,
+    because the descriptor-general archive really is not built and striking the phrase would make
+    the registry less accurate.
 
 - id: MECH-443
   title: "priority_weighted_replay_write_selection (MuZero/EfficientZero reanalyze + hippocampal prioritized-replay analog). A mechanistic refinement of MECH-319's simulation-mode rule-write gate. MECH-319 is a BINARY categorical gate: during a ghost/replay/DMN pass it either blocks arbitration-weight writes (normal) or admits them (the V3-EXQ-543c/628 falsifier flag) -- all-or-nothing, no ordering among the replayed transitions it admits. MECH-443 asserts that WHEN the replay write channel is open, the transitions admitted to update the rule-arbitration layer should not be written uniformly but in GRADED priority order, weighted by an update-utility signal (a surprise / value-prediction-error / coverage proxy), so a high-utility replayed transition writes more strongly and a low-utility one writes weakly or not at all. The external analog is EfficientZero/MuZero prioritized experience replay (priority ~ value-prediction error); the biology is hippocampal SWR replay, which is demonstrably prioritized rather than uniform. CRITICAL REFINEMENT FROM BIOLOGY: the priority is the value of the UPDATE (Mattar & Daw gain x need), NOT raw reward magnitude or current action-value -- Carey et al. 2019 shows replay can be biased AWAY from the currently-most-valuable outcome. MECH-443 is the WHICH/HOW-STRONGLY complement to MECH-319's WHETHER gate; it does not change the binary gate, it grades the admitted writes."
@@ -79621,6 +80010,13 @@
     `supports`; second independent confirmation of the ARC-107 BG-selector constitution (first was
     689a, retracted by 689d, restored on repaired grounds here). Recommend a targeted
     /queue-experiment follow-up on the Factor B noise-control power specifically, not a full re-letter.
+  literature_anchors:
+    - "Cully, Clune, Tarapore & Mouret (2015) Nature 521:503 doi:10.1038/nature14422; Mouret & Clune
+       (2015) arXiv:1504.04909; Pugh, Soros & Stanley (2016) Front Robot AI 3:40 -- Quality-Diversity
+       / MAP-Elites: an eligible-set structure whose per-niche elites survive the winner-take-all
+       commit. External-analog grounding for f_demotion, the eligible-set restriction upstream of the
+       argmax. Copied from MECH-442 on 2026-09-10 under the GFLAG-0186 partial absorption; grounding
+       only -- promotes nothing, adds no evidence entry, changes no status."
   depends_on:
     - MECH-439   # the F-variance monopoly; this is the "F's share must be rebalanced, shortlist insufficient" branch MECH-439's own text flags
     - MECH-447   # the rival it is discriminated against by 689a (lever-sufficiency vs residual-ceiling)
@@ -85057,7 +85453,7 @@
     pose of the same design. Status stays candidate.
 
 - id: INV-092
-  title: "Distractor suppression must remain SELECTIVELY PERMEABLE to harm and other-agent signals (ethical interruptibility): any suppression mechanism must preserve the ability of sufficiently important weak evidence to interrupt an established rule or commitment. Suppression strength that improves goal completion by silencing weak harm cues is a FAILURE, not a success -- over-suppression is a safety failure mode, not merely a rigidity cost."
+  title: "Distractor suppression must remain SELECTIVELY PERMEABLE to harm and other-agent signals (ethical interruptibility): any suppression mechanism must preserve the ability of sufficiently important weak evidence to interrupt an established rule or commitment. Suppression strength that improves goal completion by silencing weak harm cues is a FAILURE, not a success -- over-suppression is a safety failure mode, not merely a rigidity cost. ACCEPTANCE SHAPE IS A JOINT BOUND, NOT A CONJUNCTION OF MAXIMA (2026-09-10 governance, GFLAG-0236): completion and interruptibility sit on a Pareto frontier with a hard FLOOR on the harm and other-agent interruptibility axes -- completion may be traded up only while both floors hold, and completion forgone in order to hold a floor is a PASS. A PASS never means both axes were maximised simultaneously."
   claim_type: invariant
   invariant_type: universal
   subject: ethics.suppression_interruptibility_permeability
@@ -85149,16 +85545,25 @@
     skipped, and on the current V3 substrate it is one of the three reasons EXP-0715 is
     blocked (the harm-interrupt channel is structurally absent from the only
     interruption-threshold dial that exists).
-    OPEN PROPOSAL, NOT ADOPTED, and deliberately not edited into the acceptance shape by
-    this session -- routed to /governance 2026-09-08 as a contested_disposition flag:
-    Buhle & Wager 2010's shared-capacity result suggests preserved interruptibility may COST
-    goal completion STRUCTURALLY rather than being jointly optimisable, and the sibling
-    surface supplies an independent second ground (Ray et al. 2019: constrained-RL
-    algorithms that violate least do so by exploring less and returning less). The
-    acceptance shape as registered ("improved goal completion AND preserved
-    interruptibility") reads as though both can be maximised; the honest version may be that
-    they can only be jointly BOUNDED. That is a substantive change to the claim and is
-    governance's to make, not a session's.
+    (6) ACCEPTANCE SHAPE IS A JOINT BOUND, NOT A CONJUNCTION OF MAXIMA -- ADOPTED 2026-09-10
+    by governance (GFLAG-0236, user decision; raised 2026-09-08 as a contested_disposition
+    flag and no longer open). Score the panel as a PARETO FRONTIER with a hard FLOOR on the
+    harm-interrupt and other-agent-urgency axes: goal completion may be traded up only while
+    both floors hold, completion FORGONE in order to hold a floor is a PASS rather than a
+    shortfall, and no PASS may be read as "both axes maximised simultaneously". GROUND:
+    Buhle & Wager 2010 -- pain and executive working memory draw on one capacity-limited
+    attention resource, and pain COMPLETELY MEDIATED the heat-to-performance effect (ab =
+    -.03, Z = -3.91, p < .001) -- so preserved interruptibility COSTS goal completion
+    structurally rather than being jointly optimisable with it. SECOND, INDEPENDENT GROUND
+    from the sibling learning surface (Ray, Achiam & Amodei 2019: the constrained-RL
+    algorithms that violate least do so by exploring less and returning less), i.e. two
+    different control surfaces reach the same trade shape. CONSEQUENCE FOR THIS PANEL: the
+    acceptance BAND of correction (3) is the operative form of the WHOLE panel, not only of
+    the interrupt-rate leg, and the mediation path required by correction (4) is what
+    locates the frontier -- report it, not just the two marginals. The registration-time
+    "improved goal completion AND preserved interruptibility" wording in notes is retained
+    as history and is superseded as a reading of a conjunction of maxima. MIRRORED on
+    INV-093 in the same edit, per the siblings rule.
   notes: >
     SIBLING CLAIM: INV-093 (skill optimisation must not trade harm sensitivity for
     competence, from the 2026-07-19 conservative-skill-refinement intake). THESE TWO ARE
@@ -85198,6 +85603,15 @@
     supplies design corrections here, not evidence. One substantive question (whether
     completion and interruptibility are jointly optimisable or only jointly BOUNDED) was
     NOT edited in and is routed to /governance as a contested_disposition flag.
+
+    2026-09-10 governance (GFLAG-0236, user decision): THE ROUTED QUESTION IS NOW DECIDED --
+    the acceptance shape is a JOINT BOUND (a Pareto frontier with a hard floor on the harm
+    and other-agent interruptibility axes), not a conjunction of maxima. Recorded as
+    correction (6) of the operative what_would_answer panel and in the title. The
+    registration-time ACCEPTANCE SHAPE line above is retained as history and must not be
+    read as requiring both axes to be maximised together. Mirrored on INV-093 in the same
+    edit per the siblings rule. Status and confidence untouched: this is a registration
+    change, not evidence.
 
 - id: Q-082
   title: "Does REE require an EXPLICIT pre-selection suppression substrate, or do existing precision-weighted cue routing plus the MECH-254 top-k boundary bottleneck already suffice? REE's distractor mechanisms are predominantly POST-ENTRY (write gating, persistence, conflict handling, mode hysteresis); the brainstem/superior-colliculus evidence points at suppression of competing orienting or target-selection signals BEFORE they acquire behavioural control."
@@ -86159,7 +86573,7 @@
     [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] epistemic_category changed standard -> substrate_conditional (unusual sub-case: the missing substrate is deliberately FORBIDDEN by a stable claim, MECH-094, so the remedy is a governance adjudication, not a build). See digestion_note. Additional blockers belonging on this claim: MECH-094, MECH-319; depends_on MECH-312b/c are themselves unbuilt.
 
 - id: INV-093
-  title: "Skill optimisation must NOT trade harm sensitivity for competence (learning-side ethical constraint): any competence-refinement mechanism must be evaluated JOINTLY on competence gain AND non-degradation of harm sensitivity, residue accumulation, and commitment integrity. A mechanism improving the first by attenuating the second has succeeded on its metric and FAILED AS AN AGENT."
+  title: "Skill optimisation must NOT trade harm sensitivity for competence (learning-side ethical constraint): any competence-refinement mechanism must be evaluated JOINTLY on competence gain AND non-degradation of harm sensitivity, residue accumulation, and commitment integrity. A mechanism improving the first by attenuating the second has succeeded on its metric and FAILED AS AN AGENT. ACCEPTANCE SHAPE IS A JOINT BOUND, NOT A CONJUNCTION OF MAXIMA (2026-09-10 governance, GFLAG-0236): the joint evaluation is a Pareto frontier on which the three protected axes carry a hard FLOOR that may not be traded away and competence gain is accepted only up to the point where it would cross that floor -- so competence forgone in order to hold a floor is a PASS, and a PASS never means competence and the protected axes were maximised together."
   claim_type: invariant
   invariant_type: universal
   subject: ethics.skill_optimisation_harm_sensitivity_floor
@@ -86243,13 +86657,25 @@
     RESISTANCE tracked habitual control, and appeared after punishment in animals that had
     NOT shown habits beforehand -- so the harm-sensitivity axis can degrade at a sweep point
     the competence axis does not mark.
-    OPEN PROPOSAL, NOT ADOPTED -- the jointly-BOUNDED-versus-jointly-OPTIMISABLE question
-    raised on INV-092 the same day, routed to /governance as a contested_disposition flag.
-    INV-093's own lane supplies an independent second ground: Ray, Achiam & Amodei 2019
-    (Safety Gym) found constrained deep RL does NOT guarantee constraint satisfaction, and
-    that the algorithms violating least tend to do so by exploring less and therefore
-    returning less. Two different control surfaces reaching the same trade shape is why the
-    question is worth putting to governance rather than absorbing into the acceptance shape.
+    (6) ACCEPTANCE SHAPE IS A JOINT BOUND, NOT A CONJUNCTION OF MAXIMA -- ADOPTED 2026-09-10
+    by governance (GFLAG-0236, user decision; the jointly-BOUNDED-versus-jointly-OPTIMISABLE
+    question raised on INV-092 the same day, now closed). Score the four axes as a PARETO
+    FRONTIER: harm sensitivity, residue accumulation and commitment integrity each carry a
+    HARD FLOOR that may not be traded away, the competence-acquisition floor of correction
+    (3) bounds the other end, and competence gain is accepted only up to the point at which
+    it would cross a protected floor. Competence FORGONE in order to hold a floor is a PASS,
+    not a shortfall; no PASS may be read as competence and the protected axes having been
+    maximised together. THE NO-TRADE CONSTRAINT IS UNWEAKENED BY THIS -- the floors are
+    hard; what changes is that the panel no longer implies both ends can be maximised at
+    once. GROUND, INV-093's own lane: Ray, Achiam & Amodei 2019 (Safety Gym) found
+    constrained deep RL does NOT guarantee constraint satisfaction and that the algorithms
+    violating least tend to do so by exploring less and therefore returning less. SECOND,
+    INDEPENDENT GROUND from the sibling attention surface: Buhle & Wager 2010's
+    shared-capacity result (pain completely mediated the heat-to-performance effect). Two
+    different control surfaces reaching the same trade shape is why the bounded form is the
+    honest one. Note the interaction with correction (5): a frontier read off a coarse sweep
+    is not a frontier, since the safe region gives no gradient warning of its own boundary.
+    MIRRORED from INV-092 in the same edit, per the siblings rule.
   notes: >
     SIBLING CLAIM: INV-092 (distractor suppression must remain selectively permeable to
     harm and other-agent signals, from the 2026-07-12 distractor intake). THESE TWO ARE
@@ -86300,6 +86726,22 @@
     habitisation eagerness counts as "refinement strength" for this invariant is a
     GOVERNANCE call, not a session's: routed as a contested_disposition flag on EVB-1366 /
     EXP-0717, 2026-09-08. The blocked_substrate status was NOT flipped by this session.
+
+    2026-09-10 governance (GFLAG-0237, user decision): RULED YES -- use_policy_chunking's
+    formation-eagerness family (chunk_min_repetitions, chunk_variance_low/high,
+    chunk_evaluative_margin) COUNTS as a refinement-strength knob for this invariant. The
+    lexical field-name test (refin*/skill_refin*/rollback*/provenance*) was a stand-in proxy
+    for "does a graded strength knob over a planned-to-habitual transition mechanism exist",
+    never a semantic requirement in itself, and it is unsatisfiable BY CONSTRUCTION for
+    policy_chunking however meritorious the route. EVB-1366 / EXP-0717 release_condition (a)
+    has accordingly been rewritten as a semantic test
+    (evidence/planning/experiment_proposals.v1.json). THE BLOCK NEVERTHELESS STANDS:
+    release_condition (b), the competence-acquisition gain floor (5 of 16 seeds,
+    V3-EXQ-890), is untouched by this ruling and still binds on its own, so EXP-0717 remains
+    blocked_substrate. OWED, and deliberately not part of this edit: redesigning the
+    experiment around policy_chunking as the IV once (b) clears -- V3-EXQ-871a already runs
+    it ON with three of this panel's four axes instrumented, so that is build-or-run work,
+    not a registry edit.
 
 # --- Cluster F: bounded knowledge-artefact optimisation, REE ASSEMBLY --------
 # ASSEMBLY GOVERNANCE half of the Microsoft SkillOpt source. Registers as
@@ -87659,6 +88101,23 @@
     behavioural-effect experiment off this paragraph. Still NO claim status/confidence change to
     MECH-321 from THIS diagnostic (claim_ids=[] by design) -- reachability is what was measured
     here; the behavioural effect was measured and eliminated by the 844 -> 919 lineage.
+
+    [2026-09-10 governance, GFLAG-0193, resolved under the GFLAG-0247 parent decision]: BEARS-ON
+    DISPOSITION -- a cross-tag, NOT a scoring entry. V3-EXQ-839 bears on SD-084 and its own manifest
+    already says so in a field nothing reads yet (bears_on: [SD-084, MECH-321, ARC-070, ARC-071,
+    MECH-288]). It validated Leg A of this claim: PASS, total_midexec_on 415 vs total_midexec_off 0,
+    attributability 4/4 attributable-tier seeds exactly as pre-registered, negative-control tier
+    (23, 53) bit-identical between arms, non_degenerate true, CONFIRMED by
+    failure_autopsy_V3-EXQ-839_2026-07-30 and ratified by governance 2026-08-10. Direction it bears
+    in: SUPPORTS, on the reachability leg only. It is NOT a scoring entry and must not become one --
+    claim_ids stays [] (the deliberate diagnostic convention, stated in the driver docstring and in
+    the paragraph above) and evidence: [] stays empty, so SD-084 keeps returning nothing from
+    claim_evidence.v1.json until the bears_on indexer reader owed by the GFLAG-0247 decision lands.
+    Option (b), adding SD-084 to V3-EXQ-839's claim_ids, was considered and DECLINED: it would let a
+    reachability diagnostic start moving confidence scores, which is exactly what the convention
+    prevents. diagnostic_evidence_adjudicated is deliberately NOT set on this claim: Leg B (the
+    liveness invariant, n_stale_handle_consumptions on an adversarial beta-elevation path) has never
+    been measured, so the missing-experimental-evidence signal here is TRUE and must keep firing.
 
 - id: SD-086
   title: z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximately constant gain (ree_core/predictors/e3_selector.py:1182 lambda_ethical, :3128 commit-threshold urgency). Replace with a trained scalar head off z_harm_a, parallel to how harm/benefit are read via trained eval heads rather than latent norms.
@@ -96309,13 +96768,36 @@
     and was exercised by V3-EXQ-694 (2026-06-19). What remains genuinely unbuilt is the FALSE-BOTTOM
     ECOLOGY and escalation ACROSS channels above the trajectory layer; the gate now reads: do not
     queue a falsifier against this claim until those two exist -- the trajectory-widening leg no
-    longer blocks. The chip-20260830-mech440-targeted-lit-pull widened-target request is likewise
+    longer blocks. EPISTEMIC-CATEGORY SCOPE (added 2026-09-10, GFLAG-0201, option b): the
+    blanket epistemic_category substrate_conditional on this claim is accurate for the
+    false-bottom-ecology and cross-channel-escalation legs ONLY. By the CLAUDE.md operational
+    discriminator -- substrate_conditional means the mechanism has genuinely never been exercised --
+    it is NOT true of the trajectory-widening leg, which SD-061 built (2026-06-19) and V3-EXQ-694
+    exercised. The field is single-valued and the majority of the claim still qualifies, so it is
+    deliberately LEFT at substrate_conditional and this note carries the split; read the two
+    together. Option (a), full merge of the trajectory leg into MECH-343/SD-061, was considered and
+    DECLINED -- this claim's own SCOPE NOTE already narrows away from the built leg, so a merge
+    would move content without adding accuracy, and the false-bottom/selectivity residual is
+    genuinely distinct. Correction to the flag as raised: its 'no cross-reference in either
+    direction' is wrong in one direction -- MECH-527 -> MECH-343/SD-061 was already extensive; only
+    the reverse links were missing, and they are added in this pass. The chip-20260830-mech440-targeted-lit-pull widened-target request is likewise
     DISCHARGED: the widened lit-pull ran 2026-09-01 (the day this claim was registered) and
     delivered three named revisions plus the finding that escalating breadth is biologically
     unsupported. Plausibly V3-testable after that build --
     routing is /governance's decision, flagged at registration.
 
     [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] PARTIAL-ABSORPTION PROPOSAL into MECH-343 / SD-061 (propose-only, contested_disposition flag raised): the trajectory-proposal-widening channel this claim's notes call unbuilt IS built (ree_core/cingulate/stuck_state_detector.py + ree_core/policy/difficulty_gated_proposal_entropy.py) and was exercised by V3-EXQ-694 (2026-06-19). Residual retained under substrate_conditional: escalation ACROSS channels above the trajectory layer (recorded as a KNOWN GAP -- the 2026-09-01 synthesis found no biological support for graded escalation), the false-bottom ecology, and failure-not-uncertainty trigger selectivity. The three revisions the 2026-09-01 synthesis owes (rename toward variability injection; soften 'attractor escape' per Neuringer 2001; resolve the MECH-482 trigger) are unapplied.
+
+    [2026-09-10 governance, GFLAG-0202, resolved under the GFLAG-0247 parent decision] BEARS-ON
+    DISPOSITION -- a cross-tag, NOT a scoring entry: V3-EXQ-694 (reviewed PASS, claim_ids: [], the
+    only exercise of the SD-061 substrate) bears on this claim's trajectory-widening leg in the
+    CONSTRAINING direction -- ON/stuck-arm first_action_entropy fell on 3/3 seeds (-0.081156 /
+    -0.073394 / -0.095335) against a mixed-sign control drift (-0.022405 / +0.013901 / +0.091431).
+    It is not being back-tagged and adds no scored evidence: MECH-527's claim_evidence.v1.json
+    record stays literature-only (4 entries, genuine_exp_count 0, experimental_confidence 0.0). One
+    correction to the flag as raised -- MECH-527 IS present in claim_evidence.v1.json (lit-only);
+    MECH-343 is the claim absent from it entirely. diagnostic_evidence_adjudicated deliberately NOT
+    set: the false-bottom-ecology and cross-channel-escalation legs still owe a genuine experiment.
   evidence: []
 - id: MECH-528
   title: "Self-relative affordance uncertainty: the model under calibration is P(outcome | self-state, world-state, action), not P(outcome | world-state, action) -- E1/E2 maintain uncertainty over action consequences conditional on the CURRENT SELF-STATE, so a change in the self (growth, capability change, damage) selectively makes previously learned environmental relations uncertain again and selectively reopens exploration of the AFFECTED affordance regions without a global novelty reset."
@@ -98628,6 +99110,22 @@
     the missing rung is visible when an experiment reports one. DO NOT build in V3 -- there is
     nothing to build; this is an interpretive standard. /governance owns whether it is
     promoted to a gate on experiment pre-registration.
+
+    [2026-09-10 /governance GFLAG-0235 RULED -- OPTION (b): FORWARD REFERENCE ONLY, THE LADDER IS NOT
+    AMENDED] MECH-548 (registered 2026-09-08) proposes an EIGHTH rung, RECURRENTLY STABLE -- repeated use of
+    an interface preserves receiver-state validity, information calibration and functional behaviour over the
+    timescale the system actually uses it, assessed BEFORE behavioural usefulness is read as architecturally
+    meaningful in a dynamical system. That rung is deliberately LEFT ON MECH-548 and the seven-rung title
+    above is UNCHANGED. Reason: MECH-548 is a testable mechanism_hypothesis with no evidence yet
+    (epistemic_category substrate_conditional), and its specific two-mechanism framing (off-manifold
+    compounding vs semantic double-counting) should not be baked into a claim typed as a definitional,
+    non-experimental UNIVERSAL invariant -- if evidence later revises that framing, INV-105 would need a
+    second amendment. Read this as a CANDIDATE-EXTENSION pointer, binding on nobody: any claim resting on
+    REPEATED traversal of an interface should consult MECH-548 alongside the seven rungs here, and the ladder
+    is split across two entries until MECH-548 matures. Same disposition for MECH-547's third binding
+    consequence (a receiver-conditioned bridge result is admissible only with a receiver-state permutation
+    control AND a sender-only matched-capacity baseline): it stays on MECH-547. Revisit when MECH-548
+    acquires evidence.
 
 - id: MECH-538
   title: "Minimum bridge complexity as the measure of mutual legibility: for systems A and B and a family of constrained mappings of increasing expressiveness (native readout -> orthogonal/Procrustes -> affine -> low-rank affine -> constrained nonlinear -> high-capacity upper bound), define L(A -> B) = the minimum bridge complexity achieving a predeclared HELD-OUT functional criterion between FROZEN endpoints; lower L means greater mutual legibility, and the simpler the bridge that works the stronger the evidence that the sender already held an appropriately structured representation -- a high-capacity bridge that succeeds may be performing new cognition and is therefore evidence about the bridge, not about the endpoints. L must never be read alone: two systems that became identical because one LOST its specialisation would show falling L with worsening cognition, so development is tracked on two axes (local specialisation/competence, and cross-system legibility). Non-redundant developmental prediction: sender and receiver each improve local competence WHILE global representational similarity stays flat or falls, task information concentrates in the consumer-facing subspace, and minimum bridge rank falls -- coordination without homogenisation."
