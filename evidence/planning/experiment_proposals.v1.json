@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-10T20:23:09.747281Z",
+  "generated_at_utc": "2026-09-10T20:29:26.450416Z",
   "items": [
     {
       "acceptance_checks": [
@@ -22733,12 +22733,13 @@
       ],
       "backlog_id": "EVB-1485",
       "blocked_by": [
+        "SD-014",
         "SD-026",
         "SD-028",
         "MECH-251",
         "MECH-255"
       ],
-      "blocked_note": "Step 2.5 substrate-readiness STOP (session metaworker-chip-proposal-exp-0936, 2026-09-10). Neither mechanism this proposal would probe exists in the ree-v3 substrate, so no non-vacuous experiment can be written. IDENTITY CAVEAT: the registry names claim MECH-255 (vmPFC/dlPFC template compiler, SD-028, implementation_phase v4, whose own claims.yaml notes say 'No evidence expected until V4'); the dispatching chip chip-proposal-exp-0936 titled it MECH-251 (SD-026 dan_feedback precision-write channel, implementation_phase v3). The stop holds for BOTH, so the disagreement does not change the disposition -- see chip-20260910-proposal-id-instability for the underlying proposal_id drift (438 of 450 proposal chips disagree with the registry on claim_id). EVIDENCE: grep over ree-v3/ree_core/ returns ZERO hits for dan_feedback, template_proj, template_vec, residue_bias, alpha_dan, vmpfc, dlpfc, SD-026 and SD-028; no ree-v3/docs/substrate/SD-026-*.md or SD-028-*.md implementation record exists; and a runtime walk of REEConfig() (1187 knobs, 2026-09-10) matches none of that vocabulary -- in particular there is no sd026_enabled ablation toggle, which MECH-251's own functional_restatement names as the required lever. NODE CLASS: SD-026 is complicated (buildable) -- so classified in REE_assembly/docs/roadmap.md's GATED_ON_NO_TOKEN triage -- so the route is /implement-substrate, NOT another /queue-experiment pass. SD-028 / MECH-255 is additionally v4-phase-gated and must not be queued as V3 work at all (same disposition as MECH-255's existing row in evidence/planning/v4v5_gated_proposal_backlog.md). No experiment script was written and no experiment_queue.json entry was added.",
+      "blocked_note": "Step 2.5 substrate-readiness STOP (session metaworker-chip-proposal-exp-0936, 2026-09-10). Neither mechanism this proposal would probe exists in the ree-v3 substrate, so no non-vacuous experiment can be written. IDENTITY CAVEAT: the registry names claim MECH-255 (vmPFC/dlPFC template compiler, SD-028, implementation_phase v4, whose own claims.yaml notes say 'No evidence expected until V4'); the dispatching chip chip-proposal-exp-0936 titled it MECH-251 (SD-026 dan_feedback precision-write channel, implementation_phase v3). The stop holds for BOTH, so the disagreement does not change the disposition. That drift is the known positional-proposal_id defect, already owned -- see chip-20260902-exp-proposal-id-instability (done), chip-20260902-proposal-chip-title-claim-mismatch-audit (done) and the still-open chip-20260902-proposal-id-reference-rot; re-measured 2026-09-10 at 438 of 450 proposal chips disagreeing with the registry on claim_id. EVIDENCE: grep over ree-v3/ree_core/ returns ZERO hits for dan_feedback, template_proj, template_vec, residue_bias, alpha_dan, vmpfc, dlpfc, SD-026 and SD-028; no ree-v3/docs/substrate/SD-026-*.md or SD-028-*.md implementation record exists; and a runtime walk of REEConfig() (1187 knobs, 2026-09-10) matches none of that vocabulary -- in particular there is no sd026_enabled ablation toggle, which MECH-251's own functional_restatement names as the required lever. Independently corroborated the same day by the EXP-0934/MECH-251 stop (REE_assembly f7be278996). UPSTREAM GATE (why this is NOT simply an /implement-substrate hand-off yet): substrate_queue.json queue[19] SD-026 (attention.prospective_precision_write_channel) is ready=false, node_class 'complicated (buildable)', and its implementation_hint gates explicitly -- 'Do not queue SD-026 validation EXQ until SD-014 is at least provisional' (z_resource separation; without it a DAN template ablation is confounded because template quality and target quality cannot be disentangled). SD-014 is still status:candidate in claims.yaml, so that gate is unmet. SD-026's unblocks_claims covers this whole cluster -- INV-012, INV-021, INV-024, MECH-251, MECH-253, SD-027, MECH-254, SD-028, MECH-255 -- so SD-026 is the single upstream build that would release EXP-0936, and SD-014 is the gate ahead of it. ROUTE: /implement-substrate on SD-014 then SD-026 -- NOT another /queue-experiment pass. SD-028 / MECH-255 is additionally v4-phase-gated and must not be queued as V3 work at all (MECH-255 already carries a row in evidence/planning/v4v5_gated_proposal_backlog.md). No experiment script was written and no experiment_queue.json entry was added.",
       "claim_id": "MECH-255",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -29338,6 +29339,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1596",
+      "blocked_by": [
+        "MECH-494-context-arbitrator"
+      ],
+      "blocked_note": "/queue-experiment Step 2.5 stop (2026-09-10). SUBSTRATE ABSENT: MECH-495's what_would_answer requires a 2x2 design varying perceptual similarity and latent-context identity INDEPENDENTLY (the two off-diagonal cells are the actual discriminator between the relational-topology and maximal-separation objectives), which requires the environment to expose GROUND-TRUTH latent-context labels. Verified against the current ree-v3 substrate: only one environment class exists (CausalGridWorld/CausalGridWorldV2, ree_core/environment/causal_grid_world.py) and it exposes no context_id/situation_id/latent_context field in obs_dict or info; 'context' in the existing V3-EXQ-436 lineage is realized only by swapping whole environment configs (e.g. num_hazards, hazard_harm), confounded with everything else that differs and not exposed to the agent/driver as a ground-truth label. This matches the sibling MECH-494 finding already on record (EXP-1092/EVB-1595, blocked_substrate 2026-09-02): both 2026-08-19 thought intakes independently specify building the 2x2 environment family ONCE, for MECH-493/494/495 together, and NOT queueing an experiment before that lands. NOT SEPARATELY BLOCKING (verified clear): ContextMemory occupancy -- the earlier V3-EXQ-436f single-slot degeneracy (3/5 seeds at 1/16) is now closed by contextmemory_write_selection='gumbel_learned' (16/16 slots occupied on all 5 measured seeds, occupancy independent of tagger training; docs/substrate/contextmemory-write-path-addressing-degeneracy-....md, IMPLEMENTED 2026-08-27); the occupancy-masked slot_cosine_sim readout also already exists (V3-EXQ-436f's _compute_slot_cosine_sim_occupied, 2026-08-07 fix). Developmental-timing precondition (iv) has no substrate crystallization signal (ContextMemory has no freeze schedule) but the claim's own registration already anticipates this and specifies the fallback (a declared fixed training-point readout), so it is not a blocker. Governance has already ruled on the DV shape for this lineage: GFLAG-0047 resolution (2026-08-25 governance, f-dominance-regime-retest-ddbe10) decided the ContextMemory write-selection validation's decisive DV should be a RELATIONAL-TOPOLOGY statistic (agreement with ground-truth latent-context structure), matching MECH-495 -- but that decision cannot be executed until the environment substrate below lands. ROUTE: /implement-substrate. An open chip already covers this exact build -- chip-20260902-mech494-context-arbitrator-substrate ('Mint substrate_queue entry for MECH-493/494/495 context-arbitration substrate') -- so this proposal does NOT spawn a duplicate follow-on; it cites and defers to that chip.",
       "claim_id": "MECH-495",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -29360,7 +29365,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_495",
       "target_repo": "ree-v3",
       "why_now": [
