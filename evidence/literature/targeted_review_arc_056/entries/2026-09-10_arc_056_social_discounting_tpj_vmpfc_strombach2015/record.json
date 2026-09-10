@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_056",
+  "entry_id": "2026-09-10_arc_056_social_discounting_tpj_vmpfc_strombach2015",
+  "timestamp_utc": "2026-09-10T07:02:31Z",
+  "claim_ids_tested": ["ARC-056"],
+  "source": {
+    "title": "Social discounting involves modulation of neural value signals by temporoparietal junction",
+    "authors": ["Tina Strombach", "Bernd Weber", "Zsofia Hangebrauk", "Peter Kenning", "Iraklis I. Karipidis", "Philippe N. Tobler", "Tobias Kalenscher"],
+    "year": 2015,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1414715112",
+    "pmid": "25605887",
+    "pmc": "PMC4321268",
+    "volume": "112",
+    "issue": "5",
+    "pages": "1619-24"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "The best available biological evidence for the FORM of ARC-056's objective function: a single value representation in vmPFC that would otherwise encode own-reward only, modulated by a second region so as to incorporate an other-regarding term whose weight declines with social distance. That is structurally J = beta_self * (own term) + beta_j * (other term) with beta_j set by inferred relational distance, which is what ARC-056 asserts. Held at 0.66 because the terms being weighted are monetary rewards, not temporal-depth coherence D_V -- the aggregation form maps well, the quantity aggregated does not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The weighted quantity is money, not D_V. ARC-056's distinctive content is that the thing optimised across self and others is shared temporal-depth coherence; evidence that ANY other-regarding term is weighted into a common value signal is consistent with that claim but equally consistent with every other other-regarding utility model, so it does not discriminate ARC-056 from its rivals.",
+    "beta_j here is indexed by social distance, a self-reported closeness rank. ARC-056 derives beta_j from inferred similarity (INV-028), relational commitment (INV-029) and responsibility structure (INV-042); social distance conflates these, so the paper cannot speak to whether the claim's three-source decomposition is right or whether beta_j is one thing at all.",
+    "The proposed TPJ-to-vmPFC modulation is inferred from functional coupling in a correlational fMRI design; a causal architecture in which the aggregation happens elsewhere and vmPFC reads the result would produce a similar coupling signature."
+  ],
+  "tags": ["arc-056", "arc_056", "social_discounting", "temporoparietal_junction", "vmpfc", "other_regarding_preferences", "beta_j", "support_tag:weighted_aggregation_into_common_value_signal"],
+  "mapping": {
+    "source_claim_statement": "Generosity declines with social distance. In fMRI, generous choices engaged the temporoparietal junction, whose activity scaled with the social-distance-dependent conflict between selfish and generous motives; on the basis of functional coupling the authors propose that TPJ supports social discounting by modulating basic neural value signals in ventromedial prefrontal cortex so as to incorporate social-distance-dependent other-regarding preferences into an otherwise exclusively own-reward value representation.",
+    "ree_translation": "ARC-056 asserts a specific objective function, J_ethical(pi) = beta_self * D_V_self + sum_j beta_j * D_V_j, in which the weight beta_j on another agent's term depends on inferred similarity, relational commitment and responsibility structure. Two things about that form are architecturally contentious and independently checkable: (i) that other-regarding terms enter the SAME scalar objective as the self term rather than being adjudicated by a separate norm-following or rule-based system, and (ii) that they enter with a graded weight indexed by relational distance rather than as a categorical in-group/out-group switch. This paper is direct human evidence for both. The value signal that would otherwise encode own reward alone is modulated to incorporate the other-regarding term -- one currency, one representation -- and the modulation is scaled continuously by social distance rather than gated. Against ARC-056's LEG 1 (derivational), it is also worth noting that the beta_j -> 0 limit recovers pure self-interest here in exactly the way the claim requires it to recover ARC-054's J(pi): the most socially distant condition is the unmodulated own-reward representation, with no discontinuity.",
+    "mapping_caveat": "The mapping is of FORM, not of content, and the gap is the whole distinctive part of ARC-056. What is weighted here is monetary reward; what ARC-056 says is weighted is D_V, temporal-depth coherence of a modelled agent's trajectory. Every other-regarding utility model in behavioural economics predicts this result, so the entry supports the claim's aggregation architecture while doing nothing to distinguish it from rivals. Additionally, social distance as operationalised (a self-reported closeness rank over named acquaintances) conflates ARC-056's three separate beta_j sources, and the TPJ-modulates-vmPFC architecture is proposed from correlational functional coupling rather than demonstrated causally.",
+    "source_context": "Healthy human adults choosing between a large self-only reward and a smaller reward shared with a specific other person at a given self-reported social distance; event-related fMRI with functional coupling analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.82: PNAS, a parametric design in which social distance is manipulated within subject rather than compared across groups, with an explicit computational proposal rather than a blob report; docked from higher for the correlational coupling inference and typical mid-2010s fMRI sample size. Mapping fidelity 0.66 -- strong on the aggregation form and the graded-beta_j prediction, weak on the identity of the aggregated quantity. Transfer risk 0.35: human subjects, but laboratory monetary choice to a general ethical objective is a real extrapolation. Aggregate 0.66, tracking mapping fidelity because ARC-056 is an arch_commitment about the form of an objective function."
+  }
+}

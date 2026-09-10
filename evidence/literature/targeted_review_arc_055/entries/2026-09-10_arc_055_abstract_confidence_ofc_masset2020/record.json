@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_055",
+  "entry_id": "2026-09-10_arc_055_abstract_confidence_ofc_masset2020",
+  "timestamp_utc": "2026-09-10T07:02:31Z",
+  "claim_ids_tested": ["ARC-055"],
+  "source": {
+    "title": "Behavior- and Modality-General Representation of Confidence in Orbitofrontal Cortex",
+    "authors": ["Paul Masset", "Torben Ott", "Armin Lak", "Junya Hirokawa", "Adam Kepecs"],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.05.022",
+    "pmid": "32504542",
+    "pmc": "PMC8083070",
+    "volume": "182",
+    "issue": "1",
+    "pages": "112-126.e18"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "The closest biological analogue in this pull to ARC-055's actual assertion. Single-unit recording showing that a confidence signal is (i) computed statistically, (ii) ABSTRACT -- invariant to the sensory modality that produced it, and (iii) predictive of TWO different downstream consumers, one of which is a cross-trial strategy update. That triple is the structural signature of an explicitly-represented signal shared by multiple readers, which is precisely what ARC-055 asserts V(t) must be and denies an epiphenomenon could be. Held at 0.76 because decision confidence is still not verisimilitude, and nothing here bears on D_V.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The two demonstrated consumers are time investment and cross-trial strategy updating; ARC-055's E3 consumer is WITHIN-trial trajectory selection, which this design does not isolate, so 'informs multiple behaviors' is weaker than 'informs selection'.",
+    "The signal is correlational with respect to its consumers -- neural activity PREDICTS the two behaviours; the paper does not by itself establish that removing the representation removes the behaviours, so an argument that the representation is required rather than merely available has to be imported from elsewhere (see the Lak 2014 entry, which supplies it and complicates it).",
+    "Decision confidence about a single completed choice is a narrower quantity than a running verisimilitude V(t) of the whole world model; a per-decision confidence could be abstract in exactly this way without any global model-fit signal existing."
+  ],
+  "tags": ["arc-055", "arc_055", "decision_confidence", "orbitofrontal_cortex", "metacognition", "modality_general", "abstraction", "support_tag:explicit_abstract_signal_multiple_consumers"],
+  "mapping": {
+    "source_claim_statement": "For a neural confidence representation to support metacognition it must be abstract -- emerging irrespective of the source of information and informing multiple confidence-guided behaviours. Single orbitofrontal cortex neurons in rats encode statistical decision confidence irrespective of whether the choice was made on olfactory or auditory evidence, and the activity of these neurons predicts two distinct confidence-guided behaviours: trial-by-trial time investment and cross-trial choice strategy updating.",
+    "ree_translation": "ARC-055's core architectural move is to insist that V(t) and D_V be explicit signals rather than epiphenomena, with the justification being that several different consumers -- E3 selection, E1 state representation, E2 transition modelling, learning update prioritisation -- all need to read the same quantity. This paper independently derives and then tests almost that exact criterion under the name 'abstraction': a confidence representation that is genuinely shared must be invariant to what produced it and must feed more than one downstream behaviour. Both halves are confirmed at single-neuron resolution. The second is the more useful for REE, because the two consumers it identifies straddle the claim's own division: time investment is an immediate action-selection consumer, and cross-trial strategy updating is a LEARNING-UPDATE consumer. One signal, one representation, two readers of the kind ARC-055 names.",
+    "mapping_caveat": "The quantity is decision confidence about a completed perceptual choice, not verisimilitude of a world model, and there is no temporal-depth component anywhere in this paper -- D_V is entirely unaddressed, so this entry supports ARC-055's availability architecture for V-like signals and is silent on half the claim's content. The evidence is also predictive rather than causal: neurons whose activity predicts two behaviours establish availability, not necessity. Finally, rat OFC in a two-alternative sensory task to REE's E1/E2/E3 decomposition is a substantial architectural extrapolation -- the correspondence is at the level of computational role, not of anatomy.",
+    "source_context": "Rats performing olfactory and auditory two-alternative choice tasks with a temporal wagering readout; extracellular single-unit recording in orbitofrontal cortex, with statistical-confidence model comparison."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.90: Cell, single-unit resolution, cross-modality control built into the design rather than argued post hoc, and two independent behavioural readouts -- an unusually strong test of a representational claim. Mapping fidelity 0.78, the highest in this pull, because the paper's own 'abstraction' criterion is close to a restatement of ARC-055's explicitness requirement and the two demonstrated consumers straddle the claim's selection/learning division. Transfer risk 0.35 for rodent-to-REE architectural mapping. Aggregate 0.76, held below the mapping-fidelity figure by the total absence of any D_V analogue."
+  }
+}

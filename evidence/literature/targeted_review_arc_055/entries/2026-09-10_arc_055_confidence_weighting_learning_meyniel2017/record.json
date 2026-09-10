@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_055",
+  "entry_id": "2026-09-10_arc_055_confidence_weighting_learning_meyniel2017",
+  "timestamp_utc": "2026-09-10T07:02:31Z",
+  "claim_ids_tested": ["ARC-055"],
+  "source": {
+    "title": "Brain networks for confidence weighting and hierarchical inference during probabilistic learning",
+    "authors": ["Florent Meyniel", "Stanislas Dehaene"],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1615773114",
+    "pmid": "28439014",
+    "pmc": "PMC5441722",
+    "volume": "114",
+    "issue": "19",
+    "pages": "E3859-E3868"
+  },
+  "evidence_class": "human_fmri",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Model-based fMRI with an ideal-observer benchmark, in PNAS, directly evidencing the half of ARC-055 that is about LEARNING UPDATES: a reliability estimate is explicitly maintained, is reportable, tracks Bayes-optimal predictions, and is combined with incoming likelihood in a specific cortical site to set the effective learning rate. Held at 0.72 rather than higher because the paper's quantity is confidence in a learned transition probability -- a per-estimate reliability -- and ARC-055's V(t) is verisimilitude of world-model fit with D_V its temporal-depth structure; the mapping is close on the availability requirement and loose on what exactly is being made available.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The confidence quantity evidenced is reliability of a single learned statistic (a transition probability), not a global model-fit scalar V(t); nothing here shows that a whole-model verisimilitude signal is maintained or that it has a temporal-depth derivative D_V.",
+    "The demonstration is that confidence weighting is USED in learning; it says nothing about ARC-055's other consumer, trajectory selection, so half the claim's asserted availability requirement is untouched by this entry."
+  ],
+  "tags": ["arc-055", "arc_055", "confidence_weighting", "learning_rate", "ideal_observer", "inferior_frontal_gyrus", "hierarchical_inference", "support_tag:explicit_confidence_gates_learning_update"],
+  "mapping": {
+    "source_claim_statement": "Optimal learning in a changing environment requires weighting prior knowledge against incoming evidence by their respective reliabilities; human subjects learning transition probabilities in auditory and visual sequences produced subjective confidence reports that tightly followed ideal-observer predictions, attached distinct confidence levels to each learned transition probability as Bayes-optimal inference requires, and showed likelihood and confidence signals in distinct brain areas combined in the right inferior frontal gyrus in agreement with a confidence-weighting model.",
+    "ree_translation": "ARC-055 asserts that V(t) and D_V must be EXPLICIT signals rather than emergent epiphenomena, precisely because downstream consumers -- among them learning update prioritisation and the E1/E2 update rules -- have to read them. This paper is close to a direct test of the general form of that architectural requirement in the learning-update consumer: an estimate of how reliable the current model is (i) is maintained, (ii) is explicit enough to be independently reported and to be decoded as its own signal separate from the likelihood signal, and (iii) demonstrably sets how strongly a new observation revises the model. That is exactly the shape of dependency ARC-055 claims E1/E2 updates have on V. It also supports the claim's implicit argument that an epiphenomenal reliability would not do the job: the combination happens at an identifiable site, on an identifiable signal.",
+    "mapping_caveat": "Two boundaries. First, scope of the quantity: the paper's confidence is per-statistic reliability within a hierarchical estimation problem, whereas ARC-055's V(t) is a global verisimilitude of the agent's world model and D_V a temporal-depth property of it -- the paper's hierarchical-uncertainty result is suggestive of structured rather than scalar confidence, but that is not the same structure. Second, scope of the consumer: only the learning-update leg of ARC-055 is addressed. The claim's other and arguably more contentious leg -- that V and D_V are available to E3 TRAJECTORY SELECTION -- is not tested here at all, and this entry must not be read as evidence for it.",
+    "source_context": "Human adults in an fMRI scanner learning transition probabilities underlying auditory or visual sequences with unsignalled change points, giving explicit trial-wise confidence reports, analysed against an ideal-observer model."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality 0.88: PNAS, ideal-observer benchmark rather than a descriptive contrast, cross-modal replication within subjects, from a group whose sequence-learning methodology is well established. Mapping fidelity 0.72 -- the availability-and-use structure maps well, the identity of the quantity maps only loosely. Transfer risk 0.30: human, and the computation is domain-general statistical learning, so this is a mild extrapolation compared with an animal-to-human step. Aggregate weighted toward mapping fidelity because ARC-055 is an arch_commitment about what must be explicitly represented."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_055",
+  "entry_id": "2026-09-10_arc_055_confidence_report_choice_dissociation_lak2014",
+  "timestamp_utc": "2026-09-10T07:02:31Z",
+  "claim_ids_tested": ["ARC-055"],
+  "source": {
+    "title": "Orbitofrontal cortex is required for optimal waiting based on decision confidence",
+    "authors": ["Armin Lak", "Gil M. Costa", "Erin Romberg", "Alexei A. Koulakov", "Zachary F. Mainen", "Adam Kepecs"],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2014.08.039",
+    "pmid": "25242219",
+    "pmc": "PMC4364549",
+    "volume": "84",
+    "issue": "1",
+    "pages": "190-201"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "A causal inactivation study whose central result cuts BOTH ways for ARC-055 and is the most decision-relevant finding in this pull. It supports the claim's explicitness requirement -- the confidence representation is anatomically separable enough that removing one region abolishes confidence-guided behaviour -- while directly complicating the claim's assertion that the signal must be available to SELECTION, since decision accuracy survived the same inactivation intact. Confidence 0.60 reflects a well-executed causal manipulation whose bearing on the claim is genuinely two-directional rather than uncertain.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ARC-055 asserts V(t) must be available to and influence E3 trajectory selection. Here, inactivating the region that carries the explicit confidence signal disrupted the confidence-guided waiting report while leaving decision accuracy unaffected -- i.e. the selection ran without the explicit signal. If REE's E3 selection is analogous, the availability requirement is stronger than this preparation demonstrates and may be architecturally optional rather than mandatory.",
+    "An alternative reading that would rescue the claim -- that choice in this task uses an implicit graded evidence quantity while only the REPORT needs the explicit signal -- is exactly the epiphenomenon/explicit-signal distinction ARC-055 turns on, and this experiment does not adjudicate it. The claim's key architectural commitment is therefore left undetermined rather than confirmed.",
+    "Task-scope limit: a two-alternative perceptual decision has a trivial trajectory space, so 'decision accuracy unaffected' may not generalise to selection over extended trajectories where a depth-like criterion would actually have work to do."
+  ],
+  "tags": ["arc-055", "arc_055", "decision_confidence", "orbitofrontal_cortex", "causal_inactivation", "dissociation", "temporal_wagering", "support_tag:confidence_signal_separable_from_choice"],
+  "mapping": {
+    "source_claim_statement": "In a temporal wagering task in which rats express decision confidence through how long they wait for a delayed reward, orbitofrontal cortex inactivation disrupts waiting-based confidence reports without affecting decision accuracy, identifying orbitofrontal cortex as supporting metacognitive confidence judgments separately from the perceptual decision mechanism itself.",
+    "ree_translation": "ARC-055 makes two joined assertions: that V(t) and D_V are explicit signals, and that they are available to and influence E3 selection as well as E1/E2 learning. This experiment separates those two assertions and returns different verdicts. On explicitness it is supportive and unusually strong evidence: a signal that can be causally removed by inactivating one region, with a specific and selective behavioural consequence, is by construction an addressable representation rather than a diffuse property of the computation. On availability-to-selection it is awkward. The choice itself was unimpaired by the very manipulation that abolished confidence-guided behaviour, which is the pattern one expects if selection is driven by an implicit graded quantity and the explicit signal serves other consumers. Read against ARC-055, this is a live challenge to the necessity of the E3 leg -- not a refutation, because the alternative reading (implicit evidence drives choice, explicit confidence drives report and learning) is itself a coherent architecture, but a demonstration that the claim's E3 leg has to be argued rather than assumed.",
+    "mapping_caveat": "The strongest caveat runs against reading this as a refutation. A two-alternative perceptual choice has essentially no trajectory structure, so it is a poor test bed for a claim about selection among extended trajectories evaluated over a horizon; a depth-like signal would have nothing to contribute to accuracy in this task even if it were architecturally mandatory in a richer one. Equally, inactivation removes a region, not a signal: OFC carries much besides confidence, and preserved accuracy is evidence that the choice circuit was intact, not that it never reads confidence. Species and task scope (rat, sensory two-alternative, wagering readout) are a substantial extrapolation to REE's E3.",
+    "source_context": "Rats in a temporal wagering task with confidence expressed as waiting duration for delayed reward; pharmacological/optogenetic inactivation of orbitofrontal cortex with decision accuracy measured concurrently."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality 0.85: Neuron, a causal manipulation rather than a correlation, with the critical control (decision accuracy) measured in the same animals under the same inactivation -- the dissociation is internal, not across studies. Mapping fidelity 0.65: the explicitness leg maps well, the selection leg maps onto a task whose trajectory space is degenerate. Transfer risk 0.40. Aggregate 0.60, set by the two-directional bearing rather than by any weakness in the experiment; the entry is filed 'mixed' precisely so governance sees the tension rather than a net-of-signs number."
+  }
+}

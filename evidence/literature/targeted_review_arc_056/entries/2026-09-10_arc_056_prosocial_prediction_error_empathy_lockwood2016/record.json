@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_056",
+  "entry_id": "2026-09-10_arc_056_prosocial_prediction_error_empathy_lockwood2016",
+  "timestamp_utc": "2026-09-10T07:02:31Z",
+  "claim_ids_tested": ["ARC-056"],
+  "source": {
+    "title": "Neurocomputational mechanisms of prosocial learning and links to empathy",
+    "authors": ["Patricia L. Lockwood", "Matthew A. J. Apps", "Vincent Valton", "Essi Viding", "Jonathan P. Roiser"],
+    "year": 2016,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1603198113",
+    "pmid": "27528669",
+    "pmc": "PMC5024617",
+    "volume": "113",
+    "issue": "35",
+    "pages": "9763-8"
+  },
+  "evidence_class": "human_fmri",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Bears in two directions on ARC-056 and is filed mixed for that reason rather than from uncertainty about the result, which is solid. It supports the claim's GRADED beta_j prediction unusually directly -- the efficiency of learning on another's behalf varies continuously with trait empathy, which is ARC-056's LEG 2 confirming criterion ('shift size scales with beta_j, not all-or-nothing') met in a different currency. It weakens the claim's single-common-currency assumption: the prosocial prediction error has its OWN substrate (sgACC) active only in the prosocial context, and learning for others is slower, which is the signature of a separate channel rather than one weighted sum.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ARC-056 posits one objective J_ethical in which self and other terms are summed with weights. Here the prosocial prediction error is carried by a substrate that drives learning ONLY in the prosocial context and is largely silent for self-directed learning -- a dedicated channel, not a shared currency with a different coefficient. A weighted-sum architecture does not straightforwardly predict a context-selective substrate.",
+    "Learning to obtain rewards for others was SLOWER than for self, not merely lower-weighted in the final valuation. A pure beta_j < 1 scaling on a shared objective predicts a smaller value increment, not a different learning rate; a rate difference implies the two streams are separately parameterised.",
+    "Trait empathy predicted both behavioural and neural efficiency of prosocial learning, which is graded-beta_j evidence, but empathy is a dispositional trait rather than the target-specific quantity ARC-056 needs -- beta_j must vary BY j for a fixed agent, and a trait measure varies by agent across a fixed set of targets, which is the wrong axis."
+  ],
+  "tags": ["arc-056", "arc_056", "prosocial_learning", "prediction_error", "subgenual_anterior_cingulate", "empathy", "beta_j", "reinforcement_learning", "support_tag:beta_j_graded_not_categorical", "tension:separate_substrate_vs_common_currency"],
+  "mapping": {
+    "source_claim_statement": "Using computational modelling of fMRI data from a probabilistic reinforcement-learning task with self, prosocial and control conditions, people learned to obtain rewards for others but did so more slowly than for themselves; activity in a posterior portion of subgenual anterior cingulate cortex / basal forebrain drove learning only in the prosocial context and signalled a prosocial prediction error conforming to classical reinforcement-learning principles, with substantial variability in the neural and behavioural efficiency of prosocial learning predicted by trait empathy.",
+    "ree_translation": "ARC-056 asserts that other agents enter ethical trajectory selection through weighted terms beta_j * D_V_j in a single objective, with beta_j depending on inferred similarity and relational commitment. Two of its testable consequences are examined here in a reward currency. The claim's LEG 2 confirming criterion is that any other-regarding effect should SCALE with beta_j rather than being all-or-nothing; that is met, in the sense that how efficiently a person learns on another's behalf -- behaviourally and in the sgACC response -- varies continuously with trait empathy rather than partitioning people into prosocial and non-prosocial. That is real support for the graded-weight architecture and against a categorical moral-circle model. But the claim's aggregation assumption fares worse. If the other's term were simply the self term with a smaller coefficient in one objective, one would expect the same machinery running at lower gain. What is found instead is a context-selective substrate carrying a prediction error that is largely specific to the prosocial condition, and a different learning RATE rather than only a different final weight. That is the signature of a separate, separately-parameterised channel.",
+    "mapping_caveat": "The currency is again reward, not D_V, so as with the other entries in this directory the distinctive content of ARC-056 is untested and only its form is at issue. Two further limits bite specifically on the support half. Trait empathy varies across PARTICIPANTS for a fixed target, whereas ARC-056's beta_j must vary across TARGETS j for a fixed agent -- the gradedness demonstrated is on the wrong axis, and only suggestive by analogy. And the tension half should not be over-read either: a dedicated substrate for computing an other-directed term is compatible with those terms later being summed into one objective downstream, which the design cannot rule out. The entry marks a genuine architectural question rather than settling it.",
+    "source_context": "Healthy human adults in fMRI performing a probabilistic reinforcement-learning task with rewards accruing to self, to another person (prosocial), or to no one (control); trial-wise computational model fitting plus trait empathy questionnaires."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Source quality 0.85: PNAS, trial-wise computational model fitting rather than condition contrasts, a no-one control condition that isolates the other-directed component, and an independent trait measure used as a predictor rather than a post-hoc split. Mapping fidelity 0.60: both directions of bearing map onto real ARC-056 commitments, but the graded-beta_j support is on the between-subject axis rather than the between-target axis the claim needs. Transfer risk 0.40 for laboratory monetary prosocial learning to a general ethical objective. Aggregate 0.58, reflecting a solid study whose two directions partly offset; filed mixed so that governance sees both rather than a net figure."
+  }
+}

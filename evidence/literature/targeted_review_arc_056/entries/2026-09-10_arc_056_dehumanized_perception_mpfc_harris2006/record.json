@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_056",
+  "entry_id": "2026-09-10_arc_056_dehumanized_perception_mpfc_harris2006",
+  "timestamp_utc": "2026-09-10T07:02:31Z",
+  "claim_ids_tested": ["ARC-056"],
+  "source": {
+    "title": "Dehumanizing the lowest of the low: neuroimaging responses to extreme out-groups",
+    "authors": ["Lasana T. Harris", "Susan T. Fiske"],
+    "year": 2006,
+    "venue": "Psychological Science",
+    "doi": "10.1111/j.1467-9280.2006.01793.x",
+    "pmid": "17100784",
+    "pmc": null,
+    "volume": "17",
+    "issue": "10",
+    "pages": "847-53"
+  },
+  "evidence_class": "human_fmri",
+  "evidence_direction": "supports",
+  "confidence": 0.42,
+  "confidence_rationale": "Weak but genuinely on-target evidence for the one part of ARC-056 nothing else in this pull touches: the VIOLENCE CONDITION's first branch, in which beta_j collapses because the other is no longer inferred to be self-like. Extreme out-groups failing to recruit the social-cognition substrate that every other social category recruited is the closest empirical analogue available to 'the agent stops being modelled as an agent'. Confidence held to 0.42 by small samples (10 and 12 participants), 2006-era fMRI, a passive-viewing design with no choice or trajectory, and reliance on reverse inference from a null activation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The critical result is an ABSENCE of mPFC activation, and inferring absence of social-agent modelling from absence of a regional response is reverse inference on a null -- underpowered at n=10 and not licensed by the design.",
+    "Passive photograph viewing involves no choice, no trajectory and no valuation. ARC-056's violence condition is a statement about what happens to TRAJECTORY SELECTION when beta_j collapses; nothing here measures selection, so the entry evidences a precondition of the condition rather than the condition.",
+    "The claim's violence condition is a disjunction with two branches (beta_j collapse OR self-preservation forcing a D_{V,j} sacrifice) asserted to be jointly exhaustive. This paper bears on the first branch only and says nothing about exhaustiveness, which is LEG 1's actual falsifier."
+  ],
+  "tags": ["arc-056", "arc_056", "dehumanization", "medial_prefrontal_cortex", "stereotype_content_model", "beta_j_collapse", "violence_condition", "support_tag:beta_j_collapse_has_biological_analogue"],
+  "mapping": {
+    "source_claim_statement": "The stereotype content model predicts that only extreme out-groups -- those stereotyped as both low in warmth and low in competence, such as addicts and homeless people -- are dehumanized. Functional MRI showed medial prefrontal cortex activation, previously established as necessary for social cognition, to every social group EXCEPT these extreme out-groups, who instead especially activated insula and amygdala in a pattern consistent with disgust; no object category activated mPFC despite being rated with comparable emotions.",
+    "ree_translation": "ARC-056 defines a violence condition in D_V terms whose first branch is beta_j collapse: the other agent is no longer inferred to be self-like, so its D_{V,j} term drops out of J_ethical and trajectories that sacrifice it stop being penalised. That is an architectural prediction with an empirical shadow -- there should exist circumstances in which a being that IS an agent stops being processed as one, and this should be a property of the perceiver's model rather than of the target. The finding is that shadow: a substrate reliably engaged for every other social category is not engaged for one, and the categories are predicted in advance by a model of stereotype content rather than selected post hoc. The object control matters here, because it establishes that the missing response is not merely low arousal -- objects were rated with comparable emotions and also failed to engage mPFC, which is the comparison that makes 'processed less like an agent' the natural description.",
+    "mapping_caveat": "This evidences a PRECONDITION of ARC-056's violence condition, not the condition. The claim is about what happens to trajectory selection when beta_j collapses; this study contains no choice, no trajectory and no valuation, only passive viewing. The inference also runs through a null result -- absence of mPFC recruitment read as absence of social-agent modelling -- which is reverse inference on an absence at n=10, and would not be considered adequate evidence for a positive architectural claim on its own. Finally, mapping social-perception categories onto a continuous coefficient beta_j is loose: the paper describes a category effect, whereas ARC-056 needs a weight that can take intermediate values, and it is the intermediate values (per the Lockwood entry) that carry the claim's non-degeneracy.",
+    "source_context": "10 participants viewing 48 photographs of social groups spanning the four stereotype-content quadrants, and 12 participants viewing objects; passive viewing with emotion ratings, event-related fMRI, 2006."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.55: a well-known and theoretically motivated result with an a-priori category prediction and a useful object control, but small samples (10 and 12), 2006-era acquisition and analysis standards, and a central claim resting on a null activation. Mapping fidelity 0.50: right target -- the beta_j collapse branch nothing else in this pull addresses -- but a category effect standing in for a continuous coefficient, and perception standing in for selection. Transfer risk 0.55, the highest in this pull: passive viewing of photographs to an agent's ethical trajectory selection is a long extrapolation. Aggregate 0.42, deliberately low; this entry is included because the branch would otherwise have zero coverage, and it should be read as marking a gap rather than filling one."
+  }
+}
