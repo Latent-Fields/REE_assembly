@@ -22732,6 +22732,13 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1485",
+      "blocked_by": [
+        "SD-026",
+        "SD-028",
+        "MECH-251",
+        "MECH-255"
+      ],
+      "blocked_note": "Step 2.5 substrate-readiness STOP (session metaworker-chip-proposal-exp-0936, 2026-09-10). Neither mechanism this proposal would probe exists in the ree-v3 substrate, so no non-vacuous experiment can be written. IDENTITY CAVEAT: the registry names claim MECH-255 (vmPFC/dlPFC template compiler, SD-028, implementation_phase v4, whose own claims.yaml notes say 'No evidence expected until V4'); the dispatching chip chip-proposal-exp-0936 titled it MECH-251 (SD-026 dan_feedback precision-write channel, implementation_phase v3). The stop holds for BOTH, so the disagreement does not change the disposition -- see chip-20260910-proposal-id-instability for the underlying proposal_id drift (438 of 450 proposal chips disagree with the registry on claim_id). EVIDENCE: grep over ree-v3/ree_core/ returns ZERO hits for dan_feedback, template_proj, template_vec, residue_bias, alpha_dan, vmpfc, dlpfc, SD-026 and SD-028; no ree-v3/docs/substrate/SD-026-*.md or SD-028-*.md implementation record exists; and a runtime walk of REEConfig() (1187 knobs, 2026-09-10) matches none of that vocabulary -- in particular there is no sd026_enabled ablation toggle, which MECH-251's own functional_restatement names as the required lever. NODE CLASS: SD-026 is complicated (buildable) -- so classified in REE_assembly/docs/roadmap.md's GATED_ON_NO_TOKEN triage -- so the route is /implement-substrate, NOT another /queue-experiment pass. SD-028 / MECH-255 is additionally v4-phase-gated and must not be queued as V3 work at all (same disposition as MECH-255's existing row in evidence/planning/v4v5_gated_proposal_backlog.md). No experiment script was written and no experiment_queue.json entry was added.",
       "claim_id": "MECH-255",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -22754,7 +22761,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_255",
       "target_repo": "ree-v3",
       "why_now": [
@@ -24358,7 +24365,9 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1507",
-      "blocked_by": ["MECH-330"],
+      "blocked_by": [
+        "MECH-330"
+      ],
       "blocked_note": "blocked at /queue-experiment Step 2.5: MECH-330 (idle_aversion_acute_restlessness_accumulator) has zero substrate implementation in ree-v3/ree_core as of 2026-09-10 -- no engagement-rate estimator (commit-transition rate, E3 deliberation depth, residue-write rate), no EWMA boredom_t accumulator, and no z_harm_a boredom-routing hook. z_harm_a itself exists (SD-011 affective harm stream, ree_core/amygdala/), but nothing writes a boredom term into it. This is complicated (buildable), not probe-gated: route to /implement-substrate for MECH-330 (the tonic_vigor.py EWMA pattern at ree_core/policy/tonic_vigor.py is a reusable template) before re-offering this proposal.",
       "claim_id": "MECH-330",
       "decision_deadline_utc": "",
