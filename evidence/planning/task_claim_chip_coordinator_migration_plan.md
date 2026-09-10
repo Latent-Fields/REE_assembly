@@ -681,7 +681,65 @@ closure_plan:
         commits+pushes locally; content-identical, so the push-retry rebase
         collapses the duplicate). Soak window start = 08:43:57Z; evaluate
         against section 7 no earlier than 2026-09-10T08:44Z, then flip the
-        three suppress predicates (chip-20260907-igw-intent-soak-eval-flag-flip). Not yet started: a claims.yaml intake, if one
+        three suppress predicates (chip-20260907-igw-intent-soak-eval-flag-flip).
+
+        SOAK EVALUATED GREEN + FLAGS FLIPPED 2026-09-10T15:31Z (session
+        ree-assembly-divergence-repair-20260910, user-authorised). Section 7
+        criteria, all measured: (a) intent coverage -- 151 rows in
+        git_intent_log since 2026-09-07T08:43, verdict 'applied' on ALL of
+        them, ZERO repo_not_configured/push_failed/error; (b) hub clone
+        /home/ree/REE_Working_intent_ree_assembly clean and 0/0 vs origin;
+        (c) Mac dual-writes collapsed -- ONE local igw_routine_ledger.json
+        commit in the whole 3-day window, shared checkout not [ahead]; (d)
+        tick ran hourly throughout, ZERO 'falling back to the git path'
+        entries. Flipped igw_ledger_suppress_git_write,
+        igw_assignments_suppress_git_write and igw_log_suppress_git_write =
+        true in ~/.ree_coordinator_client.json (backup
+        .bak-20260910; rollback = delete the three keys).
+        POST-FLIP VERIFICATION, two full ticks: 16:17:38Z and 17:19:10Z both
+        exit=0 and both printed 'igw_routine_log.md line
+        coordinator-acknowledged (entry_id 437 / 438, verdict ok); local
+        write suppressed'. Mac igw commits in the 2h15m after the flip: 0,
+        against 3 in the equivalent window before it.
+
+        TWO EVALUATION TRAPS RECORDED so the next flip does not repeat them.
+        (1) After igw_log_suppress_git_write is true the LOCAL
+        igw_routine_log.md STOPS UPDATING -- so a verification that watches
+        that file for growth can never fire. Watch the launchd log
+        (~/Library/Logs/ree_igw_routine.launchd.log) or the coordinator
+        instead. (2) The log line does NOT go through /intent/replace, so
+        git_intent_log shows ZERO rows for it; querying that table to
+        confirm the log write reads as total failure when the write is in
+        fact fine. Both were hit live during this evaluation.
+
+        PROCESS FINDING, from the user: the 3-day wait added no information
+        this evaluation could not have had on day one -- 151/0 read the same
+        throughout -- while the re-dispatch it forced is exactly where the
+        work was lost (see the DROPPED-HANDOFF note below). What earned its
+        keep is the DUAL-WRITE ARM, not the calendar: it is why the
+        2026-09-02..09-07 five-day silent repo_not_configured window cost
+        nothing. Recommended for the remaining flips: keep the dual-write,
+        drop the fixed window, gate on a clean and non-trivial verdict table
+        whenever it is available. The one case to keep a real soak is a
+        suppressed path that is the SOLE copy of something non-regenerable
+        -- igw_routine_log.md is append-only and was the only genuinely
+        stranded content of the 14 commits healed on 2026-09-10.
+
+        DROPPED HANDOFF, recorded as an incident. chip-20260907-igw-intent-
+        soak-eval-flag-flip was WITHDRAWN 2026-09-07T12:48Z on the stated
+        grounds that a local scheduled task
+        'igw-intent-soak-eval-flag-flip' would fire once at
+        2026-09-10T09:00Z. That task was NEVER REGISTERED: its SKILL.md sits
+        at ~/.claude/scheduled-tasks/igw-intent-soak-eval-flag-flip/SKILL.md
+        with no taskId, no nextRunAt and no lastRunAt, and the scheduled-task
+        registry holds only ree-morning-digest-b and ree-lit-pull-am-b. So a
+        tracked chip was retired in favour of an untracked mechanism that did
+        not exist, both trackers then read as handled, and the highest-value
+        divergence fix sat ownerless for three days at ~25 orphan
+        commits/day. Rule: do not withdraw a chip in favour of a scheduled
+        task without verifying the task is REGISTERED, not merely authored.
+
+        Not yet started: a claims.yaml intake, if one
         is ever wanted -- the governance cycle still commits claims.yaml
         directly under its pause claim, and nothing here assumes otherwise.
         The record below is the activation and soak history.
