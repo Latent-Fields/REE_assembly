@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-10T06:34:42Z`
+Generated: `2026-09-10T21:25:19Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -14,7 +14,7 @@ UI: http://localhost:8000/workset
 - Pending review: **4**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-906c
+- Live EXQs: V3-EXQ-1019, V3-EXQ-906c
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): ARC-021 -> v3_exq_1011_arc021_h3_submargin_paired_ci_20260908T201117Z_v3, MECH-152 -> v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3, MECH-161 -> v3_exq_999a_mech161_vigilance_inverted_u_heartbeat_20260909T054013Z_v3, MECH-162 -> v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3, Q-081 -> v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3
 
@@ -2661,7 +2661,31 @@ Instructions:
 
 </details>
 
-### IGW-20260910-235 -- Proposal for INV-095
+### IGW-20260910-235 -- Proposal for MECH-005
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** active_conflict; directional_conflict_alert; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260910-235
+Title: Proposal for MECH-005
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: MECH-005
+Proposal backlog id (stable): EVB-1381
+Why now: active_conflict; directional_conflict_alert; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260910-236 -- Proposal for INV-095
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2669,7 +2693,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260910-235
+REE inter-governance work item: IGW-20260910-236
 Title: Proposal for INV-095
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -2685,7 +2709,7 @@ Instructions:
 
 </details>
 
-### IGW-20260910-236 -- Literature proposal for EXT-009
+### IGW-20260910-237 -- Literature proposal for EXT-009
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2693,7 +2717,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260910-236
+REE inter-governance work item: IGW-20260910-237
 Title: Literature proposal for EXT-009
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2708,7 +2732,7 @@ Instructions:
 
 </details>
 
-### IGW-20260910-237 -- Literature proposal for MECH-003
+### IGW-20260910-238 -- Literature proposal for MECH-003
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2716,7 +2740,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260910-237
+REE inter-governance work item: IGW-20260910-238
 Title: Literature proposal for MECH-003
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2731,7 +2755,7 @@ Instructions:
 
 </details>
 
-### IGW-20260910-238 -- Proposal for MECH-005
+### IGW-20260910-239 -- Proposal for MECH-011
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2739,40 +2763,17 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260910-238
-Title: Proposal for MECH-005
+REE inter-governance work item: IGW-20260910-239
+Title: Proposal for MECH-011
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-005
-Proposal backlog id (stable): EVB-1381
+Claims: MECH-011
+Proposal backlog id (stable): EVB-1384
 Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260910-239 -- Literature proposal for MECH-005
-
-- **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260910-239
-Title: Literature proposal for MECH-005
-Lane: lit | Skill: /lit-pull
-Status: ready
-Claims: MECH-005
-Proposal backlog id (stable): EVB-1381
-Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-Instructions:
-- Use /lit-pull for the claim cluster named.
 - Workset: http://localhost:8000/workset
 ```
 
