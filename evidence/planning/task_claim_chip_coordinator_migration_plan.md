@@ -739,6 +739,71 @@ closure_plan:
         commits/day. Rule: do not withdraw a chip in favour of a scheduled
         task without verifying the task is REGISTERED, not merely authored.
 
+        REMAINING TWO FLAGS FLIPPED 2026-09-10T18:52Z (session
+        happy-swartz-199593, chip
+        chip-20260910-igw-proposals-workset-suppress-flags). Flipped
+        igw_workset_suppress_git_write and igw_proposals_suppress_git_write
+        = true in ~/.ree_coordinator_client.json (backup
+        .bak-20260910-1852; rollback = delete the two keys). All five IGW
+        suppress predicates now read true. Per the PROCESS FINDING above,
+        NO new fixed soak window was imposed -- the existing dual-write
+        evidence was evaluated as-is, and the carve-out (a suppressed path
+        that would become the SOLE copy of something non-regenerable) does
+        not apply: both paths are whole-file CAS replaces, not append-only.
+
+        EVIDENCE, per path, since the 2026-09-07T08:43 activation.
+        (a) workset -- 60 rows (30 .v1.json + 30 .md), verdict 'applied' on
+        ALL, zero repo_not_configured/push_failed/error; the 94 pre-fix
+        repo_not_configured rows all predate 08:43. (b) proposals -- 1 row,
+        'applied' (id 270, 2026-09-08T02:12:17Z); the 4 earlier
+        repo_not_configured rows all predate the fix. Ground truth that
+        'applied' really reaches origin: the last 12 origin/master commits
+        on inter_governance_workset.v1.json are authored 'REE Automation
+        (Hub)' -- git_intent.py applies inline
+        (fetch/compare/write/validate/commit/push in the request cycle), so
+        there is NO separate ree-assembly-git-writer timer to check and its
+        absence from `systemctl list-timers` is not a finding. (c)
+        Dual-write collapse, Mac vs Hub commits in the window: workset
+        Mac=1/Hub=30 (already collapsed -- the flip removes a residual
+        write), proposals Mac=11/Hub=1. (d) One transport fallback in the
+        window (2026-09-09T09:47Z, /intent/replace TimeoutError), which is
+        the fail-open design working, not a defect -- see the FAIL-OPEN
+        note below.
+
+        WHY n=1 WAS ACCEPTED FOR PROPOSALS, stated explicitly because the
+        raw count looks thin. The proposals path is low-RATE, not
+        low-confidence: igw_routine_tick.py has exactly ONE proposals call
+        site (line 2004 -> _commit_proposals -> a homogeneous single-path
+        _ree_commit, so it is always CAS-routed), and it fires only when an
+        IGW item flips status. The single post-fix row answers the only
+        path-SPECIFIC question -- does experiment_proposals.v1.json resolve
+        and land server-side -- with 'applied'; everything else it depends
+        on (transport, CAS semantics, the hub clone, the apply-and-push
+        cycle) is the SAME machinery carrying 151 applied / 0 failed rows.
+
+        TRAP FOR THE NEXT READER: proposals Mac=11 does NOT mean the tick
+        dual-wrote 11 times, and the flag will not suppress those 11. Only
+        1 of them came from the tick. The rest are spawned IGW worktree
+        sessions and governance writing the same file directly via
+        ree_commit.py (message shapes like 'EVB-1380/EXP-0735 (MECH-004):
+        blocked_substrate ...', and 'igw-proposals: LIT-0736 (MECH-004) ->
+        executed, with provenance' -- note that one does NOT match
+        _commit_proposals' 'igw-proposals: {flipped} -> {status}
+        ({igw_id})' format). Those writers are entirely outside the flag's
+        scope and keep committing via git. So experiment_proposals.v1.json
+        remains an actively git-written file after this flip; the flip
+        removes only the tick's own duplicate write.
+
+        FAIL-OPEN, verified in code rather than assumed: _ree_commit skips
+        the local git commit ONLY when EVERY path in the batch comes back
+        'suppressed' (coordinator-applied AND its flag on). Any other
+        outcome for any path -- including a transport timeout or a hub
+        outage -- falls through to the git commit UNCHANGED for the whole
+        batch. A hub outage therefore degrades to today's behaviour rather
+        than dropping a write, which is the property that makes flipping
+        without a calendar soak safe.
+
+
         Not yet started: a claims.yaml intake, if one
         is ever wanted -- the governance cycle still commits claims.yaml
         directly under its pause claim, and nothing here assumes otherwise.
