@@ -279,7 +279,7 @@ The eight operations the harness exposes. This is a contract, not an implementat
 
 ## 7. Deliverable 4 — the controls, with predeclared signatures
 
-> Four controls were specified by the supplement (`P1-R1`…`R4`; `P1-R1` — descendants generated, not stipulated — is §3/§4 rather than an arm here). A **fifth is mandatory** and was added after this document landed: `P1-R7`, §7.5. Two further refinements exist in a companion artifact and are not restated here — `P1-R5` (retrieval-attribution arm) and `P1-R6` (the `MECH-544` boundary declaration), in [`provenance_branch_hippocampal_audit_verification_20260910.md`](provenance_branch_hippocampal_audit_verification_20260910.md) §7. `P1-R5` and `P1-R7` are **different axes** and neither substitutes for the other: `P1-R5` asks *where source structure lives* (stored tag versus reconstructed at retrieval); `P1-R7` asks *what confidence tracks* (represented source count versus number of retrieval events).
+> Four controls were specified by the supplement (`P1-R1`…`R4`; `P1-R1` — descendants generated, not stipulated — is §3/§4 rather than an arm here). A **fifth is mandatory** and was added after this document landed: `P1-R7`, §7.5. Two further refinements were specified in a companion artifact, [`provenance_branch_hippocampal_audit_verification_20260910.md`](provenance_branch_hippocampal_audit_verification_20260910.md) §7: `P1-R5` (retrieval-attribution arm), which is **not** restated here and was run separately (`provenance_p1r5_retrieval_attribution_result.md`); and `P1-R6` (the `MECH-544` boundary declaration), which **is** now discharged in this document at §8.3, because it is a statement about the readouts. `P1-R5` and `P1-R7` are **different axes** and neither substitutes for the other: `P1-R5` asks *where source structure lives* (stored tag versus reconstructed at retrieval); `P1-R7` asks *what confidence tracks* (represented source count versus number of retrieval events).
 
 ### 7.1 P1-R2 — adaptive-linking control (from E43)
 
@@ -403,6 +403,26 @@ if |measured inflation| <= |instrument error on matched known topology|
 ```
 
 This is the `puzzle (known rules)` item from §1: a missing fact, cheaply obtainable, that determines whether any P1 number can be read at all. It is not optional, and it is not the same as reporting a confidence interval — it is the instrument's *bias*, not its variance.
+
+### 8.3 P1-R6 — the `MECH-544` boundary, declared on the readouts
+
+`MECH-542` / `MECH-543` / `MECH-544` (source-sensitive permeability, registered 2026-09-08, one day before this branch's parent thought) are an unrecognised REE-internal neighbour of this branch, and `MECH-544`'s predicted routes already include *"repeated fictional trajectories distorting perceived likelihood"* — this branch's step 4, reached by its step 5's mechanism. Neither lineage referenced the other in either direction. The remedy is to **distinguish the two, not merge them**, and the distinguishing variable is one of §8.1's own four readouts:
+
+```text
+MECH-544  permeability:  a hypothetical-source frame fails to PROTECT a variable
+                         it should protect (occurrence, source truth, responsibility)
+                         -> moves readouts 1, 2 and 4
+
+P1        false independence: dependent descendants are counted as several
+                         independent sources
+                         -> readout 3 is P1's DISTINCTIVE product
+```
+
+**A result that moves only readouts 1, 2 and 4 is `MECH-544`'s, not P1's, and must not be counted as evidence for this branch.** That is what stops two candidate claims consuming one experiment's result — the failure this declaration exists to prevent.
+
+**This is no longer only an argument; `P1-R5` measured it.** On the retrieval-attribution route, sixteen in-place retrieval events at fixed cardinality and fixed storage moved **readout 2** by −33.5% relative (`p_external` 0.0824 → 0.0547) while moving **readout 3** by −0.025 — and on the stored-tag route both were exactly zero (`provenance_p1r5_retrieval_attribution_result.md`, findings A9a/A9b). A fluency-driven, `MECH-544`-shaped mechanism reached the readouts this boundary assigns to `MECH-544`, and did not reach the one it assigns to P1. The demarcation survives its first empirical test.
+
+**Two consequences, both narrowing.** (a) `P1-R5` showed the fluency effect is **route-specific and readout-specific**, so `P1-R7`'s clearance of the fluency rival ("fluency is not live") holds for the stored-tag route and must not be carried to an attribution architecture — and this boundary is therefore route-conditional, not absolute. (b) The boundary is stated over readouts, so it only does its work while §8.1's rule holds: the four readouts reported **separately, never one derived from another**.
 
 ---
 
