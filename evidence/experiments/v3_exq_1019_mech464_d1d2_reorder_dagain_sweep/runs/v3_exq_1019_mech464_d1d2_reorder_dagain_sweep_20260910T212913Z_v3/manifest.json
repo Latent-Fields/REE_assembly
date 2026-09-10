@@ -1,0 +1,232 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1019_mech464_d1d2_reorder_dagain_sweep",
+  "run_id": "v3_exq_1019_mech464_d1d2_reorder_dagain_sweep_20260910T212913Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-10T21:29:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-464"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "d1_d2_split_order_changing_straddle_conditioned",
+    "preconditions": [
+      {
+        "name": "n_d1d2_active_pooled",
+        "kind": "readiness",
+        "description": "pooled count of fresh, d1d2-active E3 selections across all seeds",
+        "control": "use_d1_d2_population_split=True + loop_segregation reaching every fresh tick",
+        "direction": "lower",
+        "measured": 1852.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "straddle_frac_mean_nonvacuous",
+        "kind": "readiness",
+        "description": "MECH-464's OWN MANDATORY non-vacuity gate: mean straddle fraction (max of assoc/limbic) across d1d2-active ticks. If ~0, no candidate pair straddles zero and the run cannot answer the reordering question -- self-route precondition_unmet, never a null",
+        "control": "candidates whose loop accumulators genuinely straddle zero (measured live probe, 2026-09-10: up to 0.53 on a single seed)",
+        "direction": "lower",
+        "measured": 0.138841642281234,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "da_target_clears_floor",
+        "kind": "readiness",
+        "description": "design-time |da| clears MECH-464's own |da|>=0.01 precondition (da is a pre-registered constant here, not measured per-tick, since it is fixed by the exogenous injection, not endogenously computed)",
+        "control": "post-construction _lcg_value_baseline injection",
+        "direction": "lower",
+        "measured": 0.6,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "fresh_select_count_sufficient",
+        "kind": "readiness",
+        "description": "pooled genuine (non-latched) E3 selections -- the fresh_select repair denominator, guards against the 785-class ~9x pseudo-replication defect (not applicable here since GateDVRecorder fresh-gates by construction, but reported as a sample-size floor)",
+        "control": "fresh_select.py sentinel-key detection",
+        "direction": "lower",
+        "measured": 1852.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "tercile_bands_scorable",
+        "kind": "readiness",
+        "description": "at least 2 of 3 straddle terciles (among straddle>0 ticks) have enough n to report a rate -- guards the diagnostic tercile profile against being computed from near-empty bands",
+        "control": "straddle>0 pool, n=589",
+        "direction": "lower",
+        "measured": 3.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "straddle_zero_bucket_scorable",
+        "kind": "readiness",
+        "description": "the straddle==0 bucket C2 compares AGAINST needs enough n for its near-zero reorder rate to be a real confirmation rather than sampling noise -- MIRRORS tercile_bands_scorable's floor on the straddle>0 side, applied to the straddle==0 side C2 actually reads",
+        "control": "straddle==0 pool, n=1263",
+        "direction": "lower",
+        "measured": 1263.0,
+        "threshold": 20.0,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_existence_nonzero_reorder_count": true,
+      "C2_confinement_reorder_confined_to_straddle_positive": true,
+      "C3_gradation_point_biserial_r_straddle_vs_reorder": true
+    },
+    "design_note": "Single condition (no da==0 control arm): the da=0 shadow argmin (loop_d1_d2_reorder_vs_da0) is computed WITHIN every tick against the SAME pre-split accumulators, so 'above the da==0 baseline' from the claim's what_would_answer holds by construction for any nonzero-da run. The substantive test is confinement (C2) and gradation (C3) against the measured straddle fraction, pooled across all seeds.",
+    "d2_gain_zero_note": "d2_gain_zero_frac=0.0000 at the chosen d1_da_gain=2.0/d2_da_gain=1.2/da=0.6 (design-time: d2_gain=max(0, 1-d2_da_gain*da) computed to stay just above 0 -- see the module-level assert). Ticks in this state have the No-Go population fully silenced, a distinct real effect MECH-464's own notes say must be excluded from being read as reordering; C3 is reported both including and excluding these ticks.",
+    "tercile_profile": [
+      {
+        "band": "low",
+        "n": 190,
+        "scored": true,
+        "straddle_mean": 0.29407174384647083,
+        "reorder_rate": 0.005263157894736842
+      },
+      {
+        "band": "mid",
+        "n": 188,
+        "scored": true,
+        "straddle_mean": 0.47648804825991775,
+        "reorder_rate": 0.026595744680851064
+      },
+      {
+        "band": "high",
+        "n": 211,
+        "scored": true,
+        "straddle_mean": 0.5292954364983476,
+        "reorder_rate": 0.052132701421800945
+      }
+    ],
+    "scope_note": "Tests MECH-464 only. Does not reopen MECH-463 (whose harm-urgency-threshold falsifier stands per that claim's own notes) and does not speak to the softmax-temperature arousal route (MECH-087, already evidenced by V3-EXQ-674)."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "87db5390bd430e73cd81c7880ca0987403427d772ccf7a9883bcaba094847c73",
+  "substrate_commit": {
+    "commit": "91989f7941c446e5d8108812755c01a7cafc9aac",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.goal_weight": 1.0,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_finer_channel_gating": true,
+    "e3.use_learned_settling_step": true,
+    "e3.use_loop_segregation": true,
+    "e3.use_named_channel_routing": true,
+    "e3.use_d1_d2_population_split": true,
+    "e3.use_loop_local_eligibility_traces": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_event_segmenter": true,
+    "hippocampal.use_invalidation_trigger": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.use_per_region_vs": true,
+    "heartbeat.breath_period": 50,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "use_ofc_analog": true,
+    "use_structured_curiosity": true,
+    "use_tonic_vigor": true,
+    "use_modulatory_selection_authority": true,
+    "use_mech295_liking_bridge": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 805.3291234449999,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "ticks_per_seed": 2000,
+    "d1_da_gain": 2.0,
+    "d2_da_gain": 1.2,
+    "da_target": 0.6,
+    "alpha_world": 0.9,
+    "modulatory_authority_gain": 0.5,
+    "env": {
+      "cls": "CausalGridWorldV2",
+      "use_proxy_fields": true,
+      "hazard_harm": 0.5
+    },
+    "thresholds": {
+      "MIN_D1D2_ACTIVE_FLOOR": 200,
+      "STRADDLE_FRAC_FLOOR": 0.01,
+      "MIN_FRESH_SELECT_FLOOR": 200,
+      "MIN_TERCILE_N_FLOOR": 20,
+      "MIN_REORDER_COUNT_FLOOR": 20,
+      "POINT_BISERIAL_R_FLOOR": 0.03,
+      "STRADDLE_ZERO_ANOMALY_CEILING": 0.05
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 8,
+    "goal_state_present": false
+  }
+}
