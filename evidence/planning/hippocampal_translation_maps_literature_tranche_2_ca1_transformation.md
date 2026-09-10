@@ -247,3 +247,5 @@ The next narrow questions are:
 5. **Development/pruning:** does the CA3→CA1 mapping begin broad/overcomplete and become sparse or partner-specific with learning?
 
 These are now concrete enough for a second targeted pull rather than broad hippocampal searching.
+
+**Update 2026-09-10:** questions 1 and 2 above are taken up in [tranche 3](hippocampal_translation_maps_literature_tranche_3_receiver_conditioning_temporal.md), which verifies the Butola et al. hippocampus→entorhinal feedback work as peer-reviewed (Nat Neurosci 28:811–822, 2025) and ranks the four CA1→EC alternatives — reconstruct / trigger native completion / compare / select a frame — finding *reconstruction* untested rather than weakened.
