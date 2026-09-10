@@ -1,7 +1,7 @@
 # Provenance P1 — generated-ancestry harness design
 
 **Date:** 2026-09-10
-**Status:** design note only. No assay script written or modified, no claim registered or promoted, no queue entry, no edit to the ladder or the supplement. Recommendations to those documents appear in §10 as recommendations, not as changes.
+**Status (updated 2026-09-10, see the BUILD STATUS banner below):** originally a design note only. **The gate is now discharged and P1 is built and run** — see [`provenance_genealogy_probe_p0_result.md`](provenance_genealogy_probe_p0_result.md) and [`provenance_p1_result.md`](provenance_p1_result.md). Still: no claim registered or promoted, no queue entry, no edit to the ladder or the supplement. Recommendations to those documents appear in §10 as recommendations, not as changes.
 **Chip:** `chip-20260910-provenance-harness-design-v3`
 **Designs against:** [`provenance_false_evidence_multiplication_campaign_supplement_20260910.md`](provenance_false_evidence_multiplication_campaign_supplement_20260910.md) (REE_assembly `f7b19654d8`), §§3, 4, 7, 10
 **Refines (does not replace):** [`provenance_false_evidence_multiplication_experiment_ladder.md`](provenance_false_evidence_multiplication_experiment_ladder.md), assay P1
@@ -14,16 +14,42 @@
 
 ## 1. Verdict, up front
 
-**The harness is buildable and the design below is concrete — but it should not be built yet, because its load-bearing premise is unproven and can be tested for a fraction of the cost.**
+> ### BUILD STATUS — 2026-09-10: gate discharged, P1 built and run
+>
+> The verdict below ("it should not be built yet") was **correct when written and is now
+> spent**. Both steps it gated have happened, and this banner exists so that a later reader
+> does not re-gate or re-build work that is already on `master`.
+>
+> | Step | Outcome | Artifact |
+> |---|---|---|
+> | Probe **P0** (§9.3) | endogeneity sweep **PASSED** — ancestry loss here is *generated*, not stipulated; design-note falsifier 1 and supplement falsifier 2 do **not** fire | `scripts/provenance_genealogy_probe_p0.py`, [result](provenance_genealogy_probe_p0_result.md) (`b81f9764bc`) |
+> | **P1** harness + assay | **every preregistered criterion passed** on three seed-pairs (MAIN M1–M4, `P1-R2`, `R3`, `R4`, `R7`, C1) | `scripts/provenance_genealogy_harness.py`, `scripts/provenance_p1_false_independence_assay.py`, [result](provenance_p1_result.md) (`062d774289`) |
+>
+> **The result that matters is P2, not H1.** "Ancestry loss inflates the effective-source
+> count" is close to definitional once the readout treats unbound traces as separate
+> sources. Swapping that default removes the effect entirely — `absent_policy = dependent`
+> gives `N_eff` 1.117 → 1.000 against 1.117 → 4.869 under the independence default. **The
+> locus is the readout's default for unknown ancestry, not the corruption**, which is why
+> the supplement was right to promote P2. The obvious remedy, a *soft* default, does **not**
+> work: once every binding is sub-threshold there is nothing left to interpolate from, so it
+> degenerates to `independent` exactly where it was meant to help.
+>
+> Two further measured corrections to expectations set below: calibration is monotone in
+> sign but **U-shaped in magnitude** (best at *moderate* ancestry loss), and there is **no
+> divergence from the human pattern** — `ABSENT` and `FALSE_SPLIT` came out near-identical
+> in both count and calibration, with `SOFT` already carrying most of the movement, so the
+> §5.4 consequence-2 divergence report is not owed.
+
+**The harness is buildable and the design below is concrete — but it should not be built yet, because its load-bearing premise is unproven and can be tested for a fraction of the cost.** *(Original verdict, superseded by the banner above.)*
 
 Three verdicts, in the work-graph debt vocabulary:
 
 | Question | Class | Consequence |
 |---|---|---|
 | Can the descendant-generation + genealogy-store + replay harness be built? | **complicated (buildable)** | No unknowns. It is new code, not an extension of assay 00N — see §9. |
-| Does corrupting a genealogy *representation* through a process produce anything the stipulated-topology case does not? | **complex (probe-gated)** | This is Break A, and it is the whole value of P1. Gate it with probe **P0** (§9.3) before building the rest. |
-| Does the effective-source-count instrument have the resolution to see the effect above its own miscalibration? | **puzzle (known rules)** | A missing fact, obtainable by running the instrument against known topology in the same run (§8.2). Do not build P1 without that companion measurement. |
-| If inflation appears only under `FALSE_SPLIT` and never under `ABSENT`/`SOFT`, what does the divergence from the human pattern mean? | **mystery (known data)** | Reframe, do not gather. No further human data is reachable from here; the supplement §5.4 already says to report the divergence rather than score it as a pass. |
+| Does corrupting a genealogy *representation* through a process produce anything the stipulated-topology case does not? | **complex (probe-gated)** → **RESOLVED to `complicated (buildable)`** | This is Break A, and it is the whole value of P1. Gate it with probe **P0** (§9.3) before building the rest. **P0 passed; the gate is spent and P1 is built.** |
+| Does the effective-source-count instrument have the resolution to see the effect above its own miscalibration? | **puzzle (known rules)** → **FACT OBTAINED** | A missing fact, obtainable by running the instrument against known topology in the same run (§8.2). **Measured: worst instrument \|signed error\| 0.2215, against an inflation of 3.494 — the floor is cleared 15.8x.** |
+| If inflation appears only under `FALSE_SPLIT` and never under `ABSENT`/`SOFT`, what does the divergence from the human pattern mean? | **mystery (known data)** → **DID NOT ARISE** | Reframe, do not gather. **Measured: no divergence. `ABSENT` (N_eff 4.234, signed error +0.073) and `FALSE_SPLIT` (4.072, +0.066) are near-identical, and `SOFT` already carries most of the movement — the empirically loaded regimes are where the effect lives.** |
 | Seed-to-seed variation in the count and calibration estimates | **aleatoric (irreducible)** | Hedge with a preregistered seed set, do not chase. |
 
 The single most consequential design finding is in §7.2: **the legitimate-computation control (P1-R3) becomes mechanically clean once the confidence rule is written in assay 001's own form.** `log-odds = N_eff x logit(p)` has two terms; legitimate computation is licensed to raise `p` and forbidden to raise `N_eff`; false independence does the reverse. Both arms then produce rising confidence, both under one unmodified inference rule, and the discrimination is not a label the scorer applies. Without that decomposition, P1-R3 is the falsifier-5 trap the supplement warns about — a control that cannot separate the forbidden gain from ordinary competent inference.
@@ -172,6 +198,21 @@ misbinding            ->  VERIDICAL -> FALSE_SPLIT      (a creation of false inf
 ```
 
 Losing a link cannot manufacture a positive belief in independence; it can only produce ignorance. `FALSE_SPLIT` requires a process that actively re-points or re-labels. The ladder's four conditions are therefore **two axes, not one**, and P1's dose-response must be run over both knobs — a decay sweep and a misbinding sweep — with the regime stratification (§5.3) applied to each.
+
+> **Correction from probe P0 (result note §5): the two halves of this prediction are
+> different KINDS of claim, and only one of them is empirical.**
+>
+> - "The decay axis yields `SOFT` and `ABSENT` as distinct, populated regimes" is a genuine
+>   empirical question. P0 answered it affirmatively.
+> - "Decay never yields `FALSE_SPLIT`" is **definitional given the §5.1 representation**, not
+>   a finding. The architecture's confident edges initially point only at true ancestors; a
+>   loss process can lower a strength but can neither raise a strength on an edge to a
+>   foreign trace nor assert a fresh family identifier. P0 measured 0.000 `FALSE_SPLIT` at
+>   every decay knob on every seed, and that had to happen.
+>
+> Recording the second as an empirical result would over-credit the design. Recording it as
+> an entailment makes something useful visible instead: **a `FALSE_SPLIT` observed under a
+> pure loss process would indicate a representation bug, not a discovery.**
 
 Two consequences worth stating plainly:
 
@@ -392,6 +433,17 @@ More than the previous paragraph suggests, and the split is clean: **the state l
 
 ### 9.3 The gate — probe P0 before building P1
 
+> **DISCHARGED 2026-09-10.** P0 was built and run (`scripts/provenance_genealogy_probe_p0.py`,
+> [result](provenance_genealogy_probe_p0_result.md), REE_assembly `b81f9764bc`). Sweep (b)
+> **passed**: all three degradation processes vary their degraded edge set across dynamics
+> seeds at a fixed store (Jaccard 0.15–0.56) *and* predict it from a content/timing statistic
+> (Spearman +0.66 to +0.93, p < 0.001), while all three discriminative comparators failed
+> exactly the clauses predeclared for them. Sweep (a) failed one clause (A1) on **grid
+> resolution rather than process behaviour** — episode-level `SOFT` goes as
+> `(1 − p_absent_edge)^n_edges`, compressing the transition into a window the preregistered
+> `tau` grid stepped over; a finer grid reaches 0.372 where the threshold was 0.10. **The
+> text below is retained as the specification P0 was built to; it is no longer an instruction.**
+
 **P1 should not be built until the endogeneity criterion is shown to be satisfiable, and that can be tested cheaply.** Probe P0 builds *only* the genealogy store, the three degradation processes, and the regime classifier (§5.3). No descendant content, no confidence, no calibration, no readouts 2-4.
 
 It asks two questions:
@@ -424,6 +476,34 @@ Rough magnitudes, stated as estimates rather than measurements:
 | **P3 driver** | additional, designed by the sibling chip | Reuses the harness module via §6; should not need to touch the store. |
 
 The harness module is the shared cost and it is charged once. That is the argument for building the module against the §6 contract rather than letting P1 and P3 each grow their own state layer.
+
+### 9.5 Build guidance carried forward from P0 and P1 (added 2026-09-10)
+
+Four things the builds established that this design did not anticipate. The first three are
+P0 result-note §7 recommendations 1–3, realised in the P1 build; **all four bind P3 too.**
+
+1. **Select knob grids by per-edge degradation rate, not a priori.** A grid chosen on the
+   knob scale can step over the entire episode-level transition, which is exactly how P0's
+   criterion A1 failed. Calibrate each axis so its sample points span per-edge `ABSENT`
+   rates of roughly 1–30%.
+2. **Make edge-level stratification primary, episode-level secondary.** §5.3 defines the
+   four conditions per episode, and the worst-edge rule turns a graded edge-level population
+   into a near-binary episode-level one. Report both, and say which is which.
+3. **Exposure-matching is a design requirement, not a detail.** Any statistic that
+   correlates with how long a trace has been in the store correlates with degradation for
+   reasons that have nothing to do with content. P0 hit this directly: an unmatched noise
+   comparator passed the content-dependence criterion at rho +0.83 while carrying no
+   structure at all, purely because older edges accumulate more applications. This is the
+   same discipline as `P3-R3`'s "match retrieval quality before attributing an interaction
+   to ancestry", and it should be stated once rather than rediscovered per readout.
+4. **Two facts about the state layer that the P1 build found load-bearing** (P1 result §2).
+   **Ancestry and association must be separate edge sets** — with one set, `P1-R2` cannot
+   pass by construction, because linking two descendants of different world events would
+   raise the pairwise dependency term and drive the count *down*, which is the very failure
+   the control exists to detect. And **initial binding strength must be derived from content,
+   not set to 1.0** — a flat 1.0 binds an `alpha = 0` descendant as tightly as a pure replay,
+   leaving the count with no dynamic range across the §4.3 dial and making `P1-R4`
+   unpassable.
 
 ---
 
@@ -461,7 +541,7 @@ Supplement §11 stands. This design adds three failure modes of its own, all of 
 - Nothing here is evidence about psychosis. The design is a synthetic architecture; C1 preparations cannot measure confidence or source count, and the direction of travel is one-way — the clinical literature constrains the assays, the assays license no clinical claim.
 - The C3 result (Yousif 2019, Connor Desai 2022, Weaver 2007) is about healthy adults with stipulated source structure. It is used here only to establish what P1 must *not* merely reproduce.
 - The hippocampal sources (E33, E43, E42, E20/E32, E34) motivate the generators and the misbinding process. They supply no cardinality or calibration readout and none is claimed from them; §6 of the supplement bounds this correctly and this design does not extend it.
-- **The design is unbuilt and ungated.** Its central premise — that ancestry loss can be generated rather than stipulated in a harness of this class — is untested, and §9.3 exists because it should be tested before it is assumed.
+- **~~The design is unbuilt and ungated.~~ SUPERSEDED 2026-09-10.** Its central premise — that ancestry loss can be generated rather than stipulated in a harness of this class — was untested when this was written. It has since been **tested and upheld** by probe P0 (§9.3), and P1 is built and run. What remains untested is stated positively in the P1 result note's own epistemic boundary: nothing here bears on humans or on psychosis, nothing here says which mechanism the *human* effect runs on, and the result is about the **stored-tag** route only (`P1-R5`, predeclared).
 
 ---
 
