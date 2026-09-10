@@ -67,6 +67,7 @@ The origin tale is told on [REE for My Parents](ree_for_my_parents.md). The date
 ### September 2026
 
 - 2 September — [The Day the War Ended and the Creature Stirred](goblin_chronicles/2026-09-02-the-day-the-war-ended-and-the-creature-stirred.md)
+- 10 September — [The Five Witnesses and the One Goblin](goblin_chronicles/2026-09-10-the-five-witnesses-and-the-one-goblin.md)
 
 ---
 
