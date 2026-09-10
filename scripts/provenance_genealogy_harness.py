@@ -27,6 +27,10 @@ WHAT THE ENDOGENEITY CRITERION FORCES, STRUCTURALLY (design note section 3)
   * No descendant generator reads `H` or the world, with the single parameterised
     exception of `ambiguous_perception`'s world term (design note 4.1), which is declared
     in `GroundTruth.alpha` and enters the scorer's derived true source count (4.3).
+  * `reinstate()` -- the in-place fidelity operation P3 requires -- takes the STORE ONLY.
+    It improves a trace by pattern-completing toward the ancestor the architecture itself
+    believes in, scaled by its own binding strength, so it repairs under correct ancestry
+    and misleads under corrupted ancestry. `GroundTruth` is not in its signature.
 
 
 TWO EDGE TYPES, AND WHY CONFLATING THEM WOULD BREAK P1-R2
@@ -97,6 +101,16 @@ REGIMES = ("VERIDICAL", "SOFT", "ABSENT", "FALSE_SPLIT")
 DESCENDANT_KINDS = ("replay", "prediction", "retrieved_memory", "ambiguous_perception")
 PROCESSES = ("decay", "interference", "misbinding")
 ABSENT_POLICIES = ("independent", "dependent", "soft")
+
+# P3 design section 9.2 H1: replay is stratified by KIND. These are P3's names, and they are
+# a different taxonomy from `DESCENDANT_KINDS` above (which names how a trace's CONTENT was
+# produced). Only `rehearsal` has in-place semantics defined -- see `replay`.
+REPLAY_KINDS = ("rehearsal", "relational_link", "prediction")
+
+# Fraction of the remaining gap to the bound ancestor closed by ONE in-place reinstatement
+# event, before scaling by the binding strength. Fixed here rather than passed per call so
+# that it is a declared property of the architecture and not a per-arm tuning knob.
+REINSTATE_GAIN = 0.25
 
 DIM = 16
 # A fixed evidence-readout direction. Global and constant so that a vote means the same
@@ -194,6 +208,7 @@ class GenealogyStore:
     assoc: Dict[Tuple[int, int], float] = field(default_factory=dict)  # association edges
     retrieval_events: List[int] = field(default_factory=list)  # per-trace read count
     next_family_id: int = 5000
+    frozen: bool = False  # H6: after t0, no new world observation may enter
 
     def n(self) -> int:
         return len(self.content)
@@ -217,6 +232,7 @@ class GenealogyStore:
             assoc=dict(self.assoc),
             retrieval_events=list(self.retrieval_events),
             next_family_id=self.next_family_id,
+            frozen=self.frozen,
         )
 
     def content_hash(self) -> str:
@@ -247,6 +263,25 @@ def new_episode(
     return store, truth
 
 
+def freeze(store: GenealogyStore) -> None:
+    """P3 design section 9.2 H6 -- the freeze primitive, ENFORCED rather than conventional.
+
+    After `t0` a node may be created only as a descendant of an existing node; the world
+    generator is not callable. P3 section 2.1: a leaked new observation produces a rise in
+    confidence that is *correct inference* and reads as amplification, and the leak is
+    invisible in every readout. Discipline cannot catch that; a refused call can.
+
+    Two things are refused once frozen: `add_world_event`, and an `ambiguous_perception`
+    descendant with `alpha < 1`. The second is the subtle one -- that generator is the
+    single declared exception to "no generator reads the world" (module docstring), so it
+    is the one path by which fresh world information can still enter a frozen episode,
+    proportionally to `1 - alpha`. At `alpha = 1` it carries no world term and is legal.
+
+    One-way by design: there is no `unfreeze`. Reversing it is the failure it prevents.
+    """
+    store.frozen = True
+
+
 def add_world_event(
     store: GenealogyStore,
     truth: GroundTruth,
@@ -256,6 +291,11 @@ def add_world_event(
     t: float,
 ) -> int:
     """A genuinely independent second observation (P1-R2 and P1-R4 at alpha = 0)."""
+    if store.frozen:
+        raise RuntimeError(
+            "add_world_event() after freeze(): a post-t0 world observation would raise "
+            "confidence CORRECTLY and read as amplification (P3 design 2.1 / H6)"
+        )
     c = truth.H * signal * _W + noise * content_rng.normal(size=DIM)
     idx = store.add_trace(c, t, -1, 0.0)
     truth.true_ancestor.append(-1)
@@ -302,6 +342,11 @@ def spawn_descendant(
         c = c + _rel_noise(content_rng, eta, base)
         eff_alpha = 1.0
     else:  # ambiguous_perception
+        if store.frozen and alpha < 1.0:
+            raise RuntimeError(
+                "ambiguous_perception with alpha=%.3f after freeze(): the (1 - alpha) world "
+                "term is fresh world information entering a frozen episode (H6)" % alpha
+            )
         world = truth.H * signal * _W + noise * content_rng.normal(size=DIM)
         c = alpha * base + (1.0 - alpha) * world + _rel_noise(content_rng, eta, base)
         eff_alpha = alpha
@@ -412,6 +457,60 @@ def degrade(
 # --------------------------------------------------------------------------------------
 
 
+def reinstate(store: GenealogyStore, trace_id: int, gain: float = REINSTATE_GAIN) -> float:
+    """ONE in-place reinstatement event: pattern-completion toward the BOUND ancestor.
+
+    This is the second half of P3 requirement H2, and it was the gap. `mode='in_place'`
+    already added no node; design section 2.2 also requires it to *raise the source node's
+    retrieval fidelity*, and before this it changed nothing but a counter -- so
+    `retrieval_fidelity` was bit-identical across every replay count and P3's healthy-replay
+    arm (section 5) was unreachable in the mirror direction to the one the design feared.
+
+    The update, which reads the STORE ONLY:
+
+        content[i] <- content[i] + gain * edge_w[i] * (content[ancestor(i)] - content[i])
+
+    ENDOGENEITY (design note section 3). Every term is a stored quantity the architecture
+    holds in its own right: its own content, its own ancestry edge, its own binding
+    strength. `GroundTruth` is not in the signature and cannot be. That the scorer's
+    fidelity target happens to be numerically the seed trace is a property of how fidelity
+    is DEFINED (reconstruction against the true seed), not a leak -- the architecture is
+    never told which trace that is. It follows its OWN ancestry pointer, which the dynamics
+    are free to have decayed or re-pointed.
+
+    WHY THAT MATTERS, and why this is not a fidelity-vending machine: the step is scaled by
+    `edge_w`, the architecture's own confidence in the binding. Under `VERIDICAL` the
+    pointer is right and reinstatement REPAIRS; under `ABSENT` the binding has decayed and
+    it does nothing; under a re-pointed `FALSE_SPLIT` edge it pulls toward the WRONG trace
+    and fidelity FALLS. A mechanism that raised fidelity unconditionally would make P3's
+    healthy arm pass in every ancestry condition and the grid uninterpretable.
+
+    Two things it deliberately does NOT do:
+
+      * It does not touch the ancestry edge set. `degrade` owns that (contract op 2), and
+        design note section 6 requires `degrade` and `replay` to be orthogonal. Letting
+        reinstatement strengthen `edge_w` would couple them and would move `N_eff` -- the
+        variable the healthy arm must hold FLAT. Whether reconsolidation should strengthen
+        the binding is a real design question; it is P3's to answer, not this gap's.
+      * It adds no noise. The minimal closure is deterministic given the store, so that the
+        spike's fidelity movement is attributable to reinstatement alone. Noisy
+        reinstatement is what an in-place fidelity KNOB would need (requirement H5) and is
+        deferred with it.
+
+    Returns the realised step size (0.0 when there is no usable binding to reinstate from).
+    """
+    a = store.edge_target[trace_id]
+    if a < 0 or store.explicit_family[trace_id] >= 0:
+        return 0.0  # claims no ancestry: nothing to complete from
+    w = store.edge_w[trace_id]
+    if w <= 0.0:
+        return 0.0
+    step = gain * w
+    cur = store.content[trace_id]
+    store.content[trace_id] = cur + step * (store.content[a] - cur)
+    return float(step)
+
+
 def replay(
     store: GenealogyStore,
     truth: GroundTruth,
@@ -421,23 +520,49 @@ def replay(
     mode: str = "spawn",
     t: float = 1.0,
     eta: float = 0.25,
+    kind: str = "rehearsal",
 ) -> List[int]:
     """Contract op 3. `mode='spawn'` produces descendants; `mode='in_place'` performs
     retrieval/reinstatement events over the EXISTING trace without creating any.
 
     `in_place` is what P1-R7 (fluency versus cardinality) needs and what P3's healthy-replay
     gate depends on: it moves retrieval-event count while holding descendant cardinality
-    fixed, which is the only way to separate the two confounded causes.
+    fixed, which is the only way to separate the two confounded causes. It also raises the
+    source node's fidelity -- see `reinstate`, which is where P3's H2 was actually missing.
+
+    `kind` (P3 requirement H1) stratifies replay, and is a DIFFERENT taxonomy from
+    `DESCENDANT_KINDS`: it names what the replay event is FOR, not how content was made.
+    Only `rehearsal` is implemented, in both modes; `prediction` is implemented for `spawn`
+    only, and `relational_link` not at all -- both raise rather than silently behaving like
+    rehearsal, since a kind that quietly aliases another would make P3-R1's stratification
+    report a difference it did not test. Closing them is the confirmatory grid's work.
 
     Deliberately does NOT advance `degrade` -- design note section 6 requires the two to be
     orthogonal so P3 can hold one fixed while sweeping the other.
     """
+    if kind not in REPLAY_KINDS:
+        raise ValueError("unknown replay kind: %s (expected one of %r)" % (kind, REPLAY_KINDS))
+    if kind == "relational_link":
+        raise NotImplementedError(
+            "replay(kind='relational_link') is a declared P3-R1 gap, not implemented. "
+            "Offline associative linking is available as `link()`; wiring it into replay "
+            "stratification is confirmatory-grid work (H1, deferred)."
+        )
+    if kind == "prediction" and mode == "in_place":
+        raise NotImplementedError(
+            "replay(kind='prediction', mode='in_place') is a declared P3-R1 gap: what a "
+            "predictive replay reinstates IN PLACE is undefined by the design (H1, deferred)."
+        )
+
     if mode == "in_place":
-        store.retrieval_events[trace_id] += n
+        for _ in range(n):
+            reinstate(store, trace_id)
+            store.retrieval_events[trace_id] += 1
         return []
+    desc_kind = "replay" if kind == "rehearsal" else "prediction"
     out = []
     for _ in range(n):
-        d = spawn_descendant(store, truth, trace_id, "replay", content_rng, t, eta=eta)
+        d = spawn_descendant(store, truth, trace_id, desc_kind, content_rng, t, eta=eta)
         store.retrieval_events[trace_id] += 1
         out.append(d)
     return out
