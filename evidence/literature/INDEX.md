@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-10T07:12:25.236617Z`
+Generated: `2026-09-10T19:06:22.050568Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -36,7 +36,7 @@ Generated: `2026-09-10T07:12:25.236617Z`
 | `targeted_review_arc_046` | [`2026-06-09_arc_046_stress_hyporesponsive_period_suchecki2018`](targeted_review_arc_046/entries/2026-06-09_arc_046_stress_hyporesponsive_period_suchecki2018/record.json) | 2 | [`summary`](targeted_review_arc_046/entries/2026-06-09_arc_046_stress_hyporesponsive_period_suchecki2018/summary.md) |
 | `targeted_review_arc_047` | [`2026-09-08_arc_047_social_learning_ndousse2021`](targeted_review_arc_047/entries/2026-09-08_arc_047_social_learning_ndousse2021/record.json) | 3 | [`summary`](targeted_review_arc_047/entries/2026-09-08_arc_047_social_learning_ndousse2021/summary.md) |
 | `targeted_review_arc_054` | [`2026-09-09_arc_054_replay_decoupled_from_choice_gillespie2021`](targeted_review_arc_054/entries/2026-09-09_arc_054_replay_decoupled_from_choice_gillespie2021/record.json) | 3 | [`summary`](targeted_review_arc_054/entries/2026-09-09_arc_054_replay_decoupled_from_choice_gillespie2021/summary.md) |
-| `targeted_review_arc_055` | [`2026-09-10_arc_055_confidence_weighting_learning_meyniel2017`](targeted_review_arc_055/entries/2026-09-10_arc_055_confidence_weighting_learning_meyniel2017/record.json) | 3 | [`summary`](targeted_review_arc_055/entries/2026-09-10_arc_055_confidence_weighting_learning_meyniel2017/summary.md) |
+| `targeted_review_arc_055` | [`2026-09-10_arc_055_policy_precision_active_inference_schwartenbeck2015`](targeted_review_arc_055/entries/2026-09-10_arc_055_policy_precision_active_inference_schwartenbeck2015/record.json) | 7 | [`summary`](targeted_review_arc_055/entries/2026-09-10_arc_055_policy_precision_active_inference_schwartenbeck2015/summary.md) |
 | `targeted_review_arc_056` | [`2026-09-10_arc_056_social_discounting_tpj_vmpfc_strombach2015`](targeted_review_arc_056/entries/2026-09-10_arc_056_social_discounting_tpj_vmpfc_strombach2015/record.json) | 3 | [`summary`](targeted_review_arc_056/entries/2026-09-10_arc_056_social_discounting_tpj_vmpfc_strombach2015/summary.md) |
 | `targeted_review_arc_057` | [`2026-07-17_arc_057_pseudocount_density_exploration_bellemare2016`](targeted_review_arc_057/entries/2026-07-17_arc_057_pseudocount_density_exploration_bellemare2016/record.json) | 3 | [`summary`](targeted_review_arc_057/entries/2026-07-17_arc_057_pseudocount_density_exploration_bellemare2016/summary.md) |
 | `targeted_review_arc_058` | [`2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/record.json) | 7 | [`summary`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/summary.md) |

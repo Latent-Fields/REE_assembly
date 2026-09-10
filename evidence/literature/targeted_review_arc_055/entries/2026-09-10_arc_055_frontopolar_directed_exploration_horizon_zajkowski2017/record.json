@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_055",
+  "entry_id": "2026-09-10_arc_055_frontopolar_directed_exploration_horizon_zajkowski2017",
+  "timestamp_utc": "2026-09-10T19:00:05Z",
+  "claim_ids_tested": [
+    "ARC-055"
+  ],
+  "source": {
+    "title": "A causal role for right frontopolar cortex in directed, but not random, exploration",
+    "authors": [
+      "Wojciech K. Zajkowski",
+      "Malgorzata Kossut",
+      "Robert C. Wilson"
+    ],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.27430",
+    "pmid": "28914605",
+    "pmc": "PMC5628017",
+    "volume": "6"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The first entry in this directory to put ACTION SELECTION -- which option is chosen -- on the dependent-variable side of a causal manipulation of an uncertainty-driven control term, and to do so in a task with genuine temporal depth. cTBS to right frontopolar cortex selectively removed directed exploration while leaving random exploration and overall performance intact, and the effect appeared ONLY at the long horizon (stimulation x horizon interaction F(1,24)=4.96, p=0.036; horizon-6 simple effect t(24)=2.62, p=0.008; no effect on decision noise, F(1,24)=0.88, p=0.36). Confidence 0.72 rather than higher because the uncertainty term manipulated is uncertainty about option VALUE, not verisimilitude about model-world correspondence, and because cTBS removes a region rather than a signal -- the same interpretive limit that constrains Lak et al. 2014 in this directory. Confidence 0.72 rather than lower because the horizon-selectivity is an unusually strong internal control: the identical stimulation at horizon 1 did nothing, which is what a region-nonspecific performance deficit could not produce.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The manipulated quantity is an information bonus over option VALUE, not a verisimilitude signal over model-world correspondence. If ARC-055's V(t) is specifically a model-fit quantity, this entry evidences the STRUCTURAL form of the E3 leg (an explicit uncertainty-like term is causally read by selection) without evidencing that the term REE proposes is the one so read.",
+    "cTBS inhibits a cortical region, not a signal. The authors note the spatial extent of TMS may reach vmPFC and OFC. An architecture in which frontopolar cortex COMPUTES the exploration bonus and a downstream selector consumes it is indistinguishable here from one in which frontopolar cortex is itself part of the selector; ARC-055's separability commitment (explicit signal on a bus, read by E3) is compatible with the data but not uniquely supported by it.",
+    "Directed exploration was reduced, not abolished, and the design cannot say whether residual directed exploration reflects incomplete inhibition or a parallel signal-free route to the same behaviour. A parallel route would mean the availability requirement is soft rather than mandatory."
+  ],
+  "tags": [
+    "arc-055",
+    "arc_055",
+    "directed_exploration",
+    "random_exploration",
+    "frontopolar_cortex",
+    "tms_ctbs",
+    "horizon_task",
+    "explore_exploit",
+    "action_selection",
+    "temporal_depth",
+    "support_tag:uncertainty_term_causally_required_for_selection",
+    "support_tag:effect_requires_extended_horizon"
+  ],
+  "mapping": {
+    "source_claim_statement": "Continuous theta-burst transcranial magnetic stimulation of right frontopolar cortex selectively reduced directed exploration -- the information-seeking component of explore-exploit choice, modelled as an information bonus added to the value of the less-observed option -- while leaving random exploration (decision noise) intact, in a Horizon Task where participants made choices between two slot machines under horizons of 1 or 6 remaining decisions. The dissociation establishes that directed and random exploration rely on at least partially separable neural systems and that right frontopolar cortex is causally necessary for the directed component.",
+    "ree_translation": "This is the entry the E3-selection leg of ARC-055 was missing. The three prior entries in this directory all land on the learning-update leg, and the one causal study among them (Lak et al. 2014) found the explicit signal dispensable for choice. Here the pattern inverts: inhibit the region carrying an explicit, model-identified uncertainty term and the SELECTION changes -- participants stop preferentially sampling the option they know less about -- while the decision-noise component and overall performance do not. Read against ARC-055, that is a demonstration that an uncertainty-like control term can be causally load-bearing for which trajectory gets chosen, not merely for how a choice is reported or how it is learned from. Two further features carry weight for this claim specifically. First, the selectivity: random exploration survived, so this is not a general degradation of choice but the removal of one identifiable term from the selection computation -- close to what ARC-055 means by an explicit signal rather than an emergent epiphenomenon. Second, and more valuable, the effect existed only at horizon 6. ARC-055 names H (horizon) as a control-plane parameter setting the temporal window for D_V evaluation, and asserts a depth-like conjunct that the existing three entries leave entirely unevidenced. Here the causal necessity of the uncertainty term is itself horizon-conditional: at horizon 1, where a depth-sensitive term has nothing to do, removing the region changed nothing. That is the first datum in this directory bearing on why an architecture would need the signal to be evaluated over a horizon at all, rather than instantaneously.",
+    "mapping_caveat": "This entry bears on the SELECTION leg, and is the first in this directory that does; it does not re-evidence the learning leg. Two boundaries limit how far it can be pushed. The quantity manipulated is an information bonus over option value -- epistemic uncertainty about which machine pays better -- and ARC-055's V(t) is verisimilitude, a signal about how well the internal model tracks the world. These are formally similar (both are precision-like terms entering a selection computation) but not the same quantity, so the entry supports the ARCHITECTURAL SHAPE of the E3 leg more strongly than it supports REE's particular choice of signal. Separately, the horizon result should not be over-read as evidence for D_V: the Horizon Task manipulates how many choices REMAIN, which licenses more information-seeking, whereas D_V is a depth property of the verisimilitude estimate itself. The finding shows a selection-relevant uncertainty term whose causal necessity is horizon-conditional, which is suggestive for ARC-055's H parameter and is genuinely more than the directory had before, but it is not a measurement of a depth-like verisimilitude quantity. n=25 with cTBS, a protocol with known between-subject variability, and no independent replication cited.",
+    "source_context": "Healthy human adults (n=25 complete, ages 19-32), within-subject cTBS to right frontopolar cortex (MNI [35,50,15]) versus vertex control in counterbalanced sessions at least 5 days apart; Horizon Task with 4 forced-choice trials followed by free choices under horizon 1 or 6, with equal [2,2] and unequal [1,3] information conditions; behaviour fit with a hierarchical Bayesian model separating information bonus from decision noise."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.78: eLife, within-subject design with an active vertex control, model-based separation of the two exploration components, and a horizon manipulation that functions as an internal specificity control. Held below 0.85 by n=25, the known variability of cTBS, the authors' own acknowledgement that stimulation may reach vmPFC/OFC, and the absence of a cited replication. Mapping fidelity 0.70 and weighted heavily, per the arch_commitment convention for this claim: the structural mapping onto ARC-055's E3 leg is good -- an explicit, separately-identifiable uncertainty term is causally required for a specific mode of selection -- but the term is value-uncertainty rather than verisimilitude, which is the gap that keeps this from the 0.8+ band. Transfer risk 0.35: healthy human adults performing a two-armed bandit, a shallower trajectory space than REE's E3 operates over, though materially deeper than the 2AFC tasks behind Lak 2014 and Fleming 2014. Aggregate 0.72."
+  }
+}

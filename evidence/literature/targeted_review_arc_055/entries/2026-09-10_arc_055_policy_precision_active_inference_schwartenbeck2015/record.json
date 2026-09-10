@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_055",
+  "entry_id": "2026-09-10_arc_055_policy_precision_active_inference_schwartenbeck2015",
+  "timestamp_utc": "2026-09-10T19:00:05Z",
+  "claim_ids_tested": ["ARC-055"],
+  "source": {
+    "title": "The dopaminergic midbrain encodes the expected certainty about desired outcomes",
+    "authors": ["Philipp Schwartenbeck", "Thomas H. B. FitzGerald", "Christoph Mathys", "Ray Dolan", "Karl Friston"],
+    "year": 2015,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhu159",
+    "pmid": "25056572",
+    "pmc": null,
+    "volume": "25",
+    "issue": "10",
+    "pages": "3434-3445"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The highest mapping fidelity in the directory and the lowest source strength, and the confidence reflects that trade honestly. The quantity modelled -- precision of beliefs about policies -- is a formal match for ARC-055's alpha_A, which the claim names as the control-plane parameter that commits to high-D_V trajectories, and the task is temporally extended (deciding how long to wait before accepting a low offer) rather than a 2AFC. Bayesian model comparison favoured active inference over utility-maximisation accounts of the behaviour, and trial-by-trial model-derived precision predicted midbrain BOLD. But the precision signal is imputed by the model rather than observed, the neural evidence is correlational BOLD in a region that is technically difficult to image and only anatomically presumed dopaminergic, and nothing here demonstrates that the selection computation READS the signal. 0.68 places it as the formal-mapping anchor for the claim rather than as strong empirical support.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The explicit policy-precision signal is a posit of the fitted model, not an independent measurement. The analysis assumes an architecture in which precision over policies is represented and then finds a neural correlate of the assumed quantity -- which cannot, on its own, distinguish ARC-055's explicit-signal architecture from one in which the same behaviour emerges without any represented precision term. This is the claim's central distinction and the design cannot adjudicate it.",
+    "Correlational BOLD, not a causal manipulation. Even granting that the midbrain tracks policy precision, nothing here shows that the selection computation consumes it; a signal broadcast by the midbrain and read by nobody would produce the same data. The two causal entries in this directory that do bear on selection (Zajkowski 2017, Tervo 2014) are carrying that weight, not this one.",
+    "Midbrain fMRI is spatially coarse and the dopaminergic identity of the responding neurons is inferred anatomically rather than measured. If the signal is not dopaminergic, the mapping onto REE's neuromodulatory control plane loses its main biological anchor while the formal alpha_A mapping survives."
+  ],
+  "tags": ["arc-055", "arc_055", "active_inference", "policy_precision", "alpha_a", "dopamine", "midbrain", "model_based_fmri", "temporally_extended_choice", "commitment", "support_tag:formal_mapping_to_alpha_a", "support_tag:precision_over_policies_not_over_evidence"],
+  "mapping": {
+    "source_claim_statement": "Under an active (Bayesian) inference account, dopamine encodes the precision of beliefs about optimal policies -- the confidence that a chosen policy will lead to desired outcomes. In a limited-offer game where subjects decided how long to wait for a high offer before accepting a low one, at the risk of losing everything, Bayesian model comparison showed behaviour strongly favoured active inference based on surprise minimisation over classical utility-maximisation schemes, and midbrain activity encompassing dopamine projection neurons was accurately predicted by trial-by-trial model-based estimates of precision. The authors conclude that subjects infer both what they should do and how confident they are in those inferences.",
+    "ree_translation": "ARC-055's notes name alpha_A -- policy precision -- as the control-plane parameter that commits to high-D_V trajectories, alongside kappa_commit as the commitment threshold and H as the evaluation horizon. This paper is the closest thing in the literature to a formal and empirical treatment of exactly that parameter. The distinction that matters is between precision over sensory evidence and precision over policies. The three original entries in this directory, and arguably Zajkowski's information bonus too, concern uncertainty about what is the case or which option is better. Policy precision is uncertainty about which course of action to pursue, and it enters the selection computation directly: in active inference, policies are selected by a softmax over expected free energy whose inverse temperature IS the precision term, so a low-precision agent is one whose selection does not commit. That is ARC-055's E3 leg written as an equation rather than as an assertion. The task strengthens the mapping further, because it is genuinely temporally extended -- the decision is how long to hold out, which is a commitment over a horizon rather than a single discrimination -- so unlike the 2AFC preparations behind Lak 2014 and Fleming 2014 the trajectory space is not degenerate. Where the entry is weak is exactly where a modelling paper is weak: the precision signal exists in the model by construction, and the empirical result is that it correlates with midbrain BOLD.",
+    "mapping_caveat": "This entry bears on the SELECTION leg, and specifically on the formal shape of it; it does not re-evidence the learning leg, and it is not a causal test. The most important caveat is circularity of a benign but real kind: the analysis fits a model that posits an explicit precision-over-policies term and then locates a neural correlate of that posited term. ARC-055's load-bearing commitment is that V(t) and D_V are explicit signals rather than emergent epiphenomena, and a model-based fMRI design cannot adjudicate that, because the explicitness is an assumption of the analysis rather than a finding of it. Second, correlation is not consumption -- demonstrating that the midbrain tracks policy precision does not show that the selection computation reads it, which is the specific thing ARC-055 asserts. Third, active inference's precision is a formal analogue of REE's alpha_A but the two frameworks differ in what the generative model is over, so the mapping is by structural analogy rather than identity. Fourth, midbrain fMRI is spatially coarse and 'encompassing dopamine projection neurons' is anatomical inference, not cell-type measurement. Human adults, single task, single site.",
+    "source_context": "Healthy human adults performing a limited-offer game in fMRI -- deciding how long to wait for a high offer before accepting a low offer, with the risk of losing everything by waiting too long -- with behaviour compared by Bayesian model comparison between active-inference and utility-maximisation schemes and trial-by-trial model-derived precision regressed against midbrain BOLD."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.40,
+    "notes": "Source quality 0.70: Cerebral Cortex, a well-executed model-based fMRI study with formal model comparison on the behaviour, but correlational, in a technically difficult imaging target, with dopaminergic identity inferred anatomically. Mapping fidelity 0.82 and the highest in the directory: precision over policies is a formal match for ARC-055's alpha_A, the softmax-over-expected-free-energy formulation puts that precision inside the selection computation by construction, and the limited-offer task has real temporal extent so the trajectory space is not degenerate. Transfer risk 0.40, raised by the structural-analogy rather than identity relationship between active inference's generative model and REE's. Aggregate 0.68: mapping fidelity is weighted heavily for this arch_commitment claim and pulls upward, but a correlational design that assumes the very explicitness at issue cannot carry a higher number, and this entry should be read as the claim's formal anchor rather than as its empirical support."
+  }
+}
