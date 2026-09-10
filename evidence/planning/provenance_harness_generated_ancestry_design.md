@@ -7,6 +7,7 @@
 **Refines (does not replace):** [`provenance_false_evidence_multiplication_experiment_ladder.md`](provenance_false_evidence_multiplication_experiment_ladder.md), assay P1
 **Scaffold audited:** `scripts/convergence_signal_synthetic_assay_001.py`, `scripts/convergence_signal_synthetic_assay_005.py`, and their result notes of 2026-09-09
 **Biological motivation:** [`docs/thoughts/2026-09-09_hippocampal_campaign_adjudication.md`](../../docs/thoughts/2026-09-09_hippocampal_campaign_adjudication.md) §8, sources E33 and E43
+**Literature fold-in (2026-09-10, after this document landed):** [`provenance_judgment_class_literature_tranche.md`](provenance_judgment_class_literature_tranche.md) (REE_assembly `b682aed66f`) swept the judgment class after this design was written. Its two consequences for P1 are folded in at **§1.1** (information value) and **§7.5** (the mandatory fluency-versus-cardinality control, `P1-R7`). Nothing else in this document is changed by it: the premise holds and `P1-R1`…`R4` all stand.
 **Sibling chip:** `chip-20260910-provenance-p3-replay-design-v3` (replay amplification, P3). At the time of writing no `provenance_p3_replay*` artifact existed, so §6 below publishes the contract outright rather than reconciling against a landed sibling.
 
 ---
@@ -28,6 +29,25 @@ Three verdicts, in the work-graph debt vocabulary:
 The single most consequential design finding is in §7.2: **the legitimate-computation control (P1-R3) becomes mechanically clean once the confidence rule is written in assay 001's own form.** `log-odds = N_eff x logit(p)` has two terms; legitimate computation is licensed to raise `p` and forbidden to raise `N_eff`; false independence does the reverse. Both arms then produce rising confidence, both under one unmodified inference rule, and the discrimination is not a label the scorer applies. Without that decomposition, P1-R3 is the falsifier-5 trap the supplement warns about — a control that cannot separate the forbidden gain from ordinary competent inference.
 
 The second is in §5.4: **decay and misbinding are different process families and they do not produce the same regimes.** A decay/interference process produces `SOFT` and `ABSENT` and essentially never produces `FALSE_SPLIT`, because losing a link cannot manufacture a positive belief in independence. `FALSE_SPLIT` requires a misbinding process — the E33 operation. The ladder treats the four conditions as one condition axis; they are two axes, and only one of them corresponds to the empirically loaded human case.
+
+---
+
+### 1.1 P1's information value is higher than the audit concluded (tranche §6.1)
+
+The supplement concluded P1 is now worth running only "for the route" — humans already show the endpoint when ancestry is presented to them (§2), so the route is all that is left. The judgment-class tranche sharpens that, and the sharpening is an **increase**, not a discount.
+
+The two studies that most directly vary apparent source number while holding content fixed — Weaver et al. 2007 (PMID 17484607) and O'Donnell et al. 2023 (PMID 37691811) — both attribute their own effect to retrieval **fluency/accessibility** rather than to any inference over source count. O'Donnell additionally manipulated repetition against source variability *orthogonally*, in the paradigm nearest to REE's construct (eyewitness memory), and found **no source-variability effect** in two experiments and a meta-analysis at `k = 8`.
+
+So the human baseline may not be a genealogy phenomenon at all. That changes what P1 is:
+
+```text
+supplement's reading:  P1 is the ROUTE to a known endpoint
+tranche's reading:     P1 asks whether the endpoint is REACHABLE that way in ANY system
+```
+
+Under the second reading a **negative** P1 is as informative as a positive one — it would say that cardinality inflation is not producible by corrupting an internal genealogy representation, which no human study has established either way. Neither result is a confirmation of published work. This raises the value of the whole rung and is the strongest argument for paying the probe-P0 cost (§9.3) rather than abandoning the design.
+
+It also has a cost, and it is `P1-R7` (§7.5): if the human effect runs on fluency, then a `FALSE_SPLIT` positive **in a harness that cannot separate fluency from cardinality** inherits exactly the interpretive problem the human literature has, and is uninterpretable for the same reason.
 
 ---
 
@@ -216,7 +236,9 @@ The eight operations the harness exposes. This is a contract, not an implementat
 
 ---
 
-## 7. Deliverable 4 — the four controls, with predeclared signatures
+## 7. Deliverable 4 — the controls, with predeclared signatures
+
+> Four controls were specified by the supplement (`P1-R1`…`R4`; `P1-R1` — descendants generated, not stipulated — is §3/§4 rather than an arm here). A **fifth is mandatory** and was added after this document landed: `P1-R7`, §7.5. Two further refinements exist in a companion artifact and are not restated here — `P1-R5` (retrieval-attribution arm) and `P1-R6` (the `MECH-544` boundary declaration), in [`provenance_branch_hippocampal_audit_verification_20260910.md`](provenance_branch_hippocampal_audit_verification_20260910.md) §7. `P1-R5` and `P1-R7` are **different axes** and neither substitutes for the other: `P1-R5` asks *where source structure lives* (stored tag versus reconstructed at retrieval); `P1-R7` asks *what confidence tracks* (represented source count versus number of retrieval events).
 
 ### 7.1 P1-R2 — adaptive-linking control (from E43)
 
@@ -275,6 +297,39 @@ Without this arm a null under corruption is uninterpretable, because a count rea
 ### 7.4 Content held constant across ancestry conditions
 
 Mechanically enforced by common random numbers plus a content-hash assertion (§4.4). Listed as a control because it is one, and because it is the control whose violation would be invisible in every readout.
+
+---
+
+### 7.5 P1-R7 — fluency versus cardinality (MANDATORY; tranche §6.1)
+
+**The rival hypothesis P1 has to beat, and the one `P1-R1`…`R4` do not cover.** Weaver 2007 and O'Donnell 2023 both conclude that human over-weighting of apparently multiple sources runs on retrieval fluency rather than on a representation of source count (§1.1). The exposure inside P1 is mechanical, not merely conceptual:
+
+> a corrupted genealogy that produces four separately-retrievable descendants also produces four retrieval events.
+
+The two candidate causes are therefore **confounded by construction** in the main design, and if confidence inflation appears under `FALSE_SPLIT` the fluency account explains it without any genealogy representation being consulted or misread — which is the entire content of P1 (§2).
+
+**The arm.** Hold the ancestry representation **intact and correct** — `VERIDICAL`, verified by the §5.3 regime classifier, not assumed — and vary the number of retrieval/reinstatement events over the **same descendant set**. Descendant cardinality is held fixed; only retrieval-event count moves. In the §6 contract idiom this is repeated reads through operations 5–8 at a fixed edge set, with `degrade` not advanced and no descendant spawned; note that this requires `replay` to support a non-descendant-generating mode, the same `mode = in_place` capability P3's healthy-replay gate depends on.
+
+**Predeclared signatures:**
+
+```text
+cardinality effect:  confidence tracks represented source COUNT,
+                     flat across retrieval-event count at fixed count
+fluency effect:      confidence tracks RETRIEVAL EVENTS,
+                     present even with ancestry correctly represented
+```
+
+**Interpretation, fixed in advance.** A fluency signature here does not falsify H1 — it says the instrument cannot attribute an inflation to cardinality, so the `FALSE_SPLIT` result cannot be read as one. Concretely:
+
+| `P1-R7` outcome | What the main `FALSE_SPLIT` result may be reported as |
+|---|---|
+| flat across retrieval events at fixed count | cardinality is separable; a `FALSE_SPLIT` inflation is attributable to the genealogy representation |
+| confidence rises with retrieval events under `VERIDICAL` | **fluency is live and uncontrolled** — report the `FALSE_SPLIT` inflation as *not attributable*, alongside the `P1-R7` curve |
+| both move, and the effects are additive/separable in the fitted model | report the decomposition, with the cardinality component as the P1 result |
+
+**An architecture in which these two are not separable has the same interpretive problem the human literature has, and a positive `FALSE_SPLIT` result would be uninterpretable.** That failure mode belongs with the other two of §11 — it is a reportable outcome, not something to design around after the fact.
+
+Two boundaries, so this control is not over-read. It is a control on the **route**, not a test of the human effect: no synthetic result here bears on which mechanism the human literature runs on. And it is not the instrument-calibration floor of §8.2 — that floor asks whether an inflation clears the count instrument's own *bias*; `P1-R7` asks whether an inflation that does clear it is attributable to *count at all*. Both are required, and passing one says nothing about the other.
 
 ---
 
@@ -385,6 +440,11 @@ Recorded here as recommendations. This session did not edit either document.
 
 ---
 
+7. **`P1-R7` (fluency versus cardinality) is mandatory, not optional** (§7.5). It is the one control the supplement's list does not contain and the one whose absence makes a positive result uninterpretable.
+8. **Record that P1's information value rose rather than fell** (§1.1). The supplement's "worth running for the route" understates it: if the human effect is fluency, the endpoint's reachability by this route is itself open, and a negative P1 is a result rather than a replication of published work.
+
+---
+
 ## 11. Falsifiers specific to this design
 
 Supplement §11 stands. This design adds three failure modes of its own, all of which should be reported rather than worked around:
@@ -392,6 +452,7 @@ Supplement §11 stands. This design adds three failure modes of its own, all of 
 1. **Probe P0's endogeneity question (b) fails.** The degraded edge set is predictable from the knob alone. The harness cannot generate ancestry loss, only stipulate it, and P1 reduces to published work. This is supplement falsifier 2, reached cheaply.
 2. **The P1-R3 decomposition cannot be realised** — no inference rule separates the licensed rise in `p` from the forbidden rise in `N_eff` without conditioning on the arm. This is supplement falsifier 5: untestable as posed, instruments need rebuilding.
 3. **Measured inflation does not clear the instrument-calibration floor** (§8.2). The result is uninterpretable, and must be reported as uninterpretable rather than as a null.
+4. **`P1-R7` shows fluency and cardinality are not separable in the harness** (§7.5). Confidence tracks retrieval-event count even under a correct `VERIDICAL` genealogy, so an inflation under `FALSE_SPLIT` cannot be attributed to the count. Report as not attributable — this is a distinct outcome from a null and from the §8.2 floor failure.
 
 ---
 

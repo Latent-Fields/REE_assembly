@@ -5,6 +5,7 @@
 **Ladder rung refined:** [`provenance_false_evidence_multiplication_experiment_ladder.md`](provenance_false_evidence_multiplication_experiment_ladder.md) — assay P3
 **Audit that motivates it:** [`provenance_false_evidence_multiplication_campaign_supplement_20260910.md`](provenance_false_evidence_multiplication_campaign_supplement_20260910.md) §4 (Break B), §8 (P3-R1/R2/R3), §10 (four readouts), §11 (falsifiers), §12 (epistemic boundary)
 **Campaign sources cited:** [`docs/thoughts/2026-09-09_hippocampal_campaign_adjudication.md`](../../docs/thoughts/2026-09-09_hippocampal_campaign_adjudication.md) §8, matrix rows E20, E30, E32, E42, E43
+**Literature fold-in (2026-09-10, after this document landed):** [`provenance_judgment_class_literature_tranche.md`](provenance_judgment_class_literature_tranche.md) (REE_assembly `b682aed66f`). Two consequences for P3, folded in below: the Break B statement in §1 is **corrected** (§1.1) — step 5 is untested *for cardinality*, but a reactivation-strengthens-memory result does exist — and a third route to a replay-count effect is added as `P3-R8` (§8.1a). The premise is **strengthened**, not weakened.
 **Harness dependency:** the descendant-generation and genealogy representation are owned by a sibling design (`provenance_harness_generated_ancestry_design.md`), which did **not** exist when this was written. This document is therefore written against the abstract eight-operation contract; see §9.
 
 ---
@@ -20,6 +21,23 @@ grep -il replay scripts/convergence_signal_synthetic_assay_00*.py   ->  nothing
 Re-verified 2026-09-10 with `/usr/bin/grep` against all six assay scripts: still nothing. No REE assay contains a replay loop. Neither the clinical nor the rodent literature measures evidence cardinality across replay cycles — C1 preparations cannot read cardinality at all, and the C3 judgment studies (Yousif 2019, Connor Desai 2022, Weaver 2007) present a fixed source structure once rather than iterating it.
 
 So H2 is **unaddressed rather than weakly addressed**. Every other rung of the ladder has at least an adjacent result that constrains its prior; P3 has none. Stated plainly, as §8 of the audit requires: **P3 is the branch's highest-information unrun assay, and its information value does not sit behind P1.**
+
+### 1.1 Correction to Break B — "no evidence in any direction, in any class" is too strong
+
+**Corrected 2026-09-10 by the judgment-class tranche §6.2. The correction narrows the claim; it does not weaken the rung.**
+
+The audit's Break B is right **for cardinality** and wrong **for strength**, and the distinction changes P3's control structure rather than its motivation.
+
+- **Corlett, Cambridge, Gardner et al. 2013**, *Ketamine effects on memory reconsolidation favor a learning model of delusions*, PLoS One 8(6):e65088, [DOI 10.1371/journal.pone.0065088](https://doi.org/10.1371/journal.pone.0065088), PMID 23776445. Human, placebo-controlled, within-subjects (n=18). A **single unreinforced re-presentation** of a conditioned stimulus under ketamine produced a *stronger* memory at 24h than under placebo; the degree of strengthening correlated with individual vulnerability to ketamine's psychotogenic effects and with prediction-error brain signal. Partially replicated in an independent appetitive sample (n=8).
+- **Honsberger, Taylor & Corlett 2015**, *Memories reactivated under ketamine are subsequently stronger*, Schizophr Res 164(1–3):227–233, [DOI 10.1016/j.schres.2015.02.009](https://doi.org/10.1016/j.schres.2015.02.009), PMID 25728834. Rodent homologue: pre- but not post-reactivation ketamine enhanced fear memory at 24h, absent at 3h, not generalising to a closely related contextual memory, and blocked by prior inhibition of a BLA destabilisation mechanism.
+
+So a **reactivation-without-new-evidence → increased memory strength** effect exists, in two species, with a direct psychotomimetic link and a named mechanism (aberrant prediction error during reconsolidation).
+
+**What survives, stated precisely.** Break B stands *for cardinality*: neither study measures effective source count or calibration, and neither concerns ancestry. The grep result above is unchanged, and no literature anywhere measures cardinality across replay cycles. What can no longer be said is that P3 has **no evidence in any direction for anything in its region** — the sentence above and §1's framing are corrected accordingly.
+
+**Net effect on the rung: the premise is strengthened.** A mechanism that raises confidence through reactivation alone is now *documented* rather than merely hypothesised — which makes the rung more likely to produce a signal and simultaneously makes it easier to mis-attribute. That confound is `P3-R8` (§8.1a), and the ancestry × replay-count interaction (§8.3) is already the design's answer to it.
+
+---
 
 ### P3 is not downstream of P1's verdict
 
@@ -227,6 +245,34 @@ per replay kind, on P3-A, at matched retrieval quality, bias-corrected count:
 
 Both must move. A count rise with calibration intact is not the hypothesis — it is an instrument reporting more sources without the belief following, which is a readout artefact or a reader that ignores its own count.
 
+### 8.1a `P3-R8` — three routes to a replay-count effect, only one of which is H2 (tranche §6.2)
+
+The dangerous signature above requires **both** count and calibration to move, which already excludes the confound named here. This section names it explicitly, gives it a literature anchor, and fixes its predicted signature in advance, because it is the reading a replay-count main effect will otherwise invite.
+
+`P3-R2` (§5) covers the healthy route: replay improves fidelity, count flat. Corlett/Honsberger (§1.1) supply a **third** possibility that neither the dangerous signature nor the healthy arm was written to cover — replay raises confidence by *strengthening the representation*, with no ancestry involvement and no cardinality change, and does so **more** under conditions that model psychosis.
+
+```text
+strength route:      confidence up, effective source count FLAT, calibration DEGRADES
+                     (Corlett/Honsberger analogue -- no ancestry variable)
+cardinality route:   confidence up, effective source count RISES, calibration DEGRADES
+                     (the branch's H2)
+fidelity route:      confidence up, count flat, calibration IMPROVES
+                     (healthy replay, P3-R2, sec 5)
+```
+
+The strength and fidelity routes are distinguished by **calibration direction** at flat count; the cardinality route is distinguished from both by **readout 3 moving at all**.
+
+> **Predeclared, and binding: a replay-count main effect that raises confidence and degrades calibration is consistent with the strength route alone and is NOT evidence for H2.** It is admissible as evidence for H2 only via the signed ancestry × `log2(1+r)` interaction on **both** count and calibration error (§8.1).
+
+Two further requirements this places on the run:
+
+1. **The strength route must be reportable as itself.** It is a real result — a synthetic analogue of a documented human and rodent effect with a psychotomimetic link — and it must be recorded as the strength route rather than as an H2 null. `VERIDICAL` is the arm where it is cleanly visible, since ancestry is intact there by construction.
+2. **Do not treat it as a nuisance to be regressed out.** Replay strength and replay count are the same manipulation; the separation is by *signature across readouts 3 and 4*, not by a covariate. A "controlled-for-strength" count effect is not a cleaner H2 test, it is a collider-conditioned one — the same prohibition §6 states for realised fidelity.
+
+Boundary: Corlett 2013 and Honsberger 2015 are **design constraints and a named confound**, not evidence for H2 and not a psychosis inference. They measure memory strength, not cardinality and not calibration; the epistemic boundary of §11 applies to them unchanged, and the ketamine/psychotomimetic link is what makes the confound *plausible in this region*, not what licenses any clinical reading of a P3 result.
+
+---
+
 ### 8.2 The other predeclared outcomes, each a real result
 
 | Pattern | Reading |
@@ -239,6 +285,7 @@ Both must move. A count rise with calibration intact is not the hypothesis — i
 | count ↑ with `r` in **every** ancestry condition including `VERIDICAL` | **instrument artefact — measuring replay exposure, not genealogy. STOP**, fix the harness, do not report. |
 | amplification under `preferential` only | H2 in its self-maintaining form (§2.5). |
 | amplification equal under `uniform` and `preferential` | H2 in its weak accumulation form only. |
+| confidence ↑ with `r`, count FLAT, calibration DEGRADES, in **every** ancestry condition including `VERIDICAL` | **the strength route** (§8.1a) — a synthetic analogue of Corlett 2013 / Honsberger 2015. A real result, and **not** evidence for H2. Distinguished from the healthy-replay row above by calibration direction, and from H2 by readout 3 not moving. |
 | P3-B delta ≈ 0 against matched P3-A | corruption does not compound with re-encoding; cardinality alone drives any effect. |
 
 ### 8.3 The falsifier
@@ -315,6 +362,8 @@ Written here as recommendations only — this document does not edit either file
 3. **Supplement, §8.** P3-R2 is stated as "the healthy-replay arm is mandatory and must be able to pass". Recommend it be strengthened from an arm to a **gate run first on discarded seeds** (§5) — as an arm assessed after the fact, a failure is discovered only once the grid has run and been interpreted.
 4. **Supplement, §10.** Recommend the instrument-bias hazard specific to P3 (§7.2) be recorded: the replay manipulation moves the graph along precisely the topology axis where assay 001's `N_eff` instrument drifts, which is a sharper problem for P3 than the general "do not derive one readout from the other" caution already stated.
 5. **Sequencing.** Recommend it be stated explicitly that P3 is harness-dependent but not result-dependent on P1 (§1), so that a P1 null does not silently retire the rung.
+6. **Supplement, §4 (Break B).** Recommend the "no evidence in any direction, in any class" formulation be narrowed to **"no evidence for cardinality in any class"** (§1.1). A reactivation-strengthens-memory result exists in humans and rodents with a psychotomimetic link; the cardinality half of Break B is untouched by it, but the unnarrowed sentence is false as written.
+7. **Ladder / supplement, P3 controls.** Recommend `P3-R8` (§8.1a) be carried: the three-route separation, and the binding predeclaration that a replay-count main effect on confidence and calibration at flat count is the **strength** route and is not evidence for H2.
 
 ---
 
