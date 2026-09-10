@@ -553,6 +553,89 @@ intake `evidence/planning/thought_intake_2026-08-12_prediction_error_to_inferred
 
 ---
 
+## MECH-191 -- Stereotyped Signals as Causal Externalizations of Internal States
+
+<a id="mech-191"></a>
+
+**Claim ID:** MECH-191 (candidate, `epistemic_category: standard`)
+
+Stereotyped behavioural signals are causal externalizations of specific internal functional
+states, which is what makes them legible across architectures without a learned convention.
+CONJUNCTIVE -- "causally produced" and "cross-architecturally legible" are separate assertions
+with opposite readiness, split Leg A / Leg B in the claim's `what_would_answer`. LEG A (causal
+production) is receiver-free and testable today for the four catalogued signals whose
+internal-state correlate already exists in `ree_core`: whine (z_goal active without
+satisfaction), huff (E3 trajectory discard at breath cadence), yelp (z_harm_a threshold
+crossing), tail-wag (z_beta positive-valence crossing). The other three are each blocked on
+different absent substrate -- facial expression needs OTHER_SELFLIKE model activation, play-bow
+needs a play-mode/mode-manager substrate, licks/petting-received is MECH-193's two-agent
+territory. LEG B (cross-architectural legibility) needs a second agent and is v5-gated
+(ARC-047 SocialGridWorld).
+
+Source: `docs/thoughts/2026-04-06_steve_signal_legibility_language_bootstrap.md`, intake
+`evidence/planning/thought_intake_2026-04-06_steve_signal_legibility_language_bootstrap.md`.
+
+---
+
+## MECH-192 -- Signal Legibility as Prerequisite for Fast-Empathy Coordination
+
+<a id="mech-192"></a>
+
+**Claim ID:** MECH-192 (candidate, `epistemic_category: substrate_conditional`; depends on
+MECH-183, MECH-191)
+
+z_beta leakage (MECH-183) can only produce functional state-matching where the perceived signal
+maps onto a corresponding internal state in the observer, so legibility is prerequisite for
+fast-empathy coordination. AS REGISTERED THIS IS NEARLY ANALYTIC and therefore not yet
+falsifiable -- it states what a mapping *is*. Its empirical content appears only once legibility
+is a graded, manipulable variable; that narrowing is the claim's live residual, in its
+`what_would_answer` in `docs/claims/claims.yaml`. Do not queue against the analytic form.
+
+Source: `docs/thoughts/2026-04-06_steve_signal_legibility_language_bootstrap.md`, intake
+`evidence/planning/thought_intake_2026-04-06_steve_signal_legibility_language_bootstrap.md`.
+
+---
+
+## MECH-193 -- Social Reward Signals Reinforce Empathic Coupling Strength
+
+<a id="mech-193"></a>
+
+**Claim ID:** MECH-193 (candidate; depends on MECH-183, MECH-192, INV-029)
+
+Affiliative signals (petting, licks, facial expression, the oxytocin-gaze loop) activate reward
+pathways that strengthen coupling between the self-model and the attributed other-model, making
+the coordination loop self-reinforcing: successful coordination -> affiliative exchange ->
+stronger coupling -> more sensitive state-matching -> better coordination. Two-agent by
+construction, so v5-gated on ARC-047 / MECH-031 other-agent detection. Partial novelty only:
+oxytocin bonding is well established (Nagasawa 2015; C-tactile afferents, Walker 2017); the
+novel part is tying it specifically to empathic coupling STRENGTH.
+
+Source: `docs/thoughts/2026-04-06_steve_signal_legibility_language_bootstrap.md`, intake
+`evidence/planning/thought_intake_2026-04-06_steve_signal_legibility_language_bootstrap.md`.
+
+---
+
+## ARC-048 -- Language as High-Bandwidth Externalization of Pre-Existing Functional States
+
+<a id="arc-048"></a>
+
+**Claim ID:** ARC-048 (candidate, `epistemic_category: substrate_conditional`; depends on
+INV-003, MECH-191, MECH-192, ARC-047, MECH-014)
+
+Language is a high-bandwidth externalization of pre-existing functional states rather than a
+separate cognitive system; the language bootstrap therefore REQUIRES functional states already
+existing as referents. The claim is FUSED and its `what_would_answer` splits it: LEG A (the
+premise, "language is not a separate cognitive system") is INV-003's to answer, by a
+`derivational` code-path audit rather than a trained behavioural experiment; LEG B (the
+operational consequence, referents must pre-exist the signal) is ARC-048's own and is the
+pre-linguistic bridge into the V6 tier. Registered as an enabling condition of
+`language_emergence_bootstrap_v6_plan.md` node LANG-2.
+
+Source: `docs/thoughts/2026-04-06_steve_signal_legibility_language_bootstrap.md`, intake
+`evidence/planning/thought_intake_2026-04-06_steve_signal_legibility_language_bootstrap.md`.
+
+---
+
 ## Open Questions
 
 <a id="q-009"></a>

@@ -4,7 +4,7 @@ closure_plan:
   title: "Sleep Substrate"
   registered: 2026-05-08
   last_updated: 2026-08-14
-  scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, INV-050, MECH-180, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166]
+  scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, INV-050, MECH-180, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166, INV-063, MECH-209, MECH-210, MECH-211]
   nodes:
     - id: "sleep_substrate:GAP-1"
       title: "MECH-204 precision recalibration consumer (F1 closure; V3-EXQ-541c PASS, cycle-count dose-response confirmed F1-sufficient)"
@@ -20,7 +20,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [Q-041, Q-042, SD-029, MECH-111, MECH-256]
       depends_on: []
       last_updated: 2026-05-09
@@ -38,7 +38,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       owner_exq_status: passed
       pending_owner_exqs: []
       pending_owner_exqs_note: "CLEARED 2026-07-29 (docs reconcile, no status change). Was [V3-EXQ-500a, V3-EXQ-503a]; both RAN 2026-05-09 -- 500a PASS/supports (sleep-phase readiness), 503a PASS/supports (SWS-vs-REM discriminative pair) -- manifests present in evidence/experiments/ and both in review_tracker.reviewed_run_ids. The whole Tier-1 cohort has now run (265a PASS; 418l + 436a ran and were reclassified non_contributory 2026-05-10). The deferred successors 418m + 436b are deliberately NOT listed here: they are GATED (unqueued pending the arc_062 GAP-B substrate), not pending-a-runner. See resume_condition."
@@ -70,7 +70,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [MECH-285, MECH-272, MECH-275, MECH-273]
       depends_on: ["sleep_substrate:GAP-8"]
       last_updated: 2026-05-16
@@ -89,7 +89,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [MECH-285, MECH-272, MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
       last_updated: 2026-06-23
@@ -110,7 +110,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
       last_updated: 2026-05-16
@@ -128,7 +128,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: []
       depends_on: []
       blocking_external: ["V4 SD-037 arousal substrate"]
@@ -147,7 +147,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       substrate_queue_id: "SD-MEL-CONSUMER"
       unblocks_claims: [INV-050, MECH-180]
       depends_on: []
@@ -198,7 +198,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: []
       depends_on: []
       cross_plan_link: ["commitment_closure:GAP-10"]
@@ -218,7 +218,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: []
       depends_on: []
       last_updated: 2026-05-17
@@ -237,7 +237,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: []
-        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [MECH-272, MECH-285]
       depends_on: []
       last_updated: 2026-05-15

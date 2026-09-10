@@ -1400,7 +1400,7 @@
       ],
       "blocked_by": [
         "modulatory-bias-selection-authority (substrate_queue, created 2026-06-03) -- without genuine modulatory authority at E3.select the entropy gain cannot reach committed action (the 604a/624a selection-authority bottleneck).",
-        "difficulty-gated proposal-entropy regulator -- stuck-state detector + transient CEM temperature/candidate-count gain + decay; not yet designed (no design doc)."
+        "SD-061 (substrate_queue.json, implemented_pending_validation) -- difficulty-gated proposal-entropy regulator: stuck-state detector + transient CEM temperature/candidate-count gain + decay; builds MECH-343 substrate_conditional blocker part 2. Was free prose ('not yet designed (no design doc)'), which audit_blocked_proposal_unblockers.unblocker_id() could not resolve to any sd_id, so a blocker that HAS an owner read as UNOWNED; id-first form added 2026-09-10 (GFLAG-0135)."
       ],
       "notes": "Proposal only -- script authoring + queue entry deferred to /queue-experiment per the mandatory skill path. V3-EXQ-614d / MECH-341 is a possible early substrate (within-class temperature -> committed-action diversity) but tests only one piece, not the whole loop. Hypothesis note: docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md. Psychiatry bridge: docs/architecture/psychiatric_failure_modes.md.",
       "backlog_id": "EVB-0552"
@@ -2212,11 +2212,10 @@
         "ESCALATION (not falsification): probe again short-circuits to INSTRUMENTATION_FAILURE despite the amended substrate and script fixes -- falls back per SD-056's own contingency to PLSM lever A or SWIRL lever C.",
         "Explicitly note in the manifest that V3-EXQ-569i's PASS is NOT a substitute for this run -- it validates a different, additional lever."
       ],
-      "status": "executed",
+      "status": "proposed",
       "added_utc": "2026-08-07",
-      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment.",
-      "backlog_id": "EVB-0587",
-      "executed_by": "v3_exq_210_mech156_theta_traversal_probe"
+      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment. [2026-09-10 GFLAG-0231 registry repair] The 'executed' status and the executed_by link to 'v3_exq_210_mech156_theta_traversal_probe' were FALSE and are removed. That run's own manifest (evidence/experiments/v3_exq_210_mech156_theta_traversal_probe/v3_exq_210_mech156_theta_traversal_probe_1775168257.json) carries claim_ids ['MECH-156'] and timestamp 2026-04-02T22:17:37Z -- no SD-056 tag, and four months BEFORE this proposal was minted (added_utc 2026-08-07). No SD-056 queue entry has existed since minting and the 569e driver is unchanged since 2026-05-30 (pack_writer migration aside), so the run was never dispatched; ree-v3/experiment_queue.json holds 0 items for SD-056. Status restored to a live lifecycle value: this is GATED, not done. SD-056 carries a claims.yaml experiment_gate set 2026-09-08 by clever-joliot-bb5a54 (DO-NOT-QUEUE; W5-S4 item 1, REE_assembly 5819a55ae1, diagnostic_evidence_adjudicated true) -- the representation-level DV is already measured three times (V3-EXQ-613 synthetic; 569d and 569e real training, t=1 cand_world_pairwise_dist ~0.05 ON vs ~0.014 OFF) and the zero genuine_exp_count is a tagging fact, so the ONLY run that moves the claim is this pre-registered EXP-0585 / EVB-0587 569e-equivalent Pathway A vs B probe (8 arms x 5 seeds, P1 budget) with the three 569e autopsy Section 6 script fixes and BOTH stability levers armed (e2_action_contrastive_multistep_enabled + e2_rollout_output_norm_clamp_enabled, true in ZERO runs as of 2026-09-01). That is a wave-budget FUNDING decision for governance, not background fill. Do NOT mint a GOV-CONFIRM-1 confirmer. Because the claim is gated, build_experiment_indexes.py may re-derive this row to 'blocked' with a blocked_note on the next pass (chip-20260904-indexer-mints-gated-claims-as-blocked) -- that is correct and expected; it lifts back to 'proposed' automatically when the gate is removed from the claim. If governance declines to fund it this wave, write the DO-NOT-QUEUE marker via scripts/confirmer_verdict.py rather than reinstating a false 'executed'.",
+      "backlog_id": "EVB-0587"
     },
     {
       "proposal_id": "EXP-0587",

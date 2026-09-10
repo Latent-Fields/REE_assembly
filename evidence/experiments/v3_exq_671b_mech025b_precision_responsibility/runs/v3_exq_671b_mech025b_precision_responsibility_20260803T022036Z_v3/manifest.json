@@ -23,7 +23,8 @@
     "MECH-025b"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "weakens",
+  "evidence_direction_note": "2026-09-10, GFLAG-0152 (registry/index disagreement, HOLDS-AS-STATED). CORRECTED mixed -> weakens. The auto-emitted 'mixed' came from a naive 4-of-6 sub-criteria count. Only C1 (C1_precision_residue_correlation) and C2 (C2_high_precision_residue_ratio) are load_bearing and BOTH FAIL cleanly (C1 -0.0446 vs a 0.15 bar; C2 1.0618 vs a 1.1 bar); C3-C6 (committed_step_count, world_forward_r2, harm_pred_std, no_fatal_errors) are health/precondition checks and carry no direction. This is the identical failure mode CLAUDE.md and MECH-025b's own 2026-06-12 evidence_quality_note already diagnosed for the predecessor V3-EXQ-671 ('the mixed direction was only the 4/6 arithmetic'), so this correction mirrors an established precedent for this claim family rather than setting a new one. claims.yaml's live_status.evidence.verdict 'weakens/standard' (line 22105) and its 2026-08-03 evidence_quality_note (line 22227) were already correct and are NOT changed by this edit; the registry and the index now agree. Applied to BOTH the flat evidence/experiments/<run_id>.json and the pack runs/<run_id>/manifest.json copy so they agree under every branch of _merge_flat_manifest_overrides. Rebuild required: evidence/experiments/scripts/build_experiment_indexes.py.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {

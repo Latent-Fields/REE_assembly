@@ -9,12 +9,12 @@
     "SD-012"
   ],
   "evidence_direction_per_claim": {
-    "SD-015": "does_not_support",
-    "MECH-112": "does_not_support",
-    "ARC-030": "does_not_support",
-    "SD-012": "does_not_support"
+    "SD-015": "non_contributory",
+    "MECH-112": "non_contributory",
+    "ARC-030": "non_contributory",
+    "SD-012": "non_contributory"
   },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "outcome": "FAIL",
   "criteria": {
     "c1_wanting_populated": false,
@@ -103,5 +103,7 @@
     "p1_episodes": 50,
     "steps_per_ep": 200
   },
-  "timestamp": "2026-04-08T16:47:17.578590Z"
+  "timestamp": "2026-04-08T16:47:17.578590Z",
+  "dry_run": true,
+  "evidence_direction_note": "DRY-RUN SMOKE, CONTAINED 2026-09-10 (governance batch E5-other, GFLAG-0120). AUTHORITY IS THIS MANIFEST'S OWN DATA, NOT BYTE-IDENTITY TO THE REAL RUN: all six results_per_condition cells carry p1_resource_counts: [] and p1_benefit_exposures: [] against config p1_episodes: 50 -- the run executed ZERO P1 episodes, and every reported quantity (resource_rate, mean_benefit_exposure, valence_wanting_mean, all c1/c2 criteria) is 0.0 by construction rather than by measurement. A run that executed no episodes cannot bear on SD-015 / MECH-112 / ARC-030 / SD-012, so evidence_direction and all four per-claim directions move does_not_support -> non_contributory. Top-level dry_run was UNSET, so check_dry_run_citations.py, the indexer dry filter, generate_pending_review.load_dry_run_run_ids() and GOV-DRY-1 were all structurally blind to it; dry_run is set true here so those guards see it (same repair shape as the three v3_exq_395 smokes, different authority). The REAL run of this lineage is v3_exq_259_wanting_gradient_navigation_1775666895 (2026-04-08T16:53:01Z), which carries 50 entries in each p1 array and is untouched by this stamp. A smoke is not evidence and carries no direction."
 }

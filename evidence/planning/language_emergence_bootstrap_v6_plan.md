@@ -5,7 +5,7 @@ closure_plan:
   title: "Language emergence + bootstrap from social ecology (V6 LINGUISTIC umbrella)"
   registered: 2026-06-10
   last_updated: 2026-06-13
-  scope_claims: [ARC-009, INV-003, INV-007, MECH-010, MECH-014, MECH-308]
+  scope_claims: [ARC-009, INV-003, INV-007, MECH-010, MECH-014, MECH-308, ARC-048]
   sibling_plans: [grammar_primitive_mining_v6, language_affect_adaptor_v6, multi_agent_ecology_v5, mirror_modelling_other_self_v5, fast_empathy_v5, ethics_as_coherence_v5, object_representation_v4, self_model_v4]
   roadmap_note: >
     FORWARD ROADMAP, not a closure map. V6 (the LINGUISTIC mind tier, final tier
@@ -57,6 +57,8 @@ closure_plan:
       cross_plan_link: ["object_representation_v4:OBJ-2", "self_model_v4", "mirror_modelling_other_self_v5:MIRROR-1", "multi_agent_ecology_v5:MAE-1"]
       readiness_gate:
         - "Documents (does NOT yet build) the enabling-condition checklist from the 2026-06-05 addendum: shared world, object tokens, action affordances, self-attribution, other-attribution, joint attention, partial observability, social coordination pressure, memory, rule apprehension, low-cost signalling channel, partner variation, repair"
+        - "Fourteenth enabling condition, added 2026-09-10 (GFLAG-0171) and NOT in the 2026-06-05 addendum list: functional states pre-exist as referents (ARC-048). Signals must be ABOUT already-existing internal functional states -- ARC-048 is the registered pre-linguistic bridge to INV-003, and without it a LANG-3 signalling probe is vacuous however well the other thirteen are satisfied"
+        - "Fourteenth enabling condition, added 2026-09-10 (GFLAG-0171) and NOT in the 2026-06-05 addendum list: functional states pre-exist as referents (ARC-048). Signals must be ABOUT already-existing internal functional states -- ARC-048 is the registered pre-linguistic bridge to INV-003, and without it a LANG-3 signalling probe is vacuous however well the other thirteen are satisfied"
         - "Each condition maps to a prerequisite tier: object tokens -> object_representation_v4 (OBJ-2 permanence); self-attribution -> self_model_v4; other-attribution + joint attention -> mirror_modelling_other_self_v5 (MIRROR-1 OTHER_SELFLIKE); coordination pressure + partial observability + partner variation -> multi_agent_ecology_v5 (MAE-1 substrate)"
         - "No substrate gate of its own -- this is a documentation+claim step that gives LANG-3..LANG-6 a checklist of what must be TRUE of the ecology before any signalling probe is non-vacuous; it is the V6 entry-readiness contract"
       last_updated: 2026-06-10

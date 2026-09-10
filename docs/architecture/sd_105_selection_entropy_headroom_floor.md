@@ -10,7 +10,14 @@ status_claim: SD-105
 **Subject:** control_plane.selection_entropy_headroom_floor
 **Registered:** 2026-09-04
 **Depends on:** SD-074, MECH-313
-**Blocks:** V3-EXQ-963b (MECH-063 sub-claim ii retest), and any readout of E3
+**Blocks:** V3-EXQ-963b -- BUT 963b was refused at design review, not queued
+(ree-v3 `d2104f8`, 2026-09-04, BLOCKING red-team finding F1, "CONFIRMED / NOT
+FIXED": a LIVE closed-loop set-point controller cannot be validated in a
+difference-of-arms design whose DV is the quantity it regulates, and a
+frozen/shared multiplier is required -- SD-105 has no freeze/share API). The
+replacement form is SD-105's own `what_would_answer` in `docs/claims/claims.yaml`;
+see also its `digestion_note`, which marks the item DEFERRED (f) and lists what
+must resolve. Do not re-derive the verdict. Also blocks any readout of E3
 selection entropy taken on a warmed agent
 
 Leg (b) of substrate_queue entry `sd_phasic_burst_decay_and_warmup_headroom`
@@ -153,9 +160,14 @@ set-point rather than a constant offset.
 
 ## What This SD Enables
 
-- V3-EXQ-963b: an R5 headroom gate that a warmed agent can actually clear, with
-  the bar declared inside the DV's achievable range
-  (`dv-dynamic-range-precondition-class`).
+- NOT V3-EXQ-963b. That validation was refused at design review 2026-09-04 (ree-v3
+  `d2104f8`, BLOCKING F1) and was never queued. The replacement is the
+  frozen-multiplier form given in SD-105's `what_would_answer` in
+  `docs/claims/claims.yaml` (it cites the verdict at `v3_exq_963b...py:556-580`):
+  an R5 headroom gate read against a frozen/shared multiplier, with the bar
+  declared inside the DV's achievable range
+  (`dv-dynamic-range-precondition-class`). The freeze/share API that form needs is
+  not built -- see the `digestion_note` DEFERRED (f) items.
 - Any future readout of E3 selection entropy taken after a warmup.
 
 ## Related Claims

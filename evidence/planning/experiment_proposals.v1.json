@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-09T09:07:27.366615Z",
+  "generated_at_utc": "2026-09-09T09:25:11.475474Z",
   "items": [
     {
       "acceptance_checks": [
@@ -41773,8 +41773,7 @@
       "claim_id": "SD-056",
       "design": "Re-run the original V3-EXQ-569e 8-arm Pathway A vs Pathway B mechanism probe (SP-CEM main-path ON, MECH-341 OFF, MECH-313 OFF, MECH-269 default) at behavioural-runtime P1 budget (50 episodes / 200 steps) on the amended substrate (multistep contrastive horizon + output-norm clamp, both now available), with the three script-side acceptance-criteria fixes from the 569e autopsy Section 6 applied: (i) a genuine per-tick NaN-fix gate for C1 rather than 'at least one finite value per seed'; (ii) a sanity ceiling on the C3 rollout-divergence gate so numeric overflow cannot register as 'operative' divergence; (iii) resolution of the acceptance_criteria-dict-vs-verdict_cell contradiction the autopsy flagged.",
       "dispatch_mode": "discriminative_pair",
-      "executed_by": "v3_exq_210_mech156_theta_traversal_probe",
-      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment.",
+      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment. [2026-09-10 GFLAG-0231 registry repair] The 'executed' status and the executed_by link to 'v3_exq_210_mech156_theta_traversal_probe' were FALSE and are removed. That run's own manifest (evidence/experiments/v3_exq_210_mech156_theta_traversal_probe/v3_exq_210_mech156_theta_traversal_probe_1775168257.json) carries claim_ids ['MECH-156'] and timestamp 2026-04-02T22:17:37Z -- no SD-056 tag, and four months BEFORE this proposal was minted (added_utc 2026-08-07). No SD-056 queue entry has existed since minting and the 569e driver is unchanged since 2026-05-30 (pack_writer migration aside), so the run was never dispatched; ree-v3/experiment_queue.json holds 0 items for SD-056. Status restored to a live lifecycle value: this is GATED, not done. SD-056 carries a claims.yaml experiment_gate set 2026-09-08 by clever-joliot-bb5a54 (DO-NOT-QUEUE; W5-S4 item 1, REE_assembly 5819a55ae1, diagnostic_evidence_adjudicated true) -- the representation-level DV is already measured three times (V3-EXQ-613 synthetic; 569d and 569e real training, t=1 cand_world_pairwise_dist ~0.05 ON vs ~0.014 OFF) and the zero genuine_exp_count is a tagging fact, so the ONLY run that moves the claim is this pre-registered EXP-0585 / EVB-0587 569e-equivalent Pathway A vs B probe (8 arms x 5 seeds, P1 budget) with the three 569e autopsy Section 6 script fixes and BOTH stability levers armed (e2_action_contrastive_multistep_enabled + e2_rollout_output_norm_clamp_enabled, true in ZERO runs as of 2026-09-01). That is a wave-budget FUNDING decision for governance, not background fill. Do NOT mint a GOV-CONFIRM-1 confirmer. Because the claim is gated, build_experiment_indexes.py may re-derive this row to 'blocked' with a blocked_note on the next pass (chip-20260904-indexer-mints-gated-claims-as-blocked) -- that is correct and expected; it lifts back to 'proposed' automatically when the gate is removed from the claim. If governance declines to fund it this wave, write the DO-NOT-QUEUE marker via scripts/confirmer_verdict.py rather than reinstating a false 'executed'.",
       "objective": "Re-queue of the V3-EXQ-569e-equivalent Pathway A vs Pathway B mechanism probe SD-056's own evidence_quality_note names as its closing gate. The numerical-stability precondition (V3-EXQ-617, multi-step contrastive horizon h=5 + per-step output norm clamp) PASSED 2026-05-31, but the re-run itself was never queued -- ~7 weeks elapsed. The downstream target this was meant to unblock (ARC-065 GAP-A) closed 2026-06-17 via a DIFFERENT mechanism (V3-EXQ-569i, E3-side top-k shortlist conversion), which does NOT answer SD-056's own mechanism-attribution question (is it per-candidate z_world divergence from SD-056's contrastive training [Pathway A], or E2 rollout-landscape shift [Pathway B], or solely the independent shortlist fix, that produces the selected-action-entropy lift over the matched-noise control).",
       "priority": "medium",
       "proposal_id": "EXP-0585",
@@ -41782,7 +41781,7 @@
       "require_pre_registered_thresholds": true,
       "seed_policy": "matched_shared_seeds",
       "source": "manual",
-      "status": "executed",
+      "status": "proposed",
       "target_repo": "ree-v3"
     },
     {
