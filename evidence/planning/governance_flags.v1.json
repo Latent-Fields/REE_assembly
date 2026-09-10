@@ -2369,9 +2369,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-250' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] `stale_note` (concerns MECH-108, surfaced via MECH-250's dependency) -- MECH-108 carries `epistemic_category: substrate_conditional` while its BreathOscillator is built (`heartbeat/clock.py`), auto-wired (`agent.py:7287` -> `9256` -> `e3_selector.py:3600`), and ON by default in every experiment-built config (`REEConfig.from_dims` defaults `breath_period = 50`, `config.py:8169/9791`, against a dataclass default of 0 at `config.py:3148`).",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:44Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:54:35Z",
+      "resolution_note": "HOLDS-BUT-MISDIAGNOSED, no edit owed -- adjudicated by the gov-flagbacklog-20260909 pass (record: evidence/planning/governance_flag_adjudication_20260909.md; user read all 15 misdiagnosed findings and approved the corrected dispositions 2026-09-10). The cited facts are essentially correct (minor line drift): BreathOscillator wiring runs agent.py's sweep_reduction (near :7287, comment 'MECH-108: pass BreathOscillator sweep reduction') through _e3_select_kwargs into e3_selector.py's sweep_threshold_reduction application (:3771-3772, not :3600), and REEConfig.from_dims defaults breath_period=50 (config.py:8242) against a dataclass default of 0 (config.py:3221). But this does NOT make epistemic_category:substrate_conditional stale or wrong: MECH-108's own what_would_answer (present since 2026-08-08, a month before this flag) already explains that the single-phase BreathOscillator being built/wired/on-by-default is insufficient for THIS claim, which specifically asserts an unbuilt two-phase inhalation-scan/exhalation-execute structure plus object-level rollout/DMN-simulation triggering -- neither of which exists. The categorization and its rationale were already correct and already on record when the flag was raised. DISPOSITION: None required on epistemic_category. If governance wants MECH-108's registry text to be maximally self-evident to future flag-raisers, add a short cross-reference note pointing from the epistemic_category field to the existing what_would_answer explanation so the built/unbuilt distinction is not re-litigated again."
     },
     {
       "flag_id": "GFLAG-0167",
@@ -2656,9 +2656,9 @@
       "summary": "[thought-digestion v3-closure 2026-09-04, applied 2026-09-06; full text under 'MECH-442' in evidence/planning/thought_digestion_staged_2026-09-04_v3closure.md] MECH-442's `notes` assert *\"substrate_conditional on a behavioral-descriptor eligible-set archive beyond top-k not yet built\"* and name V3-EXQ-569i top-k as the comparator. Both were true on 2026-06-18 and are not true now: (a) a descriptor-indexed per-niche-elite archive with a coverage-aware commit rule IS built (`stratified_select`, under MECH-341, validated through V3-EXQ-660); (b) the conversion route of record is MECH-448 demotion + MECH-449 Go/No-Go (V3-EXQ-689g PASS, 2026-06-22, four days after registration), not 569i top-k; and (c) `top_k` itself has since gained conflict-graded width.",
       "raised_by_session": "thought-digestion-v3-20260904-apply",
       "raised_at": "2026-09-06T19:28:58Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-10T06:54:35Z",
+      "resolution_note": "DUPLICATE -- discharged by GFLAG-0186's edit, applied in REE_assembly c8116c399b/69dcc8269d. Same claim (MECH-442), same evidence, same second (19:28:58Z), same source section; 0186's action strictly contains this one, and 0186's single edit pass on MECH-442.notes carried this flag's substance: the FALSIFIER comparator was swapped from the V3-EXQ-569i top-k shortlist to the MECH-448 f_demotion + MECH-449 Go/No-Go route of record (V3-EXQ-689g PASS 2026-06-22, superseding the registered comparator four days after registration). IMPORTANT and deliberately NOT applied: this flag's rider (a) does NOT hold -- stratified_select is a descriptor-indexed archive at the SCORE-COMPOSITION stage for descriptor = first-action class only, not the behavioural-descriptor ELIGIBLE-SET archive MECH-442's notes specify -- so the phrase 'substrate_conditional on a behavioral-descriptor eligible-set archive beyond top-k not yet built' was LEFT STANDING. Striking it, as this flag asked, would have made the registry less accurate and contradicted the claim's own epistemic_category. Textual similarity could not have detected this duplicate. Record: evidence/planning/governance_flag_adjudication_20260909.md"
     },
     {
       "flag_id": "GFLAG-0188",
@@ -3491,9 +3491,9 @@
       "summary": "CORRECTS the GFLAG-0244 resolution note, and records a MEASURED residual the 0244 framing missed. GFLAG-0244's producer fix is sound and stands (ree-v3 5181e49613: pack_writer.write_flat_manifest now sets top-level dry_run:true with the _dry_ filename marker). But its resolution note asserted that GFLAG-0117's consumer-side half was still open, with 27 typedir manifests unreachable by the enumerators. THAT IS WRONG and should not be relied on: the three-shape enumerator (flat, typedir, pack) landed 2026-09-07 in generate_pending_review.py and check_dry_run_citations imports it, so all three shapes ARE enumerated. THE REAL RESIDUAL, measured live 2026-09-09 by running the corpus through the live consumer rather than reasoning about it: two dryness checks over the same corpus have DIFFERENT ARMS. sync_v3_results._is_dry_run has THREE -- (1) dry_run field truthy, (2) flat_path.name.startswith('_dry_'), (3) run_id.endswith('_dry'). generate_pending_review._is_dry_run has TWO -- the field, and _DRY_RUN_ID_RE = re.compile(r'_dry_[0-9]{8}T[0-9]{6}Z') which REQUIRES a timestamp. A bare trailing _dry (no timestamp) passes the regex, and a _dry_-PREFIXED filename with a clean run_id is structurally invisible because _is_dry_run(d: dict) never receives the path. CONSEQUENCE: of 41 dry-named manifests carrying no top-level dry_run field, 26 are excluded by the timestamped regex and 15 LEAK PAST EVERY ARM. 14 of the 15 carry an ASSERTING evidence_direction (13 does_not_support, 1 supports) against the claims tagged here. This is why the two checks disagreed in the field: sync kept ALL of them out of claim_evidence.v1.json (verified: 0 of 29 affected run_ids appear there, lookup sanity-checked against the real run ids for the same experiment types), while pending_review and GOV-DRY-1's asserting-stamp sweep did not. NOTHING IS CURRENTLY MIS-SCORED -- latent trap, not active mis-weighting -- but 14 of the affected run_ids are ALREADY IN reviewed_run_ids, i.e. a past session mark-discussed a smoke, which is the failure mode GFLAG-0244 predicted and which has therefore already occurred. THE 15: _dry_v3_exq_918a_sd_residue_valence_bound_validation_20260909T062139Z_v3.json (supports; the filename-prefix case), v3_exq_324b_sd020_harm_surprise_pe_dry.json, and the _dry-suffixed typedir manifests under v3_exq_259, 318, 319, 320, 321, 321a, 322, 322a, 323 (supports), 323a, 324, 325, 325a. ROUTING: the CODE half is chipped as chip-20260909-isdryrun-parity-gap (task_bcfa6431) -- bring generate_pending_review._is_dry_run to arm-parity, which zeroes the leak with no corpus write and is strictly preferable to stamping. The CORPUS half is governance's call and is NOT chipped: if any of the 15 warrants a quarantine stamp, only superseded / non_contributory are safe values, and the 14 reviewed_run_ids entries may want revisiting. NOTE the parity fix must not be read as re-legitimising a filename heuristic AS THE FIX -- GFLAG-0244's point stands that the source is the writer; this is the historic-corpus half, and the two are complementary, not alternatives.",
       "raised_by_session": "confident-panini-0cdba7",
       "raised_at": "2026-09-09T15:22:36Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-10T06:54:35Z",
+      "resolution_note": "SUPERSEDED 2026-09-10 by the gov-flagbacklog-20260909 adjudication (record: evidence/planning/governance_flag_adjudication_20260909.md). This flag's CODE half is discharged: chip-20260909-isdryrun-parity-gap landed as REE_assembly 9dc856c100 (generate_pending_review._is_dry_run brought to arm-parity; leak 15 -> 0), followed by 7368bc7fb4 bringing four remaining independent re-spellings onto the canonical predicate. Its CORPUS half remains genuine but its stated urgency rests on an assertion that is FALSE: the flag says '14 of the affected run_ids are ALREADY IN reviewed_run_ids ... which has therefore already occurred'. Re-measured against evidence/experiments/review_tracker.json both on 2026-09-10 and at REE_assembly 40745a2cb2 (the tracker state at this flag's own raised_at): ZERO of the 15 leaker run_ids are in reviewed_run_ids. The 19 reviewed entries are the REAL (non-dry) siblings in the same 13 experiment directories -- expected, and almost certainly what the original measurement matched on. No past session mark-discussed a smoke. Superseded rather than resolved because the registry is append-only and a flag's summary must not be rewritten in place; a successor flag carries the corrected corpus-half scope (quarantine-stamp question for the 15, to be taken together with GFLAG-0120; note also this flag's claim_ids omit SD-013, which one leaker asserts does_not_support against)."
     },
     {
       "flag_id": "GFLAG-0249",
@@ -3527,6 +3527,120 @@
       "summary": "BACK-FILL TRIAGE owed by the GFLAG-0249 fix -- a DECISION for governance, not a recording task, and it currently has no owner (GFLAG-0249 is resolved, so nothing re-derives it; the named claims are the highest-count instances, not the scope). The Experimental Recording Standard v0.3 (REE_assembly bc3d93e61a) now requires every LOAD-BEARING criterion to record its MEASURED value and its THRESHOLD as separate machine-readable numeric fields, and the two checks that enforce it are ADVISORY ONLY (ree-v3 ef2bcb2b74) -- deliberately, since 184 of 216 flat manifests carrying load-bearing criteria record none that is re-derivable (85.2 percent). Advisory enforcement fixes the FORWARD flow and changes nothing about what is already landed. MEASURED 2026-09-09 with the shipped check over 983 live flat manifests: 53 manifests with outcome PASS record NOT ONE load-bearing criterion carrying both a bar and a measured value, spanning 40 distinct claims -- and 35 of those 53 carry evidence_direction: supports, i.e. they are actively supporting a claim on criteria that CANNOT BE RE-CHECKED FROM THE ARTIFACT. THE QUESTION GOVERNANCE MUST DECIDE: this is not merely a recording gap, because a criterion whose bar turns out to be unattainable invalidates the run's VERDICT, not only its documentation. V3-EXQ-936a (MECH-439) is the proven instance -- an absolute bar ~7,900x above the maximum attainable effect, PASS, logged clean for three consecutive governance cycles; its C2 could not have failed. The same shape may sit undetected in any of the other 52. RECOMMENDATION, not a prescription: triage the 53 by claim load-bearingness first rather than back-filling wholesale -- most will be inert (a re-derivable-looking PASS whose bar was in fact attainable), and a handful will be 936a-shaped and need the run's evidence_direction revisited. Reproduce the list with: validate_recording.check_criteria_thresholds over evidence/experiments/*.json, keeping outcome PASS with verdict none_rederivable or partial. NOTE ON THIS FLAG'S PROVENANCE: GFLAG-0249's own headline figures (534 manifests / 486 / 91.0 percent / 180 PASS) did not reproduce under any definition; the figures here are from the shipped check and are reproducible from the predicate stated above. The phenomenon was confirmed exactly as GFLAG-0249 described it; only the magnitude differs.",
       "raised_by_session": "xenodochial-austin-8c5984",
       "raised_at": "2026-09-10T06:05:37Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0251",
+      "claim_ids": [
+        "MECH-268"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "SUCCESSOR to GFLAG-0107 (resolved 2026-09-10). Recommendation (b) of GFLAG-0107 -- treat an UNPARSEABLE autopsy change-description as UNCERTIFIABLE and report it in its own bucket -- was NOT adopted when 0107's other half landed (REE_assembly 69060999b0). What landed instead is shape-by-shape parser extension (_SET_FIELD_RE, _clause(), _SELF_STAMP_RE, _BOOLEAN_CLAIM_FIELDS), which is the Goodhart-fragile direction GFLAG-0107 itself warned against: every new phrasing needs a new parser arm, and an unrecognised one reads as 'nothing owed' rather than 'cannot certify'. grep confirms no UNCERTIFIABLE bucket exists in check_unapplied_autopsy_recommendations.py. The adjacent 'UNRESOLVED (not checked)' bucket does NOT cover this -- it keys on manifest reachability, not on change-text parseability. Governance to decide whether to add the bucket.",
+      "raised_by_session": "gov-flagbacklog-20260909",
+      "raised_at": "2026-09-10T06:55:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0252",
+      "claim_ids": [
+        "SD-011",
+        "SD-013",
+        "SD-015",
+        "SD-019",
+        "SD-020",
+        "SD-021"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "SUCCESSOR to GFLAG-0248 (superseded 2026-09-10). Carries GFLAG-0248's CORPUS half with its urgency corrected. 15 dry-named manifests carry no top-level dry_run field and leaked past every arm of the pre-fix predicate; 14 of them carry an asserting evidence_direction (13 does_not_support, 1 supports). The CODE half is discharged (REE_assembly 9dc856c100 + 7368bc7fb4; leak 15 -> 0), so nothing is currently mis-scored and none of the 15 is in reviewed_run_ids (re-measured 0 of 15, correcting 0248's false claim of 14). The open question is narrow: does any of the 15 warrant a quarantine stamp? Only superseded / non_contributory are safe values. Take together with GFLAG-0120's v3_exq_259 twin, which is item 2 of the list and for which decisive smoke evidence now exists (zero-length p1 arrays against config p1_episodes: 50). NOTE 0248's own claim_ids omitted SD-013, which the v3_exq_320 leaker asserts does_not_support against; added here.",
+      "raised_by_session": "gov-flagbacklog-20260909",
+      "raised_at": "2026-09-10T06:55:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0253",
+      "claim_ids": [
+        "MECH-090"
+      ],
+      "flag_type": "stale_note",
+      "summary": "SUCCESSOR to GFLAG-0149 (resolved 2026-09-10). While applying 0149's correction to ARC-029, the 2026-06-03 paragraph it targets was found duplicated VERBATIM on MECH-090 (claims.yaml:11303) -- the same 'Redesign queued (confound-isolation arm)' text, with the same staleness. Only ARC-029's copy was edited, deliberately, because MECH-090's was outside 0149's scope; a file-wide grep for the phrase therefore still returns 1. That survivor is MECH-090's and carries the identical defect.",
+      "raised_by_session": "gov-flagbacklog-20260909",
+      "raised_at": "2026-09-10T06:55:18Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0254",
+      "claim_ids": [
+        "MECH-057b",
+        "ARC-065"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "SUCCESSOR to GFLAG-0219 (resolved 2026-09-10). 0219's substrate_queue edit is applied, but its GOV-CONFIRM-1 half is a DETECTOR defect that edit does not discharge: the confirmer treats ANY occurrence of a claim-id string anywhere under ree-v3/ree_core/ as evidence that the substrate is built. For MECH-057b the only hit is a COMMENT saying the opposite -- 'EXQ-048/049 confirmed: beta gate never elevated, MECH-057b/090 could not be tested' (config.py:1094). A detector whose positive signal can be produced by a comment recording absence will keep manufacturing false 'built' verdicts across the registry, not just here.",
+      "raised_by_session": "gov-flagbacklog-20260909",
+      "raised_at": "2026-09-10T06:55:19Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0255",
+      "claim_ids": [
+        "INV-063",
+        "INV-106"
+      ],
+      "flag_type": "stale_note",
+      "summary": "SUCCESSOR to GFLAG-0204 (resolved 2026-09-10, user decision: FULL SPLIT). The claims.yaml half is applied -- INV-063's psychiatric-risk-gradient leg moved to the new INV-106 (prediction_domain clinical_psychiatry, epistemic_category out_of_domain), so one confidence number no longer spans both legs. The EVIDENCE-LANE half is NOT done: LIT-0688 is still scoped as the out-of-domain epidemiological lane in evidence/planning/experiment_proposals.v1.json, yet the five entries that landed under it on 2026-09-08 (REE_assembly 09c24b7127) are hippocampal electrophysiology / behavioural-animal papers bearing on the REE leg. Until LIT-0688 is re-scoped, the lane keeps absorbing REE-leg literature and the split will re-fuse from the evidence side.",
+      "raised_by_session": "gov-flagbacklog-20260909",
+      "raised_at": "2026-09-10T06:55:19Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0256",
+      "claim_ids": [
+        "MECH-294"
+      ],
+      "flag_type": "stale_note",
+      "summary": "SUCCESSOR to GFLAG-0184 (resolved 2026-09-10). 0184's edit is applied, but live_status.evidence.verdict (claims.yaml ~:48347) carries the SAME stale 'GRADUATED to standard' text that 0184 corrected at :48355, and was outside that flag's stated scope so was deliberately left. It is now the only surviving copy. Note the ground truth moved twice: REE_assembly c76d8d8af6 (2026-09-09) re-dispositioned V3-EXQ-840b to non_contributory and REVERSED MECH-294's graduation, which is why retiring the queue entry on 0184's original wording would have killed a live item.",
+      "raised_by_session": "gov-flagbacklog-20260909",
+      "raised_at": "2026-09-10T06:55:20Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0257",
+      "claim_ids": [
+        "SD-094"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "SUCCESSOR to GFLAG-0131 (resolved 2026-09-10) -- the half that could not be applied. 0131's required edit was a readiness gate to apply BEFORE the probe was queued, but there is no 'before' left: chip-20260903-exq978-oracle-adapter-discriminator is already status done (resolved 2026-09-04), and the probe RAN as V3-EXQ-1002 on 2026-09-05, returning FAIL with an H-C geometry-mismatch label. None of the three mitigations appears in its manifest. So V3-EXQ-1002's FAIL verdict was obtained under exactly the untreated SD-094 self-contamination confound the gate existed to prevent (hazard-free env, contamination_spread defaulting to 0.5, neither contamination_spread=0.0 nor hazard_free_contamination_gate=True passed). The gate is recorded as retroactively owed in the two V3-EXQ-978 autopsy artifacts; what governance must decide is whether V3-EXQ-1002's verdict stands or needs a re-run under the gate. NOT a bookkeeping item -- a standing FAIL rests on it.",
+      "raised_by_session": "gov-flagbacklog-20260909",
+      "raised_at": "2026-09-10T06:55:21Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0258",
+      "claim_ids": [
+        "SD-084",
+        "MECH-288",
+        "MECH-527",
+        "MECH-343"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "SUCCESSOR to GFLAG-0247 (resolved 2026-09-10, user-approved). The REGISTRY half of the cross-tagging decision is applied as dated bears-on disposition blocks. The MECHANISED half is owed and is what actually makes the decision bite: build_experiment_indexes.py must learn to READ the bears_on field. It is already being written -- V3-EXQ-839's manifest carries bears_on: [SD-084, MECH-321, ARC-070, ARC-071, MECH-288] -- and the 9244-line indexer has ZERO occurrences of the string, so the plumbing is dormant on the producer side only. Deliberately not patched with the registry edits: it is a multi-site code feature with its own test file and an index regeneration, not a byte-exact registry edit. Until it lands, cross-tagging is a prose convention the scorer cannot see.",
+      "raised_by_session": "gov-flagbacklog-20260909",
+      "raised_at": "2026-09-10T06:55:22Z",
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
