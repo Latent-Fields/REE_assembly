@@ -364,7 +364,7 @@ closure_plan:
 
     - id: PHASE-0
       title: "Prerequisites: confirm the igw intake is live and healthy; settle the governance_flag schema"
-      status: mostly-satisfied-by-precedent
+      status: satisfied (all four prerequisites discharged 2026-09-10)
       severity: load-bearing
       last_updated: 2026-09-10
       note: >
@@ -376,9 +376,21 @@ closure_plan:
         COORDINATOR_INTENT_REPO_REE_ASSEMBLY -- prepared and ACTIVATED
         2026-09-07T08:43:57Z; (c) the client-side route table and all five
         suppress predicates -- landed 2026-09-01.
-        NOT discharged: (d) the governance_flag schema/endpoint decision
-        above (section 2.3), specifically the typed-verb-not-CAS call, the
-        server-side id allocation, the batch verbs and the no-retention rule.
+        (d) DISCHARGED 2026-09-10T18:55:02Z -- USER ACCEPTED section 2.3 as
+        specified (session ree-assembly-divergence-repair-20260910), on a
+        review scoped to the three points that are genuine decisions rather
+        than precedent-mirroring: the typed-verb-not-CAS call (CAS cannot
+        allocate ids, so chip-20260814-gflag-stale-id-collision returns on the
+        degraded path), server-side id allocation inside the same
+        BEGIN IMMEDIATE as the insert, REQUIRED batch verbs (the 2026-09-09
+        burst was 108 raises plus resolve-sweeps of 50 and 26 -- without
+        raise_batch/resolve_batch that is 108 arbitration rounds and 108
+        render ticks of churn, a load the precedent never had because claims
+        arrive one per session), and NO RETENTION AT ALL, which deliberately
+        DEPARTS from the precedent's 24h done-age-out because this registry is
+        append-only supersession-not-deletion and a superseded flag IS the
+        audit trail. The no-DELETE hard invariant and its grep-the-module
+        contract test were accepted with it. PHASE-2* are therefore UNGATED.
       exit_criterion: >
         A single read-only health probe returns green on all four:
         `GET /igw_log/pending` answers 200; `git_intent_log` shows
@@ -502,7 +514,7 @@ closure_plan:
 
     - id: PHASE-2A
       title: "governance_flag: shadow -- coordinator mirrors the flag registry read-only; git stays authoritative"
-      status: not-started (gated on PHASE-0(d))
+      status: not-started -- READY, gate PHASE-0(d) cleared 2026-09-10 (user acceptance of section 2.3); chipped as chip-20260910-gflag-phase2a-coordinator-shadow
       severity: high
       last_updated: 2026-09-10
       note: >
