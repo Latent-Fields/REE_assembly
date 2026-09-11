@@ -3667,9 +3667,9 @@
       "summary": "substrate_queue.json SD-082 (status implemented_pending_validation) has a validation_experiment field whose chain ends before the currently-queued falsifier: V3-EXQ-1020 (SD-082 learning-signal probe: gradient persistence, return variance, advantage sign on rule-driven flips) was authored and queued on 2026-09-10, landed ree-v3 bd79a5ea74, verified on origin/main and claimed by a running worker, but the field does not name it. The queueing session (science-935a-sd082-0910) tried to make this edit itself and was correctly refused by task_claim arbitration -- confident-panini-0cdba7 holds substrate_queue.json -- so the edit was deferred and its only record was a chip that has since been resolved done. Owed edit: extend validation_experiment to name V3-EXQ-1020 as the in-flight validation, and re-check status/ready once it reports.",
       "raised_by_session": "orchestrate-20260910-2213",
       "raised_at": "2026-09-10T23:22:25Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-11T17:22:33Z",
+      "resolution_note": "APPLIED, cycle gov-20260911-1612. substrate_queue.json SD-082 validation_experiment chain extended to name V3-EXQ-1020 (RAN 2026-09-11, PASS/diagnostic, CONFIRMED failure_autopsy_V3-EXQ-1020_2026-09-11, REE_assembly 92751187b1), and its failure_record entry appended (C3 unscoreable at 4 of 20 required fresh flip samples; C2 a bare 3-of-5 majority on the same seeds in both arms). This is exactly the edit the flag asked for -- the queueing session science-935a-sd082-0910 was correctly refused by task_claim arbitration and deferred it. The run adjudicated NEITHER pre-registered leg, so status stays implemented_pending_validation and ready stays false; routed to a four-leg GOV-FANOUT-1 portfolio rather than another lettered iteration. severity and substrate_paths left unchanged (corrupting / [] -- deliberately emptied by governance 2026-09-09 to stop spurious Step 2.5c gating)."
     },
     {
       "flag_id": "GFLAG-0261",
