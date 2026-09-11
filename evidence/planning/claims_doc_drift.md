@@ -1,12 +1,12 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-08T07:18:39Z
+Generated: 2026-09-11T20:25:40Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Docs resolved to a claim: 104
+Docs resolved to a claim: 105
 
 ## Frontmatter drift -- HARD (0)
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (141)
+## Unresolved with a hand status line -- INFO (143)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -45,6 +45,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `claim_phase_provenance.md` -- "design proposal + landed checker, 2026-06-09"
 - `cognifold_signed_coupling.md` -- "candidate cluster, V4/V5, off the V3 critical path. Registered 2026-06-09 from the competitive-interactions thought inta"
 - `cognitive_architecture_graveyard.md` -- "first pass (WS-8 of `evidence/planning/ree_ai_design_critique_plan.md`)"
+- `cognitive_contract.md` -- "candidate architecture, registered 2026-09-08 from"
 - `compact_consolidation_principle.md` -- "candidate"
 - `contextmemory_write_address_selection.md` -- "IMPLEMENTED (THREE mechanisms) -- bias/refractory 2026-08-19, gumbel_learned 2026-08-27 -- VALIDATION PENDING for all th"
 - `control_plane.md` -- "stable"
@@ -113,6 +114,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `prioritized_replay_write_gating.md` -- "candidate (registered 2026-06-19). Architecture stub for two"
 - `psychiatric_failure_modes.md` -- "WORKING HYPOTHESIS (registered 2026-06-03). Not an established mechanism;"
 - `quality_diversity_committed_archive.md` -- "architecture stub for candidate claim MECH-442 (candidate / substrate_conditional / implementation_phase v3 / version_re"
+- `receiver_conditioned_translation.md` -- "candidate, registered 2026-09-08 from"
 - `receptor_subtype_intervention_layer.md` -- "working abstraction layer (not a claim cluster; no claims.yaml entries created here)"
 - `ree_v2_repo_bootstrap_spec.md` -- "candidate"
 - `ree_v2_spec.md` -- "candidate"
@@ -126,7 +128,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `sd_actor_critic_action_learning.md` -- "SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **"
 - `sd_cross_stream_binding_substrate.md` -- "IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic)"
 - `sd_e1_rollout_consistency_training.md` -- "ITEM 1 IMPLEMENTED (2026-08-29, VALIDATED by V3-EXQ-965 2026-08-30) / ABSOLUTE-VS-RESIDUAL BRANCH CLOSED (substrate 2026"
-- `sd_e3_channel_commensurability.md` -- "IMPLEMENTED 2026-09-07"
+- `sd_e3_channel_commensurability.md` -- "IMPLEMENTED 2026-09-07 -- but **UNVALIDATABLE AS SPECIFIED** as of 2026-09-10 (see "Amendment 2026-09-10"): the rung's p"
 - `sd_e3_scorer_completion.md` -- "IMPLEMENTED"
 - `sd_hazard_aware_policy_decomposition.md` -- "IMPLEMENTED 2026-08-01"
 - `sd_mech267_cem_selection_fix.md` -- "IMPLEMENTED"
