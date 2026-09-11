@@ -3725,6 +3725,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0265",
+      "claim_ids": [
+        "MECH-349",
+        "MECH-350"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Three of MECH-349's what_would_answer criteria are NOT SATISFIABLE as written against the substrate they name, measured 2026-09-11 while building its owed GFLAG-0198 validation run. (1) Precondition (b)'s distinctness test 'crf_max_pairwise_rule_dist >= 1.5' is an arithmetic identity, not a measurement: under the mature-pool + availability_maintenance stack nothing ever retires, so slots fill contiguously and the statistic is a deterministic lookup on live-rule count off the fixed pinned_seed=6063 direction matrix -- the 1.5 floor is exactly 'live_rules >= 3'. Verified by reproducing 8/8 observed values from the rule count alone. This also makes MECH-350's headline diagnostic structurally uninformative in this configuration. (2) Precondition (b)'s non-churn conjunct and FALSIFYING(3) (the V3-EXQ-666c 302-minted/302-retired/dist-0.0 churn signature) are UNREACHABLE: a rule mints at maintenance_floor 0.45, the silence decay is skipped, maintenance_decay is 0.0, and a rule that stops activating freezes rather than decaying because eligibility is only set while active -- so crf_n_retired_total is 0 at outcome signal +0.1, 0.0, -0.1 and -1.0 (only the sign is read). Testing churn requires maintenance_floor below mature_retire_floor. (3) CONFIRMING(2)'s regime-count contrast cannot be run as specified: under cue_centering a 1-regime ecology is annihilated by the common-mode baseline, so the centered residual collapses to observation noise, the leading-8-dim sign bucket fragments into up to 255 buckets, and the 1-regime variant mints MORE rules than a multi-regime one rather than holding at the predicted 1-2; and mint count is NON-MONOTONIC in regime count (n_regimes 4/8/16/24 gave mean live rules 26.6/15.8/18.2/25.0, uncensored at n_slots=128). Mechanism behind all three: CandidateRuleField._maybe_mint increments its (context-bucket, action-object) counter and never resets it or marks the key minted, so once a key clears threshold it mints on EVERY subsequent tick until the context-cosine mint-block or slot exhaustion stops it -- the mint-block, not the counter, is what bounds the pool. Suggested reconciliation: restate (b) as a structural fact for this stack, and replace CONFIRMING(2)'s regime-count contrast with a mint-block threshold sweep.",
+      "raised_by_session": "peaceful-euler-13e105",
+      "raised_at": "2026-09-11T17:20:22Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
