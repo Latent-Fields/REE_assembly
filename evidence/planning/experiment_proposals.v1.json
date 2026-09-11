@@ -15003,16 +15003,22 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1384",
+      "blocked_by": "ARC-009 (no symbolic communication channel in ree_core/); ARC-010 (no multi-agent substrate; ARC-047 SocialGridWorld unimplemented, implementation_phase v5)",
+      "blocked_note": "MECH-011 needs a language channel as the IV; ree_core/ has only a register-only LANGUAGE_EXPLICITATION enum label and a single-agent environment. Literature lane (LIT-0742) deliberately left open -- lit evidence is still accruable for a substrate-blocked claim.",
       "claim_id": "MECH-011",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-11T02:43:01Z",
+      "gated_by_session": "igw-239-proposal-for-mech-011",
+      "gating_reason": "EXP-0741 (MECH-011, 'Language and learning dynamics') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-239-proposal-for-mech-011, IGW-20260911-239). MECH-011 asserts language biases priors during model update, accelerates residue generalisation, enables counterfactual reasoning without direct experience, and transmits negative knowledge socially -- every one of those makes a linguistic/symbolic channel the INDEPENDENT variable. No such channel exists in ree-v3. Verified directly against the tree this session: the only 'language' token anywhere in ree_core/ is the bare enum label ControlDemandType.LANGUAGE_EXPLICITATION (ree_core/claustrum/control_demand.py:49), explicitly annotated 'register-only: declared for taxonomy stability, no template yet' and referenced nowhere but a contract test asserting the member name exists; ree_core/claustrum/coalition_templates.py:13 states in-source that consumer substrate for the social/language demand classes \"doesn't exist yet in ree_core\". Greps for utterance/linguistic/symbol_channel/other_agent/multi_agent/message_pass over ree_core/ return zero files, and ree_core/environment/ contains exactly one environment (causal_grid_world.py, single-agent). This independently reproduces the substrate findings already recorded in the what_would_answer fields of MECH-011's own two depends_on parents: ARC-009 (needs a discrete symbolic communication channel -- 'confirmed absent from ree_core/ entirely') and ARC-010 (needs a multi-agent substrate; ARC-047's SocialGridWorld is unimplemented, status candidate, confidence 0.0, implementation_phase v5). A claim_probe_mech_011 queued now would have no IV to manipulate and no language-mediated DV to read; the only runnable surrogate -- injecting a prior directly into the model-update path -- would test prior-injection mechanics, not language, and could not attach to MECH-011 at any defensible mapping fidelity. That is a vacuous result, not a verdict.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-011 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0741",
       "proposal_type": "experimental",
+      "release_condition": "Release when BOTH substrate layers named in ARC-009/ARC-010 what_would_answer exist in ree-v3: (1) a multi-agent environment (ARC-047 SocialGridWorld or equivalent) alongside the current single-agent causal_grid_world.py, and (2) a real discrete symbol/communication channel between agents built out from MECH-014's interface sketch -- i.e. ControlDemandType.LANGUAGE_EXPLICITATION backed by an actual template and consumer substrate rather than a register-only enum label. Both are gated to implementation_phase v5. Re-derive readiness from the tree, not from this note.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -15025,7 +15031,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_011",
       "target_repo": "ree-v3",
       "why_now": [
