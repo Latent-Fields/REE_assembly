@@ -790,6 +790,192 @@ class CrossRunSupersessionTests(Base):
 
 
 # =========================================================================
+# GOVERNANCE OVERRIDE -- a ratified decision that postdates the autopsy
+# (THE 2026-09-11 REPAIR)
+# =========================================================================
+class GovernanceOverrideTests(Base):
+    """Replicates the real ARC-037 shape: a confirmed autopsy recommends
+    `epistemic_category: standard`, it WAS applied, and a later ratified pass
+    deliberately set `substrate_conditional` instead."""
+
+    SLUG = "failure_autopsy_V3-EXQ-1001_2026-09-04"
+    GEN = "2026-09-04T14:11:17Z"
+
+    def _case(self, override=None, slug=None, generated=None, category="substrate_conditional"):
+        claim = {"id": CLAIM}
+        if category is not None:
+            claim["epistemic_category"] = category
+        if override is not None:
+            claim["governance_override"] = override
+        self.fx.write_claims([claim])
+        self.fx.autopsy(
+            slug=slug or self.SLUG, generated=generated or self.GEN,
+            targets=[self.fx.target(
+                run_id="run_1001_v3", recommended=None,
+                per_claim_recommendation={
+                    CLAIM: {"change": "set one -> epistemic_category: standard"}})])
+
+    @staticmethod
+    def _override(supersedes="failure_autopsy_V3-EXQ-1001_2026-09-04",
+                  decided="2026-09-06", reason="deliberate: precondition failure",
+                  **extra):
+        entry = {}
+        if supersedes is not None:
+            entry["supersedes_autopsy"] = supersedes
+        if decided is not None:
+            entry["decided_utc"] = decided
+        if reason is not None:
+            entry["reason"] = reason
+        entry.update(extra)
+        return [entry]
+
+    # ---- THE FIX ---------------------------------------------------------
+    def test_ratified_override_moves_row_from_actionable_to_warn(self):
+        """THE FIX. Fails on the pre-2026-09-11 code, where this row was
+        ACTIONABLE forever and three consecutive governance cycles re-derived
+        it by hand."""
+        self._case(override=self._override(
+            field="epistemic_category", ratified_by="ada5d97af02"))
+        buckets = self.scan()
+        self.assertEqual(buckets["unapplied_disposition"], [])
+        rows = buckets["overridden_disposition"]
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["claim_id"], CLAIM)
+        self.assertEqual(rows[0]["artifact"], self.SLUG)
+        self.assertEqual(rows[0]["decided_utc"], "2026-09-06")
+        self.assertEqual(rows[0]["field"], "epistemic_category")
+        self.assertEqual(rows[0]["ratified_by"], "ada5d97af02")
+        self.assertIn("precondition", rows[0]["reason"])
+
+    def test_same_day_ratification_is_honoured(self):
+        """A ratification routinely lands the SAME day as the autopsy it
+        supersedes (the real V3-EXQ-1010 shape). Day-granularity `>=` is why
+        the gate is not a strict timestamp compare."""
+        self._case(override=self._override(decided="2026-09-04"))
+        self.assertEqual(len(self.scan()["overridden_disposition"]), 1)
+
+    # ---- THE NON-RUBBER-STAMP PROPERTY -----------------------------------
+    def test_override_does_not_suppress_a_DIFFERENT_autopsy(self):
+        """THE LOAD-BEARING NEGATIVE CONTROL. An override is keyed to ONE
+        (claim, autopsy) pair. A newer confirmed autopsy naming the same claim
+        must still report ACTIONABLE -- a marker that suppressed the claim
+        wholesale would silently re-create the blind spot this audit exists
+        to close."""
+        self._case(override=self._override(supersedes="failure_autopsy_SOMETHING_ELSE_2026-01-01"))
+        buckets = self.scan()
+        self.assertEqual(len(buckets["unapplied_disposition"]), 1)
+        self.assertEqual(buckets["overridden_disposition"], [])
+
+    def test_override_predating_its_autopsy_is_ignored(self):
+        """NEGATIVE CONTROL: an override dated BEFORE the autopsy is not an
+        override of it -- the autopsy is the later word."""
+        self._case(override=self._override(decided="2026-09-01"))
+        buckets = self.scan()
+        self.assertEqual(len(buckets["unapplied_disposition"]), 1)
+        self.assertEqual(buckets["overridden_disposition"], [])
+
+    # ---- MALFORMED MARKERS ARE IGNORED, NEVER HONOURED -------------------
+    def test_malformed_overrides_leave_the_row_actionable(self):
+        """NEGATIVE CONTROL: the file-wide false-positive bias. A marker
+        missing any of the three required fields cannot suppress anything --
+        an override nobody can read is one nobody can audit."""
+        for label, ov in (
+                ("no slug", self._override(supersedes=None)),
+                ("no date", self._override(decided=None)),
+                ("no reason", self._override(reason=None)),
+                ("empty reason", self._override(reason="   ")),
+                ("not a list", "failure_autopsy_V3-EXQ-1001_2026-09-04"),
+                ("list of junk", ["nope", 7]),
+        ):
+            with self.subTest(label):
+                self._case(override=ov)
+                buckets = self.scan()
+                self.assertEqual(len(buckets["unapplied_disposition"]), 1, label)
+                self.assertEqual(buckets["overridden_disposition"], [], label)
+
+    def test_a_bare_dict_override_is_tolerated(self):
+        """A single un-listed entry is accepted (YAML authors write both), but
+        it is still slug-keyed and date-gated like any other."""
+        self._case(override=self._override()[0])
+        self.assertEqual(len(self.scan()["overridden_disposition"]), 1)
+
+    # ---- ORDERING AGAINST THE EXISTING CHECKS ----------------------------
+    def test_an_applied_disposition_is_not_reported_as_overridden(self):
+        """NEGATIVE CONTROL: _reflects runs FIRST. A disposition that is
+        simply APPLIED lands in no bucket at all -- the override must not
+        dress an ordinary success up as a deliberate divergence."""
+        self._case(override=self._override(), category="standard")
+        buckets = self.scan()
+        self.assertEqual(buckets["unapplied_disposition"], [])
+        self.assertEqual(buckets["overridden_disposition"], [])
+
+    def test_one_override_on_the_latest_row_clears_older_siblings(self):
+        """The real INV-088 shape: a single un-certifiable NEWEST row pinned
+        two older dispositions in ACTIONABLE, because the 2026-08-22 cascade
+        demotes an older row only when the latest one is settled. An
+        OVERRIDDEN latest counts as settled -- claims.yaml holds the ratified
+        reading either way."""
+        self.fx.write_claims([{
+            "id": CLAIM,
+            "epistemic_category": "standard",
+            "governance_override": self._override(
+                supersedes="failure_autopsy_newest_2026-09-11",
+                decided="2026-09-11", reason="claim-free diagnostic; citation stays"),
+        }])
+        self.fx.autopsy(slug="failure_autopsy_older_2026-09-03",
+                        generated="2026-09-03T19:00:24Z",
+                        targets=[self.fx.target(
+                            run_id="run_older_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: {
+                                "change": "record by citation -> stamp failure_autopsy_older_2026-09-03"}})])
+        self.fx.autopsy(slug="failure_autopsy_newest_2026-09-11",
+                        generated="2026-09-11T13:36:26Z",
+                        targets=[self.fx.target(
+                            run_id="run_newest_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: {
+                                "change": "note-only -> stamp failure_autopsy_newest_2026-09-11"}})])
+        buckets = self.scan()
+        self.assertEqual(buckets["unapplied_disposition"], [])
+        self.assertEqual(len(buckets["overridden_disposition"]), 1)
+        self.assertEqual(len(buckets["superseded_disposition"]), 1)
+        self.assertEqual(buckets["superseded_disposition"][0]["artifact"],
+                         "failure_autopsy_older_2026-09-03")
+
+    # ---- REPORTING CONTRACT ---------------------------------------------
+    def test_strict_contract_unaffected_by_an_override(self):
+        """NEGATIVE CONTROL: --strict gates on unapplied_disposition only,
+        exactly as it does for superseded_disposition."""
+        self._case(override=self._override())
+        rc, out = self.run_main("--strict")
+        self.assertEqual(rc, 0)
+        self.assertIn("overridden by ratified decision (WARN)  : 1", out)
+
+    def test_suppressed_rows_are_named_in_the_report_not_silently_dropped(self):
+        """A GOV-APPLY-1 printing zero ACTIONABLE rows must not read as
+        'nothing is owed' when the truth is 'nothing except what someone
+        ratified away'. The coverage block says so, and the row keeps its
+        reason and its artifact."""
+        self._case(override=self._override(
+            reason="precondition failure yields substrate_not_ready",
+            ratified_by="ada5d97af02"))
+        rc, out = self.run_main()
+        self.assertEqual(rc, 0)
+        self.assertIn("suppressed by a ratified", out)
+        self.assertIn("OVERRIDDEN by", out)
+        self.assertIn("precondition failure yields substrate_not_ready", out)
+        self.assertIn("ada5d97af02", out)
+        self.assertIn(self.SLUG, out)
+
+    def test_no_override_key_is_a_strict_no_op(self):
+        """NEGATIVE CONTROL: the whole mechanism is inert on a corpus that
+        carries no markers -- the row reports exactly as it did before."""
+        self._case(override=None)
+        buckets = self.scan()
+        self.assertEqual(len(buckets["unapplied_disposition"]), 1)
+        self.assertEqual(buckets["overridden_disposition"], [])
+
+
+# =========================================================================
 # MANIFEST RESOLUTION -- mirroring the indexer
 # =========================================================================
 class ResolutionTests(Base):

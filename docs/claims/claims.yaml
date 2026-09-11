@@ -19523,6 +19523,12 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
+  governance_override:
+    - supersedes_autopsy: failure_autopsy_V3-EXQ-1001_2026-09-04
+      decided_utc: "2026-09-06"
+      field: epistemic_category
+      ratified_by: "REE_assembly ada5d97af02 -- user-approved thought-digestion v3-closure pass (47 user-approved falsifiers + epistemic_category changes)"
+      reason: "The autopsy recommendation 'set epistemic_category: standard' WAS applied on 2026-09-04 (4ac2f649a6b); substrate_conditional was then set DELIBERATELY on 2026-09-06 by the user-approved v3-closure pass, which supersedes it. ARC-037's what_would_answer declares a four-part non-degeneracy PRECONDITION whose failure yields substrate_not_ready rather than a verdict, which is what substrate_conditional records. The autopsy's non_contributory direction for V3-EXQ-1001 STANDS and is recorded separately in evidence_quality_note. Do not re-apply standard -- it would silently revert a user-approved decision. Transcribed 2026-09-11 from the three dated governance entries already in evidence_quality_note (GOV-APPLY-1 overridden_disposition)."
   live_status:
     reading: candidate
     as_of: 2026-07-11

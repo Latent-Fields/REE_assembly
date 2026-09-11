@@ -116,6 +116,15 @@ BUCKETS
                          Added 2026-08-22 (GOV-APPLY-1 cross-run supersession
                          blind spot). See "THE 2026-08-22 REPAIR" below.
 
+  overridden_disposition A confirmed target's `per_claim_recommendation[<claim>]`
+                         is contradicted by claims.yaml, and the claim carries a
+                         `governance_override` naming THAT autopsy slug with a
+                         ratification date at or after the autopsy's
+                         `generated_utc`. WARN-only: the divergence is
+                         DELIBERATE and re-applying it would revert a ratified
+                         decision. Added 2026-09-11; see "THE 2026-09-11
+                         REPAIR" below.
+
   superseded_citation    A claim whose `live_status.evidence.from` cites autopsy X
                          for run R, while a NEWER confirmed adjudication of the same
                          run R exists. The claim is being weighted by a superseded
@@ -279,6 +288,116 @@ and is caught only by `unapplied_disposition`. Do not read an empty
 2026-08-22 repair above fixes for `unapplied_disposition` itself -- but
 `superseded_citation`'s own run_id-keyed blind spot is unchanged; it is not in
 this fix's scope.)
+
+THE 2026-09-11 REPAIR -- a RATIFIED OVERRIDE read as a never-applied recommendation
+----------------------------------------------------------------------------------
+Every check above compares claims.yaml against the autopsy and nothing else. So a
+recommendation that WAS applied, and was then DELIBERATELY changed again by later
+ratified governance work, is indistinguishable from one that was never applied --
+permanently, every cycle, with no way for the corpus to say otherwise.
+
+Confirmed instance, and the cost. ARC-037 carries
+`failure_autopsy_V3-EXQ-1001_2026-09-04`'s "set epistemic_category: standard".
+That WAS applied on 2026-09-04 (`4ac2f649a6b`); `substrate_conditional` was then
+set on 2026-09-06 by the user-approved thought-digestion v3-closure pass
+(`ada5d97af02`), which supersedes it. THREE consecutive governance cycles
+(2026-09-09, gov-20260911, gov-20260911-1612) each re-derived that by hand, and
+ARC-037's `evidence_quality_note` grew three dated entries saying so, the last two
+reduced to instructing a human reader "do not re-apply it from the autopsy on a
+later cycle" and "DO NOT re-apply standard -- doing so would silently revert a
+user-approved decision". The 2026-09-11 cycle very nearly did revert it; it was
+caught only because someone read the note before writing. A standing instruction
+that lives only in prose, addressed to whoever happens to read it next, is not a
+control -- it is a hope, and it had already been tested three times.
+
+THE DECISION-LOG ROUTE WAS MEASURED AND REJECTED -- do not re-propose it.
+The obvious fix is to read `evidence/decisions/decision_log.v1.jsonl` /
+`decision_state.v1.json` and treat any ratified decision dated after the autopsy
+as superseding it (the same shape as `superseded_disposition`, extended from
+autopsy-vs-autopsy to autopsy-vs-decision). Measured 2026-09-11, it fails on its
+own motivating case: **ARC-037 has ZERO entries in `decision_log.v1.jsonl` and is
+ABSENT from `decision_state.v1.json`** -- the v3-closure pass that made the
+override never wrote one. The route cannot see the only decision it exists to see.
+It is also imprecise where it CAN see something: the schema carries `claim_id`,
+`timestamp_utc`, `recommendation` and free-prose `rationale`, but no structured
+field/value, so "a decision exists for this claim, later than the autopsy" is the
+strongest available predicate. INV-088's only post-autopsy entry is a
+2026-09-08 `same_start_denominator` adjudication, which is unrelated to the
+V3-EXQ-978/1002 citation dispositions it would have silently suppressed.
+Suppression on a coincidence of dates is precisely the inference class this file
+rejects everywhere else.
+
+The fix is therefore a STRUCTURED MARKER, not an inference: `governance_override`
+on the claim, slug-keyed and date-gated (see the `_matching_override` block for
+the exact predicate and the malformed-entry rules). Three properties do the work:
+
+  * SLUG-KEYED, so it can never become a rubber stamp. An override suppresses
+    exactly one (claim, autopsy) pair. A NEWER confirmed autopsy naming the same
+    claim carries a different slug and still reports ACTIONABLE -- which is what
+    a blanket "ignore this claim" marker would have destroyed.
+  * DATE-GATED at day granularity, `>=`. An override that PREDATES its autopsy is
+    ignored: the autopsy is the later word.
+  * WARN, NEVER SILENT. The row keeps its `reason` and `ratified_by` in the
+    report every cycle, and the coverage block names the suppressed count, so a
+    GOV-APPLY-1 printing zero ACTIONABLE rows cannot be misread as "nothing is
+    owed" when the truth is "nothing except what someone ratified away". A
+    malformed entry (no `supersedes_autopsy`, `decided_utc` or `reason`) is
+    IGNORED and the row stays ACTIONABLE -- the file-wide false-positive bias is
+    preserved, and an override nobody can read is one nobody can audit.
+
+`--strict`'s contract is UNCHANGED: it gates on `unapplied_disposition`, and this
+repair only ever moves a row OUT of that bucket into a WARN one -- the same thing
+the 2026-08-22 supersession cascade already does.
+
+ONE OVERRIDE CAN CLEAR SEVERAL ROWS, BY DESIGN, THROUGH THE EXISTING CASCADE.
+The 2026-08-22 cascade demotes an older disagreeing disposition only when the
+LATEST one for that claim certifies applied, so a single un-certifiable newest row
+pins every older sibling in ACTIONABLE. That is why INV-088 showed THREE rows and
+MECH-457 TWO: their newest (`failure_autopsy_V3-EXQ-1010_2026-09-11`) asks for a
+citation stamp that claims.yaml deliberately does not carry, which blocked the
+V3-EXQ-978/1002 rows behind it. `latest_reflects` therefore treats an OVERRIDDEN
+latest entry as settled state exactly as a reflected one -- claims.yaml holds the
+ratified reading either way.
+
+Validation (GOV-HELDOUT-1), run 2026-09-11 against the live corpus. The rule was
+written from ARC-037; all five held-out cases below are OTHER corpus rows, and on
+every one the SHIPPED design and a REJECTED alternative give DIFFERENT answers, so
+none of them is a rubber stamp. Zero regressions: an A/B against the pre-repair
+script over the whole corpus returns byte-identical membership for
+`unapplied_disposition` (6), `superseded_disposition` (14), `superseded_citation`
+(11) and `unapplied_evidence_direction` (155), and identical coverage counters --
+the mechanism is inert until a marker exists.
+
+  vs ROUTE (b), "any ratified decision dated after the autopsy supersedes it":
+  1. INV-088 / V3-EXQ-978. Route (b) SUPPRESSES it, on the strength of a
+     2026-09-08 `same_start_denominator` decision-log entry that has nothing to do
+     with the citation disposition. The shipped rule leaves it ACTIONABLE absent a
+     marker. Shipped is right: suppression on a coincidence of dates is the
+     inference class this file rejects everywhere.
+  2. MECH-457 / V3-EXQ-978 -- the IDENTICAL disposition, same artifact, same date,
+     on the sibling claim. Route (b) leaves this one ACTIONABLE while suppressing
+     (1), purely because MECH-457 happens to have no post-autopsy decision-log
+     entry. Two identical rows, two different verdicts: proof route (b)'s
+     predicate keys on something irrelevant to the question. The shipped rule
+     treats both identically.
+
+  vs a BLANKET claim-level marker ("stop reporting this claim"):
+  3. MECH-180 carries SEVEN dispositions across FIVE autopsies (861b, 861c-861d,
+     861e, 861f, 861g-861h). One blanket marker suppresses all seven; the shipped
+     rule suppresses one. Shipped is right -- 861e and 861g are separately routed
+     today, for different reasons.
+  4. SD-082 carries five, the newest being `failure_autopsy_V3-EXQ-1020_2026-09-11`
+     -- minted THIRTEEN DAYS after its 822c disposition. A blanket marker written
+     at 822c time would have pre-suppressed a disposition that did not yet exist.
+     The shipped rule structurally cannot: 1020's slug did not exist to be named.
+     This is the rubber-stamp failure mode, and it is why the marker is slug-keyed.
+  5. MECH-439's `failure_autopsy_V3-EXQ-571b_2026-09-01` row is one the 2026-09-01
+     repair deliberately keeps ACTIONABLE for an accurate reason (its
+     `diagnostic_evidence_adjudicated` was never set). A blanket marker on MECH-439
+     would erase exactly the row that repair worked to keep visible and specific.
+
+  Corpus scale of the blanket failure, measured the same day: 28 claims carry
+  dispositions from >=2 different confirmed autopsies, 83 dispositions in total.
 
 USAGE
   python3 scripts/check_unapplied_autopsy_recommendations.py
@@ -1174,6 +1293,89 @@ def _structured_fields_reflect(claim, rec, claim_id, run_id, resolver) -> bool:
     return True
 
 
+# ---------------------------------------------------------------------------
+# GOVERNANCE OVERRIDE -- a RATIFIED decision that POSTDATES the autopsy.
+#
+# Added 2026-09-11. See "THE 2026-09-11 REPAIR" in the module docstring.
+#
+# The key is `governance_override` on the claim, a list of entries:
+#
+#   governance_override:
+#     - supersedes_autopsy: failure_autopsy_V3-EXQ-1001_2026-09-04
+#       decided_utc: "2026-09-06"
+#       field: epistemic_category          # optional, documentation only
+#       ratified_by: "ada5d97af02 -- user-approved v3-closure pass"
+#       reason: "ARC-037's what_would_answer declares a precondition whose
+#                failure yields substrate_not_ready, which is what
+#                substrate_conditional records."
+#
+# WHY THIS IS SLUG-KEYED AND DATE-GATED, AND WHY THAT IS THE WHOLE DESIGN.
+# A marker that said only "stop reporting this claim" would be a rubber stamp:
+# it would suppress the NEXT autopsy's recommendation too, silently, which is
+# the exact failure this audit exists to make impossible. So an override
+# matches ONE (claim, autopsy) pair. A new confirmed autopsy naming the same
+# claim carries a different slug and therefore still reports ACTIONABLE.
+#
+# MALFORMED OVERRIDES ARE IGNORED, NOT HONOURED. A missing/empty
+# `supersedes_autopsy`, `decided_utc` or `reason` leaves the row ACTIONABLE.
+# This preserves the file-wide false-positive bias: an override can only ever
+# MOVE a row from ACTIONABLE to WARN, and only when a human has written down
+# which artifact was overridden, when, and why. `reason` is load-bearing, not
+# decoration -- an override nobody can read is one nobody can audit.
+#
+# DATES COMPARE AT DAY GRANULARITY (first 10 chars, `>=`). A ratification
+# routinely lands the same day as the autopsy it supersedes (V3-EXQ-1010 was
+# generated and adjudicated on 2026-09-11), so a strict timestamp compare
+# would reject the commonest legitimate case. The cost is that a same-day
+# override recorded BEFORE its autopsy would be honoured; that is accepted,
+# and is why `ratified_by` should name the commit.
+# ---------------------------------------------------------------------------
+_OVERRIDE_KEY = "governance_override"
+
+
+def _overrides(claim):
+    """Every well-formed governance_override entry on a claim."""
+    if not isinstance(claim, dict):
+        return []
+    raw = claim.get(_OVERRIDE_KEY)
+    if isinstance(raw, dict):       # tolerate a single un-listed entry
+        raw = [raw]
+    if not isinstance(raw, list):
+        return []
+    out = []
+    for entry in raw:
+        if not isinstance(entry, dict):
+            continue
+        slug = str(entry.get("supersedes_autopsy") or "").strip()
+        decided = str(entry.get("decided_utc") or "").strip()
+        reason = str(entry.get("reason") or "").strip()
+        if not slug or not decided or not reason:
+            continue  # malformed -> ignored, the row stays ACTIONABLE
+        out.append(entry)
+    return out
+
+
+def _matching_override(claim, slug, generated_utc):
+    """The override that supersedes THIS autopsy's disposition, or None.
+
+    Requires an exact slug match and a ratification dated on or after the
+    autopsy's own `generated_utc`. An override that PREDATES the autopsy is
+    not an override of it -- the autopsy is the later word -- so it is
+    ignored rather than honoured.
+    """
+    want = str(slug or "").strip()
+    if not want:
+        return None
+    gen_day = str(generated_utc or "")[:10]
+    for entry in _overrides(claim):
+        if str(entry.get("supersedes_autopsy") or "").strip() != want:
+            continue
+        if str(entry.get("decided_utc") or "").strip()[:10] < gen_day:
+            continue  # ratified BEFORE the autopsy -> not a supersession
+        return entry
+    return None
+
+
 def _reflects(claim, change, recommended_direction, slug,
               claim_id=None, run_id=None, resolver=None, rec=None) -> bool:
     """Is this per-claim disposition already applied WHERE IT IS SCORED?
@@ -1347,6 +1549,7 @@ def scan(root: Path) -> dict:
 
     unapplied = []
     superseded_disposition = []
+    overridden_disposition = []
     direction_rows = []
     n_with_pcr = 0
     n_with_recommended_direction = 0
@@ -1399,14 +1602,43 @@ def scan(root: Path) -> dict:
                          entry["slug"], claim_id=cid, run_id=entry["run_id"], resolver=resolver,
                          rec=entry["rec"]):
                 continue
+            # A RATIFIED decision that postdates this autopsy settles the row.
+            # Checked AFTER _reflects so an override never masks a disposition
+            # that is simply applied, and BEFORE the supersession cascade so an
+            # overridden row cannot be re-reported as unapplied. It moves the
+            # row to WARN -- never out of the report; see "THE 2026-09-11
+            # REPAIR" in the module docstring.
+            override = _matching_override(claim, entry["slug"], entry["gen"])
+            if override is not None:
+                overridden_disposition.append({
+                    "claim_id": cid,
+                    "change": entry["change"],
+                    "artifact": entry["slug"],
+                    "generated_utc": entry["gen"],
+                    "run_id": entry["run_id"],
+                    "decided_utc": str(override.get("decided_utc") or "").strip(),
+                    "field": str(override.get("field") or "").strip(),
+                    "ratified_by": str(override.get("ratified_by") or "").strip(),
+                    "reason": str(override.get("reason") or "").strip(),
+                })
+                continue
             is_earlier = entry is not latest_entry and entry["gen"] < latest_entry["gen"]
             if is_earlier and entry["change"] != latest_entry["change"]:
                 if latest_reflects is None:
+                    # An OVERRIDDEN latest entry is settled state just as a
+                    # reflected one is: claims.yaml holds the ratified reading
+                    # either way. Without this, one un-ratifiable newest row
+                    # pins every older disposition for the same claim in
+                    # ACTIONABLE forever -- which is exactly how the three
+                    # INV-088/MECH-457 V3-EXQ-978/1002 rows persisted behind a
+                    # single blocking V3-EXQ-1010 row.
                     latest_reflects = _reflects(
                         claim, latest_entry["change"],
                         latest_entry["rec"].get("recommended_evidence_direction"),
                         latest_entry["slug"], claim_id=cid, run_id=latest_entry["run_id"],
-                        resolver=resolver, rec=latest_entry["rec"])
+                        resolver=resolver, rec=latest_entry["rec"]) \
+                        or _matching_override(
+                            claim, latest_entry["slug"], latest_entry["gen"]) is not None
                 if latest_reflects:
                     superseded_disposition.append({
                         "claim_id": cid,
@@ -1522,6 +1754,7 @@ def scan(root: Path) -> dict:
         "unapplied_disposition": unapplied,
         "unapplied_evidence_direction": direction_rows,
         "superseded_disposition": superseded_disposition,
+        "overridden_disposition": overridden_disposition,
         "superseded_citation": superseded,
         "n_confirmed_targets": len(targets),
         "n_with_per_claim_recommendation": n_with_pcr,
@@ -1558,6 +1791,7 @@ def main() -> int:
     unapplied = buckets["unapplied_disposition"]
     directions = buckets["unapplied_evidence_direction"]
     superseded_disposition = buckets["superseded_disposition"]
+    overridden = buckets["overridden_disposition"]
     superseded = buckets["superseded_citation"]
     n_targets = buckets["n_confirmed_targets"]
     n_pcr = buckets["n_with_per_claim_recommendation"]
@@ -1576,6 +1810,7 @@ def main() -> int:
              len({d["claim_id"] for d in live_rows})))
     print("  unapplied evidence direction, not scoring (WARN): %d" % len(other_rows))
     print("  superseded claim disposition (WARN)     : %d" % len(superseded_disposition))
+    print("  overridden by ratified decision (WARN)  : %d" % len(overridden))
     print("  superseded live_status citation (WARN)  : %d" % len(superseded))
     print("  coverage: %d of %d confirmed targets carry a machine-readable"
           % (n_pcr, n_targets))
@@ -1585,6 +1820,15 @@ def main() -> int:
     print("            (-> unapplied_evidence_direction), of which %d resolve"
           % n_dir_checkable)
     print("            to a manifest and are checked.")
+    if overridden:
+        # The coverage line above counts what was CHECKED. These rows were
+        # checked, found unreflected, and then suppressed by a human-written
+        # marker -- so they must be named here too, or a GOV-APPLY-1 reporting
+        # zero ACTIONABLE rows would read as "nothing is owed" when the real
+        # statement is "nothing is owed EXCEPT what someone ratified away".
+        print("            %d disposition(s) were suppressed by a ratified"
+              % len(overridden))
+        print("            governance_override and are listed under WARN below.")
     if n_dir_unresolved:
         print("  UNRESOLVED (not checked): %d target(s) across %d run(s) name a"
               % (n_dir_unresolved, len(unresolved_run_ids)))
@@ -1663,6 +1907,25 @@ def main() -> int:
             print("  - %-12s %s" % (item["claim_id"], item["change"]))
             print("      from %s (%s)" % (item["artifact"], item["generated_utc"][:10]))
             print("      superseded by %s" % item["superseded_by"])
+
+    if overridden:
+        print("")
+        print("WARN -- a confirmed autopsy's per-claim disposition was OVERRIDDEN by")
+        print("a ratified governance decision that POSTDATES it. claims.yaml diverges")
+        print("from the autopsy DELIBERATELY. Nothing is owed -- re-applying one of")
+        print("these would silently revert the ratified decision. The override names")
+        print("one artifact only: a NEWER autopsy on the same claim still reports")
+        print("ACTIONABLE above.")
+        for item in sorted(overridden,
+                           key=lambda d: (d["generated_utc"], d["claim_id"])):
+            print("  - %-12s %s" % (item["claim_id"], item["change"]))
+            print("      from %s (%s)" % (item["artifact"], item["generated_utc"][:10]))
+            field = (" on %s" % item["field"]) if item["field"] else ""
+            print("      overridden%s by a decision of %s"
+                  % (field, item["decided_utc"] or "<undated>"))
+            if item["ratified_by"]:
+                print("      ratified by: %s" % item["ratified_by"])
+            print("      reason: %s" % item["reason"])
 
     if superseded:
         print("")
