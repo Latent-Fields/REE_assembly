@@ -125,6 +125,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-2`
 
@@ -247,6 +248,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-3`
 
@@ -369,6 +371,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-3b`
 
@@ -491,6 +494,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-4`
 
@@ -613,6 +617,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-5`
 
@@ -735,6 +740,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-5b`
 
@@ -857,6 +863,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-6`
 
@@ -979,6 +986,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-7`
 
@@ -1101,6 +1109,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-8`
 
@@ -1223,6 +1232,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `sleep_substrate:GAP-9`
 
@@ -1345,4 +1355,5 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-01T18:55Z` [decision] `decision:Q-042@2026-09-01T18:55:25.202541Z` -> [`evidence/decisions/decision_log.v1.jsonl#L460`](../../../../evidence/decisions/decision_log.v1.jsonl#L460) :: decision promote_candidate_resolved_to_resolved (applied)
 - `2026-09-02T17:20Z` [decision] `decision:Q-042@2026-09-02T17:20:34.190181Z` -> [`evidence/decisions/decision_log.v1.jsonl#L461`](../../../../evidence/decisions/decision_log.v1.jsonl#L461) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-06T18:00Z` [decision] `decision:SD-017@2026-09-06T18:00:01.543339Z` -> [`evidence/decisions/decision_log.v1.jsonl#L475`](../../../../evidence/decisions/decision_log.v1.jsonl#L475) :: decision interim_enablement_refractory_k2_plus_instrument_redesign_and_sd070_probe (applied)
+- `2026-09-08T15:30Z` [decision] `decision:INV-063@2026-09-08T15:30:04.464955Z` -> [`evidence/decisions/decision_log.v1.jsonl#L479`](../../../../evidence/decisions/decision_log.v1.jsonl#L479) :: decision hold_candidate_resolve_conflict (applied)
 

@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-09T09:08:12Z
+Generated: 2026-09-11T14:05:51Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -20,7 +20,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | plan | title | nodes | progress | status counts | last_updated |
 |------|-------|-------|----------|---------------|--------------|
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
-| `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-07-10 |
+| `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-09-08 |
 | `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 10% | blocked:1 | 2026-08-21 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-23 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-09-04 |
@@ -28,7 +28,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 50% | partial:1 | 2026-08-29 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 56% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:2 partial:1 | 2026-09-01 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-02 |
-| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-02 |
+| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-08 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-14 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-09-04 |
 | `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
@@ -176,11 +176,12 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-9` -- Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sole K-episod
 
-## Plans WITHOUT closure_plan frontmatter (1)
+## Plans WITHOUT closure_plan frontmatter (2)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
 - `evidence/planning/context_budget_restructure_plan.md`
+- `evidence/planning/igw_governance_flag_coordinator_migration_plan.md`
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 

@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-09-11T03:37:16Z`  
+Generated: `2026-09-11T14:05:18Z`  
 Last review: `2026-09-09T14:52:00Z`  
-Pending: **9** item(s) -- 7 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 2 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
+Pending: **9** item(s) -- 9 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
 
 ## PASS (verify & close)
 
@@ -15,6 +15,16 @@ Pending: **9** item(s) -- 7 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 2
 | `20260909_seed29` | ? | (no claim tags) |
 | `20260909_seed37` | ? | (no claim tags) |
 | `v3_exq_1010_zworld_overcapacity_decoder_sweep_20260909T195348Z_v3` | 2026-09-09T19:53 | (no claim tags) |
+| `v3_exq_1019_mech464_d1d2_reorder_dagain_sweep_20260910T212913Z_v3` | 2026-09-10T21:29 | MECH-464 |
+| `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | 2026-09-11T00:31 | SD-082 |
+
+## Diagnostic adjudication required (self-route unverified)
+
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | PASS | H_learning_signal_noisy_supported | **vacuous_pass** |
 
 ## Diagnostic -- autopsy required (no confirmed adjudication)
 
@@ -22,16 +32,7 @@ Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED
 
 | Run ID | Status | Self-route label |
 |--------|--------|-------------------|
-| `v3_exq_1010_zworld_overcapacity_decoder_sweep_20260909T195348Z_v3` | PASS | H-F-confirmed |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| PASS | `v3_exq_1019_mech464_d1d2_reorder_dagain_sweep_20260910T212913Z_v3` | v3_exq_1019_mech464_d1d2_reorder_dagain_sweep | V3-EXQ-1019 | supports |
-| PASS | `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | v3_exq_1020_sd082_learning_signal_probe | V3-EXQ-1020 | unknown |
+| `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | PASS | H_learning_signal_noisy_supported |
 
 ---
 
