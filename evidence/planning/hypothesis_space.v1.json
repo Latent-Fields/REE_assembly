@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-09T13:25:58Z",
+  "generated_at": "2026-09-11T13:57:49Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,16 +8,16 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 178,
-      "built_modules": 143,
-      "fraction_built": 0.8034,
+      "built_modules": 142,
+      "fraction_built": 0.7978,
       "state_counts": {
-        "proposed": 35,
+        "proposed": 36,
         "implemented": 95,
         "implemented_pending_validation": 22,
-        "validated": 26
+        "validated": 25
       },
       "build_proof_gap": 117,
-      "build_proof_gap_note": "143 modules built, 117 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap_note": "142 modules built, 117 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,15 +31,15 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 122,
+      "total_surviving": 121,
       "total_initial": 202,
       "total_initial_at_registration": 169,
       "total_fanout_added": 33,
       "total_resolved_out": 63,
-      "total_confirmed": 44,
+      "total_confirmed": 45,
       "total_superseded": 1,
       "reduction_pct_vs_current": 31.2,
-      "net_narrowing_pct": 27.8,
+      "net_narrowing_pct": 28.4,
       "convergence_classes": {
         "static": 27,
         "narrowing": 23,
@@ -49,7 +49,7 @@
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "122 alive against 169 originally enumerated, and against 202 including 33 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "121 alive against 169 originally enumerated, and against 202 including 33 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 59
     },
     "decide": {
@@ -63,199 +63,205 @@
       "date": "2026-05-06",
       "surviving": 201,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-11",
       "surviving": 200,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-13",
       "surviving": 198,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-15",
       "surviving": 194,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-16",
       "surviving": 193,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-17",
       "surviving": 190,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-18",
       "surviving": 184,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-19",
       "surviving": 180,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-20",
       "surviving": 179,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-24",
       "surviving": 178,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-27",
       "surviving": 176,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-29",
       "surviving": 175,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-31",
       "surviving": 174,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-01",
       "surviving": 172,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-02",
       "surviving": 166,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-04",
       "surviving": 165,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-06",
       "surviving": 164,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-08",
       "surviving": 162,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-09",
       "surviving": 160,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-10",
       "surviving": 159,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-11",
       "surviving": 158,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-12",
       "surviving": 157,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-14",
       "surviving": 155,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-17",
       "surviving": 154,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-20",
       "surviving": 153,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-24",
       "surviving": 152,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-29",
       "surviving": 149,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-08-30",
       "surviving": 147,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-09-02",
       "surviving": 146,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-09-05",
       "surviving": 145,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-09-07",
       "surviving": 141,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-09-08",
       "surviving": 140,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
     },
     {
       "date": "2026-09-09",
-      "surviving": 122,
+      "surviving": 139,
       "closure_pct": 73.0,
-      "build_pct": 80.3
+      "build_pct": 79.8
+    },
+    {
+      "date": "2026-09-11",
+      "surviving": 121,
+      "closure_pct": 73.0,
+      "build_pct": 79.8
     }
   ],
   "questions": [
@@ -4907,14 +4913,15 @@
         }
       ],
       "fanout_growth_note": "This question has now taken TWO fan-out growth events (delta 2 on 2026-09-05, delta 1 on 2026-09-08) across two adjudication cycles; the denominator has moved 2 -> 4 -> 5 while one leg was eliminated, two confirmed, one more eliminated and one split. The headline narrowing ratio is inflated exactly here and must be read alongside the growth events. The 2026-09-08 growth is additionally flagged by its own artifact as reading CIRCLING on the convergence heuristic (H-F re-enters the `representation` family), with the grounds for accepting that recorded on the leg's axis_note rather than engineered away.",
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
-          "instrumentation"
+          "instrumentation",
+          "representation"
         ],
         "families_touched": [
           "instrumentation",
@@ -4965,18 +4972,18 @@
           }
         ]
       },
-      "surviving": 2,
-      "alive": 1,
+      "surviving": 1,
+      "alive": 0,
       "resolved_out": 3,
-      "confirmed": 1,
+      "confirmed": 2,
       "superseded": 0,
       "reduction_numerator": 3,
       "reduction_ratio": 0.6,
-      "bits_removed": 1.32,
+      "bits_removed": 2.32,
       "synthesis": {
-        "surviving_label": "H-C geometry-mismatch (confirmed, caveated) + H-D warmup-not-the-locus (confirmed); H-E channel-input capacity alive; H-B consumer-learning eliminated",
-        "text": "As of V3-EXQ-1002 the actor-adequacy deficit is located on the REPRESENTATION side of the observation-to-action interface, and not in the consumer. With credit assignment removed entirely and the reader held at the consumer's exact capacity, the local_view_greedy oracle's policy is recoverable from the raw 25-dim observation at 0.979 held-out agreement and from the frozen 32-dim z_world at 0.664 -- a gap of ~0.31 on identical steps, replicated on a random-driven state distribution and on a shortcut-free turn-state subset. H-B (consumer learning) is ELIMINATED and H-C (geometry mismatch) is CONFIRMED at its registered gate. Two things the run does not settle are recorded rather than glossed. First, the deficit is not what the SD-018/P0a warmup wrote: on the pre-registered standardised instrument the warmed latent is no better than, and consistently slightly worse than, an untrained projection of the same input (H-D, confirmed) -- by an amount an order of magnitude smaller than the deficit itself. Second, the encoder's actual input is the full 250-dim world_state, of which the 25-dim field is 10%, so the run's only 32-dim comparator is itself a compression of that input and its failure is equally consistent with a 250 -> 32 channel-INPUT bound (H-E, alive) that no rotation of z_world could fix; H-C's confirmed label therefore carries a caveated basis and an owed corroborator. A parallel two-leg portfolio on the banked dataset separates them: a 32-dim projection of the full world_state, and an information-preserving re-basis of the frozen latent. Biologically the shape is a missing prerequisite rather than a falsification: DiCarlo-style untangling says a code can carry information a simple readout cannot use until a cascade whose job is reshaping has separated the behaviourally relevant manifolds, and z_world is trained for sensory prediction with no pressure to untangle the action-relevant variable and no separate action-formatted stream for an actor to read.",
-        "under_test": "Parallel two-leg portfolio owed (new EXQ): 250-dim world_state 32-dim projection control (H-E, instrumentation) + information-preserving rotation/reweighting corroborator (H-C, representation), both on the banked V3-EXQ-1002 dataset with the same adapter. Not yet queued."
+        "surviving_label": "H-F content-discarded-at-encode (CONFIRMED, V3-EXQ-1010) + H-C geometry-mismatch (split: linear re-basis eliminated, a real-but-insufficient geometry contribution confirmed) + H-D warmup-not-the-locus (confirmed, one run); H-B consumer-learning and H-E channel-input capacity both ELIMINATED. All five legs resolved.",
+        "text": "As of V3-EXQ-1010 the question is fully resolved and the locus is named. The actor-adequacy deficit is not in the consumer (H-B eliminated, V3-EXQ-1002), not in a 250 -> 32 channel-INPUT bound (H-E eliminated, V3-EXQ-1008: a task-agnostic PCA-32 of the encoder's own input clears the bar at the consumer's exact width), and not in what the SD-018/P0a warmup wrote (H-D confirmed, still on one run). Geometry contributes but falls far short of the gap (H-C split, V3-EXQ-1008). What remains, and what V3-EXQ-1010 CONFIRMS, is that the observation->z_world encoding DISCARDS the decision-relevant content of its own input: across five decoder capacity rungs spanning ~77,000x in parameters, no decoder recovers the oracle above the bar from the frozen latent (best 0.6780 mean, 0/3 seeds) while the same ladder memorises that latent's training split at 0.9996+ and the same-width PCA anchor clears both thresholds 3/3 at 0.8776. The decisive comparison is the negative control: the SAME ARCHITECTURE AT RANDOM INITIALISATION scores 0.7045, at or above the trained latent on 3/3 seeds -- training moves the representation nowhere positive on this axis. Computed inside V3-EXQ-1008's own consumer-rung cells, the 0.1998 PCA-to-trained gap decomposes as -0.0959 (what fitting a projection FOR VARIANCE PRESERVATION buys) / -0.0779 (what the nonlinear architecture costs at random init) / -0.0260 (what REE's objective costs on top), so the largest single term is a preservation pressure NEITHER the architecture NOR the objective contains. Biologically this is a missing prerequisite rather than a falsification: DiCarlo-style untangling says a trained sensory cascade should make a behaviourally relevant variable MORE linearly accessible than its own input statistics would, and REE's does not do so relative to its own random initialisation. The named repair is a bottleneck preservation pressure on the observation->z_world path, with an acceptance target set by an in-run control rather than by judgement: PCA-32 parity, >= 0.85 held-out oracle-action agreement at the consumer rung, re-measured by re-running experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py unchanged. Routed to /implement-substrate against SD-018 (amend), flagged as a NEW shape rather than SD-018's implemented targeted-feature shape (a), which V3-EXQ-978 already returned NULL.",
+        "under_test": "Nothing further on this question -- all five legs are resolved and decidable is true. The remaining work is a BUILD, not a probe. A layer-wise decode profile along the observation->z_world path (decision.observation_bottleneck) remains a legitimate later refinement that would localise the loss to a named layer, but it is not a blocker on the named build and is not owed before it."
       },
       "hypotheses": [
         {
@@ -5048,9 +5055,11 @@
           "label": "The observation->z_world encoding DISCARDS the decision-relevant content of its own input",
           "desc": "The decision-relevant content of the observation is destroyed by the observation->z_world encoding and is NOT recoverable from the frozen latent by ANY decoder at any capacity. Predicts: a deliberately over-parameterised decoder, swept upward from the consumer's exact x734.PPOPolicyNet width on the already-banked V3-EXQ-1002/1008 latents, still fails the 0.80 bar on the seed majority -- while the SAME sweep applied to ws250_pca (known 0.868 at consumer width) clears it, calibrating the capacity axis on a representation known to carry the content. ELIMINATED if the over-capacity decoder clears: the content survives but is inaccessible at the consumer's capacity/format, the block is a consumer-side interface FORMAT bound, and the repair is interface reformatting rather than encoder retraining. CONFIRMED if it does not: the content is destroyed at encode time and the only repair is at the ENCODER's objective. This is the direct NEGATION of the eliminated child of H-C, not a re-entry of it: H-C asserted the content is present and linearly decodable but badly arranged; H-F asserts it is not there to arrange.",
           "axis": "representation",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "Not yet adjudicated -- the discriminating probe is designed (the over-capacity decoder sweep in failure_autopsy_V3-EXQ-1008_2026-09-08.json targets[0].fanout_recommendation.suggested_probes[0]) and NOT YET QUEUED. Ordinary Mode A: pre-registered before its adjudicating run exists, so invariant 2 (pre_registered_utc <= resolved_utc) holds trivially.",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1010"
+          ],
+          "basis": "V3-EXQ-1010 held the representation, dataset, seeds, held-out split, standardiser and fit protocol fixed and varied ONLY the decoder's capacity across five rungs spanning ~77,000x in action-path parameters (165 -> 12,666,885). The frozen 978-OFF z_world reaches best-over-capacity held-out oracle-action agreement 0.6839 / 0.6846 / 0.6656, clearing the pre-registered 0.80 bar on 0/3 seeds and the 0.20 elevation floor on 0/3. The null is not an under-powered reader (the same ladder on the same latent memorises the train split at 0.9996-0.9998 against a 0.95 floor), not an unsound protocol (the PCA-32 calibration anchor -- a task-agnostic linear compression of the encoder's OWN 250-dim input to the encoder's OWN 32-dim width, read by the same ladder -- reaches 0.8836 / 0.8729 / 0.8763 and clears both thresholds 3/3, degrading only -0.0196 under added capacity against a -0.10 tolerance), not a blind instrument (raw 25-dim field 0.9735-0.9832 against a 0.60 floor), and not plausibly an under-sampled map (halving the training rows costs only 0.0136-0.0356 against a 0.122 mean gap to the bar). A reader-free second witness -- the oracle's own argmax rule applied to a same-capacity nonlinear field decode, no learned action head in the path -- independently tops out at 0.6546 / 0.6623 / 0.6478. The in-run negative control is the sharpest reading: the SAME ENCODER ARCHITECTURE AT RANDOM INITIALISATION reaches 0.7155 / 0.6895 / 0.7084, at or ABOVE the trained latent on 3/3 seeds. met_elimination_bar is false because the state is `confirmed`, not eliminated/split, and because H-C's split already attributes part of the gap to geometry -- H-F is confirmed but not exclusive. Adjudicated by failure_autopsy_V3-EXQ-1010_2026-09-11 (CONFIRMED at the user gate 2026-09-11).",
           "children": [],
           "met_elimination_bar": false
         }
@@ -6466,6 +6475,21 @@
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-1010",
+      "all_runs": [
+        "V3-EXQ-1010"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "zworld_actor_adequacy_locus",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-1010 held the representation, dataset, seeds, held-out split, standardiser and fit protocol fixed and varied ONLY the decoder's capacity across five rungs spanning ~77,000x in action-path parameters (165 -> 12,666,885). The frozen 978-OFF z_world reaches best-over-capacity held-out oracle-action agreement 0.6839 / 0.6846 / 0.6656, clearing the pre-registered 0.80 bar on 0/3 seeds and the 0.20 elevation floor on 0/3. The null is not an under-powered reader (the same ladder on the same latent memorises the train split at 0.9996-0.9998 against a 0.95 floor), not an unsound protocol (the PCA-32 calibration anchor -- a task-agnostic linear compression of the encoder's OWN 250-dim input to the encoder's OWN 32-dim width, read by the same ladder -- reaches 0.8836 / 0.8729 / 0.8763 and clears both thresholds 3/3, degrading only -0.0196 under added capacity against a -0.10 tolerance), not a blind instrument (raw 25-dim field 0.9735-0.9832 against a 0.60 floor), and not plausibly an under-sampled map (halving the training rows costs only 0.0136-0.0356 against a 0.122 mean gap to the bar). A reader-free second witness -- the oracle's own argmax rule applied to a same-capacity nonlinear field decode, no learned action head in the path -- independently tops out at 0.6546 / 0.6623 / 0.6478. The in-run negative control is the sharpest reading: the SAME ENCODER ARCHITECTURE AT RANDOM INITIALISATION reaches 0.7155 / 0.6895 / 0.7084, at or ABOVE the trained latent on 3/3 seeds. met_elimination_bar is false because the state is `confirmed`, not eliminated/split, and because H-C's split already attributes part of the gap to geometry -- H-F is confirmed but not exclusive. Adjudicated by failure_autopsy_V3-EXQ-1010_2026-09-11 (CONFIRMED at the user gate 2026-09-11).",
+      "resolved_utc": "2026-09-09T19:53:48Z",
+      "evidence_direction": "supports"
+    },
     {
       "run": "V3-EXQ-999a",
       "all_runs": [
@@ -8113,9 +8137,9 @@
       "evidence_direction": "pending"
     },
     {
-      "run": "Parallel two-leg portfolio owed (new EXQ): 250-dim world_state 32-dim projection control (H-E, instrumentation) + information-preserving rotation/reweighting corroborator (H-C, representation), both on the banked V3-EXQ-1002 dataset with the same adapter. Not yet queued.",
+      "run": "Nothing further on this question -- all five legs are resolved and decidable is true. The remaining work is a BUILD, not a probe. A layer-wise decode profile along the observation->z_world path (decision.observation_bottleneck) remains a legitimate later refinement that would localise the loss to a named layer, but it is not a blocker on the named build and is not owed before it.",
       "all_runs": [
-        "Parallel two-leg portfolio owed (new EXQ): 250-dim world_state 32-dim projection control (H-E, instrumentation) + information-preserving rotation/reweighting corroborator (H-C, representation), both on the banked V3-EXQ-1002 dataset with the same adapter. Not yet queued."
+        "Nothing further on this question -- all five legs are resolved and decidable is true. The remaining work is a BUILD, not a probe. A layer-wise decode profile along the observation->z_world path (decision.observation_bottleneck) remains a legitimate later refinement that would localise the loss to a named layer, but it is not a blocker on the named build and is not owed before it."
       ],
       "momentum_class": "implementation_completed",
       "qid": "zworld_actor_adequacy_locus",
@@ -8123,7 +8147,7 @@
         "MECH-457",
         "INV-088"
       ],
-      "moved": "Composed build under test: H-C geometry-mismatch (confirmed, caveated) + H-D warmup-not-the-locus (confirmed); H-E channel-input capacity alive; H-B consumer-learning eliminated (substrate landed, proof pending).",
+      "moved": "Composed build under test: H-F content-discarded-at-encode (CONFIRMED, V3-EXQ-1010) + H-C geometry-mismatch (split: linear re-basis eliminated, a real-but-insufficient geometry contribution confirmed) + H-D warmup-not-the-locus (confirmed, one run); H-B consumer-learning and H-E channel-input capacity both ELIMINATED. All five legs resolved. (substrate landed, proof pending).",
       "resolved_utc": null,
       "evidence_direction": "pending"
     },

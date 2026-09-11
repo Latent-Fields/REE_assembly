@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-09T13:26:02Z
+Generated: 2026-09-11T13:57:55Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **59** open question(s) across **45** time-series snapshot(s). **1** flag(s) raised, **58** advisory note(s), **22** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
+Audited **59** open question(s) across **46** time-series snapshot(s). **1** flag(s) raised, **58** advisory note(s), **23** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -95,7 +95,7 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-09-07 -> 2026-09-08: total_initial grew by 3, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 3 leg(s)) -- advisory, not a violation.
 - time series 2026-09-08 -> 2026-09-09: total_initial grew by 14, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 14 leg(s)) -- advisory, not a violation.
 
-## Advisory -- surviving-count drop backed by confirmation/supersession (2 backed, 3 unverifiable, NOT violations)
+## Advisory -- surviving-count drop backed by confirmation/supersession (3 backed, 3 unverifiable, NOT violations)
 
 _A `confirmed` resolution (supports + control_passed) or a `superseded` resolution (ratified moot, added 2026-08-19) also legitimately removes a hypothesis from `surviving`, exactly like an elimination does -- `surviving` counts alive legs, so an alive -> confirmed/superseded transition drops the total with no elimination behind it. `total_confirmed` (build_hypothesis_space.py, added 2026-08-02) and `total_superseded` (added 2026-08-19) let this check credit either instead of reading the drop as unbacked. A snapshot pair predating either field is UNVERIFIABLE, not a violation -- same quiet-on-insufficient-data design as the git-witness provenance check below._
 
@@ -103,6 +103,7 @@ _A `confirmed` resolution (supports + control_passed) or a `superseded` resoluti
 
 - time series 2026-08-19 -> 2026-08-20: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
 - time series 2026-08-23 -> 2026-08-25: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
+- time series 2026-09-09 -> 2026-09-11: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
 
 **Unverifiable (quiet -- total_confirmed and/or total_superseded absent from one or both snapshots):**
 
@@ -155,7 +156,7 @@ _Mirrors the fan-out recurrence overlay above, for the discovery-growth path. Ev
 
 _None._
 
-## Pre-registration provenance (22 witnessed, 0 unverifiable)
+## Pre-registration provenance (23 witnessed, 0 unverifiable)
 
 _`pre_registered_utc` is SELF-REPORTED and written into the registry after the fact, so the pre <= resolved invariant is trivially satisfiable by back-dating -- no audit reading only the registry can detect that. A fan-out leg whose adjudicating run had ALREADY RESOLVED when it was added therefore clears only on **git-witnessed** provenance: its `pre_registration_source` artifact (or its own registry entry) must have been durably committed before the run resolved. The honest case self-clears with no human adjudication; a back-dated one cannot manufacture a commit._
 
@@ -183,6 +184,7 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `sd_e1_residual_crush_locus`/`H-readout-regime`: `failure_autopsy_V3-EXQ-976_2026-09-02.json` committed 2026-09-02 <= resolution 2026-09-02
 - `zworld_actor_adequacy_locus`/`H-D-warmup-not-the-locus`: `exq1002_redteam_findings_20260904.md` committed 2026-09-04 <= resolution 2026-09-05
 - `zworld_actor_adequacy_locus`/`H-E-channel-input-capacity`: `failure_autopsy_V3-EXQ-1002_2026-09-05.json` committed 2026-09-05 <= resolution 2026-09-07
+- `zworld_actor_adequacy_locus`/`H-F-content-discarded-at-encode`: `failure_autopsy_V3-EXQ-1008_2026-09-08.json` committed 2026-09-08 <= resolution 2026-09-09
 
 ## Advisory -- drafted ledger edits not reflected in the registry (0, NOT violations)
 
