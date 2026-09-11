@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-09-02T15:26:49Z",
+  "last_updated_utc": "2026-09-11T17:18:15Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -917,6 +917,20 @@
       "candidate_stale": [],
       "decision": "KEEP all prior evidence (Step 8.5 not triggered).",
       "session": "sd018-directional-field-amend-ba5834ed"
+    },
+    {
+      "substrate": "SD-106 (generic bottleneck variance preservation at observation->z_world)",
+      "code_landed_commit": "ree-v3 71dc25d72d",
+      "code_landed_utc": "2026-09-11T17:15:00Z",
+      "landed_utc": "2026-09-11T17:15:00Z",
+      "dependent_claims": [],
+      "description": "ZWorldP0Config.preservation_weight (default 0.0) -- a scale-normalised (1 - R^2) reconstruction term with its own linear decoder -- plus LatentStackConfig.use_world_encoder_skip (default False), a zero-initialised linear bypass around SplitEncoder.world_encoder's ReLU stack whose construction saves and restores torch RNG state so it consumes no draws. Successor SHAPE to SD-018, minted by /governance gov-20260911 from the CONFIRMED failure_autopsy_V3-EXQ-1010_2026-09-11.",
+      "mechanism_changing": false,
+      "mechanism_changing_note": "No-op-default on BOTH flags, and verified bit-identical OFF rather than merely intended to be: state_dict keys unchanged (the bypass module is not constructed, so existing checkpoints still load), forward pass torch.equal on z_world, and P0 final_loss identical to full precision under RNG-controlled repetition. Every existing experiment ran with preservation_weight=0.0 and no bypass, so no dependent claim's measured mechanism changed. Pinned by tests/test_flag_inertness.py::test_use_world_encoder_skip_is_bit_identical_off_and_live_on. Same disposition as the 2026-09-02 SD-018 amend landing, for the same reason.",
+      "candidate_stale": [],
+      "candidate_stale_note": "EMPTY BY CONSTRUCTION, not by an unrun audit: no claim in claims.yaml declares depends_on or emergent_from SD-106 (it was registered the same day), so the dependent-claim set is empty and there is no prior evidence to re-weight. Combined with mechanism_changing=false, every step-3 decision would be KEEP. No MARK or REVALIDATE, so no user approval was required and no index rebuild is owed.",
+      "validation_experiment": "V3-EXQ-1023",
+      "recorded_by_session": "happy-swartz-199593"
     }
   ]
 }
