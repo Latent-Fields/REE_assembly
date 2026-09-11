@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-11T02:36:27Z`
+Generated: `2026-09-11T03:38:51Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **250** (ready 29, in_flight 0, blocked 167)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 84, v4 76, v5 38, v6 25
-- Pending review: **4**
+- Pending review: **9**
 - Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-906c
@@ -20,19 +20,19 @@ UI: http://localhost:8000/workset
 
 ## Work packages
 
-### IGW-20260911-001 -- Complete governance review (4 pending)
+### IGW-20260911-001 -- Complete governance review (9 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 4 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 9 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260911-001
-Title: Complete governance review (4 pending)
+Title: Complete governance review (9 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 4 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 9 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -2755,25 +2755,24 @@ Instructions:
 
 </details>
 
-### IGW-20260911-239 -- Proposal for MECH-011
+### IGW-20260911-239 -- Literature proposal for MECH-011
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260911-239
-Title: Proposal for MECH-011
-Lane: experiment | Skill: /queue-experiment
+Title: Literature proposal for MECH-011
+Lane: lit | Skill: /lit-pull
 Status: ready
 Claims: MECH-011
 Proposal backlog id (stable): EVB-1384
 Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Use /lit-pull for the claim cluster named.
 - Workset: http://localhost:8000/workset
 ```
 
