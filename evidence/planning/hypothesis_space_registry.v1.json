@@ -6417,10 +6417,11 @@
       "registered_utc": "2026-09-05T09:56:19Z",
       "fanout_sources": [
         "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
-        "failure_autopsy_V3-EXQ-822f_2026-09-09.json"
+        "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+        "failure_autopsy_V3-EXQ-1020_2026-09-11.json"
       ],
       "is_hero": false,
-      "initial_frozen_count": 7,
+      "initial_frozen_count": 9,
       "initial_frozen_count_at_registration": 5,
       "note_on_count": "5 = the four legs drafted by failure_autopsy_V3-EXQ-822e_2026-09-05 plus H-init-structure, added at that artifact's Step 7c red team and ratified at its Step 8 gate. Mode A throughout: no leg has been adjudicated, so the denominator is frozen BEFORE the adjudicating run exists. initial_frozen_count_at_registration is set here and never moves.",
       "fanout_growth_events": [
@@ -6434,6 +6435,17 @@
           ],
           "delta": 2,
           "note": "V3-EXQ-822f rejected H1 at adequate power while showing the head was shaped by training (flips halved 10/10); the two learning-signal legs are the rivals its cells opened, adjudicated together by the routed learning-signal probe."
+        },
+        {
+          "recorded_utc": "2026-09-11T16:40:57Z",
+          "pre_registered_utc": "2026-09-11T16:40:57Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-1020_2026-09-11.json",
+          "added_hids": [
+            "H-replay-rule-state-mismatch",
+            "H-selection-authority-bounded"
+          ],
+          "delta": 2,
+          "note": "GOV-FANOUT-1 four-leg portfolio opened by failure_autopsy_V3-EXQ-1020_2026-09-11 (user-confirmed at the Step 8 gate, 2026-09-11). V3-EXQ-1020 closed 822f's instrument-blindness gap but discriminated neither pre-registered learning-signal leg (C2 bare majority against an unexcluded rival; C3 starved at 4 of 20 required fresh flip samples). Two legs added on axes the question had not carried: credit-assignment (the replay rule_state mismatch) and intrinsic-architecture (selection authority bounded). Neither has an adjudicating run yet."
         }
       ],
       "discovery_growth_events": [],
@@ -6564,6 +6576,54 @@
           "basis": "Last-layer Frobenius movement 0.023-0.045 over 69-70 Adam steps at lr 5e-4 matches a direction-inconsistent walk (random-sign ~0.025; SNR ~1 ~0.041) and uses 12-23% of the consistent-sign budget; a zero gradient would move Adam 0. Provenance: 822f driver red-team note N6 (a flat P1 reward reads as instrument), whose shipped training_signal_absent class fires only at zero updates.",
           "pre_registered_utc": "2026-09-09T00:56:42Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1020"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1020"
+            ],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-1020 measured it directly with a working instrument (in-run positive control learned its own task, +0.00223..+0.00327 held-out gain, 10/10 cells, persistence 0.719-0.770). C2 (persistence below the in-run noise/control midpoint) PASSED, but on a bare 3-of-5 majority and on the SAME seeds (622/633/644) in both arms, and the driver's own F2 disposition records an unexcluded rival -- replay scoring every sample at one shared end-of-episode rule_state -- stating verbatim 'Do NOT read a C2 PASS as establishing H-learning-signal-noisy over this rival'. Does not discriminate; stays alive."
+          }
+        },
+        {
+          "hid": "H-learning-signal-sign",
+          "label": "REINFORCE on this return learns to REDUCE the bias's candidate-dependent consequence (a rule-driven argmax change is on average penalised), so the readout converges toward a less rule-sensitive function",
+          "desc": "The advantage on flip selections is negative on average and the trained-head flip rate falls across P1 episodes while the discrimination index stays flat.",
+          "axis": "learning-signal",
+          "basis": "Surfaced by V3-EXQ-822f's own cells: trained head flips fewer selections than the init head in 10/10 cells (260 vs 493 pooled; p = 0.001) at unchanged index. Not born resolved (needs the advantage-sign and flip-trajectory recordings), hence Mode A, not Mode C.",
+          "pre_registered_utc": "2026-09-09T00:56:42Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+          "adjudicating_runs": [
+            "V3-EXQ-1020"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1020"
+            ],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-1020's C3 (advantage negative on rule-driven flips) is DEGENERATE, not null: MIN_FLIP_SAMPLES=20 against a worst cell of 4 fresh-select flip samples, with only 4 of 10 cells eligible. An unscoreable criterion narrows nothing; stays alive."
+          }
+        },
+        {
+          "hid": "H-replay-rule-state-mismatch",
+          "axis": "credit-assignment",
+          "label": "The REINFORCE replay scores every sampled tuple at ONE shared end-of-episode lpfc.rule_state, so the rule half of the head input is mismatched to the credit on most samples, randomising the rule-attributable gradient BY CONSTRUCTION",
+          "desc": "Restoring each sample's own rule_state at update time raises step-direction persistence materially above the faithful-to-822f path, at matched budget.",
+          "basis": "Declared at design time as an unexcluded rival by V3-EXQ-1020's driver (F2 disposition) and carried in the manifest's interpretation.unexcluded_rivals; no criterion in 1020 can exclude it. Independently favoured by the biological triage in failure_autopsy_V3-EXQ-1020_2026-09-11: brains bind credit to the state active at action time (eligibility traces), so a single shared current state is a formal-import artifact with no biological analogue. rule_state_norm_at_update[] telemetry already emitted for a successor.",
+          "pre_registered_utc": "2026-09-11T16:40:57Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1020_2026-09-11.json",
           "adjudicating_runs": [],
           "resolution": {
             "state": "alive",
@@ -6576,13 +6636,13 @@
           }
         },
         {
-          "hid": "H-learning-signal-sign",
-          "label": "REINFORCE on this return learns to REDUCE the bias's candidate-dependent consequence (a rule-driven argmax change is on average penalised), so the readout converges toward a less rule-sensitive function",
-          "desc": "The advantage on flip selections is negative on average and the trained-head flip rate falls across P1 episodes while the discrimination index stays flat.",
-          "axis": "learning-signal",
-          "basis": "Surfaced by V3-EXQ-822f's own cells: trained head flips fewer selections than the init head in 10/10 cells (260 vs 493 pooled; p = 0.001) at unchanged index. Not born resolved (needs the advantage-sign and flip-trajectory recordings), hence Mode A, not Mode C.",
-          "pre_registered_utc": "2026-09-09T00:56:42Z",
-          "pre_registration_source": "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
+          "hid": "H-selection-authority-bounded",
+          "axis": "intrinsic-architecture",
+          "label": "The readout locus is not the binding constraint at all: a tanh-bounded +/-0.1 bias added to much larger primary E3 scores cannot change the committed argmin, so no readout design can express a behavioural consequence in this configuration",
+          "desc": "With use_modulatory_selection_authority=True (or a head-ablated contrast), a behavioural difference attributable to the readout becomes measurable where it is currently inert.",
+          "basis": "Surfaced by the Step 7c red team of failure_autopsy_V3-EXQ-1020_2026-09-11 and verified against the substrate: use_modulatory_selection_authority defaults False (ree_core/utils/config.py:1273) and V3-EXQ-1020 never sets it; bias_scale=0.1 tanh-bounded (lateral_pfc_analog.py:154,:479-481); config.py:1262-1263 states verbatim that 'fixed small bias magnitudes (~0.05-0.1) added to primary scores whose raw_score_range is much larger never change the argmin'. Not born resolved -- needs an authority-ON or head-ablated arm -- hence Mode A, not Mode C.",
+          "pre_registered_utc": "2026-09-11T16:40:57Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-1020_2026-09-11.json",
           "adjudicating_runs": [],
           "resolution": {
             "state": "alive",
@@ -6607,7 +6667,7 @@
       "growth_restriction": "",
       "registered_by_session": "governance-20260905",
       "registered_from_pending_block": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
-      "fanout_growth_note": "Grew 5 -> 7 on 2026-09-09 (labelled fan-out from failure_autopsy_V3-EXQ-822f); the question has not converged; read the narrowing ratio against initial_frozen_count_at_registration 5."
+      "fanout_growth_note": "Denominator has grown twice (5 at registration -> 7 -> 9). This question has NOT converged: report narrowing against BOTH 5 (original) and 9 (current including fan-out)."
     },
     {
       "qid": "residue_error_persistence_readout",

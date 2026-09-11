@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-11T16:17:32Z
+Generated: 2026-09-11T16:42:04Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **59** open question(s) across **46** time-series snapshot(s). **1** flag(s) raised, **58** advisory note(s), **23** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **4** possibly-stale synthesis note(s).
+Audited **59** open question(s) across **46** time-series snapshot(s). **1** flag(s) raised, **60** advisory note(s), **23** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **4** possibly-stale synthesis note(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -30,7 +30,7 @@ _An `eliminated`/`split` hypothesis is missing part of the bar (met_elimination_
 
 _None._
 
-## Advisory -- labelled fan-out growth (58, NOT violations)
+## Advisory -- labelled fan-out growth (60, NOT violations)
 
 _An existing question's hypothesis set grew because a GOV-FANOUT-1 discrimination portfolio enumerated new rival explanations as earlier axes were eliminated. This is permitted when the growth satisfies (a) each new leg pre-dates its adjudicating run, (b) it is recorded in `fanout_growth_events[]` naming the autopsy that opened the portfolio, and (c) `initial_frozen_count_at_registration` is preserved. These are LABELLED, not flagged._
 
@@ -63,7 +63,8 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - `zworld_actor_adequacy_locus`: +1 leg(s) (H-F-content-discarded-at-encode) added by labelled fan-out from `failure_autopsy_V3-EXQ-1008_2026-09-08.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `zworld_actor_adequacy_locus`: denominator grew 2 -> 5 across 2 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `sd082_candidate_discriminating_readout_locus`: +2 leg(s) (H-learning-signal-noisy, H-learning-signal-sign) added by labelled fan-out from `failure_autopsy_V3-EXQ-822f_2026-09-09.json` -- conditions (a)-(c) satisfied, advisory not a violation.
-- `sd082_candidate_discriminating_readout_locus`: denominator grew 5 -> 7 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
+- `sd082_candidate_discriminating_readout_locus`: +2 leg(s) (H-replay-rule-state-mismatch, H-selection-authority-bounded) added by labelled fan-out from `failure_autopsy_V3-EXQ-1020_2026-09-11.json` -- conditions (a)-(c) satisfied, advisory not a violation.
+- `sd082_candidate_discriminating_readout_locus`: denominator grew 5 -> 9 across 2 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - time series 2026-07-17 -> 2026-07-18: total_initial grew by 16, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 16 leg(s)) -- advisory, not a violation.
 - time series 2026-07-18 -> 2026-07-19: total_initial grew by 7, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 7 leg(s)) -- advisory, not a violation.
 - time series 2026-07-19 -> 2026-07-20: total_initial grew by 4, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 4 leg(s)) -- advisory, not a violation.
@@ -94,8 +95,9 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-09-06 -> 2026-09-07: total_initial grew by 1, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 1 leg(s)) -- advisory, not a violation.
 - time series 2026-09-07 -> 2026-09-08: total_initial grew by 3, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 3 leg(s)) -- advisory, not a violation.
 - time series 2026-09-08 -> 2026-09-09: total_initial grew by 14, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 14 leg(s)) -- advisory, not a violation.
+- time series 2026-09-09 -> 2026-09-11: total_initial grew by 2, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 2 leg(s)) -- advisory, not a violation.
 
-## Advisory -- surviving-count drop backed by confirmation/supersession (3 backed, 3 unverifiable, NOT violations)
+## Advisory -- surviving-count drop backed by confirmation/supersession (2 backed, 3 unverifiable, NOT violations)
 
 _A `confirmed` resolution (supports + control_passed) or a `superseded` resolution (ratified moot, added 2026-08-19) also legitimately removes a hypothesis from `surviving`, exactly like an elimination does -- `surviving` counts alive legs, so an alive -> confirmed/superseded transition drops the total with no elimination behind it. `total_confirmed` (build_hypothesis_space.py, added 2026-08-02) and `total_superseded` (added 2026-08-19) let this check credit either instead of reading the drop as unbacked. A snapshot pair predating either field is UNVERIFIABLE, not a violation -- same quiet-on-insufficient-data design as the git-witness provenance check below._
 
@@ -103,7 +105,6 @@ _A `confirmed` resolution (supports + control_passed) or a `superseded` resoluti
 
 - time series 2026-08-19 -> 2026-08-20: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
 - time series 2026-08-23 -> 2026-08-25: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
-- time series 2026-09-09 -> 2026-09-11: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
 
 **Unverifiable (quiet -- total_confirmed and/or total_superseded absent from one or both snapshots):**
 

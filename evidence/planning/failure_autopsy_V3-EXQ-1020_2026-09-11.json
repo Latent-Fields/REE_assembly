@@ -1,0 +1,131 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-11T16:39:06Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "red_team": {
+    "verdict": "CONTESTED",
+    "model": "claude-opus-5 (SAME model as the drafter -- claude-fable-5-1 was unavailable this session: the spawn returned 'You've hit your monthly spend limit'. Per /failure-autopsy Step 7c this is a valid pass, but NOT the preferred cross-model one; read the verdict accordingly.)",
+    "findings_file": "scratchpad redteam_1020.md (session-local, not committed)",
+    "primary_defect_accepted": "The draft inferred from bit-identical per_episode_returns that the head 'never changed a single committed action', reading it as fresh behavioural-silence evidence for SD-082. Unsound and now rewritten. Verified independently: use_modulatory_selection_authority is False (default ree_core/utils/config.py:1273) and the driver never sets it (grep: no hits); bias_scale=0.1 tanh-bounded (ree_core/pfc/lateral_pfc_analog.py:154, :479-481); ree_core/utils/config.py:1262-1263 states verbatim that 'fixed small bias magnitudes (~0.05-0.1) added to primary scores whose raw_score_range is much larger never change the argmin'. Also: wrong counterfactual (both arms hold the head flags fixed and sweep only crf_cue_centering; no head-ablated arm), and the draft quoted hold-weighted n_flip_ticks (49->57) where the driver's own F4 disposition demotes it in favour of fresh-only n_fresh_flip_ticks (5->6).",
+    "secondary_defect_accepted": "The draft attributed the vacuous_pass flag to criteria_non_degenerate. The actual rule is check (3b) at evidence/experiments/scripts/build_experiment_indexes.py:639-648 -- load_bearing true AND passed false, with criteria_aggregation defaulting to 'all' -- which returns BEFORE the legacy criteria_non_degenerate path. Conclusion (verdict-level false positive) survives; the route was wrong and it concealed the cheap fix now carried as driver_declaration_fix.",
+    "hygiene_accepted": [
+      "outcome PASS rests on readiness + C1 ONLY (driver:1448), not C1+C2; C2 selects the LABEL (driver:1427). C1 is a self-declared liveness check (floor 1e-6 vs measured 0.0091), so the PASS is a liveness assertion.",
+      "C2_bracket_valid could not have come out false: the synth_credit_control_persists precondition has per_cell_floor 0.5 and the measured Adam noise floor is 0.4488 in all 10 cells, so ceiling>floor is implied. Citing it as non-degeneracy support is weak, though not false.",
+      "The manifest's top-level config block records crf_cue_centering: true only (the ARM_ON value) for a run whose two arms differ on exactly that key. Per-cell centering is recorded correctly in arm_results, so no information is lost."
+    ]
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3",
+      "queue_id": "V3-EXQ-1020",
+      "claim_ids": ["SD-082"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "H_learning_signal_noisy_supported",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "partially coupled",
+        "scale": "likely insufficient"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES -- C3 starved of samples, C2 under-determined against an unexcluded rival. Not chargeable to mechanism, and not to REE."
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsolateral-PFC rule-coding neurons biasing premotor/striatal action selection (contextual gating).",
+        "dependencies": ["a differentiated rule representation upstream (SD-078)", "a credit signal bound to the state active at action time"],
+        "is_formal_import": true,
+        "divergence": "LOAD-BEARING. The mechanism CLASS has a solid biological existence proof, but the TRAINING SIGNAL is a formal import: episode-level REINFORCE over a replay buffer in which every sampled tuple is scored at ONE shared end-of-episode lpfc.rule_state. Brains bind credit to the state active AT THE TIME OF THE ACTION (eligibility traces), never to a single current state. The biology therefore positively favours the F2 replay-mismatch rival over both pre-registered hypotheses, and names the repair: per-sample rule_state at update time IS the eligibility-trace analogue.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "inconclusive",
+      "routing": "queue-experiment",
+      "per_claim_recommendation": {
+        "SD-082": {
+          "recommended_evidence_direction": "inconclusive",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "SD-082 carries no diagnostic_evidence_adjudicated flag today; the instrument-blindness gap V3-EXQ-822f could not escape is now CLOSED by a passing in-run positive control, but neither pre-registered leg is settled, so status and category do not move -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "recommended_evidence_quality_note": "[2026-09-11 governance, cycle gov-20260911-1612] V3-EXQ-1020 (SD-082 learning-signal probe, diagnostic PASS, indexer-flagged vacuous_pass; confirmed failure_autopsy_V3-EXQ-1020_2026-09-11): INCONCLUSIVE on both pre-registered legs, but it DID close the gap 822f could not. The in-run dense-synthetic-credit positive control learned its own task (+0.00223..+0.00327 held-out expected-reward gain, positive in 10/10 cells) and persisted (0.719-0.770), so a low-persistence reading here measures the real signal rather than a blind instrument. C1 (gradient present) passes but is a self-declared liveness check (floor 1e-6 vs measured 0.0059-0.0102). C2 (persistence below the in-run noise/positive-control midpoint) passes on a BARE MAJORITY and on the SAME three seeds in both arms (622/633/644; 611 and 655 sit above their midpoints in both). C3 (advantage negative on rule-driven flips) is UNADJUDICATED, NOT REJECTED: MIN_FLIP_SAMPLES=20 against a worst cell of 4 fresh-select flip samples, with only 4 of 10 cells eligible. The self-routed label H_learning_signal_noisy_supported therefore asserts more than the design carries -- the driver's own F2 red-team disposition records the replay/rule_state-mismatch rival as unexcluded and states verbatim 'Do NOT read a C2 PASS as establishing H-learning-signal-noisy over this rival'. Biology independently favours that rival: episode-level REINFORCE scoring every replayed sample at one shared end-of-episode rule_state has no biological analogue, where credit binds to the state active at action time. Routed to a four-leg fan-out portfolio; no substrate build owed. SD-082 stays candidate_substrate_landed.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-082",
+        "failure_record_entry": {
+          "run_id": "v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3",
+          "experiment_type": "v3_exq_1020_sd082_learning_signal_probe",
+          "metric": "C3 advantage-sign leg unscoreable: 4 fresh-select flip samples in the worst cell (ARM_OFF::seed611) against MIN_FLIP_SAMPLES=20; only 4 of 10 cells eligible. C2 persistence-low passes on a bare 3-of-5 majority, same seeds in both arms.",
+          "target": "every cell clears >=20 fresh-select flip samples so C3 is scoreable; C2 majority robust to seed with the replay rule_state mismatch controlled",
+          "resolved": "open"
+        },
+        "validation_experiment_amendment": "Extend SD-082's validation_experiment chain to name V3-EXQ-1020 (RAN 2026-09-11, PASS/diagnostic, confirmed failure_autopsy_V3-EXQ-1020_2026-09-11: instrument-blindness gap CLOSED by a passing in-run positive control; both pre-registered legs INCONCLUSIVE -- C2 bare majority, C3 starved at 4/20 fresh flip samples; routed to a four-leg fan-out). This amendment also discharges the substance of open flag GFLAG-0260, which asked for exactly this extension.",
+        "severity_note": "severity and substrate_paths LEFT UNCHANGED. The entry reads severity=corrupting with substrate_paths=[] -- the paths were deliberately emptied by governance on 2026-09-09 to stop spurious Step 2.5c gating of the whole programme. Nothing in this run changes that classification."
+      },
+      "pending_retest_after_substrate": false,
+      "driver_declaration_fix": {
+        "file": "ree-v3/experiments/v3_exq_1020_sd082_learning_signal_probe.py",
+        "fix": "Declare interpretation.criteria_aggregation = \"any\" in the emitted manifest.",
+        "why": "The driver's own combination_rule states C2 and C3 are 'reported INDEPENDENTLY ... NOT AND-ed', but criteria_aggregation is ABSENT from the manifest and the indexer defaults it to 'all'. Check (3b) at build_experiment_indexes.py:639-648 then fires vacuous_pass on any single load_bearing criterion that did not pass -- here C3. vacuous_pass is in BLOCKING_ADJUDICATIONS (:838, :859-861), so it blocks minting a substrate_queue entry or clearing a gate. Declaring 'any' is the indexer's own escape hatch and makes the driver's stated semantics machine-readable.",
+        "scope": "Forward-only: applies to the SUCCESSOR driver. Do NOT retro-edit this landed driver whose run is complete."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-learning-signal-noisy: the P1 gradient is direction-inconsistent; steps do not accumulate",
+          "H-learning-signal-sign: REINFORCE is being taught to REDUCE rule-driven flips",
+          "H-replay-rule-state-mismatch: every replayed sample is scored at ONE shared end-of-episode lpfc.rule_state, randomising the rule-attributable gradient BY CONSTRUCTION"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H-replay-rule-state-mismatch", "axis": "process", "sketch": "Store each sample's OWN rule_state in the replay tuple (index 4, currently None) and re-score at update time; contrast persistence against the faithful-to-822f path. rule_state_norm_at_update[] telemetry is already emitted. Highest value on both the F2 reading and the eligibility-trace biology."},
+          {"hypothesis": "H-learning-signal-sign", "axis": "measurement", "sketch": "Raise P1 budget and/or flip yield until EVERY cell clears MIN_FLIP_SAMPLES=20 fresh-select flip samples, so C3 is scoreable rather than degenerate."},
+          {"hypothesis": "H-selection-authority-bounded", "axis": "constitution", "sketch": "Set use_modulatory_selection_authority=True and/or add a head-ablated arm, so a BEHAVIOURAL reading is possible at all. Without it no successor on this path can produce one: a +/-0.1 tanh-bounded bias added to much larger primary scores cannot change the argmin (config.py:1262-63)."},
+          {"hypothesis": "H-learning-signal-noisy", "axis": "process", "sketch": "Extend P1 past T~300 updates, where the measured Adam pure-noise persistence floor first crosses 0.25; this run does 70. Separates a genuinely non-accumulating walk from a slow-but-accumulating one."}
+        ],
+        "note": "GOV-FANOUT-1: three live legs plus a constitution-axis leg the run's configuration forecloses. User selected ALL FOUR at the Step 8 gate (2026-09-11). Fan out a diverse portfolio; do NOT re-pose one sequential letter of 822/1020."
+      },
+      "learning_extracted": [
+        "The run ACHIEVED its stated purpose. 822f's blind-instrument/no-signal ambiguity is closed: the in-run positive control learned its own task (+0.00223..+0.00327 held-out expected-reward gain, POSITIVE in 10/10 cells) and persisted (0.719-0.770). A low-persistence reading here is a measurement of the real signal, not instrument blindness.",
+        "The vacuous_pass flag is a FALSE POSITIVE AT THE VERDICT LEVEL, but NOT by the route first drafted. The indexer's live rule is check (3b), build_experiment_indexes.py:639-648: load_bearing true AND passed false, with criteria_aggregation defaulting to 'all'; it returns before the legacy criteria_non_degenerate path. C3 fires it simply by being a load-bearing criterion that did not pass. The flag is a false positive because the driver's own combination_rule declares C2 and C3 NOT AND-ed, and the label routes at `elif c2_pass:` (driver:1427) without reading C3 -- but the manifest never declares criteria_aggregation, so the indexer cannot know that. See driver_declaration_fix.",
+        "C3 is UNADJUDICATED, NOT REJECTED. MIN_FLIP_SAMPLES=20 against a worst cell of 4 fresh-select flip samples; only 4 of 10 cells eligible (n = 4,4,8,9,16,17,29,42,52,61). That guard is the driver's own F4 red-team disposition, raised from `n_flip_samples > 0` precisely because the fresh-only count runs ~10x below the hold-weighted one. The design anticipated this failure and guarded it correctly; the budget did not deliver the samples.",
+        "C2 passes on a BARE MAJORITY and on the SAME three seeds in both arms (622, 633, 644); seeds 611 and 655 sit ABOVE their midpoints in both arms. seeds_required = 3 of 5. Independently recomputed from arm_results; the c2_midpoint equals (noise+synth)/2 exactly to 1e-12 in all 10 cells.",
+        "The self-route LABEL overstates what C2 licenses, and the driver says so itself: F2 records the rule_state-mismatch rival as unexcluded and states verbatim 'Do NOT read a C2 PASS as establishing H-learning-signal-noisy over this rival'. H_learning_signal_noisy_supported is a legitimate grid output whose plain-English name asserts more than the design can carry.",
+        "CONFIGURATION FACT, NOT A SD-082 FINDING (rewritten after the Step 7c red team; the first draft got this wrong). per_episode_returns are bit-identical between ARM_ON and ARM_OFF across all 5 seeds x 70 episodes. This is NOT evidence about SD-082's readout and NOT a fresh behavioural axis. (a) The swept variable is crf_cue_centering ALONE -- both arms hold train_rule_bias_head and rule_readout_consumer True and there is no head-ablated arm, so the null is about CRF centering, not about the head. (b) A behavioural difference was impossible by construction: use_modulatory_selection_authority is False (default, config.py:1273; never set by this driver) and bias_scale=0.1 is tanh-bounded, and config.py:1262-63 states verbatim that 'fixed small bias magnitudes (~0.05-0.1) added to primary scores whose raw_score_range is much larger never change the argmin'. (c) The de-replicated flip figures are n_fresh_flip_ticks 5->6 for seed 611, not the hold-weighted n_flip_ticks 49->57 the driver's own F4 disposition demotes. What this DOES establish, and it matters for successor design: any behavioural probe on this path is INERT until selection authority is enabled -- which is why the Step 8 gate added a constitution-axis leg to the portfolio.",
+        "LINEAGE: 8 runs (V3-EXQ-822, 822a-822f, 1020) from 2026-07-26 to 2026-09-11 have never settled SD-082. The granularity-debt trigger does NOT fire (5 tagging targets, alignment distribution unclear=5, zero `weakened`) -- granularity_debt_cluster.py's own verdict is measurement/implementation debt, not granularity debt. The re-derive brake stands at 3 (822b/822c/822d), released by failure_autopsy_V3-EXQ-822f_2026-09-09 on its own explicit record; this autopsy's `inconclusive`/`standard` reading adds no fourth hit."
+      ],
+      "granularity_debt_trigger": {
+        "fires": false,
+        "tagging_targets": 5,
+        "alignment_distribution": {"unclear": 5, "weakened": 0},
+        "routing": "none -- no target reads `weakened`, so this is measurement/implementation debt, not granularity debt (granularity_debt_cluster.py SD-082, 2026-09-11)"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": true,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_2026-07-28-sweep | v3_exq_822b",
+          "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c",
+          "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d"
+        ],
+        "refused_requeue": true,
+        "route_to": "queue-experiment",
+        "release_basis": "Count is 3 against a threshold of 2, but this autopsy reads `inconclusive`/`standard`, not a ceiling, so it adds no hit -- the same basis on which failure_autopsy_V3-EXQ-822f_2026-09-09 released it. REFUSED nonetheless: any further lettered iteration of the 822/1020 same-design lineage. LICENSED: the four-leg fan-out portfolio above, each leg on a different axis with its own declared null."
+      },
+      "bears_on": ["sd082_candidate_discriminating_readout_locus"]
+    }
+  ]
+}
