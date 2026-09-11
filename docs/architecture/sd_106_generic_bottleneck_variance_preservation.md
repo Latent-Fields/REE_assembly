@@ -92,6 +92,18 @@ Two additions to the P0 path, both no-op by default.
 Files: `ree-v3/ree_core/latent/zworld_p0.py`, `ree-v3/ree_core/latent/stack.py`,
 `ree-v3/ree_core/utils/config.py`.
 
+### The bypass consumes no RNG draws (found by the flag-inertness probe, not by review)
+
+Every `nn.Module` built in `SplitEncoder.__init__` consumes torch RNG draws, so a module
+inserted into that sequence shifts the random init of every module built after it. The first
+draft built the bypass immediately after `world_encoder`, which made an ON/OFF pair differing
+only in this flag ALSO differ in the init of five other heads -- a whole-encoder confound rather
+than a bypass. Moving it to the end of `__init__` is insufficient (`LatentStack` builds more
+modules after the `SplitEncoder`), so the construction saves and restores the RNG state. That is
+free -- `nn.Linear`'s random weight is immediately overwritten with zeros -- and makes the flag
+EXACTLY inert, so V3-EXQ-1023's ON and OFF arms are identical at init except for the zero bypass.
+Pinned by `tests/test_flag_inertness.py::test_use_world_encoder_skip_is_bit_identical_off_and_live_on`.
+
 ### Measured effect (2 seeds; proxy DVs)
 
 Linear-decodable `world_obs` R^2 / `resource_field_view` R^2 -- the 25-dim field slice the 1010
