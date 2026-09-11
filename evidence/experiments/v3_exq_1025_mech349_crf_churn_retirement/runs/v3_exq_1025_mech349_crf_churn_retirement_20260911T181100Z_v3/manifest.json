@@ -1,0 +1,394 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1025_mech349_crf_churn_retirement",
+  "run_id": "v3_exq_1025_mech349_crf_churn_retirement_20260911T181100Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-349"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "crf_churn_selective_not_treadmill",
+    "summary": "With retirement made reachable, churn is SELECTIVE: extinct regularities are retired while still-recurring ones keep their slots (zero persistent retirements or re-mints), and the same substrate DOES produce the 666c treadmill at a higher dose. MECH-349 FALSIFYING(3) does not occur.",
+    "preconditions": [
+      {
+        "name": "ARM_FROZEN::mint_fires",
+        "precondition": "mint_fires",
+        "arm": "ARM_FROZEN",
+        "kind": "readiness",
+        "description": "Worst cell in the arm mints >= 2 rules (a run with 0-1 live rules measures nothing). MECH-349 non-degeneracy (a).",
+        "control": "the arm's own worst cell; minting is not manipulated on any arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_FROZEN::live_rules_present",
+        "precondition": "live_rules_present",
+        "arm": "ARM_FROZEN",
+        "kind": "readiness",
+        "description": "Worst cell in the arm ends with >= 2 live rules.",
+        "control": "the arm's own worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_FROZEN::pool_not_saturated",
+        "precondition": "pool_not_saturated",
+        "arm": "ARM_FROZEN",
+        "kind": "readiness",
+        "description": "Worst cell's live rules stay strictly below n_slots, so mints are regularity-limited rather than slot-limited. MECH-349 (c).",
+        "control": "the arm's own worst (highest live/slots) cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.1875,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_FROZEN::mints_late_in_window",
+        "precondition": "mints_late_in_window",
+        "arm": "ARM_FROZEN",
+        "kind": "readiness",
+        "description": "Worst cell in the arm makes >= 1 mint in the FINAL THIRD of the window. MECH-349 non-degeneracy (c), first conjunct: a pool that fills in an early burst and then freezes has converted the asserted TRIGGERED creator into a one-shot INITIALISER, and its arm contrast is a dose contrast rather than a trigger contrast.",
+        "control": "the arm's own worst cell; persistent regimes are introduced on staggered onsets (the last at 0.75 of the window) so late minting is reachable",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_FROZEN::anchor_retires_nothing",
+        "precondition": "anchor_retires_nothing",
+        "arm": "ARM_FROZEN",
+        "kind": "readiness",
+        "description": "ARM_FROZEN retires 0 rules, re-measuring the GFLAG-0265 structural fact that retirement is unreachable at maintenance_decay=0.0. If it ever retires, the framing this whole run rests on is wrong.",
+        "control": "the anchor arm itself; maintenance_decay=0.0 makes the leak a no-op",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_LO::mint_fires",
+        "precondition": "mint_fires",
+        "arm": "ARM_LEAK_LO",
+        "kind": "readiness",
+        "description": "Worst cell in the arm mints >= 2 rules (a run with 0-1 live rules measures nothing). MECH-349 non-degeneracy (a).",
+        "control": "the arm's own worst cell; minting is not manipulated on any arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_LO::live_rules_present",
+        "precondition": "live_rules_present",
+        "arm": "ARM_LEAK_LO",
+        "kind": "readiness",
+        "description": "Worst cell in the arm ends with >= 2 live rules.",
+        "control": "the arm's own worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 6.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_LO::pool_not_saturated",
+        "precondition": "pool_not_saturated",
+        "arm": "ARM_LEAK_LO",
+        "kind": "readiness",
+        "description": "Worst cell's live rules stay strictly below n_slots, so mints are regularity-limited rather than slot-limited. MECH-349 (c).",
+        "control": "the arm's own worst (highest live/slots) cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.09375,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_LO::mints_late_in_window",
+        "precondition": "mints_late_in_window",
+        "arm": "ARM_LEAK_LO",
+        "kind": "readiness",
+        "description": "Worst cell in the arm makes >= 1 mint in the FINAL THIRD of the window. MECH-349 non-degeneracy (c), first conjunct: a pool that fills in an early burst and then freezes has converted the asserted TRIGGERED creator into a one-shot INITIALISER, and its arm contrast is a dose contrast rather than a trigger contrast.",
+        "control": "the arm's own worst cell; persistent regimes are introduced on staggered onsets (the last at 0.75 of the window) so late minting is reachable",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_LO::treadmill_instrument_sensitive",
+        "precondition": "treadmill_instrument_sensitive",
+        "arm": "ARM_LEAK_LO",
+        "kind": "readiness",
+        "description": "The positive control produces >= 1 re-mints of a STILL-RECURRING regime, i.e. the 666c treadmill is producible in this ecology. Without it C1 could not have failed under any outcome and its pass means nothing.",
+        "control": "MEASURED ON ARM_TREADMILL_POSCTL (maintenance_decay=0.35) -- a known-positive control, and the SAME statistic C1 routes on (persistent re-mints).",
+        "direction": "lower",
+        "applies": true,
+        "measured": 94.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_HI::mint_fires",
+        "precondition": "mint_fires",
+        "arm": "ARM_LEAK_HI",
+        "kind": "readiness",
+        "description": "Worst cell in the arm mints >= 2 rules (a run with 0-1 live rules measures nothing). MECH-349 non-degeneracy (a).",
+        "control": "the arm's own worst cell; minting is not manipulated on any arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_HI::live_rules_present",
+        "precondition": "live_rules_present",
+        "arm": "ARM_LEAK_HI",
+        "kind": "readiness",
+        "description": "Worst cell in the arm ends with >= 2 live rules.",
+        "control": "the arm's own worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 6.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_HI::pool_not_saturated",
+        "precondition": "pool_not_saturated",
+        "arm": "ARM_LEAK_HI",
+        "kind": "readiness",
+        "description": "Worst cell's live rules stay strictly below n_slots, so mints are regularity-limited rather than slot-limited. MECH-349 (c).",
+        "control": "the arm's own worst (highest live/slots) cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.09375,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_HI::mints_late_in_window",
+        "precondition": "mints_late_in_window",
+        "arm": "ARM_LEAK_HI",
+        "kind": "readiness",
+        "description": "Worst cell in the arm makes >= 1 mint in the FINAL THIRD of the window. MECH-349 non-degeneracy (c), first conjunct: a pool that fills in an early burst and then freezes has converted the asserted TRIGGERED creator into a one-shot INITIALISER, and its arm contrast is a dose contrast rather than a trigger contrast.",
+        "control": "the arm's own worst cell; persistent regimes are introduced on staggered onsets (the last at 0.75 of the window) so late minting is reachable",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEAK_HI::treadmill_instrument_sensitive",
+        "precondition": "treadmill_instrument_sensitive",
+        "arm": "ARM_LEAK_HI",
+        "kind": "readiness",
+        "description": "The positive control produces >= 1 re-mints of a STILL-RECURRING regime, i.e. the 666c treadmill is producible in this ecology. Without it C1 could not have failed under any outcome and its pass means nothing.",
+        "control": "MEASURED ON ARM_TREADMILL_POSCTL (maintenance_decay=0.35) -- a known-positive control, and the SAME statistic C1 routes on (persistent re-mints).",
+        "direction": "lower",
+        "applies": true,
+        "measured": 94.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_TREADMILL_POSCTL::mint_fires",
+        "precondition": "mint_fires",
+        "arm": "ARM_TREADMILL_POSCTL",
+        "kind": "readiness",
+        "description": "Worst cell in the arm mints >= 2 rules (a run with 0-1 live rules measures nothing). MECH-349 non-degeneracy (a).",
+        "control": "the arm's own worst cell; minting is not manipulated on any arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 171.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_TREADMILL_POSCTL::live_rules_present",
+        "precondition": "live_rules_present",
+        "arm": "ARM_TREADMILL_POSCTL",
+        "kind": "readiness",
+        "description": "Worst cell in the arm ends with >= 2 live rules.",
+        "control": "the arm's own worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 6.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_TREADMILL_POSCTL::pool_not_saturated",
+        "precondition": "pool_not_saturated",
+        "arm": "ARM_TREADMILL_POSCTL",
+        "kind": "readiness",
+        "description": "Worst cell's live rules stay strictly below n_slots, so mints are regularity-limited rather than slot-limited. MECH-349 (c).",
+        "control": "the arm's own worst (highest live/slots) cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.09375,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_TREADMILL_POSCTL::retirement_reachable",
+        "precondition": "retirement_reachable",
+        "arm": "ARM_TREADMILL_POSCTL",
+        "kind": "readiness",
+        "description": "Worst cell in the arm retires >= 1 rule. Without this, churn is pinned at 0 by the substrate and FALSIFYING(3) cannot occur whatever the mechanism does -- the exact V3-EXQ-1024 blocker.",
+        "control": "the arm's own worst cell under its maintenance_decay dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 165.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_TREADMILL_POSCTL::mints_late_in_window",
+        "precondition": "mints_late_in_window",
+        "arm": "ARM_TREADMILL_POSCTL",
+        "kind": "readiness",
+        "description": "Worst cell in the arm makes >= 1 mint in the FINAL THIRD of the window. MECH-349 non-degeneracy (c), first conjunct: a pool that fills in an early burst and then freezes has converted the asserted TRIGGERED creator into a one-shot INITIALISER, and its arm contrast is a dose contrast rather than a trigger contrast.",
+        "control": "the arm's own worst cell; persistent regimes are introduced on staggered onsets (the last at 0.75 of the window) so late minting is reachable",
+        "direction": "lower",
+        "applies": true,
+        "measured": 49.0,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_persistent_regimes_hold_their_slot": true,
+      "C2_extinct_regimes_are_retired": true,
+      "C3_live_population_distinct_in_tag_space": false
+    },
+    "scope_finding_falsifying3_conjuncts_dissociate": {
+      "statement": "MECH-349 FALSIFYING(3) bundles three signatures: high minted, comparable retired, and pairwise distance at or near 0. The positive control here produces the first two in full while the third does NOT follow -- re-minted rules land back on the same well-separated regime directions, so tag-space distinctness stays high.",
+      "posctl_minted": 856,
+      "posctl_retired": 826,
+      "posctl_duplicate_tag_pairs": 0,
+      "implication": "666c's near-zero distance is a property of its UNCENTERED context key, not an intrinsic consequence of churn. Recorded for governance; not scored, and MECH-350 is NOT tagged."
+    },
+    "lever_note": {
+      "inert_lever": "crf_maintenance_floor below crf_mature_retire_floor is INERT on its own: _maybe_mint sets init_avail = max(tolerance_floor, maintenance_floor), so a rule still mints at tolerance_floor (0.30), six times the 0.05 retire floor.",
+      "rejected_lever": "Lowering tolerance_floor too DOES retire (93/100) but degenerately -- every rule mints below the retire floor and dies on its first unprotected credit tick, MANUFACTURING the 666c signature instead of testing for it.",
+      "lever_used": "crf_maintenance_decay -- the only knob in credit() that touches a rule carrying no eligibility, and therefore the only one that can reach a rule that has gone silent."
+    },
+    "structural_facts_not_measurements": {
+      "distinctness_is_an_identity": "crf_max_pairwise_rule_dist is a deterministic lookup on the live-rule SET off the pinned_seed=6063 matrix. Recorded for continuity with V3-EXQ-806's 1.598-1.711 only; a criterion for nothing here, and MECH-350 is NOT tagged.",
+      "global_churn_ratio_is_ecology_determined": "MECH-349 non-degeneracy (b) asks for retired/minted <= 0.25. In an ecology containing extinct regularities that ratio is fixed by the ecology: a perfectly SELECTIVE creator retires exactly the extinct regimes, giving 0.50 -- it would FAIL the bar for behaving correctly. Recorded, not scored; the scored criteria are per-regime-class instead."
+    },
+    "seeds_are_reproducibility_not_power": "Seeds vary only the common-mode offset and observation noise; regime directions are seed-independent, so the DVs are near-deterministic. The seed requirement certifies reproducibility and is NOT a significance test. The discrimination rests on the BETWEEN-ARM separation.",
+    "arc062_seed_leg": "NOT UNDER TEST. No arc062_seed is supplied at any call site, so MECH-349 non-degeneracy (d) is reported as untested, never as a null."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ea5b8cf4837b4fd895ad5dc545e356ff9195a495da56d1f7c5ef1d3076783054",
+  "substrate_commit": {
+    "commit": "3d38fa24c0a343569029812f0cfdcbd122b575a6",
+    "dirty": false,
+    "branch": "main"
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 10.493367994,
+  "config": {
+    "context_dim": 16,
+    "n_persistent": 6,
+    "n_extinct": 6,
+    "total_ticks": 900,
+    "persistent_onset_frac": [
+      0.0,
+      0.0,
+      0.25,
+      0.5,
+      0.7,
+      0.85
+    ],
+    "extinct_offset_frac": 0.45,
+    "baseline_warmup_ticks": 300,
+    "regime_magnitude": 2.0,
+    "common_mode_scale": 3.0,
+    "obs_noise": 0.005,
+    "n_slots": 64,
+    "rule_dim": 16,
+    "arm_decay": {
+      "ARM_FROZEN": 0.0,
+      "ARM_LEAK_LO": 0.02,
+      "ARM_LEAK_HI": 0.1,
+      "ARM_TREADMILL_POSCTL": 0.35
+    },
+    "scored_arms": [
+      "ARM_LEAK_LO",
+      "ARM_LEAK_HI"
+    ],
+    "duplicate_cosine": 0.95,
+    "outcome_signal": 0.1,
+    "cue_centering": true,
+    "mature_pool_dynamics": true,
+    "availability_maintenance": true,
+    "seed_from_arc062": false,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}
