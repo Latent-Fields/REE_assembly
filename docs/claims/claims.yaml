@@ -19537,6 +19537,20 @@
     [2026-09-04 governance, cycle governance-20260904-1347] V3-EXQ-1001: non_contributory to ARC-037 (per-claim; confirmed failure_autopsy_V3-EXQ-1001_2026-09-04). ARC-037 asserts an anterior-insula-analogue ROUTING circuit that classifies prediction errors and gates them into E3 vs E1; this run instantiates no routing at all -- the agent is constructed and never driven, and the comparator is scored offline on RandomPolicy transitions, which the manifest's own claim_scope.what_this_run_measures states verbatim ('ARC-037's own E3/E1 routing/gating is NOT exercised here'). Direction non_contributory, and the claim carries no epistemic_category field at all today, so set one -> epistemic_category: standard
 
     [2026-09-09 governance, cycle governance-20260909] epistemic_category DELIBERATELY HELD at substrate_conditional against confirmed failure_autopsy_V3-EXQ-1001_2026-09-04's recommended standard (GOV-APPLY-1 unapplied_disposition row; user-adjudicated this cycle). Grounds: ARC-037's own what_would_answer declares a four-part non-degeneracy PRECONDITION whose failure yields substrate_not_ready rather than a verdict, which is what substrate_conditional records; and check_unapplied_autopsy_recommendations.py's own docstring states recommended_epistemic_category is a per-autopsy snapshot that later independent governance work may legitimately supersede. The autopsy's non_contributory direction for V3-EXQ-1001 STANDS and is already recorded above. This divergence is deliberate -- do not re-apply it from the autopsy on a later cycle.
+
+    [2026-09-11 governance, cycle gov-20260911] GOV-APPLY-1 FALSE POSITIVE, recorded so the row
+    is explicable and is not re-applied. The audit lists the
+    failure_autopsy_V3-EXQ-1001_2026-09-04 recommendation 'set epistemic_category: standard' as
+    an unapplied disposition. It WAS applied: governance-20260904-1347 (4ac2f649a6b) set it, and
+    git confirms ARC-037 read epistemic_category: standard immediately before ada5d97af02. The
+    current substrate_conditional was then set DELIBERATELY on 2026-09-06 by the user-approved
+    thought-digestion v3-closure pass (ada5d97af02, '47 user-approved falsifiers +
+    epistemic_category changes'), which SUPERSEDES the 2026-09-04 autopsy recommendation.
+    GOV-APPLY-1 compares claims.yaml against the autopsy and cannot see an intervening ratified
+    decision, so it reads a later override as a never-applied recommendation. DO NOT re-apply
+    standard -- doing so would silently revert a user-approved decision. epistemic_category
+    stays substrate_conditional.
+
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (four parts; all four must be reported in the manifest, else `substrate_not_ready`, NOT a verdict).
     (P1) The ground-truth agency partition must be PROXIMAL-AVOIDABILITY, not `transition_type`. Confirmed
@@ -31879,6 +31893,34 @@
     moves; record the disposition by citation (stamped by citation; manifest evidence_direction
     unknown -> non_contributory flat+pack; SD-018 amended with the 1008 record and its 978 item
     marked superseded; the SD-018 shape-(b) hold is now single-grounded.)
+
+    [2026-09-11 governance, cycle gov-20260911] V3-EXQ-1010 (over-capacity decoder sweep)
+    adjudicated from CONFIRMED failure_autopsy_V3-EXQ-1010_2026-09-11 (REE_assembly 652ababa92,
+    user-gated; dry_run_checked=true). NOTE-ONLY -- no storable field moves. This is a
+    CLAIM-FREE diagnostic (claim_ids []): INV-088 is a bears_on relation here, not a tag, and
+    the run exercises none of its mechanism, so neither evidence_direction nor
+    epistemic_category nor status moves and it must NOT enter this claim's evidence record as a
+    scoring entry. Manifest stamped evidence_direction non_contributory + epistemic_category
+    standard on BOTH copies (flat and run pack). WHAT THE RUN ESTABLISHES on its own question
+    (zworld_actor_adequacy_locus): H-F-content-discarded-at-encode CONFIRMED -- holding
+    representation, dataset, seeds, held-out split, standardiser and fit protocol fixed and
+    varying ONLY decoder capacity across ~77,000x in parameters, 0/3 seeds clear the 0.80 bar
+    (best 0.6839/0.6846/0.6656) while the SAME ladder memorises the training split at
+    0.9996-0.9998 and a PCA-32 of the encoder's own input at the encoder's own width clears 3/3
+    (0.8836/0.8729/0.8763); the same architecture at RANDOM INITIALISATION scores at or ABOVE
+    the trained latent on 3/3 seeds. The repair site is the ENCODER'S OBJECTIVE, not the
+    consumer. Routed to /implement-substrate: SD-018 amended (4th failure record, priority 2->1)
+    and NEW entry SD-106 minted for the generic variance/reconstruction-preservation shape the
+    evidence actually names (user-approved 2026-09-11; SD-018's implemented shape (a) supervises
+    ONE named feature and V3-EXQ-978 returned it NULL, so the new shape gets its own entry
+    rather than growing SD-018 a third). GOV-DIAG-1 NOTE: this is the third pure-diagnostic
+    no-verdict hit on the 1002 -> 1008 -> 1010 chain and trips the N=3 recurrence counter for
+    INV-088. Adjudicated 2026-09-11 (user decision) as CONVERGED, NOT mis-posed: the counter
+    keys on recommended_evidence_direction in {non_contributory, inconclusive}, and a claim-free
+    diagnostic scores non_contributory BY CONSTRUCTION however decisively it resolves -- this
+    chain terminated in a confirmed mechanism (H-F), a named repair site and a routed build,
+    which is convergence rather than circling. No re-pose routed.
+
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
@@ -83426,6 +83468,34 @@
     [2026-09-05 governance governance-20260905, confirmed failure_autopsy_V3-EXQ-1002_2026-09-05 (Fable 5.1 cross-model red-team CONTESTED, contests folded in, user gate)]: V3-EXQ-1002 (2026-09-05, diagnostic, claim-free) is the registered live_gate for hypothesis-space question `zworld_actor_adequacy_locus`. A capacity-matched supervised adapter (x734.PPOPolicyNet, 21381 action-path parameters, identical to V3-EXQ-978's reader) was behaviour-cloned on the local_view_greedy oracle's own visited states with credit assignment removed entirely. From the RAW 25-dim resource_field_view it reproduces the oracle at 0.9846/0.9796/0.9730 held-out. From V3-EXQ-978's FROZEN z_world it reaches 0.6695/0.6735/0.6478 -- 0/3 seeds against a bar of 0.80 -- and it does NOT beat its own paired untrained-projection control (0.6876/0.6817/0.6947) on any seed (margins -0.018/-0.008/-0.047). Every readiness gate is green. H-B (consumer-learning) is therefore ELIMINATED: with the learning problem removed, the mapping still does not come out of the latent, and H-C (geometry mismatch) is CONFIRMED at its registered gate. What the run does NOT establish is that the deficit belongs to THIS latent's LEARNED geometry: its only 32-dimensional comparator is an untrained random compression of the SAME 250-dim world_state input (the 25-dim field is 10% of it), that comparator ties with -- in fact slightly beats -- the verdict arm, and no run to date carries a 32-dim reference of that input known to be able to clear the bar. So the confirmed H-C leg's 'learned geometry' gloss and a 250 -> 32 channel-INPUT bound that no rotation could fix remain confounded; the owed information-preserving rotation corroborator and a 32-dim projection of the full world_state are the two parallel tests, and a flat result on the former WEAKENS the confirmed leg. PER-CLAIM: Claim-free diagnostic -- MECH-457 is a bears_on relation here, not a tag, and this run must NOT increment its re-derive-brake count (13 standing hits under R1-R3, re-counted 2026-09-05, unchanged). It bears on the claim in the CONSTRAINING direction: with credit assignment removed entirely, a reader with the consumer's exact capacity still recovers the oracle's action from frozen z_world at only 0.664 against 0.979 from the raw observation, so a dedicated actor-critic substrate reading THIS latent would inherit a representation-side ceiling before any RPE teaching signal is applied. Necessity is untouched; the sufficiency disclaimer already recorded in the evidence_quality_note is further constrained. MECH-457 currently carries no diagnostic_evidence_adjudicated field at all, so set one -> diagnostic_evidence_adjudicated
 
     [2026-09-08 governance, cycle governance-20260908-0703] V3-EXQ-1008 bears-on (confirmed failure_autopsy_V3-EXQ-1008_2026-09-08, REE_assembly 3f86587d6d; user-ratified 2026-09-08; claim-free diagnostic, NOT a scoring entry): Claim-free diagnostic -- MECH-457 is a bears_on relation here, not a tag, and this run must NOT enter its evidence record as a scoring entry; its actor-critic substrate is absent by construction (the manipulation IS that no policy is learned by RL). Necessity untouched. The bears-on fact bears in the CONSTRAINING direction and is sharper than V3-EXQ-1002's: a dedicated actor-critic reading THIS frozen latent would inherit not a rotatable arrangement problem but a content deficit -- an unconstrained-width question aside, the decision-relevant content is not linearly present in the latent at all, so no amount of RPE teaching on a frozen z_world can recover it. This is direct empirical support for the existing `sd_actor_critic_action_learning` implementation_hint (the action-learning loss must CO-SHAPE the representation, not ride a frozen z_world). epistemic_category is already `standard` and diagnostic_evidence_adjudicated is already true, so no storable field moves; record the disposition by citation (stamped by citation; manifest evidence_direction unknown -> non_contributory flat+pack; SD-018 amended with the 1008 record and its 978 item marked superseded; the SD-018 shape-(b) hold is now single-grounded.)
+
+    [2026-09-11 governance, cycle gov-20260911] V3-EXQ-1010 (over-capacity decoder sweep)
+    adjudicated from CONFIRMED failure_autopsy_V3-EXQ-1010_2026-09-11 (REE_assembly 652ababa92,
+    user-gated; dry_run_checked=true). NOTE-ONLY -- no storable field moves. This is a
+    CLAIM-FREE diagnostic (claim_ids []): MECH-457 is a bears_on relation here, not a tag, and
+    the run exercises none of its mechanism, so neither evidence_direction nor
+    epistemic_category nor status moves and it must NOT enter this claim's evidence record as a
+    scoring entry. Manifest stamped evidence_direction non_contributory + epistemic_category
+    standard on BOTH copies (flat and run pack). WHAT THE RUN ESTABLISHES on its own question
+    (zworld_actor_adequacy_locus): H-F-content-discarded-at-encode CONFIRMED -- holding
+    representation, dataset, seeds, held-out split, standardiser and fit protocol fixed and
+    varying ONLY decoder capacity across ~77,000x in parameters, 0/3 seeds clear the 0.80 bar
+    (best 0.6839/0.6846/0.6656) while the SAME ladder memorises the training split at
+    0.9996-0.9998 and a PCA-32 of the encoder's own input at the encoder's own width clears 3/3
+    (0.8836/0.8729/0.8763); the same architecture at RANDOM INITIALISATION scores at or ABOVE
+    the trained latent on 3/3 seeds. The repair site is the ENCODER'S OBJECTIVE, not the
+    consumer. Routed to /implement-substrate: SD-018 amended (4th failure record, priority 2->1)
+    and NEW entry SD-106 minted for the generic variance/reconstruction-preservation shape the
+    evidence actually names (user-approved 2026-09-11; SD-018's implemented shape (a) supervises
+    ONE named feature and V3-EXQ-978 returned it NULL, so the new shape gets its own entry
+    rather than growing SD-018 a third). GOV-DIAG-1 NOTE: this is the third pure-diagnostic
+    no-verdict hit on the 1002 -> 1008 -> 1010 chain and trips the N=3 recurrence counter for
+    MECH-457. Adjudicated 2026-09-11 (user decision) as CONVERGED, NOT mis-posed: the counter
+    keys on recommended_evidence_direction in {non_contributory, inconclusive}, and a claim-free
+    diagnostic scores non_contributory BY CONSTRUCTION however decisively it resolves -- this
+    chain terminated in a confirmed mechanism (H-F), a named repair site and a routed build,
+    which is convergence rather than circling. No re-pose routed.
+
   v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
   claim_level: mechanistic

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-09T14:52:00Z",
+  "last_review_utc": "2026-09-11T14:19:13Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1287,7 +1287,15 @@
     "v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike",
     "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat",
     "v3_exq_981a_mech027_control_plane_pathological_modes",
-    "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux"
+    "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux",
+    "v3_exq_1010_zworld_overcapacity_decoder_sweep",
+    "v3_exq_1019_mech464_d1d2_reorder_dagain_sweep",
+    "convergence_signal_synthetic_assay_001",
+    "convergence_signal_synthetic_assay_002",
+    "convergence_signal_synthetic_assay_003",
+    "convergence_signal_synthetic_assay_004",
+    "convergence_signal_synthetic_assay_005",
+    "convergence_signal_synthetic_assay_006"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4237,7 +4245,15 @@
     "v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike_20260908T223415Z_v3",
     "v3_exq_999a_mech161_vigilance_inverted_u_heartbeat_20260909T054013Z_v3",
     "v3_exq_981a_mech027_control_plane_pathological_modes_20260909T061022Z_v3",
-    "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux_20260909T054654Z_v3"
+    "v3_exq_1017_inv104_arc138_regulatory_anchoring_matched_aux_20260909T054654Z_v3",
+    "v3_exq_1010_zworld_overcapacity_decoder_sweep_20260909T195348Z_v3",
+    "v3_exq_1019_mech464_d1d2_reorder_dagain_sweep_20260910T212913Z_v3",
+    "20260909_seed7",
+    "20260909_seed11",
+    "20260909_seed17",
+    "20260909_seed23",
+    "20260909_seed29",
+    "20260909_seed37"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6920,6 +6936,21 @@
         "v3_exq_1013_sd031_shortcut_vs_model_portfolio",
         "v3_exq_1011_arc021_h3_submargin_paired_ci",
         "v3_exq_1014_ext002_lineage_e3_latching_repertoire_spike"
+      ]
+    },
+    {
+      "utc": "2026-09-11T14:19:13Z",
+      "session": "gov-20260911",
+      "note": "governance 2026-09-11 (cycle gov-20260911), ONE WAVE. NINE pending, ZERO FAILs, ZERO runner-only. EIGHT cleared; ONE (V3-EXQ-1020) deliberately LEFT PENDING per Step 1.5 route B (user decision). PRE-WORK: the shared checkout was [ahead 9, behind 35]; all 9 local-only commits were audited PER-COMMIT BY CONTENT (8 identical by patch-id; 6290d4f8ab proven by full structural audit of both JSON files it touched -- 495/495 igw_assignments event_ids and 153/153 igw_routine_ledger entries present on origin, zero fields lost) before safe_adopt_ref --allow-discard. Post-adopt skew repaired narrowly: 14 'D ' staged deletions (ARC-059/061 lit-pull entries + the V3-EXQ-1010 autopsy pair, all present on disk and byte-identical to HEAD) and one MM staged revert cleared INDEX-ONLY; another session's live evidence/literature/INDEX.md edit left untouched and EXCLUDED from every commit. SIX unclaimed synthetic assays (convergence_signal_synthetic_assay_001-006, seeds 7/11/17/23/29/37): claim_ids [], queue_mutation false, creature_code_change false, each self-disclaiming architectural weight ('does not establish a REE architectural claim'); cleared as unclaimed manifests, NO claim weighting, no direction written. V3-EXQ-1010 (claim-free diagnostic PASS) adjudicated from CONFIRMED failure_autopsy_V3-EXQ-1010_2026-09-11 (652ababa92, user-gated, dry_run_checked=true): manifest stamped non_contributory + standard on BOTH copies (flat AND pack) with evidence_direction_note citing the ratifying artifact; INV-088/MECH-457 note-only appends (bears_on relations, not tags -- no storable field moved). SUBSTRATE: SD-018 amended (4th failure record, priority 2->1 -- the autopsy flagged its own priority derivation as imported from a create-scoped rule and invited a decline; accepted on the merits, user-approved) and NEW entry SD-106 minted for the generic variance/reconstruction-preservation shape, because the autopsy explicitly deferred that shape judgement to Step 6a and SD-018's implemented shape (a) supervises ONE named feature that V3-EXQ-978 returned NULL (user-approved: new sd_id, cross-referenced both ways). MANDATORY DRIVER SKIM, V3-EXQ-1019 (MECH-464, evidence PASS, supports) = CLEAN, nothing found. Combination is a strict AND over three load-bearing criteria each carrying a null_note, behind a fail-closed precondition gate. Threshold arithmetic against measured baselines: C1 26 vs floor 20; C2 zero-rate 0.0071 vs ceiling 0.05 with n=1263/589; C3 pb_r 0.100 vs floor 0.03 -- every bar attainable in BOTH directions and within an order of magnitude of the measurement (no V3-EXQ-936a by-construction pathology). Driver carries a documented in-session red-team fix (C2's straddle==0 side had no n-floor; promoted to a gating precondition). NOTED, verdict unaffected: C1's margin is THIN -- 26 reorder events, a 1.4% rate over 1852 d1d2-active selections -- and this run is the FIRST AND ONLY experimental evidence MECH-464 has ever had (entries_total 1, genuine_exp_count 1), against a claim registered 2026-07-20 reading 'NOT yet tested'. Existence supported; magnitude small. V3-EXQ-1020 (SD-082, diagnostic PASS, adjudication=vacuous_pass) NOT cleared, NO evidence_direction, NOT marked reviewed: outcome = PASS iff (readiness_met and c1_pass) where C1 is a 1e-06 'gradient not literally zero' bar, while the DISCRIMINATING load-bearing C3 (advantage_negative_on_flips) FAILED at +0.286 needing <0. Driver-checked and the gate is behaving AS DESIGNED (C2/C3 are declared independent legs, explicitly NOT AND-ed; outcome is a weak instrument-readability verdict and the LABEL carries the science) -- so this is not a driver defect, but SD-082 keeps genuine_exp_count 0 / experimental_confidence 0.0 and stays UNVALIDATED. Needs /failure-autopsy. GOV-DIAG-1: 2 ACTIONABLE recurrences (INV-088, MECH-457) both on the SAME 1002->1008->1010 chain. Adjudicated CONVERGED, NOT mis-posed (user decision): the counter keys on non_contributory/inconclusive and a claim-free diagnostic scores non_contributory BY CONSTRUCTION however decisively it resolves; this chain terminated in a confirmed mechanism (H-F), a named repair site and a routed build. NO metabolized marker could be placed HONESTLY -- no closure_plan node owns this chain (every plan touching INV-088/MECH-457/SD-018 checked; nearest, goal_pipeline:GAP-2, is done). The adjudication is recorded in both claims' notes instead, and the MISSING OWNER is reported as a finding: GOV-DIAG-1 will re-fire next cycle. GOV-APPLY-1: 6 actionable, 'unapplied evidence direction LIVE' = 0 (nothing mis-scoring). ARC-037 investigated and found a FALSE POSITIVE, recorded on the claim: the V3-EXQ-1001 recommendation WAS applied 2026-09-04 (4ac2f649a6b) -- git confirms ARC-037 read epistemic_category standard immediately before ada5d97af02 -- and the current substrate_conditional was set DELIBERATELY on 2026-09-06 by the user-approved thought-digestion v3-closure, which SUPERSEDES it. Re-applying would have silently reverted a user decision; NOT applied. The 4 remaining citation-stamp rows target live_status.evidence.from, which is PROJECTED from the append-only event log, so a hand-edit would be reverted -- the documented remedy is scripts/apply_live_status.py, NOT run here because the drift report shows 172 reading + 326 provenance drifts (a ~500-claim rewrite of the highest-contention file, out of scope for this cycle's decisions under Narrow Edits Only). Reported as a backlog. OTHER AUDITS: Steward ESCALATE=no; closure drift 0 drifted / 0 stale (3 legitimately suppressed); substrate-ceiling 0 orphaned / 0 lifted / 0 exhausted (24 parked); GOV-FROZEN-1 a=0 b=0 c=1 (sd_e1_var_bar_readout_crush/H-readout-saturation, confirmed with control_passed=False -- routed to /failure-autopsy, NOT patched inline, single-producer rule) d=0, fan-out recurrence 0, 1 acknowledged (competence_floor, worked). Pause-pressure PRESSURE at GENERATION 7 (68 authored open chips vs 40; 300 recorded_7d vs 150; episodic chip-queuefloor-fleet-g9; 2 enablement findings) -- trial outcome recorded as FIRED / NOT ACTIONED; standing decision chip left for the user (user decision: record only, decide later). 26 open governance flags outstanding. DRY-RUN CHECK: all 9 pending runs checked (3 clean by checker, 6 assays verified by hand -- no top-level dry_run, none dry); the untracked _dry_v3_exq_918a smoke left UNCOMMITTED (0 of 0 _dry_ manifests are tracked -- untracked is the convention) and noted as consistent with open GFLAG-0252.",
+      "discussed_experiment_dirs": [
+        "v3_exq_1010_zworld_overcapacity_decoder_sweep",
+        "v3_exq_1019_mech464_d1d2_reorder_dagain_sweep",
+        "convergence_signal_synthetic_assay_001",
+        "convergence_signal_synthetic_assay_002",
+        "convergence_signal_synthetic_assay_003",
+        "convergence_signal_synthetic_assay_004",
+        "convergence_signal_synthetic_assay_005",
+        "convergence_signal_synthetic_assay_006"
       ]
     }
   ]

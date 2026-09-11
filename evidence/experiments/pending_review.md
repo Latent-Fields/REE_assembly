@@ -1,21 +1,13 @@
 # Pending Experiment Review
 
-Generated: `2026-09-11T14:05:18Z`  
-Last review: `2026-09-09T14:52:00Z`  
-Pending: **9** item(s) -- 9 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
+Generated: `2026-09-11T14:19:53Z`  
+Last review: `2026-09-11T14:19:13Z`  
+Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
-| `20260909_seed7` | ? | (no claim tags) |
-| `20260909_seed11` | ? | (no claim tags) |
-| `20260909_seed17` | ? | (no claim tags) |
-| `20260909_seed23` | ? | (no claim tags) |
-| `20260909_seed29` | ? | (no claim tags) |
-| `20260909_seed37` | ? | (no claim tags) |
-| `v3_exq_1010_zworld_overcapacity_decoder_sweep_20260909T195348Z_v3` | 2026-09-09T19:53 | (no claim tags) |
-| `v3_exq_1019_mech464_d1d2_reorder_dagain_sweep_20260910T212913Z_v3` | 2026-09-10T21:29 | MECH-464 |
 | `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | 2026-09-11T00:31 | SD-082 |
 
 ## Diagnostic adjudication required (self-route unverified)
