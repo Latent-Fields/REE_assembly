@@ -3779,6 +3779,23 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0269",
+      "claim_ids": [
+        "MECH-012",
+        "MECH-013",
+        "MECH-014",
+        "MECH-015",
+        "MECH-011"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "SECOND occurrence of the exact failure GFLAG-0261 raised for MECH-011: the whole ARC-009/ARC-010 language cluster (MECH-011, MECH-012, MECH-013, MECH-014, MECH-015) carries NO epistemic_category, while BOTH depends_on parents -- ARC-009 (symbolic mediation) and ARC-010 (mirror modelling, implementation_phase v5) -- are epistemic_category: substrate_conditional with what_would_answer fields stating their substrate is absent from ree-v3. Because the children lack that classification they stay visible to generate_inter_governance_workset.py's experiment-proposal lane and get auto-spawned one at a time: MECH-011 burned IGW-20260911-239 (EXP-0741 blocked_substrate, REE_assembly 5b75f7f01e) and MECH-012 burned IGW-20260911-245 (EXP-0743 blocked_substrate, REE_assembly 9dde37e880) hours apart, each session independently re-deriving the same tree verification. MECH-013 ('Language failure modes and pathologies'), MECH-014 ('Minimal signalling channel requirements') and MECH-015 ('Trust and deception dynamics') are identically shaped and will respawn next -- three more sessions against the same wall. Per-proposal blocked_substrate marking is the only current suppression and is known to be revertible by a governance regen (open defect chip-20260907-proposal-status-revert-regen), so it is not durable. Governance should classify the cluster epistemic_category: substrate_conditional as a CLASS rather than per-claim, which per the play-mode precedent keeps them out of the IGW proposal lane permanently. A broader audit this session found 16 claims total with no epistemic_category whose depends_on parents are ALL substrate_conditional (the 5 language ones plus INV-047, MECH-024, MECH-176, MECH-328, Q-002..Q-006, Q-009, SD-006) -- the same generator gap, worth one sweep. NOTE: the literature twins (LIT-0742, LIT-0744, ...) must stay 'proposed' -- lit evidence remains accruable for a substrate-blocked claim and should not be suppressed. Supersedes/extends GFLAG-0261, which named MECH-011 only.",
+      "raised_by_session": "igw-245-proposal-for-mech-012",
+      "raised_at": "2026-09-11T18:13:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
