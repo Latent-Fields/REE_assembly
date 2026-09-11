@@ -1,0 +1,139 @@
+{
+  "schema_version": "reanalysis/v1",
+  "recording_schema": "rec/v1",
+  "artifact_type": "post_hoc_reanalysis",
+  "reanalysis_id": "reanalysis_mech536_persistence_2x2_confinement_20260911T142130Z",
+  "generated_utc": "2026-09-11T14:21:30Z",
+  "gov_rule": "GOV-REUSE-1",
+  "question": "Does action persistence abolish the direction-blind ambitendency/stupor confinement phenotype, and what does it cost on an adequate representation? (2x2: representation quality x k=2 latch)",
+  "claim_ids": [
+    "MECH-536",
+    "MECH-535"
+  ],
+  "decisive_readout": "confinement_incidence_and_foraging_competence_per_arm",
+  "source_run_ids": [
+    "v3_exq_1007_mech536_eval_persistence_discriminator_20260907T072349Z_v3"
+  ],
+  "source_substrate_hashes": {
+    "v3_exq_1007_mech536_eval_persistence_discriminator_20260907T072349Z_v3": "1cb09199f00f21a4b7a7f09d6a8fc57961200b5f862d3a7c8d0ca945ee8ba76b"
+  },
+  "substrate_compatibility": "matched",
+  "substrate_invariant_asserted": false,
+  "answer": {
+    "design": "2x2, representation quality x action persistence, on the SAME k=2 latch operator; confinement scored by the re-posed period-agnostic C1 (GFLAG-0233), competence by foraging_competence and resources_per_100_survived_steps",
+    "n_per_cell": "20 episodes x 3 seeds = 60",
+    "cells": {
+      "direction_blind__no_persistence": {
+        "arm": "greedy_argmax",
+        "confined_pct": 100,
+        "competence_per_ep": [
+          0.0,
+          0.25,
+          0.55
+        ],
+        "res_per_100_survived": [
+          0.0,
+          0.12,
+          0.28
+        ],
+        "survival_horizon": [
+          50.75,
+          200.0,
+          200.0
+        ],
+        "death_rate": [
+          0.8,
+          0.0,
+          0.0
+        ]
+      },
+      "direction_blind__k2_latch": {
+        "arm": "persist_k2",
+        "confined_pct": 97,
+        "competence_per_ep": [
+          0.1,
+          0.25,
+          0.5
+        ],
+        "res_per_100_survived": [
+          0.16,
+          0.12,
+          0.25
+        ],
+        "survival_horizon": [
+          62.8,
+          200.0,
+          200.0
+        ],
+        "death_rate": [
+          0.75,
+          0.0,
+          0.0
+        ]
+      },
+      "adequate__no_persistence": {
+        "arm": "local_view_greedy",
+        "confined_pct": 0,
+        "competence_per_ep": [
+          45.75,
+          49.7,
+          48.7
+        ],
+        "res_per_100_survived": [
+          29.68,
+          29.15,
+          29.18
+        ],
+        "survival_horizon": [
+          154.15,
+          170.5,
+          166.9
+        ],
+        "death_rate": [
+          0.65,
+          0.7,
+          0.6
+        ]
+      },
+      "adequate__k2_latch": {
+        "arm": "local_view_greedy_persist_k2",
+        "confined_pct": 73,
+        "competence_per_ep": [
+          5.75,
+          3.45,
+          7.7
+        ],
+        "res_per_100_survived": [
+          14.78,
+          11.5,
+          16.52
+        ],
+        "survival_horizon": [
+          38.9,
+          30.0,
+          46.6
+        ],
+        "death_rate": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "findings": {
+      "F1_latch_inert_on_degraded_representation": "On the direction-blind reader the k=2 latch changes nothing that matters: confinement 100 -> 97 pct, competence flat within seed (0.00/0.25/0.55 -> 0.10/0.25/0.50). It does NOT abolish the phenotype; it re-periodises a period-2 cycle to period 2k, which the incumbent period-2 detector could not see.",
+      "F2_latch_harmful_on_adequate_representation": "On the adequate (local-view) representation the SAME latch creates confinement where there was none (0 -> 73 pct), halves foraging efficiency (29.2 -> 14.3 res/100 survived steps), cuts survival ~4x (164 -> 38 steps) and takes death rate from 0.65 to 1.00. Raw resources/episode falls ~8x, which decomposes into the efficiency and survival terms above.",
+      "F3_no_persistence_operator_escapes": "No persistence operator tested abolishes confinement on the direction-blind reader: persist_k2 97 pct, persist_k4 77 pct (field-determined lower bound), switch_cost 90 pct. switch_cost is a boundary-press fixed point on 0.55/1.00/1.00 of episodes.",
+      "F4_only_perturbation_escapes": "The only arms that escape are the non-persistence ones: stochastic_sample (<=3 pct confined, 25.3 mean unique cells, competence 1.70-2.05) and random_walk (<=8 pct, 17.9 unique cells). On this substrate the trap is broken by perturbation, not persistence.",
+      "F5_phenotype_is_seed_42_only": "The ambitendency two-cycle is a seed-42 phenomenon. Seeds 43 and 44 are 100 pct boundary-press fixed points on every arm, so a criterion posed on 'the cycle' reads 2 of 3 seeds as empty; the confinement criterion reads all three."
+    },
+    "bearing_on_MECH-536": "MECH-536 registers persistence as PROTECTIVE against representational degradation rather than NECESSARY for competence. The protective half is NOT supported here: the latch confers no competence benefit on the degraded representation (flat within seed) and is actively costly on the adequate one. The 'not necessary' half IS supported: local_view_greedy forages 45.75-49.70 res/ep with no persistence at all. MECH-536's own premise sentence -- 'Any persistence of >=2 steps on the chosen action escapes a two-cycle trivially' -- is true of the period-2 SIGNATURE and false of the TRAP, and that is the sentence that propagated into the unfailable C1.",
+    "bearing_on_MECH-535": "Untouched in direction. The record reinforces MECH-535's own title: the two phenotypes (approach/withdraw limit cycle and boundary-press fixed point) are one confinement phenomenon selected by initial condition, and a single period-agnostic measure covers both.",
+    "admissibility_caveat": "The adequate-representation half of the 2x2 rests on ANCHOR arms (local_view_greedy, local_view_greedy_persist_k2) recorded in anchor_results, not on scored eval_results arms. Governance should decide whether an anchor-vs-anchor contrast is admissible as claim evidence, or whether a confirmatory run promoting these two cells to scored eval arms is wanted. This reanalysis does not assume the former.",
+    "method_caveat": "Confinement is scored two ways that agree on every arm: (a) field-determined over all 60 episodes/arm from the recorded per_episode fields (fixed_point OR orbit_period is not None -> confined), which is CONSERVATIVE (it can only positively detect confinement, never escape); and (b) the re-posed position-level C1 over the 6 episodes/arm that carry positions in the episode log. The confined_pct figures above are the conservative (a) lower bounds."
+  },
+  "method_note": "Re-scored V3-EXQ-1007's banked manifest and episode log under the re-posed period-agnostic confinement criterion (GFLAG-0233; design record evidence/planning/mech536_c1_reposed_confinement_criterion_20260911.md). Confinement determined two ways -- conservatively from recorded per_episode fields over all 60 eps/arm, and at position level over the 6 eps/arm carrying positions -- which agree on every arm. No new compute; GOV-REUSE-1 route (decisive readout fully recoverable).",
+  "verdict": "mixed",
+  "notes": "Emitted in place of queuing V3-EXQ-1007b: the /queue-experiment Step 2.4 existing-evidence check found the decisive readout fully recoverable from V3-EXQ-1007's own banked data at full sample. See the admissibility_caveat in the answer -- the adequate-representation half rests on anchor arms, and whether that is admissible as claim evidence is a governance call.",
+  "caveat": ""
+}

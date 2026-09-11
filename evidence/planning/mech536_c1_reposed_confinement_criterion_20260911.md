@@ -230,16 +230,39 @@ What fails is the *discriminator's* premise, not the claim. Both claims stay `no
 3. Does `switch_cost` escape? No -- 5/5 confined, 0.55-1.00 fixed-point incidence.
 4. Does competence rise under any persistence operator? No -- flat within seed.
 
-**Genuinely open, and worth a run:** MECH-536 asks what persistence is *for* relative to
-representation quality. The banked data answers that for the latch family on the direction-blind
-reader and leaves the **dissociation itself** untested, because no arm satisfied the antecedent.
-The successor should therefore compare **persistence against perturbation on the same frozen
-policy**, scored on C1' (confinement) and competence jointly, with `local_view_greedy` as the
-adequate-representation anchor -- a design with a real failing region on both axes, and with
-`persist_k2`/`persist_k4` retained as a **positive control for the detector itself** (we know
-analytically they re-periodise, so a C1' that reports them as escaped is broken).
+**And the 2x2 MECH-536 actually asks for is ALSO already banked -- so NO RUN WAS QUEUED.**
+Running the `/queue-experiment` Step 2.4 existing-evidence check (GOV-REUSE-1) against this
+record's own criterion found the decisive readout -- confinement x competence per arm -- fully
+recoverable from V3-EXQ-1007 at full sample (20 episodes x 3 seeds = 60 per arm). The result is
+recorded as
+`evidence/reanalysis/reanalysis_mech536_persistence_2x2_confinement_20260911T142130Z.json`,
+re-derivable by its companion script `rederive_mech536_persistence_2x2_confinement.py`:
 
-That successor is `V3-EXQ-1007b`, built and queued on this record.
+| representation | persistence (same k=2 latch) | confined | res/100 survived steps |
+|---|---|---|---|
+| direction-blind | none (`greedy_argmax`) | **100%** | 0.00 / 0.12 / 0.28 |
+| direction-blind | k=2 latch (`persist_k2`) | **97%** | 0.16 / 0.12 / 0.25 |
+| adequate (`local_view_greedy`) | none | **0%** | 29.68 / 29.15 / 29.18 |
+| adequate (`local_view_greedy_persist_k2`) | k=2 latch | **73%** | 14.78 / 11.50 / 16.52 |
+
+**The latch is inert where MECH-536 predicts it should help, and costly where the representation
+is already adequate**: it creates confinement from nothing (0% -> 73%), halves foraging efficiency
+(29.2 -> 14.3 res/100 survived steps), cuts survival ~4x (164 -> 38 steps) and takes death rate
+from 0.65 to 1.00. So the "PROTECTIVE against representational degradation" half of MECH-536 is
+**not supported** by its own lineage's banked data, while the "not NECESSARY for competence" half
+is (45.75-49.70 res/ep with no persistence at all).
+
+**One caveat governance owns, and this record does not assume away:** the adequate-representation
+half of the 2x2 rests on **anchor** arms (`anchor_results`), not scored `eval_results` arms.
+Whether an anchor-vs-anchor contrast is admissible as claim evidence -- or whether a confirmatory
+run promoting those two cells to scored eval arms is wanted -- is a governance call, not a
+queue-fill session's. `V3-EXQ-1007b` was reserved and released unused; the ID is free.
+
+If governance does want that confirmatory run, the design is already fixed by this record:
+compare **persistence against perturbation on the same frozen policy**, scored on C1' and
+competence jointly, with `persist_k2`/`persist_k4` retained as a **positive control for the
+detector itself** (we know analytically they re-periodise, so a C1' that reports them as escaped
+is broken).
 
 ## 8. Provenance and carry-forward
 
