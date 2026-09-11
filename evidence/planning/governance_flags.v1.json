@@ -3694,9 +3694,9 @@
       "summary": "substrate_queue.json mode-governance-engagement still reads severity=corrupting / ready=False, but its severity_note describes a defect that has since been FIXED: the per-seed EXISTENTIAL 'graded' predicate in experiments/_lib/regime_occupancy_gate.py. The fix landed on ree-v3 origin/main as 606aea2 ('gradedness is a reproducibility test, not an existential one', 2026-09-11T00:54Z) -- 388 lines in the module, 330 lines of contract tests in tests/contracts/test_regime_occupancy_gate.py, plus the design doc docs/substrate/mode-governance-engagement-regime-occupancy-reproducibility.md. Gradedness is now a run of >= 2 CONSECUTIVE swept values each mixed on >= 2/3 of seeds, which is the entry's own stated failure_record bar. CONSEQUENCE while the note stands: /queue-experiment Step 2.5c keeps refusing V3-EXQ-935a on the stale corrupting severity, and 935a is the sole named blocker in this entry's own depends_on_unresolved -- so the entry blocks the experiment that would resolve the entry. Owed: governance re-assesses severity/ready against the landed fix, which unblocks the 935a re-queue (its own chip chip-20260909-exq935a-margin-cap-rerun is open and carries the full refusal reasoning in its prompt).",
       "raised_by_session": "orchestrate-20260911-0330",
       "raised_at": "2026-09-11T03:31:55Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-11T17:18:50Z",
+      "resolution_note": "APPLIED, cycle gov-20260911-1612 (user-approved at the governance gate). mode-governance-engagement reassessed against the landed fix: ree-v3 606aea2 ('gradedness is a reproducibility test, not an existential one', verified present on origin/main) replaces the per-seed EXISTENTIAL graded predicate with a run of >=2 CONSECUTIVE swept values each mixed on >=2/3 seeds -- the entry's own failure_record bar -- with 330 lines of contract tests. severity corrupting -> cosmetic, ready false -> true, open failure_record items marked resolved citing 606aea2. This breaks a deadlock: the stale corrupting severity made Step 2.5c refuse V3-EXQ-935a, which is the SOLE named blocker in the entry's own depends_on_unresolved, so the entry was blocking the experiment that would resolve it. Validation still owed (status stays implemented_pending_validation); chip chip-20260909-exq935a-margin-cap-rerun carries the refusal reasoning."
     },
     {
       "flag_id": "GFLAG-0263",
