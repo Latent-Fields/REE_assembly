@@ -15055,16 +15055,22 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1386",
+      "blocked_by": "ARC-009 (no symbolic communication channel in ree_core/); ARC-010 (no multi-agent substrate; ARC-047 SocialGridWorld unimplemented, implementation_phase v5)",
+      "blocked_note": "MECH-013 makes a symbolic/linguistic layer decoupling from embodied harm signals the IV; ree_core/ has only a register-only LANGUAGE_EXPLICITATION enum label and a single-agent environment. Same shape as MECH-011/EXP-0741 and MECH-012/EXP-0743. Literature lane (LIT-0746) deliberately left open -- lit evidence is still accruable for a substrate-blocked claim.",
       "claim_id": "MECH-013",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-11T20:13:14Z",
+      "gated_by_session": "igw-245-proposal-for-mech-013",
+      "gating_reason": "EXP-0745 (MECH-013, 'Language failure modes and pathologies') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-245-proposal-for-mech-013, IGW-20260911-245). MECH-013 asserts that when LANGUAGE decouples from embodied ethical signals, severe failure follows -- rationalisation (language used to suppress or explain away harm signals), ideological capture (fixed symbolic frames override perception and residue), bureaucratic dissociation, moral licensing, reputation substitution -- mapping to residue externalisation, precision misrouting, other-model collapse, and spurious residue from narrative contamination. The independent variable is therefore a symbolic/linguistic layer whose coupling to harm/residue signals can be varied, and two of the failure modes (reputation substitution, other-model collapse) additionally need other agents. Neither exists in ree-v3. Verified directly against the tree this session (ree-v3 a382a91): the only 'language' token in ree_core/ is the bare enum label ControlDemandType.LANGUAGE_EXPLICITATION (ree_core/claustrum/control_demand.py:49), register-only with no template; ree_core/claustrum/coalition_templates.py states in-source that consumer substrate for the social/language demand classes \"doesn't exist yet in ree_core\"; greps for utterance|linguistic|symbol_channel|other_agent|multi_agent|multiagent|message_pass|n_agents|num_agents|narrative|ideolog|moral_licens|reputation over ree_core/ return no substrate (the only hits are the word 'operationalises' in docstrings); ree_core/environment/ holds exactly one env, causal_grid_world.py (single-agent). Residue and harm substrate DO exist, but only as the DV side -- there is no symbolic layer to decouple from them. No commitment-free measurement-only variant exists: the only runnable surrogate (a non-linguistic abstraction layer attenuating a harm signal in one agent) tests signal-attenuation mechanics, not language, and could not attach to MECH-013 at defensible mapping fidelity. A claim_probe_mech_013 queued now would have no IV to manipulate -- a vacuous result, not a verdict. Cluster-level classification is already routed to /governance as GFLAG-0269 (open; names MECH-013).",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-013 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0745",
       "proposal_type": "experimental",
+      "release_condition": "Both layers named in ARC-009/ARC-010 what_would_answer exist in ree-v3: (1) a multi-agent environment (ARC-047 SocialGridWorld or equivalent) and (2) a discrete symbolic channel between agents (built out from MECH-014's interface sketch) whose coupling to harm/residue signals is a manipulable parameter.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -15077,7 +15083,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_013",
       "target_repo": "ree-v3",
       "why_now": [
