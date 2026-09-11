@@ -3752,6 +3752,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0267",
+      "claim_ids": [
+        "INV-063",
+        "INV-106"
+      ],
+      "flag_type": "stale_note",
+      "summary": "SUCCESSOR to GFLAG-0255 (resolved 2026-09-11; proposals half landed REE_assembly c6c65e3b5d). Three stale 'LIT-0688 is the out_of_domain epidemiological lane' pointers are still live in claims.yaml and together re-create the re-fusion vector the INV-063/INV-106 split was made to close. Most load-bearing: INV-106's OWN what_would_answer EVIDENCE LANE section (~line 31352) instructs a future lit-pull to re-scope LIT-0688 to this claim -- but LIT-0688 was deleted by the 2026-09-08 governance regen (e2f1f788f23) after the IGW retire step took it, and INV-106 ALREADY has its own auto-minted lane LIT-0130 (EVB-1745), so the instruction sends epidemiological pulls to a nonexistent lane instead of the real one. Also: INV-063's what_would_answer 'legs deliberately excluded' section (~line 31261) still says the psychiatric gradient is 'already covered by the minted LIT-0688' (false -- LIT-0688 was auto-minted boilerplate scoped claim_id INV-063 / targeted_review_inv_063, never epidemiological), and the 2026-09-10 GFLAG-0204 note item (3) (~line 31290) still frames re-scoping LIT-0688 as the open last piece. Fix is to point all three at LIT-0130 / INV-106 and record LIT-0688 as retired. NOT attempted by the GFLAG-0255 session: claims.yaml was held by three concurrent claims (igw-auto-...-sd-106 owner, gov-20260911-1612, sleepy-shtern-43943b) and that session was 4th in the queue. The five 2026-09-08 literature entries need NO re-routing -- they are REE-leg papers correctly tagged INV-063.",
+      "raised_by_session": "wizardly-zhukovsky-be144b",
+      "raised_at": "2026-09-11T17:29:30Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
