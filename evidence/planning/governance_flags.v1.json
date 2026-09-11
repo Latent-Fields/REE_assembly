@@ -3739,6 +3739,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0266",
+      "claim_ids": [
+        "MECH-349"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "MECH-349 clause (ii) -- 'no existing rule's context_tag already covers it' -- is NOT TESTABLE in any ecology of well-separated context regimes, measured 2026-09-11 by instrumenting the mint-block while driving ree_core/policy/candidate_rule_field.py directly. At the substrate's own default crf_mature_mint_block_threshold of 0.8, the block fired 190 times in a 254-tick run and EVERY SINGLE FIRE was at cosine exactly 1.000 -- a regime blocking ITSELF on re-presentation after it had already minted. Cross-regime blocks: ZERO. The reason is structural: the maximum attainable centered cosine between distinct regime directions was 0.5294 (0 of 120 pairs reach 0.8), so no genuinely different regularity can ever be judged 'already covered' at the operating threshold. Lowering the threshold does make the gate fire across regimes (18 cross-regime blocks at 0.5, 62 at 0.2) but those are FALSE blocks of regularities that are distinct by construction, so a mint-count response to the threshold measures the gate mis-firing, not coverage detection. CONSEQUENCE FOR THE CLAIM: any experiment that sweeps the mint-block over separated regimes can demonstrate parameter sensitivity but cannot evidence clause (ii); reading such a sweep as support would be a vacuous positive. WHAT WOULD ACTUALLY TEST IT: an ecology containing PARTIALLY OVERLAPPING regimes -- context directions deliberately placed at centered cosines that straddle the block threshold (roughly 0.6 to 0.95) -- so that 'a distinct regularity an existing rule already covers' is a state the ecology can actually present. Separately, MECH-349 CONFIRMING(1)'s first half ('the measured recurrence count at mint is >= 3 on 100% of mint events') is an ARITHMETIC TAUTOLOGY of the implementation and cannot fail: CandidateRuleField._maybe_mint increments the recurrence counter and then early-returns when it is below threshold, so a sub-threshold mint is unreachable for any substrate of that shape. Only CONFIRMING(1)'s second half, the threshold sweep, has empirical content. Raised while building the owed GFLAG-0198 validation run; see GFLAG-0265 for three further non-satisfiable criteria on the same claim.",
+      "raised_by_session": "peaceful-euler-13e105",
+      "raised_at": "2026-09-11T17:26:25Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
