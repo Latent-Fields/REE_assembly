@@ -3612,9 +3612,9 @@
       "summary": "SUCCESSOR to GFLAG-0184 (resolved 2026-09-10). 0184's edit is applied, but live_status.evidence.verdict (claims.yaml ~:48347) carries the SAME stale 'GRADUATED to standard' text that 0184 corrected at :48355, and was outside that flag's stated scope so was deliberately left. It is now the only surviving copy. Note the ground truth moved twice: REE_assembly c76d8d8af6 (2026-09-09) re-dispositioned V3-EXQ-840b to non_contributory and REVERSED MECH-294's graduation, which is why retiring the queue entry on 0184's original wording would have killed a live item.",
       "raised_by_session": "gov-flagbacklog-20260909",
       "raised_at": "2026-09-10T06:55:20Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-11T17:16:51Z",
+      "resolution_note": "APPLIED, cycle gov-20260911-1612. MECH-294 live_status.evidence.verdict rewritten: it asserted 'substrate_ceiling GRADUATED to standard' while the claim in fact reads status candidate, epistemic_category substrate_ceiling, v3_pending true -- the graduation having been REVERSED by REE_assembly c76d8d8af6 (2026-09-09, governance-20260909 wave 5) when V3-EXQ-840b was re-dispositioned to non_contributory. The new text records the reversal and cites c76d8d8af6. grep 'GRADUATED to standard' now returns 0 (was 1). No storable field moved -- the verdict prose was the only stale copy."
     },
     {
       "flag_id": "GFLAG-0257",
