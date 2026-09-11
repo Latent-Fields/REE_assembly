@@ -3670,6 +3670,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0261",
+      "claim_ids": [
+        "MECH-011"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "MECH-011 ('Language and learning dynamics') carries no epistemic_category, while BOTH of its depends_on parents -- ARC-009 (symbolic mediation) and ARC-010 (mirror modelling, implementation_phase v5) -- are epistemic_category: substrate_conditional with what_would_answer fields stating their substrate is absent from ree-v3. Because the child lacks that classification, MECH-011 stays visible to generate_inter_governance_workset.py's experiment-proposal lane and was auto-spawned as IGW-20260911-239/EVB-1384; that session verified against the tree that ree_core/ contains no language channel at all (only the register-only ControlDemandType.LANGUAGE_EXPLICITATION enum label, plus a single-agent causal_grid_world.py) and marked EXP-0741 blocked_substrate (REE_assembly 5b75f7f01e). That status marking is the only thing currently suppressing respawn, and it is known to be revertible by a governance regen (open defect chip-20260907-proposal-status-revert-regen), so the suppression is not durable. Governance should decide whether MECH-011 -- a claim whose testability is wholly inherited from two substrate_conditional parents -- should itself be classified epistemic_category: substrate_conditional, which per the play-mode precedent is sufficient to keep it out of the IGW proposal lane permanently. Note the literature lane (LIT-0742) was deliberately left proposed: lit evidence remains accruable and should not be suppressed.",
+      "raised_by_session": "igw-239-proposal-for-mech-011",
+      "raised_at": "2026-09-11T02:52:57Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
