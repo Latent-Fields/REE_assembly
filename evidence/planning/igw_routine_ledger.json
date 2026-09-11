@@ -5029,7 +5029,11 @@
       "task_claim_session_id": "igw-auto-igw-245-proposal-for-mech-012-20260911T180452Z",
       "task_claim_claimed_at": "2026-09-11T18:04:52Z",
       "assigned_at": "2026-09-11T18:03:38Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-11T18:15:46Z",
+      "completion_summary": "MECH-012 judged substrate-blocked (needs a multi-agent collective AND a symbolic channel; ree_core/ has neither); marked EVB-1385/EXP-0743 blocked_substrate (REE_assembly 9dde37e880), LIT-0744 left proposed; raised GFLAG-0269 covering the whole ARC-009/ARC-010 language cluster MECH-011/012/013/014/015 (REE_assembly 1e6270c65a)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-012 judged substrate-blocked (needs a multi-agent collective AND a symbolic channel; ree_core/ has neither); marked EVB-1385/EXP-0743 blocked_substrate (REE_assembly 9dde37e880), LIT-0744 left proposed; raised GFLAG-0269 covering the whole ARC-009/ARC-010 language cluster MECH-011/012/013/014/015 (REE_assembly 1e6270c65a)"
     }
   ],
   "dispositions": [
@@ -7187,6 +7191,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-11T17:20:11Z",
       "re_eligible_after": "2026-09-13T17:20:11Z"
+    },
+    {
+      "stable_hash": "ea4c9f966453",
+      "igw_id_at_disposition": "IGW-20260911-245",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-012"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-012",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-11T18:15:50Z",
+      "re_eligible_after": "2026-09-13T18:15:50Z"
     }
   ]
 }
