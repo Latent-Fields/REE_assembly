@@ -1,0 +1,226 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_964a_mech482_epistemic_deficit_multitarget_readiness",
+  "run_id": "v3_exq_964a_mech482_epistemic_deficit_multitarget_readiness_20260911T174949Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-11T17:49:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-482"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "readout_differentiates_but_never_changes_committed_action",
+    "preconditions": [
+      {
+        "name": "ARM_PREREADINESS::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_PREREADINESS",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF diverges on 0 ticks. Non-zero means the two yoked agents differ in something other than the manipulation and the whole DV is void",
+        "control": "same arm vs same arm, identical seed and config",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_PREREADINESS::vacuous_readout_rate_bounded",
+        "precondition": "vacuous_readout_rate_bounded",
+        "arm": "ARM_PREREADINESS",
+        "kind": "readiness",
+        "description": "the readiness-gate refusal rate (self-reported vacuous READOUTs) stays below a generous ceiling across the rollout -- a near-100% rate would mean the accumulator never got a chance to matter",
+        "control": "live rollout with the SD-063 head trained identically on both arms",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ARM_READINESS::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_READINESS",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF diverges on 0 ticks. Non-zero means the two yoked agents differ in something other than the manipulation and the whole DV is void",
+        "control": "same arm vs same arm, identical seed and config",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_READINESS::vacuous_readout_rate_bounded",
+        "precondition": "vacuous_readout_rate_bounded",
+        "arm": "ARM_READINESS",
+        "kind": "readiness",
+        "description": "the readiness-gate refusal rate (self-reported vacuous READOUTs) stays below a generous ceiling across the rollout -- a near-100% rate would mean the accumulator never got a chance to matter",
+        "control": "live rollout with the SD-063 head trained identically on both arms",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ARM_READINESS::multitarget_regime_reached",
+        "precondition": "multitarget_regime_reached",
+        "arm": "ARM_READINESS",
+        "kind": "readiness",
+        "description": "the readiness geometry makes a SECOND persistent target reachable (max_n_targets >= 2). This is the autopsy's binding gate: below it, a single enclosing target makes the readout constant and C3 cannot discriminate by arithmetic",
+        "control": "live rollout, readiness geometry enabled",
+        "direction": "lower",
+        "applies": true,
+        "measured": 14.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "ARM_READINESS::readout_differentiates_across_candidates",
+        "precondition": "readout_differentiates_across_candidates",
+        "arm": "ARM_READINESS",
+        "kind": "readiness",
+        "description": "the per-candidate readout has NON-ZERO cross-candidate RANGE (max observed StructuredCuriosity._last_lp_dev_range > 0). Same statistic C3 routes on: an argmax can only move if the vector it is subtracting varies across candidates",
+        "control": "live rollout, readiness geometry enabled, rbf_weighted readout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.004422243684530258,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "ARM_READINESS::lp_perturbation_can_reach_argmax_margin",
+        "precondition": "lp_perturbation_can_reach_argmax_margin",
+        "arm": "ARM_READINESS",
+        "kind": "readiness",
+        "description": "on at least one tick, the actual score perturbation (curiosity_learning_progress_weight * cross-candidate lp range) is at least as large as the committed-selection margin (E3.decisiveness_margin, arbitration-aware). BELOW THIS FLOOR AN ARGMAX FLIP IS ARITHMETICALLY UNREACHABLE, so C3 would measure 0 by magnitude rather than by observation -- the SAME class of defect that made V3-EXQ-964's C2 uninterpretable, one layer down. REMEDY IS CONFIGURATION, NOT A REBUILD: raise curiosity_learning_progress_weight (or curiosity_bias_scale) and re-queue; the substrate itself is not implicated",
+        "control": "measured post-F at the committed-selection layer, on the same ticks the DV is read (never at the proposer, which an F-dominated argmax washes out -- V3-EXQ-569g/684/700)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_multitarget_regime_reached": true,
+      "C2_readout_differentiates": true,
+      "C3_downstream_consumer_can_diverge": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2c2dc7e20d732993272e3b7cad56b639a00457976fb9b19bc158914f3b2fb281",
+  "substrate_commit": {
+    "commit": "22c602a0f66956a641efc9270b93c7cd1e63a814",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "latent.use_e2_world_uncertainty": true,
+    "latent.use_e2_world_uncertainty_online_training": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_structured_curiosity": true,
+    "epistemic_deficit_persist_targets_across_episodes": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 254.208528619,
+  "config": {
+    "seeds": [
+      71,
+      101,
+      202
+    ],
+    "episodes": 3,
+    "steps_per_episode": 60,
+    "world_dim": 16,
+    "self_dim": 32,
+    "env": "CausalGridWorldV2",
+    "use_structured_curiosity": true,
+    "use_curiosity_novelty": false,
+    "use_curiosity_uncertainty": false,
+    "use_curiosity_learning_progress": true,
+    "curiosity_learning_progress_source": "epistemic_deficit",
+    "epistemic_deficit_require_differentiated_readout": false,
+    "e2_world_uncertainty_warmup_steps": 60,
+    "e2_world_uncertainty_batch_size": 16,
+    "arm_knobs": {
+      "ARM_PREREADINESS": {
+        "epistemic_deficit_match_radius_mode": "absolute",
+        "epistemic_deficit_match_radius_relative_frac": 0.5,
+        "epistemic_deficit_center_update": "replace",
+        "epistemic_deficit_center_ema_beta": 0.1,
+        "epistemic_deficit_readout_mode": "hard_match",
+        "epistemic_deficit_persist_targets_across_episodes": false,
+        "epistemic_deficit_target_frame": "realized"
+      },
+      "ARM_READINESS": {
+        "epistemic_deficit_match_radius_mode": "relative",
+        "epistemic_deficit_match_radius_relative_frac": 0.5,
+        "epistemic_deficit_center_update": "ema",
+        "epistemic_deficit_center_ema_beta": 0.1,
+        "epistemic_deficit_readout_mode": "rbf_weighted",
+        "epistemic_deficit_persist_targets_across_episodes": true,
+        "epistemic_deficit_target_frame": "predicted"
+      }
+    },
+    "thresholds": {
+      "VACUOUS_READOUT_RATE_CEILING": 0.5,
+      "MULTITARGET_FLOOR": 2.0,
+      "LP_DEV_RANGE_FLOOR": 1e-12,
+      "DIVERGENCE_FLOOR": 1e-09,
+      "CONTROL_DIVERGENCE_CEILING": 1e-09
+    }
+  },
+  "seeds": [
+    71,
+    101,
+    202
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 1080,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
