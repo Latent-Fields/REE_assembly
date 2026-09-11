@@ -288,10 +288,22 @@ not of the dose. **Nothing routes to `/queue-experiment`.**
 **The owed work is H2** -- the leg ARC-021's `what_would_answer` literally names -- currently
 substrate-blocked on the `ContextMemory` in-place write (`ree_core/predictors/e1_deep.py:127`
 and `:272-273`; GFLAG-0229; record
-`arc021_h2_leg_blocked_substrate_merged_arm_crash_20260908.md`). **Recommendation: raise that
-blocker's priority in `substrate_queue.json`.** It is now the only remaining route to
-ARC-021's necessity half: H3 ran (V3-EXQ-1011, `submargin_degradation_ruled_out`) and H1 is
-closed as un-instrumentable.
+`arc021_h2_leg_blocked_substrate_merged_arm_crash_20260908.md`). It is now the only remaining
+route to ARC-021's necessity half: H3 ran (V3-EXQ-1011, `submargin_degradation_ruled_out`) and
+H1 is closed as un-instrumentable.
+
+**Checked at close, and it changes the recommendation: there is NO `substrate_queue.json` entry
+for this blocker at all.** Searched all 179 queue items for `ContextMemory` / `e1_deep` /
+`ARC-021` / `0229`: the nine hits are other defects. The nearest,
+`contextmemory-write-path-addressing-degeneracy` (`corrupting`,
+`implemented_pending_validation`), is a **different defect in the same function** -- hard-argmin
+addressing degeneracy, not the autograd-version violation under a merged objective -- and the
+H2 record's own section 2 says so explicitly. The H2 record routed the fix to
+`/implement-substrate` and nothing was ever enqueued; three days on, no queue item, no IGW
+assignment, no chip. **So the recommendation is to ADD an entry, not to re-prioritise one**, and
+until that happens the work is unowned. A `/implement-substrate` chip
+(`chip-20260911-arc021-h2-contextmemory-inplace-write`) was spawned at this session's close to
+carry the build; the queue entry itself is `/governance` Step 6a's to write.
 
 **For `/governance`, attached to the existing GFLAG-0264** (evidence_discrepancy,
 ARC-021 / MECH-069) rather than as a new flag -- that flag already carries the H1 follow-on:
@@ -316,4 +328,8 @@ ARC-021 / MECH-069) rather than as a new flag -- that flag already carries the H
 monotonically stricter as the seed count rises and can refuse a regime that is perfectly
 healthy in the mean (dose 0 here: mean AUC 0.6625, gate reads the worst cell at 0.5534). A
 successor should either denominate it on a quantile or state explicitly that it is a
-worst-cell gate. Raised here as a finding, not fixed -- fixing it is not this spike's scope.
+worst-cell gate. Raised here as a finding, not fixed -- fixing it is not this spike's scope. **It is not
+unowned, though:** the DV-headroom precondition class is substrate-queue item
+`dv-dynamic-range-precondition-class`, status `implemented_pending_validation`, so this is
+evidence for that item's outstanding validation and should be attached there rather than
+chipped separately.
