@@ -14954,11 +14954,16 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1385",
+      "blocked_by": "ARC-009 (no symbolic communication channel in ree_core/); ARC-010 (no multi-agent substrate; ARC-047 SocialGridWorld unimplemented, implementation_phase v5); plus no collective/institution abstraction of any kind in ree_core/",
+      "blocked_note": "MECH-012 needs both a collective (institution) and a symbolic channel as IVs; ree_core/ has only a register-only LANGUAGE_EXPLICITATION enum label and a single-agent environment, and zero multi-agent substrate. Strictly harder than MECH-011/EXP-0741. Literature lane (LIT-0744) deliberately left open -- lit evidence is still accruable for a substrate-blocked claim, and 'missing_literature_evidence' is a why_now a lit pull can genuinely discharge.",
       "claim_id": "MECH-012",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-11T18:09:11Z",
+      "gated_by_session": "igw-245-proposal-for-mech-012",
+      "gating_reason": "EXP-0743 (MECH-012, 'Language and institutions interplay') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-245-proposal-for-mech-012, IGW-20260911-245). MECH-012 asserts that in COLLECTIVE systems language is the primary medium through which ethical residue is managed or displaced -- institutions absorb, diffuse, or deny residue -- and that ethical failure arises when symbolic language decouples from embodied harm signals and residue tracking. That makes TWO independent variables mandatory: (1) a multi-agent collective that can constitute an 'institution', and (2) a symbolic/linguistic channel whose coupling to harm signals can be varied. Neither exists in ree-v3. Verified directly against the tree this session: the only 'language' token anywhere in ree_core/ is the bare enum label ControlDemandType.LANGUAGE_EXPLICITATION (ree_core/claustrum/control_demand.py:49), annotated 'register-only: declared for taxonomy stability, no template yet'; ree_core/claustrum/coalition_templates.py:13 states in-source that consumer substrate for the social/language demand classes \"doesn't exist yet in ree_core\"; greps for utterance|linguistic|symbol_channel|other_agent|multi_agent|multiagent|message_pass|institution|collective_agent over ree_core/ return ZERO files, as do n_agents|num_agents; and ree_core/environment/ contains exactly one environment (causal_grid_world.py, single-agent). Residue substrate DOES exist (ree_core/residue/field.py plus consumers), but that is the DV side only -- the claim is about what happens to residue when it is mediated by a collective symbolic layer, and there is no such layer to manipulate. MECH-012 is therefore strictly HARDER than MECH-011 (blocked as EXP-0741, REE_assembly 5b75f7f01e): it needs everything MECH-011 needs PLUS a multi-agent collective. No commitment-free measurement-only variant exists either -- the only runnable surrogate (vary an abstraction layer's coupling to a harm signal in a single agent) tests signal-decoupling mechanics, not language or institutions, and could not attach to MECH-012 at any defensible mapping fidelity. A claim_probe_mech_012 queued now would have no IV to manipulate. That is a vacuous result, not a verdict.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-012 via targeted experiment runs.",
       "priority": "medium",
@@ -14976,7 +14981,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_012",
       "target_repo": "ree-v3",
       "why_now": [
