@@ -1,16 +1,20 @@
 # Science-chip pre-flight verdicts, 2026-09-10/11
 
 **Why this file exists.** These verdicts were recorded onto the chips themselves, twice, by two
-different mechanisms, and were lost both times. This note is the durable copy. Read
-`amend_prompt_hollow_ack` below before trusting any chip-borne finding.
+different mechanisms, and were lost both times. This note is the durable copy. `chip_content_loss`
+below records how each loss happened, and corrects the earlier diagnosis of the second one.
 
 Produced by `orchestrate-20260910-2213` and `orchestrate-20260911-0330` (metaworker-orchestrate
 Step 1d-iii), as a read-only pass against live `ree-v3` before spending an Opus queue session.
 Result: **1 RED, 5 AMBER, 0 GREEN** over six queue-ready chips.
 
-## amend_prompt_hollow_ack -- READ THIS FIRST
+## chip_content_loss -- READ THIS FIRST
 
-Two recording channels have now silently failed for chip-borne findings:
+*(Previously headed `amend_prompt_hollow_ack`. That diagnosis was wrong; it is corrected below.
+The old name is kept here so anything still pointing at it resolves.)*
+
+Both recordings of these verdicts were lost, but by two DIFFERENT mechanisms, and only the first
+was a defect in the recording channel itself.
 
 1. **`claim_note`** (the route `metaworker-orchestrate` Step 1d-iii originally prescribed:
    `chip_ledger.py claim --note "<verdict>"` then `unclaim`). `claim_note` is a SINGLE
@@ -18,19 +22,55 @@ Two recording channels have now silently failed for chip-borne findings:
    boilerplate. Found 2026-09-10; fixed in `REE_Working 8e3832816`, which changed the skill to
    prescribe `amend-prompt` instead.
 
-2. **`amend-prompt`** -- the replacement -- **is also not durable.** Six calls across two
-   sessions (2026-09-10T23:11Z and 2026-09-11T03:3xZ) each returned
-   `prompt amended ... previous prompt preserved in prompt_history -- coordinator-acknowledged;
-   git write suppressed`, and NONE reached `origin/master:TASK_CHIPS.json`. Every affected chip
-   is back to its original prompt length with `prompt_history` empty or holding only an
-   unrelated older entry. Verified 4.5h after the first call against a 2-minute materializer, so
-   this is not lag. `resolution_note` and `claim_note` written by the SAME sessions DID persist,
-   which isolates the failure to the `prompt` field on the suppressed coordinator path
-   (`chip_ledger.coordinator_amend_prompt`, ~line 3009).
+2. **`amend-prompt` is durable, and always was.** The earlier text of this section called it
+   "also not durable" and localised the fault to `chip_ledger.coordinator_amend_prompt`. That was
+   measured wrong on 2026-09-11 by session `confident-panini-0cdba7`: it read
+   `origin/master:TASK_CHIPS.json` AFTER the content had been reverted by a third party, and took
+   the absence for a never-arrival.
 
-   Consequence: last cycle's fix replaced one silently-lossy channel with another, so the skill
-   currently prescribes a route that does not work. Until that is resolved, **record durable
-   findings in a git-tracked note like this one**, not on the chip.
+   The verb works end to end. The client's ack verification (`verify_chip_coordinator_ack`)
+   asserts `entry["prompt"]` equals the text the call sent, field for field; `db.amend_chip_prompt`
+   updates `prompt`, `prompt_history_json` AND `entry_json` -- and `entry_json` is what the
+   materializer renders. A live probe on 2026-09-11 (`record` -> `amend-prompt` -> materializer
+   tick -> read `origin/master`) round-tripped correctly. The five amends of 2026-09-10T23:11Z DID
+   reach `origin/master`, in hub materializer commit `REE_Working 587151435` at 23:11:18.
+
+3. **What destroyed them was the daily chip-archive job, four hours later.** At
+   2026-09-11T03:30:43Z `com.ree.chiparchive` (launchd, DLAPTOP) ran `chip_ledger.py archive`. Its
+   STEP-1 push moved this box's `master` ref `0e2d201594` -> `6e014f117b` WITHOUT rewriting the
+   working tree's `TASK_CHIPS.json` -- the HEAD/worktree skew `CLAUDE.md` documents, which for a
+   MODIFIED file leaves no distinguishing `git status` code. STEP 3's whole-file read-modify-write
+   then merged against a base that equalled origin's tip ("0 behind"), took the ORIGIN IS IGNORANT
+   branch of `merge_origin_into_local()` for six chips, logged `KEPT this box's unpushed change to
+   ...` six times in `~/Library/Logs/ree_chip_archive.launchd.log`, and committed
+   `REE_Working bba91a74f` -- reverting `prompt`, `prompt_history` AND `claim_note` on all six.
+
+   Root cause: that exception reasons from a negative (origin matches the base, so origin has not
+   seen us) and never checked its second premise -- that the local record differing from the base
+   is a local CHANGE at all. Pre-PHASE-2b it always was, because every durable chip mutation wrote
+   the working tree and committed it in one motion. Under coordinator suppression a mutation never
+   touches the working tree, so the disk copy is a CACHE, and a disagreeing cache is normally just
+   BEHIND.
+
+4. **Fixed in `REE_Working af68bb13c9`**: the exception now additionally requires HEAD to disagree
+   with origin -- the positive proof that an unpushed local commit actually exists. Regression
+   suite `scripts/test_chip_ledger_amend_prompt_stale_worktree.py`, 8 tests: three incident replays
+   that fail against pre-fix code, plus five negative controls pinning the exception the change
+   narrows. Green across the `chip_ledger` corpus (43/43); the fix commit records 27/27 on its
+   changed-file corpus.
+
+5. **Recovery.** The six reverted prompts were restored on 2026-09-11T07:13Z, copied verbatim from
+   `REE_Working 6e014f117` (the commit immediately before the revert), not retyped.
+   `chip-20260909-mech465-conjunct3-queue` was restored as a MERGE of its 23:11 pre-flight verdict
+   block and its later 03:39 P2-floor calibration block, both preserved. `claim_note` was
+   deliberately NOT restored: the lost values were release boilerplate ("pre-flight only; released
+   for the queue session"), and restoring one would require re-claiming the chip, which has live
+   dispatch-mutex side effects.
+
+**Consequence for the standing advice.** `metaworker-orchestrate` Step 1d-iii's prescription of
+`amend-prompt` is correct and needs no change. Keeping a git-tracked note like this one is a
+belt-and-braces preference -- a second copy under a second failure mode -- NOT a workaround for a
+chip channel that does not work.
 
 ## Verdicts
 
