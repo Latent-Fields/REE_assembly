@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-09-11T14:05:46Z
+Generated: 2026-09-11T15:36:36Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -24,7 +24,7 @@ Nodes whose `owner_exq` reached a terminal state but where suppression rules say
 
 _None._
 
-## Assembly frontier -- resting, not drift (10)
+## Assembly frontier -- resting, not drift (11)
 
 Nodes with status `assembling` / `open_by_design`: required for v3 but under construction. They are a stable resting state -- NOT counted as drift or stale, and they need no recurring re-stamp to stay quiet. Listed here for visibility only. A node flagged **revisit_due** has passed its optional `revisit_after` date and should be reviewed (resume / re-state / extend the date).
 
@@ -40,6 +40,7 @@ Nodes with status `assembling` / `open_by_design`: required for v3 but under con
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | assembling | _unset_ | blocked_on_upstream | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | assembling | _unset_ | blocked_on_upstream | _none_ | no |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress | _none_ | no |
+| zworld_adequacy_plan.md | `zworld_adequacy:ZW-1` | assembling | SD-106 | queued | 2026-10-15 | no |
 
 ## Status-plane drift -- projected `live` != stored `live` (0 of 99 collapsed node(s))
 

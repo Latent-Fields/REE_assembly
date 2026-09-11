@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-11T14:05:51Z
+Generated: 2026-09-11T15:36:36Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,12 +8,12 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **73.0%** across 97 non-deferred nodes in 17 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **33** nodes.
-- Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **10** nodes.
+- Weighted progress: **72.3%** across 98 non-deferred nodes in 18 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **34** nodes.
+- Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **11** nodes.
 - Deferred (not required for v3 closure): 10 nodes.
 - Done: 64 nodes.
-- Status tally: assembling=10  blocked=13  blocked_pending_substrate=3  deferred=10  done=64  in_progress=9  open=4  partial=3  upstream_blocked=1
+- Status tally: assembling=11  blocked=13  blocked_pending_substrate=3  deferred=10  done=64  in_progress=9  open=4  partial=3  upstream_blocked=2
 
 ## Plans
 
@@ -22,6 +22,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-09-08 |
 | `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 10% | blocked:1 | 2026-08-21 |
+| `zworld_adequacy_plan.md` | observation -> z_world encoding adequacy (the V3 binding-constraint interface) | 2 | 10% | assembling:1 upstream_blocked:1 | 2026-09-11 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-23 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-09-04 |
 | `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 32% | blocked:1 done:1 in_progress:2 open:2 | 2026-08-30 |
@@ -37,7 +38,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-16 |
 
-## Remaining work to close v3 (33)
+## Remaining work to close v3 (34)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
@@ -46,6 +47,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-1` | Pre-approach orienting/surveying mode (cue-triggered, narrow vector resolution) | blocked | 1 | high |  |  | 2026-08-13 |
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-2` | epistemic_deficit: persistent target-bound model-inadequacy accumulator | in_progress | 1 | high |  | MECH-482's own claims.yaml non-degeneracy precondition -- a substrate where target-bound u | 2026-08-30 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-08-18 |
+| zworld_adequacy_plan.md | `zworld_adequacy:ZW-2` | SD-018 shape (b) raw-field side-channel -- HELD as a bypass of the interface, no | upstream_blocked | 1 | medium |  | Held by decision, on ONE surviving ground, pending ZW-1. SD-018 shape (a) (supervise one n | 2026-09-11 |
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-6` | MECH-489 validation: defensive-orienting phasic behavioural chain | in_progress | 2 | high | V3-EXQ-910b | V3-EXQ-910b RAN 2026-08-22 and is CONFIRMED-AUTOPSIED (failure_autopsy_V3-EXQ-910b_2026-08 | 2026-08-25 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-08-18 |
@@ -77,7 +79,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-G` | Theory 7 (blocked on GAP-B): MECH-314 curiosity weight (Goldilocks calibration) | blocked |  | low |  | BLOCKED ON behavioral_diversity_isolation:GAP-B only (status partial, severity load-bearin | 2026-08-18 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:MECH-191` | MECH-191 cross-architecture legibility unblock check (does A's dispositional rea | open |  | low |  | depends_on: global_workspace_jlens:A | 2026-07-09 |
 
-## Assembly frontier -- required, under construction (10)
+## Assembly frontier -- required, under construction (11)
 
 Nodes whose honest state is "the substrate for this is being assembled" -- NOT a stalled gap and NOT deferred. They are held out of the closure % (so correct, unhurried construction is never scored as failure) and out of the Remaining backlog, and surfaced here on their own axis. `awaiting` names the substrate under construction; `assembly_status` is its build state (queued / in_progress / built); a node is restful until its optional `revisit_after` date passes (see the drift report's Assembly-frontier section).
 
@@ -93,6 +95,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | routing=implement-substrate | built |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | routing=implement-substrate | blocked_on_upstream |  |  |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 prot | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress |  | 2026-06-23 |
+| zworld_adequacy_plan.md | `zworld_adequacy:ZW-1` | observation -> z_world preserves decision-relevant content (SD-106 gen | assembling | SD-106 | queued | 2026-10-15 | 2026-09-11 |
 
 ## Deferred -- not required for v3 closure (10)
 
