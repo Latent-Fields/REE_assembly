@@ -26423,9 +26423,32 @@
     [7,271,883] disjoint from [42,123,456]) retained ARM_4_HIGH_OFF as the consumer-absent control,
     and the follow-on H1/H2/H3+CONTROL portfolio (861e/861f/861g/861h) is recorded CLOSED as of
     2026-08-25. No run may be justified on the grounds that it would supply INV-050's missing
-    control. The actual outstanding INV-050 item is the ree_core substrate bisect over
-    f810969..17befb8c (11 commits; candidate 76cbf84, the ContextMemory.write() single-slot
-    fixed-point repair) behind 861e's seed-271 HIGH-arm collapse, tracked separately as a chip.
+    control. The ree_core substrate bisect over f810969..17befb8c that this claim named as its
+    actual outstanding item is now DONE (2026-09-11, chip-20260910-gflag0205-inv050-reecore-bisect;
+    detail evidence/planning/inv050_reecore_bisect_20260911.md). The mover is ree-v3 6293b23
+    (MECH-091, wire task-completion and commitment-boundary-crossing triggers into phase_reset();
+    parent 5f64a53f) -- NOT the standing candidate 76cbf84. Method: 861e's ARM_3_HIGH_ON
+    agent/env config replayed as a short wake-only rollout against each of the 11 commits pinned
+    via experiments/_lib/substrate_pin.py, comparing the per-step e3_prediction_error stream
+    bitwise. ONE clean divergence point on every probe (seeds 271/7/42, 4-14 episodes):
+    6f46a70/bbc69c4/93d5d98 are bit-identical to f810969, and
+    68173a7/76cbf84/692f852/775eb55/1a4b6be/e5b46af/0911574 are bit-identical to 6293b23. 76cbf84
+    is excluded FOUR ways -- its flag defaults False on a bit-identical legacy argmin path; 861e's
+    from_dims call passes no ContextMemory write knob at all; control leg 861h already found the
+    write-address lock not load-bearing; and it is bitwise inert here. Mechanism, documented by
+    6293b23's own author at authoring time: the change "legitimately alters E3 tick cadence ...
+    which shifts the RNG draw sequence for any downstream fixed-seed live rollout" -- it broke two
+    unrelated fixed-seed pins the same day, re-pinned under
+    chip-20260817-q081-boundary-pin-shift-mech091 (closed 2026-08-18). No contradiction with H1
+    (861f): 861f isolated MEASUREMENT RNG, while 6293b23 shifts the ROLLOUT trajectory RNG
+    sequence, which a measurement-level reseed does not undo. SCOPE: this localizes the
+    execution-path divergence and does NOT re-measure mean_mel under the full 861e protocol;
+    attributing the exact 0.884 factor to 6293b23 still wants one pinned confirmation cell (861e
+    protocol at 5f64a53f vs 6293b23, seed 271), which is a /queue-experiment job. If confirmed,
+    861e's seed-271 movement is a tick-cadence seed-realization shift, NOT a regression in the MEL
+    mechanism -- which would retire the standing hedge that f810969's >1.0 reading rode the
+    pre-repair bug. status/confidence/evidence_direction UNCHANGED by this bisect (diagnostic,
+    non-voting).
     The 861b calibration re-run below is still owed on its own merits. Routed to /queue-experiment for
     a same-question letter (861c: more calibration episodes and/or an uncertainty-aware C2
     threshold) -- explicitly NOT a bare re-seed at the same methodology. No substrate_queue
