@@ -5054,7 +5054,11 @@
       "task_claim_session_id": "igw-auto-igw-245-literature-proposal-for-mech-012-20260911T190720Z",
       "task_claim_claimed_at": "2026-09-11T19:07:20Z",
       "assigned_at": "2026-09-11T19:06:03Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-11T19:27:42Z",
+      "completion_summary": "MECH-012 lit pull: 6 entries in targeted_review_mech_012 (REE_assembly ad04a9a4a3), reindexed (e082081a5a, lit_conf 0 -> 0.63, 2 supports / 2 mixed / 2 weakens), LIT-0744 -> executed in both proposal files (aadf8faa63), GFLAG-0272 raised -- Beyer 2017 and Haslam 2015 directly disconfirm two of MECH-012's three written clauses",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-012 lit pull: 6 entries in targeted_review_mech_012 (REE_assembly ad04a9a4a3), reindexed (e082081a5a, lit_conf 0 -> 0.63, 2 supports / 2 mixed / 2 weakens), LIT-0744 -> executed in both proposal files (aadf8faa63), GFLAG-0272 raised -- Beyer 2017 and Haslam 2015 directly disconfirm two of MECH-012's three written clauses"
     }
   ],
   "dispositions": [
@@ -7226,6 +7230,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-11T18:15:50Z",
       "re_eligible_after": "2026-09-13T18:15:50Z"
+    },
+    {
+      "stable_hash": "a8360f779c07",
+      "igw_id_at_disposition": "IGW-20260911-245",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-012"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-012",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-11T19:27:44Z",
+      "re_eligible_after": "2026-09-13T19:27:44Z"
     }
   ]
 }
