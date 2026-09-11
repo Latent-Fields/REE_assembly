@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_059",
+  "entry_id": "2026-09-11_arc_059_contingency_selfrecognition_null_kleinradukic2020",
+  "timestamp_utc": "2026-09-11T07:02:36Z",
+  "claim_ids_tested": ["ARC-059"],
+  "source": {
+    "title": "No evidence for infants' contingency detection as a precursor of toddlers' self-recognition",
+    "authors": ["Sarah Klein-Radukic", "Norbert Zmyj"],
+    "year": 2020,
+    "venue": "Infant Behavior and Development",
+    "doi": "10.1016/j.infbeh.2020.101459",
+    "pmid": "32603952",
+    "pmc": null,
+    "volume": "60",
+    "pages": "101459"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.5,
+  "confidence_rationale": "A well-powered longitudinal null (N=113, two contingency measures at 6 and 9 months against four self-recognition measures at 18 and 26 months) is credible evidence against a necessary developmental route from action-outcome contingency sensitivity to self-representation. Confidence is held at the middle of the band because of mapping, not method: the outcome measure is explicit mirror/video self-recognition, whereas ARC-059 stage 1 posits an implicit self-versus-world attribution comparator. The null therefore bears on the ordering claim at one remove.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sensitivity to self-produced sensory contingency measured at 6 and 9 months did not predict any of four self-recognition outcomes at 18 or 26 months, so an architecture that treats contingency-based self-discovery as the developmental route to a self-model has no support from this longitudinal design.",
+    "If stage 1 competence is operationalised as a behavioural contingency-preference score, a downstream stage can improve with no measurable stage-1 predictor -- meaning a REE ablation that withholds stage 1 and then reads a self-model proxy may show no effect even when the ordering is genuinely load-bearing at the mechanism level."
+  ],
+  "tags": ["arc-059", "developmental_ordering", "contingency_detection", "self_recognition", "longitudinal_null"],
+  "mapping": {
+    "source_claim_statement": "Infants' contingency preference and contingency detection in the first year do not predict mirror or video self-recognition in the second and third year; self-recognition appears to emerge independently of contingency experience.",
+    "ree_translation": "ARC-059 stage 1 (self-as-object via motor experimentation) is asserted to be a precondition for the self-model that later stages require. The developmental analogue of that precondition -- contingency-based discovery of self-produced sensory change -- fails to predict the developmental analogue of the downstream self-model. On its face this weakens the load-bearing reading of the stage-1 gate.",
+    "mapping_caveat": "The translation is not tight in either direction. Mirror self-recognition is a conceptual, explicit self-representation of the kind REE does not implement and ARC-059 does not claim; stage 1's actual content is closer to an online egocentric body schema / self-world attribution comparator, which this study never measures. The contingency tasks are also looking-time preference measures, not measures of whether the infant has built an action-space model. So the study weakens a strong 'contingency experience is the route to selfhood' reading rather than the narrow comparator-precondition reading ARC-059 depends on.",
+    "source_context": "Human infants, longitudinal, N=113; looking-time contingency tasks at 6 and 9 months; mirror-face, mirror-leg and video-face recognition at 18 and 26 months."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Longitudinal design with a substantial infancy-standard N and multiple convergent outcome measures raises source quality above the typical infancy single-cohort study. Mapping fidelity is the limiting term: the construct measured downstream (explicit self-recognition) is a different level of self than the one ARC-059 stage 1 builds. Transfer risk is elevated because a null in human development does not establish that the ordering is dispensable for an artificial agent that has no innate action-space prior -- REE's stage 1 has to supply what infants may partly be born with."
+  }
+}

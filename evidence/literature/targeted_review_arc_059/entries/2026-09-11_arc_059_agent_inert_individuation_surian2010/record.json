@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_059",
+  "entry_id": "2026-09-11_arc_059_agent_inert_individuation_surian2010",
+  "timestamp_utc": "2026-09-11T07:02:36Z",
+  "claim_ids_tested": ["ARC-059"],
+  "source": {
+    "title": "Infants' individuation of agents and inert objects",
+    "authors": ["Luca Surian", "Stefania Caldi"],
+    "year": 2010,
+    "venue": "Developmental Science",
+    "doi": "10.1111/j.1467-7687.2009.00873.x",
+    "pmid": "20121870",
+    "pmc": null,
+    "volume": "13",
+    "issue": "1",
+    "pages": "143-150"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.58,
+  "confidence_rationale": "A clean two-experiment violation-of-expectancy contrast in which the agent/inert distinction supports individuation while a same-category featural distinction does not. It bears directly on ARC-059's stage-2-before-stage-3 gate, which is the sharper of the claim's two ordering assertions and the one with less independent support. Confidence is held below 0.6 by the known fragility of infant violation-of-expectancy effects and by the fact that a single 10-month cross-section cannot establish which representation arrived first.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ten-month-olds individuated a self-moving agent from an inert object but failed to individuate two agents from each other, indicating that the agent sortal is carried by dynamic self-motion cues rather than by the featural object-schema ARC-059 requires as its stage-2 prerequisite.",
+    "If agent-detection can run on a motion-contingency cue that is available from stage 1, then an agent could acquire the others-as-special-objects distinction without first completing object-schema formation, and a stage-3-without-stage-2 ablation would fail to show the predicted degradation."
+  ],
+  "tags": ["arc-059", "developmental_ordering", "object_individuation", "agent_detection", "sortals"],
+  "mapping": {
+    "source_claim_statement": "Ten-month-old infants can use dynamic information to detect agents in complex individuation tasks before they can rely on shape or surface features, and the sortals 'agent' and 'inert object' appear in development before 12 months without a substantial contribution of linguistic experience.",
+    "ree_translation": "ARC-059 stage 3 asserts that other-agents are recognised as a distinguished subclass of objects, and that this requires stage-2 object-schemas to be in place first. Surian and Caldi report the opposite dependency structure: the agent/non-agent distinction is available on dynamic cues at an age when featural individuation of two agents is not, suggesting the agent sortal is not built on top of a featural object schema.",
+    "mapping_caveat": "Two boundaries. First, 'not built on featural individuation' is not the same as 'not built on object-schemas' -- REE stage-2 object-schemas are formed by experimental action and may encode dynamics, not just shape and surface, in which case the paper's agent cue is inside stage 2 rather than prior to it and the challenge dissolves. Second, this is a single 10-month cross-section: it shows a dissociation in what is available at one age, not a developmental ordering, so it cannot by itself establish that agent representation precedes object representation. Violation-of-expectancy looking-time inference also carries a general replication caveat that applies here.",
+    "source_context": "Human infants at 10 months; violation-of-expectancy looking-time paradigm; Experiment 1 contrasted one self-moving non-rigid agent with one inert object, Experiment 2 contrasted two different agents."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality reflects a well-designed two-experiment contrast in a strong developmental journal, discounted for the small samples and the known fragility of violation-of-expectancy effects. Mapping fidelity is moderate: sortal individuation maps recognisably onto 'distinguished subclass of objects', but the paper's featural/dynamic split does not cleanly align with REE's stage-2 object-schema content. Transfer risk is moderate because the infant's agent detector may be a dedicated innate mechanism with no REE analogue, in which case its early availability says nothing about what a constructed agent must learn first."
+  }
+}

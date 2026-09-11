@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_061",
+  "entry_id": "2026-09-11_arc_061_comparator_model_critique_christensen2018",
+  "timestamp_utc": "2026-09-11T07:02:36Z",
+  "claim_ids_tested": ["ARC-061"],
+  "source": {
+    "title": "Sense of agency for movements",
+    "authors": ["Mark Schram Christensen", "Thor Grunbaum"],
+    "year": 2018,
+    "venue": "Consciousness and Cognition",
+    "doi": "10.1016/j.concog.2018.07.002",
+    "pmid": "30007133",
+    "pmc": null,
+    "volume": "65",
+    "pages": "27-47"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "A sustained argument plus two failed induction experiments against the comparator model at the motor level -- the level ARC-061 treats as its canonical instance and generalises from. The parsimony challenge is the damaging part: if a simpler motor-signal model explains narrow sense of agency equally well, then the comparator's extra structure is unearned at Level 1 and the family claim loses its anchor. Held below 0.7 because failures to induce an illusion are weaker evidence than a positive dissociation, and because the authors' own narrow/broad distinction leaves REE's cf_gap mechanism partly outside the target.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Two experiments designed to induce illusory narrow sense of agency in healthy participants failed to do so, which the authors argue they should have succeeded at if the comparator model of narrow agency were correct.",
+    "A motor signal model -- authorship tagged by the presence of an efference signal, with no forward prediction and no comparison step -- explains narrow sense of agency as well as the comparator model does, so REE could be attributing to a comparator what a strictly simpler mechanism already accounts for.",
+    "Most experimental paradigms cited in support of the comparator model measure BROAD sense of agency over environmental events, not narrow agency over one's own movements, so evidence commonly read as supporting a motor comparator may not be about the motor level at all."
+  ],
+  "tags": ["arc-061", "level_1_motor", "comparator_model", "sense_of_agency", "parsimony_challenge", "negative_result"],
+  "mapping": {
+    "source_claim_statement": "The comparator model is not a satisfactory model of sense of agency: the narrow/broad distinction is generally neglected, the model was derived from studies of sensory consequences narrowly tied to movement, a simpler motor signal model explains narrow sense of agency equally well, standard paradigms study only broad agency, and two experiments failed to induce illusory narrow sense of agency.",
+    "ree_translation": "ARC-061 asserts that a single motif -- forward model, comparator, authorship tag -- recurs at motor, interoceptive and propositional levels, with MECH-095's E2_harm_s counterfactual gap as the Level 1 instance. Christensen and Grunbaum challenge the motif precisely where ARC-061 anchors it, arguing the comparator is both under-evidenced and unnecessary for motor authorship.",
+    "mapping_caveat": "The target is the comparator model as an account of the PHENOMENOLOGY of agency in humans -- what the subject reports feeling authorship over. REE's Level 1 is a functional attribution mechanism that licenses a self-attribution tag; it makes no phenomenological commitment and need not be introspectively accessible. So the critique does not straightforwardly transfer. What does transfer is the parsimony argument, which is about mechanism rather than phenomenology: if efference presence alone suffices to tag authorship, the comparator's extra structure needs independent justification in REE too. The failure to induce an illusion is also a null, and the authors' inference from it depends on their own auxiliary assumption that their paradigms should have worked.",
+    "source_context": "Healthy adult humans; theoretical analysis combined with two original experiments attempting to induce illusory sense of agency over self-produced movements."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality is high for a critical review with original data in the field's main specialist journal, discounted because the empirical contribution is two null inductions rather than a positive dissociation. Mapping fidelity is good on the parsimony argument and poorer on the phenomenological argument, which partly misses REE's functional framing -- 0.7 is the blend. Transfer risk is moderate: the parsimony challenge applies to any comparator-shaped architecture including REE's, but REE's Level 1 operates on counterfactual state-change gaps rather than on sensory attenuation, so some of the specific experimental critique does not reach it."
+  }
+}

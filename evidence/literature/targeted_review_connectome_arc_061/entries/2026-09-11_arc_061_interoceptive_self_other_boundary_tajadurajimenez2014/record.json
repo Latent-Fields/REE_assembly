@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_061",
+  "entry_id": "2026-09-11_arc_061_interoceptive_self_other_boundary_tajadurajimenez2014",
+  "timestamp_utc": "2026-09-11T07:02:36Z",
+  "claim_ids_tested": ["ARC-061"],
+  "source": {
+    "title": "Balancing the 'inner' and the 'outer' self: interoceptive sensitivity modulates self-other boundaries",
+    "authors": ["Ana Tajadura-Jimenez", "Manos Tsakiris"],
+    "year": 2014,
+    "venue": "Journal of Experimental Psychology: General",
+    "doi": "10.1037/a0033171",
+    "pmid": "23750913",
+    "pmc": "PMC3848898",
+    "volume": "143",
+    "issue": "2",
+    "pages": "736-744"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct support for ARC-061's Level 2: interoceptive signal quality predicts how sensory input is assigned to self versus other, across behavioural, physiological and introspective measures, with the authors framing the result explicitly in terms of interoceptive predictive-coding models monitoring source assignment. The individual-differences design is correlational rather than causal, which is the main brake; the convergence of three response modalities on the same moderator is what lifts confidence into the 0.7 band.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Only participants with LOW interoceptive sensitivity showed shifted self-other boundaries under multisensory stimulation, so a weak or noisy interoceptive forward model produces mis-assignment of sensory events to the self -- the substrate-miscalibration signature ARC-061 predicts, observed at Level 2 rather than Level 1.",
+    "The effect is a moderation by individual differences, not an experimental manipulation of interoceptive precision, so an alternative reading in which low interoceptive sensitivity indexes a general susceptibility to multisensory illusion rather than a specific authorship-comparator deficit is not excluded by this design."
+  ],
+  "tags": ["arc-061", "level_2_interoceptive", "predictive_coding", "self_other_attribution", "insula"],
+  "mapping": {
+    "source_claim_statement": "Interoceptive sensitivity predicts the malleability of self-representation under multisensory stimulation across behavioural, physiological and introspective responses; only low-interoceptive-sensitivity participants showed changed self-other boundaries. The authors read this as interoceptive predictive-coding models being used to monitor and assign sensory input to self or other, with insular cortex as the convergence zone.",
+    "ree_translation": "ARC-061 Level 2 posits an interoceptive comparator -- a forward model over somatic and affective state whose prediction error licenses an authorship tag. This study supplies the moderator such an architecture predicts: when the interoceptive model is imprecise, the authorship assignment destabilises and external sensory input is absorbed into the self-representation.",
+    "mapping_caveat": "Two gaps. The paper measures interoceptive SENSITIVITY as a stable individual-differences trait (heartbeat-detection style) rather than manipulating forward-model precision within a participant, so the causal arrow is inferred, not shown. And the outcome is identity/self-other boundary change under multisensory stimulation -- adjacent to, but not identical with, REE's ARC-058 HarmForwardTrunk tagging of somatic and affective change as self- or other-generated. The paper supports the existence of an interoceptive source-assignment process; it does not validate REE's specific affective-prediction-error implementation of one.",
+    "source_context": "Healthy adult humans; interoceptive sensitivity as individual-differences moderator; multisensory self-other stimulation paradigm with behavioural, physiological and introspective outcome measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.3,
+    "notes": "Source quality reflects a strong general-psychology venue and convergence across three response modalities, discounted for a correlational individual-differences design. Mapping fidelity is good: the paper's own theoretical framing is interoceptive predictive coding for source assignment, which is ARC-061 Level 2 stated in the source's vocabulary rather than imposed on it. Transfer risk is low because the claim being supported is architectural -- that an interoceptive comparator exists and its precision gates authorship -- rather than a parameter value that would need to survive a species or task transfer."
+  }
+}

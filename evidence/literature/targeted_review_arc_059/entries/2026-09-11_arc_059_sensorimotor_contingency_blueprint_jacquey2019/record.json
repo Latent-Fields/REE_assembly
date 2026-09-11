@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_059",
+  "entry_id": "2026-09-11_arc_059_sensorimotor_contingency_blueprint_jacquey2019",
+  "timestamp_utc": "2026-09-11T07:02:36Z",
+  "claim_ids_tested": ["ARC-059"],
+  "source": {
+    "title": "Sensorimotor Contingencies as a Key Drive of Development: From Babies to Robots",
+    "authors": ["Lisa Jacquey", "Gianluca Baldassarre", "Vieri Giuliano Santucci", "J. Kevin O'Regan"],
+    "year": 2019,
+    "venue": "Frontiers in Neurorobotics",
+    "doi": "10.3389/fnbot.2019.00098",
+    "pmid": "31866848",
+    "pmc": "PMC6904889",
+    "volume": "13",
+    "pages": "98"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "A cross-disciplinary review whose explicit purpose is to derive an agent architecture from the developmental ordering ARC-059 asserts, and which places body knowledge acquisition upstream of generalisation and goal-directedness. Mapping fidelity is the strongest component because the review is written for exactly REE's kind of agent rather than for infants alone. Confidence is capped at 0.65 because a synthesis that argues for an architecture is not independent empirical evidence that the ordering is load-bearing -- it is a well-argued statement of the same commitment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review's blueprint makes body-knowledge acquisition via sensorimotor-contingency sensitivity the foundation for later goal-setting and skill acquisition, so an agent that skipped it would be expected to lack the substrate the later stages consume -- but the review argues this from architectural coherence rather than from an ablation, and cites no study that withheld the early stage and measured the downstream cost."
+  ],
+  "tags": ["arc-059", "developmental_ordering", "sensorimotor_contingencies", "developmental_robotics", "curriculum"],
+  "mapping": {
+    "source_claim_statement": "Sensitivity to sensorimotor contingencies -- the relation between an agent's actions and their sensory outcomes -- drives the acquisition of body knowledge, memory, generalisation and goal-directedness, and a blueprint architecture combining this sensitivity with goal-setting can be used to build developmental agents.",
+    "ree_translation": "ARC-059 stage 1 is action-space discovery by motor experimentation, producing the substrate on which the later stages operate. The review independently proposes the same construction order for artificial agents, with contingency-driven body knowledge as the foundational layer and goal-directed skill acquisition built on top of it.",
+    "mapping_caveat": "This is a synthesis and an architectural proposal, not a test. It establishes that a competent group working the same problem converged on the same ordering; it does not establish that the ordering is load-bearing, because nothing in it withholds the early stage and measures what breaks. Treating architectural convergence as confirmatory evidence would be exactly the confirmer failure mode governance watches for, so the entry should raise literature grounding without moving the claim toward promotion.",
+    "source_context": "Cross-disciplinary review spanning human infant development and developmental robotics; proposes a blueprint architecture rather than reporting new data."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "Source quality is that of a solid review in a specialist venue by authors central to sensorimotor-contingency theory; it is not primary data, which is the cap. Mapping fidelity is high because the review already speaks in agent-architecture terms -- the translation to REE requires almost no reinterpretation. Transfer risk is correspondingly low: the babies-to-robots transfer is the review's own subject matter and is handled explicitly rather than assumed."
+  }
+}
