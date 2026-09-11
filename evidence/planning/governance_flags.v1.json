@@ -3809,6 +3809,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0271",
+      "claim_ids": [
+        "MECH-309",
+        "MECH-349",
+        "MECH-439"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "MEASURED 2026-09-11: the SD-033a rule signal does NOT convert into committed action under V3-EXQ-598b's training regime, for EITHER a gradient-trained bias head OR the ARC-063 CandidateRuleField -- the MECH-439 F-dominance conversion ceiling, reproduced directly. Three arms were run on 598b's own instrument (its _encoder_step / _p1_train / _p2_reef_fraction imported unmodified), differing in exactly one factor each: ARM_0 bias head frozen + no CRF; ARM_1 bias head TRAINABLE + no CRF (598b's ARM_1); ARM_2 bias head frozen + CRF ON. The arms are demonstrably different internally -- ARM_1's mean |bias| reached 0.100000 (vs 598b's TRAINABLE_BIAS_MIN of 0.002) and ARM_2 minted a live 2-rule pool -- yet p2_reef_visit_fraction was BIT-IDENTICAL across all three arms at two independent budgets: 0.483 at (p0=3,p1=4,p2=2,steps=30) and 0.1034 at (p0=10,p1=20,p2=8,steps=60). Arm spread 0.0000 both times. A DV that does not move while the mechanism driving it moves by 0.1 is inert with respect to the manipulation, not merely under-powered. CONSEQUENCE: any behavioural arm contrast on this DV under this regime is unattributable, so V3-EXQ-1026 was BUILT AND DELIBERATELY NOT QUEUED -- it would consume cloud hours to return substrate_not_ready_requeue via its own dv_responds_to_arm precondition. This also CLOSES the last DV available to MECH-349. Taken with GFLAG-0265 (its distinctness criterion is an arithmetic identity off pinned_seed=6063 and its retirement criterion is structurally zero), GFLAG-0266 (clause (ii) is untestable on separated regimes; CONFIRMING(1)'s first half is a tautology of _maybe_mint) and the 2026-09-11 representational measurement (the legacy non-CRF rule_state EMA already scores margin 0.586 against V3-EXQ-598c's 0.15 floor, so minting has nothing to rescue there, while the CRF arm's higher 0.982 margin is dominated by the fixed geometry of 2 pinned directions and the pool does not grow with ecology richness -- 2 rules minted whether the ecology offers 2 contexts or 4), EVERY DV available to MECH-349 is now blocked for a separately-documented reason. FOR MECH-309 SPECIFICALLY: this run could not test its equilibrium claim either, because its reproduction leg (C1) requires the gradient arm to collapse and the DV cannot distinguish collapse from anything else here; 598b's original C3=False result stands unchallenged but also un-extended. FOR MECH-439: this is a direct, arm-controlled measurement of the conversion ceiling on the SD-033a rule path, which the ceiling's own record may not yet carry. Suggested disposition: adjudicate GFLAG-0268 (whether MECH-349 is empirically testable as written) BEFORE any further validation attempt is commissioned -- five independently-designed experiments have now been built for it and all five were stopped by a structural obstacle, each a different one.",
+      "raised_by_session": "peaceful-euler-13e105",
+      "raised_at": "2026-09-11T18:53:02Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
