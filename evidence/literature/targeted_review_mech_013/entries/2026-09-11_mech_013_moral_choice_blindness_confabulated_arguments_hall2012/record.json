@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_013",
+  "entry_id": "2026-09-11_mech_013_moral_choice_blindness_confabulated_arguments_hall2012",
+  "timestamp_utc": "2026-09-11T21:17:31Z",
+  "claim_ids_tested": [
+    "MECH-013"
+  ],
+  "source": {
+    "title": "Lifting the veil of morality: choice blindness and attitude reversals on a self-transforming survey",
+    "authors": [
+      "Lars Hall",
+      "Petter Johansson",
+      "Thomas Strandberg"
+    ],
+    "year": 2012,
+    "venue": "PLoS One",
+    "doi": "10.1371/journal.pone.0045457",
+    "pmid": "23029020",
+    "pmc": "PMC3446893",
+    "volume": "7",
+    "issue": "9",
+    "pages": "e45457"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "A clever, direct demonstration that verbal moral argument can be generated fluently for a position the speaker did not hold moments earlier -- the rationalisation limb of MECH-013 in its purest form, in the moral domain specifically. Held at 0.55 because the paper shows language decoupled from prior stated attitude, not from any harm or residue signal; it demonstrates post-hoc verbal construction rather than suppression of an ethical signal, and a moderate sample of park volunteers under a benign, low-stakes survey limits how far it generalises.",
+  "failure_signatures": [
+    "Overall only 47.2% of manipulated moral-attitude items were detected, 69% of participants failed to detect at least one of two reversals, and 53% argued unequivocally for the opposite of their original attitude on at least one manipulated item. A REE design that treats an agent's verbal account of its ethical position as a faithful readout of the state that produced it is invalid.",
+    "Detection did not differ meaningfully between abstract moral principles (44.4%) and concrete current issues (50.0%). The rationalisation failure is not confined to abstract symbolic content, so REE cannot assume that grounding a proposition in concrete content protects it from post-hoc verbal reconstruction.",
+    "Participants constructed coherent, unequivocal arguments for positions they had not endorsed. Fluency and coherence of a justification are not evidence that the justification reflects the evaluative basis of the choice."
+  ],
+  "tags": [
+    "mech-013",
+    "rationalisation",
+    "choice_blindness",
+    "confabulation",
+    "moral_attitudes",
+    "self_attribution",
+    "verbal_report_validity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using a self-transforming paper survey of moral opinions (foundational principles and current debated issues), a magic trick reversed two of each participant's previously stated attitudes. Of 160 participants, 69% failed to detect at least one of the two reversals, and participants often constructed coherent and unequivocal arguments supporting the opposite of their original position. The authors conclude there is a clear role for self-attribution and post-hoc rationalisation in attitude formation and change.",
+    "ree_translation": "MECH-013's first failure mode is rationalisation: language used to suppress or explain away harm signals. This paper isolates the machinery that rationalisation needs -- a verbal system that will produce a fluent justification for whatever position it is handed, without checking it against the evaluation that originally produced the position. In REE terms this is the risk that a future symbol channel reports on ethical state by reconstruction from the current output rather than by reading the residue or harm streams. The practical consequence for REE is architectural: any language-level account of why an action was chosen must be treated as a hypothesis about the underlying ethical state, never as a measurement of it; audit should read the residue field and harm streams directly.",
+    "mapping_caveat": "The paper shows verbal report decoupled from a previously stated attitude, not from an affective or harm signal; no aversive signal is present, measured or suppressed. MECH-013's stronger reading -- that language actively suppresses harm signals -- is not tested here, only the weaker one that language can produce justifications that are unconstrained by the evaluation that should underlie them. Stakes were low, the setting was designed to minimise the social awkwardness of correcting the experimenter, and the authors themselves note it is unclear whether the attitudes were stored before the experiment or constructed in context; if they were constructed, there was little for language to decouple from. Choice-blindness work comes from one laboratory group, and the sample (160 park volunteers in Sweden) is modest.",
+    "source_context": "Field experiment in a Swedish park with 160 adult volunteers completing a paper moral-attitudes survey (abstract principles or current issues) whose answers were covertly reversed on two items, followed by a request to read and explain their answers."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "source_quality moderate-good: novel direct manipulation, open access, but a single paradigm from one group and a modest sample. mapping_fidelity 0.55 because this is rationalisation of attitude, not suppression of harm. transfer_risk 0.4: verbal confabulation in humans is a reasonable prior for any learned language layer, and is independently echoed in artificial systems (see Turpin et al. 2023 in this directory)."
+  },
+  "summary_path": "summary.md"
+}

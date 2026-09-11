@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_013",
+  "entry_id": "2026-09-11_mech_013_rationalization_insula_downregulation_jarcho2011",
+  "timestamp_utc": "2026-09-11T21:17:31Z",
+  "claim_ids_tested": [
+    "MECH-013"
+  ],
+  "source": {
+    "title": "The neural basis of rationalization: cognitive dissonance reduction during decision-making",
+    "authors": [
+      "Johanna M. Jarcho",
+      "Elliot T. Berkman",
+      "Matthew D. Lieberman"
+    ],
+    "year": 2011,
+    "venue": "Social Cognitive and Affective Neuroscience",
+    "doi": "10.1093/scan/nsq054",
+    "pmid": "20621961",
+    "pmc": "PMC3150852",
+    "volume": "6",
+    "issue": "4",
+    "pages": "460-467"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.38,
+  "confidence_rationale": "The only entry in this directory with a signal-level measure of the thing MECH-013's rationalisation limb implies: an aversive/interoceptive signal (anterior insula) going DOWN while a regulatory signal (right inferior frontal gyrus) goes UP, at the moment a choice is later rationalised. That is the right shape. Held at 0.38 because the sample is tiny (21 scanned, only the 12 who showed attitude change analysed), the task is choosing between similarly-liked names and paintings rather than anything involving harm, nothing linguistic is manipulated, and the rate-choose-rate design is the one shown by Chen & Risen (2010) to be able to manufacture apparent choice-induced attitude change as a measurement artefact.",
+  "failure_signatures": [
+    "Bilateral anterior insula and lateral parietal cortex were the only regions whose decision-phase activity correlated negatively with subsequent attitude change, while right inferior frontal gyrus, medial prefrontal cortex, precuneus and ventral striatum correlated positively. If REE models rationalisation as a slow, deliberative post-hoc process, it is wrong in form: the signature was present at the moment of decision.",
+    "Only 12 of 21 participants showed reliable attitude change and only they were analysed. Rationalisation of this kind is not universal, so a REE model in which every agent rationalises every hard choice would overpredict it.",
+    "The paradigm uses the rate-choose-rate order; without a rate-rate-choose control, part of the measured 'attitude change' can be a statistical artefact of choices revealing pre-existing preferences. Neural correlates of an artefactual change cannot be taken as the neural basis of rationalisation without that control."
+  ],
+  "tags": [
+    "mech-013",
+    "rationalisation",
+    "cognitive_dissonance",
+    "anterior_insula",
+    "inferior_frontal_gyrus",
+    "emotion_regulation",
+    "choice_induced_preference_change"
+  ],
+  "mapping": {
+    "source_claim_statement": "In the first fMRI study to examine the decision phase of a decision-based cognitive dissonance paradigm, increased activity in right inferior frontal gyrus, medial fronto-parietal regions and ventral striatum, and decreased activity in anterior insula, were associated with subsequent decision-related attitude change. The authors suggest rationalisation may be engaged very quickly at the moment of decision, without extended deliberation, and may involve reappraisal-like emotion regulation.",
+    "ree_translation": "MECH-013 names rationalisation as language 'used to suppress or explain away harm signals'. The REE-relevant content of this paper is the proposed mechanism, not the language: an aversive or conflict signal that would otherwise persist after a hard choice is down-regulated by a prefrontal control signal, fast and at the point of commitment, and the down-regulation predicts later devaluation of the rejected option. If this generalises to ethically loaded choices, REE's rationalisation failure is a precision operation -- a regulatory gain reduction applied to the harm/residue stream at commitment -- which maps directly onto the claim's 'precision misrouting' pathology. That gives a concrete, if not yet runnable, prediction: in a REE agent that had a symbolic justification pathway, rationalisation should show up as reduced harm-stream precision at the commit step, not as a later rewrite of the residue record.",
+    "mapping_caveat": "Nothing here is linguistic and nothing is ethical: participants chose between similarly-rated baby names and paintings, so the down-regulated insula signal is a generic decision-conflict or aversive signal, not a harm or residue signal. The claim's specific assertion -- that language is the instrument of suppression -- is not tested at all. The analysed sample is 12 selected responders, correlations are between-subject and whole-brain, and the rate-choose-rate paradigm is vulnerable to the Chen & Risen (2010) artefact, which the study does not control. Anterior insula is also a highly multi-functional region, so reading its decrease as 'harm signal suppressed' is a reverse inference.",
+    "source_context": "Human fMRI (21 scanned, 12 analysed), free-choice cognitive dissonance paradigm: pre-scan ratings of 140 names and 140 paintings, in-scanner choices between 80 closely-rated pairs, post-scan re-rating; decision-phase activity correlated with subsequent attitude change."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.38,
+    "transfer_risk": 0.6,
+    "notes": "source_quality held down by the tiny, selected sample and the uncontrolled free-choice artefact, despite a reasonable venue and an open-access full text. mapping_fidelity low because neither language nor harm is present -- the entry evidences a candidate mechanism shape (regulatory down-weighting of an aversive signal at commitment), which is why it is included at all. transfer_risk high: generic decision conflict to ethical residue is a large jump."
+  },
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_013",
+  "entry_id": "2026-09-11_mech_013_euphemism_shifts_harm_judgment_walker2021",
+  "timestamp_utc": "2026-09-11T21:17:31Z",
+  "claim_ids_tested": [
+    "MECH-013"
+  ],
+  "source": {
+    "title": "Controlling the narrative: Euphemistic language affects judgments of actions while avoiding perceptions of dishonesty",
+    "authors": [
+      "Alexander C. Walker",
+      "Martin Harry Turpin",
+      "Ethan A. Meyers",
+      "Jennifer A. Stolz",
+      "Jonathan A. Fugelsang",
+      "Derek J. Koehler"
+    ],
+    "year": 2021,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2021.104633",
+    "pmid": "33639377",
+    "pmc": null,
+    "volume": "211",
+    "pages": "104633"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Large sample (N = 1906) in a strong venue, with a direct manipulation of the one variable MECH-013 names as causal: the words used to describe a harmful act. The rationalisation and bureaucratic-dissociation limbs both predict that relabelling harm with an agreeable term softens its evaluation, and it does. Held at 0.62 because the measure is a third party's rated evaluation of a described act, not the harm or residue signal of an agent who performed or witnessed it, and because the effect shrank when the act was described concretely -- which constrains the claim as much as it supports it.",
+  "failure_signatures": [
+    "Replacing a disagreeable term (e.g. 'torture') with a semantically related agreeable term (e.g. 'enhanced interrogation') made evaluations of the same action more favourable. A REE language layer that shares a representational pathway with harm appraisal must be expected to shift harm evaluation by label choice alone, with the underlying act held fixed.",
+    "The euphemism effect was reduced but not eliminated when participants were given a detailed description of the action. Linguistic override of harm appraisal is therefore strongest when the non-linguistic content is ambiguous or absent; a REE model in which label effects are independent of how much concrete harm evidence is available is wrong in form.",
+    "Euphemistic descriptions were judged largely truthful and distinct from lies, and their users more trustworthy and moral than liars. Downstream detectors that look for falsehood will not catch this failure mode, because nothing false has been said."
+  ],
+  "tags": [
+    "mech-013",
+    "euphemism",
+    "rationalisation",
+    "bureaucratic_dissociation",
+    "moral_judgment",
+    "language_framing",
+    "ambiguity_gating"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across studies with 1906 U.S. residents, evaluations of actions were made more favourable by replacing a disagreeable term in the act's description with a semantically related agreeable one (and less favourable by the reverse). The influence of agreeable and disagreeable terms was reduced, but not eliminated, when actions were made less ambiguous by a detailed description. Participants judged euphemistic and dysphemistic descriptions as largely truthful and distinct from lies, and judged agents using them as more trustworthy and moral than liars.",
+    "ree_translation": "MECH-013 says that when language decouples from embodied ethical signals, it can be used to suppress or explain away harm (rationalisation) or to abstract harm until it no longer registers as degradation (bureaucratic dissociation). This paper is the cleanest available demonstration that the label alone moves harm appraisal with the act held constant. The ambiguity result is what makes it useful for REE: the label's grip weakens as concrete detail about the act increases. Read in REE terms, linguistic framing acts on harm appraisal most strongly where the harm stream is weakly specified, which predicts that the MECH-013 failure modes are gated by the precision of the non-linguistic harm evidence -- a sharper, testable version of 'decoupling' than the claim currently states. The dishonesty result maps onto the claim's reputation-substitution limb: the speaker pays no reputational cost for the reframe.",
+    "mapping_caveat": "The participants are observers rating vignettes, not agents whose own harm signal is at stake; the paper says nothing about whether a perpetrator's or witness's aversive response to their own act is attenuated by relabelling, which is the case MECH-013 is most directly about. The dependent variable is an explicit evaluation, so the effect could be entirely at the level of verbal judgment with no change in any affective or residue-like quantity. There is no neural or physiological measure. REE also has no language substrate at all, so the translation is to a hypothetical future symbol channel that would feed harm appraisal; the paper constrains how such a channel should behave, but cannot test REE as it exists.",
+    "source_context": "Online vignette experiments with U.S. residents (N = 1906 total) rating the acceptability of actions described with agreeable, disagreeable, or neutral terms, with and without detailed descriptions, plus judgments of the descriptions' truthfulness and of the speakers' trustworthiness and morality."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "source_quality high for sample size, venue and direct manipulation. mapping_fidelity limited by the observer-rating design: it shows language moving evaluations of harm, not language suppressing an agent's own harm signal. transfer_risk moderate because vignette ratings are a long way from an embodied agent, but the manipulation itself (label held against act) transfers cleanly to any future REE symbol channel."
+  },
+  "summary_path": "summary.md"
+}

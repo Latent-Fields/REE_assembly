@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_013",
+  "entry_id": "2026-09-11_mech_013_moral_licensing_publication_bias_kuper2019",
+  "timestamp_utc": "2026-09-11T21:17:31Z",
+  "claim_ids_tested": [
+    "MECH-013"
+  ],
+  "source": {
+    "title": "Has the evidence for moral licensing been inflated by publication bias?",
+    "authors": [
+      "Niclas Kuper",
+      "Antonia Bott"
+    ],
+    "year": 2019,
+    "venue": "Meta-Psychology",
+    "doi": "10.15626/MP.2018.878",
+    "pmid": null,
+    "volume": "3",
+    "url": "https://open.lnu.se/index.php/metapsychology/article/view/878"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "weakens",
+  "confidence": 0.58,
+  "confidence_rationale": "MECH-013 lists moral licensing among 'common failure modes' of decoupled language. This bias-corrected re-analysis of the moral-licensing literature finds the effect inflated by publication bias, with corrected estimates from d = -0.05 (PET-PEESE, not significant) to d = 0.18 (3-PSM), against the d = 0.31 of the prior meta-analysis (Blanken et al. 2015). That weakens the claim's inclusion of licensing as a common, established failure mode. Held at 0.58 rather than higher because the two correction methods disagree about whether any effect survives, and because the paper speaks to the licensing limb only, not to the claim as a whole.",
+  "failure_signatures": [
+    "Bias-corrected moral licensing estimates were d = -0.05 (PET-PEESE, p = .64) and d = 0.18 (3-PSM, p = .002), against d > .30 in earlier meta-analyses. MECH-013's description of moral licensing as a 'common' failure mode is not supported at the effect sizes the published literature implies; if it exists, it is small.",
+    "The prior meta-analysis (Blanken, van de Ven & Zeelenberg 2015; 91 studies, 7,397 participants, d = 0.31) already found published studies had larger effects than unpublished ones. A REE model that builds moral licensing in as a default dynamic -- prior symbolic 'good acts' reducing subsequent harm-avoidance -- would be encoding a publication artefact at the literature's headline size.",
+    "Culture moderated the licensing effect. Whatever licensing exists is not a universal property of moral self-regulation, so it cannot be a general architectural consequence of language decoupling from ethical signals."
+  ],
+  "tags": [
+    "mech-013",
+    "moral_licensing",
+    "publication_bias",
+    "meta_analysis",
+    "replication",
+    "moral_self_image"
+  ],
+  "mapping": {
+    "source_claim_statement": "Moral licensing -- the finding that displaying moral behaviour can lead to subsequent immoral behaviour, usually explained as an initial moral act affirming the moral self-image and licensing later transgression -- was reported in earlier meta-analyses at d > .30, but several large replications found no effect or a substantially smaller one. Applying PET-PEESE and three-parameter selection model bias corrections to the meta-analytic data, Kuper and Bott found the corrected effect smaller than reported (PET-PEESE d = -0.05, p = .64; 3-PSM d = 0.18, p = .002), concluded that both the evidence for and the size of moral licensing have likely been inflated by publication bias, and found that culture moderates the effect.",
+    "ree_translation": "MECH-013's moral-licensing limb says symbolic 'good acts' can be used to justify later harm -- in REE terms, a symbolic credit that discounts the residue or harm-avoidance weight on a subsequent action. This paper is a direct test of whether that phenomenon is robust in the human literature, and the answer is: much less than claimed, and possibly not at all. For REE governance the consequence is to separate the limbs of MECH-013 by evidential standing. Licensing should not be carried as an established 'common failure mode' alongside rationalisation and euphemistic reframing, which have firmer support (see the Walker 2021 and Hall 2012 entries in this directory). It should be marked contested, or dropped from the claim's asserted list, pending a REE-native test.",
+    "mapping_caveat": "This is a meta-scientific re-analysis, not new data; its conclusion is that the effect is overstated, not that it is absent, and the two bias-correction methods disagree on whether a small effect survives. Moral licensing experiments rarely involve language decoupling from embodied harm in any specific sense -- the manipulations are recalled or performed good deeds and the outcomes are later prosocial or unethical choices -- so even a robust licensing effect would map only loosely onto MECH-013's mechanism. A small real licensing effect in some cultures would still be compatible with licensing being an occasional, not common, failure mode.",
+    "source_context": "Bias-corrected meta-analytic re-analysis (PET-PEESE, 3-PSM) of experimental moral licensing studies comparing a licensing condition with a control, building on the Blanken et al. (2015) meta-analysis of 91 studies and 7,397 participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "source_quality good: open peer-reviewed meta-science using standard bias-correction methods, consistent with independent large-scale replication failures. mapping_fidelity 0.55 because it directly tests one named limb of the claim (licensing) but that limb is only loosely a 'language' mechanism. transfer_risk moderate-low: the question is whether the phenomenon exists in humans at all, which is a prior on whether it belongs in the claim."
+  },
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_013",
+  "entry_id": "2026-09-11_mech_013_political_belief_resistance_dmn_kaplan2016",
+  "timestamp_utc": "2026-09-11T21:17:31Z",
+  "claim_ids_tested": [
+    "MECH-013"
+  ],
+  "source": {
+    "title": "Neural correlates of maintaining one's political beliefs in the face of counterevidence",
+    "authors": [
+      "Jonas T. Kaplan",
+      "Sarah I. Gimbel",
+      "Sam Harris"
+    ],
+    "year": 2016,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/srep39589",
+    "pmid": "28008965",
+    "pmc": "PMC5180221",
+    "volume": "6",
+    "pages": "39589"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.4,
+  "confidence_rationale": "Bears on MECH-013's ideological-capture limb ('fixed symbolic frames override perception and residue'): identity-bound political beliefs changed less under counterargument than equally strongly held non-political beliefs, and challenges to them recruited the default mode network. That part supports the idea that symbolic frames tied to identity resist incoming evidence. It is mixed rather than supports because the affective finding runs against the claim's form -- people who resisted MORE showed MORE insula and amygdala response, i.e. the frame recruits affect rather than overriding it -- and because the counterarguments deliberately contained exaggerations, so resistance is partly rational. Held at 0.40 for a small, single-ideology sample and a political/non-political contrast confounded with content.",
+  "failure_signatures": [
+    "Participants who changed their minds more showed LESS BOLD signal in insula and amygdala when evaluating counterevidence. Ideological capture in this data is accompanied by more affective engagement, not less, so a REE model in which symbolic frames win by suppressing affective or residue signals is wrong in form; the frame appears to recruit affect in its own defence.",
+    "Belief strength fell more for non-political than for political statements after challenge, and challenges to political beliefs increased default mode network activity; item-wise, greater resistance tracked more dorsomedial prefrontal and less orbitofrontal activity. Identity-linked propositions are a distinct class with respect to evidence updating, which REE's ideological-capture limb should specify rather than treat all symbolic frames alike.",
+    "The counterarguments were written to be compelling and often contained exaggerations or distortions of the truth. Resistance to them is not by itself evidence of perception being overridden; a correct REE test of ideological capture needs counterevidence that is valid."
+  ],
+  "tags": [
+    "mech-013",
+    "ideological_capture",
+    "motivated_reasoning",
+    "belief_updating",
+    "default_mode_network",
+    "insula",
+    "amygdala",
+    "identity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Forty self-identified strongly liberal participants were shown, in the scanner, statements they strongly believed followed by five challenging counterarguments each, for 8 political and 8 non-political statements. Belief decreased more for non-political than for political statements. Challenges to political beliefs produced increased activity in the default mode network; trials with greater belief resistance showed increased dorsomedial prefrontal and decreased orbitofrontal activity; and participants who changed their minds more showed less BOLD signal in insula and amygdala when evaluating counterevidence. The authors highlight the role of emotion in belief-change resistance.",
+    "ree_translation": "MECH-013's ideological-capture limb says fixed symbolic frames override perception and residue. In REE terms that would be a high-precision prior over a symbolic proposition that down-weights conflicting evidence from the world and harm streams. The behavioural result supports a version of this for identity-linked propositions: they are updated less than equally strongly held non-identity propositions. The affective result is the informative constraint: the capture is not accompanied by quieter affect but by louder, and louder affect predicts less updating. For REE this reframes ideological capture from 'frame overrides residue' to 'frame co-opts the affective system so that threat to the frame is itself registered as harm' -- closer to the claim's 'spurious residue from narrative contamination' pathology than to 'residue suppression'. That is a distinguishable prediction for any future REE symbolic layer: capture should show up as harm-like signal on frame-threatening evidence, not as absent harm signal on frame-consistent harm.",
+    "mapping_caveat": "The sample is 40 young adults, all strongly liberal, drawn from one university community; there is no ideological comparison group, so 'political' is confounded with the specific content of liberal policy positions. The political and non-political statements differ in more than identity relevance. The counterarguments included deliberate exaggerations, so resisting them is partly rational updating rather than capture. The measure is self-rated belief strength, and none of the statements concern harm that the participant perceives; MECH-013's specific assertion that frames override perception of harm and the residue it leaves is therefore only approached, not tested. The insula/amygdala result is a between-subject correlation, open to reverse inference.",
+    "source_context": "Human fMRI, N = 40 self-identified strongly liberal adults from the USC community; each rated and then saw challenges to 8 political and 8 non-political statements they strongly endorsed; belief change measured as pre-scan minus post-challenge rating."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.42,
+    "transfer_risk": 0.55,
+    "notes": "source_quality moderate: reasonable design and open data access, but small and ideologically homogeneous sample, and stimuli that deliberately include distortions. mapping_fidelity low-moderate because it tests identity-linked belief resistance, not override of harm perception. transfer_risk moderate-high: political belief in human adults is far from a REE symbolic prior, though the direction of the affect finding is exactly the kind of form constraint that does transfer."
+  },
+  "summary_path": "summary.md"
+}
