@@ -3697,6 +3697,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0263",
+      "claim_ids": [
+        "ARC-059",
+        "MECH-276"
+      ],
+      "flag_type": "stale_note",
+      "summary": "ARC-059's what_would_answer (Evidence status 2026-08-07) and MECH-276's what_would_answer both assert that the V3-EXQ-703a MECH-276 feedstock re-queue 'has not been run' / is a 'chip already spawned' pending item. Both became false on 2026-08-08: V3-EXQ-703a RAN, outcome PASS, label mech276_feedstock_readiness_confirmed, and is already marked reviewed in review_tracker.json. It cleared BOTH of the preconditions those texts name -- world_forward_r2 per seed 0.5569/0.1881/0.6276 (2/3 clear the 0.20 floor; 703 was -0.688/-0.057/+0.581, 1/3) and cf_margin recalibrated 0.30->0.15 with 3/3 seeds straddling backed-vs-correlational (703: 0/3). So ARC-059's gate (2) is CLOSED and the claim text still presents it as the live blocker. Gate (1) -- V3 hand-wires the action space -- is genuinely unchanged and re-verified against ree-v3 1bbcf19 (action_dim: int = 4 at config.py:449/873/2488; ACTIONS a fixed 5-entry literal never mutated, causal_grid_world.py:113/830; no motor-babbling or action-space-discovery code anywhere; infant_curriculum.py Phase 0 sets only exploration incentives). Nothing walks what_would_answer, so neither text self-corrected. ASK: update both claims' what_would_answer to record 703a as RUN/PASS and name gate (1) as the sole remaining substrate blocker. Full verdict with per-gate evidence: evidence/planning/arc059_ablation_readiness_20260911.md (2026-09-11). That doc also surfaces a gate the claim's own two-gate framing does not name -- MECH-278 (stage 2, the thing the PRIMARY ablation manipulates) is now implementation_phase v4 / phase_locked, so the ablation lacks a stage-2 manipulandum in V3 regardless of gate (1); that half overlaps GFLAG-0113's open NEEDS-DECISION on ARC-059's scope and is left to it.",
+      "raised_by_session": "confident-panini-0cdba7-gflag",
+      "raised_at": "2026-09-11T12:35:18Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
