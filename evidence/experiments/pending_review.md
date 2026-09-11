@@ -1,30 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-09-11T16:16:10Z`  
-Last review: `2026-09-11T14:19:13Z`  
-Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
+Generated: `2026-09-11T16:59:22Z`  
+Last review: `2026-09-11T16:55:00Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | 2026-09-11T00:31 | SD-082 |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | PASS | H_learning_signal_noisy_supported | **vacuous_pass** |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | PASS | H_learning_signal_noisy_supported |
+All experiments reviewed. Nothing pending.
 
 ---
 

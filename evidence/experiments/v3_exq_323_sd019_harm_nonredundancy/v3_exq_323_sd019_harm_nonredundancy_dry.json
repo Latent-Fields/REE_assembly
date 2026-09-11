@@ -7,11 +7,7 @@
     "SD-011"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "supports",
-  "evidence_direction_per_claim": {
-    "SD-019": "supports",
-    "SD-011": "supports"
-  },
+  "evidence_direction": "non_contributory",
   "outcome": "PASS",
   "timestamp_utc": "20260410T153055Z",
   "registered_thresholds": {
@@ -138,5 +134,7 @@
     }
   ],
   "seeds_passing": 3,
-  "experiment_passes": true
+  "experiment_passes": true,
+  "evidence_direction_note": "[2026-09-11 governance, cycle gov-20260911-1612, GOV-DRY-1] NEUTRALISED. This is a --dry-run smoke, not evidence. It carried an ASSERTING evidence_direction that made it indistinguishable from adjudicated evidence. Direction and any per-claim directions removed; the run is quarantined as non-evidence. A smoke's metrics are never a measurement, never a replicate, and never a population member.",
+  "dry_run": true
 }

@@ -1,0 +1,373 @@
+{
+  "run_id": "v3_exq_918a_sd_residue_valence_bound_validation_20260909T062139Z_v3",
+  "experiment_type": "v3_exq_918a_sd_residue_valence_bound_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "outcome": "PASS",
+  "evidence_direction": "non_contributory",
+  "non_degenerate": true,
+  "degeneracy_reason": null,
+  "timestamp_utc": "20260909T062139Z",
+  "arm_results": [
+    {
+      "arm": "OFF",
+      "channel": "positive_surprise",
+      "seed": 0,
+      "write_path": "ResidueField.update_valence",
+      "active_center_exists": true,
+      "final_value": 200.0,
+      "final_abs_value": 200.0,
+      "trajectory": [
+        50.0,
+        100.0,
+        150.0,
+        200.0
+      ],
+      "expected_unbounded_sum": 200.0,
+      "exact_match_to_naive_sum": true,
+      "hypothesis_tag_final_value": 0.0,
+      "hypothesis_tag_stayed_zero": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "c15290cd09a97cb9ffb24bcdef23573b1f420faf187471ce8f6d8dca7e8e50f0",
+        "substrate_hash": "e275f98ced15ed82475cb1bbdb3332cdcb06317ce47805afa3c4e5f2d0a94da5",
+        "substrate_n_files": 208,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "5c20343f3eb721b3595a977948d4a4e322d762160a836b50cbdcbd3cab5a35d2",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:21:39Z"
+      }
+    },
+    {
+      "arm": "OFF",
+      "channel": "negative_surprise",
+      "seed": 0,
+      "write_path": "ResidueField.update_valence",
+      "active_center_exists": true,
+      "final_value": -200.0,
+      "final_abs_value": 200.0,
+      "trajectory": [
+        -50.0,
+        -100.0,
+        -150.0,
+        -200.0
+      ],
+      "expected_unbounded_sum": 200.0,
+      "exact_match_to_naive_sum": true,
+      "hypothesis_tag_final_value": 0.0,
+      "hypothesis_tag_stayed_zero": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "00c342a546ab5a5fe5fc0c3f479f09295e82c3233b96b407787aa1714ca81aac",
+        "substrate_hash": "e275f98ced15ed82475cb1bbdb3332cdcb06317ce47805afa3c4e5f2d0a94da5",
+        "substrate_n_files": 208,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "5c20343f3eb721b3595a977948d4a4e322d762160a836b50cbdcbd3cab5a35d2",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:21:39Z"
+      }
+    },
+    {
+      "arm": "OFF",
+      "channel": "wanting_sensitized",
+      "seed": 0,
+      "write_path": "ResidueField.update_wanting_sensitized",
+      "active_center_exists": true,
+      "final_value": 395.5,
+      "final_abs_value": 395.5,
+      "trajectory": [
+        95.5,
+        195.5,
+        295.5,
+        395.5
+      ],
+      "hypothesis_tag_final_value": 0.0,
+      "hypothesis_tag_stayed_zero": true,
+      "exact_match_to_naive_sum": null,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "959d6e48a0687965ec2e004af37a80414fe301dd1b1688ad45f8beb317c6c439",
+        "substrate_hash": "e275f98ced15ed82475cb1bbdb3332cdcb06317ce47805afa3c4e5f2d0a94da5",
+        "substrate_n_files": 208,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "5c20343f3eb721b3595a977948d4a4e322d762160a836b50cbdcbd3cab5a35d2",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:21:39Z"
+      }
+    },
+    {
+      "arm": "ON",
+      "channel": "positive_surprise",
+      "seed": 0,
+      "write_path": "ResidueField.update_valence",
+      "active_center_exists": true,
+      "final_value": 5.0,
+      "final_abs_value": 5.0,
+      "trajectory": [
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "expected_unbounded_sum": 200.0,
+      "exact_match_to_naive_sum": false,
+      "hypothesis_tag_final_value": 0.0,
+      "hypothesis_tag_stayed_zero": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "d0f84fc038ebb8cacd3374e608c6b766219f721b5a7fb02940ca985feb3aea95",
+        "substrate_hash": "e275f98ced15ed82475cb1bbdb3332cdcb06317ce47805afa3c4e5f2d0a94da5",
+        "substrate_n_files": 208,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "5c20343f3eb721b3595a977948d4a4e322d762160a836b50cbdcbd3cab5a35d2",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:21:39Z"
+      }
+    },
+    {
+      "arm": "ON",
+      "channel": "negative_surprise",
+      "seed": 0,
+      "write_path": "ResidueField.update_valence",
+      "active_center_exists": true,
+      "final_value": -5.0,
+      "final_abs_value": 5.0,
+      "trajectory": [
+        -5.0,
+        -5.0,
+        -5.0,
+        -5.0
+      ],
+      "expected_unbounded_sum": 200.0,
+      "exact_match_to_naive_sum": false,
+      "hypothesis_tag_final_value": 0.0,
+      "hypothesis_tag_stayed_zero": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "bae1495f239e47963cd2e3c2154e87ad91e47f5bf4e2c011f914ea5e42c23963",
+        "substrate_hash": "e275f98ced15ed82475cb1bbdb3332cdcb06317ce47805afa3c4e5f2d0a94da5",
+        "substrate_n_files": 208,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "5c20343f3eb721b3595a977948d4a4e322d762160a836b50cbdcbd3cab5a35d2",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:21:39Z"
+      }
+    },
+    {
+      "arm": "ON",
+      "channel": "wanting_sensitized",
+      "seed": 0,
+      "write_path": "ResidueField.update_wanting_sensitized",
+      "active_center_exists": true,
+      "final_value": 5.0,
+      "final_abs_value": 5.0,
+      "trajectory": [
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "hypothesis_tag_final_value": 0.0,
+      "hypothesis_tag_stayed_zero": true,
+      "exact_match_to_naive_sum": null,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "cf2e7d52d8b726f0381a13387a5109d3892454f8caf7123e080c5eda26e2e812",
+        "substrate_hash": "e275f98ced15ed82475cb1bbdb3332cdcb06317ce47805afa3c4e5f2d0a94da5",
+        "substrate_n_files": 208,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "5c20343f3eb721b3595a977948d4a4e322d762160a836b50cbdcbd3cab5a35d2",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-09T06:21:39Z"
+      }
+    }
+  ],
+  "readout": {
+    "C1_off_arm_reproduces_unbounded_growth": 1,
+    "C2_on_arm_stays_bounded": 1,
+    "C3_off_arm_bit_identical_to_pre_fix": 1,
+    "C4_mech094_hypothesis_gate_unaffected": 1,
+    "n_criteria_passed": 4,
+    "n_criteria_total": 4,
+    "overall_pass_flag": 1,
+    "non_degenerate_flag": 1,
+    "c1_unbounded_bar": 160.0,
+    "off_final_abs_value_min": 200.0,
+    "off_final_abs_value_mean": 265.1666666666667,
+    "c2_clamp_bar": 5.001,
+    "on_final_abs_value_max": 5.0,
+    "on_final_abs_value_mean": 5.0,
+    "active_center_exists_frac": 1.0,
+    "readiness_threshold": 1.0,
+    "readiness_met_flag": 1,
+    "off_final_abs_value_std": 92.1595838146467,
+    "on_minus_off_mean_abs_gap": 260.1666666666667,
+    "nd_off_arm_values_vary_by_channel_flag": 1,
+    "nd_on_vs_off_final_values_differ_flag": 1,
+    "n_cells": 6,
+    "n_off_cells": 3,
+    "n_on_cells": 3,
+    "n_off_cells_exact_match_to_naive_sum": 2,
+    "n_off_cells_exact_match_assessable": 2,
+    "n_cells_hypothesis_tag_stayed_zero": 6
+  },
+  "readiness": {
+    "active_center_exists_frac": 1.0,
+    "readiness_met": true
+  },
+  "interpretation": {
+    "label": "sd_residue_valence_bound_validated",
+    "preconditions": [
+      {
+        "name": "active_center_exists",
+        "description": "fraction of cells where accumulate() seeded a real active RBF center before the write loop -- without one, update_valence no-ops silently and every result would falsely read as bounded",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "every cell (both arms, all 3 channels, all seeds)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "off_arm_values_vary_by_channel": true,
+      "on_vs_off_final_values_differ": true
+    }
+  },
+  "criteria": [
+    {
+      "name": "C1_off_arm_reproduces_unbounded_growth",
+      "load_bearing": true,
+      "passed": true
+    },
+    {
+      "name": "C2_on_arm_stays_bounded",
+      "load_bearing": true,
+      "passed": true
+    },
+    {
+      "name": "C3_off_arm_bit_identical_to_pre_fix",
+      "load_bearing": true,
+      "passed": true
+    },
+    {
+      "name": "C4_mech094_hypothesis_gate_unaffected",
+      "load_bearing": true,
+      "passed": true
+    }
+  ],
+  "combination_rule": "overall PASS iff C1 AND C2 AND C3 AND C4 (plain AND -- all four must hold for the fix to be considered validated).",
+  "ethics_preflight": {
+    "involves_negative_valence": false,
+    "involves_suffering_like_state": false,
+    "involves_self_model": false,
+    "involves_inescapability_or_helplessness": false,
+    "involves_offline_replay_over_harm": false,
+    "involves_social_mind_or_language": false,
+    "involves_human_data_or_clinical_context": false,
+    "decision": "allow"
+  },
+  "notes": "SD-RESIDUE-VALENCE-BOUND validation -- landed this session in ree_core/residue/field.py + ree_core/utils/config.py (REE_assembly/docs/architecture/sd_residue_valence_bound.md). GOV-REUSE-1: decisive readout (bounded-vs-unbounded accumulation under the new config knobs) not recorded anywhere -- the knobs did not exist before this session, so nothing to reuse; ran fresh. Unit-level against ResidueField/RBFLayer directly (no CausalGridWorld/REEAgent) since the fix is one central write path -- matches the V3-EXQ-520 Part-1 precedent for a ResidueField-internal readiness diagnostic.",
+  "recording_schema": "rec/v1",
+  "substrate_hash": "e275f98ced15ed82475cb1bbdb3332cdcb06317ce47805afa3c4e5f2d0a94da5",
+  "substrate_commit": {
+    "commit": "6558770b7404e3647fbc54089909e5227eac0d34",
+    "dirty": false,
+    "branch": "main"
+  },
+  "substrate_stable_across_run": true,
+  "substrate_identity": {
+    "source": "per_cell_fingerprint_hoist",
+    "resolved_at_utc": "2026-09-09T06:21:39Z",
+    "commit_source": "manifest_write_disk_read",
+    "commit_resolved_at_utc": "2026-09-09T06:21:39Z",
+    "stamped_at_utc": "2026-09-09T06:21:39Z",
+    "lag_seconds": 0,
+    "stability_snapshots": 1,
+    "drifted_since_resolved": false
+  },
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "elapsed_seconds": 1.0088405000278726,
+  "config": {
+    "bounding_arms": {
+      "OFF": {
+        "valence_bounding_enabled": false
+      },
+      "ON": {
+        "valence_bounding_enabled": true,
+        "valence_decay_rate": 0.02,
+        "valence_clamp_abs": 5.0
+      }
+    },
+    "channels": [
+      "positive_surprise",
+      "negative_surprise",
+      "wanting_sensitized"
+    ],
+    "writes_per_cell": 200,
+    "value": 1.0,
+    "world_dim": 8,
+    "unbounded_frac": 0.8,
+    "exact_tol": 0.0001
+  },
+  "seeds": [
+    0
+  ],
+  "evidence_direction_note": "[2026-09-11 governance, cycle gov-20260911-1612, GOV-DRY-1] NEUTRALISED. This is a --dry-run smoke, not evidence. It carried an ASSERTING evidence_direction that made it indistinguishable from adjudicated evidence. Direction and any per-claim directions removed; the run is quarantined as non-evidence. A smoke's metrics are never a measurement, never a replicate, and never a population member.",
+  "dry_run": true
+}

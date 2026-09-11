@@ -23,7 +23,7 @@
     "SD-082"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "inconclusive",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -191,5 +191,6 @@
     "writer_defect": null,
     "n_agents": 10,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "[2026-09-11 governance, cycle gov-20260911-1612] Adjudicated by confirmed failure_autopsy_V3-EXQ-1020_2026-09-11 (REE_assembly 92751187b1). INCONCLUSIVE on both pre-registered legs. The run DID close 822f's blind-instrument/no-signal ambiguity -- the in-run positive control learned its own task (+0.00223..+0.00327 held-out gain, 10/10 cells) and persisted (0.719-0.770). But C2 passes on a bare 3-of-5 majority on the SAME seeds (622/633/644) in both arms, and C3 is UNADJUDICATED not rejected (4 fresh-select flip samples in the worst cell against MIN_FLIP_SAMPLES=20; only 4 of 10 cells eligible). The self-routed label H_learning_signal_noisy_supported overstates what C2 licenses: the driver's own F2 disposition records the replay/rule_state-mismatch rival as unexcluded and states verbatim 'Do NOT read a C2 PASS as establishing H-learning-signal-noisy over this rival'. The indexer's vacuous_pass flag is a verdict-level false positive (the label routes at 'elif c2_pass' without reading C3) but fires correctly under check (3b) because the manifest never declares criteria_aggregation. Routed to a four-leg fan-out portfolio; no substrate build owed."
 }
