@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_011",
+  "entry_id": "2026-09-11_mech_011_vicarious_extinction_blocks_fear_return_golkar2013",
+  "timestamp_utc": "2026-09-11T03:43:28Z",
+  "claim_ids_tested": [
+    "MECH-011"
+  ],
+  "source": {
+    "title": "Other people as means to a safe end: vicarious extinction blocks the return of learned fear",
+    "authors": [
+      "Armita Golkar",
+      "Ida Selbing",
+      "Oskar Flygare",
+      "Arne Ohman",
+      "Andreas Olsson"
+    ],
+    "year": 2013,
+    "venue": "Psychological Science",
+    "doi": "10.1177/0956797613489890",
+    "pmid": "24022651",
+    "pmc": null,
+    "volume": "24",
+    "issue": "11",
+    "pages": "2182-2190"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Striking and well-cited result in a strong venue, bearing directly on MECH-011's fourth assertion that socially transmitted knowledge about what is and is not dangerous is genuinely learnable, and on the second assertion about accelerated generalisation -- the socially acquired safety generalised BETTER than the directly acquired kind. Held at 0.60 because the transmission channel is observational and emotional, not linguistic, and MECH-011 is specifically a claim about language.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Vicarious extinction outperformed standard first-person extinction at blocking the return of fear. Any REE design that treats socially-acquired safety information as a weaker or merely supplementary source than directly-experienced safety has the ordering backwards for at least this case.",
+    "The measured advantage was specifically in resistance to the RETURN of fear, not in the initial rate of extinction. A benefit that appears only in a generalisation or reinstatement test is invisible to any evaluation that stops at within-session learning curves -- which is how most experiment harnesses, including REE's, score a run by default.",
+    "The transmission channel here is observation of another's emotional expression, not symbolic communication. A substrate that implements only a symbolic channel may not reproduce this effect at all, since the operative signal may be affective resonance rather than propositional content."
+  ],
+  "tags": [
+    "mech-011",
+    "vicarious_learning",
+    "social_transmission",
+    "extinction",
+    "return_of_fear",
+    "negative_knowledge",
+    "safety_learning",
+    "residue"
+  ],
+  "mapping": {
+    "source_claim_statement": "After fear conditioning, participants underwent either standard first-person extinction or vicarious extinction, in which they observed another person experiencing the conditioned stimulus without aversive outcome. Vicarious extinction produced better extinction and blocked the return of previously learned fear, whereas fear returned following standard extinction.",
+    "ree_translation": "MECH-011's fourth assertion is that a social channel transmits 'negative knowledge' -- what not to do. This study demonstrates the inverse and, for REE, the more architecturally interesting direction: a social channel transmitting what is SAFE, and doing so with greater durability than direct experience achieves. It bears on the second assertion too, since the advantage showed up as resistance to the return of fear -- that is, as better generalisation of an affective trace, which is close to what REE means by 'generalisation of residue'. The implication for a future REE symbol channel is that the social pathway should be able to write durable safety information, not merely hazard warnings, and that its benefit may be measurable only under reinstatement-style probes rather than in training curves.",
+    "mapping_caveat": "The decisive caveat: the channel is OBSERVATIONAL, not linguistic. Participants watched another person's emotional expression; nobody was told anything. MECH-011 is explicitly about language, and language is at best a sibling of this mechanism rather than an instance of it -- it is entirely possible that the efficacy here depends on affective resonance that a symbolic channel cannot carry, in which case the result supports a social-learning claim REE has not made instead of the linguistic one it has. Given that ree-v3 has neither a symbol channel nor a multi-agent environment, this entry should be read as scoping what such a substrate would need to be able to express, not as evidence the claim is already supported.",
+    "source_context": "Healthy adult humans; Pavlovian fear conditioning with skin-conductance measurement; vicarious versus direct extinction followed by a test for return of fear."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.48,
+    "transfer_risk": 0.45,
+    "notes": "mapping_fidelity is deliberately the low term and drives the aggregate down: the study is strong evidence about SOCIAL transmission and only indirect evidence about LINGUISTIC transmission, which is what MECH-011 actually asserts. Included because the residue-generalisation angle is not covered by any other source found, and because the channel distinction is itself a finding REE should record."
+  }
+}

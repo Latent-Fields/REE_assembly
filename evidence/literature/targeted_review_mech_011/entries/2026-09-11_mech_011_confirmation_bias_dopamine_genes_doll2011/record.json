@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_011",
+  "entry_id": "2026-09-11_mech_011_confirmation_bias_dopamine_genes_doll2011",
+  "timestamp_utc": "2026-09-11T03:43:28Z",
+  "claim_ids_tested": [
+    "MECH-011"
+  ],
+  "source": {
+    "title": "Dopaminergic genes predict individual differences in susceptibility to confirmation bias",
+    "authors": [
+      "Bradley B. Doll",
+      "Kent E. Hutchison",
+      "Michael J. Frank"
+    ],
+    "year": 2011,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.6486-10.2011",
+    "pmid": "21508242",
+    "pmc": "PMC3098533",
+    "volume": "31",
+    "issue": "16",
+    "pages": "6188-6198"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Top-tier venue and a genetically-informed dissociation that is exactly the kind of evidence needed to argue that the linguistic-prior pathway and the outcome-learning pathway are SEPARABLE components rather than one blended process -- which is the architectural content of MECH-011's 'multiplier, not substitute' framing. Held at 0.72 because candidate-gene studies of this vintage carry known replication risk, and because the ethical-learning extension is again assumed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Susceptibility to instruction-driven distortion varied substantially BETWEEN individuals as a function of dopaminergic genotype. A REE parameterisation that fixes a single global weight for the linguistic channel cannot express this; the weight is a per-agent trait, and the correct default is not obviously the population mean.",
+    "Prefrontal (COMT) and striatal (DARPP-32, DRD2) contributions dissociated -- holding the verbal prior and distorting the reinforcement statistic are separately parameterised. A single-parameter 'language influence' knob would conflate two mechanisms that this study shows come apart.",
+    "Because the striatal variants governed the INFLATION of instruction-consistent outcomes and the NEGLECT of inconsistent ones, an agent can be well-calibrated on directly-experienced contingencies and simultaneously miscalibrated on instructed ones, with no single global calibration metric revealing the split."
+  ],
+  "tags": [
+    "mech-011",
+    "confirmation_bias",
+    "dopamine",
+    "comt",
+    "drd2",
+    "darpp-32",
+    "instructed_learning",
+    "individual_differences",
+    "prefrontal_striatal"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a probabilistic reinforcement-learning task with prior instructions that may or may not be accurate, dopaminergic polymorphisms predicted distinct components of instruction-driven distortion: the prefrontal COMT rs4680 variant predicted persistence with prior instructions despite contradictory evidence, while striatal DARPP-32 and DRD2 variants predicted learning from positive and negative outcomes and the degree to which those outcomes were inflated or neglected according to their consistency with the instruction. The authors interpret this as a confirmation-bias mechanism in which prior beliefs distort striatal reinforcement statistics.",
+    "ree_translation": "This is the companion result to Doll et al. 2009 and it supplies the part REE actually needs for architecture rather than for phenomenology: the linguistic-prior pathway and the outcome-learning pathway are separable, separately parameterised components. MECH-011's closing framing -- language as 'a multiplier of ethical learning, not a substitute for harm sensing and residue continuity' -- is an architectural assertion of exactly this shape, and this study is the nearest biological evidence that such a decomposition is real rather than merely a tidy way of writing the claim. It also implies that the strength of the multiplier is a trait-like parameter with genuine between-individual variance, which bears on how a REE symbol channel should be configured: as a tunable gain, not a constant.",
+    "mapping_caveat": "Candidate-gene association work from this period has a well-documented replication problem, and the specific polymorphism-to-function assignments should be treated as indicative rather than settled; the architectural DISSOCIATION is the durable part, the particular genes much less so. The task is again instrumental reward learning, not ethical learning. Most importantly, inferring an architecture from a genetic dissociation is itself an inference: separable genetic influence is good evidence for separable mechanism but not proof, and REE should not treat the two-pathway decomposition as established merely because it is convenient for the claim.",
+    "source_context": "Healthy adult humans genotyped for COMT, DARPP-32 and DRD2 polymorphisms; probabilistic selection task with accurate or inaccurate prior instruction; behavioural measures with reinforcement-learning model fitting."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.38,
+    "notes": "source_quality reduced from what the venue alone would suggest, because candidate-gene findings of this era replicate unevenly. mapping_fidelity is high because the architectural dissociation maps onto MECH-011's 'multiplier not substitute' clause more directly than anything else found in this pull."
+  }
+}

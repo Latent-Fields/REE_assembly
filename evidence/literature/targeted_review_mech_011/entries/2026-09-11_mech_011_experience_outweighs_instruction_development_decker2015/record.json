@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_011",
+  "entry_id": "2026-09-11_mech_011_experience_outweighs_instruction_development_decker2015",
+  "timestamp_utc": "2026-09-11T03:43:28Z",
+  "claim_ids_tested": [
+    "MECH-011"
+  ],
+  "source": {
+    "title": "Experiential reward learning outweighs instruction prior to adulthood",
+    "authors": [
+      "Johannes H. Decker",
+      "Frederico S. Lourenco",
+      "Bradley B. Doll",
+      "Catherine A. Hartley"
+    ],
+    "year": 2015,
+    "venue": "Cognitive, Affective & Behavioral Neuroscience",
+    "doi": "10.3758/s13415-014-0332-5",
+    "pmid": "25582607",
+    "pmc": "PMC4437867",
+    "volume": "15",
+    "issue": "2",
+    "pages": "310-320"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.63,
+  "confidence_rationale": "Sound developmental study directly extending the instructed-learning paradigm, and it is the only source in this pull that bears on the ORDERING of experiential and linguistic learning -- which is a live REE concern. Scored as mixed and held at 0.63 because it simultaneously supports MECH-011's 'multiplier not substitute' hedge and complicates its second assertion that language ACCELERATES learning; the developmental data suggest the linguistic channel's net effect on veridical learning can be negative.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Inaccurate instruction markedly biased ADULTS while children and adolescents estimated stimulus values more objectively from experience. The linguistic channel's contribution to veridical model learning was, in this task, net NEGATIVE in the more mature system -- the opposite sign to MECH-011's 'accelerating generalisation' assertion.",
+    "Susceptibility to instruction INCREASED with development rather than decreasing. A REE curriculum that enables a symbol channel early, on the assumption that language is a learning accelerant, would be extrapolating from a developmental trajectory that runs the other way.",
+    "The advantage of youth was specifically in OBJECTIVE value estimation, meaning the cost of the linguistic channel is paid in calibration. An agent could appear to learn faster by instruction while its internal value estimates drift further from the environment's actual statistics."
+  ],
+  "tags": [
+    "mech-011",
+    "development",
+    "ontogeny",
+    "instructed_learning",
+    "experiential_learning",
+    "calibration",
+    "curriculum_ordering"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across a developmental sample spanning childhood, adolescence and adulthood, participants performed a probabilistic learning task in which inaccurate instruction competed with trial-and-error experience. Inaccurate instruction markedly biased adults' estimations of stimulus value, whereas children and adolescents were better able to estimate those values objectively through experience. Susceptibility to instructional bias thus increased over development.",
+    "ree_translation": "MECH-011 holds both that language accelerates learning AND that it is a multiplier rather than a substitute for direct harm sensing. This study pulls those two halves apart and shows they are in tension. The developmental trajectory runs from experience-dominant to instruction-dominant, and the instruction-dominant end is the LESS veridical one. For REE this is directly relevant to curriculum ordering: it argues that a symbol channel should be introduced AFTER a period of experientially-grounded residue accumulation, not alongside it, and that the grounding period is not merely a prerequisite for language to be meaningful but an active protection against the miscalibration language introduces. That is a stronger and more actionable reading of 'brittle without embodiment' than the claim currently carries.",
+    "mapping_caveat": "The developmental difference could reflect several things other than a protective effect of experiential grounding -- differences in trust of the experimenter, in working-memory capacity for holding the instruction, or in task engagement would all produce the same pattern, and this design does not adjudicate between them. Reading the result as 'grounding protects calibration' is therefore an interpretation, not a finding. As with the other instructed-learning sources, the domain is reward rather than harm, and REE's ontogenetic ordering concerns are about affective residue rather than stimulus value.",
+    "source_context": "Human developmental sample (children, adolescents, adults); probabilistic reward-learning task with inaccurate verbal instruction set against experiential feedback."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "mapping_fidelity is the limiting term: the study speaks clearly to the ORDERING question REE cares about but only by analogy, since its dependent measure is reward-value estimation rather than anything residue-like. transfer_risk is the highest in this pull because developmental trajectories in humans map onto artificial curricula only loosely."
+  }
+}

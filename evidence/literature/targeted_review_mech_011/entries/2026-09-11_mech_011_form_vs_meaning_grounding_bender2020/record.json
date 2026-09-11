@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_011",
+  "entry_id": "2026-09-11_mech_011_form_vs_meaning_grounding_bender2020",
+  "timestamp_utc": "2026-09-11T03:43:28Z",
+  "claim_ids_tested": [
+    "MECH-011"
+  ],
+  "source": {
+    "title": "Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data",
+    "authors": [
+      "Emily M. Bender",
+      "Alexander Koller"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+    "doi": "10.18653/v1/2020.acl-main.463",
+    "pmid": null,
+    "pmc": null,
+    "pages": "5185-5198",
+    "url": "https://aclanthology.org/2020.acl-main.463/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Influential and carefully argued position paper that states the grounding constraint behind MECH-011's 'brittle without embodiment' hedge more rigorously than the claim does. Held at 0.55 because it is argument rather than measurement -- it supplies a reason to expect the brittleness, not a demonstration of it, and its thesis remains actively contested in the field.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A system trained on linguistic form alone has, by the paper's argument, no route to the communicative intent behind that form. A REE agent acquiring ethical constraints through a symbol channel without grounding them in its own harm sensing would satisfy the form of the constraint while having no access to what the constraint is ABOUT -- which is the failure mode MECH-011 names and does not otherwise justify.",
+    "Fluency on linguistic benchmarks is argued to be a poor proxy for understanding. An evaluation that scores a REE agent's ethical competence by the acceptability of its verbal justifications would be measuring the wrong thing, and would score highest exactly on the rationalisation loop the claim warns about.",
+    "The argument is a priori rather than empirical: it establishes that form-only training CANNOT suffice, not that any particular system has failed. Cited as evidence that grounding is necessary, it is strong; cited as evidence that a specific ungrounded agent will drift, it is a prediction rather than a result."
+  ],
+  "tags": [
+    "mech-011",
+    "grounding",
+    "embodiment",
+    "form_vs_meaning",
+    "language_models",
+    "ethical_drift",
+    "philosophy_of_language"
+  ],
+  "mapping": {
+    "source_claim_statement": "Bender and Koller argue that a system exposed only to linguistic form has a priori no way to learn meaning, because meaning is a relation between form and communicative intent that is not recoverable from distributional structure alone. They contend that the successes of large language models on NLP benchmarks have been over-read as understanding, and that keeping the form/meaning distinction clear is necessary for well-posed science of natural-language understanding.",
+    "ree_translation": "MECH-011 asserts that 'language-learned ethics is brittle without embodiment' and that 'purely linguistic agents risk ethical drift and rationalisation loops', but offers no argument for why. This paper supplies one, and it is the strongest available: if meaning is a form-intent relation and form-only training cannot recover it, then an agent acquiring ethical constraints purely through a symbol channel holds the constraint's FORM with no access to its referent. REE's structural answer is that the referent is supplied by harm sensing and residue continuity, which is exactly why the claim insists language is a multiplier rather than a substitute. The paper also yields a concrete evaluation warning: verbal justification quality is precisely the wrong measure of ethical competence in such an agent, since a rationalisation loop optimises it directly.",
+    "mapping_caveat": "This is a philosophical argument, not an experiment; it gives grounds for expecting brittleness rather than a measurement of it, and it remains genuinely contested -- a substantial literature disputes the strong form of the thesis, and the intervening years of multimodal and embodied-agent work have shifted the terms of the debate. It also concerns semantic understanding in general rather than ethical learning in particular, so applying it to ethics assumes that ethical terms are grounded in the same way ordinary referential terms are, which is a substantive and arguable position. It should be cited as articulating the constraint MECH-011 relies on, never as establishing it empirically.",
+    "source_context": "Position/theory paper in computational linguistics; argument from the form/meaning distinction, with the octopus thought experiment as its central illustration."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "source_quality reflects a highly-cited, carefully-argued paper in a top venue while discounting for the fact that it is argument rather than evidence and that its thesis is actively disputed. Included because MECH-011's embodiment hedge would otherwise be entirely uncited, and an uncited hedge is the part of a claim most likely to be quietly dropped."
+  }
+}
