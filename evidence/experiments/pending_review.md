@@ -1,10 +1,37 @@
 # Pending Experiment Review
 
-Generated: `2026-09-09T14:47:27Z`  
+Generated: `2026-09-11T03:37:16Z`  
 Last review: `2026-09-09T14:52:00Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **9** item(s) -- 7 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 2 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
 
-All experiments reviewed. Nothing pending.
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `20260909_seed7` | ? | (no claim tags) |
+| `20260909_seed11` | ? | (no claim tags) |
+| `20260909_seed17` | ? | (no claim tags) |
+| `20260909_seed23` | ? | (no claim tags) |
+| `20260909_seed29` | ? | (no claim tags) |
+| `20260909_seed37` | ? | (no claim tags) |
+| `v3_exq_1010_zworld_overcapacity_decoder_sweep_20260909T195348Z_v3` | 2026-09-09T19:53 | (no claim tags) |
+
+## Diagnostic -- autopsy required (no confirmed adjudication)
+
+Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
+
+| Run ID | Status | Self-route label |
+|--------|--------|-------------------|
+| `v3_exq_1010_zworld_overcapacity_decoder_sweep_20260909T195348Z_v3` | PASS | H-F-confirmed |
+
+## Unclaimed manifests (PASS/FAIL with no claim tags)
+
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
+
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| PASS | `v3_exq_1019_mech464_d1d2_reorder_dagain_sweep_20260910T212913Z_v3` | v3_exq_1019_mech464_d1d2_reorder_dagain_sweep | V3-EXQ-1019 | supports |
+| PASS | `v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3` | v3_exq_1020_sd082_learning_signal_probe | V3-EXQ-1020 | unknown |
 
 ---
 
