@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-11T13:57:55Z
+Generated: 2026-09-11T14:05:26Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **59** open question(s) across **46** time-series snapshot(s). **1** flag(s) raised, **58** advisory note(s), **23** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
+Audited **59** open question(s) across **46** time-series snapshot(s). **1** flag(s) raised, **58** advisory note(s), **23** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **4** possibly-stale synthesis note(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -189,6 +189,19 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 ## Advisory -- drafted ledger edits not reflected in the registry (0, NOT violations)
 
 _No confirmed autopsy carries an unreflected `hypothesis_space_ledger_pending` block._
+
+## Advisory -- possibly stale `synthesis` prose (4, NOT violations)
+
+A question's `synthesis` block (`surviving_label` / `text` / `under_test`) is free prose written by whichever `/failure-autopsy` last touched the question, and nothing re-derives it -- so it goes stale silently whenever a later run resolves a leg. It is also the field a reader consults for 'where does this question stand', which is what makes a stale one actively misinform rather than merely lag.
+
+- `competence_floor`: the newest run the synthesis cites is V3-EXQ-781, but V3-EXQ-837 adjudicated `H-mech475-baseline-reversal` -> eliminated on 2026-07-29 and is not named anywhere in the block -- the prose predates an adjudication it cannot describe.
+- `competence_floor`: under_test describes owed work (556 chars) but 0 of 20 legs are alive -- the work it names may already be done.
+- `inv088_evaluator_degeneracy_cause`: the newest run the synthesis cites is V3-EXQ-108b, but V3-EXQ-954 adjudicated `H-horizon-compounding` -> eliminated on 2026-08-29 and is not named anywhere in the block -- the prose predates an adjudication it cannot describe.
+- `e3_fdominance_causal_discrimination`: the newest run the synthesis cites is V3-EXQ-925, but V3-EXQ-936a adjudicated `H5-score-scale-uncontrolled` -> confirmed on 2026-08-17 and is not named anywhere in the block -- the prose predates an adjudication it cannot describe.
+
+**Do not auto-repair these.** The block is authored prose; the correct response is that the next `/failure-autopsy` or `/governance` session touching the question REWRITES it against the current leg states. A script cannot write a synthesis, and one that tried would manufacture exactly the confident-but-wrong text this check exists to find.
+
+**What this check cannot see.** It reads prose, so it under-fires by design. It cannot tell an out-of-date claim from a deliberate historical citation; it is blind to a synthesis that cites no run id at all (no watermark to compare, so it is skipped rather than reported); it says nothing about whether the prose's REASONING is still right, only whether it names legs and runs consistently with the registry; and because `synthesis` carries no `as_of` stamp, recency is inferred from the run ids the prose happens to cite. A quiet result is therefore a floor on the staleness, not a proof there is none.
 
 ---
 

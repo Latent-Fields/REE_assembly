@@ -31,6 +31,11 @@ Checks (design rule 5):
       met_elimination_bar true for a superseded leg would be the over-counting
       Goodhart move GOV-FROZEN-1 exists to prevent.
 
+Also emits an ADVISORY SYNTHESIS-STALENESS scan: a question's optional
+`synthesis` block ({surviving_label, text, under_test}) is authored prose that
+nothing re-derives, so it goes stale silently whenever a later run resolves a
+leg. Reported, never flagged, never auto-repaired -- see `_synthesis_staleness`.
+
 Also emits ADVISORY overlays that are reported but never counted as flags -- including
 the GOV-FROZEN-1 fan-out/discovery RECURRENCE overlays (N >= FANOUT_RECURRENCE_N growth
 events on one question), and, since 2026-08-14, an ACKNOWLEDGED bucket for a recurrence
@@ -81,7 +86,7 @@ ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed",
                     "h_fanout_recurrence", "i_confirmed_backed",
                     "j_confirmed_unverifiable", "k_discovery_growth",
                     "l_discovery_recurrence", "m_recurrence_acknowledged",
-                    "n_ledger_pending"}
+                    "n_ledger_pending", "o_stale_synthesis"}
 
 # Distinct labelled fan-out portfolios on ONE question before the recurrence
 # overlay fires. Matches GOV-CEIL-1's CEILING_EXHAUSTION_N and GOV-DIAG-1's
@@ -684,6 +689,197 @@ def _snapshot_instant(row: dict) -> str:
     return _instant(row.get("snapshot_utc") or "") or _instant(row.get("date") or "")
 
 
+# ---------------------------------------------------------------------------
+# Synthesis staleness (advisory bucket `o_stale_synthesis`)
+#
+# WHY THIS EXISTS. A question may carry a `synthesis` block
+# ({surviving_label, text, under_test}) -- free prose written by whichever
+# `/failure-autopsy` last touched it. It is the field a reader consults for
+# "where does this question stand", and until 2026-09-11 NOTHING re-derived or
+# validated it. A later run resolves a leg, the structured `resolution` fields
+# update, the prose does not, and the block then actively misinforms.
+#
+# CONFIRMED INSTANCE (the case this was written from). On 2026-09-11
+# `zworld_actor_adequacy_locus` carried surviving_label "... H-E channel-input
+# capacity alive ..." and a text opening "As of V3-EXQ-1002", when V3-EXQ-1008
+# had ELIMINATED H-E on 2026-09-07 -- two runs earlier. It was found only
+# incidentally, during a red-team pass on an unrelated field, and was fixed in
+# REE_assembly 652ababa92. Nothing in the pipeline would ever have flagged it.
+#
+# ADVISORY, NEVER A FLAG -- on purpose, and this is the load-bearing design
+# choice. Buckets (a)-(d) are STRUCTURAL invariants with crisp predicates over
+# typed fields. `synthesis` is authored natural language, so every predicate
+# here is a heuristic over prose: a false positive is cheap noise, a false
+# negative costs nothing that was not already being lost. It is therefore tuned
+# to UNDER-fire, and it is reported alongside the other advisories rather than
+# counted in the flag total.
+#
+# NEVER AUTO-REPAIRED. The correct response to a hit is that the next
+# `/failure-autopsy` or `/governance` session touching the question REWRITES the
+# prose. A script cannot author a synthesis, and one that tried would
+# manufacture exactly the confident-but-wrong text this check exists to find.
+
+# Prose asserting a leg is still in play, and prose asserting it is settled. The
+# pair is used together: a resolved leg NAMED in the surviving label is fine and
+# normal ("H-B consumer-learning eliminated"); a resolved leg named with
+# alive-language and no settling verb is the stale shape.
+SYNTHESIS_ALIVE_WORDS = re.compile(
+    r"\b(alive|surviving|survives?|remains?|remaining|still open|undetermined"
+    r"|unresolved|untested)\b", re.I)
+SYNTHESIS_SETTLED_WORDS = re.compile(
+    r"\b(eliminat\w*|refut\w*|resolved|closed|confirm\w*|split|supersed\w*"
+    r"|ruled out)\b", re.I)
+# A run id in either spelling the registry uses: the queue id `V3-EXQ-1008` and
+# the manifest run_id `v3_exq_1008_<slug>_<stamp>_v3`. Ordered on
+# (number, letter suffix) so 936a sorts after 936.
+SYNTHESIS_RUN_ID = re.compile(r"(?:V3-EXQ-|v3_exq_)(\d+)([a-z]?)", re.I)
+# An `under_test` that says, in so many words, that there IS no further work.
+# Without this the S3 predicate fires on every correctly-written terminal
+# synthesis, which is the alarm-fatigue direction.
+SYNTHESIS_NO_WORK_OWED = re.compile(
+    r"(nothing further|no further|none currently|^\s*none\b"
+    r"|all\s+(?:five|four|three|two|\d+)?\s*legs?\s*(?:are\s*)?resolved"
+    r"|fully resolved|question is (?:fully )?resolved)", re.I)
+
+SYNTHESIS_RESOLVED_STATES = RESOLVED_OUT_STATES | CONTROL_REQUIRED_STATES
+
+
+def _synthesis_hid_tokens(hid: str) -> list:
+    """Spellings of `hid` a synthesis is likely to use, longest first.
+
+    Registry hids are long (`H-E-channel-input-capacity`, `H1-literal-f-dominance`)
+    and the prose almost always uses the leading short form (`H-E`, `H1`, `H0`).
+    Matching only the full hid misses every real case.
+    """
+    toks = {hid}
+    m = re.match(r"^(H\d*(?:-[A-Za-z0-9]+)?)", hid or "")
+    if m:
+        toks.add(m.group(1))
+    return sorted(toks, key=len, reverse=True)
+
+
+def _synthesis_clauses(text: str) -> list:
+    """Split a surviving label into independently-readable clauses.
+
+    Load-bearing, not cosmetic. A surviving label routinely states the verdict on
+    several legs at once, semicolon-separated. Scanning a fixed character window
+    around a hid mention picks up the NEIGHBOURING leg's verdict word and
+    suppresses the finding -- measured: the window form scored 0 hits on the
+    2026-09-11 confirmed instance, whose stale clause `H-E channel-input capacity
+    alive` sits between one ending `(confirmed)` and one ending `eliminated`.
+    """
+    return [c for c in re.split(r"[;.]\s+|\s+--\s+", text or "") if c.strip()]
+
+
+def _synthesis_mentions_run(prose: str, number: str) -> bool:
+    """True if `number` appears in `prose` in ANY spelling.
+
+    Deliberately permissive where the watermark regex is strict: syntheses cite
+    runs bare as often as prefixed ("consummatory binding (821)"), and this is
+    used only to SUPPRESS a finding, so being generous here under-fires.
+    """
+    return re.search(r"(?<![0-9])" + re.escape(number) + r"[a-z]?(?![0-9])",
+                     prose) is not None
+
+
+def _synthesis_staleness(q: dict) -> list:
+    """Advisory notes on a question's `synthesis` block. Never a flag.
+
+    Three INDEPENDENT signals, each tuned to under-fire. Measured across the
+    whole 59-question corpus on 2026-09-11 (12 questions carry a synthesis):
+    3 questions hit, every hit genuine on manual audit; and re-run against the
+    pre-fix snapshot 652ababa92^, 4 questions hit including the confirmed
+    instance, caught independently by BOTH (S1) and (S2).
+    """
+    s = q.get("synthesis")
+    if not isinstance(s, dict) or not s:
+        return []
+    qid = q.get("qid")
+    legs = q.get("hypotheses") or []
+    label = s.get("surviving_label") or ""
+    prose = " ".join([label, s.get("text") or "", s.get("under_test") or ""])
+    notes = []
+
+    # (S1) A leg the registry records as RESOLVED is named in the surviving label
+    # with alive-language and no settling verb in the same clause. This is the
+    # crispest of the three and the only one that reads a specific leg: it is a
+    # direct contradiction between the prose and that leg's own
+    # `resolution.state`, not an inference about recency.
+    for h in legs:
+        state = (h.get("resolution") or {}).get("state") or "alive"
+        if state not in SYNTHESIS_RESOLVED_STATES:
+            continue
+        hid = h.get("hid") or ""
+        hit = None
+        for tok in _synthesis_hid_tokens(hid):
+            for clause in _synthesis_clauses(label):
+                if (re.search(r"(?<![A-Za-z0-9-])" + re.escape(tok) + r"(?![A-Za-z0-9])",
+                              clause)
+                        and SYNTHESIS_ALIVE_WORDS.search(clause)
+                        and not SYNTHESIS_SETTLED_WORDS.search(clause)):
+                    hit = clause.strip()
+                    break
+            if hit:
+                break
+        if hit:
+            notes.append(
+                f"`{qid}`/`{hid}`: surviving_label reads \"{hit}\" but the registry "
+                f"records state={state} -- the synthesis contradicts the leg it names."
+            )
+
+    # (S2) CITATION WATERMARK. The newest run the synthesis cites is older than
+    # the newest run that adjudicated any leg, AND that newer run is not named
+    # anywhere in the block in any spelling. Read as: the prose was written
+    # before an adjudication it therefore cannot describe.
+    #
+    # The first conjunct is what keeps this quiet. A synthesis citing NO run has
+    # no watermark to compare, so it is skipped as unverifiable rather than
+    # reported -- the same "insufficient data reads as cannot tell, never as
+    # therefore a violation" rule the git-witness and total_confirmed paths above
+    # already follow. Measured: dropping that conjunct takes the corpus from 3
+    # hits (3 genuine) to 6 (2 genuine) -- the four extra are all accurate
+    # syntheses that simply do not cite run ids.
+    cited, adjudicating = [], []
+    for m in SYNTHESIS_RUN_ID.finditer(prose):
+        cited.append((int(m.group(1)), (m.group(2) or "").lower()))
+    for h in legs:
+        res = h.get("resolution") or {}
+        if (res.get("state") or "alive") not in SYNTHESIS_RESOLVED_STATES:
+            continue
+        for run in (res.get("resolving_runs") or []):
+            m = SYNTHESIS_RUN_ID.search(str(run))
+            if m:
+                adjudicating.append(
+                    ((int(m.group(1)), (m.group(2) or "").lower()),
+                     h.get("hid"), res.get("state"), (res.get("resolved_utc") or "")[:10]))
+    if cited and adjudicating:
+        newest_cited = max(cited)
+        newest_key, newest_hid, newest_state, newest_when = max(adjudicating)
+        if (newest_cited < newest_key
+                and not _synthesis_mentions_run(prose, str(newest_key[0]))):
+            notes.append(
+                f"`{qid}`: the newest run the synthesis cites is "
+                f"V3-EXQ-{newest_cited[0]}{newest_cited[1]}, but "
+                f"V3-EXQ-{newest_key[0]}{newest_key[1]} adjudicated `{newest_hid}` -> "
+                f"{newest_state} on {newest_when} and is not named anywhere in the block "
+                "-- the prose predates an adjudication it cannot describe."
+            )
+
+    # (S3) `under_test` describes owed work while the question has NO alive legs.
+    # The acknowledgement guard is what makes this usable: a terminal question
+    # legitimately keeps an `under_test` that SAYS nothing is owed, and firing on
+    # those would make the check noise.
+    under_test = (s.get("under_test") or "").strip()
+    alive = [h for h in legs
+             if ((h.get("resolution") or {}).get("state") or "alive") == "alive"]
+    if under_test and not alive and not SYNTHESIS_NO_WORK_OWED.search(under_test):
+        notes.append(
+            f"`{qid}`: under_test describes owed work ({len(under_test)} chars) but "
+            f"0 of {len(legs)} legs are alive -- the work it names may already be done."
+        )
+    return notes
+
+
 def audit(registry: dict, timeseries: list) -> dict:
     """Return {flag_bucket: [messages]} for each of the four checks, plus the
     advisory `e_labelled_growth` bucket (labelled fan-out; NOT a violation)."""
@@ -692,7 +888,8 @@ def audit(registry: dict, timeseries: list) -> dict:
              "e_labelled_growth": [], "f_unverifiable": [], "g_witnessed": [],
              "h_fanout_recurrence": [], "i_confirmed_backed": [],
              "j_confirmed_unverifiable": [], "k_discovery_growth": [],
-             "l_discovery_recurrence": [], "m_recurrence_acknowledged": []}
+             "l_discovery_recurrence": [], "m_recurrence_acknowledged": [],
+             "o_stale_synthesis": []}
     questions = registry.get("questions") or []
     # Total legs added by VALID labelled fan-out, keyed by the INSTANT the growth
     # was recorded -- lets the time-series check attribute a total_initial rise.
@@ -713,6 +910,8 @@ def audit(registry: dict, timeseries: list) -> dict:
             )
         # (b3) labelled fan-out / discovery growth of an EXISTING question.
         _validate_question_growth(q, flags)
+        # ADVISORY: does the authored `synthesis` prose still match the legs?
+        flags["o_stale_synthesis"].extend(_synthesis_staleness(q))
         for ev in (q.get("fanout_growth_events") or []) + (q.get("discovery_growth_events") or []):
             date = _event_instant(ev)
             if date:
@@ -1058,6 +1257,7 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
     n_discovery = len(flags.get("k_discovery_growth") or [])
     n_discovery_recurrence = len(flags.get("l_discovery_recurrence") or [])
     n_acknowledged = len(flags.get("m_recurrence_acknowledged") or [])
+    n_stale_synth = len(flags.get("o_stale_synthesis") or [])
     L = []
     L.append("# Hypothesis-Space Integrity Audit (anti-Goodhart)")
     L.append("")
@@ -1081,7 +1281,8 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         f"**{n_recurrence}** fan-out recurrence overlay(s), "
         f"**{n_discovery}** discovery-growth note(s), "
         f"**{n_discovery_recurrence}** discovery-recurrence overlay(s), "
-        f"**{n_acknowledged}** acknowledged (worked) recurrence(s)."
+        f"**{n_acknowledged}** acknowledged (worked) recurrence(s), "
+        f"**{n_stale_synth}** possibly-stale synthesis note(s)."
     )
     L.append("")
     sections = [
@@ -1390,6 +1591,46 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         L.append("")
     else:
         L.append("_No confirmed autopsy carries an unreflected `hypothesis_space_ledger_pending` block._")
+        L.append("")
+    stale = flags.get("o_stale_synthesis") or []
+    L.append(f"## Advisory -- possibly stale `synthesis` prose "
+             f"({len(stale)}, NOT violations)")
+    L.append("")
+    if stale:
+        L.append(
+            "A question's `synthesis` block (`surviving_label` / `text` / `under_test`) "
+            "is free prose written by whichever `/failure-autopsy` last touched the "
+            "question, and nothing re-derives it -- so it goes stale silently whenever a "
+            "later run resolves a leg. It is also the field a reader consults for 'where "
+            "does this question stand', which is what makes a stale one actively "
+            "misinform rather than merely lag."
+        )
+        L.append("")
+        for msg in stale:
+            L.append(f"- {msg}")
+        L.append("")
+        L.append(
+            "**Do not auto-repair these.** The block is authored prose; the correct "
+            "response is that the next `/failure-autopsy` or `/governance` session "
+            "touching the question REWRITES it against the current leg states. A script "
+            "cannot write a synthesis, and one that tried would manufacture exactly the "
+            "confident-but-wrong text this check exists to find."
+        )
+        L.append("")
+        L.append(
+            "**What this check cannot see.** It reads prose, so it under-fires by "
+            "design. It cannot tell an out-of-date claim from a deliberate historical "
+            "citation; it is blind to a synthesis that cites no run id at all (no "
+            "watermark to compare, so it is skipped rather than reported); it says "
+            "nothing about whether the prose's REASONING is still right, only whether it "
+            "names legs and runs consistently with the registry; and because `synthesis` "
+            "carries no `as_of` stamp, recency is inferred from the run ids the prose "
+            "happens to cite. A quiet result is therefore a floor on the staleness, not "
+            "a proof there is none."
+        )
+        L.append("")
+    else:
+        L.append("_No `synthesis` block contradicts its question's current leg states._")
         L.append("")
     L.append("---")
     L.append("")
@@ -1734,6 +1975,104 @@ def _self_test() -> int:
              {"hid": "u2", "pre_registered_utc": "2026-07-01", "resolution": {"state": "alive"}},
              {"hid": "u3", "pre_registered_utc": "2026-07-09", "resolution": {"state": "alive"}},
          ]},
+        # --- ADVISORY synthesis staleness (bucket `o_stale_synthesis`).
+        # Authored prose that no longer matches the legs. Each question isolates
+        # ONE of the three signals; `synth_ok_q` and `synth_nocite_q` pin the
+        # quiet side, which is the half that decides whether the advisory is
+        # usable at all.
+        #
+        # (S1) The 2026-09-11 confirmed instance's exact shape: a settled leg
+        # described as still in play, in a clause that sits BETWEEN two clauses
+        # that do carry verdict words. That adjacency is why the predicate reads
+        # semicolon-separated clauses rather than a character window -- a window
+        # picks up the neighbours' verdicts and suppresses the finding.
+        {"qid": "synth_stale_label_q", "initial_frozen_count": 2, "hypotheses": [
+            {"hid": "H-E-channel-capacity", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "eliminated", "resolved_utc": "2026-07-05",
+                            "evidence_direction": "weakens", "met_elimination_bar": True,
+                            "control_passed": True, "non_degenerate": True,
+                            "resolving_runs": ["V3-EXQ-1008"]}},
+            {"hid": "H-F-encode-loss", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "alive"}},
+        ],
+         "synthesis": {
+             "surviving_label": "H-F-encode-loss (confirmed, one run); "
+                                "H-E-channel-capacity alive; "
+                                "H-B-consumer-learning eliminated",
+             "text": "As of V3-EXQ-1008 the locus is not yet named.",
+             "under_test": "A two-leg portfolio is owed."}},
+        # (S2) CITATION WATERMARK: the prose cites V3-EXQ-925 and never names
+        # 936a, which adjudicated a leg after it. Leg states and labels agree,
+        # so S1 and S3 both stay quiet -- the signal is recency alone.
+        {"qid": "synth_stale_citation_q", "initial_frozen_count": 2, "hypotheses": [
+            {"hid": "s1", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "eliminated", "resolved_utc": "2026-07-05",
+                            "evidence_direction": "weakens", "met_elimination_bar": True,
+                            "control_passed": True, "non_degenerate": True,
+                            "resolving_runs": ["V3-EXQ-925"]}},
+            {"hid": "s2", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "confirmed", "resolved_utc": "2026-07-20",
+                            "evidence_direction": "supports", "control_passed": True,
+                            "non_degenerate": True,
+                            "resolving_runs": ["v3_exq_936a_synthetic_20260720T000000Z_v3"]}},
+        ],
+         "synthesis": {
+             "surviving_label": "s2 confirmed; s1 eliminated",
+             "text": "V3-EXQ-925 left the portfolio undecided.",
+             "under_test": None}},
+        # (S3) `under_test` still names owed work on a question with no alive leg.
+        {"qid": "synth_finished_work_q", "initial_frozen_count": 2, "hypotheses": [
+            {"hid": "w1", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "eliminated", "resolved_utc": "2026-07-05",
+                            "evidence_direction": "weakens", "met_elimination_bar": True,
+                            "control_passed": True, "non_degenerate": True,
+                            "resolving_runs": ["V3-EXQ-770"]}},
+            {"hid": "w2", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "confirmed", "resolved_utc": "2026-07-05",
+                            "evidence_direction": "supports", "control_passed": True,
+                            "non_degenerate": True, "resolving_runs": ["V3-EXQ-770"]}},
+        ],
+         "synthesis": {
+             "surviving_label": "w2 confirmed; w1 eliminated",
+             "text": "Both legs adjudicated on V3-EXQ-770.",
+             "under_test": "Two of four legs now buildable and UNQUEUED."}},
+        # QUIET: a correctly-written terminal synthesis -- current citation, every
+        # leg named with its verdict, and an `under_test` that SAYS nothing is
+        # owed. Firing on this shape is what would make the advisory noise.
+        {"qid": "synth_ok_q", "initial_frozen_count": 2, "hypotheses": [
+            {"hid": "k1", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "eliminated", "resolved_utc": "2026-07-05",
+                            "evidence_direction": "weakens", "met_elimination_bar": True,
+                            "control_passed": True, "non_degenerate": True,
+                            "resolving_runs": ["V3-EXQ-1010"]}},
+            {"hid": "k2", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "confirmed", "resolved_utc": "2026-07-05",
+                            "evidence_direction": "supports", "control_passed": True,
+                            "non_degenerate": True, "resolving_runs": ["V3-EXQ-1010"]}},
+        ],
+         "synthesis": {
+             "surviving_label": "k2 confirmed; k1 eliminated. All legs resolved.",
+             "text": "As of V3-EXQ-1010 the question is fully resolved.",
+             "under_test": "Nothing further on this question -- all legs are resolved."}},
+        # QUIET (the measured one): an ACCURATE synthesis that simply cites no run
+        # id. There is no watermark to compare, so S2 must skip it as unverifiable
+        # rather than report it. Dropping that conjunct took the real corpus from
+        # 3 hits (3 genuine) to 6 (2 genuine) on 2026-09-11 -- this pins it.
+        {"qid": "synth_nocite_q", "initial_frozen_count": 2, "hypotheses": [
+            {"hid": "n1", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "eliminated", "resolved_utc": "2026-08-29",
+                            "evidence_direction": "weakens", "met_elimination_bar": True,
+                            "control_passed": True, "non_degenerate": True,
+                            "resolving_runs": ["V3-EXQ-955"]}},
+            {"hid": "n2", "pre_registered_utc": "2026-07-01",
+             "resolution": {"state": "confirmed", "resolved_utc": "2026-08-29",
+                            "evidence_direction": "supports", "control_passed": True,
+                            "non_degenerate": True, "resolving_runs": ["V3-EXQ-955"]}},
+        ],
+         "synthesis": {
+             "surviving_label": "propagation leg confirmed (narrow)",
+             "text": "Leg (i) holds on the armed raised-floor stack.",
+             "under_test": None}},
         {"qid": "bad_q", "initial_frozen_count": 3, "hypotheses": [  # (b) count mismatch: 3 vs 2
             {"hid": "b_retro", "pre_registered_utc": "2026-07-10",   # (b) retro-pad
              "resolution": {"state": "eliminated", "resolved_utc": "2026-07-05",
@@ -1782,6 +2121,7 @@ def _self_test() -> int:
         "k_discovery_growth": flags["k_discovery_growth"],
         "l_discovery_recurrence": flags["l_discovery_recurrence"],
         "m_recurrence_acknowledged": flags["m_recurrence_acknowledged"],
+        "o_stale_synthesis": flags["o_stale_synthesis"],
     }
     failures = [k for k, v in checks.items() if not v]
     for k, v in checks.items():
@@ -1905,6 +2245,56 @@ def _self_test() -> int:
         ("render_summary_counts_ack",
          f"**{n_ack}** acknowledged (worked) recurrence(s)" in rendered,
          "the report's summary line counts acknowledged recurrences"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
+
+    # Synthesis staleness (advisory). Each signal must fire on its own case, and
+    # -- the half that decides whether this is usable -- both quiet cases must
+    # stay quiet. The bucket must also never reach the flag total.
+    joined_o = " ".join(flags["o_stale_synthesis"])
+    _rendered_o = render_report(flags, reg, ts, "2026-09-11T00:00:00Z")
+    for name, cond, msg in [
+        ("synth_s1_label_contradiction",
+         "synth_stale_label_q" in joined_o and "H-E-channel-capacity" in joined_o,
+         "a resolved leg described as alive in the surviving label is reported "
+         "(the 2026-09-11 confirmed instance's shape)"),
+        ("synth_s1_clause_scoped",
+         "synth_stale_label_q" in joined_o,
+         "the clause split survives neighbouring clauses that DO carry verdict "
+         "words -- a character window would suppress this finding"),
+        ("synth_s2_citation_watermark", "synth_stale_citation_q" in joined_o,
+         "prose whose newest cited run predates an adjudication it never names "
+         "is reported"),
+        ("synth_s3_finished_work", "synth_finished_work_q" in joined_o,
+         "an under_test naming owed work on a question with 0 alive legs is reported"),
+        ("synth_ok_quiet", "synth_ok_q" not in joined_o,
+         "a correctly-written terminal synthesis is NOT reported"),
+        ("synth_nocite_quiet", "synth_nocite_q" not in joined_o,
+         "an accurate synthesis citing no run id is skipped as unverifiable, never "
+         "reported -- the conjunct that kept the real corpus at 3 hits, not 6"),
+        ("synth_never_a_flag", "o_stale_synthesis" in ADVISORY_BUCKETS
+         and not any(qid in " ".join(
+             flags["a_unbacked_drop"] + flags["b_enlargement"]
+             + flags["c_confirmed_no_control"] + flags["d_bar_violation"])
+             for qid in ("synth_stale_label_q", "synth_stale_citation_q",
+                         "synth_finished_work_q", "synth_ok_q", "synth_nocite_q")),
+         "stale prose is ADVISORY -- it never lands in a counted (a)-(d) bucket"),
+        ("synth_render_section",
+         f"## Advisory -- possibly stale `synthesis` prose "
+         f"({len(flags['o_stale_synthesis'])}, NOT violations)" in _rendered_o,
+         "the rendered report carries its own stale-synthesis section"),
+        ("synth_render_no_autorepair",
+         "Do not auto-repair these" in _rendered_o,
+         "the report states that a hit is rewritten by the next autopsy/governance "
+         "session, never patched by a script"),
+        ("synth_render_states_blindspots",
+         "What this check cannot see" in _rendered_o,
+         "the section says what it is blind to, so a quiet result is not read as "
+         "a proof of freshness"),
     ]:
         if cond:
             print(f"  ok   discrimination: {msg}")
@@ -2269,6 +2659,14 @@ def main() -> int:
         print("     the registry. Apply, or record the disposition on the block:")
         for msg in flags["n_ledger_pending"]:
             print(f"    [ledger-pending] {msg.split('`')[1] if '`' in msg else msg[:60]}")
+    n_stale_synth = len(flags.get("o_stale_synthesis") or [])
+    print(f"  possibly-stale synthesis prose (advisory, not a flag): {n_stale_synth}")
+    if n_stale_synth:
+        print("  -- authored `synthesis` prose that no longer matches its question's")
+        print("     legs. NEVER auto-repaired: the next /failure-autopsy or")
+        print("     /governance session touching the question rewrites it:")
+        for msg in flags["o_stale_synthesis"]:
+            print(f"    [stale-synthesis] {msg.split('`')[1] if '`' in msg else msg[:60]}")
     n_disc_rec = len(flags["l_discovery_recurrence"])
     print(f"  discovery-growth recurrence (N>={FANOUT_RECURRENCE_N} events, ACTIONABLE): "
           f"{n_disc_rec}")
