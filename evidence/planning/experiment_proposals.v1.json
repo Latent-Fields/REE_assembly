@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-10T20:29:26.450416Z",
+  "generated_at_utc": "2026-09-11T16:14:51.767483Z",
   "items": [
     {
       "acceptance_checks": [
@@ -2106,7 +2106,8 @@
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
-        "directional_conflict_alert"
+        "directional_conflict_alert",
+        "low_exp_conf"
       ]
     },
     {
@@ -4829,6 +4830,52 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1384",
+      "blocked_by": "ARC-009 (no symbolic communication channel in ree_core/); ARC-010 (no multi-agent substrate; ARC-047 SocialGridWorld unimplemented, implementation_phase v5)",
+      "blocked_note": "MECH-011 needs a language channel as the IV; ree_core/ has only a register-only LANGUAGE_EXPLICITATION enum label and a single-agent environment. Literature lane (LIT-0742) deliberately left open -- lit evidence is still accruable for a substrate-blocked claim.",
+      "claim_id": "MECH-011",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-11T02:43:01Z",
+      "gated_by_session": "igw-239-proposal-for-mech-011",
+      "gating_reason": "EXP-0741 (MECH-011, 'Language and learning dynamics') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-239-proposal-for-mech-011, IGW-20260911-239). MECH-011 asserts language biases priors during model update, accelerates residue generalisation, enables counterfactual reasoning without direct experience, and transmits negative knowledge socially -- every one of those makes a linguistic/symbolic channel the INDEPENDENT variable. No such channel exists in ree-v3. Verified directly against the tree this session: the only 'language' token anywhere in ree_core/ is the bare enum label ControlDemandType.LANGUAGE_EXPLICITATION (ree_core/claustrum/control_demand.py:49), explicitly annotated 'register-only: declared for taxonomy stability, no template yet' and referenced nowhere but a contract test asserting the member name exists; ree_core/claustrum/coalition_templates.py:13 states in-source that consumer substrate for the social/language demand classes \"doesn't exist yet in ree_core\". Greps for utterance/linguistic/symbol_channel/other_agent/multi_agent/message_pass over ree_core/ return zero files, and ree_core/environment/ contains exactly one environment (causal_grid_world.py, single-agent). This independently reproduces the substrate findings already recorded in the what_would_answer fields of MECH-011's own two depends_on parents: ARC-009 (needs a discrete symbolic communication channel -- 'confirmed absent from ree_core/ entirely') and ARC-010 (needs a multi-agent substrate; ARC-047's SocialGridWorld is unimplemented, status candidate, confidence 0.0, implementation_phase v5). A claim_probe_mech_011 queued now would have no IV to manipulate and no language-mediated DV to read; the only runnable surrogate -- injecting a prior directly into the model-update path -- would test prior-injection mechanics, not language, and could not attach to MECH-011 at any defensible mapping fidelity. That is a vacuous result, not a verdict.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-011 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0741",
+      "proposal_type": "experimental",
+      "release_condition": "Release when BOTH substrate layers named in ARC-009/ARC-010 what_would_answer exist in ree-v3: (1) a multi-agent environment (ARC-047 SocialGridWorld or equivalent) alongside the current single-agent causal_grid_world.py, and (2) a real discrete symbol/communication channel between agents built out from MECH-014's interface sketch -- i.e. ControlDemandType.LANGUAGE_EXPLICITATION backed by an actual template and consumer substrate rather than a register-only enum label. Both are gated to implementation_phase v5. Re-derive readiness from the tree, not from this note.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_011",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-0081",
       "claim_id": "MECH-183",
       "decision_deadline_utc": "",
@@ -7069,102 +7116,6 @@
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1202",
-      "claim_id": "ARC-059",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-059.",
-      "priority": "medium",
-      "proposal_id": "LIT-0470",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_059",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1203",
-      "claim_id": "ARC-061",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-061.",
-      "priority": "medium",
-      "proposal_id": "LIT-0474",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_061",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
         "synthetic_signals_only"
       ]
     },
@@ -15002,98 +14953,6 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-1384",
-      "blocked_by": "ARC-009 (no symbolic communication channel in ree_core/); ARC-010 (no multi-agent substrate; ARC-047 SocialGridWorld unimplemented, implementation_phase v5)",
-      "blocked_note": "MECH-011 needs a language channel as the IV; ree_core/ has only a register-only LANGUAGE_EXPLICITATION enum label and a single-agent environment. Literature lane (LIT-0742) deliberately left open -- lit evidence is still accruable for a substrate-blocked claim.",
-      "claim_id": "MECH-011",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-11T02:43:01Z",
-      "gated_by_session": "igw-239-proposal-for-mech-011",
-      "gating_reason": "EXP-0741 (MECH-011, 'Language and learning dynamics') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-239-proposal-for-mech-011, IGW-20260911-239). MECH-011 asserts language biases priors during model update, accelerates residue generalisation, enables counterfactual reasoning without direct experience, and transmits negative knowledge socially -- every one of those makes a linguistic/symbolic channel the INDEPENDENT variable. No such channel exists in ree-v3. Verified directly against the tree this session: the only 'language' token anywhere in ree_core/ is the bare enum label ControlDemandType.LANGUAGE_EXPLICITATION (ree_core/claustrum/control_demand.py:49), explicitly annotated 'register-only: declared for taxonomy stability, no template yet' and referenced nowhere but a contract test asserting the member name exists; ree_core/claustrum/coalition_templates.py:13 states in-source that consumer substrate for the social/language demand classes \"doesn't exist yet in ree_core\". Greps for utterance/linguistic/symbol_channel/other_agent/multi_agent/message_pass over ree_core/ return zero files, and ree_core/environment/ contains exactly one environment (causal_grid_world.py, single-agent). This independently reproduces the substrate findings already recorded in the what_would_answer fields of MECH-011's own two depends_on parents: ARC-009 (needs a discrete symbolic communication channel -- 'confirmed absent from ree_core/ entirely') and ARC-010 (needs a multi-agent substrate; ARC-047's SocialGridWorld is unimplemented, status candidate, confidence 0.0, implementation_phase v5). A claim_probe_mech_011 queued now would have no IV to manipulate and no language-mediated DV to read; the only runnable surrogate -- injecting a prior directly into the model-update path -- would test prior-injection mechanics, not language, and could not attach to MECH-011 at any defensible mapping fidelity. That is a vacuous result, not a verdict.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-011 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0741",
-      "proposal_type": "experimental",
-      "release_condition": "Release when BOTH substrate layers named in ARC-009/ARC-010 what_would_answer exist in ree-v3: (1) a multi-agent environment (ARC-047 SocialGridWorld or equivalent) alongside the current single-agent causal_grid_world.py, and (2) a real discrete symbol/communication channel between agents built out from MECH-014's interface sketch -- i.e. ControlDemandType.LANGUAGE_EXPLICITATION backed by an actual template and consumer substrate rather than a register-only enum label. Both are gated to implementation_phase v5. Re-derive readiness from the tree, not from this note.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_011",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1384",
-      "claim_id": "MECH-011",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-011.",
-      "priority": "medium",
-      "proposal_id": "LIT-0742",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_011",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
       "backlog_id": "EVB-1385",
       "claim_id": "MECH-012",
       "decision_deadline_utc": "",
@@ -20941,6 +20800,12 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1462",
+      "blocked_by": [
+        "MECH-221",
+        "MECH-222",
+        "SD-070"
+      ],
+      "blocked_note": "No queue entry created (V3-EXQ-1018 reserved then released). MECH-222's testable content needs a downstream consumer of z_world to distinguish an EXOGENOUS world event from self-caused change, but z_world carries no such signal: ree_core/latent/zworld_p0.py records (2026-07-18, this substrate) that transition-type information is AT OR BELOW CHANCE in the world_obs channel z_world encodes (-0.014 3-class / -0.060 6-class held-out macro-recall minus chance), because z_world is a STATIC SINGLE-FRAME encoding and SD-005's split encoder routes the informative body delta to z_self. Reproduced independently 2026-09-10 across 4 measurement rounds (frozen and trained encoder; binary and graded DV; clock-locked and clock-independent exogenous channel) -- all at chance (probe AUC 0.53-0.63, Spearman -0.03..0.20). The MANIPULATION is fine: the SD-007 ReafferencePredictor trains to held-out R2 0.34-0.40 and is genuinely action-sensitive. It is the DV that does not exist. SD-070 is the existing z_world P0 repair recipe but targets STATIC single-frame properties by construction, so it likely does not clear this gate either -- confirm rather than assume. Route: /implement-substrate on the z_world exogenous-event channel, NOT another /queue-experiment iteration. Full evidence + red-team dispositions: REE_assembly/evidence/planning/mech222_zworld_event_channel_blocked_staged_20260910.md . Reviewed driver left on trunk, deliberately UNQUEUED: ree-v3/experiments/v3_exq_1018_mech222_self_attribution_contamination.py",
       "claim_id": "MECH-222",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -20970,13 +20835,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "blocked_by": [
-        "MECH-221",
-        "MECH-222",
-        "SD-070"
-      ],
-      "blocked_note": "No queue entry created (V3-EXQ-1018 reserved then released). MECH-222's testable content needs a downstream consumer of z_world to distinguish an EXOGENOUS world event from self-caused change, but z_world carries no such signal: ree_core/latent/zworld_p0.py records (2026-07-18, this substrate) that transition-type information is AT OR BELOW CHANCE in the world_obs channel z_world encodes (-0.014 3-class / -0.060 6-class held-out macro-recall minus chance), because z_world is a STATIC SINGLE-FRAME encoding and SD-005's split encoder routes the informative body delta to z_self. Reproduced independently 2026-09-10 across 4 measurement rounds (frozen and trained encoder; binary and graded DV; clock-locked and clock-independent exogenous channel) -- all at chance (probe AUC 0.53-0.63, Spearman -0.03..0.20). The MANIPULATION is fine: the SD-007 ReafferencePredictor trains to held-out R2 0.34-0.40 and is genuinely action-sensitive. It is the DV that does not exist. SD-070 is the existing z_world P0 repair recipe but targets STATIC single-frame properties by construction, so it likely does not clear this gate either -- confirm rather than assume. Route: /implement-substrate on the z_world exogenous-event channel, NOT another /queue-experiment iteration. Full evidence + red-team dispositions: REE_assembly/evidence/planning/mech222_zworld_event_channel_blocked_staged_20260910.md . Reviewed driver left on trunk, deliberately UNQUEUED: ree-v3/experiments/v3_exq_1018_mech222_self_attribution_contamination.py"
+      ]
     },
     {
       "acceptance_checks": [
@@ -28382,94 +28241,6 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-1579",
-      "claim_id": "MECH-464",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-464 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1067",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_464",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "executed_by": "V3-EXQ-1019",
-      "executed_queue_id": "V3-EXQ-1019"
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1579",
-      "claim_id": "MECH-464",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-464.",
-      "priority": "medium",
-      "proposal_id": "LIT-1068",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_464",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
       "backlog_id": "EVB-1581",
       "claim_id": "MECH-468",
       "decision_deadline_utc": "",
@@ -34304,6 +34075,92 @@
     },
     {
       "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1746",
+      "claim_id": "SD-106",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for SD-106 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0131",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_sd_106",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1746",
+      "claim_id": "SD-106",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for SD-106.",
+      "priority": "medium",
+      "proposal_id": "LIT-0132",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_sd_106",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -36063,6 +35920,92 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_290",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1579",
+      "claim_id": "MECH-464",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-1019",
+      "executed_queue_id": "V3-EXQ-1019",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-464 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1067",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_464",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1579",
+      "claim_id": "MECH-464",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-464.",
+      "priority": "medium",
+      "proposal_id": "LIT-1068",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_464",
       "target_repo": "REE_assembly",
       "why_now": [
         "insufficient_experimental_replication",

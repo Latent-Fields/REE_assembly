@@ -1,12 +1,12 @@
 # Claims live_status Drift Report
 
-Generated: 2026-09-11T14:06:21Z
+Generated: 2026-09-11T16:18:15Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Claims in registry: 1125
+Claims in registry: 1126
 
 ## Reading drift -- HARD (172)
 
@@ -187,7 +187,7 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | MECH-535 | `candidate/standard` | `candidate` | reading: stored='candidate/standard' derived='candidate' |
 | MECH-536 | `candidate/standard` | `candidate` | reading: stored='candidate/standard' derived='candidate' |
 
-## Unstamped -- SOFT (53)
+## Unstamped -- SOFT (54)
 
 Registered claims with no `live_status` block. Run `scripts/apply_live_status.py`.
 
@@ -246,6 +246,7 @@ Registered claims with no `live_status` block. Run `scripts/apply_live_status.py
 | Q-104 | `open/substrate_conditional` |
 | MECH-547 | `candidate/substrate_conditional` |
 | MECH-548 | `candidate/substrate_conditional` |
+| SD-106 | `implemented` |
 
 ## Internal inconsistency -- REVIEW (2)
 
@@ -324,7 +325,7 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | Q-020 | `decision:Q-020@2026-04-10T18:06:06.975132Z` | `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` |
 | ... | | (+266 more) |
 
-## Never reviewed (no `last_reviewed`) -- INFO (1104 of 1125)
+## Never reviewed (no `last_reviewed`) -- INFO (1105 of 1126)
 
 Claims with no `last_reviewed` history value -- not yet reviewed under the history plane. `last_reviewed` is record-once and legitimately absent for most claims (seeded from `adjudicated_at_utc`, or set with `apply_live_status.py --mark-reviewed <ID>`). Count + sample only.
 
