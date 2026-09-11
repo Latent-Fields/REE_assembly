@@ -1,0 +1,58 @@
+{
+  "source": {
+    "title": "Coercion Changes the Sense of Agency in the Human Brain",
+    "authors": [
+      "Emilie A. Caspar",
+      "Julia F. Christensen",
+      "Axel Cleeremans",
+      "Patrick Haggard"
+    ],
+    "year": 2016,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2015.12.067",
+    "pmid": "26898470",
+    "pmc": null,
+    "volume": "26",
+    "issue": "5",
+    "pages": "585-592"
+  },
+  "evidence_class": "neuroscience_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High-quality venue, two experiments, and the decisive methodological move for this claim: implicit (intentional-binding) and electrophysiological measures rather than self-report, so the result cannot be dismissed as post-hoc excuse-making. Mapping is good but not exact -- the coercive utterance is a single dyadic order, not institutional language, and the attenuated quantity is an ERP to an outcome tone, not anything REE would call residue. Held at 0.72 rather than higher because the interpretation is actively contested by the engaged-followership account (Haslam et al. 2015, this directory), which reads the same class of obedience data as identification rather than agency-loss.",
+  "failure_signatures": [
+    "Coercion reduced the NEURAL PROCESSING OF THE OUTCOME ITSELF, not merely the retrospective attribution of it. A REE design in which residue is written from the harm outcome on a path independent of agency attribution would not reproduce this result, and would therefore under-predict how much an institutional speech act can suppress.",
+    "The attenuation occurred even though the participant unambiguously pressed the key themselves. Ground-truth causal bookkeeping ('the log says you did it') does not immunise the mechanism, so an audit layer that checks attribution records rather than the agent's own outcome signal would see nothing wrong.",
+    "Perceived action-outcome interval LENGTHENED under coercion. If REE binds residue to an action within a temporal window, an order can push a harm outcome out of that window without any explicit denial being uttered."
+  ],
+  "tags": [
+    "mech-012",
+    "sense_of_agency",
+    "coercion",
+    "obedience",
+    "intentional_binding",
+    "outcome_monitoring",
+    "residue_displacement",
+    "language"
+  ],
+  "mapping": {
+    "source_claim_statement": "In two experiments, an experimenter ordered a volunteer to press a key that delivered either a financial penalty or a demonstrably painful electric shock to a co-participant, for the volunteer's own gain. Relative to freely choosing to inflict the same harm, coercion increased the perceived interval between action and outcome (reduced implicit sense of agency) and also reduced the neural processing of the outcomes of one's own action. The authors conclude that people obeying orders may experience their actions as closer to passive movements than to fully voluntary ones.",
+    "ree_translation": "MECH-012 asserts that in collective systems language is the medium through which ethical residue is managed or displaced. This is the cleanest mechanistic instance available of the displacement operation, and it locates that operation earlier in the pipeline than the claim's wording implies. The order does not persuade the agent after the fact that the harm was not theirs; it attenuates the outcome signal from which a residue trace would have been written in the first place. For REE this converts 'institutions absorb residue' from a bookkeeping metaphor into a concrete architectural constraint: a symbolic input on the instruction channel must not be permitted multiplicative control over the harm-signal gain, or the residue field records a smaller harm than occurred and no downstream monitor can recover the difference.",
+    "mapping_caveat": "The coercing agent is a single present experimenter in a dyad, not an institution; there is no collective, no persistence, and no diffusion across members -- precisely the substrate MECH-012 is about. The harm was real but bounded and consented, and the sample is a Western university population. Most importantly, the attenuated measure is an ERP amplitude to an outcome tone; equating that with REE's residue (a persistent affective care-marker) is an assumption, not a finding. The claim's specific prediction -- that failure arises when symbolic language FULLY DECOUPLES from embodied harm signals -- is not tested here either, since coupling was reduced but never removed.",
+    "source_context": "Healthy adult humans; dyadic laboratory paradigm with real financial and electric-shock harms to a co-participant; implicit interval-estimation measure of agency plus EEG recording of outcome-evoked responses."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Weighted toward source_quality because the central contribution is methodological -- it is the implicit and neural measures that make the result survive the obvious self-serving-bias objection. transfer_risk is held at 0.40 for the dyad-to-institution gap and the ERP-to-residue substitution, which are two separate untested extensions stacked on each other."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_012",
+  "entry_id": "2026-09-11_mech_012_coercion_attenuates_outcome_processing_caspar2016",
+  "timestamp_utc": "2026-09-11T19:11:47Z",
+  "claim_ids_tested": [
+    "MECH-012"
+  ],
+  "summary_path": "summary.md"
+}

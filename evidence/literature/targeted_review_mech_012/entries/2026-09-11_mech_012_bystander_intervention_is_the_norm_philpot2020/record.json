@@ -1,0 +1,58 @@
+{
+  "source": {
+    "title": "Would I be helped? Cross-national CCTV footage shows that intervention is the norm in public conflicts",
+    "authors": [
+      "Richard Philpot",
+      "Lasse Suonperä Liebst",
+      "Mark Levine",
+      "Wim Bernasco",
+      "Marie Rosenkrantz Lindegaard"
+    ],
+    "year": 2020,
+    "venue": "American Psychologist",
+    "doi": "10.1037/amp0000469",
+    "pmid": "31157529",
+    "pmc": null,
+    "volume": "75",
+    "issue": "1",
+    "pages": "66-75"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.64,
+  "confidence_rationale": "Strong ecological evidence -- 219 real public conflicts on surveillance video across three countries, replicated across contexts differing greatly in perceived public safety -- bearing directly on MECH-012's diffusion limb at the COLLECTIVE level, which is the level the claim is about and which none of the laboratory entries reach. Weakens rather than mixed because the key result runs the opposite way to the claim's expectation: more bystanders meant a GREATER likelihood that someone intervened. Held at 0.64 because these are unstructured public crowds rather than institutions, and that difference may be exactly what MECH-012 is about.",
+  "failure_signatures": [
+    "In 9 of 10 real public conflicts at least one bystander -- typically several -- intervened. A REE multi-agent model that derives collective non-response by summing individually attenuated residues (the Beyer et al. 2017 effect in this directory) would predict the opposite base rate, so that summation is invalid as a bridge from individual to collective.",
+    "Increased bystander presence was associated with a GREATER likelihood of intervention, reversing the direction the diffusion account predicts at the aggregate. Group size cannot be used in REE as a monotone suppressor of collective harm response.",
+    "Intervention rates were similar across the UK, Netherlands and South Africa despite large differences in perceived public safety. The aggregate response to visible harm is robust to the ambient variable most likely to modulate it, which makes an institution-specific explanation for institutional failure MORE necessary, not less -- unstructured collectives evidently do not fail this way by default."
+  ],
+  "tags": [
+    "mech-012",
+    "bystander_effect",
+    "diffusion_of_responsibility",
+    "collective_behaviour",
+    "ecological_validity",
+    "cross_national",
+    "aggregate_vs_individual"
+  ],
+  "mapping": {
+    "source_claim_statement": "The largest systematic study of real-life bystander intervention in actual public conflicts captured by surveillance cameras (N = 219 conflicts, United Kingdom, Netherlands and South Africa) found that in 9 of 10 public conflicts at least one bystander, and typically several, did something to help. Likelihoods of intervention were similar across the three national contexts despite large differences in perceived public safety, and increased bystander presence was related to a GREATER likelihood that someone would intervene. The authors argue psychology should change its narrative away from an absence of help and toward understanding what makes intervention successful.",
+    "ree_translation": "MECH-012's second limb says collectives may diffuse residue and lose accountability. Beyer et al. 2017 shows the individual-level mechanism is real: co-presence attenuates outcome monitoring. This paper shows that the individual-level mechanism does not determine the collective-level behaviour, and in the wild the aggregate runs the other way -- more potential responders means a higher probability that harm is met with action. For REE the lesson is a modelling constraint rather than a refutation: residue attenuation per agent and harm response per collective are separate quantities, and the second cannot be derived by summing the first. If MECH-012's institutional failure is real, it must come from something institutions ADD -- roles that assign the response to someone specified, protocols that define what counts as harm, language that reclassifies the event as not-an-emergency -- rather than from the mere fact of being many. That is a sharper and more testable claim than the one currently written, and it is one a SocialGridWorld-style substrate could actually distinguish: unstructured multi-agent baseline versus the same agents under an imposed role and protocol layer.",
+    "mapping_caveat": "These are unstructured public crowds responding to visible, acute, physical conflict -- close to the best case for intervention and close to the worst case for testing institutional dynamics. There are no roles, no hierarchy, no protocol, no career consequence and no institutional language, which is to say none of the machinery MECH-012 implicates; the finding may therefore be entirely compatible with the claim, and merely show what collectives do BEFORE institutions act on them. The measure is intervention behaviour, not residue: nothing here shows what the non-intervening bystanders registered internally, so individual-level attenuation could be widespread and invisible behind a reliable aggregate. Coding of 'doing something to help' from video also involves judgement, and acute street conflict does not generalise to slow, distributed, procedurally-mediated institutional harm, which is the case REE most cares about.",
+    "source_context": "Observational video-coding study of 219 real public conflicts recorded by surveillance cameras in Lancaster (UK), Amsterdam (Netherlands) and Cape Town (South Africa); unit of analysis is the conflict, with bystander presence and intervention coded from footage."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "High source_quality -- large ecological sample, cross-national replication, and a design that escapes the laboratory artificiality of the bystander tradition. mapping_fidelity is the limiting term because unstructured public crowds are not institutions, and transfer_risk is set at 0.50 for the same reason: this could be a genuine counterexample to the diffusion limb or a measurement of the baseline that institutions are precisely what departs from. The entry's value to governance is that it forbids one specific inference, not that it settles the claim."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_012",
+  "entry_id": "2026-09-11_mech_012_bystander_intervention_is_the_norm_philpot2020",
+  "timestamp_utc": "2026-09-11T19:11:47Z",
+  "claim_ids_tested": [
+    "MECH-012"
+  ],
+  "summary_path": "summary.md"
+}

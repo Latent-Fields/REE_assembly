@@ -1,0 +1,57 @@
+{
+  "source": {
+    "title": "Beyond self-serving bias: diffusion of responsibility reduces sense of agency and outcome monitoring",
+    "authors": [
+      "Frederike Beyer",
+      "Nura Sidarus",
+      "Sofia Bonicalzi",
+      "Patrick Haggard"
+    ],
+    "year": 2017,
+    "venue": "Social Cognitive and Affective Neuroscience",
+    "doi": "10.1093/scan/nsw160",
+    "pmid": "27803288",
+    "pmc": "PMC5390729",
+    "volume": "12",
+    "issue": "1",
+    "pages": "138-145"
+  },
+  "evidence_class": "neuroscience_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Methodologically strong and directly on the diffusion limb of MECH-012, with the same self-serving-bias control logic as Caspar et al. Scored mixed rather than supports because of what the manipulation was: the MERE PRESENCE of another potential agent, with no utterance, no institution and no ambiguity about who caused the outcome. It therefore supports 'collectives diffuse residue' while directly undercutting 'language is the PRIMARY medium' for that limb. Confidence is set by how clean the dissociation is, not by how convenient it is.",
+  "failure_signatures": [
+    "Diffusion occurred with NO LINGUISTIC CONTENT WHATSOEVER -- the presence of a second potential agent was sufficient. MECH-012's 'language is the primary medium' clause is falsified for this limb as stated: a REE multi-agent substrate would show residue attenuation from co-presence alone, before any symbol channel is built.",
+    "The reduction held even though it was always obvious who caused each outcome. Attenuation is therefore not downstream of causal uncertainty, so a design that resolves attribution unambiguously (per-agent action logs) does not prevent it.",
+    "The affected measure was feedback-related negativity, an early outcome-monitoring response. If REE's residue write is gated on an analogous monitoring signal, mere collective membership degrades the write at source -- meaning the harm record is already lossy before any institutional narration begins."
+  ],
+  "tags": [
+    "mech-012",
+    "diffusion_of_responsibility",
+    "sense_of_agency",
+    "feedback_related_negativity",
+    "outcome_monitoring",
+    "collective_agency",
+    "eeg"
+  ],
+  "mapping": {
+    "source_claim_statement": "In an EEG study, participants made voluntary actions with outcomes of varying negativity. The presence of another potential agent reduced participants' sense of agency over those outcomes even though it was always obvious who had caused each outcome, and reduced the amplitude of the feedback-related negativity evoked by outcome stimuli, indicating reduced outcome monitoring. The authors conclude that the presence of other agents may produce diffusion of responsibility by weakening the neural linkage between one's actions and their outcomes, rather than by post-hoc self-serving attribution.",
+    "ree_translation": "This is the cleanest available evidence for MECH-012's second limb -- that collectives diffuse residue and lose accountability -- and it establishes that the diffusion is online rather than narrative: the neural linkage between action and outcome is weakened as the outcome arrives, not reconstructed afterwards. For a REE multi-agent substrate the design implication is direct: residue attenuation is a function of the AGENT-COUNT CONTEXT, and an implementation that keeps per-agent residue accounting exact under co-presence is modelling a system no human collective resembles. But the same result constrains the claim's headline wording. There was no utterance, no institution and no symbolic act of any kind in this experiment, and diffusion happened anyway. Language cannot be the primary medium of the diffusion limb if bare co-presence is sufficient; at most, language is what makes diffusion durable, transferable and institutionalisable once co-presence has already opened the gap.",
+    "mapping_caveat": "'Presence of another potential agent' is a minimal social context -- one other person who might have acted -- not an institution with roles, norms, persistence or a shared symbol system, so the extrapolation to institutional diffusion is a long one. The outcomes were laboratory penalties of graded negativity rather than harm to a person, so this speaks to outcome monitoring generally rather than to harm signalling specifically. Feedback-related negativity is a prediction-error-related response; treating its amplitude as proportional to a REE residue write is an analogy REE imposes. And a reduction in an ERP component is not the same as a failure of accountability at the collective level -- Philpot et al. 2020 in this directory shows those can dissociate.",
+    "source_context": "Healthy adult humans; EEG; voluntary action task with graded negative outcomes, manipulating the presence versus absence of a second potential agent while keeping causal attribution unambiguous."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "mapping_fidelity is held below the source quality deliberately: the study maps onto the DIFFUSION limb with high fidelity and onto the LANGUAGE clause with negative fidelity, and a single scalar has to carry both. The entry is most useful to governance as a constraint on the claim's wording, which is why the direction is mixed rather than supports."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_012",
+  "entry_id": "2026-09-11_mech_012_diffusion_responsibility_outcome_monitoring_beyer2017",
+  "timestamp_utc": "2026-09-11T19:11:47Z",
+  "claim_ids_tested": [
+    "MECH-012"
+  ],
+  "summary_path": "summary.md"
+}
