@@ -3654,9 +3654,9 @@
       "summary": "substrate_queue.json entry SD-e1-rollout-consistency-training lists e1_deep::forward (and ::predict_long_horizon) in substrate_paths, a path that 725 corpus experiment scripts reach -- including V3-EXQ-1019, which ran tonight. Because /queue-experiment Step 2.5c gates on substrate-path overlap, this entry will spuriously block essentially every future agent-stepping experiment, not the narrow class it was written for. This is the same over-broad substrate_paths shape governance already corrected for SD-082 on 2026-09-09; the fix is to narrow substrate_paths to the rollout-consistency-specific symbols. Found by dispatched queue session science-935a-sd082-0910 on 2026-09-10 while queueing V3-EXQ-1020; reported rather than actioned because substrate_queue.json dispositions are governance-owned.",
       "raised_by_session": "orchestrate-20260910-2213",
       "raised_at": "2026-09-10T23:14:46Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-11T17:17:34Z",
+      "resolution_note": "APPLIED, cycle gov-20260911-1612 (user-approved at the governance gate). substrate_queue.json SD-e1-rollout-consistency-training substrate_paths emptied: they listed ree_core/predictors/e1_deep.py::forward and ::predict_long_horizon, paths 725 corpus scripts reach, so Step 2.5c would have spuriously blocked essentially every future agent-stepping experiment. Same correction governance already ratified for SD-082 on 2026-09-09. severity stays corrupting -- the defect is real; the blast radius was wrong. Dated note added to severity_note; re-arm only with rollout-consistency-specific symbols, never a bare e1_deep module path."
     },
     {
       "flag_id": "GFLAG-0260",
