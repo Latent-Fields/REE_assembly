@@ -3571,9 +3571,9 @@
       "summary": "SUCCESSOR to GFLAG-0149 (resolved 2026-09-10). While applying 0149's correction to ARC-029, the 2026-06-03 paragraph it targets was found duplicated VERBATIM on MECH-090 (claims.yaml:11303) -- the same 'Redesign queued (confound-isolation arm)' text, with the same staleness. Only ARC-029's copy was edited, deliberately, because MECH-090's was outside 0149's scope; a file-wide grep for the phrase therefore still returns 1. That survivor is MECH-090's and carries the identical defect.",
       "raised_by_session": "gov-flagbacklog-20260909",
       "raised_at": "2026-09-10T06:55:18Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-11T17:16:03Z",
+      "resolution_note": "APPLIED, cycle gov-20260911-1612. MECH-090's verbatim duplicate of the 2026-06-03 paragraph (claims.yaml:11459) corrected to match the wording GFLAG-0149 applied to ARC-029's copy: 'Redesign queued (confound-isolation arm).' -> 'Redesign NAMED but never queued (verified 2026-09-09, GFLAG-0149 ...; re-verified for MECH-090 2026-09-11, GFLAG-0253 ...)'. A file-wide grep for the stale phrase now returns 0 (was 1). No status, category or evidence field moved -- text correction only."
     },
     {
       "flag_id": "GFLAG-0254",
