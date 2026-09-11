@@ -4946,7 +4946,11 @@
       "task_claim_session_id": "igw-auto-igw-239-proposal-for-mech-011-20260911T023707Z",
       "task_claim_claimed_at": "2026-09-11T02:37:07Z",
       "assigned_at": "2026-09-11T02:35:51Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-11T02:59:49Z",
+      "completion_summary": "MECH-011 judged substrate-blocked (no language channel in ree_core/); marked EVB-1384/EXP-0741 blocked_substrate + raised GFLAG-0261 on the missing epistemic_category (REE_assembly 5b75f7f01e, 71e912e2ab); LIT-0742 left proposed",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-011 judged substrate-blocked (no language channel in ree_core/); marked EVB-1384/EXP-0741 blocked_substrate + raised GFLAG-0261 on the missing epistemic_category (REE_assembly 5b75f7f01e, 71e912e2ab); LIT-0742 left proposed"
     }
   ],
   "dispositions": [
@@ -7057,6 +7061,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-09T10:23:53Z",
       "re_eligible_after": "2026-09-11T10:23:53Z"
+    },
+    {
+      "stable_hash": "0197aeb76153",
+      "igw_id_at_disposition": "IGW-20260911-239",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-011"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-011",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-11T02:59:51Z",
+      "re_eligible_after": "2026-09-13T02:59:51Z"
     }
   ]
 }
