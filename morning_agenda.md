@@ -24,10 +24,30 @@ re-queued has already had it attempted. **Refill needs a fresh `/queue-experimen
 re-queue.** Workers `ree-cloud-2` and `ree-cloud-3` are already powered down (scaler responding
 correctly to zero demand) — so every hour from here is idle fleet.
 
-The best-posed design targets are in the Headlines below: EXQ-1010 has just localised the v3
-binding constraint to the **encoder's objective**, and EXQ-1020 has just told us the SD-082
-learning signal is present-but-noisy with its advantage-sign leg failing. Both are ready to be
-turned into the next experiment.
+**But the refill work is ALREADY CHIPPED — it is waiting to be clicked, not waiting to be
+designed.** A STOP-CHECK of the chip ledger at close found the queue-refill path already staffed:
+
+- **`chip-20260910-recover-stranded-exq-1018-1003`** — *"Recover 2 stranded experiment scripts
+  into the empty queue."* **V3-EXQ-1018** (MECH-005, 858 lines) and **V3-EXQ-1003** (EXT-004,
+  100KB) are complete and clean-compiling, and have sat untracked and unqueued since Sep 9 after
+  their authoring sessions died. The user already authorised recovering both; the handoff happened
+  because the queue file was claimed by a live worker at the time. **This is the shortest path from
+  0 to 2 queued experiments and it needs no new design.**
+- **`chip-20260910-merge-paced-proposal-triage`** — one read-only substrate-readiness triage across
+  8 paced `/queue-experiment` proposals, which then re-spawns full sessions only for the buildable
+  ones. Behind it sit 6 individual paced proposals (MECH-237, MECH-222, MECH-213, MECH-208,
+  MECH-206, MECH-162).
+
+**No chips were spawned by this digest, deliberately.** Every follow-on it would otherwise have
+raised is already open — and `chip-20260910-curated-pause-window-g6` records that the
+pause-pressure gate tripped **generation 6** on chip over-production (291 chips authored in 7 days
+against a 150 threshold) and that **the user approved running a curated pause window now**. Adding
+to the pile this morning would work directly against a halt you have already authorised.
+
+The best-posed *design* targets, when the queue does need fresh design, are in the Headlines below:
+EXQ-1010 has just localised the v3 binding constraint to the **encoder's objective**, and EXQ-1020
+has just told us the SD-082 learning signal is present-but-noisy with its advantage-sign leg
+failing.
 
 ---
 
@@ -443,6 +463,27 @@ self-clearing.
 ## Serve.py Status
 
 **RUNNING** on port 8000 (PID 63232).
+
+---
+
+## Chip Backlog (Phase 3: zero chips spawned)
+
+A user-approved **curated pause window** is in flight (`chip-20260910-curated-pause-window-g6`) —
+the pause-pressure gate tripped generation 6 on 291 chips in 7 days. Every follow-on this digest
+would have raised already has an open chip, so nothing new was spawned:
+
+| Would-be follow-on | Already covered by |
+|---|---|
+| Refill the empty queue | `chip-20260910-recover-stranded-exq-1018-1003` (2 ready scripts) + `chip-20260910-merge-paced-proposal-triage` (8 proposals) |
+| V3-EXQ-1010 autopsy | `chip-20260910-merge-autopsy-1017-1010` — *and* it is `/failure-autopsy` work, reported inline by rule, never chipped |
+| V3-EXQ-1020 autopsy | `chip-autopsy-v3-exq-1020` (spawned 00:52Z today) |
+| MECH-027 / MECH-161 adjudication | `chip-20260910-merge-autopsy-999a-981a` (staging autopsies for both) |
+| REE_assembly divergence | `chip-20260910-gflag-phase2a-coordinator-shadow` — names governance-flag as *"the last big local git writer driving REE_assembly's divergence"* |
+| Checkout not following origin | `chip-checkoutdiverged-dlaptop-ree-working-master-g4` — **generation 4**, already routed to `/metaworker-learning` for root cause rather than another symptom fix |
+
+Two recurrence signals worth your eye, because both are explicitly flagged as *symptom fixes not
+holding*: `chip-daemondrift-ree-cloud-1-ree-explorer-g5` (**generation 5**) and the checkout-diverged
+generation-4 chip above. Both have been resolved and re-fired repeatedly.
 
 ---
 
