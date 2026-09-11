@@ -2934,3 +2934,4 @@ One line per hourly tick. ASCII only.
 2026-09-11T22:13:57Z GC sweep removed 1 orphan worktree(s), kept 12
 2026-09-11T22:14:57Z workset committed (regen -- 256 items, 31 ready, 0 in flight)
 2026-09-11T22:13:57Z no eligible item (skipped 256): IGW-20260911-004:skill /governance not allowed; IGW-20260911-006:skill /governance not allowed; IGW-20260911-008:skill /governance not allowed
+2026-09-11T23:15:34Z no eligible item (skipped 256): IGW-20260911-004:skill /governance not allowed; IGW-20260911-006:skill /governance not allowed; IGW-20260911-008:skill /governance not allowed
