@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-09-11T20:18:08Z",
+  "generated_at": "2026-09-11T21:13:15Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -11319,6 +11319,28 @@
         "skill": "/queue-experiment",
         "title": "Proposal for MECH-013",
         "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-013"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260911T211132Z-195559eb-claude_local",
+      "stable_hash": "195559ebe57b",
+      "igw_id_at_assign": "IGW-20260911-245",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-09-11T21:11:32Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=44c48e36-0bd9-41a8-a3c4-3c7b0c7e11ea branch=claude/igw-245-literature-proposal-for-mech-013",
+      "item_snapshot": {
+        "skill": "/lit-pull",
+        "title": "Literature proposal for MECH-013",
+        "lane": "lit",
         "priority": 40,
         "claim_ids": [
           "MECH-013"
