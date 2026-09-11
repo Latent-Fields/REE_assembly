@@ -31723,6 +31723,12 @@
     evidence/planning/claim_synthesis_INV-064_2026-07-12.md.
 
 - id: INV-088
+  governance_override:
+    - supersedes_autopsy: failure_autopsy_V3-EXQ-1010_2026-09-11
+      decided_utc: "2026-09-11"
+      field: live_status.evidence.from
+      ratified_by: "user decision 2026-09-11T17:35Z (session goofy-merkle-eebaa1)"
+      reason: "The V3-EXQ-1010 disposition asks for a citation stamp, but live_status.evidence.from DELIBERATELY stays at failure_autopsy_V3-EXQ-1008_2026-09-08: V3-EXQ-1010 is a claim-free diagnostic (claim_ids: []) and must not become the artifact establishing this claim's reading. The owed write was NOTE-ONLY and WAS applied on 2026-09-11 (88217f2d82) -- the V3-EXQ-1010 adjudication is in evidence_quality_note, and both storable fields already held the recommended values. INV-088 is a bears_on relation on this run, not a tag. Do not re-apply the stamp. (GOV-APPLY-1 overridden_disposition.)"
   implementation_note: >
     SD-e1-rollout-consistency-training ITEM 1 (E1 action-conditioned transition) LANDED
     2026-08-29. This claim's pending_retest_after_substrate is therefore now ACTIONABLE --
@@ -83367,6 +83373,12 @@
   location: evidence/planning/intrinsic_motivation_competence_mechanisms.md
 
 - id: MECH-457
+  governance_override:
+    - supersedes_autopsy: failure_autopsy_V3-EXQ-1010_2026-09-11
+      decided_utc: "2026-09-11"
+      field: live_status.evidence.from
+      ratified_by: "user decision 2026-09-11T17:35Z (session goofy-merkle-eebaa1)"
+      reason: "The V3-EXQ-1010 disposition asks for a citation stamp, but live_status.evidence.from DELIBERATELY stays at failure_autopsy_V3-EXQ-1008_2026-09-08: V3-EXQ-1010 is a claim-free diagnostic (claim_ids: []) and must not become the artifact establishing this claim's reading. The owed write was NOTE-ONLY and WAS applied on 2026-09-11 (88217f2d82) -- the V3-EXQ-1010 adjudication is in evidence_quality_note, and both storable fields already held the recommended values. MECH-457 is a bears_on relation on this run, not a tag; its re-derive brake stands at 13, neither incremented nor released. Do not re-apply the stamp. (GOV-APPLY-1 overridden_disposition.)"
   title: "action_learning_as_first_class_actor_critic_substrate / rpe_driven_policy_learning. Competent action learning in REE requires a DEDICATED RPE-driven actor-critic policy-learning substrate (a dorsal-striatal analog: a parameterized actor trained on a reward-error teaching signal, with a value-baseline critic), architecturally distinct from -- and NOT reducible to -- the current thin bias_head REINFORCE readout over the prediction-trained (SD-056 e2 world-forward contrastive) encoder. The V3-EXQ-724 competence autopsy localized REE's foraging wall (integrated all-ON agent forages ~0 resources/episode vs a 1.0 floor) to exactly this un-varied invariant: action is learned only as a bias on a representation trained for SENSORY PREDICTION, never as a first-class policy object trained on RETURN. 'Prediction-rich, action-poor': REE trains a substantial world model but has no dedicated action-learning system -- in brains, action learning IS a substantial learning system (O'Doherty 2004 dorsal-striatum-as-actor; Schultz 1997 dopaminergic RPE teacher), not a bias term on a prediction model."
   claim_type: mechanism_hypothesis
   subject: f_dominance_conversion_ceiling.actor_critic_action_learning_substrate
