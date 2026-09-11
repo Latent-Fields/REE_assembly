@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-11T14:04:42.831997Z`
+Generated: `2026-09-11T19:17:25.613356Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -288,6 +288,7 @@ Generated: `2026-09-11T14:04:42.831997Z`
 | `targeted_review_mech294_theta_burst_packet` | [`2026-04-26_mech_294_theta_phase_encoding_retrieval_hasselmo2005`](targeted_review_mech294_theta_burst_packet/entries/2026-04-26_mech_294_theta_phase_encoding_retrieval_hasselmo2005/record.json) | 7 | [`summary`](targeted_review_mech294_theta_burst_packet/entries/2026-04-26_mech_294_theta_phase_encoding_retrieval_hasselmo2005/summary.md) |
 | `targeted_review_mech295_liking_approach_bridge` | [`2026-04-26_mech_295_vp_hedonic_coding_smith2011`](targeted_review_mech295_liking_approach_bridge/entries/2026-04-26_mech_295_vp_hedonic_coding_smith2011/record.json) | 6 | [`summary`](targeted_review_mech295_liking_approach_bridge/entries/2026-04-26_mech_295_vp_hedonic_coding_smith2011/summary.md) |
 | `targeted_review_mech_011` | [`2026-09-11_mech_011_vicarious_extinction_blocks_fear_return_golkar2013`](targeted_review_mech_011/entries/2026-09-11_mech_011_vicarious_extinction_blocks_fear_return_golkar2013/record.json) | 5 | [`summary`](targeted_review_mech_011/entries/2026-09-11_mech_011_vicarious_extinction_blocks_fear_return_golkar2013/summary.md) |
+| `targeted_review_mech_012` | [`2026-09-11_mech_012_moral_disengagement_at_work_metaanalysis_ogunfowora2022`](targeted_review_mech_012/entries/2026-09-11_mech_012_moral_disengagement_at_work_metaanalysis_ogunfowora2022/record.json) | 6 | [`summary`](targeted_review_mech_012/entries/2026-09-11_mech_012_moral_disengagement_at_work_metaanalysis_ogunfowora2022/summary.md) |
 | `targeted_review_mech_044_relational_binding` | [`2026-06-19_mech_044_relational_memory_representations_konkel2009`](targeted_review_mech_044_relational_binding/entries/2026-06-19_mech_044_relational_memory_representations_konkel2009/record.json) | 3 | [`summary`](targeted_review_mech_044_relational_binding/entries/2026-06-19_mech_044_relational_memory_representations_konkel2009/summary.md) |
 | `targeted_review_mech_045_object_file` | [`2026-06-09_mech_045_visual_index_pylyshyn2001`](targeted_review_mech_045_object_file/entries/2026-06-09_mech_045_visual_index_pylyshyn2001/record.json) | 5 | [`summary`](targeted_review_mech_045_object_file/entries/2026-06-09_mech_045_visual_index_pylyshyn2001/summary.md) |
 | `targeted_review_mech_054` | [`2026-08-18_mech054_two_dopamine_channels_matsumoto2009`](targeted_review_mech_054/entries/2026-08-18_mech054_two_dopamine_channels_matsumoto2009/record.json) | 2 | [`summary`](targeted_review_mech_054/entries/2026-08-18_mech054_two_dopamine_channels_matsumoto2009/summary.md) |
