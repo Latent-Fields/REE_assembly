@@ -9605,10 +9605,10 @@
       "sd_id": "SD-106",
       "title": "encoder.generic_bottleneck_variance_preservation -- observation->z_world objective preserving decision-relevant content generically (successor shape to SD-018)",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented_pending_validation",
       "status_phase": "build_owed",
       "ready": true,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_106_generic_bottleneck_variance_preservation.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "SD-015",
@@ -9624,7 +9624,7 @@
           "experiment_type": "v3_exq_1010_zworld_overcapacity_decoder_sweep",
           "metric": "Over-capacity decoder sweep on SD-018's OFF-arm frozen latent, five rungs spanning ~77,000x in decoder parameters: best-over-capacity held-out oracle-action agreement 0.6839 / 0.6846 / 0.6656 (0/3 seeds clear the 0.80 bar; best elevations 0.1178 / 0.1043 / 0.0936 against a 0.20 floor over a 0.566 trivial baseline), while the SAME ladder on the SAME latent memorises the training split at 0.9996-0.9998 and a PCA-32 of the encoder's own 250-dim input at the encoder's own 32-dim width clears both thresholds 3/3 at 0.8836 / 0.8729 / 0.8763. The same architecture at RANDOM INITIALISATION scores 0.7155 / 0.6895 / 0.7084 -- at or above the trained latent on 3/3 seeds. A reader-free witness (the oracle's own argmax rule on a nonlinear field decode, no learned action head) tops out at 0.6546 / 0.6623 / 0.6478 per seed. Halving the training rows costs only 0.0136-0.0356 against a 0.122 mean gap to the bar.",
           "target": "the observation->z_world latent should reach PCA-32 parity at the consumer rung -- >= 0.85 held-out oracle-action agreement on a seed majority, re-measured by re-running v3_exq_1010_zworld_overcapacity_decoder_sweep.py unchanged",
-          "resolved": "open"
+          "resolved": "build_landed_validation_owed_V3-EXQ-1023"
         }
       ],
       "implementation_hint": "The failure record below is the fourth on this entry and the first to carry a NUMERIC ACCEPTANCE TARGET set by an in-run control. What the lineage now shows is that the binding problem is not width (PCA-32 of the same input at the same width clears the bar 3/3), not the consumer's capacity (no decoder up to 12.67M parameters recovers it), and not the consumer's learning (H-B eliminated at 1002) -- it is that the observation->z_world objective supplies NO gradient toward decision-relevant content, leaving the latent at or below its own random-initialisation quality. NOTE FOR GOVERNANCE, and the reason this is flagged rather than silently appended: the build the evidence now names is a NEW SHAPE, not SD-018's implemented shape (a). Shape (a) supervises one named feature (resource proximity) and V3-EXQ-978 returned it NULL; what the data says works is GENERIC variance/reconstruction preservation at the bottleneck. Governance may prefer to open a new sd_id for that rather than grow SD-018 a third shape -- that is a Step 6a judgement this autopsy does not make. ACCEPTANCE TARGET, whichever entry carries it: the observation->z_world latent should reach PCA-32 parity, >= 0.85 held-out oracle-action agreement at the consumer rung (x734.PPOPolicyNet at PPO_TRUNK_HIDDEN) on a seed majority, measured by re-running experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py unchanged -- the harness, the dataset recipe, the anchor and the negative control all already exist and need no new build.",
@@ -9637,7 +9637,9 @@
       ],
       "origin_note": "Minted by /governance gov-20260911 from CONFIRMED evidence/planning/failure_autopsy_V3-EXQ-1010_2026-09-11.json (REE_assembly 652ababa92). The autopsy recorded action:amend on SD-018 but explicitly deferred the shape judgement to Step 6a ('Governance may prefer to open a new sd_id for that rather than grow SD-018 a third shape -- that is a Step 6a judgement this autopsy does not make'). User-approved 2026-09-11: new sd_id, cross-referenced. ACCEPTANCE TARGET: observation->z_world latent reaches PCA-32 parity, >= 0.85 held-out oracle-action agreement at the consumer rung (x734.PPOPolicyNet at PPO_TRUNK_HIDDEN) on a seed majority, re-measured by re-running experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py UNCHANGED -- harness, dataset recipe, anchor and negative control all already exist and need no new build.",
       "added_session": "gov-20260911",
-      "last_seen_session": "gov-20260911"
+      "last_seen_session": "happy-swartz-199593",
+      "implementation_note": "[2026-09-11 /implement-substrate] Landed in ree-v3: ZWorldP0Config.preservation_weight (default 0.0) -- a SCALE-NORMALISED (1 - R^2) preservation term with its own linear decoder -- plus LatentStackConfig.use_world_encoder_skip (default False), a zero-init linear bypass around the world encoder's ReLU stack. Bit-identical OFF: state_dict keys unchanged, forward torch.equal, P0 final_loss identical to full precision under RNG-controlled repetition. The defect located was NOT a missing reconstruction term (ZWorldP0Config already carried reconstruction_weight=10.0) but its SCALE: measured trained-state shares are variance hinge 80.3%, covariance 9.3%, four grounding CE 9.5%, reconstruction 0.80%, because raw MSE on a sparse one-hot observation is ~0.018 where the hinge and CE terms it competes with are O(1). The trained latent retained linear-decodable world_obs content at R^2 0.9652 vs PCA-32's 0.9984 -- ~22x more input variance discarded. PROXY effect at preservation_weight=200 + skip (2 seeds, world_obs R^2 / resource_field R^2): 0.9974/0.9857 and 0.9978/0.9908, against the PCA-32 anchor's 0.9983/0.9878 and 0.9984/0.9894. SD-070's gates survive (participation ratio 14.68 -> 13.86 vs a >= 2.0 gate); MEASURED COST, recorded rather than buried: mean grounding lift falls 0.5702 -> 0.4064 at w=200. PROMOTES NOTHING on its own -- validation is V3-EXQ-1023.",
+      "validation_experiment": "V3-EXQ-1023"
     }
   ],
   "schema_version": "substrate_queue/v2",

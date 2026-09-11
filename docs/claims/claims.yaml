@@ -32352,6 +32352,13 @@
   claim_type: substrate_decision
   status: implemented
   implementation_note: >
+    [2026-09-11 SUCCESSOR SHAPE -- see SD-106] SD-018's implemented shape supervises ONE NAMED
+    FEATURE (resource proximity), and V3-EXQ-978 returned it NULL. The CONFIRMED
+    failure_autopsy_V3-EXQ-1010_2026-09-11 establishes that what the evidence names is GENERIC
+    variance/reconstruction preservation at the observation->z_world bottleneck, which governance
+    minted as a NEW sd_id (SD-106, user-approved 2026-09-11) rather than a third SD-018 shape.
+    SD-018 is NOT retired by that landing and its status is unchanged; this note exists so a reader
+    arriving here does not re-derive the named-feature approach a fourth time.
     [2026-09-02 SD-018 AMEND, implement-substrate] Directional resource-field head landed in ree-v3
     (LatentStackConfig.use_resource_field_head, default False; resource_field_weight 0.5;
     resource_field_dim 25; ZWorldP0Config.resource_field_weight 0.0): SplitEncoder.resource_field_head
@@ -100302,3 +100309,72 @@
     bridge can corrupt rollout trajectories when applied repeatedly. DO NOT build in V3. DO NOT queue an
     experiment from this entry; the source package's sequencing (waking metric with range and stability
     first, then recurrence, then sleep) is part of the claim.
+- id: SD-106
+  title: 'Generic bottleneck variance preservation at the observation->z_world encoder: a SCALE-NORMALISED
+    reconstruction term (fraction-of-variance-unexplained, with its own linear decoder) plus a
+    zero-initialised linear bypass around the world encoder''s ReLU stack. The successor SHAPE to SD-018,
+    which supervises ONE NAMED FEATURE (resource proximity) and returned NULL at V3-EXQ-978. Addresses
+    the CONFIRMED H-F-content-discarded-at-encode verdict of V3-EXQ-1010: the shipped P0 objective
+    supplies no gradient toward decision-relevant content, leaving the latent at or below its own
+    random-initialisation quality.'
+  claim_type: design_decision
+  subject: encoder.generic_bottleneck_variance_preservation
+  polarity: asserts
+  status: implemented
+  epistemic_category: standard
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: '2026-09-11'
+  depends_on:
+  - SD-005
+  - SD-070
+  location: docs/architecture/sd_106_generic_bottleneck_variance_preservation.md
+  functional_restatement: 'The observation->z_world objective has no term that preserves generic input
+    variance, so the 32-dim code discards decision-relevant content at encode time. V3-EXQ-1010 swept
+    decoder capacity over ~77,000x in parameters against the frozen latent and found 0/3 seeds clearing
+    a 0.80 held-out oracle-action agreement bar (best 0.6839 / 0.6846 / 0.6656), while the same ladder
+    memorises the training split at 0.9996-0.9998, a PCA-32 of the encoder''s own 250-dim input at the
+    encoder''s own 32-dim width clears it 3/3 (0.8836 / 0.8729 / 0.8763), and the SAME architecture at
+    RANDOM INITIALISATION scores at or ABOVE the trained latent on 3/3 seeds. The defect is NOT a missing
+    reconstruction term -- ZWorldP0Config already carried reconstruction_weight=10.0 -- but its SCALE:
+    measured trained-state shares are variance hinge 80.3%, covariance 9.3%, four grounding CE heads 9.5%,
+    reconstruction 0.80%, because raw MSE against a sparse one-hot observation is ~0.018 where the hinge
+    and CE terms it competes with are O(1) by construction. The trained latent retains linear-decodable
+    world_obs content at R^2 0.9652 against PCA-32''s 0.9984, i.e. ~22x more input variance discarded,
+    with PCA-32 explaining 99.84% of world_obs. SD-106 normalises the preservation term by the train
+    split''s own mean per-element variance (making it 1 - R^2, O(1) and scale-free) and adds a zero-init
+    linear bypass so the encoder family CONTAINS the linear variance-preserving map rather than
+    approximating it through the ReLU stack -- the -0.0779 architecture term in V3-EXQ-1008''s
+    consumer-rung decomposition of the 0.1998 PCA-to-trained gap.'
+  implementation_note: '[2026-09-11 /implement-substrate] Landed in ree-v3: ZWorldP0Config.preservation_weight
+    (default 0.0 -- no head built, no parameter in the optimiser) and LatentStackConfig.use_world_encoder_skip
+    (default False -- no module constructed, so state_dict is unchanged and existing checkpoints still
+    load). Verified bit-identical OFF: state_dict keys unchanged, forward pass torch.equal, and P0 final_loss
+    identical to full precision under RNG-controlled repetition. ZWorldP0Trainer.world_path_parameters()
+    includes the bypass, so it is actually trained and the V3-EXQ-783 weight-delta readiness check still
+    sees the whole world path. Phased training: P0 only, unchanged from SD-070 -- P1 must train on
+    stop-gradient z_world with the encoder optimiser NOT stepped (EXQ-166b/c/d). MECH-094: not applicable.
+    Substrate record: ree-v3/docs/substrate/SD-106-generic-bottleneck-variance-preservation.md.'
+  evidence_quality_note: 'NO EXPERIMENTAL EVIDENCE YET -- this entry is registered `implemented`, not
+    validated, and PROMOTES NOTHING on its own. The figures recorded on the landing are PROXY measurements
+    taken during design (linear-decodable world_obs R^2 and resource_field_view R^2 across 2 seeds:
+    shipped 0.9432/0.9264 and 0.9493/0.9479; preservation 200 + skip 0.9974/0.9857 and 0.9978/0.9908;
+    PCA-32 anchor 0.9983/0.9878 and 0.9984/0.9894), not the acceptance DV. They are recorded because they
+    are what the design decision rests on, and flagged as proxy because oracle-action agreement is the
+    quantity the acceptance target names and it has not been re-measured. MEASURED COST, recorded rather
+    than buried: mean held-out grounding lift falls 0.5702 (shipped) -> 0.4313 (w=50) -> 0.4064 (w=200)
+    -> 0.3982 (w=500) at 600 P0 steps over 4000 buffered observations; SD-070''s anti-collapse gate
+    survives (participation ratio 14.68 -> 13.86 against a >= 2.0 gate). If a downstream consumer depends
+    on grounding discriminativeness rather than preserved variance, w=50 is the better operating point.'
+  validation_experiment: 'V3-EXQ-1015 -- re-runs ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py
+    UNCHANGED against an SD-106-ON warmup. ACCEPTANCE TARGET (pre-set by governance gov-20260911, not
+    invented at build time): the observation->z_world latent reaches PCA-32 parity -- >= 0.85 held-out
+    oracle-action agreement at the consumer rung (x734.PPOPolicyNet at PPO_TRUNK_HIDDEN) on a seed
+    majority. The harness, dataset recipe, calibration anchor and negative control all already exist.'
+  notes: 'Minted by /governance gov-20260911 from CONFIRMED evidence/planning/failure_autopsy_V3-EXQ-1010_2026-09-11.json
+    (REE_assembly 652ababa92, user-gated, dry_run_checked=true). The autopsy recorded action:amend on
+    SD-018 but explicitly deferred the shape judgement to Step 6a; user-approved 2026-09-11 to open a new
+    sd_id rather than grow SD-018 a third shape. SD-018 is NOT retired by this entry. Unblocks (per the
+    substrate_queue entry, informational -- no claim yet declares depends_on: SD-106, so no v3_pending
+    flag moves on this landing): SD-015, ARC-030, MECH-117, the EXQ-085h..o goal-directed behaviour
+    cluster, MECH-457, ARC-065.'
