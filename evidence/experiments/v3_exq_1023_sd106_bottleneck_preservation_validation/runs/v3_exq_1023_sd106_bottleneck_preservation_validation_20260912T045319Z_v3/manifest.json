@@ -1,0 +1,355 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1023_sd106_bottleneck_preservation_validation",
+  "run_id": "v3_exq_1023_sd106_bottleneck_preservation_validation_20260912T045319Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-12T04:53:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-106"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd106_below_pca32_parity",
+    "preconditions": [
+      {
+        "name": "instrument_rawfield_control_supra_floor",
+        "description": "The raw 25-dim resource field decoded at the consumer's width must clear RAW_FIELD_CONTROL_FLOOR, else the dataset/labels are blind and no track's reading means anything.",
+        "measured": 0.9735369086265564,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "rawfield_ceiling arm, worst seed (x1002's imported positive control)",
+        "offending_cell": "rawfield_ceiling|seed44",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "anchor_pca32_reaches_parity_bar_on_majority",
+        "description": "The PCA-32 calibration anchor must itself reach SD106_PARITY_BAR at the consumer rung on a SEED MAJORITY -- the same aggregation the acceptance criterion uses, and the one its reachability certificate proves. The anchor DEFINES parity: if it cannot clear the bar on this run, an SD-106 null is an instrument failure, not a verdict.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "ws250_pca at mlp128 -- a task-agnostic linear compression of the encoder's own input at the encoder's own width; 1010 measured 0.8836 / 0.8578 / 0.8702",
+        "offending_cell": "seed43",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd106_bypass_trained_off_zero",
+        "description": "SD-106's linear bypass is ZERO-INITIALISED, so a warmup that never stepped it leaves the flag enabled and the mechanism inert. The worst seed's ||W_skip|| must be strictly above zero.",
+        "measured": 4.13263463973999,
+        "threshold": 1e-08,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "SD-106 ON arm's world_encoder_skip weight norm after P0, worst seed",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd106_encoder_trained_in_p0",
+        "description": "The SD-106 arm's z_world path must have CHANGED during P0 -- the SD-070 / V3-EXQ-783 readiness signature. A zero weight delta means the encoder never trained, and the ON-vs-OFF delta this run reports would then be an artefact rather than an SD-106 effect.",
+        "measured": 4.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "latent_stack_weight_delta n_changed on the SD-106 arm, worst seed",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd106_latent_not_collapsed",
+        "description": "z_world must not have COLLAPSED under the reweighting: preservation_weight=200.0 against variance_weight=25.0 / covariance_weight=50.0. SD-070's own absolute floor (V3-EXQ-783); 1010's OFF arm measured 4.22-5.67 on these seeds.",
+        "measured": 8.13087369084169,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "participation ratio of the SD-106 z_world, worst seed",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_sd106_reaches_parity_on_seed_majority",
+        "load_bearing": true,
+        "passed": false,
+        "measured": 0,
+        "threshold": 2,
+        "measured_agreement_min": 0.6987277269363403,
+        "threshold_agreement": 0.85
+      },
+      {
+        "name": "C2_manipulation_engaged_on_but_not_off",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 2,
+        "threshold": 2,
+        "detail": {
+          "sd106_used_preservation_head": [
+            true
+          ],
+          "off_used_preservation_head": [
+            false
+          ],
+          "consumer_deltas": [
+            0.07216012477874756,
+            0.04415333271026611,
+            0.03664124011993408
+          ]
+        },
+        "threshold_note": "both halves must hold: the preservation head RAN on every SD-106 cell and did NOT run on any OFF cell."
+      }
+    ],
+    "combination_rule": "C1 alone decides the verdict. C2 is a non-degeneracy witness that the manipulation actually engaged -- the preservation head ran on every SD-106 cell and on no OFF cell -- and it gates C1's own non-degeneracy rather than the verdict.",
+    "criteria_non_degenerate": {
+      "C1_sd106_reaches_parity_on_seed_majority": true,
+      "C2_on_and_off_arms_differ": true
+    },
+    "gate_reason": "",
+    "anchor_reachability": [
+      {
+        "anchor_name": "anchor_pca32_reaches_parity_bar_on_majority",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-1010 ws250_pca AT THE CONSUMER RUNG mlp128, seeds 42/43/44 (0.8836 / 0.8578 / 0.8702) -- 2 of 3 clear 0.85, which is exactly the majority the shipped gate requires and the margin it survives on. NOT the best-over-rungs series, which is a different and systematically higher statistic (red-team F1).",
+        "threshold": 0.6666666666666666,
+        "margin_cells": 0,
+        "required_score": 0.6666666666666666,
+        "reachable": true,
+        "n_reference_cells": 3,
+        "n_reference_scored_true": 3,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "anchor_name": "instrument_rawfield_control_supra_floor",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-1010 rawfield_ceiling reported range 0.9735-0.9832",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 3,
+        "n_reference_scored_true": 3,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "null_reading": "A null means the SD-106 objective at preservation_weight=200.0 does not recover oracle-relevant content on this rung -- NOT that preservation is the wrong lever. Route to /failure-autopsy, not to an automatic re-queue at another weight."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "c15b7831f425b4a74c0d639628c380ea6c59885c6ad757d307464894859cc606",
+  "substrate_commit": {
+    "commit": "fe63dd68f55dc8f9ab32d60f90f0db736825ccdc",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "latent.use_resource_field_head": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_action_contrastive_multistep_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_vs_rollout_gating": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_context_from_e2_world_forward": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "use_ofc_analog": true,
+    "ofc_harm_dim": 32,
+    "use_ofc_devaluation_head": true,
+    "ofc_train_devaluation_head": true,
+    "use_gated_policy": true,
+    "use_noise_floor": true,
+    "use_e3_score_diversity": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true,
+    "latent.use_world_encoder_skip": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 41249.365714918,
+  "config": {
+    "rung": {
+      "rung_id": "D3_hazard_free",
+      "role": "derisk_decisive",
+      "overrides": {
+        "hazard_food_attraction": 0.0,
+        "proximity_harm_scale": 0.0,
+        "reef_bipartite_layout": false,
+        "reef_enabled": false,
+        "n_reef_patches": 0,
+        "num_hazards": 0
+      }
+    },
+    "level_id": "W3_survival_zeroed",
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 0,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": false,
+      "n_reef_patches": 0,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.0,
+      "reef_bipartite_layout": false,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "zworld_p0_episodes": 60,
+    "p0_warmup_episodes": 200,
+    "p1_reinforce_episodes": 90,
+    "eval_episodes": 20,
+    "steps_per_episode": 200,
+    "bc_episodes": 40,
+    "bc_random_episodes": 20,
+    "bc_train_frac": 0.7,
+    "adapter_passes": 60,
+    "adapter_batch": 256,
+    "adapter_lr": 0.001,
+    "sd106_preservation_weight": 200.0,
+    "sd106_use_world_encoder_skip": true,
+    "sd106_parity_bar": 0.85,
+    "capacity_ladder": [
+      {
+        "rung": "linear",
+        "kind": "linear",
+        "hidden": null,
+        "depth": 0
+      },
+      {
+        "rung": "mlp128",
+        "kind": "mlp",
+        "hidden": 128,
+        "depth": 2
+      },
+      {
+        "rung": "mlp512",
+        "kind": "mlp",
+        "hidden": 512,
+        "depth": 2
+      },
+      {
+        "rung": "mlp2048",
+        "kind": "mlp",
+        "hidden": 2048,
+        "depth": 2
+      },
+      {
+        "rung": "deep2048x4",
+        "kind": "deep",
+        "hidden": 2048,
+        "depth": 4
+      }
+    ],
+    "capacity_consumer_rung": "mlp128",
+    "capacity_max_rung": "deep2048x4",
+    "consumer_trunk_hidden": 128,
+    "tracks": [
+      "zworld_sd106",
+      "zworld_off",
+      "ws250_pca"
+    ],
+    "projection_dim": 32,
+    "raw_field_control_floor": 0.6,
+    "seed_majority": 2,
+    "arms": [
+      "rawfield_ceiling",
+      "zworld_sd106__linear",
+      "zworld_sd106__mlp128",
+      "zworld_sd106__mlp512",
+      "zworld_sd106__mlp2048",
+      "zworld_sd106__deep2048x4",
+      "zworld_off__linear",
+      "zworld_off__mlp128",
+      "zworld_off__mlp512",
+      "zworld_off__mlp2048",
+      "zworld_off__deep2048x4",
+      "ws250_pca__linear",
+      "ws250_pca__mlp128",
+      "ws250_pca__mlp512",
+      "ws250_pca__mlp2048",
+      "ws250_pca__deep2048x4"
+    ],
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "z_goal_stream": {
+    "ticks_total": 141851,
+    "ticks_active": 138992,
+    "writer_calls": 141851,
+    "active_frac": 0.9798450486778381,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
