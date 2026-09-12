@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-11T16:17:15Z
+Generated: 2026-09-12T01:12:57Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -45,7 +45,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-1` | Pre-approach orienting/surveying mode (cue-triggered, narrow vector resolution) | blocked | 1 | high |  |  | 2026-08-13 |
-| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-2` | epistemic_deficit: persistent target-bound model-inadequacy accumulator | in_progress | 1 | high |  | MECH-482's own claims.yaml non-degeneracy precondition -- a substrate where target-bound u | 2026-08-30 |
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-2` | epistemic_deficit: persistent target-bound model-inadequacy accumulator | in_progress | 1 | high | V3-EXQ-964a | MECH-482's own claims.yaml non-degeneracy precondition -- a substrate where target-bound u | 2026-09-11 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-08-18 |
 | zworld_adequacy_plan.md | `zworld_adequacy:ZW-2` | SD-018 shape (b) raw-field side-channel -- HELD as a bypass of the interface, no | upstream_blocked | 1 | medium |  | Held by decision, on ONE surviving ground, pending ZW-1. SD-018 shape (a) (supervise one n | 2026-09-11 |
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-6` | MECH-489 validation: defensive-orienting phasic behavioural chain | in_progress | 2 | high | V3-EXQ-910b | V3-EXQ-910b RAN 2026-08-22 and is CONFIRMED-AUTOPSIED (failure_autopsy_V3-EXQ-910b_2026-08 | 2026-08-25 |
