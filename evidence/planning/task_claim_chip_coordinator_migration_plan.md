@@ -819,6 +819,45 @@ closure_plan:
         than dropping a write, which is the property that makes flipping
         without a calendar soak safe.
 
+        CORRECTION 2026-09-12, and it invalidates this section's own
+        POST-FLIP VERIFICATION. igw_log_suppress_git_write was REVERTED to
+        false on 2026-09-11T23:25Z (session igw-machinery-bundle-20260911,
+        chip chip-20260911-igw-routine-log-writer-stalled, REE_assembly
+        7756ff04fb). Root cause: the flag was armed while NO hub-side
+        materializer for igw_routine_log.md had ever been deployed
+        (ree-assembly-git-writer.service/.timer confirmed absent over ssh),
+        so every acked log line since the flip sat unlanded -- 82 of them,
+        entry_id 437-518, drained by hand on the revert. Note WHICH ids
+        those are: 437 and 438 are exactly the two lines this section cites
+        above as post-flip proof ("coordinator-acknowledged ... verdict
+        ok"). The ack was hollow. That verification therefore established
+        only that the coordinator ACCEPTED the line, never that anything
+        wrote it -- the standing "coordinator ack is not durability" trap,
+        hit here by the very evidence offered against it. The general
+        lesson is not the two traps already recorded above (both of which
+        say "do not watch the local file") but the one they leave open:
+        when you stop watching the local file, verify the write reached
+        ORIGIN, not merely the hub's reply. The other four IGW predicates
+        are unaffected and stay true -- their content IS materialized by
+        git_intent.py's inline apply-and-push, which is why they land and
+        the log line did not.
+
+        CURRENT STATE, verified 2026-09-12T02:35Z (this session, the
+        scheduled re-dispatch of chip-20260907-igw-intent-soak-eval-flag-
+        flip). Four flags true (ledger, assignments, workset, proposals),
+        igw_log deliberately false pending a hub-side writer for that one
+        append-only path. All 14 igw_routine_ledger.json commits on master
+        since 2026-09-11T00:00Z are authored "REE Automation (Hub)" and
+        the Mac tick's own commits touch igw_routine_log.md only, i.e. the
+        suppression is doing exactly what it was flipped to do; the tick
+        is running hourly (last entry 02:22:53Z) and the log is landing
+        again. NO ACTION TAKEN by this session beyond recording the above:
+        its STOP-CHECK fired correctly on an already-flipped config, and
+        the chip it was re-dispatched for was already resolved done on
+        2026-09-10. Follow-on still open, unchanged from the 18:52Z note:
+        cloud-4/5 and the metaworker dispatcher client configs are
+        unflipped (those boxes are off), and igw_routine_log.md needs a
+        hub-side materializer before its flag can go back on.
 
         Not yet started: a claims.yaml intake, if one
         is ever wanted -- the governance cycle still commits claims.yaml
