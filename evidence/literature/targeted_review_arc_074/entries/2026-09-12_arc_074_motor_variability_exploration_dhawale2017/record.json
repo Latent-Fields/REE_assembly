@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_074",
+  "entry_id": "2026-09-12_arc_074_motor_variability_exploration_dhawale2017",
+  "timestamp_utc": "2026-09-12T06:05:12Z",
+  "claim_ids_tested": [
+    "ARC-074"
+  ],
+  "source": {
+    "title": "The Role of Variability in Motor Learning",
+    "authors": [
+      "Ashesh K. Dhawale",
+      "Maurice A. Smith",
+      "Bence P. Olveczky"
+    ],
+    "year": 2017,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev-neuro-072116-031548",
+    "pmid": "28489490",
+    "pmc": "PMC6091866",
+    "volume": "40",
+    "pages": "479-498"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Authoritative review in a top venue, so source quality is high; but the mapping is the weakest of the ARC-074 set and that dominates. The review's organising thesis is that variability drives learning WHEN COUPLED WITH REINFORCEMENT -- which supports the premise that exploration is functional and actively generated, while offering no support for, and mild tension with, ARC-074's stronger claim that exploration must come BEFORE any reward-weighted scoring.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The canonical variability literature is a reinforcement-COUPLED exploration literature: variability is treated as purposeful exploration of motor space that drives learning when paired with reinforcement. ARC-074's reward-free ordering is a separate and stronger claim that this body of work does not establish.",
+    "Because the review documents variability being actively REGULATED by reinforcement signals, a substrate in which reward-weighted scoring is entirely suppressed removes the very signal that biology appears to use to tune exploration -- a possible argument against, not for, a fully reward-free Phase 0."
+  ],
+  "tags": [
+    "arc-074",
+    "phase_0",
+    "motor_variability",
+    "exploration",
+    "reinforcement_coupling",
+    "candidate:ordering_tension"
+  ],
+  "mapping": {
+    "source_claim_statement": "Trial-to-trial motor variability is not merely the unwanted consequence of a noisy nervous system but a feature of how sensorimotor systems operate and learn. Rooted in reinforcement learning theory, this view equates motor variability with purposeful exploration of motor space that, when coupled with reinforcement, can drive motor learning; the review surveys the circuit mechanisms that generate and regulate it.",
+    "ree_translation": "Supports the foundational premise beneath ARC-074 -- that structured exploratory variability is functional machinery rather than noise, and is actively generated and regulated by dedicated circuitry. This is the part of ARC-074 that is well grounded. What the review does NOT support is the ordering: it describes exploration operating in concert with reinforcement, not as a prior epoch that must complete before reinforcement is admitted.",
+    "mapping_caveat": "This is the entry most likely to be over-read in ARC-074's favour, so the boundary is worth stating plainly. Citing the motor-variability literature as support for a reward-free Phase 0 conflates two claims: (i) exploration is purposeful and actively generated, which the review establishes, and (ii) exploration must be temporally prior to and decoupled from reward, which it does not address and arguably cuts against. Secondary source; the primary data are surveyed rather than reported.",
+    "source_context": "Review spanning human psychophysics and animal models (principally rodent and songbird); motor skill learning and adaptation paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Low mapping fidelity is deliberate and is the whole point of including the entry: it records that the most obvious supporting literature for ARC-074 supports a weaker proposition than the claim makes."
+  }
+}

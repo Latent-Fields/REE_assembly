@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_069",
+  "entry_id": "2026-09-12_arc_069_sequence_level_representation_ostlund2009",
+  "timestamp_utc": "2026-09-12T06:05:12Z",
+  "claim_ids_tested": [
+    "ARC-069"
+  ],
+  "source": {
+    "title": "Evidence of action sequence chunking in goal-directed instrumental conditioning and its dependence on the dorsomedial prefrontal cortex",
+    "authors": [
+      "Sean B. Ostlund",
+      "Nura W. Winterbauer",
+      "Bernard W. Balleine"
+    ],
+    "year": 2009,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1176-09.2009",
+    "pmid": "19553467",
+    "pmc": "PMC6666053",
+    "volume": "29",
+    "issue": "25",
+    "pages": "8280-8287"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Clean lesion design from a highly regarded lab, and uniquely valuable because the lesion group functions as a biological ARC-069-OFF control -- an agent structurally stuck at fine grain. Held to 0.66 by a genuine readout mismatch: outcome-devaluation reads the grain of the action-outcome representation used for goal-directed control, not the grain of a rollout proposal, and ARC-069 is a claim about the latter.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sham rats reorganised behaviour at the sequence level while dmPFC-lesioned rats withheld only the terminal response, treating sequence elements as distinct behavioural units -- so coarse grain is not automatic and has a specific neural dependency. If REE's regranularisation were an emergent consequence of training rather than a dedicated substrate, this dissociation should not exist.",
+    "The heterogeneous chain is only two presses deep; a result at this depth cannot discriminate 'the system has one optional coarser grain' from 'the system rescales grain continuously', and only the latter is ARC-069."
+  ],
+  "tags": [
+    "arc-069",
+    "action_chunking",
+    "dmpfc",
+    "outcome_devaluation",
+    "policy_granularity",
+    "support_tag:off_control_analog"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rats can use sequence-level representations (action chunks) to organise instrumental behaviour in a goal-directed manner: sham animals withheld a whole sequence when its outcome was devalued or its contingency degraded, whereas dorsomedial-prefrontal-lesioned animals failed to reorganise at the sequence level and instead withheld only the terminal response, indicating they represented the elements as distinct behavioural units.",
+    "ree_translation": "The grain at which a policy is represented is a real, dissociable, neurally-dependent variable rather than an artifact of description -- and, critically, the coarse grain is not the default. Removing one structure leaves an otherwise-competent agent permanently operating at element grain. That is the biological instance of ARC-069's own falsifiable prediction: an agent lacking the regranularisation substrate keeps proposing at single-action grain and pays the full cost.",
+    "mapping_caveat": "Outcome devaluation probes the units over which OUTCOME VALUE is assigned during instrumental performance. ARC-069 concerns the units the hippocampal proposer (ARC-007) emits into rollout and that the rule-apprehension layer (ARC-062) reads. These are plausibly different representational systems, and ARC-007 is explicitly value-flat -- so a result about value-assignment grain may not transfer to proposal grain at all. This is the single largest weakness in the mapping and the reason confidence sits below the other two ARC-069 entries.",
+    "source_context": "Excitotoxic cell-body lesions of dorsomedial prefrontal cortex in rats; concurrent bidirectional heterogeneous chain task with outcome devaluation and contingency degradation tests."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Mapping fidelity is the binding constraint here, not source quality. The value-grain / proposal-grain distinction is not a pedantic one for REE specifically, because ARC-007 proposals are committed to being value-flat."
+  }
+}

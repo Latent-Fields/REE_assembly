@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_069",
+  "entry_id": "2026-09-12_arc_069_chunking_policy_compression_lai2025",
+  "timestamp_utc": "2026-09-12T06:05:12Z",
+  "claim_ids_tested": [
+    "ARC-069"
+  ],
+  "source": {
+    "title": "Action chunking as conditional policy compression",
+    "authors": [
+      "Lucy Lai",
+      "Ann Z. X. Huang",
+      "Samuel J. Gershman"
+    ],
+    "year": 2025,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2025.106201",
+    "pmid": "40602234",
+    "pmc": null,
+    "volume": "264",
+    "pages": "106201"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong venue and an unusually clean theory-plus-confirmation structure (a normative model whose behavioural predictions -- reaction time reduction, chunking increasing with working-memory load, chunking freeing capacity -- were experimentally confirmed). Held below 0.8 because it is a 2025 paper without independent replication, and because the resource currency it optimises (working-memory capacity) is not obviously REE's currency (combinatorial rollout cost).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A pure policy-compression account predicts chunks persist for as long as the environment's temporal structure remains compressible; it supplies no pressure that would re-decompose a chunk on prediction failure, so it is silent-to-tensioned on ARC-070's direction.",
+    "If REE's rollout cost is combinatorial-planning cost rather than a storage/capacity constraint, the model's central trade-off does not transfer and its predicted chunking triggers would not apply."
+  ],
+  "tags": [
+    "arc-069",
+    "arc-071",
+    "policy_compression",
+    "resource_rational",
+    "action_chunking",
+    "candidate:trigger_refinement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Action chunking arises from optimising a trade-off between reward and conditional policy complexity. Chunking compresses a policy when the environment has temporal structure that can be leveraged for action selection, reducing the memory needed to encode the policy; empirically, chunking reduces conditional policy complexity and reaction times, increases with working-memory load, and lowers overall working-memory load.",
+    "ree_translation": "Gives ARC-069 a normative account of WHY the grain should rescale at all, and specifically a candidate trigger for the composition leg (ARC-071): compress when exploitable temporal structure exists and the resource constraint binds. This is a substantive refinement of -- arguably a correction to -- ARC-071's currently-proposed trigger of raw repetition count plus outcome consistency, since repetition is only a proxy for the compressibility the model says is actually doing the work.",
+    "mapping_caveat": "The binding constraint in Lai et al. is a capacity limit on policy storage (working memory). ARC-069's motivation is the combinatorial cost of rollout at fine grain -- a search-cost, not a storage-cost. These may coincide in practice but they are not the same quantity, and a Phase-0-style REE implementation that chunks on a storage criterion could compress exactly the sequences that rollout does not benefit from. The paper also addresses composition only; it has nothing to say about decomposition.",
+    "source_context": "Human behavioural experiments (sequence learning with reaction-time and working-memory-load manipulations) paired with a rate-distortion / policy-compression model."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Transfer risk is comparatively low -- this is a computational account of an artificial-agent-shaped problem -- but the cost-currency mismatch noted in the caveat is the live hazard, and it sits in mapping_fidelity rather than transfer_risk."
+  }
+}

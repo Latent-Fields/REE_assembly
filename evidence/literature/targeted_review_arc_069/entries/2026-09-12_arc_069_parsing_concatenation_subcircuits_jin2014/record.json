@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_069",
+  "entry_id": "2026-09-12_arc_069_parsing_concatenation_subcircuits_jin2014",
+  "timestamp_utc": "2026-09-12T06:05:12Z",
+  "claim_ids_tested": [
+    "ARC-069"
+  ],
+  "source": {
+    "title": "Basal ganglia subcircuits distinctively encode the parsing and concatenation of action sequences",
+    "authors": [
+      "Xin Jin",
+      "Fatuel Tecuapetla",
+      "Rui M. Costa"
+    ],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3632",
+    "pmid": "24464039",
+    "pmc": "PMC3955116",
+    "volume": "17",
+    "issue": "3",
+    "pages": "423-430"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High source quality (Nature Neuroscience, in-vivo multi-electrode recording in behaving mice, from the Graybiel/Costa chunking lineage that has been repeatedly corroborated). Mapping fidelity is good but not exact: the paper supplies direct neural evidence that parsing and concatenation are SEPARABLE operations with distinct signatures, which is precisely ARC-069's 'two slots not one' asymmetry commitment, but it observes execution-side encoding of already-learned sequences rather than the rollout-side regranularisation ARC-069 actually posits. Weighted toward mapping_fidelity because ARC-069 is an architectural claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper demonstrates separable parsing and concatenation signatures but never shows a formed chunk being broken back down; if ARC-070's decomposition direction requires biological warrant, this paper does not supply it.",
+    "Sequence-as-single-action encoding is observed in neural readout during execution; it is not demonstrated that any downstream planning or selection process consumes the coarser unit, which is the property ARC-069 requires."
+  ],
+  "tags": [
+    "arc-069",
+    "arc-071",
+    "action_chunking",
+    "basal_ganglia",
+    "policy_granularity",
+    "support_tag:asymmetric_triggers"
+  ],
+  "mapping": {
+    "source_claim_statement": "In mice learning rapid lever-press sequences, basal ganglia neurons encode an entire sequence as a single action; start/stop-related activity signals sequence parsing while separate sustained or inhibited activity covaries with the execution rate of individual elements, consistent with motor concatenation. Direct and indirect pathways are co-active at sequence initiation but diverge during sequence performance.",
+    "ree_translation": "The unit-of-policy is not fixed at the grain of a single action: the same substrate carries a representation of a multi-action sequence as one unit, and the operations that delimit a unit (parsing) are neurally distinguishable from those that bind elements into one (concatenation). This is direct support for ARC-069's architectural commitment that primitives are dynamic, and specifically for its 'two slots not one' note -- decomposition and composition recruit shared substrate but are not one operation run in two directions.",
+    "mapping_caveat": "Jin et al. record during EXECUTION of over-trained sequences in a two-press task; ARC-069 is a claim about the grain of proposals emitted into hippocampal ROLLOUT and apprehended by the rule layer (ARC-062). Execution-side chunking and simulation-side regranularisation may be different substrates, and the paper offers no evidence on the imagination side. The task also has the shallowest possible hierarchy, so nothing here speaks to multi-level or repeatedly-rescaling grain.",
+    "source_context": "In-vivo electrophysiology in freely behaving mice; operant lever-press sequence task; dorsal striatum and basal ganglia output structures."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Transfer risk is moderate rather than low: rodent operant chunking to an artificial planning agent is a long bridge, and the execution/simulation distinction is the specific place the translation could fail."
+  }
+}

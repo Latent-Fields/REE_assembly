@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_074",
+  "entry_id": "2026-09-12_arc_074_reward_free_exploration_jinc2020",
+  "timestamp_utc": "2026-09-12T06:05:12Z",
+  "claim_ids_tested": [
+    "ARC-074"
+  ],
+  "source": {
+    "title": "Reward-Free Exploration for Reinforcement Learning",
+    "authors": [
+      "Chi Jin",
+      "Akshay Krishnamurthy",
+      "Max Simchowitz",
+      "Tiancheng Yu"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 37th International Conference on Machine Learning (ICML), PMLR 119",
+    "doi": null,
+    "pmid": null,
+    "arxiv_id": "2002.02794",
+    "url": "https://proceedings.mlr.press/v119/jin20d.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Foundational, well-cited theory with a nearly-matching lower bound, so source quality is high. Confidence is nonetheless the lowest in this pull because the mapping is genuinely poor: the framework is motivated by amortising exploration across MANY reward functions, not by curing a cold-start pathology under one. It establishes that reward-free-then-plan is well-posed and efficient; it does not establish that a single-objective agent learns better for having explored first.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The guarantee concerns sample complexity of covering an MDP so that near-optimal policies can later be computed for an arbitrary collection of reward functions. ARC-074's prediction -- that without Phase 0 the agent collapses to monostrategy -- is not a claim this framework speaks to, and a null ARC-074 A/B result would not contradict anything here.",
+    "The exploration policy is explicitly coverage-maximising, visiting each significant state with probability proportional to its maximum achievable visitation. ARC-074's Phase 0 is undirected Hebbian babbling, which carries no such coverage guarantee; the theory's efficiency result depends on the directedness that the REE proposal lacks."
+  ],
+  "tags": [
+    "arc-074",
+    "phase_0",
+    "reward_free_exploration",
+    "rl_theory",
+    "candidate:citation_substitute",
+    "support_tag:formal_analog"
+  ],
+  "mapping": {
+    "source_claim_statement": "A reward-free RL framework in which the agent first collects trajectories from an MDP with no pre-specified reward function, then computes near-optimal policies for a collection of given reward functions. The authors give an efficient algorithm returning epsilon-suboptimal policies for arbitrarily many reward functions by finding exploratory policies that visit each significant state with probability proportional to its maximum visitation probability under any policy, plus a nearly-matching lower bound.",
+    "ree_translation": "The correct formal analogue for ARC-074's Phase 0, and the citation the claim should be carrying in place of the unverifiable 'Griffin et al. 2026' recorded in its description field (see summary.md). It establishes that a reward-free exploration phase followed by reward-conditioned planning is a well-posed scheme with provable efficiency, which licenses the SHAPE of ARC-074's proposal.",
+    "mapping_caveat": "Two mismatches, either of which could invalidate the transfer. First, motivation: Jin et al. explore once to serve many reward functions; ARC-074 has a single objective and claims the prologue prevents a representational pathology, which is a different proposition the theory neither supports nor tests. Second, mechanism: their exploration is directed and coverage-maximising by construction, whereas ARC-074's Phase 0 is undirected Hebbian babbling gated on residue entropy -- so the property that makes the theory work is precisely the property the REE proposal does not have. Finite-MDP tabular theory to a deep embodied agent is a further stretch.",
+    "source_context": "Theoretical reinforcement learning; episodic finite-horizon tabular MDPs; sample-complexity upper and lower bounds."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Included despite low mapping fidelity because it replaces an unverifiable citation in the claim record with a real one, and because naming the mismatch explicitly is more useful to governance than leaving the formal analogy unexamined."
+  }
+}
