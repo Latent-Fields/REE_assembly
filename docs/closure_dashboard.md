@@ -1,11 +1,11 @@
 ---
 title: Closure Dashboard
-nav_order: 9
+nav_order: 11
 ---
 
 # REE-v3 Closure Dashboard
 
-_Generated 2026-09-12T01:12:57Z — regenerated every governance run; do not edit by hand._
+_Generated 2026-09-13T09:13:55Z — regenerated every governance run; do not edit by hand._
 
 How close V3 is to closing, per plan. Weighted by node status (done = 1, partial / in-progress = part credit, open / blocked = 0). The companion **drift audit** checks whether each node's self-declared status matches its experiments. This is the static, server-free view of the live `/closure` dashboard.
 
@@ -29,7 +29,7 @@ Status tally: `assembling`&nbsp;11 · `blocked`&nbsp;13 · `blocked_pending_subs
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>observation -> z_world encoding adequacy (the V3 binding-constraint interface)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:10.0%"></div></div>&nbsp;<span style="color:#57606a">10%</span></td><td style="padding:6px 10px">2</td><td style="padding:6px 10px;color:#57606a">2026-09-11</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>SD-037 Axis (b): Sustained-Threat Env Curriculum</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:10.0%"></div></div>&nbsp;<span style="color:#57606a">10%</span></td><td style="padding:6px 10px">4</td><td style="padding:6px 10px;color:#57606a">2026-06-23</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Self-Attribution Comparator Loop</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:28.0%"></div></div>&nbsp;<span style="color:#57606a">28%</span></td><td style="padding:6px 10px">6</td><td style="padding:6px 10px;color:#57606a">2026-09-04</td></tr>
-<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Orienting & Epistemic-Deficit Cluster (V3 closure)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:31.7%"></div></div>&nbsp;<span style="color:#57606a">32%</span></td><td style="padding:6px 10px">6</td><td style="padding:6px 10px;color:#57606a">2026-08-30</td></tr>
+<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Orienting & Epistemic-Deficit Cluster (V3 closure)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:31.7%"></div></div>&nbsp;<span style="color:#57606a">32%</span></td><td style="padding:6px 10px">6</td><td style="padding:6px 10px;color:#57606a">2026-09-11</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#bf8700;height:18px;width:50.0%"></div></div>&nbsp;<span style="color:#57606a">50%</span></td><td style="padding:6px 10px">1</td><td style="padding:6px 10px;color:#57606a">2026-08-29</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Rule Apprehension</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#bf8700;height:18px;width:56.0%"></div></div>&nbsp;<span style="color:#57606a">56%</span></td><td style="padding:6px 10px">13</td><td style="padding:6px 10px;color:#57606a">2026-09-01</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Behavioural Diversity Isolation</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#bf8700;height:18px;width:71.1%"></div></div>&nbsp;<span style="color:#57606a">71%</span></td><td style="padding:6px 10px">12</td><td style="padding:6px 10px;color:#57606a">2026-09-02</td></tr>
@@ -53,19 +53,19 @@ The two health signals from [`docs/architecture/cognitive_architecture_graveyard
 
 ### Ratio 2 -- governance-mass : cognitive-mass  (commit proxy)
 
-Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (5805 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
+Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (5599 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
 
-- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **57%** of all commits (3326 / 5805). The source critique's ~60-77% estimate, live.
-- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **29 : 1** (governance 4186 : cognitive 145).
+- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **58%** of all commits (3230 / 5599). The source critique's ~60-77% estimate, live.
+- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **30 : 1** (governance 4057 : cognitive 135).
 
 Bucket tally (both repos, window):
 
 | bucket | commits | what it is |
 |--------|--------:|------------|
-| machine coordination | 3326 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
-| human governance | 860 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
-| cognitive / substrate | 145 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
-| neutral / other | 1474 | docs, explorer/serve, site, tooling (excluded from the ratio) |
+| machine coordination | 3230 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
+| human governance | 827 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
+| cognitive / substrate | 135 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
+| neutral / other | 1407 | docs, explorer/serve, site, tooling (excluded from the ratio) |
 
 > Reading: a very high ratio is the graveyard signal, not a bug to 'fix' by suppressing coordination commits. It is only a problem if, cycle after cycle, governance is busy while capability is flat. The governance mass is justified *only* as a falsification engine that kills dead structure -- never as a substitute for earning capability.
 
