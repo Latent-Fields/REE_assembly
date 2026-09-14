@@ -102,14 +102,22 @@ class TestTerminalDependencyLint(unittest.TestCase):
         web, not a build DAG.
 
         So the hint must steer to the SEMANTIC question (is the successor actually what
-        this claim depends on?) and must not present cyclicity as the blocker."""
+        this claim depends on?) and must not present cyclicity as the blocker.
+
+        SUPERSEDED IN PART by GOV-EDGE-1 (97ce76a811a, 2026-09-04): depends_on is now an
+        enforced prerequisite DAG, so a cycle is no longer irrelevant -- it is the signal
+        that the pair is reciprocal and belongs in coupled_with instead. The hint text was
+        updated accordingly; this test's assertion tracks that current wording rather than
+        the pre-GOV-EDGE-1 "does NOT disqualify" phrasing. The two things this test still
+        pins -- steer to the SEMANTIC question, and never say a cycle by itself makes a
+        repoint invalid -- still hold."""
         claims = [
             {"id": "SD-003", "status": "superseded", "superseded_by": ["MECH-256", "SD-029"]},
             {"id": "SD-013", "status": "provisional", "depends_on": ["SD-003"]},
         ]
         msg = _messages(claims)[0]
         self.assertIn("SEMANTICALLY", msg)
-        self.assertIn("does NOT disqualify", msg)
+        self.assertIn("coupled_with", msg)
         self.assertNotIn("would make a repoint a cycle", msg)
 
     def test_target_without_superseded_by_gets_the_other_hint(self):

@@ -4141,6 +4141,17 @@ def _cusp_substrate_ready_items(sq: dict) -> list[dict]:
     carry. Falls back to this file's own `_norm_claim_assembly_status_token`
     (suppressing "built"/"in_progress") if the import fails, so a broken
     import degrades rather than reverting to the old no-fallback behaviour.
+
+    Also suppresses FM12 registration-only entries (2026-09-01,
+    generate_inter_governance_workset.py `_substrate_build_authorisation_denied`)
+    -- `ready: true` there records "this debt is tracked", not "authorised to
+    build". This site drifted from that fix (only the already-built delegation
+    above existed): mech092-replay-consumer-missing and
+    mech317-action-chunk-boundary-instrument both carry
+    `status: proposed_REGISTRATION_ONLY_not_a_build_authorisation` and were
+    leaking through as buildable-now cusp items though
+    `_substrate_ready_items()` correctly excludes them. Found via
+    tests/test_cusp_substrate_ready_consistency.py, 2026-09-14/15.
     """
     try:
         sys.path.insert(0, str(SERVE_DIR / "scripts"))
@@ -4148,16 +4159,29 @@ def _cusp_substrate_ready_items(sq: dict) -> list[dict]:
 
         def _already_built(item):
             return _igw._substrate_resolved(item) or _igw._substrate_implementation_complete(item)
+
+        def _authorisation_denied(item):
+            return _igw._substrate_build_authorisation_denied(item)
     except Exception:
         def _already_built(item):
             token = (_norm_claim_assembly_status_token(item.get("implementation_status"))
                      or _norm_claim_assembly_status_token(item.get("status")))
             return token in ("built", "in_progress")
+
+        _AUTH_DENIED_MARKERS = ("not_a_build_author", "not a build author",
+                                 "registration_only", "registration only")
+
+        def _authorisation_denied(item):
+            impl = str(item.get("implementation_status") or "").strip().lower()
+            status = str(item.get("status") or "").strip().lower()
+            return any(marker in s for s in (impl, status) for marker in _AUTH_DENIED_MARKERS)
     out: list[dict] = []
     for item in sq.get("queue") or []:
         if not isinstance(item, dict) or not item.get("ready"):
             continue
         if _already_built(item):
+            continue
+        if _authorisation_denied(item):
             continue
         out.append({
             "kind": "substrate_ready",
