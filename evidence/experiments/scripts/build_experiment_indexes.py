@@ -6239,12 +6239,36 @@ def apply_proposal_status_carry_forward(
     execution provenance (executed_by / executed_queue_id) describes the status
     being rejected, and grafting it onto a blocked_substrate row is exactly what
     made the ARC-019 corruption look authoritative.
+
+    Within the surviving update, `status` itself always syncs from `carried` --
+    a freshly generated item is always minted "proposed" and needs the transfer
+    unconditionally, and manual_status_is_authoritative has already screened out
+    the cases where the two disagree for a reason that matters. Every OTHER
+    carry-forward field (blocked_by, blocked_note, gating_reason, ...) is filled
+    in only when `item` does not already carry its own non-empty value for that
+    key. THE GAP THIS CLOSES (GFLAG-0135 / chip-20260911-regen-reverts-gflag0135-
+    sd061): a curator can hand-edit a companion field in manual_proposals.v1.json
+    -- e.g. rewriting a blocked_by entry's free-text reason -- WITHOUT the
+    status also changing. The status-agreement branch used to treat that as a
+    no-op-that-still-applies-everything (see this function's own history), so
+    it silently re-stamped the edited field from whatever the previous regen's
+    snapshot happened to hold, reverting the curator's edit with no error. A
+    real instance: SD-061's blocked_by entry in manual_proposals.v1.json was
+    rewritten id-first so audit_blocked_proposal_unblockers.unblocker_id() could
+    resolve it (2026-09-10); the very next regen reverted it back to free prose
+    because `status` ("proposed_blocked_substrate") had not moved. Filling gaps
+    only (never clobbering a value the item already carries) keeps the
+    documented "stale proposed" fill-in path (2026-08-02) working while
+    extending "manual disposition outranks carry-forward" down to the field
+    level the whole-record status check was never able to reach.
     """
     if not carried:
         return False
     if manual_status_is_authoritative(item, carried):
         return True
-    item.update(carried)
+    for k, v in carried.items():
+        if k == "status" or not item.get(k):
+            item[k] = v
     return False
 
 
@@ -6361,6 +6385,13 @@ def apply_manual_proposal_write_back(
     Returns (changed, manual_won). Same predicate as the carry-forward, so the
     two sites cannot drift apart: a regen must never write a reversion back into
     the curated source, but it must still clear a permanently-stale "proposed".
+
+    Field-level semantics mirror apply_proposal_status_carry_forward exactly
+    (see its docstring for the GFLAG-0135 / SD-061 gap this closes): `status`
+    always syncs, every other carry-forward field is filled in only when `item`
+    does not already carry its own non-empty value -- so a curator's stand-alone
+    edit to blocked_by / blocked_note / gating_reason / etc. (no status change)
+    is never overwritten by a stale snapshot from the previously generated file.
     """
     if not resolved:
         return False, False
@@ -6368,6 +6399,8 @@ def apply_manual_proposal_write_back(
         return False, True
     changed = False
     for k, v in resolved.items():
+        if k != "status" and item.get(k):
+            continue
         if item.get(k) != v:
             item[k] = v
             changed = True

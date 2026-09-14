@@ -1400,7 +1400,7 @@
       ],
       "blocked_by": [
         "modulatory-bias-selection-authority (substrate_queue, created 2026-06-03) -- without genuine modulatory authority at E3.select the entropy gain cannot reach committed action (the 604a/624a selection-authority bottleneck).",
-        "difficulty-gated proposal-entropy regulator -- stuck-state detector + transient CEM temperature/candidate-count gain + decay; not yet designed (no design doc)."
+        "SD-061 (substrate_queue.json, implemented_pending_validation) -- difficulty-gated proposal-entropy regulator: stuck-state detector + transient CEM temperature/candidate-count gain + decay; builds MECH-343 substrate_conditional blocker part 2. Was free prose ('not yet designed (no design doc)'), which audit_blocked_proposal_unblockers.unblocker_id() could not resolve to any sd_id, so a blocker that HAS an owner read as UNOWNED; id-first form added 2026-09-10 (GFLAG-0135)."
       ],
       "notes": "Proposal only -- script authoring + queue entry deferred to /queue-experiment per the mandatory skill path. V3-EXQ-614d / MECH-341 is a possible early substrate (within-class temperature -> committed-action diversity) but tests only one piece, not the whole loop. Hypothesis note: docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md. Psychiatry bridge: docs/architecture/psychiatric_failure_modes.md.",
       "backlog_id": "EVB-0552"
