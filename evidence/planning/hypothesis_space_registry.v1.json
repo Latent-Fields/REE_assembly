@@ -6249,7 +6249,9 @@
           "basis": "The field is the trailing 25 dims of a 275-dim world_state consumed by prefix-sliced encoders (latent/stack.py, latent/zworld_p0.py); [memory] project_v3_binding_constraint_observation_interface records the observation->z_world->E1/E2 interface as the binding V3 constraint on 39/43 nodes.",
           "pre_registered_utc": "2026-09-05T02:38:25Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-1004_2026-09-05.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-1030"
+          ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -6267,10 +6269,10 @@
       "synthesis": null,
       "decision": {
         "decision_question": "Is the residual blockage on navigation-dependent subgoal_mode DVs an objective/exploration problem or an observation-interface problem?",
-        "live_gate": "Both legs need a run; neither has an adjudicating experiment queued yet.",
+        "live_gate": "H2 queued and awaiting results; H1 not yet queued.",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "0 of 2 legs tested -- portfolio pre-registered, not yet queued",
+        "distance_phrase": "1 of 2 legs queued (H2, V3-EXQ-1030) -- H1 (drive axis) not yet queued",
         "observation_bottleneck": null
       },
       "discovery_growth_events": [],
