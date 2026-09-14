@@ -1,110 +1,96 @@
-# Morning Agenda — 2026-09-11
+# Morning Agenda — 2026-09-14
 
-Generated: 2026-09-11T05:06:14Z
+Generated: 2026-09-14T04:26:56Z
 
-> **DEGRADED RUN — `governance.sh` was NOT run.** Live sessions at generation time:
-> `orchestrate: 2026-09-11 early` (`orchestrate-20260911-0330`, age `1.5`h),
-> `MECH-465 P2 floor derivation` (`mech465-p2floor-0911`, age `1.5`h). The Governance Agenda,
-> Experiments Awaiting Review, and granularity/category audit sections below reflect the **last**
-> pipeline run, not today's state. Re-run `/morning-digest` manually once sessions are clear to
-> refresh them.
+Tier 1 full run: `governance.sh` ran to completion (exit 0, 6m36s). No live claims at start. The
+last digest was 2026-09-11 (Friday). The two days since were Saturday and Sunday, and the cron
+(`7 5 * * 1-5`) doesn't fire on weekends, so no runs were missed.
 
 ---
 
-## THE ONE THING TODAY: the queue is EMPTY and there is no automatic refill
+## THE ONE THING TODAY: the fleet has been idle for ~48h and nothing is set to refill it
 
-`experiment_queue.json` holds **0 items**. Not "low" — empty. The fleet-idle watcher agrees
-(`idle_risk: true`, `claimable_backlog: 0`, threshold 3, snapshot `2026-09-11T04:20:54Z`,
-`status: OK` — a fresh, healthy read, not a stale one).
+The queue has been **empty since the 2026-09-12 snapshot**. The last result reached the coordinator
+at **2026-09-12T04:53Z** (V3-EXQ-1023). I checked the coordinator DB directly over ssh: it has
+**0 pending / 0 claimed**. The fleet-idle watcher agrees (`status: OK`, `idle_risk: true`,
+`claimable_backlog: 0` against a threshold of 3, snapshot `2026-09-14T03:42:14Z`, so it's fresh).
+`ready_sd_validation_candidates` is **empty** across 82 ready SDs (`excluded_validation_already_ran: 39`,
+`excluded_no_queueable_validation: 39`). Re-queuing an old validation won't refill this. It needs
+new `/queue-experiment` designs.
 
-**And the automatic refill path is exhausted**: `ready_sd_validation_candidates` is **empty**
-across 80 ready SDs, because `excluded_validation_already_ran: 38` and
-`excluded_no_queueable_validation: 38`. Every built substrate whose validation could simply be
-re-queued has already had it attempted. **Refill needs a fresh `/queue-experiment` design, not a
-re-queue.** Workers `ree-cloud-2` and `ree-cloud-3` are already powered down (scaler responding
-correctly to zero demand) — so every hour from here is idle fleet.
+**Friday's refill leads both came back negative:**
 
-**But the refill work is ALREADY CHIPPED — it is waiting to be clicked, not waiting to be
-designed.** A STOP-CHECK of the chip ledger at close found the queue-refill path already staffed:
+- `chip-20260910-recover-stranded-exq-1018-1003` is **done, and both scripts were refused**. Neither
+  was queued (REE_assembly `b0d0a1a887`,
+  `evidence/planning/exq1026_mech005_nu_path_authority_refusal_20260911.md`). The two scripts are
+  still untracked in `ree-v3/experiments/`.
+- `chip-20260910-merge-paced-proposal-triage` is **done: 0 GREEN / 1 AMBER / 7 RED**. None of the 8
+  paced proposals can be built right now.
+- `chip-20260910-curated-pause-window-g6` staged an agenda at
+  `evidence/planning/curated_pause_window_agenda_20260911.md` (`9785847013`). **It is a proposal only.
+  The halt was not carried out and is waiting for your review.** While that is undecided, chip
+  over-production is the reason this digest **spawned no new chips** (see Blocked Items).
 
-- **`chip-20260910-recover-stranded-exq-1018-1003`** — *"Recover 2 stranded experiment scripts
-  into the empty queue."* **V3-EXQ-1018** (MECH-005, 858 lines) and **V3-EXQ-1003** (EXT-004,
-  100KB) are complete and clean-compiling, and have sat untracked and unqueued since Sep 9 after
-  their authoring sessions died. The user already authorised recovering both; the handoff happened
-  because the queue file was claimed by a live worker at the time. **This is the shortest path from
-  0 to 2 queued experiments and it needs no new design.**
-- **`chip-20260910-merge-paced-proposal-triage`** — one read-only substrate-readiness triage across
-  8 paced `/queue-experiment` proposals, which then re-spawns full sessions only for the buildable
-  ones. Behind it sit 6 individual paced proposals (MECH-237, MECH-222, MECH-213, MECH-208,
-  MECH-206, MECH-162).
-
-**No chips were spawned by this digest, deliberately.** Every follow-on it would otherwise have
-raised is already open — and `chip-20260910-curated-pause-window-g6` records that the
-pause-pressure gate tripped **generation 6** on chip over-production (291 chips authored in 7 days
-against a 150 threshold) and that **the user approved running a curated pause window now**. Adding
-to the pile this morning would work directly against a halt you have already authorised.
-
-The best-posed *design* targets, when the queue does need fresh design, are in the Headlines below:
-EXQ-1010 has just localised the v3 binding constraint to the **encoder's objective**, and EXQ-1020
-has just told us the SD-082 learning signal is present-but-noisy with its advantage-sign leg
-failing.
+**The best candidates for new designs come from this weekend's results.** V3-EXQ-1023 says the
+first SD-106 build **does not close** the observation->z_world gap (below). V3-EXQ-1025 gives
+MECH-349 its first indexed evidence (below). V3-EXQ-964a narrows MECH-482: the readout
+differentiates, but the committed action never changes.
 
 ---
 
 ## Headlines — Positive Results & Live Decisions
 
-Two new results since the last digest (2026-09-10T05:07:31Z). Both PASS, both from `ree-cloud-2`.
+These are new results since the 2026-09-11 digest (the prior agenda already covered 1019 and 1020).
+One positive, plus one decision-relevant negative that sits on the v3 binding constraint.
 
-- **V3-EXQ-1019 — `mech464_d1d2_reorder_dagain_sweep` — PASS** (evidence, `supports`)
-  - **Moves:** **MECH-464** — `evidence_direction: supports`. This is the *existence* result for
-    the claim: the D1/D2 opponent-gain split, which is asymmetric in code, **does** actually flip
-    the committed cross-loop winner on this substrate.
-  - **All three load-bearing criteria passed**, and the design was built to be falsifiable in the
-    other direction: C1 existence (26 reorders vs threshold 20 — a near-zero count here would
-    have been *"a clean REFUTES of MECH-464"*, per the manifest's own null-note); C2 confinement
-    (reorder rate 0.0289 when straddle is positive vs 0.0071 when zero — 4x, correctly confined);
-    C3 gradation (point-biserial r = 0.100).
-  - **Non-vacuity gate held:** mean straddle fraction 0.139 against a live-probed reachable 0.53,
-    on 1852 pooled D1/D2-active E3 selections across 8 seeds (0–7). This run could genuinely have
-    self-routed `precondition_unmet` and did not.
-  - **Gate on acting:** none — this is a clean, pre-registered, 8-seed existence PASS.
+- **V3-EXQ-1025 — `mech349_crf_churn_retirement` — PASS** (evidence, `supports`, `ree-worker-3`, 2026-09-11T18:11Z)
+  - **Moves:** **MECH-349** (CandidateRule mint, ARC-063 CREATE face). This is the first
+    experimental entry the indexer has credited to MECH-349: `claim_evidence` now reads exp=1,
+    exp_conf **0.77**, where GFLAG-0198 recorded zero entries. Churn is **selective, not a
+    treadmill**. Extinct regularities are retired (C2 5/5 cells) while still-recurring ones keep
+    their slots, with zero persistent retirements or re-mints (C1 5/5). The same substrate *does*
+    produce the 666c treadmill at a higher dose, so the negative is not vacuous. MECH-349
+    FALSIFYING(3) does not occur.
+  - **Makes live:** the pipeline now puts **MECH-349 on the Governance Agenda as `pending_user`**
+    (`hold_pending_v3_substrate`). Whether the V3-pending hold still fits a claim that now has
+    direct V3 evidence is a real decision, not a routine re-accept.
+  - **Before acting:** it's a single run and hasn't been reviewed. Take it through the normal
+    `/governance` walk. It is a claim-tagged PASS, so no autopsy is needed.
 
-- **V3-EXQ-1020 — `sd082_learning_signal_probe` — PASS** (diagnostic; `evidence_direction:
-  unknown`, so it scores **nothing** — a 723-rule item)
-  - **Verdict:** `H_learning_signal_noisy_supported` for **SD-082**. The important structure is
-    that the three legs **split**, and the manifest is explicit that C2 and C3 are reported
-    independently and are *not* AND-ed:
-    - **C1 gradient present — PASS** (0.0059 vs floor 1e-06). Gradient *does* reach the head; a
-      FAIL here would have been the different, worse finding of no signal at all.
-    - **C2 persistence low — PASS** (0.655 vs 0.603). The signal is **noisy**, as hypothesised.
-    - **C3 advantage negative on flips — FAIL** (+0.286, needed < 0). **This leg does not hold.**
-  - **Makes live:** the SD-082 repair target is **signal quality, not gradient plumbing** — the
-    plumbing is demonstrably intact. The failed C3 leg says the advantage sign on flips is not
-    behaving as the noisy-signal story predicts, so the hypothesis is supported but *not* clean.
-  - **Positive control held:** the dense-synthetic-credit control scored 1.0 against a 0.8 floor,
-    so the instrument is not blind — the reading is about the real signal, not the probe.
-  - **Gate on acting:** the split C2/C3 verdict is the thing to look at before designing the
-    successor; do not read this as a uniform confirmation.
-
-**Yesterday's blocker on V3-EXQ-1010 has CLEARED.** Yesterday's agenda flagged that the 1010
-manifest was untracked and uncommitted, and therefore invisible to the indexer. It is now
-committed (`0241ac2a196 phase3: 1 v3 result manifest(s) 2026-09-09`) and appears in
-`pending_review.md`. Its finding — *decision-relevant content is **destroyed at encode time**;
-the repair is at the **encoder's objective**, not the consumer* — is now visible to downstream
-consumers and is actionable.
+- **V3-EXQ-1023 — `sd106_bottleneck_preservation_validation` — FAIL** (diagnostic, `ree-cloud-2`, 2026-09-12T04:53Z). *This isn't a positive. It's here because it changes what to do next on the most important node in v3.*
+  - **Result:** SD-106 (scale-normalised reconstruction plus a zero-init linear bypass at the
+    observation->z_world encoder) reaches consumer agreement of **0.719 mean / 0.699 min**. The
+    OFF arm reaches 0.668 and the PCA-32 anchor 0.869. **0 of 3 seeds clear the 0.85 parity bar.**
+    All five preconditions were met: the raw-field instrument ceiling was 0.974, the PCA anchor
+    cleared on 3/3, the bypass trained off zero, the encoder trained in P0, and the latent did not
+    collapse. So this is a readable null, not a broken instrument. SD-106 moves the latent a
+    little (+0.05) and doesn't come close to PCA parity at the same width.
+  - **Bears on:** `zworld_adequacy:ZW-1` (assembling, `awaiting: SD-106`). This is the v3 binding-constraint
+    interface, and most of the remaining closure work chains through it (ZW-1
+    `unblocks_claims`: INV-088, MECH-457, SD-015, ARC-030, MECH-117, ARC-065). The built form of SD-106 doesn't close it, so ZW-1's
+    `assembly_status` and the SD-106 design need another look.
+  - **Before acting:** this is **diagnostic, so a confirmed `/failure-autopsy` is required** before
+    anything is applied from its self-route (`sd106_below_pca32_parity`).
 
 ---
 
 ## Decisions Waiting on You (6)
 
-**None of these blocks a session** — they are recorded requests, so nothing is stalled while they
-sit. The oldest has been waiting 34 days.
+6 decision(s) recorded as awaiting your answer, oldest first. These do NOT block any session -- they are recorded requests, so nothing is stalled while they sit. Answer any of them with the command in its block, or reopen the asking session.
 
-### MECH-074d — waiting 34d
+### MECH-074d -- waiting 37d
 
 **Question:** Demotion review: provisional -> candidate (conflict_ratio 0.667)
 
-**Recommendation:** demote_to_candidate — asked by `governance`, status `discussing`
+**Recommendation:** demote_to_candidate
+
+**Context:** (source: evidence/experiments/promotion_demotion_recommendations.md)
+
+- decision_id: `(legacy row -- no decision_id)`
+- asked by: `governance`
+- status: `discussing`
+
+**Answer it here** (records your decision; the asking session picks it up on resume):
 
 ```bash
 /opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/pending_decisions.py resolve \
@@ -113,18 +99,21 @@ sit. The oldest has been waiting 34 days.
   --rationale '<why, one line -- optional but worth it>'
 ```
 
-_No session is waiting on this one — answering it above is all that is needed._
+_No session is waiting on this one -- answering it above is all that is needed._
 
-### MECH-316 — waiting 27d
+### MECH-316 -- waiting 30d
 
-**Question:** Orphan V3 claim: owning node `arc_062_rule_apprehension:GAP-I-absorption` is deferred
+**Question:** Orphan V3 claim: owning node arc_062_rule_apprehension:GAP-I-absorption is deferred
 
-**Recommendation:** undefer_owning_node — asked by `orphan-v3-claims-adjudicate-6f88bd`, status `proposed`
+**Recommendation:** undefer_owning_node
 
-**Context:** D-002 orphan-V3-claim adjudication. Claim reads as live V3 in the registry but its
-ONLY owning closure node is `deferred`, which `generate_closure_snapshot.py` DEFERRED_STATUSES
-excludes from the V3 progress denominator: not done, not remaining, not visible as a gap.
-Plan-frontmatter note applied; node status change PROPOSED not applied.
+**Context:** D-002 orphan-V3-claim adjudication (chip-20260815-orphan-v3-claims-adjudicate). Claim reads as live V3 in the registry but its ONLY owning closure node is `deferred`, which generate_closure_snapshot.py DEFERRED_STATUSES excludes from the V3 progress denominator: not done, not remaining, not visible as a gap. Plan-frontmatter note applied; node status change PROPOSED not applied (outside session au ...
+
+- decision_id: `(legacy row -- no decision_id)`
+- asked by: `orphan-v3-claims-adjudicate-6f88bd`
+- status: `proposed`
+
+**Answer it here** (records your decision; the asking session picks it up on resume):
 
 ```bash
 /opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/pending_decisions.py resolve \
@@ -133,16 +122,21 @@ Plan-frontmatter note applied; node status change PROPOSED not applied.
   --rationale '<why, one line -- optional but worth it>'
 ```
 
-_No session is waiting on this one — answering it above is all that is needed._
+_No session is waiting on this one -- answering it above is all that is needed._
 
-### MECH-317 — waiting 27d
+### MECH-317 -- waiting 30d
 
-**Question:** Orphan V3 claim: owning node `arc_062_rule_apprehension:GAP-I-absorption` is deferred
+**Question:** Orphan V3 claim: owning node arc_062_rule_apprehension:GAP-I-absorption is deferred
 
-**Recommendation:** undefer_owning_node — asked by `orphan-v3-claims-adjudicate-6f88bd`, status `proposed`
+**Recommendation:** undefer_owning_node
 
-**Context:** as MECH-316 above (the two were split out of GAP-I together on 2026-06-23 and share
-one owning node; no artefact distinguishes them).
+**Context:** D-002 orphan-V3-claim adjudication (chip-20260815-orphan-v3-claims-adjudicate). Claim reads as live V3 in the registry but its ONLY owning closure node is `deferred`, which generate_closure_snapshot.py DEFERRED_STATUSES excludes from the V3 progress denominator: not done, not remaining, not visible as a gap. Plan-frontmatter note applied; node status change PROPOSED not applied (outside session au ...
+
+- decision_id: `(legacy row -- no decision_id)`
+- asked by: `orphan-v3-claims-adjudicate-6f88bd`
+- status: `proposed`
+
+**Answer it here** (records your decision; the asking session picks it up on resume):
 
 ```bash
 /opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/pending_decisions.py resolve \
@@ -151,13 +145,21 @@ one owning node; no artefact distinguishes them).
   --rationale '<why, one line -- optional but worth it>'
 ```
 
-_No session is waiting on this one — answering it above is all that is needed._
+_No session is waiting on this one -- answering it above is all that is needed._
 
-### MECH-314a — waiting 27d
+### MECH-314a -- waiting 30d
 
-**Question:** Orphan V3 claim: owning node `behavioral_diversity_isolation:GAP-G` is deferred
+**Question:** Orphan V3 claim: owning node behavioral_diversity_isolation:GAP-G is deferred
 
-**Recommendation:** undefer_owning_node — asked by `orphan-v3-claims-adjudicate-6f88bd`, status `proposed`
+**Recommendation:** undefer_owning_node
+
+**Context:** D-002 orphan-V3-claim adjudication (chip-20260815-orphan-v3-claims-adjudicate). Claim reads as live V3 in the registry but its ONLY owning closure node is `deferred`, which generate_closure_snapshot.py DEFERRED_STATUSES excludes from the V3 progress denominator: not done, not remaining, not visible as a gap. Plan-frontmatter note applied; node status change PROPOSED not applied (outside session au ...
+
+- decision_id: `(legacy row -- no decision_id)`
+- asked by: `orphan-v3-claims-adjudicate-6f88bd`
+- status: `proposed`
+
+**Answer it here** (records your decision; the asking session picks it up on resume):
 
 ```bash
 /opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/pending_decisions.py resolve \
@@ -166,14 +168,21 @@ _No session is waiting on this one — answering it above is all that is needed.
   --rationale '<why, one line -- optional but worth it>'
 ```
 
-_No session is waiting on this one — answering it above is all that is needed._
+_No session is waiting on this one -- answering it above is all that is needed._
 
-### MECH-091 — waiting 27d
+### MECH-091 -- waiting 30d
 
-**Question:** Orphan V3 claim: owning node `commitment_closure:GAP-7` is deferred
+**Question:** Orphan V3 claim: owning node commitment_closure:GAP-7 is deferred
 
-**Recommendation:** decide_blocker_generation_then_route — asked by
-`orphan-v3-claims-adjudicate-6f88bd`, status `proposed`
+**Recommendation:** decide_blocker_generation_then_route
+
+**Context:** D-002 orphan-V3-claim adjudication (chip-20260815-orphan-v3-claims-adjudicate). Claim reads as live V3 in the registry but its ONLY owning closure node is `deferred`, which generate_closure_snapshot.py DEFERRED_STATUSES excludes from the V3 progress denominator: not done, not remaining, not visible as a gap. Plan-frontmatter note applied; node status change PROPOSED not applied (outside session au ...
+
+- decision_id: `(legacy row -- no decision_id)`
+- asked by: `orphan-v3-claims-adjudicate-6f88bd`
+- status: `proposed`
+
+**Answer it here** (records your decision; the asking session picks it up on resume):
 
 ```bash
 /opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/pending_decisions.py resolve \
@@ -182,13 +191,21 @@ _No session is waiting on this one — answering it above is all that is needed.
   --rationale '<why, one line -- optional but worth it>'
 ```
 
-_No session is waiting on this one — answering it above is all that is needed._
+_No session is waiting on this one -- answering it above is all that is needed._
 
-### MECH-122 — waiting 26d
+### MECH-122 -- waiting 29d
 
 **Question:** Demotion review: provisional -> candidate
 
-**Recommendation:** demote_to_candidate — asked by `governance-cycle-2026-08-16`, status `discussing`
+**Recommendation:** demote_to_candidate
+
+**Context:** (source: evidence/experiments/promotion_demotion_recommendations.md)
+
+- decision_id: `(legacy row -- no decision_id)`
+- asked by: `governance-cycle-2026-08-16`
+- status: `discussing`
+
+**Answer it here** (records your decision; the asking session picks it up on resume):
 
 ```bash
 /opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/pending_decisions.py resolve \
@@ -197,312 +214,200 @@ _No session is waiting on this one — answering it above is all that is needed.
   --rationale '<why, one line -- optional but worth it>'
 ```
 
-_No session is waiting on this one — answering it above is all that is needed._
-
-**Shape worth noticing:** four of the six (MECH-316 / 317 / 314a / 091) are the *same* question
-from the *same* 2026-08-15 adjudication — "this claim's only owning closure node is `deferred`,
-should the node be un-deferred?" They could reasonably be answered as one ruling.
+_No session is waiting on this one -- answering it above is all that is needed._
 
 ---
 
 ## Queue Status
 
-- **Total pending: 0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0)
-- **ALERT: Queue EMPTY — far below the 3-item floor.** Not merely low; there is nothing to run.
-- Fleet-idle watcher: `status: OK`, `idle_risk: true`, claimable backlog **0** (threshold 3),
-  snapshot `2026-09-11T04:20:54Z` (46 min old — fresh).
-  - `ready_sd_validation_candidates`: **EMPTY**, across `ready_sd_total: 80`.
-    `excluded_validation_already_ran: 38`, `excluded_no_queueable_validation: 38`,
-    `excluded_validation_already_queued: 0`, `excluded_known_churn: 4`.
-  - **Consequence: refill requires a fresh `/queue-experiment` design, NOT a re-queue.** There is
-    no built-substrate validation left that can simply be re-fired.
-- Last queue activity: `V3-EXQ-1020` added 2026-09-11T00:08Z, ran and completed 00:31Z; the
-  snapshot commit at 00:32Z left the queue empty.
-- **Owed successors: none.** All plan `owner_exq` ids surfaced by the heartbeat passed the Step 7c
-  cross-check as already-run (see Active Plans below).
-- **Phantom Owner-EXQ ids: none.**
+- Total pending: **0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0). The coordinator DB has 0 pending and 0 claimed.
+- **ALERT: the queue is empty** (fewer than 3). It has been empty since 2026-09-12, and the fleet has had no work for ~48h.
+- Fleet-idle watcher: `status: OK`, idle_risk=**true**, claimable backlog=0 (threshold 3),
+  snapshot 2026-09-14T03:42:14Z. `ready_sd_validation_candidates` is **empty**
+  (82 ready SDs; 39 validations already ran, 39 have no queueable validation, 4 excluded as known churn), so
+  **refill needs a new `/queue-experiment` design, not a re-queue**.
+- Owed successors: none. Every Owner-EXQ on an in-flight, blocked or stale plan node
+  (V3-EXQ-910b, -938, -445h, -964a) **has already run** (Step 7c check (b): manifests present).
+- Phantom Owner-EXQ ids: none found.
 
 ---
 
-## Experiments Awaiting Review (9 indexed / 0 runner-only)
+## Experiments Awaiting Review (3 indexed / 0 runner-only)
 
-Source: `pending_review.md` generated `2026-09-11T03:37:16Z`. 7 PASS, 0 FAIL, 0 runner-only,
-2 unclaimed manifests, 0 ERROR manifests, 1 diagnostic with no confirmed autopsy.
+### V3-EXQ-1025 — `mech349_crf_churn_retirement` — PASS
+- **Claims tested:** MECH-349 (status: candidate; indexed exp confidence 0.77; prior evidence: 0 indexed entries before this run, so this is the first)
+- **Key metrics:** C1 persistent regimes hold their slot 5/5 cells (worst cell 0 retired+re-minted persistent); C2 extinct regimes retired 5/5 (worst cell 6 retired); C3 live population distinct in tag space 5/5 (non-load-bearing)
+- **Classification:** evidence (`supports`)
+- **Governance impact if confirmed:** it would give MECH-349 its first direct V3 experimental support. That bears on whether its `hold_pending_v3_substrate` recommendation (now `pending_user`) still applies.
 
-### V3-EXQ-1010 — `zworld_overcapacity_decoder_sweep` — PASS
-- **Claims tested:** none tagged (`claim_ids: []`); `bears_on: INV-088, MECH-457`
-- **Key metrics:** best off-arm decoder agreement 0.684 at `mlp2048` (elevation +0.118, does not
-  clear bar); train agreement 0.9996 at the same rung — i.e. the ladder demonstrably memorises,
-  so the shortfall is not under-capacity. Anchor protocol sound.
-- **Classification:** **diagnostic** — and it is the one row in "Diagnostic — autopsy required".
-- **Governance impact if confirmed:** localises the v3 observation-interface repair to the
-  **encoder's objective**, closing off the consumer-side branch. Scores nothing directly
-  (untagged), which is exactly why it needs surfacing rather than filing.
-- **Action:** needs a confirmed `/failure-autopsy` target before governance can mark it reviewed
-  or act on the `H-F-confirmed` self-route. **This is the single highest-leverage review item.**
+### V3-EXQ-1023 — `sd106_bottleneck_preservation_validation` — FAIL
+- **Claims tested:** SD-106 (status: implemented; the claim itself says "NO EXPERIMENTAL EVIDENCE YET"; no indexed entries)
+- **Key metrics:** SD-106 consumer agreement 0.719 mean / 0.699 min vs OFF 0.668 and PCA-32 anchor 0.869; parity bar 0.85, 0/3 seeds clear it; all 5 preconditions met; participation ratio worst 8.13 (not collapsed)
+- **Classification:** diagnostic. **Needs a confirmed `/failure-autopsy`** (self-route `sd106_below_pca32_parity`)
+- **Governance impact if confirmed:** the first measured evidence that SD-106 *as built* does not bring observation->z_world up to PCA parity. Bears directly on `zworld_adequacy:ZW-1` (assembling, awaiting SD-106).
 
-### V3-EXQ-1019 — `mech464_d1d2_reorder_dagain_sweep` — PASS
-- **Claims tested:** MECH-464 (`supports`)
-- **Key metrics:** C1 26 reorders (thr 20); C2 straddle-positive reorder rate 0.0289 vs
-  straddle-zero 0.0071; C3 point-biserial r 0.100; straddle fraction 0.139; 1852 D1/D2-active
-  selections; 8 seeds
-- **Classification:** evidence
-- **Governance impact if confirmed:** first existence evidence that the D1/D2 split changes
-  committed cross-loop outcomes — moves MECH-464 off "asymmetric in code, unknown in behaviour"
-- **Review route:** unclaimed manifest — mark via the **manifest stem**, not the queue_id
-
-### V3-EXQ-1020 — `sd082_learning_signal_probe` — PASS
-- **Claims tested:** SD-082 (`evidence_direction: unknown` — scores nothing)
-- **Key metrics:** C1 gradient 0.0059 (PASS); C2 persistence 0.655 vs 0.603 (PASS);
-  **C3 advantage-on-flips +0.286, needed < 0 (FAIL)**; C4 return variance 0.161 (PASS,
-  non-load-bearing); synthetic-credit positive control 1.0 vs floor 0.8
-- **Classification:** diagnostic
-- **Governance impact if confirmed:** points the SD-082 repair at signal *quality*, not gradient
-  plumbing; the failed C3 leg is the part that still needs explaining
-- **Review route:** unclaimed manifest — mark via the manifest stem
-
-### `convergence_signal_synthetic_assay_001..006` — 6 seed runs (seed7/11/17/23/29/37) — PASS
-- **Claims tested:** none (`claim_ids: []`) — these are **one assay across six seeds**, not six
-  independent findings
-- **Self-description, verbatim from the manifest:** *"PASS as a synthetic measurement assay only.
-  The cheap independence-aware confidence observable distinguishes independent unanimity from
-  duplicated unanimity and preserves the intended dependency ordering. It does not establish a REE
-  architectural claim, does not outperform exact Bayesian aggregation, and shows non-zero
-  calibration error in intermediate dependency regimes that requires follow-up."*
-- **Classification:** measurement assay
-- **Governance impact:** none directly — but the flagged calibration error in intermediate
-  dependency regimes is a genuine, self-declared follow-up
+### V3-EXQ-964a — `mech482_epistemic_deficit_multitarget_readiness` — FAIL
+- **Claims tested:** MECH-482 (status: candidate; no indexed entries; the 2026-08-30 governance note records that V3-EXQ-964's C2 was structurally unsatisfiable)
+- **Key metrics:** C1 multitarget regime reached (14 vs ≥2) ✓; C2 readout differentiates (0.0044 > 0) ✓; **C3 downstream consumer can diverge = 0.0** ✗ (load-bearing); C4 instrument control bit-identical ✓
+- **Classification:** diagnostic, `evidence_direction: mixed`. **Needs a confirmed `/failure-autopsy`** (self-route `readout_differentiates_but_never_changes_committed_action`)
+- **Supersedes:** V3-EXQ-964. It fixes the structurally unsatisfiable C2, which now passes. The failure has moved to C3.
+- **Governance impact if confirmed:** the 964→964a successor worked. The remaining gap is that no consumer acts on the epistemic_deficit readout. It owns `orienting_epistemic_deficit_v3:ORNT-2`, which ORNT-3 and ORNT-4 depend on.
 
 ---
 
 ## Errors to Diagnose (0)
 
-**No undiagnosed ERRORs.** Coordinator-DB ERROR rate over the last 30 days: **2.3% (3 / 129)** —
-67 PASS, 59 FAIL, 3 ERROR, span 2026-08-12 → 2026-09-11. 0 operator cancellations, 0 unexplained
-phantoms.
-
-All three ERRORs already have landed successors, verified against `evidence/experiments/`:
-
-| ERROR | when | machine | successor | status |
-|---|---|---|---|---|
-| `V3-EXQ-591g` | 2026-09-02T20:17Z | ree-cloud-2 | `V3-EXQ-591h` | ran 2026-09-03, manifest present |
-| `V3-EXQ-944a` | 2026-08-22T15:10Z | ree-cloud-3 | `V3-EXQ-944b` | ran 2026-08-25, manifest present |
-| `V3-EXQ-926`  | 2026-08-13T04:50Z | ree-cloud-2 | `V3-EXQ-926a` | ran 2026-08-14, manifest present |
-
-Nothing to route to `/diagnose-errors`.
+There are 2 ERRORs in the last 30 days (coordinator DB, rate 1.8%, 2/109). **Both already have successors**:
+- V3-EXQ-944a (ERROR 2026-08-22, ree-cloud-3) → V3-EXQ-944b ran 2026-08-25
+- V3-EXQ-591g (ERROR 2026-09-02, ree-cloud-2) → V3-EXQ-591h ran 2026-09-03
 
 ---
 
-## Governance Agenda (6 recommendations)
+## Governance Agenda (4 recommendations)
 
-Source: `promotion_demotion_recommendations.md` generated `2026-09-09T09:25:11Z` — **two days
-stale**, because `governance.sh` was skipped under contention (see banner).
+- **MECH-349** (candidate) — Recommendation: **hold** (`hold_pending_v3_substrate`)
+  - Evidence: 1 experimental (V3-EXQ-1025, supports), 0 literature
+  - Current confidence: 0.77 (exp)
+  - *New this cycle, because of V3-EXQ-1025. See Headlines.*
+- **MECH-012** (candidate) — Recommendation: **hold** (`hold_candidate_resolve_conflict`)
+  - Evidence: 0 experimental, 6 literature
+  - Current confidence: 0.63 (lit)
+- **MECH-013** (candidate) — Recommendation: **hold** (`hold_candidate_resolve_conflict`)
+  - Evidence: 0 experimental, 6 literature
+  - Current confidence: 0.67 (lit)
+- **ARC-069** (candidate) — Recommendation: **hold** (`hold_pending_v3_substrate`)
+  - Evidence: 0 experimental, 3 literature
+  - Current confidence: 0.80 (lit)
 
-| Claim | Status | Recommendation | Evidence | Quadrant |
-|---|---|---|---|---|
-| **ARC-053** | candidate | `hold_pending_v3_substrate` | 3 entries — 2 supports / 1 mixed / 0 weakens; 0 genuine exp | plausible_unproven |
-| **ARC-054** | candidate | `hold_pending_v3_substrate` | 3 entries — 2 supports / 1 weakens; 0 genuine exp | plausible_unproven |
-| **INV-105** | candidate | `hold_pending_v3_substrate` | 3 entries — 2 supports / 1 mixed; 0 genuine exp | plausible_unproven |
-| **MECH-537** | candidate | `hold_pending_v3_substrate` | 3 entries — 2 supports / 1 mixed; 0 genuine exp | plausible_unproven |
-| **MECH-546** | candidate | `hold_candidate_resolve_conflict` | 2 entries — 1 supports / 1 weakens; 0 genuine exp | speculative |
-| **SD-064** | candidate | `hold_pending_v3_substrate` | 1 entry — 1 supports; 0 genuine exp | plausible_unproven |
+The 2026-09-11 cycle accepted 10 holds. The four above are what is still `pending_user`.
 
-All six have `experimental_confidence: 0.0` and **zero genuine experimental entries** — these are
-substrate holds, not evidence disputes. Work-graph debt: `complicated (buildable)` at an upstream
-substrate node, not a reducible unknown here.
+**Granularity-debt recurrence (GOV-GRAN-1):** **P0 `dropped_handoff`: 0, which is clean.** No chip needed.
+P1 `unflagged_recurrence`: **50 claims**, the same set as 2026-09-11. Only **6** have any `weakened`
+alignment, which is what makes granularity debt more likely than measurement debt. These need a human
+to decide between a coarse claim and a substrate campaign; no action has been taken:
+- **Q-034** — 6 hits, alignment weakened=3 other=3
+- **SD-005** — 3 hits, alignment weakened=3
+- **ARC-038** — 3 hits, alignment weakened=3
+- **INV-054** — 4 hits, alignment weakened=2 other=2
+- **MECH-111** — 5 hits, alignment other=4 weakened=1
+- **ARC-018** — 2 hits, alignment unclear=1 weakened=1
 
-Note SD-064 is the same claim as the `global_workspace_jlens` plan's access channel — its
-`GATE-B` node (SD-027/MECH-254 top-k access gate build) is `open` and is the actual gate.
-
-**Granularity-debt recurrence (GOV-GRAN-1):** **P0 `dropped_handoff`: 0 — clean.** Every autopsy
-that fired the trigger has its `/claim-synthesis` proposal doc. No chip needed.
-
-P1 `unflagged_recurrence`: **50 claims** (of 213 with hits); 77 excluded as already metabolized.
-Listing all 50 would be noise, so they are split by the signal that actually discriminates —
-**`any_weakened`**. Only 6 carry any `weakened` alignment, i.e. only 6 are leaning toward genuine
-granularity debt rather than measurement/implementation debt:
-
-- **ARC-038** — 3 hits / 1 signature, alignment `weakened:3` — *every* hit weakened, single
-  signature. Strongest candidate on the list.
-- **SD-005** — 3 hits / 1 signature, alignment `weakened:3` — same shape as ARC-038.
-- **Q-034** — 6 hits / 2 signatures, alignment `other:3 weakened:3`
-- **INV-054** — 4 hits / 2 signatures, alignment `other:2 weakened:2`
-- **ARC-018** — 2 hits / 2 signatures, alignment `unclear:1 weakened:1`
-- **MECH-111** — 5 hits / 3 signatures, alignment `other:4 weakened:1`
-
-The high-*count* names are explicitly **not** the ones to look at first, and this is the whole
-point of carrying the alignment distribution rather than the count:
-
-- **INV-050** — 12 hits / 8 signatures, alignment `unclear:8 intact:4`, **no weakened** →
-  likely measurement debt, not granularity debt
-- **MECH-180** — 11 hits / 7 signatures, alignment `unclear:8 intact:2 other:1`, **no weakened** →
-  same reading
-- **SD-078** (7/6), **MECH-075** (7/5, `intact:5 other:2`), **Q-040** (6/5), **SD-082** (5/5),
-  **MECH-357** (5/4) — all **no weakened**
-
-**No action taken on any of these** — P1 needs a human to discriminate coarse-claim
-(→ `/claim-synthesis`) from a coherent substrate-build campaign.
+The other 44 have no `weakened` alignment and are probably measurement or implementation debt. The largest are INV-050 (12 hits, unclear=8 intact=4), MECH-180 (11), MECH-058 (13, legacy V2 bridge runs), SD-078 (7, all unclear), MECH-075 (7, intact=5) and SD-082 (6, all unclear).
 
 **Epistemic-category completeness (GOV-CAT-1):** **clean.** `missing_category: 0`,
-`invalid_category: 0`, `malformed_markers: 0`. P1 only: 10 `unkeyed_schema` (legacy singular
-`claim_id` targets) and 2 `claimless_missing`. Neither can corrupt a count. Baseline holds at 208
-artifacts / 673 historically-excluded instances — **do not regenerate that snapshot.**
+`invalid_category: 0`, `malformed_markers: 0`. P1 only: 10 `unkeyed_schema` and 2
+`claimless_missing`. Baseline holds at 673 excluded instances. **Do not regenerate that snapshot.**
 
 ---
 
-## Active Plans Heartbeat (12 non-done v3 plans of 17 with closure frontmatter)
+## Active Plans Heartbeat (13 non-done v3 plans of 18)
 
-Overall v3 closure: **73.0%** weighted across 97 non-deferred nodes. 33 remaining, 64 done,
-10 deferred, **10 on the assembly frontier** (a separate axis — under construction, deliberately
-exempt from staleness, not a stalled backlog).
+Source: `closure_status.md` (regenerated this run) plus per-node `last_updated` from each plan's
+frontmatter. Stale = not done, deferred or assembling, with `last_updated` more than 7 days before
+2026-09-14. Overall closure is **72.3%**: 64 done, 34 remaining, 11 assembling, 10 deferred.
 
-| Plan | In-flight | Blocked | Paused | Assembling | Stale rows | Plan last_updated |
+| Plan | Phases in-flight | Blocked | Paused | Assembling | Stale rows | Last decision |
 |---|---|---|---|---|---|---|
-| `arc_062_rule_apprehension` | 3 | 3 | 0 | 0 | 6 | 2026-09-01 |
-| `orienting_epistemic_deficit_v3` | 4 | 1 | 0 | 0 | 5 | 2026-08-30 |
-| `behavioral_diversity_isolation` | 3 | 1 | 0 | 1 | 4 | 2026-09-02 |
-| `global_workspace_jlens` | 2 | 2 | 0 | 0 | 3 | 2026-07-10 |
-| `sd_037_axis_b_sustained_threat_curriculum` | 0 | 3 | 0 | 1 | 3 | 2026-06-23 |
-| `self_attribution` | 0 | 4 | 0 | 0 | 3 | 2026-09-04 |
-| `infant_substrate` | 1 | 1 | 0 | 0 | 2 | 2026-09-04 |
-| `commitment_closure` | 2 | 0 | 0 | 1 | 1 | 2026-09-02 |
-| `mech357_avoidance_efficacy` | 1 | 0 | 0 | 0 | 1 | 2026-08-29 |
-| `policy_decomposition_trigger` | 0 | 1 | 0 | 0 | 1 | 2026-08-21 |
-| `sleep_substrate` | 0 | 1 | 0 | 0 | 1 | 2026-08-14 |
-| `conversion_ceiling_campaign` | 0 | 0 | 0 | 7 | 0 | 2026-07-10 |
+| arc_062_rule_apprehension | 3 | 3 | 0 | 0 | 6 | 2026-07-29 |
+| behavioral_diversity_isolation | 3 | 1 | 0 | 1 | 4 | (no decision log) |
+| orienting_epistemic_deficit_v3 | 4 | 1 | 0 | 0 | 4 | 2026-08-22 |
+| self_attribution | 0 | 4 | 0 | 0 | 4 | 2026-08-18 |
+| global_workspace_jlens | 2 | 2 | 0 | 0 | 3 | (no decision log) |
+| sd_037_axis_b_sustained_threat_curriculum | 0 | 3 | 0 | 1 | 3 | (no decision log) |
+| infant_substrate | 1 | 1 | 0 | 0 | 2 | 2026-05-21 |
+| commitment_closure | 2 | 0 | 0 | 1 | 1 | 2026-09-08 |
+| mech357_avoidance_efficacy | 1 | 0 | 0 | 0 | 1 | 2026-08-13 |
+| policy_decomposition_trigger | 0 | 1 | 0 | 0 | 1 | 2026-08-18 |
+| sleep_substrate | 0 | 1 | 0 | 0 | 1 | 2026-08-14 |
+| zworld_adequacy | 0 | 1 | 0 | 1 | 0 | 2026-09-11 |
+| conversion_ceiling_campaign | 0 | 0 | 0 | 7 | 0 | (no decision log) |
 
-**How to read the stale counts: most of this staleness is correct, not dropped work.** The
-majority of stale rows are `blocked` on an explicit `depends_on` — e.g. the whole
-`sd_037_axis_b` P2→P3→P4 chain is a dependency ladder behind P1b, and `arc_062`'s GAP-I /
-GAP-I-absorption / GAP-J all sit behind GAP-B. A node waiting correctly on an unmet dependency
-does not get a fresh `last_updated`. `conversion_ceiling_campaign` shows 0 stale rows because all
-7 of its nodes are `assembling` — exempt by design, and a stable resting state, not a stall.
+"Blocked" counts `blocked`, `blocked_pending_substrate` and `upstream_blocked` together. The
+per-status split is in `closure_status.md`.
 
-**Owner-EXQ cross-check (Step 7c) — all four candidates resolved, none owed:**
+**Stale rows (30), with each Owner-EXQ status from Step 7c:**
 
-| Owner-EXQ | Node | Verdict |
-|---|---|---|
-| `V3-EXQ-445h` | `self_attribution:GAP-1` | **RAN** — 2 manifests (2026-05-08), script present. Not owed. |
-| `V3-EXQ-910b` | `orienting_epistemic_deficit_v3:ORNT-6` | **RAN** 2026-08-22, manifest present, confirmed-autopsied. Not owed. |
-| `V3-EXQ-938` | `policy_decomposition_trigger:REPOSE` | **RAN** 2026-08-18, manifest present; autopsy applied by governance 2026-08-21. Not owed. |
-| `TBD` | `self_attribution:GAP-2`, `GAP-3` | Not an id — no experiment designed yet. Correctly gated, not owed. |
+- **arc_062_rule_apprehension:** GAP-B (09-01), GAP-H (07-20), GAP-I (06-23), GAP-I-absorption (09-01), GAP-J (05-17), GAP-K (06-19). No owner_exq.
+- **behavioral_diversity_isolation:** GAP-B (08-01), GAP-C (07-10), GAP-G (08-18), GAP-I (09-02). No owner_exq.
+- **orienting_epistemic_deficit_v3:** ORNT-1 (08-13), ORNT-3 (08-13), ORNT-4 (08-13), ORNT-6 (08-25): Owner-EXQ V3-EXQ-910b, **ran** 2026-08-22 and was confirmed-autopsied. The row isn't reconciled yet. ORNT-2 isn't stale (09-11), but its owner V3-EXQ-964a **ran and FAILed 2026-09-11**. See Awaiting Review.
+- **self_attribution:** GAP-1 (08-18): Owner-EXQ V3-EXQ-445h, **ran**. GAP-2 (08-18, owner TBD), GAP-3 (06-25, owner TBD), GAP-6 (09-04).
+- **global_workspace_jlens:** A (07-10), B (07-09), MECH-191 (07-09). GATE-B isn't stale (09-08).
+- **sd_037_axis_b:** P2, P3, P4 (all 06-05). This is a depends_on chain behind P1b.
+- **infant_substrate:** GAP-13 (07-20), GAP-14 (09-03).
+- **commitment_closure:** GAP-4-battery (08-21).
+- **mech357_avoidance_efficacy:** BUILD (08-29).
+- **policy_decomposition_trigger:** REPOSE (08-21): Owner-EXQ V3-EXQ-938, **ran**, and its autopsy was applied 2026-08-21.
+- **sleep_substrate:** GAP-2 (08-13).
 
-**Zero owed successors. Zero phantom ids. Zero declared-never-minted ids to skip.**
+No stale row has an owed Owner-EXQ. Every stale row is waiting on a substrate or an upstream
+dependency, or its owner already ran and the row hasn't been reconciled.
 
-**Nodes whose gate is worth a look this morning** (all in-flight or open, not blocked on a peer):
+**Ran — may need /failure-autopsy:**
+- V3-EXQ-964a (plan orienting_epistemic_deficit_v3, row ORNT-2): ran 2026-09-11, FAIL/mixed, no confirmed autopsy yet.
 
-- `global_workspace_jlens:GATE-B` (open, 2026-09-08) — SD-027/MECH-254 V3 top-k access-gate
-  **build**. Gated on competence-localization; V3-EXQ-724 ran 2026-07-09 terminal FAIL /
-  non_contributory. This is the node that would unblock `global_workspace_jlens:B`, and SD-064
-  sits in today's governance agenda because of it.
-- `orienting_epistemic_deficit_v3:ORNT-2` (in_progress, 2026-08-30) — MECH-482's own
-  non-degeneracy precondition; ORNT-3 and ORNT-4 both `depends_on` it. Unblocking one node
-  unblocks three.
-- `commitment_closure:GAP-4` (in_progress, reconciled 2026-09-08) — freshest row on the board.
-- `behavioral_diversity_isolation:GAP-I` (in_progress, 2026-09-02) — ceiling lifted 2026-06-21 by
-  V3-EXQ-689d PASS; downstream retests are noted as unblocked.
-
-**PLAN STALING** (no decision logged in > 14 days, with rows in-flight):
-`global_workspace_jlens` (2026-07-10, 2 in-flight) and `sd_037_axis_b_sustained_threat_curriculum`
-(2026-06-23) — though the latter's in-flight count is 0, so it is purely dependency-parked.
+**PLAN STALING** (no decision logged in >14 days while rows are in flight):
+- arc_062_rule_apprehension: no decisions since 2026-07-29; 3 rows in flight.
+- orienting_epistemic_deficit_v3: no decisions since 2026-08-22; 4 rows in flight.
+- infant_substrate: no decisions since 2026-05-21; 1 row in flight.
+- mech357_avoidance_efficacy: no decisions since 2026-08-13; 1 row in flight.
+- behavioral_diversity_isolation, global_workspace_jlens: no `## Decision log` section at all; 3 and 2 rows in flight.
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-All 491 literature-needing backlog items sit at `priority: medium` — the field does not
-discriminate, so these are ranked by evidence volume and conflict, then verified for existing
-coverage by grepping each `record.json`'s `claim_ids_tested` (**not** by directory glob, which
-silently misses the lowercase/uppercase mismatch).
+All 481 backlog items needing literature are priority `medium` (or `low`), so there's no ranking
+signal. These are the first 5 `open` items in backlog order. Each has **0 experimental and 0
+literature** entries. Existing-entry counts come from `record.json` `claim_ids_tested`.
 
-| # | Backlog | Claim | Reasons | Existing entries |
-|---|---|---|---|---|
-| 1 | EVB-1182 | **ARC-027** | `missing_literature_evidence` (6 evidence entries, most of any lit-gap claim) | **0** |
-| 2 | EVB-1396 | **MECH-027** | `insufficient_literature_grounding`, `low_exp_conf`, `missing_literature_evidence` | **0** |
-| 3 | EVB-1446 | **MECH-161** | `low_exp_conf`, `missing_literature_evidence` | **0** |
-| 4 | EVB-1193 | **ARC-037** | `insufficient_experimental_replication`, `low_exp_conf`, `missing_literature_evidence` | **0** |
-| 5 | EVB-1246 | **EXT-001** | `insufficient_experimental_replication`, `missing_literature_evidence` | **0** |
-
-All five have **zero** existing literature entries — genuinely unpulled, not mis-detected.
-ARC-027 is the cleanest target: 6 experimental entries with no literature grounding at all.
+| # | Claim | Subject | Priority | Existing entries |
+|---|-------|---------|----------|-----------------|
+| 1 | ARC-075 | Infant curriculum must implement plasticity-magnitude asymmetry (suppress F during MECH-333 window), not only temporal scheduling | medium | 0 |
+| 2 | ARC-076 | Developmental commitment-loop calibration window with critical-period lock (two-layer temperament/personality) | medium | 0 |
+| 3 | ARC-079 | Goal persistence as a gated control op; disengagement is the ungated default | medium | 0 |
+| 4 | ARC-084 | Typed signed cognifold coupling (competition as a first-class generative mode) | medium | 0 |
+| 5 | ARC-089 | Substrate-independent cognifold primitives | medium | 0 |
 
 ---
 
-## Stale Claims (0 active > 6h)
+## Stale Claims (3 active > 6h)
 
-**Stale claims: none — clean steady state.** Audit generated `2026-09-11T05:04:56Z`,
-`stale_active: 0`, no contentions. Buckets A/B/C/D/U all empty. Nothing to report, nothing to act
-on.
+- Buckets: A(auto-closable) 0 | B(vendor-sync) 0 | C(no-trace) 1 | D(dirty-unproven) 1 | U(undetermined) 1
+- **[D]** `codex-showcase-build-20260911-exq1021` (62h): queue-experiment: V3-EXQ-1021. `experiments/v3_exq_1021_survive_recover_resume_showcase.py` and `experiments/showcase_replay.html` are dirty (untracked) and can't be proven complete. **Don't commit or revert them.** V3-EXQ-1021 is **not** in the queue.
+- **[U]** `codex-showcase-build-20260911` (62h): REE showcase implementation. It's directory-scoped (`ree-v3/experiments/`, `ree-v3/docs/experiments/`), so landing can't be attributed.
+  - warn: shared/directory resource is dirty, likely another live session: ree-v3/experiments/
+- **[C]** `orchestrate-20260913-1643` (11.6h): orchestrate 2026-09-13. Nothing landed and nothing is dirty; that pattern can't separate an abandoned claim from a wrong-direction one. It's already chipped as `chip-staleclaim-orchestrate-20260913-1643-20260913T164610Z` (open).
+- Also: `governance-sh-DLAPTOP-4` (this run's governance lock) is **`done` locally but still `active` on origin**. `governance.sh` printed `failed to close TASK_CLAIMS claim`, because the close committed only to the diverged umbrella checkout (see Blocked Items). Bucket G auto-reaps it after 2h, so no manual action is needed.
 
 ---
 
 ## Fleet Git Health
 
-Active ssh probe — this is the check no telemetry field can supply.
-
-| Machine | REE_assembly | ree-v3 |
-|---|---|---|
-| DLAPTOP-4 (local) | OK | OK |
-| ree-cloud-1 (hub) | OK | OK |
-| ree-cloud-2 (worker) | UNREACHABLE | UNREACHABLE |
-| ree-cloud-3 (worker) | UNREACHABLE | UNREACHABLE |
-| ree-cloud-4 (worker) | OK | OK |
-
-**All probed checkouts structurally clean** — no wedges, no skew, no stranded stashes. 27
-untracked paths graded against origin: **0 stranded run manifests, 0 same-run_id-different-content,
-0 stranded literature entries.**
-
-`ree-cloud-2` / `ree-cloud-3` being unreachable is **not a fault** — they are powered off, which
-is the scaler behaving correctly against an empty queue. (`hcloud server list` is the authority.)
-
-One benign note on the Mac: 1 `--dry-run` smoke manifest present (`_dry_` prefix) — not evidence,
-self-clearing.
+- DLAPTOP, ree-cloud-1 (hub) and ree-cloud-4: REE_assembly and ree-v3 both **OK**, with 0 stranded manifests.
+- ree-cloud-2 and ree-cloud-3: **UNREACHABLE** over ssh. With 0 queue demand they're most likely powered off by the scaler, which isn't a fault.
 
 ---
 
 ## Serve.py Status
-
-**RUNNING** on port 8000 (PID 63232).
-
----
-
-## Chip Backlog (Phase 3: zero chips spawned)
-
-A user-approved **curated pause window** is in flight (`chip-20260910-curated-pause-window-g6`) —
-the pause-pressure gate tripped generation 6 on 291 chips in 7 days. Every follow-on this digest
-would have raised already has an open chip, so nothing new was spawned:
-
-| Would-be follow-on | Already covered by |
-|---|---|
-| Refill the empty queue | `chip-20260910-recover-stranded-exq-1018-1003` (2 ready scripts) + `chip-20260910-merge-paced-proposal-triage` (8 proposals) |
-| V3-EXQ-1010 autopsy | `chip-20260910-merge-autopsy-1017-1010` — *and* it is `/failure-autopsy` work, reported inline by rule, never chipped |
-| V3-EXQ-1020 autopsy | `chip-autopsy-v3-exq-1020` (spawned 00:52Z today) |
-| MECH-027 / MECH-161 adjudication | `chip-20260910-merge-autopsy-999a-981a` (staging autopsies for both) |
-| REE_assembly divergence | `chip-20260910-gflag-phase2a-coordinator-shadow` — names governance-flag as *"the last big local git writer driving REE_assembly's divergence"* |
-| Checkout not following origin | `chip-checkoutdiverged-dlaptop-ree-working-master-g4` — **generation 4**, already routed to `/metaworker-learning` for root cause rather than another symptom fix |
-
-Two recurrence signals worth your eye, because both are explicitly flagged as *symptom fixes not
-holding*: `chip-daemondrift-ree-cloud-1-ree-explorer-g5` (**generation 5**) and the checkout-diverged
-generation-4 chip above. Both have been resolved and re-fired repeatedly.
+- **NOT RUNNING** on port 8000. Start it with: `cd /Users/dgolden/REE_Working/REE_assembly && /opt/local/bin/python3 serve.py &`
 
 ---
 
 ## Blocked Items
 
-1. **`governance.sh` skipped (Tier 2 degraded run)** — two live sessions held claims at 05:01Z:
-   `orchestrate-20260911-0330` (dispatcher_control.json, mac_dispatch_load.json, TASK_CHIPS.json)
-   and `mech465-p2floor-0911` (a MECH-465 planning doc). Neither touches `morning_agenda.md`, so
-   the agenda itself is uncontended and correct; the governance-derived sections are from the
-   2026-09-09 pipeline run.
-
-2. **`REE_assembly` local checkout is DIVERGED from origin** — `[ahead 4, behind 10]`, with a
-   dirty tree from live writers. `git pull origin master` refused (`Not possible to
-   fast-forward`). **The shared checkout was deliberately left untouched** — no reset, no rebase,
-   no autostash, per the read-modify-write and ref-move rules. The 4 local commits are IGW-ledger
-   automation plus one `nooarche` commit (`2addc5b5bd preflight verdicts: durable copy after
-   amend-prompt hollow-ack loss`). This wants a deliberate `safe_adopt_ref.py` / rebase by a
-   session that owns the checkout — **it is not something this read-only digest should resolve.**
-
-3. **`WORKSPACE_STATE.md` append skipped** — Tier 2 rule: a whole-file read-modify-write would
-   adopt the live sessions' uncommitted edits under this task's commit. This agenda is the record
-   of the run.
+- **The Mac's WireGuard tunnel is down.** This Mac has no `10.8.0.x` address, and 10.8.0.1 doesn't
+  answer ping. On the hub, `ree-coordinator` and `wg-quick` are both `active`, and ssh to the
+  public IP works. Because of this, every coordinator-routed helper on this Mac (`task_claim.py`,
+  `chip_ledger.py`) is using the **degraded git path**. This session's claim was opened that way
+  (umbrella `465889f900`, pushed through a throwaway worktree). Bringing the tunnel back up is a
+  local network action for you; it needs your password.
+- **The umbrella `REE_Working` checkout has diverged** (`master` ahead 10 / behind 15 at start). This
+  is already chipped as `chip-checkoutdiverged-dlaptop-ree-working-master-g5` and
+  `chip-refwedge-dlaptop-ree-working-master-g3` (both open), so I didn't touch it here. It's why the
+  governance lock close above didn't reach origin.
+- **No chips were spawned by this digest.** The follow-on it would raise is either
+  `/governance` or `/failure-autopsy` work, which gets reported rather than chipped (964a and 1023
+  autopsies, the 1025 review, 4 pending_user holds), or it is already chipped (the umbrella wedge,
+  the stale orchestrate claim). The rest is queue-refill design, where the curated pause window
+  (`chip-20260910-curated-pause-window-g6`, waiting for your review) is the open decision on chip
+  over-production. There are 122 open chips in the ledger.

@@ -6,33 +6,33 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 
 ## `ethics_as_coherence_v5:ETH-1`
 
-_(no joined events)_
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-2`
 
-_(no joined events)_
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-3`
 
-_(no joined events)_
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-4`
 
-_(no joined events)_
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-5`
 
-_(no joined events)_
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-6`
 
-_(no joined events)_
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-7`
 
-_(no joined events)_
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-8`
 
-_(no joined events)_
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 

@@ -6,17 +6,25 @@ Source plan: `evidence/planning/deferred_by_commitment_plan.md`
 
 ## `deferred_by_commitment:DEF-1`
 
-- `2026-04-25T15:42Z` [decision] `decision:MECH-270@2026-04-25T15:42:09.107859Z` -> [`evidence/decisions/decision_log.v1.jsonl#L173`](../../../../evidence/decisions/decision_log.v1.jsonl#L173) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-25T15:42Z` [decision] `decision:MECH-270@2026-04-25T15:42:09.107859Z` -> [`evidence/decisions/decision_log.v1.jsonl#L173`](../../../../evidence/decisions/decision_log.v1.jsonl#L173) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-11T16:54Z` [decision] `decision:ARC-053@2026-09-11T16:54:08.188352Z` -> [`evidence/decisions/decision_log.v1.jsonl#L481`](../../../../evidence/decisions/decision_log.v1.jsonl#L481) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `deferred_by_commitment:DEF-2`
 
-- `2026-04-25T15:42Z` [decision] `decision:MECH-270@2026-04-25T15:42:09.107859Z` -> [`evidence/decisions/decision_log.v1.jsonl#L173`](../../../../evidence/decisions/decision_log.v1.jsonl#L173) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-25T15:42Z` [decision] `decision:MECH-270@2026-04-25T15:42:09.107859Z` -> [`evidence/decisions/decision_log.v1.jsonl#L173`](../../../../evidence/decisions/decision_log.v1.jsonl#L173) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-11T16:54Z` [decision] `decision:ARC-053@2026-09-11T16:54:08.188352Z` -> [`evidence/decisions/decision_log.v1.jsonl#L481`](../../../../evidence/decisions/decision_log.v1.jsonl#L481) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `deferred_by_commitment:DEF-3`
 
-- `2026-04-25T15:42Z` [decision] `decision:MECH-270@2026-04-25T15:42:09.107859Z` -> [`evidence/decisions/decision_log.v1.jsonl#L173`](../../../../evidence/decisions/decision_log.v1.jsonl#L173) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-25T15:42Z` [decision] `decision:MECH-270@2026-04-25T15:42:09.107859Z` -> [`evidence/decisions/decision_log.v1.jsonl#L173`](../../../../evidence/decisions/decision_log.v1.jsonl#L173) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-11T16:54Z` [decision] `decision:ARC-053@2026-09-11T16:54:08.188352Z` -> [`evidence/decisions/decision_log.v1.jsonl#L481`](../../../../evidence/decisions/decision_log.v1.jsonl#L481) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `deferred_by_commitment:DEF-4`
 
-- `2026-04-25T15:42Z` [decision] `decision:MECH-270@2026-04-25T15:42:09.107859Z` -> [`evidence/decisions/decision_log.v1.jsonl#L173`](../../../../evidence/decisions/decision_log.v1.jsonl#L173) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-25T15:42Z` [decision] `decision:MECH-270@2026-04-25T15:42:09.107859Z` -> [`evidence/decisions/decision_log.v1.jsonl#L173`](../../../../evidence/decisions/decision_log.v1.jsonl#L173) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-11T16:54Z` [decision] `decision:ARC-053@2026-09-11T16:54:08.188352Z` -> [`evidence/decisions/decision_log.v1.jsonl#L481`](../../../../evidence/decisions/decision_log.v1.jsonl#L481) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
 

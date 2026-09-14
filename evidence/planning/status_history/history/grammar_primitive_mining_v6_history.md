@@ -45,6 +45,7 @@ Source plan: `evidence/planning/grammar_primitive_mining_v6_plan.md`
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy mixed/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json) :: autopsy superseded/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-059@2026-09-11T16:54:08.749017Z` -> [`evidence/decisions/decision_log.v1.jsonl#L483`](../../../../evidence/decisions/decision_log.v1.jsonl#L483) :: decision hold_pending_v3_substrate (applied)
 
 ## `grammar_primitive_mining_v6:GRAM-2`
 
@@ -87,6 +88,7 @@ Source plan: `evidence/planning/grammar_primitive_mining_v6_plan.md`
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy mixed/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json) :: autopsy superseded/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-059@2026-09-11T16:54:08.749017Z` -> [`evidence/decisions/decision_log.v1.jsonl#L483`](../../../../evidence/decisions/decision_log.v1.jsonl#L483) :: decision hold_pending_v3_substrate (applied)
 
 ## `grammar_primitive_mining_v6:GRAM-3`
 
@@ -129,6 +131,7 @@ Source plan: `evidence/planning/grammar_primitive_mining_v6_plan.md`
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy mixed/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json) :: autopsy superseded/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-059@2026-09-11T16:54:08.749017Z` -> [`evidence/decisions/decision_log.v1.jsonl#L483`](../../../../evidence/decisions/decision_log.v1.jsonl#L483) :: decision hold_pending_v3_substrate (applied)
 
 ## `grammar_primitive_mining_v6:GRAM-4`
 
@@ -171,6 +174,7 @@ Source plan: `evidence/planning/grammar_primitive_mining_v6_plan.md`
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy mixed/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json) :: autopsy superseded/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-059@2026-09-11T16:54:08.749017Z` -> [`evidence/decisions/decision_log.v1.jsonl#L483`](../../../../evidence/decisions/decision_log.v1.jsonl#L483) :: decision hold_pending_v3_substrate (applied)
 
 ## `grammar_primitive_mining_v6:GRAM-5`
 
@@ -213,6 +217,7 @@ Source plan: `evidence/planning/grammar_primitive_mining_v6_plan.md`
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy mixed/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json) :: autopsy superseded/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-059@2026-09-11T16:54:08.749017Z` -> [`evidence/decisions/decision_log.v1.jsonl#L483`](../../../../evidence/decisions/decision_log.v1.jsonl#L483) :: decision hold_pending_v3_substrate (applied)
 
 ## `grammar_primitive_mining_v6:GRAM-6`
 
@@ -255,6 +260,7 @@ Source plan: `evidence/planning/grammar_primitive_mining_v6_plan.md`
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy mixed/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json) :: autopsy superseded/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-059@2026-09-11T16:54:08.749017Z` -> [`evidence/decisions/decision_log.v1.jsonl#L483`](../../../../evidence/decisions/decision_log.v1.jsonl#L483) :: decision hold_pending_v3_substrate (applied)
 
 ## `grammar_primitive_mining_v6:GRAM-7`
 
@@ -297,4 +303,5 @@ Source plan: `evidence/planning/grammar_primitive_mining_v6_plan.md`
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-anchor-curiosity-cluster_2026-08-08.json) :: autopsy mixed/substrate_ceiling routing=governance-note-only
 - `2026-08-08T17:10Z` [autopsy] `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json) :: autopsy superseded/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-059@2026-09-11T16:54:08.749017Z` -> [`evidence/decisions/decision_log.v1.jsonl#L483`](../../../../evidence/decisions/decision_log.v1.jsonl#L483) :: decision hold_pending_v3_substrate (applied)
 
