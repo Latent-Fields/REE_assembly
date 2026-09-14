@@ -1,0 +1,302 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1026_mech423_sleep_integrated_e2_consolidation",
+  "run_id": "v3_exq_1026_mech423_sleep_integrated_e2_consolidation_20260914T111100Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-14T11:11:00Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-423"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sleep_integrated_e2_consolidation_confirmed",
+    "criteria": [
+      {
+        "name": "C1_cross_module_consolidation_metrics_merged",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 1.0,
+        "threshold": 1.0
+      },
+      {
+        "name": "C2_e2_touched_under_interleaved_schedule",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 8.0,
+        "threshold": 1.0
+      },
+      {
+        "name": "C3_e2_weight_delta_positive_sleep_integrated",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.007690362632274628,
+        "threshold": 0.0,
+        "comparator": ">"
+      },
+      {
+        "name": "C4_off_arm_e2_bit_identical_negative_control",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.0,
+        "threshold": 0.0,
+        "comparator": "<="
+      }
+    ],
+    "combination_rule": "PASS iff ALL of C1..C4 pass (plain AND, no OR/any() branching).",
+    "criteria_non_degenerate": {
+      "C1_cross_module_consolidation_metrics_merged": true,
+      "C2_e2_touched_under_interleaved_schedule": true,
+      "C3_e2_weight_delta_positive_sleep_integrated": true,
+      "C4_off_arm_e2_bit_identical_negative_control": true
+    },
+    "preconditions": [
+      {
+        "name": "e2_transition_buffer_populated",
+        "measured": 180.0,
+        "threshold": 16.0,
+        "direction": "lower",
+        "control": "real waking rollout via record_transition, not synthetic",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e2_loss_nonzero_on_real_transitions",
+        "measured": 0.0023712017573416233,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffer the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "e2_transition_buffer_populated",
+        "measured": 180.0,
+        "threshold": 16.0,
+        "direction": "lower",
+        "control": "real waking rollout via record_transition, not synthetic",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e2_loss_nonzero_on_real_transitions",
+        "measured": 0.004759281873703003,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffer the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "e2_transition_buffer_populated",
+        "measured": 180.0,
+        "threshold": 16.0,
+        "direction": "lower",
+        "control": "real waking rollout via record_transition, not synthetic",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e2_loss_nonzero_on_real_transitions",
+        "measured": 0.005526016931980848,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffer the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "e2_transition_buffer_populated",
+        "measured": 180.0,
+        "threshold": 16.0,
+        "direction": "lower",
+        "control": "real waking rollout via record_transition, not synthetic",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e2_loss_nonzero_on_real_transitions",
+        "measured": 0.0023712017573416233,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffer the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "e2_transition_buffer_populated",
+        "measured": 180.0,
+        "threshold": 16.0,
+        "direction": "lower",
+        "control": "real waking rollout via record_transition, not synthetic",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e2_loss_nonzero_on_real_transitions",
+        "measured": 0.004759281873703003,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffer the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "e2_transition_buffer_populated",
+        "measured": 180.0,
+        "threshold": 16.0,
+        "direction": "lower",
+        "control": "real waking rollout via record_transition, not synthetic",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e2_loss_nonzero_on_real_transitions",
+        "measured": 0.005526016931980848,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffer the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2330f94b805a99ba34cea43222f804f0b7e9f60e1ea5eb16f636127044e230a1",
+  "substrate_commit": {
+    "commit": "254005550374eb28b6fda2f681ea4ad0e17cee36",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_sleep_loop": true,
+    "use_cross_module_consolidation": true,
+    "cross_module_consolidation_steps": 8
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 21.352203845977783,
+  "config": {
+    "arms": [
+      "ARM_SLEEP_INTEGRATED_ON",
+      "ARM_SLEEP_INTEGRATED_OFF"
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "waking_episodes": 3,
+    "steps_per_episode": 60,
+    "grid_size": 5,
+    "num_hazards": 1,
+    "num_resources": 1,
+    "cmc_steps": 8,
+    "cmc_lr": 0.001,
+    "cmc_batch": 16
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
