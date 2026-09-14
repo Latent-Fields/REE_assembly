@@ -1,0 +1,198 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1028_sd082_learning_signal_extended_budget",
+  "run_id": "v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-14T22:31:57Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-082"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "c2_noisy__c3_sign_null",
+    "criteria_aggregation": "any",
+    "preconditions": [
+      {
+        "name": "control_bracket_separates_at_every_window_length",
+        "kind": "readiness",
+        "description": "fraction of cells whose synthetic-credit ceiling exceeds the pure-noise floor by >= BRACKET_SEPARATION_FLOOR at EVERY window length",
+        "control": "1020's two in-run controls, imported, at each window's length",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "updates_realised",
+        "kind": "readiness",
+        "description": "worst cell realised REINFORCE updates / intended P1 updates",
+        "measured": 0.998,
+        "threshold": 0.95,
+        "direction": "lower",
+        "offending_cell": "ARM_ON::seed622",
+        "met": true
+      },
+      {
+        "name": "candidate_summary_dispatch_engaged",
+        "kind": "readiness",
+        "description": "proposer_post_action supplies every summary (0 manual fallbacks)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "offending_cell": "ARM_ON::seed611",
+        "met": true
+      },
+      {
+        "name": "flip_fraction_resolvable",
+        "kind": "readiness",
+        "description": "worst cell measured P1 ticks >= FLIP_TICKS_FLOOR",
+        "measured": 11830.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "offending_cell": "ARM_ON::seed622",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_gradient_present": true,
+      "C2_windowed_persistence_noisy": true,
+      "C3_episode_advantage_on_init_flips_negative": true,
+      "C4_return_variance_present": true
+    },
+    "combination_rule": "outcome PASS iff readiness AND C1. C2 (windowed H-learning-signal-noisy) and C3 (episode-level H-learning-signal-sign) are INDEPENDENT legs (criteria_aggregation any); the label carries both readings. C3 is scored only with C4 and >= 3 scoreable seeds.",
+    "unexcluded_rivals": [
+      {
+        "name": "H-replay-rule-state-mismatch",
+        "excluded_by_this_run": false,
+        "owned_by": "V3-EXQ-1027",
+        "description": "a C2 noisy reading does not exclude the replay rule_state mismatch"
+      }
+    ]
+  },
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "30631916f9bdeb801cdb00e38c917b8b93790b1cfcf88a5e2c9d3a260d683864",
+  "substrate_commit": {
+    "commit": "6e5c34f15480545fa7901531c92fd7ae17960388",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "lateral_pfc_rule_readout_consumer": true,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "crf_cue_centering": true,
+    "use_gated_policy": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 27952.683416332995,
+  "config": {
+    "arm": "ARM_ON",
+    "episodes": {
+      "p0": 60,
+      "p1": 500,
+      "steps": 48
+    },
+    "checkpoints": [
+      70,
+      150,
+      300
+    ],
+    "cumulative_T": 500,
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "schedule": {
+      "p0": 60,
+      "p1": 500,
+      "steps": 48
+    },
+    "alpha_world": 0.9,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "lateral_pfc_rule_readout_consumer": true,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "candidate_summary_source": "proposer_post_action",
+    "use_gated_policy": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_floor": 0.45,
+    "crf_maintenance_couple_to_theta": true,
+    "crf_tolerance_conflict_cap": 3,
+    "crf_cue_centering": true,
+    "crf_cue_baseline_alpha": 0.02,
+    "reinforce": {
+      "lr": 0.0005,
+      "batch": 32,
+      "buf": 512,
+      "temp": 1.0,
+      "adv_min": 0.005,
+      "ema": 0.9
+    },
+    "bracket_separation_floor": 0.2,
+    "local_baseline_half_width": 10,
+    "r_se_multiplier": 2.0
+  },
+  "seeds": [
+    611,
+    622,
+    633,
+    644,
+    655
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 5,
+    "goal_state_present": false
+  }
+}
