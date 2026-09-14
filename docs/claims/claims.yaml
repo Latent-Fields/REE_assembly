@@ -35503,7 +35503,7 @@
     - evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
 - id: ARC-055
-  title: "Verisimilitude signal availability: V(t) and D_V must be explicitly available to E3 selection and influence E1/E2 learning updates."
+  title: "Verisimilitude signal explicitness: V(t) and D_V must be explicit signals (addressable representations, not emergent epiphenomena) that influence E1 state representation, the E2 transition model, and learning-update prioritisation."
   claim_type: arch_commitment
   subject: architecture.verisimilitude_signal_availability
   polarity: asserts
@@ -35532,6 +35532,21 @@
     Practical staging for implementation: Stage 1 = prediction error only (V approx
     exp(-E)); Stage 2 = add global phase coherence factor; Stage 3 = level-specific
     phase-aware hierarchical V.
+
+    NARROWED 2026-09-14 (claim-synthesis, chip-20260910-arc055-conjunct-granularity-split):
+    originally conjoined four assertions; conjuncts (b) E3-selection-availability and (c)
+    D_V-temporal-depth are struck as duplicative of ARC-054 (which already asserts D_V over
+    horizon H drives E3 selection, with its own contested-grounding history under
+    GFLAG-0242) and INV-068 (which already defines D_V and lists E3 selection among what it
+    grounds). The Zajkowski 2017 / Tervo 2014 / Lak 2014 / Fleming 2014 selection-leg
+    evidence in targeted_review_arc_055/ bears substantively on ARC-054, not here -- see
+    evidence/planning/claim_synthesis_ARC-055_2026-09-14_staged.md for the full mapping.
+    OPEN QUESTION, deliberately not resolved: Masset 2020 (abstract, modality-general
+    confidence signal, supports 0.76) and Fleming 2014 (domain-fractionated metacognition,
+    weakens 0.64) are in unresolved tension over whether V(t) is one architecture-wide
+    signal or several local ones; REE's own Stage-3 'level-specific phase-aware
+    hierarchical V' roadmap leans toward the fractionated picture. Revisit before promotion
+    past candidate.
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 

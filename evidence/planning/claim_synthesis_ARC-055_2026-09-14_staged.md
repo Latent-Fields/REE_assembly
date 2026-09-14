@@ -1,4 +1,9 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml.**
+**Status: APPLIED 2026-09-14.** User approved all three sub-decisions via the Orchestrator
+decision lane (2026-09-14T22:10Z, answering decision chip
+`chip-20260914-arc055-narrow-approve`). Applied: ARC-055 title narrowed and the notes
+addendum below appended verbatim to `docs/claims/claims.yaml`; `claims.json` rebuilt; GFLAG-0278
+(`evidence_discrepancy` on ARC-054, naming the Zajkowski/Tervo/Lak/Fleming selection-leg
+entries) raised. See `WORKSPACE_STATE.md` Recent Work for the landing commit.
 
 # Claim synthesis: ARC-055 conjunct granularity
 
