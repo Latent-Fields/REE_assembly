@@ -144,21 +144,12 @@ literature support was thin by construction.
 - Claim-type evidence gating (substrate_coherence / answer_state / standard) --
   see next section.
 
-**Phase history:**
-- **Phase 1 (2026-04-29):** shadow-only -- added decoupled fields and a
-  sibling recommendations report. No production behavior changed.
-- **Phase 2 (2026-04-29 .. 2026-05-01):** discrepancy reckoning -- the
-  shadow report exposed 15 implementation-cohort claims with zero
-  experimental backing. Categorised them along existing claim_type lines:
-  6 substrate_coherence (correctly suppressed), 5 answer_state (correctly
-  exempt), 4 standard-gating that needed experiments. All 4 standard-gating
-  claims (MECH-094, SD-017, SD-035, MECH-062) had discriminative-pair
-  experiments queued and PASSed; all are now `confirmed_established`.
-- **Phase 3 (2026-05-01):** cutover landed. Production gates now drive on
-  `experimental_confidence`. Diff against the pre-cutover snapshot:
-  +2 actionable demotion recommendations surfaced (MECH-095, MECH-102 --
-  both `mechanism_hypothesis` whose lit_conf was masking insufficient
-  exp_conf under the legacy blend), 0 prior recommendations lost.
+**Current state:** the three-phase migration (shadow-only -> discrepancy
+reckoning -> cutover) completed 2026-05-01; production has run on the Phase 3
+regime described above ever since, with 0 prior recommendations lost on
+landing. Full phase-by-phase history (dates, the 15-claim discrepancy
+reckoning, and the diff against the pre-cutover snapshot) lives in
+[`evidence/planning/lit_exp_decoupling_option_e_phase_history.md`](evidence/planning/lit_exp_decoupling_option_e_phase_history.md).
 
 **Methodology rule:** never propose tweaking the lit/exp blend coefficients --
 the blend was the bug, not its weights. See
