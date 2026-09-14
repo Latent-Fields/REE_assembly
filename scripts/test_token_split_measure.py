@@ -57,9 +57,11 @@ EXPECTED = {
 }
 
 
-def write_fixture(path, ts="2026-09-10T12:00:00.000Z"):
-    """3 assistant turns, each preceded by a user message sized to hit 4000/8000/12000."""
-    recs = []
+def write_fixture(path, ts="2026-09-10T12:00:00.000Z", prefix=()):
+    """3 assistant turns, each preceded by a user message sized to hit 4000/8000/12000.
+
+    `prefix` records are written first (e.g. baseline-restating attachments)."""
+    recs = list(prefix)
     # Each assistant record contributes 2 chars ("ok"), so user blocks are
     # 4000, 3998, 3998 to land the cumulative counter on exact multiples.
     for i, (pad, u) in enumerate(zip([4000, 3998, 3998], USAGE)):
@@ -88,6 +90,36 @@ def test_fit_recovers_the_planted_baseline():
     assert abs(r["chars_per_token"] - 4.0) < 1e-9
     assert r["r2"] is None or r["r2"] > 0.999999
     assert r["billed_total_measured"] == EXPECTED["billed"]
+
+
+# --- baseline double-count (plan section 7.1) ----------------------------------
+# Since 2026-09-02 the baseline B is also written into the transcript as attachments.
+# A 150,000-char `instructions` record counted as conversation shifts the intercept by
+# -150000/4 = -37,500 -> negative baseline -> session rejected. Excluded, the planted
+# fit must come back exactly.
+BASELINE_PREFIX = [
+    {"type": "attachment", "timestamp": "2026-09-10T12:00:00.000Z",
+     "attachment": {"type": "instructions", "content": "c" * 150000}},
+    {"type": "attachment", "timestamp": "2026-09-10T12:00:00.000Z",
+     "attachment": {"type": "prompt_snapshot", "content": "p" * 90000}},
+]
+
+
+def test_baseline_attachments_do_not_double_count_b():
+    d = tempfile.mkdtemp()
+    r = tsm.analyze(write_fixture(os.path.join(d, "s.jsonl"), prefix=BASELINE_PREFIX))
+    assert r is not None and r["fitted"], "baseline attachments must not reject the fit"
+    assert abs(r["baseline_tokens"] - 10000) < 1e-6
+    assert abs(r["chars_per_token"] - 4.0) < 1e-9
+    assert r["billed_cat"]["attachment"] == 0
+
+
+def test_categorize_excludes_every_baseline_type_but_keeps_real_injections():
+    for t in tsm.BASELINE_ATTACHMENT_TYPES:
+        assert tsm.categorize({"type": "attachment", "attachment": {"type": t, "x": "y"}}) == []
+    nm = {"type": "attachment", "attachment": {"type": "nested_memory", "content": "z" * 50}}
+    got = tsm.categorize(nm)
+    assert len(got) == 1 and got[0][0] == "attachment" and got[0][1] > 50
 
 
 # --- WI-I: prompt-cache counters ---------------------------------------------
@@ -143,12 +175,31 @@ def test_all_hits_reports_zero_misses():
 
 
 # --- end-to-end --report ------------------------------------------------------
-def _report(extra=()):
+def write_unfittable_substrate_reader(path, ts="2026-09-10T12:00:00.000Z"):
+    """2 assistant turns (< 3, so the fit rejects it) that read a docs/substrate/ file."""
+    recs = []
+    for i in range(2):
+        recs.append({"type": "user", "timestamp": ts,
+                     "message": {"role": "user", "content": "u" * 100}})
+        recs.append({"type": "assistant", "timestamp": ts, "entrypoint": "cli",
+                     "message": {"role": "assistant",
+                                 "usage": {"input_tokens": 5000, "output_tokens": 5},
+                                 "content": [{"type": "tool_use", "name": "Read", "input": {
+                                     "file_path": "/x/ree-v3/docs/substrate/SD-001.md"}}]}})
+    with open(path, "w") as fh:
+        for r in recs:
+            fh.write(json.dumps(r) + "\n")
+    return path
+
+
+def _report(extra=(), unfittable=False):
     """Run the real script against a fake HOME holding one fixture transcript."""
     home = tempfile.mkdtemp()
     proj = os.path.join(home, ".claude", "projects", "-Users-dgolden-REE-Working")
     os.makedirs(proj)
     write_fixture(os.path.join(proj, "sess.jsonl"))
+    if unfittable:
+        write_unfittable_substrate_reader(os.path.join(proj, "unfit.jsonl"))
     env = dict(os.environ, HOME=home)
     env.pop("USERPROFILE", None)
     p = subprocess.run([sys.executable, TARGET, "--report", "--min-bytes", "0"]
@@ -195,6 +246,21 @@ def test_since_filter_applies_to_the_cache_section():
     rc, out, _ = _report(["--since", "2026-09-01"])
     assert rc == 0
     assert "--- PROMPT CACHE (realized) ---" in out
+
+
+def test_unfitted_session_still_returns_its_fit_free_observations():
+    d = tempfile.mkdtemp()
+    r = tsm.analyze(write_unfittable_substrate_reader(os.path.join(d, "u.jsonl")))
+    assert r is not None and r["fitted"] is False
+    assert r["substrate_reads"] == 2
+
+
+def test_negative_control_covers_unfitted_sessions():
+    """Scoped to fitted sessions it printed a vacuous 0/18 (plan section 7.3)."""
+    rc, out, _ = _report(unfittable=True)
+    assert rc == 0
+    assert "sessions 1 (of 2 candidates)" in out          # the split still uses fitted only
+    assert "sessions referencing docs/substrate/: 1/2" in out
 
 
 def test_report_output_is_ascii():

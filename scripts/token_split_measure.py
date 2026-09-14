@@ -34,6 +34,23 @@ matter how bad the fit is: OLS with an intercept forces the sum of residuals to 
 construction. Only the per-turn R^2 / residual reported by --report is real. The original
 measurement nearly shipped on the vacuous check.
 
+BASELINE DOUBLE-COUNT (do not count BASELINE_ATTACHMENT_TYPES as conversation)
+-------------------------------------------------------------------------------
+The METHOD above assumes B is "never stored in the transcript". Since 2026-09-02 that is
+false: Claude Code writes the context baseline INTO the transcript as attachments --
+`instructions` (the loaded CLAUDE.md + MEMORY.md, ~154k chars, first seen
+2026-09-02T18:00Z) and `prompt_snapshot` (~93k chars, first seen 2026-09-04T03:59Z).
+Counted as conversation chars they put B into C_i at turn 0, so B is counted twice, the
+OLS intercept goes negative and the `baseline <= 0` guard rejects the session. As landed,
+`--report --since 2026-09-08` fitted 18/166 sessions (R^2 median 0.79), and those 18
+printed an INVERTED fixed/injection split, with B shifted into the injection bucket.
+With the exclusion: 157/166 fitted, R^2 median 0.998. A new baseline-restating
+attachment type will show up the same way: "sessions fitted" collapses and intercepts go
+negative. Record: evidence/planning/context_budget_restructure_plan.md section 7.1.
+
+The negative control is fit-INDEPENDENT for the same reason. It once inspected only
+fitted sessions, so when the fit collapsed it printed a vacuous 0/18 that read as a pass.
+
 MACHINE SCOPE
 -------------
 Local-only by design: it reads ~/.claude/projects, which exists on the Mac (canonical
@@ -57,6 +74,13 @@ LABEL = {
     "attachment": "harness injections (nested memory, listings, hooks)",
     "system_other": "system-reminders",
 }
+
+# Attachment types that restate the fixed baseline B rather than add conversation. Read
+# "BASELINE DOUBLE-COUNT" in the module docstring before adding to or removing from this.
+BASELINE_ATTACHMENT_TYPES = frozenset((
+    "instructions", "prompt_snapshot", "session_context", "environment", "model", "date",
+    "deferred_tools_record",
+))
 
 
 def blk_chars(b):
@@ -103,7 +127,9 @@ def categorize(rec):
                 out.append(("system_other" if "<system-reminder>" in raw else "user_prompt",
                             blk_chars(b)))
     elif t == "attachment":
-        out.append(("attachment", len(json.dumps(rec.get("attachment") or {}))))
+        a = rec.get("attachment") or {}
+        if a.get("type") not in BASELINE_ATTACHMENT_TYPES:   # already inside B
+            out.append(("attachment", len(json.dumps(a))))
     return out
 
 
@@ -181,21 +207,25 @@ def analyze(path):
         for cat, ch in categorize(rec):
             running[cat] += ch
 
+    # A session the fit rejects still returns its fit-free observations, so the negative
+    # control can cover every session (see "BASELINE DOUBLE-COUNT" in the docstring).
+    unfitted = {"fitted": False, "path": path, "entrypoint": entrypoint, "started": started,
+                "substrate_reads": substrate_reads}
     if len(xs) < 3:
-        return None
+        return unfitted
     fit = lstsq2(xs, ys)
     if not fit:
-        return None
+        return unfitted
     baseline, inv_r = fit
     if inv_r <= 0 or baseline <= 0 or not (1.5 < 1.0 / inv_r < 12):
-        return None
+        return unfitted
 
     pred = [baseline + inv_r * x for x in xs]
     ybar = sum(ys) / len(ys)
     sst = sum((y - ybar) ** 2 for y in ys)
     sse = sum((ys[i] - pred[i]) ** 2 for i in range(len(ys)))
     return {
-        "path": path, "entrypoint": entrypoint, "started": started,
+        "fitted": True, "path": path, "entrypoint": entrypoint, "started": started,
         "n_turns": len(xs), "baseline_tokens": baseline,
         "chars_per_token": 1.0 / inv_r,
         "r2": (1 - sse / sst) if sst > 0 else None,
@@ -244,7 +274,8 @@ def main():
     files = [p for p in glob.glob(os.path.join(root, "*REE-Working*", "*.jsonl"))
              if os.path.getmtime(p) >= cutoff and os.path.getsize(p) >= args.min_bytes]
 
-    results = []
+    results = []     # fitted sessions: everything the OLS split is computed over
+    observed = []    # EVERY in-window session, fitted or not: fit-free controls use this
     for p in files:
         try:
             r = analyze(p)
@@ -254,7 +285,9 @@ def main():
             continue
         if args.since and (r["started"] or "") < args.since:
             continue
-        results.append(r)
+        observed.append(r)
+        if r["fitted"]:
+            results.append(r)
 
     if args.json:
         json.dump(results, open(args.json, "w"))
@@ -341,9 +374,12 @@ def main():
     print("\n--- NEGATIVE CONTROL: read-back of split-out per-feature files ---")
     print("  The WI-1 saving holds only while sessions do not read back many")
     print("  ree-v3/docs/substrate/ files. Watch this number.")
-    reads = [r["substrate_reads"] for r in results]
+    # Over ALL in-window sessions, not only fitted ones -- scoped to `results` it printed
+    # a vacuous 0/18 when the baseline double-count collapsed the fit (docstring).
+    reads = [r["substrate_reads"] for r in observed]
     withany = [n for n in reads if n > 0]
-    print(f"  sessions referencing docs/substrate/: {len(withany)}/{len(results)}")
+    print(f"  sessions referencing docs/substrate/: {len(withany)}/{len(observed)}"
+          f"  (all in-window sessions, fitted or not)")
     if reads:
         print(f"  reads per session: median {st.median(reads):.0f}  mean {sum(reads)/len(reads):.1f}  max {max(reads)}")
     print("\n  Compare against evidence/planning/token_split_measurement_20260907.md")
