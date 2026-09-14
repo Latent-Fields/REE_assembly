@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-14T04:22:25Z",
+  "generated_at": "2026-09-14T22:33:11Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 179,
-      "built_modules": 143,
-      "fraction_built": 0.7989,
+      "total_modules": 181,
+      "built_modules": 145,
+      "fraction_built": 0.8011,
       "state_counts": {
         "proposed": 36,
         "implemented": 95,
-        "implemented_pending_validation": 23,
+        "implemented_pending_validation": 25,
         "validated": 25
       },
-      "build_proof_gap": 118,
-      "build_proof_gap_note": "143 modules built, 118 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 120,
+      "build_proof_gap_note": "145 modules built, 120 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,25 +31,24 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 123,
+      "total_surviving": 121,
       "total_initial": 204,
       "total_initial_at_registration": 169,
       "total_fanout_added": 35,
-      "total_resolved_out": 63,
-      "total_confirmed": 45,
+      "total_resolved_out": 64,
+      "total_confirmed": 46,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 30.9,
-      "net_narrowing_pct": 27.2,
+      "reduction_pct_vs_current": 31.4,
+      "net_narrowing_pct": 28.4,
       "convergence_classes": {
         "static": 27,
         "narrowing": 23,
         "circling": 5,
-        "refining": 2,
-        "mixed": 1,
-        "scattering": 1
+        "refining": 3,
+        "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "123 alive against 169 originally enumerated, and against 204 including 35 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "121 alive against 169 originally enumerated, and against 204 including 35 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 59
     },
     "decide": {
@@ -63,205 +62,205 @@
       "date": "2026-05-06",
       "surviving": 203,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-11",
       "surviving": 202,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-13",
       "surviving": 200,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-15",
       "surviving": 196,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-16",
       "surviving": 195,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-17",
       "surviving": 192,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-18",
       "surviving": 186,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-19",
       "surviving": 182,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-20",
       "surviving": 181,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-24",
       "surviving": 180,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-27",
       "surviving": 178,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-29",
       "surviving": 177,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-07-31",
       "surviving": 176,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-01",
       "surviving": 174,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-02",
       "surviving": 168,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-04",
       "surviving": 167,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-06",
       "surviving": 166,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-08",
       "surviving": 164,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-09",
       "surviving": 162,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-10",
       "surviving": 161,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-11",
       "surviving": 160,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-12",
       "surviving": 159,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-14",
       "surviving": 157,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-17",
       "surviving": 156,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-20",
       "surviving": 155,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-24",
       "surviving": 154,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-29",
       "surviving": 151,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-08-30",
       "surviving": 149,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-09-02",
       "surviving": 148,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-09-05",
       "surviving": 147,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-09-07",
       "surviving": 143,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-09-08",
       "surviving": 142,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-09-09",
       "surviving": 141,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     },
     {
       "date": "2026-09-14",
-      "surviving": 123,
+      "surviving": 121,
       "closure_pct": 72.4,
-      "build_pct": 79.9
+      "build_pct": 80.1
     }
   ],
   "questions": [
@@ -5760,7 +5759,9 @@
           "desc": "The pending waypoint's direction is linearly decodable from the raw observation with the field ON (0.575 -> 0.841 imitation accuracy, V3-EXQ-1004) but not from z_world, locating the loss at the encoder rather than at the environment.",
           "axis": "representation",
           "state": "alive",
-          "evidence_runs": [],
+          "evidence_runs": [
+            "V3-EXQ-1030"
+          ],
           "basis": null,
           "children": [],
           "met_elimination_bar": false
@@ -5770,8 +5771,8 @@
         "readiness_state": "discriminative_ready",
         "evidence_decile": 7,
         "decision_question": "Is the residual blockage on navigation-dependent subgoal_mode DVs an objective/exploration problem or an observation-interface problem?",
-        "distance_phrase": "0 of 2 legs tested -- portfolio pre-registered, not yet queued",
-        "live_gate": "Both legs need a run; neither has an adjudicating experiment queued yet.",
+        "distance_phrase": "1 of 2 legs queued (H2, V3-EXQ-1030) -- H1 (drive axis) not yet queued",
+        "live_gate": "H2 queued and awaiting results; H1 not yet queued.",
         "observation_bottleneck": null
       }
     },
@@ -5909,16 +5910,19 @@
         }
       ],
       "fanout_growth_note": "Denominator has grown twice (5 at registration -> 7 -> 9). This question has NOT converged: report narrowing against BOTH 5 (original) and 9 (current including fan-out).",
-      "net_narrowing_ratio": -0.8,
-      "bits_removed_vs_registration": -0.85,
+      "net_narrowing_ratio": -0.4,
+      "bits_removed_vs_registration": -0.49,
       "convergence": {
-        "convergence_class": "scattering",
-        "reason": "legs added across families but no family has been closed out",
-        "families_closed": [],
-        "families_touched": [],
+        "convergence_class": "refining",
+        "reason": "1 family closed out; the latest growth opened fresh territory",
+        "families_closed": [
+          "process"
+        ],
+        "families_touched": [
+          "process"
+        ],
         "families_fresh": [
           "constitution",
-          "process",
           "representation"
         ],
         "unclassified_axes": [],
@@ -5959,14 +5963,14 @@
           }
         ]
       },
-      "surviving": 9,
-      "alive": 9,
-      "resolved_out": 0,
-      "confirmed": 0,
+      "surviving": 7,
+      "alive": 7,
+      "resolved_out": 1,
+      "confirmed": 1,
       "superseded": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.1111,
+      "bits_removed": 0.36,
       "synthesis": null,
       "hypotheses": [
         {
@@ -6059,20 +6063,24 @@
           "label": "The REINFORCE replay scores every sampled tuple at ONE shared end-of-episode lpfc.rule_state, so the rule half of the head input is mismatched to the credit on most samples, randomising the rule-attributable gradient BY CONSTRUCTION",
           "desc": "Restoring each sample's own rule_state at update time raises step-direction persistence materially above the faithful-to-822f path, at matched budget.",
           "axis": "credit-assignment",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-1027"
+          ],
+          "basis": "Discriminating null at matched budget on the pre-registered bar (CONFIRMED failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, user gate 2026-09-14T22:32:04Z): manipulation verified non-vacuous (per-sample action-time rule_state restored; buffer-mean direction mismatch to the live state 0.50-0.70), in-run controls passed (dense-synthetic-credit ceiling learned and persisted 10/10 cells; pure-noise Adam floor 0.449), 5/5 seeds headroom-eligible with byte-identical P1 buffers and bit-identical trajectories, and the OWN-minus-FAITHFUL persistence lift cleared the 0.25 x bracket margin (0.069-0.077) on 0/5 seeds: lifts -0.031/+0.070/+0.001/+0.055/-0.007, mean +0.018 +/- 0.019, 2.8 SE below the margin (paired t(4) = -2.73, p = 0.026 one-sided). The 'by construction' randomisation the leg asserted is excluded; a sub-margin residual (~0.7x) is not, and the only structure in the cells is the driver's pre-registered input-structure alternative (rule-column persistence +0.07..+0.17 on 4/5 seeds, summary columns flat). Cluster read with V3-EXQ-1029: there was no measurable consequence-credit to mis-assign -- the readout is empirically inert at selection with authority OFF, so the lineage's REINFORCE surrogate is advantage-weighted imitation of E3.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-selection-authority-bounded",
           "label": "The readout locus is not the binding constraint at all: a tanh-bounded +/-0.1 bias added to much larger primary E3 scores cannot change the committed argmin, so no readout design can express a behavioural consequence in this configuration",
           "desc": "With use_modulatory_selection_authority=True (or a head-ablated contrast), a behavioural difference attributable to the readout becomes measurable where it is currently inert.",
           "axis": "intrinsic-architecture",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-1029"
+          ],
+          "basis": "CONFIRMED (failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, user gate 2026-09-14T22:32:04Z). Yoked 8-runner design, 5/5 seeds ready (both self-yokes 0 divergent ticks of 2624-2836; head-level rule-ablation flip 0.16-0.41; authority active 100 percent; 283-414 raw-identical co-fresh ticks per pair; authority_only divergence 0.34-0.81). Inert at native magnitude: rule-readout ablation changes E3's argmin on 0 of 1694 raw-identical co-fresh ticks and the sampled action on 0 of 13857 ticks (|bias| 0.0037-0.040 vs raw E3 score range 2.85-66.6; the bias is applied as-is with authority OFF, so this is a magnitude fact, not a structural one -- at x50 the whole readout moves the argmin on 31/1694). Consequential under modulatory selection authority (gain 0.5, basis range; realised scale factor 72-6543): ON-pair argmin divergence 0.014-0.261, 4/5 seeds >= 0.02; sampled-action consequence 0-7.5 percent; E3 never commits. Magnitude alone cannot suffice within the substrate's 0.1 tanh bound: MAG x50 (1.8x-20x beyond the bound) moved the rule-attributable argmin on 6/1694; the driver's 'magnitude_test_underpowered' suffix is correct only relative to authority's factor. Necessary-not-sufficient for the question, so met_elimination_bar stays false. Design rule for successors: read behaviour only with authority ON and co-summed modulatory channels (gated_policy) controlled, since authority ON vs OFF alone moves the argmin on 34-81 percent of ticks.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -6530,6 +6538,36 @@
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-1029",
+      "all_runs": [
+        "V3-EXQ-1029"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "sd082_candidate_discriminating_readout_locus",
+      "claims": [
+        "SD-082",
+        "SD-078"
+      ],
+      "moved": "CONFIRMED (failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, user gate 2026-09-14T22:32:04Z). Yoked 8-runner design, 5/5 seeds ready (both self-yokes 0 divergent ticks of 2624-2836; head-level rule-ablation flip 0.16-0.41; authority active 100 percent; 283-414 raw-identical co-fresh ticks per pair; authority_only divergence 0.34-0.81). Inert at native magnitude: rule-readout ablation changes E3's argmin on 0 of 1694 raw-identical co-fresh ticks and the sampled action on 0 of 13857 ticks (|bias| 0.0037-0.040 vs raw E3 score range 2.85-66.6; the bias is applied as-is with authority OFF, so this is a magnitude fact, not a structural one -- at x50 the whole readout moves the argmin on 31/1694). Consequential under modulatory selection authority (gain 0.5, basis range; realised scale factor 72-6543): ON-pair argmin divergence 0.014-0.261, 4/5 seeds >= 0.02; sampled-action consequence 0-7.5 percent; E3 never commits. Magnitude alone cannot suffice within the substrate's 0.1 tanh bound: MAG x50 (1.8x-20x beyond the bound) moved the rule-attributable argmin on 6/1694; the driver's 'magnitude_test_underpowered' suffix is correct only relative to authority's factor. Necessary-not-sufficient for the question, so met_elimination_bar stays false. Design rule for successors: read behaviour only with authority ON and co-summed modulatory channels (gated_policy) controlled, since authority ON vs OFF alone moves the argmin on 34-81 percent of ticks.",
+      "resolved_utc": "2026-09-14T19:11:18Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-1027",
+      "all_runs": [
+        "V3-EXQ-1027"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "sd082_candidate_discriminating_readout_locus",
+      "claims": [
+        "SD-082",
+        "SD-078"
+      ],
+      "moved": "Discriminating null at matched budget on the pre-registered bar (CONFIRMED failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, user gate 2026-09-14T22:32:04Z): manipulation verified non-vacuous (per-sample action-time rule_state restored; buffer-mean direction mismatch to the live state 0.50-0.70), in-run controls passed (dense-synthetic-credit ceiling learned and persisted 10/10 cells; pure-noise Adam floor 0.449), 5/5 seeds headroom-eligible with byte-identical P1 buffers and bit-identical trajectories, and the OWN-minus-FAITHFUL persistence lift cleared the 0.25 x bracket margin (0.069-0.077) on 0/5 seeds: lifts -0.031/+0.070/+0.001/+0.055/-0.007, mean +0.018 +/- 0.019, 2.8 SE below the margin (paired t(4) = -2.73, p = 0.026 one-sided). The 'by construction' randomisation the leg asserted is excluded; a sub-margin residual (~0.7x) is not, and the only structure in the cells is the driver's pre-registered input-structure alternative (rule-column persistence +0.07..+0.17 on 4/5 seeds, summary columns flat). Cluster read with V3-EXQ-1029: there was no measurable consequence-credit to mis-assign -- the readout is empirically inert at selection with authority OFF, so the lineage's REINFORCE surrogate is advantage-weighted imitation of E3.",
+      "resolved_utc": "2026-09-14T13:53:20Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-1010",
       "all_runs": [

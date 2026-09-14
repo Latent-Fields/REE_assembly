@@ -1,0 +1,419 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-14T22:01:33Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session": "autopsy-sd082-1027-1029-20260914 (Mac DLAPTOP, interactive, throwaway worktree off origin/master)",
+  "cluster_slug": "V3-EXQ-1027-1029-cluster",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py V3-EXQ-1027 V3-EXQ-1029 V3-EXQ-1037: 0 dry cited, 0 dry in named families. Both manifests carry dry_run: false and non-dry run_id shapes. validate_experiments.py --checks dry_run_unreachable_criterion: silent on both drivers (11 warnings fleet-wide, none on 1027/1029).",
+  "recording_provenance": "validate_recording.py --paths <both manifests>: 2 complete, 0 always-core gaps. Both carry recording_schema rec/v1, substrate_hash, substrate_commit (1027: ree-v3 42c03b1485, hash 0c2fcc38f0ce...; 1029: ree-v3 64d9ee07c8, hash 14ff4a2a0074...), machine/machine_class (ree-cloud-2, linux-x86_64-py3.10-torch2.12.0+cpu), elapsed_seconds (4960.7 / 19074.5), full config, explicit seeds [611,622,633,644,655]. NOTE: the two legs ran on DIFFERENT substrate commits (1027 at 42c03b1485, 1029 at 64d9ee07c8) -- both are post-1020 main-branch commits; neither driver's claimed footprint (lateral_pfc, CRF, e3_selector authority block) is named in the intervening commits' paths, but cross-leg numerical comparison is not asserted anywhere in this artifact.",
+  "red_team": {
+    "verdict": "CONTESTED",
+    "model": "claude-opus-5 (1M context) -- cross-model (drafter: claude-fable-5-1)",
+    "findings_file": "redteam_1027_1029.md (session scratchpad; 371 lines; summary below)",
+    "ordering": "JSON first -> raw manifests/run packs/drivers/substrate/registry/prior autopsy/substrate_queue/claims.yaml -> markdown last; every headline number independently recomputed and matched",
+    "findings_disposition": [
+      {
+        "id": "F1",
+        "severity": "severe",
+        "accepted": true,
+        "summary": "MAG x50 is applied AFTER the substrate's 0.1 tanh bound (lateral_pfc_analog.py:154, :479-481), so it already exceeds any realisable SD-082 head magnitude by 1.8x-20x (achievable headroom 2.5x-27x native). The magnitude sub-question is CLOSED FROM ABOVE, not underpowered; the successor arm 'gain from authority's factor' would test 3x-2600x the bound and cannot bear on SD-082.",
+        "fix": "failed_criterion_note, measurement layer, learning_extracted and the successor spec rewritten; the authority-factor magnitude arm DROPPED."
+      },
+      {
+        "id": "F2",
+        "severity": "severe",
+        "accepted": true,
+        "summary": "Proposed H-consequence-trained-readout restates the still-alive H1-trained-discriminating-readout (same argmax-consequential assertion, same trained-minus-init contrast, same inside-init-spread null); only the training regime differs -- a manipulation, not a hypothesis.",
+        "fix": "fanout_recommendation REMOVED; successor recorded as a new adjudicating run for H1 (no Mode A growth; initial_frozen_count stays 9). Growth kept as a gate alternative only."
+      },
+      {
+        "id": "F3",
+        "severity": "severe",
+        "accepted": true,
+        "summary": "1028's driver pre-registers the correlational reading verbatim (lines 90-93, 110-112: 'Correlational by construction at authority OFF ... which is what the hypothesis asserts'; '1029 measures it').",
+        "fix": "read_across_not_adjudicated[0] and learning rewritten: 1029 CONFIRMS the premise 1028 assumed; 'not testable as worded' withdrawn."
+      },
+      {
+        "id": "F4",
+        "severity": "moderate-severe",
+        "accepted": true,
+        "summary": "'No causal loop / never reaches selection / by construction' is false as stated: with authority OFF the bias is applied as-is (e3_selector.py:3390); 1029's magnitude_only pair (x50 vs native, both OFF) moved the argmin on 31/1694 ticks (rule-attributable mag_pair 6/1694). The truth is a magnitude fact.",
+        "fix": "every absolute replaced with the measured statement (0/1694 argmin, 0/13857 sampled actions on the OFF pair at native magnitude; 31/1694 at x50)."
+      },
+      {
+        "id": "F5",
+        "severity": "moderate",
+        "accepted": true,
+        "summary": "'3.7 SE above the observed mean' was margin/SE (above zero); margin above the mean is 2.83 SE; paired per-seed t(4) = -2.73, one-sided p = 0.026; an effect at 0.7x the margin is not excluded (p ~ 0.08).",
+        "fix": "scale row and eliminated-vs-alive argument corrected; disposition rests on the pre-registered per-seed count 0/5, not on power."
+      },
+      {
+        "id": "F6",
+        "severity": "moderate",
+        "accepted": true,
+        "summary": "'No run has yet trained the readout in it' is false fleet-wide: ~50 ARC-062/GAP-B-lineage drivers (654a-j, 695, 699*, 700*, 704*, 707*, 708*, 709-714, 719*, 722-724, 728*, 736, 847*, 851, 858, 863, 955, 959) train lateral_pfc.bias_head_parameters() with use_modulatory_selection_authority=True (gain 2.0; 654a-c at 0.5) -- none with rule_readout_consumer=True (verified: 0 hits).",
+        "fix": "absolute scoped to the SD-082 consumer; the family named as the successor's GOV-REUSE-1 prior art."
+      },
+      {
+        "id": "F7",
+        "severity": "moderate",
+        "accepted": true,
+        "summary": "1027 reproduces 1020's C2 persistence-low reading at 3/5 on the IDENTICAL seeds 622/633/644 in BOTH arms (midpoints 0.586-0.603; FAITHFUL 0.406/0.558/0.481, OWN 0.475/0.559/0.537 below; 611/655 above in both) with the replay mismatch controlled -- the C2 clause of the OPEN 1020 failure_record target. Seed identity is a candidate explanatory variable.",
+        "fix": "learning added; amend_note dispositions the 1020 record's C2 clause; seed-as-factor added to the successor spec."
+      },
+      {
+        "id": "unused-confirmation",
+        "severity": "in the draft's favour",
+        "accepted": true,
+        "summary": "Within 1027 alone the trained heads diverge across arms (fresh flips 84/373 vs 70/373 on seed 644, 19/186 vs 13/186 on 622) across 70 online P1 episodes while per-episode returns are bit-identical on 5/5 seeds: a within-1027, TRAINED-head demonstration of behavioural inertness independent of 1029's init head (also closes hygiene H7's transfer step).",
+        "fix": "added to learning_extracted."
+      },
+      {
+        "id": "hygiene H1-H9",
+        "severity": "minor",
+        "accepted": true,
+        "summary": "citation 656-658; direction mismatch 0.50-0.70; R2 flip range 0.16-0.41; rule-column delta +0.07..+0.17; 7b fire_count 3 = 2 entries (C1 carries two queue_ids); the raw-identical filter retained 100 percent of co-fresh ticks in all 35 cells (state echo prevented by observation-yoking, not by the filter); 'missing prerequisite' vs 'eliminated' reconciled in net_classification.",
+        "fix": "applied."
+      }
+    ],
+    "attacks_that_failed": "cross-leg substrate provenance (42c03b1485..64d9ee07c8 touches only experiment_queue.json + 3 new drivers, no ree_core); C1 reachable without the marginal-headroom seeds; the amend does not duplicate the SD-082 entry; claims.yaml stored fields match; the lateral_pfc training loop is driver-owned (no substrate-side caller of lateral_pfc.bias_head_parameters)."
+  },
+  "pre_routing_checks": {
+    "ran": true,
+    "fire_count": 3,
+    "fires": [
+      {
+        "check": "C1",
+        "names": [
+          "v3_exq_1028_sd082_learning_signal_extended_budget"
+        ],
+        "queue_ids": [
+          "V3-EXQ-1027",
+          "V3-EXQ-1029"
+        ],
+        "disposition": "ACTED ON (pointer confirmed correct). The sibling driver experiments/v3_exq_1028_sd082_learning_signal_extended_budget.py (V3-EXQ-1028, legs 2+4 of the same portfolio) was on disk and RUNNING on DLAPTOP at draft time, unscored. The artifact already conditions the successor leg on 1028 landing and adjudicates neither learning-signal leg; the check fired because the driver's experiment_type string was absent from the artifact text. Now named explicitly here and in the successor sketch: the successor's P1 budget is to be set from 1028's persistence reading, and /queue-experiment must read 1028's confirmed autopsy before queuing it."
+      },
+      {
+        "check": "C7",
+        "names": [
+          "v3_exq_1027_sd082_replay_own_rule_state_credit_assignment_20260914T135320Z_v3:live_rule_state_zero_frac"
+        ],
+        "queue_ids": [
+          "V3-EXQ-1027"
+        ],
+        "disposition": "DISMISSED with reason. live_rule_state_zero_frac is the fraction of P1 updates whose LIVE end-of-episode rule_state is exactly zero; it is a property of the shared episode stream (trajectories byte-identical across arms by design) and is bit-identical across arms BY CONSTRUCTION. The artifact cites it only to close the driver's pre-registered trivial-lift path (a FAITHFUL arm zeroing the rule half of the input on most samples), never as an arm discriminator. Its across-seed variation (0.0-0.014) is irrelevant to that use."
+      }
+    ],
+    "inapplicable": [],
+    "fire_count_note": "fire_count 3 = 2 entries: the C1 entry carries two queue_ids (1027, 1029) and C7 one."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_1027_sd082_replay_own_rule_state_credit_assignment_20260914T135320Z_v3",
+      "queue_id": "V3-EXQ-1027",
+      "claim_ids": [
+        "SD-082"
+      ],
+      "bears_on": [
+        "sd082_candidate_discriminating_readout_locus:H-replay-rule-state-mismatch"
+      ],
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "self_route_label": "H_replay_rule_state_mismatch_not_supported",
+      "fanout_qid": "sd082_candidate_discriminating_readout_locus",
+      "fanout_hid": "H-replay-rule-state-mismatch",
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "All three readiness gates met (synth_credit_control_ready 1.0 >= 0.8; own_rule_state_manipulation_non_vacuous worst-seed direction mismatch 0.5006 >= 0.10; persistence_headroom_eligible_seeds 5 >= 3 with byte-identical P1 buffers on 5/5 and trajectory_identical on 5/5). Load-bearing C1 (OWN minus FAITHFUL pooled persistence >= 0.25 x (ceiling - floor) AND summary-column persistence rising, on >= 3 eligible seeds) counted 0/5. Non-load-bearing C2 (lift <= -margin on >= 3) counted 0/5. Independently recomputed from per_seed[]: lifts -0.0306/+0.0695/+0.0012/+0.0551/-0.0065 against margins 0.0710/0.0701/0.0771/0.0685/0.0719; C1 = 0; C2 = 0. The self-route label is the driver's pre-registered 'informative null' branch and is CORRECT.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the run does not test SD-082's asserted content (a common-mode-invariant, gradient-trainable, candidate-discriminating rule->bias readout); it tests a rival explanation of why the lineage's P1 training signal has low persistence. SD-082 could not express itself here and is neither supported nor weakened.",
+        "biological_reference": "partial -- the eligibility-trace analogue (bind credit to the state active at action time) was tested exactly as the 1020 autopsy's biological triage named it, and the substrate returned a null. The cluster read explains why: three-factor plasticity binds outcome-credit to synapses that PARTICIPATED in the selected action, and this readout's output was empirically inert at selection throughout the lineage -- 1029: 0 of 1694 argmin changes and 0 of 13857 sampled-action changes at native magnitude (init head); 1027 itself: trained heads diverging across arms (fresh flips 84/373 vs 70/373 on seed 644) while per-episode returns stayed bit-identical on 5/5 seeds. The dependency the biology names was absent to measurement precision.",
+        "prerequisites": "missing -- the readout's participation in E3 selection (modulatory selection authority OFF throughout the 822f/1020/1027/1028 lineage). Established quantitatively by sibling V3-EXQ-1029, not assumed. Every other prerequisite present: SD-078 rule pool live (live_rule_state_zero_frac 0.0-0.014), head trainable (69-70 Adam updates per cell, 0 non-finite gradients), proposer_post_action summaries supplied (0 fallback calls).",
+        "implementation": "complete -- the manipulation reached the DV: OWN arm scores every replayed sample at its own post-select_action rule_state (direction mismatch to the live state 0.50-0.70 across seeds; norm-inclusive 0.97-1.18), live rule_state saved/restored around every update, P1 buffers byte-identical across arms (SHA-256) on 5/5 seeds, per-episode returns identical on 5/5 seeds.",
+        "environment": "adequate -- CausalGridWorldV2 8x8, 2 hazards, 6 resources; return variance 0.16-0.34 per cell; the leg's own terms are 'at matched budget' and both arms saw the identical episode stream.",
+        "measurement": "adequate -- per-seed in-run bracket [pure-noise Adam floor 0.449, dense-synthetic-credit ceiling 0.723-0.757], headroom 0.08-0.32 on every seed (worst seed 611 clears its margin by 0.009), pooled persistence plus per-tensor and per-column splits recorded; 5 eligible seeds against a 3-seed requirement.",
+        "integration": "isolated -- the head trains but its output is empirically inert at selection (1029; and within 1027 the diverging trained heads left returns bit-identical), so the credit it receives is advantage-weighted imitation of E3's own choices, not consequence of its output.",
+        "scale": "adequate for the stated prediction (matched budget, T = 69-70 updates, the leg's own term). The observed mean lift (+0.018, SE 0.019) sits 2.8 SE BELOW the pre-registered margin (~0.072): paired per-seed t(4) = -2.73, one-sided p = 0.026. An effect at ~0.7x the margin (+0.05) is NOT excluded (p ~ 0.08); a margin-sized effect is. The disposition rests on the pre-registered per-seed count (0/5, only two seeds anywhere near), not on a power claim. A slow-accumulating effect is the separate H-learning-signal-noisy question (V3-EXQ-1028, T = 500)."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "HYPOTHESIS ELIMINATED (driver credit-assignment rival). Implementation, Measurement and Environment each independently adequate, so the null is chargeable to the hypothesis under test. The 'missing' Prerequisites row is not a contradiction: the missing prerequisite (the readout's participation in selection) is the one the HYPOTHESIS presupposed, and its absence is what makes the null informative rather than vacuous. NOT 'REE FAILED': the run predicts no REE competence and tests no claim-layer mechanism."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Three-factor corticostriatal plasticity: a dopaminergic outcome signal modifies synapses carrying an eligibility trace from having participated in the selected action. The per-sample rule_state replay is the eligibility-trace analogue the 1020 autopsy named.",
+        "dependencies": [
+          "the readout must participate in action selection for outcome-credit to bind to it (absent here by configuration -- sibling V3-EXQ-1029)",
+          "a per-synapse eligibility trace tied to the action-time state (the OWN arm supplied this)",
+          "an outcome signal with per-action resolution (absent -- the surrogate uses one per-episode scalar advantage for every sample in the episode)"
+        ],
+        "is_formal_import": true,
+        "divergence": "The P1 optimiser is episode-level REINFORCE over a replay buffer with a per-episode scalar advantage, and its surrogate policy is log_softmax(-bias / T) over the head's OWN output (x1020._reinforce_step, driver:656-658) while the action was chosen by E3. With the readout empirically inert at selection (0/1694 argmin, 0/13857 sampled actions at native magnitude -- a magnitude fact: the bias is applied as-is with authority OFF, e3_selector.py:3390, and at x50 it moves the argmin on 31/1694) the return is, to measurement precision, independent of the head's output, so the gradient is advantage-weighted imitation of E3 rather than reinforcement of the head's consequences. The biology's credit-binding depends on participation; the formal import does not and so cannot detect its absence. Load-bearing for the whole lineage's 'learning signal' framing.",
+        "lit_status": "present -- targeted_review_sd_082 (8 entries: Muhammad 2006 rule-to-action readout, Mante 2013 context selection, Kaufman 2016 / Kobak 2016 condition-invariant components, Carandini 2012 / Louie 2011 divisive normalisation, Wang 2016 advantage mean-subtraction, Hausknecht 2016 bounded-output gradients). No entry on eligibility-trace credit binding specifically; not owed by this autopsy (the leg is eliminated, not routed to a build)."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure mode: rival-hypothesis eliminated (driver-level credit-assignment explanation ruled out at matched budget). Not a ceiling, not an instrument defect, no build owed. 'standard' asserts no epistemic suppression, which is the verdict.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "Diagnostic fan-out leg; the manifest pins evidence_direction unknown. To SD-082 the run is non_contributory: it removes one explanation of 1020's low-persistence reading and says nothing about the readout's content.",
+      "recommended_evidence_quality_note": "see cluster-level recommended_evidence_quality_note (one governance note covers both legs)",
+      "recommended_diagnostic_evidence_adjudicated": true,
+      "per_claim_recommendation": {
+        "SD-082": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "NOTE-ONLY. SD-082 already stores status candidate_substrate_landed, epistemic_category standard, pending_retest_after_substrate false and diagnostic_evidence_adjudicated true; none moves. What governance writes is the cluster evidence_quality_note and the citation: live_status.evidence.from currently cites failure_autopsy_V3-EXQ-1020_2026-09-11 and should now cite this diagnosis -> stamp this cluster artifact",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-082",
+        "amend_note": "Extend validation_experiment to name V3-EXQ-1027 (RAN 2026-09-14, FAIL/diagnostic, confirmed <this artifact>: H-replay-rule-state-mismatch ELIMINATED at matched budget) and V3-EXQ-1029 (see the sibling target's entry). DISPOSITION OF THE OPEN 1020 failure_record (target: 'every cell clears >=20 fresh-select flip samples so C3 is scoreable; C2 majority robust to seed with the replay rule_state mismatch controlled'): the C2 clause is DISCHARGED by 1027 -- with the mismatch controlled, persistence-low reproduces at 3/5 on the identical seeds 622/633/644 in BOTH arms (midpoints 0.586-0.603), so the reading is robust to the credit path and seed identity is the candidate explanatory variable; the C3 clause stays OPEN pending V3-EXQ-1028. Leave the record resolved: open; append this note to it. status stays implemented_pending_validation, ready stays false. severity and substrate_paths UNCHANGED (corrupting / [] -- deliberately emptied by governance 2026-09-09; nothing here changes that).",
+        "failure_record_entry": {
+          "run_id": "v3_exq_1027_sd082_replay_own_rule_state_credit_assignment_20260914T135320Z_v3",
+          "experiment_type": "v3_exq_1027_sd082_replay_own_rule_state_credit_assignment",
+          "metric": "OWN-minus-FAITHFUL pooled step-direction persistence lift -0.031/+0.070/+0.001/+0.055/-0.007 (mean +0.018, SE 0.019) against pre-registered per-seed margins 0.069-0.077 (0.25 x [noise floor 0.449, synthetic-credit ceiling 0.723-0.757]); 0/5 eligible seeds clear. First-layer rule-input-column persistence rises ~0.07 on 4/5 seeds while summary-input columns stay flat (-0.012..+0.048): the driver's pre-registered input-structure signature, not credit correctness.",
+          "target": "n/a -- rival eliminated; no substrate target. The finding transfers to the entry as context: the lineage's P1 credit path is not what limits persistence.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": true,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_2026-07-28-sweep | v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
+          "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+          "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3"
+        ],
+        "refused_requeue": true,
+        "route_to": "governance-note-only",
+        "upstream_substrate": null,
+        "release_basis": "R1-R3 count for SD-082 is 3 (822b/822c/822d) against a threshold of 2 -- the same count failure_autopsy_V3-EXQ-822f_2026-09-09 and failure_autopsy_V3-EXQ-1020_2026-09-11 released on their own records. This target reads non_contributory / standard with NO substrate build owed (an eliminated rival), so under the 2026-09-01 R3 predicate it adds no hit: step (3) explicit producer release. REFUSED: V3-EXQ-1027a or any same-budget replay of this leg (its null is at t(4) = 0.93 with 5/5 eligible seeds -- more of the same design adjudicates nothing), and any further lettered iteration of the 822/1020 design. LICENSED: the sibling 1028 (already running, extended budget) and the successor leg proposed on the 1029 target."
+      },
+      "learning_extracted": [
+        "H-replay-rule-state-mismatch is ELIMINATED at matched budget on the pre-registered bar. The hypothesis asserted the shared end-of-episode rule_state 'randomises the rule-attributable gradient BY CONSTRUCTION'; restoring every sample's own action-time rule_state (direction mismatch to the live state 0.50-0.70) moved pooled persistence by +0.018 +/- 0.019 (t(4) = 0.93 against zero), 0/5 seeds against margins of 0.069-0.077 that sit at 25 percent of the in-run bracket (0.27-0.31). The mean lift is 2.8 SE below the margin (paired per-seed t(4) = -2.73, p = 0.026 one-sided); an effect at ~0.7x the margin is not excluded. A by-construction randomisation would have recovered a large fraction of the bracket; it recovered ~6 percent.",
+        "The structure the data DO show is the driver's own pre-registered non-credit route: first-layer RULE-input-column persistence rises by +0.07 to +0.17 on 4/5 seeds (0.403->0.576, 0.477->0.549, 0.448->0.526, 0.474->0.548) while SUMMARY-input columns stay flat (-0.012..+0.048). With one shared rule_state every sample's rule-column gradient is collinear within an update; per-sample rule_state breaks that collinearity and makes the rule columns' steps more consistent WITHOUT making the head's credit more correct. The queue-time red-team F3 fix (C1 also requires a summary-column rise) is exactly what kept this from being read as support.",
+        "Seed 622's lift (0.0695) misses its margin (0.0701) by 0.0006 and seed 644 (0.0551) by 0.013; both carry summary-column rises (+0.003, +0.048). Three seeds are null or negative. Recorded so the null is not overstated: a small positive effect confined to two seeds is compatible with the data, but it is not the 'material' lift the leg predicted and it does not reach the pre-registered majority under any reading.",
+        "1027 independently REPRODUCES 1020's C2 persistence-low reading: against the 1020 midpoint (floor + ceiling)/2 = 0.586-0.603, seeds 622/633/644 sit below in BOTH arms (FAITHFUL 0.406/0.558/0.481; OWN 0.475/0.559/0.537) and seeds 611/655 above in both -- the identical 3-of-5 on the identical seeds as 1020, now with the replay rule_state mismatch controlled. The persistence-low majority is robust to the credit path (discharging the C2 clause of the open 1020 failure_record target), and its landing on the SAME three seeds across two independent experiments makes SEED IDENTITY, not the credit path, the candidate explanatory variable -- a confound any successor's per-seed design must pre-register against (fresh seeds alongside these five).",
+        "Within 1027 alone, the TRAINED heads measurably diverge across arms (fresh-select flips 84/373 vs 70/373 on seed 644, 19/186 vs 13/186 on seed 622, 6/200 vs 9/200 on 611) across 70 online P1 episodes, while per-episode returns are bit-identical and the P1 buffers SHA-256-identical on 5/5 seeds. This is a within-1027, trained-head demonstration that the readout's output had no behavioural consequence during training -- independent of 1029's init-head measurement and covering the trained-head magnitude regime 1029 did not run.",
+        "The deeper reason the credit-assignment fix could not matter comes from the cluster: with modulatory selection authority OFF the readout's output was empirically inert at selection (1029: 0/1694 argmin, 0/13857 sampled actions; a magnitude fact, since the bias is applied as-is and at x50 it does move the argmin on 31/1694), so there was no consequence-credit for the per-sample rule_state to bind. The P1 surrogate log_softmax(-bias) x advantage with the action chosen by E3 is, to measurement precision, advantage-weighted imitation of E3; imitation credit is bound to (summaries, selected action, episode advantage) and is indifferent to which rule_state the head is conditioned on beyond input structure -- which is the signature observed.",
+        "Positive-negative result for the dependency: the biological triage's eligibility-trace analogue was correctly aimed, and its null is what three-factor plasticity predicts when the synapse under study did not participate in the action. The FAIL supports the dependency 'a trained readout must gate selection for outcome-based learning to shape it' (sd_082 design doc: 'selection without a trained read-out to action is inert') rather than weakening anything."
+      ],
+      "routing": "governance-note-only"
+    },
+    {
+      "run_id": "v3_exq_1029_sd082_selection_authority_readout_consequence_20260914T191118Z_v3",
+      "queue_id": "V3-EXQ-1029",
+      "claim_ids": [
+        "SD-082"
+      ],
+      "bears_on": [
+        "sd082_candidate_discriminating_readout_locus:H-selection-authority-bounded"
+      ],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "H_selection_authority_bounded_supported_magnitude_test_underpowered",
+      "fanout_qid": "sd082_candidate_discriminating_readout_locus",
+      "fanout_hid": "H-selection-authority-bounded",
+      "failed_criterion": "none -- PASS; C4 (magnitude-only pair, recorded, suffixes the label) failed 0/5 and is adjudicated below as CLOSED FROM ABOVE by the substrate's own bound, not as an underpowered null",
+      "failed_criterion_note": "Readiness 5/5 seeds on all five gates (self-yokes 0 divergent ticks of 2624-2836 per seed; head-level rule-ablation argmax flip fraction min 0.162 >= 0.01 (range 0.16-0.41 over intact runners); authority active on 100 percent of AUTH_ON fresh selects; raw-identical co-fresh ticks min 283 >= 50; authority_only argmin divergence min 0.342 >= 0.02). C1 AUTH_ON pair argmin divergence >= 0.02: 4/5 (0.261/0.027/0.014/0.082/0.115; seed 633 misses at 0.0144). C2 AUTH_OFF pair argmin divergence <= 0.005: 5/5, all exactly 0.0 (0 of 283/295/347/414/355 raw-identical co-fresh ticks; 0 of 13857 sampled actions over all ticks). C3 interaction 4/5. C4 MAG pair (bias x50, authority OFF) >= 0.02: 0/5 (0/0/0.017/0/0; 6/1694 pooled). Independently recomputed from arm_results[].pairs: C1 = 4, C2 = 5, C4 = 0; median AUTH_ON_INTACT authority_scale_factor_median = 2040 > MAG_GAIN 50, so the driver's own rule suffixes the PASS 'magnitude_test_underpowered' -- correct on its own terms (relative to authority's factor). Adjudication of C4: the substrate bounds |bias| < bias_scale = 0.1 by the tanh (lateral_pfc_analog.py:154, :479-481); native |bias| is 0.0037-0.0402, so the achievable head-magnitude headroom is 2.5x-27x, and MAG x50 -- applied AFTER the bound -- already tested 1.8x-20x BEYOND anything a realisable SD-082 head can produce. Relative to the substrate the magnitude question is CLOSED FROM ABOVE: within the bound, readout magnitude alone cannot move E3's ranking (rule-attributable part 6/1694 even at x50; whole readout 31/1694), which is what H-selection-authority-bounded asserts. The self-route label is CORRECT; its suffix should be read as 'under-set relative to authority, over-powered relative to the substrate'. NOTE: the raw-identical co-fresh filter retained 100 percent of co-fresh ticks in all 35 pair-seed cells -- state echo was prevented by stepping every runner on the reference's observation, not by the filter, which was vacuously satisfied.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- by the driver's own scope the run is 'not evidence for or against SD-082's readout content': the head is at init (untrained) and the DV is a ranking consequence, not discrimination. What it establishes is a NECESSARY CONDITION for SD-082's asserted behavioural consequence ever being observable or trainable on this path.",
+        "biological_reference": "partial -- the biological reference for a rule readout is a graded, gated influence on action selection (dlPFC -> premotor/striatum through BG gating), not a fixed additive nudge two to three orders of magnitude below the primary drive. The substrate's modulatory selection authority is a divisive-normalisation-style formal device (rescale the combined modulatory vector to gain x raw score range), with a literature analogue (Carandini 2012, Louie 2011 in targeted_review_sd_082) but no per-channel gating: it amplifies EVERY co-summed modulatory channel identically.",
+        "prerequisites": "present -- authority block built and engaged (e3_selector.py modulatory authority block; active on 100 percent of fresh selects), lateral_pfc consumer live, CRF matured over 60 warm-up episodes (flips appear only with p0 = 60 per 1020).",
+        "implementation": "complete -- yoked 8-runner design with private RNG streams, both self-yokes bit-identical for the whole run (R1), rule-ablation implemented as compute_bias with rule_state zeroed for that call only. SCOPE (stated by the driver, not hidden): init head, not a trained one; E3 never commits in this configuration (committed_fraction 0.0 on every runner) so the DV is E3's top PREFERENCE (argmin of post-bias scores) and the sampled action is secondary.",
+        "environment": "adequate -- same CausalGridWorldV2 configuration as 1020; raw E3 score range per seed 2.85 / 5.59 / 17.2 / 25.4 / 66.6 (mean over fresh selects), i.e. the primary drive varies 23x across seeds, which is itself a finding (see learning).",
+        "measurement": "adequate for C1/C2 and for the substantive magnitude question (closed from above: MAG x50 exceeds the substrate's 0.1 tanh bound by 1.8x-20x and still moves the rule-attributable argmin on 6/1694); under-set only relative to authority's realised per-seed scale factor (755 / 6543 / 72 / 2976 / 2040, median 2040), which is the driver's own correctly-applied 'underpowered' rule and owes NO measurement-debt -- a magnitude arm at authority's factor would put |bias| at 0.27-262, 3x-2600x the bound, and could not bear on SD-082. RECORDING gap for successors: the composition of the modulatory vector (lateral_pfc share vs gated_policy share) is not recorded, so the 34-81 percent authority_only divergence cannot be attributed between channels.",
+        "integration": "partially coupled -- the readout couples to selection ONLY under authority, and then as one component of a rescaled composite whose other component (random-init gated_policy bias) is not controlled.",
+        "scale": "adequate -- 60 scored episodes per seed, 283-414 raw-identical co-fresh ticks per pair, 5/5 seeds ready; the OFF-pair null is 0 of 1694 pooled ticks."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "PASS -- no failure to locate. The magnitude sub-question is closed from above by the substrate bound (red-team F1), so no MEASURES debt remains; the only open instrumentation item is the per-channel modulatory composition a successor should record. Not chargeable to mechanism or REE."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Prefrontal rule signals biasing action selection through basal-ganglia gating: a graded, state-dependent influence on the motor output, whose magnitude relative to the primary drive is itself regulated.",
+        "dependencies": [
+          "a gate that lets the rule signal reach the selection with authority comparable to the primary drive (modulatory selection authority is the substrate's device for this)",
+          "per-channel regulation of that authority (absent: authority rescales the whole modulatory composite)",
+          "a training regime in which the readout's participation in selection feeds the outcome signal (absent throughout the lineage; see cluster_pattern)"
+        ],
+        "is_formal_import": true,
+        "divergence": "Authority rescales the COMBINED modulatory vector (gated_policy bias + lateral_pfc bias + any other channel) so its cross-candidate range equals gain x raw_score_range, by a single scalar factor computed per tick (e3_selector.py: scale_factor = target_range / modulatory_spread). It is scale-free with respect to the readout's own magnitude and channel-blind. Biology gates channels individually. Divergence is load-bearing for successor DESIGN (control co-summed channels), not for SD-082's truth.",
+        "lit_status": "present -- targeted_review_sd_082 (divisive normalisation entries cover the formal device's biological analogue)."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Diagnostic PASS establishing a configuration precondition; no suppression of SD-082's testability is asserted -- the opposite: it names the configuration under which the claim becomes testable.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "To SD-082's asserted content: non_contributory (init head; ranking consequence, not discrimination). To the portfolio: H-selection-authority-bounded CONFIRMED (frozen ledger, Step 9b Mode B).",
+      "recommended_evidence_quality_note": "see cluster-level recommended_evidence_quality_note",
+      "recommended_diagnostic_evidence_adjudicated": true,
+      "per_claim_recommendation": {
+        "SD-082": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "NOTE-ONLY (same disposition as the sibling target; one cluster note). No stored field moves; live_status.evidence.from re-pointed -> stamp this cluster artifact",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-082",
+        "amend_note": "Extend validation_experiment to name V3-EXQ-1029 (RAN 2026-09-14, PASS/diagnostic, confirmed <this artifact>: H-selection-authority-bounded CONFIRMED; magnitude sub-question closed from above by the 0.1 tanh bound) and record the cluster's training-regime finding in the chain text: with authority OFF the readout is empirically inert at selection (0/1694 argmin, 0/13857 sampled actions; a magnitude fact, not a structural one), so the lineage's P1 REINFORCE surrogate is, to measurement precision, advantage-weighted imitation of E3 with no measurable consequence loop -- no run with the SD-082 consumer engaged (rule_readout_consumer=True) has yet trained the readout in a regime where its output reaches selection. status stays implemented_pending_validation, ready stays false. severity / substrate_paths UNCHANGED (corrupting / []).",
+        "failure_record_entry": {
+          "run_id": "v3_exq_1029_sd082_selection_authority_readout_consequence_20260914T191118Z_v3",
+          "experiment_type": "v3_exq_1029_sd082_selection_authority_readout_consequence",
+          "metric": "Init-head rule-readout ablation changes E3's argmin on 0 of 1694 raw-identical co-fresh ticks (5 seeds) and the sampled action on 0 of 13857 ticks at native magnitude (|lateral_pfc bias| / raw E3 score range = 0.0004-0.0040; |bias| 0.0037-0.0402 against the substrate's 0.1 tanh bound); on 1.4-26 percent of ticks under modulatory selection authority (gain 0.5, basis range; realised scale factor 72-6543 per seed); on 0/5 seeds (6/1694 pooled) with the readout's own magnitude raised x50 beyond the bound. Authority ON vs OFF by itself changes the argmin on 34-81 percent of ticks (the whole modulatory composite, gated_policy included, is amplified). Sampled-action consequence of the readout under authority: 0-7.5 percent of ticks; E3 never commits (committed_fraction 0.0).",
+          "target": "A validation regime in which the SD-082 consumer readout's output reaches E3 selection during P1 training (authority ON with co-summed modulatory channels controlled or ablated, per-channel contributions recorded), so that REINFORCE credit is consequence-based and SD-082's asserted trained, candidate-discriminating, argmin-consequential bias (registry leg H1) is testable at all.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": true,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_2026-07-28-sweep | v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
+          "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+          "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3"
+        ],
+        "refused_requeue": true,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "release_basis": "Same count (3) and same release as the sibling target: non_contributory / standard with no build owed -- a PASS that confirms a configuration precondition. REFUSED: V3-EXQ-1029a, a MAG_GAIN re-sweep of this init-head design (the magnitude question is closed from above by the substrate bound), and any further lettered iteration of 822/1020. LICENSED: the successor recorded in successor_experiment_recommendation (new EXQ number; a new adjudicating run for the alive registry leg H1 under a changed training regime) -- to be queued only after V3-EXQ-1028 adjudicates the learning-signal legs."
+      },
+      "learning_extracted": [
+        "H-selection-authority-bounded is CONFIRMED, quantitatively. At native magnitude the init-head rule readout (|bias| 0.0037-0.040 against a raw E3 score range of 2.85-66.6, ratio 0.0004-0.0040) changes E3's argmin on 0 of 1694 raw-identical co-fresh ticks and the sampled action on 0 of 13857 ticks across 5 seeds; under authority it changes the argmin on 1.4-26 percent (4/5 seeds clear 0.02). The 1020 autopsy's learning 5.1 ('any behavioural probe on this path is inert until selection authority is enabled') is now a measurement, not an inference from config.py's comment -- and it is a MAGNITUDE fact, not a structural one: the bias is applied as-is with authority OFF (e3_selector.py:3390) and at x50 the whole readout does move the argmin on 31/1694 ticks.",
+        "The magnitude sub-question is CLOSED FROM ABOVE by the substrate. The tanh bounds |bias| < bias_scale = 0.1 (lateral_pfc_analog.py:154, :479-481), so a realisable SD-082 head has 2.5x-27x headroom over native; MAG x50 (applied after the bound) tested 1.8x-20x beyond that and the rule-attributable part still moved the argmin on only 6/1694. Within the bound, magnitude alone cannot suffice -- exactly the hypothesis's content. The driver's 'magnitude_test_underpowered' suffix is correct relative to authority's realised factor (72-6543, median 2040) and should be read as 'under-set vs authority, over-powered vs the substrate'. No measurement-debt is owed; a successor magnitude arm at authority's factor (|bias| 0.27-262) could not bear on SD-082.",
+        "The binding quantity is the readout's magnitude relative to the primary score range, and the raw E3 score range varies 23x across seeds (2.85 to 66.6), so a fixed-magnitude readout's inertness is seed-dependent -- which is what the substrate's authority device (rescale to gain x range) exists to normalise.",
+        "Authority is a blunt instrument. It rescales the WHOLE modulatory composite to 50 percent of the raw range by one scalar (realised factor 72-6543 per seed), and authority ON vs OFF by itself changes E3's top preference on 34-81 percent of ticks. The rule-attributable part of that is 1.4-26 percent of argmin decisions and 0-7.5 percent of sampled actions; the rest is the random-init gated_policy bias and any other co-summed channel. Any successor that reads behaviour under authority must ablate or record the co-summed channels, or its 'readout effect' is mostly gated_policy. Recording gap for successors: per-channel modulatory composition per tick (the scale factor IS recorded).",
+        "Cluster-level, and the most consequential finding: the lineage's P1 REINFORCE surrogate is log_softmax(-bias / T) over the head's OWN output with the action chosen by E3 (x1020._reinforce_step, driver:656-658; the substrate exposes only bias_head_parameters() -- no substrate-side caller exists, the loop is driver-owned). With the readout empirically inert at selection, the return is to measurement precision independent of the head's output, so the gradient is advantage-weighted imitation of E3's selections rather than reinforcement of the head's consequences. Every P1 run in 822f/1020/1027/1028 trained an imitator. SD-082's design doc names the intended regime ('(b) reinforcement-style gradient from E3 action outcomes'; 'selection without a trained read-out to action is inert'); no run WITH THE SD-082 CONSUMER ENGAGED (rule_readout_consumer=True) has yet trained the readout in it. (~50 ARC-062/GAP-B-lineage drivers train the pre-SD-082 hard-clamp head under authority gain 2.0 -- the successor's GOV-REUSE-1 prior art, see successor_experiment_recommendation.)",
+        "Read-across for V3-EXQ-1028 (running), CONFIRMING its pre-registration rather than correcting it: 1028's driver already states (lines 90-93, 110-112) that with authority OFF 'the head's bias never changes a committed action ... 1029 measures it' and that its C3 statistic is 'Correlational by construction at authority OFF ... which is what the hypothesis asserts'. 1029 supplies the measurement 1028 deferred to (0/1694 argmin, 0/13857 sampled actions), which is what licenses 1028's frozen-init-head flip labelling on every episode. Recorded here, NOT adjudicated (1028's autopsy owns it).",
+        "E3 never commits in this configuration (committed_fraction 0.0 on every runner, 5 seeds x 8 runners) -- every behavioural selection is a multinomial draw at temperature 1.0. The argmin DV is the right one (red-team F1 at queue time), and the sampled-action divergence (0-7.5 percent under authority) is the behavioural consequence a successor should expect to be small unless commitment is also engaged."
+      ],
+      "routing": "queue-experiment",
+      "successor_experiment_recommendation": {
+        "attach_to_existing_hid": "H1-trained-discriminating-readout",
+        "why_not_a_new_leg": "Red-team F2: the drafted 'H-consequence-trained-readout' restates H1 (alive; 822f rejected it at adequate power on the index DV with the weakens branch foreclosed) -- same argmax-consequential assertion, same trained-minus-init contrast, same inside-init-spread null. The training regime is a MANIPULATION, so the successor is a design-changed adjudicating run for H1, not denominator growth. /queue-experiment appends its queue_id to H1.adjudicating_runs when queued (the ledger's Mode A applies to that run, not to a new hypothesis).",
+        "axis_family": "H1 is on axis readout (family representation); the regime change is on the constitution family (H-selection-authority-bounded, confirmed here) -- refinement, not circling.",
+        "sketch": "1029's yoked instrument (private RNG streams, whole-run self-yokes, DV on raw-identical co-fresh ticks; note the raw-identical filter is vacuous under observation-yoking) with P1 REINFORCE run under use_modulatory_selection_authority=True and the gated_policy channel disabled or ablated for the whole group (or its per-tick share recorded, so lateral_pfc's part of the composite is known). Runners: TRAINED head intact vs rule-ablated, and a FROZEN-INIT copy intact vs rule-ablated. DV = trained-pair argmin divergence minus init-pair argmin divergence, per seed. Declared null: the difference sits inside the init pair's own across-seed spread (margin pre-registered from an init-only pilot, never an absolute floor -- the 822e lesson). Seeds: the five lineage seeds PLUS fresh ones, with seed pre-registered as a factor (1020 and 1027 both land persistence-low on 622/633/644 only). NO magnitude arm at authority's factor (F1: it would exceed the 0.1 bound by 3x-2600x); if a magnitude runner is kept at all, its gain is the achievable ceiling bias_scale / |bias|_native (2.5x-27x per seed) -- but x50 already brackets that and returned 6/1694, so dropping the arm is the default. Record modulatory_authority_scale_factor and the per-channel composition every tick.",
+        "gov_reuse_1_prior_art": "~50 ARC-062/GAP-B-lineage drivers (654a-j, 695, 699/699b/699c, 700-700d, 704/704b, 707-707c, 708-708b, 709-714, 719/719a, 722-724, 728/728b, 736, 847/847a, 851, 858, 863, 955, 959) train lateral_pfc.bias_head_parameters() in P1 with use_modulatory_selection_authority=True at MODULATORY_AUTHORITY_GAIN 2.0 (654a-c at 0.5) -- NONE with lateral_pfc_rule_readout_consumer=True (the pre-SD-082 hard-clamp head, e2_world_forward summaries). Nearest prior art on 'train the lpfc head under authority'; the successor's Step 2.4 must dispose of it explicitly, and their gain 2.0 (4x 1029's 0.5) bears on the successor's gain choice.",
+        "timing": "Queue only after V3-EXQ-1028 (experiments/v3_exq_1028_sd082_learning_signal_extended_budget.py, running on DLAPTOP at draft time) lands and is autopsied: if the imitation signal does not accumulate even at T=500, the successor's P1 budget must be set from that reading."
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Two legs of one GOV-FANOUT-1 portfolio (failure_autopsy_V3-EXQ-1020_2026-09-11, qid sd082_candidate_discriminating_readout_locus): the credit-assignment rival (1027, process family) returns an informative null at matched budget while the intrinsic-architecture leg (1029, constitution family) confirms that the readout is causally inert at selection without authority. Read together they locate the binding constraint UPSTREAM of credit assignment and upstream of the learning-signal legs: the readout's non-participation in selection.",
+    "is_independent_bugs": false,
+    "structural_property": "In the 822f/1020/1027/1028 training configuration (modulatory selection authority OFF) the rule->bias readout's output is empirically inert at E3's selection -- 0/1694 argmin changes and 0/13857 sampled-action changes at native magnitude (1029), and within 1027 diverging trained heads left per-episode returns bit-identical on 5/5 seeds. This is a MAGNITUDE fact (the bias is applied as-is; at x50 it moves the argmin on 31/1694), not a structural absence. To measurement precision the lineage's REINFORCE surrogate (log_softmax over the head's own bias, action chosen by E3, per-episode scalar advantage) is therefore advantage-weighted imitation of E3, not consequence-based reinforcement. The credit-assignment fix (1027) could not matter because there was no measurable consequence-credit to mis-assign; the learning-signal legs (1020/1028) measure the consistency of an imitation gradient, not of the reinforcement SD-082's design names. The binding constraint is a configuration/training-regime property of the whole lineage, not a substrate ceiling and not a defect in any one driver.",
+    "readings": [
+      "training_regime_causally_inert -- the readout was trained without participating in selection (design implication: P1 under authority ON with co-summed channels controlled)",
+      "authority_channel_confound -- authority amplifies the whole modulatory composite; a behavioural readout under authority is mostly gated_policy unless controlled"
+    ],
+    "planning_decision_forced": "Whether to open the successor leg (H-consequence-trained-readout) now or after V3-EXQ-1028 adjudicates the learning-signal legs; and whether SD-082's validation chain should carry the training-regime finding so /queue-experiment Step 2.4/2.5 reads it before any further P1 design on this path."
+  },
+  "read_across_not_adjudicated": [
+    {
+      "bears_on": "sd082_candidate_discriminating_readout_locus:H-learning-signal-sign (V3-EXQ-1028, running on DLAPTOP at draft time)",
+      "note": "CONFIRMS 1028's own pre-registration. Its driver (lines 90-93, 110-112) states that with authority OFF the head's bias never changes a committed action, names 1029 as the run that measures it, labels flips with the FROZEN INIT head on every P1 episode on that basis, and declares its C3 'Correlational by construction at authority OFF ... the sign of the credit REINFORCE receives, which is what the hypothesis asserts'. 1029 supplies that measurement (0/1694 argmin, 0/13857 sampled actions), so 1028's C3 scoping is licensed, not undermined. Nothing here adjudicates the sign leg; 1028's autopsy owns it."
+    },
+    {
+      "bears_on": "sd082_candidate_discriminating_readout_locus:H-learning-signal-noisy (V3-EXQ-1028)",
+      "note": "Remains a well-posed question about whether the advantage-weighted IMITATION gradient accumulates at T=500. 1027 does more than strengthen it: it independently REPRODUCES the persistence-low majority (3/5, identical seeds 622/633/644, both arms) with the credit-assignment rival controlled, so whatever 1028 finds on persistence is not attributable to the replay path -- and seed identity is now the candidate explanatory variable to pre-register against. A low-persistence finding would be about imitation of E3, not about the consequence-trained readout SD-082 asserts."
+    },
+    {
+      "bears_on": "sd082_candidate_discriminating_readout_locus:H2-uniform-common-mode",
+      "note": "1029's readiness R2 (the head's own argmax changes when rule_state is zeroed on 16-41 percent of fresh selects across intact runners, init head; gate min 0.162) shows the rule-attributable bias is NOT candidate-uniform at the head-output level for the INIT head. H2 concerns the TRAINED readout's propagated bias; this bears on it (an init head of this shape is non-uniform) but does not adjudicate it."
+    },
+    {
+      "bears_on": "SD-078 (co-registered on the question)",
+      "note": "Nothing moves. The SD-078 downstream-consumer test still waits on a consequence-trained SD-082 readout; the cluster narrows what that test must look like (authority ON, channels controlled)."
+    },
+    {
+      "bears_on": "failure_autopsy_V3-EXQ-1020_2026-09-11 learning 5.1",
+      "note": "CONFIRMED and EXTENDED: 1020's learning said behavioural PROBES are inert without authority; the cluster measures it (0/1694 argmin at native magnitude, a magnitude fact) and adds that the TRAINING signal is equally decoupled to measurement precision, which 1020 did not say and which reframes its own learning-signal question."
+    }
+  ],
+  "granularity_debt_trigger": {
+    "fires": false,
+    "routing": "none",
+    "basis": "granularity_debt_cluster.py SD-082: 6 tagging targets (822b-sweep, 822c, 822d-cluster, 822e, 822f, 1020), alignment distribution unclear=6, zero weakened. Both targets here also read unclear. Measurement/implementation/configuration debt, not granularity debt; do not fire on the count."
+  },
+  "recommended_evidence_quality_note": "[2026-09-14 governance, confirmed failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 (SD-082 GOV-FANOUT-1 portfolio legs 1 and 3; cross-model Opus red-team CONTESTED, all seven findings verified and folded in; user gate)]: NOTE-ONLY, both directions non_contributory. V3-EXQ-1027 ELIMINATES the credit-assignment rival H-replay-rule-state-mismatch at matched budget on the pre-registered bar: all three readiness gates green (synthetic-credit control 10/10 cells; direction mismatch worst-seed 0.50 vs 0.10 floor; 5/5 seeds headroom-eligible with byte-identical P1 buffers) and 0/5 seeds clear the pre-registered lift margin (0.069-0.077 = 0.25 x bracket): lifts -0.031/+0.070/+0.001/+0.055/-0.007, mean +0.018 +/- 0.019, 2.8 SE below the margin (paired t(4) = -2.73, p = 0.026); the only structure in the data is the driver's own pre-registered input-structure signature (first-layer rule-column persistence rises +0.07..+0.17 on 4/5 seeds while summary columns stay flat). 1027 also reproduces 1020's C2 persistence-low majority (3/5, identical seeds 622/633/644, both arms) with the credit path controlled, discharging that clause of the open 1020 failure record and making seed identity the candidate explanatory variable. V3-EXQ-1029 CONFIRMS H-selection-authority-bounded: the init-head rule readout changes E3's argmin on 0 of 1694 raw-identical co-fresh ticks (and the sampled action on 0 of 13857) at native magnitude (|bias| 0.004-0.040 against a 0.1 tanh bound and a raw score range of 2.85-66.6), on 1.4-26 percent of ticks under modulatory selection authority (5/5 seeds ready; 4/5 clear the 0.02 floor), and on 6/1694 with its magnitude raised x50 beyond the bound -- the magnitude sub-question is closed from above by the substrate (the driver's 'underpowered' suffix is correct only relative to authority's realised factor 72-6543). Cluster read: with authority OFF the readout is empirically inert at selection (a magnitude fact -- the bias is applied as-is), so the lineage's P1 REINFORCE surrogate (log_softmax(-bias) over the head's own output, action chosen by E3) is to measurement precision advantage-weighted imitation of E3; 822f/1020/1027/1028 trained an imitator, not the consequence-trained readout the sd_082 design names ('selection without a trained read-out to action is inert'); no run with the SD-082 consumer engaged has yet trained the readout in that regime. Nothing stored moves: status stays candidate_substrate_landed, epistemic_category standard, pending_retest_after_substrate false, diagnostic_evidence_adjudicated true. live_status.evidence.from re-pointed at this artifact. PROMOTES/DEMOTES NOTHING.",
+  "hypothesis_space_ledger_plan": {
+    "mode_b_resolutions": [
+      {
+        "hid": "H-replay-rule-state-mismatch",
+        "state": "eliminated",
+        "resolving_runs": [
+          "V3-EXQ-1027"
+        ],
+        "evidence_direction": "non_contributory",
+        "epistemic_category": "standard",
+        "self_route_label": "H_replay_rule_state_mismatch_not_supported",
+        "control_passed": true,
+        "non_degenerate": true,
+        "met_elimination_bar": true,
+        "resolved_utc": "2026-09-14T13:53:20Z",
+        "basis": "Discriminating null at matched budget on the pre-registered bar: manipulation verified non-vacuous (direction mismatch 0.50-0.70), in-run controls passed (synthetic-credit ceiling learned and persisted 10/10; noise floor 0.449), 5/5 seeds eligible with byte-identical buffers, and the lift cleared the margin on 0/5 (mean +0.018 +/- 0.019, 2.8 SE below the margin, paired t(4) = -2.73, p = 0.026). The 'by construction' randomisation the leg asserted is excluded; a sub-margin residual (~0.7x) is not, and the rule-column rise is the driver's pre-registered input-structure alternative.",
+        "alternative_presented_at_gate": "leave alive as budget-limited (the driver's own grid text says the null 'weakens, not removes' the rival to H-learning-signal-noisy)"
+      },
+      {
+        "hid": "H-selection-authority-bounded",
+        "state": "confirmed",
+        "resolving_runs": [
+          "V3-EXQ-1029"
+        ],
+        "evidence_direction": "non_contributory",
+        "epistemic_category": "standard",
+        "self_route_label": "H_selection_authority_bounded_supported_magnitude_test_underpowered",
+        "control_passed": true,
+        "non_degenerate": true,
+        "met_elimination_bar": false,
+        "resolved_utc": "2026-09-14T19:11:18Z",
+        "basis": "Inert at native magnitude (0/1694 argmin changes, 5 seeds; self-yokes 0 divergent ticks), consequential under authority (1.4-26 percent, 4/5 seeds >= 0.02). Necessary-not-sufficient: whether readout magnitude alone would suffice is unresolved (MAG pair under-set), so met_elimination_bar stays false."
+      }
+    ],
+    "mode_a_growth_proposed": {
+      "gate_decision_required": true,
+      "recommended": "NO GROWTH -- attach the successor to the alive H1-trained-discriminating-readout as a new adjudicating run (red-team F2). initial_frozen_count stays 9; initial_frozen_count_at_registration stays 5.",
+      "alternative_if_user_prefers_growth": {
+        "hid": "H-consequence-trained-readout",
+        "axis": "learning-signal",
+        "family": "constitution",
+        "delta": 1,
+        "initial_frozen_count_after": 10,
+        "growth_restriction_check": "question.growth_restriction is '' -> no restriction"
+      },
+      "note": "The regime change (authority ON, channels controlled) is a manipulation of H1's test conditions, not a new hypothesis; registering it separately would restate H1 and inflate the denominator the question's own fanout_growth_note already flags as non-converged.",
+      "decision": "NO GROWTH (user-confirmed at the Step 8 gate)"
+    }
+  },
+  "user_gate": {
+    "confirmed_utc": "2026-09-14T22:32:04Z",
+    "decisions": {
+      "H-replay-rule-state-mismatch": "eliminated",
+      "successor": "attach to H1-trained-discriminating-readout as a new adjudicating run, queue after V3-EXQ-1028 (no Mode A growth)",
+      "routing": "confirmed as drafted (note-only + SD-082 amend + ledger resolutions)"
+    },
+    "recommendation_outcomes_logged": true
+  }
+}

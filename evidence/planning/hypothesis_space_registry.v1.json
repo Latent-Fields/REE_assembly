@@ -6457,7 +6457,7 @@
           "label": "The TRAINED rule->bias readout produces a candidate-DISCRIMINATING raw bias",
           "desc": "SD-082's own assertion: with the per-candidate-summary amend engaged, the TRAINED head converts a differentiated rule_state into a raw pre-tanh action bias whose cross-candidate range is a substantial fraction of its mean-abs, and which is argmax-consequential. Adjudicated by a TRAINED-MINUS-INIT discrimination index exceeding a margin pre-registered off the random-init distribution, on new seeds -- NOT by an absolute index floor. Null: the trained index sits inside the init head's own distribution, i.e. training adds no discrimination.",
           "axis": "readout",
-          "basis": "822e measured C1 at 4/5 seeds (mean_median index 1.846) and C2 at 0.0583 (107/1834), both clearing their pre-registered ABSOLUTE bars -- but the run's readiness conjunction voided the verdict, and its Step 7c red team then established that those bars do not separate this leg from H-init-structure. The leg is live and untested as stated here.",
+          "basis": "822e measured C1 at 4/5 seeds (mean_median index 1.846) and C2 at 0.0583 (107/1834), both clearing their pre-registered ABSOLUTE bars -- but the run's readiness conjunction voided the verdict, and its Step 7c red team then established that those bars do not separate this leg from H-init-structure. The leg is live and untested as stated here. [2026-09-14, failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, user gate]: a design-changed adjudicating run for THIS leg is routed -- 1029's yoked instrument with P1 REINFORCE under use_modulatory_selection_authority=True and the gated_policy channel controlled, TRAINED head intact-vs-rule-ablated against a FROZEN-INIT copy, DV = trained-pair minus init-pair argmin divergence per seed, null from an init-only pilot's spread, seed pre-registered as a factor (1020 and 1027 both land persistence-low on 622/633/644), no magnitude arm (closed from above by the 0.1 bound). Its queue_id is appended to adjudicating_runs by /queue-experiment once V3-EXQ-1028 is autopsied. The regime change is a manipulation of this leg's test conditions, not a new hypothesis (red-team F2), so the denominator does not grow.",
           "pre_registered_utc": "2026-09-05T09:56:19Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
           "adjudicating_runs": [
@@ -6626,15 +6626,23 @@
           "basis": "Declared at design time as an unexcluded rival by V3-EXQ-1020's driver (F2 disposition) and carried in the manifest's interpretation.unexcluded_rivals; no criterion in 1020 can exclude it. Independently favoured by the biological triage in failure_autopsy_V3-EXQ-1020_2026-09-11: brains bind credit to the state active at action time (eligibility traces), so a single shared current state is a formal-import artifact with no biological analogue. rule_state_norm_at_update[] telemetry already emitted for a successor.",
           "pre_registered_utc": "2026-09-11T16:40:57Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-1020_2026-09-11.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-1027"
+          ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-1027"
+            ],
+            "evidence_direction": "non_contributory",
+            "resolved_utc": "2026-09-14T13:53:20Z",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "epistemic_category": "standard",
+            "self_route_label": "H_replay_rule_state_mismatch_not_supported",
+            "resolving_autopsy": "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14.json",
+            "basis": "Discriminating null at matched budget on the pre-registered bar (CONFIRMED failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, user gate 2026-09-14T22:32:04Z): manipulation verified non-vacuous (per-sample action-time rule_state restored; buffer-mean direction mismatch to the live state 0.50-0.70), in-run controls passed (dense-synthetic-credit ceiling learned and persisted 10/10 cells; pure-noise Adam floor 0.449), 5/5 seeds headroom-eligible with byte-identical P1 buffers and bit-identical trajectories, and the OWN-minus-FAITHFUL persistence lift cleared the 0.25 x bracket margin (0.069-0.077) on 0/5 seeds: lifts -0.031/+0.070/+0.001/+0.055/-0.007, mean +0.018 +/- 0.019, 2.8 SE below the margin (paired t(4) = -2.73, p = 0.026 one-sided). The 'by construction' randomisation the leg asserted is excluded; a sub-margin residual (~0.7x) is not, and the only structure in the cells is the driver's pre-registered input-structure alternative (rule-column persistence +0.07..+0.17 on 4/5 seeds, summary columns flat). Cluster read with V3-EXQ-1029: there was no measurable consequence-credit to mis-assign -- the readout is empirically inert at selection with authority OFF, so the lineage's REINFORCE surrogate is advantage-weighted imitation of E3."
           }
         },
         {
@@ -6645,15 +6653,23 @@
           "basis": "Surfaced by the Step 7c red team of failure_autopsy_V3-EXQ-1020_2026-09-11 and verified against the substrate: use_modulatory_selection_authority defaults False (ree_core/utils/config.py:1273) and V3-EXQ-1020 never sets it; bias_scale=0.1 tanh-bounded (lateral_pfc_analog.py:154,:479-481); config.py:1262-1263 states verbatim that 'fixed small bias magnitudes (~0.05-0.1) added to primary scores whose raw_score_range is much larger never change the argmin'. Not born resolved -- needs an authority-ON or head-ablated arm -- hence Mode A, not Mode C.",
           "pre_registered_utc": "2026-09-11T16:40:57Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-1020_2026-09-11.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-1029"
+          ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-1029"
+            ],
+            "evidence_direction": "non_contributory",
+            "resolved_utc": "2026-09-14T19:11:18Z",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "epistemic_category": "standard",
+            "self_route_label": "H_selection_authority_bounded_supported_magnitude_test_underpowered",
+            "resolving_autopsy": "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14.json",
+            "basis": "CONFIRMED (failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, user gate 2026-09-14T22:32:04Z). Yoked 8-runner design, 5/5 seeds ready (both self-yokes 0 divergent ticks of 2624-2836; head-level rule-ablation flip 0.16-0.41; authority active 100 percent; 283-414 raw-identical co-fresh ticks per pair; authority_only divergence 0.34-0.81). Inert at native magnitude: rule-readout ablation changes E3's argmin on 0 of 1694 raw-identical co-fresh ticks and the sampled action on 0 of 13857 ticks (|bias| 0.0037-0.040 vs raw E3 score range 2.85-66.6; the bias is applied as-is with authority OFF, so this is a magnitude fact, not a structural one -- at x50 the whole readout moves the argmin on 31/1694). Consequential under modulatory selection authority (gain 0.5, basis range; realised scale factor 72-6543): ON-pair argmin divergence 0.014-0.261, 4/5 seeds >= 0.02; sampled-action consequence 0-7.5 percent; E3 never commits. Magnitude alone cannot suffice within the substrate's 0.1 tanh bound: MAG x50 (1.8x-20x beyond the bound) moved the rule-attributable argmin on 6/1694; the driver's 'magnitude_test_underpowered' suffix is correct only relative to authority's factor. Necessary-not-sufficient for the question, so met_elimination_bar stays false. Design rule for successors: read behaviour only with authority ON and co-summed modulatory channels (gated_policy) controlled, since authority ON vs OFF alone moves the argmin on 34-81 percent of ticks."
           }
         }
       ],
