@@ -1,0 +1,228 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_861i_inv050_mech091_commit_attribution_pinned_confirmation",
+  "run_id": "v3_exq_861i_inv050_mech091_commit_attribution_pinned_confirmation_20260914T121029Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-14T12:10:29Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-050",
+    "MECH-180"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-050": "unknown",
+    "MECH-180": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mover_6293b23_confirmed_full_protocol_reproduces_recorded",
+    "reading": "6293b23 carries the whole in-run f810969->17befb8c difference AND the anchors reproduce the recorded 861g/861e cells: the recorded 0.884 movement is attributable to 6293b23.",
+    "preconditions": [
+      {
+        "name": "anchor_pre_post_difference_present_in_run",
+        "kind": "readiness",
+        "description": "D(ANCHOR_PRE_f810969, ANCHOR_POST_17befb8c) must clear ANCHOR_DELTA_MIN: the effect to attribute has to exist in this run before C1/C2 can mean anything. Same statistic D the load-bearing criteria route on.",
+        "measured": 0.11153316700714966,
+        "threshold": 0.01,
+        "direction": "lower",
+        "control": "positive control = the two range endpoints, recorded apart at D=0.1115 (861g n10 cell vs 861e cell); floor pre-registered ~11x below that, not fitted to this run",
+        "certifies": "C1 and C2 (both compare against these anchors)",
+        "met": true
+      },
+      {
+        "name": "all_four_pins_verified_structural_marker_content",
+        "kind": "provenance",
+        "description": "every child cell passed verify_pin (structural + attr markers), the agent.py phase_reset() source marker, and the full ree_core/**/*.py blob comparison against git; a failure raises in the child and no manifest is written",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "02277a8b6fcfa1cdce2a6af3a2958a0005c1cb971c07e1e61fec6857e659f605",
+  "substrate_commit": {
+    "commit": "d25d342729cb38c8dfdd3b539214c3304f832c66",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "surprise_gated_replay": true,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_sleep_loop": true,
+    "use_mel_consumer": true,
+    "mel_reference": 2.5982329782371255e-05
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 4486.6505290489995,
+  "config": {
+    "env_base": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "use_proxy_fields": true
+    },
+    "arm": {
+      "arm_id": "ARM_3_HIGH_ON",
+      "level": 3,
+      "interval": 10,
+      "mel_on": true
+    },
+    "seed": 271,
+    "world_rule_shift_depth": 2,
+    "params": {
+      "steps": 90,
+      "conv_eps": 60,
+      "meas_cycles": 6,
+      "calib_draws": 10,
+      "calib_eps_per_draw": 6
+    },
+    "calib_draws_production": 10,
+    "pin_cells": [
+      {
+        "cell_id": "ANCHOR_PRE_f810969",
+        "role": "anchor_pre",
+        "ref": "f810969089fa8193959f49072e8aa1c2de0cb193",
+        "attr_markers": [
+          [
+            "ree_core.preservation.archive",
+            "MultiArchive",
+            false
+          ],
+          [
+            "ree_core.predictors.e3_selector",
+            "authority_spread_ratio",
+            false
+          ]
+        ],
+        "agent_phase_reset_lines": 1
+      },
+      {
+        "cell_id": "PIN_A_5f64a53f",
+        "role": "pin_a",
+        "ref": "5f64a53f14bb67c54d4c3239807fadb490f3d36c",
+        "attr_markers": [
+          [
+            "ree_core.preservation.archive",
+            "MultiArchive",
+            true
+          ],
+          [
+            "ree_core.predictors.e3_selector",
+            "authority_spread_ratio",
+            false
+          ]
+        ],
+        "agent_phase_reset_lines": 1
+      },
+      {
+        "cell_id": "PIN_B_6293b23",
+        "role": "pin_b",
+        "ref": "6293b2395248524f243364b49ea0ce52298f4200",
+        "attr_markers": [
+          [
+            "ree_core.preservation.archive",
+            "MultiArchive",
+            true
+          ],
+          [
+            "ree_core.predictors.e3_selector",
+            "authority_spread_ratio",
+            false
+          ]
+        ],
+        "agent_phase_reset_lines": 6
+      },
+      {
+        "cell_id": "ANCHOR_POST_17befb8c",
+        "role": "anchor_post",
+        "ref": "17befb8c46f0b7352f74a6b6e3ee4fc9715878fc",
+        "attr_markers": [
+          [
+            "ree_core.preservation.archive",
+            "MultiArchive",
+            true
+          ],
+          [
+            "ree_core.predictors.e3_selector",
+            "authority_spread_ratio",
+            true
+          ]
+        ],
+        "agent_phase_reset_lines": 6
+      }
+    ],
+    "equiv_rel_tol": 0.0001,
+    "anchor_delta_min": 0.01,
+    "factor_graded_floor": 1.0,
+    "use_mech122_spindle_content_selection": false
+  },
+  "seeds": [
+    271
+  ],
+  "z_goal_stream": {
+    "ticks_total": 11888,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": 0.0,
+    "writer_defect": true,
+    "n_agents": 4,
+    "goal_state_present": true
+  }
+}
