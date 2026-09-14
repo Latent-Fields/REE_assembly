@@ -1,0 +1,250 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1029_sd082_selection_authority_readout_consequence",
+  "run_id": "v3_exq_1029_sd082_selection_authority_readout_consequence_20260914T191118Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-14T19:11:18Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-082"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "H_selection_authority_bounded_supported_magnitude_test_underpowered",
+    "reading": "Inert at native magnitude and consequential under authority; the magnitude-only pair did not move the argmin, but authority's median scale factor exceeded MAG_GAIN, so that null does not separate magnitude from authority.",
+    "criteria_aggregation": "all",
+    "preconditions": [
+      {
+        "name": "ready_seed_count",
+        "kind": "readiness",
+        "description": "seeds passing all five per-seed readiness gates",
+        "measured": 5.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "self_yoke_bit_identical",
+        "kind": "readiness",
+        "description": "max divergent scored ticks (committed action or argmin) across both self-yoke pairs; worst seed",
+        "control": "identical runner yoked against itself on a private RNG stream",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "upper",
+        "offending_cell": "seed655",
+        "met": true
+      },
+      {
+        "name": "rule_readout_ablation_moves_head_argmax",
+        "kind": "readiness",
+        "description": "min over intact runners (OFF, ON, MAG) of the fraction of fresh selects on which the head's own argmax changes with rule_state zeroed; worst seed",
+        "control": "x1020._raw_ratio_and_flip on live candidate summaries",
+        "measured": 0.16228070175438597,
+        "threshold": 0.01,
+        "direction": "lower",
+        "offending_cell": "seed655",
+        "met": true
+      },
+      {
+        "name": "authority_engages_on_auth_on_runners",
+        "kind": "readiness",
+        "description": "min fraction of fresh selects with modulatory_authority_active; worst seed",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "offending_cell": "seed611",
+        "met": true
+      },
+      {
+        "name": "raw_identical_cofresh_sample_size",
+        "kind": "readiness",
+        "description": "min raw-identical co-fresh ticks over on/off/mag pairs; worst seed",
+        "measured": 283.0,
+        "threshold": 50.0,
+        "direction": "lower",
+        "offending_cell": "seed611",
+        "met": true
+      },
+      {
+        "name": "authority_reaches_selection",
+        "kind": "readiness",
+        "description": "argmin divergence between AUTH_OFF_INTACT and AUTH_ON_INTACT on raw-identical co-fresh ticks: authority must change SOME selections, or an ON-pair null is uninformative; worst seed",
+        "control": "authoring probe committed-action proxy 12/71 on seed 611 (the argmin statistic itself was not recorded by that probe)",
+        "measured": 0.3423728813559322,
+        "threshold": 0.02,
+        "direction": "lower",
+        "offending_cell": "seed622",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_on_pair_argmin_divergent": true,
+      "C2_off_pair_argmin_null": true,
+      "C3_interaction": true,
+      "C4_magnitude_alone_divergent": true
+    },
+    "combination_rule": "PASS iff >= 3 readiness-green seeds AND C1 (authority-ON pair argmin divergent) AND C2 (authority-OFF pair argmin null). DV counted on co-fresh ticks whose raw E3 scores are identical across the pair. C3 recorded; C4 (magnitude-only pair) suffixes the PASS label."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "14ff4a2a007426ad2d1bb141db50ec75408040d3b84f8eccdfc3f87e67adff17",
+  "substrate_commit": {
+    "commit": "64d9ee07c810bb0096b58063f5578d6fb8a6ad15",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "lateral_pfc_rule_readout_consumer": true,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "crf_cue_centering": true,
+    "use_gated_policy": true,
+    "e3.use_modulatory_selection_authority": true,
+    "use_modulatory_selection_authority": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 19074.525399635,
+  "config": {
+    "episodes": {
+      "warmup": 60,
+      "score": 60,
+      "steps": 48
+    },
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "schedule": {
+      "warmup": 60,
+      "score": 60,
+      "steps": 48
+    },
+    "alpha_world": 0.9,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "lateral_pfc_rule_readout_consumer": true,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "candidate_summary_source": "proposer_post_action",
+    "use_gated_policy": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_floor": 0.45,
+    "crf_maintenance_couple_to_theta": true,
+    "crf_tolerance_conflict_cap": 3,
+    "crf_cue_centering": true,
+    "crf_cue_baseline_alpha": 0.02,
+    "runners": {
+      "AUTH_OFF_INTACT": {
+        "authority": false,
+        "rule_readout_ablated": false,
+        "bias_gain": 1.0
+      },
+      "AUTH_OFF_ABLATED": {
+        "authority": false,
+        "rule_readout_ablated": true,
+        "bias_gain": 1.0
+      },
+      "AUTH_ON_INTACT": {
+        "authority": true,
+        "rule_readout_ablated": false,
+        "bias_gain": 1.0
+      },
+      "AUTH_ON_ABLATED": {
+        "authority": true,
+        "rule_readout_ablated": true,
+        "bias_gain": 1.0
+      },
+      "MAG_INTACT": {
+        "authority": false,
+        "rule_readout_ablated": false,
+        "bias_gain": 50.0
+      },
+      "MAG_ABLATED": {
+        "authority": false,
+        "rule_readout_ablated": true,
+        "bias_gain": 50.0
+      },
+      "AUTH_OFF_INTACT_SELF": {
+        "authority": false,
+        "rule_readout_ablated": false,
+        "bias_gain": 1.0
+      },
+      "AUTH_ON_INTACT_SELF": {
+        "authority": true,
+        "rule_readout_ablated": false,
+        "bias_gain": 1.0
+      }
+    },
+    "modulatory_authority_gain": 0.5,
+    "mag_gain": 50.0,
+    "head_trained": false,
+    "thresholds": {
+      "flip_fraction_floor": 0.01,
+      "authority_active_floor": 0.5,
+      "min_raw_identical_cofresh": 50,
+      "div_floor": 0.02,
+      "null_ceiling": 0.005,
+      "interaction_margin": 0.02
+    }
+  },
+  "seeds": [
+    611,
+    622,
+    633,
+    644,
+    655
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 40,
+    "goal_state_present": false
+  }
+}
