@@ -1,0 +1,208 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-14T11:14:17Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "red_team_pass": {
+    "performed": true,
+    "model": "opus (drafting session was Sonnet 5; per SKILL.md 7c, cross-model)",
+    "verdict": "CONTESTED",
+    "findings_file": "not preserved verbatim in this artifact (drafted in a scratch worktree file); summarized and incorporated below -- eight CONTESTED findings changed this final artifact's text relative to the pre-red-team draft (see change log), three MINOR-HYGIENE findings were fixed, F4 (no substrate build owed) was CONFIRMED-OK",
+    "core_conclusion_survives": true,
+    "change_log": [
+      "F1: 'harm_class_fraction_on / harm_class_fraction' IS a direct conjunct of pre-registered criterion C4 (driver line 511) -- corrected from 'not a PASS/FAIL criterion'",
+      "F2: C2, C3, C5 are TAUTOLOGIES of the implementation (dacc.py:237-238 early return when the OFF arm never sets dacc_saturation_enabled); only C4's live_record_calls>0/fifo_len_end>0 clauses are genuinely contingent -- the artifact no longer cites the ON-vs-OFF contrast's survival of the degeneracy check as evidence the effect 'is real' (that check is passed by code construction, not measurement)",
+      "F3: 'demonstrably attenuates PE' softened -- only pre-saturation _last_pe_unsaturated is recorded in either manifest; post-saturation PE and any downstream consequence (mode transition, dwell time) are not recorded. Attenuation is an entailment of pe_saturated=pe_capped*f_sat, not a direct observation",
+      "F5: 'deliberately ceiling-pinned by hazard density, not a defect' downgraded from established fact to under-determined -- mean_z_harm_a_norm varies 2.85x (0.510-1.452) across cells while harm_class_fraction stays exactly 1.0 in all 12 cells (ON and OFF), 10-29x above the 0.05 threshold; since the affective-harm encoder is never trained (driver docstring lines 40-45), the metric may be near-vacuous for ANY run with the harm stream on, not specifically evidence the hazard-density manipulation worked as intended. Recorded as an open sub-question for the recommended follow-up, not resolved here",
+      "F6: 'ecological' framing narrowed -- the recurrence stream V3-EXQ-729 exercises is constructed by the env design (constant regardless of policy, by the driver's own docstring), not emergent from agent behaviour; what is genuinely ecological/new is that the CALL SITE is live, not that the recurrence pattern arose organically",
+      "F7: gradedness citation corrected -- V3-EXQ-463's UC4_monotone_in_recurrences/UC5 test gradedness at the unit/arithmetic level (not loop-level synthetic injection); V3-EXQ-463b IS the loop-level synthetic-injection run but does NOT vary recurrence (forces the outcome class every step); V3-EXQ-468/468b-f are an unrelated SD-034/MECH-090 closure-control-plane behavioural cluster with no saturation-gradedness content. Corrected from a citation that named 463/468 together as loop-level graded evidence",
+      "F8: re_derive_brake.prior_substrate_ceiling_autopsies corrected from [] to the 5 actual hits the skill's own R1-R3 counting snippet returns for MECH-268 (3 of them literal category=substrate_ceiling, all on the SD-034 closure-control-plane behavioural question, NOT the live-wiring question this autopsy adjudicates)",
+      "F9: granularity-debt trigger note expanded -- failure_autopsy_V3-EXQ-468f_2026-06-20's finding ('C1's 3/3 pass is degenerate -- natural release, not closure-coupled') is a structurally similar vacuous-criterion pattern (a criterion passing without exercising the claim mechanism) though on a different specific criterion and mechanism (SD-034 closure authority, not dACC PE saturation). Flagged as borderline for /claim-synthesis rather than asserted either way",
+      "F10: claims.yaml's what_would_answer text is over-stated (claims 729 satisfies V3-EXQ-468's commitment-vs-contradiction falsifier 'in spirit', which 729 does not touch at all) and 'fully validated' overstates given zero loop-level gradedness evidence -- added recommended_what_would_answer_amendment and recommended_implementation_note_amendment (see below); this is a real amendment recommendation, not merely 'no further correction needed' as the pre-red-team draft said",
+      "F11: routing changed from 'governance-note-only' to 'governance-note-only + queue-experiment' -- per-step series (sat_factor, pe_unsaturated, z_harm_a_norm) existed at run time and were never recorded (recording-debt, SKILL.md Step 7 table), and a non-saturating-harm-regime follow-up is a cheap, named, complex(probe-gated) way to obtain the first ecological gradedness evidence. F4's 'no substrate build owed' stands unchanged",
+      "F12: recorded (not adjudicated) that epistemic_category alternatives (vacuous_pass / measurement_gap) were not weighed in the pre-red-team draft, for the human confirmer to consider explicitly at Step 8",
+      "F13/F14/F15/F16/F17: minor-hygiene and provenance items folded into four_layer_diagnosis / learning_extracted below (SD-034 closure never fired in the measured window; fifo_len_end=16=2x window is the buffer cap not the read window; lit-pull citation corrected to Bryden et al 2011 / 8 entries not 6; one ARM_OFF cell (run 2, seed 42) carries a different substrate_hash than the other 11 cells, breaking the bit-identical-weights premise for that cell and affecting its reuse-eligible baseline status; seed-44 ARM_OFF mean_pe_unsaturated is bit-identical to 17 digits across both runs' different machines despite OS-entropy env seeding and non-identical z_harm_a norms -- unresolved, flagged for follow-up once per-step recording exists)",
+      "F19: withdrawn the specific claim that using a ceiling rail (vs the values+floor form) would have changed the degeneracy reason string -- metric_is_degenerate tests spread<=eps BEFORE any floor/ceiling rail, so the string reads 'zero spread' either way; the broader point (a reader trusting only the reason-string wording could mistake a working design property for a broken metric) is kept",
+      "F20: added recommended_implementation_note_amendment -- the field was stale ('QUEUED'/'OUTSTANDING', predating the 2026-07-10 PASS) and the pre-red-team draft's change did not touch it"
+    ]
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_729_mech268_dacc_saturation_liveloop_20260710T065147Z_v3",
+      "queue_id": "V3-EXQ-729",
+      "claim_ids": ["MECH-268"],
+      "bears_on": [],
+      "failed_criterion": "none FAILED -- all five pre-registered criteria (C1-C5) read true in all 3 seeds. But three of the five (C2, C3, C5) are tautologies of the implementation (dacc.py:237-238's early return when dacc_saturation_enabled=False, an arm state the driver never flips in ARM_OFF) and carry no empirical content; C1 is arithmetic downstream of the FIFO recurrence ceiling once harm_class_fraction saturates. harm_class_fraction is a direct conjunct of C4 (driver line 511) and IS what the manifest's non-degeneracy self-report flags (constant=1.0, zero spread across seeds) -- the only genuinely contingent, informative criterion content is C4's live_record_calls>0 AND fifo_len_end>0 clauses, which measure whether DACC.record_outcome is actually called from the live select_action path.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact, narrowly -- MECH-268's live-wiring bar was tested and could express itself; MECH-268's registered GRADED (\"not a binary cap\") property was NOT tested here and remains untested in the live loop",
+        "biological_reference": "clear -- dACC PE habituation under repeated identical outcomes (Bryden et al 2011 ACC attention-for-learning-signals; Shenhav et al 2013/2016 EVC framework; Behrens et al 2007 volatility-adaptive learning rate); lit-pull complete, 8 entries in evidence/literature/targeted_review_connectome_mech_268/entries/ (claims.yaml's own '6 entries' text is stale -- 2 more were added 2026-05-16), all supports",
+        "prerequisites": "present and implemented (SD-032b, MECH-258, MECH-260, SD-034 per MECH-268's own implementation_note; F-C3 live-path wiring, ree-v3 c7fc045, 2026-07-09) -- but SD-034's closure/reset_outcome_history() is present-and-implemented, NOT exercised by this run: mean_sat_factor_final_third is exactly 0.25 over the full 150-step final third in all 6 ON cells, which requires n_rec==8 (FIFO fully saturated with the recurring class) at every single measured step, i.e. closure never reset the FIFO in the measured window of any cell",
+        "implementation": "complete -- DACCAdaptiveControl._saturation_factor (ree-v3/ree_core/cingulate/dacc.py:229-253) is fully implemented and live-wired; record_outcome is called from agent.py's select_action tail, confirmed via a counting spy (live_record_calls=50, fifo_len_end=16 in every ARM_ON cell of both runs; 0/0 in every ARM_OFF cell). fifo_len_end=16 is the FIFO's buffer cap (max_keep=window*2, dacc.py:264-269), not the read window (the saturation read itself slices the trailing 8, dacc.py:246) -- both numbers are correct, cited together to avoid a 16-vs-8 misread",
+        "environment": "UNDER-DETERMINED between two readings, not resolved by this run: (a) deliberately hazard-dense by design (num_hazards=6, size=7) so the chronic-harm precondition holds regardless of seed/policy, per the driver's own docstring; or (b) harm_class_fraction (fraction of steps with |z_harm_a| over a 0.05 threshold) is near-vacuous for ANY run with the affective-harm stream enabled, since the encoder is never trained (driver lines 40-45, 'z_harm_a is a fixed projection of harm_obs_a') and the manifests show z_harm_a magnitude varying 2.85x across cells (0.510-1.452) while the fraction never moves off 1.0 even to 3 decimal places -- the fraction is 10-29x above its own threshold and shows zero sensitivity to the magnitude that does vary. Both readings are consistent with the recorded data; distinguishing them needs a run with EVAL_HAZARDS lowered or the threshold raised (see routing)",
+        "measurement": "adequate for the narrow live-wiring question (C4's calls/fifo clauses); NOT adequate for the claim's registered graded/adapter property -- sat_factor's ON-arm value (0.25, bit-identical in all 6 seed-cells x 2 runs) is an arithmetic consequence of n_rec pinned at the window length once harm_class_fraction saturates (f_sat=1/(1+0.5*(8-2))=0.25, ree-v3/ree_core/cingulate/dacc.py:245-252, exact in binary floating point, independently corroborated by V3-EXQ-463's UC4_monotone_in_recurrences ladder at excess=6), not a measured seed/behaviour-sensitive quantity. Also: only PRE-saturation PE (_last_pe_unsaturated, dacc.py:221, set before the sat_factor multiply) is recorded in either manifest -- no post-saturation PE and no downstream consequence (mode transition, dwell time, a rumination proxy) is written anywhere, so 'saturation attenuates PE' is an entailment of the pe_saturated=pe_capped*f_sat formula, not a direct observation in this run's own data",
+        "integration": "coupled and stable for the live-wiring path specifically -- spy-confirmed end to end (sense -> generate_trajectories -> select_action -> record_outcome -> DACC FIFO -> saturation factor), independently reproduced on 2 machines (ree-cloud-4, DLAPTOP-4.local), 3 seeds each, same day. One provenance anomaly: 11 of 12 arm-cells across both runs carry substrate_hash 80c468f3964c...; the 113825Z run's seed-42 ARM_OFF cell alone carries a different hash (7dfebe5cf458...) -- since run_seed executes OFF then ON per seed in order 42,43,44, this means the ree-v3 tree changed under the run after its first cell, breaking the driver's own 'training identical to ARM_OFF -> bit-identical weights' premise for that one seed/run, and that cell is stamped reuse_eligible:true as the designated minted OFF baseline -- a future consumer could cache-HIT a baseline computed against a different substrate than the other 11 cells on record. Flagged for the record; does not change this autopsy's verdict (the affected cell's own criteria still pass and are not the odd one out numerically)",
+        "scale": "adequate -- P0 warmup converged (p0_converged:true, p0_aborted:false) in all 6 cells of both runs"
+      },
+      "biological_reference": {
+        "closest_mechanism": "primate/rodent dACC prediction-error habituation to repeated identical outcomes (Bryden et al 2011 ACC attention for learning signals; Shenhav et al 2013/2016 EVC value-of-control framework; Behrens et al 2007 volatility-adaptive ACC learning-rate signal)",
+        "dependencies": ["SD-032b (dACC-analog PE signal)", "MECH-258 (dACC PE mechanism)", "SD-034 (closure operator -- present but not exercised in this run's measured window)"],
+        "is_formal_import": false,
+        "divergence": "none newly found -- the registered residual (which dACC channel saturates: pe vs surprise vs commitment vs salience, per Quilodran 2008) predates this run and is unaffected by it",
+        "lit_status": "present (8 entries, targeted_review_connectome_mech_268; claims.yaml's '6 entries' text is stale)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "[2026-09-14 failure-autopsy, V3-EXQ-729, both runs; red-team CONTESTED, verdict incorporated] GFLAG-0070 adjudicated, NARROWLY: a PASS carrying non_degenerate:false CAN count as genuine evidence for MECH-268's live-wiring bar, but only for what V3-EXQ-729 actually measured -- narrower than what_would_answer currently states. Of the five pre-registered criteria, C2 (OFF sat>=0.99), C3 (ON<OFF) and C5 (OFF gating) are TAUTOLOGIES of the implementation (dacc.py:237-238's early return when dacc_saturation_enabled=False, an arm state never flipped in ARM_OFF) and carry no empirical content; C1 (ON sat<0.95) is arithmetic once the FIFO saturates. The only genuinely contingent, informative criterion is C4's live_record_calls>0 AND fifo_len_end>0 clauses -- which DO establish, for the first time, that DACC.record_outcome is called from the live agent.py select_action tail (F-C3 wiring), not only from V3-EXQ-463b's synthetic per-step injection. That live-wiring result is real and reproduced independently on 2 machines, 3 seeds each. What this run does NOT establish, contrary to the current what_would_answer text: (1) it does NOT satisfy V3-EXQ-468's commitment-vs-contradiction falsifier 'in spirit' -- V3-EXQ-729 contains no commitment/counter-evidence manipulation of any kind; the 468-series is an unrelated SD-034/MECH-090 closure-control-plane behavioural cluster; (2) it is NOT graded evidence -- the ON-arm sat_factor (0.25 in all 6 seed-cells) is an arithmetic constant (f_sat=1/(1+0.5*(8-2))=0.25, dacc.py:245-252) once the (separately-flagged-degenerate) chronic-harm precondition saturates n_rec at the FIFO window length, independent of behaviour or seed; (3) it does NOT measure post-saturation PE or any downstream consequence -- only pre-saturation PE is recorded; (4) the claim's own registered distinguishing property ('graded learning-rate adapter, NOT a binary cap', evidence_quality_note lit-pull rec #1 / implementation_note) has ZERO loop-level or ecological evidence to date -- gradedness is validated only at the unit/arithmetic level (V3-EXQ-463 UC4_monotone_in_recurrences), never in the live loop. what_would_answer's 'ESTABLISHED (do not re-test)'/'fully validated' language should be qualified (see recommended_what_would_answer_amendment); implementation_note's stale 'QUEUED'/'OUTSTANDING' language (predates the 2026-07-10 PASS) should also be updated (see recommended_implementation_note_amendment). Full diagnosis + red-team pass: failure_autopsy_V3-EXQ-729_2026-09-14. Recommended follow-up: /queue-experiment for a non-saturating-harm-regime successor (lower EVAL_HAZARDS or raise contextual_safety_harm_threshold so harm_class_fraction can vary; add a post-saturation PE readout; record per-step series) to obtain the first ecological gradedness evidence -- this is a NEW measurement question, not a same-ceiling re-derive of MECH-268's 3 prior substrate_ceiling autopsies (all on the unrelated SD-034 closure-control-plane behavioural question).",
+      "recommended_what_would_answer_amendment": "Replace claims.yaml MECH-268 what_would_answer point 3 (currently: 'ECOLOGICAL LEVEL (this claim's own previously-\"OUTSTANDING\" bar): V3-EXQ-729 PASSED, evidence_direction: supports, on 2026-07-10, replicated same day. It makes no manual record_outcome call, proves the _outcome_history FIFO is populated by the live select_action path via a counting spy, and confirms sat_factor < 0.95 (ON) vs ~1.0 (OFF) under sustained chronic-harm exposure. This satisfies the secondary falsifier's spirit (V3-EXQ-468's commitment-vs-contradiction question) at the ecological rather than synthetic-injection level.') with: 'ECOLOGICAL LEVEL (this claim's own previously-\"OUTSTANDING\" bar) -- NARROWED 2026-09-14 (failure_autopsy_V3-EXQ-729_2026-09-14, GFLAG-0070): V3-EXQ-729 PASSED, evidence_direction: supports, on 2026-07-10, replicated independently same day on 2 machines. It makes no manual record_outcome call and proves the _outcome_history FIFO is populated by the live select_action path via a counting spy (F-C3 wiring, ree-v3 c7fc045) -- this is real, reproduced, and is what this bar was registered to test. It does NOT satisfy V3-EXQ-468's commitment-vs-contradiction falsifier \"in spirit\" (729 has no commitment/counter-evidence manipulation; that prior claim is withdrawn) and it does NOT demonstrate graded saturation -- the observed sat_factor < 0.95 (ON, exactly 0.25 in every cell) vs ~1.0 (OFF, tautological: dacc_saturation_enabled stays False in that arm) is an arithmetic consequence of the FIFO's recurrence-count ceiling once the chronic-harm precondition itself saturates (also flagged non_degenerate:false), not a measured graded effect. Gradedness -- this claim's registered distinguishing property vs a binary cap -- remains validated only at the unit/arithmetic level (V3-EXQ-463 UC4_monotone_in_recurrences), never in the live agent loop.'",
+      "recommended_implementation_note_amendment": "Append to claims.yaml MECH-268 implementation_note (which still reads '...V3-EXQ-729 ... is QUEUED to close this gap ... Until V3-EXQ-729 lands a PASS the ecological demonstration is OUTSTANDING', stale since the 2026-07-10 PASS): '[2026-09-14 failure-autopsy] V3-EXQ-729 landed PASS x2 on 2026-07-10 (both machines, all seeds) -- the live-wiring gap this note describes as OUTSTANDING is closed. See failure_autopsy_V3-EXQ-729_2026-09-14 for what specifically was and was not established (live wiring: yes; graded/adapter behaviour in the live loop: no, still untested).' Also replace 'the mechanism is fully validated but not yet live by default' (production-default note) with 'the mechanism is validated for live-path wiring and binary on/off firing; graded ecological sensitivity is untested; not yet live by default'.",
+      "per_claim_recommendation": {
+        "MECH-268": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "MECH-268 currently carries no epistemic_category field, and what_would_answer/implementation_note both overstate what V3-EXQ-729 established (see recommended_evidence_quality_note, recommended_what_would_answer_amendment, recommended_implementation_note_amendment) -> epistemic_category: standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays provisional (mechanism-level and wiring-level bars were already established pre-2026-07-10; this autopsy narrows, not reopens, the ecological-level bar; no demotion is warranted since the live-wiring result is genuine positive evidence)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "No substrate gap found -- attacked directly in the red-team pass (F4, CONFIRMED-OK). dacc.py, agent.py's live wiring, and _metrics.py are all correctly implemented; the gap this run exposes is experimental/measurement (see recommended queue-experiment follow-up below), not substrate.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "severity": null,
+        "substrate_paths": [],
+        "failure_record_entry": null,
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_SD-034-closure-cluster_2026-06-12 (category: substrate_ceiling)",
+          "failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 (category: standard)",
+          "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04 (category: substrate_ceiling)",
+          "failure_autopsy_V3-EXQ-468e_2026-06-18 (category: substrate_ceiling)",
+          "failure_autopsy_V3-EXQ-468f_2026-06-20 (category: standard/no_change)"
+        ],
+        "literal_count_meets_threshold": true,
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "brake_reasoning": "3 of the 5 prior MECH-268-tagged autopsies carry a literal substrate_ceiling category, meeting the N=2 threshold -- but ALL 5 concern the SD-034 closure-control-plane BEHAVIOURAL question (commit/decommit authority, beta-gate engagement), a different substrate gap from what this autopsy addresses (dACC live-wiring + graded-sensitivity measurement, already confirmed complete at the implementation level -- F4). The recommended queue-experiment follow-up (non-saturating harm regime) targets a NEW measurement question, not a same-ceiling re-derive of the SD-034 closure-control-plane cluster, so the brake correctly does not fire against it. Recorded here so a future reader auditing this field sees the real prior-autopsy list rather than an empty one."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "live_hypotheses": [
+          "H1: harm_class_fraction is near-vacuous for any run with the harm stream enabled (untrained encoder, magnitude irrelevant to the binary threshold crossing)",
+          "H2: the eval env's hazard density genuinely and specifically guarantees the chronic-harm precondition as designed"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H1/H2 discrimination", "axis": "environment", "sketch": "re-run with EVAL_HAZARDS lowered (e.g. 1-2) or contextual_safety_harm_threshold raised, and read whether harm_class_fraction moves off 1.0"},
+          {"hypothesis": "gradedness (claim's registered distinguishing property)", "axis": "measurement", "sketch": "same non-saturating regime, add a post-saturation PE readout and per-step recording so sat_factor becomes a measured rather than arithmetic quantity"}
+        ],
+        "note": "Not a formal GOV-FANOUT-1 discrimination fan-out (single unambiguous next probe covers both H1/H2 and the gradedness gap in one design) -- recorded as a design sketch for the /queue-experiment chip, not a portfolio."
+      },
+      "learning_extracted": [
+        "check_degeneracy's zero-spread test (metric_is_degenerate, _metrics.py:357-372) fires on spread<=eps BEFORE any floor/ceiling rail is consulted -- so a ceiling-saturated precondition (every seed pinned at a metric's maximum, by design or by near-vacuity) reads identically to a genuinely dead/broken metric in the reason string ('zero spread'), and only the manifest's own degenerate_metrics dict plus the driver's docstring can tell a reader which case they are looking at. This run's harm_class_fraction_on flag is exactly this ambiguity: consistent with EITHER 'the hazard-dense env worked as designed' OR 'the metric cannot distinguish any run with the harm stream on', and this autopsy could not resolve which from the recorded data alone (see environment row and fanout_recommendation)",
+        "A run-level scoring_excluded:degenerate tag on the indexer is coarser than the underlying defect: only ONE of the two load-bearing metrics check_degeneracy evaluated (harm_class_fraction_on) is degenerate; the paired ON-vs-OFF sat_factor contrast passes the SAME check, but passes it BY CONSTRUCTION (the OFF value is a hard-coded early return, dacc.py:237-238, and the ON value is the arithmetic constant this note derives) -- metric_groups_are_degenerate only asks whether the two arm members differ, so it could never have flagged this pairing regardless of whether either arm's value was itself measured or structural. A failure_autopsy recovering a run's qualitative interpretability from a coarse scoring_excluded tag must therefore separately check whether each surviving criterion carries genuine empirical content (per-criterion, not per-pass/fail) -- see the four_layer_diagnosis's per-criterion breakdown",
+        "The recurring 0.25 ON-arm sat_factor (bit-identical across all 3 seeds x 2 runs x independent machines) is exactly explained by the saturation arithmetic once the chronic-harm precondition saturates: n_rec capped at SAT_WINDOW=8, excess=SAT_WINDOW-SAT_GRACE=6, f_sat=1/(1+SAT_STRENGTH*excess)=1/(1+0.5*6)=0.25 (ree-v3/ree_core/cingulate/dacc.py:245-252), independently corroborated by V3-EXQ-463's UC4_monotone_in_recurrences ladder at the same excess value. A reader who does not know this arithmetic could easily (and wrongly) read a bit-identical cross-seed, cross-machine result as evidence of a hardcoded/fabricated readout rather than a predictable consequence of a saturating precondition -- worth citing explicitly in any future reference to this run"
+      ],
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "granularity_debt_cluster.py MECH-268: 5 prior targets, alignment distribution intact=2, other=2, unstamped=1 -- no target reads 'weakened' in its stamped claim_alignment, so the trigger does not fire per the skill's strict rule. HOWEVER, on reading the 'other'/'unstamped' prose as the tool's own printed warning requires: failure_autopsy_V3-EXQ-468f_2026-06-20 reads 'C1's 3/3 pass is degenerate (natural release, not closure-coupled)' -- a structurally similar vacuous-criterion pattern (a criterion passing without exercising the claim mechanism it is meant to test) to this autopsy's own C2/C3/C5-tautology finding, though on a different specific criterion (closure-coupled release vs saturation magnitude) and different specific mechanism (SD-034 closure authority vs dACC PE saturation itself). Borderline: flagging for /claim-synthesis to weigh at the Step 8 gate rather than asserting the trigger either way unilaterally."
+      },
+      "routing": "governance-note-only + queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_729_mech268_dacc_saturation_liveloop_20260710T113825Z_v3",
+      "queue_id": "V3-EXQ-729",
+      "claim_ids": ["MECH-268"],
+      "bears_on": [],
+      "failed_criterion": "none FAILED -- same read as the first target. All five criteria pass in all 3 seeds; C2/C3/C5 tautological, C1 arithmetic, C4's live wiring clauses are the genuine content.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact, narrowly -- identical read to the first run; independent replication on DLAPTOP-4.local vs ree-cloud-4, same day, not a requeue of the same run",
+        "biological_reference": "clear -- shared lit basis with the first target",
+        "prerequisites": "present, SD-034 not exercised -- same as the first target",
+        "implementation": "complete -- same as the first target, PLUS a provenance anomaly local to this run: the seed-42 ARM_OFF cell's substrate_hash (7dfebe5cf458...) differs from all 11 other cells across both runs (80c468f3964c...). Since run_seed executes seed 42's OFF cell first, this means the ree-v3 tree changed under the run after that first cell -- breaking the 'training identical to ARM_OFF -> bit-identical weights' premise for seed 42 of this run specifically, and that cell is the designated reuse_eligible:true minted OFF baseline",
+        "environment": "under-determined -- same open H1/H2 question as the first target",
+        "measurement": "adequate for C4's wiring clauses; ON-arm sat_factor (0.25) is the same arithmetic ceiling artifact as the first run",
+        "integration": "coupled and stable -- same spy-confirmed live wiring, independently reproduced; see the substrate_hash anomaly above",
+        "scale": "adequate -- P0 warmup converged in all 6 cells"
+      },
+      "biological_reference": {
+        "closest_mechanism": "same as the first target",
+        "dependencies": ["SD-032b", "MECH-258", "SD-034 (present, not exercised)"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present (8 entries)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "See the first target's recommended_evidence_quality_note -- both runs are adjudicated jointly, one claims.yaml edit covers both.",
+      "recommended_what_would_answer_amendment": "See the first target -- one amendment covers both runs.",
+      "recommended_implementation_note_amendment": "See the first target -- one amendment covers both runs.",
+      "per_claim_recommendation": {
+        "MECH-268": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "STANDS -- covered by the first target's change (one evidence_quality_note / what_would_answer / implementation_note / epistemic_category edit covers both runs, cited together)",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "severity": null,
+        "substrate_paths": [],
+        "failure_record_entry": null,
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_SD-034-closure-cluster_2026-06-12 (category: substrate_ceiling)",
+          "failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 (category: standard)",
+          "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04 (category: substrate_ceiling)",
+          "failure_autopsy_V3-EXQ-468e_2026-06-18 (category: substrate_ceiling)",
+          "failure_autopsy_V3-EXQ-468f_2026-06-20 (category: standard/no_change)"
+        ],
+        "literal_count_meets_threshold": true,
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "brake_reasoning": "see the first target -- identical reasoning applies"
+      },
+      "learning_extracted": [
+        "Second independent replication (different machine, same day) confirms the first run's arithmetic-ceiling reading was not a single-machine artifact -- both runs land the identical bit-exact 0.25 ON-arm sat_factor and 1.0 OFF-arm value via the identical mechanism, in all 6 cells combined.",
+        "This run's seed-42 ARM_OFF cell carries a different substrate_hash than the other 11 cells across both runs -- see four_layer_diagnosis.implementation. Flagged for provenance; does not change the verdict (that cell's own criteria are not numerically anomalous)."
+      ],
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "see the first target -- same claim, same cluster read"
+      },
+      "routing": "governance-note-only + queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "open_data_note": "Unresolved, flagged for follow-up rather than resolved here (per the red-team pass): seed-44 ARM_OFF's mean_pe_unsaturated_final_third is bit-identical to 17 significant digits (5.8896684646606445) across BOTH runs, on different machines (linux-x86_64-py3.10 vs darwin-arm64-py3.13), despite OS-entropy env seeding (_ENV_SEED_BASE=None) and non-identical mean_z_harm_a_norm between the two runs' seed-44 OFF cells (delta ~1.3e-9) -- meaning the underlying step sequences are not identical, which makes a coincidental 17-digit match on a 150-term running mean implausible, but dacc_pe_cap defaults to None (no clamp) and could not be explained from the artifacts on disk (no per-step series recorded, see recommended queue-experiment follow-up). Recorded as a loose thread for whoever next touches this run family, not adjudicated."
+}
