@@ -132,6 +132,8 @@ def analyze(path):
         return None
     running = {c: 0 for c in CATS}
     xs, ys, snaps = [], [], []
+    cache_read = cache_create = fresh_input = 0
+    turn_read_share = []   # per-turn cache_read / billed input, in turn order
     out_tokens = 0
     entrypoint = None
     started = None
@@ -159,13 +161,19 @@ def analyze(path):
         if rec.get("type") == "assistant":
             m = rec.get("message", {})
             u = m.get("usage") or {}
-            tot = ((u.get("input_tokens") or 0) + (u.get("cache_read_input_tokens") or 0)
-                   + (u.get("cache_creation_input_tokens") or 0))
+            ui = u.get("input_tokens") or 0
+            ur = u.get("cache_read_input_tokens") or 0
+            uc = u.get("cache_creation_input_tokens") or 0
+            tot = ui + ur + uc
             if tot > 0:
                 xs.append(sum(running.values()))
                 ys.append(tot)
                 snaps.append(dict(running))
                 out_tokens += u.get("output_tokens") or 0
+                fresh_input += ui
+                cache_read += ur
+                cache_create += uc
+                turn_read_share.append(ur / float(tot))
             for b in m.get("content", []) or []:
                 if isinstance(b, dict) and b.get("type") == "tool_use":
                     if "docs/substrate/" in json.dumps(b.get("input") or {}):
@@ -197,6 +205,22 @@ def analyze(path):
         "billed_total_measured": sum(ys),
         "output_tokens": out_tokens,
         "nested": nested, "substrate_reads": substrate_reads,
+        # --- prompt-cache behaviour (WI-I). Realized cache performance, measured
+        # from the same usage blocks the OLS fit above already consumes. Independent
+        # of the fit: these are raw API counters, not estimates.
+        "cache_read_tokens": cache_read,
+        "cache_creation_tokens": cache_create,
+        "fresh_input_tokens": fresh_input,
+        "cache_read_share": cache_read / float(cache_read + cache_create + fresh_input)
+                            if (cache_read + cache_create + fresh_input) > 0 else None,
+        "cache_creation_share": cache_create / float(cache_read + cache_create + fresh_input)
+                                if (cache_read + cache_create + fresh_input) > 0 else None,
+        # A turn with cache_read == 0 re-paid for the whole prefix. The FIRST turn of a
+        # session has nothing to hit, so it is never a miss.
+        "cache_misses": sum(1 for s in turn_read_share[1:] if s <= 0.0),
+        "cache_miss_turns_considered": max(0, len(turn_read_share) - 1),
+        "med_turn_cache_read_share": st.median(turn_read_share) if turn_read_share else None,
+        "turn_cache_read_share": turn_read_share,
     }
 
 
@@ -265,6 +289,42 @@ def main():
     for n, v in sorted(items, key=lambda x: -x[1]):
         if v > 0:
             print(f"  {n:48s} {100*v/grand:6.2f}%  {v:>14,.0f}")
+
+    # --- PROMPT CACHE (WI-I) -------------------------------------------------
+    # Added 2026-09-14. Every line above this block is unchanged on purpose: the
+    # 2026-09-14T08:00Z re-measure ran against the pre-WI-I script and the two
+    # outputs must stay diffable. This section only ADDS.
+    c_read = sum(r["cache_read_tokens"] for r in results)
+    c_make = sum(r["cache_creation_tokens"] for r in results)
+    c_fresh = sum(r["fresh_input_tokens"] for r in results)
+    c_billed = c_read + c_make + c_fresh
+    pooled = [s for r in results for s in r["turn_cache_read_share"]]
+    miss = sum(r["cache_misses"] for r in results)
+    miss_of = sum(r["cache_miss_turns_considered"] for r in results)
+    sess_share = [r["cache_read_share"] for r in results if r["cache_read_share"] is not None]
+    sess_med = [r["med_turn_cache_read_share"] for r in results
+                if r["med_turn_cache_read_share"] is not None]
+
+    print("\n--- PROMPT CACHE (realized) ---")
+    print("  Complementary to the split above: that measures WHAT is in the input,")
+    print("  this measures how much of it was served from cache rather than re-billed")
+    print("  at full rate. Denominator is the same billed input total.")
+    if c_billed <= 0:
+        print("  (no usage data)")
+    else:
+        print(f"  cache READ     {100*c_read/c_billed:6.2f}%  {c_read:>14,.0f}")
+        print(f"  cache CREATION {100*c_make/c_billed:6.2f}%  {c_make:>14,.0f}")
+        print(f"  uncached input {100*c_fresh/c_billed:6.2f}%  {c_fresh:>14,.0f}")
+        print(f"  per-turn cache-read share: median {100*st.median(pooled):.2f}%"
+              f"  (pooled over {len(pooled):,} turns)")
+        print(f"  per-SESSION cache-read share: median {100*st.median(sess_share):.2f}%"
+              f"  min {100*min(sess_share):.2f}%  max {100*max(sess_share):.2f}%")
+        print(f"  per-session median-of-medians: {100*st.median(sess_med):.2f}%")
+        print(f"  MISSES (cache_read == 0 on a non-first turn): {miss:,} of {miss_of:,} turns"
+              f"  ({(100.0*miss/miss_of) if miss_of else 0:.2f}%)")
+        nmiss = [r for r in results if r["cache_misses"] > 0]
+        print(f"  sessions with >=1 miss: {len(nmiss)}/{len(results)}"
+              + (f"  worst {max(r['cache_misses'] for r in nmiss)} misses" if nmiss else ""))
 
     print("\n--- nested_memory injections (the WI-1 target) ---")
     agg = collections.defaultdict(list)
