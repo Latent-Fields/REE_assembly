@@ -2974,3 +2974,7 @@ One line per hourly tick. ASCII only.
 2026-09-14T09:52:09Z workset committed (regen -- 251 items, 30 ready, 0 in flight)
 2026-09-14T09:51:09Z SPAWN IGW-20260914-240 skill=/queue-experiment prio=40 uuid=fda6b077-50fe-465e-81b1-5bd42e9246f6 pid=32130 worktree=igw-240-proposal-for-mech-014
 2026-09-14T10:00:29Z auto-defer igw-240-proposal-for-mech-014 hash=50c5345bd50d for 48h (complete)
+2026-09-14T10:01:34Z complete igw-240-proposal-for-mech-014 spawned->completed outcome=USEFUL_LANDED: MECH-014 judged substrate-blocked (all three design constraints are receiver-sid
+2026-09-14T10:56:00Z GC removed worktree igw-240-proposal-for-mech-014 (removed; branch deleted)
+2026-09-14T10:55:33Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-14T10:56:24Z workset committed (regen -- 251 items, 30 ready, 0 in flight)
