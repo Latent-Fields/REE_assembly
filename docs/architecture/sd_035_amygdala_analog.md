@@ -88,7 +88,7 @@ BLAAnalog.tick(
 
 Multiplies HippocampalModule write strength at encoding time.
 
-**Retrieval bias (MECH-074b).** Per-trace weight vector `w_i = 1 + alpha * arousal_tag_i`, with `alpha in [0.3, 1.0]`. Requires HippocampalModule to carry a per-trace `arousal_tag` field populated at encoding time. Non-transient: BLA contribution grows with trace age (amygdala-MTL connectivity increases from 20 min to 1 week, LaBar & Cabeza 2006).
+**Retrieval bias (MECH-074b).** Per-trace weight vector `w_i = 1 + alpha * arousal_tag_i`, with `alpha in [0.3, 1.0]`. Requires HippocampalModule to carry a per-trace `arousal_tag` field populated at encoding time. Non-transient: BLA contribution grows with trace age (amygdala-MTL connectivity increases from 20 min to 1 week, LaBar & Cabeza 2006). This additive rule is always `>= 1` at the default `retrieval_bias_compensation = 0.0`, so it targets a RELATIVE central/gist advantage only -- it cannot on its own produce the ABSOLUTE peripheral-detail suppression seen under amygdala lesion (Adolphs et al. 2001). `retrieval_bias_compensation` (0.1-0.3) is the wired-but-disabled lever for that, left at 0.0 because the one direct behavioural test of absolute suppression (Sutherland & Mather 2012) found low-salience recall unchanged, not impaired. Decision + evidence: claim_synthesis_MECH-074b_2026-09-09.md residual R2.
 
 **Remap signal (MECH-074d).** Fires when `||z_harm_a - z_harm_a_pred||` exceeds ~1 SD of the running harm-PE distribution **AND** a predictor-attribution head flags at least one candidate latent code. Both conditions required. Binary per-code shape; partial (~1/3) remap amplitude (Moita 2004).
 
