@@ -11,7 +11,7 @@
 - **Dry-run gate (Step 2a):** `check_dry_run_citations.py V3-EXQ-1027 V3-EXQ-1029 V3-EXQ-1037` -> 0 dry cited, 0 dry in named families. Both manifests `dry_run: false`, non-dry run_id shape. `validate_experiments.py --checks dry_run_unreachable_criterion` silent on both drivers. `excluded_dry_run_ids: []`.
 - **Recording provenance:** `validate_recording.py` -> 2 complete, 0 always-core gaps. 1027: ree-v3 42c03b1485, substrate_hash 0c2fcc38f0ce..., ree-cloud-2, 4960.7 s. 1029: ree-v3 64d9ee07c8, substrate_hash 14ff4a2a0074..., ree-cloud-2, 19074.5 s. The two legs ran on different main commits; `git diff --name-only 42c03b1485 64d9ee07c8` touches only `experiment_queue.json` and three new drivers (1012a, 1037, 1038), no `ree_core/` file, so cross-leg inference is safe (red-team attack (d), failed).
 - **Routing (confirmed):** 1027 `governance-note-only`; 1029 `queue-experiment` (one successor run attached to the alive registry leg H1, queued only after 1028). Substrate queue: `amend` SD-082 (chain extension + two failure records + disposition of the open 1020 record's C2 clause; severity/paths unchanged). No build owed. No lit-pull owed.
-- **Step 7c red team:** CONTESTED (claude-opus-5, cross-model), seven findings, all independently verified and folded in -- section 11.
+- **Step 7c red team:** CONTESTED (claude-opus-5, cross-model), seven findings, all independently verified and folded in -- section 11; findings landed verbatim as `failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14_redteam.md`.
 
 ---
 
