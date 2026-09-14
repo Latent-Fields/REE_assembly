@@ -38,30 +38,22 @@ explorer data until the established redaction review is complete. Never expose
 future tests, queue details, or unreviewed run identities to solve a freshness
 problem.
 
-**Editing anything under `evidence/` — or `docs/claims/claims.yaml` — requires an active TASK_CLAIMS entry.** The runner heartbeat (`ree-v3/runner_remote_control.py:push_heartbeat`) does `git pull --rebase --autostash` against this repo every minute under `--remote-control`. With no active claim listed in `REE_Working/TASK_CLAIMS.json`, the autostash interaction can silently revert uncommitted edits across multiple ticks. Three incidents to date: (1) 5 EXQ-232 ARC-026 supersession edits to `evidence/experiments/` made 2026-04-29 reverted by 2026-05-01 with no trace in git history; (2) `evidence/planning/substrate_queue.json` MECH-204 design_doc field edit made 2026-05-08 ~18:25Z silently reverted with the same signature; (3) 2026-06-14 IGW window — an autostash cycle transiently swept a session's (ABM-1/Q-060) uncommitted `docs/claims/claims.yaml` edits out of the working tree (briefly showing it clean) then restored them a tick later (no data lost that time, same shape as the others). The heartbeat now skips its push entirely when an active claim covers ANY path under `evidence/` or `docs/claims/` (originally just `evidence/experiments/`; broadened to the `evidence/` prefix on 2026-05-08 after the planning incident; broadened again 2026-06-14 to add `docs/claims/` since claims.yaml is the most-contended governance file and lives outside the `evidence/` prefix). Register the claim *before* opening any evidence or claims.yaml file for editing, and either commit or close the claim before walking away — uncommitted edits left without an open claim remain vulnerable.
+**Editing anything under `evidence/` — or `docs/claims/claims.yaml` — requires an active TASK_CLAIMS entry.** The runner heartbeat (`ree-v3/runner_remote_control.py:push_heartbeat`) does `git pull --rebase --autostash` against this repo every minute under `--remote-control`, and with no active claim covering the path, the autostash interaction has silently reverted uncommitted edits before (three incidents 2026-04-29 through 2026-06-14; see `git log -p` on this line for the details). The heartbeat now skips its push entirely when an active claim covers ANY path under `evidence/` or `docs/claims/`. Register the claim *before* opening any evidence or claims.yaml file for editing, and either commit or close the claim before walking away — uncommitted edits left without an open claim remain vulnerable.
 
 ## Governance Pipeline
 
 Run `scripts/governance.sh` from repo root — it runs all steps in order:
 ```
 bash scripts/governance.sh          # V3 (default)
-bash scripts/governance.sh --v2     # V2 (also syncs from ree-v2/)
 ```
 
-Or manually, from repo root:
-
-**V3 pipeline** (V3 results write directly to `evidence/experiments/` — no sync step):
+Or manually, from repo root (V3 results write directly to `evidence/experiments/` — no sync step):
 ```
 python evidence/experiments/scripts/build_experiment_indexes.py
 python scripts/generate_pending_review.py
 ```
 
-**V2 pipeline** (syncs from `../ree-v2/evidence/experiments/` first):
-```
-python evidence/experiments/scripts/sync_v2_results.py
-python evidence/experiments/scripts/build_experiment_indexes.py
-python scripts/generate_pending_review.py
-```
+Old paths: `governance.sh --v2` / `sync_v2_results.py` synced from `../ree-v2/`, which is CLOSED (`REE_Working/CLAUDE.md` repo map) — do not use.
 
 **After editing `docs/claims/claims.yaml`** (governance decisions, new claims, status updates):
 ```
@@ -179,11 +171,9 @@ Resolved values + dispatch:
 | `out_of_domain` | EXPLICIT only -- the question is empirical but its test domain is outside REE (clinical cohort, pharmacology, etc.); no substrate at any level helps | promote/demote suppressed; `narrow_open_question` suppressed. These claims may belong as `research_anchor` or `literature_synthesis` claim_type rather than `open_question`. |
 | `governance_rule` | EXPLICIT only -- a standing governance gate (welfare / release / legal / security / process policy), NOT a testable mechanism | promote/demote suppressed; `narrow_open_question` suppressed; conflict alerts may fire. Used for the SENT-* / GOV-* ethics-perimeter claims (paired with `claim_type: governance_rule`, which is outside `SUBSTRATE_CLAIM_TYPES` so it does not enter the substrate-status map). The right response is to advance the owning governance artifact, not to run an experiment. See `evidence/planning/ethics_perimeter_plan.md`. |
 
-**`substrate_ceiling` vs `substrate_conditional`, sharpened (2026-08-07,
-thought-digestion session `thoughts-intakes-4fd18d`).** The table above already
-treats these as distinct, but in practice the digestion pass that produced this
-note initially mis-tagged one claim as the other, so the operational
-discriminator is worth stating explicitly rather than re-derived per claim.
+**`substrate_ceiling` vs `substrate_conditional`, sharpened.** The table above
+already treats these as distinct; the operational discriminator is worth
+stating explicitly rather than re-derived per claim.
 **`substrate_conditional`** means the mechanism has genuinely never been
 exercised -- the code it needs does not exist yet, so zero non-degenerate
 experimental attempts are possible and no evidence has been (or could have
@@ -211,11 +201,10 @@ positive evidence up to the handoff point; `substrate_conditional` claims have
 none yet) and point at different-shaped fixes (`substrate_ceiling` blockers
 are often shared across several claims at once, so one fix can unblock a whole
 cohort; `substrate_conditional` blockers are usually claim-specific
-engineering work). Note MECH-439 itself is not treated as a settled, permanent
-wall -- it was demoted from `substrate_ceiling` to "contested candidate" on
-2026-07-09 after a ceiling-exhaustion review (10 autopsies, no positive
-discrimination) -- so "ceiling" here means best current read from repeated
-real attempts, not architectural impossibility.
+engineering work). "Ceiling" means best current read from repeated real
+attempts, not architectural impossibility -- MECH-439 itself was demoted from
+`substrate_ceiling` to "contested candidate" on 2026-07-09 after a
+ceiling-exhaustion review (`git log -p` on this line for the full review).
 
 The resolver lives in `evidence/experiments/scripts/build_experiment_indexes.py`
 as `_resolve_epistemic_category(claim_type, invariant_type, explicit_category)`.
@@ -342,10 +331,9 @@ in a multi-claim experiment unless overridden. For experiments where different c
 pass/fail outcomes, use `evidence_direction_per_claim` (see below). Without it, a single FAIL
 outcome incorrectly marks all tagged claims as "weakens" even if only some criteria failed.
 
-**Canonical example of the failure mode (2026-03-22):** EXQ-023 tested SD-008, SD-003, MECH-098,
-ARC-016 together. SD-008's criterion (event_selectivity_margin=0.084) **passed**. But SD-007 R²
-and SD-003 calibration failed, making the overall outcome FAIL and marking SD-008 as "weakens" —
-incorrect.
+**Canonical failure shape (2026-03-22, EXQ-023):** one claim's criterion passed while others in
+the same multi-claim experiment failed, and the run-level FAIL marked the passing claim
+"weakens" too — incorrect.
 
 **Fallback workaround (for older manifests without per-claim field):** Correct the manifest
 `evidence_direction` field directly and add an `evidence_direction_note` explaining the correction.
@@ -373,7 +361,7 @@ a multi-claim evidence experiment lacks `evidence_direction_per_claim`. The queu
 requires scripts to output this field when `len(claim_ids) > 1`. The `evidence_direction` field
 must still be set to a reasonable overall summary value (the per-claim field supplements it).
 
-## claim_ids Accuracy Rule (CRITICAL)
+## claim_ids Accuracy Rule
 
 **`claim_ids` must reflect what the experiment actually tests, not what it was originally designed to test.**
 
@@ -385,7 +373,9 @@ Rules:
 3. **When architectural distinctions are being refined, err toward fewer tags.** Include a claim ID only if the experiment would produce interpretable signal for that claim specifically. Tagging related-but-distinct claims "for completeness" contaminates both claims' evidence records.
 4. **At script-writing time, state the mechanism under test explicitly** in the docstring and verify that claim_ids matches. The question to answer: "If this experiment PASSes, which claim does that support, and why?"
 
-**Canonical example of the failure mode (2026-03-22):** EXQ-048 was designed for MECH-057b (hippocampal candidacy gate) but had broken instrumentation — BetaGate was never called. EXQ-048b fixed the routing, shifting the mechanism under test to MECH-090 (BG beta propagation gate), but MECH-057b was carried forward in claim_ids. EXQ-059 and EXQ-060 then copied this tag list. Result: MECH-057b accumulated 2 false supports and 3 false mixed entries, producing a spurious confidence score of 0.66 with no genuine evidence. All had to be manually corrected.
+**Canonical failure shape (2026-03-22, EXQ-048/048b):** a fix shifted which mechanism an experiment
+actually tested, the old claim_ids were carried forward anyway, and two later scripts copied the
+stale tag list — producing a spurious confidence score with no genuine evidence behind it.
 
 ## Experiment Proposals
 
