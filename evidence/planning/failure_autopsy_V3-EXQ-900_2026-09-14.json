@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-14T12:13:56Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_900_sd024_da_cluster_allocation_representational_functional_20260808T103846Z_v3",
+      "queue_id": "V3-EXQ-900",
+      "claim_ids": ["SD-024"],
+      "bears_on": ["SD-025:functional-magnitude-residual", "ARC-057:sd024-sd025-interaction", "GFLAG-0249:criteria-re-derivability-instance"],
+      "failed_criterion": "none as-labeled (manifest outcome PASS); but the PRE-REGISTERED form of C2 (rho(cluster_size, density), per driver docstring lines 97-100/155-157) measures 0.1775 on this manifest's own live sample, below RHO_LIVE_MIN=0.30 -- see Section 5/9",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact for the representational (C1) and asymmetry (C4) sub-clauses; unclear for the functional-propagation sub-clause the label also asserts",
+        "biological_reference": "clear on the core phenomenon; present but bidirectionally untested on the magnitude-scaling axis (Duvelle 2019 vs the substrate's linear benefit_magnitude*drive_level formula)",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate for C1/C4; MISLEADING for C2 -- manifest field is named 'vs_density' but is actually computed on density_delta (an event-marginal statistic, arithmetically ~0.49*n from RBF jitter geometry, confirmed by direct recompute), not the pre-registered raw 'density' the driver's own acceptance text names and which field.py's own docstring identifies as 'the signal the SD-025 curiosity drive follows'. The raw-density form measures 0.1775 (<0.30) on this run's live sample.",
+        "integration": "coupled",
+        "scale": "likely insufficient for precision, though adequate for the pre-registered non-degeneracy gate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "VTA/LC dopaminergic modulation of hippocampal place-field density/reorganisation at reward locations",
+        "dependencies": ["D1-receptor-gated map plasticity (Retailleau & Morris 2018)", "expectation-dependent DA reward-proximity ramp (Krishnan et al. 2022)"],
+        "is_formal_import": false,
+        "divergence": "Mixed but load-bearing lit corpus already exists in targeted_review_sd_024 (5 entries): Retailleau & Morris 2018 (supports/0.75), Krishnan et al. 2022 (supports/0.82, DA ramp is expectation/proximity-dependent -- and its summary explicitly says this SUPPORTS the SD-012 benefit*drive scaling, it does NOT predict magnitude-insensitivity), Xiao et al. 2020 (mixed/0.58), Duvelle et al. 2019 (weakens/0.70, NO modulation of place-cell activity by goal VALUE -- and its summary explicitly states that if REE's density scales cleanly with benefit_magnitude, 'that is a divergence from the biology, not a convergence with it'; the substrate's dopamine_signal=benefit_magnitude*drive_level formula commits to exactly that linear scaling), Shao et al. 2025 (mixed/0.55, a gain-only alternative mechanism C2 is meant to rule out). CORRECTION after adversarial review: an earlier draft of this autopsy claimed the flat benefit_magnitude split was 'a confirmed prediction' from Krishnan+Duvelle. That is wrong and is corrected here: this run has essentially zero benefit_magnitude variance (CV ~1.6%), so it cannot confirm OR refute either paper's prediction on the magnitude axis -- it is uninformative on that axis, not confirmatory. Duvelle's prediction is actually the opposite of what the substrate's linear formula implies, and remains untested (not confirmed) by this run.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "2026-09-14 failure-autopsy (V3-EXQ-900, resolving GFLAG-0246; adversarially red-teamed on a different model, verdict CONTESTED -> corrected below). (1) FLAT BENEFIT_MAGNITUDE FINDING: mean_benefit_magnitude_across_cluster_sizes_ge2 (0.5577) vs cluster_size_1 (0.5582) is NOT a functional discriminator and does not falsify or qualify anything. benefit_magnitude is the near-constant environmental input (CV ~1.6% across all 57 pooled events) multiplied by the genuinely variable drive_level (34x range) to form dopamine_signal; a magnitude-keyed split was never going to show a gap by construction. This finding is CONFIRMED by independent recompute and does not need further work. (2) THE DEEPER, VALIDATED CONCERN: GFLAG-0246's underlying worry -- that nothing in the combination rule (C1 AND C2 AND C4) actually tests the FUNCTIONAL half of the claim's label -- is SUBSTANTIALLY CORRECT, though not via the benefit_magnitude route. Traced to source: the manifest's own field 'C2_cluster_size_vs_density' (measured rho=0.5166) is NOT computed on raw density (the signal field.py's own docstring identifies as 'the signal the SD-025 curiosity drive follows') -- it is computed on density_delta (post-event minus pre-event density AT the event's own location). Recomputed directly from per_seed_rows: rho(cluster_size, RAW density) = 0.1775, below the driver's own pre-registered RHO_LIVE_MIN=0.30 bar (driver docstring lines 97-100, 155-157 name 'density', not 'density_delta'; the substitution is made in evaluate(), documented in code comments as a fix for a field-history confound found in a pre-run probe -- but the docstring's formal PRE-REGISTERED ACCEPTANCE section was never updated to match). Further: density_delta is substantially an ARITHMETIC function of cluster_size and the fixed jitter/bandwidth geometry (single-center delta = 1.0 +/- 2e-6 for 51/51 events; per-center delta for clusters ~0.49, matching exp(-E[||jitter||^2]/(2*bw^2)) exactly) -- it is closer to a re-run of the P0 synthetic sweep (R2, rho=1.0) than a live functional-propagation test, and at the smallest cluster size (n=2) one of two observed events reads LOWER density at the contact point than a single center would (delta 0.958 < 1.000), directly undermining 'more centers -> more density read here' as a live-tested proposition. VERDICT: the PASS is a genuine, well-powered, LOO-robust (min 0.495 on C1) confirmation of the REPRESENTATIONAL sub-clause (C1: DA responds to live cluster allocation) and the MECH-233 ASYMMETRY (C4: 0 of 1403 harm calls allocate a cluster) -- both robust and claim-confidence-bearing. It does NOT establish that this structural difference propagates into the STANDING density signal the rest of the substrate (SD-025's curiosity drive) actually reads; the properly-operationalized version of that test fails on this run's own live data. Recorded as narrow_supports: true. SD-024 stays candidate (status unchanged); the claims.yaml CONFIRMING(mechanism) section's C2 entry ('measured 0.517') should be corrected to note it is the delta-based figure and that the raw-density form (0.18) does not clear the pre-registered bar. This also completes, for this one instance, the 'may invalidate the run's VERDICT, not merely its recording' governance question GFLAG-0249 deferred to a future decision -- resolved here as: does not invalidate the PASS's representational/asymmetry evidence, does invalidate the label's functional half and claims.yaml's current C2 characterization. RECOMMENDED FUTURE WORK (not queued from this autopsy; governance chips once ratified): a redesign that operationalizes functional propagation via a STANDING read (e.g. density at a fixed post-event delay/revisit, or an explicit baseline-subtracted trend across an episode) rather than an immediate event-marginal delta, and that additionally sweeps benefit_magnitude at pinned drive_level (the axis Duvelle 2019 and the substrate's own linear formula make opposite, currently-untested predictions on) alongside the already-planned drive_level sweep.",
+      "per_claim_recommendation": {
+        "SD-024": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note updated with this autopsy's full adjudication (flat benefit_magnitude cleared; C2/density_delta mismatch identified and narrowed) -> stamp failure_autopsy_V3-EXQ-900_2026-09-14",
+          "pending_retest_after_substrate": false,
+          "recommended_diagnostic_evidence_adjudicated": false,
+          "status_change": "none -- stays candidate. The what_would_answer CONFIRMING(mechanism) C2 entry ('measured 0.517') should be annotated to note it is the density_delta figure, not the pre-registered raw-density statistic, which measures 0.18 on this run and does not clear RHO_LIVE_MIN."
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "GFLAG-0246's core concern -- nothing in the combination rule tests the claim's functional half -- is SUBSTANTIALLY CORRECT, though the flag's own cited evidence (the flat benefit_magnitude split) was the wrong route to it. The real route: the manifest's recorded C2 statistic is computed on density_delta, not the pre-registered raw density; the raw-density form measures 0.1775, below the 0.30 bar, on this run's own live sample.",
+        "density_delta for this design is substantially an arithmetic function of cluster_size and fixed RBF jitter/bandwidth geometry (single-center delta = 1.0 to 6 decimal places for 51/51 events; per-center cluster delta ~0.49, matching the jitter-kernel expectation exactly) -- it is close to a re-run of the P0 synthetic sweep (R2) with live jitter, not an independent live-functional-propagation test.",
+        "The flat mean_benefit_magnitude comparison is confirmed uninformative (near-constant input, CV ~1.6%), but it is NOT 'a confirmed prediction' from the cited literature as an earlier draft of this autopsy asserted -- Krishnan 2022 says nothing about magnitude-insensitivity, and Duvelle 2019's prediction is the OPPOSITE of the substrate's linear benefit_magnitude*drive_level formula. The run is simply uninformative on that axis, in either direction. This correction was caught by an adversarial red-team pass on a different model and independently verified before landing.",
+        "At the smallest observed cluster size (n=2), one of two live events reads a LOWER density at the contact point than a single center would have (density_delta 0.958 vs the single-center baseline of 1.000) -- a real geometry effect from jitter dispersion at this bandwidth, worth recording for any future redesign of the density read.",
+        "Sample-size caveat: R3's pooled-expansion-event floor (5) was cleared by exactly 1 event; the C1 correlation is leave-one-out robust (drops to 0.495 minimum on removing any single expansion event) so the PASS does not hinge on one event, but the design's overall precision would benefit from a larger budget before being leaned on heavily by SD-025/ARC-057 downstream work."
+      ],
+      "routing": "governance-note-only"
+    }
+  ]
+}
