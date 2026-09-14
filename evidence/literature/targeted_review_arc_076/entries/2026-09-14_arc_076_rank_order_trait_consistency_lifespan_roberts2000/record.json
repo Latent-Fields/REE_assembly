@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_076",
+  "entry_id": "2026-09-14_arc_076_rank_order_trait_consistency_lifespan_roberts2000",
+  "timestamp_utc": "2026-09-14T06:05:02Z",
+  "claim_ids_tested": [
+    "ARC-076"
+  ],
+  "source": {
+    "title": "The rank-order consistency of personality traits from childhood to old age: a quantitative review of longitudinal studies",
+    "authors": [
+      "Roberts BW",
+      "DelVecchio WF"
+    ],
+    "year": 2000,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/0033-2909.126.1.3",
+    "pmid": "10668348",
+    "pmc": null,
+    "volume": "126",
+    "issue": "1",
+    "pages": "3-25"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "weakens",
+  "confidence": 0.58,
+  "confidence_rationale": "Canonical quantitative review showing that trait consistency does not peak and freeze at the end of a juvenile/adolescent window: at a fixed 6.7-year interval, test-retest consistency rises from .31 in childhood to .54 in the college years, .64 at 30, and plateaus around .74 only between 50 and 70 -- and never approaches 1. Temperament dimensions were less consistent than adult traits, which is also awkward for L1 (temperament) being the early-locked layer. It weakens the lock-timing and L1-locks-early parts of ARC-076 rather than the existence of a developmental calibration window; confidence is held down by measurement differences between child temperament and adult trait instruments.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rank-order trait consistency keeps rising through the 30s and only plateaus (~.74) between ages 50 and 70, so there is no consolidation step at the end of adolescence.",
+    "Even at plateau consistency is ~.74 over 6.7 years, well short of a locked value; the adult personality remains partly plastic.",
+    "Temperament dimensions were less consistent than adult personality traits, the reverse of what a design with early-locked temperament set-points (L1) would predict.",
+    "Longer test-retest intervals reduced consistency, so apparent stability decays with time rather than holding a crystallized value."
+  ],
+  "tags": [
+    "arc_076",
+    "personality_development",
+    "trait_consistency",
+    "lock_timing",
+    "temperament",
+    "crystallization",
+    "counterweight",
+    "related:INV-075",
+    "related:MECH-336"
+  ],
+  "mapping": {
+    "source_claim_statement": "From 152 longitudinal studies (3,217 test-retest correlations), with the time interval held at 6.7 years, mean population rank-order trait consistency increased from .31 in childhood to .54 in the college years, .64 at age 30, and reached a plateau around .74 between ages 50 and 70. Longer intervals were associated with lower consistency, and temperament dimensions were less consistent than adult personality traits.",
+    "ree_translation": "ARC-076 predicts a calibration window in juvenile/adolescent life followed by a lock, with temperament-like drive priors (L1) locking on an endogenous timer. If the lock were real and adolescent, rank-order consistency should jump and flatten around the end of adolescence, and early temperament should be at least as stable as later traits. Neither holds: consistency climbs for decades and temperament is the less stable measure. In REE terms the lock looks more like a slowly annealing learning rate than a one-shot crystallization, and the early drive-prior layer looks more labile, not less.",
+    "mapping_caveat": "Child temperament and adult trait measures are different instruments with different reliabilities, and lower childhood consistency may partly reflect measurement noise and heterotypic continuity (the same disposition expressed differently at different ages) rather than genuine plasticity. Rank-order consistency is a population statistic and is compatible with individual set-points being locked while their expression varies with state. Nothing here measures commitment-loop gains.",
+    "source_context": "Human personality psychology; quantitative review (meta-analysis) of longitudinal test-retest studies from childhood to old age."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.38,
+    "notes": "Large, highly cited meta-analysis. Strong on the population timing of trait consolidation; weak on mechanism, and the child-temperament comparison is vulnerable to instrument differences."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_075",
+  "entry_id": "2026-09-14_arc_075_dominant_modality_gradient_suppression_peng2022",
+  "timestamp_utc": "2026-09-14T06:05:02Z",
+  "claim_ids_tested": [
+    "ARC-075",
+    "MECH-333"
+  ],
+  "source": {
+    "title": "Balanced Multimodal Learning via On-the-fly Gradient Modulation",
+    "authors": [
+      "Xiaokang Peng",
+      "Yake Wei",
+      "Andong Deng",
+      "Dong Wang",
+      "Di Hu"
+    ],
+    "year": 2022,
+    "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2022)",
+    "doi": null,
+    "arxiv_id": "2203.15332"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Independent group, independent method, same conclusion as Wu et al. 2022: under a uniform objective a dominant pathway leaves the others under-optimised, and adaptively damping the dominant pathway's gradient according to its contribution lead rescues them. This is almost literally MECH-333's 'suppress the dominant scoring pathway's effective update magnitude'. Held at 0.6 because the authors needed injected Gaussian noise to stop gradient suppression from hurting generalization -- a real caveat on naive suppression -- and because there is no developmental window or closure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Gradient modulation alone risked a generalization drop; the authors added dynamically varying Gaussian noise to compensate, so suppressing the dominant pathway is not free and needs an exploration/regularisation partner.",
+    "Modulation is continuous and contribution-driven for the whole of training, not a time-bounded window with a closure event, so the result says nothing about whether balance persists once suppression is lifted."
+  ],
+  "tags": [
+    "arc_075",
+    "mech_333",
+    "plasticity_magnitude_gating",
+    "gradient_modulation",
+    "dominant_pathway_suppression",
+    "multimodal_imbalance",
+    "winner_take_all",
+    "related:ARC-065"
+  ],
+  "mapping": {
+    "source_claim_statement": "Multimodal discriminative models with a uniform objective for all modalities can leave uni-modal representations under-optimised because another modality dominates. On-the-fly gradient modulation adaptively controls each modality's optimisation by monitoring the discrepancy in their contribution to the objective; a dynamically changing Gaussian noise term is added to avoid a generalization drop caused by the modulation. The method improves over common fusion methods and boosts existing multimodal methods.",
+    "ree_translation": "OGM-GE is a working instance of MECH-333's operation: measure which pathway is winning, scale down its gradient in proportion, let the losers catch up. Mapped to REE, F plays the dominant modality and the gated-policy diversity heads play the under-optimised ones. The added noise term is a useful design hint -- suppression of the winner may need a paired diversity-injection signal, which REE would source from the babbling/curiosity machinery rather than Gaussian noise.",
+    "mapping_caveat": "Supervised audio-visual classification, not action selection. The contribution-discrepancy signal is available because there is a label; REE's analogue (how much F vs a diversity head contributed to a good commitment) is far noisier. No phases, no release, no crystallization, so only the open-window half of ARC-075 is addressed.",
+    "source_context": "Supervised audio-visual and multimodal classification benchmarks; CVPR 2022 oral with public code."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Strong venue, public code, replicates the Wu et al. phenomenon with a different remedy. Mapping to MECH-333 is unusually literal at the operator level; the developmental structure of ARC-075 is absent."
+  }
+}

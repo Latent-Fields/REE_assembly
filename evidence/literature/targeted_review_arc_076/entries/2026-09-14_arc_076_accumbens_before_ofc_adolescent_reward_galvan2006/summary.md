@@ -1,0 +1,9 @@
+# Galvan et al. (2006) -- the accumbens develops before the orbitofrontal cortex
+
+**What they did.** Galvan and colleagues scanned 37 people aged 7 to 29 during a reward task in which reward size varied, and compared children, adolescents and adults. Adolescent nucleus accumbens responses looked adult in their extent and in how they tracked reward value, but were bigger. Adolescent orbitofrontal responses, by contrast, looked like children's -- spread out, less focal. Their reading: the subcortical half of the reward circuit matures earlier than the cortical half, and in the gap adolescents are pulled toward immediate gains.
+
+**Why it's here.** ARC-076 needs the commitment loops -- above all the limbic/value loop, which sets what's worth committing to -- to be in a genuinely unfinished, calibratable state during a juvenile/adolescent window. This paper shows the human value loop is out of balance in exactly that period, and that the imbalance comes from its striatal and cortical parts maturing on different schedules. That is the kind of developmental movement a calibration window would need. The subcortical-first ordering is also loosely in the spirit of MECH-335's staggered windows.
+
+**Why the support is thin.** Nothing here shows calibration by the environment, a commitment policy, or a lock. It's cross-sectional with a small sample, and what it measures is BOLD response to reward. The within-loop asymmetry (accumbens vs OFC) is also not MECH-335's between-loop ventral-to-dorsal staggering; if anything it says that a per-loop window is itself too coarse. And the authors are explaining risk-taking, not personality -- the step from one to the other is ARC-076's, not theirs.
+
+**Confidence.** 0.45. Supportive of the premise that the value loop is developmentally in flux across adolescence; no leverage on the parts of ARC-076 that make it a distinctive claim (environmental writing of L2, endogenous lock of L1).

@@ -1,0 +1,11 @@
+# Holmes et al. / PEDIG (2011) -- age and response to amblyopia treatment
+
+**What they did.** The Pediatric Eye Disease Investigator Group pooled individual patients from four of their randomized amblyopia trials -- children aged 3 to under 13 with unilateral amblyopia -- and asked whether age at the start of treatment changed how much the amblyopic eye improved, adjusting for severity, refraction, type, prior treatment and protocol. The relationship was non-linear, so they binned ages. Children aged 7 to under 13 improved significantly less than either younger group for moderate and severe amblyopia; below 7 the groups were broadly similar; and some older children still did well.
+
+**Why I think it belongs under ARC-075.** Amblyopia is what competitive capture looks like in a human nervous system: one eye wins and the other's pathway withers. The clinical answer is not to wait for development to sort it out -- development, left alone, entrenches the imbalance -- but to penalise the winning eye so the loser can regain weight, and to do it early. That is a two-part prescription, *asymmetric suppression of the dominant pathway* plus *inside a plasticity window*, which is exactly ARC-075's claim against a curriculum that only schedules phases.
+
+**How far the analogy goes.** Not very far mechanistically. Ocular dominance is about sensory channels competing for cortex; F versus diversity heads is about scorers competing for action selection. The trial also doesn't vary how strongly the fellow eye is penalised, so the *magnitude* half of the mapping rides on what the treatments are for rather than on a dose-response result. I'd treat this as a biological existence proof of the design pattern, not evidence about REE's mechanism.
+
+**The part that should shape the build.** The window here is graded, not a slammed door: responsiveness falls after 7, but some older children respond well, and within the early window there's no clean monotone age effect. For ARC-075's closure trigger that argues against a hard time-based cut-off and for a criterion-based or soft closure -- and it hints that post-closure diversity validation (requirement 3) should expect partial, not zero, residual plasticity.
+
+**Confidence.** 0.56: high-quality human data, analogical mapping, and an informative nuance about the shape of the window.

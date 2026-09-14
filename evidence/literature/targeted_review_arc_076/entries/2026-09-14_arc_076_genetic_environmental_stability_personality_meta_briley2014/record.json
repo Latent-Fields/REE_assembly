@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_076",
+  "entry_id": "2026-09-14_arc_076_genetic_environmental_stability_personality_meta_briley2014",
+  "timestamp_utc": "2026-09-14T06:05:02Z",
+  "claim_ids_tested": [
+    "ARC-076"
+  ],
+  "source": {
+    "title": "Genetic and environmental continuity in personality development: a meta-analysis",
+    "authors": [
+      "Briley DA",
+      "Tucker-Drob EM"
+    ],
+    "year": 2014,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/a0037091",
+    "pmid": "24956122",
+    "pmc": "PMC4152379",
+    "volume": "140",
+    "issue": "5",
+    "pages": "1303-1331"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.64,
+  "confidence_rationale": "The most direct available test of ARC-076's two-layer split. Supports the split itself: genetic contributions to personality stability are moderate and roughly constant across the lifespan (an endogenous layer), while environmental contributions to stability rise from near zero in early childhood to moderate in adulthood (an environmentally written layer). But it cuts against the timing: environmental stability keeps accruing well into adulthood rather than being consolidated at a juvenile/adolescent window close, and the lifespan rise in stability is predominantly environmental -- the opposite emphasis from McCrae (2000), which ARC-076 used to make L1 the locked layer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The contribution of environmental effects to phenotypic stability increases from near zero in early childhood to moderate in adulthood, so environmental consolidation continues past adolescence rather than locking at a juvenile window close.",
+    "The lifespan increase in personality stability results predominantly from environmental mechanisms, which is hard to square with a design in which the stable core (L1) is the endogenously locked layer.",
+    "Heritability of personality shows small-to-moderate decreases over child development, offsetting rising genetic stability -- the endogenous layer is not simply 'set early and fixed'."
+  ],
+  "tags": [
+    "arc_076",
+    "personality_development",
+    "two_layer_personality",
+    "behavioral_genetics",
+    "trait_stability",
+    "crystallization",
+    "lock_arm",
+    "related:INV-075",
+    "related:MECH-336"
+  ],
+  "mapping": {
+    "source_claim_statement": "Meta-analysis of 24 longitudinal behavioural-genetic studies (21,057 sibling pairs, infancy to old age). Both genetic and environmental influences on personality increase in stability with age. The contribution of genetic effects to phenotypic stability is moderate and relatively constant with age, partly because heritability decreases slightly over child development while genetic stability rises. The contribution of environmental effects to phenotypic stability increases from near zero in early childhood to moderate in adulthood; the lifespan trend of increasing phenotypic stability predominantly results from environmental mechanisms.",
+    "ree_translation": "ARC-076 splits personality into L1 (drive-prior set-points, endogenous timer lock) and L2 (commitment policy, environmentally calibrated, consolidated at window close). The genetic-stability component maps onto L1 and behaves roughly as ARC-076 expects -- present early and steady. The environmental-stability component maps onto L2 and confirms that the environment really does write a stable layer. What does not map is WHEN: L2's stability grows across adulthood rather than being fixed at a juvenile/adolescent closure, which suggests REE's L2 lock should be a progressive consolidation (or a lock whose stability comes from a stabilising niche) rather than a one-time crystallization.",
+    "mapping_caveat": "Twin/adoption variance decomposition is not a mechanism: 'genetic' is not identical to 'endogenous maturational timer' and 'environmental' includes non-shared noise and measurement error as well as calibrating experience. Rising environmental stability could reflect increasingly stable life circumstances (niche selection) rather than internal consolidation, which REE's single-agent fishtank does not model. Commitment loops are not measured at all; the link from Big-Five-type traits to ARC-021 / MECH-069 / ARC-023 gains is ARC-076's own hypothesis.",
+    "source_context": "Human behavioural genetics; meta-analysis of longitudinal twin, sibling and adoption samples across the lifespan."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.42,
+    "notes": "Large, well-designed meta-analysis in a top review venue. Maps onto the two-layer structure better than any single cohort study, but variance components are not mechanisms and the traits-to-loop-gains bridge is untested."
+  }
+}

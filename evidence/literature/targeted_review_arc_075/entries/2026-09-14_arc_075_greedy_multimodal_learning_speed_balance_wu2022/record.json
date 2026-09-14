@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_075",
+  "entry_id": "2026-09-14_arc_075_greedy_multimodal_learning_speed_balance_wu2022",
+  "timestamp_utc": "2026-09-14T06:05:02Z",
+  "claim_ids_tested": [
+    "ARC-075",
+    "MECH-333"
+  ],
+  "source": {
+    "title": "Characterizing and overcoming the greedy nature of learning in multi-modal deep neural networks",
+    "authors": [
+      "Nan Wu",
+      "Stanislaw Jastrzebski",
+      "Kyunghyun Cho",
+      "Krzysztof J. Geras"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the 39th International Conference on Machine Learning (ICML 2022), PMLR 162",
+    "doi": null,
+    "arxiv_id": "2202.05306"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Clean, multi-architecture demonstration of the exact failure ARC-075 is built against: when several learners share one objective under uniform update rules, one pathway captures the gradient and the others under-fit, and the fix that works is to modulate the relative learning speed of the pathways -- a magnitude intervention, not a reordering of the data. Held below 0.7 because the setting is supervised multi-modal fusion rather than a developmental curriculum, there is no closure/crystallization phase, and 'modality branch' is only an analogue of F-vs-diversity-heads inside E3 scoring.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Imbalance in conditional utilization rate appeared consistently across tasks and architectures under ordinary joint training, so capture by one pathway is the default, not a pathological edge case.",
+    "The remedy acts on per-pathway learning speed throughout training; the paper does not show that a time-bounded suppression window followed by release preserves the balance, which is the part of ARC-075 that closure is meant to secure.",
+    "Conditional utilization rate cannot be computed efficiently online, so the balancing controller runs on a proxy (conditional learning speed); an REE implementation would face the same proxy problem for 'diversity circuits at competitive weight'."
+  ],
+  "tags": [
+    "arc_075",
+    "mech_333",
+    "plasticity_magnitude_gating",
+    "winner_take_all",
+    "greedy_learning",
+    "multimodal_imbalance",
+    "learning_speed_balance",
+    "monostrategy",
+    "related:ARC-046",
+    "related:INV-074"
+  ],
+  "mapping": {
+    "source_claim_statement": "Multi-modal deep networks trained jointly tend to rely on one modality while under-fitting the others, which hurts generalization. The authors measure dependence on each modality via the conditional utilization rate, introduce conditional learning speed as a trainable-time proxy, and show that an algorithm balancing conditional learning speeds between modalities addresses greedy learning and improves generalization on Colored MNIST, ModelNet40 and NVIDIA Dynamic Hand Gesture.",
+    "ree_translation": "ARC-075 / MECH-333 assert that when F and the diversity circuits compete over E3 scoring, the one that learns fastest wins permanently unless its effective update weight is suppressed while the others catch up. Wu et al. show the same competitive-capture dynamic in a different substrate and show that equalising learning speed -- i.e. an asymmetric update-magnitude intervention -- rather than any change in what data arrives when, is what prevents it. That is the ML leg of 'temporal scheduling alone is insufficient'.",
+    "mapping_caveat": "Modalities are parallel input streams feeding one classifier; F and the gated-policy diversity heads are competing scorers over action selection in an RL agent with no fixed label. The paper never schedules phases, never releases the balancing, and never tests whether the balance survives release, so it bears on the open-window half of ARC-075 only. It also does not compare against a curriculum baseline, so 'scheduling alone fails' is inferred from the mechanism rather than directly contrasted.",
+    "source_context": "Supervised multi-modal deep learning (image+colour, multi-view 3D, RGB+depth gesture); arXiv preprint with ICML 2022 publication."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Top-venue ML with cross-architecture replication but small benchmark datasets. Mapping is mechanistic (competition over a shared objective resolved by update-magnitude balancing) rather than developmental; transfer from supervised fusion to RL action scoring is the main risk."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-12T06:12:48.369204Z`
+Generated: `2026-09-14T06:09:54.799619Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -54,6 +54,8 @@ Generated: `2026-09-12T06:12:48.369204Z`
 | `targeted_review_arc_071_composition` | [`2026-08-01_arc_071_dls_procedural_replay_thompson2026`](targeted_review_arc_071_composition/entries/2026-08-01_arc_071_dls_procedural_replay_thompson2026/record.json) | 10 | [`summary`](targeted_review_arc_071_composition/entries/2026-08-01_arc_071_dls_procedural_replay_thompson2026/summary.md) |
 | `targeted_review_arc_073` | [`2026-09-02_arc_073_postpubertal_play_shift_hormonal_smith1997`](targeted_review_arc_073/entries/2026-09-02_arc_073_postpubertal_play_shift_hormonal_smith1997/record.json) | 5 | [`summary`](targeted_review_arc_073/entries/2026-09-02_arc_073_postpubertal_play_shift_hormonal_smith1997/summary.md) |
 | `targeted_review_arc_074` | [`2026-09-12_arc_074_variability_pathway_consolidation_garstorozco2014`](targeted_review_arc_074/entries/2026-09-12_arc_074_variability_pathway_consolidation_garstorozco2014/record.json) | 4 | [`summary`](targeted_review_arc_074/entries/2026-09-12_arc_074_variability_pathway_consolidation_garstorozco2014/summary.md) |
+| `targeted_review_arc_075` | [`2026-09-14_arc_075_greedy_multimodal_learning_speed_balance_wu2022`](targeted_review_arc_075/entries/2026-09-14_arc_075_greedy_multimodal_learning_speed_balance_wu2022/record.json) | 4 | [`summary`](targeted_review_arc_075/entries/2026-09-14_arc_075_greedy_multimodal_learning_speed_balance_wu2022/summary.md) |
+| `targeted_review_arc_076` | [`2026-09-14_arc_076_rank_order_trait_consistency_lifespan_roberts2000`](targeted_review_arc_076/entries/2026-09-14_arc_076_rank_order_trait_consistency_lifespan_roberts2000/record.json) | 3 | [`summary`](targeted_review_arc_076/entries/2026-09-14_arc_076_rank_order_trait_consistency_lifespan_roberts2000/summary.md) |
 | `targeted_review_arc_092_imagination_learning_constraint` | [`2026-08-28_arc_092_rem_creativity_priming_cai2009`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/record.json) | 2 | [`summary`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/summary.md) |
 | `targeted_review_arc_112` | [`2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/record.json) | 3 | [`summary`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/summary.md) |
 | `targeted_review_arc_113` | [`2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/record.json) | 5 | [`summary`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/summary.md) |

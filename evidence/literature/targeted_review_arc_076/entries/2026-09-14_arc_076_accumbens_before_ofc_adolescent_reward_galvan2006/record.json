@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_076",
+  "entry_id": "2026-09-14_arc_076_accumbens_before_ofc_adolescent_reward_galvan2006",
+  "timestamp_utc": "2026-09-14T06:05:02Z",
+  "claim_ids_tested": [
+    "ARC-076"
+  ],
+  "source": {
+    "title": "Earlier development of the accumbens relative to orbitofrontal cortex might underlie risk-taking behavior in adolescents",
+    "authors": [
+      "Galvan A",
+      "Hare TA",
+      "Parra CE",
+      "Penn J",
+      "Voss H",
+      "Glover G",
+      "Casey BJ"
+    ],
+    "year": 2006,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1062-06.2006",
+    "pmid": "16793895",
+    "pmc": "PMC6673830",
+    "volume": "26",
+    "issue": "25",
+    "pages": "6885-6892"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "Human fMRI evidence that the limbic/value corticostriatal loop is developmentally out of balance specifically in adolescence -- accumbens responses adult-like in extent but exaggerated in magnitude, OFC still child-like and diffuse -- because subcortical and cortical parts of the loop mature on different time courses. That supports ARC-076's premise that commitment-loop calibration is developmentally dynamic across a juvenile/adolescent window. Confidence is low because it is cross-sectional (n=37), task-fMRI rather than a calibration or lock measure, and it concerns within-loop subcortical/cortical timing rather than the between-loop structure or any lock.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The adolescent profile is a transient imbalance within the value loop (accumbens exaggerated relative to OFC), not evidence that calibration is written by the environment during that period or locked at its end.",
+    "Accumbens and OFC mature on different time courses, so even within a single commitment loop there is no single window; any REE implementation would need sub-loop timing, not a per-loop switch."
+  ],
+  "tags": [
+    "arc_076",
+    "commitment_loops",
+    "limbic_loop",
+    "ventral_striatum",
+    "orbitofrontal",
+    "adolescence",
+    "differential_maturation",
+    "reward_sensitivity",
+    "related:MECH-335",
+    "related:ARC-021",
+    "related:MECH-069"
+  ],
+  "mapping": {
+    "source_claim_statement": "Thirty-seven participants aged 7-29 underwent event-related fMRI during a task that parametrically manipulated reward value. Adolescents showed exaggerated accumbens activity relative to prefrontal activity compared with children and adults. Accumbens activity in adolescents resembled adults in extent and reward-value sensitivity but was greater in magnitude, whereas adolescent orbitofrontal activity resembled children's, with less focal patterns. Maturing subcortical systems become disproportionately activated relative to later-maturing top-down control systems, biasing adolescent action toward immediate over long-term gains.",
+    "ree_translation": "ARC-076 needs the commitment loops -- in particular the limbic/value loop that sets what is worth committing to -- to be in a calibratable, non-final state during a juvenile/adolescent window. Galvan et al. show that the human ventral value loop is in exactly such a transitional configuration in adolescence, driven by differential maturation of its striatal and cortical components. It is the kind of developmental dynamism an L2 calibration window would ride on, and the subcortical-before-cortical ordering loosely echoes MECH-335's staggered windows.",
+    "mapping_caveat": "Cross-sectional, modest sample, task BOLD responses: nothing here measures calibration by the environment, commitment policy, or any lock. The within-loop subcortical-vs-cortical asymmetry is not the same as MECH-335's between-loop ventral->dorsal staggering. Exaggerated adolescent reward responses are usually read as a risk-taking phenotype, not as personality formation, so the link to personality is ARC-076's inference, not the authors'.",
+    "source_context": "Human developmental cognitive neuroscience; cross-sectional event-related fMRI with a parametric reward task, ages 7-29."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.45,
+    "notes": "Influential and replicated in spirit by later developmental work, but small cross-sectional sample. Supports the developmental dynamism premise of ARC-076; does not touch the environmental writing or locking claims."
+  }
+}

@@ -1,0 +1,11 @@
+# Roberts & DelVecchio (2000) -- rank-order consistency of personality across the lifespan
+
+**What they did.** Roberts and DelVecchio gathered over three thousand test-retest correlations from 152 longitudinal studies and asked a narrow question: at what age does personality stop re-ordering itself? Holding the retest interval fixed at about seven years, consistency rose from .31 in childhood to .54 at college age, .64 at 30, and only plateaued around .74 between 50 and 70. Longer intervals meant lower consistency, and temperament measures were less consistent than adult trait measures.
+
+**Why this is a counterweight.** ARC-076 says the commitment loops are calibrated in a juvenile/adolescent window and then locked, and that the temperament-like drive priors (L1) lock early on an endogenous timer. If that were so, I'd expect rank-order consistency to jump and flatten somewhere near the end of adolescence, and temperament to be the stable anchor. The data show neither. Consistency keeps climbing for three or four decades, never gets close to a locked value, and temperament is the *less* stable layer.
+
+**How much this should move us.** Some, not all. Child temperament instruments are noisier than adult personality inventories, and dispositions show heterotypic continuity -- the same underlying thing looks different at 4 and at 24 -- so low childhood consistency partly reflects measurement. And a population rank-order statistic is compatible with individual set-points being fixed while their expression varies with state and circumstance. But even allowing for that, "locked at window close" is the wrong shape. The better REE analogue is an annealing schedule: plasticity falls over a long period rather than switching off.
+
+**What I'd take into the design.** If ARC-076 is ever built (it is gated behind infant-stage validation), the lock for L2 should probably be a progressive reduction in commitment-loop plasticity, with a residual floor, rather than a single crystallization event. The claim that L1 locks *earlier and harder* than L2 needs better evidence than it has; this paper leans the other way.
+
+**Confidence.** 0.58, direction weakens -- specifically the lock timing and the L1-locks-first ordering, not the existence of developmental calibration.
