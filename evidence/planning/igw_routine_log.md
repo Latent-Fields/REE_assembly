@@ -2978,3 +2978,4 @@ One line per hourly tick. ASCII only.
 2026-09-14T10:56:00Z GC removed worktree igw-240-proposal-for-mech-014 (removed; branch deleted)
 2026-09-14T10:55:33Z GC sweep removed 1 orphan worktree(s), kept 12
 2026-09-14T10:56:24Z workset committed (regen -- 251 items, 30 ready, 0 in flight)
+2026-09-14T10:55:33Z SPAWN IGW-20260914-240 skill=/lit-pull prio=40 uuid=90f70b33-bde4-402f-a9c8-f1e7a2182786 pid=86784 worktree=igw-240-literature-proposal-for-mech-014
