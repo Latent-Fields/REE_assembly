@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_014",
+  "entry_id": "2026-09-14_mech_014_hierarchical_inference_on_adviser_intentions_diaconescu2014",
+  "timestamp_utc": "2026-09-14T11:03:18Z",
+  "claim_ids_tested": [
+    "MECH-014"
+  ],
+  "source": {
+    "title": "Inferring on the intentions of others by hierarchical Bayesian learning",
+    "authors": [
+      "Andreea O. Diaconescu",
+      "Christoph Mathys",
+      "Lilian A. E. Weber",
+      "Jean Daunizeau",
+      "Lars Kasper",
+      "Ekaterina I. Lomakina",
+      "Ernst Fehr",
+      "Klaas E. Stephan"
+    ],
+    "year": 2014,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1003810",
+    "pmid": "25187943",
+    "pmc": "PMC4154656",
+    "volume": "10",
+    "issue": "9",
+    "pages": "e1003810"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "Supports the trust-weighting constraint in a stronger, hierarchical form: receivers infer the volatility of the sender's intentions and rely on advice more when those intentions are believed stable. But it pushes against the cheapness constraint -- when the sender's incentives to mislead vary, the best-fitting receiver model is a hierarchical inference on the sender's intentions, which is exactly the costlier other-model inference MECH-014 says signals should let an agent avoid. Moderate source quality (16 dyads, model comparison) and a strategic-deception setting that is not the claim's cooperative default hold confidence near the middle.",
+  "failure_signatures": [
+    "When an adviser's incentives to help or mislead changed over time, players' behaviour was best explained by hierarchical learning on the volatility of the adviser's intentions, not by a flat reliability estimate. A REE trust weight that is a single learned accuracy, with no representation of how stable the sender's disposition is, will under-perform against senders whose interests drift.",
+    "Players relied more on their estimate of advice accuracy when they believed the adviser's intentions were currently stable. Trust weighting should modulate not just the value of a signal but the precision with which the receiver acts on it.",
+    "Players integrated estimated advice accuracy with a non-social visual cue about the lottery rather than replacing it. A receiver that discards its own evidence when a trusted signal arrives departs from this pattern.",
+    "Adequate performance against a strategically variable sender required inference on the sender's intentions. The claim that signals are cheap relative to full other-model inference holds only while sender and receiver interests are aligned; under conflicting incentives, part of the other-model cost returns inside the trust-weighting step itself."
+  ],
+  "tags": [
+    "mech-014",
+    "trust_weighting",
+    "hierarchical_gaussian_filter",
+    "intentions",
+    "deception",
+    "volatility",
+    "cheap_signal_limit"
+  ],
+  "mapping": {
+    "source_claim_statement": "In an economic game with 16 player-adviser pairs, the player performed a probabilistic lottery task using a visual cue plus the adviser's recommendation, while the adviser's incentives to give helpful or misleading advice varied over time. Meta-Bayesian model comparison showed players' behaviour was best explained by hierarchical learning in which they inferred the volatility of the adviser's intentions to optimise their predictions about advice validity; volatility estimates also affected decision noise (more reliance on advice accuracy when intentions were believed stable), and players integrated advice accuracy with the non-social cue.",
+    "ree_translation": "For MECH-014 this paper does two things. It confirms and deepens the trust-weighting constraint: the receiver's reliability estimate is hierarchical (it has its own volatility) and gates how strongly the signal is acted on, which maps onto a precision term on the incoming-signal channel in E3 selection. And it marks the boundary of the cheapness constraint: a flat learned reliability is enough only while the sender's interests are stable and aligned; once a sender can profit from misleading, the receiver's best strategy recruits inference on the sender's intentions -- the costly other-model computation the signalling channel was supposed to substitute for. The claim should state that cheapness is conditional on interest alignment.",
+    "mapping_caveat": "The setting is strategic deception between paid human participants, whereas MECH-014's listed signal types (harm alerts, intent markers, uncertainty, stop/avoid priors) are presented as broadly cooperative; the mixed direction here comes mostly from that mismatch, and could be read as outside the claim's intended scope rather than against it. Sixteen dyads is a small sample, the conclusions rest on model comparison rather than a manipulation of receiver computation, and no measure of computational cost was taken -- 'costly other-model inference' is my reading of the winning model's structure, not something the paper measured. REE has no second agent or signal substrate.",
+    "source_context": "Human behavioural economic game (16 pairs, player vs adviser roles), binary lottery with a probabilistic visual cue and adviser recommendation; adviser incentives varied by block; hierarchical Gaussian filter and meta-Bayesian model comparison; links to interpersonal reactivity index scores."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "source_quality moderate: principled model comparison but small N and no neural or causal manipulation. mapping_fidelity good for trust weighting, weaker for cheapness since cost was never measured. transfer_risk moderate-high: incentivised human deception game to cooperative pre-linguistic agents."
+  },
+  "summary_path": "summary.md"
+}

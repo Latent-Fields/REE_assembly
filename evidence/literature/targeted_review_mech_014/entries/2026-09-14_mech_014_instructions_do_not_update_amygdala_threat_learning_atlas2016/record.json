@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_014",
+  "entry_id": "2026-09-14_mech_014_instructions_do_not_update_amygdala_threat_learning_atlas2016",
+  "timestamp_utc": "2026-09-14T11:03:18Z",
+  "claim_ids_tested": [
+    "MECH-014"
+  ],
+  "source": {
+    "title": "Instructed knowledge shapes feedback-driven aversive learning in striatum and orbitofrontal cortex, but not the amygdala",
+    "authors": [
+      "Lauren Y. Atlas",
+      "Bradley B. Doll",
+      "Jian Li",
+      "Nathaniel D. Daw",
+      "Elizabeth A. Phelps"
+    ],
+    "year": 2016,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.15192",
+    "pmid": "27171199",
+    "pmc": "PMC4907691",
+    "volume": "5",
+    "pages": "e15192"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "The most direct available test of MECH-014's second constraint -- that a socially conveyed signal should not mask the receiver's embodied harm channel. The amygdala's threat learning followed reinforcement and was untouched by verbal instructions, which supports a protected experiential harm stream. But skin conductance, the most embodied measure in the study, reversed almost entirely on instruction before any shock was delivered, and striatal/OFC value signals also updated. So the signal did override part of the embodied response. Good design (model-based fMRI, instructed vs uninstructed groups, 20 learners per group) but verbal instruction is far richer than a minimal signal.",
+  "failure_signatures": [
+    "Amygdala responses were influenced by reinforcement similarly in instructed and uninstructed groups and did not update with instructions. A REE harm stream that is directly re-valued by incoming signals, with no experiential learning path insulated from them, lacks the protected channel this result shows.",
+    "Skin conductance responses in the instructed group reversed immediately after each instruction, before any reinforcement, with fitted parameters consistent with almost complete reversal to instructions (rho = 0.943). A socially conveyed signal can therefore re-shape an embodied arousal response wholesale; the claim that signals cannot mask embodied harm channels is false if 'embodied' is read to include peripheral arousal.",
+    "Striatal and orbitofrontal value signals updated with instructions and correlated with prefrontal responses to them. The non-masking protection is confined to a specific threat-learning pathway, not the receiver's valuation as a whole; a REE design that protects all harm-related value estimates from signals is stronger than the biology."
+  ],
+  "tags": [
+    "mech-014",
+    "non_masking",
+    "harm_channel",
+    "instructed_fear",
+    "amygdala",
+    "fear_reversal",
+    "social_signal_override"
+  ],
+  "mapping": {
+    "source_claim_statement": "Humans underwent fear conditioning and reversal, with one group informed of contingencies and reversals and another learning only from reinforcement. Combining reinforcement-learning models with fMRI, responses in striatum and orbitofrontal cortex updated with instructions and correlated with prefrontal responses to instructions, whereas amygdala responses were influenced by reinforcement similarly in both groups and did not update with instructions. In the instructed group, SCR reversed immediately after each instruction, before any reinforcement.",
+    "ree_translation": "MECH-014's second design constraint is that signals cannot mask the receiving agent's embodied harm channels. The amygdala result is the supportive half: an experiential threat-learning stream that keeps learning from actual aversive outcomes regardless of what the receiver has been told maps onto a harm stream (z_harm / residue accumulation) whose update rule is closed to incoming signals. The SCR and striatal/OFC results are the constraining half: the signal did change the receiver's arousal and its value-based expectations immediately. The biologically faithful reading of 'cannot mask' is therefore narrower than the claim's wording -- signals may legitimately shift expectation and arousal, but must not suppress the experiential harm-learning update itself.",
+    "mapping_caveat": "Explicit verbal instruction about contingencies is far richer than a pre-linguistic minimal signal, so this may over-state how much a minimal channel could override; it is also the case MECH-011 (language-embodiment decoupling) targets more squarely. The 'harm' is mild electric shock to consenting adults, and the instructions were truthful -- the study did not test a false signal of safety, which is the masking failure MECH-014 most wants to rule out. Group comparisons restricted to 20 SCR learners per group. REE has no signal substrate and no second agent, so this constrains a future receiver design only.",
+    "source_context": "Human fMRI Pavlovian fear conditioning with contingency reversals; instructed group (told about contingencies and each reversal) vs uninstructed group (reinforcement only); mild shock US; SCR plus model-based BOLD analysis; 20 learners per group in primary analyses."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "source_quality high: between-group instruction manipulation, model-based fMRI, strong lab. mapping_fidelity moderate: speaks directly to non-masking but via verbal instruction, not a minimal signal, and only with truthful instructions. transfer_risk moderate: human verbal instruction and shock to an agent-to-agent pre-linguistic channel."
+  },
+  "summary_path": "summary.md"
+}

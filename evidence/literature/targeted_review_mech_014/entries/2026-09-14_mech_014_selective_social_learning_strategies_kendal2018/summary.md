@@ -1,0 +1,11 @@
+# Kendal et al. (2018) -- Social learning strategies: bridge-building between fields
+
+**What it is.** A review from the cultural-evolution and animal social-learning community, pulling together theory and experiments across fish, birds, primates and humans on *how selectively* animals use information from others. Its starting point, from theory going back decades, is that copying everyone indiscriminately is rarely a good idea -- so organisms should follow strategies about what, when and whom to copy.
+
+**What it argues.** The classic list of strategies (copy when uncertain, copy the successful, copy the majority, and so on) holds up, but needs revising: individuals switch strategies flexibly, run several at once, and the heuristics inside individuals do not map one-to-one onto the population patterns they produce. The authors also stress that much of this selectivity can be explained by ordinary associative learning rather than special social machinery.
+
+**How it maps to MECH-014.** The claim says signals from others should be trust-weighted and cheap relative to full modelling of the other agent. This review gives the functional reason for both. Why use a signal at all? Because it spares you learning the hard way -- which, for a harm alert, means sparing you the harm. Why weight it? Because a receiver that takes every signal at face value is exploitable and will spread errors. "Whom to copy" is trust weighting by source, and "when to copy" -- use social information more when your own is poor -- is a gate on the signal by the receiver's own confidence, which is exactly what MECH-014's uncertainty markers would inform. The point that associative learning can do the work is consistent with the cheapness constraint.
+
+**What it cannot tell us.** It is about copying behaviour, not signalling, and I have treated the two as one information route, which they are not. A warning call and an observed foraging choice reach the receiver differently and invite different abuses. It is a narrative review, with nothing to say about harm channels or masking. So this is evolutionary rationale for two of the constraints rather than evidence for the design.
+
+**Confidence: 0.50.** Useful framing; weak as a direct test.

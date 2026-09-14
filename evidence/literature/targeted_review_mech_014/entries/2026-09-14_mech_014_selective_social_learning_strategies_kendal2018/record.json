@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_014",
+  "entry_id": "2026-09-14_mech_014_selective_social_learning_strategies_kendal2018",
+  "timestamp_utc": "2026-09-14T11:03:18Z",
+  "claim_ids_tested": [
+    "MECH-014"
+  ],
+  "source": {
+    "title": "Social Learning Strategies: Bridge-Building between Fields",
+    "authors": [
+      "Rachel L. Kendal",
+      "Neeltje J. Boogert",
+      "Luke Rendell",
+      "Kevin N. Laland",
+      "Mike Webster",
+      "Patricia L. Jones"
+    ],
+    "year": 2018,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2018.04.003",
+    "pmid": "29759889",
+    "pmc": null,
+    "volume": "22",
+    "issue": "7",
+    "pages": "651-665"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Cross-species review establishing that indiscriminate use of social information is rarely adaptive and that individuals are selective about what, when and whom they copy -- the evolutionary rationale for MECH-014's trust-weighting constraint, and for social information as a cheaper alternative to costly asocial learning. It also notes that such selectivity can be implemented by ordinary associative learning, consistent with the cheapness constraint. As a review of copying behaviour rather than signalling, and with no direct test of any constraint, its mapping fidelity is modest; confidence set accordingly.",
+  "failure_signatures": [
+    "Theory and data indicate that indiscriminate copying of others is rarely beneficial, and individuals are selective in what, when and whom they copy. A REE receiver that conditions on every incoming signal with equal weight regardless of sender or context is predicted to be exploitable and maladaptive.",
+    "Individuals switch between social learning strategies flexibly and deploy several simultaneously. A single fixed rule for when to use signals (e.g. only when uncertain) is too rigid; a REE trust weight should be context-dependent.",
+    "There is no one-to-one correspondence between the psychological heuristic an individual uses and the population-level pattern that results. Evaluating a REE signal channel by population outcomes alone cannot identify the receiver-side integration rule; the receiver computation needs to be instrumented directly."
+  ],
+  "tags": [
+    "mech-014",
+    "social_learning_strategies",
+    "selective_copying",
+    "trust_weighting",
+    "signal_cheapness",
+    "cultural_evolution",
+    "associative_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "While social learning is widespread, indiscriminate copying of others is rarely beneficial; theory suggests individuals should be selective in what, when and whom they copy, following social learning strategies (SLSs). The SLS concept needs updating to accommodate findings that individuals switch between strategies flexibly, that multiple strategies are deployed simultaneously, and that there is no one-to-one correspondence between psychological heuristics deployed and resulting population-level patterns; SLSs provide a vehicle for bridge-building between cognitive psychology, neuroscience and evolutionary biology.",
+    "ree_translation": "MECH-014 asserts that signals should be trust-weighted and cheap relative to full other-model inference. This review supplies the functional reason for both. Social information is valuable because it spares the receiver costly or dangerous asocial learning -- the same logic as a harm alert sparing the receiver its own harm exposure -- but only if its use is selective, since unselective use turns the channel into a vector for maladaptive or exploited behaviour. 'Whom to copy' is trust weighting by source; 'when to copy' (e.g. under uncertainty) corresponds to gating the signal's influence by the receiver's own confidence, which MECH-014's 'uncertainty/confidence markers' would feed. The review's point that such selectivity can arise from associative mechanisms supports the cheapness constraint.",
+    "mapping_caveat": "The review concerns social learning of behaviour (copying), not signalling between agents; a warning signal and an observed behaviour are different information routes, and the mapping treats them as one. It is a narrative review, not a quantitative synthesis, and makes no direct claim about harm channels or masking. The cheapness reading depends on the associative-learning account being adequate, which the review presents as one perspective among several. REE has no second agent or signal substrate.",
+    "source_context": "Narrative review spanning cultural evolution theory, animal social learning experiments (fish, birds, primates) and human cognitive and neuroscience studies of copying strategies."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "source_quality: TICS review by leading groups in the field, but narrative. mapping_fidelity modest: social learning of behaviour is adjacent to, not identical with, a signalling channel. transfer_risk moderate: principles are general across taxa, but REE agents and their costs differ."
+  },
+  "summary_path": "summary.md"
+}

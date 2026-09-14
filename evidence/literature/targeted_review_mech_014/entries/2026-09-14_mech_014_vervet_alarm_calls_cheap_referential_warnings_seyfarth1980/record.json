@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_014",
+  "entry_id": "2026-09-14_mech_014_vervet_alarm_calls_cheap_referential_warnings_seyfarth1980",
+  "timestamp_utc": "2026-09-14T11:03:18Z",
+  "claim_ids_tested": [
+    "MECH-014"
+  ],
+  "source": {
+    "title": "Monkey responses to three different alarm calls: evidence of predator classification and semantic communication",
+    "authors": [
+      "Robert M. Seyfarth",
+      "Dorothy L. Cheney",
+      "Peter Marler"
+    ],
+    "year": 1980,
+    "venue": "Science",
+    "doi": "10.1126/science.7433999",
+    "pmid": "7433999",
+    "pmc": null,
+    "volume": "210",
+    "issue": "4471",
+    "pages": "801-803"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Canonical field-playback evidence that a small, discrete, pre-linguistic signal set can carry harm-relevant, action-specific warnings that receivers act on without the threat being present -- the existence proof behind MECH-014's 'harm/degradation alerts' and 'stop/avoid priors'. It supports the premise that a minimal channel is useful and cheap (a call drives a fitting escape without the receiver modelling the caller). It does not test any of the claim's three design constraints directly: reliability weighting, non-masking and computational cost are not measured. Old, small field study; canonical and replicated, hence kept, but mapping is to the premise more than the constraints.",
+  "failure_signatures": [
+    "Playbacks of three acoustically distinct alarm calls, with no predator present, elicited three different predator-appropriate escape responses (run into trees for leopard alarms, look up for eagle alarms, look down for snake alarms). A REE minimal signal channel that can only carry a scalar 'danger' level, with no action-relevant content, is weaker than the simplest natural precedent.",
+    "Infants gave alarm calls to a broad range of non-predators (leopard alarms to various mammals, eagle alarms to many birds), and predator classification improved with age and experience. Signal production in a REE channel should be expected to be over-general early and calibrated by experience; a sender fixed at birth, or one whose false alarms are costless to receivers, departs from this.",
+    "Receivers responded appropriately to signals in the absence of the threat itself. A signal therefore can drive a harm-avoidant action without concurrent harm evidence in the receiver -- which is the useful property, and also the route by which a false signal could drive costly avoidance."
+  ],
+  "tags": [
+    "mech-014",
+    "alarm_calls",
+    "functional_reference",
+    "stop_avoid_prior",
+    "pre_linguistic_signalling",
+    "vervet_monkey",
+    "signal_cheapness"
+  ],
+  "mapping": {
+    "source_claim_statement": "Vervet monkeys give different alarm calls to different predators. Recordings of the alarms played back when predators were absent caused the monkeys to run into trees for leopard alarms, look up for eagle alarms, and look down for snake alarms. Adults call primarily to leopards, martial eagles, and pythons, but infants give leopard alarms to various mammals, eagle alarms to many birds, and snake alarms to various snakelike objects; predator classification improves with age and experience.",
+    "ree_translation": "MECH-014 posits a pre-language channel that externalises harm alerts and stop/avoid priors, which other agents condition on. Vervet alarm calls are the canonical natural instance: a handful of discrete signals, each carrying a threat class that maps to a distinct avoidant trajectory, used by receivers without the threat in view and without any evident need to model the caller's mind. In REE terms, a signal would enter the receiver as a trajectory-class prior for E2/E3 (which escape family to favour), cheaply, rather than as an input requiring inference on the sender. The developmental result adds a design expectation the claim does not state: the sender's signal-to-threat mapping is learned and initially over-general.",
+    "mapping_caveat": "This paper does not test the claim's three constraints. Receiver reliability weighting is not shown here (later vervet work by Cheney and Seyfarth on habituation to unreliable callers, Animal Behaviour 1988, is the relevant test and was not pulled for this entry), non-masking of the receiver's own harm channels is not examined, and cheapness is inferred from behaviour, not measured. Whether the calls are genuinely referential or reflexive arousal-plus-context has been debated since. The species gap from vervets to artificial agents is large, and REE has no second agent or signal substrate (ree-v3 706a690).",
+    "source_context": "Field playback experiments with free-ranging vervet monkeys (Amboseli, Kenya); recorded leopard, eagle and snake alarm calls played from concealed speakers with no predator present; filmed receiver responses; observational data on infant vs adult call use."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "source_quality: Science, canonical and widely replicated, but a short 1980 field report with limited quantitative detail. mapping_fidelity limited: fits the claim's premise (useful minimal harm signals) and signal types, not its design constraints. transfer_risk: primate field behaviour to artificial agents."
+  },
+  "summary_path": "summary.md"
+}

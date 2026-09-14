@@ -1,0 +1,11 @@
+# Diaconescu et al. (2014) -- Inferring on the intentions of others by hierarchical Bayesian learning
+
+**What they did.** Sixteen pairs of volunteers played a game in which one person, the player, bet on a binary lottery using a probabilistic pie-chart cue, and the other, the adviser, had better information and made a recommendation. The twist was that the adviser's incentive to help or to mislead changed over the course of the game. The authors then asked, by formal model comparison, what kind of learner the player was.
+
+**What they found.** Not a flat one. The best account was hierarchical: players tracked not just how accurate the advice had been but how volatile the adviser's intentions were, and they relied on their accuracy estimate more when they believed those intentions were currently stable. They also kept using the non-social cue -- the advice was integrated, not obeyed. The model's estimates tracked players' explicit ratings of the adviser and even the advisers' own reports of their strategy.
+
+**How it maps to MECH-014 -- and why mixed.** On the first design constraint, trust-weighted integration, this is supportive and sharpens it: a receiver's trust should have its own volatility, and should gate how precisely the signal is acted on. But the third constraint says signals should be cheap relative to full other-model inference, and here the receiver's best strategy was precisely a model of the sender's intentions. I do not think this refutes the constraint so much as bound it. A minimal signalling channel buys cheapness when the sender's interests are aligned with the receiver's; when the sender can gain by misleading, the other-model cost comes back in through the trust estimator. The claim as written does not say that, and it should.
+
+**What it cannot tell us.** The setting is strategic deception between paid adults, a long way from the cooperative harm alerts and stop/avoid priors MECH-014 lists -- one could fairly say the conflict with cheapness lies outside the claim's intended scope. The sample is small, cost was never measured (the 'expensive inference' reading is mine, from the structure of the winning model), and there is no second agent in REE to test any of this against.
+
+**Confidence: 0.52.** A useful boundary condition more than a direct test.

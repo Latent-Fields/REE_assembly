@@ -1,0 +1,11 @@
+# Seyfarth, Cheney & Marler (1980) -- Monkey responses to three different alarm calls
+
+**What they did.** Vervet monkeys have distinct alarm calls for leopards, martial eagles and pythons. Seyfarth, Cheney and Marler recorded them and played them back from hidden speakers when no predator was around, filming what the monkeys did.
+
+**What they found.** Each call produced its own fitting escape. Leopard alarms sent monkeys up into trees, eagle alarms made them look up, snake alarms made them look down -- with nothing to see. The other half of the paper is developmental: infants call too, but indiscriminately, giving leopard alarms to many mammals and eagle alarms to many birds, and the mapping tightens with age and experience.
+
+**How it maps to MECH-014.** The claim imagines a signalling interface that comes before language and carries harm alerts and "stop/avoid" trajectory warnings that other agents can condition on. This is the standard natural existence proof that such a thing works. Three discrete signals, each specifying not just "danger" but which escape to take; receivers act on them without the threat in view, and nothing in the behaviour suggests they need to model the caller's mind to do so. In REE terms a call would enter the receiver as a prior over trajectory families at E2/E3, which is about as cheap as incoming information gets. The infant data add something the claim does not say: the sender's side of the channel is learned and starts out over-inclusive.
+
+**What it cannot tell us.** Almost nothing about the three design constraints themselves. The paper does not test whether receivers weight callers by reliability -- Cheney and Seyfarth's later work on habituation to unreliable callers does, but it appeared in *Animal Behaviour* and I have not pulled it for this entry. It says nothing about whether calls can override a receiver's own harm detection. And "cheap" is my inference from behaviour, not a measurement. There is a long argument about whether these calls are truly referential. So this entry supports the premise that a minimal harm-signalling channel is worth having, more than it supports the claim's particular design.
+
+**Confidence: 0.55.** Canonical and relevant, but to the premise rather than the constraints.

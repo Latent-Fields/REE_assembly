@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_014",
+  "entry_id": "2026-09-14_mech_014_trust_weighted_advice_parallel_acc_streams_behrens2008",
+  "timestamp_utc": "2026-09-14T11:03:18Z",
+  "claim_ids_tested": [
+    "MECH-014"
+  ],
+  "source": {
+    "title": "Associative learning of social value",
+    "authors": [
+      "Timothy E. J. Behrens",
+      "Laurence T. Hunt",
+      "Mark W. Woolrich",
+      "Matthew F. S. Rushworth"
+    ],
+    "year": 2008,
+    "venue": "Nature",
+    "doi": "10.1038/nature07538",
+    "pmid": "19005555",
+    "pmc": "PMC2605577",
+    "volume": "456",
+    "issue": "7219",
+    "pages": "245-249"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "High-quality fMRI study (N = 24, Nature) with a task built around exactly MECH-014's first design constraint: a partner's advice whose reliability drifts, integrated with the receiver's own reward history. Behaviour and neural signals both show advice being weighted by its learned, volatility-tracked reliability, and computed by associative machinery parallel to (not replacing) reward learning -- which also bears on the cheapness constraint. Held below 0.7 because the advice is a one-bit colour recommendation from a confederate, not an evolved or learned signalling channel, and nothing aversive or harm-like is at stake.",
+  "failure_signatures": [
+    "Subjects weighted a partner's advice by its estimated reliability, with the volatility of advice reliability tracked separately from the volatility of reward. A REE receiver that applies a fixed trust weight to incoming signals, or one shared learning rate for signal reliability and for its own outcome history, is wrong in form.",
+    "Social and reward information were learned in parallel streams (ACC gyrus vs ACC sulcus) and combined only at decision time in ventromedial prefrontal cortex. A design in which incoming signals overwrite or update the receiver's own value estimates directly, rather than entering as a separate weighted term at choice, departs from this architecture.",
+    "Individual differences in how much a subject relied on advice versus own experience were predicted by the volatility signal in the corresponding ACC region. Trust weighting is therefore a learned, individually variable quantity rather than a constant; a REE implementation should expose it as a per-agent state, not a hyperparameter."
+  ],
+  "tags": [
+    "mech-014",
+    "trust_weighting",
+    "reliability_inference",
+    "social_learning",
+    "volatility",
+    "anterior_cingulate",
+    "vmpfc_integration"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human subjects (N = 24, fMRI) chose between two options while receiving a confederate's advice whose trustworthiness varied unpredictably. Social information was acquired with the same associative computations used for reward learning, but in parallel neural streams: the anterior cingulate sulcus tracked reward volatility and the adjacent anterior cingulate gyrus tracked the volatility of the adviser's reliability. Both streams guided behaviour to a similar degree, and their learned values were combined in ventromedial prefrontal cortex at choice, with individual weighting predicted by the respective ACC responses.",
+    "ree_translation": "MECH-014 requires that signals from another agent be integrated via trust weighting, i.e. by inference on the sender's reliability. This paper is close to a direct demonstration of that constraint: the receiver maintains a running, volatility-sensitive estimate of how far the sender's signal predicts outcomes, and weights the signal by it. The architecture it implies for REE is a separate reliability estimator per signal source that feeds a weighted term into the E3 selection stage, alongside -- not inside -- the receiver's own harm/benefit estimates. It also speaks to the cheapness constraint: reliability here is learned by the same prediction-error machinery as any cue, without any evidence that the receiver needed a model of the adviser's goals to use the advice well.",
+    "mapping_caveat": "The signal is a single binary recommendation from a confederate in a monetary lottery, not a harm alert, intent marker, or trajectory warning, and it carries no aversive content -- so the paper constrains how reliability is learned, but not how a signal interacts with the receiver's harm channels. The cheapness reading is by absence: the task did not test whether a model of the adviser's intentions would have improved performance (Diaconescu et al. 2014 suggests people do build such a model when incentives shift). fMRI localisation to ACC gyrus/sulcus is correlational. REE has no second agent and no signalling substrate (ree-v3 706a690), so this constrains a future design rather than testing REE.",
+    "source_context": "Human fMRI (N = 24); two-option probabilistic reward task with a confederate's advice whose reliability and the reward schedule each had independently manipulated volatility; reinforcement-learning model with separate volatility estimates per information source."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "source_quality high: Nature, model-based fMRI, clean dissociation, widely replicated paradigm. mapping_fidelity good for the trust-weighting constraint specifically, weaker for the other two. transfer_risk moderate: monetary advice in humans to a pre-linguistic signal channel between artificial agents."
+  },
+  "summary_path": "summary.md"
+}
