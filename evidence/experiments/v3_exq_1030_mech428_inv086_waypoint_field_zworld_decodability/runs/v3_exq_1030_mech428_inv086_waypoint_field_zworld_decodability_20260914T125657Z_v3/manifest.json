@@ -1,0 +1,143 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1030_mech428_inv086_waypoint_field_zworld_decodability",
+  "run_id": "v3_exq_1030_mech428_inv086_waypoint_field_zworld_decodability_20260914T125657Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-14T12:56:57Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-086",
+    "MECH-428"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-086": "non_contributory",
+    "MECH-428": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "measurable": false,
+    "unmet_preconditions": [
+      "zworld_probe_extracts_known_signal"
+    ],
+    "preconditions": [
+      {
+        "name": "raw_observation_decodability_replicated",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "fraction of seeds whose OWN-harness linear-probe raw-observation accuracy lift (ON-OFF) clears RAW_LIFT_FLOOR -- the positive control replicating V3-EXQ-1004's input-level finding with THIS run's probe methodology, on the SAME statistic C1 reads.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "zworld_encoder_trained_all_cells",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "fraction of the (seed, arm) cells whose world_encoder moved during P0a warmup -- a frozen random projection would make a z_world null uninterpretable rather than informative.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "zworld_probe_extracts_known_signal",
+        "measured": 0.4,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "fraction of the (seed, arm) cells whose z_world grid-quadrant auxiliary probe clears QUADRANT_FLOOR -- confirms the SAME fitting procedure, on z_world's own scale/distribution, can extract a signal known to be present (agent position) regardless of the waypoint field, so a small waypoint-direction lift means the field specifically did not survive, not that the probe pipeline extracts nothing at all from z_world at this scale (red-team F1).",
+        "met": false,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_zworld_lift_null": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "85adf63e99c09c714757bbfb9c84163a76b404a8919f48ec7b9b5967f27c1772",
+  "substrate_commit": {
+    "commit": "3d92cd2d2661f0508c7a5d14506c58fb07022c99",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "recording_schema": "rec/v1",
+  "config": {
+    "grid_size_declared": 12,
+    "n_waypoints_declared": 3,
+    "steps_per_episode_declared": 150,
+    "num_hazards_declared": 2,
+    "num_resources_declared": 3,
+    "waypoint_visit_reward_declared": 0.2,
+    "waypoint_field_decay_declared": 0.25,
+    "waypoint_completion_reward_declared": 0.8,
+    "sequence_commitment_timeout_declared": 20,
+    "self_dim_declared": 32,
+    "world_dim_declared": 32,
+    "alpha_world_declared": 0.9,
+    "alpha_self_declared": 0.3,
+    "p0_episodes_declared": 200,
+    "probe_collect_episodes_declared": 40,
+    "probe_steps_declared": 150,
+    "raw_lift_floor_declared": 0.15,
+    "zworld_null_ceiling_declared": 0.05,
+    "quadrant_floor_declared": 0.55,
+    "min_seeds_declared": 3
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 10,
+    "goal_state_present": false
+  }
+}
