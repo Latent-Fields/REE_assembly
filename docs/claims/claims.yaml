@@ -72060,6 +72060,66 @@
     detection logic is present and correctly scoped, though not yet
     wired into the automatic cycle. No EXP-#### should be minted -- this
     is a process/code audit, not a V3 cognitive-substrate experiment.
+
+    CONFIRMED CURRENT STATE (2026-09-14 re-audit, triggered by the
+    2026-09-05 EXT-008 lit-pull): STRUCTURAL core RECONFIRMED unchanged,
+    plus one PROCEDURAL-only gap newly traced that the 2026-08-07 pass did
+    not examine.
+    STRUCTURAL (write path absent -- reconfirmed): sync_daemon.py's three
+    writer allowlists (renamed _WRITER_GUARD_PATHS, same semantics) still
+    exclude docs/claims/ and evidence/planning/ entirely
+    (phase3_git_writer -> evidence/experiments/ only, phase3_queue_writer
+    -> experiment_queue.json only, phase3_heartbeat_writer -> runner_*
+    only); coordinator/git_intent.py's HTTP CAS routing allowlist also
+    explicitly excludes claims.yaml, independently of sync_daemon
+    (test_git_intent.py::test_unrouted_path_refused asserts verdict
+    'not_routed' for it) -- a second structural exclusion not traced in
+    2026-08-07; no writer function in ree-v3/coordinator/*.py or
+    REE_assembly/scripts/*.py opens claims.yaml for write outside
+    apply_live_status.py (below) and the interactive governance.sh Step 4
+    walk.
+    PROCEDURAL (norm, not code -- INV-077's soft joint): governance.sh's
+    claims.yaml step remains explicitly interactive/human-walked,
+    unchanged; Check G is still present, still correctly scoped
+    (protected_patterns include docs/claims/claims.yaml +
+    evidence/planning/, telemetry_patterns include runner_heartbeats/
+    etc.), STILL not wired into governance.sh's automatic cycle, unchanged
+    from 2026-08-07. NEWLY TRACED: scripts/apply_live_status.py (SHP-4,
+    landed 2026-07-11, predates the prior audit) writes a `live_status`
+    block directly into claims.yaml including `live_status.evidence.
+    verdict` -- one of the four fields this claim's own falsifying test
+    names by name. Its source, project_status_head.py::load_manifests(),
+    scans every evidence/experiments/**/manifest.json with
+    outcome=="PASS" and folds the raw flag into `verdict` with zero
+    reference anywhere in the call graph to review_tracker.json's
+    reviewed_run_ids gate (grep confirms no hits in either file) --
+    satisfying the letter of this claim's falsifying clause on that one
+    field. What currently prevents this from functioning as a bypass is
+    PROCEDURAL, not structural: (a) apply_live_status.py has no automated
+    caller anywhere (grep of scripts/, ree-v3/, governance.sh) -- it is a
+    human-run, claimed, attributably-committed manual op, and
+    governance.sh explicitly declines to run it in-pipeline for exactly
+    this reason; (b) its docstring commits it to never touch
+    status/confidence/epistemic_category/exp_conf, verified true by code
+    inspection (writes only `live_status` + `last_reviewed`); (c) the
+    field is consumed only as a citation aid for a human governance
+    walker (check_unapplied_autopsy_recommendations.py,
+    default_off_drift_guard.py) and is not surfaced in serve.py/
+    explorer.html at all. None of (a)-(c) is a structural cut in the
+    Everitt et al. 2021 (Synthese 198:6435-6467) sense -- each is a norm a
+    future script or a shortcut-taking human could silently violate. Per
+    this audit's own instruction not to change status/confidence
+    unilaterally on a possible-falsifying trace, this is reported (not
+    adjudicated) here and raised as GFLAG-0273 (evidence_discrepancy) for
+    governance to disposition. Baker et al. 2025 (arXiv:2503.11926) check:
+    no evidence found of any process scoring sessions on governance-gate
+    outcomes or optimising against Check G (grep of scripts/ + ree-v3/ for
+    HEARTBEAT_SCOPE_BLEED / governance-gate-as-metric turns up only
+    verify_governance_cycle.py itself). Re-run again whenever
+    sync_daemon.py's allowlists, governance.sh's claims.yaml step,
+    git_intent.py's ROUTING table, or apply_live_status.py's data sources
+    change, or whenever Check G is wired into the automatic cycle, or once
+    GFLAG-0273 is adjudicated.
   location: docs/architecture/evaluation_channel_integrity.md#inv-077
   registered: "2026-06-09"
   source:
