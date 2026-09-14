@@ -1,0 +1,178 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1027_sd082_replay_own_rule_state_credit_assignment",
+  "run_id": "v3_exq_1027_sd082_replay_own_rule_state_credit_assignment_20260914T135320Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-14T13:53:20Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-082"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "H_replay_rule_state_mismatch_not_supported",
+    "criteria_aggregation": "any",
+    "preconditions": [
+      {
+        "name": "synth_credit_control_ready",
+        "kind": "readiness",
+        "description": "1020's dense-synthetic-credit positive control learns its task AND persists in >= 0.8 of cells; min of the two fractions reported",
+        "control": "copy of each cell's own init head on dense synthetic credit (1020, imported)",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "own_rule_state_manipulation_non_vacuous",
+        "kind": "readiness",
+        "description": "OWN arm: buffer-mean DIRECTION mismatch, mean(1 - cos) between each sample's action-time rule_state and the live update-time rule_state; the WORST seed is reported, matching the all-seeds quantifier. The norm-inclusive mismatch is recorded per cell but not gated (the within-episode EMA norm ramp dominates it)",
+        "control": "the live end-of-episode rule_state FAITHFUL scores every sample at",
+        "measured": 0.5005954496835929,
+        "threshold": 0.1,
+        "direction": "lower",
+        "offending_cell": "REPLAY_OWN_RULE_STATE::seed622",
+        "met": true
+      },
+      {
+        "name": "persistence_headroom_eligible_seeds",
+        "kind": "readiness",
+        "description": "count of seeds whose FAITHFUL persistence sits at least one lift margin below that seed's positive-control ceiling (the DV has room to rise by the amount C1 requires) AND whose two arms replayed a byte-identical P1 buffer (pairing witness); others are scoped out",
+        "control": "per-seed in-run bracket [noise floor, synthetic-credit ceiling]",
+        "measured": 5.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "worst_seed_headroom_minus_margin": 0.009378804559712545,
+        "offending_cell": "REPLAY_FAITHFUL::seed611",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_own_rule_state_lifts_persistence": true,
+      "C2_own_rule_state_lowers_persistence": true
+    },
+    "combination_rule": "PASS iff readiness (synthetic control, non-vacuous manipulation, >= 3 headroom-eligible seeds) AND C1. C2 only selects between the two FAIL labels. No cross-arm contrast other than the paired per-seed lift."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "0c2fcc38f0cea03b92a27607d970ca35e720e3a21fd1d0629da1e699265b585e",
+  "substrate_commit": {
+    "commit": "42c03b14854f2427bb076dd4849b82f01d9bef08",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "lateral_pfc_rule_readout_consumer": true,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "crf_cue_centering": true,
+    "use_gated_policy": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 4960.674629084,
+  "config": {
+    "arms": [
+      "REPLAY_FAITHFUL",
+      "REPLAY_OWN_RULE_STATE"
+    ],
+    "episodes": {
+      "p0": 60,
+      "p1": 70,
+      "steps": 48
+    },
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 6,
+      "use_proxy_fields": true
+    },
+    "schedule": {
+      "p0": 60,
+      "p1": 70,
+      "steps": 48
+    },
+    "alpha_world": 0.9,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "lateral_pfc_rule_readout_consumer": true,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "candidate_summary_source": "proposer_post_action",
+    "use_gated_policy": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_floor": 0.45,
+    "crf_maintenance_couple_to_theta": true,
+    "crf_tolerance_conflict_cap": 3,
+    "crf_cue_centering": true,
+    "crf_cue_baseline_alpha": 0.02,
+    "reinforce": {
+      "lr": 0.0005,
+      "batch": 32,
+      "buf": 512,
+      "temp": 1.0,
+      "adv_min": 0.005,
+      "ema": 0.9
+    },
+    "replay_mode": "REPLAY_OWN_RULE_STATE",
+    "mismatch_floor": 0.1,
+    "lift_margin_fraction": 0.25
+  },
+  "seeds": [
+    611,
+    622,
+    633,
+    644,
+    655
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 10,
+    "goal_state_present": false
+  }
+}
