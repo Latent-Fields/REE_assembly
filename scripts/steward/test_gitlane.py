@@ -189,7 +189,7 @@ def test_patch_id_equivalent_commit_is_not_unique(tmp_path):
 
     other = clone_of(bare, tmp_path / "other")
     sh(other, "fetch", "-q", str(local), "master")
-    sh(other, "cherry-pick", sha)
+    sh(other, "-c", "user.email=o@o", "-c", "user.name=Other", "cherry-pick", sha)
     sh(other, "push", "-q", "origin", "master")
     sh(local, "fetch", "-q", "origin")
 
@@ -330,7 +330,7 @@ def test_incident_shape_is_reproduced(tmp_path):
 
     sh(other, "fetch", "-q", str(local), "master")
     for sha in picks:
-        sh(other, "cherry-pick", sha)
+        sh(other, "-c", "user.email=o@o", "-c", "user.name=Other", "cherry-pick", sha)
     commit(other, "registry.txt", "seed\nUPSTREAM-A\nSOC-HUM-1\n",
            "upstream registry churn")
     sh(other, "push", "-q", "origin", "master")
@@ -360,7 +360,7 @@ def test_patch_id_hit_whose_path_was_renamed_upstream_is_superseded(tmp_path):
 
     other = clone_of(bare, tmp_path / "other")
     sh(other, "fetch", "-q", str(local), "master")
-    sh(other, "cherry-pick", sha)
+    sh(other, "-c", "user.email=o@o", "-c", "user.name=Other", "cherry-pick", sha)
     sh(other, "mv", "old_name.md", "new_name.md")
     sh(other, "-c", "user.email=t@t", "-c", "user.name=Tester",
        "commit", "-qm", "rename old_name.md -> new_name.md")
@@ -386,7 +386,7 @@ def test_missing_path_that_was_genuinely_deleted_is_not_superseded(tmp_path):
 
     other = clone_of(bare, tmp_path / "other")
     sh(other, "fetch", "-q", str(local), "master")
-    sh(other, "cherry-pick", sha)
+    sh(other, "-c", "user.email=o@o", "-c", "user.name=Other", "cherry-pick", sha)
     (other / "old_name.md").unlink()
     sh(other, "add", "-A")
     sh(other, "-c", "user.email=t@t", "-c", "user.name=Tester",

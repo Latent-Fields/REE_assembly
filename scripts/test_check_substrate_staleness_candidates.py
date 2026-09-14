@@ -32,6 +32,13 @@ REPO_ROOT = Path(__file__).resolve().parents[1]  # REE_assembly root
 SCRIPT_PATH = REPO_ROOT / "scripts" / "check_substrate_staleness_candidates.py"
 REAL_ARM_FINGERPRINT = REPO_ROOT.parent / "ree-v3" / "experiments" / "_lib" / "arm_fingerprint.py"
 REAL_DEFAULT_OFF_GUARD = REPO_ROOT / "scripts" / "default_off_drift_guard.py"
+# load_default_off_knob_names() reads REPO_ROOT.parent / "ree-v3" / ... -- true on a normal
+# REE_Working dev checkout (REE_assembly and ree-v3 are sibling repos under the umbrella), but
+# REPO_ROOT.parent on a standalone CI checkout of REE_assembly alone never has a ree-v3 sibling
+# at all. Without it, load_default_off_knob_names() best-effort-returns an empty set (by design
+# -- see its own docstring), so the guard-script-only skipUnless below is checking the wrong
+# precondition: it is satisfied on CI while the function it gates is still guaranteed empty.
+REAL_REE_V3_CONFIG = REPO_ROOT.parent / "ree-v3" / "ree_core" / "utils" / "config.py"
 
 
 def _load_module():
@@ -608,6 +615,11 @@ class BuildFunctionIndexTests(unittest.TestCase):
 
 class LoadDefaultOffKnobNamesTests(unittest.TestCase):
     @unittest.skipUnless(REAL_DEFAULT_OFF_GUARD.exists(), "default_off_drift_guard.py not present")
+    @unittest.skipUnless(
+        REAL_REE_V3_CONFIG.exists(),
+        "ree-v3/ree_core/utils/config.py not present -- expected on a standalone CI "
+        "checkout of REE_assembly alone (ree-v3 is a sibling repo, not a subtree); "
+        "not expected on a normal REE_Working/REE_assembly dev checkout")
     def test_real_guard_and_config_yield_a_nonempty_set(self):
         names = MOD.load_default_off_knob_names(REAL_DEFAULT_OFF_GUARD)
         self.assertIsInstance(names, set)

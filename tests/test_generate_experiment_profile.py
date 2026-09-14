@@ -4,9 +4,19 @@ import importlib.util
 import sys
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "generate_experiment_profile.py"
+# generate_experiment_profile.py resolves its authoritative experiment-script
+# source from WORKING_ROOT/"ree-v3" (WORKING_ROOT = ROOT.parent) -- true on a
+# normal REE_Working dev checkout, where REE_assembly and ree-v3 are sibling
+# repos under the umbrella. A standalone CI checkout of REE_assembly alone has
+# no ree-v3 sibling at all, so ROOT.parent/"ree-v3" is structurally absent
+# there, not merely stale -- the generator correctly raises ProfileError
+# ("authoritative source cannot be located") rather than fabricating a profile.
+REE_V3_ROOT = ROOT.parent / "ree-v3"
 
 
 def load_module():
@@ -20,6 +30,11 @@ def load_module():
 
 
 def test_v3_exq_825_profile_renders_required_sections(tmp_path):
+    if not REE_V3_ROOT.is_dir():
+        pytest.skip(
+            f"{REE_V3_ROOT} not present -- expected on a standalone CI checkout "
+            "of REE_assembly alone (ree-v3 is a sibling repo, not a subtree); "
+            "not expected on a normal REE_Working/REE_assembly dev checkout")
     # generate_experiment_profile.py used to source its "pending" section
     # marker from pending_review.md, a generated/transient worklist that
     # drops each run's entry once governance reviews it -- so this test broke

@@ -903,6 +903,28 @@ class TestLiveCorpusSmoke(unittest.TestCase):
             hits.extend(m.scan_review_tracker(m.DEFAULT_REVIEW_TRACKER))
         self.assertTrue(hits, "no self-flagged hits scanned from the live corpus")
 
+        # DEFAULT_SKILLS_DIRS resolves via UMBRELLA_ROOT = REPO_ROOT.parent -- true
+        # on a normal dev machine, where REE_assembly is checked out nested inside
+        # the REE_Working umbrella repo (which owns .claude/skills/ and
+        # .agents/skills/). CI's actions/checkout@v4 checks out ONLY REE_assembly,
+        # standalone, so REPO_ROOT.parent is an ordinary runner workspace directory
+        # that never contains the umbrella's skill trees at all -- structurally
+        # absent, not corpus drift. This is a DIFFERENT non-vacuity failure mode
+        # from the "evidence/planning/ is gone" guards above (which this class's
+        # docstring explicitly says must never soften to a skip): those guard
+        # against the fix being silently reverted while the corpus stays present;
+        # this guards against a checkout topology the umbrella-relative path was
+        # never written to support. Loud, explicit skip -- never silent -- naming
+        # exactly why, so a genuine future regression (skills dirs present but
+        # load_skill_lines broken) still fails instead of skipping.
+        if not any(d.is_dir() for d in m.DEFAULT_SKILLS_DIRS):
+            self.skipTest(
+                "none of DEFAULT_SKILLS_DIRS exist (%s) -- this checkout has no "
+                "umbrella REE_Working repo as its parent (expected on a standalone "
+                "CI checkout of REE_assembly alone; not expected on a normal "
+                "REE_Working/REE_assembly dev checkout)"
+                % [str(d) for d in m.DEFAULT_SKILLS_DIRS])
+
         skill_lines = m.load_skill_lines(m.DEFAULT_SKILLS_DIRS)
         self.assertTrue(skill_lines, "no skill lines loaded from the live corpus")
         return hits, skill_lines
