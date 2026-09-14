@@ -1012,9 +1012,9 @@
       "summary": "V3-EXQ-729 (2026-07-10, two same-day runs, both outcome:PASS/evidence_direction:supports/claim_ids:['MECH-268'], both marked reviewed in review_tracker.json) is absent from claim_evidence.v1.json -- MECH-268's latest_run_id still shows V3-EXQ-463b (2026-06-04) with genuine_exp_count:1. This claim's own implementation_note still frames the ecological demonstration as 'OUTSTANDING' six+ weeks after it PASSed twice. Neither manifest carries a scoring_excluded flag or is a diagnostic; no failure_autopsy exists (consistent with a clean PASS needing none, but that also means no governance-apply step ever touched claims.yaml for this run). Recommend checking build_experiment_indexes.py's handling of same-day repeated runs sharing a queue_id -- may be a narrow but real bug affecting any other claim with a same-day repeated PASS. Surfaced by thought-digestion 2026-08-27 (grouped mode, wave 3, group G).",
       "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
       "raised_at": "2026-08-27T22:00:49Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-14T11:35:33Z",
+      "resolution_note": "failure_autopsy_V3-EXQ-729_2026-09-14 (REE_assembly 5a81155360) written and cross-model (Opus) red-team reviewed (verdict CONTESTED, 8 findings incorporated). Narrow adjudication: the non_degenerate:false PASS DOES discharge MECH-268's live-wiring/ecological bar (C4's live_record_calls/fifo_end clauses are the genuine, non-tautological content -- C2/C3/C5 are implementation tautologies) but does NOT satisfy V3-EXQ-468's commitment-vs-contradiction falsifier as what_would_answer currently claims, and does NOT demonstrate graded saturation (the claim's registered distinguishing property remains untested in the live loop). Artifact status: awaiting_human_confirmation -- recommends what_would_answer/implementation_note amendments, epistemic_category:standard, and a queue-experiment follow-up (non-saturating harm regime); /governance applies once confirmed."
     },
     {
       "flag_id": "GFLAG-0071",
