@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-14T22:32:15Z`
+Generated: `2026-09-14T23:35:09Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,7 +9,7 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **254** (ready 30, in_flight 0, blocked 168)
+- Items: **254** (ready 31, in_flight 0, blocked 167)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 88, v4 76, v5 38, v6 25
 - Pending review: **3**
 - Queue pending (unclaimed): **0**
@@ -5671,9 +5671,8 @@ Instructions:
 
 ### IGW-20260914-249 -- Confirm evidence: ARC-131 (lit 0.80, exp ~0)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0279 status=blocked_substrate: blocked by V3-EXQ-886 (falsifier harness prerequisite: goal-directed online-adapting competence)
-- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session recorded EXP-0279 status=blocked_substrate in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
+- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.80, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -5681,10 +5680,9 @@ Instructions:
 REE inter-governance work item: IGW-20260914-249
 Title: Confirm evidence: ARC-131 (lit 0.80, exp ~0)
 Lane: experiment | Skill: /queue-experiment
-Status: blocked
+Status: ready
 Claims: ARC-131
-Blocked by: experiment_proposals.v1.json EXP-0279 status=blocked_substrate: blocked by V3-EXQ-886 (falsifier harness prerequisite: goal-directed online-adapting competence)
-Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session recorded EXP-0279 status=blocked_substrate in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.80, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
