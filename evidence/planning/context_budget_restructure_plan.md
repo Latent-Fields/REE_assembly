@@ -452,3 +452,9 @@ The negative control passes.**
 itself, so future re-runs are valid as specified; (2) resolve the ree-v3 injection-frequency drop,
 because WI-1's fleet value depends on it, not on the split; (3) the `ree-v3/CLAUDE.md` regrowth
 (+19%/week) will erode WI-1 per-injection if it continues.
+
+**Owed item (2) resolved 2026-09-14:** the harness `nested_memory` trigger did not change. A
+successful `Read` of a CLAUDE.md suppresses its injection (`readFileState` dedup). Post-split,
+`ree-v3/CLAUDE.md` became small enough to Read, so the nightly-documentation task now gets it as a
+tool result, not an injection. This is a channel change, not lost instructions, and 7.4 under-credits
+WI-1 by ~1 pp. See [`reev3_nested_memory_trigger_drop_20260914.md`](reev3_nested_memory_trigger_drop_20260914.md).
