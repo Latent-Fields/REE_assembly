@@ -3625,9 +3625,9 @@
       "summary": "SUCCESSOR to GFLAG-0131 (resolved 2026-09-10) -- the half that could not be applied. 0131's required edit was a readiness gate to apply BEFORE the probe was queued, but there is no 'before' left: chip-20260903-exq978-oracle-adapter-discriminator is already status done (resolved 2026-09-04), and the probe RAN as V3-EXQ-1002 on 2026-09-05, returning FAIL with an H-C geometry-mismatch label. None of the three mitigations appears in its manifest. So V3-EXQ-1002's FAIL verdict was obtained under exactly the untreated SD-094 self-contamination confound the gate existed to prevent (hazard-free env, contamination_spread defaulting to 0.5, neither contamination_spread=0.0 nor hazard_free_contamination_gate=True passed). The gate is recorded as retroactively owed in the two V3-EXQ-978 autopsy artifacts; what governance must decide is whether V3-EXQ-1002's verdict stands or needs a re-run under the gate. NOT a bookkeeping item -- a standing FAIL rests on it.",
       "raised_by_session": "gov-flagbacklog-20260909",
       "raised_at": "2026-09-10T06:55:21Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-14T11:19:30Z",
+      "resolution_note": "Established positively, not re-run: REE_assembly evidence/planning/failure_autopsy_V3-EXQ-1002_2026-09-05.md section 13 (commit f504362cb5, REE_assembly master, 2026-09-14) independently re-derives the SD-094 confound from the run's manifest env_kwargs and the driver source. Confound's factual premise confirmed (D3_hazard_free leaves contamination_spread at its 0.5 default). Does NOT reach the load-bearing H-C criteria: _collect_episodes() stores each episode's obs/labels once per driver and all three arms (rawfield_ceiling, zworld_untrained, zworld_off) extract features from those identical stored steps, paired by construction, so contamination-driven truncation shifts the sampled state population identically across arms and cannot manufacture the observed rawfield >> zworld_untrained >~ zworld_off ordering. Confound remains real only in the already-disclosed secondary rollout readouts and the already-tracked, already-unqueued H-E channel-input-capacity leg. No re-run of V3-EXQ-1002 warranted; the gate applies when the section 8 parallel two-leg portfolio is queued instead."
     },
     {
       "flag_id": "GFLAG-0258",
