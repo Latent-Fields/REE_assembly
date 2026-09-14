@@ -1,0 +1,106 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-14T16:50:52Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1023_sd106_bottleneck_preservation_validation_20260912T045319Z_v3",
+      "queue_id": "V3-EXQ-1023",
+      "claim_ids": ["SD-106"],
+      "bears_on": ["zworld_actor_adequacy_locus"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (partial) -- SD-106 was tested fairly (all 5 readiness preconditions green, non-degenerate C2), and the specific built shape (preservation_weight=200 + skip) did not reach its own pre-set acceptance target (0/3 seeds clear 0.85; min agreement 0.6987). The general direction -- some bottleneck-preservation pressure helps -- is mildly SUPPORTED (SD-106 beats OFF by 0.037-0.072 absolute at the consumer rung, all 3 seeds). The mechanism engaged and trained correctly (Sec. 2); the open question this autopsy could not close is whether the shortfall is a training-BUDGET artifact (P0a ran only 348-396 steps on 2364-2716 buffered observations, below the design doc's own 600-step/4000-observation reference point) or a genuine ceiling of the objective at weight=200 -- see Sec. 2 and the four-layer table.",
+        "biological_reference": "partial -- see biological_reference block. The DiCarlo-style ventral-stream untangling reference (present, lit-grounded, carried from V3-EXQ-1010) motivates SOME bottleneck-preservation pressure; whether GENERIC (task-agnostic) variance preservation is the correct target vs TASK-RELEVANT/behaviourally-conditioned compression (efficient coding / information-bottleneck framings) is a real, lit-groundable open question -- but it is premature to adjudicate it before the training-budget question in Sec. 2 is resolved.",
+        "prerequisites": "present -- all 5 readiness preconditions green: instrument_rawfield_control_supra_floor (0.9735 vs floor 0.60), anchor_pca32_reaches_parity_bar_on_majority (3/3 clear 0.85), sd106_bypass_trained_off_zero (worst-seed ||W_skip||=4.13 vs >0), sd106_encoder_trained_in_p0 (4/4 world-encoder tensors changed), sd106_latent_not_collapsed (participation ratio worst 8.13 vs floor 2.0).",
+        "implementation": "complete -- the flag reached the substrate and trained as designed: skip weight moved off zero (4.13-4.37), 4/4 world-encoder tensors changed, participation ratio 8.13 (no collapse), and C2's mechanism-fact witness passed (preservation head ran on every SD-106 cell, no OFF cell). CORRECTED after the Step 7c red-team pass: an earlier draft of this artifact graded this row 'partial' on the mistaken premise that `sd106_preservation_holdout_r2` (0.700-0.749) should be compared directly against the SD-106 design doc's 0.9974/0.9978 'obs R^2' figures as the 'same metric, same code path'. It is not: `preservation_holdout.r2` is gated on `self._preserve_head is not None` (`ree_core/latent/zworld_p0.py:645`) and every OFF-track cell in this manifest carries `p0a_preservation_holdout: null`, while the design doc's table reports a value for the 'shipped' (weight=0.0, no preserve head) and 'PCA-32 anchor' (no trainer at all) rows too -- neither of which CAN be `preservation_holdout.r2`. The design-doc figures are a post-hoc linear-decodability probe (OLS-style, per the doc's own 'linear-decodable content' wording and the V3-EXQ-1008/1010 methodology); `preservation_holdout.r2` is the jointly-SGD-trained head's own holdout R^2, a different and more conservative quantity. There is no established 'reproduction gap' between them; see Sec. 2.",
+        "environment": "adequate -- identical environment/dataset/oracle/rung to V3-EXQ-1010/1008/1002, all previously validated; not re-litigated here.",
+        "measurement": "adequate -- the acceptance-DV instrument (capacity ladder, dataset recipe, standardiser, fit protocol, calibration anchor, thresholds) is imported unchanged from x1010/x1008/x1002, already red-teamed there and again for this driver. CORRECTED after Step 7c: an earlier draft graded this row 'partial' on the same false premise as 'implementation' above (a claimed but nonexistent reproduction gap). The genuine, narrower finding -- that the SD-106 design-time post-hoc probe value was never captured as a reproducible experiment artifact -- is a recording gap at the DESIGN stage, not a defect in THIS run's instrument, and belongs in learning_extracted rather than this row.",
+        "integration": "isolated -- frozen-representation-style read after P0 training; no cross-module interaction under test (same pattern as V3-EXQ-1010).",
+        "scale": "likely insufficient, or unknown -- the SD-106 preservation head trained for only 348-396 P0a steps on 2364-2716 buffered observations (`p0a_n_steps`/`p0a_n_buffered`, all 3 seeds; recomputes exactly from `zworld_p0.py`'s `n_train=round(0.8*n_buffered)`, `n_steps=(n_train//64)*12`), well below the SD-106 design doc's own stated reference point of 600 steps on ~4000 buffered observations. `p0a_final_loss` (74.25/65.91/77.74) sits far above the paired OFF arm's (18.61/18.94/19.08) -- consistent with, though not conclusive proof of, the preservation term not having converged within this budget. The seed with the fewest steps (44: 348) also has the lowest holdout R^2 (0.6999) and the lowest consumer-rung agreement (0.6987) -- directional at n=3, not proof, but pointing the same way. CORRECTED after Step 7c: an earlier draft graded this row 'adequate' without reading these cells."
+      },
+      "biological_reference": {
+        "closest_mechanism": "DiCarlo-style ventral-stream manifold untangling (same reference as V3-EXQ-1010's autopsy) -- a sensory hierarchy trained under task/behavioural pressure that progressively makes decision-relevant structure more linearly accessible than the input's own statistics.",
+        "dependencies": ["a training pressure that preserves and reformats input structure toward task-relevant variables"],
+        "is_formal_import": true,
+        "divergence": "SD-106 implements a FORMAL, task-agnostic objective -- generic (1 - R^2) variance/reconstruction preservation, scale-normalised, via a separate linear decoder -- as a proxy for 'the encoder should not discard input structure'. This is a plausible but unverified translation of the untangling reference, which biologically is driven by task/behavioural relevance, not literal generic variance. That question (generic vs task-conditioned compression -- efficient-coding / information-bottleneck framings) is real and currently unresolved by any lit entry in this corpus, but it is SECONDARY here: Sec. 2's training-budget question must be resolved first, or a 'generic preservation doesn't work' conclusion could equally be 'generic preservation wasn't trained long enough'.",
+        "lit_status": "partial -- DiCarlo untangling itself is present (targeted_review_sd_015/2026-04-02, targeted_review_perceptual_manifold_adaptors/2026-06-12); no entry addresses generic vs task-relevant/selective compression specifically (efficient coding / information bottleneck framings)."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "V3-EXQ-1023 (confirmed failure_autopsy_V3-EXQ-1023_2026-09-14) ran the pre-set acceptance measurement: 0/3 seeds clear the 0.85 held-out oracle-action-agreement parity bar at the consumer rung (min 0.6987, mean 0.719), against the PCA-32 anchor's 3/3 (0.858-0.877) -- all 5 readiness preconditions green and the manipulation non-degenerate (C2 passed). SD-106-ON beats the paired OFF arm by 0.037-0.072 absolute on every seed (partial support for the general bottleneck-preservation direction), but the shortfall to the anchor (~0.14) is large. The mechanism itself is implemented and engaged correctly; the open question is whether the shortfall reflects a training-budget shortfall (P0a ran 348-396 steps on 2364-2716 buffered observations, below the design doc's own 600-step/4000-observation reference) or a genuine ceiling of the objective at this weight -- routed to a /queue-experiment diagnostic that reads both the in-training holdout R^2 and a post-hoc linear-probe R^2 across a step-budget arm before any further objective redesign or /lit-pull. Status stays implemented; not promoted, not demoted.",
+      "per_claim_recommendation": {
+        "SD-106": {
+          "recommended_evidence_direction": "mixed",
+          "recommended_epistemic_category": "standard",
+          "change": "SD-106's evidence_quality_note still reads 'NO EXPERIMENTAL EVIDENCE YET'; the acceptance-DV result (and the open training-budget question) is now in -> stamp failure_autopsy_V3-EXQ-1023_2026-09-14",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays implemented"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-106",
+        "implementation_hint": "Do NOT bump preservation_weight, and do not re-run the full acceptance measurement yet (the driver's own null_reading and this autopsy both refuse a same-weight or different-weight requeue). First resolve the training-budget/metric-mismatch question with a cheap, P0-warmup-only diagnostic (no decoder ladder, no oracle-adapter dataset collection): on the SAME frozen SD-106 latent, at weight=200, read BOTH (a) `preservation_holdout.r2` (the in-training SGD-trained-head holdout metric this run already reports) AND (b) a post-hoc OLS linear-probe R^2 fitted the same way the design-time 0.9974/0.9978 figures were obtained (per SD-106 substrate doc Sec. 'Measured effect' methodology), across a step-budget arm: as-shipped (348-396 steps, raise nothing), ~600 steps (raise zworld_p0_episodes or epochs to match the design doc's own reference point), and ~1200 steps. Three attributable outcomes: (1) post-hoc R^2 already ~0.99 at the shipped budget -> the metrics were simply never comparable, the mechanism and budget are both fine, and the DV shortfall is a genuine objective-choice question (promote the /lit-pull on generic-vs-task-relevant compression to primary); (2) post-hoc R^2 low but rising with budget -> under-budgeted P0a, fix the budget and re-run the acceptance measurement; (3) post-hoc R^2 low and flat across budget -> a genuine mechanism/implementation defect, needs a build fix before any re-validation. Do NOT reuse a bare re-read of `preservation_holdout.r2` alone as the probe -- it is deterministic under the same seeds/code and would simply reproduce 0.70-0.75 without discriminating among these three cases.",
+        "unblocks_claims": ["SD-015", "ARC-030", "MECH-117", "MECH-457", "ARC-065"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_1023_sd106_bottleneck_preservation_validation_20260912T045319Z_v3",
+          "experiment_type": "v3_exq_1023_sd106_bottleneck_preservation_validation",
+          "metric": "Acceptance measurement (pre-set by governance gov-20260911): held-out oracle-action agreement at the consumer rung (x734.PPOPolicyNet, mlp128). 0/3 seeds clear the 0.85 parity bar (0.7398/0.7191/0.6987; mean 0.719, min 0.6987), vs the PCA-32 anchor's 3/3 (0.8771/0.8578/0.8718). SD-106-ON beats the paired OFF arm on every seed (+0.0722/+0.0442/+0.0366). All 5 readiness preconditions green; C2 non-degeneracy witness passed. The preservation head's own in-training holdout R^2 (0.7490/0.7464/0.6999) trained for only 348-396 P0a steps on 2364-2716 buffered observations -- below the design doc's stated 600-step/4000-observation reference point -- with final P0a loss (74.25/65.91/77.74) far above the paired OFF arm's (18.61/18.94/19.08). This is NOT directly comparable to the design-time 0.9974/0.9978 figures, which are a different, post-hoc linear-probe metric (Step 7c red-team finding); whether more training budget would close the gap, or the shortfall is a genuine ceiling of the objective, is open -- see implementation_hint.",
+          "target": "the observation->z_world latent should reach PCA-32 parity at the consumer rung -- >= 0.85 held-out oracle-action agreement on a seed majority, re-measured by re-running v3_exq_1010_zworld_overcapacity_decoder_sweep.py unchanged",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "SD-106-ON improves consumer-rung oracle-action agreement over the paired OFF arm by 0.037-0.072 absolute on all 3 seeds -- some bottleneck-preservation pressure helps, consistent with V3-EXQ-1010's diagnosis -- but the specific built shape (`preservation_weight=200` + skip) falls ~0.14 short of the PCA-32 anchor and clears the pre-set 0.85 bar on 0/3 seeds.",
+        "The SD-106 preservation head's own P0a training budget in this run (348-396 steps on 2364-2716 buffered observations, driven by `ZWORLD_P0_EPISODES=60`) is well below the SD-106 design doc's own stated reference point (600 steps, ~4000 buffered observations); the head's final training loss (74-78) sits far above the OFF arm's baseline (19). Whether this budget shortfall (rather than the objective's design) explains the DV shortfall is open and cheaply testable -- see the recommended diagnostic.",
+        "The SD-106 design doc's headline proxy figures (0.9974/0.9978 'obs R^2' at weight=200) are a POST-HOC linear-decodability probe, methodologically distinct from `preservation_holdout.r2` (the in-training SGD-trained head's own holdout R^2, gated on `self._preserve_head is not None` and null on every OFF cell in this manifest). Comparing the two directly, as an earlier draft of this autopsy did, is a category error -- caught by the Step 7c cross-model red-team pass, which correctly rejected the 'reproduction gap' framing on a one-line read of the code gate and the design table's own rows.",
+        "The design doc's proxy-calibration figures (both the 0.9974/0.9978 table and the 0.9652 'shipped recipe' figure it is compared against) were never captured as a reproducible, committed experiment artifact -- no script under `experiments/`, no manifest, no `substrate_hash`. This recording gap is real and independent of the metric-mismatch finding above; it means a future design decision resting on a proxy number should mint a minimal committed script for it, per the Experimental Recording Standard.",
+        "Whether the untangling reference calls for generic or task-relevant/selective compression remains open and lit-groundable, but resolving it before the training-budget question above is understood would risk drawing a biology-level conclusion from what may simply be an under-trained P0a warmup."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "red_team": {
+    "model": "fable (claude-fable-5-1), cross-model from the drafting session (Sonnet 5)",
+    "verdict": "CONTESTED",
+    "defects_confirmed": [
+      "D1: 'same metric, same code path' claim between preservation_holdout.r2 and the design doc's 0.9974/0.9978 is false -- verified by re-reading ree_core/latent/zworld_p0.py:645 and this manifest's OFF-cell p0a_preservation_holdout:null.",
+      "D2: 'same ~600-step/~4000-observation budget' claim is false -- verified from this manifest's own p0a_n_steps (396/396/348) and p0a_n_buffered (2716/2671/2364).",
+      "D3: the originally-recommended probe (bare re-read of preservation_holdout.r2 under identical seeds/code) is deterministic and cannot discriminate; replaced with the two-metric, step-budget-arm probe above.",
+      "D4: resolves_prior_failure_record with resolved:'superseded' misapplied the skill's verb (SKILL.md: superseded means a confounded/marginal prior read is overturned; this is 'a new, independent failure on the same substrate', which the skill says to leave untouched at 'open') -- field removed from this artifact; a new failure_record_entry is appended instead."
+    ],
+    "verified_sound": [
+      "The DV result itself (per-seed agreements, deltas, means, min, all 5 preconditions, C1/C2, anchor_reachability, non_degenerate, substrate_commit, seeds, machine, elapsed_seconds) -- every number recomputes exactly from the manifest cells.",
+      "Git range 616e7136..fe63dd68 over the relevant substrate paths is empty -- no code drift between the SD-106 landing commit and this run.",
+      "C7 (Step 7b) dismissal is correct -- sd106_preservation_holdout_r2 is a per-seed encoder-level readout, constant across decoder rungs by construction.",
+      "recommended_epistemic_category: standard is correct (no substrate-gating assertion; substrate_ceiling/substrate_conditional would wrongly suppress v3-testability).",
+      "re_derive_brake count of 0 for SD-106 is correct (no prior confirmed autopsy names SD-106 in claim_ids); the requeue refusal correctly rests on the driver's own null_reading, not the brake.",
+      "The design-time proxy figures genuinely have no committed producer script/manifest -- the recording-gap learning item stands.",
+      "recommended_evidence_direction: mixed is defensible.",
+      "The claims.yaml validation_experiment staleness flag (V3-EXQ-1015 vs V3-EXQ-1023) is correct."
+    ],
+    "not_adjudicated": [
+      "Whether the SGD-trained head would approach the post-hoc OLS R^2 at 600+ P0a steps -- left to the recommended probe.",
+      "The net GOV-FAILLOC-1 call given the corrected four-layer table -- Implementation/Measurement/Environment now all read established, which by the letter of the three-bucket rule would license 'REE FAILED', but Scale/capacity (a recognised fourth axis, per the skill's own four-layer table) reads 'likely insufficient' given the training-budget shortfall -- narrowly-scoped REE FAILED vs MIXED-grounded-on-Scale/capacity are both defensible; left to the Step 8 gate rather than forced here.",
+      "Whether the /lit-pull on generic-vs-task-relevant compression should be promoted to primary if the probe's outcome (1) obtains (metric mismatch only, mechanism/budget both fine)."
+    ]
+  }
+}
