@@ -3418,9 +3418,44 @@
   depends_on:
     - ARC-009
     - ARC-010
+  notes: >
+    [2026-09-14 targeted literature pull, evidence/literature/targeted_review_mech_014/,
+    5 entries, avg confidence 0.57] Narrowed and conditioned two of the claim's three
+    design constraints in the architecture doc rather than splitting into new claim
+    ids -- MECH-014 remains substrate-blocked behind the same ARC-009/ARC-010
+    dependency, so minting untestable children would inflate the candidate tail
+    without adding near-term testability. Non-masking narrowed: Atlas et al. 2016
+    (confidence 0.60, mixed) found verbal instruction left amygdala reinforcement-
+    driven threat learning untouched but reversed skin conductance almost completely
+    (rho=0.943) and updated striatal/OFC value signals before any shock -- "cannot
+    mask embodied harm channels" is false if arousal/expectation count as embodied;
+    what survives is narrower, that the experiential harm-learning update itself
+    must stay closed to incoming signals. Cheapness conditioned: Diaconescu et al.
+    2014 (confidence 0.52, mixed) found that when an adviser's incentive to mislead
+    varied, receivers' best-fitting strategy was hierarchical inference on the
+    adviser's intentions -- the costlier other-model computation the constraint says
+    signals should avoid -- so cheapness holds only under sender-receiver interest
+    alignment. Trust-weighting sharpened (supported, not narrowed): Behrens et al.
+    2008 (confidence 0.66, supports) and Diaconescu et al. 2014 both show the
+    reliability estimate is volatility-sensitive and combines with the receiver's
+    own value estimates only at choice, as a separate weighted term, rather than
+    overwriting them. Kendal et al. 2018 (confidence 0.50, supports) gives
+    evolutionary rationale for trust-weighting and cheapness without testing either
+    directly. Seyfarth, Cheney & Marler 1980 (confidence 0.55, supports) is the
+    canonical existence proof for the claim's premise (a small set of discrete
+    pre-linguistic signals carrying action-specific harm/stop-avoid warnings
+    cheaply) rather than a test of any one constraint. Full breakdown and reworded
+    constraint text in the architecture doc. Flagged to governance as GFLAG-0277
+    (contested_disposition) to confirm this reword is an adequate disposition.
+    live_status.evidence refresh left to /governance.
   location: docs/architecture/language/minimal_signalling_channel.md#mech-014
   source:
     - docs/processed/legacy_tree/architecture/language/minimal_signalling_channel.md
+    - evidence/literature/targeted_review_mech_014/entries/2026-09-14_mech_014_instructions_do_not_update_amygdala_threat_learning_atlas2016/
+    - evidence/literature/targeted_review_mech_014/entries/2026-09-14_mech_014_hierarchical_inference_on_adviser_intentions_diaconescu2014/
+    - evidence/literature/targeted_review_mech_014/entries/2026-09-14_mech_014_trust_weighted_advice_parallel_acc_streams_behrens2008/
+    - evidence/literature/targeted_review_mech_014/entries/2026-09-14_mech_014_selective_social_learning_strategies_kendal2018/
+    - evidence/literature/targeted_review_mech_014/entries/2026-09-14_mech_014_vervet_alarm_calls_cheap_referential_warnings_seyfarth1980/
 - id: MECH-015
   title: "Trust and deception dynamics."
   claim_type: mechanism_hypothesis
