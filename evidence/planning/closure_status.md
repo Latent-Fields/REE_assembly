@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-14T04:22:22Z
+Generated: 2026-09-14T23:46:21Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -86,7 +86,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=implement-substrate | blocked_on_upstream |  | 2026-08-12 |
-| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=queue-experiment | built |  | 2026-06-23 |
+| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=governance-note-only + queue-experiment | built |  | 2026-06-23 |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=implement-substrate | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=implement-substrate | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | routing=implement-substrate | blocked_on_upstream |  |  |
@@ -179,10 +179,11 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-9` -- Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sole K-episod
 
-## Plans WITHOUT closure_plan frontmatter (2)
+## Plans WITHOUT closure_plan frontmatter (3)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
+- `evidence/planning/claude_code_update_integration_plan.md`
 - `evidence/planning/context_budget_restructure_plan.md`
 - `evidence/planning/igw_governance_flag_coordinator_migration_plan.md`
 

@@ -11,15 +11,14 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [Q-041, Q-042, SD-029, MECH-111, MECH-256]
       depends_on: []
@@ -29,15 +28,14 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       owner_exq_status: passed
       pending_owner_exqs: []
@@ -61,15 +59,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [MECH-285, MECH-272, MECH-275, MECH-273]
       depends_on: ["sleep_substrate:GAP-8"]
@@ -80,15 +77,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [MECH-285, MECH-272, MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
@@ -101,15 +97,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
@@ -119,15 +114,14 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: []
       depends_on: []
@@ -138,15 +132,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       substrate_queue_id: "SD-MEL-CONSUMER"
       unblocks_claims: [INV-050, MECH-180]
@@ -189,15 +182,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: []
       depends_on: []
@@ -209,15 +201,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: []
       depends_on: []
@@ -228,15 +219,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-30"
-        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        verdict: "non_contributory/standard"
+        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
       unblocks_claims: [MECH-272, MECH-285]
       depends_on: []

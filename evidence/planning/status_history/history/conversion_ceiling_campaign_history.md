@@ -118,6 +118,7 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-01T06:11Z` [manifest] `v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3` -> [`evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json`](../../../../evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-01T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-571b_2026-09-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `conversion_ceiling_campaign:P-comp`
 
@@ -233,6 +234,7 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-01T06:11Z` [manifest] `v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3` -> [`evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json`](../../../../evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-01T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-571b_2026-09-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `conversion_ceiling_campaign:P2-rootC`
 
@@ -348,6 +350,7 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-01T06:11Z` [manifest] `v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3` -> [`evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json`](../../../../evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-01T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-571b_2026-09-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `conversion_ceiling_campaign:P3-ofc`
 
@@ -463,6 +466,7 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-01T06:11Z` [manifest] `v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3` -> [`evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json`](../../../../evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-01T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-571b_2026-09-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `conversion_ceiling_campaign:FULLSTACK`
 
@@ -578,6 +582,7 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-01T06:11Z` [manifest] `v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3` -> [`evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json`](../../../../evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-01T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-571b_2026-09-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `conversion_ceiling_campaign:P4-learned-gating`
 
@@ -693,6 +698,7 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-01T06:11Z` [manifest] `v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3` -> [`evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json`](../../../../evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-01T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-571b_2026-09-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `conversion_ceiling_campaign:GENERATION`
 
@@ -808,4 +814,5 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-01T06:11Z` [manifest] `v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3` -> [`evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json`](../../../../evidence/experiments/v3_exq_571b_e3_variance_monopoly_presence_clamped_20260901T061141Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-01T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-571b_2026-09-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571b_2026-09-01.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 

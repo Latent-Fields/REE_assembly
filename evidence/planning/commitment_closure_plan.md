@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -38,10 +38,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -56,10 +56,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -75,10 +75,10 @@ closure_plan:
       status: in-progress
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -125,10 +125,10 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -151,10 +151,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -169,10 +169,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -186,10 +186,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -208,10 +208,10 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -241,10 +241,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -259,10 +259,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -278,10 +278,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b"
-        verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-09-14"
+        from: "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729"
+        verdict: "supports/standard"
+        next: "routing=governance-note-only + queue-experiment"
         brake: "fired"
         needs_review: false
       join:

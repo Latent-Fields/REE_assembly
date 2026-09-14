@@ -18,7 +18,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -51,7 +51,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -99,7 +99,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -137,7 +137,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -159,7 +159,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -180,7 +180,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -199,7 +199,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -218,7 +218,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -239,7 +239,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -259,7 +259,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -307,7 +307,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -333,7 +333,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]

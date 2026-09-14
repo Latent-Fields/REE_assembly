@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-14T17:10:51.498417Z",
+  "generated_at_utc": "2026-09-14T23:44:19.033163Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -1825,25 +1825,6 @@
       "proposal_type": "experimental",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_impl_026",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1242",
-      "claim_id": "ARC-131",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for ARC-131 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0279",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_arc_131",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -11706,38 +11687,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-1661",
-      "claim_id": "SD-075",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for SD-075 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1184",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_sd_075",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1661",
-      "claim_id": "SD-075",
-      "objective": "Improve literature grounding and confidence for SD-075.",
-      "priority": "medium",
-      "proposal_id": "LIT-1185",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1662",
       "claim_id": "SD-077",
       "dispatch_mode": "targeted_probe",
@@ -12862,6 +12811,36 @@
       ]
     },
     {
+      "backlog_id": "EVB-1661",
+      "claim_id": "SD-075",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for SD-075 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1184",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_sd_075",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1661",
+      "claim_id": "SD-075",
+      "objective": "Improve literature grounding and confidence for SD-075.",
+      "priority": "medium",
+      "proposal_id": "LIT-1185",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_literature_evidence"
+      ]
+    },
+    {
       "backlog_id": "EVB-1746",
       "claim_id": "SD-106",
       "objective": "Improve literature grounding and confidence for SD-106.",
@@ -13157,6 +13136,24 @@
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_sd_054",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "low_exp_conf"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1242",
+      "claim_id": "ARC-131",
+      "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-1038",
+      "executed_queue_id": "V3-EXQ-1038",
+      "objective": "Reduce uncertainty for ARC-131 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0279",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_arc_131",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -17517,7 +17514,7 @@
       ]
     }
   ],
-  "n_executed": 239,
+  "n_executed": 240,
   "n_proposed_exp": 188,
   "n_proposed_lit": 461,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",

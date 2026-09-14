@@ -126,6 +126,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b` -> [`evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `biology_grounding_convergence_v4:BG-2`
 
@@ -249,6 +250,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b` -> [`evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `biology_grounding_convergence_v4:BG-3`
 
@@ -372,6 +374,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b` -> [`evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `biology_grounding_convergence_v4:BG-4`
 
@@ -495,6 +498,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b` -> [`evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `biology_grounding_convergence_v4:BG-5`
 
@@ -618,6 +622,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b` -> [`evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `biology_grounding_convergence_v4:BG-6`
 
@@ -741,6 +746,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b` -> [`evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
 ## `biology_grounding_convergence_v4:BG-7`
 
@@ -864,4 +870,5 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_V3-EXQ-968-871b_2026-09-02#V3-EXQ-871b` -> [`evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-968-871b_2026-09-02.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-472_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-472_2026-09-02.json) :: autopsy non_contributory/standard routing=governance-reclassify
 - `2026-09-02T16:13Z` [autopsy] `failure_autopsy_V3-EXQ-571c_2026-09-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-14T22:14Z` [manifest] `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` -> [`evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json`](../../../../evidence/experiments/v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3.json) :: PASS manifest diagnostic
 
