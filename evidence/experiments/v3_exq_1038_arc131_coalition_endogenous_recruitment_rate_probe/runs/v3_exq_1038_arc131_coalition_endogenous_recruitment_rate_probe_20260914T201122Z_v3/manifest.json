@@ -1,0 +1,94 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1038_arc131_coalition_endogenous_recruitment_rate_probe",
+  "run_id": "v3_exq_1038_arc131_coalition_endogenous_recruitment_rate_probe_20260914T201122Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-14T20:11:22Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-131"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "endogenous_recruitment_engaged_at_default_threshold",
+    "preconditions": [
+      {
+        "name": "endogenous_trigger_mechanism_live",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "control": "margin_threshold=1e6 guaranteed-fire positive control (40 ticks/seed), matching contract test W11",
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0_readiness_control_fires": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "28bdb912e03994c42f68eeb01212b81e7500340877c51617c69ca90abff1e74f",
+  "substrate_commit": {
+    "commit": "f85cfaf6c896aa5d3c2e4de9b9a7b610a7c2d0d2",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_coalition_controller": true,
+    "use_endogenous_coalition_trigger": true
+  },
+  "recording_schema": "rec/v1",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 14,
+    "goal_state_present": false
+  }
+}
