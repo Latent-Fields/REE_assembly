@@ -227,6 +227,46 @@ whether the readiness precondition is met -- not whether any downstream conversi
 
 ---
 
+## 6a. Build-time scoping addendum (2026-09-14, same session -- recorded before writing code)
+
+Section 3.2 specified the DV at the **final commit** (post-shortlist, post-modulatory-argmin),
+restricted to `committed=True` ticks to keep the shadow replay RNG-free. Building that requires
+either refactoring `e3_selector.py`'s post-`raw_scores` stretch (shortlist -> Go/No-Go ->
+modulatory argmin -> commit gate, `:3913-4009` and neighbouring blocks) into a shared callable, or
+hand-duplicating ~150 lines of that logic inside the experiment driver and auditing it
+line-by-line against source on every future `e3_selector.py` change. Both are `ree_core` surface
+changes or maintenance liabilities disproportionate to a `diagnostic` readiness probe, and exactly
+the kind of scope this skill's own guidance prefers to avoid inside an experiment script.
+
+**What is actually built (V3-EXQ-1012a): the PRIMARY-stage argmin flip, not the final-commit
+flip.** At every genuine (fresh) P1 selection tick in an ON arm, immediately after the live
+`raw_scores` is computed (commensurability ON), toggle `use_e3_channel_commensurability` to
+`False`, recompute `raw_scores_shadow` over the identical candidates via `score_trajectory()`
+alone (source-verified side-effect-free per section 3.1.2 -- confirmed again by a live probe this
+session: the OFF pass never mutates `_chan_scale_ema`, and rescoring ON afterward reproduces the
+EMA state and the original scores exactly), restore ON. `primary_argmin_flip = 1` iff
+`argmin(raw_scores)` differs from `argmin(raw_scores_shadow)`. This needs **no `committed=True`
+restriction** -- unlike the final-commit stretch, `argmin` of a fixed score tensor has no RNG in
+it, so every genuine tick is usable, not just the deterministic-commit subset.
+
+This is the same shadow-argmin PATTERN the codebase already uses once (the MECH-464 `da=0`
+precedent, section 3.1) applied at the level the operator directly acts on, and it is what the
+ratified GFLAG-0234 target text ("commit-flip rate under shadow OFF/ON scoring on the same tick
+and candidate set") most directly and safely supports without new `ree_core` surface. Report
+`final_commit_by_primary_frac` per cell alongside it (already computed by the parked driver) as
+mandatory interpretive context, and state explicitly in the script docstring and manifest that
+this DV characterises PRIMARY-stage authority -- whether the operator's rescaling changes which
+candidate the commensurability-affected score alone would prefer -- not a claim about the executed
+action on cells where the modulatory shortlist stage dominates (which section 2 shows is most of
+them). **The self-check (3.4) and the fed/starved non-forced-ness check (3.5) apply unchanged** at
+this level -- both are just as meaningful for the primary argmin as for the final commit.
+
+**Follow-on, not built here:** a small `E3TrajectorySelector` helper exposing the deterministic
+post-`raw_scores` stretch as a shared callable, so both `select()` and a future final-commit-level
+shadow probe can call it without duplication. Chip this as `/implement-substrate` work if a future
+session wants the final-commit-level reading; do not hand-duplicate the shortlist/Go-No-Go/
+modulatory-argmin logic inside an experiment driver to get it.
+
 ## 6. Build guidance for `/queue-experiment`
 
 Reuse wholesale: `ARMS`, seeds, env, `config_slice_for`, `_make_agent`'s knob-survival assertion,
