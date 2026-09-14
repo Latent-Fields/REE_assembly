@@ -6362,6 +6362,26 @@
     genuine lit-vs-exp contradiction -- not done this cycle. Deferred to a focused
     conflict-resolution / heterogeneity-note pass. Status UNCHANGED (candidate / V3-pending);
     no heterogeneity_note stamped to avoid a guessed classification. Re-surfaces next cycle.
+  implementation_note: >
+    2026-09-14 (metaworker-chip-20260906-mech057b-hippocampal-completion-gate-substrate):
+    the SUBSTRATE mechanism this claim asserts is now built -- ree-v3
+    ree_core/hippocampal/module.py HippocampalModule.verify_sequence_completion() +
+    promote_candidates(), gated by HippocampalConfig.use_completion_promotion_gate
+    (default False). This closes the implementation gap the 2026-04-25 revalidation
+    and evidence_quality_note below both flagged ("first genuine experiment needed... this
+    requires HippocampalModule trajectory promotion policy to be implemented first") and
+    the gap failure_autopsy_V3-EXQ-672-series_2026-06-15 named explicitly ("MECH-057b's
+    claimed mechanism... is unbuilt; 672b tests a harness quantile proxy"). Full design:
+    ree-v3/docs/substrate/MECH-057b-hippocampal-completion-verification.md;
+    substrate_queue.json sd_id
+    mech057b-hippocampal-completion-verification-promotion-policy.
+    NOT sufficient on its own to schedule a behavioural retest: EXP-0594 (REE_assembly
+    evidence/planning/manual_proposals.v1.json, blocked_substrate) requires BOTH this
+    build AND ARC-065 GAP-A candidate-pool discriminability, which is still open
+    (substrate_queue.json sd_id ARC-065, priority 1, implementation_status null).
+    Deliberately unchanged by this note: status (candidate), implementation_phase (v3 --
+    V3-pending), live_status, and every score/confidence field -- this is a substrate
+    landing, not new experimental evidence; no promotion or demotion follows from it.
   literature_evidence: |
     Pfeiffer & Foster (2013) PMID 23594744 [DOI: 10.1038/nature12112]:
     Hippocampal place-cell sequences depict future paths to remembered goals before

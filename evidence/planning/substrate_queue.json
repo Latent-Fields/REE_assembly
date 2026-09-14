@@ -9648,6 +9648,53 @@
       "last_seen_session": "happy-swartz-199593",
       "implementation_note": "[2026-09-11 /implement-substrate] Landed in ree-v3: ZWorldP0Config.preservation_weight (default 0.0) -- a SCALE-NORMALISED (1 - R^2) preservation term with its own linear decoder -- plus LatentStackConfig.use_world_encoder_skip (default False), a zero-init linear bypass around the world encoder's ReLU stack. Bit-identical OFF: state_dict keys unchanged, forward torch.equal, P0 final_loss identical to full precision under RNG-controlled repetition. The defect located was NOT a missing reconstruction term (ZWorldP0Config already carried reconstruction_weight=10.0) but its SCALE: measured trained-state shares are variance hinge 80.3%, covariance 9.3%, four grounding CE 9.5%, reconstruction 0.80%, because raw MSE on a sparse one-hot observation is ~0.018 where the hinge and CE terms it competes with are O(1). The trained latent retained linear-decodable world_obs content at R^2 0.9652 vs PCA-32's 0.9984 -- ~22x more input variance discarded. PROXY effect at preservation_weight=200 + skip (2 seeds, world_obs R^2 / resource_field R^2): 0.9974/0.9857 and 0.9978/0.9908, against the PCA-32 anchor's 0.9983/0.9878 and 0.9984/0.9894. SD-070's gates survive (participation ratio 14.68 -> 13.86 vs a >= 2.0 gate); MEASURED COST, recorded rather than buried: mean grounding lift falls 0.5702 -> 0.4064 at w=200. PROMOTES NOTHING on its own -- validation is V3-EXQ-1023.",
       "validation_experiment": "V3-EXQ-1023"
+    },
+    {
+      "added_session": "metaworker-chip-20260906-mech057b-hippocampal-completion-gate-substrate",
+      "sd_id": "mech057b-hippocampal-completion-verification-promotion-policy",
+      "title": "Hippocampal sequence-completion verification + trajectory-promotion policy (MECH-057b)",
+      "status": "implemented_pending_validation",
+      "priority": 2,
+      "ready": true,
+      "design_doc": "ree-v3/docs/substrate/MECH-057b-hippocampal-completion-verification.md",
+      "implementation_status": "implemented",
+      "implemented_session": "metaworker-chip-20260906-mech057b-hippocampal-completion-gate-substrate",
+      "implemented_utc": "2026-09-14T11:06:57Z",
+      "last_seen_session": "metaworker-chip-20260906-mech057b-hippocampal-completion-gate-substrate",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-057b"
+      ],
+      "unblocks_note": "Mints the owed build EXP-0594 (REE_assembly evidence/planning/manual_proposals.v1.json, backlog_id EVB-1722) named as UNOWNED via its blocked_by token 'mech057b-hippocampal-completion-verification-promotion-policy' (= this sd_id, so audit_blocked_proposal_unblockers.py now resolves it OWNED+SATISFIED). EXP-0594's release_condition requires BOTH this build AND ARC-065 GAP-A candidate-pool discriminability (substrate_queue sd_id ARC-065, still priority 1, implementation_status null) -- this entry alone does not unblock EXP-0594; it clears exactly one of its two blockers.",
+      "implementation_hint": "ree_core/hippocampal/module.py: HippocampalModule.verify_sequence_completion(trajectory) -> float reads VisitationCounter.query() (visitation.py, unconditional per-region visit-count tracker, previously read-only telemetry) at each waypoint of the candidate's rolled-out z_world sequence, mapping count -> confidence = count/(count+tau) (saturating; count=0 -> 0.0), and takes the MINIMUM over the sequence. Deliberately distinct from _score_trajectory (ARC-007 STRICT terrain/residue cost used for CEM elite selection) -- the exact substrate gap failure_autopsy_V3-EXQ-672-series_2026-06-15 (CONFIRMED) diagnosed: the prior harness gate (V3-EXQ-672b) ranked candidates directly on _score_trajectory and inherited the ARC-065 GAP-A candidate-pool collapse instead of measuring completion. HippocampalModule.promote_candidates(trajectories) applies verify_sequence_completion as a promotion policy (absolute verification floor + drop-fraction cap + deadlock guard + exempt-source protection for structural/ghost injectors) and is wired into propose_trajectories()'s tail, gating which CEM candidates are eligible for E3 -- the claim's own wording. Config: HippocampalConfig.use_completion_promotion_gate (default False, no-op) + 4 threshold/tau/fraction params, all forwarded through REEConfig.from_dims. Full design: the design_doc above.",
+      "failure_record": [
+        {
+          "run_id": "v3_exq_672b_mech057b_trajectory_promotion_gate_20260615T014701Z_v3",
+          "experiment_type": "v3_exq_672b_mech057b_trajectory_promotion_gate",
+          "metric": "mean_candidate_score_spread_ARM_1=0.009; mean_completion_signal flat 0.3439 across arms -- harness gate ranked on hippocampal._score_trajectory, which carries no completion signal",
+          "target": "a substrate-resident completion-verification signal genuinely distinct from _score_trajectory (this landing), plus (separately) ARC-065 GAP-A candidate-pool discriminability before any behavioural retest",
+          "cross_ref": "evidence/planning/failure_autopsy_V3-EXQ-672-series_2026-06-15.json"
+        }
+      ],
+      "validation_experiment": "None queued from this landing by design (re-derive brake holds at count 2 per the 672-series autopsy until ARC-065 GAP-A also clears -- queueing now would re-trigger the same vacuous-contrast degeneracy). EXP-0594 (REE_assembly evidence/planning/manual_proposals.v1.json, backlog_id EVB-1722) is the pre-registered retest, blocked_substrate pending ARC-065. Substrate-level validation for THIS build: ree-v3/tests/contracts/test_mech057b_completion_promotion.py (22 tests) + hippocampal/visitation/CEM regression slice (348 tests total), all green (ree-cloud-4 hub run 2026-09-14).",
+      "metric_trajectory": {
+        "primary_metric": "completion_promotion_filtered_fraction / completion_promotion_confidence_spread (propose diagnostics)",
+        "primary_metric_description": "Whether promote_candidates() engages selectively on genuine visitation-based completion confidence, distinct from the terrain/residue channel -- smoke-validated by the contract suite's selectivity test; behavioural harm/completion benefit is EXP-0594's job once ARC-065 also lands.",
+        "direction": "higher_is_better",
+        "target": "contract suite C1-C22 PASS (2026-09-14, this landing); behavioural validation deferred to EXP-0594",
+        "current_blocker": "ARC-065 GAP-A candidate-pool discriminability (EXP-0594's second release_condition)",
+        "observations": [
+          {
+            "date_utc": "2026-09-14",
+            "experiment_type": "smoke_mech057b_completion_promotion",
+            "run_id": null,
+            "metric_value": "22/22 new contract tests PASS + 348/348 hippocampal-adjacent regression suite PASS",
+            "metric_notes": "Distinctness from _score_trajectory, min-over-waypoints, selective suppression, deadlock guard, exempt-source protection, from_dims reachability, and OFF-path bit-identity all directly asserted. Behavioural validation queued as EXP-0594, blocked on ARC-065.",
+            "substrate_state": "MECH-057b hippocampal completion-verification + promotion-policy landed 2026-09-14"
+          }
+        ],
+        "prediction": null
+      }
     }
   ],
   "schema_version": "substrate_queue/v2",
