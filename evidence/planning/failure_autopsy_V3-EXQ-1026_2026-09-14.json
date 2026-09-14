@@ -1,0 +1,101 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-14T17:47:24Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "red_team": {
+    "verdict": "CONTESTED",
+    "model": "fable (session model: Sonnet 5)",
+    "findings_disposed": true,
+    "summary": "F1 (verdict-moving, CONFIRMED by independent re-verification): the C3 E2 weight delta is confined to E2's SELF-forward head (predict_next_self via self_transition/self_action_encoder); E2.world_forward -- the disjoint parameter set INV-063 leg B's V3-EXQ-701b/701c frozen-probe instrument actually reads -- moved by exactly 0 (per-named-parameter probe). This run does NOT unblock INV-063 leg B; it shows the hook fires and trains E2's self-forward head through a real sleep cycle. Artifact revised accordingly (see per-finding notes below). F2 (moderate, confirmed): driver docstring misattributes the OFF-arm E1 delta to agent.offline_integration() (zero callers in ree_core); the actual writer is a ContextMemory memory-slot update during SWS/REM replay. Does not affect the E2 attribution, which rests on the C4 measurement directly. F3 (moderate, confirmed): 'ordinary sleep cycle' should read 'via SleepLoopManager (force_cycle)'; a bare agent.run_sleep_cycle() driver never reaches the hook, and the manifest's sleep_driver_pattern field mislabels what was actually called (says 'manual-cycle-loop / run_sleep_cycle()' but the driver calls agent.sleep_loop.force_cycle(agent))."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_1026_mech423_sleep_integrated_e2_consolidation_20260914T111100Z_v3",
+      "queue_id": "V3-EXQ-1026",
+      "claim_ids": ["MECH-423"],
+      "bears_on": [
+        "INV-063 (Leg B remains structurally blocked -- this run trains E2's self-forward head only, NOT the world_forward head Leg B's frozen-probe DV reads; see red_team.summary F1)"
+      ],
+      "failed_criterion": "n/a -- clean PASS, all four load-bearing criteria (C1-C4) passed non-degenerately, for the narrow question the driver actually poses (does the sleep-integrated hook fire and train E2 at all)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete (for the self-forward/predict_next_self question this driver tests) / partial (for a world-forward-training claim, which this run does not establish -- see red_team F1)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled (via SleepLoopManager.force_cycle specifically -- not reachable via a bare agent.run_sleep_cycle(), see red_team F3)",
+        "scale": "n/a (binary mechanism-firing test, not a scale/capacity claim)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Sleep-dependent offline consolidation of a forward/predictive model via local, module-scoped replay-style optimization during a designated offline phase -- the REE analogue of systems consolidation / cross-region synaptic reweighting during sleep (SD-017 sleep substrate; MECH-121 sleep replay).",
+        "dependencies": ["SD-017 (sleep phase manager)", "real waking experience buffer (record_transition)", "MECH-121 sleep replay"],
+        "is_formal_import": false,
+        "divergence": "None identified for the narrow wiring question this run actually tests -- CrossModuleConsolidator.consolidate() builds local per-module Adam optimizers scoped to agent.e1/e2.parameters() only, a direct mechanistic analogue rather than a formal-definition import.",
+        "lit_status": "present (MECH-423/SD-017 already carry literature grounding elsewhere; no fresh lit-pull needed for this narrow validation)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "V3-EXQ-1026 (diagnostic, 2026-09-14) is the first landed-manifest exercise of the SLEEP-INTEGRATED call site (SleepLoopManager.force_cycle -> phase_manager._run_cycle) for MECH-423's R3 CrossModuleConsolidator -- distinct from V3-EXQ-680e, which validated R3 only via a DIRECT CrossModuleConsolidator.consolidate() call. All four load-bearing criteria passed non-degenerately: C1 cross_module_consolidation metrics merged in every ON-arm cell; C2 min updates_e2=8 across 3 seeds; C3 min max|delta_e2|=0.00769 across 3 seeds -- CONFIRMED (Step 7c red-team, independent per-named-parameter probe) to be entirely within E2's SELF-forward head (predict_next_self / self_transition / self_action_encoder); C4 OFF-arm max|delta_e2|=0.0 exactly across 3 seeds (bit-identical negative control, consolidator=None) over ALL E2 parameters including world_forward. Recording-standard always-core fields all present and validated (0 gaps). Diagnostic substrate-readiness confirmation of the hook-fires/self-forward question; does NOT extend to E2.world_forward (untrained by this or any sleep-time pathway -- see bears_on) and does not add new evidence for MECH-423's super-additivity hypothesis itself (that remains V3-EXQ-680e's evidence).",
+      "per_claim_recommendation": {
+        "MECH-423": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "STANDS -- MECH-423 status/category/direction unaffected (diagnostic-purpose run, excluded from confidence/conflict scoring by design); mark this diagnostic evidence adjudicated -> diagnostic_evidence_adjudicated",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mech423-sleep-integrated-e2-consolidation-hook",
+        "amend_note": "V3-EXQ-1026 PASSED all four load-bearing criteria (C1-C4) named verbatim in this entry's own current_blocker field ('ready flips true on a V3-EXQ-1026 PASS: metrics merged, E2 touched under interleaved schedule, ON-arm E2 weight delta > 0, OFF-arm E2 weight delta == 0 exactly'). Governance should: (1) set ready: true; (2) change implementation_status from 'implemented_pending_validation' to 'implemented'; (3) clear current_blocker (or set to 'none -- validated by V3-EXQ-1026 PASS, run_id v3_exq_1026_mech423_sleep_integrated_e2_consolidation_20260914T111100Z_v3'); (4) append an implementation_log entry citing this autopsy and the run_id. CORRECTION (Step 7c red-team F1, independently re-verified): the entry's own title/status_note/unblocks_note describe the validated update as a 'sleep-integrated world-model update' and state this run is the 'showing' that unblocks INV-063. That is INACCURATE -- the measured update is confined to E2's self-forward head (predict_next_self); E2.world_forward moved by exactly 0. Governance should ALSO: (5) correct the title/status_note/unblocks_note wording from 'world-model update' to 'self-forward (predict_next_self) update'; (6) DROP INV-063 from unblocks_claims (or annotate it 'self-forward only; world_forward remains untrained -- see the new sibling entry below'); (7) fix design_doc pointer (docs/substrate/MECH-423-readiness-substrate-r2-iterative.md does not exist in REE_assembly -- red-team H3).",
+        "failure_record_entry": null,
+        "resolves_prior_failure_record": []
+      },
+      "secondary_substrate_queue_entries": [
+        {
+          "action": "create",
+          "sd_id_suggested": "mech423-e2-world-forward-sleep-training-gap",
+          "title": "E2.world_forward has no waking- or sleep-time trainer -- INV-063 leg B's frozen-probe DV is structurally pinned at 0 across sleep",
+          "implementation_hint": "e2_fast.py's world_forward head (world_action_encoder + world_transition) is disjoint from predict_next_self (self_action_encoder + self_transition, trained by agent.compute_e2_loss) and its own docstring states it is 'NOT trained as E2's primary objective'. grep over ree_core confirms zero callers of any world_forward-training loss. Add a world_forward loss closure (analogous in shape to compute_e2_loss's predict_next_self MSE) over the EXISTING _world_experience_buffer + _action_experience_buffer (already populated waking-side, ree_core/agent.py ~3129/3154/5865-5871), and wire it into CrossModuleConsolidator.module_losses (or a parallel local-optimizer pass scoped to world_action_encoder/world_transition only, mirroring the existing e1/e2 optimizer-scoping pattern) so it fires during a real sleep cycle. Without this, INV-063 leg B (the V3-EXQ-701b/701c frozen-probe DV over agent.e2.world_forward) cannot register any across-sleep change under any experimental design, no matter how the waking ladder is graded.",
+          "unblocks_claims": ["INV-063"],
+          "depends_on_unresolved": [],
+          "priority_suggested": 2,
+          "severity": null,
+          "substrate_paths": ["ree_core/predictors/e2_fast.py::world_forward", "ree_core/sleep/cross_module_consolidation.py"],
+          "failure_record_entry": {
+            "run_id": "v3_exq_1026_mech423_sleep_integrated_e2_consolidation_20260914T111100Z_v3",
+            "experiment_type": "v3_exq_1026_mech423_sleep_integrated_e2_consolidation",
+            "metric": "max|delta| over agent.e2.world_forward parameters (world_action_encoder, world_transition) across a real sleep cycle",
+            "target": "> 0 on a real sleep cycle, matching the self-forward head's C3 result (min 0.00769 across seeds), once a world_forward loss closure exists",
+            "resolved": "open"
+          }
+        }
+      ],
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "n/a -- clean PASS for the narrow hook-fires/self-forward question the driver actually poses; no REE-failed read is being made. Recorded per GOV-FAILLOC-1 for completeness. The red-team finding (F1) narrows the SCOPE of what the PASS establishes; it does not turn the result into a failure."
+      },
+      "learning_extracted": [
+        "The sleep-INTEGRATED call site (SleepLoopManager.force_cycle -> phase_manager._run_cycle) that wires MECH-423's R3 CrossModuleConsolidator into a real sleep cycle now has landed-manifest coverage for the first time -- prior coverage was direct-call only (680/680a-e family).",
+        "Attribution of the C3 delta to this hook alone is confirmed by direct measurement (C4: exact-zero OFF-arm delta over ALL E2 parameters, including world_forward). The driver docstring's supporting analysis of 'the other two offline writer sites' is itself WRONG (agent.offline_integration() has zero callers in ree_core; the true OFF-arm E1 writer is a ContextMemory memory-slot update during SWS/REM replay) -- this does not weaken the E2 conclusion, which rests on the direct measurement, but the docstring should be corrected for the next reader (Step 7c red-team F2).",
+        "CORRECTED (Step 7c red-team F1): E2 has two disjoint heads -- predict_next_self (self_action_encoder/self_transition) and world_forward (world_action_encoder/world_transition, explicitly documented 'NOT trained as E2's primary objective'). agent.compute_e2_loss trains ONLY predict_next_self. This run's C3 delta (min 0.00769 across seeds) is confined entirely to the self-forward head; a per-named-parameter probe confirms world_forward moved by exactly 0 in every ON-arm cell. INV-063 leg B's frozen-probe DV (V3-EXQ-701b/701c) reads agent.e2.world_forward specifically -- so, contrary to the substrate_queue entry's own prior framing, this run does NOT unblock INV-063 leg B. A genuine, named, buildable gap remains: no waking- or sleep-time pathway anywhere in ree_core trains world_forward at all. See secondary_substrate_queue_entries.",
+        "Recording-standard always-core fields were all present with zero gaps (validate_recording.py), including a full seeds list and a stable substrate_hash across the run.",
+        "The manifest's own sleep_driver_pattern field ('manual-cycle-loop / run_sleep_cycle() called once per cycle') mislabels the actual call path -- the driver calls agent.sleep_loop.force_cycle(agent), which is only reachable via SleepLoopManager, not via a bare agent.run_sleep_cycle() (Step 7c red-team F3). Worth a manifest-field correction for future reuse of this run as a citation."
+      ],
+      "routing": "governance-apply (substrate_queue amend on the existing hook entry: MECH-423/hook-fires ready-flip, WITH the F1 wording correction) + implement-substrate (new: E2.world_forward has no trainer anywhere in ree_core; INV-063 leg B remains blocked pending that build)"
+    }
+  ]
+}
