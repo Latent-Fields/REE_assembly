@@ -353,3 +353,102 @@ If a loading session had referenced a *large* share of `ree-v3/CLAUDE.md`'s feat
 sections, WI-1 would be wrong -- the file would be earning its place and splitting it
 would just add indirection. It does not: median 2 of 139, and 9 of 25 sessions referenced
 none. If a future re-measure shows the median session referencing >30% of sections, revisit.
+
+---
+
+## 7. Re-measure (2026-09-14)
+
+**Run:** 2026-09-14T21:58Z, scheduled task `ree-token-split-remeasure`, Mac (canonical DLAPTOP),
+`scripts/token_split_measure.py` over `~/.claude/projects`, 21-day mtime window. It replaces the
+n=1 live confirmation above with a fleet-level (this-Mac) figure.
+
+### 7.1 Instrument defect: the landed script cannot measure post-2026-09-02 transcripts as-is
+
+Run as specified (`--report --since 2026-09-08`), the script fitted **18 of ~160** post-restructure
+sessions, per-turn **R^2 median 0.79** (p10 0.63), residual 4.7%, and reported fixed prompt 30.75% /
+harness injections 35.02%. **That output is invalid and is not recorded here as a result.**
+
+Cause: Claude Code began writing the context baseline INTO the transcript as attachments --
+`instructions` (the loaded CLAUDE.md + MEMORY.md content, ~154 k chars) first seen 2026-09-02T18:00Z,
+and `prompt_snapshot` (~93 k chars) first seen 2026-09-04T03:59Z. `categorize()` counts every
+attachment as conversation chars `C_i`, so baseline `B` is counted twice: it enters `C_i` at turn 0,
+the OLS intercept goes negative, and the `baseline <= 0` guard rejects the session (136/157
+rejections carried a negative intercept). The 18 survivors are short sessions (median 55-62 turns vs
+148), and in them `B` is shifted into the injection bucket -- hence the inverted 30.75/35.02 split.
+
+**Corrected variant** (scratchpad only, script NOT edited): exclude the baseline-restating attachment
+types (`instructions`, `prompt_snapshot`, `session_context`, `environment`, `model`, `date`,
+`deferred_tools_record`) from `C_i`. This restores the fit: post-restructure **157/166 fitted, R^2
+median 0.9980, p10 0.9915, residual 0.8%**. Excluding only `instructions` + `prompt_snapshot` gives
+the same picture to within 0.8 pp. Every figure below uses the corrected variant on both sides of the
+comparison. (The 2026-09-07 corpus, first turn >= 2026-08-29, already partly overlapped this defect:
+as-landed it fits 124/200 of that window against 183/200 corrected, while its fixed share moves only
+41.7% -> 40.6%. The original Headroom decision is unaffected.)
+
+### 7.2 Results
+
+| corrected fit | PRE (first turn 2026-08-29 .. 09-07T20:50) | POST (first turn >= 2026-09-08) |
+|---|---|---|
+| sessions fitted / candidates | 183 / 200 | **157 / 166** |
+| assistant turns | 38,580 | 27,980 |
+| billed input tokens | 12.12 B | 7.80 B |
+| per-turn R^2 median (p10) / residual median | 0.9972 (0.9812) / 0.8% | 0.9980 (0.9915) / 0.8% |
+| median fixed baseline per turn | 103,332 tok | 98,517 tok |
+| **FIXED PROMPT share** | **40.55%** | **34.81%** |
+| harness injections share | 12.95% | 10.90% |
+| fixed + injections (instructional) | 53.50% | **45.71%** |
+| tool results share | 21.49% | 23.53% |
+
+(The as-landed trailing view without `--since`, 1,067 sessions, reads 40.20% fixed. It is
+pre-restructure dominated and carries the same defect, so it is context only.)
+
+**Fit-free cross-checks** (raw attachment sizes and API usage, no OLS):
+- Umbrella `CLAUDE.md` as delivered in the `instructions` attachment: median **158,624 -> 133,068
+  chars (-16.1%)**, present in 166/166 post sessions. `MEMORY.md` rides alongside at ~20,100 chars,
+  unchanged.
+- First-turn billed input, median: 134,697 -> 121,918 tok (-9.5%). This is confounded by skill-listing,
+  tool and MCP changes over the same days, so it is not attributed to the restructure.
+
+**`ree-v3/CLAUDE.md` `nested_memory` injections.** No session shows a ~1.4 MB payload after the split.
+Post-split injections total **2**: 62,569 chars (2026-09-07T20:50Z, the n=1 above) and **73,617
+chars (2026-09-10T19:30Z)**. The on-disk file is now 72,628 chars against 60,910 at WI-2 close,
+**+19% regrowth in a week**. `docs/substrate/` has also grown from 200 to 258 records. No worktree
+carried a frozen pre-split copy; worktree-rooted sessions get no ree-v3 injection at all, before or
+after the split (7/7 in both windows).
+
+**But the lever was barely exercised, and that is the main finding.** Only **1 of 166**
+post-restructure sessions received a ree-v3 injection, against 25/295 in the 2026-09-07 corpus.
+Sessions that Read/Edit/Write a ree-v3 file are somewhat rarer (PRE 24/200, POST 12/166), but
+nowhere near enough to explain it. The drop is at the trigger: main-checkout sessions reading ree-v3 files got the injection in **12/17 PRE but 0/5 POST**.
+The split reduces injection SIZE, not frequency, so the collapse is not caused by the restructure. Its
+cause is `mystery (known data)`: a harness-side `nested_memory` behaviour change is the likeliest
+reading, but n=5 does not establish it.
+
+### 7.3 Negative control -- PASSES
+
+Across all 166 post-restructure sessions (not only the fitted ones), **6 opened a named
+`ree-v3/docs/substrate/*.md` record**, reading **1, 1, 1, 2, 2 and 4 distinct files** respectively,
+5.9 - 20.1 KB per session. Among the 148 sessions touching any ree-v3 path, the median is **0**
+substrate references (mean 0.31). The worst session read 4 of 258 records (1.6%), far below the
+>30% revisit threshold in section 6. It read ~20 KB against ~1.42 MB avoided per injection. The
+split did not turn a bulk injection into many small reads. (The landed script's own negative-control
+line printed 0/18 because it only inspects the 18 invalidly-fitted sessions. That was vacuous, not a
+pass.)
+
+### 7.4 Verdict
+
+**The projected ~12% did NOT hold as a fleet figure in this window. Realized ~5% (~2.2% + ~3%).
+The negative control passes.**
+- **WI-2 held on projection:** the umbrella trim is worth **~2.2%** of the counterfactual budget
+  (+6,389 tok/turn at chars/4 x 27,980 turns = 0.18 B), against a planned 2.3%.
+- **WI-1 is mechanically confirmed but under-exercised:** -95% per injection (n=2), yet only one
+  post-restructure session was injected. That single 671-turn session saved ~0.24 B (**~3%**). WI-1's
+  9.8% projection assumed ~8.5% of sessions load the file; this window shows 0.6%, for reasons
+  outside the restructure.
+- The instructional share (fixed + injections) fell **53.5% -> 45.7%**, and the fixed-prompt share
+  **40.6% -> 34.8%**.
+
+**Owed, not done here:** (1) apply the section 7.1 exclusion to `scripts/token_split_measure.py`
+itself, so future re-runs are valid as specified; (2) resolve the ree-v3 injection-frequency drop,
+because WI-1's fleet value depends on it, not on the split; (3) the `ree-v3/CLAUDE.md` regrowth
+(+19%/week) will erode WI-1 per-injection if it continues.
