@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-14T04:22:08Z`
+Generated: `2026-09-14T09:51:38Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -13,6 +13,8 @@ UI: http://localhost:8000/workset
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 85, v4 76, v5 38, v6 25
 - Pending review: **3**
 - Queue pending (unclaimed): **0**
+
+- Live EXQs: V3-EXQ-906c
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): ARC-021 -> v3_exq_1011_arc021_h3_submargin_paired_ci_20260908T201117Z_v3, MECH-152 -> v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3, MECH-161 -> v3_exq_999a_mech161_vigilance_inverted_u_heartbeat_20260909T054013Z_v3, MECH-162 -> v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3, Q-081 -> v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3
 
