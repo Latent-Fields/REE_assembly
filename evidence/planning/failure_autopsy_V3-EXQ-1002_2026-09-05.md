@@ -668,3 +668,74 @@ identity of the *actual input tensor in the code*, not the field the write-up ta
 the per-claim `change`-string tails for INV-088 and MECH-457 (both verified against `claims.yaml`
 and kept); the `re_derive_brake` encoding; the `growth_restriction` absence; and the
 `epistemic_category: standard` recommendation.
+
+---
+
+## 13. Addendum (2026-09-14, GFLAG-0257) -- confound admissibility, independently re-derived
+
+**Provenance.** GFLAG-0257 (SD-094), raised 2026-09-10 by `gov-flagbacklog-20260909` as successor
+to GFLAG-0131: "V3-EXQ-1002's FAIL verdict was obtained under exactly the untreated SD-094
+self-contamination confound the gate existed to prevent ... what governance must decide is whether
+V3-EXQ-1002's verdict stands or needs a re-run under the gate." Worked as chip
+`chip-20260910-gflag0257-exq1002-confound-readmission`, instructed to either re-queue under the
+gate or establish positively that the confound cannot produce the observed H-C verdict.
+
+**Re-derived independently from the code and this run's own manifest, not taken on report.**
+
+1. **The confound's factual premise is confirmed.** `config/env_kwargs` in this run's manifest
+   carries `num_hazards: 0` with no `contamination_spread` or `hazard_free_contamination_gate`
+   key. Both come from `x724.ENV_KWARGS` (no contamination keys at all) overridden by the
+   `D3_hazard_free` rung (`experiments/v3_exq_734_env_difficulty_competence_recovery_sweep.py:
+   311-314`: overrides `hazard_food_attraction`, `proximity_harm_scale`, `reef_bipartite_layout`,
+   `reef_enabled`, `n_reef_patches`, `num_hazards` -- neither of the two contamination keys).
+   `CausalGridWorld.__init__` (`ree_core/environment/causal_grid_world.py:135-136`) therefore
+   leaves `contamination_spread=0.5`, `contamination_threshold=2.0` at their class defaults,
+   exactly as GFLAG-0257 states.
+
+2. **Does that confound reach this run's LOAD-BEARING criteria? No -- checked at the code level,
+   not asserted.** `_collect_episodes` (`v3_exq_1002_zworld_actor_adequacy_oracle_adapter.py:
+   1150-1194`) drives each BC-collection episode and `break`s on `done`, so a contamination-driven
+   agent death (the same mechanism GFLAG-0131 named for 978's *evaluated* rollout) does truncate
+   episodes here too, for both the oracle-driven and random-driven collections. But
+   `_collect_episodes` is called once per driver (`oracle`, `random`) and its stored
+   `obs_seq`/`labels` are then read by ALL THREE arms -- `_rawfield_features`, and
+   `_zworld_features` for both `zworld_untrained` and `zworld_off` -- from the identical
+   `data["train"]`/`data["test"]`/`data["random"]` dict (function docstring, line 1160-1162:
+   "Storing the observations ... is what makes the three arms paired STEP-FOR-STEP"), confirmed
+   against the call sites in `_run_rawfield_cell` (line 1323-1325) and the matching
+   `_run_zworld_cell` feature extraction. **Early termination therefore shifts which states are
+   sampled (toward earlier-episode states, more so on the random-driven split, matching the
+   already-disclosed 19-24% vs 79-90% step retention), but shifts it IDENTICALLY for all three
+   arms on a given driver's split.** It has no mechanism by which it could differentially favour
+   `rawfield_ceiling` over the two `zworld` arms, or `zworld_untrained` over `zworld_off`. It
+   cannot manufacture the observed ordering (raw 0.973-0.985 >> zworld_untrained 0.688 >~
+   zworld_off 0.664). This confirms, at the code level, what section 3 already argued from the
+   driver's own design description.
+
+3. **Where the confound DOES bite, unchanged from section 3.** The secondary rollout-based
+   readouts (`cloned_foraging_competence`, `cloned_death_rate`, via `evaluate_seed(...)` inside
+   `_run_rawfield_cell`/`_run_zworld_cell`) are genuine evaluated-policy rollouts and inherit the
+   identical GFLAG-0131 truncation signature (`cloned_death_rate` 0.85-1.00 on both z_world arms).
+   This autopsy's routing already does not use them for the verdict; nothing here changes that.
+
+4. **A second, narrower mechanism was checked and found already tracked, not new.** The un-gated
+   contamination channel is part of `z_world`'s actual 250-dim encoder input (`local_view 175 +
+   contamination 25 + hazard_field 25 + resource_field 25`, section 2c), while `rawfield_ceiling`
+   reads only the fixed 25-dim `resource_field_view` slice and never sees it. So the ungated
+   contamination channel is a live, non-constant distractor competing for `z_world`'s 32-dim
+   budget in a way the raw-field control structurally cannot experience -- but this is exactly the
+   question the already-registered, already-unqueued **H-E channel-input-capacity** leg (section
+   8, "alive, unqueued") exists to test. It is a refinement of a tracked open question, not an
+   unaccounted-for confound bearing on the confirmed H-C leg's validity.
+
+**Verdict on GFLAG-0257: the confound is real exactly as stated, and does NOT reach this run's
+load-bearing H-C verdict.** No re-run under the SD-094 gate is warranted for this run: a re-run
+adding `contamination_spread=0.0` / `hazard_free_contamination_gate=True` would not change the
+paired-by-construction comparison that already immunises the load-bearing criteria against
+episode-truncation effects, so it would spend budget without being able to move the verdict. The
+honest fix belongs on the *secondary* rollout readouts and on the open H-E leg, both already
+routed as the section 8 parallel two-leg portfolio when it is queued -- the gate should apply
+there, not to a rerun of this run. `evidence_direction` and the H-C leg's registry state (section
+9) are UNCHANGED by this addendum.
+
+**GFLAG-0257 resolved** citing this section. See `governance_flags.v1.json` resolution_note.
