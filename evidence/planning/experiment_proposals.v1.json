@@ -20386,6 +20386,9 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-14T14:44:50Z",
+      "gated_by_session": "metaworker-chip-proposal-exp-0920-paced",
+      "gating_reason": "No substrate exists for what MECH-213 (e1_e2_joint_rem_calibration) actually claims: a REM-phase JOINT E1-world-generation/E2-action-generation closed loop (E1's world evolution shaped by E2's action proposals; E2's action-value estimates updated by E1's predicted world responses), producing the Type-4 agentive dream signature. ree_core/sleep/phase_manager.py's REM_ANALOG phase implements E1-only precision recalibration (use_rem_precision_recalibration) plus region-routed replay -- no E2 action-generation participates. The only E1<->E2 interleaving in ree_core, ree_core/sleep/cross_module_consolidation.py (MECH-423/MECH-121), is explicitly documented in its own docstring as weight-update-only orchestration (alternating gradient steps on two loss closures; 'nothing is written to residue / anchors / memory. No hypothesis-tagged content is produced') -- not a generative co-simulation. Zero references to MECH-213's cited dependencies (MECH-123, MECH-210, MECH-212) or to 'joint calibration' anywhere in ree_core. Confirmed via two independent read-only passes (2026-09-11 preflight-paced-batch2, re-verified 2026-09-14 against current git history -- zero commits to ree_core/sleep/ in between). No substrate_queue.json entry exists yet for this build; follow-on chip chip-20260914-sd-mech213-joint-rem-loop registered to design + register it (docs/architecture SD spec required first, per /implement-substrate Step 1 Layer 1). claim_evidence.v1.json has no MECH-213 entry (no completed run); implementation_phase is still v3 (unchanged from triage).",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-213 via targeted experiment runs.",
       "priority": "medium",
@@ -20403,7 +20406,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_213",
       "target_repo": "ree-v3",
       "why_now": [
