@@ -3339,9 +3339,72 @@
   depends_on:
     - ARC-009
     - ARC-010
+  what_would_answer: >
+    Once a REE instance has a real (non-sketch) symbolic output channel (ARC-009)
+    reporting on its own action selection, the misreport and suppression readings of
+    rationalisation come apart cleanly and must be tested separately: misreport is
+    whether the reported justification tracks the actual E3/residue determinants of
+    the choice (read the residue field and harm streams directly, never the language
+    report -- Hall 2012, Turpin 2023); suppression is whether emitting the
+    justification is accompanied by a measurable gain reduction on the harm/residue
+    stream at the commit step (the Jarcho 2011 signature, i.e. this claim's own
+    "precision misrouting" pathology). Bureaucratic dissociation and reputation
+    substitution predict that the precision of the non-linguistic harm evidence
+    available to the reporting layer gates the size of any language-driven shift in
+    downstream harm appraisal or reputational cost (Walker 2021). Ideological
+    capture predicts a harm-like signal evoked by frame-threatening evidence on
+    identity-bound propositions, not an absent signal on frame-consistent harm
+    (Kaplan 2016) -- this is the "spurious residue from narrative contamination"
+    pathology, not suppression/override as originally mapped. Reputation
+    substitution and any social-scoring failure additionally require a second agent
+    (ARC-010) to score against. Moral licensing has no REE-native test proposed here
+    pending independent resolution of whether the human effect is real (see notes).
+    No REE agent currently has a symbolic output channel or a multi-agent substrate
+    to condition on any of this (GFLAG-0269 tracks epistemic_category classification
+    for the whole ARC-009/ARC-010 language cluster, MECH-011 through MECH-015,
+    including this claim).
+  notes: >
+    [2026-09-11 targeted literature pull, evidence/literature/targeted_review_mech_013/,
+    6 entries, lit_conf 0.674] Separated this claim's five failure modes by evidential
+    standing rather than splitting into new claim ids -- all five remain
+    substrate-blocked behind the same ARC-009/ARC-010 dependency (GFLAG-0269), so
+    minting untestable children would inflate the candidate tail without adding
+    near-term testability; the differentiated what_would_answer above and the
+    reworded architecture-doc list (docs/architecture/language/language_failure_modes.md)
+    capture the granularity distinction instead. Rationalisation's misreport reading
+    (language generates justification unconstrained by the evaluation it reports) is
+    well-supported (Hall 2012 moral choice blindness, 69% reversal-detection failure;
+    Turpin 2023 unfaithful chain-of-thought, up to 36% accuracy drop with no bias
+    mentioned in the explanation). Rationalisation's suppression reading (language
+    turns an aversive/harm signal down) has only a thin mechanism-shape source
+    (Jarcho 2011, n=12 analysed, non-linguistic, non-ethical name/painting choice
+    task, confidence 0.38) plus an indirect gating result (Walker 2021: euphemism
+    effect on harm judgment shrinks, does not vanish, as non-linguistic detail about
+    the act increases). Moral licensing is CONTESTED, not common (Kuper & Bott 2019,
+    bias-corrected d approx -0.05 to 0.18 against the published meta-analytic
+    d=0.31, culture-moderated, confidence 0.58) -- do not build symbolic moral-credit
+    discounting into REE as a default dynamic on this basis. Ideological capture's
+    pathology mapping was corrected: Kaplan 2016 (confidence 0.40, direction mixed)
+    found participants who changed their minds more showed less insula/amygdala
+    response to counterevidence, i.e. the frame recruits affect to defend itself
+    rather than overriding it -- reassigned from suppression/override to "spurious
+    residue from narrative contamination". Reputation substitution has no direct
+    test; Walker 2021's dishonesty-rating result (euphemistic reframes rated
+    truthful, users rated more trustworthy than liars) is an indirect anchor only.
+    GFLAG-0276 raised (contested_disposition) so governance can confirm this reword
+    is an adequate disposition or decide the licensing limb warrants formal
+    demotion/removal. GFLAG-0269 (epistemic_category classification for the whole
+    cluster) is untouched by this pass and remains open. live_status.evidence
+    refresh left to /governance.
   location: docs/architecture/language/language_failure_modes.md#mech-013
   source:
     - docs/processed/legacy_tree/architecture/language/language_failure_modes.md
+    - evidence/literature/targeted_review_mech_013/entries/2026-09-11_mech_013_moral_choice_blindness_confabulated_arguments_hall2012/
+    - evidence/literature/targeted_review_mech_013/entries/2026-09-11_mech_013_unfaithful_cot_rationalization_turpin2023/
+    - evidence/literature/targeted_review_mech_013/entries/2026-09-11_mech_013_rationalization_insula_downregulation_jarcho2011/
+    - evidence/literature/targeted_review_mech_013/entries/2026-09-11_mech_013_euphemism_shifts_harm_judgment_walker2021/
+    - evidence/literature/targeted_review_mech_013/entries/2026-09-11_mech_013_moral_licensing_publication_bias_kuper2019/
+    - evidence/literature/targeted_review_mech_013/entries/2026-09-11_mech_013_political_belief_resistance_dmn_kaplan2016/
 - id: MECH-014
   title: "Minimal signalling channel requirements."
   claim_type: mechanism_hypothesis
