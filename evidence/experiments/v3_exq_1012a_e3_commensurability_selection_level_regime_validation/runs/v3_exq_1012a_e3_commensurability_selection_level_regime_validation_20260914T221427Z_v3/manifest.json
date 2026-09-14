@@ -1,0 +1,481 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1012a_e3_commensurability_selection_level_regime_validation",
+  "run_id": "v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-14T22:14:27Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "operator_selection_consequential_both_regimes",
+    "preconditions": [
+      {
+        "name": "C_fed_operator_on::decomp_samples_sufficient",
+        "precondition": "decomp_samples_sufficient",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "genuine (fresh, latch-gated) P1 selections -- the flip-rate denominator",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 201.0,
+        "threshold": 60.0,
+        "met": true
+      },
+      {
+        "name": "C_fed_operator_on::operator_engaged",
+        "precondition": "operator_engaged",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "channel_scale_estimates.engaged at cell end -- the operator is inert for its first e3_commensurability_warmup_ticks select() calls; an arm that never left warmup has no manipulation in it and the shadow OFF/ON comparison is vacuous (both sides would read the un-normalised floor identically)",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_fed_operator_on::clamp_config_landed",
+        "precondition": "clamp_config_landed",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "the rollout clamp flag actually reached agent.e2.config in every cell",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_fed_operator_on::residue_protocol_landed",
+        "precondition": "residue_protocol_landed",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "the arm's residue-feeding protocol executed as declared",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_fed_operator_on::shadow_scores_measurably_different",
+        "precondition": "shadow_scores_measurably_different",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "mean |live - shadow| score delta across scored ticks -- closes a residual gap `operator_engaged` alone cannot (Step 4.5 red-team, model fable, finding 4a): `operator_engaged` is a pure TICK-COUNT gate, so it reads green whenever enough ticks have passed, even in the unlikely case every live channel's EMA sits at/below the commensurability floor -- `_commensurability_scale` then returns the 1.0 no-op for every channel and live==shadow identically despite the count-based gate being green. This precondition asserts the shadow rescoring actually PRODUCED a measurable difference, not merely that enough ticks were seen.",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2000.3815152182508,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::decomp_samples_sufficient",
+        "precondition": "decomp_samples_sufficient",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "genuine (fresh, latch-gated) P1 selections -- the flip-rate denominator",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 158.0,
+        "threshold": 60.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::operator_engaged",
+        "precondition": "operator_engaged",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "channel_scale_estimates.engaged at cell end -- the operator is inert for its first e3_commensurability_warmup_ticks select() calls; an arm that never left warmup has no manipulation in it and the shadow OFF/ON comparison is vacuous (both sides would read the un-normalised floor identically)",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::clamp_config_landed",
+        "precondition": "clamp_config_landed",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "the rollout clamp flag actually reached agent.e2.config in every cell",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::residue_protocol_landed",
+        "precondition": "residue_protocol_landed",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "the arm's residue-feeding protocol executed as declared",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::shadow_scores_measurably_different",
+        "precondition": "shadow_scores_measurably_different",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "mean |live - shadow| score delta across scored ticks -- closes a residual gap `operator_engaged` alone cannot (Step 4.5 red-team, model fable, finding 4a): `operator_engaged` is a pure TICK-COUNT gate, so it reads green whenever enough ticks have passed, even in the unlikely case every live channel's EMA sits at/below the commensurability floor -- `_commensurability_scale` then returns the 1.0 no-op for every channel and live==shadow identically despite the count-based gate being green. This precondition asserts the shadow rescoring actually PRODUCED a measurable difference, not merely that enough ticks were seen.",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2572.5287226860114,
+        "threshold": 1e-09,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "flip_rate_lift": true
+    },
+    "combination_rule": "Read in order: (1) self_check_failures must be 0 across every scored tick in every cell -- a shadow-replay harness bug, never reported as content; (2) every arm's readiness gate (operator_engaged, decomp_samples_sufficient, clamp_config_landed, residue_protocol_landed, shadow_scores_measurably_different) must be green, else substrate_not_ready_requeue; (3) the non-forced-ness check (regimes_differ) is read BEFORE the cleanest content label: fed_pass AND starved_pass AND NOT regimes_differ routes to a distinct FLAGGED FAIL label rather than the clean 'both regimes' PASS (Step 4.5 red-team, model fable, finding 1); (4) only then, per regime, xcand_commit_flip_rate is 'operator_selection_consequential' in that regime iff EITHER the mean clears max(FLIP_RATE_SD_MULTIPLIER * seed-matched SD, FLIP_RATE_ABS_FLOOR) OR a MAJORITY of that regime's seeds individually clear FLIP_RATE_ABS_FLOOR alone (the majority test added per Step 4.5 finding 2, so a heterogeneous-but-real effect across seeds is not misread as 'no effect' by a coefficient-of-variation-style bar).",
+    "non_forced_ness_note": "Design rule (a): fed and starved flip rates are reported SEPARATELY and compared (regimes_differ, floor 0.02). If they read identically regardless of the genuinely different raw channel-magnitude relationships 571c measured between the two regimes, that would itself be evidence of a hidden identity in this DV -- and (fixed after Step 4.5 red-team finding 1) this is now ROUTED, not just recorded: a both-regimes-pass reading with regimes_differ False lands on a distinct flagged FAIL label instead of the clean both-regimes PASS label.",
+    "scoping_note": "This DV is PRIMARY-stage argmin flip under shadow OFF/ON scoring, not a final-commit-level replay through the modulatory shortlist stage. See design doc evidence/planning/mech439_rung3_selection_level_repose_20260914.md section 6a for why, and what a final-commit-level successor would need."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "6b19d840f1865fcb32f4bf56e668871210cd6ce4c983b97d821000dd3bf0c651",
+  "substrate_commit": {
+    "commit": "6b3651c61119315ee7f838c98181042324d9dc68",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.use_e3_channel_commensurability": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_lateral_pfc_analog": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true,
+    "use_mech295_liking_bridge": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7381.886042423997,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      45,
+      46
+    ],
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "schedule": {
+      "p0_warmup_episodes": 60,
+      "p1_episode_cap": 40,
+      "steps_per_episode": 200,
+      "fresh_select_target": 200
+    },
+    "pre_registered_thresholds": {
+      "MIN_FRESH_SELECTIONS": 60,
+      "SELF_CHECK_TOLERANCE": 1e-06,
+      "FLIP_RATE_SD_MULTIPLIER": 2.0,
+      "FLIP_RATE_ABS_FLOOR": 0.01,
+      "REGIME_DIFFERENCE_FLOOR": 0.02
+    },
+    "arms": [
+      {
+        "id": "C_fed_operator_on",
+        "feed_residue": true,
+        "warmup": true,
+        "load_bearing": true
+      },
+      {
+        "id": "C_starved_operator_on",
+        "feed_residue": false,
+        "warmup": true,
+        "load_bearing": false
+      }
+    ],
+    "arm_config_slices": {
+      "C_fed_operator_on": {
+        "use_e3_channel_commensurability": true,
+        "env_kwargs": {
+          "size": 12,
+          "num_hazards": 4,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.1,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "reef_enabled": true,
+          "n_reef_patches": 3,
+          "reef_patch_radius": 2,
+          "hazard_food_attraction": 0.7,
+          "reef_bipartite_layout": true,
+          "reef_bipartite_axis": "horizontal",
+          "reef_bipartite_agent_band_radius": 1
+        },
+        "sd056_training": {
+          "sd056_weight": 0.5,
+          "e2_contrastive_lr": 0.0001,
+          "contrastive_batch_k": 8,
+          "transition_buffer_max": 2000,
+          "e2_train_every_k_ticks": 4,
+          "max_grad_norm": 1.0
+        },
+        "config_flags": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "alpha_self": 0.3,
+          "use_harm_stream": true,
+          "z_harm_dim": 32,
+          "use_affective_harm_stream": true,
+          "z_harm_a_dim": 16,
+          "harm_history_len": 10,
+          "z_goal_enabled": true,
+          "goal_weight": 0.5,
+          "drive_weight": 2.0,
+          "e1_goal_conditioned": true,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "benefit_eval_enabled": true,
+          "benefit_weight": 1.0,
+          "use_support_preserving_cem": true,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "support_preserving_min_first_action_classes": 2,
+          "candidate_summary_source": "e2_world_forward",
+          "use_lateral_pfc_analog": true,
+          "use_mech295_liking_bridge": true,
+          "use_modulatory_channel_routing": true,
+          "modulatory_channel_route_source": "cand_world_summary",
+          "modulatory_channel_route_weight": 1.0,
+          "use_modulatory_selection_authority": true,
+          "use_modulatory_shortlist_then_modulate": true,
+          "modulatory_shortlist_conflict_graded": false,
+          "use_gap_scaled_commit_temperature": false,
+          "use_structured_curiosity": false,
+          "use_e3_score_diversity": false,
+          "use_noise_floor": false,
+          "use_tonic_vigor": false,
+          "use_dacc": false,
+          "use_ofc_analog": false,
+          "use_gated_policy": false,
+          "use_candidate_rule_field": false,
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "off_arm_flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        },
+        "schedule": {
+          "p0_warmup_episodes": 60,
+          "p1_episode_cap": 40,
+          "steps_per_episode": 200,
+          "fresh_select_target": 200
+        },
+        "protocol": {
+          "feed_residue_per_step": true,
+          "p0_warmup": true
+        },
+        "cell_readout_constants": {
+          "min_fresh_selections": 60,
+          "self_check_tolerance": 1e-06,
+          "flip_rate_sd_multiplier": 2.0,
+          "flip_rate_abs_floor": 0.01
+        }
+      },
+      "C_starved_operator_on": {
+        "use_e3_channel_commensurability": true,
+        "env_kwargs": {
+          "size": 12,
+          "num_hazards": 4,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.1,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "reef_enabled": true,
+          "n_reef_patches": 3,
+          "reef_patch_radius": 2,
+          "hazard_food_attraction": 0.7,
+          "reef_bipartite_layout": true,
+          "reef_bipartite_axis": "horizontal",
+          "reef_bipartite_agent_band_radius": 1
+        },
+        "sd056_training": {
+          "sd056_weight": 0.5,
+          "e2_contrastive_lr": 0.0001,
+          "contrastive_batch_k": 8,
+          "transition_buffer_max": 2000,
+          "e2_train_every_k_ticks": 4,
+          "max_grad_norm": 1.0
+        },
+        "config_flags": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "alpha_self": 0.3,
+          "use_harm_stream": true,
+          "z_harm_dim": 32,
+          "use_affective_harm_stream": true,
+          "z_harm_a_dim": 16,
+          "harm_history_len": 10,
+          "z_goal_enabled": true,
+          "goal_weight": 0.5,
+          "drive_weight": 2.0,
+          "e1_goal_conditioned": true,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "benefit_eval_enabled": true,
+          "benefit_weight": 1.0,
+          "use_support_preserving_cem": true,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "support_preserving_min_first_action_classes": 2,
+          "candidate_summary_source": "e2_world_forward",
+          "use_lateral_pfc_analog": true,
+          "use_mech295_liking_bridge": true,
+          "use_modulatory_channel_routing": true,
+          "modulatory_channel_route_source": "cand_world_summary",
+          "modulatory_channel_route_weight": 1.0,
+          "use_modulatory_selection_authority": true,
+          "use_modulatory_shortlist_then_modulate": true,
+          "modulatory_shortlist_conflict_graded": false,
+          "use_gap_scaled_commit_temperature": false,
+          "use_structured_curiosity": false,
+          "use_e3_score_diversity": false,
+          "use_noise_floor": false,
+          "use_tonic_vigor": false,
+          "use_dacc": false,
+          "use_ofc_analog": false,
+          "use_gated_policy": false,
+          "use_candidate_rule_field": false,
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "off_arm_flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        },
+        "schedule": {
+          "p0_warmup_episodes": 60,
+          "p1_episode_cap": 40,
+          "steps_per_episode": 200,
+          "fresh_select_target": 200
+        },
+        "protocol": {
+          "feed_residue_per_step": false,
+          "p0_warmup": true
+        },
+        "cell_readout_constants": {
+          "min_fresh_selections": 60,
+          "self_check_tolerance": 1e-06,
+          "flip_rate_sd_multiplier": 2.0,
+          "flip_rate_abs_floor": 0.01
+        }
+      }
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46
+  ],
+  "z_goal_stream": {
+    "ticks_total": 53837,
+    "ticks_active": 0,
+    "writer_calls": 53837,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 8,
+    "goal_state_present": true
+  }
+}
