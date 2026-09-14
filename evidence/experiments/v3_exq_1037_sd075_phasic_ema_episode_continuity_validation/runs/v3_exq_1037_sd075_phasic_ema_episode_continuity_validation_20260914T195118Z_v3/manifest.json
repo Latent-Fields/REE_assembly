@@ -1,0 +1,133 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1037_sd075_phasic_ema_episode_continuity_validation",
+  "run_id": "v3_exq_1037_sd075_phasic_ema_episode_continuity_validation_20260914T195118Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-14T19:51:18Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-075"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "phasic_carry_gate_achieves_informative_rescue",
+    "preconditions": [
+      {
+        "name": "regulator_fires_at_all",
+        "kind": "capability",
+        "control": "max burst_level_max across the whole grid (positive control)",
+        "measured": 1.0,
+        "threshold": 0.05,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "phasic_carry_gate_achieves_informative_rescue",
+        "load_bearing": true,
+        "passed": true,
+        "all_warmed_cells_informative": true,
+        "measured_min_warmed_informative_converged_event_rate": 0.02564102564102564,
+        "threshold": 0.016666666666666666,
+        "max_event_rate_ceiling": 0.03333333333333333,
+        "control_converged_event_rate_range": [
+          0.0,
+          0.023809523809523808
+        ],
+        "offending_cell": {
+          "seed": 23,
+          "warmup_episodes": 40,
+          "converged_event_rate": 0.02564102564102564,
+          "n_events_converged": 3,
+          "n_converged_ticks": 117
+        }
+      }
+    ],
+    "criteria_non_degenerate": {
+      "phasic_carry_gate_achieves_informative_rescue": true
+    },
+    "summary": "EVIDENCE for SD-075 (sd_phasic_ema_episode_continuity), NOT a MECH-063 retest -- phasic-only, no tonic axis, no dissociation comparison. Tests whether SD-075's carry-continuity + convergence-gate mechanism, defensively bounded against the open sd_phasic_burst_decay_and_warmup_headroom duty-cycle defect via SD-104's refractory_ticks/extinction_level knobs, produces an INFORMATIVE (not a truncated-sample) post-convergence event RATE that clears MIN_EVENT_RATE (half the refractory-imposed ceiling) once a 40-episode warmup is applied on the worst-case starvation-category seeds {11, 23, 29}. phasic_carry_gate_achieves_informative_rescue = PASS supports SD-075: the mechanism delivers honest, usable accounting at a modest warmup dose. phasic_carry_gate_rescue_insufficient = FAIL weakens SD-075: all warmed cells were informative but the converged rate did not clear the bar -- the mechanism's accounting is honest but the rescue does not hold at this dose. phasic_carry_gate_warmed_cell_uninformative = FAIL, non_contributory: the read budget did not sustain enough post-convergence exposure to trust any reading -- an instrument-scale finding, not evidence against the mechanism itself."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b49f7b4e06356dae0adc4cc98bb8e2ad01c828a83b38a6ea28f0f08d5d029c52",
+  "substrate_commit": {
+    "commit": "a8418414a75bf67df8282659bebfdc8f1c240505",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_action_class_scaffold_candidates": true,
+    "heartbeat.breath_period": 50,
+    "use_phasic_burst": true,
+    "phasic_burst_warmup_ticks": -1,
+    "phasic_burst_refractory_ticks": 29,
+    "phasic_burst_extinction_level": 0.05,
+    "use_control_vector_logging": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2274.334818006002,
+  "config": {
+    "phasic_burst_baseline_continuity": "carry",
+    "phasic_burst_warmup_ticks": -1,
+    "phasic_burst_refractory_ticks": 29,
+    "phasic_burst_extinction_level": 0.05,
+    "warmup_conditions": [
+      0,
+      40
+    ],
+    "read_max_env_steps": 600,
+    "read_max_episodes": 200,
+    "min_event_rate": 0.016666666666666666,
+    "max_event_rate_ceiling": 0.03333333333333333,
+    "informative_ticks_floor": 60
+  },
+  "seeds": [
+    11,
+    23,
+    29
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 12432,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
