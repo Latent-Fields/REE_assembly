@@ -8212,7 +8212,8 @@
         "mech203_pool_admissibility_probe (spike, not yet commissioned) -- does update_harm_salience() + update_benefit_salience() at contact, in a full MECH-203 waking rollout with tonic_5ht_enabled=True, yield n_harm_states > 0 AND n_benefit_states > 0 non-trivially (the C3 admissibility all 3 prior tests failed)? Contract C3 already demonstrates non-degenerate coexistence at unit scale; whether it holds at rollout scale is the open fact."
       ],
       "unblocks_claims": [
-        "MECH-203"
+        "MECH-203",
+        "MECH-208"
       ],
       "failure_record": [
         {
@@ -8245,14 +8246,16 @@
         "MECH-186",
         "MECH-099",
         "SD-014",
-        "SD-017"
+        "SD-017",
+        "MECH-208"
       ],
       "proposal_ref": "EVB-0157 (proposal_id EXP-0450) in evidence/planning/experiment_proposals.v1.json -- status deferred_substrate_not_ready, gated 2026-08-03T23:44:00Z by session metaworker-chip-20260803-igw-confirm-mech203 (GOV-CONFIRM-1 self-route). This substrate entry is that proposal's release-condition tracker: EVB-0157 stays deferred until this entry's ready flips true.",
       "priority": 2,
       "added_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
       "added_utc": "2026-08-08T15:58:59Z",
       "last_seen_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
-      "origin": "Registration-only chip chip-20260808-mech203-substrate-queue-registration (metaworker-dispatch, headless), acting on the GOVERNANCE FLAG raised in MECH-203's own what_would_answer block on 2026-08-08 ('no substrate_queue.json entry exists for EVB-0157's release_condition ... despite being named twice now (2026-08-01 autopsy, 2026-08-03 proposal flip). Chip spawned to register it.'). Context: claims.yaml MECH-203 (evidence_quality_note + its 2026-08-08 CORRECTION + what_would_answer) and evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.md. NO substrate was built or modified by this session -- registration and source-verification only."
+      "origin": "Registration-only chip chip-20260808-mech203-substrate-queue-registration (metaworker-dispatch, headless), acting on the GOVERNANCE FLAG raised in MECH-203's own what_would_answer block on 2026-08-08 ('no substrate_queue.json entry exists for EVB-0157's release_condition ... despite being named twice now (2026-08-01 autopsy, 2026-08-03 proposal flip). Chip spawned to register it.'). Context: claims.yaml MECH-203 (evidence_quality_note + its 2026-08-08 CORRECTION + what_would_answer) and evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.md. NO substrate was built or modified by this session -- registration and source-verification only.",
+      "amend_note_2026_09_14": "Session 7a9afdfe-a81a-4836-8189-cdb08e629aaa-substrateq (metaworker-chip-proposal-exp-0913-paced), verifying substrate for MECH-208 (proposal EXP-0880, /queue-experiment task) before authoring an experiment. MECH-208's own mechanism ('the harm-salience parameter modulates the valence asymmetry in replay... harm-path replay is weighted relative to reward-path replay') is read off the IDENTICAL DV pathway this entry tracks: ree_core/hippocampal/module.py::_select_valence_weighted_start -> ResidueField.get_valence_priority() -> evaluate_valence(), scored against the same non-degenerate benefit/harm valence pool. MECH-208 needs strictly MORE than MECH-203's own confirming DV (a further downstream approach/avoidance BEHAVIOURAL measurement on top of the replay-selection bias), so it cannot be tested before MECH-203's own admissibility gate clears. No new failure evidence added here -- V3-EXQ-843's C3 admissibility failure (n_harm_states=0, all 3 seeds) and the unresolved mech203_pool_admissibility_probe (not yet commissioned, per this entry's depends_on_unresolved) apply unchanged. NOT buildable yet for MECH-208; no experiment queued. Registering here rather than creating a duplicate entry, since the release_condition and residual work (implementation_hint STEP 1) are identical for both claims. EXP-0880 (MECH-208's proposal, experiment_proposals.v1.json) left status='proposed' -- flipping it to deferred_substrate_not_ready is a governance disposition (GOV-CONFIRM-1-adjacent) out of scope for this session; flagged here for /governance to action, mirroring EVB-0157/EXP-0450's 2026-08-03 flip for MECH-203."
     },
     {
       "sd_id": "SD-E3-SCORER-COMPLETION",
