@@ -3004,3 +3004,6 @@ One line per hourly tick. ASCII only.
 2026-09-15T01:37:42Z workset committed (regen -- 255 items, 32 ready, 0 in flight)
 2026-09-15T01:36:31Z STAGE IGW-20260915-220 skill=/implement-substrate prio=25 worktree=igw-220-substrate-ready-e2-world-forward (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-15T01:59:08Z auto-defer e0f7b03b5571 hash=e0f7b03b5571 for 48h (complete)
+2026-09-15T01:59:33Z complete e0f7b03b5571 staged->completed outcome=DUPLICATE: orchestrate-20260915-0203, user decision 2026-09-15T01:5xZ: DUPLICATE of chip-20
+2026-09-15T01:59:36Z GC removed worktree igw-220-substrate-ready-e2-world-forward (removed; branch deleted)
+2026-09-15T02:42:14Z workset committed (regen -- 255 items, 32 ready, 0 in flight)
