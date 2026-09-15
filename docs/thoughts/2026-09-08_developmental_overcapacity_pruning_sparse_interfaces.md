@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md
+Claims registered: ARC-143, MECH-549, MECH-550, MECH-551
+
 # Developmental Overcapacity, Pruning, and the Discovery of Sparse Interfaces
 
 **Date:** 2026-09-08  
-**Status:** thought / organising hypothesis / experimental programme  
+**Status:** thought / organising hypothesis / experimental programme (ingested 2026-09-15 -- see Intake above)
 **Scope:** developmental architecture; representation, interface learning, replay and pruning  
 
 **Related thoughts:**

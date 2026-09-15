@@ -4,7 +4,7 @@ parent: "Development & Curriculum"
 grandparent: Architecture
 nav_order: 7
 status: candidate
-status_asof: 2026-07-10
+status_asof: 2026-09-15
 status_claim: MECH-362
 ---
 
@@ -81,6 +81,63 @@ deletion, down-weighting, gating, or residue-tagged de-authorization? Sub-questi
 
 ---
 
+## 2b. Claims registered 2026-09-15 from the developmental-overcapacity thought
+
+Source: `docs/thoughts/2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md`
+(intake: `evidence/planning/thought_intake_2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md`).
+All four are `candidate`, `substrate_conditional`, `v4` / `v4_v5`, and carry a "do not build in V3,
+do not queue" caveat. The thought's own section-6 fork (over-capacity decoder as an upper-bound assay)
+has already been RUN in REE -- V3-EXQ-1010 swept decoder capacity ~77,000x with 0/3 seeds at the bar --
+and REE's confirmed routing ("the repair site is the encoder's objective, not the consumer", SD-018
+amend, SD-106) matches the thought's own prescription for that branch. The audit also found that
+`ree_core/` holds NO structural pruning, sparsification, retention criterion or capacity schedule; the
+one developmental capacity manipulation that exists, `GatedPolicy.crystallize()`, runs the OPPOSITE
+way (freezes established heads, ADDS a plastic channel).
+
+### ARC-143 -- developmental vs mature capacity envelope {#arc-143}
+
+The DEVELOPMENTAL capacity envelope is a design variable distinct from the MATURE envelope, and REE
+must not infer the first from the second: the connection count, candidate mappings, accessible
+transformation repertoire and interface permissiveness a developing organism needs in order to
+DISCOVER a useful organisation may each exceed what the mature organism retains. Generalises
+MECH-362's subtractive trajectory from recurrent memory connectivity to every locus the thought
+names (z_world, E1/E2 interfaces, replay pathways, goal/directive influence, E3 selection) and
+supplies the missing claim-graph edge between the developmental-pruning lineage (MECH-362, Q-057)
+and the mutual-legibility lineage (ARC-139, MECH-537, MECH-538, MECH-540, INV-105). It licenses
+DECLARING a developmental envelope per locus; it does not assert bigger is better.
+
+### MECH-549 -- developmental-history irreducibility at matched final capacity {#mech-549}
+
+Some mature organisations may be historically inaccessible from their own final architecture. The
+confirming contrast is the four-arm design's arm D: (A) mature size throughout, (B) overcapacity
+progressively reduced, (C) overcapacity retained, (D) arm B's final architecture, mask and
+interfaces REINITIALISED and trained from the start. B > A is consistent with "pruning found a
+better small architecture"; only B > D establishes the claim. Distinguished from Q-101 (the same
+counterfactual at cross-version grain) and from knowledge distillation (a distillation-only account
+weakens, not confirms, the claim).
+
+### MECH-550 -- functional persistence as the retention criterion {#mech-550}
+
+What survives a developmental reduction should be decided by repeated demonstrated usefulness under
+prediction, action, regulation and replay -- not by weight magnitude. Named rival control:
+indiscriminate magnitude pruning at matched final capacity (MECH-120 is approximately that rule at
+another timescale and must not be cited as support). Distinct from Q-057, which asks what pruning IS,
+not what it selects on. Constrained by INV-104: a present-tense-only criterion would prune exactly the
+not-yet-relevant distinctions INV-104 protects.
+
+### MECH-551 -- replay-coupled capacity reduction as the coordination site {#mech-551}
+
+Reduction concurrent with representational change is a coordination problem (a route can look
+unnecessary only because its consumer has not yet adapted; a useful-looking route can be preserving an
+obsolete convention), so the retention decision read online is unreliable in both directions and
+offline replay is the proposed site. Of the thought's six offline items, four are already owned
+(MECH-529, MECH-513, MECH-540); the residue is weakening redundant ROUTES and verifying a reduction
+destroyed no counterfactual or regulatory distinction. Prediction: at matched reduction and matched
+update count, replay-coupled reduction preserves more transfer and causal structure than
+online-only. Governance may prefer this as a fifth signature on MECH-540; that is a governance call.
+
+---
+
 ## 3. Three-phase developmental schedule (hypothesis)
 
 1. **Over-connected exploratory phase** -- many weakly-constrained associations, high plasticity,
@@ -117,6 +174,10 @@ selection-authority / rule-apprehension claims (MECH-314/341, ARC-062).
 - **ARC-007** -- hippocampal map substrate (biological locus is the CA3 recurrent circuit).
 - **ARC-019 / IMPL-019** -- staged developmental curriculum (currently additive; MECH-362 would add a subtractive stage).
 - **MECH-120** -- SWS synaptic homeostasis (SHY); closest existing down-scaling analog (V4).
+- **ARC-139 / MECH-537 / MECH-538 / MECH-540 / INV-105** -- mutual-legibility lineage; ARC-143 (above) is the edge
+  between it and this doc's pruning lineage; MECH-538's falling minimum-bridge-rank prediction is the
+  interface-side readout of MECH-549.
+- **Q-101** -- ontogenetic-vs-architectural ancestry; the same counterfactual as MECH-549 at cross-version grain, not merged.
 - **MECH-094** -- provenance / hypothesis tagging (failure mode: confabulatory completion from un-pruned over-connection).
 - **MECH-076** -- attractor lock-in (failure mode: belief fixation / un-pruned early attractor).
 - **Play-mode cluster (ARC-049/050, MECH-194-199, INV-058/059/060)** -- the natural home for an

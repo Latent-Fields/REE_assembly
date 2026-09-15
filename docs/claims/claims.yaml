@@ -101097,3 +101097,236 @@
     substrate_queue entry, informational -- no claim yet declares depends_on: SD-106, so no v3_pending
     flag moves on this landing): SD-015, ARC-030, MECH-117, the EXQ-085h..o goal-directed behaviour
     cluster, MECH-457, ARC-065.'
+
+
+- id: ARC-143
+  title: >-
+    The DEVELOPMENTAL capacity envelope is a design variable distinct from the MATURE capacity envelope,
+    and REE must not infer the first from the second: the connection count, the number of candidate
+    mappings, the size of the accessible transformation repertoire and the permissiveness of an interface
+    that a developing organism needs in order to DISCOVER a useful organisation may each legitimately
+    exceed what the mature organism retains, so imposing the mature bottleneck at developmental time zero
+    can prevent the organism from discovering which distinctions and interfaces deserve to survive. This
+    generalises MECH-362's subtractive trajectory from RECURRENT MEMORY CONNECTIVITY to the whole set of
+    REE loci the thought names -- z_world, the E1/E2 interfaces, the hippocampal/replay pathways,
+    goal/directive influence and E3 selection -- and states the consequence as a curriculum-design
+    discipline: a developmental programme must declare, per locus, its developmental search capacity
+    SEPARATELY from its mature architectural constraint, and the two need not be identical.
+  claim_type: architectural_commitment
+  subject: development.developmental_vs_mature_capacity_envelope
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md
+  depends_on:
+    - MECH-362   # subtractive developmental sparsification -- the same principle already registered, scoped to recurrent memory connectivity; this claim is its generalisation to interfaces and transformation repertoires
+    - Q-057      # the open question that asks whether an early over-connected regime should be distinguished from a mature sparse one; this claim answers its ARCHITECTURE leg in the affirmative for the general case and must not be read as also answering its MECHANISM leg
+    - ARC-019    # staged developmental curriculum, currently purely ADDITIVE -- this is the commitment that would license adding a capacity-reduction stage to it
+    - MECH-538   # minimum bridge complexity: the quantity whose DEVELOPMENTAL fall is what a capacity-reduction stage would have to produce
+    - ARC-139    # mutual legibility: the mature endpoint (sparse, consumer-specific communication subspaces) this claim says must not be imposed at time zero
+    - INV-056    # selective neoteny: substrate-specific hardening is the already-owned mature-side half; this claim is the developmental-side complement
+    - ARC-122    # four-phase developmental curriculum -- a phase-ORDERING commitment; this is a per-phase CAPACITY commitment, deliberately not merged
+  location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#arc-143
+  notes: >-
+    Registered 2026-09-15 from the 2026-09-08 developmental-overcapacity thought. WHAT IS ALREADY OWNED
+    AND IS NOT BEING RE-REGISTERED: the subtractive tabula-plena trajectory itself is MECH-362 (registered
+    2026-06-09 from the SAME empirical anchor -- Vargas-Barroso, Watson, Navas-Olive, Schlogl and Jonas,
+    Nat Commun 2026, s41467-026-71914-x); the deletion-versus-down-weighting-versus-gating question is
+    Q-057; the falling-bridge-complexity developmental prediction is MECH-538; the mature-side hardening
+    schedule is INV-056. WHAT IS NEW: the SCOPE and the DESIGN DISCIPLINE. MECH-362 is scoped to recurrent
+    memory connectivity and its own notes say it "most naturally AMENDS ARC-019" rather than standing
+    alone; DEV-NEED-039 records the unanswered question "should ARC-019 be amended in place with a
+    subtractive stage, or does subtractive sparsification merit its own staged-curriculum gate?". This
+    claim asserts the general form across interfaces and transformation repertoires, which is the level
+    at which that question can be answered. It also CONNECTS TWO LINEAGES THAT ARE CURRENTLY DISCONNECTED
+    IN THE CLAIM GRAPH: MECH-362 depends_on [MECH-120, ARC-019] and MECH-538 depends_on [ARC-139,
+    MECH-537, INV-105] -- the developmental-pruning lineage (2026-06) and the mutual-legibility lineage
+    (2026-09) have no edge between them today, and the missing edge is exactly this claim's content.
+    EMPIRICAL ANCHOR, second citation added by this pass and NOT independently verified: Ulmer T, Donato
+    F, "Development sculpts dense neural circuits to enhance memory capacity", Trends in Neurosciences
+    2026, doi 10.1016/j.tins.2026.07.008 -- a COMMENTARY on the Vargas-Barroso result, not an independent
+    measurement; a /lit-pull must verify it before it is cited as support rather than motivation. The
+    primary anchor (Vargas-Barroso) is already VERIFIED at MECH-362.
+    BOUNDARY, stated so a later session does not over-read this: the claim licenses DECLARING a
+    developmental capacity envelope separately; it does NOT assert that a larger developmental envelope
+    is always better (the thought's own red team names irreversible early mistakes and pathological
+    attractors as a live rival), and it does NOT assert that the mature bottleneck REE has chosen is
+    correct. It is substrate_conditional on a developmental capacity-schedule substrate that does not
+    exist anywhere in ree_core/ (verified 2026-09-15: no structural pruning, no sparsification, no
+    capacity schedule; the ONE developmental capacity manipulation that exists,
+    GatedPolicy.crystallize(), runs in the OPPOSITE direction -- it ADDS a plastic channel and freezes
+    the old one). DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+- id: MECH-549
+  title: >-
+    Developmental-history irreducibility at matched final capacity: some mature cognitive organisations
+    may be historically inaccessible from their own final architecture -- a system that develops through
+    a transiently larger capacity envelope and is progressively reduced to a target architecture can
+    outperform an identical target architecture trained from initialisation under the identical
+    curriculum, so developmental history contributes something the final architecture alone does not
+    reproduce. The claim is stated with its own discriminating control and is confirmable ONLY by that
+    control: a four-arm design of (A) mature size throughout, (B) overcapacity progressively reduced to
+    the mature size, (C) overcapacity retained, and (D) arm B's final architecture, sparsity mask and
+    interface structure REINITIALISED and trained from the start under the same curriculum. B > A alone
+    is consistent with the rival "pruning found a better small architecture"; only B > D at
+    architecture(B) ~= architecture(D) and final capacity(B) = final capacity(D) establishes the claim.
+    Corollary: premature representational or interface compression should selectively impair
+    distinctions whose relevance is revealed only later in the curriculum, even where the same
+    compressed form works well after maturation.
+  claim_type: mechanism_hypothesis
+  subject: development.history_irreducibility_at_matched_final_capacity
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md
+  depends_on:
+    - ARC-143  # the capacity-envelope commitment this is the falsifiable consequence of
+    - MECH-362   # subtractive sparsification -- this claim asserts that the TRAJECTORY, not only the endpoint, carries information
+    - Q-101      # ontogenetic-versus-architectural ancestry: the same history-versus-architecture counterfactual at a different grain -- distinguished, not merged (see notes)
+    - ARC-019    # the curriculum held identical across all four arms is ARC-019's
+    - GOV-MATCHAUX-1  # matched-capacity/auxiliary control discipline: arm C and the compute match are instances of it
+    - MECH-538   # the falling-L developmental prediction: arm B should show it and arm D should not, which is the interface-side readout of this claim
+  location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#mech-549
+  notes: >-
+    Registered 2026-09-15 from the 2026-09-08 developmental-overcapacity thought; this is the thought's
+    own "strongest version" (section 15) and its own section 7 supplies the arm-D control.
+    DISTINGUISHED FROM Q-101, explicitly, because the two are the same COUNTERFACTUAL SHAPE at different
+    grains and a later session could merge them and lose a real distinction. Q-101 asks whether a V5
+    social-mind endpoint depends on WHICH PRIOR VERSION'S developmental regime (V3-like solitary versus
+    V4-like enduring-individual) an organism passed through, holding the V5 architecture fixed -- a
+    cross-LINEAGE comparison presupposing GOV-BRIDGE-1 retained organisms and a working V5 social
+    substrate, and honestly untestable before V5. This claim is WITHIN ONE ORGANISM'S OWN DEVELOPMENT,
+    over the CAPACITY SCHEDULE of one interface or subsystem, and its control (arm D) is a
+    reinitialisation of the SAME architecture rather than a different version's lineage. Q-101 is
+    v5/v5_v6; this is v4. Both are "history versus architecture"; neither subsumes the other.
+    DISTINGUISHED FROM the ordinary optimisation story: overparameterised networks are easier to
+    optimise, so arm B beating arm A is NOT evidence for this claim without arm D, and training compute
+    must be matched where possible. DISTINGUISHED FROM knowledge distillation: if the large system acts
+    as a teacher and the benefit reduces to distillation, that is useful engineering but does not
+    establish that organismal developmental history matters -- the claim is weakened, not confirmed, by
+    a distillation-only account.
+    NOT YET ATTEMPTED ANYWHERE IN REE (verified 2026-09-15): no experiment in ree-v3/experiments/ runs a
+    capacity SCHEDULE; the two capacity-manipulating scripts are V3-EXQ-507 (ARC-026 goal-pursuit
+    preservation under capacity expansion -- a different question) and V3-EXQ-769 (MECH-457 bootstrap
+    explorer capacity amend). substrate_conditional on a capacity-schedule substrate that does not exist.
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+- id: MECH-550
+  title: >-
+    Functional persistence, not weight magnitude, is the retention criterion for developmental
+    capacity reduction: which relationships, mappings or routes survive a developmental reduction should
+    be determined by repeated demonstrated usefulness under prediction, action, regulation and replay --
+    predictive contribution, reduction of persistent prediction error, harm/benefit relevance,
+    controllability discrimination, counterfactual usefulness, action-selection contribution, replay
+    recurrence, transfer across contexts, stability across developmental stages, utility to more than
+    one downstream consumer, and maintenance of uncertainty where premature collapse would be dangerous.
+    The prediction is comparative and has a named rival that must be run as a control rather than
+    assumed away: relevance-guided reduction should outperform indiscriminate magnitude pruning at
+    matched final capacity; if it does not, functional selection is not what the developmental reduction
+    is doing and the effect reduces to capacity annealing.
+  claim_type: mechanism_hypothesis
+  subject: development.functional_persistence_retention_criterion
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md
+  depends_on:
+    - ARC-143  # the capacity-envelope commitment whose reduction stage this claim supplies a criterion for
+    - Q-057      # asks HOW sparsification is realised (deletion / down-weighting / gating / residue-tagged de-authorization); this claim answers a DIFFERENT question -- WHAT decides which relationships are selected at all
+    - MECH-362   # the subtractive trajectory this criterion governs
+    - INV-104    # organism-relevant distinction preservation: the sender-side preservation set a retention criterion must not violate
+    - MECH-529   # replay-driven rebucketing already COUNTERFACTUALLY tests candidate revisions before adoption -- the closest existing precedent for a consequence-based retention test, over equivalence classes rather than routes
+    - MECH-537   # communication-subspace routing: "utility to more than one downstream consumer" is a statement about consumer-facing subspaces
+  location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#mech-550
+  notes: >-
+    Registered 2026-09-15 from the 2026-09-08 developmental-overcapacity thought (section 8).
+    DISTINCT FROM Q-057 and this is the whole reason it is a separate entry: Q-057's mechanism leg asks
+    what pruning IS (deletion versus down-weighting versus gating versus residue-tagged
+    de-authorization) and is answered by whether the trace remains re-instatable; this claim asks what
+    pruning SELECTS ON, and is answered by a comparison against magnitude pruning at matched final
+    capacity. Q-057 could be answered "down-weighting" and this claim still be false, and vice versa.
+    DISTINCT FROM MECH-120 (SWS synaptic homeostasis / Tononi SHY), which prunes weak noisy traces by a
+    salience threshold on a nightly homeostatic cycle -- MECH-120 IS approximately the magnitude rule
+    this claim names as the rival, at a different timescale, so a future session must not cite MECH-120
+    as support for this claim.
+    RELATION TO INV-104, stated because it constrains rather than supports: INV-104 names distinctions a
+    compression must preserve. A retention criterion that scored purely on present-tense predictive
+    contribution would prune exactly the distinctions INV-104 protects whose relevance has not yet been
+    revealed -- which is why "maintenance of uncertainty where premature collapse would be dangerous"
+    is in the criterion list and is not decoration.
+    NOTHING IN ree_core/ IMPLEMENTS ANY RETENTION CRITERION (verified 2026-09-15): grep over ree_core/
+    for prune / sparsif / capacity / growth / critical_period returns no structural pruning of any kind
+    (the "prune" hits are the hippocampal event segmenter's top-k run-length posterior truncation and
+    stale-region cleanup, neither of which is a learned retention decision). substrate_conditional.
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+- id: MECH-551
+  title: >-
+    Capacity reduction concurrent with representational change is a COORDINATION problem, and offline
+    replay is the proposed coordination site: while a representation is still being revised, a route can
+    appear unnecessary only because its consumer has not yet adapted to the new representation, and an
+    apparently useful route can be preserving an obsolete coding convention -- so the retention decision
+    read online during representational change is systematically unreliable in both directions. The
+    proposal is that offline/replay periods provide the safer setting for it, because they permit
+    testing which old episodes remain reconstructable, comparing alternative candidate mappings without
+    immediate behavioural cost, re-indexing memories after representational change, stabilising newly
+    useful communication subspaces, weakening redundant routes, and checking that a reduction has not
+    destroyed counterfactual or regulatory distinctions. Falsifiable prediction with its matched control
+    stated: at equal aggressiveness of reduction AND matched update count, replay-coupled reduction
+    should preserve more transfer and causal structure than online-only reduction; the strong form is
+    that replay permits GREATER compression at equal or better transfer.
+  claim_type: mechanism_hypothesis
+  subject: sleep.replay_coupled_capacity_reduction_coordination
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md
+  depends_on:
+    - ARC-143  # the capacity-envelope commitment whose reduction stage this claim schedules
+    - MECH-550 # the retention criterion whose online reading this claim says is unreliable during representational change
+    - MECH-529   # replay-driven rebucketing: the representational revision that creates the coordination hazard, and the counterfactual-before-adoption discipline this extends
+    - MECH-540   # sleep as selective interface maintenance -- the third offline job; this claim proposes a FOURTH and says why it is not the same one
+    - MECH-513   # representation-version reindexing for episodic memory: item (3) of the offline list is already owned here
+    - ARC-137    # offline integration as a protected family of TYPED transformations -- the taxonomy any new offline job must be placed within
+    - MECH-120   # SWS pruning of weak noisy traces: the nightly homeostatic down-scaling this is explicitly NOT (see notes)
+  location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#mech-551
+  notes: >-
+    Registered 2026-09-15 from the 2026-09-08 developmental-overcapacity thought (section 9).
+    WHAT IS ALREADY OWNED, itemised against the thought's own six-item offline list so the residue is
+    auditable: (1) testing which old episodes remain reconstructable and (2) comparing candidate mappings
+    without behavioural cost are MECH-529's counterfactual-test-before-adoption; (3) re-indexing memories
+    after representational change is MECH-529 and MECH-513 explicitly; (4) stabilising newly useful
+    communication subspaces is MECH-540's interface maintenance. THE RESIDUE, and this claim's actual
+    content, is (5) weakening redundant ROUTES and (6) verifying that a reduction has not destroyed
+    counterfactual or regulatory distinctions -- i.e. offline CAPACITY REDUCTION, plus the coordination
+    hazard that motivates putting it offline at all.
+    DISTINCT FROM MECH-540 in the way that matters: MECH-540 maintains, recalibrates or stabilises an
+    interface at FIXED capacity and its four signatures S1-S4 are all about a mapping moving or holding.
+    This claim is about an interface being made SMALLER, which MECH-540 does not cover and which
+    introduces a failure mode MECH-540's signatures cannot express (an interface correctly stabilised
+    and then irreversibly narrowed). If governance prefers, this is a fifth signature on MECH-540 rather
+    than a separate claim -- that is a governance call, not an ingestion one, and the same shape as the
+    S5 proposal MECH-548 already left with governance.
+    DISTINCT FROM MECH-120: MECH-120 is nightly homeostatic down-scaling to restore signal-to-noise and
+    is not developmental, not one-way, and not capacity-reducing in the structural sense. MECH-362's own
+    notes already draw this line for the trajectory; it is restated here because the sleep locus makes
+    the conflation easier.
+    SEQUENCING IS PART OF THE CLAIM, inherited verbatim from MECH-540's registration and not weakened
+    here: force_sleep_cycle_at_eval_boundary exists (ree-v3 de26949aa) and makes a within-run pre/post
+    sleep measurement cheap, and that cheapness is the trap -- a replay-versus-online reduction
+    comparison run before a WAKING retention metric has demonstrated range and stability measures the
+    instrument. substrate_conditional on a capacity-reduction substrate that does not exist.
+    DO NOT build in V3. DO NOT queue an experiment from this entry.

@@ -1478,6 +1478,15 @@
     "title": "The cognitive contract: a unified mind built from heterogeneous engines (E1 / E2 / E3 / hippocampus and later specialists, differing in representational geometry, temporal scale, compression level, learning dynamics and uncertainty representation) requires not a common latent space but an INVARIANT-PRESERVING CONTRACT -- a small set of relations I such that for any lossy translation x_A -> C_A(x_A) -> T_AB -> D_B -> x'_B, I(x_A) ~ I(x'_B), even though x'_B = x_A is meaningless across different spaces. The contract is relational / semantic, not representational: each engine may encode an invariant differently (explicit scalar, trajectory position, recurrent-state relation, geometric direction, ordering relation) so long as the relation is recoverable at the boundary when needed. It sits ABOVE the translation machinery and ABOVE schemas (cognitive contract -> representation / translation machinery -> schemas -> particular concepts, memories and environmental models): a schema rewrite, including offline reorganisation during sleep, changes WHAT the organism knows; contract failure changes WHETHER its subsystems can still understand one another. The contract specifies RECOVERABLE RELATIONSHIPS, never a fixed data structure or ontology -- engines encode invariants differently, new representational systems can be added, schemas reorganise, and contract dimensions may be added or retired. Its two failure poles are representation collapse (one canonical latent forced on every engine, destroying the specialisation that makes multiple engines useful) and cognitive fragmentation (engines keep exchanging tensors while progressively losing shared meaning -- computationally active, no longer one mind). Unity does not require representational sameness; it requires preservation of the relations that keep representations about the same cognitive world.",
     "type": "architectural_commitment"
   },
+  "ARC-143": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "development.developmental_vs_mature_capacity_envelope",
+    "title": "The DEVELOPMENTAL capacity envelope is a design variable distinct from the MATURE capacity envelope, and REE must not infer the first from the second: the connection count, the number of candidate mappings, the size of the accessible transformation repertoire and the permissiveness of an interface that a developing organism needs in order to DISCOVER a useful organisation may each legitimately exceed what the mature organism retains, so imposing the mature bottleneck at developmental time zero can prevent the organism from discovering which distinctions and interfaces deserve to survive. This generalises MECH-362's subtractive trajectory from RECURRENT MEMORY CONNECTIVITY to the whole set of REE loci the thought names -- z_world, the E1/E2 interfaces, the hippocampal/replay pathways, goal/directive influence and E3 selection -- and states the consequence as a curriculum-design discipline: a developmental programme must declare, per locus, its developmental search capacity SEPARATELY from its mature architectural constraint, and the two need not be identical.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "coupled_with": [],
@@ -9341,6 +9350,33 @@
     "title": "Recurrent interface stability: an interface can be statically useful yet recurrently unstable -- a bridge with one-step utility > 0 can fail repeated closed-loop application, and REE traverses most interfaces repeatedly over trajectories, episodes and recurrent prediction loops. Two mechanisms, to be distinguished experimentally: (a) OFF-MANIFOLD COMPOUNDING -- a bridge trained on native receiver states emits a slightly off-distribution receiver state, the next application treats it as ordinary input, and B_0 -> T(A_0,B_0) = B_1' -> T(A_1,B_1') = B_2' accumulates displacement into a regime the bridge never saw; (b) SEMANTIC DOUBLE-COUNTING -- content already injected is not recognised as present and is re-amplified, escalating gain. Design corollary: CUMULATIVE translation (each step operates on the previously translated receiver state) versus CLEAN-BASE translation (each step computed against an unmodified native receiver state, the residual held as a temporary gated overlay) -- translated information should first be tested as an overlay or gated read surface, never as an irreversible rewrite of the receiver's core latent state. Adds an EIGHTH rung to INV-105's ladder, RECURRENTLY STABLE: repeated use preserves receiver-state validity, information calibration and functional behaviour over the timescale the system actually uses the interface -- assessed BEFORE behavioural usefulness is read as architecturally meaningful in a dynamical system. Sleep corollary for MECH-540: offline interface recalibration must improve or preserve closed-loop stability when waking dynamics resume; a sleep-induced change that improves a static probe but destabilises the next waking trajectory is a failure, not consolidation. Signatures: one-step rescue + cumulative collapse + clean-base stability = recurrent interface instability; cumulative stability + correct-pair specificity = a functionally coherent recurrent bridge; both fixed and conditioned bridges failing while richer source information succeeds = upstream representation deficiency remains more likely.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-549": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "development.history_irreducibility_at_matched_final_capacity",
+    "title": "Developmental-history irreducibility at matched final capacity: some mature cognitive organisations may be historically inaccessible from their own final architecture -- a system that develops through a transiently larger capacity envelope and is progressively reduced to a target architecture can outperform an identical target architecture trained from initialisation under the identical curriculum, so developmental history contributes something the final architecture alone does not reproduce. The claim is stated with its own discriminating control and is confirmable ONLY by that control: a four-arm design of (A) mature size throughout, (B) overcapacity progressively reduced to the mature size, (C) overcapacity retained, and (D) arm B's final architecture, sparsity mask and interface structure REINITIALISED and trained from the start under the same curriculum. B > A alone is consistent with the rival \"pruning found a better small architecture\"; only B > D at architecture(B) ~= architecture(D) and final capacity(B) = final capacity(D) establishes the claim. Corollary: premature representational or interface compression should selectively impair distinctions whose relevance is revealed only later in the curriculum, even where the same compressed form works well after maturation.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-550": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "development.functional_persistence_retention_criterion",
+    "title": "Functional persistence, not weight magnitude, is the retention criterion for developmental capacity reduction: which relationships, mappings or routes survive a developmental reduction should be determined by repeated demonstrated usefulness under prediction, action, regulation and replay -- predictive contribution, reduction of persistent prediction error, harm/benefit relevance, controllability discrimination, counterfactual usefulness, action-selection contribution, replay recurrence, transfer across contexts, stability across developmental stages, utility to more than one downstream consumer, and maintenance of uncertainty where premature collapse would be dangerous. The prediction is comparative and has a named rival that must be run as a control rather than assumed away: relevance-guided reduction should outperform indiscriminate magnitude pruning at matched final capacity; if it does not, functional selection is not what the developmental reduction is doing and the effect reduces to capacity annealing.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-551": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "sleep.replay_coupled_capacity_reduction_coordination",
+    "title": "Capacity reduction concurrent with representational change is a COORDINATION problem, and offline replay is the proposed coordination site: while a representation is still being revised, a route can appear unnecessary only because its consumer has not yet adapted to the new representation, and an apparently useful route can be preserving an obsolete coding convention -- so the retention decision read online during representational change is systematically unreliable in both directions. The proposal is that offline/replay periods provide the safer setting for it, because they permit testing which old episodes remain reconstructable, comparing alternative candidate mappings without immediate behavioural cost, re-indexing memories after representational change, stabilising newly useful communication subspaces, weakening redundant routes, and checking that a reduction has not destroyed counterfactual or regulatory distinctions. Falsifiable prediction with its matched control stated: at equal aggressiveness of reduction AND matched update count, replay-coupled reduction should preserve more transfer and causal structure than online-only reduction; the strong form is that replay permits GREATER compression at equal or better transfer.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "coupled_with": [],
@@ -11365,7 +11401,7 @@
   "SD-077": {
     "assembly_state": "gated_v3",
     "coupled_with": [],
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "goal.common_mode_invariant_super_ordinal_cue_key",
     "title": "Common-mode-invariant (centered) super-ordinal goal-anchor cue key: the MECH-189 SuperOrdinalGoalMemory keys anchors on raw z_world cosine, which under SD-008 z_world under-differentiation measures the shared common-mode offset rather than the context, so every nursery contact reinforces one slot and anchor_count saturates at 1. Subtract a slow EMA common-mode baseline before every cue cosine. ree_core goal.py change, bit-identical by default.",
