@@ -100627,6 +100627,11 @@
     - MECH-423  # super-additivity over SHARED FEATURES -- must not be read as requiring a shared geometry
   location: docs/architecture/cognitive_contract.md#arc-142
   source_thought: docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: at least one inter-engine boundary instrumented well enough that a relation can be shown recoverable at it by the RECEIVER (INV-105 rung 3), not merely by an external probe; otherwise both 'contract preserved' and 'contract failed' are unobservable and every result is about the probe. As of 2026-09-15 no V3 boundary is so instrumented (the ML-10..ML-15 instruments that would supply it are owed).
+    CONFIRMING: engines maintain measurably DIFFERENT representational geometries (global similarity flat or falling) while a small, stable set of relations remains receiver-recoverable across their boundaries, and behavioural coherence tracks the relations rather than the geometry -- the thought's falsifiable claims 4-5 and the developmental prediction MECH-538 registers (specialisation and legibility rising together).
+    FALSIFYING (four of the thought's ten programme falsifiers falsify the claim rather than the method): (1) no reusable compact structure exists -- consumers repeatedly require unrelated task-specific exchange variables, nothing recurring across boundaries; (2) ordinary latent geometry is operationally enough -- receivers cheaply reconstruct every required distinction locally, so nothing must be preserved; (3) probe-only invariants dominate -- candidate information is externally decodable but unavailable to or unused by receivers (INV-105 rung 2 without 3/6); (10) boundary-specificity defeats a shared core (see ARC-144).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional, unchanged from registration.
   notes: >-
     Registered 2026-09-08 from docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md (intake
     evidence/planning/thought_intake_2026-09-08_deriving_the_cognitive_contract.md). GENERALISES INV-104:
@@ -100722,6 +100727,11 @@
     negative result is recorded in the same ledger rather than deleted. NON-FALSIFYING-SAFE: changes no
     claim's status or confidence; it gates admission of evidence about the contract, not any verdict.
     Warn-only until the ledger exists.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the ledger has entries whose classification the rule actually determines -- SATISFIED since 2026-09-08 (evidence/planning/cognitive_contract_invariant_ledger.v1.json, 14 records as of 2026-09-15; see the dated correction in notes -- the 'ledger NOT BUILT' sentence there is superseded).
+    CONFIRMING (evidence of use): the four-way classification and the >= 2-of-6 quorum give a different answer from an unclassified reading on a real candidate, and that answer survives a later independent pull. First live instance: the 2026-09-14 Session-B reconciliation, where CCI-003's linguistic cell was graded 'supports' by one pass and areal/cultural-leaning by the other, and the rule is what forces that disagreement to be recorded per-record rather than silently averaged.
+    FALSIFYING: (5) cross-domain convergence evaporates -- linguistic, developmental, neural, comparative and artificial-system evidence support mutually incompatible structures, so the quorum aggregates noise; OR the quorum is met by every candidate ever proposed (a bar nothing fails is not a bar). Currently 4 of 14 records are admitted and 0 are not_required -- closer to discriminating than not, but ZERO not_required records after three literature tranches is worth watching, because the negative-finding-preservation clause is the rule's most valuable one and has never fired.
+    Disposition 2026-09-15: (b) derivational, use-gated promotion; category stays governance_rule.
   notes: >-
     Registered 2026-09-08 from the same source thought as ARC-142 (sections 5, 8, 9, 18, 19 and falsifiable
     claims 2-3). This is the governance half the user asked for: the thought is as much a METHOD for
@@ -100753,7 +100763,7 @@
     two domains, admissible; class 5 independently-evolving-trajectories has only the developmental source
     and would be held "uncertain" until a second domain lands -- the rule gives a DIFFERENT answer from
     the current unclassified registration, so the check is non-degenerate).
-
+    CORRECTION 2026-09-15 (thought-digestion-20260915; GFLAG-0281): the sentence above saying THE TWELVE-FIELD LEDGER IS NOT BUILT is superseded -- evidence/planning/cognitive_contract_invariant_ledger.v1.json has existed since 2026-09-08 and holds 14 records (4 admitted, 10 candidate, 0 not_required as of 2026-09-15); the rule is live, not warn-only. The tranche-3 ledger amendment (7 edits) remains unapplied -- a /governance action.
 - id: MECH-545
   title: >-
     Contract-lesion assays: the decisive test of a candidate cognitive-contract invariant (ARC-142) is not
@@ -100796,8 +100806,16 @@
     - MECH-256       # forward-model comparator -- agency lesion's content-level owner
     - INV-035        # temporal position as a state-defining distinction -- temporal lesion's content-level owner
     - INV-104        # F2 "destroy access, no organism cost -> strike the class" is the same logic on one path
+    - ARC-140        # compensatory realizability: acute vs adapted, altered causal-importance distribution, selective re-ablation, four-arm design -- owns most of the section-12 causal standard (edge added 2026-09-15)
+    - GOV-INTERVENE-1 # on-/near-/off-manifold construction axis and intervention-attribution rule (edge added 2026-09-15)
     - MECH-539       # transition geometry across the map -- the temporal lesion's dynamic form
   location: docs/architecture/cognitive_contract.md#mech-545
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a within-boundary CONTENT-PRESERVING control exists and works -- the lesion must be shown to delete the relation while leaving content intact, distinguished from MECH-537's encoded-but-not-exposed phenotype (INV-105 rung 3 loss vs rung 2). Without it every lesion result is generic information loss. Off-manifold construction and compensation must be excluded per GOV-INTERVENE-1 and ARC-140 before either verdict.
+    CONFIRMING: each of the five lesions, applied at ONE inter-engine boundary, produces a signature distinct from the other four AND from a dimensionality-matched random-projection floor, replicating across seeds, with acute (frozen-weights) and adapted phases separated per ARC-140.
+    FALSIFYING: (4) lesion specificity disappears -- controlled corruption produces only generic information loss, no five-way dissociation. Two asymmetric failure routes must be excluded first: an OFF-MANIFOLD lesion damaging unrelated computations (false positive: the candidate looks necessary) and COMPENSATION through an alternative pathway (false negative: the mechanism looks unnecessary if only post-adaptation behaviour is examined).
+    CURRENCY CORRECTION 2026-09-15 on the 'cheapest V3 cousin': the reality-status lesion described as 'force-dropping committed_vs_imagined at the replay -> consolidation boundary, a small edit' -- grep for committed_vs_imagined / source_status over ree_core and experiments returns 0 hits; the MECH-365 token is unbuilt, and what exists is hypothesis_tag as a boolean WRITE GATE (ree_core/sleep/mel_consumer.py, phase_manager.py). Forcing that gate open is still cheap but perturbs a gate, not a status carried across the boundary -- a weaker instance of the assay pattern; whoever routes it must say which is meant.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional; depends_on gains ARC-140 and GOV-INTERVENE-1 (edges, not a merge), which between them own the section-12 causal standard.
   notes: >-
     Registered 2026-09-08 from section 10 and falsifiable claim 1 of the source thought. WHAT IS NEW is
     the ASSAY PATTERN -- lesion the TRANSLATION, not the content -- and the pre-registered five-way
@@ -100854,6 +100872,11 @@
     - MECH-010       # language emergence / bootstrapping dynamics
     - INV-003        # language emerges, not bolt-on
   location: docs/architecture/cognitive_contract.md#mech-546
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the two directions must be able to disagree -- the candidate set must have been FROZEN before the typological comparison, else direction (a) is guaranteed and the test is circular (the contamination GOV-CONTRACT-1 and the prereg's language firewall exist to prevent).
+    CONFIRMING: agreement across both directions -- contract-derived invariants over-represented among recurrently grammaticalised distinctions, AND recurrently grammaticalised distinctions lacking developmental/comparative/computational support classifying as embodied or cultural; plus the emergent-communication prediction: agents transmitting invariant-rich states over a low-cost channel develop grammar-like structure for contract relations and not for schema content.
+    FALSIFYING: either direction alone (the claim says agreement is the evidence) -- the grammaticalised set and the contract set statistically independent; or agents develop grammar-like structure for schema content as readily as for relations. CONTRARY EVIDENCE ALREADY FILED: evidence/literature/targeted_review_cognitive_contract_invariants/entries/2026-09-08_mech_546_compositionality_not_required_for_generalization_chaabouni2020 (compositionality not required for generalisation in emergent communication) weakens the channel-converges-on-relational-structure half; read it before attaching any confirming citation.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- v6 per ARC-100's language phase; nothing in V3 or V4 exercises it, and the owed work is a typology /lit-pull, not an experiment.
   notes: >-
     Registered 2026-09-08 from sections 7, 12 and falsifiable claim 7 of the source thought, which extends
     docs/thoughts/2026-02-09_language.md (ARC-009 / MECH-010). DISTINCT FROM ARC-101, which says what
@@ -100902,6 +100925,12 @@
     - ARC-086   # social-contagion / cross-agent coupling axis -- the braidling-side failure family
     - MECH-544  # permeability / source-tag decay between agents -- braidling-side anchor
   location: docs/architecture/cognitive_contract.md#q-104
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a severance must be actually performable and reversible on both candidate configurations -- within-agent (E1/E2/E3/hippocampus) and between-agent -- and a coherence measure must exist that is not simply task performance; otherwise the criterion cannot be applied to either side.
+    ANSWERED (cognifold/braidling criterion holds): the severance assay places E1/E2/E3/hippocampus on the cognifold side (severance degrades coherence on BOTH sides, not merely coordination) and two communicating REE agents on the braidling side (each remains independently coherent), with the placement tracking a measurable contract-dimension dependency or MECH-538 bridge complexity rather than being stipulated.
+    ANSWERED NEGATIVE (criterion does no work): everything severs gracefully (no cognifold anywhere in REE) or nothing does; or placement tracks task-coupling strength alone with no contract-dimension signal (ordinary coupling measures answer it and the contract is not needed).
+    ROUTING ADDED 2026-09-15 (recorded here, not as a depends_on edge, because ARC-144 already depends_on this question): the red-team thought's section 18 sharpens the cognifold side to 'unity is a property of the transformation NETWORK'; under ARC-144 the cognifold is the region of the interface graph whose boundary obligations OVERLAP and the braidling boundary is where overlap goes to zero -- the overlap measurement ARC-144 demands is a candidate severance criterion.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional; the severance assay is complex (probe-gated) -- a spike measuring obligation overlap at two boundaries would convert it to puzzle (known rules).
   notes: >-
     Registered 2026-09-08 from sections 1, 15 and 16 of the source thought. The term "braidling" appears
     NOWHERE in claims.yaml or docs/architecture before this entry (docs/architecture/hippocampal_braid.md
@@ -102034,6 +102063,11 @@
     - INV-091      # integration/non-equivalence viable band -- the measurable form of the collapse-vs-fragmentation poles
     - Q-104        # cognifold vs braidling: if unity is a property of the transformation network, the network is this family C
   location: docs/architecture/cognitive_contract.md#arc-144
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: at least TWO heterogeneous inter-engine interfaces instrumented with the SAME candidate relation and the SAME receiver-accessible recoverability measure (INV-105 grading), with the relation measurably present at at least one of them. One instrumented boundary, or a relation absent everywhere, leaves the claim untestable rather than false -- a single-boundary programme cannot distinguish boundary-indexed from universal.
+    CONFIRMING: a relation shown OBLIGATORY at one boundary (nuisance-controlled lesion produces the predicted deficit, MECH-545) and NOT obligatory at another (the receiver reconstructs it locally within its compute/latency budget at no behavioural cost), replicating across seeds; plus, over several boundaries, a measured OVERLAP set that is non-empty and smaller than the union -- obligations differ, and a core exists.
+    FALSIFYING, two outcomes in opposite directions, both count: (i) UNIVERSALITY -- every instrumented boundary requires the same obligation set with no relation ever locally reconstructable (the flat ARC-142 reading was right; the indexing is bookkeeping); (ii) the thought's falsifier 10 -- useful obligations exist per boundary but their overlap across the cognitive graph is negligible (no shared core; the contract is a set of interface specifications, not an architecture of cognition). ARC-144 survives only the middle.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- multi-boundary instrumentation does not exist and MECH-545's lesion pattern is unbuilt (code absent, not signal-absorbed).
   notes: >-
     Registered 2026-09-15 from section 2 and falsifier 10 of
     docs/thoughts/2026-09-08_candidate_cognitive_invariants.md (intake
@@ -102119,6 +102153,11 @@
     confidence; it gates promotion of ledger candidates, not any verdict about them. Composes with
     GOV-CONTRACT-1 rather than replacing it -- that rule still governs what enters the ledger and how
     evidence is classified; this one governs what leaving the ledger requires.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: at least one ledger candidate has reached a stage above 1, so the ladder has discriminated something; until then the rule is a refusal rule only, and 'no candidate registered' is consistent with both the rule working and the programme being stalled.
+    CONFIRMING (evidence of USE, not of formalisation -- the GOV-PATHVALID-1 / GOV-INTERVENE-1 discipline): the ladder gives a DIFFERENT answer from the prior 'ledger record + lesion prediction' test on a real case, and the different answer proves right in hindsight -- e.g. a candidate that test would have registered is later shown reducible or boundary-local and would have been held at Stage 1-3 by this ladder.
+    FALSIFYING: the ladder is applied and either every candidate passes all six stages trivially (the stages do not discriminate) or none ever passes Stage 2 over a long programme while candidates are independently shown load-bearing by other routes (the ladder measures instrument availability, not candidate quality). Either says the stages are the wrong cuts.
+    Disposition 2026-09-15: (b) derivational, use-gated promotion -- a governance rule with no substrate dependency; do not move to provisional until it has been APPLIED in a live /governance pass. Category stays governance_rule.
   notes: >-
     Registered 2026-09-15 from section 19 (and sections 20.1, 21) of
     docs/thoughts/2026-09-08_candidate_cognitive_invariants.md. WHY THIS EXISTS: the programme had a bar
@@ -102224,6 +102263,11 @@
     the relocation checklist. NON-FALSIFYING-SAFE: gates the acceptance of reduction ARGUMENTS, changes no
     claim's status. Applies symmetrically -- a refusal to reduce must also be argued, so that a candidate
     cannot be kept merely because no one attacked it.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a concrete merge proposal exists with an explicit before/after basis and cost terms at least coarsely estimable for both; MECH-557 is that proposal -- without one the rule has nothing to score.
+    CONFIRMING (evidence of use): a merge that looks compelling on relabelling grounds is REFUSED by the relocation checklist -- the lost distinction is found in the decoder, a context tag or a side channel -- and the refusal is later vindicated (the merged basis fails a discriminating-prediction test the unmerged basis passes). One such case establishes the rule catches something the naive noun-count criterion does not.
+    FALSIFYING: every merge proposal fails the cost test for reasons that turn out to be measurement artefacts (cost terms not estimable at the available precision), so the rule blocks all reduction and the basis grows monotonically (the thought's falsifier 8: total description cost fails to fall); OR the symmetry clause is never exercised -- reductions are policed but no retention is ever argued for -- so the rule is one-sided in practice whatever its text says.
+    Disposition 2026-09-15: (b) derivational, use-gated promotion (as GOV-CONTRACT-2); category stays governance_rule.
   notes: >-
     Registered 2026-09-15 from sections 3, 5.4, 5.8 and 11 of
     docs/thoughts/2026-09-08_candidate_cognitive_invariants.md, which calls the cost criterion "an
@@ -102315,6 +102359,11 @@
     - ARC-024      # harm gradient -- field E's REE instance
     - INV-104      # five preservation classes on one path: the closest existing grouping of the same material
   location: docs/architecture/cognitive_contract.md#mech-557
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the crossed design (thought section 14; prereg gate G1) must be instantiable -- structure and weighting independently manipulable: a manipulation that changes confidence at FIXED structural content, one that changes structural content at FIXED confidence, and a positive control showing each moves its own target. If they cannot be varied independently the experiment returns ASSAY INVALID, not model wrong.
+    CONFIRMING: all five crossed contrasts dissociate along the structure/field boundary -- structural families (correspondence, event/trajectory, lineage) survive object/world remapping when the world relation is preserved despite altered surface features, while epistemic and regulatory weights vary strongly with uncertainty, need, goal, physiology and task regime at fixed structure; AND the absorbed candidates' failure signatures collapse onto the five reduced signatures of section 15 rather than staying fourteen-way distinct; AND the merge passes GOV-CONTRACT-3's three requirements (lower total cost, discriminating predictions preserved, transfer improved). The prereg's pre-results table already carries two rows that are this claim's family-C and field-E predictions ('factorial status axes transfer better than coarse mode labels'; 'viability basis transfers better than signed value') -- reuse that wording.
+    FALSIFYING, four extracted routes: (i) structural and weighting variables cannot be dissociated by the crossed design (the thought's own refutation: the 3 + 2 model is wrong or too simple); (ii) a held-out residue survives -- intervention/control (passive prediction preserved with selective loss of action-effect learning and controllability attribution) or expected-absence (cannot represent omitted expected events despite intact raw surprise) -- so the families do not absorb CCI-004 / CCI-011; (iii) the reduction succeeds only by decoder inflation (falsifier 9, caught by GOV-CONTRACT-3); (iv) the fourteen candidates' failure signatures remain mutually distinguishable under nuisance-controlled perturbation (the merges destroy discriminating predictions).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (NOT ceiling): needs a rate-constrained multi-consumer bottleneck (no KL/variational, quantisation, noise-injection, sparsity or rate regularisation anywhere in ree_core) and a generative-lineage structure (V3 has only the binary Trajectory.hypothesis_tag with injector-only source metadata; translation confidence has zero substrate representation).
   notes: >-
     Registered 2026-09-15 from sections 7, 9, 10, 14, 15 and 21 of
     docs/thoughts/2026-09-08_candidate_cognitive_invariants.md. WHAT IS AND IS NOT BEING REGISTERED: this
