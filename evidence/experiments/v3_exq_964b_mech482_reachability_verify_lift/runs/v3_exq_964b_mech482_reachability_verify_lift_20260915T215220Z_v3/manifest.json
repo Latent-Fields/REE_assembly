@@ -1,0 +1,346 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_964b_mech482_reachability_verify_lift",
+  "run_id": "v3_exq_964b_mech482_reachability_verify_lift_20260915T215220Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-15T21:52:20Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-482"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mechanism_inert_at_own_magnitude_detector_verified",
+    "preconditions": [
+      {
+        "control": "analytic: a divergence FRACTION over E3-fresh ticks spans [0, 1] on any dataset, so the floor sits at 1e-9 of an achievable 1.0",
+        "description": "DV headroom for the routed criteria. The EMPIRICAL half -- that the ladder can actually drive that fraction off zero -- is carried by top_rung_authority_exceeds_worst_margin and e3_fresh_ticks_sufficient below, both measured rather than assumed.",
+        "name": "selection_divergence_headroom",
+        "kind": "dv_headroom",
+        "measured": 1.0,
+        "threshold": 2e-09,
+        "direction": "lower",
+        "dv_name": "yoked_selection_divergence_frac (E3-fresh ticks)",
+        "achievable_statistic": "explicit",
+        "criterion_threshold": 1e-09,
+        "headroom_margin": 2.0,
+        "n_control_values": 0,
+        "headroom_ratio": 499999999.99999994,
+        "headroom_reason": "DV headroom met: yoked_selection_divergence_frac (E3-fresh ticks) can reach 1 (analytic ceiling supplied by the caller, not measured from a sample), against a required 2e-09 (criterion threshold 1e-09 x margin 2).",
+        "met": true
+      },
+      {
+        "name": "paired_control_is_bit_identical",
+        "kind": "readiness",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "upper",
+        "control": "an arm yoked against ITSELF, identical seed and config, on the SEEDED rollout, checked on BOTH the action DV and the routed selection DV",
+        "description": "INSTRUMENT CONTROL. Non-zero on either DV means the yoked agents differ in something other than the manipulation and every divergence number in this run is void. Local rather than imported because V3-EXQ-964a's version runs an UNSEEDED env and checks the action DV only (red-team F1/F4).",
+        "met": true
+      },
+      {
+        "name": "injected_deficit_differentiates_candidates",
+        "kind": "readiness",
+        "measured": 1000.0,
+        "threshold": 1e-12,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "the synthetic ramp m * arange(K)/(K-1), whose cross-candidate range is exactly m by construction, measured on the worst verify-lift cell",
+        "description": "The positive control must be NON-UNIFORM. A uniform synthetic deficit cannot move an argmax at any magnitude -- it would be a positive control that provably cannot work, which is the defect class this whole run exists to repair one layer up.",
+        "met": true
+      },
+      {
+        "name": "top_rung_authority_exceeds_worst_margin",
+        "kind": "readiness",
+        "measured": 4.447143685980192,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "the TOP ladder rung's realised post-clamp deviation range (2 * curiosity_bias_scale once railed) divided by the largest |margin| the SUBJECT arm records on the same rollout; authoring probe measured range 20.0 against a worst |margin| of 4.078, a ratio of ~4.9",
+        "description": "REACHABILITY CERTIFICATE FOR C1, measured rather than hoped for. Below 1.0 the top rung's perturbation cannot reach the margins it must overcome, C1 is unmeetable by construction, and a zero divergence there would mislabel an instrument-specification gap as a substrate verdict. Measured on the CONTROL arm against the SUBJECT's margins, so it does not certify its own subject.",
+        "met": true
+      },
+      {
+        "name": "fresh_tick_denominator_exact",
+        "kind": "readiness",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "each follower's own count of ticks on which select() ran, against the shared reference-fresh denominator the fractions divide by",
+        "description": "RED-TEAM F7. The selection fraction is denominated on REF-fresh ticks while its numerator needs BOTH arms fresh; per-agent clocks can desync, and a skew means the run reports an n it does not have -- the pseudo-replication shape, measured rather than assumed.",
+        "met": true
+      },
+      {
+        "name": "e3_fresh_ticks_sufficient",
+        "kind": "readiness",
+        "measured": 33.0,
+        "threshold": 15.0,
+        "direction": "lower",
+        "control": "ticks on which select() demonstrably ran, proven per tick by the latch-clear discipline rather than assumed from the step count; authoring probe measured 11 in 60 steps on one seed",
+        "description": "SAMPLE SIZE for the selection DV. E3 selects on ~1 tick in 10, so a divergence fraction denominated on env steps reports an n it does not have -- the pseudo-replication shape. This floor refuses a run that measured almost nothing.",
+        "met": true
+      },
+      {
+        "name": "multitarget_regime_reached",
+        "kind": "readiness",
+        "measured": 10.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "V3-EXQ-964a measured 14/16/14 persistent targets on ARM_READINESS with these same imported knobs",
+        "description": "Carried forward from V3-EXQ-964a: below a second persistent target the readout is constant and no divergence criterion can discriminate by arithmetic.",
+        "met": true
+      },
+      {
+        "name": "readout_differentiates_across_candidates",
+        "kind": "readiness",
+        "measured": 0.0021221935749053955,
+        "threshold": 1e-12,
+        "direction": "lower",
+        "control": "V3-EXQ-964a measured max_lp_dev_range 4.4e-3 to 7.3e-3 on ARM_READINESS with these same imported knobs",
+        "description": "Carried forward: the SUBJECT arm's own perturbation must vary across candidates, else C3 measures zero by arithmetic.",
+        "met": true
+      },
+      {
+        "name": "vacuous_readout_rate_bounded",
+        "kind": "readiness",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "live rollout with the SD-063 head trained identically on every arm",
+        "description": "Carried forward: a near-total readiness-gate refusal rate would mean the accumulator never got a chance to matter.",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_detector_sensitivity_top_rung_fires",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "detail": "seeds on which the TOP verify-lift rung (curiosity_bias_scale=10, realised argmin-relevant range 20) produced a yoked divergence above 1e-09. THE GATE ON EVERYTHING ELSE: if the detector cannot fire at ~5x the largest |margin| the subject records, C3 is uninterpretable and the route is a harness repair, not a substrate verdict."
+      },
+      {
+        "name": "C2_minimum_effective_authority_measured",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.1,
+        "threshold": 10.0,
+        "comparator": "<=",
+        "shipped_curiosity_bias_scale": 0.1,
+        "detail": "the SMALLEST curiosity_bias_scale whose divergence fires on a seed majority -- the measured sizing that replaces the withdrawn 4-5x weight raise, in the units of the knob that actually BOUNDS curiosity's selection authority. Unmet reads as above the top rung. Compare against the SHIPPED value 0.1, which is the bottom rung."
+      },
+      {
+        "name": "C3_subject_moves_selected_candidate",
+        "load_bearing": true,
+        "passed": false,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "detail": "seeds on which ARM_READINESS's own SELECTION divergence fires over E3-fresh ticks -- the mechanism-faithful DV. The action projection is recorded alongside as readiness_max_action_divergence_frac and is what V3-EXQ-964a measured. INTERPRETABLE ONLY IF C1 PASSES -- that ordering is why this run exists. V3-EXQ-964a measured 0/540 on the action projection with no proof the detector could fire at all."
+      }
+    ],
+    "combination_rule": "ORDERED GATE, not an AND of PASSes. C1 gates C3: a detector that cannot fire at the top of a four-decade ladder makes C3 uninterpretable, so !C1 routes `detector_cannot_fire_instrument_defect` REGARDLESS of C3's value. With C1 met, C3 selects between `mechanism_moves_selected_candidate` and `mechanism_inert_at_own_magnitude_detector_verified`, and C2 reports how far the real magnitude sits from the effective one either way. A failed precondition overrides all three and self-routes substrate_not_ready_requeue. `outcome` is PASS when the run ADJUDICATED (gate green and C1 met), FAIL otherwise -- never a verdict on MECH-482, which this diagnostic does not score.",
+    "criteria_non_degenerate": {
+      "C1_detector_sensitivity_top_rung_fires": true,
+      "C2_minimum_effective_authority_measured": true,
+      "C3_subject_moves_selected_candidate": true
+    },
+    "gate_reason": null,
+    "ladder_seeds_firing": {
+      "ARM_VERIFY_LIFT_S0.1": 3,
+      "ARM_VERIFY_LIFT_S0.5": 3,
+      "ARM_VERIFY_LIFT_S2": 3,
+      "ARM_VERIFY_LIFT_S10": 3
+    },
+    "min_effective_magnitude": 0.1,
+    "min_effective_arm": "ARM_VERIFY_LIFT_S0.1",
+    "arm_sensitivity_per_seed": [
+      {
+        "seed": 71,
+        "corrected_keys_differing": [
+          "corrected_max_pert_over_margin",
+          "corrected_min_positive_margin",
+          "max_post_clamp_bias_range"
+        ],
+        "n_corrected_keys_differing": 3,
+        "corrected_pert_keys_differing": [
+          "corrected_max_pert_over_margin",
+          "corrected_min_positive_margin",
+          "max_post_clamp_bias_range"
+        ],
+        "n_corrected_pert_keys_differing": 3,
+        "corrected_count_keys_differing": [],
+        "n_corrected_count_keys_differing": 0,
+        "legacy_keys_differing": [],
+        "n_legacy_keys_differing": 0,
+        "reproduces_964a_legacy_byte_identity": true
+      },
+      {
+        "seed": 101,
+        "corrected_keys_differing": [
+          "corrected_max_pert_over_margin",
+          "corrected_min_positive_margin",
+          "max_post_clamp_bias_range"
+        ],
+        "n_corrected_keys_differing": 3,
+        "corrected_pert_keys_differing": [
+          "corrected_max_pert_over_margin",
+          "corrected_min_positive_margin",
+          "max_post_clamp_bias_range"
+        ],
+        "n_corrected_pert_keys_differing": 3,
+        "corrected_count_keys_differing": [],
+        "n_corrected_count_keys_differing": 0,
+        "legacy_keys_differing": [
+          "legacy_min_argmax_margin"
+        ],
+        "n_legacy_keys_differing": 1,
+        "reproduces_964a_legacy_byte_identity": false
+      },
+      {
+        "seed": 202,
+        "corrected_keys_differing": [
+          "corrected_max_pert_over_margin",
+          "corrected_min_positive_margin",
+          "max_post_clamp_bias_range"
+        ],
+        "n_corrected_keys_differing": 3,
+        "corrected_pert_keys_differing": [
+          "corrected_max_pert_over_margin",
+          "corrected_min_positive_margin",
+          "max_post_clamp_bias_range"
+        ],
+        "n_corrected_pert_keys_differing": 3,
+        "corrected_count_keys_differing": [],
+        "n_corrected_count_keys_differing": 0,
+        "legacy_keys_differing": [
+          "legacy_n_flip_reachable_ticks"
+        ],
+        "n_legacy_keys_differing": 1,
+        "reproduces_964a_legacy_byte_identity": false
+      }
+    ],
+    "routes": {
+      "detector_cannot_fire_instrument_defect": "The selection-divergence detector did not fire even at curiosity_bias_scale=10 (realised argmin-relevant range 20), whose measured headroom over the subject's own worst |margin| is recorded in readout.top_rung_margin_headroom and gated at 1.0. C3 is uninterpretable for the second time and NOTHING is learned about MECH-482. Route to a harness repair -- NOT to another lettered weight bump, which the CONFIRMED V3-EXQ-964a autopsy already withdrew.",
+      "mechanism_inert_at_own_magnitude_detector_verified": "The detector demonstrably fires, and the real mechanism still never moves the committed action. This is an INTERPRETABLE negative -- the first one MECH-482 has had -- and C2's minimum effective magnitude says how far the real perturbation (~0.1 pre-weight) sits from one that does move it. It does NOT by itself license a weight raise: a minimum effective magnitude orders of magnitude above the real one is an F-dominance finding about the committed-selection layer (ARC-110 / MECH-439 territory), which is a substrate question, not a config one.",
+      "mechanism_moves_selected_candidate": "ARM_READINESS's own perturbation moves the committed action on a seed majority -- the first positive behavioural signal for MECH-482. Route to /governance to decide whether this promotes the substrate entry sd_epistemic_deficit_multitarget_readiness out of implemented_pending_validation.",
+      "substrate_not_ready_requeue": "A precondition failed. No outcome is attributable; an instrument result, not a verdict on MECH-482."
+    },
+    "carried_forward_from_964a": "C1/C2/C5 of V3-EXQ-964a (multitarget regime reached, readout differentiates, collapse control reproduces) are re-measured here as PRECONDITIONS rather than re-litigated as criteria: the confirmed autopsy records them as standing, and this run's question is one layer downstream."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "36cd8e8f3e77d84a3015c181540a6dcb86eb9a2c0c21f178d5cae7d9cd6bd75a",
+  "substrate_commit": {
+    "commit": "bd83702bd08bdbe39b26549992a647e5b27724da",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "latent.use_e2_world_uncertainty": true,
+    "latent.use_e2_world_uncertainty_online_training": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_structured_curiosity": true,
+    "epistemic_deficit_persist_targets_across_episodes": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 704.363161647,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "seeds": [
+      71,
+      101,
+      202
+    ],
+    "episodes": 3,
+    "steps_per_episode": 60,
+    "follower_arms": [
+      "ARM_READINESS",
+      "ARM_VERIFY_LIFT_S0.1",
+      "ARM_VERIFY_LIFT_S0.5",
+      "ARM_VERIFY_LIFT_S2",
+      "ARM_VERIFY_LIFT_S10"
+    ],
+    "verify_lift_ladder": [
+      0.1,
+      0.5,
+      2.0,
+      10.0
+    ],
+    "readiness_knobs": {
+      "epistemic_deficit_match_radius_mode": "relative",
+      "epistemic_deficit_match_radius_relative_frac": 0.5,
+      "epistemic_deficit_center_update": "ema",
+      "epistemic_deficit_center_ema_beta": 0.1,
+      "epistemic_deficit_readout_mode": "rbf_weighted",
+      "epistemic_deficit_persist_targets_across_episodes": true,
+      "epistemic_deficit_target_frame": "predicted"
+    },
+    "prereadiness_knobs": {
+      "epistemic_deficit_match_radius_mode": "absolute",
+      "epistemic_deficit_match_radius_relative_frac": 0.5,
+      "epistemic_deficit_center_update": "replace",
+      "epistemic_deficit_center_ema_beta": 0.1,
+      "epistemic_deficit_readout_mode": "hard_match",
+      "epistemic_deficit_persist_targets_across_episodes": false,
+      "epistemic_deficit_target_frame": "realized"
+    },
+    "divergence_floor": 1e-09,
+    "control_divergence_ceiling": 1e-09,
+    "arm_sensitivity_floor": 1.0,
+    "injected_range_floor": 1e-12,
+    "seed_majority": 2,
+    "control_steps": 15,
+    "env_seeded": true
+  },
+  "seeds": [
+    71,
+    101,
+    202
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 3240,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 18,
+    "goal_state_present": false
+  }
+}
