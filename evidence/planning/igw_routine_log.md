@@ -3024,3 +3024,4 @@ One line per hourly tick. ASCII only.
 2026-09-15T05:57:16Z GC removed worktree igw-250-confirm-evidence-arc-131-lit-0-8 (removed; branch deleted)
 2026-09-15T05:56:33Z GC sweep removed 1 orphan worktree(s), kept 12
 2026-09-15T05:56:33Z no eligible item (skipped 255): IGW-20260915-001:skill /governance not allowed; IGW-20260915-005:skill /governance not allowed; IGW-20260915-006:skill /governance not allowed
+2026-09-15T06:58:07Z no eligible item (skipped 255): IGW-20260915-001:skill /governance not allowed; IGW-20260915-005:skill /governance not allowed; IGW-20260915-006:skill /governance not allowed
