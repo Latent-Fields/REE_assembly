@@ -3428,6 +3428,45 @@
         "claim_ids naming MECH-537 with direction; >= 3 seeds; ASCII-only prints."
       ],
       "notes": "Minted by thought-digestion-20260915 wave 3 (Family F), user-approved. MECH-537 epistemic_category -> standard (already implementation_phase v3). Registration note about 1002 is overtaken (GFLAG-0282). Hand-off is /queue-experiment."
+    },
+    {
+      "proposal_id": "EXP-1404",
+      "claim_id": "MECH-561",
+      "related_claims": [
+        "MECH-561",
+        "MECH-537",
+        "MECH-547",
+        "MECH-091",
+        "MECH-108",
+        "ARC-023",
+        "MECH-466",
+        "Q-081",
+        "INV-105",
+        "ARC-145"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "backlog_id": null,
+      "machine_affinity": "any",
+      "added_utc": "2026-09-15",
+      "registered_utc": "2026-09-15",
+      "gated_by_session": "thought-digestion-20260915",
+      "dispatch_mode": "targeted_probe",
+      "estimated_minutes": 180,
+      "objective": "Test MECH-561 (phase-conditioned communication subspace; temporal substitutes for geometric separability) per its what_would_answer, digested and applied 2026-09-15 -- OBSERVATIONAL diagnostic over recorded trajectories: do principal angles between phase-conditioned communication subspaces exceed a constrained-realisation surrogate null, does a phase-conditioned model beat a static subspace on held-out receiver prediction at matched complexity, and does the phase permutation destroy the gain independently of a receiver-state permutation?",
+      "design": "Instrument: ree-v3/experiments/_lib/interface_probe.py (communication_subspace RRR with cross-validated rank, principal_angles, CaptureRecord.phase). Phase coordinates: _e3_phase_step with MECH-091 salient-event reset (primary; event-driven, passes Q-081's filter); BreathOscillator phase with breath_period > 0 (secondary; default OFF); EXCLUDE the raw multi-rate tick index (deterministic in the configured rates). Source: rawfield25 or a post-SD-106 encoder -- trained z_world inadmissible (V3-EXQ-1010 H-F). Arms: static subspace; phase-conditioned subspace at matched complexity; phase-permuted; receiver-state-permuted (MECH-547's control, run alongside); random temporal labels; global scalar gain rival; MECH-466 event-relative index rival. Bin-count sweep over phase bins. Surrogate null validated on an injected-real and an artefactual statistic before use. No causal lesion (that ladder stays substrate_conditional); no ree_core change.",
+      "acceptance_checks": [
+        "SEQUENCING GATE: a single waking interface metric has demonstrated range and stability at one locus first (2026-09-07 sequencing rule); do NOT queue on the cheapness of the diagnostic.",
+        "Phase coordinate has live variance and is not a function of the configured update rates; breath phase only with breath_period > 0.",
+        "Source adequacy: positive control recovers the target above bar from the chosen source; trained z_world excluded.",
+        "Surrogate null validated (kills an artefactual statistic, spares an injected real one) BEFORE any principal-angle result is read; bin-count sweep reported.",
+        "PASS: principal angles exceed the null; phase-conditioned beats static at matched complexity; phase permutation destroys the gain while the receiver-state permutation alone does not (else the result is MECH-547's); random temporal labels do not match.",
+        "FAIL: any of the eight phase-note falsifiers, or MECH-466's event-relative index outperforming the cyclic coordinate (report as relocation to MECH-466).",
+        "claim_ids naming MECH-561 with direction (and MECH-547 if the receiver-state permutation is decisive); >= 3 seeds; ASCII-only prints."
+      ],
+      "notes": "Minted by thought-digestion-20260915 wave 6 (Family G), user-approved. MECH-561 epistemic_category -> standard (already implementation_phase v3). Hand-off is /queue-experiment. Merge-adjacency with MECH-547 recorded on both claims."
     }
   ]
 }
