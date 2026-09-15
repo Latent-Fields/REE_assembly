@@ -1205,11 +1205,11 @@
         "MECH-287 broadcast invalidation trigger wired (pending; online arm implementation landed with attribution_weight integration but trigger emission module is separate)"
       ],
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "claims_tested": [
         "MECH-285"
       ],
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null,
@@ -3355,6 +3355,79 @@
       "release_condition": "BOTH must hold. (1) A hippocampal sequence-completion verification signal and trajectory-promotion policy actually EXIST in ree_core/hippocampal/ (not a harness proxy over _score_trajectory) -- this build is currently UNOWNED: it has no substrate_queue entry, so audit_blocked_proposal_unblockers.py will report it in the UNOWNED bucket until one is minted. (2) ARC-065 GAP-A lands divergent per-candidate world predictions and mean_candidate_score_spread on the completion channel is re-measured ABOVE the non-vacuity floor on a trained substrate. Re-check both empirically before unblocking -- neither is satisfied by a doc status alone.",
       "notes": "Minted BLOCKED by IGW-20260906-240 (/queue-experiment substrate-readiness stop, Step 2.5 + Step 2.5b). Registered rather than silently omitted so MECH-057b reads as known-untested-and-why instead of re-firing GOV-CONFIRM-1 as a zero-evidence candidate every cycle. NOT a replacement for EXP-1284/EVB-0086, which is correctly status=executed by V3-EXQ-672b; this is the owed RETEST. OPEN GOVERNANCE ITEM: the 672-series autopsy's recommended_substrate_queue_entry (action=amend, target_sd_id=ARC-065, unblocks_claims=[MECH-057b]) was CONFIRMED but never applied -- ARC-065 today lists neither MECH-057b in unblocks_claims nor the _score_trajectory completion-discriminability hint, so nothing on the substrate side currently tracks this claim's release trigger. Applying that amendment is /governance work (Step 6a), deliberately not chipped from here.",
       "backlog_id": "EVB-1722"
+    },
+    {
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "backlog_id": null,
+      "machine_affinity": "any",
+      "added_utc": "2026-09-15",
+      "registered_utc": "2026-09-15",
+      "gated_by_session": "thought-digestion-20260915",
+      "proposal_id": "EXP-1402",
+      "claim_id": "MECH-556",
+      "related_claims": [
+        "MECH-556",
+        "MECH-537",
+        "MECH-547",
+        "MECH-540",
+        "MECH-548",
+        "INV-105",
+        "MECH-089",
+        "MECH-272",
+        "MECH-091",
+        "ARC-053"
+      ],
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 240,
+      "objective": "Test MECH-556 (temporal-gate adequacy / the mistimed-interface false negative) per its what_would_answer, digested and applied 2026-09-15: at an interface with a live consumer and a phase coordinate the receiver tracks, deliver correctly paired content at the target phase versus early-shifted, late-shifted and phase-shuffled, at matched event count, phase occupancy, activity magnitude and total absolute weight change, on at least two interfaces of different predicted plasticity.",
+      "design": "Instrument: ree-v3/experiments/_lib/interface_probe.py (CaptureRecord.phase, active_gates). Levers: MECH-089 ThetaBuffer, MECH-272 sleep/routing_gate.py, MECH-091 phase_reset, MultiRateClock, force_sleep_cycle_at_eval_boundary. Manipulation: hippocampal_campaign_assay_specifications_20260910.md Gate B2 (target / early / late / shuffled at preserved communication energy). Arms: target-phase, early-shifted, late-shifted, phase-shuffled, no-interface; pairing controls correct / mismatched / zero / moment-matched random (INV-105). Two interfaces (I_drift, I_stable). Do NOT use the replay -> consumer interface (no consumer; mech092-replay-consumer-missing).",
+      "acceptance_checks": [
+        "SEQUENCING GATE: Gate B1 (content specificity at this interface) established first; this proposal is NOT to be queued on the cheapness of the diagnostic (MECH-556 registration note).",
+        "Consumer liveness: the interface under test has a receiver whose state changes as a result of the read (assert, not assume).",
+        "Quantity matched across timing arms: event count, phase occupancy, activity magnitude, total absolute weight change reported per arm; a timing interaction is not interpreted if exposure or update magnitude differs.",
+        "PASS: target-phase > every shifted/shuffled arm on downstream change at matched quantity, surviving INV-105 pairing controls, on two interfaces with DIFFERENT predicted plasticity; an identical effect on both is scored as generic plasticity scheduling (not PASS).",
+        "FAIL: target ~= shifted at matched energy; or the effect tracks update magnitude; or appears at every offset.",
+        "claim_ids naming MECH-556 with direction; >= 3 seeds; ASCII-only prints."
+      ],
+      "notes": "Minted by thought-digestion-20260915 wave 3 (Family F), user-approved. MECH-556 epistemic_category -> standard; implementation_phase left v4 for /governance routing. Hand-off is /queue-experiment, not this proposal."
+    },
+    {
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "backlog_id": null,
+      "machine_affinity": "any",
+      "added_utc": "2026-09-15",
+      "registered_utc": "2026-09-15",
+      "gated_by_session": "thought-digestion-20260915",
+      "proposal_id": "EXP-1403",
+      "claim_id": "MECH-537",
+      "related_claims": [
+        "MECH-537",
+        "ARC-139",
+        "INV-105",
+        "MECH-538",
+        "MECH-547",
+        "MECH-555",
+        "SD-080",
+        "SD-106"
+      ],
+      "dispatch_mode": "targeted_probe",
+      "estimated_minutes": 180,
+      "objective": "Test MECH-537 (communication-subspace routing: encoded but not exposed) per its what_would_answer, digested and applied 2026-09-15: on a source that passes adequacy, is the task target decodable from the full sender X yet poorly decodable from the estimated communication subspace P_comm X on held-out data, with the orthogonal complement carrying the decodability and the live consumer insensitive to the complement?",
+      "design": "Instrument: ree-v3/experiments/_lib/interface_probe.py communication_subspace (RRR, rank by cross-validation on a held-out block), principal_angles, bridge_ladder. Source adequacy gate first: V3-EXQ-1010 confirmed H-F at observation -> z_world (content destroyed at encode), so that locus is DISQUALIFIED; use rawfield25 or a post-SD-106 encoder, or the SD-080 locus. receiver_input must be the tensor the live consumer reads (assay spec critical rule). Stratify by receiver state and frame where available and report subspace stability across strata.",
+      "acceptance_checks": [
+        "Source adequacy gate: a positive control decoder recovers the target above bar from the chosen source before any subspace estimate is read; the shipped P0 z_world latent is not admissible.",
+        "receiver_input is the live consumer's actual input tensor (assert; CaptureRecord cannot enforce this).",
+        "PASS: target decodable from X AND poorly decodable from P_comm X on held-out data; complement carries the decodability; consumer insensitive to the complement (causal_replacement).",
+        "FAIL: target equally decodable inside the subspace (route to F3 / F1); or subspace unstable across frame / receiver-state strata (question belongs to MECH-547 / MECH-555).",
+        "claim_ids naming MECH-537 with direction; >= 3 seeds; ASCII-only prints."
+      ],
+      "notes": "Minted by thought-digestion-20260915 wave 3 (Family F), user-approved. MECH-537 epistemic_category -> standard (already implementation_phase v3). Registration note about 1002 is overtaken (GFLAG-0282). Hand-off is /queue-experiment."
     }
   ]
 }

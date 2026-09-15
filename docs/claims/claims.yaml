@@ -12660,6 +12660,7 @@
   subject: observation_encoder.dual_stream_routing
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_conditional
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -12683,6 +12684,11 @@
   location: docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
   source:
     - docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: two structurally distinct encoder heads must exist with a TESTABLE frame difference. V3 has the z_self/z_world split (SD-005 SplitEncoder) but nothing that makes one head egocentric and the other allocentric, and nothing that measures which frame either occupies (zero egocentric/allocentric/reference_frame matches in ree_core, verified 2026-09-15) -- the frame half of this claim was never built, and the claim is currently untestable in the vacuous sense ARC-087 records for its own substrate gate.
+    CONFIRMING: with both heads live, a frame-diagnostic probe recovers self-relative coordinates from z_self and agent-position-invariant coordinates from z_world at above-chance separation, AND removing the architectural distinction (a single encoder with a learned routing gate, the alternative this claim rejects) degrades the separation and the downstream split -- the claim's own stated failure mode, the z_self/z_world split degrading back toward z_gamma conflation.
+    FALSIFYING: a single encoder with a learned routing gate produces the same downstream behaviour and the same stream separation (the two-head requirement is not load-bearing); OR the two heads exist and neither occupies a recoverable frame, in which case the egocentric/allocentric language should be retired to biological motivation rather than architectural content.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional; NOT excreted -- it is the only place REE records a frame commitment and MECH-555 depends on it. Currency: the frame half is asserted and unimplemented.
   notes: >
     The observation encoder must implement two anatomically motivated output heads,
     not a single encoder with a learned routing gate. Dorsal-equivalent head:
@@ -99836,7 +99842,7 @@
   subject: representation.communication_subspace_routing_exposure
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_conditional
+  epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
@@ -99849,6 +99855,11 @@
     - INV-105   # the evidence ladder that any routing claim must satisfy
     - INV-088   # z_world differentiation lineage this reinterprets rather than replaces
   location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-537
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a source that passes adequacy first (V3-EXQ-1010's H-F-confirmed verdict means the primary observation -> z_world locus does NOT), and a receiver_input tensor that is the signal the LIVE consumer actually reads, not a neighbouring tensor (the assay spec's critical rule, which interface_probe.CaptureRecord cannot enforce).
+    CONFIRMING: target decodable from X AND poorly decodable from P_comm X on held-out data, with the orthogonal complement carrying the decodability, the RRR rank selected by cross-validation on a held-out block, and the consumer demonstrably insensitive to the complement.
+    FALSIFYING: the target is as decodable inside the estimated communication subspace as in the full sender (no routing failure -- route to F3 consumer insensitivity or F1 target absent from sender); OR the subspace estimate is unstable across frame or receiver-state strata, in which case the single-subspace premise fails and the question belongs to MECH-547 / MECH-555.
+    Disposition 2026-09-15: (a) testable now -- interface_probe.communication_subspace supplies the RRR estimator this claim is operationalised on; proposal EXP-1403 minted, gated on source adequacy. Note: this claim's registration note ('explains the 1002 result without requiring information loss') is overtaken by 1010 (GFLAG-0282); SD-080 is the candidate new locus.
   notes: >
     Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. WHAT MAKES THIS
     TIMELY RATHER THAN SPECULATIVE: V3-EXQ-1002's autopsy (2026-09-05) already CONFIRMED the
@@ -99982,6 +99993,11 @@
     - INV-088   # E1 rollout-consistency lineage -- adjacent but about E1's OWN transitions
     - MECH-537  # routing exposure, the static half of the same interface question
   location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-539
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (the reference-frame thought's addition): sender and receiver transitions must be compared in the SAME action and horizon frame before any 'good static + bad dynamic' reading is taken -- a transition-geometry null measured across a frame mismatch (one indexed at observation time, one at predicted action time) is uninterpretable and would be scored F4 when it is RF-F. Plus the same source-adequacy gate as MECH-555 (1010: the primary locus has none).
+    CONFIRMING: map-initial-only (receiver evolves natively) preserves one-step and multi-step compatibility while repeated re-mapping of sender rollout states does not -- or the reverse, each routing differently -- with the frame correspondence asserted rather than assumed and horizons matched to those used to judge predictive competence (MECH-548's requirement).
+    FALSIFYING: pointwise and transition compatibility move together across every bridge rung (transition geometry adds no separable failure mode); OR the good-static-bad-dynamic signature disappears once the action/time frame correspondence is fixed (reassign to MECH-555).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- interface_probe.dynamic_compatibility now supplies the primitive, so the block is the source-adequacy gate, not the instrument.
   notes: >
     Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. DISTINGUISHED FROM
     INV-088 explicitly, because the two are easy to conflate and a future session merging them
@@ -100940,6 +100956,13 @@
     - MECH-540       # sleep as interface maintenance: waking vs offline geometry is one candidate locus
     - GOV-MATCHAUX-1 # matched-capacity control discipline the confirming signature inherits
   location: docs/architecture/receiver_conditioned_translation.md#mech-547
+  what_would_answer: |
+    Extracted 2026-09-15 from this claim's own registration (assay arms on docs/architecture/receiver_conditioned_translation.md) plus the reference-frame thought's separation note.
+    NON-DEGENERACY PRECONDITION: frozen endpoints (INV-109), matched capacity with the conditioning channel's added capacity REPORTED, and a source that passes adequacy (V3-EXQ-1010: the observation -> z_world locus does not). The receiver-conditioned bridge T(A,B) must have an instrument: as of 2026-09-15 interface_probe.py fits X->Y unconditionally, so this precondition is unmet (chip-20260915-interface-probe-receiver-conditioned-rung).
+    CONFIRMING: T(A,B) beats BOTH the sender-only matched-capacity baseline T(A) AND its own receiver-state PERMUTATION control (same bridge, receiver states shuffled across episodes/positions at matched capacity) on held-out consumer use, with correct-vs-mismatched sender specificity (INV-105) preserved and the off-manifold and recurrence checks (MECH-548) passing -- the exposed read surface is genuinely a function of the receiver's state.
+    FALSIFYING: the receiver-state permutation matches the intact conditioned bridge (the conditioning is not doing the work); OR the T(A,B) gain over T(A) reduces to the added capacity of the conditioning channel; OR both fixed and conditioned bridges fail while richer source information succeeds (upstream representation deficiency, not receiver conditioning).
+    SEPARATION NOTE (2026-09-15): the temporal-phase item in this claim's conditioner list is NOT tested by the receiver-state permutation, because permuting receiver state within a phase stratum leaves phase intact. A T(A,B) gain attributed to temporal phase is a MECH-556 result, not a MECH-547 result; score the two separately (run the receiver-state permutation and the phase permutation together -- if only the receiver permutation destroys the gain, this claim owns the result).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (no T(A,B) rung exists).
   notes: >-
     Registered 2026-09-08 from docs/thoughts/2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md
     (intake evidence/planning/thought_intake_2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md),
@@ -101776,6 +101799,11 @@
     - MECH-096   # REE's only existing frame vocabulary: z_self egocentric / z_world allocentric, specified and unimplemented
     - MECH-294   # phase-aligned joint binding with a content-preserving SHUFFLED control -- the nearest built permutation precedent
   location: docs/architecture/interface_reference_frames_and_temporal_gates.md#mech-555
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (three conditions, all failing 2026-09-15; this is the gate): (1) an ADEQUATE SOURCE at the tested interface -- V3-EXQ-1010 confirmed H-F at observation -> z_world (content destroyed at encode), so a frame permutation there measures noise and would yield a false RF-F-eliminated; use rawfield25 (0.9735 worst-seed) or a post-SD-106 encoder, never the shipped P0 latent; (2) at least two candidate frames distinguishable in V3, supplied by the experiment layer (assay A section 2.2's five levels; the invertible 90/180/270 rotation is a CONSTRUCTED frame testing instrument sensitivity, not spontaneous frame preservation); (3) the G4 instrument gate: a known invertible frame transform with its exact inverse must restore the consumer, else the run is refused.
+    CONFIRMING: on a source that passed adequacy, at frozen endpoints and matched capacity, data, optimisation and conditioning-channel width, held-out consumer use under the intact frame is substantially greater than under a within-stratum frame permutation WHILE the task target remains decodable at the same level in both, AND A3_frame_cond clears A1_source_only on the compositional holdout cells (frame level x query level unseen in fitting). A permutation disrupting only ONE downstream consumer confirms the weaker consumer-specific reading and must be reported as such, not as a shared global frame.
+    FALSIFYING: (a) intact ~= frame-permuted at matched decodability (frame incidental at this interface); (b) A3_frame_cond ~= A1_source_only on holdout (frame label buys nothing over an unconditional low-rank bridge); (c) the effect disappears once marginal difficulty is equalised (permutation was off-distribution, assay spec guard 6); (d) frame alignment does not lower the minimum bridge rung L(A->B) in any tested pair -- falsifies the second prediction specifically, motivating a narrower successor.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- sequencing, not doubt: everything exists except an adequate source at a named locus. Secondary option recorded: (g) merge into ARC-142 (MECH-555 absorbed; RF-F and the permutation control lifted into ARC-142's notes; no reverse-deps).
   notes: >-
     Registered 2026-09-15 from docs/thoughts/2026-09-09_shared_reference_frames_and_temporal_gates.md
     (intake evidence/planning/thought_intake_2026-09-09_shared_reference_frames_and_temporal_gates.md),
@@ -101866,7 +101894,7 @@
   subject: representation.temporal_gate_interface_engagement_phase
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_conditional
+  epistemic_category: standard
   implementation_phase: v4
   version_relevance: v3_v4
   registered_utc: '2026-09-15'
@@ -101885,6 +101913,11 @@
     - MECH-294   # phase-aligned joint binding with a content-matched shuffled control
     - MECH-091   # salient-event phase reset -- the built lever by which an engagement phase can be shifted
   location: docs/architecture/interface_reference_frames_and_temporal_gates.md#mech-556
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the manipulated phase must be one the receiver's plasticity or read actually tracks, and quantity must be held fixed -- Gate B2 verbatim: match event count, phase occupancy, activity magnitude and total absolute weight change; do NOT interpret a timing interaction if the shifted condition changes data exposure or update magnitude. REE-specific: the interface under test must have a receiver whose state can change as a result of the read -- the replay -> consumer interface has NO consumer (_do_replay discards its trajectories; substrate_queue mech092-replay-consumer-missing), so a timing manipulation there is unfalsifiable by construction. SEQUENCING (part of the precondition): Gate B2 runs only after content specificity is established at Gate B1.
+    CONFIRMING: correctly paired content delivered at the target phase produces a downstream change (receiver parameter/state change, consumer-use gain, or post-sleep retention) that early-shifted, late-shifted and phase-shuffled delivery do not, at matched event count, phase occupancy, activity magnitude and total absolute weight change, surviving the pairing controls (correct vs mismatched vs zero vs moment-matched random, INV-105), measured on at least TWO interfaces with different predicted plasticity -- an identical timing effect on both is generic plasticity scheduling, not interface-specific gating.
+    FALSIFYING: (a) target-phase ~= shifted at matched energy (timing not a factor here; TG-F may not be invoked to excuse nulls); (b) the effect tracks total update magnitude or exposure rather than phase (Gate B2 disqualifier); (c) the effect appears at every phase offset (what varied was not phase); (d) strong falsifier for the evidential rule: a systematic phase-controlled re-measurement of past interface nulls changes no verdict -- TG-F then retires to a documentation note.
+    Disposition 2026-09-15: (a) testable now on V3 substrate, sequenced behind Gate B1 -- levers built (MECH-089 ThetaBuffer, MECH-272 routing_gate.py, MECH-091 phase_reset, MultiRateClock, force_sleep_cycle_at_eval_boundary), instrument built (interface_probe.py; CaptureRecord carries phase), manipulation specified (Gate B2). Proposal EXP-1402 minted. implementation_phase left at v4 for /governance to route; the cheapness of the diagnostic is the trap named at registration -- do not queue on cheapness.
   notes: >-
     Registered 2026-09-15 from the same child thought as MECH-555.
 
