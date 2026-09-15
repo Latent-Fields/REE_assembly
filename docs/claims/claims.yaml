@@ -17833,6 +17833,7 @@
   subject: coherence.multiconstraint_viability
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_conditional
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -17847,6 +17848,11 @@
   location: docs/architecture/e3.md#4a-selection-criterion-multi-constraint-viability-not-reward-maximisation
   source:
     - docs/thoughts/2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: at least two evaluation systems LIVE and capable of emitting a veto-level error signal in the measured window, with at least one candidate actually receiving one -- a run in which no veto ever fires tests nothing, and a run with only one live system trivially satisfies 'no major system vetoes'.
+    CONFIRMING: committed trajectories are those on which no evaluation system exceeds its veto threshold, and this predicts commitment BETTER than the argmin of the aggregate score -- specifically, committed actions exist that are NOT the aggregate-score winner because a higher-scoring candidate carried a veto, at a rate above chance.
+    FALSIFYING: the committed action is the aggregate-score argmin on essentially every tick -- 'multi-constraint viability' is then an alternative description of scalar maximisation with no separable veto structure, which is what MECH-439's measured 88-89% F-channel variance monopoly currently predicts and why this claim needs its own falsifier rather than inheriting one.
+    Disposition 2026-09-15: (c) substrate-blocked -- category set from this claim's own live_status reading where present; if governance judges the veto structure built-and-exercised with its signal absorbed by F-dominance, substrate_ceiling is the right variant.
   notes: >
     The selection rule is: lowest-veto + acceptable goal progress, not maximum reward.
     A trajectory is coherent when it does not produce a veto-level error signal in any
@@ -17884,6 +17890,8 @@
   subject: state_abstraction.failure_modes_psychiatric_analogs
   polarity: asserts
   status: candidate
+  implementation_phase: v4
+  epistemic_category: substrate_conditional
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -17897,6 +17905,12 @@
   source:
     - evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md
     - evidence/literature/targeted_review_state_abstraction_psychiatry/literature_synthesis.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: each named failure mode must be independently INDUCIBLE in the substrate -- a taxonomy whose members cannot be produced separately is a vocabulary, not a set of mechanisms -- and the behavioural signature must be measured on a substrate with demonstrated headroom to express the alternative.
+    CONFIRMING: at least three of the six modes (overmerge, oversplit, temporal context loss, valence mis-tagging, uncertainty collapse, narrow representational capacity) are separately inducible and produce DISSOCIABLE behavioural signatures -- an intervention producing overmerge does not produce the oversplit signature and vice versa.
+    FALSIFYING: the modes are not separately inducible; OR their behavioural signatures are indistinguishable, collapsing the taxonomy to a single 'abstraction is wrong' axis.
+    Relevance recorded 2026-09-15: the deferred insight-candidate claim's impostor (1) -- compression that deletes organism-relevant distinctions -- IS overmerge and inherits whatever discriminability this claim can establish.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional.
   notes: >
     Six failure modes identified and grounded in the literature (2026-03-24 pull):
     (1) Overmerge -> schizophrenia/thought disorder: strongly supported. DG pattern separation
@@ -73424,6 +73438,11 @@
   distinct_from:
     - MECH-126   # state-abstraction failure taxonomy: MECH-434's two poles are a commitment-TIMING dimension, not a state-representation failure; this is the residual the INF-7 lit-pull could not fold into MECH-126
   location: evidence/planning/inference_belief_state_v4_plan.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the commitment threshold must be reachable in BOTH directions within the measured range -- both the epistemic-freezing pole and the premature-commit pole producible by the available parameter sweep -- or the asserted inverted-U cannot be distinguished from a monotone.
+    CONFIRMING: performance as a function of the urgency/threshold parameter is non-monotone with an interior optimum; the two failure poles are behaviourally DISSOCIABLE (freezing: sampling without commitment; panic: commitment at measurably lower evidence); and the collapse of the epistemic term under threat is demonstrated rather than assumed.
+    FALSIFYING: performance is monotone in the parameter (no inverted-U); OR the two poles cannot be dissociated; OR the axis reduces to MECH-126's uncertainty-collapse failure mode, which this claim explicitly denies.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional.
   notes: >
     Surfaced PROPOSAL-FIRST by the 2026-06-13 INF-7 belief-state-inference lit-pull
     (Q-070 failure-mode register) as the only inference failure mode that did NOT
@@ -93808,6 +93827,11 @@
     - SD-061    # difficulty-gated proposal-entropy regulator (design decision pairing MECH-343)
     - MECH-434  # epistemic commitment timing -- closest existing "when to stop gathering evidence" claim
   location: docs/architecture/persistent_process_termination_taxonomy.md#arc-128
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: at least two DIFFERENT families of persistent process instrumented, each actually terminating more than once in the measured window under at least two different terminal states.
+    CONFIRMING: the same taxonomy (completion / satiety / closure / disengagement / suspension / switching / interruption / reopening) classifies terminations in two or more process families without family-specific additions, AND the recorded reason is consequential -- a process terminated as suspension is reopened at a measurably higher rate than one terminated as completion.
+    FALSIFYING: the taxonomy requires family-specific terminal states (not general); OR the recorded reason has no downstream effect on reopening, resource release or credit (bookkeeping, not architecture).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (drafted from the 2026-09-09 convergence family, which bears on the closure/disengagement distinction).
   notes: >
     Registered from thought-intake evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
     (raw thought docs/thoughts/2026-08-12_persistence_must_earn_continuation.md). DISTINCT FROM
@@ -93882,6 +93906,11 @@
     - MECH-434  # epistemic commitment timing -- adjacent "when is evidence enough" claim
     - ARC-128   # umbrella termination-taxonomy generality claim this instantiates for goal/search processes
   location: docs/architecture/persistent_process_termination_taxonomy.md#mech-498
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: RATE of progress and ABSOLUTE level of uncertainty / goal-distance must be DECORRELATED in the measured window -- the claim's content is that rate adds something level does not, so a regime where they covary tests nothing.
+    CONFIRMING: disengagement gated jointly on marginal expected return and observed progress RATE outperforms a level-only gate specifically in the cell where absolute value remains high while marginal progress has collapsed; and it is dissociable from MECH-343's difficulty-gated widening response -- cases exist where widening also fails and only disengagement recovers.
+    FALSIFYING: a level-only gate matches it everywhere; OR the rate term's apparent benefit disappears once the level term is correctly scaled.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional.
   notes: >
     Registered from thought-intake evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
     sections 10-11 (Marginal Value Theorem continuation rule + "is this process actually making
@@ -99813,6 +99842,11 @@
     - MECH-507  # reciprocal compression/decompression bridge framing
     - INV-104   # sender-side distinction-preservation contract this complements
   location: docs/architecture/mutual_legibility_communication_subspaces.md#arc-139
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: local competence must actually RISE over the measured developmental window in at least two subsystems (a flat-competence window cannot test 'specialisation and legibility rise together'), and the cross-system similarity measure must have demonstrated range (a measure pinned near zero or one passes vacuously). Source adequacy applies: V3-EXQ-1010 showed the observation -> z_world locus destroys decision-relevant content at encode, so it is not a usable legibility site.
+    CONFIRMING: over maturation, local competence in E1 / E2 / hippocampus / E3 rises while GLOBAL representational similarity between them stays flat or falls, AND mutual legibility measured as minimum bridge complexity (MECH-538) FALLS over the same window. Both halves required: rising competence with falling similarity and no legibility measure is compatible with fragmentation.
+    FALSIFYING: legibility improves only when representational similarity also rises (supports ARC-121's shared-object reading instead); OR competence and legibility trade off rather than rising together.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- the ML-10..ML-15 instruments and an adequate source are owed first.
   notes: >
     Registered 2026-09-08 from the 2026-09-07 three-document mutual-legibility package
     (intake evidence/planning/thought_intake_2026-09-07_mutual_legibility.md). This
@@ -102473,6 +102507,11 @@
     - INV-105      # latent-access evidence ladder: channel presence is not pairing-specific transfer; the same discipline applies to apparent evaluator independence
     - ARC-142      # the cognitive contract governs what must be recoverable across engine boundaries; dependency structure is a property OF those boundaries
   location: docs/architecture/convergence_divergence_geometry.md#mech-558
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (three parts): (P1) at least TWO evaluator routes simultaneously LIVE and CONSEQUENTIAL -- computed and consumed by a decision, not default-OFF flags or diagnostic-only counters (use_loop_segregation, use_loop_local_eligibility_traces, use_model_disagreement_curiosity, use_coalition_controller all default False; curiosity_learning_progress_source defaults broadcast); (P2) the routes can DISAGREE in the measured window -- a recorded non-zero loop_cross_loop_winner_disagreement rate or equivalent; (P3) the dependency structure is manipulable or estimable WITHOUT the outcome label (a convergence metric validated against a dependency estimate derived from the answer is the tautology the E3 commensurability work already caught).
+    CONFIRMING: two states matched on aggregate weighted confidence but differing in support topology get materially different confidence from an independence-corrected estimator, in the direction of the true accuracy difference, calibrated at both endpoints within a preregistered bound, beaten only by exact joint Bayes -- already met in the frozen synthetic world (assay 001: independent-vs-copied unanimity gap 0.28420 vs reliability-only delta 0.00037; assay 002: Brier 0.18594 / 0.16697 / 0.15227 / 0.15073 for reliability-only / global N_eff / cluster-aware / exact Bayes) and NOT confirmed for REE until the same separation is shown over REE's own channels (synthetic results are not claim evidence; attachment is a governance decision).
+    FALSIFYING: (a) correct reliability and covariance weighting explains every benefit with no separate meta-observable (hub falsifier 2); (b) the benefit disappears once correlated evaluators are collapsed into one effective source (hub falsifier 3); (c) independence cannot be estimated cheaply enough for the correction to be affordable; (d) a single dissenting high-reliability channel must routinely override consensus, making aggregate convergence behaviourally irrelevant (hub falsifier 5); (e) in REE no evaluator population disagrees often enough for a topology to be non-degenerate.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- no dependency-corrected quantity exists in ree_core. Qualification flagged for /governance routing, not decided here: a SHADOW-ONLY diagnostic (log existing loop_cross_loop_winner_disagreement, _loop_voted, model_disagreement_range and the epistemic-deficit disagreement input against later outcomes, no causal role) is arguably (a) testable now.
   notes: >-
     Registered 2026-09-15 from the 2026-09-09 convergence family (hub thought plus
     docs/thoughts/2026-09-09_convergence_signal_formal_notes.md). GENERALIZES nothing new about plural
@@ -102563,6 +102602,11 @@
     - MECH-343     # difficulty-gated proposal entropy: the existing stall response, which widens rather than reallocates
     - INV-025      # irreducible uncertainty is a standing epistemological constraint -- the irreducible-noise trap is its control-plane form
   location: docs/architecture/convergence_divergence_geometry.md#mech-559
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: (P1) the query/allocation choice is REAL -- at least two competing unresolved targets whose resolution has different consequence; (P2) the two graphs are genuinely ANTI-ALIGNED in at least one measured cell (assay 004's forced pair: five independent reasons at leverage 1 vs five copies at leverage 8) -- if evidence independence and downstream leverage covary, a conflated policy scores correctly for the wrong reason; (P3) a pure-noise query channel is present so a selector attracted to irreducible disagreement is visibly punished.
+    CONFIRMING: a policy representing the two graphs separately achieves materially lower allocation regret than one using either as a proxy for the other, does not select the irreducible-noise channel, and degrades gracefully under missing or wrong provenance when provenance is carried as a probability not a label -- met synthetically (assay 003 regret 0.00490 vs 0.01964, noise selection 0.005% vs 20.24%; assay 004 oracle-following 100% factorised vs 16.82% conflated; assay 005 93.24% of oracle utility at 50% missing / 20% wrong provenance; assay 006 dynamic regret 0.01107 vs static 0.04969); not confirmed for REE until shown over REE-native baselines.
+    FALSIFYING: (a) structured disagreement fails to predict information value above ordinary uncertainty, expected information gain or learning progress -- MECH-314b, MECH-314c and MECH-482 are the REE-native baselines to beat; (b) the factorisation's advantage disappears as soon as provenance or leverage is imperfect; (c) estimating dependency and impact relations costs more compute than the decisions they improve (meta-control explosion); (d) in REE cross-model leverage is unmeasurable because nothing represents which consumers an unresolved uncertainty would update.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- the leverage half is the harder gap (no representation of downstream consumers in ree_core); same shadow-diagnostic qualification as MECH-558.
   notes: >-
     Registered 2026-09-15 from the dual-meta-signal child thought plus section 9 of
     docs/thoughts/2026-09-09_convergence_signal_formal_notes.md. DISTINCT FROM MECH-441, and this is the
@@ -102644,6 +102688,11 @@
     - ARC-139      # rising representational similarity between subsystems must NOT be read as maturation: the measurement-side cousin of this constraint
     - MECH-449     # the eligibility constitution is where a protected dissent route would have to live
   location: docs/architecture/convergence_divergence_geometry.md#inv-108
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the evaluator population must be TRAINABLE toward agreement for the prohibition to have content (an ensemble of frozen or arithmetic evaluators cannot co-adapt), and a measurable independence quantity must exist (pairwise residual correlation or unique-failure coverage) whose COLLAPSE is the predicted harm.
+    CONFIRMING (ladder Stage 7 / diversity section 12): three arms -- (A) performance only, (B) agreement explicitly rewarded, (C) local competence plus unique-coverage reward with convergence observed externally -- where C preserves more robust cross-view evidence than B under distribution shift, shared upstream perturbation, specialist-only regime and evaluator ablation, EVEN THOUGH B has higher raw agreement.
+    FALSIFYING: (a) B matches or beats C on every robustness readout (rewarding agreement is free); (b) preserving evaluator diversity costs more competence than it saves; (c) error correlation does not actually rise under an agreement objective (the incentive coupling this invariant asserts does not exist) -- the thought's own consequence: the strong diversity-preservation claim weakens.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional; deferred on the V3 question specifically (V3 has no agreement objective to prohibit -- the invariant guards a future architecture). Its falsifier is synthetic-ensemble work needing no REE substrate, which is a reason to keep the claim, not excrete it.
   notes: >-
     Registered 2026-09-15 from the diversity-versus-convergence child thought. MOST OF THAT THOUGHT IS
     ALREADY OWNED and was deliberately not re-registered: diversity generation (ARC-065), premature
