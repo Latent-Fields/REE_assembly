@@ -150,7 +150,7 @@ class Fixture:
     """A throwaway REE_assembly-shaped corpus plus a response cache."""
 
     def __init__(self):
-        self.tmp = Path(tempfile.mkdtemp(prefix="lit_ident_test_"))
+        self.tmp = Path(tempfile.mkdtemp(prefix="lit_ident_test_")).resolve()
         self.repo = self.tmp / "REE_assembly"
         self.lit = self.repo / "evidence" / "literature"
         self.cache = self.tmp / "cache"
