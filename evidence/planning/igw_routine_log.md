@@ -3002,3 +3002,4 @@ One line per hourly tick. ASCII only.
 2026-09-14T23:34:42Z no eligible item (skipped 254): IGW-20260914-001:skill /governance not allowed; IGW-20260914-005:skill /governance not allowed; IGW-20260914-006:skill /governance not allowed
 2026-09-15T00:36:30Z skip: paused (.igw_routine_pause present)
 2026-09-15T01:37:42Z workset committed (regen -- 255 items, 32 ready, 0 in flight)
+2026-09-15T01:36:31Z STAGE IGW-20260915-220 skill=/implement-substrate prio=25 worktree=igw-220-substrate-ready-e2-world-forward (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
