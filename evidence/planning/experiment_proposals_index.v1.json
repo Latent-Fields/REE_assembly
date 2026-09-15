@@ -5597,14 +5597,22 @@
       "priority": "medium",
       "proposal_id": "EXP-0751",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_016",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "blocked_note": "Step 2.5a probe contradicts the experiment premise (IGW-20260915-243): on the real StepHarness loop (K=1 sleep, F1 recal step 0.25) waking rv already tracks realized z_world PE variance (~0.0039) within ~20 ticks, so there is no online miscalibration for sleep to correct; the F1 zero-point is seeded from precision_init (2.0) by the canonical pre-waking agent.reset() sleep cycle, so recalibration pushes rv AWAY from calibration (0.0039 -> 0.0121) until the EMA converges (~30+ cycles); and commit_threshold=0.4 vs rv~0.004 pins committed_frac at 0.98-1.00, so the 'reduce rigidity / rebalance commitment vs exploration' readout is floor-pinned. A run would re-derive arithmetic, not test MECH-016.",
+      "release_condition": "Re-open when (a) the F1 zero-point cold-start seeding is fixed (first capture from a waking-bearing cycle, or precision_init excluded) AND (b) either a scale-relative commit/precision readout with measured headroom exists or SD-076 is validated as a drift source that leaves rv measurably below realized PE variance at sleep entry. Then design a paired recal ON/OFF calibration diagnostic: post-sleep |log(rv/realized_PE_var)| over the first ~20 waking ticks, specificity arm with no drift source.",
+      "gated_at_utc": "2026-09-15T03:02:05Z",
+      "gated_by_session": "igw-243-proposal-for-mech-016"
     },
     {
       "backlog_id": "EVB-1389",
