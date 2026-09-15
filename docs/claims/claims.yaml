@@ -28377,6 +28377,9 @@
   subject: development.selective_neoteny
   polarity: asserts
   status: candidate
+  version_relevance: v4_v5
+  implementation_phase: v4
+  epistemic_category: substrate_conditional
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -28413,6 +28416,11 @@
     it for novel social contexts because the relevant substrates are no longer plastic.
     Neoteny is not weakness -- it is the architectural basis for ongoing moral development,
     as formalised in MECH-159.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: hardening rates must be SETTABLE PER SUBSTRATE, and at least one substrate must be set to harden while another retains plasticity in the same run. A uniform hardening schedule cannot test a claim whose content is the non-uniformity. DEV-NEED-025 records that the per-substrate hardening-rate representation does not exist ('implementation contract absent'), so this precondition is UNMET as of 2026-09-15.
+    CONFIRMING: after a late-stage environmental or ethical-context change, an agent whose procedural/motor substrates hardened but whose social-cognition, goal-representation and epistemic-ethical substrates retained elevated plasticity updates the latter measurably (new goal structure, revised other-model, revised valuation) while the former stay stable -- and outperforms BOTH a uniformly-hardened and a uniformly-plastic control.
+    FALSIFYING: the uniformly-hardened control matches it (selectivity buys nothing); OR the uniformly-plastic control matches it (hardening buys only unneeded stability); OR the selectively-plastic agent's retained plasticity destabilises the hardened substrates through shared parameters (the selectivity is not architecturally realisable as stated).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional; the owed move is the implementation contract DEV-NEED-025 names, not an experiment.
 
 - id: ARC-046
   title: "The infant stage requires a hazard protection mechanism that permits sensorially salient harm exposure without catastrophic residue saturation."
@@ -70295,6 +70303,12 @@
     - MECH-120
     - ARC-019
   location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#mech-362
+  what_would_answer: |
+    Currency check 2026-09-15: the stated blocker (a developmental pruning/sparsification substrate not yet built) is STILL TRUE -- verified against ree_core/ and substrate_queue.json (no matching sd_id); no run has appeared.
+    NON-DEGENERACY PRECONDITION: both regimes must be instantiable -- an over-connected / near-random early substrate AND a sparse/structured mature one -- with the TRAJECTORY between them actually traversed by the system, not configured at two fixed settings. A two-config A/B tests the endpoints (ARC-006 already asserts those), not the trajectory this claim asserts.
+    CONFIRMING: a memory substrate that begins over-connected, dense and near-random and is reduced by experience-dependent pruning / down-weighting reaches a sparse, structured organisation that an additively-grown sparse substrate does not reach under the same curriculum; AND the recall corollary holds -- mature recall requires convergent summation of several weak inputs, a single strong cue no longer sufficing to release action (measured as the shift from single-cue release to multi-cue convergence).
+    FALSIFYING: an additively-grown sparse substrate reaches the same mature organisation and recall behaviour under the same curriculum (tabula plena is one path, not a necessary one); OR the reduced substrate keeps single-strong-cue release throughout (falsifies the recall corollary specifically). The two legs fail independently and must be reported separately.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional, unchanged from registration.
   notes: "Empirical anchor (verified): Vargas-Barroso, Watson, Navas-Olive, Schlogl & Jonas, Nature Communications 2026, s41467-026-71914-x (ISTA) -- multicellular patch-clamp of up to 8 CA3 pyramidal neurons at P7-8/P18-25/P45-50; recurrent connectivity dense/strong/near-random -> distributed/sparse/structured; early a single synaptic event triggers a postsynaptic spike, mature requires spatial summation of several weaker inputs; authors' 'tabula plena' (start over-connected, refine by pruning) framing. Cross-species corroboration that the mature endpoint is structured: Tang et al, Cell 2024 (human CA3). DISTINCT FROM MECH-120 (SWS synaptic homeostasis / Tononi SHY): MECH-120 is nightly homeostatic weight down-scaling; MECH-362 is a one-way developmental connectivity trajectory (different timescale/directionality/function), though they may share down-weighting machinery. Most naturally AMENDS ARC-019 (staged developmental curriculum, currently additive) by adding a subtractive pruning stage, rather than standing fully alone. The convergent-weak-input-vs-single-strong-cue corollary is the one strand with present-day V3 relevance and is folded in as a DIAGNOSTIC LENS (not a separate V3 claim) in evidence/planning/modulatory_bias_selection_authority_design.md 'Developmental framing (compass)'; registering it as its own V3 claim would duplicate the active selection-authority/rule-apprehension claims (MECH-314/341, ARC-062). Pruning is not necessarily deletion -- down-weighting/gating/residue-tagged de-authorization are candidate analogues (see Q-057). V4/V5; off the V3 critical path. substrate_conditional on a developmental pruning/sparsification substrate not yet built. DO NOT build a developmental pruning substrate or queue an experiment in V3 until routed by an explicit version decision."
 - id: Q-057
   title: "Should REE distinguish an early over-connected exploratory developmental substrate from a mature sparse/structured substrate -- and is developmental sparsification best modelled as deletion, down-weighting, gating, or residue-tagged de-authorization?"
@@ -99909,6 +99923,11 @@
     - MECH-537  # routing exposure; the subspace half of the same measurement battery
     - INV-105   # the ladder that says which rung a bridge success establishes
   location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-538
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (includes this claim's own sequencing gate): the bridge ladder must be able to SEPARATE its rungs on the endpoints measured -- if the native readout already clears the criterion, or nothing up to the high-capacity upper bound clears it, L is not measurable and the developmental trajectory cannot be tracked. The V3-EXQ-1002/1008/1010 lineage at observation -> z_world is in the second state (H-F confirmed 2026-09-11: content destroyed at encode time), which is informative about that locus and DISQUALIFYING as the instrument-validation site. Per this claim's registration, the developmental sweep runs only after ML-20 has shown L's range and stability at one waking locus; earlier runs measure the instrument.
+    CONFIRMING: across developmental checkpoints at a locus where L is measurable, minimum bridge rank FALLS while both endpoints' local competence RISES and global representational similarity stays flat or falls -- coordination without homogenisation, on both axes at once.
+    FALSIFYING: L stays flat or rises while competence rises (the overcapacity crutch); OR L falls together with rising cross-system similarity and falling local specialisation -- the degenerate homogenisation case the two-axis requirement exists to catch, reported as a failure, never as one-axis confirmation.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional; sequencing gate stated above. Stale-note flag on the 1002 rotation-corroborator obligation raised as GFLAG-0282.
   notes: >
     Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. THE METER, not the
     mechanism -- this claim's content is a measurement construct plus one falsifiable
@@ -99975,6 +99994,12 @@
     - MECH-538  # bridge complexity, the quantity a sleep effect would move
     - MECH-537  # communication subspace, the object whose rotation/rank is measured pre/post
   location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-540
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (includes this claim's own sequencing gate): at least TWO interfaces with DIFFERENT predicted plasticity must be measurable pre- and post-sleep, at least one predicted stable -- the content is a plasticity/stability division of labour, so a single-interface measurement cannot confirm it however it comes out. A waking interface metric must have shown range and stability at one locus first; force_sleep_cycle_at_eval_boundary makes a within-run pre/post measurement cheap, and that cheapness is the trap named at registration.
+    CONFIRMING: S2 or S3 at the predicted-plastic interface (communication subspace or bridge complexity improves with local competence stable; or representations move while the mapping holds) WITH the predicted-stable interface not moving in the same direction over the same sleep episode.
+    FALSIFYING: S4 -- cross-system similarity rises while local competence or task-specific differentiation falls (maladaptive homogenisation); OR all measured interfaces move together (global alignment, which this claim predicts against); OR S1 alone at every interface (metrics move only because the senders moved -- sleep is doing representation work, not interface work).
+    Proposed signature additions routed to governance, not applied here: S5 (static probe improves while the next waking trajectory destabilises; from MECH-548) and access-correspondence maintenance / capacity reduction as further offline jobs (GFLAG-0280; MECH-551).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional; sequencing gate stated above.
   notes: >
     Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. EXTENDS MECH-529
     rather than competing with it -- representation-revision and re-indexing are MECH-529's;
@@ -101131,6 +101156,11 @@
     - INV-056    # selective neoteny: substrate-specific hardening is the already-owned mature-side half; this claim is the developmental-side complement
     - ARC-122    # four-phase developmental curriculum -- a phase-ORDERING commitment; this is a per-phase CAPACITY commitment, deliberately not merged
   location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#arc-143
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: at least one REE locus must support a declared capacity envelope that can be set DIFFERENTLY for a developmental phase and the mature phase, with both settings instantiable and behaviourally exercised. As of 2026-09-15 zero loci do (no structural pruning, sparsification or capacity schedule in ree_core/), so any test is vacuous until then.
+    CONFIRMING: for at least TWO structurally different loci (one representation-side, one interface-side), a declared developmental envelope LARGER than the mature envelope yields a mature system at least as competent as the same mature envelope trained throughout, at matched final capacity and matched training compute. One locus is a fact about that locus, not a design commitment.
+    FALSIFYING: across the loci tested the larger developmental envelope never produces a better mature system, and in at least one case produces a worse one (irreversible early mistakes / pathological attractors) -- REE SHOULD then infer the developmental envelope from the mature one, vindicating current practice.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (code absent, not signal-absorbed).
   notes: >-
     Registered 2026-09-15 from the 2026-09-08 developmental-overcapacity thought. WHAT IS ALREADY OWNED
     AND IS NOT BEING RE-REGISTERED: the subtractive tabula-plena trajectory itself is MECH-362 (registered
@@ -101194,6 +101224,11 @@
     - GOV-MATCHAUX-1  # matched-capacity/auxiliary control discipline: arm C and the compute match are instances of it
     - MECH-538   # the falling-L developmental prediction: arm B should show it and arm D should not, which is the interface-side readout of this claim
   location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#mech-549
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (two legs, both UNMET 2026-09-15): (1) a capacity-reduction mechanism that takes an over-capacity locus to an exactly specified final architecture, so arm B has a defined endpoint; (2) arm D constructible -- the sparsity mask / interface structure arm B produced must be EXPORTABLE and re-instantiable at initialisation. Arms A/B/C alone cannot separate this claim from architecture search.
+    CONFIRMING: with final capacity(B) = final capacity(D), architecture(B) ~= architecture(D), identical curriculum and seeds, matched compute: competence(B) > competence(D) by a margin scaled on the seed-level SD of the B-D difference plus an absolute floor, AND the advantage persists out of the training distribution (held-out layouts, changed action semantics, delayed-consequence distinctions, cue reassignment).
+    FALSIFYING (primary): competence(B) ~= competence(D) at matched final capacity -- the final architecture reproduces the whole effect. FALSIFYING (secondary, distinct signature): B > A and B > D but the advantage disappears at matched compute, or is fully reproduced by teacher-student distillation from arm C at matched compute. BOUNDARY (not refutation): arm C strong while every reduced arm collapses -- the mature bottleneck is too narrow; the claim is untested.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (the arm-D export path is unspecified, not merely unbuilt).
   notes: >-
     Registered 2026-09-15 from the 2026-09-08 developmental-overcapacity thought; this is the thought's
     own "strongest version" (section 15) and its own section 7 supplies the arm-D control.
@@ -101248,6 +101283,11 @@
     - MECH-529   # replay-driven rebucketing already COUNTERFACTUALLY tests candidate revisions before adoption -- the closest existing precedent for a consequence-based retention test, over equivalence classes rather than routes
     - MECH-537   # communication-subspace routing: "utility to more than one downstream consumer" is a statement about consumer-facing subspaces
   location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#mech-550
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the magnitude-pruning control arm must REACH the same final capacity without collapsing, and the two criteria must actually select DIFFERENT retained sets (report the overlap). Identical retained sets make the comparison vacuous whatever the outcome -- the criterion was never manipulated (the V3-EXQ-610a-e lesson: a control that does not degrade makes the treatment arm uninformative).
+    CONFIRMING: at matched final capacity and matched update count, a retention criterion built from the functional-persistence list (predictive contribution, persistent-PE reduction, harm/benefit relevance, controllability discrimination, counterfactual usefulness, action-selection contribution, replay recurrence, cross-context transfer, cross-stage stability, multi-consumer utility, uncertainty maintenance) produces better downstream competence AND better transfer than magnitude pruning, with a non-trivial retained-set difference; diagnostically, surviving routes correspond to stable regulatory distinctions, task-relevant communication subspaces or repeated transformation motifs rather than to large parameter magnitude.
+    FALSIFYING: magnitude pruning matches or beats the relevance-guided criterion at matched capacity and updates (the benefit, if any, is capacity annealing). SECOND FAILURE SIGNATURE: the relevance-guided criterion wins on aggregate competence but selectively destroys INV-104-protected distinctions whose relevance had not yet been revealed -- a failure of this claim as stated, not a partial success.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (nothing in ree_core/ scores any route for retention).
   notes: >-
     Registered 2026-09-15 from the 2026-09-08 developmental-overcapacity thought (section 8).
     DISTINCT FROM Q-057 and this is the whole reason it is a separate entry: Q-057's mechanism leg asks
@@ -101303,6 +101343,11 @@
     - ARC-137    # offline integration as a protected family of TYPED transformations -- the taxonomy any new offline job must be placed within
     - MECH-120   # SWS pruning of weak noisy traces: the nightly homeostatic down-scaling this is explicitly NOT (see notes)
   location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#mech-551
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (three legs): (1) a capacity-reduction mechanism exists; (2) the representation is actually CHANGING during the reduction window (a frozen representation removes the coordination hazard and degenerates the test into 'does replay help pruning'); (3) update count is matched between arms, not wall-clock or episode count.
+    CONFIRMING: at equal reduction aggressiveness and matched update count, replay-coupled reduction preserves more transfer and more causal structure (held-out layouts, counterfactual discrimination, delayed-consequence distinctions) than online-only reduction. Strong form, worth pre-registering: replay permits GREATER compression at equal or better transfer.
+    FALSIFYING: online-only reduction matches replay-coupled reduction at matched updates -- the reduction decision is reliable enough online. SECOND FAILURE SIGNATURE (inherited from MECH-540 S4 and MECH-548's sleep corollary): the replay-coupled arm improves a static retention/reconstruction probe while the next waking trajectory is measurably worse -- a failure, not consolidation, and it must be measured.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (nothing to reduce); merge into MECH-540 as a further offline job is proposed to governance (GFLAG-0280) -- if merged, MECH-540 survives and ARC-143 / MECH-550 reverse-deps re-point.
   notes: >-
     Registered 2026-09-15 from the 2026-09-08 developmental-overcapacity thought (section 9).
     WHAT IS ALREADY OWNED, itemised against the thought's own six-item offline list so the residue is
