@@ -3007,3 +3007,4 @@ One line per hourly tick. ASCII only.
 2026-09-15T01:59:33Z complete e0f7b03b5571 staged->completed outcome=DUPLICATE: orchestrate-20260915-0203, user decision 2026-09-15T01:5xZ: DUPLICATE of chip-20
 2026-09-15T01:59:36Z GC removed worktree igw-220-substrate-ready-e2-world-forward (removed; branch deleted)
 2026-09-15T02:42:14Z workset committed (regen -- 255 items, 32 ready, 0 in flight)
+2026-09-15T02:41:17Z SPAWN IGW-20260915-243 skill=/queue-experiment prio=40 uuid=4ae61f5a-5adf-41be-9426-d4a79c8db52c pid=126 worktree=igw-243-proposal-for-mech-016
