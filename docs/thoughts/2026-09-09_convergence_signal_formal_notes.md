@@ -1,11 +1,15 @@
 ---
 nav_exclude: true
 ---
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_convergence_signal_formal_notes.md
+Claims registered: MECH-558 (shared with the hub)
+
 
 # Convergence Signal — Formal Notes
 
 **Date:** 2026-09-09  
-**Status:** exploratory mathematics / measurement notes; no architectural commitment  
+**Status:** mathematics / measurement notes (ingested 2026-09-15 -- see Intake above); no architectural commitment  
 **Parent:** `2026-09-09_convergence_as_general_computational_signal.md`
 
 ## 1. Why formalise before implementation

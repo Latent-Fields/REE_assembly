@@ -102249,3 +102249,248 @@
     experiment from this entry -- the relevant assay is the pre-registered narrowing-stack design
     (evidence/planning/cognitive_contract_narrowing_stack_preregistration_2026-09-08.md), which needs the
     rate-vs-width amendment described in the intake before it is run.
+
+- id: MECH-558
+  title: >-
+    Vote count is not evidence count -- independence-aware convergence over heterogeneous evaluators:
+    when several partly independent evaluators favour the same candidate, the epistemic weight of that
+    agreement depends on how many EFFECTIVELY INDEPENDENT evidential routes produced it, and a bounded
+    system that retains a COARSE representation of its evaluators' dependency TOPOLOGY -- which routes
+    share upstream representation, training signal, ancestry, or residual error -- recovers materially
+    more of the exact joint-inference answer than either (a) a marginal-reliability-only combiner, which
+    counts one duplicated reason N times, or (b) a single global dependence scalar, which cannot separate
+    a correlated coalition plus genuinely independent specialists from uniform moderate dependence. The
+    claimed object is a TOPOLOGY, not a scalar convergence score: at minimum who supports what, how
+    reliable each route is in the current domain, which routes share ancestry or error, which credible
+    routes remain independent, and what structured dissent survives. Three bindings keep this from
+    becoming a new scalar ruler. (1) CEILING BINDING: exact Bayesian aggregation over the true joint
+    dependency model remains the normative ceiling and this claim explicitly does NOT assert that any
+    convergence heuristic beats it -- the assertion is bounded-resource COMPRESSION, that coarse topology
+    approaches the exact decision and confidence at materially lower structural cost and degrades
+    gracefully when dependency estimates are stale or wrong. (2) NON-REPLACEMENT BINDING: independence
+    correction is additive to, never a substitute for, evaluator reliability/relevance weighting and
+    protected-veto structure -- independence-aware convergence is not majority rule and must not become
+    more majority-dominated than a reliability baseline. (3) NON-TAUTOLOGY BINDING: a convergence
+    quantity must be validated by an INDEPENDENT consequence (held-out decision accuracy, calibration,
+    robustness under evaluator dropout or distribution shift), never by a transformation that forces
+    agreement -- normalising every evaluator to equal scale and then observing equal contribution is not
+    evidence.
+  claim_type: mechanism_hypothesis
+  subject: selection.independence_aware_convergence_topology
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_convergence_as_general_computational_signal.md
+  depends_on:
+    - ARC-107      # the selector constitution is where plural evaluators already have lawful access; this is an observable OVER its inputs, not another selector
+    - MECH-449     # Go/No-Go eligibility constitution -- the existing arbitration this must not replace
+    - MECH-125     # multi-constraint viability (no evaluator emits a veto-level error) -- the existing agreement-shaped selection criterion
+    - MECH-452     # loop-local eligibility traces: REE already COUNTS which loops voted for the commit, with no independence correction -- the nearest owned mechanism
+    - ARC-110      # parallel segregated loops supply the three-route population whose votes MECH-452 counts
+    - MECH-312a    # reliability/inverse-uncertainty arbitration weighting -- the serious simpler rival (Daw 2005 / Lee 2014) this must beat to earn a role
+    - MECH-059     # confidence channel distinct from residual error -- the existing precision representation convergence must add value above
+    - ARC-088      # emotion-as-anti-collapse: gated, PARTIALLY INDEPENDENT evaluators whose learning targets must stay distinct -- the population this is a topology over
+    - MECH-463     # global-scalar arousal routes are a VARIANCE AMPLIFIER of the dominant channel, not independent contributors -- REE's own measured instance of non-independent apparent routes
+    - MECH-439     # F-dominance: 88-89 percent of committed-selection variance in one channel, i.e. an apparent coalition with one hidden monarch
+    - SD-091       # coalition/topology control output -- the existing REE commitment that a topology (not only a parameter) is a control-plane object
+    - INV-105      # latent-access evidence ladder: channel presence is not pairing-specific transfer; the same discipline applies to apparent evaluator independence
+    - ARC-142      # the cognitive contract governs what must be recoverable across engine boundaries; dependency structure is a property OF those boundaries
+  location: docs/architecture/convergence_divergence_geometry.md#mech-558
+  notes: >-
+    Registered 2026-09-15 from the 2026-09-09 convergence family (hub thought plus
+    docs/thoughts/2026-09-09_convergence_signal_formal_notes.md). GENERALIZES nothing new about plural
+    evaluation -- REE already owns plural evaluators (ARC-088), constitutional arbitration (ARC-107 /
+    MECH-449), reliability weighting (MECH-312a) and vote counting (MECH-452). The single new content is
+    the INDEPENDENCE CORRECTION and the insistence that the corrected object is a topology rather than a
+    scalar. DISTINCT FROM MECH-452, and this is the distinction most easily lost: MECH-452 asks WHICH
+    loops voted for the committed action and uses that to keep credit local; it applies no correction for
+    the fact that two loops may be voting on the same upstream evidence, and its own default is to credit
+    every voting channel. DISTINCT FROM MECH-312a: reliability weighting is a MARGINAL property of each
+    evaluator and is provably blind to duplication when marginal reliabilities are matched. DISTINCT FROM
+    MECH-463, which is the same insight at a coarser grain (global scalar routes amplify rather than
+    differentiate) reached from REE's own measurement rather than from a dependency representation.
+    DISTINCT FROM ARC-121, which asserts convergence onto a shared epistemic-state object -- that is
+    representational convergence; this is evidential convergence and the two must not be conflated
+    (ARC-139 is the standing warning). SYNTHETIC EVIDENCE ALREADY BANKED, UNATTACHED: assay 001
+    (evidence/experiments/convergence_signal_synthetic_assay_001/runs/20260909_seed7/manifest.json,
+    4/4 preregistered criteria PASS: independent-vs-copied unanimity confidence gap 0.28420 against a
+    reliability-only endpoint delta of 0.00037) and assay 002
+    (.../convergence_signal_synthetic_assay_002/runs/20260909_seed11/manifest.json, 5/5 PASS: Brier
+    M0 0.18594 / M1 global N_eff 0.16697 / M2 cluster-aware 0.15227 / M3 exact Bayes 0.15073 in the
+    MIXED_3_PLUS_2 regime). Both manifests carry claim_ids [] because no claim existed; attaching them is
+    a /governance decision, not an ingestion edit. Assay 001 also recorded a NEGATIVE detail that the
+    claim text deliberately absorbs: the global mean-correlation N_eff heuristic was over-confident by
+    +0.038 in the shared-bias regime and under-confident by -0.027 in the mixed regime, which is why the
+    claim asserts topology rather than an effective-source scalar. EXTERNAL PRIOR ART (cited with DOIs in
+    evidence/planning/convergence_signal_literature_review.md and
+    .../convergence_signal_nearest_neighbor_stress_test_2026-09-09.md; NOT independently re-verified in
+    this pass): Paz et al. 2016 Sci Rep 6:21830 (10.1038/srep21830) confidence through consensus, which
+    PRE-EMPTS any REE novelty claim for "confidence from dispersion among parallel modules" and
+    independently supplies the coupling warning; Lee, Shimojo and O'Doherty 2014 Neuron 81:687-699
+    (10.1016/j.neuron.2013.11.028) and Ernst and Banks 2002 (10.1038/415429a) for the reliability-only
+    rival; Pfander, De Courson and Mercier 2025 Cognition 255:106005 (10.1016/j.cognition.2024.106005)
+    for the normative content of independent convergence. The stress test is explicit that the surviving
+    REE-specific object is a BOUNDED METACOGNITIVE CONTROL OBSERVABLE, not a discovery unavailable to
+    probability theory; the claim text is written to that boundary. DO NOT build in V3. DO NOT queue an
+    experiment from this entry. The next ladder rung is a SHADOW-ONLY diagnostic
+    (evidence/planning/convergence_signal_experiment_ladder.md Stage 8) with no causal authority, and
+    whether that is V3-tractable against MECH-452's existing loop-vote diagnostics is a /governance
+    routing question this registration does not decide.
+    HELD HERE RATHER THAN REGISTERED SEPARATELY (2026-09-15): the representational-grain form of this
+    double-counting -- a cross-model restructuring that recounts the system's OWN outputs as independent
+    confirmation, the "self-confirmation impostor" of docs/thoughts/2026-09-09_aha_as_cross_model_restructuring.md
+    -- was judged too marginal to register on its own (pre-empted in general form by Friston et al. 2017; nearest
+    neighbour MECH-423 already evidenced; no assay run) and is deferred; see that thought's intake section 5.
+
+- id: MECH-559
+  title: >-
+    Evidence-dependency topology and downstream-leverage topology are SEPARATE, state-conditioned
+    variables and conflating them misallocates information seeking: "how many genuinely independent
+    reasons do I currently hold" (the evidence-source dependency graph) and "how many distinct
+    consequential consumers would change if this uncertainty were resolved" (the downstream-leverage
+    graph) are different relations over the same subsystems, so a policy that uses either as a proxy for
+    the other allocates queries, rollouts or experiments badly -- five statistically independent routes
+    can all update one downstream decision, and one correlated cluster can control several genuinely
+    distinct consequences. Four bindings. (1) STRUCTURED DIVERGENCE IS NOT INFORMATION VALUE: disagreement
+    earns allocation weight only after multiplication by expected REDUCIBILITY and decision CONSEQUENCE
+    and correction for how much of the current evidence is genuinely independent; raw disagreement is
+    attracted to irreducible noise and to broken or out-of-domain evaluators, and a divergence signal
+    must separate useful, irreducible and broken-view divergence. (2) COMPETENCE IS DOMAIN-INDEXED: an
+    evaluator must not carry one global trust weight when its competence depends on the current
+    representational or behavioural domain. (3) UNCERTAIN PROVENANCE MUST BE REPRESENTED AS UNCERTAIN:
+    treating noisy ancestry metadata as categorical dependency labels degrades worse than carrying soft
+    dependency probabilities, and the soft form wins by making less COSTLY errors rather than by hitting
+    the optimum more often. (4) BOTH GRAPHS ARE STATE-CONDITIONED: two routes redundant in one context can
+    be independent in another, and two named downstream consumers can be functionally redundant in one
+    state and distinct in another, so a static average relation graph is insufficient. As in MECH-558,
+    exact value-of-information over the true joint model is the ceiling and is not contested.
+  claim_type: mechanism_hypothesis
+  subject: drive.evidence_dependency_versus_downstream_leverage
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_convergence_divergence_as_dual_meta_signal.md
+  depends_on:
+    - MECH-558   # the evidence-dependency half; this claim asserts the leverage half is a DIFFERENT graph
+    - MECH-441     # model-disagreement-directed curiosity -- the plain "disagreement drives curiosity" form REE already owns and has BUILT; this adds the reducibility/consequence/independence conditioning
+    - MECH-482     # epistemic_deficit: importance x uncertainty x resolvability x persistence, target-bound -- has consequence and reducibility, has NO cross-model leverage term
+    - MECH-314b    # uncertainty-driven curiosity: the cheap baseline structured divergence must beat
+    - MECH-314c    # learning-progress curiosity: the second cheap baseline
+    - MECH-434     # epistemic commitment timing -- when to stop sampling and commit; the closure side this feeds
+    - MECH-498     # progress-gated disengagement (marginal return plus RATE of progress) -- the disengagement complement
+    - ARC-128      # persistent-process termination taxonomy: satiety vs closure vs disengagement, the vocabulary a leverage-aware allocator must emit
+    - ARC-136      # play as emergent developmental information hunger -- the frontier this would re-rank
+    - MECH-343     # difficulty-gated proposal entropy: the existing stall response, which widens rather than reallocates
+    - INV-025      # irreducible uncertainty is a standing epistemological constraint -- the irreducible-noise trap is its control-plane form
+  location: docs/architecture/convergence_divergence_geometry.md#mech-559
+  notes: >-
+    Registered 2026-09-15 from the dual-meta-signal child thought plus section 9 of
+    docs/thoughts/2026-09-09_convergence_signal_formal_notes.md. DISTINCT FROM MECH-441, and this is the
+    load-bearing distinction because MECH-441 already owns "disagreement drives curiosity" and is already
+    BUILT in ree-v3 (ree_core/policy/model_disagreement.py, ModelDisagreementEnsemble, wired at
+    ree_core/agent.py:9421-9438 into e3_selector.py:3681-3729, default OFF at n_disagreement_heads=0 /
+    use_model_disagreement_curiosity=False): MECH-441's disagreement is CROSS-HEAD VARIANCE OF ONE
+    ENSEMBLE OF CLONES over one forward model, deliberately trained to be exchangeable, and it is read as
+    a magnitude with no dependency, reducibility or consequence term. This claim asserts that the
+    magnitude is the least informative part of the signal. DISTINCT FROM MECH-482 in the same direction:
+    MECH-482's deficit_input already combines candidate uncertainty, persistent prediction error and
+    PREDICTIVE-SYSTEM DISAGREEMENT between two independently parameterised predictors
+    (ree_core/policy/epistemic_deficit.py, "||e2.world_forward(z0,a) - head.forward(z0,a)[median]||"),
+    which is the closest LIVE instance in REE of a cross-model disagreement quantity used as an
+    information-hunger drive -- but its formula is importance x uncertainty x resolvability x persistence
+    with NO term for how many distinct consumers resolving the target would update, and its own claim text
+    names the multiplicative form as deliberately not implemented. SYNTHETIC EVIDENCE ALREADY BANKED,
+    UNATTACHED: assay 003 (5/5 PASS; topology-aware VOI regret 0.00490 vs global-N_eff 0.01964, and the
+    mandatory irreducible-noise trap selected by raw disagreement 20.24 percent of the time versus 0.005
+    percent by the VOI selectors); assay 004 (5/5 PASS; the forced anti-conflation pair -- five
+    independent reasons with leverage 1 versus five copies with leverage 8 -- followed the oracle 16.82
+    percent of the time when the axes were conflated and 100 percent when factorised); assay 005 (6/6
+    PASS; under 50 percent missing and 20 percent wrong provenance plus eight-observation learned
+    leverage, soft provenance still captured 93.24 percent of oracle utility, and beat hard labels by
+    regret ratio 0.678); assay 006 (6/6 PASS; dynamic-both regret 0.01107 versus static 0.04969, and both
+    one-axis repairs strictly worse than the joint dynamic representation). All four manifests carry
+    claim_ids [] or no claim_ids key. ATTACHING THEM IS A /governance DECISION. EXTERNAL PRIOR ART (DOIs
+    in the literature review; NOT re-verified here): Freund, Seung, Shamir and Tishby 1992 query by
+    committee, which pre-empts "disagreement identifies informative queries"; Friston et al. 2015
+    (10.1080/17588928.2015.1020053) epistemic value; Daw et al. 2006 Nature 441:876-879
+    (10.1038/nature04766) directed exploration. The remaining REE-specific content is therefore narrow and
+    the claim text is scoped to it. DO NOT build in V3. DO NOT queue an experiment from this entry. Two
+    currency notes for whoever digests this: MECH-441's falsifier is recorded as HOLD STATUS -- REWRITE
+    OWED against a gate (ARC-110 validation via V3-EXQ-707) that has already resolved in the negative, and
+    MECH-482's live readout is known to collapse to a constant vector in short episodes
+    (V3-EXQ-964; substrate_queue sd_epistemic_deficit_multitarget_readiness, status
+    implemented_pending_validation). Neither is touched by this registration.
+
+
+- id: INV-108
+  title: >-
+    Convergence must be DETECTED over a preserved diversity, never TRAINED into the evaluators: any
+    architecture that treats agreement among partly independent routes as evidence thereby creates a
+    gradient toward making those routes agree, and acting on that gradient destroys exactly the
+    independence that gave the agreement its evidential value -- agreement among clones is cheap,
+    agreement among competent differences is not. The constraint therefore binds in five parts: (i) no
+    agreement or consensus objective may be optimised into the evaluators themselves, and a convergence
+    estimator must never become a teacher of its own evidence base; (ii) convergence is computed
+    DIAGNOSTICALLY over evaluator outputs and is an EVENT over diversity, not an endpoint or a training
+    target; (iii) dependency provenance and disagreement history must be preserved rather than compressed
+    away, because they are what make a later agreement interpretable; (iv) a competent dissenting route
+    must retain a protected path to attention that a confident majority cannot close, and protected-veto
+    and irreversibility structure must not be purchasable by many weak agreeing votes; (v) the objective
+    is preservation of COMPETENT NON-REDUNDANT routes -- unique predictive coverage, unique error
+    detection, distinct failure sets, distinct causal paths -- and explicitly NOT maximum diversity, which
+    is satisfiable by noise or contrarian output, nor maximum agreement. The diversity that matters for
+    this purpose is ERROR and CAUSAL diversity, not geometric representational dissimilarity: two systems
+    can differ geometrically and fail identically, or look similar and respond differently under
+    intervention.
+  claim_type: invariant
+  invariant_type: universal
+  subject: architecture.convergence_detected_not_trained
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_diversity_vs_convergence.md
+  depends_on:
+    - MECH-558   # the signal this constrains; without it this invariant has no subject
+    - ARC-065      # behavioural diversity generation pathway -- the diversity REE already commits to generating
+    - INV-074      # plasticity crystallization necessity: a dominant scoring pathway converges to monostrategy unless protected
+    - INV-076      # behavioural diversity is a structural prerequisite for ethical counterfactual evaluation
+    - MECH-309     # monomodal policy collapse is the equilibrium of a parametric policy without a rule-apprehension layer
+    - MECH-165     # replay must sample trajectory-diverse content or consolidation produces monostrategy
+    - MECH-341     # E3 score aggregation must preserve trajectory-class diversity rather than collapse the candidate pool
+    - ARC-088      # the DISTINCTNESS CONSTRAINT -- affective streams may share consumers but must not be merged into one value scalar
+    - ARC-139      # rising representational similarity between subsystems must NOT be read as maturation: the measurement-side cousin of this constraint
+    - MECH-449     # the eligibility constitution is where a protected dissent route would have to live
+  location: docs/architecture/convergence_divergence_geometry.md#inv-108
+  notes: >-
+    Registered 2026-09-15 from the diversity-versus-convergence child thought. MOST OF THAT THOUGHT IS
+    ALREADY OWNED and was deliberately not re-registered: diversity generation (ARC-065), premature
+    collapse as the default equilibrium (MECH-309, INV-074), diversity as an ethical prerequisite
+    (INV-076), diversity preservation through replay and through E3 scoring (MECH-165, MECH-341),
+    developmental overcapacity and pruning (MECH-333 / MECH-334 / MECH-496), and the multi-level diversity
+    taxonomy (covered in substance by ARC-139 plus INV-105's separation of encoded / decodable / causally
+    used). THE ONE THING NOTHING OWNS is the INCENTIVE COUPLING -- that using convergence as a signal
+    creates pressure to manufacture it -- and the design constraint that follows. DISTINCT FROM ARC-139,
+    which is a MEASUREMENT-INTERPRETATION rule (do not read rising cross-subsystem similarity as
+    maturation); this is an OBJECTIVE rule (do not create the similarity in the first place by optimising
+    for agreement). DISTINCT FROM ARC-088's distinctness constraint, which requires affective evaluators
+    to keep separate LEARNING TARGETS and GATING CONDITIONS; this adds the narrower prohibition on an
+    agreement objective and the protected-dissent route, and applies to any evaluator population rather
+    than to affect specifically. NO EVIDENCE EXISTS FOR THIS CLAIM. The assay that would test it is
+    Stage 7 of evidence/planning/convergence_signal_experiment_ladder.md (train ensembles under no
+    diversity pressure / explicit agreement reward / preserved diversity with external convergence
+    detection, and measure pairwise residual correlation, unique failure coverage, distribution-shift
+    robustness and effective independent source count); assays 001-006 did NOT test it, and the
+    registration should be read as a constraint proposed ahead of its evidence. External support is
+    indirect: the wisdom-of-crowds and collective-intelligence literature that correlated errors destroy
+    aggregation benefit, and social influence converging opinions without increasing accuracy (cited in
+    the nearest-neighbour stress test section 6; NOT independently verified here). DO NOT build in V3.
+    DO NOT queue an experiment from this entry.

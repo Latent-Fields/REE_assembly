@@ -1,11 +1,15 @@
 ---
 nav_exclude: true
 ---
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_aha_as_cross_model_restructuring.md
+Claims registered: none (insight-candidate claim drafted and deferred -- see the intake section 5)
+
 
 # The Aha Moment as Cross-Model Restructuring
 
 **Date:** 2026-09-09  
-**Status:** exploratory child thought; not a claim registration  
+**Status:** child thought (ingested 2026-09-15 -- see Intake above); not a claim registration  
 **Parent:** `2026-09-09_convergence_as_general_computational_signal.md`
 
 ## Core intuition

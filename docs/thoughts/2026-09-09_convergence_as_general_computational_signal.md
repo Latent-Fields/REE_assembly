@@ -1,11 +1,15 @@
 ---
 nav_exclude: true
 ---
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_convergence_as_general_computational_signal.md
+Claims registered: MECH-558, MECH-559, INV-108
+
 
 # Convergence as a General Computational Signal
 
 **Date:** 2026-09-09  
-**Status:** unprocessed working thought; not a claim registration, architectural commitment, or experiment request  
+**Status:** working thought (ingested 2026-09-15 -- see Intake above); not a claim registration, architectural commitment, or experiment request  
 **Origin:** discussion of information-hunger, degeneracy, basal-ganglia-like arbitration, and the subjective character of insight  
 **Related REE work:** `2026-08-12` bounded information-hunger / closure thought; `2026-08-31_play_as_developmental_information_hunger.md`; basal-ganglia selector constitution (ARC-107 / MECH-447–450 family); TCRT; claim rotation / predictive equivalence; mutual legibility.
 

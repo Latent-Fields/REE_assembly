@@ -1,11 +1,15 @@
 ---
 nav_exclude: true
 ---
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_diversity_vs_convergence.md
+Claims registered: INV-108
+
 
 # Diversity versus Convergence
 
 **Date:** 2026-09-09  
-**Status:** exploratory child thought; not a claim registration  
+**Status:** child thought (ingested 2026-09-15 -- see Intake above); not a claim registration  
 **Parent:** `2026-09-09_convergence_as_general_computational_signal.md`
 
 ## Core tension

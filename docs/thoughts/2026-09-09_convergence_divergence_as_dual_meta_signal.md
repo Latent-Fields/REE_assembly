@@ -1,11 +1,15 @@
 ---
 nav_exclude: true
 ---
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_convergence_divergence_as_dual_meta_signal.md
+Claims registered: MECH-559
+
 
 # Convergence and Divergence as a Dual Meta-Signal
 
 **Date:** 2026-09-09  
-**Status:** unprocessed child thought; not a claim registration, architecture commitment, or experiment request  
+**Status:** child thought (ingested 2026-09-15 -- see Intake above); not a claim registration, architecture commitment, or experiment request  
 **Parent:** `2026-09-09_convergence_as_general_computational_signal.md`  
 **Evidence anchor:** `evidence/planning/convergence_signal_nearest_neighbor_stress_test_2026-09-09.md`
 
