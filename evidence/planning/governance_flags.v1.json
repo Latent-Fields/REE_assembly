@@ -3929,6 +3929,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0280",
+      "claim_ids": [
+        "MECH-540"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "Amendment proposal from the 2026-09-15 thought ingestion: add a signature to MECH-540 for 'replay maintains the causal ACCESS correspondence, not only the representational map' (factorial representation x routing discriminator; drafted from docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md, deliberately NOT registered as its own claim -- see thought_intake_2026-09-10_dynamic_information_governance_propagating_causal_privilege.md section 5). Same shape as MECH-548's proposed S5 and MECH-551's offline reduction job; decide whether MECH-540's signature list absorbs all three.",
+      "raised_by_session": "thought-pipeline-20260915",
+      "raised_at": "2026-09-15T07:00:30Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
