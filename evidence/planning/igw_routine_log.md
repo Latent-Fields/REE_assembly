@@ -3008,3 +3008,4 @@ One line per hourly tick. ASCII only.
 2026-09-15T01:59:36Z GC removed worktree igw-220-substrate-ready-e2-world-forward (removed; branch deleted)
 2026-09-15T02:42:14Z workset committed (regen -- 255 items, 32 ready, 0 in flight)
 2026-09-15T02:41:17Z SPAWN IGW-20260915-243 skill=/queue-experiment prio=40 uuid=4ae61f5a-5adf-41be-9426-d4a79c8db52c pid=126 worktree=igw-243-proposal-for-mech-016
+2026-09-15T03:06:28Z auto-defer igw-243-proposal-for-mech-016 hash=2b7aecc3e046 for 48h (complete)
